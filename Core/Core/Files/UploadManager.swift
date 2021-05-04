@@ -314,10 +314,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
         if Set(successfullyUploadedFileIDs) == submittedFileIDsOnAPI {
             // All files are submitted to the assignment, we can delete our dangling files
-            for file in successfullyUploadedFiles {
-                if let url = file.localFileURL {
-                    try? FileManager.default.removeItem(at: url)
-                }
+            for localFileURL in successfullyUploadedFiles.compactMap({ $0.localFileURL }) {
+                try? FileManager.default.removeItem(at: localFileURL)
             }
             viewContext.delete(successfullyUploadedFiles)
         } else {

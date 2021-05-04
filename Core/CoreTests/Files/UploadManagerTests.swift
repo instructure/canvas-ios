@@ -277,7 +277,7 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertNil(file.uploadError)
 
         manager.cleanupDanglingFiles(assignment: assignment)
-        
+
         XCTAssertNotNil(file.uploadError)
         XCTAssertNil(file.id)
     }
