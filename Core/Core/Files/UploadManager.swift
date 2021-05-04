@@ -297,28 +297,40 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     /**
-     This method searches for files where the binary upload was successful but the received fild ID wasn't submitted to the assignment. Such files are marked as failed submissions, forcing the user to re-try.
+     File submissions happen in two phases. The first one is that the app uploads the file binary to a file server and receives a file id in exchange. The second step is that the app uploads this file id as a submission to the assignment.
+     If the app is killed before the result of the second step is received then we'll have dangling file references in the DB. This method searches for such files and compares their ids to the ones we received from the API in the assignment. In case of a mismatch we communicate an error but in case the ids are identical we just delete our dangling files.
      */
-    public func markInterruptedSubmissionAsFailed(assignment: Assignment) {
-        let files: [File] = context.fetch(filesPredicate(batchID: "assignment-\(assignment.id)"), sortDescriptors: nil)
-        let uploadedFiles = files.filter { $0.isUploaded }
-        let uploadedFileIDs = files.compactMap({ $0.id })
+    public func cleanupDanglingFiles(assignment: Assignment) {
+        let assignmentFiles: [File] = viewContext.fetch(filesPredicate(batchID: "assignment-\(assignment.id)"), sortDescriptors: nil)
+        let uploadedFiles = assignmentFiles.filter { $0.isUploaded }
+        let successfullyUploadedFiles = uploadedFiles.filter { $0.uploadError == nil }
+        let successfullyUploadedFileIDs = successfullyUploadedFiles.compactMap({ $0.id })
 
-        if uploadedFiles.isEmpty ||
-            submissionsStatus.isUploadInProgress(fileIDs: uploadedFileIDs) ||
-            assignment.submissionStatus == .submitted
-        {
+        if successfullyUploadedFiles.isEmpty || submissionsStatus.isUploadInProgress(fileIDs: successfullyUploadedFileIDs) {
             return
         }
 
-        context.performAndWait {
-            for file in uploadedFiles {
-                file.id = nil
-                file.taskID = nil
-                file.uploadError = NSLocalizedString("File upload failed. Please cancel your submission and try uploading again.", comment: "")
+        let submittedFileIDsOnAPI = Set(assignment.submission?.attachments?.compactMap { $0.id } ?? [])
+
+        if Set(successfullyUploadedFileIDs) == submittedFileIDsOnAPI {
+            // All files are submitted to the assignment, we can delete our dangling files
+            for file in successfullyUploadedFiles {
+                if let url = file.localFileURL {
+                    try? FileManager.default.removeItem(at: url)
+                }
             }
-            try? context.save()
+            viewContext.delete(successfullyUploadedFiles)
+        } else {
+            viewContext.performAndWait {
+                for file in successfullyUploadedFiles {
+                    file.id = nil
+                    file.taskID = nil
+                    file.uploadError = NSLocalizedString("File upload failed. Please cancel your submission and try uploading again.", comment: "")
+                }
+            }
+
         }
+        try? viewContext.save()
     }
 
     /**

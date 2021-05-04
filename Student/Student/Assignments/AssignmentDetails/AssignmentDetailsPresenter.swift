@@ -27,7 +27,7 @@ struct SubmissionAction: Equatable {
 }
 
 enum OnlineUploadState {
-    case staged, uploading, failed, completed
+    case staged, uploading, failed, completed, reSubmissionFailed
 }
 
 protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
@@ -103,6 +103,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             return assignment.lockExplanation ?? ""
         }
     }
+    private var fileCleanupPending = true
 
     init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.view = view
@@ -128,8 +129,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         if let submission = assignment.submission {
             userID = submission.userID
         }
-        if assignments.requested && !assignments.pending {
-            UploadManager.shared.markInterruptedSubmissionAsFailed(assignment: assignment)
+        if assignments.requested && !assignments.pending && fileCleanupPending {
+            fileCleanupPending = false
+            UploadManager.shared.cleanupDanglingFiles(assignment: assignment)
         }
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
         view?.showSubmitAssignmentButton(title: title)
@@ -150,7 +152,11 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         if onlineUpload.isEmpty {
             onlineUploadState = nil
         } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
-            onlineUploadState = .failed
+            if let assignment = assignment, assignment.submissionStatus == .submitted {
+                onlineUploadState = .reSubmissionFailed
+            } else {
+                onlineUploadState = .failed
+            }
         } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
             // A file uploaded to the file server doesn't mean it's also submitted to the assignment so we check both
             if let submission = assignment?.submission, submission.status == .submitted {
