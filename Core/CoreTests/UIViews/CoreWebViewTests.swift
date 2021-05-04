@@ -39,6 +39,12 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertEqual(view.configuration.userContentController.userScripts.count, 1)
     }
 
+    func testCustomUserAgentName() {
+        let customeUserAgentName = "customUserAgent"
+        let view = CoreWebView(customUserAgentName: customeUserAgentName)
+        XCTAssertEqual(view.configuration.applicationNameForUserAgent, customeUserAgentName)
+    }
+
     func testHtml() {
         let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
         XCTAssert(view.html(for: "<script>$.load()</script>").contains("jquery.min.js"))
