@@ -20,16 +20,16 @@ import TestsFoundation
 @testable import Core
 
 class SideMenuUITests: MiniCanvasUITestCase {
-    func testNavigation() throws {
+    func testFiles() {
         Profile.open()
         Profile.filesButton.tap()
-        XCTAssertTrue(app.navigationBars["Core.FileListView"].exists)
+        XCTAssertTrue(app.navigationBars["Files"].exists)
     }
 
     func testSettings() {
         Profile.open()
         Profile.settingsButton.tap()
-        XCTAssertTrue(app.navigationBars["Core.ProfileSettingsView"].exists)
+        XCTAssertTrue(app.navigationBars["Settings"].exists)
     }
 
     func testChangeUser() {
