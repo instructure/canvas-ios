@@ -151,7 +151,7 @@ exports[`renders correctly 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -363,7 +363,7 @@ exports[`renders correctly assignment icon 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -575,7 +575,7 @@ exports[`renders correctly discussion icon 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -736,7 +736,7 @@ exports[`renders correctly not published icon 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#8B969E",
+                    "tintColor": "#556572",
                   },
                 ]
               }
@@ -787,7 +787,7 @@ exports[`renders correctly not published icon 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -999,7 +999,7 @@ exports[`renders correctly published icon 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -1211,7 +1211,7 @@ exports[`renders correctly quiz icon 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -1423,7 +1423,7 @@ exports[`renders correctly with closed due dates 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -1635,7 +1635,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -1875,7 +1875,7 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -2087,7 +2087,7 @@ exports[`renders correctly with open due dates 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },
@@ -2299,7 +2299,7 @@ exports[`renders correctly with selected props 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginTop": 2,
                   },

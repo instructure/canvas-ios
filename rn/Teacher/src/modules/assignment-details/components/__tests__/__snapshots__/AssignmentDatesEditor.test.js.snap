@@ -37,7 +37,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -610,7 +610,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -1183,7 +1183,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -1859,7 +1859,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -2384,7 +2384,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -3060,7 +3060,7 @@ exports[`snapshots! render with single due date 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,

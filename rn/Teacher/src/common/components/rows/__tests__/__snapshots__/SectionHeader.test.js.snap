@@ -30,7 +30,7 @@ exports[`render 1`] = `
         },
         Array [
           Object {
-            "color": "#8B969E",
+            "color": "#556572",
             "fontSize": 14,
             "fontWeight": "600",
           },
@@ -77,7 +77,7 @@ exports[`render without key 1`] = `
         },
         Array [
           Object {
-            "color": "#8B969E",
+            "color": "#556572",
             "fontSize": 14,
             "fontWeight": "600",
           },
