@@ -229,7 +229,7 @@ class GetSubmissionsTests: CoreTestCase {
             ]),
         ]))
 
-        XCTAssertEqual(useCase.scopeKeepingIDs(["3"]).predicate.predicateFormat, NSCompoundPredicate(andPredicateWithSubpredicates: [
+        XCTAssertEqual(useCase.scopeKeepingIDs(["3"]).predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
             NSCompoundPredicate(orPredicateWithSubpredicates: [
@@ -237,10 +237,10 @@ class GetSubmissionsTests: CoreTestCase {
                 NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
             ]),
             NSCompoundPredicate(orPredicateWithSubpredicates: [
-                NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "TRUEPREDICATE")]),
+                NSCompoundPredicate(andPredicateWithSubpredicates: []),
                 NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ["3"]),
             ]),
-        ]).predicateFormat)
+        ]))
         useCase.filter = [.late]
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
