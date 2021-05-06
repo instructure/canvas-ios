@@ -326,7 +326,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     file.uploadError = NSLocalizedString("File upload failed. Please cancel your submission and try uploading again.", comment: "")
                 }
             }
-
         }
         try? viewContext.save()
     }

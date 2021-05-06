@@ -112,10 +112,7 @@ struct SideMenuBottomSection: View {
     func handleLogout() {
         UploadManager.shared.isUploading { isUploading in
             guard let session = self.env.currentSession else { return }
-
             performUIUpdate {
-                guard let session = self.env.currentSession else { return }
-
                 let logoutBlock = {
                     self.env.router.dismiss(controller) {
                         self.env.loginDelegate?.userDidLogout(session: session)
