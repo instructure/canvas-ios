@@ -164,6 +164,10 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         let title = takeButtonTitle
         takeButton.setTitle(title, for: .normal)
         takeButton.isHidden = title == nil
+
+        if courses.requested && !courses.pending && quizzes.requested && !quizzes.pending && colors.requested && !colors.pending {
+            UIAccessibility.post(notification: .screenChanged, argument: view)
+        }
     }
 
     var takeButtonTitle: String? {
