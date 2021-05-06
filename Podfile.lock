@@ -120,9 +120,9 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.11)
-  - PSPDFKit (10.0.0):
-    - PSPDFKit/Core (= 10.0.0)
-  - PSPDFKit/Core (10.0.0)
+  - PSPDFKit (10.3.0):
+    - PSPDFKit/Core (= 10.3.0)
+  - PSPDFKit/Core (10.3.0)
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
     - FBLazyVector (= 0.63.2)
@@ -396,7 +396,7 @@ DEPENDENCIES:
   - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities (~> 6.0)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
-  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/10.0.0.podspec`)
+  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/10.3.0.podspec`)
   - RCTRequired (from `./rn/Teacher/node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `./rn/Teacher/node_modules/react-native/Libraries/TypeSafety`)
   - React (from `./rn/Teacher/node_modules/react-native/`)
@@ -466,7 +466,7 @@ EXTERNAL SOURCES:
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   PSPDFKit:
-    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/10.0.0.podspec
+    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/10.3.0.podspec
   RCTRequired:
     :path: "./rn/Teacher/node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -556,7 +556,7 @@ SPEC CHECKSUMS:
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
-  PSPDFKit: 1a6adca9a745716adf3f51459d7163bf639dc0d3
+  PSPDFKit: b0c092464944b80ea44388aed09d934741999924
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a
@@ -591,6 +591,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 5566dcef30e564ac7986b9e55f63f335936116f9
+PODFILE CHECKSUM: deb910f21b8e6c6da25a7a5585d47163a9686475
 
 COCOAPODS: 1.10.1
