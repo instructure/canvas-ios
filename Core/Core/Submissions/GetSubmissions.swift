@@ -200,29 +200,29 @@ public class GetSubmissions: CollectionUseCase {
         GetSubmissionsRequest(context: context, assignmentID: assignmentID, grouped: true, include: GetSubmissionsRequest.Include.allCases)
     }
 
+    private var commonScopePredicates: [NSPredicate] { [
+        NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
+        NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+        NSCompoundPredicate(orPredicateWithSubpredicates: [
+            NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
+            NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
+        ]),
+    ]}
+
     public var scope: Scope { Scope(
-        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
-            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
-            NSCompoundPredicate(orPredicateWithSubpredicates: [
-                NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
-                NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
-            ]),
-        ] + filter.map { $0.predicate }),
-        order: order
-    ) }
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: commonScopePredicates + filter.map { $0.predicate }),
+        order: order)
+    }
 
     public func scopeKeepingIDs(_ ids: [String]) -> Scope { Scope(
-        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
-            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
-            NSCompoundPredicate(orPredicateWithSubpredicates: [
-                NSCompoundPredicate(andPredicateWithSubpredicates: filter.map { $0.predicate }),
-                NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids),
-            ]),
-        ]),
-        order: order
-    ) }
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: commonScopePredicates +
+                                        [NSCompoundPredicate(orPredicateWithSubpredicates: [
+                                            NSCompoundPredicate(andPredicateWithSubpredicates: filter.map { $0.predicate }),
+                                            NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids),
+                                        ]),
+                                        ]),
+        order: order)
+    }
 
     private var order: [NSSortDescriptor] {
         if shuffled {
