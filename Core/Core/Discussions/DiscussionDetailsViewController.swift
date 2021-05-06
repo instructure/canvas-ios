@@ -401,6 +401,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             AppStoreReview.handleNavigateToAssignment()
         }
         scrollViewDidScroll(scrollView) // read initial
+        UIAccessibility.post(notification: .screenChanged, argument: titleSubtitleView)
     }
 
     func findNewReplyIDFromCurrentUser() -> String? {

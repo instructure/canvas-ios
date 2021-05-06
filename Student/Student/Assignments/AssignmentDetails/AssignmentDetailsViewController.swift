@@ -314,6 +314,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         scrollView?.isHidden = false
         loadingView.isHidden = true
         refreshControl?.endRefreshing()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
 
     func centerLockedIconContainerView() {

@@ -66,6 +66,7 @@ public struct AssignmentDetailsView: View {
                 }
 
                 details(assignment: assignment)
+                    .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil)}
             } }
         } else if assignment.state == .loading {
             ZStack { CircleProgress() }
