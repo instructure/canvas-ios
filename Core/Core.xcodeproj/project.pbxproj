@@ -820,6 +820,7 @@
 		CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */; };
 		CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */; };
 		CF5F603225DBD84700E7E0ED /* UINavigationControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */; };
+		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
 		CF7C6DAD25E56A0000363203 /* GroupContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */; };
@@ -1924,6 +1925,7 @@
 		CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakViewController.swift; sourceTree = "<group>"; };
 		CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerTheme.swift; sourceTree = "<group>"; };
+		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
 		CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardTests.swift; sourceTree = "<group>"; };
@@ -2458,6 +2460,7 @@
 				7DBA77C324F9BE1D00B4D6B3 /* FileList */,
 				7D2E82832270BB7600735854 /* FilePicker */,
 				9FD504E52180BE1300B395BA /* APIFile.swift */,
+				CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */,
 				9FD504EB2180BF1A00B395BA /* File.swift */,
 				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
 				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
@@ -5361,6 +5364,7 @@
 				7DA2603023F722C9005D2121 /* GoogleCloudAssignmentViewController.swift in Sources */,
 				D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */,
 				7DA2607923F722FA005D2121 /* AppBackgroundHelperProtocol.swift in Sources */,
+				CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */,
 				7D531D3B2549CF0500CBFCA6 /* AssignmentOverridesEditor.swift in Sources */,
 				7DA260EA23F72359005D2121 /* TitleSubtitleView.swift in Sources */,
 				7DA25FF823F7226E005D2121 /* DocViewerAnnotationToolbar.swift in Sources */,
