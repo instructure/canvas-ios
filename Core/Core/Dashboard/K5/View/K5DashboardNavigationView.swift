@@ -40,6 +40,7 @@ struct K5DashboardNavigationView: View {
                 }
             }
             .padding(.horizontal)
+            .padding(.top)
         }
     }
 }

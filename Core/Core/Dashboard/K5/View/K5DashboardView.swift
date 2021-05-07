@@ -19,6 +19,9 @@
 import SwiftUI
 
 public struct K5DashboardView: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
+
     @ObservedObject private var viewModel = K5DashboardViewModel()
 
     public var body: some View {
@@ -29,6 +32,17 @@ public struct K5DashboardView: View {
                 content
             }
         }
+        .navigationBarGlobal()
+        .navigationBarItems(
+            leading: Button(action: {
+                viewModel.profileButtonPressed(router: env.router, viewController: controller)
+            }, label: {
+                Image.hamburgerSolid
+                    .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+            })
+                .identifier("Dashboard.profileButton")
+                .accessibility(label: Text("Profile Menu", bundle: .core))
+        )
     }
 
     @ViewBuilder private var content: some View {

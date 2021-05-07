@@ -45,4 +45,8 @@ public class K5DashboardViewModel: ObservableObject {
     init() {
         currentNavigationItem = navigationItems.first!
     }
+
+    public func profileButtonPressed(router: Router, viewController: WeakViewController) {
+        router.route(to: "/profile", from: viewController, options: .modal())
+    }
 }
