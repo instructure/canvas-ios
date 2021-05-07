@@ -814,12 +814,18 @@
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
 		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
+		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
+		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
 		CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */; };
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
 		CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */; };
 		CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */; };
 		CF5F603225DBD84700E7E0ED /* UINavigationControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */; };
+		CF60CC332645524500C1C173 /* K5GradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC322645524500C1C173 /* K5GradesView.swift */; };
+		CF60CC372645525400C1C173 /* K5HomeroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC362645525400C1C173 /* K5HomeroomView.swift */; };
+		CF60CC3A2645525F00C1C173 /* K5ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC392645525F00C1C173 /* K5ResourcesView.swift */; };
+		CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
@@ -1920,12 +1926,18 @@
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
 		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
+		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
 		CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakViewController.swift; sourceTree = "<group>"; };
 		CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerTheme.swift; sourceTree = "<group>"; };
+		CF60CC322645524500C1C173 /* K5GradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesView.swift; sourceTree = "<group>"; };
+		CF60CC362645525400C1C173 /* K5HomeroomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomView.swift; sourceTree = "<group>"; };
+		CF60CC392645525F00C1C173 /* K5ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesView.swift; sourceTree = "<group>"; };
+		CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleView.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -2517,6 +2529,7 @@
 		7D14863C230B43AE003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				CF4BDB582645393A00A91952 /* K5 */,
 				CF4BDB53264530A000A91952 /* Model */,
 				CF4BDB54264530DC00A91952 /* View */,
 			);
@@ -3936,6 +3949,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CF4BDB582645393A00A91952 /* K5 */ = {
+			isa = PBXGroup;
+			children = (
+				CF4BDB592645394400A91952 /* View */,
+				CF4BDB5A2645394900A91952 /* ViewModel */,
+			);
+			path = K5;
+			sourceTree = "<group>";
+		};
+		CF4BDB592645394400A91952 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC302645520C00C1C173 /* Grades */,
+				CF60CC2E264551FE00C1C173 /* Homeroom */,
+				CF60CC312645521100C1C173 /* Resources */,
+				CF60CC2F2645520500C1C173 /* Schedule */,
+				CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF4BDB5A2645394900A91952 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */ = {
 			isa = PBXGroup;
 			children = (
@@ -3953,6 +3995,38 @@
 				7D264DD02538E20C007CDD90 /* CoreHostingControllerTests.swift */,
 			);
 			path = UIKitSwiftUIBridging;
+			sourceTree = "<group>";
+		};
+		CF60CC2E264551FE00C1C173 /* Homeroom */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC362645525400C1C173 /* K5HomeroomView.swift */,
+			);
+			path = Homeroom;
+			sourceTree = "<group>";
+		};
+		CF60CC2F2645520500C1C173 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		CF60CC302645520C00C1C173 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC322645524500C1C173 /* K5GradesView.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
+		CF60CC312645521100C1C173 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC392645525F00C1C173 /* K5ResourcesView.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		CF7C6D9A25E5114D00363203 /* Course */ = {
@@ -4955,6 +5029,7 @@
 				7DA25FE723F721DE005D2121 /* APIConversation.swift in Sources */,
 				7DA260CE23F72359005D2121 /* CalendarDayIconView.swift in Sources */,
 				7DA25FEA23F721DE005D2121 /* Conversation.swift in Sources */,
+				CF60CC372645525400C1C173 /* K5HomeroomView.swift in Sources */,
 				7DA2600323F7227A005D2121 /* BundleExtensions.swift in Sources */,
 				3B4D89412450AD58004ED120 /* UITextViewExtensions.swift in Sources */,
 				7D742F3D25563EFD00FD6CF1 /* FlowStack.swift in Sources */,
@@ -4999,6 +5074,7 @@
 				7DA2606F23F722E9005D2121 /* APINotificationPreferences.swift in Sources */,
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
+				CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */,
 				7DA260E023F72359005D2121 /* IconView.swift in Sources */,
 				7D4B2740253CEE6800A98DE3 /* AudioPlayer.swift in Sources */,
 				7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */,
@@ -5280,6 +5356,7 @@
 				7DA25FAF23F72136005D2121 /* APIError.swift in Sources */,
 				97F5520424061AF1005D80FC /* PlannerNoteDetailViewController.swift in Sources */,
 				7DBD14E32547213F00750F52 /* QuizListViewController.swift in Sources */,
+				CF60CC332645524500C1C173 /* K5GradesView.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
@@ -5295,6 +5372,7 @@
 				7DA260EC23F7235F005D2121 /* WrongAppLinkView.swift in Sources */,
 				CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */,
 				7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */,
+				CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */,
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
 				EB2A9BD22632E43600A19A5A /* SideMenuToggleItem.swift in Sources */,
@@ -5363,6 +5441,7 @@
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
+				CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */,
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
 				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
 				CF5F603225DBD84700E7E0ED /* UINavigationControllerTheme.swift in Sources */,
@@ -5374,6 +5453,7 @@
 				7DA25FBD23F72136005D2121 /* APIMediaComment.swift in Sources */,
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,
 				7DA2602923F722C2005D2121 /* LoginManualOAuthViewController.swift in Sources */,
+				CF60CC3A2645525F00C1C173 /* K5ResourcesView.swift in Sources */,
 				7DA25FFE23F7226E005D2121 /* DocViewerSession.swift in Sources */,
 				D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */,
 				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
