@@ -357,7 +357,13 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 canLike: canLike
             )
         } else {
-            var entries = self.entries.filter { $0.parentID == nil }
+            var isFutureDiscussion: Bool {
+                guard let unlockDate = topic.assignment?.unlockAt, env.app == .student else {
+                    return false
+                }
+                return unlockDate > Date()
+            }
+            var entries = self.entries.filter { $0.parentID == nil && !isFutureDiscussion }
             if topic.sortByRating {
                 entries.sort { $0.likeCount > $1.likeCount }
             }
