@@ -20,12 +20,20 @@ import SwiftUI
 
 struct K5HomeroomView: View {
     var body: some View {
-        Text("Homeroom Details", bundle: .core)
+        VStack(alignment: .leading) {
+            Text("Welcome, Student!")
+                .padding()
+            K5HomeroomAnnouncementView()
+                .padding()
+            Divider()
+            K5HomeroomMySubjectsView()
+                .padding()
+        }
     }
 }
 
 struct K5HomeroomView_Previews: PreviewProvider {
     static var previews: some View {
-        K5HomeroomView()
+        K5HomeroomView().previewLayout(.sizeThatFits)
     }
 }

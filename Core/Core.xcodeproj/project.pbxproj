@@ -826,6 +826,9 @@
 		CF60CC372645525400C1C173 /* K5HomeroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC362645525400C1C173 /* K5HomeroomView.swift */; };
 		CF60CC3A2645525F00C1C173 /* K5ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC392645525F00C1C173 /* K5ResourcesView.swift */; };
 		CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */; };
+		CF60CC43264589AF00C1C173 /* K5HomeroomAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC42264589AF00C1C173 /* K5HomeroomAnnouncementView.swift */; };
+		CF60CC4626458C0800C1C173 /* K5HomeroomMySubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC4526458C0800C1C173 /* K5HomeroomMySubjectsView.swift */; };
+		CF60CC4A26458ED800C1C173 /* K5DashboardNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC4926458ED800C1C173 /* K5DashboardNavigationView.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
@@ -1938,6 +1941,9 @@
 		CF60CC362645525400C1C173 /* K5HomeroomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomView.swift; sourceTree = "<group>"; };
 		CF60CC392645525F00C1C173 /* K5ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesView.swift; sourceTree = "<group>"; };
 		CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleView.swift; sourceTree = "<group>"; };
+		CF60CC42264589AF00C1C173 /* K5HomeroomAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementView.swift; sourceTree = "<group>"; };
+		CF60CC4526458C0800C1C173 /* K5HomeroomMySubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomMySubjectsView.swift; sourceTree = "<group>"; };
+		CF60CC4926458ED800C1C173 /* K5DashboardNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardNavigationView.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -3966,6 +3972,7 @@
 				CF60CC312645521100C1C173 /* Resources */,
 				CF60CC2F2645520500C1C173 /* Schedule */,
 				CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */,
+				CF60CC4926458ED800C1C173 /* K5DashboardNavigationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4001,6 +4008,8 @@
 			isa = PBXGroup;
 			children = (
 				CF60CC362645525400C1C173 /* K5HomeroomView.swift */,
+				CF60CC42264589AF00C1C173 /* K5HomeroomAnnouncementView.swift */,
+				CF60CC4526458C0800C1C173 /* K5HomeroomMySubjectsView.swift */,
 			);
 			path = Homeroom;
 			sourceTree = "<group>";
@@ -5065,6 +5074,7 @@
 				7DA25FD423F72136005D2121 /* ID.swift in Sources */,
 				7DA2608323F72303005D2121 /* PeopleListViewController.swift in Sources */,
 				7DA25FA623F72136005D2121 /* APICourse.swift in Sources */,
+				CF60CC4626458C0800C1C173 /* K5HomeroomMySubjectsView.swift in Sources */,
 				7DA25FF923F7226E005D2121 /* DocViewerAnnotationProvider.swift in Sources */,
 				7DA2608623F7230F005D2121 /* ErrorViewController.swift in Sources */,
 				7D531D4C254C664900CBFCA6 /* ListSectionHeader.swift in Sources */,
@@ -5083,6 +5093,7 @@
 				7DA2602A23F722C2005D2121 /* LoginNavigationController.swift in Sources */,
 				7DA260C423F72352005D2121 /* UploadMedia.swift in Sources */,
 				7DA25F9423F7212C005D2121 /* ActAsUserViewController.swift in Sources */,
+				CF60CC4A26458ED800C1C173 /* K5DashboardNavigationView.swift in Sources */,
 				7DA2603B23F722D9005D2121 /* CalendarEvent.swift in Sources */,
 				7DA2602D23F722C2005D2121 /* LoginStartMDMLoginCell.swift in Sources */,
 				E8D7E6EB24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift in Sources */,
@@ -5325,6 +5336,7 @@
 				7DA2608723F72315005D2121 /* NotificationCategoriesViewController.swift in Sources */,
 				7DA25F9523F7212C005D2121 /* ActAsUserWindow.swift in Sources */,
 				D9E1BABA25811BD70034C01E /* ContextCardBoxView.swift in Sources */,
+				CF60CC43264589AF00C1C173 /* K5HomeroomAnnouncementView.swift in Sources */,
 				7DA25FFC23F7226E005D2121 /* DocViewerPointAnnotation.swift in Sources */,
 				7DC7045A24AA8B2600CD1C46 /* ObserverAlert.swift in Sources */,
 				7DA25FD723F72148005D2121 /* CacheManager.swift in Sources */,

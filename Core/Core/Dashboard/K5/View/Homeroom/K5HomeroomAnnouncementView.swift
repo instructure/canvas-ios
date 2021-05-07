@@ -18,38 +18,21 @@
 
 import SwiftUI
 
-public struct K5DashboardView: View {
-    @ObservedObject private var viewModel = K5DashboardViewModel()
-
-    public var body: some View {
-        VStack {
-            K5DashboardNavigationView(viewModel: viewModel)
-            Divider()
-            ScrollView(.vertical) {
-                content
-            }
+struct K5HomeroomAnnouncementView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("123098 — Homeroom FALL 2020 — Ms. Johnson")
+            Text("Announcement Title")
+            WebView(html: nil)
+            Button(action: {}, label: {
+                Text("View Previous Announcements", bundle: .core)
+            })
         }
-    }
-
-    @ViewBuilder private var content: some View {
-        switch viewModel.currentNavigationItem.type {
-        case .homeroom:
-            K5HomeroomView()
-        case .schedule:
-            K5ScheduleView()
-        case .grades:
-            K5GradesView()
-        case .resources:
-            K5ResourcesView()
-        }
-    }
-
-    public init() {
     }
 }
 
-struct K5DashboardView_Previews: PreviewProvider {
+struct K5HomeRoomAnnouncementView_Previews: PreviewProvider {
     static var previews: some View {
-        K5DashboardView()
+        K5HomeroomAnnouncementView().previewLayout(.sizeThatFits)
     }
 }
