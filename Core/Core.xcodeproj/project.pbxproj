@@ -2515,16 +2515,8 @@
 		7D14863C230B43AE003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
-				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
-				7D70869C256C1C6500647D37 /* ConferenceCard.swift */,
-				7D70868A2568937D00647D37 /* CourseCard.swift */,
-				7D70869825699AAA00647D37 /* CourseInvitationCard.swift */,
-				7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */,
-				7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */,
-				7D7086862568755300647D37 /* DashboardCardView.swift */,
-				7D70868E2568D6CA00647D37 /* GroupCard.swift */,
-				7D7086922569607D00647D37 /* NotificationCard.swift */,
+				CF4BDB53264530A000A91952 /* Model */,
+				CF4BDB54264530DC00A91952 /* View */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2532,9 +2524,8 @@
 		7D148642230B48E7003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
-				7D80AC1A212B6A7700C40ECE /* APIFavoriteTests.swift */,
-				7D288B0E25758F630013FF65 /* DashboardCardTests.swift */,
+				CF4BDB552645314A00A91952 /* Model */,
+				CF4BDB562645315700A91952 /* View */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -3900,6 +3891,47 @@
 				CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */,
 			);
 			path = Accessibility;
+			sourceTree = "<group>";
+		};
+		CF4BDB53264530A000A91952 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
+				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
+				7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF4BDB54264530DC00A91952 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D70869C256C1C6500647D37 /* ConferenceCard.swift */,
+				7D70868A2568937D00647D37 /* CourseCard.swift */,
+				7D70869825699AAA00647D37 /* CourseInvitationCard.swift */,
+				7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */,
+				7D7086862568755300647D37 /* DashboardCardView.swift */,
+				7D70868E2568D6CA00647D37 /* GroupCard.swift */,
+				7D7086922569607D00647D37 /* NotificationCard.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF4BDB552645314A00A91952 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
+				7D80AC1A212B6A7700C40ECE /* APIFavoriteTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF4BDB562645315700A91952 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D288B0E25758F630013FF65 /* DashboardCardTests.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */ = {
