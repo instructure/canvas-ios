@@ -136,11 +136,10 @@ public struct DiscussionEditorView: View {
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Title", bundle: .core)) {
-                TextField(NSLocalizedString("Add Title", comment: ""), text: $title)
-                    .font(.regular16).foregroundColor(.textDarkest)
-                    .padding(16)
-                    .identifier("DiscussionEditor.titleField")
-                    .accessibility(label: Text("Title"))
+                CustomTextField(placeholder: Text("Add Title", bundle: .core),
+                                text: $title,
+                                identifier: "DiscussionEditor.titleField",
+                                accessibilityLabel: Text("Title", bundle: .core))
             }
 
             EditorSection(label: Text("Description", bundle: .core)) {

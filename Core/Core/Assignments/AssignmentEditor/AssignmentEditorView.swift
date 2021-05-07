@@ -93,11 +93,10 @@ public struct AssignmentEditorView: View {
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Title", bundle: .core)) {
-                TextField(NSLocalizedString("Add Title", comment: ""), text: $name)
-                    .font(.regular16).foregroundColor(.textDarkest)
-                    .padding(16)
-                    .identifier("AssignmentEditor.titleField")
-                    .accessibility(label: Text("Title"))
+                CustomTextField(placeholder: Text("Add Title", bundle: .core),
+                                text: $name,
+                                identifier: "AssignmentEditor.titleField",
+                                accessibilityLabel: Text("Title", bundle: .core))
             }
 
             EditorSection(label: Text("Description", bundle: .core)) {

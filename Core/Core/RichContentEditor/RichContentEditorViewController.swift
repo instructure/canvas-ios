@@ -95,7 +95,7 @@ public class RichContentEditorViewController: UIViewController {
                 --color-textDark: \(UIColor.textDark.hexString);
                 --color-textDarkest: \(UIColor.textDarkest.hexString);
 
-                font-size: \(UIFont.scaledNamedFont(.medium16).pointSize)px;
+                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
             }
             </style>
             <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\" aria-label=\"\(a11yLabel)\"></div>
