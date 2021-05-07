@@ -24,8 +24,8 @@ struct CustomTextField: View {
     let identifier: String
     let accessibilityLabel: Text
     let padding: CGFloat = 16
-    let onEditingChanged: (Bool)->() = { _ in }
-    let onCommit: ()->() = { }
+    let onEditingChanged: (Bool) -> Void = { _ in }
+    let onCommit: () -> Void = { }
 
     var body: some View {
         ZStack(alignment: .leading) {
