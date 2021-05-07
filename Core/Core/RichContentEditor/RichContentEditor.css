@@ -2,7 +2,7 @@ html {
     background: var(--color-backgroundLightest);
     color: var(--color-textDarkest);
     font-family: system-ui;
-    font-weight: 500;
+    font-weight: 400;
 }
 html, body {
     margin: 0;

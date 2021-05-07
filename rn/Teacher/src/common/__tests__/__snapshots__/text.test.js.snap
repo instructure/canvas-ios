@@ -51,7 +51,7 @@ exports[`renders paragraph correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#8B969E",
+        "color": "#556572",
         "fontSize": 16,
         "lineHeight": 23,
       },
@@ -103,7 +103,7 @@ exports[`renders separated correctly 1`] = `
           undefined,
           Object {
             "alignSelf": "center",
-            "color": "#8B969E",
+            "color": "#556572",
             "fontSize": 10,
           },
         ],
@@ -146,7 +146,7 @@ exports[`renders separated correctly 1`] = `
           undefined,
           Object {
             "alignSelf": "center",
-            "color": "#8B969E",
+            "color": "#556572",
             "fontSize": 10,
           },
         ],

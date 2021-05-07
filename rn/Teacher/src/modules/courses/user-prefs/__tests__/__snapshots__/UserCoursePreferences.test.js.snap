@@ -257,7 +257,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -1001,7 +1001,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -1775,7 +1775,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -2729,7 +2729,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -3683,7 +3683,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -4637,7 +4637,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -5607,7 +5607,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -6561,7 +6561,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -7515,7 +7515,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,
@@ -8472,7 +8472,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "marginHorizontal": 16,
                     "marginTop": 2,

@@ -40,7 +40,7 @@ exports[`CourseSelect renders 1`] = `
               },
               Array [
                 Object {
-                  "color": "#8B969E",
+                  "color": "#556572",
                   "fontSize": 14,
                   "fontWeight": "600",
                 },
@@ -160,7 +160,7 @@ exports[`CourseSelect renders 1`] = `
               },
               Array [
                 Object {
-                  "color": "#8B969E",
+                  "color": "#556572",
                   "fontSize": 14,
                   "fontWeight": "600",
                 },
@@ -404,7 +404,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               },
               Array [
                 Object {
-                  "color": "#8B969E",
+                  "color": "#556572",
                   "fontSize": 14,
                   "fontWeight": "600",
                 },
@@ -524,7 +524,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               },
               Array [
                 Object {
-                  "color": "#8B969E",
+                  "color": "#556572",
                   "fontSize": 14,
                   "fontWeight": "600",
                 },

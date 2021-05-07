@@ -93,7 +93,7 @@ exports[`render correctly 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
-                          "color": "#8B969E",
+                          "color": "#556572",
                           "fontWeight": "600",
                         },
                         Object {
@@ -167,7 +167,7 @@ exports[`render correctly 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -248,7 +248,7 @@ exports[`render correctly 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
-                          "color": "#8B969E",
+                          "color": "#556572",
                           "fontWeight": "600",
                         },
                         Object {
@@ -296,7 +296,7 @@ exports[`render correctly 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 14,
                       },
                     ]
@@ -339,7 +339,7 @@ exports[`render correctly 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -420,7 +420,7 @@ exports[`render correctly 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
-                          "color": "#8B969E",
+                          "color": "#556572",
                           "fontWeight": "600",
                         },
                         Object {
@@ -468,7 +468,7 @@ exports[`render correctly 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 14,
                       },
                     ]
@@ -511,7 +511,7 @@ exports[`render correctly 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -687,7 +687,7 @@ exports[`render correctly 2`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -768,7 +768,7 @@ exports[`render correctly 2`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
-                          "color": "#8B969E",
+                          "color": "#556572",
                           "fontWeight": "600",
                         },
                         Object {
@@ -816,7 +816,7 @@ exports[`render correctly 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 14,
                       },
                     ]
@@ -859,7 +859,7 @@ exports[`render correctly 2`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -940,7 +940,7 @@ exports[`render correctly 2`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
-                          "color": "#8B969E",
+                          "color": "#556572",
                           "fontWeight": "600",
                         },
                         Object {
@@ -988,7 +988,7 @@ exports[`render correctly 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 14,
                       },
                     ]

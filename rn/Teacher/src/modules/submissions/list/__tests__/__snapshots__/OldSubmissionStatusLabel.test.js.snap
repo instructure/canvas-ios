@@ -16,7 +16,7 @@ exports[`SubmissionStatus status \`excused\` renders properly 1`] = `
         },
         undefined,
         Object {
-          "color": "#8B969E",
+          "color": "#556572",
         },
       ],
     ]
@@ -94,7 +94,7 @@ exports[`SubmissionStatus status \`none\` renders properly 1`] = `
         },
         undefined,
         Object {
-          "color": "#8B969E",
+          "color": "#556572",
         },
       ],
     ]

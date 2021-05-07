@@ -108,7 +108,7 @@ exports[`Render the base row 1`] = `
             },
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "marginTop": 2,
               },

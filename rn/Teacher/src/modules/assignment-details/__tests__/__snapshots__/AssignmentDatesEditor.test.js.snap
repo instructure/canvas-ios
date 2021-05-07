@@ -37,7 +37,7 @@ exports[`render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -713,7 +713,7 @@ exports[`render correctly with overide 1`] = `
           style={
             Array [
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,

@@ -50,7 +50,7 @@ exports[`render 1`] = `
           "fontSize": 16,
         },
         Object {
-          "color": "#8B969E",
+          "color": "#556572",
           "fontSize": 16,
           "textAlign": "center",
         },
