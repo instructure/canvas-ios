@@ -63,8 +63,6 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            brew tap mxcl/made
-
             brew reinstall swiftlint jq
 
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
