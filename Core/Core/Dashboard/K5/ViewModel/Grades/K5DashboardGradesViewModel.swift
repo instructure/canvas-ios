@@ -16,11 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5DashboardGradesViewModel {
+class K5GradesViewModel {
 
 }
 
-extension K5DashboardGradesViewModel: Refreshable {
+extension K5GradesViewModel: Refreshable {
 
     func refresh(completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)

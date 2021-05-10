@@ -16,12 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+class K5ResourcesViewModel {
 
-struct K5ScheduleView: View {
-    @ObservedObject var viewModel: K5ScheduleViewModel
+}
 
-    var body: some View {
-        Text(viewModel.content)
+extension K5ResourcesViewModel: Refreshable {
+
+    func refresh(completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
     }
 }

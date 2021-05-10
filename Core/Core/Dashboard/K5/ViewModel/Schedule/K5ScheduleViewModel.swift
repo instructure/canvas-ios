@@ -16,13 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5DashboardResourcesViewModel {
+class K5ScheduleViewModel: ObservableObject {
+    @Published var content: String = "Binding test"
+    private var timer: Timer!
 
+    init() {
+        timer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
+            self?.content.append(".")
+        }
+        RunLoop.main.add(timer, forMode: .default)
+    }
+
+    deinit {
+        timer.invalidate()
+    }
 }
 
-extension K5DashboardResourcesViewModel: Refreshable {
+extension K5ScheduleViewModel: Refreshable {
 
     func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.content = "Binding test"
+            completion()
+        }
     }
 }

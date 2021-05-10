@@ -27,10 +27,10 @@ public class K5DashboardViewModel: ObservableObject {
     ]
     @Published var currentNavigationItem: K5DashboardNavigationViewModel
     let viewModels = (
-        homeroom: K5DashboardHomeroomViewModel(),
-        schedule: K5DashboardScheduleViewModel(),
-        grades: K5DashboardGradesViewModel(),
-        resources: K5DashboardResourcesViewModel()
+        homeroom: K5HomeroomViewModel(),
+        schedule: K5ScheduleViewModel(),
+        grades: K5GradesViewModel(),
+        resources: K5ResourcesViewModel()
     )
 
     init() {
