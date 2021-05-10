@@ -16,12 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+class K5DashboardScheduleViewModel: ObservableObject {
+    @Published var content: String = "Binding test"
+    private var timer: Timer!
 
-struct K5ScheduleView: View {
-    @ObservedObject var viewModel: K5DashboardScheduleViewModel
+    init() {
+        timer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
+            self?.content.append(".")
+        }
+        RunLoop.main.add(timer, forMode: .default)
+    }
 
-    var body: some View {
-        Text(viewModel.content)
+    deinit {
+        timer.invalidate()
     }
 }

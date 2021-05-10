@@ -50,7 +50,7 @@ public struct K5DashboardView: View {
         case .homeroom:
             K5HomeroomView()
         case .schedule:
-            K5ScheduleView()
+            K5ScheduleView(viewModel: viewModel.viewModels.schedule)
         case .grades:
             K5GradesView()
         case .resources:

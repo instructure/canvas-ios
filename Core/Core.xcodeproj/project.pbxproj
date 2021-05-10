@@ -829,6 +829,11 @@
 		CF60CC43264589AF00C1C173 /* K5HomeroomAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC42264589AF00C1C173 /* K5HomeroomAnnouncementView.swift */; };
 		CF60CC4626458C0800C1C173 /* K5HomeroomMySubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC4526458C0800C1C173 /* K5HomeroomMySubjectsView.swift */; };
 		CF60CC4A26458ED800C1C173 /* K5DashboardNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC4926458ED800C1C173 /* K5DashboardNavigationView.swift */; };
+		CF60CC5326496A5D00C1C173 /* K5DashboardNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5226496A5D00C1C173 /* K5DashboardNavigationViewModel.swift */; };
+		CF60CC5626496EA500C1C173 /* K5DashboardScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5526496EA500C1C173 /* K5DashboardScheduleViewModel.swift */; };
+		CF60CC5926496EBD00C1C173 /* K5DashboardResourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5826496EBD00C1C173 /* K5DashboardResourcesViewModel.swift */; };
+		CF60CC5C26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5B26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift */; };
+		CF60CC5F26496EDE00C1C173 /* K5DashboardGradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5E26496EDE00C1C173 /* K5DashboardGradesViewModel.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
@@ -1944,6 +1949,11 @@
 		CF60CC42264589AF00C1C173 /* K5HomeroomAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementView.swift; sourceTree = "<group>"; };
 		CF60CC4526458C0800C1C173 /* K5HomeroomMySubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomMySubjectsView.swift; sourceTree = "<group>"; };
 		CF60CC4926458ED800C1C173 /* K5DashboardNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardNavigationView.swift; sourceTree = "<group>"; };
+		CF60CC5226496A5D00C1C173 /* K5DashboardNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardNavigationViewModel.swift; sourceTree = "<group>"; };
+		CF60CC5526496EA500C1C173 /* K5DashboardScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardScheduleViewModel.swift; sourceTree = "<group>"; };
+		CF60CC5826496EBD00C1C173 /* K5DashboardResourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardResourcesViewModel.swift; sourceTree = "<group>"; };
+		CF60CC5B26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardHomeroomViewModel.swift; sourceTree = "<group>"; };
+		CF60CC5E26496EDE00C1C173 /* K5DashboardGradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardGradesViewModel.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -3980,7 +3990,12 @@
 		CF4BDB5A2645394900A91952 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF60CC4E26496A1100C1C173 /* Grades */,
+				CF60CC4F26496A1700C1C173 /* Homeroom */,
+				CF60CC5026496A1F00C1C173 /* Resources */,
+				CF60CC5126496A2900C1C173 /* Schedule */,
 				CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */,
+				CF60CC5226496A5D00C1C173 /* K5DashboardNavigationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4036,6 +4051,38 @@
 				CF60CC392645525F00C1C173 /* K5ResourcesView.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		CF60CC4E26496A1100C1C173 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC5E26496EDE00C1C173 /* K5DashboardGradesViewModel.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
+		CF60CC4F26496A1700C1C173 /* Homeroom */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC5B26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift */,
+			);
+			path = Homeroom;
+			sourceTree = "<group>";
+		};
+		CF60CC5026496A1F00C1C173 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC5826496EBD00C1C173 /* K5DashboardResourcesViewModel.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CF60CC5126496A2900C1C173 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				CF60CC5526496EA500C1C173 /* K5DashboardScheduleViewModel.swift */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		CF7C6D9A25E5114D00363203 /* Course */ = {
@@ -5047,6 +5094,7 @@
 				7DA2609923F7233D005D2121 /* Scope.swift in Sources */,
 				7D0A28DD251952A2004FB3B6 /* RemoteImage.swift in Sources */,
 				7DA2607C23F722FA005D2121 /* PageViewEventRequestManager.swift in Sources */,
+				CF60CC5C26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift in Sources */,
 				7DA2607723F722F6005D2121 /* PageListViewController.swift in Sources */,
 				7D8E20CA2450A372000F826B /* TabBarBadgeCounts.swift in Sources */,
 				7DA260DF23F72359005D2121 /* HorizontalScrollingStackview.swift in Sources */,
@@ -5112,6 +5160,7 @@
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
+				CF60CC5F26496EDE00C1C173 /* K5DashboardGradesViewModel.swift in Sources */,
 				E8D20399250A723E009B2ABE /* InboxView.swift in Sources */,
 				7DA260FA23F724D7005D2121 /* Database.xcdatamodeld in Sources */,
 				7DA25FA923F72136005D2121 /* APIDiscussion.swift in Sources */,
@@ -5225,6 +5274,7 @@
 				B11AEBB524070F9400B736D6 /* PlannerFilterViewController.swift in Sources */,
 				7DA2602323F722AF005D2121 /* Logger.swift in Sources */,
 				7DA25FDB23F72148005D2121 /* LocalizationManager.swift in Sources */,
+				CF60CC5326496A5D00C1C173 /* K5DashboardNavigationViewModel.swift in Sources */,
 				7DA260F323F72397005D2121 /* FilePicker.swift in Sources */,
 				7DCA32122541DB8B00458651 /* WebSession.swift in Sources */,
 				7DA2607A23F722FA005D2121 /* PageViewEvent.swift in Sources */,
@@ -5449,6 +5499,7 @@
 				7DA2608523F7230F005D2121 /* ColoredNavViewProtocol.swift in Sources */,
 				7DA2601B23F7227A005D2121 /* UIViewControllerExtensions.swift in Sources */,
 				7DA25FD823F72148005D2121 /* Clock.swift in Sources */,
+				CF60CC5926496EBD00C1C173 /* K5DashboardResourcesViewModel.swift in Sources */,
 				7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */,
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
@@ -5457,6 +5508,7 @@
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
 				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
 				CF5F603225DBD84700E7E0ED /* UINavigationControllerTheme.swift in Sources */,
+				CF60CC5626496EA500C1C173 /* K5DashboardScheduleViewModel.swift in Sources */,
 				7D630B7124A52C050039A45D /* GetFolders.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,

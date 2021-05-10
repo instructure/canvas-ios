@@ -18,35 +18,26 @@
 
 import SwiftUI
 
-enum LocalNavigationType: String {
-    case homeroom
-    case schedule
-    case grades
-    case resources
-}
-
-struct LocalNavigationItem: Identifiable {
-    var id: String { type.rawValue }
-
-    let type: LocalNavigationType
-    let icon: Image
-    let label: Text
-}
-
 public class K5DashboardViewModel: ObservableObject {
-    let navigationItems: [LocalNavigationItem] = [
-        LocalNavigationItem(type: .homeroom, icon: .coursesLine, label: Text("Homeroom", bundle: .core)),
-        LocalNavigationItem(type: .schedule, icon: .calendarMonthLine, label: Text("Schedule", bundle: .core)),
-        LocalNavigationItem(type: .grades, icon: .gradebookLine, label: Text("Grades", bundle: .core)),
-        LocalNavigationItem(type: .resources, icon: .folderLine, label: Text("Resources", bundle: .core)),
+    let navigationItems: [K5DashboardNavigationViewModel] = [
+        K5DashboardNavigationViewModel(type: .homeroom, icon: .coursesLine, label: Text("Homeroom", bundle: .core)),
+        K5DashboardNavigationViewModel(type: .schedule, icon: .calendarMonthLine, label: Text("Schedule", bundle: .core)),
+        K5DashboardNavigationViewModel(type: .grades, icon: .gradebookLine, label: Text("Grades", bundle: .core)),
+        K5DashboardNavigationViewModel(type: .resources, icon: .folderLine, label: Text("Resources", bundle: .core)),
     ]
-    @Published var currentNavigationItem: LocalNavigationItem
+    @Published var currentNavigationItem: K5DashboardNavigationViewModel
+    let viewModels = (
+        homeroom: K5DashboardHomeroomViewModel(),
+        schedule: K5DashboardScheduleViewModel(),
+        grades: K5DashboardGradesViewModel(),
+        resources: K5DashboardResourcesViewModel()
+    )
 
     init() {
         currentNavigationItem = navigationItems.first!
     }
 
-    public func profileButtonPressed(router: Router, viewController: WeakViewController) {
+    func profileButtonPressed(router: Router, viewController: WeakViewController) {
         router.route(to: "/profile", from: viewController, options: .modal())
     }
 }

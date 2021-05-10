@@ -16,12 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+class K5DashboardResourcesViewModel {
 
-struct K5ScheduleView: View {
-    @ObservedObject var viewModel: K5DashboardScheduleViewModel
-
-    var body: some View {
-        Text(viewModel.content)
-    }
 }

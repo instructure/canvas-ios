@@ -18,10 +18,17 @@
 
 import SwiftUI
 
-struct K5ScheduleView: View {
-    @ObservedObject var viewModel: K5DashboardScheduleViewModel
-
-    var body: some View {
-        Text(viewModel.content)
+struct K5DashboardNavigationViewModel: Identifiable {
+    enum ContentType: String {
+        case homeroom
+        case schedule
+        case grades
+        case resources
     }
+
+    var id: String { type.rawValue }
+
+    let type: ContentType
+    let icon: Image
+    let label: Text
 }
