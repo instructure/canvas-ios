@@ -31,3 +31,13 @@ class K5DashboardScheduleViewModel: ObservableObject {
         timer.invalidate()
     }
 }
+
+extension K5DashboardScheduleViewModel: Refreshable {
+
+    func refresh(completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.content = "Binding test"
+            completion()
+        }
+    }
+}

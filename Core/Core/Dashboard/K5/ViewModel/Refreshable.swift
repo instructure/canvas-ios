@@ -16,13 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5DashboardHomeroomViewModel {
-
-}
-
-extension K5DashboardHomeroomViewModel: Refreshable {
-
-    func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
-    }
+protocol Refreshable {
+    func refresh(completion: @escaping () -> Void)
 }

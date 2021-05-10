@@ -834,6 +834,7 @@
 		CF60CC5926496EBD00C1C173 /* K5DashboardResourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5826496EBD00C1C173 /* K5DashboardResourcesViewModel.swift */; };
 		CF60CC5C26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5B26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift */; };
 		CF60CC5F26496EDE00C1C173 /* K5DashboardGradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5E26496EDE00C1C173 /* K5DashboardGradesViewModel.swift */; };
+		CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC6126497BC100C1C173 /* Refreshable.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
@@ -1954,6 +1955,7 @@
 		CF60CC5826496EBD00C1C173 /* K5DashboardResourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardResourcesViewModel.swift; sourceTree = "<group>"; };
 		CF60CC5B26496ECF00C1C173 /* K5DashboardHomeroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardHomeroomViewModel.swift; sourceTree = "<group>"; };
 		CF60CC5E26496EDE00C1C173 /* K5DashboardGradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardGradesViewModel.swift; sourceTree = "<group>"; };
+		CF60CC6126497BC100C1C173 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -3996,6 +3998,7 @@
 				CF60CC5126496A2900C1C173 /* Schedule */,
 				CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */,
 				CF60CC5226496A5D00C1C173 /* K5DashboardNavigationViewModel.swift */,
+				CF60CC6126497BC100C1C173 /* Refreshable.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5170,6 +5173,7 @@
 				7D7BA23924DB57BD00B1A68B /* CircleProgress.swift in Sources */,
 				7DC35385255C9ABF00B36CD3 /* DashboardCard.swift in Sources */,
 				7DA2600523F7227A005D2121 /* DispatchExtensions.swift in Sources */,
+				CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */,
 				7DA260DD23F72359005D2121 /* GroupedSectionHeaderView.swift in Sources */,
 				7DA25FB523F72136005D2121 /* APIGradingPeriod.swift in Sources */,
 				7D742F4025564CF200FD6CF1 /* SwiftUIExtensions.swift in Sources */,

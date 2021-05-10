@@ -46,15 +46,29 @@ public struct K5DashboardView: View {
     }
 
     @ViewBuilder private var content: some View {
-        switch viewModel.currentNavigationItem.type {
-        case .homeroom:
-            K5HomeroomView()
-        case .schedule:
-            K5ScheduleView(viewModel: viewModel.viewModels.schedule)
-        case .grades:
-            K5GradesView()
-        case .resources:
-            K5ResourcesView()
+        VStack(spacing: 0) {
+            switch viewModel.currentNavigationItem.type {
+            case .homeroom:
+                CircleRefresh { endRefreshing in
+                    viewModel.viewModels.homeroom.refresh(completion: endRefreshing)
+                }
+                K5HomeroomView()
+            case .schedule:
+                CircleRefresh { endRefreshing in
+                    viewModel.viewModels.schedule.refresh(completion: endRefreshing)
+                }
+                K5ScheduleView(viewModel: viewModel.viewModels.schedule)
+            case .grades:
+                CircleRefresh { endRefreshing in
+                    viewModel.viewModels.grades.refresh(completion: endRefreshing)
+                }
+                K5GradesView()
+            case .resources:
+                CircleRefresh { endRefreshing in
+                    viewModel.viewModels.resources.refresh(completion: endRefreshing)
+                }
+                K5ResourcesView()
+            }
         }
     }
 

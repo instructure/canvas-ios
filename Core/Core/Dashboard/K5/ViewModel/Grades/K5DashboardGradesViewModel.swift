@@ -19,3 +19,10 @@
 class K5DashboardGradesViewModel {
 
 }
+
+extension K5DashboardGradesViewModel: Refreshable {
+
+    func refresh(completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
+    }
+}
