@@ -357,23 +357,22 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 canLike: canLike
             )
         } else {
-            var isFutureDiscussion: Bool {
+            let isFutureDiscussion: Bool = {
                 guard let unlockDate = topic.assignment?.unlockAt else {
                     return false
                 }
                 return unlockDate > Date()
-            }
-
-            var entries: [FetchedResultsControllerGenerator<GetDiscussionView.Model>.Element] {
+            }()
+            let entries: [DiscussionEntry] = {
                 if env.app == .student && isFutureDiscussion {
                     return []
                 }
-                var entries = self.entries.filter { $0.parentID == nil && !isFutureDiscussion }
+                var entries = self.entries.filter { $0.parentID == nil}
                 if topic.sortByRating {
                     entries.sort { $0.likeCount > $1.likeCount }
                 }
                 return entries
-            }
+            }()
             script = DiscussionHTML.render(
                 topic: topic,
                 entries: entries,
