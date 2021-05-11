@@ -43,7 +43,7 @@ exports[`render larger icon size 1`] = `
         },
         Array [
           Object {
-            "color": "#8B969E",
+            "color": "#556572",
             "fontWeight": "500",
             "marginLeft": 6,
           },
@@ -100,7 +100,7 @@ exports[`render published 1`] = `
         },
         Array [
           Object {
-            "color": "#8B969E",
+            "color": "#556572",
             "fontWeight": "500",
             "marginLeft": 6,
           },
@@ -140,7 +140,7 @@ exports[`render unpublished 1`] = `
       Array [
         Object {
           "height": 21,
-          "tintColor": "#8B969E",
+          "tintColor": "#556572",
           "width": 21,
         },
         Object {},
@@ -157,12 +157,12 @@ exports[`render unpublished 1`] = `
         },
         Array [
           Object {
-            "color": "#8B969E",
+            "color": "#556572",
             "fontWeight": "500",
             "marginLeft": 6,
           },
           Object {
-            "color": "#8B969E",
+            "color": "#556572",
           },
         ],
       ]

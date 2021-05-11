@@ -98,11 +98,10 @@ public struct FileEditorView: View {
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Name", bundle: .core)) {
-                TextField(NSLocalizedString("Name", comment: ""), text: $name)
-                    .font(.regular16).foregroundColor(.textDarkest)
-                    .padding(16)
-                    .identifier("FileEditor.nameField")
-                    .accessibility(label: Text("Name", bundle: .core))
+                CustomTextField(placeholder: Text("Name", bundle: .core),
+                                text: $name,
+                                identifier: "FileEditor.nameField",
+                                accessibilityLabel: Text("Name", bundle: .core))
             }
 
             EditorSection(label: Text("Access", bundle: .core)) {

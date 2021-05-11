@@ -265,6 +265,50 @@ class UploadManagerTests: CoreTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testMarkInterruptedSubmissionAsFailed() {
+        // Without any submissions the assignment's submissionState will be .unsubmitted
+        let assignment = Assignment.save(.make(id: ID("testAssignmentID")), in: context, updateSubmission: false, updateScoreStatistics: false)
+        let file = File(context: context)
+        file.batchID = "assignment-testAssignmentID"
+        file.id = "uploadedToFileServerID"
+        file.filename = "testFileName"
+        file.setUser(session: environment.currentSession!)
+        XCTAssertNoThrow(try context.save())
+        XCTAssertNil(file.uploadError)
+
+        manager.cleanupDanglingFiles(assignment: assignment)
+
+        XCTAssertNotNil(file.uploadError)
+        XCTAssertNil(file.id)
+    }
+
+    func testDeleteAlreadyUploadedFiles() {
+        // Setup assignment received from the API
+        let apiFile = APIFile.make(id: "uploadedID")
+        let apiSubmission = APISubmission.make(attachments: [apiFile])
+        let apiAssignment = Assignment.save(.make(id: ID("testAssignmentID"), submission: apiSubmission), in: context, updateSubmission: true, updateScoreStatistics: false)
+
+        // Create a binary file to check if it gets deleted
+        let fileManager = FileManager.default
+        let binaryURL = URL.temporaryDirectory.appendingPathComponent("binaryURL.txt")
+        XCTAssertNoThrow(try "one".write(to: binaryURL, atomically: false, encoding: .utf8))
+        XCTAssertTrue(fileManager.fileExists(atPath: binaryURL.path))
+
+        // Simulate already uploaded file dangling in the DB
+        let localFile = File(context: context)
+        localFile.batchID = "assignment-testAssignmentID"
+        localFile.id = "uploadedID"
+        localFile.filename = "testFileName"
+        localFile.localFileURL = binaryURL
+        localFile.setUser(session: environment.currentSession!)
+        XCTAssertFalse(localFile.isFault)
+
+        manager.cleanupDanglingFiles(assignment: apiAssignment)
+
+        XCTAssertTrue(localFile.isFault)
+        XCTAssertFalse(fileManager.fileExists(atPath: binaryURL.path))
+    }
+
     private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: String, accessToken: String? = nil) {
         let submission = CreateSubmissionRequest.Body.Submission(
             text_comment: comment,

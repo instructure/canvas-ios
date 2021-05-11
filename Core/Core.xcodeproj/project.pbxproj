@@ -820,6 +820,7 @@
 		CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */; };
 		CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */; };
 		CF5F603225DBD84700E7E0ED /* UINavigationControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */; };
+		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
 		CF7C6DAD25E56A0000363203 /* GroupContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */; };
@@ -881,6 +882,7 @@
 		EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BCB2632E3D300A19A5A /* SideMenuSubHeaderView.swift */; };
 		EB2A9BCF2632E40600A19A5A /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BCE2632E40600A19A5A /* SideMenuItem.swift */; };
 		EB2A9BD22632E43600A19A5A /* SideMenuToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BD12632E43600A19A5A /* SideMenuToggleItem.swift */; };
+		EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66DB9426451CAE002D3325 /* CustomTextField.swift */; };
 		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
 		EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */; };
@@ -1924,6 +1926,7 @@
 		CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakViewController.swift; sourceTree = "<group>"; };
 		CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerTheme.swift; sourceTree = "<group>"; };
+		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
 		CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardTests.swift; sourceTree = "<group>"; };
@@ -1994,6 +1997,7 @@
 		EB2A9BCB2632E3D300A19A5A /* SideMenuSubHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSubHeaderView.swift; sourceTree = "<group>"; };
 		EB2A9BCE2632E40600A19A5A /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
 		EB2A9BD12632E43600A19A5A /* SideMenuToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuToggleItem.swift; sourceTree = "<group>"; };
+		EB66DB9426451CAE002D3325 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
@@ -2458,6 +2462,7 @@
 				7DBA77C324F9BE1D00B4D6B3 /* FileList */,
 				7D2E82832270BB7600735854 /* FilePicker */,
 				9FD504E52180BE1300B395BA /* APIFile.swift */,
+				CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */,
 				9FD504EB2180BF1A00B395BA /* File.swift */,
 				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
 				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
@@ -2512,16 +2517,8 @@
 		7D14863C230B43AE003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
-				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
-				7D70869C256C1C6500647D37 /* ConferenceCard.swift */,
-				7D70868A2568937D00647D37 /* CourseCard.swift */,
-				7D70869825699AAA00647D37 /* CourseInvitationCard.swift */,
-				7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */,
-				7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */,
-				7D7086862568755300647D37 /* DashboardCardView.swift */,
-				7D70868E2568D6CA00647D37 /* GroupCard.swift */,
-				7D7086922569607D00647D37 /* NotificationCard.swift */,
+				CF4BDB53264530A000A91952 /* Model */,
+				CF4BDB54264530DC00A91952 /* View */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2529,9 +2526,8 @@
 		7D148642230B48E7003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
-				7D80AC1A212B6A7700C40ECE /* APIFavoriteTests.swift */,
-				7D288B0E25758F630013FF65 /* DashboardCardTests.swift */,
+				CF4BDB552645314A00A91952 /* Model */,
+				CF4BDB562645315700A91952 /* View */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -3899,6 +3895,47 @@
 			path = Accessibility;
 			sourceTree = "<group>";
 		};
+		CF4BDB53264530A000A91952 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
+				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
+				7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF4BDB54264530DC00A91952 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D70869C256C1C6500647D37 /* ConferenceCard.swift */,
+				7D70868A2568937D00647D37 /* CourseCard.swift */,
+				7D70869825699AAA00647D37 /* CourseInvitationCard.swift */,
+				7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */,
+				7D7086862568755300647D37 /* DashboardCardView.swift */,
+				7D70868E2568D6CA00647D37 /* GroupCard.swift */,
+				7D7086922569607D00647D37 /* NotificationCard.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF4BDB552645314A00A91952 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
+				7D80AC1A212B6A7700C40ECE /* APIFavoriteTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF4BDB562645315700A91952 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D288B0E25758F630013FF65 /* DashboardCardTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */ = {
 			isa = PBXGroup;
 			children = (
@@ -4083,6 +4120,7 @@
 				CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
+				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
@@ -5131,6 +5169,7 @@
 				7DA260B923F72352005D2121 /* GetQuizSubmission.swift in Sources */,
 				7DA260F023F72391005D2121 /* FileUploadContext.swift in Sources */,
 				7D2E812925631BEC008C568F /* AssignmentDateSection.swift in Sources */,
+				EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */,
 				7DA25FAD23F72136005D2121 /* APIEnrollment.swift in Sources */,
 				7DFD5F7B23FF158700D988E0 /* CalendarDaysViewController.swift in Sources */,
 				7DA2604E23F722D9005D2121 /* LatePolicyInterval.swift in Sources */,
@@ -5361,6 +5400,7 @@
 				7DA2603023F722C9005D2121 /* GoogleCloudAssignmentViewController.swift in Sources */,
 				D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */,
 				7DA2607923F722FA005D2121 /* AppBackgroundHelperProtocol.swift in Sources */,
+				CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */,
 				7D531D3B2549CF0500CBFCA6 /* AssignmentOverridesEditor.swift in Sources */,
 				7DA260EA23F72359005D2121 /* TitleSubtitleView.swift in Sources */,
 				7DA25FF823F7226E005D2121 /* DocViewerAnnotationToolbar.swift in Sources */,

@@ -242,6 +242,11 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     func updateSubmissionLabels(state: OnlineUploadState) {
         switch state {
+        case .reSubmissionFailed:
+            submittedLabel?.text = NSLocalizedString("Resubmission Failed", bundle: .core, comment: "")
+            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            return
         case .failed:
             submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
@@ -314,6 +319,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         scrollView?.isHidden = false
         loadingView.isHidden = true
         refreshControl?.endRefreshing()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
 
     func centerLockedIconContainerView() {

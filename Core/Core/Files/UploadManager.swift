@@ -38,6 +38,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     var process: ProcessManager = ProcessInfo.processInfo
     var environment: AppEnvironment { .shared }
     private var validSession: URLSession?
+    private let submissionsStatus = FileSubmissionsStatus()
     var backgroundSession: URLSession {
         if let validSession = validSession {
             return validSession
@@ -94,12 +95,15 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     public func subscribe(batchID: String, eventHandler: @escaping Store.EventHandler) -> Store {
-        let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
-        let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
-        let scope = Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(File.size), ascending: true)])
+        let scope = Scope(predicate: filesPredicate(batchID: batchID), order: [NSSortDescriptor(key: #keyPath(File.size), ascending: true)])
         let useCase = LocalUseCase<File>(scope: scope)
         return Store(env: environment, database: database, useCase: useCase, eventHandler: eventHandler)
+    }
+
+    private func filesPredicate(batchID: String) -> NSPredicate {
+        let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
+        let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
     }
 
     public func isUploading(completionHandler: @escaping (Bool) -> Void) {
@@ -198,6 +202,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
+    // MARK: - URLSession Delegates For Binary Upload
+
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         Logger.shared.log()
         context.performAndWait {
@@ -238,6 +244,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         Logger.shared.log()
         validSession = nil
     }
+
+    // MARK: -
 
     func delete(userID: String, batchID: String) {
         Logger.shared.log()
@@ -288,6 +296,43 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
     }
 
+    /**
+     File submissions happen in two phases. The first one is that the app uploads the file binary to a file server and receives a file id in exchange. The second step is that the app uploads this file id as a submission to the assignment.
+     If the app is killed before the result of the second step is received then we'll have dangling file references in the DB. This method searches for such files and compares their ids to the ones we received from the API in the assignment. In case of a mismatch we communicate an error but in case the ids are identical we just delete our dangling files.
+     */
+    public func cleanupDanglingFiles(assignment: Assignment) {
+        let assignmentFiles: [File] = viewContext.fetch(filesPredicate(batchID: "assignment-\(assignment.id)"), sortDescriptors: nil)
+        let uploadedFiles = assignmentFiles.filter { $0.isUploaded }
+        let successfullyUploadedFiles = uploadedFiles.filter { $0.uploadError == nil }
+        let successfullyUploadedFileIDs = successfullyUploadedFiles.compactMap({ $0.id })
+
+        if successfullyUploadedFiles.isEmpty || submissionsStatus.isUploadInProgress(fileIDs: successfullyUploadedFileIDs) {
+            return
+        }
+
+        let submittedFileIDsOnAPI = Set(assignment.submission?.attachments?.compactMap { $0.id } ?? [])
+
+        if Set(successfullyUploadedFileIDs) == submittedFileIDsOnAPI {
+            // All files are submitted to the assignment, we can delete our dangling files
+            for localFileURL in successfullyUploadedFiles.compactMap({ $0.localFileURL }) {
+                try? FileManager.default.removeItem(at: localFileURL)
+            }
+            viewContext.delete(successfullyUploadedFiles)
+        } else {
+            viewContext.performAndWait {
+                for file in successfullyUploadedFiles {
+                    file.id = nil
+                    file.taskID = nil
+                    file.uploadError = NSLocalizedString("File upload failed. Please cancel your submission and try uploading again.", comment: "")
+                }
+            }
+        }
+        try? viewContext.save()
+    }
+
+    /**
+     If `file` received in parameter has any `batchID` associated, then this method also submits all files sharing the same `batchID`.
+     */
     private func submit(file: File, courseID: String, assignmentID: String, comment: String?) {
         Logger.shared.log()
         guard let user = file.user, let session = LoginSession.sessions.first(where: { user == $0 }) else { return }
@@ -300,15 +345,20 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, submission_type: .online_upload, file_ids: fileIDs)
         let requestable = CreateSubmissionRequest(context: .course(courseID), assignmentID: assignmentID, body: .init(submission: submission))
         var task: APITask?
+        // This is to make the background task wait until we receive the submission response from the API.
         let semaphore = DispatchSemaphore(value: 0)
         let objectID = file.objectID
         process.performExpiringActivity(withReason: "submit assignment") { expired in
             if expired {
                 task?.cancel()
             }
+            self.submissionsStatus.addTasks(fileIDs: fileIDs)
             task = API(session).makeRequest(requestable) { response, _, error in
                 self.context.performAndWait {
-                    defer { semaphore.signal() }
+                    defer {
+                        self.submissionsStatus.removeTasks(fileIDs: fileIDs)
+                        semaphore.signal()
+                    }
                     guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
                     guard let submission = response, error == nil else {
                         Analytics.shared.logEvent("submit_fileupload_failed", parameters: [

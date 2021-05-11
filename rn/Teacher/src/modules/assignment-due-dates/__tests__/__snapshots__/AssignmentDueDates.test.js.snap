@@ -99,7 +99,7 @@ exports[`renders with overrides 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontWeight": "500",
                     "paddingTop": 16,
                   },
@@ -144,7 +144,7 @@ exports[`renders with overrides 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontWeight": "500",
                     "paddingTop": 16,
                   },
@@ -189,7 +189,7 @@ exports[`renders with overrides 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontWeight": "500",
                     "paddingTop": 16,
                   },

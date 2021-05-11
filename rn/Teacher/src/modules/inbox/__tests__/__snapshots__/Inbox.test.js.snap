@@ -124,7 +124,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -163,7 +163,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -202,7 +202,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -241,7 +241,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -468,7 +468,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "flexShrink": 0,
                             "fontSize": 12,
                           },
@@ -507,7 +507,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                       "fontSize": 16,
                     },
                     Object {
-                      "color": "#8B969E",
+                      "color": "#556572",
                       "fontSize": 14,
                     },
                   ]
@@ -648,7 +648,7 @@ exports[`Inbox refreshed component 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -687,7 +687,7 @@ exports[`Inbox refreshed component 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -726,7 +726,7 @@ exports[`Inbox refreshed component 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -765,7 +765,7 @@ exports[`Inbox refreshed component 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -924,7 +924,7 @@ exports[`Inbox refreshed component 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "textAlign": "center",
               },
@@ -1063,7 +1063,7 @@ exports[`Inbox renders correctly 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1102,7 +1102,7 @@ exports[`Inbox renders correctly 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1141,7 +1141,7 @@ exports[`Inbox renders correctly 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1180,7 +1180,7 @@ exports[`Inbox renders correctly 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1409,7 +1409,7 @@ exports[`Inbox renders correctly 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "flexShrink": 0,
                             "fontSize": 12,
                           },
@@ -1448,7 +1448,7 @@ exports[`Inbox renders correctly 1`] = `
                       "fontSize": 16,
                     },
                     Object {
-                      "color": "#8B969E",
+                      "color": "#556572",
                       "fontSize": 14,
                     },
                   ]
@@ -1578,7 +1578,7 @@ exports[`Inbox renders correctly 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "flexShrink": 0,
                             "fontSize": 12,
                           },
@@ -1617,7 +1617,7 @@ exports[`Inbox renders correctly 1`] = `
                       "fontSize": 16,
                     },
                     Object {
-                      "color": "#8B969E",
+                      "color": "#556572",
                       "fontSize": 14,
                     },
                   ]
@@ -1758,7 +1758,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1797,7 +1797,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1836,7 +1836,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1875,7 +1875,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2065,7 +2065,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2104,7 +2104,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2203,7 +2203,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2242,7 +2242,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2401,7 +2401,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "textAlign": "center",
               },
@@ -2540,7 +2540,7 @@ exports[`Inbox renders with an empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2579,7 +2579,7 @@ exports[`Inbox renders with an empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2618,7 +2618,7 @@ exports[`Inbox renders with an empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2657,7 +2657,7 @@ exports[`Inbox renders with an empty state 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#8B969E",
+                    "color": "#556572",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2816,7 +2816,7 @@ exports[`Inbox renders with an empty state 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "textAlign": "center",
               },

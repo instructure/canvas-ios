@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate, ErrorViewController {
+public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
@@ -154,5 +154,12 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
             try? self.env.database.viewContext.save()
             self.env.router.pop(from: self)
         } }
+    }
+}
+
+extension PageDetailsViewController: CoreWebViewLinkDelegate {
+
+    public func finishedNavigation() {
+        UIAccessibility.post(notification: .screenChanged, argument: titleSubtitleView)
     }
 }

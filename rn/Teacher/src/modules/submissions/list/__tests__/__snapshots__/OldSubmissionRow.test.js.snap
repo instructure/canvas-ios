@@ -86,7 +86,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
                 },
                 undefined,
                 Object {
-                  "color": "#8B969E",
+                  "color": "#556572",
                 },
               ],
             ]
@@ -881,7 +881,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
                 },
                 undefined,
                 Object {
-                  "color": "#8B969E",
+                  "color": "#556572",
                 },
               ],
             ]

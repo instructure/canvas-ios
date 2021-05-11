@@ -107,7 +107,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -155,7 +155,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -239,7 +239,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -253,7 +253,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -526,7 +526,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -605,7 +605,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -1173,7 +1173,7 @@ exports[`QuizDetails displays access code 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -1221,7 +1221,7 @@ exports[`QuizDetails displays access code 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -1305,7 +1305,7 @@ exports[`QuizDetails displays access code 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -1319,7 +1319,7 @@ exports[`QuizDetails displays access code 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -1592,7 +1592,7 @@ exports[`QuizDetails displays access code 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -1671,7 +1671,7 @@ exports[`QuizDetails displays access code 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -2239,7 +2239,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -2287,7 +2287,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -2371,7 +2371,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -2385,7 +2385,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -2658,7 +2658,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -2737,7 +2737,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -3225,7 +3225,7 @@ exports[`QuizDetails renders 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -3273,7 +3273,7 @@ exports[`QuizDetails renders 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -3357,7 +3357,7 @@ exports[`QuizDetails renders 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -3371,7 +3371,7 @@ exports[`QuizDetails renders 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -3644,7 +3644,7 @@ exports[`QuizDetails renders 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -3723,7 +3723,7 @@ exports[`QuizDetails renders 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -4251,7 +4251,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -4299,7 +4299,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -4383,7 +4383,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -4397,7 +4397,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -4670,7 +4670,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -4749,7 +4749,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -5317,7 +5317,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -5365,7 +5365,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -5449,7 +5449,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -5463,7 +5463,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -5736,7 +5736,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -5815,7 +5815,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -6343,7 +6343,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -6391,7 +6391,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -6475,7 +6475,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -6489,7 +6489,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -6762,7 +6762,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -6841,7 +6841,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -7369,7 +7369,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -7417,7 +7417,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -7501,7 +7501,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -7515,7 +7515,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -7788,7 +7788,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -7867,7 +7867,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -8395,7 +8395,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -8443,7 +8443,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -8527,7 +8527,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -8541,7 +8541,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -8814,7 +8814,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -8893,7 +8893,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -9421,7 +9421,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -9469,7 +9469,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -9553,7 +9553,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -9567,7 +9567,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -9840,7 +9840,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -9919,7 +9919,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -10447,7 +10447,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -10495,7 +10495,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -10579,7 +10579,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -10593,7 +10593,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -10866,7 +10866,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -10945,7 +10945,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -11433,7 +11433,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -11481,7 +11481,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -11565,7 +11565,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -11579,7 +11579,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -11852,7 +11852,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -11931,7 +11931,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -12459,7 +12459,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -12507,7 +12507,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -12591,7 +12591,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -12605,7 +12605,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -12878,7 +12878,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -12957,7 +12957,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -13485,7 +13485,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -13533,7 +13533,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -13617,7 +13617,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -13631,7 +13631,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -13938,7 +13938,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -14017,7 +14017,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -14545,7 +14545,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -14593,7 +14593,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -14677,7 +14677,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -14691,7 +14691,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -14964,7 +14964,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -15043,7 +15043,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -15611,7 +15611,7 @@ exports[`QuizDetails renders published state 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -15642,7 +15642,7 @@ exports[`QuizDetails renders published state 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#8B969E",
+                          "tintColor": "#556572",
                           "width": 21,
                         },
                         Object {},
@@ -15659,12 +15659,12 @@ exports[`QuizDetails renders published state 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                           },
                         ],
                       ]
@@ -15743,7 +15743,7 @@ exports[`QuizDetails renders published state 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -15757,7 +15757,7 @@ exports[`QuizDetails renders published state 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -16030,7 +16030,7 @@ exports[`QuizDetails renders published state 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -16109,7 +16109,7 @@ exports[`QuizDetails renders published state 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -16637,7 +16637,7 @@ exports[`QuizDetails renders published state 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -16685,7 +16685,7 @@ exports[`QuizDetails renders published state 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -16769,7 +16769,7 @@ exports[`QuizDetails renders published state 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -16783,7 +16783,7 @@ exports[`QuizDetails renders published state 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -17056,7 +17056,7 @@ exports[`QuizDetails renders published state 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -17135,7 +17135,7 @@ exports[`QuizDetails renders published state 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -17663,7 +17663,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -17711,7 +17711,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -17795,7 +17795,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -17809,7 +17809,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -18082,7 +18082,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -18161,7 +18161,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -18689,7 +18689,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -18737,7 +18737,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -18821,7 +18821,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -18835,7 +18835,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -19108,7 +19108,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -19187,7 +19187,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -19715,7 +19715,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -19763,7 +19763,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -19847,7 +19847,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -19861,7 +19861,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -20134,7 +20134,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -20213,7 +20213,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -20741,7 +20741,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -20789,7 +20789,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -20873,7 +20873,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -20887,7 +20887,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -21160,7 +21160,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -21239,7 +21239,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -21767,7 +21767,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -21815,7 +21815,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -21899,7 +21899,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -21913,7 +21913,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -22186,7 +22186,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -22265,7 +22265,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -22793,7 +22793,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -22841,7 +22841,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -22925,7 +22925,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -22939,7 +22939,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -23212,7 +23212,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -23291,7 +23291,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -23819,7 +23819,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -23867,7 +23867,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -23951,7 +23951,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -23965,7 +23965,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -24238,7 +24238,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -24317,7 +24317,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -24845,7 +24845,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -24893,7 +24893,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -24977,7 +24977,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -24991,7 +24991,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -25264,7 +25264,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -25343,7 +25343,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -25871,7 +25871,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -25919,7 +25919,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -26003,7 +26003,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -26017,7 +26017,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -26290,7 +26290,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -26369,7 +26369,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -26897,7 +26897,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -26945,7 +26945,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -27029,7 +27029,7 @@ exports[`QuizDetails renders time limit 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -27043,7 +27043,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -27316,7 +27316,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -27395,7 +27395,7 @@ exports[`QuizDetails renders time limit 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -27923,7 +27923,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -27971,7 +27971,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -28055,7 +28055,7 @@ exports[`QuizDetails renders time limit 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -28069,7 +28069,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -28342,7 +28342,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -28421,7 +28421,7 @@ exports[`QuizDetails renders time limit 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -28949,7 +28949,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -28997,7 +28997,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -29081,7 +29081,7 @@ exports[`QuizDetails renders view responses 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -29095,7 +29095,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -29368,7 +29368,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -29447,7 +29447,7 @@ exports[`QuizDetails renders view responses 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -29975,7 +29975,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -30023,7 +30023,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -30107,7 +30107,7 @@ exports[`QuizDetails renders view responses 2`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -30121,7 +30121,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -30394,7 +30394,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -30473,7 +30473,7 @@ exports[`QuizDetails renders view responses 2`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -30961,7 +30961,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -31009,7 +31009,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -31093,7 +31093,7 @@ exports[`QuizDetails renders view responses 3`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -31107,7 +31107,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -31380,7 +31380,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -31459,7 +31459,7 @@ exports[`QuizDetails renders view responses 3`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -31947,7 +31947,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontWeight": "500",
                         "marginRight": 14,
                       },
@@ -31995,7 +31995,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#8B969E",
+                            "color": "#556572",
                             "fontWeight": "500",
                             "marginLeft": 6,
                           },
@@ -32079,7 +32079,7 @@ exports[`QuizDetails renders without a description 1`] = `
                     Object {
                       "height": 19,
                       "marginRight": 5,
-                      "tintColor": "#8B969E",
+                      "tintColor": "#556572",
                       "width": 19,
                     }
                   }
@@ -32093,7 +32093,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -32366,7 +32366,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                         "fontSize": 16,
                         "fontWeight": "500",
                         "paddingTop": 2,
@@ -32445,7 +32445,7 @@ exports[`QuizDetails renders without a description 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 16,
                 "fontWeight": "500",
                 "marginBottom": 4,
@@ -32474,7 +32474,7 @@ exports[`QuizDetails renders without a description 1`] = `
             style={
               Object {
                 "alignItems": "flex-start",
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontSize": 14,
                 "textAlign": "left",
               }

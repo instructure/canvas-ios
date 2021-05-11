@@ -27,6 +27,6 @@ exports[`TypeAheadSearch renders a search bar 1`] = `
   text=""
   textColor="#2D3B45"
   textFieldBackgroundColor="#F5F5F5"
-  tintColor="#8B969E"
+  tintColor="#556572"
 />
 `;

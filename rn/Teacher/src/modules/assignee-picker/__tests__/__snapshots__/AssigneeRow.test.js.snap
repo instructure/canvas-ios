@@ -110,7 +110,7 @@ exports[`render correctly 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#8B969E",
+              "color": "#556572",
               "fontSize": 14,
             },
           ]
@@ -192,7 +192,7 @@ exports[`render correctly without image url 1`] = `
             Array [
               Object {
                 "backgroundColor": "transparent",
-                "color": "#8B969E",
+                "color": "#556572",
                 "fontWeight": "600",
               },
               Object {
@@ -240,7 +240,7 @@ exports[`render correctly without image url 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#8B969E",
+              "color": "#556572",
               "fontSize": 14,
             },
           ]

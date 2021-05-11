@@ -729,7 +729,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -817,7 +817,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -905,7 +905,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -993,7 +993,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1200,7 +1200,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1288,7 +1288,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1404,7 +1404,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1492,7 +1492,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1580,7 +1580,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1668,7 +1668,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1875,7 +1875,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
@@ -1963,7 +1963,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#8B969E",
+                        "color": "#556572",
                       },
                     ],
                   ],
