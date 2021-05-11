@@ -99,8 +99,13 @@ class GetTodos: CollectionUseCase {
 
     var cacheKey: String? { nil }
     var request: GetTodosRequest { GetTodosRequest() }
-
-    var scope: Scope { Scope(predicate: .all, order: [
+    var todoPredicate: NSPredicate {
+        guard AppEnvironment.shared.app == .student else {
+            return .all
+        }
+        return NSPredicate(format: "%K != %@", #keyPath(Todo.typeRaw), "grading")
+    }
+    var scope: Scope { Scope(predicate: todoPredicate, order: [
         NSSortDescriptor(key: #keyPath(Todo.assignment.dueAtSortNilsAtBottom), ascending: true),
         NSSortDescriptor(key: #keyPath(Todo.assignment.name), ascending: true, naturally: true),
     ]) }

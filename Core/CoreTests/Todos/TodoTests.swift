@@ -41,6 +41,18 @@ class TodoTests: CoreTestCase {
         XCTAssertEqual(todo.type, TodoType.submitting)
     }
 
+    func testTeacherScope() {
+        environment.app = .teacher
+        let usecase = GetTodos()
+        XCTAssertEqual(usecase.scope.predicate, .all)
+    }
+
+    func testStudentScope() {
+        environment.app = .student
+        let usecase = GetTodos()
+        XCTAssertEqual(usecase.scope.predicate, NSPredicate(format: "%K != %@", #keyPath(Todo.typeRaw), "grading"))
+    }
+
     func testCourse() {
         let todo = Todo.make(from: .make(course_id: "1", group_id: nil))
         XCTAssertNil(todo.course)
