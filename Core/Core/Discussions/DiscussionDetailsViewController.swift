@@ -358,14 +358,21 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             )
         } else {
             var isFutureDiscussion: Bool {
-                guard let unlockDate = topic.assignment?.unlockAt, env.app == .student else {
+                guard let unlockDate = topic.assignment?.unlockAt else {
                     return false
                 }
                 return unlockDate > Date()
             }
-            var entries = self.entries.filter { $0.parentID == nil && !isFutureDiscussion }
-            if topic.sortByRating {
-                entries.sort { $0.likeCount > $1.likeCount }
+
+            var entries: [FetchedResultsControllerGenerator<GetDiscussionView.Model>.Element] {
+                if env.app == .student && isFutureDiscussion {
+                    return []
+                }
+                var entries = self.entries.filter { $0.parentID == nil && !isFutureDiscussion }
+                if topic.sortByRating {
+                    entries.sort { $0.likeCount > $1.likeCount }
+                }
+                return entries
             }
             script = DiscussionHTML.render(
                 topic: topic,
