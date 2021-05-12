@@ -242,6 +242,13 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera, .documentScan])
     }
 
+    func testPickMediaRecordings() {
+        let a = Assignment.make(from: .make(allowed_extensions: [], submission_types: [ .online_upload, .media_recording ]))
+        presenter.pickFiles(for: a, selectedSubmissionTypes: [ .media_recording ])
+        let filePicker = (router.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
+        XCTAssertEqual(filePicker?.sources, [.files, .library, .camera, .audio])
+    }
+
     func testRetryFileUpload() {
         XCTAssertNoThrow(presenter.retry(filePicker))
     }

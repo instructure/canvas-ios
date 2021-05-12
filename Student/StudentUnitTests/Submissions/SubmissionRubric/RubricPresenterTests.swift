@@ -179,7 +179,7 @@ class RubricPresenterTests: StudentTestCase {
         ]))
         Course.make()
         let assignment = Assignment.make(from: .make(rubric: [
-            .make(id: "1", ratings:  [
+            .make(id: "1", ratings: [
                 .make(id: "1", points: 10),
                 .make(id: "2", points: 25),
             ]),
@@ -215,7 +215,7 @@ class RubricPresenterTests: StudentTestCase {
         ]))
         Course.make()
         Assignment.make(from: .make(rubric: [
-            .make(id: "1", ratings:  [
+            .make(id: "1", ratings: [
                 .make(id: "1", points: 10),
                 .make(id: "2", points: 25),
             ]),
