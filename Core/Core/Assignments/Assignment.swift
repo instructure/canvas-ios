@@ -142,7 +142,7 @@ extension Assignment {
         allowedExtensions = item.allowed_extensions ?? []
         anonymizeStudents = item.anonymize_students == true
         assignmentGroupID = item.assignment_group_id?.value
-        canSubmit = item.can_submit == true
+        canSubmit = !(item.can_submit == false)
         canUnpublish = item.unpublishable == true
         courseID = item.course_id.value
         details = item.description
