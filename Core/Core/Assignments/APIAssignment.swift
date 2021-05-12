@@ -24,6 +24,7 @@ public struct APIAssignment: Codable, Equatable {
     let allowed_extensions: [String]?
     let all_dates: [APIAssignmentDate]?
     let anonymize_students: Bool?
+    let anonymous_submissions: Bool?
     let assignment_group_id: ID?
     let can_submit: Bool?
     let course_id: ID
@@ -99,6 +100,7 @@ extension APIAssignment {
         allowed_extensions: [String]? = nil,
         all_dates: [APIAssignmentDate]? = nil,
         anonymize_students: Bool? = nil,
+        anonymous_submissions: Bool? = nil,
         assignment_group_id: ID? = nil,
         can_submit: Bool? = true,
         course_id: ID = "1",
@@ -146,6 +148,7 @@ extension APIAssignment {
             allowed_extensions: allowed_extensions,
             all_dates: all_dates,
             anonymize_students: anonymize_students,
+            anonymous_submissions: anonymous_submissions,
             assignment_group_id: assignment_group_id,
             can_submit: can_submit,
             course_id: course_id,
