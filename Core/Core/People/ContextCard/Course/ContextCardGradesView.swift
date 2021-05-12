@@ -34,12 +34,12 @@ struct ContextCardGradesView: View {
 
         guard grades.currentGrade != nil || grades.currentScore != nil else { return }
 
-        grade = grades.currentGrade ?? "\(Int(grades.currentScore ?? 0))%"
+        grade = grades.currentGrade ?? "\(grades.currentScore ?? 0)%"
 
         if grades.unpostedCurrentGrade != nil {
             unpostedGrade = grades.unpostedCurrentGrade
         } else if let unpostedScore = grades.unpostedCurrentScore {
-            unpostedGrade = "\(Int(unpostedScore))%"
+            unpostedGrade = "\(unpostedScore)%"
         }
         if unpostedGrade == grade {
             unpostedGrade = nil
