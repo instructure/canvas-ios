@@ -357,6 +357,9 @@
         <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="observerEnrollments" inverseEntity="User"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="enrollments" inverseEntity="Submission"/>
     </entity>
+    <entity name="EnvironmentFeatureFlags" representedClassName="Core.EnvironmentFeatureFlags" syncable="YES">
+        <attribute name="isCanvasForElementaryEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+    </entity>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -938,6 +941,7 @@
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="404"/>
+        <element name="EnvironmentFeatureFlags" positionX="-540" positionY="-18" width="128" height="58"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
