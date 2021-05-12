@@ -41,16 +41,16 @@ class TodoTests: CoreTestCase {
         XCTAssertEqual(todo.type, TodoType.submitting)
     }
 
-    func testTeacherScope() {
-        environment.app = .teacher
+    func testScope() {
         let usecase = GetTodos()
         XCTAssertEqual(usecase.scope.predicate, .all)
-    }
+        let gradingTodoType: TodoType = .grading
+        let gradingUsecase = GetTodos(gradingTodoType)
+        XCTAssertEqual(gradingUsecase.scope.predicate, NSPredicate(format: "%K == %@", #keyPath(Todo.typeRaw), gradingTodoType.rawValue))
+        let submittingTodoType: TodoType = .submitting
+        let submittingUsecase = GetTodos(submittingTodoType)
+        XCTAssertEqual(submittingUsecase.scope.predicate, NSPredicate(format: "%K == %@", #keyPath(Todo.typeRaw), submittingTodoType.rawValue))
 
-    func testStudentScope() {
-        environment.app = .student
-        let usecase = GetTodos()
-        XCTAssertEqual(usecase.scope.predicate, NSPredicate(format: "%K != %@", #keyPath(Todo.typeRaw), "grading"))
     }
 
     func testCourse() {

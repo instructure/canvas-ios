@@ -97,18 +97,23 @@ public final class Todo: NSManagedObject, WriteableModel {
 class GetTodos: CollectionUseCase {
     typealias Model = Todo
 
+    let type: TodoType?
     var cacheKey: String? { nil }
     var request: GetTodosRequest { GetTodosRequest() }
     var todoPredicate: NSPredicate {
-        guard AppEnvironment.shared.app == .student else {
+        guard let type = type else {
             return .all
         }
-        return NSPredicate(format: "%K != %@", #keyPath(Todo.typeRaw), "grading")
+        return NSPredicate(format: "%K == %@", #keyPath(Todo.typeRaw), type.rawValue)
     }
     var scope: Scope { Scope(predicate: todoPredicate, order: [
         NSSortDescriptor(key: #keyPath(Todo.assignment.dueAtSortNilsAtBottom), ascending: true),
         NSSortDescriptor(key: #keyPath(Todo.assignment.name), ascending: true, naturally: true),
     ]) }
+
+    init(_ type: TodoType? = nil) {
+        self.type = type
+    }
 }
 
 class DeleteTodo: DeleteUseCase {
