@@ -45,7 +45,7 @@ class StudentTabBarController: UITabBarController {
     func dashboardTab() -> UIViewController {
         let dashboard: UIViewController
 
-        if AppEnvironment.shared.isK5Enabled {
+        if AppEnvironment.shared.isK5Enabled, ExperimentalFeature.K5Dashboard.isEnabled {
             dashboard = CoreHostingController(K5DashboardView())
         } else {
             dashboard = CoreHostingController(DashboardCardView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false))
