@@ -172,6 +172,10 @@ extension Assignment {
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
 
+        if anonymousSubmissions == true {
+            anonymizeStudents = true
+        }
+
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
         } else if let topic = discussionTopic {
