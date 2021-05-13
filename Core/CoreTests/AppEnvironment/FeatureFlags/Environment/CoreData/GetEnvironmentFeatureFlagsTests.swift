@@ -47,4 +47,14 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
         XCTAssertEqual((databaseClient.fetch() as [Model]).count, 1)
         XCTAssertEqual(model.isCanvasForElementaryEnabled, true)
     }
+
+    func testUpdateAppEnvironmentFlags() {
+        XCTAssertFalse(environment.isK5Enabled)
+        let flags = databaseClient.insert() as EnvironmentFeatureFlags
+        flags.isCanvasForElementaryEnabled = true
+
+        GetEnvironmentFeatureFlags.updateAppEnvironmentFlags()
+
+        XCTAssertTrue(environment.isK5Enabled)
+    }
 }

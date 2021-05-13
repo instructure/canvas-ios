@@ -24,10 +24,21 @@ public class GetEnvironmentFeatureFlags: APIUseCase {
     public var request: GetEnvironmentFeatureFlagsRequest { GetEnvironmentFeatureFlagsRequest() }
     public var cacheKey: String? { "environment-feature-flags" }
 
+    public init() {}
+
     public func write(response: APIEnvironmentFeatureFlags?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
 
         let flags: EnvironmentFeatureFlags = client.fetch().first ?? client.insert()
         flags.isCanvasForElementaryEnabled = response.canvas_for_elementary ?? false
+    }
+}
+
+public extension GetEnvironmentFeatureFlags {
+
+    class func updateAppEnvironmentFlags() {
+        let env = AppEnvironment.shared
+        guard let flags = env.database.viewContext.fetch().first as EnvironmentFeatureFlags? else { return }
+        env.isK5Enabled = flags.isCanvasForElementaryEnabled
     }
 }

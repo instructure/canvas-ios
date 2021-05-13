@@ -21,4 +21,3 @@ public struct GetEnvironmentFeatureFlagsRequest: APIRequestable {
 
     public var path: String { "features/environment" }
 }
-
