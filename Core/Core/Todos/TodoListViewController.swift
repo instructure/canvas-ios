@@ -40,7 +40,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     lazy var groups = env.subscribe(GetGroups()) { [weak self] in
         self?.update()
     }
-    lazy var todos = env.subscribe(GetTodos()) { [weak self] in
+    lazy var todos = env.subscribe(GetTodos(env.app == .student ? .submitting : nil)) { [weak self] in
         self?.update()
     }
 
