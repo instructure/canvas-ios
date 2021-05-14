@@ -24,9 +24,14 @@ class ModuleItemSubHeaderCell: UITableViewCell {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
+    let env = AppEnvironment.shared
+
     func update(_ item: ModuleItem) {
         backgroundColor = .backgroundLightest
+        isUserInteractionEnabled = env.app == .teacher || !item.isLocked
         label.text = item.title
+        label.isEnabled = isUserInteractionEnabled
+        label.textColor = label.isEnabled ? .textDarkest : .textLight
         publishedIconView.published = item.published
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
         accessibilityLabel = item.title
