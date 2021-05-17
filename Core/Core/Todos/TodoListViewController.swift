@@ -43,6 +43,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     lazy var todos = env.subscribe(GetTodos(env.app == .student ? .submitting : nil)) { [weak self] in
         self?.update()
     }
+    private var lastVoiceoverAnnouncement: String?
 
     public static func create() -> TodoListViewController {
         return loadFromStoryboard()
@@ -57,6 +58,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
 
         emptyDescLabel.text = NSLocalizedString("Your to do list is empty. Time to recharge.", comment: "")
         emptyTitleLabel.text = NSLocalizedString("Well Done!", comment: "")
+        emptyView.accessibilityLabel = "\(emptyTitleLabel.text!) \(emptyDescLabel.text!)"
         errorView.messageLabel.text = NSLocalizedString("There was an error loading items to do. Pull to refresh to try again.", comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
@@ -94,9 +96,12 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
             badgeCount += todo.needsGradingCount > 0 ? todo.needsGradingCount : 1
         }
         tableView.reloadData()
+        announceVoiceoverState()
     }
 
     @objc func refresh() {
+        UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Refreshing", comment: "Downloading new content has started"))
+        lastVoiceoverAnnouncement = nil
         todos.refresh(force: true) { [weak self] _ in
             self?.tableView.refreshControl?.endRefreshing()
         }
@@ -104,6 +109,30 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
 
     @objc func openProfile() {
         env.router.route(to: "/profile", from: self, options: .modal())
+    }
+
+    private func announceVoiceoverState() {
+        if view.window == nil {
+            lastVoiceoverAnnouncement = nil
+            return
+        }
+        var announcement: String?
+
+        if emptyView.isHidden == false {
+            announcement = emptyView.accessibilityLabel
+        } else if errorView.isHidden == false {
+            announcement = errorView.messageLabel.text
+        } else {
+            announcement = String.localizedStringWithFormat(NSLocalizedString("%d items", comment: ""), todos.count)
+        }
+
+        if let announcement = announcement {
+            if lastVoiceoverAnnouncement == announcement {
+                return
+            }
+            lastVoiceoverAnnouncement = announcement
+            UIAccessibility.post(notification: .announcement, argument: announcement)
+        }
     }
 }
 
