@@ -47,11 +47,21 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.gradingType, api.grading_type)
         XCTAssertEqual(a.submissionTypes, api.submission_types)
         XCTAssertEqual(a.position, api.position)
+        XCTAssertFalse(a.anonymousSubmissions)
         XCTAssertFalse(a.useRubricForGrading)
         XCTAssertFalse(a.hideRubricPoints)
         XCTAssertFalse(a.freeFormCriterionCommentsOnRubric)
 
         XCTAssertNotNil(a.submission)
+    }
+
+    func testUpdateAnonymizeStudentForAnonymousSubmissions() {
+        let client = databaseClient
+        let a = Assignment.make(from: .make(name: "a", submission: nil))
+        let api = APIAssignment.make(anonymous_submissions: true, name: "api_a", submission: .make())
+        a.update(fromApiModel: api, in: client, updateSubmission: true, updateScoreStatistics: true)
+        XCTAssertTrue(a.anonymousSubmissions)
+        XCTAssertTrue(a.anonymizeStudents)
     }
 
     func testUpdateFromAPIItemWithAPISubmissionButDoNotMutateSubmission() {

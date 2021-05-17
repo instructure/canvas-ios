@@ -41,7 +41,7 @@ struct SubmissionViewer: View {
                     .onNavigationFinished(handleRefresh)
             }
         case .online_quiz:
-            if submission.assignment?.anonymousSubmissions == true {
+            if assignment.anonymousSubmissions == true {
                 VStack {
                     Spacer()
                     HStack { Spacer() }
