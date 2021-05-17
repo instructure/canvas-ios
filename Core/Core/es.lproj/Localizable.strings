@@ -131,6 +131,9 @@
 "Add Item" = "Agregar elemento";
 
 /* No comment provided by engineer. */
+"Add message" = "Agregar mensaje";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Agregar nota de planificador";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "No se pudieron guardar las preferencias de notificaciones";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Curso (opcional)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Actividades del curso";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Detalles";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Menú del desarrollador";
+
+/* No comment provided by engineer. */
 "discussion" = "foro de discusión";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Editar programa del curso";
+
+/* No comment provided by engineer. */
+"Email address" = "Dirección de correo electrónico";
 
 /* Description for email communication channel */
 "Email Notifications" = "Notificaciones por correo electrónico";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Encuentre su escuela o distrito";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Nombre de carpeta";
 
 /* No comment provided by engineer. */
 "for %@" = "para %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Opciones";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "OPCIONES";
+
+/* No comment provided by engineer. */
 "orange" = "anaranjado";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Página";
+
+/* No comment provided by engineer. */
+"Page content" = "Contenido de la página";
 
 /* No comment provided by engineer. */
 "Page Details" = "Detalles de la página";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Política de privacidad";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Avatar del perfil";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Avatar del perfil; doble clic para cambiar";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menú de perfil";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Planificación";
 
 /* No comment provided by engineer. */
+"School’s name" = "Nombre de la escuela";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Puntaje como mínimo %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Seleccionar curso";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Seleccione el impacto";
 
 /* No comment provided by engineer. */
 "Select One" = "Seleccionar uno";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Programa del curso";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Contenido del programa del curso";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Profesor auxiliar";

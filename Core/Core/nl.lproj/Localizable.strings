@@ -131,6 +131,9 @@
 "Add Item" = "Item toevoegen";
 
 /* No comment provided by engineer. */
+"Add message" = "Bericht toevoegen";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Planneraantekening toevoegen";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Kan geen meldingsvoorkeuren opslaan";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Cursus (optioneel)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Cursusactiviteiten";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Details";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Ontwikkelaarmenu";
+
+/* No comment provided by engineer. */
 "discussion" = "discussie";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Syllabus bewerken";
+
+/* No comment provided by engineer. */
+"Email address" = "E-mailadres";
 
 /* Description for email communication channel */
 "Email Notifications" = "E-mail meldingen";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Vind je school of district";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Mapnaam";
 
 /* No comment provided by engineer. */
 "for %@" = "voor %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Opties";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "OPTIES";
+
+/* No comment provided by engineer. */
 "orange" = "oranje";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Pagina";
+
+/* No comment provided by engineer. */
+"Page content" = "Pagina-inhoud";
 
 /* No comment provided by engineer. */
 "Page Details" = "Paginadetails";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Privacybeleid";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Profielavatar";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Profielavatar, dubbeltikken om te veranderen";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu Profiel";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Planning";
 
 /* No comment provided by engineer. */
+"School’s name" = "Naam van school";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Minimaal scoren %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Cursus selecteren";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Impact selecteren";
 
 /* No comment provided by engineer. */
 "Select One" = "Eén selecteren";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Syllabusinhoud";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Onderwijsassistent";

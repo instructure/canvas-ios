@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Soumisyon an Pwoesis...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Tèks soumisyon";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Tip Soumisyon";
 

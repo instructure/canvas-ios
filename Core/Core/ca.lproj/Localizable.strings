@@ -131,6 +131,9 @@
 "Add Item" = "Afegeix un element";
 
 /* No comment provided by engineer. */
+"Add message" = "Afegeix un missatge";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Afegeix una nota al planificador";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "No s'ha pogut desar la preferència de notificació";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Curs (opcional)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Activitats del curs";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Detalls";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Menú de desenvolupador";
+
+/* No comment provided by engineer. */
 "discussion" = "debat";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Edita el temari";
+
+/* No comment provided by engineer. */
+"Email address" = "Adreça electrònica";
 
 /* Description for email communication channel */
 "Email Notifications" = "Notificacions per correu electrònic";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Cerqueu la vostra escola o el vostre districte";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Nom de la carpeta";
 
 /* No comment provided by engineer. */
 "for %@" = "per a %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Opcions";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "OPCIONS";
+
+/* No comment provided by engineer. */
 "orange" = "taronja";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Pàgina";
+
+/* No comment provided by engineer. */
+"Page content" = "Contingut de la pàgina";
 
 /* No comment provided by engineer. */
 "Page Details" = "Detalls de la pàgina";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Política de privacitat";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Avatar del perfil";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Avatar del perfil, toqueu-lo dues vegades per canviar-lo";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menú Perfil";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Planificació";
 
 /* No comment provided by engineer. */
+"School’s name" = "Nom del centre educatiu";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Puntuació mínima %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Selecciona el curs";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Selecciona l’impacte";
 
 /* No comment provided by engineer. */
 "Select One" = "Seleccioneu-ne un";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Temari";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Contingut del temari";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

@@ -131,6 +131,9 @@
 "Add Item" = "Tāpiri tuemi";
 
 /* No comment provided by engineer. */
+"Add message" = "Tāpiri karere";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Tāpiri Mahere Tuhipoka";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Kāore i taea te tiaki manakohanga whakamōhiotanga";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Akoranga (kāre herea)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Mahi akoranga";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Ngā taipitopito";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Tahua Whakawhanake";
+
+/* No comment provided by engineer. */
 "discussion" = "kōrerorero";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Whakatika Marautanga";
+
+/* No comment provided by engineer. */
+"Email address" = "Īmēra wāhitau";
 
 /* Description for email communication channel */
 "Email Notifications" = "Ngā Īmēra Whakamōhiotanga";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Kimihia tō kura takiwa ranei";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Ingoa kōpaki";
 
 /* No comment provided by engineer. */
 "for %@" = "hoki %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Ngā kōwhiringa";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "NGĀ WAIRANGI";
+
+/* No comment provided by engineer. */
 "orange" = "ārani";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Whārangi";
+
+/* No comment provided by engineer. */
+"Page content" = "Ihirangi whārangi";
 
 /* No comment provided by engineer. */
 "Page Details" = "Taipitopito Whārangi";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Kaupapahere Tūmataiti";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Kōtaha atamariko";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Kōtaha atamariko; patō tuarua ki te huri";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Kōtaha Tāhua";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Hōtaka";
 
 /* No comment provided by engineer. */
+"School’s name" = "Kura ingoa";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Kaute i te iti rawa  %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Tīpako akoranga";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Tīpako Pānga";
 
 /* No comment provided by engineer. */
 "Select One" = "Tīpakohia";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Marautanga Ihirangi";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

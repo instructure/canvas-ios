@@ -131,6 +131,9 @@
 "Add Item" = "Ajouter un élément";
 
 /* No comment provided by engineer. */
+"Add message" = "Ajouter un message";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ajouter une note au planificateur";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Impossible d'enregistrer la préférence de notification";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Cours (facultatif)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Activités du cours";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Détails";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Menu du développeur";
+
+/* No comment provided by engineer. */
 "discussion" = "discussion";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Modifier programme";
+
+/* No comment provided by engineer. */
+"Email address" = "Adresse électronique";
 
 /* Description for email communication channel */
 "Email Notifications" = "Notifications par courriel";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Trouver votre école ou votre district";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Nom du dossier";
 
 /* No comment provided by engineer. */
 "for %@" = "pour %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Options";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "OPTIONS";
+
+/* No comment provided by engineer. */
 "orange" = "orange";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Page";
+
+/* No comment provided by engineer. */
+"Page content" = "Contenu de la page";
 
 /* No comment provided by engineer. */
 "Page Details" = "Détails de la page";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Politique de confidentialité";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Avatar de profil";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Avatar de profil, double-clic pour le changer";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu Profil";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Planification";
 
 /* No comment provided by engineer. */
+"School’s name" = "Nom de l'école";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Obtenez un score d'au moins %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Sélectionner un cours";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Choisir l'impact";
 
 /* No comment provided by engineer. */
 "Select One" = "Sélectionner un élément";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Programme";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Contenu du programme";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

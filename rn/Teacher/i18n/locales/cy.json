@@ -2,23 +2,11 @@
   "_376f89ea": {
     "message": "--"
   },
-  "a_description_is_required_54b5f1f6": {
-    "message": "Rhaid rhoi disgrifiad"
-  },
   "a_title_is_required_71222850": {
     "message": "Rhaid rhoi teitl"
   },
-  "accept_2fdd362e": {
-    "message": "Derbyn"
-  },
   "access_code_74f4864f": {
     "message": "Cod Mynediad"
-  },
-  "account_group_cb00ca73": {
-    "message": "Grŵp Cyfrif"
-  },
-  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-    "message": "Gallwch ychwanegu rhywfaint o'ch hoff gyrsiau er mwyn teimlo'n gartrefol."
   },
   "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
     "message": "Gallwch ychwanegu atodiad drwy dapio'r symbol + ar yr ochr dde uchaf."
@@ -29,32 +17,14 @@
   "add_attachment_dcdb8bf8": {
     "message": "Ychwanegu atodiad"
   },
-  "add_comment_3205529f": {
-    "message": "Ychwanegu Sylw"
-  },
-  "add_courses_fd45abf": {
-    "message": "Ychwanegu Cyrsiau"
-  },
   "add_description_5321f1d": {
     "message": "Ychwanegu disgrifiad"
-  },
-  "add_description_required_e222e483": {
-    "message": "Ychwanegu disgrifiad (gofynnol)"
   },
   "add_due_date_65b08f6c": {
     "message": "Ychwanegu Dyddiad Erbyn"
   },
-  "add_media_cfa37b54": {
-    "message": "Ychwanegu Cyfryngau"
-  },
   "add_recipient_7de2dc74": {
     "message": "Ychwanegu derbynnydd"
-  },
-  "add_title_4f788d37": {
-    "message": "Ychwanegu teitl"
-  },
-  "add_title_required_8d9bdeaa": {
-    "message": "Ychwanegu teitl (gofynnol)"
   },
   "after_date_e5d9b0e1": {
     "message": "Ar ôl { date }"
@@ -68,9 +38,6 @@
   "all_courses_a7dbb853": {
     "message": "Pob Cwrs"
   },
-  "all_grading_periods_77974940": {
-    "message": "Pob Cyfnod Graddio"
-  },
   "all_in_e5ddaee0": {
     "message": "Pawb"
   },
@@ -82,12 +49,6 @@
   },
   "allow_multiple_attempts_e67a0a37": {
     "message": "Caniatáu mwy nag un ymgais"
-  },
-  "allow_threaded_replies_43b2311e": {
-    "message": "Caniatáu atebion aml-drywydd"
-  },
-  "allow_users_to_comment_45b8f753": {
-    "message": "Caniatáu i ddefnyddwyr wneud sylw"
   },
   "allowed_attempts_4e229caa": {
     "message": "Ymgeisiau a ganiateir"
@@ -101,17 +62,11 @@
   "an_error_occurred_a4e1cda4": {
     "message": "Gwall"
   },
-  "announcements_a4b8ed4a": {
-    "message": "Cyhoeddiadau"
-  },
   "anonymous_grading_3083dc0": {
     "message": "Graddio’n ddienw"
   },
   "archived_de543437": {
     "message": "Archifwyd"
-  },
-  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
-    "message": "Ydych chi’n siŵr eich bod am ddileu’r drafodaeth hon?"
   },
   "assign_to_95404a83": {
     "message": "Dyrannu i"
@@ -121,9 +76,6 @@
   },
   "assignees_required_1b9218fb": {
     "message": "Angen aseinïaid"
-  },
-  "assignment_details_bc488179": {
-    "message": "Manylion Aseiniad"
   },
   "assignment_group_1a781505": {
     "message": "Grŵp o Aseiniadau"
@@ -139,21 +91,6 @@
   },
   "attachments_694cf227": {
     "message": "Atodiadau"
-  },
-  "attempt_number_75028cfa": {
-    "message": "Ymgais { number }"
-  },
-  "audio_comment_baf426c7": {
-    "message": "Sylw Sain"
-  },
-  "audio_dd489fcc": {
-    "message": "Sain"
-  },
-  "audio_playback_failed_912bcb82": {
-    "message": "Wedi methu chwarae'r sain"
-  },
-  "availability_8942cde6": {
-    "message": "Argaeledd"
   },
   "availability_closed_429d1ba5": {
     "message": "Argaeledd: Wedi dod i ben"
@@ -200,9 +137,6 @@
   "cancel_caeb1e68": {
     "message": "Canslo"
   },
-  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
-    "message": "Newid { discussionTitle } i grŵp gwahanol"
-  },
   "choose_color_11148181": {
     "message": "Dewis { color }"
   },
@@ -224,44 +158,17 @@
   "clear_recording_5a97b475": {
     "message": "Clirio’r recordiad"
   },
-  "close_d634289d": {
-    "message": "Cau"
-  },
-  "close_for_comments_ce0e5d00": {
-    "message": "Cau ar gyfer sylwadau"
-  },
   "closed_983a96fe": {
     "message": "Wedi dod i ben"
-  },
-  "closed_for_comments_e395b42f": {
-    "message": "Wedi Cau ar gyfer Sylwadau"
   },
   "color_a363e1b0": {
     "message": "Lliw"
   },
-  "comment_7ef1428e": {
-    "message": "Sylw"
-  },
-  "comment_failed_acf11b54": {
-    "message": "Wedi methu rhoi sylw"
-  },
-  "comments_e07bcbe3": {
-    "message": "Sylwadau"
-  },
   "complete_fd828dea": {
     "message": "Cwblhau"
   },
-  "complete_incomplete_15b3a89c": {
-    "message": "Wedi Cwblhau/Heb Gwblhau"
-  },
   "compose_message_8abd180a": {
     "message": "Creu Neges"
-  },
-  "conference_in_progress_bed08457": {
-    "message": "Cynhadledd ar waith"
-  },
-  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
-    "message": "Mae cynhadledd { name } ar waith, tapiwch i weld manylion"
   },
   "conversation_options_8be926f3": {
     "message": "Opsiynau trafodaethau"
@@ -281,21 +188,6 @@
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
     "message": "{ count, plural,\n    one {# Angen ei Raddio }\n  other {# Angen eu Graddio}\n}"
   },
-  "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,\n    one {# pwynt}\n  other {# pwynt}\n}",
-    "description": "Number of points possible"
-  },
-  "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,\n    one {# Cwestiwn}\n  other {# Cwestiwn}\n}"
-  },
-  "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,\n    one {# Ateb}\n  other {# Ateb}\n}",
-    "description": "Number of replies"
-  },
-  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,\n    one {Mae # aseinî heb radd.}\n  other {Mae # aseinî heb radd.}\n}",
-    "description": "Number of assignees without grades."
-  },
   "count_students_4ae780ca": {
     "message": "{ count } myfyriwr"
   },
@@ -311,26 +203,11 @@
   "course_settings_f6d0bbf8": {
     "message": "Gosodiadau Cwrs"
   },
-  "coursename_sections_faeee6fc": {
-    "message": "Adrannau { courseName }"
-  },
   "courses_43204aae": {
     "message": "Cyrsiau"
   },
-  "current_grade_6d0b8ef7": {
-    "message": "Gradd Bresennol"
-  },
-  "current_grade_grade_5b083a30": {
-    "message": "Gradd bresennol { grade }"
-  },
   "customize_course_eefa9c21": {
     "message": "Personoli Cwrs"
-  },
-  "customize_grade_c9d046d": {
-    "message": "Personoli Gradd"
-  },
-  "customize_grade_value_964695a3": {
-    "message": "Personoli Gradd { value }"
   },
   "cyan_c1d5f68a": {
     "message": "Cyan"
@@ -344,17 +221,8 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
-  "decline_7eeb5ff4": {
-    "message": "Gwrthod"
-  },
   "deep_purple_bb3e2907": {
     "message": "Porffor Tywyll"
-  },
-  "delay_posting_f45eed7d": {
-    "message": "Oedi cyn postio"
-  },
-  "delayed_until_8f9c2bb1": {
-    "message": "Wedi gohirio tan: "
   },
   "delete_a6efa79d": {
     "message": "Dileu"
@@ -365,32 +233,11 @@
   "description_436c48d7": {
     "message": "Disgrifiad"
   },
-  "details_98a31b68": {
-    "message": "Manylion"
-  },
-  "discussion_submission_781d5d33": {
-    "message": "Cyflwyniad Trafodaeth"
-  },
   "discussion_topic_dc85ad4c": {
     "message": "Pwnc Trafod"
   },
-  "discussions_a5f96392": {
-    "message": "Trafodaeth"
-  },
   "dismiss_dacdb625": {
     "message": "Diystyru"
-  },
-  "dismiss_invitation_to_name_a650b2c4": {
-    "message": "Diystyru’r gwahoddiad i { name }"
-  },
-  "dismiss_name_8646b9fd": {
-    "message": "Gwrthod { name }"
-  },
-  "display_grade_as_7b5376a6": {
-    "message": "Dangos Gradd fel"
-  },
-  "display_grade_as_c165e9a6": {
-    "message": "Dangos Gradd fel..."
   },
   "done_54e3d4b6": {
     "message": "Wedi gorffen"
@@ -404,9 +251,6 @@
   "due_date_822625d8": {
     "message": "Dyddiad Erbyn"
   },
-  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
-    "message": "Erbyn { date, date, 'MMM d, YYYY' } am { date, time, short }"
-  },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "Rhaid i'r ''Dyddiad Erbyn'' fod rhwng y dyddiad ''Ar gael o'' a’r dyddiad ''Ar gael tan''"
   },
@@ -416,32 +260,17 @@
   "due_datestring_be4410c7": {
     "message": "Erbyn { dateString }"
   },
-  "edit_assignment_ebf22a72": {
-    "message": "Golygu Aseiniad"
-  },
-  "edit_attachment_count_ae907c46": {
-    "message": "Golygu’r atodiad ({ count })"
-  },
   "edit_attachments_count_5e9276ea": {
     "message": "Golygu'r atodiadau ({ count })"
   },
   "edit_c5fbea07": {
     "message": "Golygu"
   },
-  "edit_comment_22b23c2f": {
-    "message": "Golygu Sylw"
-  },
   "edit_course_settings_9736fd1f": {
     "message": "Golygu gosodiadau’r cwrs"
   },
-  "edit_dashboard_7e5b7043": {
-    "message": "Golygu Dangosfwrdd"
-  },
   "edit_quiz_details_72cd055": {
     "message": "Golygu Manylion Cwis"
-  },
-  "enjoy_your_day_a4cb2c1": {
-    "message": "Mwynhewch eich diwrnod!"
   },
   "enter_code_c7ab5104": {
     "message": "Rhoi cod"
@@ -449,41 +278,20 @@
   "error_98e81528": {
     "message": "Gwall"
   },
-  "error_saving_grade_367dd920": {
-    "message": "Gwall wrth gadw Gradd"
-  },
   "everyone_854554dd": {
     "message": "Pawb"
   },
   "everyone_else_cc5f6888": {
     "message": "Pawb arall"
   },
-  "excuse_student_1b60e311": {
-    "message": "Esgusodi Myfyriwr"
-  },
   "excused_cf8792eb": {
     "message": "Wedi esgusodi"
-  },
-  "extensions_and_lastextension_f45d68e7": {
-    "message": "{ extensions } a { lastExtension }"
   },
   "external_tool_c5a6410a": {
     "message": "Adnodd Allanol"
   },
-  "external_tool_submission_c7b1dfa4": {
-    "message": "Cyflwyno Adnodd Allanol"
-  },
   "fail_c2e91f54": {
     "message": "Methiant"
-  },
-  "failed_comment_options_aa19a936": {
-    "message": "Opsiynau sylwadau wedi methu"
-  },
-  "failed_to_download_audio_23abb7b1": {
-    "message": "Wedi methu llwytho sain i lawr"
-  },
-  "failed_to_load_audio_46309612": {
-    "message": "Wedi methu llwytho’r sain"
   },
   "failed_to_upload_attachment_acb5c28f": {
     "message": "Wedi methu llwytho atodiad i fyny"
@@ -493,15 +301,6 @@
   },
   "favorited_courses_84f383f": {
     "message": "Cyrsiau wedi’u hoffi"
-  },
-  "file_types_6fa69505": {
-    "message": "Mathau o Ffeiliau"
-  },
-  "files_c300e900": {
-    "message": "Ffeiliau"
-  },
-  "files_numberoffiles_number_410d9eba": {
-    "message": "Ffeiliau ({ numberOfFiles, number })"
   },
   "filter_by_2f4368a8": {
     "message": "Hidlo yn ôl"
@@ -521,9 +320,6 @@
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Hidlo Cyflwyniadau. ({ numSelected, number })  wedi dewis."
   },
-  "final_grade_4d7f6545": {
-    "message": "Gradd Derfynol"
-  },
   "for_974cbb84": {
     "message": "Ar gyfer"
   },
@@ -539,44 +335,8 @@
   "front_page_50cae87e": {
     "message": "Tudalen Flaen"
   },
-  "full_screen_712e95f1": {
-    "message": "Sgrin lawn"
-  },
   "fw_subject_ebe04db7": {
     "message": "Yml: { subject }"
-  },
-  "gpa_71809a99": {
-    "message": "GPA"
-  },
-  "gpa_scale_a6d1cdea": {
-    "message": "Graddfa GPA"
-  },
-  "grade_9c6f076d": {
-    "message": "Gradd"
-  },
-  "grade_after_posting_51718245": {
-    "message": "Gradd ar ôl postio"
-  },
-  "grade_after_posting_grade_d6e10b87": {
-    "message": "Gradd ar ôl postio { grade }"
-  },
-  "grade_before_posting_fce5a333": {
-    "message": "Gradd cyn postio"
-  },
-  "grade_before_posting_grade_ca67f851": {
-    "message": "Gradd cyn postio { grade }"
-  },
-  "grade_grade_990eb477": {
-    "message": "Gradd { grade }"
-  },
-  "grade_override_ff74e3b4": {
-    "message": "Disodli Gradd"
-  },
-  "grade_override_grade_4788faec": {
-    "message": "Disodli Gradd { grade }"
-  },
-  "grade_post_policy_7fa3ef03": {
-    "message": "Polisi postio graddau"
   },
   "graded_25cd3fcd": {
     "message": "Wedi graddio"
@@ -587,9 +347,6 @@
   "graded_survey_c0f0c395": {
     "message": "Arolwg wedi’i Raddio"
   },
-  "grades_a61eba0a": {
-    "message": "Graddau"
-  },
   "green_15af4778": {
     "message": "Gwyrdd"
   },
@@ -598,9 +355,6 @@
   },
   "groups_6c90e26a": {
     "message": "Grwpiau"
-  },
-  "half_screen_9cdd83ad": {
-    "message": "Hanner sgrin"
   },
   "haven_t_been_graded_1fbfda56": {
     "message": "Heb gael gradd"
@@ -617,9 +371,6 @@
   "hidden_14a032a7": {
     "message": "Cudd"
   },
-  "hide_content_for_name_aee1723a": {
-    "message": "Cuddio cynnwys ar gyfer { name }"
-  },
   "hide_correct_answers_at_b1a59408": {
     "message": "Cuddio’r atebion cywir yn"
   },
@@ -628,12 +379,6 @@
   },
   "highest_28ad71e6": {
     "message": "Uchaf"
-  },
-  "highest_possible_score_pointspossible_number_c03ce29a": {
-    "message": "Sgôr uchaf posib, { pointsPossible, number }"
-  },
-  "in_progress_9d1ce8b9": {
-    "message": "Ar y Gweill"
   },
   "incomplete_da3c2ea2": {
     "message": "Heb Gwblhau"
@@ -647,35 +392,14 @@
   "invalid_field_54480fae": {
     "message": "Maes annilys"
   },
-  "invite_accepted_290abc90": {
-    "message": "Mae'r gwahoddiad wedi’i dderbyn!"
-  },
-  "invite_declined_d0a9e398": {
-    "message": "Mae'r gwahoddiad wedi'i wrthod!"
-  },
-  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
-    "message": "Does dim cyflwyniadau dilys i’w graddio yn ôl pob golwg."
-  },
   "label_text_field_6677ab6f": {
     "message": "{ label }, maes testun"
-  },
-  "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
-    "message": "Gweithgaredd diwethaf ar { lastActivity, date, 'MMMM d' } am { lastActivity, time, short }"
-  },
-  "last_post_lastreplydatestr_55fbe7ce": {
-    "message": "Postiad diwethaf { lastReplyDateStr }"
   },
   "late_2be42b88": {
     "message": "Yn Hwyr"
   },
-  "late_submissions_late_number_baedf6cf": {
-    "message": "Cyflwyniadau hwyr { late, number }"
-  },
   "latest_f604a75": {
     "message": "Diweddaraf"
-  },
-  "launch_external_tool_672c0409": {
-    "message": "Lansio Adnodd Allanol"
   },
   "length_in_minutes_eca69868": {
     "message": "Hyd mewn munudau"
@@ -686,26 +410,11 @@
   "let_students_see_their_quiz_responses_fbc07d14": {
     "message": "Gadewch i fyfyrwyr weld eu hatebion eu hunain i'r cwis"
   },
-  "letter_grade_29ff1938": {
-    "message": "Gradd Llythyren"
-  },
-  "letter_grade_e83e363c": {
-    "message": "Gradd llythyren"
-  },
   "light_blue_5374f600": {
     "message": "Glas golau"
   },
-  "loading_bde52856": {
-    "message": "Wrthi’n llwytho"
-  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Cloi atebion ar ôl ateb"
-  },
-  "long_description_7d89285c": {
-    "message": "Disgrifiad Hir"
-  },
-  "lowest_possible_score_0_c2338db6": {
-    "message": "Sgôr isaf posib, 0"
   },
   "magenta_4a65993c": {
     "message": "Magenta"
@@ -716,8 +425,8 @@
   "media_recording_77cddc52": {
     "message": "Recordio Cyfryngau"
   },
-  "media_submission_464829f0": {
-    "message": "Cyflwyniad cyfryngau"
+  "message_body_bf4a882c": {
+    "message": "Corff neges"
   },
   "message_details_342e931f": {
     "message": "Manylion y Neges"
@@ -736,12 +445,6 @@
   },
   "missing_1a256b3b": {
     "message": "Ar goll"
-  },
-  "missing_submissions_missing_number_ea40423d": {
-    "message": "Cyflwyniadau ar goll { missing, number }"
-  },
-  "moderated_grading_unsupported_e3a2bba3": {
-    "message": "Does dim modd delio â'r broses safoni graddau"
   },
   "multiple_due_dates_283dd861": {
     "message": "Mwy nag un dyddiad erbyn"
@@ -766,15 +469,6 @@
   },
   "needs_grading_9143d47c": {
     "message": "Angen Graddio"
-  },
-  "new_13daf639": {
-    "message": "Newydd"
-  },
-  "new_announcement_23af4598": {
-    "message": "Cyhoeddiad Newydd"
-  },
-  "new_discussion_dae4fae3": {
-    "message": "Trafodaeth Newydd"
   },
   "new_message_f9bbd1c0": {
     "message": "Neges Newydd"
@@ -806,9 +500,6 @@
   "no_e16d9132": {
     "message": "Na"
   },
-  "no_grade_3b4d7f3e": {
-    "message": "Dim Gradd"
-  },
   "no_messages_a2e67ad4": {
     "message": "Dim Negeseuon"
   },
@@ -824,32 +515,17 @@
   "no_subject_58b7941c": {
     "message": "Dim Pwnc"
   },
-  "no_submissions_to_display_6f1491cf": {
-    "message": "Does Dim Cyflwyniadau i'w Dangos"
-  },
   "no_time_limit_2147d9bf": {
     "message": "Dim Terfyn Amser"
   },
-  "no_title_4921a961": {
-    "message": "Dim Teitl"
-  },
   "none_3b5e34d2": {
     "message": "Dim"
-  },
-  "none_9b6c9bec": {
-    "message": "dim"
-  },
-  "not_graded_e027c866": {
-    "message": "Heb eu graddio"
   },
   "not_published_73f7079": {
     "message": "Heb Gyhoeddi"
   },
   "not_submitted_7d05fdb4": {
     "message": "Heb Gyflwyno"
-  },
-  "nothing_more_to_do_b017e8bb": {
-    "message": "Dim byd arall i'w wneud."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Munud}\n  other {# Munud}\n}"
@@ -887,20 +563,8 @@
   "only_once_after_each_attempt_cc842738": {
     "message": "Dim ond Unwaith ar ôl pob Ymgais"
   },
-  "open_coursename_user_preferences_430b877e": {
-    "message": "Agor dewisiadau defnyddiwr ar gyfer { courseName }"
-  },
-  "open_drawer_f3c8b11": {
-    "message": "Agor Drôr"
-  },
-  "open_for_comments_1810648": {
-    "message": "Agor ar gyfer sylwadau"
-  },
   "opens_in_canvas_student_5f299948": {
     "message": "Yn agor yn Canvas Student"
-  },
-  "options_3ab0ea65": {
-    "message": "Opsiynau"
   },
   "orange_81386a62": {
     "message": "Oren"
@@ -908,56 +572,20 @@
   "out_of_points_number_42209979": {
     "message": "Allan o { points, number }"
   },
-  "override_3de65b2c": {
-    "message": "Diystyru"
-  },
-  "override_grade_grade_f33671d4": {
-    "message": "Disodli Gradd { grade }"
-  },
   "pages_front_page_9ce5188": {
     "message": "Tudalen Flaen ar gyfer Tudalennau"
   },
   "pass_8abee039": {
     "message": "Pasio"
   },
-  "past_enrollments_a846da48": {
-    "message": "Ymrestriadau'r Gorffennol"
-  },
-  "percent_d7ddd35b": {
-    "message": "Canran (%)"
-  },
-  "percentage_34ab7c2c": {
-    "message": "Canran"
-  },
   "permission_needed_7e971495": {
     "message": "Angen Caniatâd"
-  },
-  "pin_cdbc9f8f": {
-    "message": "Pinio"
   },
   "pink_68ad45cb": {
     "message": "Pinc"
   },
-  "pinned_discussions_a55c0cea": {
-    "message": "Trafodaethau wedi’u Pinio"
-  },
   "please_try_again_5d872e78": {
     "message": "Rhowch gynnig arall arni."
-  },
-  "points_bb475533": {
-    "message": "Pwyntiau"
-  },
-  "points_number_out_of_totalpoints_number_291efb47": {
-    "message": "{ points, number } allan o { totalPoints, number }"
-  },
-  "points_possible_must_be_a_number_4a592dc6": {
-    "message": "Mae’n rhaid i’r pwyntiau sy’n bosib fod yn rhif"
-  },
-  "pointspossible_number_pts_2d9f157d": {
-    "message": "{ pointsPossible, number } pwynt"
-  },
-  "post_at_a9e0fecb": {
-    "message": "Postio..."
   },
   "practice_quiz_19a8505d": {
     "message": "Cwis Ymarfer"
@@ -967,9 +595,6 @@
   },
   "preview_quiz_1ffbf684": {
     "message": "Rhagolwg o'r Cwis"
-  },
-  "preview_unavailable_aacd459a": {
-    "message": "Dim rhagolwg ar gael"
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Does dim modd rhagweld y math hwn o ffeil"
@@ -1001,14 +626,8 @@
   "quiz_score_to_keep_d1f7c4b1": {
     "message": "Sgôr cwis i’w chadw"
   },
-  "quiz_submission_dca0c013": {
-    "message": "Cyflwyniad Cwis"
-  },
   "quiz_type_be1633db": {
     "message": "Math o Gwis"
-  },
-  "quizzes_7e598f57": {
-    "message": "Cwisiau"
   },
   "recent_activity_51239235": {
     "message": "Gweithgarwch diweddar"
@@ -1018,9 +637,6 @@
   },
   "record_audio_14666880": {
     "message": "Recordio Sain"
-  },
-  "record_video_70dc8439": {
-    "message": "Recordio Fideo"
   },
   "recording_failed_2e1861b": {
     "message": "Wedi methu recordio"
@@ -1067,23 +683,11 @@
   "retry_upload_d854b33b": {
     "message": "Ceisio llwytho i fyny eto"
   },
-  "rubric_fc39da76": {
-    "message": "Cyfarwyddyd sgorio"
-  },
   "saving_2521e616": {
     "message": "Wrthi’n cadw"
   },
   "saving_d55dd90e": {
     "message": "Wrthi’n cadw..."
-  },
-  "score_number_out_of_points_plural_one_point_other__9993235e": {
-    "message": "{ score, number } allan o { points, plural,\n    one {# pwynt}\n  other {# pwynt}\n} posib"
-  },
-  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
-    "message": "{ score, number } allan o { pointsPossible, number } { points, plural,\n     =1 {pwynt}\n  other { pwynt}\n} posib. { grade }"
-  },
-  "score_number_pointspossible_number_fd8705b8": {
-    "message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
     "message": "Sgôr i’w chadw"
@@ -1106,26 +710,14 @@
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {#eiliad}\n  other {# eiliad}\n}"
   },
-  "section_sectionname_a455be11": {
-    "message": "Adran: { sectionName }"
-  },
-  "sections_94731e51": {
-    "message": "Adrannau"
-  },
   "select_a_course_4710371f": {
     "message": "Dewiswch gwrs"
-  },
-  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
-    "message": "Dewiswch y cyrsiau yr hoffech eu gweld ar y Dangosfwrdd."
   },
   "send_e3bd0ed0": {
     "message": "Anfon"
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
     "message": "Anfon neges unigol at bob derbynnydd"
-  },
-  "send_message_a371a974": {
-    "message": "Anfon neges"
   },
   "send_recording_82e5a550": {
     "message": "Anfon y recordiad"
@@ -1160,9 +752,6 @@
   "shuffle_answers_edb602b7": {
     "message": "Cymysgu Atebion"
   },
-  "similarity_score_f4b5c343": {
-    "message": "Sgôr Tebygrwydd"
-  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Aeth rhywbeth o’i le o'n rhan ni. Peidiwch â phoeni, rydyn ni wedi cofnodi hyn ac fe fyddwn yn mynd i'r afael â hyn yn fuan."
   },
@@ -1174,9 +763,6 @@
   },
   "start_recording_189496b9": {
     "message": "Dechrau'r recordiad"
-  },
-  "stop_playing_audio_96aed3bc": {
-    "message": "Stopio chwarae'r recordiad"
   },
   "stop_recording_6efe2129": {
     "message": "Stopio'r recordiad"
@@ -1190,20 +776,11 @@
   "students_1b8cd07b": {
     "message": "Myfyrwyr"
   },
-  "students_must_post_before_seeing_replies_1a57eeb2": {
-    "message": "Mae’n rhaid i fyfyrwyr wneud postiadau cyn gweld atebion"
-  },
   "subject_114b2e98": {
     "message": "Pwnc"
   },
-  "submission_comment_873e8f1c": {
-    "message": "sylw ar y cyflwyniad"
-  },
   "submission_settings_f57b0cf8": {
     "message": "Gosodiadau Cyflwyno"
-  },
-  "submission_types_af57bf0": {
-    "message": "Mathau o Gyflwyniadau"
   },
   "submissions_11e96106": {
     "message": "Cyflwyniadau"
@@ -1214,29 +791,11 @@
   "submitted_late_3741af29": {
     "message": "Wedi’i gyflwyno’n hwyr"
   },
-  "subscribe_4b301fb7": {
-    "message": "Tanysgrifio"
-  },
-  "survey_31a240e6": {
-    "message": "Arolwg"
-  },
-  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
-    "message": "Sweipiwch i'r chwith neu i'r dde i weld cyflwyniadau myfyrwyr eraill"
-  },
   "syllabus_f191f65b": {
     "message": "Maes Llafur"
   },
-  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
-    "message": "Tapiwch a dal rhif cyfarwyddyd sgorio i weld disgrifiad ohono"
-  },
   "tap_the_to_create_a_new_conversation_80f77725": {
     "message": "Tapiwch \"+\" i greu sgwrs newydd"
-  },
-  "tap_to_view_announcement_6724a5d": {
-    "message": "Tapiwch i weld y cyhoeddiad"
-  },
-  "tap_to_view_submissions_list_5bfe32f3": {
-    "message": "Tapiwch i weld y rhestr cyflwyniadau."
   },
   "teachers_52e2423f": {
     "message": "Athrawon"
@@ -1244,44 +803,11 @@
   "teal_f729a294": {
     "message": "Glaswyrdd"
   },
-  "text_submission_935eeb5": {
-    "message": "Cyflwyniad Testun"
-  },
   "that_message_can_not_be_forwarded_76cb2b1a": {
     "message": "Does dim modd anfon y neges ymlaen."
   },
-  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
-    "message": "Mae’n rhaid i werth y pwyntiau sy’n bosib fod yn sero neu’n fwy."
-  },
-  "there_are_no_announcements_to_display_a91880": {
-    "message": "Does dim cyhoeddiadau i’w dangos."
-  },
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "Does dim aseiniadau i’w dangos."
-  },
-  "there_are_no_comments_to_display_bde58f70": {
-    "message": "Does dim sylwadau i’w dangos."
-  },
-  "there_are_no_discussions_to_display_37bc437f": {
-    "message": "Does dim trafodaethau i’w dangos."
-  },
-  "there_are_no_files_to_display_d3eeb317": {
-    "message": "Does dim ffeiliau i’w dangos."
-  },
-  "there_are_no_quizzes_to_display_733b28f2": {
-    "message": "Does dim cwisiau i’w dangos."
-  },
-  "there_currently_is_no_long_description_for_this_it_ea943d61": {
-    "message": "Does dim disgrifiad hir ar gyfer yr eitem hon ar hyn o bryd."
-  },
-  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
-    "message": "Problem wrth ddiystyru'r cyhoeddiad."
-  },
-  "there_was_a_problem_loading_discussions_ce5318af": {
-    "message": "Problem wrth lwytho trafodaethau."
-  },
-  "there_was_a_problem_loading_the_announcements_4871afc4": {
-    "message": "Problem wrth lwytho’r cyhoeddiadau."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
     "message": "Problem wrth lwytho'r aseiniadau sydd wedi'u cyflwyno."
@@ -1292,17 +818,8 @@
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Problem wrth lwytho’r grwpiau."
   },
-  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
-    "message": "Problem wrth lwytho’r gynhadledd fyw."
-  },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Problem wrth lwytho'r cwisiau sydd wedi'u cyflwyno."
-  },
-  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
-    "message": "Problem wrth lwytho’r cwisiau."
-  },
-  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
-    "message": "Problem wrth gadw’r radd. Rhowch gynnig arall arni."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Gwall wrth lwytho’r atodiad."
@@ -1319,44 +836,20 @@
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Problem wrth lwytho'ch negeseuon."
   },
-  "there_was_an_unexepected_error_fd6f2bf": {
-    "message": "Gwall annisgwyl."
-  },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Gwall annisgwyl. Rhowch gynnig arall arni."
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Does dim modd dad-wneud hyn."
   },
-  "this_assignment_does_not_allow_submissions_30af1caa": {
-    "message": "Dydy’r cwrs hwn ddim yn caniatáu cyflwyniadau."
-  },
-  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
-    "message": "Does dim disgrifiad ar gyfer yr aseiniad hwn."
-  },
-  "this_assignment_only_allows_on_paper_submissions_f478408a": {
-    "message": "Dydy’r cwrs hwn ddim yn caniatáu cyflwyniadau ar bapur."
-  },
-  "this_criterion_will_not_impact_the_score_94adf77b": {
-    "message": "Ni fydd y maen prawf hwn yn effeithio ar y sgôr."
-  },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "Mae’r ffeil hon wedi’i chloi ar hyn o bryd."
-  },
-  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
-    "message": "Does gan y grŵp hwn ddim cyflwyniad ar gyfer yr aseiniad hwn."
   },
   "this_is_a_media_comment_2e395230": {
     "message": "Mae’r sylw hwn wedi’i wneud ar gyfryngau"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Dyma'ch gosodiad lliw personol. Dim ond chi sy’n gallu gweld y lliw hwn ar gyfer y cwrs."
-  },
-  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
-    "message": "Does gan y myfyriwr hwn ddim cyflwyniad ar gyfer yr aseiniad hwn."
-  },
-  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
-    "message": "Mae'r cyflwyniad hwn yn URL i dudalen allanol. Rydyn ni wedi cynnwys ciplun o’r dudalen pan gafodd hyn ei gyflwyno."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Bydd hyn yn tynnu'r dyddiad erbyn a phob aseinî cysylltiedig."
@@ -1366,12 +859,6 @@
   },
   "time_limit_a6f1a51e": {
     "message": "Terfyn Amser"
-  },
-  "title_announcement_c0cdaa10": {
-    "message": "{ title } Cyhoeddiad"
-  },
-  "title_discussion_4cff9841": {
-    "message": "{ title } Trafodaeth"
   },
   "title_ee03d132": {
     "message": "Teitl"
@@ -1391,9 +878,6 @@
   "total_grade_568e719f": {
     "message": "Gradd Gyffredinol:"
   },
-  "total_submissions_total_number_dbb28cf9": {
-    "message": "Cyfanswm y Cyflwyniadau { total, number }"
-  },
   "un_starred_8fef021f": {
     "message": "Heb seren"
   },
@@ -1406,18 +890,11 @@
   "unlimited_ff19e96d": {
     "message": "Diderfyn"
   },
-  "unpin_a318452a": {
-    "message": "Dadbinio"
-  },
   "unpublished_8b6107d6": {
     "message": "Wedi dad-gyhoeddi"
   },
   "unread_e9c1b19c": {
     "message": "Heb ddarllen"
-  },
-  "unread_plural_one_unread_other_unread_5d48c74f": {
-    "message": "{ unread, plural,\n    one {# Heb ddarllen}\n  other {# Heb ddarllen}\n}",
-    "description": "Number of unread discussion posts"
   },
   "unrecognized_file_format_def0881c": {
     "message": "Fformat ffeil dieithr"
@@ -1446,44 +923,23 @@
   "uploading_loaded_of_total_d5c3d555": {
     "message": "Wrthi'n llwytho { loaded } o { total } i fyny"
   },
-  "url_preview_image_a263a21e": {
-    "message": "Delwedd Rhagolwg o URL"
-  },
-  "url_submission_f76327e3": {
-    "message": "Cyflwyniad URL"
-  },
   "use_camera_47a0387b": {
     "message": "Defnyddio Camera"
   },
   "value_text_field_d9515a76": {
     "message": "{ value }, maes testun"
   },
-  "video_b9f27375": {
-    "message": "Fideo"
-  },
   "video_recording_90d21249": {
     "message": "Recordiad Fideo"
   },
-  "view_all_submissions_915a8b78": {
-    "message": "Gweld pob cyflwyniad"
-  },
-  "view_long_description_2b592c0e": {
-    "message": "Gweld Disgrifiad Hir"
-  },
   "view_responses_d2874266": {
     "message": "Gweld ymatebion"
-  },
-  "welcome_73d18b4d": {
-    "message": "Croeso!"
   },
   "whoops_de2cf9fc": {
     "message": "Wps!"
   },
   "yes_dde87d5": {
     "message": "Iawn"
-  },
-  "you_have_been_invited_a724be1a": {
-    "message": "Rydych chi wedi cael gwahoddiad"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Rhaid i chi alluogi hawliau'r Camera a'r Microffon yn y Gosodiadau er mwyn defnyddio'r camera."
@@ -1496,8 +952,5 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Mae’n rhaid i chi roi cod mynediad"
-  },
-  "your_submission_comment_failed_to_send_5c8d2809": {
-    "message": "Wedi methu anfon eich sylw ar y cyflwyniad."
   }
 }

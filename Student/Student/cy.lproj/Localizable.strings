@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Cyflwyniad ar y Gweill...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Testun cyflwyniad";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Mathau o Gyflwyniadau";
 

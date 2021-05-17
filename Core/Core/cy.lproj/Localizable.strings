@@ -131,6 +131,9 @@
 "Add Item" = "Ychwanegu Eitem";
 
 /* No comment provided by engineer. */
+"Add message" = "Ychwanegu neges";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ychwanegu Nodyn gan y Trefnydd";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Doedd dim modd cadw'r flaenoriaeth hysbysiadau";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Cwrs (dewisol)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Gweithgareddau Cwrs";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Manylion";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Dewislen datblygwr";
+
+/* No comment provided by engineer. */
 "discussion" = "trafodaeth";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Golygu Maes Llafur";
+
+/* No comment provided by engineer. */
+"Email address" = "Cyfeiriad e-bost";
 
 /* Description for email communication channel */
 "Email Notifications" = "Hysbysiadau E-bost";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Ewch ati i ddod o hyd i'ch ysgol neu'ch ardal";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Enw ffolder";
 
 /* No comment provided by engineer. */
 "for %@" = "ar gyfer %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Opsiynau";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "OPSIYNAU";
+
+/* No comment provided by engineer. */
 "orange" = "oren";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Tudalen";
+
+/* No comment provided by engineer. */
+"Page content" = "Cynnwys tudalen";
 
 /* No comment provided by engineer. */
 "Page Details" = "Manylion y Dudalen";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Polisi Preifatrwydd";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Avatar proffill";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Avatar proffil, tapiwch ddwywaith i newid";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Dewislen Proffil";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Trefnu";
 
 /* No comment provided by engineer. */
+"School’s name" = "Enw’r ysgol";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Sgorio o leiaf %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Dewis Cwrs";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Dewiswch Effaith";
 
 /* No comment provided by engineer. */
 "Select One" = "Dewiswch Un";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Maes Llafur";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Cynnwys maes llafur";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Cynorthwyydd Dysgu";

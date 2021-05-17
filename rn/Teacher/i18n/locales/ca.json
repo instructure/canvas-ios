@@ -2,23 +2,11 @@
   "_376f89ea": {
     "message": "--"
   },
-  "a_description_is_required_54b5f1f6": {
-    "message": "Cal una descripció"
-  },
   "a_title_is_required_71222850": {
     "message": "Cal un títol"
   },
-  "accept_2fdd362e": {
-    "message": "Accepta"
-  },
   "access_code_74f4864f": {
     "message": "Codi d'accés"
-  },
-  "account_group_cb00ca73": {
-    "message": "Grup del compte"
-  },
-  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-    "message": "Afegiu alguns dels cursos preferits per tal que aquest espai sigui més vostre."
   },
   "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
     "message": "Toqueu el signe + a la part superior dreta per afegir un fitxer adjunt."
@@ -29,32 +17,14 @@
   "add_attachment_dcdb8bf8": {
     "message": "Afegeix un fitxer adjunt"
   },
-  "add_comment_3205529f": {
-    "message": "Afegeix un comentari"
-  },
-  "add_courses_fd45abf": {
-    "message": "Afegeix cursos"
-  },
   "add_description_5321f1d": {
     "message": "Afegeix una descripció"
-  },
-  "add_description_required_e222e483": {
-    "message": "Afegeix la descripció (obligatori)"
   },
   "add_due_date_65b08f6c": {
     "message": "Afegeix una data de venciment"
   },
-  "add_media_cfa37b54": {
-    "message": "Afegeix un element multimèdia"
-  },
   "add_recipient_7de2dc74": {
     "message": "Afegeix un destinatari"
-  },
-  "add_title_4f788d37": {
-    "message": "Afegeix un títol"
-  },
-  "add_title_required_8d9bdeaa": {
-    "message": "Afegeix un títol (obligatori)"
   },
   "after_date_e5d9b0e1": {
     "message": "Després de { date }"
@@ -68,9 +38,6 @@
   "all_courses_a7dbb853": {
     "message": "Tots els cursos"
   },
-  "all_grading_periods_77974940": {
-    "message": "Tots els períodes de qualificació"
-  },
   "all_in_e5ddaee0": {
     "message": "Tots a"
   },
@@ -82,12 +49,6 @@
   },
   "allow_multiple_attempts_e67a0a37": {
     "message": "Permet més d'un intent"
-  },
-  "allow_threaded_replies_43b2311e": {
-    "message": "Permet les respostes enllaçades"
-  },
-  "allow_users_to_comment_45b8f753": {
-    "message": "Permet que els usuaris facin comentaris"
   },
   "allowed_attempts_4e229caa": {
     "message": "Intents permesos"
@@ -101,17 +62,11 @@
   "an_error_occurred_a4e1cda4": {
     "message": "S'ha produït un error"
   },
-  "announcements_a4b8ed4a": {
-    "message": "Anuncis"
-  },
   "anonymous_grading_3083dc0": {
     "message": "Qualificacions anònimes"
   },
   "archived_de543437": {
     "message": "Arxivat"
-  },
-  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
-    "message": "Segur que voleu suprimir aquest debat?"
   },
   "assign_to_95404a83": {
     "message": "Assigna a"
@@ -121,9 +76,6 @@
   },
   "assignees_required_1b9218fb": {
     "message": "Els beneficiaris són obligatoris"
-  },
-  "assignment_details_bc488179": {
-    "message": "Detalls de la tasca"
   },
   "assignment_group_1a781505": {
     "message": "Grup de tasques"
@@ -139,21 +91,6 @@
   },
   "attachments_694cf227": {
     "message": "Fitxers adjunts"
-  },
-  "attempt_number_75028cfa": {
-    "message": "Intent { number }"
-  },
-  "audio_comment_baf426c7": {
-    "message": "Comentari de so"
-  },
-  "audio_dd489fcc": {
-    "message": "So"
-  },
-  "audio_playback_failed_912bcb82": {
-    "message": "No s'ha pogut reproduir el so"
-  },
-  "availability_8942cde6": {
-    "message": "Disponibilitat"
   },
   "availability_closed_429d1ba5": {
     "message": "Disponibilitat: Tancat"
@@ -200,9 +137,6 @@
   "cancel_caeb1e68": {
     "message": "Cancel·la"
   },
-  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
-    "message": "Canvia { discussionTitle } a una agrupació diferent"
-  },
   "choose_color_11148181": {
     "message": "Tria { color }"
   },
@@ -224,44 +158,17 @@
   "clear_recording_5a97b475": {
     "message": "Esborra l'enregistrament"
   },
-  "close_d634289d": {
-    "message": "Tanca"
-  },
-  "close_for_comments_ce0e5d00": {
-    "message": "Tanca per als comentaris"
-  },
   "closed_983a96fe": {
     "message": "Tancat"
-  },
-  "closed_for_comments_e395b42f": {
-    "message": "Tancat per als comentaris"
   },
   "color_a363e1b0": {
     "message": "Color"
   },
-  "comment_7ef1428e": {
-    "message": "Comentari"
-  },
-  "comment_failed_acf11b54": {
-    "message": "No s'ha pogut fer el comentari"
-  },
-  "comments_e07bcbe3": {
-    "message": "Comentaris"
-  },
   "complete_fd828dea": {
     "message": "Complet"
   },
-  "complete_incomplete_15b3a89c": {
-    "message": "Complet/incomplet"
-  },
   "compose_message_8abd180a": {
     "message": "Redacta un missatge"
-  },
-  "conference_in_progress_bed08457": {
-    "message": "Conferència en curs"
-  },
-  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
-    "message": "La conferència { name } està en curs, toqueu per veure'n els detalls"
   },
   "conversation_options_8be926f3": {
     "message": "Opcions de conversa"
@@ -281,21 +188,6 @@
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
     "message": "{ count, plural,\n    one {# s'ha de qualificar}\n  other {# s'han de qualificar}\n}"
   },
-  "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,\n    one {# punt}\n  other {# punts}\n}",
-    "description": "Number of points possible"
-  },
-  "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,\n    one {# pregunta}\n  other {# preguntes}\n}"
-  },
-  "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,\n    one {# resposta}\n  other {# respostes}\n}",
-    "description": "Number of replies"
-  },
-  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,\n    one {Hi Ha # beneficiari sense qualificació.}\n  other {Hi ha # beneficiaris sense qualificació.}\n}",
-    "description": "Number of assignees without grades."
-  },
   "count_students_4ae780ca": {
     "message": "{ count } estudiants"
   },
@@ -311,26 +203,11 @@
   "course_settings_f6d0bbf8": {
     "message": "Configuració del curs"
   },
-  "coursename_sections_faeee6fc": {
-    "message": "Seccions de { courseName }"
-  },
   "courses_43204aae": {
     "message": "Cursos"
   },
-  "current_grade_6d0b8ef7": {
-    "message": "Qualificació actual"
-  },
-  "current_grade_grade_5b083a30": {
-    "message": "Qualificació actual { grade }"
-  },
   "customize_course_eefa9c21": {
     "message": "Personalitza el curs"
-  },
-  "customize_grade_c9d046d": {
-    "message": "Personalitza la qualificació"
-  },
-  "customize_grade_value_964695a3": {
-    "message": "Personalitza la qualificació { value }"
   },
   "cyan_c1d5f68a": {
     "message": "Cian"
@@ -344,17 +221,8 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
-  "decline_7eeb5ff4": {
-    "message": "Rebutja"
-  },
   "deep_purple_bb3e2907": {
     "message": "Porpra fosc"
-  },
-  "delay_posting_f45eed7d": {
-    "message": "Publicació retardada"
-  },
-  "delayed_until_8f9c2bb1": {
-    "message": "Retardat fins a: "
   },
   "delete_a6efa79d": {
     "message": "Suprimeix"
@@ -365,32 +233,11 @@
   "description_436c48d7": {
     "message": "Descripció"
   },
-  "details_98a31b68": {
-    "message": "Detalls"
-  },
-  "discussion_submission_781d5d33": {
-    "message": "Entrega de debat"
-  },
   "discussion_topic_dc85ad4c": {
     "message": "Tema de debat"
   },
-  "discussions_a5f96392": {
-    "message": "Debats"
-  },
   "dismiss_dacdb625": {
     "message": "Descarta"
-  },
-  "dismiss_invitation_to_name_a650b2c4": {
-    "message": "Descarta la invitació per a { name }"
-  },
-  "dismiss_name_8646b9fd": {
-    "message": "Descarta { name }"
-  },
-  "display_grade_as_7b5376a6": {
-    "message": "Mostra la qualificació com a"
-  },
-  "display_grade_as_c165e9a6": {
-    "message": "Mostra la qualificació com a…"
   },
   "done_54e3d4b6": {
     "message": "Fet"
@@ -404,9 +251,6 @@
   "due_date_822625d8": {
     "message": "Data de venciment"
   },
-  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
-    "message": "Venç el { date, date, 'MMM d, YYYY' } a les { date, time, short }"
-  },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "\"Data de venciment\" ha d'estar entre les dates de \"Disponible de\" i \"Disponible fins a\""
   },
@@ -416,32 +260,17 @@
   "due_datestring_be4410c7": {
     "message": "Venç el { dateString }"
   },
-  "edit_assignment_ebf22a72": {
-    "message": "Edita la tasca"
-  },
-  "edit_attachment_count_ae907c46": {
-    "message": "Edita el fitxer adjunt ({ count })"
-  },
   "edit_attachments_count_5e9276ea": {
     "message": "Edita els fitxers adjunts ({ count })"
   },
   "edit_c5fbea07": {
     "message": "Edita"
   },
-  "edit_comment_22b23c2f": {
-    "message": "Edita el comentari"
-  },
   "edit_course_settings_9736fd1f": {
     "message": "Edita la configuració del curs"
   },
-  "edit_dashboard_7e5b7043": {
-    "message": "Edita el tauler de control"
-  },
   "edit_quiz_details_72cd055": {
     "message": "Edita la informació del qüestionari"
-  },
-  "enjoy_your_day_a4cb2c1": {
-    "message": "Que tingueu bon dia."
   },
   "enter_code_c7ab5104": {
     "message": "Introduïu el codi"
@@ -449,41 +278,20 @@
   "error_98e81528": {
     "message": "Error"
   },
-  "error_saving_grade_367dd920": {
-    "message": "S'ha produït un error en desar la qualificació"
-  },
   "everyone_854554dd": {
     "message": "Tothom"
   },
   "everyone_else_cc5f6888": {
     "message": "Tots els altres"
   },
-  "excuse_student_1b60e311": {
-    "message": "Excusa l'estudiant"
-  },
   "excused_cf8792eb": {
     "message": "Excusat"
-  },
-  "extensions_and_lastextension_f45d68e7": {
-    "message": "{ extensions } i { lastExtension }"
   },
   "external_tool_c5a6410a": {
     "message": "Eina externa"
   },
-  "external_tool_submission_c7b1dfa4": {
-    "message": "Entrega d'eina externa"
-  },
   "fail_c2e91f54": {
     "message": "Suspès"
-  },
-  "failed_comment_options_aa19a936": {
-    "message": "No s'han pogut mostrar les opcions de comentari"
-  },
-  "failed_to_download_audio_23abb7b1": {
-    "message": "No s'ha pogut baixar el so"
-  },
-  "failed_to_load_audio_46309612": {
-    "message": "No s'ha pogut carregar el so"
   },
   "failed_to_upload_attachment_acb5c28f": {
     "message": "No s'ha pogut penjar el fitxer adjunt"
@@ -493,15 +301,6 @@
   },
   "favorited_courses_84f383f": {
     "message": "Cursos preferits"
-  },
-  "file_types_6fa69505": {
-    "message": "Tipus de fitxers"
-  },
-  "files_c300e900": {
-    "message": "Fitxers"
-  },
-  "files_numberoffiles_number_410d9eba": {
-    "message": "Fitxers ({ numberOfFiles, number })"
   },
   "filter_by_2f4368a8": {
     "message": "Filtra per"
@@ -521,9 +320,6 @@
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filtra les entregues. ({ numSelected, number }) seleccionats."
   },
-  "final_grade_4d7f6545": {
-    "message": "Qualificació final"
-  },
   "for_974cbb84": {
     "message": "Per a"
   },
@@ -539,44 +335,8 @@
   "front_page_50cae87e": {
     "message": "Pàgina frontal"
   },
-  "full_screen_712e95f1": {
-    "message": "Pantalla completa"
-  },
   "fw_subject_ebe04db7": {
     "message": "Reenvia: { subject }"
-  },
-  "gpa_71809a99": {
-    "message": "GPA"
-  },
-  "gpa_scale_a6d1cdea": {
-    "message": "Escala GPA"
-  },
-  "grade_9c6f076d": {
-    "message": "Qualificació"
-  },
-  "grade_after_posting_51718245": {
-    "message": "Qualificació després de la publicació"
-  },
-  "grade_after_posting_grade_d6e10b87": {
-    "message": "Qualificació després de la publicació { grade }"
-  },
-  "grade_before_posting_fce5a333": {
-    "message": "Qualificació abans de la publicació"
-  },
-  "grade_before_posting_grade_ca67f851": {
-    "message": "Qualificació abans de la publicació { grade }"
-  },
-  "grade_grade_990eb477": {
-    "message": "Qualificació { grade }"
-  },
-  "grade_override_ff74e3b4": {
-    "message": "Substitució de la qualificació"
-  },
-  "grade_override_grade_4788faec": {
-    "message": "Substitució de la qualificació { grade }"
-  },
-  "grade_post_policy_7fa3ef03": {
-    "message": "Política de publicació de qualificacions"
   },
   "graded_25cd3fcd": {
     "message": "Qualificat"
@@ -587,9 +347,6 @@
   "graded_survey_c0f0c395": {
     "message": "Estudi qualificat"
   },
-  "grades_a61eba0a": {
-    "message": "Qualificacions"
-  },
   "green_15af4778": {
     "message": "Verd"
   },
@@ -598,9 +355,6 @@
   },
   "groups_6c90e26a": {
     "message": "Grups"
-  },
-  "half_screen_9cdd83ad": {
-    "message": "Mitja pantalla"
   },
   "haven_t_been_graded_1fbfda56": {
     "message": "No s'ha qualificat"
@@ -617,9 +371,6 @@
   "hidden_14a032a7": {
     "message": "Amagat"
   },
-  "hide_content_for_name_aee1723a": {
-    "message": "Amaga el contingut per a { name }"
-  },
   "hide_correct_answers_at_b1a59408": {
     "message": "Amaga les respostes correctes a les"
   },
@@ -628,12 +379,6 @@
   },
   "highest_28ad71e6": {
     "message": "Superior"
-  },
-  "highest_possible_score_pointspossible_number_c03ce29a": {
-    "message": "Puntuació màxima possible, { pointsPossible, number }"
-  },
-  "in_progress_9d1ce8b9": {
-    "message": "En curs"
   },
   "incomplete_da3c2ea2": {
     "message": "Incomplet"
@@ -647,35 +392,14 @@
   "invalid_field_54480fae": {
     "message": "Camp no vàlid"
   },
-  "invite_accepted_290abc90": {
-    "message": "Invitació acceptada."
-  },
-  "invite_declined_d0a9e398": {
-    "message": "Invitació rebutjada."
-  },
-  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
-    "message": "Sembla que no hi ha cap entrega vàlida per qualificar."
-  },
   "label_text_field_6677ab6f": {
     "message": "{ label }, camp de text"
-  },
-  "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
-    "message": "La darrera activitat es va produir el { lastActivity, date, 'MMMM d' } a les { lastActivity, time, short }"
-  },
-  "last_post_lastreplydatestr_55fbe7ce": {
-    "message": "Darrera publicació { lastReplyDateStr }"
   },
   "late_2be42b88": {
     "message": "Tardà"
   },
-  "late_submissions_late_number_baedf6cf": {
-    "message": "Entregues tardanes { late, number }"
-  },
   "latest_f604a75": {
     "message": "El més recent"
-  },
-  "launch_external_tool_672c0409": {
-    "message": "Inicieu l'eina externa"
   },
   "length_in_minutes_eca69868": {
     "message": "Durada en minuts"
@@ -686,26 +410,11 @@
   "let_students_see_their_quiz_responses_fbc07d14": {
     "message": "Permeteu que els estudiants vegin les respostes del qüestionari"
   },
-  "letter_grade_29ff1938": {
-    "message": "Qualificació amb lletra"
-  },
-  "letter_grade_e83e363c": {
-    "message": "Qualificació amb lletra"
-  },
   "light_blue_5374f600": {
     "message": "Blau clar"
   },
-  "loading_bde52856": {
-    "message": "S'està carregant"
-  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Bloqueja les preguntes un cop respostes"
-  },
-  "long_description_7d89285c": {
-    "message": "Descripció llarga"
-  },
-  "lowest_possible_score_0_c2338db6": {
-    "message": "Puntuació més baixa possible, 0"
   },
   "magenta_4a65993c": {
     "message": "Magenta"
@@ -716,8 +425,8 @@
   "media_recording_77cddc52": {
     "message": "Enregistrament multimèdia"
   },
-  "media_submission_464829f0": {
-    "message": "Entrega de l'element multimèdia"
+  "message_body_bf4a882c": {
+    "message": "Cos del missatge"
   },
   "message_details_342e931f": {
     "message": "Detalls del missatge"
@@ -736,12 +445,6 @@
   },
   "missing_1a256b3b": {
     "message": "Falta"
-  },
-  "missing_submissions_missing_number_ea40423d": {
-    "message": "Entregues que falten { missing, number }"
-  },
-  "moderated_grading_unsupported_e3a2bba3": {
-    "message": "No s'admet la qualificació moderada"
   },
   "multiple_due_dates_283dd861": {
     "message": "Dates de venciment múltiples"
@@ -766,15 +469,6 @@
   },
   "needs_grading_9143d47c": {
     "message": "S'ha de qualificar"
-  },
-  "new_13daf639": {
-    "message": "Nou"
-  },
-  "new_announcement_23af4598": {
-    "message": "Anunci nou"
-  },
-  "new_discussion_dae4fae3": {
-    "message": "Debat nou"
   },
   "new_message_f9bbd1c0": {
     "message": "Missatge nou"
@@ -806,9 +500,6 @@
   "no_e16d9132": {
     "message": "No"
   },
-  "no_grade_3b4d7f3e": {
-    "message": "Sense qualificació"
-  },
   "no_messages_a2e67ad4": {
     "message": "No hi ha cap missatge"
   },
@@ -824,32 +515,17 @@
   "no_subject_58b7941c": {
     "message": "Sense assumpte"
   },
-  "no_submissions_to_display_6f1491cf": {
-    "message": "No hi ha cap entrega que es pugui mostrar"
-  },
   "no_time_limit_2147d9bf": {
     "message": "Sense límit de temps"
   },
-  "no_title_4921a961": {
-    "message": "Sense títol"
-  },
   "none_3b5e34d2": {
     "message": "Cap"
-  },
-  "none_9b6c9bec": {
-    "message": "cap"
-  },
-  "not_graded_e027c866": {
-    "message": "Sense qualificació"
   },
   "not_published_73f7079": {
     "message": "No s'ha publicat"
   },
   "not_submitted_7d05fdb4": {
     "message": "No s'ha enviat"
-  },
-  "nothing_more_to_do_b017e8bb": {
-    "message": "Ja no s'ha de fer res més."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# minut}\n  other {# minuts}\n}"
@@ -887,20 +563,8 @@
   "only_once_after_each_attempt_cc842738": {
     "message": "Només una vegada després de cada intent"
   },
-  "open_coursename_user_preferences_430b877e": {
-    "message": "Obre les preferències d'usuari per a { courseName }"
-  },
-  "open_drawer_f3c8b11": {
-    "message": "Obre el calaix"
-  },
-  "open_for_comments_1810648": {
-    "message": "Obert per als comentaris"
-  },
   "opens_in_canvas_student_5f299948": {
     "message": "S'obre al Canvas Student"
-  },
-  "options_3ab0ea65": {
-    "message": "Opcions"
   },
   "orange_81386a62": {
     "message": "Taronja"
@@ -908,56 +572,20 @@
   "out_of_points_number_42209979": {
     "message": "De { points, number }"
   },
-  "override_3de65b2c": {
-    "message": "Substitueix"
-  },
-  "override_grade_grade_f33671d4": {
-    "message": "Substitueix la qualificació { grade }"
-  },
   "pages_front_page_9ce5188": {
     "message": "Pàgines pàgina frontal"
   },
   "pass_8abee039": {
     "message": "Aprovat"
   },
-  "past_enrollments_a846da48": {
-    "message": "Inscripcions anteriors"
-  },
-  "percent_d7ddd35b": {
-    "message": "Percentatge (%)"
-  },
-  "percentage_34ab7c2c": {
-    "message": "Percentatge"
-  },
   "permission_needed_7e971495": {
     "message": "Cal permís"
-  },
-  "pin_cdbc9f8f": {
-    "message": "Ancora"
   },
   "pink_68ad45cb": {
     "message": "Rosa"
   },
-  "pinned_discussions_a55c0cea": {
-    "message": "Debats ancorats"
-  },
   "please_try_again_5d872e78": {
     "message": "Torneu-ho a provar."
-  },
-  "points_bb475533": {
-    "message": "Punts"
-  },
-  "points_number_out_of_totalpoints_number_291efb47": {
-    "message": "{ points, number } de { totalPoints, number }"
-  },
-  "points_possible_must_be_a_number_4a592dc6": {
-    "message": "La quantitat de punts possibles ha de ser un número"
-  },
-  "pointspossible_number_pts_2d9f157d": {
-    "message": "{ pointsPossible, number } punts"
-  },
-  "post_at_a9e0fecb": {
-    "message": "Publicat a les…"
   },
   "practice_quiz_19a8505d": {
     "message": "Qüestionari sobre pràctiques"
@@ -967,9 +595,6 @@
   },
   "preview_quiz_1ffbf684": {
     "message": "Fes una visualització prèvia del qüestionari"
-  },
-  "preview_unavailable_aacd459a": {
-    "message": "La visualització prèvia no està disponible"
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "No s'admet fer una visualització prèvia d'aquest tipus de fitxer"
@@ -1001,14 +626,8 @@
   "quiz_score_to_keep_d1f7c4b1": {
     "message": "Puntuació del qüestionari que s'ha de mantenir"
   },
-  "quiz_submission_dca0c013": {
-    "message": "Entrega de qüestionari"
-  },
   "quiz_type_be1633db": {
     "message": "Tipus de qüestionari"
-  },
-  "quizzes_7e598f57": {
-    "message": "Qüestionaris"
   },
   "recent_activity_51239235": {
     "message": "Activitat recent"
@@ -1018,9 +637,6 @@
   },
   "record_audio_14666880": {
     "message": "Enregistra so"
-  },
-  "record_video_70dc8439": {
-    "message": "Enregistra vídeo"
   },
   "recording_failed_2e1861b": {
     "message": "No s'ha pogut realitzar l'enregistrament"
@@ -1067,23 +683,11 @@
   "retry_upload_d854b33b": {
     "message": "Torna a provar de penjar"
   },
-  "rubric_fc39da76": {
-    "message": "Rúbrica"
-  },
   "saving_2521e616": {
     "message": "S'està desant"
   },
   "saving_d55dd90e": {
     "message": "S'està desant…"
-  },
-  "score_number_out_of_points_plural_one_point_other__9993235e": {
-    "message": "{ score, number } de { points, plural,\n    one {# punt}\n  other {# punts}\n} possibles"
-  },
-  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
-    "message": "{ score, number } de { pointsPossible, number } { points, plural,\n     =1 {punt}\n  other {punts}\n} possibles. { grade }"
-  },
-  "score_number_pointspossible_number_fd8705b8": {
-    "message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
     "message": "Puntuació que s'ha de mantenir"
@@ -1106,26 +710,14 @@
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {# segon}\n  other {# segons}\n}"
   },
-  "section_sectionname_a455be11": {
-    "message": "Secció: { sectionName }"
-  },
-  "sections_94731e51": {
-    "message": "Seccions"
-  },
   "select_a_course_4710371f": {
     "message": "Seleccioneu un curs"
-  },
-  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
-    "message": "Seleccioneu els cursos que voldríeu que es mostrin al tauler de control."
   },
   "send_e3bd0ed0": {
     "message": "Envia"
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
     "message": "Envieu un missatge individual a cada destinatari"
-  },
-  "send_message_a371a974": {
-    "message": "Envia el missatge"
   },
   "send_recording_82e5a550": {
     "message": "Envia l'enregistrament"
@@ -1160,9 +752,6 @@
   "shuffle_answers_edb602b7": {
     "message": "Reorganitza les respostes"
   },
-  "similarity_score_f4b5c343": {
-    "message": "Puntuació similar"
-  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Alguna cosa no ha anat bé per part nostra. No patiu; ho hem enregistrat i ens n'ocuparem ben aviat."
   },
@@ -1174,9 +763,6 @@
   },
   "start_recording_189496b9": {
     "message": "Comença a enregistrar"
-  },
-  "stop_playing_audio_96aed3bc": {
-    "message": "Deixa de reproduir so"
   },
   "stop_recording_6efe2129": {
     "message": "Deixa d'enregistrar"
@@ -1190,20 +776,11 @@
   "students_1b8cd07b": {
     "message": "Estudiants"
   },
-  "students_must_post_before_seeing_replies_1a57eeb2": {
-    "message": "Els estudiants han de fer alguna publicació abans de poder veure les respostes"
-  },
   "subject_114b2e98": {
     "message": "Assumpte"
   },
-  "submission_comment_873e8f1c": {
-    "message": "comentari sobre l'entrega"
-  },
   "submission_settings_f57b0cf8": {
     "message": "Configuració de les entregues"
-  },
-  "submission_types_af57bf0": {
-    "message": "Tipus d'entrega"
   },
   "submissions_11e96106": {
     "message": "Entregues"
@@ -1214,29 +791,11 @@
   "submitted_late_3741af29": {
     "message": "Entregat tard"
   },
-  "subscribe_4b301fb7": {
-    "message": "Subscriu-t'hi"
-  },
-  "survey_31a240e6": {
-    "message": "Estudi"
-  },
-  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
-    "message": "Feu lliscar el dit cap a l'esquerra o la dreta per veure les entregues dels altres estudiants."
-  },
   "syllabus_f191f65b": {
     "message": "Temari"
   },
-  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
-    "message": "Manteniu tocat el número d'una rúbrica per veure'n la descripció"
-  },
   "tap_the_to_create_a_new_conversation_80f77725": {
     "message": "Toqueu el signe \"+\" per crear una conversa nova"
-  },
-  "tap_to_view_announcement_6724a5d": {
-    "message": "Toqueu per veure l'anunci"
-  },
-  "tap_to_view_submissions_list_5bfe32f3": {
-    "message": "Toqueu per veure la llista d'entregues."
   },
   "teachers_52e2423f": {
     "message": "Professors"
@@ -1244,44 +803,11 @@
   "teal_f729a294": {
     "message": "Verd blavós"
   },
-  "text_submission_935eeb5": {
-    "message": "Entrega de text"
-  },
   "that_message_can_not_be_forwarded_76cb2b1a": {
     "message": "No es pot reenviar aquest missatge."
   },
-  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
-    "message": "El valor dels punts possibles ha de ser zero o una xifra més gran"
-  },
-  "there_are_no_announcements_to_display_a91880": {
-    "message": "No hi ha cap anunci que es pugui mostrar."
-  },
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "No hi ha cap tasca que es pugui mostrar."
-  },
-  "there_are_no_comments_to_display_bde58f70": {
-    "message": "No hi ha cap comentari que es pugui mostrar."
-  },
-  "there_are_no_discussions_to_display_37bc437f": {
-    "message": "No hi ha cap debat que es pugui mostrar."
-  },
-  "there_are_no_files_to_display_d3eeb317": {
-    "message": "No hi ha cap fitxer que es pugui mostrar."
-  },
-  "there_are_no_quizzes_to_display_733b28f2": {
-    "message": "No hi ha cap qüestionari que es pugui mostrar."
-  },
-  "there_currently_is_no_long_description_for_this_it_ea943d61": {
-    "message": "En aquest moment, no hi ha cap descripció llarga per a aquest element."
-  },
-  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
-    "message": "S'ha produït un problema en descartar l'anunci."
-  },
-  "there_was_a_problem_loading_discussions_ce5318af": {
-    "message": "S'ha produït un problema en carregar els debats."
-  },
-  "there_was_a_problem_loading_the_announcements_4871afc4": {
-    "message": "S'ha produït un problema en carregar els anuncis."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
     "message": "S'ha produït un problema en carregar les entregues de tasques."
@@ -1292,17 +818,8 @@
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "S'ha produït un problema en carregar els grups."
   },
-  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
-    "message": "S'ha produït un problema en carregar les conferències en directe."
-  },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "S'ha produït un problema en carregar les entregues de qüestionaris."
-  },
-  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
-    "message": "S'ha produït un problema en carregar els qüestionaris."
-  },
-  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
-    "message": "S'ha produït un problema en desar la qualificació. Torneu a provar-ho."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "S'ha produït un error en carregar el fitxer adjunt."
@@ -1319,44 +836,20 @@
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "S'ha produït un problema en carregar els missatges."
   },
-  "there_was_an_unexepected_error_fd6f2bf": {
-    "message": "S'ha produït un error inesperat."
-  },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "S'ha produït un error inesperat. Torneu a provar-ho."
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Aquesta acció no es pot desfer."
   },
-  "this_assignment_does_not_allow_submissions_30af1caa": {
-    "message": "Amb aquesta tasca no es permet fer entregues."
-  },
-  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
-    "message": "Aquesta tasca no té cap descripció."
-  },
-  "this_assignment_only_allows_on_paper_submissions_f478408a": {
-    "message": "Amb aquesta tasca només es permet fer entregues en paper."
-  },
-  "this_criterion_will_not_impact_the_score_94adf77b": {
-    "message": "Aquest criteri no influirà en la puntuació."
-  },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "Aquest fitxer està bloquejat actualment."
-  },
-  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
-    "message": "Aquest grup no té cap entrega per a aquesta tasca."
   },
   "this_is_a_media_comment_2e395230": {
     "message": "Això és un comentari sobre un element multimèdia"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Aquesta és la configuració del vostre color personal. Cap altre usuari no veurà aquest color per al curs."
-  },
-  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
-    "message": "Aquest estudiant no té cap entrega per a aquesta tasca."
-  },
-  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
-    "message": "Aquesta entrega és un URL a una pàgina externa. Hem inclòs una captura de pantalla de l'aspecte que tenia la pàgina quan es va enviar."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Amb aquesta acció s'eliminaran la data de venciment i tots els beneficiaris associats."
@@ -1366,12 +859,6 @@
   },
   "time_limit_a6f1a51e": {
     "message": "Límit de temps"
-  },
-  "title_announcement_c0cdaa10": {
-    "message": "Anunci { title }"
-  },
-  "title_discussion_4cff9841": {
-    "message": "Debat { title }"
   },
   "title_ee03d132": {
     "message": "Títol"
@@ -1391,9 +878,6 @@
   "total_grade_568e719f": {
     "message": "Qualificació total:"
   },
-  "total_submissions_total_number_dbb28cf9": {
-    "message": "Entregues en total { total, number }"
-  },
   "un_starred_8fef021f": {
     "message": "Sense marca d'estrella"
   },
@@ -1406,18 +890,11 @@
   "unlimited_ff19e96d": {
     "message": "Il·limitat"
   },
-  "unpin_a318452a": {
-    "message": "Desancora"
-  },
   "unpublished_8b6107d6": {
     "message": "No publicat"
   },
   "unread_e9c1b19c": {
     "message": "Sense llegir"
-  },
-  "unread_plural_one_unread_other_unread_5d48c74f": {
-    "message": "{ unread, plural,\n    one {# sense llegir}\n  other {# sense llegir}\n}",
-    "description": "Number of unread discussion posts"
   },
   "unrecognized_file_format_def0881c": {
     "message": "Format de fitxer no reconegut"
@@ -1446,44 +923,23 @@
   "uploading_loaded_of_total_d5c3d555": {
     "message": "S'estan penjant { loaded } de { total }"
   },
-  "url_preview_image_a263a21e": {
-    "message": "Imatge de visualització prèvia de l'URL"
-  },
-  "url_submission_f76327e3": {
-    "message": "Entrega d'URL"
-  },
   "use_camera_47a0387b": {
     "message": "Utilitza la càmera"
   },
   "value_text_field_d9515a76": {
     "message": "{ value }, camp de text"
   },
-  "video_b9f27375": {
-    "message": "Vídeo"
-  },
   "video_recording_90d21249": {
     "message": "Enregistrament de vídeo"
   },
-  "view_all_submissions_915a8b78": {
-    "message": "Mostra totes les entregues"
-  },
-  "view_long_description_2b592c0e": {
-    "message": "Mostra la descripció llarga"
-  },
   "view_responses_d2874266": {
     "message": "Mostra les respostes"
-  },
-  "welcome_73d18b4d": {
-    "message": "Benvingut!"
   },
   "whoops_de2cf9fc": {
     "message": "Ui!"
   },
   "yes_dde87d5": {
     "message": "Sí"
-  },
-  "you_have_been_invited_a724be1a": {
-    "message": "Heu estat convidat"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Per utilitzar la càmera, heu d'activar els permisos per a la càmera i per al micròfon a Configuració."
@@ -1496,8 +952,5 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Heu d'introduir un codi d'accés"
-  },
-  "your_submission_comment_failed_to_send_5c8d2809": {
-    "message": "No s'ha pogut enviar el comentari sobre l'entrega."
   }
 }

@@ -131,6 +131,9 @@
 "Add Item" = "Lägg till objekt";
 
 /* No comment provided by engineer. */
+"Add message" = "Lägg till meddelande";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lägg till planeraranteckning";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Det gick inte att spara aviseringsinställning";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Kurs (valfri)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Kursaktiviteter";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Detaljer";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Utvecklarmeny";
+
+/* No comment provided by engineer. */
 "discussion" = "diskussion";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Redigera kursöversikten";
+
+/* No comment provided by engineer. */
+"Email address" = "E-postadress";
 
 /* Description for email communication channel */
 "Email Notifications" = "E-postaviseringar";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Hitta din skola eller ditt distrikt";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Mappens namn";
 
 /* No comment provided by engineer. */
 "for %@" = "för %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Alternativ";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "ALTERNATIV";
+
+/* No comment provided by engineer. */
 "orange" = "orange";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Sida";
+
+/* No comment provided by engineer. */
+"Page content" = "Sidinnehåll";
 
 /* No comment provided by engineer. */
 "Page Details" = "Sidinformation";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Integritetspolicy";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Profilavatar";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Profilavatar. Dubbeltryck för att ändra.";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmeny";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Schemalägger";
 
 /* No comment provided by engineer. */
+"School’s name" = "Skolans namn";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Lägsta poäng %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Välj kurs";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Välj påverkan";
 
 /* No comment provided by engineer. */
 "Select One" = "Välj en";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Kursöversikt";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Kursöversiktens innehåll";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Lärarassistent";
