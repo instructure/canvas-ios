@@ -28,8 +28,6 @@ class DiscussionsUITests: MiniCanvasUITestCase {
     }
 
     func testEditTopic() throws {
-        try XCTSkipIf(true, "flaky. re-enable ticket: MBL-14583")
-
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.discussions.tap()
         DiscussionListCell.cell(id: discussion.id).tap()
@@ -38,13 +36,19 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         DiscussionDetails.edit.tap()
 
         XCTAssertEqual(DiscussionEditor.titleField.value(), discussion.api.title)
-        DiscussionEditor.titleField.cutText().typeText("new title")
-        app.webViews.staticTexts.lastElement.cutText()
-        app.webViews.lastElement.typeText("HELLO!")
-        DiscussionEditor.doneButton.tap()
 
-        // TODO: remove after MBL-14509 is fixed
-        pullToRefresh()
+        app.webViews.staticTexts.lastElement.cutText()
+        DiscussionEditor.titleField.cutText().typeText("new title")
+        app.webViews.staticTexts.lastElement.pasteText("HELLO!")
+        let expectation = MiniCanvasServer.shared.expectationFor(request:
+            PutDiscussionTopicRequest(context: .course(firstCourse.id), topicID: discussion.id)
+        )
+        discussion.api.title = "new title"
+        discussion.api.message = "HELLO!"
+        DiscussionEditor.doneButton.tap()
+        wait(for: [expectation], timeout: 5)
+
+        DiscussionDetails.options.waitToExist()
 
         XCTAssertEqual(DiscussionDetails.title.label(), "new title")
         XCTAssertEqual(discussion.api.title, "new title")
