@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "正在提交項目中...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "提交項目文字";
+
 /* No comment provided by engineer. */
 "Submission Types" = "提交項目類型";
 

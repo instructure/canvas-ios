@@ -131,6 +131,9 @@
 "Add Item" = "Lisää kohde";
 
 /* No comment provided by engineer. */
+"Add message" = "Lisää viesti";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lisää muistokirjoituksen merkintä";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Ilmoitusasetuksien tallennus ei onnistunut";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Kurssi (valinnainen)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Kurssiaktiviteetit";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Lisätiedot";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Sovelluskehittäjän valikko";
+
+/* No comment provided by engineer. */
 "discussion" = "keskustelu";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Muokkaa opinto-ohjelmaa";
+
+/* No comment provided by engineer. */
+"Email address" = "Sähköpostiosoite";
 
 /* Description for email communication channel */
 "Email Notifications" = "Sähköposti-ilmoitukset";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Etsi koulusi tai alueesi";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Kansion nimi";
 
 /* No comment provided by engineer. */
 "for %@" = "- %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Asetukset";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "ASETUKSET";
+
+/* No comment provided by engineer. */
 "orange" = "oranssi";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Sivu";
+
+/* No comment provided by engineer. */
+"Page content" = "Sivun sisältö";
 
 /* No comment provided by engineer. */
 "Page Details" = "Sivun tiedot";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Tietosuojakäytäntö";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Profiilin avatar";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Profiilin avatar, vaihda napauttamalla kahdesti";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Esikatseluvalikko";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Aikatauluttaminen";
 
 /* No comment provided by engineer. */
+"School’s name" = "Koulun nimi";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Saa pisteitä vähintään  %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Valitse kurssi";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Valitse vaikutus";
 
 /* No comment provided by engineer. */
 "Select One" = "Valitse yksi";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Opinto-ohjelma";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Opinto-ohjelman sisältö";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Apuopettaja";

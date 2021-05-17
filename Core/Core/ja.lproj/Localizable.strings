@@ -131,6 +131,9 @@
 "Add Item" = "アイテム";
 
 /* No comment provided by engineer. */
+"Add message" = "メッセージを追加";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "プランナーメモを追加する";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "通知設定を保存できませんでした";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "コース（オプション）";
+
+/* No comment provided by engineer. */
 "Course Activities" = "コースアクティビティ";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "詳細";
 
 /* No comment provided by engineer. */
+"Developer menu" = "開発者用メニュー";
+
+/* No comment provided by engineer. */
 "discussion" = "ディスカッション";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "シラバスを編集";
+
+/* No comment provided by engineer. */
+"Email address" = "メールアドレス";
 
 /* Description for email communication channel */
 "Email Notifications" = "メール通知";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "あなたの学校または地域を見つける";
+
+/* No comment provided by engineer. */
+"Folder Name" = "フォルダ名";
 
 /* No comment provided by engineer. */
 "for %@" = "ための%@";
@@ -1412,6 +1427,9 @@
 "Options" = "オプション";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "オプション";
+
+/* No comment provided by engineer. */
 "orange" = "オレンジ";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "ページ";
+
+/* No comment provided by engineer. */
+"Page content" = "ページの内容";
 
 /* No comment provided by engineer. */
 "Page Details" = "ページ詳細";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "個人情報保護方針";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "プロフィールアバター";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "プロフィールアバター、ダブルタップして変更";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "プロフィールメニュー";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "スケジュール中";
 
 /* No comment provided by engineer. */
+"School’s name" = "学校名";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "最低得点%@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "コースの選択";
+
+/* No comment provided by engineer. */
+"Select Impact" = "深刻度をお選びください";
 
 /* No comment provided by engineer. */
 "Select One" = "1 つを選択";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "シラバス";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "シラバスの内容";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

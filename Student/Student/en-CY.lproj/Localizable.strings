@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Submission In Progress...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Submission text";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Submission types";
 

@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Abgabe läuft ...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Abgabetext";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Abgabearten";
 

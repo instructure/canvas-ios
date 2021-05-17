@@ -131,6 +131,9 @@
 "Add Item" = "Tilføj element";
 
 /* No comment provided by engineer. */
+"Add message" = "Tilføj besked";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Tilføj en planlægger-note";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Kunne ikke gemme meddelelsesindstilling";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Fag (valgfrit)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Fagets aktiviteter";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Nærmere oplysninger";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Udvikler-menu";
+
+/* No comment provided by engineer. */
 "discussion" = "diskussion";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Rediger fagplanen";
+
+/* No comment provided by engineer. */
+"Email address" = "E-mailadresse";
 
 /* Description for email communication channel */
 "Email Notifications" = "E-mail-meddelelser";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Find din skole eller distrikt";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Mappenavn";
 
 /* No comment provided by engineer. */
 "for %@" = "til %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Muligheder";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "INDSTILLINGER";
+
+/* No comment provided by engineer. */
 "orange" = "orange";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Side";
+
+/* No comment provided by engineer. */
+"Page content" = "Sideindhold";
 
 /* No comment provided by engineer. */
 "Page Details" = "Sidedetaljer";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Datapolitik";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Profilavatar";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Profilavatar, dobbeltklik for at ændre";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmenu";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Planlægning";
 
 /* No comment provided by engineer. */
+"School’s name" = "Skolens navn";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Opnå mindst %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Vælg fag";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Vælg virkning";
 
 /* No comment provided by engineer. */
 "Select One" = "Vælg en";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Fagplan";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Fagplanens indhold";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Undervisningsassistent";

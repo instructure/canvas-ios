@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "الإرسال قيد التقدم...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "نص الإرسال";
+
 /* No comment provided by engineer. */
 "Submission Types" = "أنواع الإرسال";
 

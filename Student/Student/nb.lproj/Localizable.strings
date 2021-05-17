@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Holder på å sende innlevering...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Innleveringstekst";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Innleveringstyper";
 

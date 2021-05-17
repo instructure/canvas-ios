@@ -131,6 +131,9 @@
 "Add Item" = "添加项目";
 
 /* No comment provided by engineer. */
+"Add message" = "添加消息";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加规划器备注";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "无法保存通知首选项";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "课程（可选）";
+
+/* No comment provided by engineer. */
 "Course Activities" = "课程活动";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "详情";
 
 /* No comment provided by engineer. */
+"Developer menu" = "开发人员菜单";
+
+/* No comment provided by engineer. */
 "discussion" = "讨论";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "编辑教学大纲";
+
+/* No comment provided by engineer. */
+"Email address" = "电子邮件地址";
 
 /* Description for email communication channel */
 "Email Notifications" = "电邮通知";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "查找您的学校或地区";
+
+/* No comment provided by engineer. */
+"Folder Name" = "文件夹名称";
 
 /* No comment provided by engineer. */
 "for %@" = "事由%@";
@@ -1412,6 +1427,9 @@
 "Options" = "选项";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "选项";
+
+/* No comment provided by engineer. */
 "orange" = "桔黄色";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "页面";
+
+/* No comment provided by engineer. */
+"Page content" = "页面内容";
 
 /* No comment provided by engineer. */
 "Page Details" = "页面详细信息";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "隐私政策";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "个人资料头像";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "个人资料头像，双击以进行更改";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "个人资料菜单";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "日程安排";
 
 /* No comment provided by engineer. */
+"School’s name" = "学校名称";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "最低评分%@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "选择课程";
+
+/* No comment provided by engineer. */
+"Select Impact" = "选择影响";
 
 /* No comment provided by engineer. */
 "Select One" = "选择一个";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "教学大纲内容";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "助教";

@@ -131,6 +131,9 @@
 "Add Item" = "Dodaj element";
 
 /* No comment provided by engineer. */
+"Add message" = "Dodaj sporočilo";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Dodaj opombo orodja Planner";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Nastavitev sporočil ni bilo mogoče shraniti";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Predmet (izbirni)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Aktivnosti pri predmetu";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Podrobnosti";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Meni razvijalca";
+
+/* No comment provided by engineer. */
 "discussion" = "razprava";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Uredi učni načrt predmeta";
+
+/* No comment provided by engineer. */
+"Email address" = "E-poštni naslov";
 
 /* Description for email communication channel */
 "Email Notifications" = "E-poštno obveščanje";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Najdite svojo šolo ali okoliš.";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Ime mape";
 
 /* No comment provided by engineer. */
 "for %@" = "za %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Možnosti";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "MOŽNOSTI";
+
+/* No comment provided by engineer. */
 "orange" = "oranžna";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Stran";
+
+/* No comment provided by engineer. */
+"Page content" = "Vsebina strani";
 
 /* No comment provided by engineer. */
 "Page Details" = "Podrobnosti o strani";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Pravilnik o zasebnosti";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Avatar profila";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Avatar profila, dvotapnite za spremembo";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Meni profila";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Razporejanje";
 
 /* No comment provided by engineer. */
+"School’s name" = "Ime šole";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Rezultat vsaj %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Izberi predmet";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Izberi vpliv";
 
 /* No comment provided by engineer. */
 "Select One" = "Izberi eno";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Vsebina učnega načrta predmeta";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Demonstrator";

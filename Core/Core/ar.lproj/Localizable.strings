@@ -131,6 +131,9 @@
 "Add Item" = "إضافة عنصر";
 
 /* No comment provided by engineer. */
+"Add message" = "إضافة رسالة";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "إضافة ملاحظة مخطِط";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "تعذر حفظ تفضيل الإخطار";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "المساق (اختياري)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "أنشطة المساق";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "التفاصيل";
 
 /* No comment provided by engineer. */
+"Developer menu" = "قائمة المطورين";
+
+/* No comment provided by engineer. */
 "discussion" = "النقاش";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "تحرير المنهج الدراسي";
+
+/* No comment provided by engineer. */
+"Email address" = "عنوان البريد الإلكتروني";
 
 /* Description for email communication channel */
 "Email Notifications" = "إعلامات البريد الإلكتروني";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "ابحث عن مدرستك أو دائرتك التعليمية";
+
+/* No comment provided by engineer. */
+"Folder Name" = "اسم المجلد";
 
 /* No comment provided by engineer. */
 "for %@" = "لـ %@";
@@ -1412,6 +1427,9 @@
 "Options" = "الخيارات";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "الخيارات";
+
+/* No comment provided by engineer. */
 "orange" = "برتقالي";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "صفحة";
+
+/* No comment provided by engineer. */
+"Page content" = "محتوى الصفحة";
 
 /* No comment provided by engineer. */
 "Page Details" = "تفاصيل الصفحة";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "سياسة الخصوصية";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "افاتار ملف التعريف";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "أفاتار ملف التعريف، اضغط ضغطاً مزدوجاً للتغيير";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "قائمة ملف التعريف";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "الجدولة";
 
 /* No comment provided by engineer. */
+"School’s name" = "اسم المدرسة";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "الحصول على الأقل على درجة %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "تحديد مساق";
+
+/* No comment provided by engineer. */
+"Select Impact" = "تحديد التأثير";
 
 /* No comment provided by engineer. */
 "Select One" = "حدد واحدًا";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "المنهج الدراسي";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "محتوى المخطط الدراسي";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "مساعد المعلم";

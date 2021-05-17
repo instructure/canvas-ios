@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Inlämning pågår ...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Inlämningstext";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Inlämningstyper";
 

@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Tāpaetanga kei te mahia";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Tāpaetanga kuputuhi";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Ngā momo tāpaetanga";
 

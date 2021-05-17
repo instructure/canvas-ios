@@ -1270,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Invio in corso...";
 
+/* Text submission editor accessibility label */
+"Submission text" = "Testo invio";
+
 /* No comment provided by engineer. */
 "Submission Types" = "Tipi di consegna";
 

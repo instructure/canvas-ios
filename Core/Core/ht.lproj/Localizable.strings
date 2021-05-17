@@ -131,6 +131,9 @@
 "Add Item" = "Ajoute Eleman";
 
 /* No comment provided by engineer. */
+"Add message" = "Ajoute mesaj";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ajoute Mòd Panifikatè";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "Pa t kapab anrejistre preferans notifikasyon";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "Kou (opsyonèl)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "Aktivite Kou";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "Detay";
 
 /* No comment provided by engineer. */
+"Developer menu" = "Meni devlopè";
+
+/* No comment provided by engineer. */
 "discussion" = "diskisyon";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Chanje Pwogram";
+
+/* No comment provided by engineer. */
+"Email address" = "Adrès imèl";
 
 /* Description for email communication channel */
 "Email Notifications" = "Avètisman Imèl";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Jwenn lekòl oswa distri ou a";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Non Dosye";
 
 /* No comment provided by engineer. */
 "for %@" = "pou %@";
@@ -1412,6 +1427,9 @@
 "Options" = "Opsyon";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "OPSYON";
+
+/* No comment provided by engineer. */
 "orange" = "oranj";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Paj";
+
+/* No comment provided by engineer. */
+"Page content" = "Kontni paj";
 
 /* No comment provided by engineer. */
 "Page Details" = "Detay Paj";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Politik Konfidansyalite";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Avatar pwofil";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Avatar pwofil, tape de fwa pou chanje.";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Meni Pwofil";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "Planifikasyon";
 
 /* No comment provided by engineer. */
+"School’s name" = "Non lekòl";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "Fè omwen %@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "Seleksyone Kou";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Seleksyone Enpak";
 
 /* No comment provided by engineer. */
 "Select One" = "Seleksyone Yonn";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Pwogram";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Kontni pwogram";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

@@ -131,6 +131,9 @@
 "Add Item" = "添加項目";
 
 /* No comment provided by engineer. */
+"Add message" = "添加訊息";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加規劃筆記";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Could not save notification preference" = "無法保存通知偏好設定";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "課程（可選）";
+
+/* No comment provided by engineer. */
 "Course Activities" = "課程活動";
 
 /* No comment provided by engineer. */
@@ -656,6 +662,9 @@
 "Details" = "詳細資料";
 
 /* No comment provided by engineer. */
+"Developer menu" = "開發人員選單";
+
+/* No comment provided by engineer. */
 "discussion" = "討論區";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "編輯課程大綱";
+
+/* No comment provided by engineer. */
+"Email address" = "電郵地址";
 
 /* Description for email communication channel */
 "Email Notifications" = "電子郵件通知";
@@ -864,6 +876,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "搜尋您的學校或區域";
+
+/* No comment provided by engineer. */
+"Folder Name" = "資料夾名稱";
 
 /* No comment provided by engineer. */
 "for %@" = "對象： %@";
@@ -1412,6 +1427,9 @@
 "Options" = "選項";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "選項";
+
+/* No comment provided by engineer. */
 "orange" = "橙色";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1449,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "頁面";
+
+/* No comment provided by engineer. */
+"Page content" = "頁面內容";
 
 /* No comment provided by engineer. */
 "Page Details" = "頁面詳情";
@@ -1509,6 +1530,12 @@
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "隱私政策";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "個人檔案頭像";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "個人檔案頭像，點選兩下以變更";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "個人檔案選單";
@@ -1646,6 +1673,9 @@
 "Scheduling" = "排程";
 
 /* No comment provided by engineer. */
+"School’s name" = "學校名稱";
+
+/* No comment provided by engineer. */
 "Score at least %@" = "得分至少為%@";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1713,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "選擇課程";
+
+/* No comment provided by engineer. */
+"Select Impact" = "選擇影響的種類";
 
 /* No comment provided by engineer. */
 "Select One" = "選擇一個";
@@ -1830,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "課程大綱";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "課程大綱內容";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "助教";
