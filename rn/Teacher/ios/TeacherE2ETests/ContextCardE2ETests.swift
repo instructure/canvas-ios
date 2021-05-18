@@ -38,7 +38,7 @@ class ContextCardE2ETests: CoreUITestCase {
         XCTAssert(ContextCard.lastActivityLabel.label().hasPrefix("Last activity on "))
         XCTAssertEqual(ContextCard.courseLabel.label(), "Assignments")
         XCTAssertEqual(ContextCard.sectionLabel.label(), "Section: Assignments")
-        XCTAssertEqual(ContextCard.currentGradeLabel.label(), "Current Grade 72%")
+        XCTAssertEqual(ContextCard.currentGradeLabel.label(), "Current Grade 72.73%")
         XCTAssertEqual(ContextCard.submissionsTotalLabel.label(), "3 submitted")
         XCTAssertEqual(ContextCard.submissionsLateLabel.label(), "0 late")
         XCTAssertEqual(ContextCard.submissionsMissingLabel.label(), "0 missing")
