@@ -62,4 +62,13 @@ class AppEnvironmentTests: CoreTestCase {
         XCTAssertEqual(error?.localizedDescription, "Internal Error")
         XCTAssertNotNil(view)
     }
+
+    func testResetsK5FlagOnLogout() {
+        let env = AppEnvironment()
+        let session = LoginSession.make(accessToken: "token")
+        env.userDidLogin(session: session)
+        env.isK5Enabled = true
+        env.userDidLogout(session: session)
+        XCTAssertFalse(env.isK5Enabled)
+    }
 }

@@ -39,6 +39,7 @@ open class AppEnvironment {
     public var currentSession: LoginSession?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults?
+    public var isK5Enabled = false
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?
     open var isTest: Bool { false }
@@ -67,6 +68,7 @@ open class AppEnvironment {
         userDefaults = nil
         Logger.shared.database = database
         refreshWidgets()
+        isK5Enabled = false
     }
 
     public static var shared = AppEnvironment()

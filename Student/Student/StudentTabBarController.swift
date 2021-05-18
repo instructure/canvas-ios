@@ -43,12 +43,17 @@ class StudentTabBarController: UITabBarController {
     }
 
     func dashboardTab() -> UIViewController {
+        let dashboard: UIViewController
+
+        if AppEnvironment.shared.isK5Enabled, ExperimentalFeature.K5Dashboard.isEnabled {
+            dashboard = CoreHostingController(K5DashboardView())
+        } else {
+            dashboard = CoreHostingController(DashboardCardView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false))
+        }
+
         let split = HelmSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: CoreHostingController(
-                DashboardCardView(
-                    shouldShowGroupList: true,
-                    showOnlyTeacherEnrollment: false))),
+            HelmNavigationController(rootViewController: dashboard),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         split.masterNavigationController?.delegate = split
