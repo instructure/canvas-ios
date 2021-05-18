@@ -168,8 +168,8 @@ public struct CourseListView: View {
                     icon.padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 12))
                 }
                     .buttonStyle(PlainButtonStyle())
-                    .accessibility(label: Text("favorite", bundle: .core))
-                    .accessibility(addTraits: course.isFavorite ? .isSelected : [])
+                    .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
+                    .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
 
                 Button(action: {
                     env.router.route(to: "/courses/\(course.id)", from: controller)
