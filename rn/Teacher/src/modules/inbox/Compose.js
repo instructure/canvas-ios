@@ -29,6 +29,7 @@ import {
   NativeModules,
   Alert,
   processColor,
+  AccessibilityInfo,
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
@@ -134,6 +135,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
   }
 
   sendMessage = () => {
+    AccessibilityInfo.announceForAccessibility(i18n('Sending message'))
     const state = this.state
     const convo: CreateConversationParameters = {
       recipients: state.recipients.map((r) => r.id),
@@ -152,6 +154,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
     this.setState({ pending: true })
     const promise = this.props.conversationID ? addMessage(this.props.conversationID, convo) : createConversation(convo)
     promise.then((response) => {
+      AccessibilityInfo.announceForAccessibility(i18n('Message sent'))
       this.props.refreshInboxSent()
       this.props.navigator.dismissAllModals()
         .then(() => NativeModules.AppStoreReview.handleSuccessfulSubmit())
