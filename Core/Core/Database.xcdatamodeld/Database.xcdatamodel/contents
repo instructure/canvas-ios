@@ -29,6 +29,7 @@
         <attribute name="allowedAttempts" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="allowedExtensionsRaw" attributeType="String" defaultValueString=""/>
         <attribute name="anonymizeStudents" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="anonymousSubmissions" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="assignmentGroupSectionName" optional="YES" transient="YES" attributeType="String"/>

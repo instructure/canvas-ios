@@ -34,11 +34,28 @@ struct SubmissionViewer: View {
             WebSession(url: submission.previewUrl) { url in
                 WebView(url: url, customUserAgentName: UserAgent.safariLTI.description).onLink(openInSafari)
             }
-        case .discussion_topic, .online_quiz:
+        case .discussion_topic:
             WebSession(url: submission.previewUrl) { url in
                 WebView(url: url)
                     .onLink(handleLink)
                     .onNavigationFinished(handleRefresh)
+            }
+        case .online_quiz:
+            if assignment.anonymousSubmissions == true {
+                VStack {
+                    Spacer()
+                    HStack { Spacer() }
+                    Text("This student's responses are hidden because this assignment is anonymous.", bundle: .core)
+                    Spacer()
+                }
+                .font(.regular16).foregroundColor(.textDarkest)
+                .multilineTextAlignment(.center)
+            } else {
+                WebSession(url: submission.previewUrl) { url in
+                    WebView(url: url)
+                        .onLink(handleLink)
+                        .onNavigationFinished(handleRefresh)
+                }
             }
         case .media_recording:
             VideoPlayer(url: submission.mediaComment?.url)
@@ -59,13 +76,13 @@ struct SubmissionViewer: View {
                 Spacer()
                 HStack { Spacer() }
                 if assignment.submissionTypes.contains(.on_paper) {
-                    Text("This assignment only allows on-paper submissions.")
+                    Text("This assignment only allows on-paper submissions.", bundle: .core)
                 } else if assignment.submissionTypes.contains(.none) {
-                    Text("This assignment does not allow submissions.")
+                    Text("This assignment does not allow submissions.", bundle: .core)
                 } else if submission.groupID != nil {
-                    Text("This group does not have a submission for this assignment.")
+                    Text("This group does not have a submission for this assignment.", bundle: .core)
                 } else {
-                    Text("This student does not have a submission for this assignment.")
+                    Text("This student does not have a submission for this assignment.", bundle: .core)
                 }
                 Spacer()
             }

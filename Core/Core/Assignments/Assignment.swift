@@ -24,6 +24,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
     @NSManaged public var allowedExtensionsRaw: String
     @NSManaged public var anonymizeStudents: Bool
+    @NSManaged public var anonymousSubmissions: Bool
     @NSManaged public var assignmentGroup: AssignmentGroup?
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
@@ -141,6 +142,7 @@ extension Assignment {
         allowedAttempts = item.allowed_attempts ?? 0
         allowedExtensions = item.allowed_extensions ?? []
         anonymizeStudents = item.anonymize_students == true
+        anonymousSubmissions = item.anonymous_submissions == true
         assignmentGroupID = item.assignment_group_id?.value
         canSubmit = !(item.can_submit == false)
         canUnpublish = item.unpublishable == true
@@ -169,6 +171,10 @@ extension Assignment {
         unlockAt = item.unlock_at
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
+
+        if anonymousSubmissions == true {
+            anonymizeStudents = true
+        }
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
