@@ -36,6 +36,16 @@ exports[`Inbox filters conversations based on course 1`] = `
       >
         <View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": true,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -96,6 +106,16 @@ exports[`Inbox filters conversations based on course 1`] = `
             />
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -135,6 +155,16 @@ exports[`Inbox filters conversations based on course 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -174,6 +204,16 @@ exports[`Inbox filters conversations based on course 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -213,6 +253,16 @@ exports[`Inbox filters conversations based on course 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -560,6 +610,16 @@ exports[`Inbox refreshed component 1`] = `
       >
         <View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": true,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -620,6 +680,16 @@ exports[`Inbox refreshed component 1`] = `
             />
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -659,6 +729,16 @@ exports[`Inbox refreshed component 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -698,6 +778,16 @@ exports[`Inbox refreshed component 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -737,6 +827,16 @@ exports[`Inbox refreshed component 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -975,6 +1075,16 @@ exports[`Inbox renders correctly 1`] = `
       >
         <View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": true,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1035,6 +1145,16 @@ exports[`Inbox renders correctly 1`] = `
             />
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1074,6 +1194,16 @@ exports[`Inbox renders correctly 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1113,6 +1243,16 @@ exports[`Inbox renders correctly 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1152,6 +1292,16 @@ exports[`Inbox renders correctly 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1670,6 +1820,16 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
       >
         <View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": true,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1730,6 +1890,16 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             />
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1769,6 +1939,16 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1808,6 +1988,16 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1847,6 +2037,16 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2037,6 +2237,16 @@ exports[`Inbox renders the starred empty state 1`] = `
       >
         <View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2076,6 +2286,16 @@ exports[`Inbox renders the starred empty state 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2115,6 +2335,16 @@ exports[`Inbox renders the starred empty state 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": true,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2175,6 +2405,16 @@ exports[`Inbox renders the starred empty state 1`] = `
             />
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2214,6 +2454,16 @@ exports[`Inbox renders the starred empty state 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2452,6 +2702,16 @@ exports[`Inbox renders with an empty state 1`] = `
       >
         <View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": true,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2512,6 +2772,16 @@ exports[`Inbox renders with an empty state 1`] = `
             />
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2551,6 +2821,16 @@ exports[`Inbox renders with an empty state 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2590,6 +2870,16 @@ exports[`Inbox renders with an empty state 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2629,6 +2919,16 @@ exports[`Inbox renders with an empty state 1`] = `
             </Text>
           </View>
           <View
+            accessibilityRole={
+              Array [
+                "button",
+              ]
+            }
+            accessibilityState={
+              Object {
+                "selected": false,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
