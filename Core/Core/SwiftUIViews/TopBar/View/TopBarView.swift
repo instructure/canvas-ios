@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct TopBarView: View {
     @ObservedObject private var viewModel: TopBarViewModel
+    private let selectionIndicatorHeight: CGFloat = 3
 
     public init(viewModel: TopBarViewModel) {
         self.viewModel = viewModel
@@ -32,9 +33,29 @@ public struct TopBarView: View {
                     TopBarItemView(viewModel: viewModel.items[index]) {
                         viewModel.selectedItemIndex = index
                     }
+                    .anchorPreference(key: ViewBoundsPreferenceKey.self, value: .bounds, transform: { [ViewBoundsPreferenceData(viewId: index, bounds: $0)] })
+                }
+            }
+            .overlayPreferenceValue(ViewBoundsPreferenceKey.self) { boundsPreferences in
+                GeometryReader { geometry in
+                    selectionIndicator(selectedItemBounds: boundsForSelectedItem(in: geometry, using: boundsPreferences))
                 }
             }
         }
+    }
+
+    private func selectionIndicator(selectedItemBounds: CGRect) -> some View {
+        RoundedRectangle(cornerRadius: 3)
+            .foregroundColor(Color(Brand.shared.primary))
+            .frame(width: selectedItemBounds.width, height: selectionIndicatorHeight)
+            .offset(x: selectedItemBounds.minX, y: selectedItemBounds.maxY - selectionIndicatorHeight)
+            .animation(.default)
+    }
+
+    private func boundsForSelectedItem(in geometry: GeometryProxy, using preferences: [ViewBoundsPreferenceData]) -> CGRect {
+        let selectedItemPreference = preferences.first { $0.viewId == viewModel.selectedItemIndex }?.bounds
+        let selectedItemBounds = (selectedItemPreference != nil) ? geometry[selectedItemPreference!] : .zero
+        return selectedItemBounds
     }
 }
 
