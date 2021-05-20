@@ -19,8 +19,8 @@
 import SwiftUI
 
 public struct ViewBoundsPreferenceData {
-    let viewId: Int
-    let bounds: Anchor<CGRect>
+    public let viewId: Int
+    public let bounds: Anchor<CGRect>
 }
 
 public struct ViewBoundsPreferenceKey: PreferenceKey {
