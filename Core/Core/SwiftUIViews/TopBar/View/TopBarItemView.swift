@@ -39,6 +39,7 @@ public struct TopBarItemView: View {
             .padding(.horizontal, 17)
             .padding(.vertical, 14)
         }
+        .accessibility(addTraits: viewModel.isSelected ? .isSelected : [])
     }
 }
 
