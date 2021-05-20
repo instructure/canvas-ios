@@ -72,6 +72,11 @@ public class ModuleItem: NSManagedObject {
         if masteryPath?.locked == true || module?.state == .locked {
             return true
         }
+
+        if module?.requireSequentialProgress == true && lockedForUser {
+            return true
+        }
+
         return lockedForUser
     }
 

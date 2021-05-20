@@ -32,6 +32,7 @@ public class Module: NSManagedObject {
     @NSManaged public var stateRaw: String?
     @NSManaged public var itemsRaw: NSOrderedSet?
     @NSManaged var prerequisiteModuleIDsRaw: String
+    @NSManaged public var requireSequentialProgressRaw: NSNumber?
     @NSManaged public var unlockAt: Date?
 
     public var published: Bool? {
@@ -57,6 +58,11 @@ public class Module: NSManagedObject {
     public var prerequisiteModules: [Module] {
         guard let context = managedObjectContext else { return [] }
         return context.fetch(NSPredicate(format: "%K in %@", #keyPath(Module.id), prerequisiteModuleIDs), sortDescriptors: nil)
+    }
+
+    public var requireSequentialProgress: Bool? {
+        get { return requireSequentialProgressRaw?.boolValue }
+        set { requireSequentialProgressRaw = NSNumber(value: newValue) }
     }
 
     public var lockedMessage: String? {
@@ -92,6 +98,7 @@ public class Module: NSManagedObject {
         module.state = item.state
         module.items = item.items?.map { .save($0, forCourse: courseID, in: context) } ?? []
         module.prerequisiteModuleIDs = item.prerequisite_module_ids
+        module.requireSequentialProgress = item.require_sequential_progress
         module.unlockAt = item.unlock_at
         return module
     }
