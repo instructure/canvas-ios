@@ -855,6 +855,7 @@
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE214B2656895E00E3B32A /* Bounds.swift */; };
+		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */; };
 		CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */; };
 		CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */; };
@@ -1986,6 +1987,7 @@
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		CFCE214B2656895E00E3B32A /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
+		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
 		CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemViewModel.swift; sourceTree = "<group>"; };
 		CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModel.swift; sourceTree = "<group>"; };
@@ -4284,6 +4286,7 @@
 			children = (
 				CF60CC4926458ED800C1C173 /* TopBarView.swift */,
 				CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */,
+				CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5190,6 +5193,7 @@
 				7DA2602723F722C2005D2121 /* LoginDelegate.swift in Sources */,
 				7DA260E123F72359005D2121 /* ItemPickerViewController.swift in Sources */,
 				7DA260B123F72352005D2121 /* GetCustomColors.swift in Sources */,
+				CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */,
 				7DA260F423F72397005D2121 /* FilePickerCell.swift in Sources */,
 				7DA25FDD23F72148005D2121 /* Secret.swift in Sources */,
 				7DA25F9623F7212E005D2121 /* Analytics.swift in Sources */,

@@ -45,9 +45,10 @@ public struct TopBarView: View {
     }
 
     private func selectionIndicator(selectedItemBounds: CGRect) -> some View {
-        RoundedRectangle(cornerRadius: 3)
+        Rectangle()
             .foregroundColor(Color(Brand.shared.primary))
             .frame(width: selectedItemBounds.width, height: selectionIndicatorHeight)
+            .clipShape(TopBarSelectionShape())
             .offset(x: selectedItemBounds.minX, y: selectedItemBounds.maxY - selectionIndicatorHeight)
             .animation(.default)
     }
