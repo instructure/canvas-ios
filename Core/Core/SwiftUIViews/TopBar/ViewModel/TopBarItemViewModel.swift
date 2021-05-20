@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct TopBarItemViewModel {
+public class TopBarItemViewModel: ObservableObject {
     public var icon: Image
     public var label: Text
+    @Published public var isSelected = false
 
     public init(icon: Image, label: Text) {
         self.icon = icon

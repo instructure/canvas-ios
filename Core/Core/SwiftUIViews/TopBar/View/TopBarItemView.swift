@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct TopBarItemView: View {
-    private let viewModel: TopBarItemViewModel
+    @ObservedObject private var viewModel: TopBarItemViewModel
     private let selectAction: () -> Void
 
     public init(viewModel: TopBarItemViewModel, selectAction: @escaping () -> Void) {
@@ -35,7 +35,7 @@ public struct TopBarItemView: View {
                 viewModel.label
                     .font(.regular16)
             }
-            .accentColor(.oxford)
+            .accentColor(viewModel.isSelected ? Color(Brand.shared.primary) : .oxford)
             .padding(.horizontal, 17)
             .padding(.vertical, 14)
         }

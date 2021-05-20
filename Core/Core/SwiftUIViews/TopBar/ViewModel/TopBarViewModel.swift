@@ -20,9 +20,20 @@ import SwiftUI
 
 public class TopBarViewModel: ObservableObject {
     public let items: [TopBarItemViewModel]
-    @Published var selectedItemIndex = 0
+    @Published public var selectedItemIndex = 0 {
+        didSet {
+            updateSelectedItemState()
+        }
+    }
 
     public init(items: [TopBarItemViewModel]) {
         self.items = items
+        updateSelectedItemState()
+    }
+
+    private func updateSelectedItemState() {
+        for (index, item) in items.enumerated() {
+            item.isSelected = (index == selectedItemIndex)
+        }
     }
 }

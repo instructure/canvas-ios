@@ -18,14 +18,14 @@
 
 import SwiftUI
 
-struct TopBarView: View {
+public struct TopBarView: View {
     @ObservedObject private var viewModel: TopBarViewModel
 
-    init(viewModel: TopBarViewModel) {
+    public init(viewModel: TopBarViewModel) {
         self.viewModel = viewModel
     }
 
-    var body: some View {
+    public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
                 ForEach(0..<viewModel.items.count) { index in
