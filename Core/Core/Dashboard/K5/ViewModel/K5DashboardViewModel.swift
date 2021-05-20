@@ -21,10 +21,10 @@ import SwiftUI
 
 public class K5DashboardViewModel: ObservableObject {
     @Published private(set) var topBarViewModel = TopBarViewModel(items: [
-        TopBarItemViewModel(icon: .coursesLine, label: Text("Homeroom", bundle: .core)),
-        TopBarItemViewModel(icon: .calendarMonthLine, label: Text("Schedule", bundle: .core)),
-        TopBarItemViewModel(icon: .gradebookLine, label: Text("Grades", bundle: .core)),
-        TopBarItemViewModel(icon: .folderLine, label: Text("Resources", bundle: .core)),
+        TopBarItemViewModel(icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
+        TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
+        TopBarItemViewModel(icon: .k5grades, label: Text("Grades", bundle: .core)),
+        TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core)),
     ])
 
     let viewModels = (
@@ -37,7 +37,7 @@ public class K5DashboardViewModel: ObservableObject {
     private var topBarChangeListener: AnyCancellable?
 
     init() {
-        // Propagate chenges of the underlying view model to this observable class because there's no native support for nested ObservableObjects
+        // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
         topBarChangeListener = topBarViewModel.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
         }

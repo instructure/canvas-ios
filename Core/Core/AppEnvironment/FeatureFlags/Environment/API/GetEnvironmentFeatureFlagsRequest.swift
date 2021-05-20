@@ -19,5 +19,5 @@
 public struct GetEnvironmentFeatureFlagsRequest: APIRequestable {
     public typealias Response = APIEnvironmentFeatureFlags
 
-    public var path: String { "features/environment" }
+    public let path = "features/environment"
 }
