@@ -73,18 +73,7 @@ class ModuleItemTests: CoreTestCase {
     func testIsLocked() {
         let item = ModuleItem.make()
         item.lockedForUser = true
-        item.type = .assignment("1")
-        XCTAssertFalse(item.isLocked)
-
-        item.type = .discussion("1")
-        XCTAssertFalse(item.isLocked)
-
-        item.type = .quiz("1")
-        XCTAssertFalse(item.isLocked)
-
-        item.type = .file("1")
         XCTAssertTrue(item.isLocked)
-
         item.lockedForUser = false
         XCTAssertFalse(item.isLocked)
     }
