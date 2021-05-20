@@ -18,36 +18,33 @@
 
 import SwiftUI
 
-struct K5DashboardNavigationView: View {
-    @ObservedObject private var viewModel: K5DashboardViewModel
+public struct TopBarItemView: View {
+    private let viewModel: TopBarItemViewModel
+    private let selectAction: () -> Void
 
-    init(viewModel: K5DashboardViewModel) {
+    public init(viewModel: TopBarItemViewModel, selectAction: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.selectAction = selectAction
     }
 
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(viewModel.navigationItems) { navigationItem in
-                    Button(action: {
-                        viewModel.currentNavigationItem = navigationItem
-                    }, label: {
-                        HStack {
-                            navigationItem.icon
-                            navigationItem.label
-                        }
-                    })
-                }
+    public var body: some View {
+        Button(action: selectAction) {
+            HStack(spacing: 9) {
+                viewModel.icon
+                    .frame(width: 20, height: 20)
+                viewModel.label
+                    .font(.regular16)
             }
-            .padding(.horizontal)
-            .padding(.top)
+            .accentColor(.oxford)
+            .padding(.horizontal, 17)
+            .padding(.vertical, 14)
         }
     }
 }
 
-struct K5DashboardNavigationView_Previews: PreviewProvider {
+struct TopBarItemView_Previews: PreviewProvider {
     static var previews: some View {
-        K5DashboardNavigationView(viewModel: K5DashboardViewModel())
+        TopBarItemView(viewModel: TopBarItemViewModel(icon: .coursesLine, label: Text(verbatim: "Menu Item")), selectAction: {})
             .previewLayout(.sizeThatFits)
     }
 }

@@ -25,8 +25,8 @@ public struct K5DashboardView: View {
     @ObservedObject private var viewModel = K5DashboardViewModel()
 
     public var body: some View {
-        VStack {
-            K5DashboardNavigationView(viewModel: viewModel)
+        VStack(spacing: 0) {
+            TopBarView(viewModel: viewModel.topBarViewModel)
             Divider()
             ScrollView(.vertical) {
                 content
@@ -47,27 +47,29 @@ public struct K5DashboardView: View {
 
     @ViewBuilder private var content: some View {
         VStack(spacing: 0) {
-            switch viewModel.currentNavigationItem.type {
-            case .homeroom:
+            switch viewModel.topBarViewModel.selectedItemIndex {
+            case 0:
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.homeroom.refresh(completion: endRefreshing)
                 }
                 K5HomeroomView()
-            case .schedule:
+            case 1:
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.schedule.refresh(completion: endRefreshing)
                 }
                 K5ScheduleView(viewModel: viewModel.viewModels.schedule)
-            case .grades:
+            case 2:
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.grades.refresh(completion: endRefreshing)
                 }
                 K5GradesView()
-            case .resources:
+            case 3:
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.resources.refresh(completion: endRefreshing)
                 }
                 K5ResourcesView()
+            default:
+                SwiftUI.EmptyView()
             }
         }
     }
