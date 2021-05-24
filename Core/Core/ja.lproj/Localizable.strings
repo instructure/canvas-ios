@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — ホームルーム 2020年秋季  — Ms. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "説明が必要です";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "アナウンスの回答";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "通知の件名";
 
 /* No comment provided by engineer. */
 "Announcements" = "発表";
@@ -842,6 +848,9 @@
 "File Upload" = "ファイルのアップロード";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "ファイルのアップロードに失敗しました。送信をキャンセルして、もう一度アップロードしてみてください。";
+
+/* No comment provided by engineer. */
 "Files" = "ファイル";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "成績";
 
 /* No comment provided by engineer. */
+"Grades Details" = "成績の詳細";
+
+/* No comment provided by engineer. */
 "Grading" = "採点";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "ホームルーム";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "私のスクールの見つけ方は？";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "複数の締切日";
+
+/* No comment provided by engineer. */
+"My Subjects" = "マイ教科";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "リクエストに失敗しました！";
 
 /* No comment provided by engineer. */
+"Resources" = "リソース";
+
+/* No comment provided by engineer. */
+"Resources Details" = "リソース詳細";
+
+/* No comment provided by engineer. */
 "Restricted" = "部外秘";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "スキャンはサポートされていません";
+
+/* No comment provided by engineer. */
+"Schedule" = "スケジュール";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "受講生の利用可能状況をスケジュール";
@@ -2135,6 +2162,9 @@
 "View more replies" = "返信を多く表示する";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "前の通知を表示する";
+
+/* No comment provided by engineer. */
 "Viewed" = "表示しました";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "毎週";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "ようこそ、みなさん！";
 
 /* No comment provided by engineer. */
 "Well Done!" = "よくできました！";

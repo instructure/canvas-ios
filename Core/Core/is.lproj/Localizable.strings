@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Námssalur HAUST 2020 — Fröken Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "Lýsing er áskilin";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Svör við tilkynningum";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Titill tilkynningar";
 
 /* No comment provided by engineer. */
 "Announcements" = "Tilkynningar";
@@ -842,6 +848,9 @@
 "File Upload" = "Hlaða upp skrá";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Upphleðsla skrár mistókst. Vinsamlegast hættu við skil og reyndu að hlaða upp aftur.";
+
+/* No comment provided by engineer. */
 "Files" = "Skrár";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Einkunnir";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Upplýsingar um einkunnir";
+
+/* No comment provided by engineer. */
 "Grading" = "Einkunnagjöf";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Hátt: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Námssalur";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hvernig finn ég skólann minn?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Margir skiladagar";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Námsefnið mitt";
 
 /* No comment provided by engineer. */
 "N/A" = "Á ekki við";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Beiðni mistókst!";
 
 /* No comment provided by engineer. */
+"Resources" = "Hjálparefni";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Upplýsingar um hjálparefni";
+
+/* No comment provided by engineer. */
 "Restricted" = "Takmarkað";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Skönnun er ekki studd";
+
+/* No comment provided by engineer. */
+"Schedule" = "Áætlun";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Velja tiltækni nemanda";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Skoða fleiri svör";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Skoða fyrri tilkynningar";
+
+/* No comment provided by engineer. */
 "Viewed" = "Skoðað";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Vikulega";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Velkominn, nemandi!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Vel gert!";

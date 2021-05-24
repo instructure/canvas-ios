@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Tutoria TARDOR 2020 — Sra. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "Cal una descripció";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Respostes a l'anunci";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Títol de l’anunci";
 
 /* No comment provided by engineer. */
 "Announcements" = "Anuncis";
@@ -842,6 +848,9 @@
 "File Upload" = "Càrrega de fitxer";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "No s'ha pogut penjar el fitxer. Cancel·leu l’entrega i torneu a provar de carregar-la.";
+
+/* No comment provided by engineer. */
 "Files" = "Fitxers";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Qualificacions";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Detalls de les qualificacions";
+
+/* No comment provided by engineer. */
 "Grading" = "Qualificació";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Alta: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Tutoria";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Com puc trobar l'escola?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Dates de venciment múltiples";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Les meves matèries";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "No s'ha pogut tramitar la sol·licitud.";
 
 /* No comment provided by engineer. */
+"Resources" = "Recursos";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Detalls dels recursos";
+
+/* No comment provided by engineer. */
 "Restricted" = "Restringit";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "No s'admet l'escaneig";
+
+/* No comment provided by engineer. */
+"Schedule" = "Planifica";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Planifica la disponibilitat dels estudiants";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Mostra més respostes";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Visualitza els anuncis anteriors";
+
+/* No comment provided by engineer. */
 "Viewed" = "Vist";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Setmanal";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Et donem la benvinguda, estudiant!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Ben fet.";

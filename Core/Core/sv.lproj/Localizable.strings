@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 –fjärrundervisningsrum HÖSTEN 2020 – Fröken Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "En beskrivning krävs";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Meddelandesvar";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Meddelandetitel";
 
 /* No comment provided by engineer. */
 "Announcements" = "Meddelanden";
@@ -842,6 +848,9 @@
 "File Upload" = "Filuppladdning";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Det gick inte att ladda upp filen. Avbryt din inlämning och försöka ladda upp igen.";
+
+/* No comment provided by engineer. */
 "Files" = "Filer";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Omdömen";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Information om omdöme";
+
+/* No comment provided by engineer. */
 "Grading" = "Bedömning";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Hög: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Fjärrundervisningsrum";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hur hittar jag min skola?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Flera inlämningsdatum";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Mina ämnen";
 
 /* No comment provided by engineer. */
 "N/A" = "Ej tillämpligt";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Begäran misslyckades!";
 
 /* No comment provided by engineer. */
+"Resources" = "Resurser";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Information om resurser";
+
+/* No comment provided by engineer. */
 "Restricted" = "Begränsad";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Skanning stöds inte";
+
+/* No comment provided by engineer. */
+"Schedule" = "Schema";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Schemalägg studentens tillgänglighet";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Visa fler svar";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Visa tidigare meddelanden";
+
+/* No comment provided by engineer. */
 "Viewed" = "Visad";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Varje vecka";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Välkommen student!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Bra jobbat!";

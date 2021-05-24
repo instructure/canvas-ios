@@ -77,6 +77,9 @@
 "86,5%" = "86,5 %";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Homeroom FALL 2020 — ga. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "Zahtevan je opis.";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Odgovori na obvestilo";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Naslov obvestila";
 
 /* No comment provided by engineer. */
 "Announcements" = "Obvestila";
@@ -842,6 +848,9 @@
 "File Upload" = "Nalaganje datotek";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Nalaganje datoteke ni uspelo. Oddajo prekličite in jo poskusite znova naložiti.";
+
+/* No comment provided by engineer. */
 "Files" = "Datoteke";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Ocene";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Podrobnosti o ocenah";
+
+/* No comment provided by engineer. */
 "Grading" = "Ocenjevanje";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Visoko: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Matični";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Kako najdem svojo šolo?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Več rokov";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Moji kratki opisi predmetov";
 
 /* No comment provided by engineer. */
 "N/A" = "Ni na voljo";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Zahteva ni uspela.";
 
 /* No comment provided by engineer. */
+"Resources" = "Viri";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Podrobnosti o virih";
+
+/* No comment provided by engineer. */
 "Restricted" = "Omejeno";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Optično branje ni podprto";
+
+/* No comment provided by engineer. */
+"Schedule" = "Urnik";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Razporedi razpoložljivost študenta";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Ogled več odgovorov";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Prikaži predhodna obvestila";
+
+/* No comment provided by engineer. */
 "Viewed" = "Ogledano";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Tedensko";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Dobrodošli, študent!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Dobro opravljeno.";

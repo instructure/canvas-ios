@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Homeroom FALL 2020 — Ms. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "Kuvaus vaaditaan";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Ilmoituksen vastaukset";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Ilmoituksen otsikko";
 
 /* No comment provided by engineer. */
 "Announcements" = "Ilmoitukset";
@@ -842,6 +848,9 @@
 "File Upload" = "Tiedoston lataus";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Tiedoston lataus epäonnistui. Peruuta lähetyksesi ja yritä ladata uudelleen.";
+
+/* No comment provided by engineer. */
 "Files" = "Tiedostot";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Arvosanat";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Arvosanojen tiedot";
+
+/* No comment provided by engineer. */
 "Grading" = "Arvosanojen anto";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Korkea: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Homeroom";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Miten löydän kouluni";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Useita määräpäiviä";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Omat aiheet";
 
 /* No comment provided by engineer. */
 "N/A" = "Ei sovellettavissa";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Pyyntö epäonnistui!";
 
 /* No comment provided by engineer. */
+"Resources" = "Resurssit";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Resurssin tiedot";
+
+/* No comment provided by engineer. */
 "Restricted" = "Rajoitettu";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Skannausta ei tueta";
+
+/* No comment provided by engineer. */
+"Schedule" = "Aikataulu";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Aikatauluta opiskelijan saatavissa olo";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Tarkastele lisää vastauksia";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Näytä edelliset ilmoitukset";
+
+/* No comment provided by engineer. */
 "Viewed" = "Tarkasteltu";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Viikoittainen";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Tervetuloa, opiskelija!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Hyvin tehty!";

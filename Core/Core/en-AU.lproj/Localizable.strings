@@ -77,6 +77,9 @@
 "86,5%" = "86.5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Homeroom FALL 2020 — Ms. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "A description is required";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Announcement Replies";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Announcement Title";
 
 /* No comment provided by engineer. */
 "Announcements" = "Announcements";
@@ -842,6 +848,9 @@
 "File Upload" = "File Upload";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "File upload failed Please cancel your submission and try uploading again.";
+
+/* No comment provided by engineer. */
 "Files" = "Files";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Marks";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Grades Details";
+
+/* No comment provided by engineer. */
 "Grading" = "Grading";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "High: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Homeroom";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "How do I find my school?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Multiple Due Dates";
+
+/* No comment provided by engineer. */
+"My Subjects" = "My Subjects";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Request Failed!";
 
 /* No comment provided by engineer. */
+"Resources" = "Resources";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Resources Details";
+
+/* No comment provided by engineer. */
 "Restricted" = "Restricted";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scanning not supported";
+
+/* No comment provided by engineer. */
+"Schedule" = "Schedule";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Schedule student availability";
@@ -2135,6 +2162,9 @@
 "View more replies" = "View more replies";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "View Previous Announcements";
+
+/* No comment provided by engineer. */
 "Viewed" = "Viewed";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Weekly";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Welcome, Student!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Well Done!";

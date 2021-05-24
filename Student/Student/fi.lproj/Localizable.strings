@@ -1147,6 +1147,9 @@
 "Request a feature" = "Pyydä ominaisuus";
 
 /* No comment provided by engineer. */
+"Resubmission Failed" = "Uudelleenlähetys epäonnistui";
+
+/* No comment provided by engineer. */
 "Resubmit Assignment" = "Lähetä tehtävä uudelleen";
 
 /* No comment provided by engineer. */

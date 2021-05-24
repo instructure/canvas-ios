@@ -1147,6 +1147,9 @@
 "Request a feature" = "Begär en funktion";
 
 /* No comment provided by engineer. */
+"Resubmission Failed" = "Det gick inte att lämna in på nytt";
+
+/* No comment provided by engineer. */
 "Resubmit Assignment" = "Skicka in uppgift igen";
 
 /* No comment provided by engineer. */

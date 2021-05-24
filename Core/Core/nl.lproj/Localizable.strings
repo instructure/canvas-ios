@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Klas HERFST 2020 — Mw. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "Er is een beschrijving vereist";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Antwoorden op aankondiging";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Titel van aankondiging";
 
 /* No comment provided by engineer. */
 "Announcements" = "Aankondigingen";
@@ -842,6 +848,9 @@
 "File Upload" = "Bestand uploaden";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Uploaden van bestand mislukt. Annuleer je inlevering en probeer opnieuw te uploaden.";
+
+/* No comment provided by engineer. */
 "Files" = "Bestanden";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Cijfers";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Cijferdetails";
+
+/* No comment provided by engineer. */
 "Grading" = "Beoordeling";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Hoog: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Klas";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hoe vind ik mijn school?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Meerdere inleverdatums";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Mijn onderwerpen";
 
 /* No comment provided by engineer. */
 "N/A" = "N.v.t.";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Verzoek mislukt!";
 
 /* No comment provided by engineer. */
+"Resources" = "Hulpbronnen";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Details van hulpbronnen";
+
+/* No comment provided by engineer. */
 "Restricted" = "Beperkt";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scannen wordt niet ondersteund";
+
+/* No comment provided by engineer. */
+"Schedule" = "Planning";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Schema met beschikbaarheid van cursist";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Meer antwoorden bekijken";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Vorige aankondigingen bekijken";
+
+/* No comment provided by engineer. */
 "Viewed" = "Bekeken";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Wekelijks";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Welkom, cursist!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Goed gedaan!";
