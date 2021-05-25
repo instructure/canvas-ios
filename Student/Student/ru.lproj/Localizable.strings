@@ -1147,6 +1147,9 @@
 "Request a feature" = "Запрос функции";
 
 /* No comment provided by engineer. */
+"Resubmission Failed" = "Ошибка повторной отправки";
+
+/* No comment provided by engineer. */
 "Resubmit Assignment" = "Повторная отправка задания";
 
 /* No comment provided by engineer. */

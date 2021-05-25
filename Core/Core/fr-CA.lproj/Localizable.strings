@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Classe titulaire AUTOMNE 2020 — Mme Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "Description obligatoire";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Réponses à l’annonce";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Titre de l’annonce";
 
 /* No comment provided by engineer. */
 "Announcements" = "Annonces";
@@ -842,6 +848,9 @@
 "File Upload" = "Téléversement de fichier";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Le téléversement du fichier a échoué. Veuillez annuler votre envoi et réessayer.";
+
+/* No comment provided by engineer. */
 "Files" = "Fichiers";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Notes";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Détails des notes";
+
+/* No comment provided by engineer. */
 "Grading" = "Notation";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Élevé : %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Classe titulaire";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Comment puis-je trouver mon école?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Dates limites multiples";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Mes Objets";
 
 /* No comment provided by engineer. */
 "N/A" = "S.O.";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "La requête a échouée!";
 
 /* No comment provided by engineer. */
+"Resources" = "Ressources";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Informations de ressource";
+
+/* No comment provided by engineer. */
 "Restricted" = "Restreint";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Numérisation non prise en charge";
+
+/* No comment provided by engineer. */
+"Schedule" = "Calendrier";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Calendrier de disponibilités de l’étudiant";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Voir plus de réponses";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Voir les annonces précédentes";
+
+/* No comment provided by engineer. */
 "Viewed" = "Visualisé";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Hebdomadaire";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Bienvenue, étudiant!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Bien fait!";

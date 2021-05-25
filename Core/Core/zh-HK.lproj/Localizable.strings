@@ -77,6 +77,9 @@
 "86,5%" = "86.5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — 主教室 2020 年秋天 — Ms. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "描述為必填";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "通告回覆";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "通告標題";
 
 /* No comment provided by engineer. */
 "Announcements" = "通告";
@@ -842,6 +848,9 @@
 "File Upload" = "檔案上傳";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "檔案上傳失敗。請取消您的提交項目，然後再試一次上傳。";
+
+/* No comment provided by engineer. */
 "Files" = "檔案";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "成績";
 
 /* No comment provided by engineer. */
+"Grades Details" = "成績詳細資料";
+
+/* No comment provided by engineer. */
 "Grading" = "等級評分";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "主教室";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "怎樣找到我的學校？";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "多個截止日期";
+
+/* No comment provided by engineer. */
+"My Subjects" = "我的主題";
 
 /* No comment provided by engineer. */
 "N/A" = "不適用";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "請求失敗！";
 
 /* No comment provided by engineer. */
+"Resources" = "資源";
+
+/* No comment provided by engineer. */
+"Resources Details" = "資源詳細資料";
+
+/* No comment provided by engineer. */
 "Restricted" = "受限";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "不支援掃描";
+
+/* No comment provided by engineer. */
+"Schedule" = "排程";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "排程學生可用性";
@@ -2135,6 +2162,9 @@
 "View more replies" = "檢視更多回覆";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "檢視之前的通知";
+
+/* No comment provided by engineer. */
 "Viewed" = "已檢視";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "每週";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "歡迎，學生！";
 
 /* No comment provided by engineer. */
 "Well Done!" = "做得好！";

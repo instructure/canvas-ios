@@ -1147,6 +1147,9 @@
 "Request a feature" = "Demander l'ajout d'une fonctionnalité";
 
 /* No comment provided by engineer. */
+"Resubmission Failed" = "Echec de la resoumission";
+
+/* No comment provided by engineer. */
 "Resubmit Assignment" = "Soumettre à nouveau le travail";
 
 /* No comment provided by engineer. */

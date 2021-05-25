@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — «Домашняя комната», ВЕСНА 2020 — г-жа Джонсон";
+
+/* No comment provided by engineer. */
 "A description is required" = "Требуется описание";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Ответы на объявление";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Название объявления";
 
 /* No comment provided by engineer. */
 "Announcements" = "Объявления";
@@ -842,6 +848,9 @@
 "File Upload" = "Отправка файла";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Не удалось загрузить файл. Отмените свою отправку и попробуйте выполнить загрузку еще раз.";
+
+/* No comment provided by engineer. */
 "Files" = "Файлы";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Оценки";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Информация об оценках";
+
+/* No comment provided by engineer. */
 "Grading" = "Выставление оценок";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Высокий: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "«Домашняя комната»";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Как мне найти свою школу?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Множественные даты выполнения";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Мои темы";
 
 /* No comment provided by engineer. */
 "N/A" = "Н/Д";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Сбой при выполнении запроса!";
 
 /* No comment provided by engineer. */
+"Resources" = "Ресурсы";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Подробная информация о ресурсах";
+
+/* No comment provided by engineer. */
 "Restricted" = "Доступ ограничен";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Сканирование не поддерживается";
+
+/* No comment provided by engineer. */
+"Schedule" = "Расписание";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "График доступности студентов";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Просмотреть другие ответы";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Просмотреть предыдущие объявления";
+
+/* No comment provided by engineer. */
 "Viewed" = "Просмотрено";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Еженедельно";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Добро пожаловать, студент!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Так держать!";

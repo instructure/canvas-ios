@@ -77,6 +77,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Homeroom HYDREF 2020 — Ms. Johnson";
+
+/* No comment provided by engineer. */
 "A description is required" = "Rhaid rhoi disgrifiad";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Ymatebion i'r Cyhoeddiad";
+
+/* No comment provided by engineer. */
+"Announcement Title" = "Teitl Cyhoeddiad";
 
 /* No comment provided by engineer. */
 "Announcements" = "Cyhoeddiadau";
@@ -842,6 +848,9 @@
 "File Upload" = "Llwytho Ffeil i Fyny";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Wedi methu llwytho ffeil i fyny. Canslwch eich tanysgrifiad a cheisiwch lwytho i lawn eto.";
+
+/* No comment provided by engineer. */
 "Files" = "Ffeiliau";
 
 /* No comment provided by engineer. */
@@ -938,6 +947,9 @@
 "Grades" = "Graddau";
 
 /* No comment provided by engineer. */
+"Grades Details" = "Manylion Graddau";
+
+/* No comment provided by engineer. */
 "Grading" = "Graddio";
 
 /* No comment provided by engineer. */
@@ -969,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Uchel: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Ystafell hafan";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Sut ydw i’n dod o hyd i fy ysgol?";
@@ -1248,6 +1263,9 @@
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Mwy nag un dyddiad erbyn";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Fy Mhynciau";
 
 /* No comment provided by engineer. */
 "N/A" = "Amherthnasol";
@@ -1652,6 +1670,12 @@
 "Request Failed!" = "Mae'r cais wedi methu!";
 
 /* No comment provided by engineer. */
+"Resources" = "Adnoddau";
+
+/* No comment provided by engineer. */
+"Resources Details" = "Manylion Adnoddau";
+
+/* No comment provided by engineer. */
 "Restricted" = "Cyfyngedig";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Does dim modd delio â sganio";
+
+/* No comment provided by engineer. */
+"Schedule" = "Amserlen";
 
 /* No comment provided by engineer. */
 "Schedule student availability" = "Trefnu bod myfyrwyr ar gael";
@@ -2135,6 +2162,9 @@
 "View more replies" = "Gweld mwy o atebion";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "Gweld Cyhoeddiadau Blaenorol";
+
+/* No comment provided by engineer. */
 "Viewed" = "Wedi gweld";
 
 /* No comment provided by engineer. */
@@ -2157,6 +2187,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Pob wythnos";
+
+/* No comment provided by engineer. */
+"Welcome, Student!" = "Croeso, Fyfyriwr!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Da Iawn!";
