@@ -72,7 +72,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         colors.refresh()
         courses.exhaust()
         groups.exhaust()
-        todos.refresh(force: true)
+        todos.exhaust(force: true)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +89,8 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     }
 
     func update() {
+        guard todos.requested && !todos.pending && !todos.hasNextPage else { return }
+
         emptyView.isHidden = todos.state != .empty
         errorView.isHidden = todos.state != .error
         loadingView.isHidden = todos.state != .loading || tableView.refreshControl?.isRefreshing == true
@@ -102,8 +104,11 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     @objc func refresh() {
         UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Refreshing", comment: "Downloading new content has started"))
         lastVoiceoverAnnouncement = nil
-        todos.refresh(force: true) { [weak self] _ in
-            self?.tableView.refreshControl?.endRefreshing()
+        todos.exhaust(force: true) { [weak self] _ in
+            if self?.todos.hasNextPage == false {
+                self?.tableView.refreshControl?.endRefreshing()
+            }
+            return true
         }
     }
 
