@@ -153,7 +153,7 @@ class SubmissionButtonPresenter: NSObject {
                 assignmentID: assignment.id,
                 userID: userID
             ), from: view, options: .modal(.formSheet, embedInNav: true))
-        case .none, .not_graded, .on_paper, .wiki_page:
+        case .none, .not_graded, .on_paper, .wiki_page, .student_annotation:
             break
         }
     }
