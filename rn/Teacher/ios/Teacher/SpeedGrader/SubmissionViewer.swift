@@ -30,7 +30,7 @@ struct SubmissionViewer: View {
 
     var body: some View {
         switch submission.type {
-        case .basic_lti_launch, .external_tool:
+        case .basic_lti_launch, .external_tool, .student_annotation:
             WebSession(url: submission.previewUrl) { url in
                 WebView(url: url, customUserAgentName: UserAgent.safariLTI.description).onLink(openInSafari)
             }
