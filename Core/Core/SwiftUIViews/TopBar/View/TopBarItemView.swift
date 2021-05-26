@@ -18,36 +18,34 @@
 
 import SwiftUI
 
-struct K5DashboardNavigationView: View {
-    @ObservedObject private var viewModel: K5DashboardViewModel
+public struct TopBarItemView: View {
+    @ObservedObject private var viewModel: TopBarItemViewModel
+    private let selectAction: () -> Void
 
-    init(viewModel: K5DashboardViewModel) {
+    public init(viewModel: TopBarItemViewModel, selectAction: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.selectAction = selectAction
     }
 
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(viewModel.navigationItems) { navigationItem in
-                    Button(action: {
-                        viewModel.currentNavigationItem = navigationItem
-                    }, label: {
-                        HStack {
-                            navigationItem.icon
-                            navigationItem.label
-                        }
-                    })
-                }
+    public var body: some View {
+        Button(action: selectAction) {
+            HStack(spacing: 9) {
+                viewModel.icon
+                    .frame(width: 20, height: 20)
+                viewModel.label
+                    .font(.regular14)
             }
-            .padding(.horizontal)
-            .padding(.top)
+            .accentColor(viewModel.isSelected ? Color(Brand.shared.primary) : .oxford)
+            .padding(.horizontal, 17)
+            .padding(.vertical, 14)
         }
+        .accessibility(addTraits: viewModel.isSelected ? .isSelected : [])
     }
 }
 
-struct K5DashboardNavigationView_Previews: PreviewProvider {
+struct TopBarItemView_Previews: PreviewProvider {
     static var previews: some View {
-        K5DashboardNavigationView(viewModel: K5DashboardViewModel())
+        TopBarItemView(viewModel: TopBarItemViewModel(icon: .k5homeroom, label: Text(verbatim: "Menu Item")), selectAction: {})
             .previewLayout(.sizeThatFits)
     }
 }

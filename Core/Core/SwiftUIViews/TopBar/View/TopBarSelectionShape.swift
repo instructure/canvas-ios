@@ -16,8 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetEnvironmentFeatureFlagsRequest: APIRequestable {
-    public typealias Response = APIEnvironmentFeatureFlags
+import SwiftUI
 
-    public let path = "features/environment"
+struct TopBarSelectionShape: Shape {
+
+    func path(in rect: CGRect) -> Path {
+        let radius: CGFloat = rect.height
+        var path = Path()
+        path.move(to: CGPoint(x: radius, y: 0))
+        path.addLine(to: CGPoint(x: rect.width - radius, y: 0))
+        path.addArc(center: CGPoint(x: rect.width - radius, y: rect.height), radius: radius, startAngle: .degrees(90), endAngle: .degrees(0), clockwise: false)
+        path.addLine(to: CGPoint(x: radius, y: rect.height))
+        path.addArc(center: CGPoint(x: radius, y: rect.height), radius: radius, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: false)
+        return Path(path.cgPath)
+    }
 }

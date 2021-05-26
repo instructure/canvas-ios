@@ -16,8 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetEnvironmentFeatureFlagsRequest: APIRequestable {
-    public typealias Response = APIEnvironmentFeatureFlags
+import SwiftUI
 
-    public let path = "features/environment"
+public class TopBarItemViewModel: ObservableObject {
+    public var icon: Image
+    public var label: Text
+    @Published public var isSelected = false
+
+    public init(icon: Image, label: Text) {
+        self.icon = icon
+        self.label = label
+    }
 }

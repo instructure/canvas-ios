@@ -16,8 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetEnvironmentFeatureFlagsRequest: APIRequestable {
-    public typealias Response = APIEnvironmentFeatureFlags
+import SwiftUI
 
-    public let path = "features/environment"
+public class TopBarViewModel: ObservableObject {
+    public let items: [TopBarItemViewModel]
+    @Published public var selectedItemIndex = 0 {
+        didSet {
+            updateSelectedItemState()
+        }
+    }
+
+    public init(items: [TopBarItemViewModel]) {
+        self.items = items
+        updateSelectedItemState()
+    }
+
+    private func updateSelectedItemState() {
+        for (index, item) in items.enumerated() {
+            item.isSelected = (index == selectedItemIndex)
+        }
+    }
 }

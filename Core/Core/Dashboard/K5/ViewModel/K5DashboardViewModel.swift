@@ -16,16 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class K5DashboardViewModel: ObservableObject {
-    let navigationItems: [K5DashboardNavigationViewModel] = [
-        K5DashboardNavigationViewModel(type: .homeroom, icon: .coursesLine, label: Text("Homeroom", bundle: .core)),
-        K5DashboardNavigationViewModel(type: .schedule, icon: .calendarMonthLine, label: Text("Schedule", bundle: .core)),
-        K5DashboardNavigationViewModel(type: .grades, icon: .gradebookLine, label: Text("Grades", bundle: .core)),
-        K5DashboardNavigationViewModel(type: .resources, icon: .folderLine, label: Text("Resources", bundle: .core)),
-    ]
-    @Published var currentNavigationItem: K5DashboardNavigationViewModel
+    @Published private(set) var topBarViewModel = TopBarViewModel(items: [
+        TopBarItemViewModel(icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
+        TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
+        TopBarItemViewModel(icon: .k5grades, label: Text("Grades", bundle: .core)),
+        TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core)),
+    ])
+
     let viewModels = (
         homeroom: K5HomeroomViewModel(),
         schedule: K5ScheduleViewModel(),
@@ -33,8 +34,13 @@ public class K5DashboardViewModel: ObservableObject {
         resources: K5ResourcesViewModel()
     )
 
+    private var topBarChangeListener: AnyCancellable?
+
     init() {
-        currentNavigationItem = navigationItems.first!
+        // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
+        topBarChangeListener = topBarViewModel.objectWillChange.sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
     }
 
     func profileButtonPressed(router: Router, viewController: WeakViewController) {

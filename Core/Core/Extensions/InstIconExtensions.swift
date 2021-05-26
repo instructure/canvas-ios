@@ -221,6 +221,10 @@ public extension UIImage {
     static var filterCheckbox: UIImage { UIImage(named: "filterCheckbox", in: .core, compatibleWith: nil)! }
     static var inboxTab: UIImage { UIImage(named: "inboxTab", in: .core, compatibleWith: nil)! }
     static var inboxTabActive: UIImage { UIImage(named: "inboxTabActive", in: .core, compatibleWith: nil)! }
+    static var k5grades: UIImage { UIImage(named: "k5grades", in: .core, compatibleWith: nil)! }
+    static var k5homeroom: UIImage { UIImage(named: "k5homeroom", in: .core, compatibleWith: nil)! }
+    static var k5resources: UIImage { UIImage(named: "k5resources", in: .core, compatibleWith: nil)! }
+    static var k5schedule: UIImage { UIImage(named: "k5schedule", in: .core, compatibleWith: nil)! }
     static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
@@ -400,4 +404,39 @@ public extension Image {
     static var warningSolid: Image { Image("warningSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
+
+    static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
+    static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
+    static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
+    static var addImageLine: Image { Image("addImageLine", bundle: .core) }
+    static var addVideoCameraLine: Image { Image("addVideoCameraLine", bundle: .core) }
+    static var alertsTab: Image { Image("alertsTab", bundle: .core) }
+    static var alertsTabActive: Image { Image("alertsTabActive", bundle: .core) }
+    static var attendance: Image { Image("attendance", bundle: .core) }
+    static var calendarEmptyLine: Image { Image("calendarEmptyLine", bundle: .core) }
+    static var calendarEmptySolid: Image { Image("calendarEmptySolid", bundle: .core) }
+    static var calendarTab: Image { Image("calendarTab", bundle: .core) }
+    static var calendarTabActive: Image { Image("calendarTabActive", bundle: .core) }
+    static var calendarTodayLine: Image { Image("calendarTodayLine", bundle: .core) }
+    static var cameraLine: Image { Image("cameraLine", bundle: .core) }
+    static var cameraSolid: Image { Image("cameraSolid", bundle: .core) }
+    static var chatBubble: Image { Image("chatBubble", bundle: .core) }
+    static var collaborations: Image { Image("collaborations", bundle: .core) }
+    static var conferences: Image { Image("conferences", bundle: .core) }
+    static var coursesTab: Image { Image("coursesTab", bundle: .core) }
+    static var coursesTabActive: Image { Image("coursesTabActive", bundle: .core) }
+    static var dashboardTab: Image { Image("dashboardTab", bundle: .core) }
+    static var dashboardTabActive: Image { Image("dashboardTabActive", bundle: .core) }
+    static var dropdown: Image { Image("dropdown", bundle: .core) }
+    static var filterCheckbox: Image { Image("filterCheckbox", bundle: .core) }
+    static var inboxTab: Image { Image("inboxTab", bundle: .core) }
+    static var inboxTabActive: Image { Image("inboxTabActive", bundle: .core) }
+    static var k5grades: Image { Image("k5grades", bundle: .core) }
+    static var k5homeroom: Image { Image("k5homeroom", bundle: .core) }
+    static var k5resources: Image { Image("k5resources", bundle: .core) }
+    static var k5schedule: Image { Image("k5schedule", bundle: .core) }
+    static var logout: Image { Image("logout", bundle: .core) }
+    static var qrCode: Image { Image("qrCode", bundle: .core) }
+    static var todoTab: Image { Image("todoTab", bundle: .core) }
+    static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
 }

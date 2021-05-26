@@ -16,8 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetEnvironmentFeatureFlagsRequest: APIRequestable {
-    public typealias Response = APIEnvironmentFeatureFlags
+import SwiftUI
 
-    public let path = "features/environment"
+public struct ViewBoundsPreferenceData {
+    public let viewId: Int
+    public let bounds: Anchor<CGRect>
+}
+
+public struct ViewBoundsPreferenceKey: PreferenceKey {
+    public typealias Value = [ViewBoundsPreferenceData]
+
+    public static var defaultValue: [ViewBoundsPreferenceData] = []
+
+    public static func reduce(value: inout [ViewBoundsPreferenceData], nextValue: () -> [ViewBoundsPreferenceData]) {
+        value.append(contentsOf: nextValue())
+    }
 }
