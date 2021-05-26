@@ -27,13 +27,17 @@ public struct TopBarView: View {
     }
 
     public var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollViewWithReader(.horizontal, showsIndicators: false) { scrollViewProxy in
             HStack(spacing: 0) {
                 ForEach(0..<viewModel.items.count) { index in
                     TopBarItemView(viewModel: viewModel.items[index]) {
                         viewModel.selectedItemIndex = index
+                        withAnimation {
+                            scrollViewProxy.scrollTo(index, anchor: nil)
+                        }
                     }
                     .anchorPreference(key: ViewBoundsPreferenceKey.self, value: .bounds, transform: { [ViewBoundsPreferenceData(viewId: index, bounds: $0)] })
+                    .id(index)
                 }
             }
             .overlayPreferenceValue(ViewBoundsPreferenceKey.self) { boundsPreferences in
