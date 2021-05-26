@@ -50,4 +50,17 @@ class ModuleTests: CoreTestCase {
         let moduleItems: [ModuleItem] = databaseClient.fetch()
         XCTAssertEqual(moduleItems.count, 2)
     }
+
+    func testRequireSequentialLocking() {
+        let apiModule = APIModule.make(
+            require_sequential_progress: true,
+            items: [
+                APIModuleItem.make(id: "1", content_details: APIModuleItem.ContentDetails.make(locked_for_user: true)),
+                APIModuleItem.make(id: "2", content_details: APIModuleItem.ContentDetails.make(locked_for_user: true))
+            ]
+        )
+        let module = Module.make(from: apiModule)
+        XCTAssertTrue(module.items.first?.isLocked == true)
+        XCTAssertTrue(module.items[1].isLocked == true)
+    }
 }
