@@ -153,7 +153,19 @@ class SubmissionButtonPresenter: NSObject {
                 assignmentID: assignment.id,
                 userID: userID
             ), from: view, options: .modal(.formSheet, embedInNav: true))
-        case .none, .not_graded, .on_paper, .wiki_page, .student_annotation:
+        case .student_annotation:
+            let urlToLoad = assignment.htmlURL ?? env.currentSession?.baseURL ?? URL(string: "https://instructure.com")!
+            env.api.makeRequest(GetWebSessionRequest(to: urlToLoad)) { [weak self] response, _, _ in
+                guard let self = self else { return }
+                performUIUpdate {
+                    let web = CoreWebViewController()
+                    web.title = assignment.name
+                    web.webView.load(URLRequest(url: response?.session_url ?? urlToLoad))
+                    web.addDoneButton(side: .right)
+                    self.env.router.show(web, from: view, options: .modal(embedInNav: true))
+                }
+            }
+        case .none, .not_graded, .on_paper, .wiki_page:
             break
         }
     }
