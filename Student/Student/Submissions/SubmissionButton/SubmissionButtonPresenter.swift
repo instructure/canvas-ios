@@ -161,8 +161,7 @@ class SubmissionButtonPresenter: NSObject {
                     let web = CoreWebViewController()
                     web.title = assignment.name
                     web.webView.load(URLRequest(url: response?.session_url ?? urlToLoad))
-                    web.addDoneButton(side: .right)
-                    self.env.router.show(web, from: view, options: .modal(embedInNav: true))
+                    self.env.router.show(web, from: view, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
                 }
             }
         case .none, .not_graded, .on_paper, .wiki_page:
