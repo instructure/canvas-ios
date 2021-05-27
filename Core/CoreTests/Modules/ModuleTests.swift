@@ -56,7 +56,7 @@ class ModuleTests: CoreTestCase {
             require_sequential_progress: true,
             items: [
                 APIModuleItem.make(id: "1", content_details: APIModuleItem.ContentDetails.make(locked_for_user: true)),
-                APIModuleItem.make(id: "2", content_details: APIModuleItem.ContentDetails.make(locked_for_user: true))
+                APIModuleItem.make(id: "2", content_details: APIModuleItem.ContentDetails.make(locked_for_user: true)),
             ]
         )
         let module = Module.make(from: apiModule)
