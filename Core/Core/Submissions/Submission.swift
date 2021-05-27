@@ -275,7 +275,7 @@ extension Submission {
             return UIImage.linkLine
         case .wiki_page:
             return UIImage.documentLine
-        case .none, .not_graded, .on_paper:
+        case .none, .not_graded, .on_paper, .student_annotation:
             return nil
         }
     }
@@ -300,7 +300,7 @@ extension Submission {
             return attachments?.first?.size.humanReadableFileSize
         case .online_url:
             return url?.absoluteString
-        case .none, .not_graded, .on_paper, .wiki_page:
+        case .none, .not_graded, .on_paper, .wiki_page, .student_annotation:
             return nil
         }
     }
@@ -383,6 +383,7 @@ public enum SubmissionType: String, Codable {
     case on_paper
     case basic_lti_launch
     case wiki_page
+    case student_annotation
 
     public var localizedString: String {
         switch self {
@@ -408,6 +409,9 @@ public enum SubmissionType: String, Codable {
             return NSLocalizedString("On Paper", bundle: .core, comment: "")
         case .wiki_page:
             return NSLocalizedString("Page", bundle: .core, comment: "")
+        case .student_annotation:
+            return NSLocalizedString("Student Annotation", bundle: .core, comment: "")
+
         }
     }
 }

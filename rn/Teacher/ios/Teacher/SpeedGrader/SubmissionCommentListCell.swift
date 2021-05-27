@@ -180,7 +180,7 @@ struct SubmissionAttempt: View {
             return Image.linkLine
         case .wiki_page:
             return Image.documentLine
-        case .none?, .not_graded, .on_paper, .online_upload, nil:
+        case .none?, .not_graded, .on_paper, .online_upload, .student_annotation, nil:
             return nil
         }
     }
