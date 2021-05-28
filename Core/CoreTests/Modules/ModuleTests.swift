@@ -55,12 +55,18 @@ class ModuleTests: CoreTestCase {
         let apiModule = APIModule.make(
             require_sequential_progress: true,
             items: [
-                APIModuleItem.make(id: "1", content_details: APIModuleItem.ContentDetails.make(locked_for_user: true)),
-                APIModuleItem.make(id: "2", content_details: APIModuleItem.ContentDetails.make(locked_for_user: true)),
+                APIModuleItem.make(id: "1"),
+                APIModuleItem.make(id: "2"),
+                APIModuleItem.make(id: "3"),
             ]
         )
         let module = Module.make(from: apiModule)
-        XCTAssertTrue(module.items.first?.isLocked == true)
+        XCTAssertTrue(module.items.first?.isLocked == false)
         XCTAssertTrue(module.items[1].isLocked == true)
+        XCTAssertTrue(module.items[2].isLocked == true)
+        module.items.first?.completed = true
+        XCTAssertTrue(module.items.first?.isLocked == false)
+        XCTAssertTrue(module.items[1].isLocked == false)
+        XCTAssertTrue(module.items[2].isLocked == true)
     }
 }
