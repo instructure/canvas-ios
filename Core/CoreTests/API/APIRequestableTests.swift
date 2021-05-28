@@ -28,6 +28,8 @@ class APIQueryItemTests: XCTestCase {
         XCTAssertEqual(APIQueryItem.perPage(10).toURLQueryItems(), [URLQueryItem(name: "per_page", value: "10")])
         XCTAssertEqual(APIQueryItem.bool("do_it", true).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "1")])
         XCTAssertEqual(APIQueryItem.bool("do_it", false).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "0")])
+        XCTAssertEqual(APIQueryItem.optionalBool("do_it", false).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "0")])
+        XCTAssertEqual(APIQueryItem.optionalBool("do_it", nil).toURLQueryItems(), [])
     }
 }
 

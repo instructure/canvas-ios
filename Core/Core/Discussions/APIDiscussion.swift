@@ -598,13 +598,19 @@ struct DeleteDiscussionEntryRequest: APIRequestable {
 public struct GetAllAnnouncementsRequest: APIRequestable {
     public typealias Response = [APIDiscussionTopic]
     var contextCodes: [String] = []
+    private let activeOnly: Bool?
+    private let perPage: Int?
 
-    public init(contextCodes: [String]) {
+    public init(contextCodes: [String], activeOnly: Bool? = nil, perPage: Int? = nil) {
         self.contextCodes = contextCodes
+        self.activeOnly = activeOnly
+        self.perPage = perPage
     }
 
     public var path = "announcements"
     public var query: [APIQueryItem] {[
         .array("context_codes", contextCodes),
+        .optionalBool("active_only", activeOnly),
+        .perPage(perPage),
     ]}
 }

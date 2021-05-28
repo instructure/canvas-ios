@@ -35,6 +35,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var imageDownloadURL: URL?
     @NSManaged public var isFavorite: Bool
     @NSManaged public var isFutureEnrollment: Bool
+    @NSManaged public var isHomeroomCourse: Bool
     @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var name: String?
@@ -82,6 +83,7 @@ final public class Course: NSManagedObject, WriteableModel {
             (item.start_at ?? .distantPast) > Clock.now ||
             (item.term?.start_at ?? .distantPast) > Clock.now
         )
+        model.isHomeroomCourse = item.homeroom_course ?? false
         model.isPublished = item.workflow_state == .available || item.workflow_state == .completed
         model.termName = item.term?.name
         model.accessRestrictedByDate = item.access_restricted_by_date ?? false
