@@ -34,13 +34,12 @@ class K5HomeroomViewModel: ObservableObject {
             return
         }
 
-        requestHomeroomAnnouncements()
+        requestAnnouncements()
     }
 
-    private func requestHomeroomAnnouncements() {
-        let homeroomCourses = cards.filter { $0.isHomeroom }
-        let courseContextCodes = homeroomCourses.map { Core.Context(.course, id: $0.id).canvasContextID }
-        env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes, activeOnly: true, perPage: 1)) { [weak self] announcements, _, _ in
+    private func requestAnnouncements() {
+        let courseContextCodes = cards.map { Core.Context(.course, id: $0.id).canvasContextID }
+        env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes, activeOnly: true)) { [weak self] announcements, _, _ in
             guard let announcements = announcements else {
                 self?.finishRefresh()
                 return
@@ -56,8 +55,9 @@ class K5HomeroomViewModel: ObservableObject {
     }
 
     private func updateAnnouncementViewModels(from announcements: [APIDiscussionTopic]) {
-        let announcementModels: [K5HomeroomAnnouncementViewModel] = announcements.compactMap {
-            guard let message = $0.message, let card = self.card(for: $0) else { return nil }
+        let homeroomAnnouncements = announcements.filter { card(for: $0)?.isHomeroom == true }
+        let announcementModels: [K5HomeroomAnnouncementViewModel] = homeroomAnnouncements.compactMap {
+            guard let message = $0.message, let card = card(for: $0) else { return nil }
             return K5HomeroomAnnouncementViewModel(courseName: card.shortName, title: $0.title ?? NSLocalizedString("Announcement", comment: ""), htmlContent: message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
         }
 
