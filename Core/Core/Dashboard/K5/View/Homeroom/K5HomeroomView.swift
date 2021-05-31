@@ -19,13 +19,24 @@
 import SwiftUI
 
 struct K5HomeroomView: View {
+    @ObservedObject private var viewModel = K5HomeroomViewModel()
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Welcome, Student!")
+                .foregroundColor(.licorice)
+                .font(.regular30)
                 .padding()
-            K5HomeroomAnnouncementView()
-                .padding()
-            Divider()
+            ForEach(viewModel.announcements) {
+                K5HomeroomAnnouncementView(viewModel: $0)
+                    .padding()
+                Divider()
+            }
+
+            if viewModel.announcements.isEmpty {
+                Divider()
+            }
+
             K5HomeroomMySubjectsView()
                 .padding()
         }

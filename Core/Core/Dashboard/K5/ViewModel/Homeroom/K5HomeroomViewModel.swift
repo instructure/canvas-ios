@@ -16,13 +16,57 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5HomeroomViewModel {
+class K5HomeroomViewModel: ObservableObject {
+    @Published private(set) var announcements: [K5HomeroomAnnouncement] = []
 
+    private let env = AppEnvironment.shared
+    private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
+        self?.dashboardCardsUpdated()
+    }
+    private var refreshCompletion: (() -> Void)?
+
+    public init() {
+        cards.refresh()
+    }
+
+    private func dashboardCardsUpdated() {
+        guard cards.requested, !cards.pending else {
+            return
+        }
+
+        requestAnnouncements()
+    }
+
+    private func requestAnnouncements() {
+        let homeroomCourses = cards.filter { $0.isHomeroom }
+        let courseContextCodes = homeroomCourses.map { Core.Context(.course, id: $0.id).canvasContextID }
+        env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes, activeOnly: true, perPage: 1)) { [weak self] announcements, _, _ in
+            guard let self = self, let announcements = announcements else { return }
+
+            let announcementModels: [K5HomeroomAnnouncement] = announcements.compactMap {
+                guard let message = $0.message, let card = self.card(for: $0) else { return nil }
+                return K5HomeroomAnnouncement(courseName: card.shortName, title: $0.title ?? NSLocalizedString("Announcement", comment: ""), htmlContent: message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
+            }
+
+            performUIUpdate {
+                self.refreshCompletion?()
+                self.refreshCompletion = nil
+                self.announcements = announcementModels
+            }
+        }
+    }
+
+    private func card(for announcement: APIDiscussionTopic) -> DashboardCard? {
+        cards.first {
+            announcement.context_code == Core.Context(.course, id: $0.id).canvasContextID
+        }
+    }
 }
 
 extension K5HomeroomViewModel: Refreshable {
 
     func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
+        refreshCompletion = completion
+        cards.refresh(force: true)
     }
 }

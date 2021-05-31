@@ -16,18 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-
-struct K5HomeroomMySubjectsView: View {
-    var body: some View {
-        Text("My Subjects", bundle: .core)
-            .font(.regular20)
-            .foregroundColor(.licorice)
-    }
+public struct K5HomeroomAnnouncement {
+    public let courseName: String
+    public let title: String
+    public let htmlContent: String
+    public let allAnnouncementsRoute: String
 }
 
-struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
-    static var previews: some View {
-        K5HomeroomMySubjectsView().previewLayout(.sizeThatFits)
-    }
+extension K5HomeroomAnnouncement: Identifiable {
+    public var id: String { courseName + title }
 }
