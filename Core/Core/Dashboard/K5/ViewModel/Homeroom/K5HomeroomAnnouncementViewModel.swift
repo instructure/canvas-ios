@@ -16,13 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct K5HomeroomAnnouncement {
+public struct K5HomeroomAnnouncementViewModel {
     public let courseName: String
     public let title: String
     public let htmlContent: String
     public let allAnnouncementsRoute: String
 }
 
-extension K5HomeroomAnnouncement: Identifiable {
+extension K5HomeroomAnnouncementViewModel: Identifiable {
     public var id: String { courseName + title }
 }

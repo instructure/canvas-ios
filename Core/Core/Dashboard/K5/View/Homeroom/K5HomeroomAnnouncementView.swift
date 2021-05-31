@@ -22,9 +22,9 @@ struct K5HomeroomAnnouncementView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
-    private let viewModel: K5HomeroomAnnouncement
+    private let viewModel: K5HomeroomAnnouncementViewModel
 
-    init(viewModel: K5HomeroomAnnouncement) {
+    init(viewModel: K5HomeroomAnnouncementViewModel) {
         self.viewModel = viewModel
     }
 
@@ -56,7 +56,7 @@ struct K5HomeroomAnnouncementView: View {
 
 struct K5HomeRoomAnnouncementView_Previews: PreviewProvider {
     static var previews: some View {
-        let model = K5HomeroomAnnouncement(courseName: "K5 - Math", title: "New Assignment!", htmlContent: "<h1>Make sure to complete in time!</h1>", allAnnouncementsRoute: "")
+        let model = K5HomeroomAnnouncementViewModel(courseName: "K5 - Math", title: "New Assignment!", htmlContent: "<h1>Make sure to complete in time!</h1>", allAnnouncementsRoute: "")
         K5HomeroomAnnouncementView(viewModel: model).previewLayout(.sizeThatFits)
     }
 }

@@ -821,7 +821,7 @@
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
 		CF575E1A265E920D00F8515F /* CompatibleScrollViewReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */; };
 		CF575E20265E9D5200F8515F /* ScrollViewWithReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */; };
-		CF575E2C265FD23600F8515F /* K5HomeroomAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E2B265FD23600F8515F /* K5HomeroomAnnouncement.swift */; };
+		CF575E2C265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */; };
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
 		CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */; };
 		CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */; };
@@ -1956,7 +1956,7 @@
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
 		CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleScrollViewReader.swift; sourceTree = "<group>"; };
 		CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithReader.swift; sourceTree = "<group>"; };
-		CF575E2B265FD23600F8515F /* K5HomeroomAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncement.swift; sourceTree = "<group>"; };
+		CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModel.swift; sourceTree = "<group>"; };
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakViewController.swift; sourceTree = "<group>"; };
 		CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
@@ -4104,7 +4104,7 @@
 		CF60CC4F26496A1700C1C173 /* Homeroom */ = {
 			isa = PBXGroup;
 			children = (
-				CF575E2B265FD23600F8515F /* K5HomeroomAnnouncement.swift */,
+				CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */,
 				CF60CC5B26496ECF00C1C173 /* K5HomeroomViewModel.swift */,
 			);
 			path = Homeroom;
@@ -5468,7 +5468,7 @@
 				7DA2603423F722D9005D2121 /* GradeViewable.swift in Sources */,
 				7DA2605723F722D9005D2121 /* Page.swift in Sources */,
 				7DA25FBC23F72136005D2121 /* APILoginWeb.swift in Sources */,
-				CF575E2C265FD23600F8515F /* K5HomeroomAnnouncement.swift in Sources */,
+				CF575E2C265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift in Sources */,
 				7DA2608D23F72315005D2121 /* GetAccountHelpLinks.swift in Sources */,
 				7D159CEA242E555A00A77A15 /* ModuleItemCell.swift in Sources */,
 				7DA25FE423F721DA005D2121 /* PermissionName.swift in Sources */,

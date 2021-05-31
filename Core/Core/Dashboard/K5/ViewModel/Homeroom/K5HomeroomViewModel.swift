@@ -17,7 +17,7 @@
 //
 
 class K5HomeroomViewModel: ObservableObject {
-    @Published private(set) var announcements: [K5HomeroomAnnouncement] = []
+    @Published private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
 
     private let env = AppEnvironment.shared
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
@@ -43,9 +43,9 @@ class K5HomeroomViewModel: ObservableObject {
         env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes, activeOnly: true, perPage: 1)) { [weak self] announcements, _, _ in
             guard let self = self, let announcements = announcements else { return }
 
-            let announcementModels: [K5HomeroomAnnouncement] = announcements.compactMap {
+            let announcementModels: [K5HomeroomAnnouncementViewModel] = announcements.compactMap {
                 guard let message = $0.message, let card = self.card(for: $0) else { return nil }
-                return K5HomeroomAnnouncement(courseName: card.shortName, title: $0.title ?? NSLocalizedString("Announcement", comment: ""), htmlContent: message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
+                return K5HomeroomAnnouncementViewModel(courseName: card.shortName, title: $0.title ?? NSLocalizedString("Announcement", comment: ""), htmlContent: message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
             }
 
             performUIUpdate {
