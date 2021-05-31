@@ -26,6 +26,7 @@ public struct APIModule: Codable, Equatable {
     public let position: Int
     public let published: Bool?
     public let prerequisite_module_ids: [String]
+    public let require_sequential_progress: Bool?
     public let state: ModuleState?
     public var items: [APIModuleItem]?
     public var unlock_at: Date?
@@ -184,6 +185,7 @@ extension APIModule {
         position: Int = 1,
         published: Bool = true,
         prerequisite_module_ids: [String] = [],
+        require_sequential_progress: Bool = false,
         state: ModuleState? = nil,
         items: [APIModuleItem]? = nil,
         unlock_at: Date? = nil
@@ -194,6 +196,7 @@ extension APIModule {
             position: position,
             published: published,
             prerequisite_module_ids: prerequisite_module_ids,
+            require_sequential_progress: require_sequential_progress,
             state: state,
             items: items,
             unlock_at: unlock_at
