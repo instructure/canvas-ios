@@ -34,31 +34,43 @@ class K5HomeroomViewModel: ObservableObject {
             return
         }
 
-        requestAnnouncements()
+        requestHomeroomAnnouncements()
     }
 
-    private func requestAnnouncements() {
+    private func requestHomeroomAnnouncements() {
         let homeroomCourses = cards.filter { $0.isHomeroom }
         let courseContextCodes = homeroomCourses.map { Core.Context(.course, id: $0.id).canvasContextID }
         env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes, activeOnly: true, perPage: 1)) { [weak self] announcements, _, _ in
-            guard let self = self, let announcements = announcements else { return }
-
-            let announcementModels: [K5HomeroomAnnouncementViewModel] = announcements.compactMap {
-                guard let message = $0.message, let card = self.card(for: $0) else { return nil }
-                return K5HomeroomAnnouncementViewModel(courseName: card.shortName, title: $0.title ?? NSLocalizedString("Announcement", comment: ""), htmlContent: message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
+            guard let announcements = announcements else {
+                self?.finishRefresh()
+                return
             }
-
-            performUIUpdate {
-                self.refreshCompletion?()
-                self.refreshCompletion = nil
-                self.announcements = announcementModels
-            }
+            self?.updateAnnouncementViewModels(from: announcements)
         }
     }
 
     private func card(for announcement: APIDiscussionTopic) -> DashboardCard? {
         cards.first {
             announcement.context_code == Core.Context(.course, id: $0.id).canvasContextID
+        }
+    }
+
+    private func updateAnnouncementViewModels(from announcements: [APIDiscussionTopic]) {
+        let announcementModels: [K5HomeroomAnnouncementViewModel] = announcements.compactMap {
+            guard let message = $0.message, let card = self.card(for: $0) else { return nil }
+            return K5HomeroomAnnouncementViewModel(courseName: card.shortName, title: $0.title ?? NSLocalizedString("Announcement", comment: ""), htmlContent: message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
+        }
+
+        performUIUpdate {
+            self.finishRefresh()
+            self.announcements = announcementModels
+        }
+    }
+
+    private func finishRefresh() {
+        performUIUpdate {
+            self.refreshCompletion?()
+            self.refreshCompletion = nil
         }
     }
 }
