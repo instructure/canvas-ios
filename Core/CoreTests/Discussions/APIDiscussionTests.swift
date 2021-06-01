@@ -173,16 +173,16 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
             .optionalBool("active_only", nil),
-            .perPage(nil),
+            .optionalBool("latest_only", nil),
         ])
     }
 
     func testExhaustiveQuery() {
-        let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"], activeOnly: true, perPage: 6)
+        let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"], activeOnly: true, latestOnly: false)
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
             .optionalBool("active_only", true),
-            .perPage(6),
+            .optionalBool("latest_only", false),
         ])
     }
 }
