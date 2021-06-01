@@ -18,10 +18,14 @@
 
 import SwiftUI
 
-struct K5HomeroomView: View {
-    @ObservedObject private var viewModel = K5HomeroomViewModel()
+public struct K5HomeroomView: View {
+    @ObservedObject private var viewModel: K5HomeroomViewModel
 
-    var body: some View {
+    public init(viewModel: K5HomeroomViewModel) {
+        self.viewModel = viewModel
+    }
+
+    public var body: some View {
         VStack(alignment: .leading) {
             Text("Welcome, Student!")
                 .foregroundColor(.licorice)
@@ -45,6 +49,6 @@ struct K5HomeroomView: View {
 
 struct K5HomeroomView_Previews: PreviewProvider {
     static var previews: some View {
-        K5HomeroomView().previewLayout(.sizeThatFits)
+        K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
     }
 }
