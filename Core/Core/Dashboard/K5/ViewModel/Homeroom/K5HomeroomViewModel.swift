@@ -16,49 +16,41 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5HomeroomViewModel: ObservableObject {
+public class K5HomeroomViewModel: ObservableObject {
     @Published private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
 
     private let env = AppEnvironment.shared
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.dashboardCardsUpdated()
     }
+    private var announcementsStore: Store<GetLatestAnnouncements>?
     private var refreshCompletion: (() -> Void)?
+    private var forceRefresh = false
 
     public init() {
         cards.refresh()
     }
 
     private func dashboardCardsUpdated() {
-        guard cards.requested, !cards.pending else {
-            return
-        }
-
+        guard cards.requested, !cards.pending else { return }
         requestAnnouncements()
     }
 
     private func requestAnnouncements() {
-        let courseContextCodes = cards.map { Core.Context(.course, id: $0.id).canvasContextID }
-        env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes, activeOnly: true)) { [weak self] announcements, _, _ in
-            guard let announcements = announcements else {
-                self?.finishRefresh()
-                return
-            }
-            self?.updateAnnouncementViewModels(from: announcements)
+        guard announcementsStore == nil else { return }
+
+        let courseIds = cards.map { $0.id }
+        announcementsStore = env.subscribe(GetLatestAnnouncements(courseIds: courseIds)) { [weak self] in
+            self?.updateAnnouncementViewModels()
         }
+        announcementsStore?.refresh(force: forceRefresh)
     }
 
-    private func card(for announcement: APIDiscussionTopic) -> DashboardCard? {
-        cards.first {
-            announcement.context_code == Core.Context(.course, id: $0.id).canvasContextID
-        }
-    }
-
-    private func updateAnnouncementViewModels(from announcements: [APIDiscussionTopic]) {
-        let homeroomAnnouncements = announcements.filter { card(for: $0)?.isHomeroom == true }
+    private func updateAnnouncementViewModels() {
+        let homeroomAnnouncements = announcementsStore?.filter { card(for: $0)?.isHomeroom == true } ?? []
         let announcementModels: [K5HomeroomAnnouncementViewModel] = homeroomAnnouncements.compactMap {
-            guard let message = $0.message, let card = card(for: $0) else { return nil }
-            return K5HomeroomAnnouncementViewModel(courseName: card.shortName, title: $0.title ?? NSLocalizedString("Announcement", comment: ""), htmlContent: message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
+            guard let card = card(for: $0) else { return nil }
+            return K5HomeroomAnnouncementViewModel(courseName: card.shortName, title: $0.title, htmlContent: $0.message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
         }
 
         performUIUpdate {
@@ -67,7 +59,14 @@ class K5HomeroomViewModel: ObservableObject {
         }
     }
 
+    private func card(for announcement: LatestAnnouncement) -> DashboardCard? {
+        cards.first {
+            announcement.contextCode == Core.Context(.course, id: $0.id).canvasContextID
+        }
+    }
+
     private func finishRefresh() {
+        forceRefresh = false
         performUIUpdate {
             self.refreshCompletion?()
             self.refreshCompletion = nil
@@ -78,7 +77,9 @@ class K5HomeroomViewModel: ObservableObject {
 extension K5HomeroomViewModel: Refreshable {
 
     func refresh(completion: @escaping () -> Void) {
+        forceRefresh = true
         refreshCompletion = completion
+        announcementsStore = nil
         cards.refresh(force: true)
     }
 }
