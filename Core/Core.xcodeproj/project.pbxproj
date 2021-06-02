@@ -822,6 +822,10 @@
 		CF575E1A265E920D00F8515F /* CompatibleScrollViewReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */; };
 		CF575E20265E9D5200F8515F /* ScrollViewWithReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */; };
 		CF575E2C265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */; };
+		CF575E3F26667AB700F8515F /* GetLatestAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E3E26667AB700F8515F /* GetLatestAnnouncements.swift */; };
+		CF575E4226667AD700F8515F /* LatestAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E4126667AD700F8515F /* LatestAnnouncement.swift */; };
+		CF575E49266792CA00F8515F /* LatestAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E48266792CA00F8515F /* LatestAnnouncementTests.swift */; };
+		CF575E4D2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E4C2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift */; };
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
 		CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */; };
 		CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */; };
@@ -1957,6 +1961,10 @@
 		CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleScrollViewReader.swift; sourceTree = "<group>"; };
 		CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithReader.swift; sourceTree = "<group>"; };
 		CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModel.swift; sourceTree = "<group>"; };
+		CF575E3E26667AB700F8515F /* GetLatestAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestAnnouncements.swift; sourceTree = "<group>"; };
+		CF575E4126667AD700F8515F /* LatestAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestAnnouncement.swift; sourceTree = "<group>"; };
+		CF575E48266792CA00F8515F /* LatestAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestAnnouncementTests.swift; sourceTree = "<group>"; };
+		CF575E4C2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestAnnouncementsTests.swift; sourceTree = "<group>"; };
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakViewController.swift; sourceTree = "<group>"; };
 		CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
@@ -2585,6 +2593,7 @@
 		7D148642230B48E7003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				CF575E46266792B600F8515F /* K5 */,
 				CF4BDB552645314A00A91952 /* Model */,
 				CF4BDB562645315700A91952 /* View */,
 			);
@@ -4008,6 +4017,7 @@
 		CF4BDB582645393A00A91952 /* K5 */ = {
 			isa = PBXGroup;
 			children = (
+				CF575E3D266679D100F8515F /* Model */,
 				CF4BDB592645394400A91952 /* View */,
 				CF4BDB5A2645394900A91952 /* ViewModel */,
 			);
@@ -4038,6 +4048,32 @@
 				CF60CC6126497BC100C1C173 /* Refreshable.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF575E3D266679D100F8515F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF575E3E26667AB700F8515F /* GetLatestAnnouncements.swift */,
+				CF575E4126667AD700F8515F /* LatestAnnouncement.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF575E46266792B600F8515F /* K5 */ = {
+			isa = PBXGroup;
+			children = (
+				CF575E47266792BB00F8515F /* Model */,
+			);
+			path = K5;
+			sourceTree = "<group>";
+		};
+		CF575E47266792BB00F8515F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF575E4C2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift */,
+				CF575E48266792CA00F8515F /* LatestAnnouncementTests.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */ = {
@@ -4983,6 +5019,7 @@
 				B1C783F32241ECEB00DD89A9 /* NSManagedObjectContextExtensionsTests.swift in Sources */,
 				7D5AA3C822959D5D00438667 /* GetSSOLoginTests.swift in Sources */,
 				7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */,
+				CF575E49266792CA00F8515F /* LatestAnnouncementTests.swift in Sources */,
 				9FC715CE23D758BD008CBDBF /* GetConversationsTests.swift in Sources */,
 				7DE949802385E08000B27F93 /* TodoTests.swift in Sources */,
 				7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */,
@@ -5093,6 +5130,7 @@
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
 				7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */,
+				CF575E4D2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
 				7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */,
@@ -5258,6 +5296,7 @@
 				7DA260AD23F72352005D2121 /* GetContextTabs.swift in Sources */,
 				7DA25FA823F72136005D2121 /* APIDashboard.swift in Sources */,
 				7DA2606F23F722E9005D2121 /* APINotificationPreferences.swift in Sources */,
+				CF575E4226667AD700F8515F /* LatestAnnouncement.swift in Sources */,
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */,
@@ -5341,6 +5380,7 @@
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
 				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
+				CF575E3F26667AB700F8515F /* GetLatestAnnouncements.swift in Sources */,
 				7D5400B3252BD3D7003691F4 /* APIMock.swift in Sources */,
 				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,

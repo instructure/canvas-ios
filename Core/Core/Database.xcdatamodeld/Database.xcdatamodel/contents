@@ -494,6 +494,12 @@
         <attribute name="text" attributeType="String"/>
         <attribute name="url" attributeType="URI"/>
     </entity>
+    <entity name="LatestAnnouncement" representedClassName="Core.LatestAnnouncement" syncable="YES">
+        <attribute name="contextCode" attributeType="String"/>
+        <attribute name="message" attributeType="String"/>
+        <attribute name="postedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+    </entity>
     <entity name="LogEvent" representedClassName="Core.LogEvent" syncable="YES">
         <attribute name="message" attributeType="String"/>
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
@@ -989,5 +995,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="LatestAnnouncement" positionX="-540" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
