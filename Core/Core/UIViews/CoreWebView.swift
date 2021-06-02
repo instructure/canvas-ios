@@ -56,6 +56,7 @@ open class CoreWebView: WKWebView {
     }
 
     public override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        configuration.allowsInlineMediaPlayback = true
         configuration.processPool = CoreWebView.processPool
         super.init(frame: frame, configuration: configuration)
         setup()
@@ -63,6 +64,7 @@ open class CoreWebView: WKWebView {
 
     public init(customUserAgentName: String? = nil) {
         let configuration = WKWebViewConfiguration()
+        configuration.allowsInlineMediaPlayback = true
         configuration.processPool = CoreWebView.processPool
         if let customUserAgentName = customUserAgentName {
             configuration.applicationNameForUserAgent = customUserAgentName
