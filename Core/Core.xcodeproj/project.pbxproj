@@ -861,6 +861,8 @@
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
+		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
+		CFCBB88A26692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88926692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift */; };
 		CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE214B2656895E00E3B32A /* Bounds.swift */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */; };
@@ -2002,6 +2004,8 @@
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
+		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
+		CFCBB88926692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardNavigationViewModelTests.swift; sourceTree = "<group>"; };
 		CFCE214B2656895E00E3B32A /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
@@ -4352,6 +4356,7 @@
 			isa = PBXGroup;
 			children = (
 				CFFA9D7E2668DF0B00C1648E /* Homeroom */,
+				CFCBB88926692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift */,
 				CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */,
 			);
 			path = ViewModel;
@@ -4360,6 +4365,7 @@
 		CFFA9D7E2668DF0B00C1648E /* Homeroom */ = {
 			isa = PBXGroup;
 			children = (
+				CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */,
 				CFFA9D772668BF1700C1648E /* K5HomeroomViewModelTests.swift */,
 			);
 			path = Homeroom;
@@ -5011,6 +5017,7 @@
 				7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */,
 				9F3107FA2371E02600502428 /* PageTests.swift in Sources */,
 				B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */,
+				CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */,
 				7D81F3FC24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift in Sources */,
 				CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */,
 				7D86285B224C05BB003A37DC /* APIMediaCommentTests.swift in Sources */,
@@ -5021,6 +5028,7 @@
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
 				7D89A2CE250A806B009D0FD2 /* FileEditorViewTests.swift in Sources */,
 				7DBD14EB2547343B00750F52 /* QuizListViewControllerTests.swift in Sources */,
+				CFCBB88A26692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift in Sources */,
 				7DE4B17F24EAE51100E7935C /* PageEditorViewTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
 				7D6E580E255207100068D3C3 /* DiscussionListViewControllerTests.swift in Sources */,
