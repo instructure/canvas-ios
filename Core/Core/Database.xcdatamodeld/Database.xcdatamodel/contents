@@ -542,6 +542,7 @@
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="prerequisiteModuleIDsRaw" optional="YES" attributeType="String"/>
         <attribute name="publishedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="requireSequentialProgressRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="stateRaw" optional="YES" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="itemsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ModuleItem" inverseName="module" inverseEntity="ModuleItem"/>

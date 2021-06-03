@@ -69,7 +69,31 @@ public class ModuleItem: NSManagedObject {
     }
 
     public var isLocked: Bool {
-        (lockedForUser && !visibleWhenLocked) || masteryPath?.locked == true || module?.state == .locked
+
+        if masteryPath?.locked == true || module?.state == .locked || lockedForUser == true {
+            return true
+        }
+
+        if module?.requireSequentialProgress == true && lockedForUser {
+            return true
+        }
+
+        guard let prevModuleItemIsComplete = prevModuleItemIsComplete() else {
+            return false
+        }
+
+        if module?.requireSequentialProgress == true && !prevModuleItemIsComplete {
+            return true
+        }
+
+        return lockedForUser
+    }
+
+    private func prevModuleItemIsComplete() -> Bool? {
+        if let index = module?.items.firstIndex(of: self), index > 0 {
+            return module?.items[index-1].completed ?? false
+        }
+        return nil
     }
 
     public var pointsPossible: Double? {
