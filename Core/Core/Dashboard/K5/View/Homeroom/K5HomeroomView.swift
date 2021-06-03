@@ -26,18 +26,14 @@ public struct K5HomeroomView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading) {
-            Text("Welcome, Student!")
+        VStack(alignment: .leading, spacing: 0) {
+            Text(viewModel.welcomeText)
                 .foregroundColor(.licorice)
                 .font(.regular30)
-                .padding()
+                .padding([.leading, .top, .trailing])
             ForEach(viewModel.announcements) {
                 K5HomeroomAnnouncementView(viewModel: $0)
                     .padding()
-                Divider()
-            }
-
-            if viewModel.announcements.isEmpty {
                 Divider()
             }
 

@@ -16,12 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
+
 public class K5HomeroomViewModel: ObservableObject {
-    @Published private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
+    @Published public private(set) var welcomeText = ""
+    @Published public private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
 
     private let env = AppEnvironment.shared
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.dashboardCardsUpdated()
+    }
+    private lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
+        self?.profileUpdated()
     }
     private var announcementsStore: Store<GetLatestAnnouncements>?
     private var refreshCompletion: (() -> Void)?
@@ -29,6 +35,21 @@ public class K5HomeroomViewModel: ObservableObject {
 
     public init() {
         cards.refresh()
+        profile.refresh()
+    }
+
+    private func profileUpdated() {
+        let newWelcomeText: String
+
+        if let userName = profile.first?.name {
+            newWelcomeText = NSLocalizedString("Welcome, \(userName)!", comment: "Welcome, username!")
+        } else {
+            newWelcomeText = NSLocalizedString("Welcome!", comment: "")
+        }
+
+        if newWelcomeText != welcomeText {
+            welcomeText = newWelcomeText
+        }
     }
 
     private func dashboardCardsUpdated() {
@@ -76,10 +97,11 @@ public class K5HomeroomViewModel: ObservableObject {
 
 extension K5HomeroomViewModel: Refreshable {
 
-    func refresh(completion: @escaping () -> Void) {
+    public func refresh(completion: @escaping () -> Void) {
         forceRefresh = true
         refreshCompletion = completion
         announcementsStore = nil
         cards.refresh(force: true)
+        profile.refresh(force: true)
     }
 }

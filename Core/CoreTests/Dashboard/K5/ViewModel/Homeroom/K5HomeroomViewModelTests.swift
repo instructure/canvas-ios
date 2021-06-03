@@ -21,6 +21,34 @@ import XCTest
 
 class K5HomeroomViewModelTests: CoreTestCase {
 
+    // MARK: - Welcome Text Tests
+
+    func testIncludesProfileNameInWelcomeText() {
+        mockUserProfile(name: "testName")
+
+        let testee = K5HomeroomViewModel()
+
+        XCTAssertEqual(testee.welcomeText, "Welcome, testName!")
+    }
+
+    func testDefaultWelcomeText() {
+        let testee = K5HomeroomViewModel()
+
+        XCTAssertEqual(testee.welcomeText, "Welcome!")
+    }
+
+    func testRefreshesWelcomeText() {
+        mockUserProfile(name: "testName")
+        let testee = K5HomeroomViewModel()
+
+        mockUserProfile(name: "new testName")
+        testee.refresh()
+
+        XCTAssertEqual(testee.welcomeText, "Welcome, new testName!")
+    }
+
+    // MARK: - Announcement Tests
+
     func testLoadsHomeroomAnnouncements() {
         mockAnnouncements(message: "message 2")
         mockDashboardCards()
@@ -51,6 +79,14 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.announcements.count, 1)
         guard let announcement = testee.announcements.first else { return }
         XCTAssertEqual(announcement.htmlContent, "updated message")
+    }
+
+    // MARK: - Private Helpers
+
+    private func mockUserProfile(name: String) {
+        let mockRequest = GetUserProfileRequest(userID: "self")
+        let mockResponse = APIProfile.make(name: name)
+        api.mock(mockRequest, value: mockResponse)
     }
 
     private func mockAnnouncements(message: String) {

@@ -16,6 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-protocol Refreshable {
+public protocol Refreshable {
     func refresh(completion: @escaping () -> Void)
+}
+
+public extension Refreshable {
+    func refresh() {
+        refresh {}
+    }
 }

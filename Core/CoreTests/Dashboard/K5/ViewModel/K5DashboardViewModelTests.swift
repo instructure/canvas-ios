@@ -24,7 +24,6 @@ class K5DashboardViewModelTests: CoreTestCase {
     func testObservesTopBarViewModelChanges() {
         let updatedExpectation = expectation(description: "Update received")
         let testee = K5DashboardViewModel()
-
         let updateSubscription = testee.objectWillChange.sink {
             updatedExpectation.fulfill()
         }
@@ -39,7 +38,7 @@ class K5DashboardViewModelTests: CoreTestCase {
         let testee = K5DashboardViewModel()
 
         testee.profileButtonPressed(router: router, viewController: WeakViewController())
-        
+
         XCTAssertTrue(router.lastRoutedTo("/profile", withOptions: .modal()))
     }
 }
