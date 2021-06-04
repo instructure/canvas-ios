@@ -52,7 +52,7 @@ public struct K5DashboardView: View {
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.homeroom.refresh(completion: endRefreshing)
                 }
-                K5HomeroomView()
+                K5HomeroomView(viewModel: viewModel.viewModels.homeroom)
             case 1:
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.schedule.refresh(completion: endRefreshing)

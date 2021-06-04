@@ -16,18 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import XCTest
+@testable import Core
 
-struct K5HomeroomMySubjectsView: View {
-    var body: some View {
-        Text("My Subjects", bundle: .core)
-            .font(.regular20)
-            .foregroundColor(.licorice)
-    }
-}
+class K5HomeroomAnnouncementViewModelTests: CoreTestCase {
 
-struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
-    static var previews: some View {
-        K5HomeroomMySubjectsView().previewLayout(.sizeThatFits)
+    func testId() {
+        let testee = K5HomeroomAnnouncementViewModel(courseName: "c1", title: "c1 title", htmlContent: "", allAnnouncementsRoute: "/courses/c1/announcements")
+        XCTAssertEqual(testee.id, "c1c1 title")
     }
 }

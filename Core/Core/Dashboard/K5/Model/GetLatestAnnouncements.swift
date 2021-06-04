@@ -16,18 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import CoreData
 
-struct K5HomeroomMySubjectsView: View {
-    var body: some View {
-        Text("My Subjects", bundle: .core)
-            .font(.regular20)
-            .foregroundColor(.licorice)
-    }
-}
+public class GetLatestAnnouncements: CollectionUseCase {
+    public typealias Model = LatestAnnouncement
 
-struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
-    static var previews: some View {
-        K5HomeroomMySubjectsView().previewLayout(.sizeThatFits)
+    public var cacheKey: String? { "announcements(\(courseContextIds.sorted().joined(separator: ",")))" }
+    public var request: GetAllAnnouncementsRequest { GetAllAnnouncementsRequest(contextCodes: courseContextIds, activeOnly: true, latestOnly: true) }
+    public var scope: Scope { .all(orderBy: #keyPath(LatestAnnouncement.postedAt), ascending: false) }
+
+    private let courseContextIds: [String]
+
+    public init(courseIds: [String]) {
+        courseContextIds = courseIds.map { Core.Context(.course, id: $0).canvasContextID }
     }
 }

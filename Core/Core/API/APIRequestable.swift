@@ -30,6 +30,7 @@ public enum APIQueryItem: Equatable {
     case perPage(Int?)
     case bool(String, Bool)
     case optionalValue(String, String?)
+    case optionalBool(String, Bool?)
 
     func toURLQueryItems() -> [URLQueryItem] {
         switch self {
@@ -48,6 +49,9 @@ public enum APIQueryItem: Equatable {
             guard let perPage = perPage else { return [] }
             return APIQueryItem.value("per_page", String(perPage)).toURLQueryItems()
         case .bool(let name, let value):
+            return APIQueryItem.value(name, value ? "1" : "0").toURLQueryItems()
+        case .optionalBool(let name, let value):
+            guard let value = value else { return [] }
             return APIQueryItem.value(name, value ? "1" : "0").toURLQueryItems()
         }
     }

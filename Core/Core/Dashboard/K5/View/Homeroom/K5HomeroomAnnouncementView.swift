@@ -19,20 +19,44 @@
 import SwiftUI
 
 struct K5HomeroomAnnouncementView: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
+
+    private let viewModel: K5HomeroomAnnouncementViewModel
+
+    init(viewModel: K5HomeroomAnnouncementViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text("123098 — Homeroom FALL 2020 — Ms. Johnson")
-            Text("Announcement Title")
-            WebView(html: nil)
-            Button(action: {}, label: {
+            Text(viewModel.courseName)
+                .foregroundColor(.ash)
+                .font(.regular14)
+            Text(viewModel.title)
+                .foregroundColor(.licorice)
+                .font(.regular24)
+            WebView(html: viewModel.htmlContent)
+                .frameToFit()
+                // Offset default CSS padding in CoreWebView
+                .padding(.horizontal, -16)
+                .padding(.top, -10)
+            Button(action: openPreviousAnnouncements, label: {
                 Text("View Previous Announcements", bundle: .core)
+                    .font(.regular16)
+                    .foregroundColor(Color(Brand.shared.primary))
             })
         }
+    }
+
+    private func openPreviousAnnouncements() {
+        env.router.route(to: viewModel.allAnnouncementsRoute, from: controller)
     }
 }
 
 struct K5HomeRoomAnnouncementView_Previews: PreviewProvider {
     static var previews: some View {
-        K5HomeroomAnnouncementView().previewLayout(.sizeThatFits)
+        let model = K5HomeroomAnnouncementViewModel(courseName: "K5 - Math", title: "New Assignment!", htmlContent: "<h1>Make sure to complete in time!</h1>", allAnnouncementsRoute: "")
+        K5HomeroomAnnouncementView(viewModel: model).previewLayout(.sizeThatFits)
     }
 }

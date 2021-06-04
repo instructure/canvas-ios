@@ -16,18 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import XCTest
+@testable import Core
 
-struct K5HomeroomMySubjectsView: View {
-    var body: some View {
-        Text("My Subjects", bundle: .core)
-            .font(.regular20)
-            .foregroundColor(.licorice)
+class K5DashboardViewModelTests: CoreTestCase {
+
+    func testObservesTopBarViewModelChanges() {
+        let updatedExpectation = expectation(description: "Update received")
+        let testee = K5DashboardViewModel()
+        let updateSubscription = testee.objectWillChange.sink {
+            updatedExpectation.fulfill()
+        }
+
+        testee.topBarViewModel.selectedItemIndex = 1
+
+        wait(for: [updatedExpectation], timeout: 1)
+        updateSubscription.cancel()
     }
-}
 
-struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
-    static var previews: some View {
-        K5HomeroomMySubjectsView().previewLayout(.sizeThatFits)
+    func testProfileNavigation() {
+        let testee = K5DashboardViewModel()
+
+        testee.profileButtonPressed(router: router, viewController: WeakViewController())
+
+        XCTAssertTrue(router.lastRoutedTo("/profile", withOptions: .modal()))
     }
 }

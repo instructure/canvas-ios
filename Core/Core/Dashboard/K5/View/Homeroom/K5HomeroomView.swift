@@ -18,14 +18,25 @@
 
 import SwiftUI
 
-struct K5HomeroomView: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Welcome, Student!")
-                .padding()
-            K5HomeroomAnnouncementView()
-                .padding()
-            Divider()
+public struct K5HomeroomView: View {
+    @ObservedObject private var viewModel: K5HomeroomViewModel
+
+    public init(viewModel: K5HomeroomViewModel) {
+        self.viewModel = viewModel
+    }
+
+    public var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(viewModel.welcomeText)
+                .foregroundColor(.licorice)
+                .font(.regular30)
+                .padding([.leading, .top, .trailing])
+            ForEach(viewModel.announcements) {
+                K5HomeroomAnnouncementView(viewModel: $0)
+                    .padding()
+                Divider()
+            }
+
             K5HomeroomMySubjectsView()
                 .padding()
         }
@@ -34,6 +45,6 @@ struct K5HomeroomView: View {
 
 struct K5HomeroomView_Previews: PreviewProvider {
     static var previews: some View {
-        K5HomeroomView().previewLayout(.sizeThatFits)
+        K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
     }
 }

@@ -168,10 +168,21 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
         XCTAssertEqual(request.path, "announcements")
     }
 
-    func testQuery() {
+    func testMinimalQuery() {
         let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"])
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
+            .optionalBool("active_only", nil),
+            .optionalBool("latest_only", nil),
+        ])
+    }
+
+    func testExhaustiveQuery() {
+        let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"], activeOnly: true, latestOnly: false)
+        XCTAssertEqual(request.query, [
+            .array("context_codes", ["1", "2"]),
+            .optionalBool("active_only", true),
+            .optionalBool("latest_only", false),
         ])
     }
 }

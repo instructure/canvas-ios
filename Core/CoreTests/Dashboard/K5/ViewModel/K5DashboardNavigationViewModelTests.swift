@@ -17,17 +17,13 @@
 //
 
 import SwiftUI
+import XCTest
+@testable import Core
 
-struct K5HomeroomMySubjectsView: View {
-    var body: some View {
-        Text("My Subjects", bundle: .core)
-            .font(.regular20)
-            .foregroundColor(.licorice)
-    }
-}
+class K5DashboardNavigationViewModelTests: CoreTestCase {
 
-struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
-    static var previews: some View {
-        K5HomeroomMySubjectsView().previewLayout(.sizeThatFits)
+    func testId() {
+        let testee = K5DashboardNavigationViewModel(type: .homeroom, icon: .addAudioLine, label: Text("homeroom"))
+        XCTAssertEqual(testee.id, "homeroom")
     }
 }
