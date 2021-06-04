@@ -22,21 +22,20 @@ public struct K5HomeroomMySubjectsView: View {
     public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel]
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.containerWidth) private var containerWidth
     private var isCompact: Bool { horizontalSizeClass == .compact }
     private let cardSpacing: CGFloat = 24
 
     public var body: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 0) {
-                Text("My Subjects", bundle: .core)
-                    .font(.regular20)
-                    .foregroundColor(.licorice)
-                    .padding(.bottom, 16)
-                let cardWidth = calculateCardWidth(containerWidth: geometry.size.width)
-                JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: geometry.size.width) { cardIndex in
-                    K5HomeroomSubjectCardView(viewModel: subjectCards[cardIndex], width: cardWidth)
-                }
-            }
+        VStack(alignment: .leading, spacing: 0) {
+            Text("My Subjects", bundle: .core)
+                .font(.regular20)
+                .foregroundColor(.licorice)
+                .padding(.bottom, 16)
+            let cardWidth = calculateCardWidth(containerWidth: containerWidth)
+            JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: containerWidth) { cardIndex in
+                K5HomeroomSubjectCardView(viewModel: subjectCards[cardIndex], width: cardWidth)
+            }.padding(.bottom, cardSpacing)
         }
     }
 
@@ -69,7 +68,11 @@ struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        K5HomeroomMySubjectsView(subjectCards: cards).previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
-        K5HomeroomMySubjectsView(subjectCards: cards).previewDevice(PreviewDevice(stringLiteral: "iPhone SE (2nd generation)"))
+        K5HomeroomMySubjectsView(subjectCards: cards)
+            .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+            .environment(\.containerWidth, 800)
+        K5HomeroomMySubjectsView(subjectCards: cards)
+            .previewDevice(PreviewDevice(stringLiteral: "iPhone SE (2nd generation)"))
+            .environment(\.containerWidth, 370)
     }
 }

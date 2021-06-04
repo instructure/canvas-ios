@@ -26,6 +26,10 @@ extension UIViewController: EnvironmentKey {
     public static var defaultValue: WeakViewController { WeakViewController() }
 }
 
+struct ContainerWidth: EnvironmentKey {
+    public static var defaultValue: CGFloat { 0 }
+}
+
 extension EnvironmentValues {
     public var appEnvironment: AppEnvironment {
         get { self[AppEnvironment.self] }
@@ -35,5 +39,10 @@ extension EnvironmentValues {
     public var viewController: WeakViewController {
         get { self[UIViewController.self] }
         set { self[UIViewController.self] = newValue }
+    }
+
+    public var containerWidth: CGFloat {
+        get { self[ContainerWidth.self] }
+        set { self[ContainerWidth.self] = newValue }
     }
 }

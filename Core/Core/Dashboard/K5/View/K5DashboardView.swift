@@ -26,11 +26,15 @@ public struct K5DashboardView: View {
     private var horizontalMargin: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
-        VStack(spacing: 0) {
-            TopBarView(viewModel: viewModel.topBarViewModel, leftInset: horizontalMargin)
-            Divider()
-            ScrollView(.vertical) {
-                content.padding(.horizontal, horizontalMargin)
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                TopBarView(viewModel: viewModel.topBarViewModel, leftInset: horizontalMargin)
+                Divider()
+                ScrollView(.vertical, showsIndicators: false) {
+                    content
+                        .padding(.horizontal, horizontalMargin)
+                        .environment(\.containerWidth, geometry.size.width - 2 * horizontalMargin)
+                }
             }
         }
         .navigationBarGlobal()
