@@ -21,6 +21,7 @@ import SwiftUI
 public class K5HomeroomViewModel: ObservableObject {
     @Published public private(set) var welcomeText = ""
     @Published public private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
+    @Published public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel] = []
 
     private let env = AppEnvironment.shared
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
@@ -55,7 +56,20 @@ public class K5HomeroomViewModel: ObservableObject {
     private func dashboardCardsUpdated() {
         guard cards.requested, !cards.pending else { return }
         requestAnnouncements()
+        updateSubjectCardViewModels()
     }
+
+    // MARK: - Subject Cards
+
+    private func updateSubjectCardViewModels() {
+        let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
+        subjectCards = nonHomeroomCards.map {
+            // FIXME: ContextColor change
+            K5HomeroomSubjectCardViewModel(courseId: $0.id, imageURL: $0.imageURL, name: $0.shortName, color: $0.contextColor?.color, infoLines: [])
+        }
+    }
+
+    // MARK: - Announcements
 
     private func requestAnnouncements() {
         guard announcementsStore == nil else { return }

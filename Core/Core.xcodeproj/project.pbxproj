@@ -863,6 +863,9 @@
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
 		CFCBB88A26692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88926692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift */; };
+		CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */; };
+		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
+		CFCBB899266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */; };
 		CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE214B2656895E00E3B32A /* Bounds.swift */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */; };
@@ -2006,6 +2009,9 @@
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB88926692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardNavigationViewModelTests.swift; sourceTree = "<group>"; };
+		CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
+		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
+		CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardView.swift; sourceTree = "<group>"; };
 		CFCE214B2656895E00E3B32A /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
@@ -4110,6 +4116,7 @@
 				CF60CC362645525400C1C173 /* K5HomeroomView.swift */,
 				CF60CC42264589AF00C1C173 /* K5HomeroomAnnouncementView.swift */,
 				CF60CC4526458C0800C1C173 /* K5HomeroomMySubjectsView.swift */,
+				CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */,
 			);
 			path = Homeroom;
 			sourceTree = "<group>";
@@ -4150,6 +4157,7 @@
 			isa = PBXGroup;
 			children = (
 				CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */,
+				CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */,
 				CF60CC5B26496ECF00C1C173 /* K5HomeroomViewModel.swift */,
 			);
 			path = Homeroom;
@@ -4366,6 +4374,7 @@
 			isa = PBXGroup;
 			children = (
 				CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */,
+				CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */,
 				CFFA9D772668BF1700C1648E /* K5HomeroomViewModelTests.swift */,
 			);
 			path = Homeroom;
@@ -4975,6 +4984,7 @@
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */,
 				97F69C3823F1F9A6009622E3 /* APIPlannableTests.swift in Sources */,
+				CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */,
 				B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */,
 				CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */,
 				7D80AC1B212B6A7700C40ECE /* APIFavoriteTests.swift in Sources */,
@@ -5386,6 +5396,7 @@
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
+				CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */,
 				3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */,
 				CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,
@@ -5426,6 +5437,7 @@
 				7D531D51254CC18F00CBFCA6 /* DiscussionSectionsPicker.swift in Sources */,
 				CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */,
 				7DA260E523F72359005D2121 /* PublishedIconView.swift in Sources */,
+				CFCBB899266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift in Sources */,
 				B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */,
 				7DA25FFB23F7226E005D2121 /* DocViewerConstants.swift in Sources */,
 				7DA2600623F7227A005D2121 /* Int64Extensions.swift in Sources */,

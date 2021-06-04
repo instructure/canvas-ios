@@ -81,6 +81,20 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(announcement.htmlContent, "updated message")
     }
 
+    // MARK: - Subject Card Tests
+
+    func testLoadsNonHomeroomCourses() {
+        mockDashboardCards()
+
+        let testee = K5HomeroomViewModel()
+
+        XCTAssertEqual(testee.subjectCards.count, 1)
+        guard let card = testee.subjectCards.first else { return }
+        XCTAssertEqual(card.name, "Course 1")
+        XCTAssertEqual(card.courseId, "1")
+        XCTAssertEqual(card.imageURL, URL(string: "https://instructure.com"))
+    }
+
     // MARK: - Private Helpers
 
     private func mockUserProfile(name: String) {
@@ -100,7 +114,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
     private func mockDashboardCards() {
         let mockRequest = GetDashboardCardsRequest()
         let mockResponse = [
-            APIDashboardCard.make(id: "1", isHomeroom: false),
+            APIDashboardCard.make(id: "1", image: "https://instructure.com", isHomeroom: false),
             APIDashboardCard.make(id: "2", isHomeroom: true, shortName: "course2 name"),
         ]
         api.mock(mockRequest, value: mockResponse)

@@ -37,7 +37,7 @@ public struct K5HomeroomView: View {
                 Divider()
             }
 
-            K5HomeroomMySubjectsView()
+            K5HomeroomMySubjectsView(subjectCards: viewModel.subjectCards)
                 .padding()
         }
     }
