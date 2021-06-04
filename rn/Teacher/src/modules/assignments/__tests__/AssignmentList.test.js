@@ -170,7 +170,7 @@ describe('AssignmentList', () => {
     )
     let button = tree.find(`[testID="assignment-list.assignment-list-row.cell-${assignment.id}"]`)
     button.simulate('press')
-    expect(navigator.show).toHaveBeenCalledWith(assignment.html_url)
+    expect(navigator.show).toHaveBeenCalledWith(`/courses/${assignment.course_id}/quizzes/${assignment.quiz_id}`)
   })
 
   it('hides filter button without grading periods', () => {
