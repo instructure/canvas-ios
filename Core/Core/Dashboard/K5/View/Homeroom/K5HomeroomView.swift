@@ -20,9 +20,11 @@ import SwiftUI
 
 public struct K5HomeroomView: View {
     @ObservedObject private var viewModel: K5HomeroomViewModel
+    private let containerHorizontalMargin: CGFloat
 
-    public init(viewModel: K5HomeroomViewModel) {
+    public init(viewModel: K5HomeroomViewModel, containerHorizontalMargin: CGFloat) {
         self.viewModel = viewModel
+        self.containerHorizontalMargin = containerHorizontalMargin
     }
 
     public var body: some View {
@@ -30,21 +32,22 @@ public struct K5HomeroomView: View {
             Text(viewModel.welcomeText)
                 .foregroundColor(.licorice)
                 .font(.regular30)
-                .padding([.leading, .top, .trailing])
+                .padding(.top)
             ForEach(viewModel.announcements) {
                 K5HomeroomAnnouncementView(viewModel: $0)
-                    .padding()
+                    .padding(.vertical, 23)
                 Divider()
+                    .padding(.horizontal, -containerHorizontalMargin) // make sure the divider fills the parent view horizontally
             }
 
             K5HomeroomMySubjectsView(subjectCards: viewModel.subjectCards)
-                .padding()
+                .padding(.top, 23)
         }
     }
 }
 
 struct K5HomeroomView_Previews: PreviewProvider {
     static var previews: some View {
-        K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
+        K5HomeroomView(viewModel: K5HomeroomViewModel(), containerHorizontalMargin: 0).previewLayout(.sizeThatFits)
     }
 }

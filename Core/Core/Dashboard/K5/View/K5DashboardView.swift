@@ -23,13 +23,14 @@ public struct K5DashboardView: View {
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel = K5DashboardViewModel()
+    private var horizontalMargin: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
         VStack(spacing: 0) {
-            TopBarView(viewModel: viewModel.topBarViewModel)
+            TopBarView(viewModel: viewModel.topBarViewModel, leftInset: horizontalMargin)
             Divider()
             ScrollView(.vertical) {
-                content
+                content.padding(.horizontal, horizontalMargin)
             }
         }
         .navigationBarGlobal()
@@ -52,7 +53,7 @@ public struct K5DashboardView: View {
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.homeroom.refresh(completion: endRefreshing)
                 }
-                K5HomeroomView(viewModel: viewModel.viewModels.homeroom)
+                K5HomeroomView(viewModel: viewModel.viewModels.homeroom, containerHorizontalMargin: horizontalMargin)
             case 1:
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.schedule.refresh(completion: endRefreshing)

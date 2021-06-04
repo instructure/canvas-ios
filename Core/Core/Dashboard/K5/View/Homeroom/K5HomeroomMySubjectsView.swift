@@ -26,21 +26,17 @@ public struct K5HomeroomMySubjectsView: View {
     private let cardSpacing: CGFloat = 24
 
     public var body: some View {
-        let horizontalPadding: CGFloat = 32
         GeometryReader { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 Text("My Subjects", bundle: .core)
                     .font(.regular20)
                     .foregroundColor(.licorice)
                     .padding(.bottom, 16)
-                let containerWidth = geometry.size.width - 2 * horizontalPadding
-                let cardWidth = calculateCardWidth(containerWidth: containerWidth)
-                JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: containerWidth) { cardIndex in
+                let cardWidth = calculateCardWidth(containerWidth: geometry.size.width)
+                JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: geometry.size.width) { cardIndex in
                     K5HomeroomSubjectCardView(viewModel: subjectCards[cardIndex], width: cardWidth)
                 }
             }
-            .padding(.horizontal, horizontalPadding)
-            .padding(.top, 23)
         }
     }
 
