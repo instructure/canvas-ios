@@ -63,16 +63,23 @@ public class K5HomeroomViewModel: ObservableObject {
 
     private func updateSubjectCardViewModels() {
         let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
-        subjectCards = nonHomeroomCards.map {
+        subjectCards = nonHomeroomCards.map { card in
+            let announcement = announcementsStore?.first { $0.contextCode == Core.Context(.course, id: card.id).canvasContextID }
+            var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = []
+
+            if let announcementInfoLine = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement) {
+                infoLines.append(announcementInfoLine)
+            }
+
             // FIXME: ContextColor change
-            K5HomeroomSubjectCardViewModel(courseId: $0.id, imageURL: $0.imageURL, name: $0.shortName, color: $0.contextColor?.color, infoLines: [])
+            return K5HomeroomSubjectCardViewModel(courseId: card.id, imageURL: card.imageURL, name: card.shortName, color: card.contextColor?.color, infoLines: infoLines)
         }
     }
 
     // MARK: - Announcements
 
     private func requestAnnouncements() {
-        guard announcementsStore == nil else { return }
+        if announcementsStore != nil { return }
 
         let courseIds = cards.map { $0.id }
         announcementsStore = env.subscribe(GetLatestAnnouncements(courseIds: courseIds)) { [weak self] in

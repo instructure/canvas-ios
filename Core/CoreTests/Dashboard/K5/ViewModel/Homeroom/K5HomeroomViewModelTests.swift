@@ -50,7 +50,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
     // MARK: - Announcement Tests
 
     func testLoadsHomeroomAnnouncements() {
-        mockAnnouncements(message: "message 2")
+        mockAnnouncements(homeroomMessage: "message 2")
         mockDashboardCards()
 
         let testee = K5HomeroomViewModel()
@@ -64,13 +64,13 @@ class K5HomeroomViewModelTests: CoreTestCase {
     }
 
     func testRefreshesAnnouncements() {
-        mockAnnouncements(message: "original message")
+        mockAnnouncements(homeroomMessage: "original message")
         mockDashboardCards()
         let testee = K5HomeroomViewModel()
         let refrehCompleted = expectation(description: "Refresh completed")
         refrehCompleted.assertForOverFulfill = true
 
-        mockAnnouncements(message: "updated message")
+        mockAnnouncements(homeroomMessage: "updated message")
         testee.refresh {
             refrehCompleted.fulfill()
         }
@@ -85,6 +85,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
 
     func testLoadsNonHomeroomCourses() {
         mockDashboardCards()
+        mockAnnouncements(nonHomeroomMessage: "Non homeroom announcement")
 
         let testee = K5HomeroomViewModel()
 
@@ -93,6 +94,9 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(card.name, "Course 1")
         XCTAssertEqual(card.courseId, "1")
         XCTAssertEqual(card.imageURL, URL(string: "https://instructure.com"))
+
+        guard card.infoLines.count == 1 else { XCTFail("Info line count mismatch"); return }
+        XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .announcementLine, text: "Non homeroom announcement"))
     }
 
     // MARK: - Private Helpers
@@ -103,10 +107,11 @@ class K5HomeroomViewModelTests: CoreTestCase {
         api.mock(mockRequest, value: mockResponse)
     }
 
-    private func mockAnnouncements(message: String) {
+    private func mockAnnouncements(homeroomMessage: String = "", nonHomeroomMessage: String = "") {
         let mockRequest = GetAllAnnouncementsRequest(contextCodes: ["course_2", "course_1"], activeOnly: true, latestOnly: true)
         let mockResponse = [
-            APIDiscussionTopic.make(context_code: "course_2", message: message, posted_at: Date(timeIntervalSince1970: 74874), title: "title 2"),
+            APIDiscussionTopic.make(context_code: "course_1", message: nonHomeroomMessage, posted_at: Date(timeIntervalSince1970: 74874), title: "title 1"),
+            APIDiscussionTopic.make(context_code: "course_2", message: homeroomMessage, posted_at: Date(timeIntervalSince1970: 74874), title: "title 2"),
         ]
         api.mock(mockRequest, value: mockResponse)
     }

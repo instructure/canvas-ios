@@ -35,7 +35,7 @@ public struct K5HomeroomSubjectCardViewModel {
 }
 
 extension K5HomeroomSubjectCardViewModel {
-    public struct InfoLine {
+    public struct InfoLine: Equatable {
         public let icon: Image
         public let text: String
         public let highlightedText: String
