@@ -225,6 +225,7 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.filterCheckbox, UIImage(named: "filterCheckbox", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.inboxTab, UIImage(named: "inboxTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.inboxTabActive, UIImage(named: "inboxTabActive", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.k5dueToday, UIImage(named: "k5dueToday", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.k5grades, UIImage(named: "k5grades", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.k5homeroom, UIImage(named: "k5homeroom", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.k5resources, UIImage(named: "k5resources", in: .core, compatibleWith: nil))

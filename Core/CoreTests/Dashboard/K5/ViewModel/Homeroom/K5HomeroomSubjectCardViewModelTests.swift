@@ -27,4 +27,52 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.color, Color(hexString: "#394B58"))
     }
+
+    func testInfoLineFromAnnouncement() {
+        let announcement = LatestAnnouncement(context: databaseClient)
+        announcement.message = "Test announcement content."
+
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement)
+
+        XCTAssertEqual(testee?.icon, .announcementLine)
+        XCTAssertEqual(testee?.text, "Test announcement content.")
+    }
+
+    func testInfoLineFromNoAnnouncements() {
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(from: nil)
+
+        XCTAssertNil(testee)
+    }
+
+    func testInfoLineFromNoAssignments() {
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 0, missing: 0)
+
+        XCTAssertEqual(testee.icon, .k5dueToday)
+        XCTAssertEqual(testee.text, "Nothing Due Today")
+        XCTAssertEqual(testee.highlightedText, "")
+    }
+
+    func testInfoLineFromDueAssignments() {
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 3, missing: 0)
+
+        XCTAssertEqual(testee.icon, .k5dueToday)
+        XCTAssertEqual(testee.text, "3 due today")
+        XCTAssertEqual(testee.highlightedText, "")
+    }
+
+    func testInfoLineFromMissingAssignments() {
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 0, missing: 3)
+
+        XCTAssertEqual(testee.icon, .k5dueToday)
+        XCTAssertEqual(testee.text, "")
+        XCTAssertEqual(testee.highlightedText, "3 missing")
+    }
+
+    func testInfoLineFromDueAndMissingAssignments() {
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 3, missing: 1)
+
+        XCTAssertEqual(testee.icon, .k5dueToday)
+        XCTAssertEqual(testee.text, "3 due today | ")
+        XCTAssertEqual(testee.highlightedText, "1 missing")
+    }
 }

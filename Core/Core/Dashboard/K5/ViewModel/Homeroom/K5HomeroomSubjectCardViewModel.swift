@@ -38,5 +38,38 @@ extension K5HomeroomSubjectCardViewModel {
     public struct InfoLine {
         public let icon: Image
         public let text: String
+        public let highlightedText: String
+
+        public init(icon: Image, text: String = "", highlightedText: String = "") {
+            self.icon = icon
+            self.text = text
+            self.highlightedText = highlightedText
+        }
+
+        public static func make(from announcement: LatestAnnouncement?) -> InfoLine? {
+            guard let announcement = announcement else { return nil }
+            return InfoLine(icon: .announcementLine, text: announcement.message)
+        }
+
+        public static func make(dueToday: Int, missing: Int) -> InfoLine {
+            var text = ""
+            var highlightedText = ""
+
+            if dueToday > 0 {
+                text = String(format: NSLocalizedString("%d due today", comment: "Number of assignments due today"), dueToday)
+            }
+
+            if missing > 0 {
+                highlightedText = String(format: NSLocalizedString("%d missing", comment: "Number of missing submissions"), missing)
+            }
+
+            if text.isEmpty && highlightedText.isEmpty {
+                text = NSLocalizedString("Nothing Due Today", comment: "No due assignments for today")
+            } else if !text.isEmpty && !highlightedText.isEmpty {
+                text += " | "
+            }
+
+            return InfoLine(icon: .k5dueToday, text: text, highlightedText: highlightedText)
+        }
     }
 }
