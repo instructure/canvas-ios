@@ -30,12 +30,13 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
 
     func testInfoLineFromAnnouncement() {
         let announcement = LatestAnnouncement(context: databaseClient)
+        announcement.title = "Test announcement title."
         announcement.message = "Test announcement content."
 
         let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement)
 
         XCTAssertEqual(testee?.icon, .announcementLine)
-        XCTAssertEqual(testee?.text, "Test announcement content.")
+        XCTAssertEqual(testee?.text, "Test announcement title.")
     }
 
     func testInfoLineFromNoAnnouncements() {

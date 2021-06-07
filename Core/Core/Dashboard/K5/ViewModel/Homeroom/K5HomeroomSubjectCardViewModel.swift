@@ -48,7 +48,7 @@ extension K5HomeroomSubjectCardViewModel {
 
         public static func make(from announcement: LatestAnnouncement?) -> InfoLine? {
             guard let announcement = announcement else { return nil }
-            return InfoLine(icon: .announcementLine, text: announcement.message)
+            return InfoLine(icon: .announcementLine, text: announcement.title)
         }
 
         public static func make(dueToday: Int, missing: Int) -> InfoLine {
