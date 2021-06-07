@@ -77,9 +77,6 @@
 "86,5%" = "86,5 %";
 
 /* No comment provided by engineer. */
-"123098 — Homeroom FALL 2020 — Ms. Johnson" = "123098 — Klassen efteråret 2020 — Frk. Johnson";
-
-/* No comment provided by engineer. */
 "A description is required" = "En beskrivelse er påkrævet";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -189,9 +186,6 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Svar på besked";
-
-/* No comment provided by engineer. */
-"Announcement Title" = "Beskedens titel";
 
 /* No comment provided by engineer. */
 "Announcements" = "Beskeder";
@@ -2187,9 +2181,6 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Ugentlig";
-
-/* No comment provided by engineer. */
-"Welcome, Student!" = "Velkommen, studerende!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Godt klaret!";
