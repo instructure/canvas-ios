@@ -19,11 +19,14 @@
 import SwiftUI
 
 public class K5HomeroomViewModel: ObservableObject {
+    // MARK: - Public Reactive Properties -
     @Published public private(set) var welcomeText = ""
     @Published public private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
     @Published public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel] = []
 
+    // MARK: - Private Variables -
     private let env = AppEnvironment.shared
+    // MARK: Data Sources
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.dashboardCardsUpdated()
     }
@@ -31,13 +34,19 @@ public class K5HomeroomViewModel: ObservableObject {
         self?.profileUpdated()
     }
     private var announcementsStore: Store<GetLatestAnnouncements>?
+    private var dueItems: Store<GetK5HomeroomDueItemCount>?
+    // MARK: Refresh
     private var refreshCompletion: (() -> Void)?
     private var forceRefresh = false
+
+    // MARK: - Public Interface -
 
     public init() {
         cards.refresh()
         profile.refresh()
     }
+
+    // MARK: - Private Methods -
 
     private func profileUpdated() {
         let newWelcomeText: String
@@ -56,16 +65,28 @@ public class K5HomeroomViewModel: ObservableObject {
     private func dashboardCardsUpdated() {
         guard cards.requested, !cards.pending else { return }
         requestAnnouncements()
-        updateSubjectCardViewModels()
+        requestItemsDueToday()
     }
 
-    // MARK: - Subject Cards
+    // MARK: Subject Cards
+
+    private func requestItemsDueToday() {
+        if dueItems != nil { return }
+
+        let nonHomeroomCardIds = cards.filter { $0.isHomeroom == false }.map { $0.id }
+        dueItems = env.subscribe(GetK5HomeroomDueItemCount(courseIds: nonHomeroomCardIds)) { [weak self] in
+            guard let self = self, self.dueItems?.state != .loading else { return }
+            self.updateSubjectCardViewModels()
+        }
+
+        dueItems?.refresh(force: forceRefresh)
+    }
 
     private func updateSubjectCardViewModels() {
         let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
         subjectCards = nonHomeroomCards.map { card in
             let announcement = announcementsStore?.first { $0.contextCode == Core.Context(.course, id: card.id).canvasContextID }
-            var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = []
+            var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: 0)]
 
             if let announcementInfoLine = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement) {
                 infoLines.append(announcementInfoLine)
@@ -74,9 +95,21 @@ public class K5HomeroomViewModel: ObservableObject {
             // FIXME: ContextColor change
             return K5HomeroomSubjectCardViewModel(courseId: card.id, imageURL: card.imageURL, name: card.shortName, color: card.contextColor?.color, infoLines: infoLines)
         }
+
+        finishRefresh()
     }
 
-    // MARK: - Announcements
+    private func numberOfDueTodayItems(for courseId: String) -> Int {
+        let plannerItem = dueItems?.first { $0.courseId == courseId }
+
+        if let due = plannerItem?.due {
+            return Int(due)
+        } else {
+            return 0
+        }
+    }
+
+    // MARK: Announcements
 
     private func requestAnnouncements() {
         if announcementsStore != nil { return }
@@ -95,16 +128,13 @@ public class K5HomeroomViewModel: ObservableObject {
             return K5HomeroomAnnouncementViewModel(courseName: card.shortName, title: $0.title, htmlContent: $0.message, allAnnouncementsRoute: "/courses/\(card.id)/announcements")
         }
 
-        performUIUpdate {
-            self.finishRefresh()
-            self.announcements = announcementModels
-        }
+        announcements = announcementModels
     }
 
+    // MARK: Misc
+
     private func card(for announcement: LatestAnnouncement) -> DashboardCard? {
-        cards.first {
-            announcement.contextCode == Core.Context(.course, id: $0.id).canvasContextID
-        }
+        cards.first { announcement.contextCode == Core.Context(.course, id: $0.id).canvasContextID }
     }
 
     private func finishRefresh() {
@@ -116,12 +146,15 @@ public class K5HomeroomViewModel: ObservableObject {
     }
 }
 
+// MARK: - Refresh Trigger -
+
 extension K5HomeroomViewModel: Refreshable {
 
     public func refresh(completion: @escaping () -> Void) {
         forceRefresh = true
         refreshCompletion = completion
         announcementsStore = nil
+        dueItems = nil
         cards.refresh(force: true)
         profile.refresh(force: true)
     }

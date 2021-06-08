@@ -819,6 +819,8 @@
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
 		CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */; };
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
+		CF53F730266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */; };
+		CF53F734266F836000FA58D7 /* K5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */; };
 		CF575E1A265E920D00F8515F /* CompatibleScrollViewReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */; };
 		CF575E20265E9D5200F8515F /* ScrollViewWithReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */; };
 		CF575E2C265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */; };
@@ -1965,6 +1967,8 @@
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
 		CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
+		CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetK5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
+		CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
 		CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleScrollViewReader.swift; sourceTree = "<group>"; };
 		CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithReader.swift; sourceTree = "<group>"; };
 		CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModel.swift; sourceTree = "<group>"; };
@@ -4069,6 +4073,8 @@
 			children = (
 				CF575E3E26667AB700F8515F /* GetLatestAnnouncements.swift */,
 				CF575E4126667AD700F8515F /* LatestAnnouncement.swift */,
+				CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */,
+				CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5612,6 +5618,7 @@
 				7DC7045A24AA8B2600CD1C46 /* ObserverAlert.swift in Sources */,
 				7DA25FD723F72148005D2121 /* CacheManager.swift in Sources */,
 				7DA2606A23F722D9005D2121 /* UserSettings.swift in Sources */,
+				CF53F730266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift in Sources */,
 				7DA2600123F72272005D2121 /* APIErrorReport.swift in Sources */,
 				7DA2607B23F722FA005D2121 /* PageViewEventController.swift in Sources */,
 				B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */,
@@ -5768,6 +5775,7 @@
 				7DA2603023F722C9005D2121 /* GoogleCloudAssignmentViewController.swift in Sources */,
 				D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */,
 				7DA2607923F722FA005D2121 /* AppBackgroundHelperProtocol.swift in Sources */,
+				CF53F734266F836000FA58D7 /* K5HomeroomDueItemCount.swift in Sources */,
 				CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */,
 				7D531D3B2549CF0500CBFCA6 /* AssignmentOverridesEditor.swift in Sources */,
 				7DA260EA23F72359005D2121 /* TitleSubtitleView.swift in Sources */,

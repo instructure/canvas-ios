@@ -494,6 +494,10 @@
         <attribute name="text" attributeType="String"/>
         <attribute name="url" attributeType="URI"/>
     </entity>
+    <entity name="K5HomeroomDueItemCount" representedClassName="Core.K5HomeroomDueItemCount" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="due" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="LatestAnnouncement" representedClassName="Core.LatestAnnouncement" syncable="YES">
         <attribute name="contextCode" attributeType="String"/>
         <attribute name="message" attributeType="String"/>
@@ -962,6 +966,7 @@
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="223"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="LatestAnnouncement" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="148"/>
@@ -996,6 +1001,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="LatestAnnouncement" positionX="-540" positionY="-18" width="128" height="103"/>
+        <element name="K5HomeroomDueItemCount" positionX="-540" positionY="-18" width="128" height="73"/>
     </elements>
 </model>
