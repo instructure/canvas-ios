@@ -40,11 +40,10 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
     lazy var groups = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
-        self?.update()
-    }
+    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL))
+    var localPages: Store<LocalUseCase<Page>>?
 
-    var page: Page? { pages.first }
+    var page: Page? { localPages?.first }
 
     var canEdit: Bool {
         app == .teacher ||
@@ -85,7 +84,12 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         } else {
             groups.refresh()
         }
-        pages.refresh(force: true)
+        pages.refresh(force: true) { [weak self] _ in
+            guard let self = self, let page = self.pages.first else { return }
+            self.localPages = self.env.subscribe(scope: .where(#keyPath(Page.id), equals: page.id)) { [weak self] in
+                self?.update() }
+            self.localPages?.refresh()
+        }
 
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
@@ -96,7 +100,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
     }
 
     @objc func refresh() {
-        pages.refresh(force: true) { [weak self] _ in
+        localPages?.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
     }
@@ -145,7 +149,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
 
     func deletePage() {
         guard let page = page else { return }
-        env.api.makeRequest(DeletePageRequest(context: context, url: pageURL)) { [weak self] (_, _, error) in performUIUpdate {
+        env.api.makeRequest(DeletePageRequest(context: context, url: page.url)) { [weak self] (_, _, error) in performUIUpdate {
             guard let self = self else { return }
             if let error = error {
                 return self.showError(error)
