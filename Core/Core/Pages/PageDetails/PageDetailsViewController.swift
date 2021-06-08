@@ -40,7 +40,9 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
     lazy var groups = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL))
+    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
+        self?.updatePages()
+    }
     var localPages: Store<LocalUseCase<Page>>?
 
     var page: Page? { localPages?.first }
@@ -84,13 +86,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         } else {
             groups.refresh()
         }
-        pages.refresh(force: true) { [weak self] _ in
-            guard let self = self, let page = self.pages.first else { return }
-            self.localPages = self.env.subscribe(scope: .where(#keyPath(Page.id), equals: page.id)) { [weak self] in
-                self?.update() }
-            self.localPages?.refresh()
-        }
-
+        pages.refresh(force: true)
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
@@ -100,7 +96,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
     }
 
     @objc func refresh() {
-        localPages?.refresh(force: true) { [weak self] _ in
+        pages.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
     }
@@ -119,6 +115,13 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
         webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+    }
+
+    private func updatePages() {
+        guard let page = pages.first else { return }
+        localPages = env.subscribe(scope: .where(#keyPath(Page.id), equals: page.id)) { [weak self] in
+            self?.update() }
+        localPages?.refresh()
     }
 
     @objc func showOptions(_ sender: UIBarButtonItem) {
