@@ -32,10 +32,10 @@ struct K5HomeroomAnnouncementView: View {
         VStack(alignment: .leading) {
             Text(viewModel.courseName)
                 .foregroundColor(.ash)
-                .font(.regular14)
+                .font(.regular13)
             Text(viewModel.title)
                 .foregroundColor(.licorice)
-                .font(.regular24)
+                .font(.bold24)
             WebView(html: viewModel.htmlContent)
                 .frameToFit()
                 // Offset default CSS padding in CoreWebView
@@ -43,7 +43,7 @@ struct K5HomeroomAnnouncementView: View {
                 .padding(.top, -10)
             Button(action: openPreviousAnnouncements, label: {
                 Text("View Previous Announcements", bundle: .core)
-                    .font(.regular16)
+                    .font(.regular17)
                     .foregroundColor(Color(Brand.shared.primary))
             })
         }

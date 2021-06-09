@@ -28,6 +28,12 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.color, Color(hexString: "#394B58"))
     }
 
+    func testUpparcaseName() {
+        let testee = K5HomeroomSubjectCardViewModel(courseId: "", imageURL: nil, name: "math", color: nil, infoLines: [])
+
+        XCTAssertEqual(testee.name, "MATH")
+    }
+
     func testInfoLineFromAnnouncement() {
         let announcement = LatestAnnouncement(context: databaseClient)
         announcement.title = "Test announcement title."

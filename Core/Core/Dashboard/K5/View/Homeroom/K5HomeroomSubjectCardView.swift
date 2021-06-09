@@ -42,7 +42,7 @@ public struct K5HomeroomSubjectCardView: View {
                 image
                 viewModel.color.frame(width: imageSize.width, height: 2)
                 Text(viewModel.name)
-                    .font(.semibold16)
+                    .font(.bold15)
                     .foregroundColor(viewModel.color)
                     .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 8).padding(.top, 8)
@@ -90,7 +90,7 @@ public struct K5HomeroomSubjectCardView: View {
         }
         .foregroundColor(.licorice)
         .padding(.horizontal, 8)
-        .environment(\.font, Font.regular14)
+        .environment(\.font, Font.regular13)
         .environment(\.lineLimit, 2)
     }
 

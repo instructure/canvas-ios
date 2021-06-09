@@ -29,7 +29,7 @@ public struct K5HomeroomMySubjectsView: View {
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("My Subjects", bundle: .core)
-                .font(.regular20)
+                .font(.bold20)
                 .foregroundColor(.licorice)
                 .padding(.bottom, 16)
             let cardWidth = calculateCardWidth(containerWidth: containerWidth)

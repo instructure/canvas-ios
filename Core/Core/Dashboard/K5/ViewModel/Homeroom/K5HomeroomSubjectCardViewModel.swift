@@ -28,7 +28,7 @@ public struct K5HomeroomSubjectCardViewModel {
     public init(courseId: String, imageURL: URL?, name: String, color: UIColor?, infoLines: [InfoLine]) {
         self.courseId = courseId
         self.imageURL = imageURL
-        self.name = name
+        self.name = name.uppercased()
         self.color = ((color != nil) ? Color(color!) : Color(hexString: "#394B58")!)
         self.infoLines = infoLines
     }

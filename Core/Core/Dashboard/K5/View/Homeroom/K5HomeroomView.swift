@@ -31,7 +31,7 @@ public struct K5HomeroomView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(viewModel.welcomeText)
                 .foregroundColor(.licorice)
-                .font(.regular30)
+                .font(.bold34)
                 .padding(.top)
             ForEach(viewModel.announcements) {
                 K5HomeroomAnnouncementView(viewModel: $0)
