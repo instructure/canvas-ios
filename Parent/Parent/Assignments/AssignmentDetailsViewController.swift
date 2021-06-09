@@ -46,7 +46,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     let env = AppEnvironment.shared
     var studentID = ""
 
-    lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users])) {  [weak self] in
+    lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
     }
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) {  [weak self] in
