@@ -87,6 +87,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
         mockDashboardCards()
         mockAnnouncements(nonHomeroomTitle: "Non homeroom announcement")
         mockDueItems()
+        mockMissingSubmissions()
 
         let testee = K5HomeroomViewModel()
 
@@ -97,7 +98,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(card.imageURL, URL(string: "https://instructure.com"))
 
         guard card.infoLines.count == 2 else { XCTFail("Info line count mismatch"); return }
-        XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .k5dueToday, text: "1 due today"))
+        XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .k5dueToday, text: "1 due today | ", highlightedText: "2 missing"))
         XCTAssertEqual(card.infoLines[1], K5HomeroomSubjectCardViewModel.InfoLine(icon: .announcementLine, text: "Non homeroom announcement"))
     }
 
@@ -131,6 +132,16 @@ class K5HomeroomViewModelTests: CoreTestCase {
         let mockRequest = GetK5HomeroomDueItemCount(courseIds: ["1"])
         let mockResponse = [
             APIPlannable.make(course_id: "1", submissions: APIPlannable.Submissions.make(submitted: false)),
+        ]
+        api.mock(mockRequest, value: mockResponse)
+    }
+
+    private func mockMissingSubmissions() {
+        let mockRequest = GetK5HomeroomMissingSubmissionsCount(courseIds: ["1"])
+        let mockResponse = [
+            APIAssignment.make(course_id: "1", id: "1", planner_override: .make(dismissed: false)),
+            APIAssignment.make(course_id: "1", id: "2", planner_override: .make(dismissed: true)),
+            APIAssignment.make(course_id: "1", id: "3", planner_override: nil),
         ]
         api.mock(mockRequest, value: mockResponse)
     }

@@ -35,6 +35,7 @@ public class K5HomeroomViewModel: ObservableObject {
     }
     private var announcementsStore: Store<GetLatestAnnouncements>?
     private var dueItems: Store<GetK5HomeroomDueItemCount>?
+    private var missingSubmissions: Store<GetK5HomeroomMissingSubmissionsCount>?
     // MARK: Refresh
     private var refreshCompletion: (() -> Void)?
     private var forceRefresh = false
@@ -76,17 +77,29 @@ public class K5HomeroomViewModel: ObservableObject {
         let nonHomeroomCardIds = cards.filter { $0.isHomeroom == false }.map { $0.id }
         dueItems = env.subscribe(GetK5HomeroomDueItemCount(courseIds: nonHomeroomCardIds)) { [weak self] in
             guard let self = self, self.dueItems?.state != .loading else { return }
-            self.updateSubjectCardViewModels()
+            self.requestMissingSubmissionsCount()
         }
 
         dueItems?.refresh(force: forceRefresh)
+    }
+
+    private func requestMissingSubmissionsCount() {
+        if missingSubmissions != nil { return }
+
+        let nonHomeroomCardIds = cards.filter { $0.isHomeroom == false }.map { $0.id }
+        missingSubmissions = env.subscribe(GetK5HomeroomMissingSubmissionsCount(courseIds: nonHomeroomCardIds)) { [weak self] in
+            guard let self = self, self.missingSubmissions?.state != .loading else { return }
+            self.updateSubjectCardViewModels()
+        }
+
+        missingSubmissions?.refresh(force: forceRefresh)
     }
 
     private func updateSubjectCardViewModels() {
         let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
         subjectCards = nonHomeroomCards.map { card in
             let announcement = announcementsStore?.first { $0.contextCode == Core.Context(.course, id: card.id).canvasContextID }
-            var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: 0)]
+            var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: numberOfMissingItems(for: card.id))]
 
             if let announcementInfoLine = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement) {
                 infoLines.append(announcementInfoLine)
@@ -103,6 +116,16 @@ public class K5HomeroomViewModel: ObservableObject {
         let plannerItem = dueItems?.first { $0.courseId == courseId }
 
         if let due = plannerItem?.due {
+            return Int(due)
+        } else {
+            return 0
+        }
+    }
+
+    private func numberOfMissingItems(for courseId: String) -> Int {
+        let missingSubmission = missingSubmissions?.first { $0.courseId == courseId }
+
+        if let due = missingSubmission?.missing {
             return Int(due)
         } else {
             return 0
@@ -154,6 +177,7 @@ extension K5HomeroomViewModel: Refreshable {
         forceRefresh = true
         refreshCompletion = completion
         announcementsStore = nil
+        missingSubmissions = nil
         dueItems = nil
         cards.refresh(force: true)
         profile.refresh(force: true)
