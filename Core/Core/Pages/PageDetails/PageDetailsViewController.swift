@@ -41,10 +41,11 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         self?.updateNavBar()
     }
     lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
-        self?.update()
+        self?.updatePages()
     }
+    var localPages: Store<LocalUseCase<Page>>?
 
-    var page: Page? { pages.first }
+    var page: Page? { localPages?.first }
 
     var canEdit: Bool {
         app == .teacher ||
@@ -86,7 +87,6 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
             groups.refresh()
         }
         pages.refresh(force: true)
-
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
@@ -117,6 +117,13 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         webView.loadHTMLString(page.body, baseURL: page.htmlURL)
     }
 
+    private func updatePages() {
+        guard let page = pages.first else { return }
+        localPages = env.subscribe(scope: .where(#keyPath(Page.id), equals: page.id)) { [weak self] in
+            self?.update() }
+        localPages?.refresh()
+    }
+
     @objc func showOptions(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(NSLocalizedString("Edit", bundle: .core, comment: ""), style: .default) { [weak self] _ in
@@ -145,7 +152,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
 
     func deletePage() {
         guard let page = page else { return }
-        env.api.makeRequest(DeletePageRequest(context: context, url: pageURL)) { [weak self] (_, _, error) in performUIUpdate {
+        env.api.makeRequest(DeletePageRequest(context: context, url: page.url)) { [weak self] (_, _, error) in performUIUpdate {
             guard let self = self else { return }
             if let error = error {
                 return self.showError(error)
