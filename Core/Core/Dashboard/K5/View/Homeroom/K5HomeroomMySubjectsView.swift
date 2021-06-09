@@ -21,9 +21,9 @@ import SwiftUI
 public struct K5HomeroomMySubjectsView: View {
     public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel]
 
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.containerWidth) private var containerWidth
-    private var isCompact: Bool { horizontalSizeClass == .compact }
+    // allow even an iPhoneSE2 to hold 2 cards next to each other in landscape
+    private var isCompact: Bool { containerWidth < 600 }
     private let cardSpacing: CGFloat = 24
 
     public var body: some View {

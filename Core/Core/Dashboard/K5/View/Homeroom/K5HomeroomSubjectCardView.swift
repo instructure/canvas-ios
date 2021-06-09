@@ -44,7 +44,7 @@ public struct K5HomeroomSubjectCardView: View {
                 Text(viewModel.name)
                     .font(.bold15)
                     .foregroundColor(viewModel.color)
-                    .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(1).fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 8).padding(.top, 8)
                 viewModel.color
                     .frame(height: 2)
@@ -59,8 +59,7 @@ public struct K5HomeroomSubjectCardView: View {
                 .shadow(color: Color.black.opacity(0.2), radius: 1, x: 0, y: 1)
 
         })
-
-        .buttonStyle(ScaleButtonStyle(scale: 1))
+        .buttonStyle(PlainButtonStyle())
         .frame(width: cardSize.width, height: cardSize.height)
         .frame(minHeight: cardSize.height)
         .identifier("DashboardCourseCell.\(viewModel.courseId)")
@@ -101,10 +100,11 @@ public struct K5HomeroomSubjectCardView: View {
                 .foregroundColor(viewModel.color)
                 .scaledToFill()
                 .frame(width: 18, height: 18)
-            Text(model.text)
+            (Text(model.text)
             +
             Text(model.highlightedText)
-                .foregroundColor(.red)
+                .foregroundColor(Color(DocViewerAnnotationColor.red.color)))
+                .padding(.top, 1)
         }
     }
 }
@@ -114,11 +114,11 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
     private static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        let announcement = LatestAnnouncement.save(.make(title: "I will be out on Thursday. Mrs. Robinson will be substituting."), in: context)
+        let announcement = LatestAnnouncement.save(.make(title: "I will be out on Thursday. Mrs. Robinson will be substituting. Make sure to read the rest of the announcement as well!"), in: context)
         let imageURL = URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!
         let models = [
             K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "SOCIAL STUDIES", color: .electric, infoLines: [.make(dueToday: 0, missing: 0)]),
-            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "SOCIAL STUDIES", color: .electric, infoLines: [.make(dueToday: 3, missing: 1), .make(from: announcement)!]),
+            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "long course title to test what happens if there's not enough space for it", color: .electric, infoLines: [.make(dueToday: 3, missing: 1), .make(from: announcement)!]),
         ]
 
         ForEach(0..<models.count) { index in
