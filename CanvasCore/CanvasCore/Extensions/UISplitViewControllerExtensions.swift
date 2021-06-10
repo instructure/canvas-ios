@@ -19,7 +19,7 @@
 import UIKit
 
 public extension UISplitViewController {
-    var masterNavigationController: UINavigationController? {
+    @objc var masterNavigationController: UINavigationController? {
         viewControllers.first as? UINavigationController
     }
 
