@@ -95,13 +95,13 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.subjectCards.count, 1)
         guard let card = testee.subjectCards.first else { return }
         XCTAssertEqual(card.name, "COURSE 1")
-        XCTAssertEqual(card.courseId, "1")
+        XCTAssertEqual(card.courseRoute, "/courses/1")
         XCTAssertEqual(card.imageURL, URL(string: "https://instructure.com"))
         XCTAssertEqual(card.color, Color(hexString: "#DEAD00"))
 
         guard card.infoLines.count == 2 else { XCTFail("Info line count mismatch"); return }
-        XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .k5dueToday, text: "1 due today | ", highlightedText: "2 missing"))
-        XCTAssertEqual(card.infoLines[1], K5HomeroomSubjectCardViewModel.InfoLine(icon: .announcementLine, text: "Non homeroom announcement"))
+        XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .k5dueToday, route: "/courses/1/assignments", text: "1 due today | ", highlightedText: "2 missing"))
+        XCTAssertEqual(card.infoLines[1], K5HomeroomSubjectCardViewModel.InfoLine(icon: .announcementLine, route: "/courses/1/announcements", text: "Non homeroom announcement"))
     }
 
     // MARK: - Private Helpers

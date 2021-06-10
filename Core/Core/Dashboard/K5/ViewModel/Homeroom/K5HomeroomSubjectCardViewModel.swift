@@ -19,14 +19,16 @@
 import SwiftUI
 
 public struct K5HomeroomSubjectCardViewModel {
-    public let courseId: String
+    public let a11yId: String
+    public let courseRoute: String
     public let imageURL: URL?
     public let name: String
     public let color: Color
     public let infoLines: [InfoLine]
 
     public init(courseId: String, imageURL: URL?, name: String, color: UIColor?, infoLines: [InfoLine]) {
-        self.courseId = courseId
+        self.a11yId = "DashboardCourseCell.\(courseId)"
+        self.courseRoute = "/courses/\(courseId)"
         self.imageURL = imageURL
         self.name = name.uppercased()
         self.color = ((color != nil) ? Color(color!) : Color(hexString: "#394B58")!)
@@ -37,21 +39,23 @@ public struct K5HomeroomSubjectCardViewModel {
 extension K5HomeroomSubjectCardViewModel {
     public struct InfoLine: Equatable {
         public let icon: Image
+        public let route: String
         public let text: String
         public let highlightedText: String
 
-        public init(icon: Image, text: String = "", highlightedText: String = "") {
+        public init(icon: Image, route: String, text: String = "", highlightedText: String = "") {
             self.icon = icon
+            self.route = route
             self.text = text
             self.highlightedText = highlightedText
         }
 
-        public static func make(from announcement: LatestAnnouncement?) -> InfoLine? {
+        public static func make(from announcement: LatestAnnouncement?, courseId: String) -> InfoLine? {
             guard let announcement = announcement else { return nil }
-            return InfoLine(icon: .announcementLine, text: announcement.title)
+            return InfoLine(icon: .announcementLine, route: "/courses/\(courseId)/announcements", text: announcement.title)
         }
 
-        public static func make(dueToday: Int, missing: Int) -> InfoLine {
+        public static func make(dueToday: Int, missing: Int, courseId: String) -> InfoLine {
             var text = ""
             var highlightedText = ""
 
@@ -69,7 +73,7 @@ extension K5HomeroomSubjectCardViewModel {
                 text += " | "
             }
 
-            return InfoLine(icon: .k5dueToday, text: text, highlightedText: highlightedText)
+            return InfoLine(icon: .k5dueToday, route: "/courses/\(courseId)/assignments", text: text, highlightedText: highlightedText)
         }
     }
 }

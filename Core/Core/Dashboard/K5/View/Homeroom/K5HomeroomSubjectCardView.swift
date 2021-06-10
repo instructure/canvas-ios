@@ -36,7 +36,7 @@ public struct K5HomeroomSubjectCardView: View {
 
     public var body: some View {
         Button(action: {
-            env.router.route(to: "/courses/\(viewModel.courseId)", from: controller)
+            env.router.route(to: viewModel.courseRoute, from: controller)
         }, label: {
             VStack(alignment: .leading, spacing: 0) {
                 image
@@ -62,7 +62,7 @@ public struct K5HomeroomSubjectCardView: View {
         .buttonStyle(PlainButtonStyle())
         .frame(width: cardSize.width, height: cardSize.height)
         .frame(minHeight: cardSize.height)
-        .identifier("DashboardCourseCell.\(viewModel.courseId)")
+        .identifier(viewModel.a11yId)
     }
 
     private var image: some View {
@@ -94,18 +94,22 @@ public struct K5HomeroomSubjectCardView: View {
     }
 
     private func infoLine(from model: K5HomeroomSubjectCardViewModel.InfoLine) -> some View {
-        HStack(alignment: .top, spacing: 5) {
-            model.icon
-                .resizable()
-                .foregroundColor(viewModel.color)
-                .scaledToFill()
-                .frame(width: 18, height: 18)
-            (Text(model.text)
-            +
-            Text(model.highlightedText)
-                .foregroundColor(Color(DocViewerAnnotationColor.red.color)))
-                .padding(.top, 1)
-        }
+        Button(action: {
+            env.router.route(to: model.route, from: controller)
+        }, label: {
+            HStack(alignment: .top, spacing: 5) {
+                model.icon
+                    .resizable()
+                    .foregroundColor(viewModel.color)
+                    .scaledToFill()
+                    .frame(width: 18, height: 18)
+                (Text(model.text)
+                +
+                Text(model.highlightedText)
+                    .foregroundColor(Color(DocViewerAnnotationColor.red.color)))
+                    .padding(.top, 1)
+            }
+        })
     }
 }
 
@@ -118,8 +122,8 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
         let imageURL = URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!
         let longCourseName = "long course title to test what happens if there's not enough space for it"
         let models = [
-            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "SOCIAL STUDIES", color: .electric, infoLines: [.make(dueToday: 0, missing: 0)]),
-            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: longCourseName, color: .electric, infoLines: [.make(dueToday: 3, missing: 1), .make(from: announcement)!]),
+            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "SOCIAL STUDIES", color: .electric, infoLines: [.make(dueToday: 0, missing: 0, courseId: "")]),
+            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: longCourseName, color: .electric, infoLines: [.make(dueToday: 3, missing: 1, courseId: ""), .make(from: announcement, courseId: "")!]),
         ]
 
         ForEach(0..<models.count) { index in

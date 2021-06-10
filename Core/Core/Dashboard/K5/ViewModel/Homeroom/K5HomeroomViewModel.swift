@@ -99,9 +99,9 @@ public class K5HomeroomViewModel: ObservableObject {
         let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
         subjectCards = nonHomeroomCards.map { card in
             let announcement = announcementsStore?.first { $0.contextCode == Core.Context(.course, id: card.id).canvasContextID }
-            var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: numberOfMissingItems(for: card.id))]
+            var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: numberOfMissingItems(for: card.id), courseId: card.id)]
 
-            if let announcementInfoLine = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement) {
+            if let announcementInfoLine = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement, courseId: card.id) {
                 infoLines.append(announcementInfoLine)
             }
             return K5HomeroomSubjectCardViewModel(courseId: card.id, imageURL: card.imageURL, name: card.shortName, color: UIColor(hexString: card.k5Color), infoLines: infoLines)

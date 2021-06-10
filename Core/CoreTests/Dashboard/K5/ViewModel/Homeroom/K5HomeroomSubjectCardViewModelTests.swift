@@ -34,52 +34,63 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.name, "MATH")
     }
 
+    func testProperties() {
+        let testee = K5HomeroomSubjectCardViewModel(courseId: "test", imageURL: nil, name: "math", color: nil, infoLines: [])
+        XCTAssertEqual(testee.a11yId, "DashboardCourseCell.test")
+        XCTAssertEqual(testee.courseRoute, "/courses/test")
+    }
+
     func testInfoLineFromAnnouncement() {
         let announcement = LatestAnnouncement(context: databaseClient)
         announcement.title = "Test announcement title."
         announcement.message = "Test announcement content."
 
-        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement)
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement, courseId: "test")
 
         XCTAssertEqual(testee?.icon, .announcementLine)
         XCTAssertEqual(testee?.text, "Test announcement title.")
+        XCTAssertEqual(testee?.route, "/courses/test/announcements")
     }
 
     func testInfoLineFromNoAnnouncements() {
-        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(from: nil)
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(from: nil, courseId: "test")
 
         XCTAssertNil(testee)
     }
 
     func testInfoLineFromNoAssignments() {
-        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 0, missing: 0)
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 0, missing: 0, courseId: "test")
 
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "Nothing Due Today")
         XCTAssertEqual(testee.highlightedText, "")
+        XCTAssertEqual(testee.route, "/courses/test/assignments")
     }
 
     func testInfoLineFromDueAssignments() {
-        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 3, missing: 0)
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 3, missing: 0, courseId: "test")
 
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "3 due today")
         XCTAssertEqual(testee.highlightedText, "")
+        XCTAssertEqual(testee.route, "/courses/test/assignments")
     }
 
     func testInfoLineFromMissingAssignments() {
-        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 0, missing: 3)
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 0, missing: 3, courseId: "test")
 
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "")
         XCTAssertEqual(testee.highlightedText, "3 missing")
+        XCTAssertEqual(testee.route, "/courses/test/assignments")
     }
 
     func testInfoLineFromDueAndMissingAssignments() {
-        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 3, missing: 1)
+        let testee = K5HomeroomSubjectCardViewModel.InfoLine.make(dueToday: 3, missing: 1, courseId: "test")
 
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "3 due today | ")
         XCTAssertEqual(testee.highlightedText, "1 missing")
+        XCTAssertEqual(testee.route, "/courses/test/assignments")
     }
 }
