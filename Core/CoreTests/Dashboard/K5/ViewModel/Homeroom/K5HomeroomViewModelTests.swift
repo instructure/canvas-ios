@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
 import XCTest
 @testable import Core
 
@@ -93,9 +94,10 @@ class K5HomeroomViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.subjectCards.count, 1)
         guard let card = testee.subjectCards.first else { return }
-        XCTAssertEqual(card.name, "Course 1")
+        XCTAssertEqual(card.name, "COURSE 1")
         XCTAssertEqual(card.courseId, "1")
         XCTAssertEqual(card.imageURL, URL(string: "https://instructure.com"))
+        XCTAssertEqual(card.color, Color(hexString: "#DEAD00"))
 
         guard card.infoLines.count == 2 else { XCTFail("Info line count mismatch"); return }
         XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .k5dueToday, text: "1 due today | ", highlightedText: "2 missing"))
@@ -122,7 +124,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
     private func mockDashboardCards() {
         let mockRequest = GetDashboardCardsRequest()
         let mockResponse = [
-            APIDashboardCard.make(id: "1", image: "https://instructure.com", isHomeroom: false),
+            APIDashboardCard.make(color: "#DEAD00", id: "1", image: "https://instructure.com", isHomeroom: false),
             APIDashboardCard.make(id: "2", isHomeroom: true, shortName: "course2 name"),
         ]
         api.mock(mockRequest, value: mockResponse)

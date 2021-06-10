@@ -116,9 +116,10 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
     static var previews: some View {
         let announcement = LatestAnnouncement.save(.make(title: "I will be out on Thursday. Mrs. Robinson will be substituting. Make sure to read the rest of the announcement as well!"), in: context)
         let imageURL = URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!
+        let longCourseName = "long course title to test what happens if there's not enough space for it"
         let models = [
             K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "SOCIAL STUDIES", color: .electric, infoLines: [.make(dueToday: 0, missing: 0)]),
-            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "long course title to test what happens if there's not enough space for it", color: .electric, infoLines: [.make(dueToday: 3, missing: 1), .make(from: announcement)!]),
+            K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: longCourseName, color: .electric, infoLines: [.make(dueToday: 3, missing: 1), .make(from: announcement)!]),
         ]
 
         ForEach(0..<models.count) { index in

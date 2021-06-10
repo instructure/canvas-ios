@@ -104,9 +104,7 @@ public class K5HomeroomViewModel: ObservableObject {
             if let announcementInfoLine = K5HomeroomSubjectCardViewModel.InfoLine.make(from: announcement) {
                 infoLines.append(announcementInfoLine)
             }
-
-            // FIXME: ContextColor change
-            return K5HomeroomSubjectCardViewModel(courseId: card.id, imageURL: card.imageURL, name: card.shortName, color: card.contextColor?.color, infoLines: infoLines)
+            return K5HomeroomSubjectCardViewModel(courseId: card.id, imageURL: card.imageURL, name: card.shortName, color: UIColor(hexString: card.k5Color), infoLines: infoLines)
         }
 
         finishRefresh()

@@ -28,6 +28,8 @@ final class DashboardCard: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var imageURL: URL?
     @NSManaged var isHomeroom: Bool
+    /** Teacher assigned hex color for K5 courses */
+    @NSManaged var k5Color: String?
     @NSManaged var longName: String
     @NSManaged var originalName: String
     @NSManaged var position: Int
@@ -53,6 +55,7 @@ final class DashboardCard: NSManagedObject {
         model.id = item.id.value
         model.imageURL = item.image.flatMap { URL(string: $0) }
         model.isHomeroom = item.isHomeroom ?? false
+        model.k5Color = item.color
         model.longName = item.longName
         model.originalName = item.originalName
         model.position = item.position ?? position
