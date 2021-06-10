@@ -87,19 +87,16 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         NotificationManager.shared.subscribeToPushChannel()
 
-        let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { _, urlResponse, _ in
+        GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
             PageViewEventController.instance.userDidChange()
             DispatchQueue.main.async { self.refreshNotificationTab() }
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                GetEnvironmentFeatureFlags().fetch(environment: self.environment) { _, _, _ in
-                    GetEnvironmentFeatureFlags.updateAppEnvironmentFlags()
-                    DispatchQueue.main.async { NativeLoginManager.login(as: session) }
-                }
+                DispatchQueue.main.async { NativeLoginManager.login(as: session) }
             }
+            self.environment.isK5Enabled = (apiProfile?.k5_user == true)
         }
         Analytics.shared.logSession(session)
     }

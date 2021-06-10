@@ -27,6 +27,7 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var avatarURL: URL?
     @NSManaged public var calendarURL: URL?
     @NSManaged public var pronouns: String?
+    @NSManaged public var isK5User: Bool
 }
 
 extension UserProfile: WriteableModel {
@@ -40,6 +41,7 @@ extension UserProfile: WriteableModel {
         model.avatarURL = item.avatar_url?.rawValue
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
+        model.isK5User = (item.k5_user == true)
         return model
     }
 }
