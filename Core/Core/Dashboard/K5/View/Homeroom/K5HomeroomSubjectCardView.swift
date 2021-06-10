@@ -113,6 +113,8 @@ public struct K5HomeroomSubjectCardView: View {
     }
 }
 
+#if DEBUG
+
 struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
     private static let env = PreviewEnvironment()
     private static let context = env.globalDatabase.viewContext
@@ -137,3 +139,5 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

@@ -46,8 +46,12 @@ public struct K5HomeroomView: View {
     }
 }
 
+#if DEBUG
+
 struct K5HomeroomView_Previews: PreviewProvider {
     static var previews: some View {
         K5HomeroomView(viewModel: K5HomeroomViewModel(), containerHorizontalMargin: 0).previewLayout(.sizeThatFits)
     }
 }
+
+#endif

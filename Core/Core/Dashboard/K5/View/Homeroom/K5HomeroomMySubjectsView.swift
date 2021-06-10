@@ -60,6 +60,8 @@ public struct K5HomeroomMySubjectsView: View {
     }
 }
 
+#if DEBUG
+
 struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
     static let cards = [
         K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: nil, name: "Math", color: .electric, infoLines: []),
@@ -76,3 +78,5 @@ struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
             .environment(\.containerWidth, 370)
     }
 }
+
+#endif

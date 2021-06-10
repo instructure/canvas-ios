@@ -54,9 +54,13 @@ struct K5HomeroomAnnouncementView: View {
     }
 }
 
+#if DEBUG
+
 struct K5HomeRoomAnnouncementView_Previews: PreviewProvider {
     static var previews: some View {
         let model = K5HomeroomAnnouncementViewModel(courseName: "K5 - Math", title: "New Assignment!", htmlContent: "<h1>Make sure to complete in time!</h1>", allAnnouncementsRoute: "")
         K5HomeroomAnnouncementView(viewModel: model).previewLayout(.sizeThatFits)
     }
 }
+
+#endif
