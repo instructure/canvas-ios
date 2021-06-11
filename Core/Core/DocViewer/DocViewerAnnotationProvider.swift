@@ -38,7 +38,12 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         }
     }
 
-    init(documentProvider: PDFDocumentProvider!, fileAnnotationProvider: PDFFileAnnotationProvider, metadata: APIDocViewerMetadata, annotations: [APIDocViewerAnnotation], api: API, sessionID: String) {
+    init(documentProvider: PDFDocumentProvider!,
+         fileAnnotationProvider: PDFFileAnnotationProvider,
+         metadata: APIDocViewerMetadata,
+         annotations: [APIDocViewerAnnotation],
+         api: API, sessionID: String) {
+
         self.api = api
         self.sessionID = sessionID
         self.fileAnnotationProvider = fileAnnotationProvider
@@ -108,7 +113,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     }
 
     override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
-        // First, fetch the annotations from the file annotation provider. Use `annotationsForPage(at:)` because this is the function that actually loads the annotations.
+        // First, fetch the annotations from the file annotation provider.
         let fileAnnotations = fileAnnotationProvider.annotationsForPage(at: pageIndex) ?? []
         // Then ask `super` to retrieve the custom annotations from cache.
         let docViewerAnnotations = super.annotationsForPage(at: pageIndex) ?? []

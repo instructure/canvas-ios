@@ -103,7 +103,12 @@ public class DocViewerViewController: UIViewController {
             document.defaultAnnotationUsername = annotationMeta.user_name
             document.didCreateDocumentProviderBlock = { [weak self] documentProvider in
                 guard let self = self, let fileAnnotationProvider = documentProvider.annotationManager.fileAnnotationProvider else { return }
-                let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, fileAnnotationProvider: fileAnnotationProvider, metadata: metadata, annotations: annotations, api: self.session.api, sessionID: sessionID)
+                let provider = DocViewerAnnotationProvider(documentProvider: documentProvider,
+                                                           fileAnnotationProvider: fileAnnotationProvider,
+                                                           metadata: metadata,
+                                                           annotations: annotations,
+                                                           api: self.session.api,
+                                                           sessionID: sessionID)
                 provider.docViewerDelegate = self
                 documentProvider.annotationManager.annotationProviders = [provider]
                 self.annotationProvider = provider
