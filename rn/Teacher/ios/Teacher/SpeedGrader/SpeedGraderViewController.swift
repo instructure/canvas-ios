@@ -67,6 +67,8 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
     }
 
     func update() {
+        guard assignment.requested && !assignment.pending && submissions.requested && !submissions.pending && !submissions.hasNextPage else { return }
+
         if !submissions.useCase.shuffled, assignment.first?.anonymizeStudents == true {
             submissions.useCase.shuffled = true
             submissions.setScope(submissions.useCase.scope)
