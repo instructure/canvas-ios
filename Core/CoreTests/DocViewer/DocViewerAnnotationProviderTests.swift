@@ -45,8 +45,10 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         let document = Document(url: Bundle(for: DocViewerAnnotationProviderTests.self).url(forResource: "instructure", withExtension: "pdf")!)
         let metadata = APIDocViewerAnnotationsMetadata(enabled: enabled, user_id: "1", user_name: "a", permissions: permissions)
         let documentProvider = document.documentProviders.first!
+        let fileAnnotationProvider = documentProvider.annotationManager.fileAnnotationProvider!
         let provider = DocViewerAnnotationProvider(
             documentProvider: documentProvider,
+            fileAnnotationProvider: fileAnnotationProvider,
             metadata: APIDocViewerMetadata(
                 annotations: metadata,
                 panda_push: nil,
