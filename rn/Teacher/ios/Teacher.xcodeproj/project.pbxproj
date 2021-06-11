@@ -91,6 +91,7 @@
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
+		C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */; };
 		C946A8C026661C2E004BCA4D /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */; };
 		C956719D266E033B001FEA9B /* ModulesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C956719C266E033B001FEA9B /* ModulesE2ETests.swift */; };
 		C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990D8192668ADBF00034C90 /* TodosE2ETests.swift */; };
@@ -491,6 +492,7 @@
 		B17E1DB4238DA8550022EE0E /* SpeedGraderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderUITests.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1FF02D1240435B0004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsE2ETests.swift; sourceTree = "<group>"; };
 		C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardE2ETests.swift; sourceTree = "<group>"; };
 		C956719C266E033B001FEA9B /* ModulesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesE2ETests.swift; sourceTree = "<group>"; };
 		C990D8192668ADBF00034C90 /* TodosE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosE2ETests.swift; sourceTree = "<group>"; };
@@ -889,6 +891,7 @@
 				C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */,
 				C990D8192668ADBF00034C90 /* TodosE2ETests.swift */,
 				C956719C266E033B001FEA9B /* ModulesE2ETests.swift */,
+				C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */,
 			);
 			path = TeacherE2ETests;
 			sourceTree = "<group>";
@@ -1643,6 +1646,7 @@
 				E814FC0524993ED900CD208A /* DiscussionEditorE2ETests.swift in Sources */,
 				C956719D266E033B001FEA9B /* ModulesE2ETests.swift in Sources */,
 				C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */,
+				C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
