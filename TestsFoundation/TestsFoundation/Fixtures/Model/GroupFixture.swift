@@ -25,10 +25,12 @@ extension Group {
     public static func make(
         from api: APIGroup = .make(),
         showOnDashboard: Bool = false,
+        course: Course = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Group {
         let model = Group.save(api, in: context)
         model.showOnDashboard = showOnDashboard
+        model.course = course
         try! context.save()
         return model
     }

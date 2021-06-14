@@ -115,4 +115,15 @@ class GetDashboardGroupsTest: CoreTestCase {
         let groups: [Group] = databaseClient.fetch()
         XCTAssert(groups.contains(notMember))
     }
+
+    func testItDoesNotShowRestrictedCourseGroups() {
+        let course: Course = .make(from: .make(access_restricted_by_date: true))
+        let group = Group.make(from: .make(id: "1", name: "Old Name"), showOnDashboard: true, course: course)
+        let getGroup = GetDashboardGroups()
+        var groups: [Group] = databaseClient.fetch(.all, sortDescriptors: getGroup.scope.order)
+        XCTAssertEqual(groups.count, 1)
+        XCTAssertEqual(groups.first, group)
+        groups = databaseClient.fetch(getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
+        XCTAssertEqual(groups.count, 0)
+    }
 }
