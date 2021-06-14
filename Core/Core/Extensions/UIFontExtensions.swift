@@ -21,10 +21,10 @@ import SwiftUI
 
 public extension UIFont {
     enum Name: String, CaseIterable {
-        case regular10, regular11Monodigit, regular12, regular14, regular14Italic, regular16, regular20, regular24, regular20Monodigit, regular30
+        case regular10, regular11Monodigit, regular12, regular13, regular14, regular14Italic, regular16, regular17, regular20, regular24, regular20Monodigit, regular30
         case medium10, medium12, medium14, medium16, medium20
         case semibold11, semibold12, semibold14, semibold16, semibold16Italic, semibold18, semibold20
-        case bold11, bold17, bold20, bold24
+        case bold11, bold15, bold17, bold20, bold24, bold34
         case heavy24
     }
 
@@ -39,12 +39,16 @@ public extension UIFont {
             return scaledFont(.caption1, for: .monospacedDigitSystemFont(ofSize: 11, weight: .regular))
         case .regular12:
             return scaledFont(.caption1, for: .systemFont(ofSize: 12, weight: .regular))
+        case .regular13:
+            return scaledFont(.caption1, for: .systemFont(ofSize: 13, weight: .regular))
         case .regular14:
             return scaledFont(.body, for: .systemFont(ofSize: 14, weight: .regular))
         case .regular14Italic:
             return scaledFont(.body, for: .systemFont(ofSize: 14, weight: .regular), traits: .traitItalic)
         case .regular16:
             return scaledFont(.body, for: .systemFont(ofSize: 16, weight: .regular))
+        case .regular17:
+            return scaledFont(.body, for: .systemFont(ofSize: 17, weight: .regular))
         case .regular20:
             return scaledFont(.callout, for: .systemFont(ofSize: 20, weight: .regular))
         case .regular20Monodigit:
@@ -82,15 +86,16 @@ public extension UIFont {
 
         case .bold11:
             return scaledFont(.body, for: .systemFont(ofSize: 11, weight: .bold))
-
+        case .bold15:
+            return scaledFont(.title2, for: .systemFont(ofSize: 15, weight: .bold))
         case .bold17:
             return scaledFont(.title2, for: .systemFont(ofSize: 17, weight: .bold))
-
         case .bold20:
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .bold))
-
         case .bold24:
             return scaledFont(.largeTitle, for: .systemFont(ofSize: 24, weight: .bold))
+        case .bold34:
+            return scaledFont(.largeTitle, for: .systemFont(ofSize: 34, weight: .bold))
 
         case .heavy24:
             return scaledFont(.title1, for: .systemFont(ofSize: 24, weight: .heavy))

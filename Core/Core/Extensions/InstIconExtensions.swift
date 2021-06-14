@@ -221,6 +221,7 @@ public extension UIImage {
     static var filterCheckbox: UIImage { UIImage(named: "filterCheckbox", in: .core, compatibleWith: nil)! }
     static var inboxTab: UIImage { UIImage(named: "inboxTab", in: .core, compatibleWith: nil)! }
     static var inboxTabActive: UIImage { UIImage(named: "inboxTabActive", in: .core, compatibleWith: nil)! }
+    static var k5dueToday: UIImage { UIImage(named: "k5dueToday", in: .core, compatibleWith: nil)! }
     static var k5grades: UIImage { UIImage(named: "k5grades", in: .core, compatibleWith: nil)! }
     static var k5homeroom: UIImage { UIImage(named: "k5homeroom", in: .core, compatibleWith: nil)! }
     static var k5resources: UIImage { UIImage(named: "k5resources", in: .core, compatibleWith: nil)! }
@@ -431,6 +432,7 @@ public extension Image {
     static var filterCheckbox: Image { Image("filterCheckbox", bundle: .core) }
     static var inboxTab: Image { Image("inboxTab", bundle: .core) }
     static var inboxTabActive: Image { Image("inboxTabActive", bundle: .core) }
+    static var k5dueToday: Image { Image("k5dueToday", bundle: .core) }
     static var k5grades: Image { Image("k5grades", bundle: .core) }
     static var k5homeroom: Image { Image("k5homeroom", bundle: .core) }
     static var k5resources: Image { Image("k5resources", bundle: .core) }

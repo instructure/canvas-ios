@@ -32,10 +32,10 @@ struct K5HomeroomAnnouncementView: View {
         VStack(alignment: .leading) {
             Text(viewModel.courseName)
                 .foregroundColor(.ash)
-                .font(.regular14)
+                .font(.regular13)
             Text(viewModel.title)
                 .foregroundColor(.licorice)
-                .font(.regular24)
+                .font(.bold24)
             WebView(html: viewModel.htmlContent)
                 .frameToFit()
                 // Offset default CSS padding in CoreWebView
@@ -43,7 +43,7 @@ struct K5HomeroomAnnouncementView: View {
                 .padding(.top, -10)
             Button(action: openPreviousAnnouncements, label: {
                 Text("View Previous Announcements", bundle: .core)
-                    .font(.regular16)
+                    .font(.regular17)
                     .foregroundColor(Color(Brand.shared.primary))
             })
         }
@@ -54,9 +54,13 @@ struct K5HomeroomAnnouncementView: View {
     }
 }
 
+#if DEBUG
+
 struct K5HomeRoomAnnouncementView_Previews: PreviewProvider {
     static var previews: some View {
         let model = K5HomeroomAnnouncementViewModel(courseName: "K5 - Math", title: "New Assignment!", htmlContent: "<h1>Make sure to complete in time!</h1>", allAnnouncementsRoute: "")
         K5HomeroomAnnouncementView(viewModel: model).previewLayout(.sizeThatFits)
     }
 }
+
+#endif

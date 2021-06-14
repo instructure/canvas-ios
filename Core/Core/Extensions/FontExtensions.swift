@@ -22,9 +22,11 @@ public extension Font {
     static let regular10 = Font(UIFont.scaledNamedFont(.regular10))
     static let regular11Monodigit = Font(UIFont.scaledNamedFont(.regular11Monodigit))
     static let regular12 = Font(UIFont.scaledNamedFont(.regular12))
+    static let regular13 = Font(UIFont.scaledNamedFont(.regular13))
     static let regular14 = Font(UIFont.scaledNamedFont(.regular14))
     static let regular14Italic = Font(UIFont.scaledNamedFont(.regular14Italic))
     static let regular16 = Font(UIFont.scaledNamedFont(.regular16))
+    static let regular17 = Font(UIFont.scaledNamedFont(.regular17))
     static let regular20 = Font(UIFont.scaledNamedFont(.regular20))
     static let regular24 = Font(UIFont.scaledNamedFont(.regular24))
     static let regular20Monodigit = Font(UIFont.scaledNamedFont(.regular20Monodigit))
@@ -45,9 +47,11 @@ public extension Font {
     static let semibold20 = Font(UIFont.scaledNamedFont(.semibold20))
 
     static let bold11 = Font(UIFont.scaledNamedFont(.bold11))
+    static let bold15 = Font(UIFont.scaledNamedFont(.bold15))
     static let bold17 = Font(UIFont.scaledNamedFont(.bold17))
     static let bold20 = Font(UIFont.scaledNamedFont(.bold20))
     static let bold24 = Font(UIFont.scaledNamedFont(.bold24))
+    static let bold34 = Font(UIFont.scaledNamedFont(.bold34))
 
     static let heavy24 = Font(UIFont.scaledNamedFont(.heavy24))
 }

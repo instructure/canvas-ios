@@ -256,6 +256,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="imageURL" optional="YES" attributeType="URI"/>
         <attribute name="isHomeroom" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="k5Color" optional="YES" attributeType="String"/>
         <attribute name="longName" attributeType="String"/>
         <attribute name="originalName" attributeType="String"/>
         <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -493,6 +494,14 @@
         <attribute name="subtext" optional="YES" attributeType="String"/>
         <attribute name="text" attributeType="String"/>
         <attribute name="url" attributeType="URI"/>
+    </entity>
+    <entity name="K5HomeroomDueItemCount" representedClassName="Core.K5HomeroomDueItemCount" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="due" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="K5HomeroomMissingSubmissionsCount" representedClassName="Core.K5HomeroomMissingSubmissionsCount" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="missing" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="LatestAnnouncement" representedClassName="Core.LatestAnnouncement" syncable="YES">
         <attribute name="contextCode" attributeType="String"/>
@@ -946,7 +955,7 @@
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="418"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
-        <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="238"/>
+        <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="253"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
@@ -962,6 +971,9 @@
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="223"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="K5HomeroomDueItemCount" positionX="-540" positionY="-18" width="128" height="73"/>
+        <element name="K5HomeroomMissingSubmissionsCount" positionX="-531" positionY="-9" width="128" height="73"/>
+        <element name="LatestAnnouncement" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="148"/>
@@ -996,6 +1008,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="LatestAnnouncement" positionX="-540" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

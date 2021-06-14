@@ -21,14 +21,17 @@ import SwiftUI
 public struct TopBarView: View {
     @ObservedObject private var viewModel: TopBarViewModel
     private let selectionIndicatorHeight: CGFloat = 3
+    private let leftInset: CGFloat
 
-    public init(viewModel: TopBarViewModel) {
+    public init(viewModel: TopBarViewModel, leftInset: CGFloat) {
         self.viewModel = viewModel
+        self.leftInset = leftInset
     }
 
     public var body: some View {
         ScrollViewWithReader(.horizontal, showsIndicators: false) { scrollViewProxy in
             HStack(spacing: 0) {
+                Color.clear.frame(width: leftInset, height: 0)
                 ForEach(0..<viewModel.items.count) { index in
                     TopBarItemView(viewModel: viewModel.items[index]) {
                         viewModel.selectedItemIndex = index
@@ -71,7 +74,7 @@ struct TopBarView_Previews: PreviewProvider {
             TopBarItemViewModel(icon: .audioLine, label: Text(verbatim: "Audio")),
             TopBarItemViewModel(icon: .noteLine, label: Text(verbatim: "Note")),
             TopBarItemViewModel(icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite")),
-        ]))
+        ]), leftInset: 16)
             .previewLayout(.sizeThatFits)
     }
 }
