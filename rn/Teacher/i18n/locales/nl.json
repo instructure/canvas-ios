@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "Berichtopties"
   },
+  "message_sent_de26a937": {
+    "message": "Bericht verzonden"
+  },
   "message_students_who_778ce759": {
     "message": "Bericht sturen naar cursisten die"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "Bezig met verzenden..."
+  },
+  "sending_message_75923692": {
+    "message": "Bericht wordt verzonden"
   },
   "sent_fe0a1eb4": {
     "message": "Verzonden"

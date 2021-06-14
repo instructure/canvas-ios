@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Deze cursist heeft geen inlevering voor deze opdracht.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "De antwoorden van deze cursist zijn verborgen omdat deze opdracht anoniem is.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Deze inlevering heeft geen bestanden.";
 
 /* No comment provided by engineer. */

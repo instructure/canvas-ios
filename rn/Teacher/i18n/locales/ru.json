@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "Опции сообщения"
   },
+  "message_sent_de26a937": {
+    "message": "Сообщение отправлено"
+  },
   "message_students_who_778ce759": {
     "message": "Отправить сообщение студентам, которые"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "Отправка..."
+  },
+  "sending_message_75923692": {
+    "message": "Идет отправка сообщения"
   },
   "sent_fe0a1eb4": {
     "message": "Отправлено"

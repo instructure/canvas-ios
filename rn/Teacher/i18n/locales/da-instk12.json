@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "Beskedindstillinger"
   },
+  "message_sent_de26a937": {
+    "message": "Besked sendt"
+  },
   "message_students_who_778ce759": {
     "message": "Send besked til elever, som"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "Sender ..."
+  },
+  "sending_message_75923692": {
+    "message": "Sender besked"
   },
   "sent_fe0a1eb4": {
     "message": "Sendt"

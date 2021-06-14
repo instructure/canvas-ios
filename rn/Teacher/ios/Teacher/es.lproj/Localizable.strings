@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Este estudiante no tiene una entrega para esta tarea.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Las respuestas de los estudiantes están ocultas porque esta tarea es anónima.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Esta entrega no tiene archivos.";
 
 /* No comment provided by engineer. */

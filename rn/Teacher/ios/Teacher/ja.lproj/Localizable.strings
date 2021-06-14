@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "この受講生には、この課題の提出はありません。";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "この課題は匿名なので、この受講生の応答は表示されません。";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "この提出には、ファイルがありません。";
 
 /* No comment provided by engineer. */

@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "This student does not have a submission for this assignment.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "This student's responses are hidden because this assignment is anonymous.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "This submission has no files.";
 
 /* No comment provided by engineer. */

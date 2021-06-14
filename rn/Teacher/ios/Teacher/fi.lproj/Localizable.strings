@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Tällä opiskelijalla ei ole lähetystä tähän tehtävään.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Tämän opiskelijan vastaukset on kätketty, koska tehtävä on nimetön.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Tässä lähetyksessä ei ole tiedostoja.";
 
 /* No comment provided by engineer. */

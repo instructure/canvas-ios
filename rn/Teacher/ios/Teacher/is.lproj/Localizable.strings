@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Þessi nemandi hefur ekki skil fyrir þetta verkefni.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Svör nemanda eru falin því þetta verkefni er nafnlaust.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Þessi skil innihalda engar skrár.";
 
 /* No comment provided by engineer. */

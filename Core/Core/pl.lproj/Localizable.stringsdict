@@ -179,7 +179,7 @@
 			<key>one</key>
 			<string>%d element</string>
 			<key>other</key>
-			<string>%d elementy</string>
+			<string>Elementy: %d</string>
 		</dict>
 	</dict>
 	<key>d_likes</key>

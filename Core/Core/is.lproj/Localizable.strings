@@ -59,6 +59,9 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d items" = "%d atriði";
+
+/* No comment provided by engineer. */
 "%d Replies" = "%d Svör";
 
 /* No comment provided by engineer. */
@@ -1603,6 +1606,9 @@
 /* No comment provided by engineer. */
 "Redo" = "Endurtaka";
 
+/* Downloading new content has started */
+"Refreshing" = "Enduglæðir";
+
 /* No comment provided by engineer. */
 "Remove" = "Fjarlægja";
 
@@ -2091,6 +2097,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Uppfærðar tungumálastillingar";
+
+/* No comment provided by engineer. */
+"Updating" = "Uppfæri";
 
 /* No comment provided by engineer. */
 "Upload File" = "Hlaða upp skrá";

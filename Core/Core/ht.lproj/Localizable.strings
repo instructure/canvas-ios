@@ -59,6 +59,9 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d items" = "%d atik";
+
+/* No comment provided by engineer. */
 "%d Replies" = "%d Repons";
 
 /* No comment provided by engineer. */
@@ -1603,6 +1606,9 @@
 /* No comment provided by engineer. */
 "Redo" = "Refè";
 
+/* Downloading new content has started */
+"Refreshing" = "Rafrechi";
+
 /* No comment provided by engineer. */
 "Remove" = "Elimine";
 
@@ -2091,6 +2097,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Paramèt Langaj Aktyalize";
+
+/* No comment provided by engineer. */
+"Updating" = "Aktyalizasyon";
 
 /* No comment provided by engineer. */
 "Upload File" = "Transfere Fichye";

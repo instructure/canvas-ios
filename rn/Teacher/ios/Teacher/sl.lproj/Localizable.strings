@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Pri tem študentu ni oddaje za to nalogo.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Odgovori tega študenta so skriti, ker je ta naloga anonimna.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Ta oddaja nima datotek.";
 
 /* No comment provided by engineer. */

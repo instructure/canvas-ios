@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "Meddelandealternativ"
   },
+  "message_sent_de26a937": {
+    "message": "Meddelandet har skickats"
+  },
   "message_students_who_778ce759": {
     "message": "Skicka meddelande till studenter som"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "Skickar ..."
+  },
+  "sending_message_75923692": {
+    "message": "Skickar meddelandet"
   },
   "sent_fe0a1eb4": {
     "message": "Skickat"
