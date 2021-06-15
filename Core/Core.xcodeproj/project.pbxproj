@@ -811,7 +811,6 @@
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
 		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
-		CF07000C264D756F00B82FDD /* GetEnvironmentFeatureFlagsRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF07000B264D756F00B82FDD /* GetEnvironmentFeatureFlagsRequestTests.swift */; };
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
 		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
@@ -848,10 +847,6 @@
 		CF60CC5C26496ECF00C1C173 /* K5HomeroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5B26496ECF00C1C173 /* K5HomeroomViewModel.swift */; };
 		CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */; };
 		CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC6126497BC100C1C173 /* Refreshable.swift */; };
-		CF60CD17264AD5C900C1C173 /* GetEnvironmentFeatureFlagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CD16264AD5C900C1C173 /* GetEnvironmentFeatureFlagsRequest.swift */; };
-		CF60CD1B264AD6D700C1C173 /* APIEnvironmentFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CD1A264AD6D700C1C173 /* APIEnvironmentFeatureFlags.swift */; };
-		CF60CD1F264AD7A600C1C173 /* GetEnvironmentFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CD1E264AD7A600C1C173 /* GetEnvironmentFeatureFlags.swift */; };
-		CF60CD27264C06CF00C1C173 /* EnvironmentFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CD26264C06CF00C1C173 /* EnvironmentFeatureFlags.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
@@ -878,7 +873,6 @@
 		CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */; };
 		CFFA9D782668BF1700C1648E /* K5HomeroomViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA9D772668BF1700C1648E /* K5HomeroomViewModelTests.swift */; };
 		CFFA9D7C2668DEFD00C1648E /* K5DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */; };
-		CFFD2455264C139B00494994 /* GetEnvironmentFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD2454264C139B00494994 /* GetEnvironmentFeatureFlagsTests.swift */; };
 		D9436D1725A4BAD200DD3873 /* GetCourseSingleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */; };
 		D9436D1D25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */; };
 		D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020BC257FB554002B7B73 /* ContextCardView.swift */; };
@@ -1962,7 +1956,6 @@
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
 		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
-		CF07000B264D756F00B82FDD /* GetEnvironmentFeatureFlagsRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnvironmentFeatureFlagsRequestTests.swift; sourceTree = "<group>"; };
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
 		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
@@ -1999,10 +1992,6 @@
 		CF60CC5B26496ECF00C1C173 /* K5HomeroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomViewModel.swift; sourceTree = "<group>"; };
 		CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModel.swift; sourceTree = "<group>"; };
 		CF60CC6126497BC100C1C173 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
-		CF60CD16264AD5C900C1C173 /* GetEnvironmentFeatureFlagsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnvironmentFeatureFlagsRequest.swift; sourceTree = "<group>"; };
-		CF60CD1A264AD6D700C1C173 /* APIEnvironmentFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironmentFeatureFlags.swift; sourceTree = "<group>"; };
-		CF60CD1E264AD7A600C1C173 /* GetEnvironmentFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnvironmentFeatureFlags.swift; sourceTree = "<group>"; };
-		CF60CD26264C06CF00C1C173 /* EnvironmentFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentFeatureFlags.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -2029,7 +2018,6 @@
 		CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModel.swift; sourceTree = "<group>"; };
 		CFFA9D772668BF1700C1648E /* K5HomeroomViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomViewModelTests.swift; sourceTree = "<group>"; };
 		CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModelTests.swift; sourceTree = "<group>"; };
-		CFFD2454264C139B00494994 /* GetEnvironmentFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnvironmentFeatureFlagsTests.swift; sourceTree = "<group>"; };
 		D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUser.swift; sourceTree = "<group>"; };
 		D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUserTests.swift; sourceTree = "<group>"; };
 		D97020BC257FB554002B7B73 /* ContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardView.swift; sourceTree = "<group>"; };
@@ -2819,7 +2807,6 @@
 		7D1D5BE82492AC47009EA317 /* FeatureFlags */ = {
 			isa = PBXGroup;
 			children = (
-				CFFD2452264C137500494994 /* Environment */,
 				B1571E68230756D2009CAA58 /* APIFeatureFlagTests.swift */,
 				B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */,
 			);
@@ -2829,7 +2816,6 @@
 		7D1D5BE92492AC79009EA317 /* FeatureFlags */ = {
 			isa = PBXGroup;
 			children = (
-				CF60CD19264AD63400C1C173 /* Environment */,
 				B1999AAE2305AAC300DA97A4 /* APIFeatureFlags.swift */,
 				B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */,
 				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
@@ -3973,14 +3959,6 @@
 			path = ModuleItems;
 			sourceTree = "<group>";
 		};
-		CF07000A264D756000B82FDD /* API */ = {
-			isa = PBXGroup;
-			children = (
-				CF07000B264D756F00B82FDD /* GetEnvironmentFeatureFlagsRequestTests.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		CF22C94125F286E000C2E012 /* Accessibility */ = {
 			isa = PBXGroup;
 			children = (
@@ -4218,15 +4196,6 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
-		CF60CD19264AD63400C1C173 /* Environment */ = {
-			isa = PBXGroup;
-			children = (
-				CF914947264C092400AFC457 /* API */,
-				CF914946264C091600AFC457 /* CoreData */,
-			);
-			path = Environment;
-			sourceTree = "<group>";
-		};
 		CF7C6D9A25E5114D00363203 /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -4274,24 +4243,6 @@
 				CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */,
 			);
 			path = Group;
-			sourceTree = "<group>";
-		};
-		CF914946264C091600AFC457 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				CF60CD26264C06CF00C1C173 /* EnvironmentFeatureFlags.swift */,
-				CF60CD1E264AD7A600C1C173 /* GetEnvironmentFeatureFlags.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		CF914947264C092400AFC457 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				CF60CD1A264AD6D700C1C173 /* APIEnvironmentFeatureFlags.swift */,
-				CF60CD16264AD5C900C1C173 /* GetEnvironmentFeatureFlagsRequest.swift */,
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
@@ -4417,23 +4368,6 @@
 				CFFA9D772668BF1700C1648E /* K5HomeroomViewModelTests.swift */,
 			);
 			path = Homeroom;
-			sourceTree = "<group>";
-		};
-		CFFD2452264C137500494994 /* Environment */ = {
-			isa = PBXGroup;
-			children = (
-				CF07000A264D756000B82FDD /* API */,
-				CFFD2453264C138100494994 /* CoreData */,
-			);
-			path = Environment;
-			sourceTree = "<group>";
-		};
-		CFFD2453264C138100494994 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				CFFD2454264C139B00494994 /* GetEnvironmentFeatureFlagsTests.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		D97020BB257FB536002B7B73 /* ContextCard */ = {
@@ -5152,7 +5086,6 @@
 				7D3A0D3225016F12000C6F42 /* FileListViewControllerTests.swift in Sources */,
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
 				7D37BE9121C849D10063FAAC /* DocViewerViewControllerTests.swift in Sources */,
-				CFFD2455264C139B00494994 /* GetEnvironmentFeatureFlagsTests.swift in Sources */,
 				7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */,
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
@@ -5263,7 +5196,6 @@
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,
 				7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */,
 				7D57398D2437E411000073BE /* GetAssignmentsByGroupTests.swift in Sources */,
-				CF07000C264D756F00B82FDD /* GetEnvironmentFeatureFlagsRequestTests.swift in Sources */,
 				7DCF203A216D5712003AF358 /* QuizTypeTests.swift in Sources */,
 				7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */,
 				7D7F71DE241FDDDB00D6F9CB /* ConferenceTests.swift in Sources */,
@@ -5484,7 +5416,6 @@
 				7DA2600623F7227A005D2121 /* Int64Extensions.swift in Sources */,
 				7DA25F9123F72128005D2121 /* GradeListViewController.swift in Sources */,
 				7DA260A123F7234C005D2121 /* MockMessage.swift in Sources */,
-				CF60CD1B264AD6D700C1C173 /* APIEnvironmentFeatureFlags.swift in Sources */,
 				7DA260B023F72352005D2121 /* GetCourseSections.swift in Sources */,
 				7D7F71D6241C2A5A00D6F9CB /* ConferenceListViewController.swift in Sources */,
 				7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */,
@@ -5579,7 +5510,6 @@
 				7DA25FED23F721DE005D2121 /* CreateConversation.swift in Sources */,
 				7DA2607E23F722FA005D2121 /* PageViewSession.swift in Sources */,
 				7DA25FC723F72136005D2121 /* APIPostPolicyInfo.swift in Sources */,
-				CF60CD27264C06CF00C1C173 /* EnvironmentFeatureFlags.swift in Sources */,
 				3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */,
 				EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */,
 				7DA260CF23F72359005D2121 /* ChatBubbleView.swift in Sources */,
@@ -5691,7 +5621,6 @@
 				7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */,
 				E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */,
 				B17F27652459EDF100CD47A1 /* MasteryPathViewController.swift in Sources */,
-				CF60CD1F264AD7A600C1C173 /* GetEnvironmentFeatureFlags.swift in Sources */,
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
 				7DA2604D23F722D9005D2121 /* Group.swift in Sources */,
 				3B4D893A2450A8FC004ED120 /* EditComposeRecipientsViewController.swift in Sources */,
@@ -5791,7 +5720,6 @@
 				7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */,
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
 				7DA25FB723F72136005D2121 /* APIGroup.swift in Sources */,
-				CF60CD17264AD5C900C1C173 /* GetEnvironmentFeatureFlagsRequest.swift in Sources */,
 				7DB92CA224C5F5ED004A6C16 /* GetAccountNotifications.swift in Sources */,
 				7DA2604123F722D9005D2121 /* CourseSection.swift in Sources */,
 				7DA25F8A23F7211E005D2121 /* GetPlannables.swift in Sources */,

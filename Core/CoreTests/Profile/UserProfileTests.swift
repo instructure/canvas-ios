@@ -22,10 +22,11 @@ import XCTest
 
 class UserProfileTests: CoreTestCase {
     func testUserProfile() {
-        let apiProfile = APIProfile.make()
+        let apiProfile = APIProfile.make(k5_user: true)
         let profile = UserProfile.save(apiProfile, in: databaseClient)
         XCTAssertEqual(profile.id, apiProfile.id.value)
         XCTAssertEqual(profile.calendarURL, apiProfile.calendar?.ics)
+        XCTAssertEqual(profile.isK5User, true)
     }
 
     func testGetUserProfile() {
@@ -33,5 +34,11 @@ class UserProfileTests: CoreTestCase {
         XCTAssertEqual(useCase.userID, "self")
         XCTAssertEqual(useCase.cacheKey, "get-user-self-profile")
         XCTAssertEqual(useCase.request.userID, "self")
+    }
+
+    func testK5UserDefaultValue() {
+        let apiProfile = APIProfile.make(k5_user: nil)
+        let profile = UserProfile.save(apiProfile, in: databaseClient)
+        XCTAssertEqual(profile.isK5User, false)
     }
 }
