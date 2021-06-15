@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Denne eleven har ingen innlevering for denne oppgaven.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Denne elevens svar er skjult fordi denne oppgaven er anonym.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Denne innleveringen har ingen filer.";
 
 /* No comment provided by engineer. */

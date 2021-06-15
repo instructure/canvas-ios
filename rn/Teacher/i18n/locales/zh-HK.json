@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "訊息選項"
   },
+  "message_sent_de26a937": {
+    "message": "訊息已發送"
+  },
   "message_students_who_778ce759": {
     "message": "發送訊息給以下學生"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "正在發送..."
+  },
+  "sending_message_75923692": {
+    "message": "正在發送訊息"
   },
   "sent_fe0a1eb4": {
     "message": "已發送"

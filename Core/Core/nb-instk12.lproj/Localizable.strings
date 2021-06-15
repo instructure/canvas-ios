@@ -59,6 +59,9 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d items" = "%d elementer";
+
+/* No comment provided by engineer. */
 "%d Replies" = "%d Svar";
 
 /* No comment provided by engineer. */
@@ -1603,6 +1606,9 @@
 /* No comment provided by engineer. */
 "Redo" = "Gjør om";
 
+/* Downloading new content has started */
+"Refreshing" = "Oppdaterer";
+
 /* No comment provided by engineer. */
 "Remove" = "Fjern";
 
@@ -2091,6 +2097,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Oppdatert språkinnstillinger";
+
+/* No comment provided by engineer. */
+"Updating" = "Oppdaterer";
 
 /* No comment provided by engineer. */
 "Upload File" = "Last opp fil";

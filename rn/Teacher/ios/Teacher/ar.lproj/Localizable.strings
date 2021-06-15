@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "لا يمتلك هذا الطالب إرسالاً لهذه المهمة.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "استجابات هذا الطالب مخفية لأن هذا التعيين مجهول الاسم.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "لا يحتوي هذا الإرسال على ملفات.";
 
 /* No comment provided by engineer. */

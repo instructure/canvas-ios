@@ -125,7 +125,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d項目</string>
+			<string>%dアイテム</string>
 		</dict>
 	</dict>
 	<key>d_likes</key>

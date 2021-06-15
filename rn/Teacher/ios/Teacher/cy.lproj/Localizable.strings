@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Does gan y myfyriwr hwn ddim cyflwyniad ar gyfer yr aseiniad hwn.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Mae atebion y myfyriwr hwn wedi’u cuddio gan fod yr aseiniad hwn yn ddienw.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Does gan y cyflwyniad hwn ddim ffeiliau.";
 
 /* No comment provided by engineer. */

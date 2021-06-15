@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "Ngā karere kōwhiringa"
   },
+  "message_sent_de26a937": {
+    "message": "Kua tonoa te karere"
+  },
   "message_students_who_778ce759": {
     "message": "Karere ki ngā ākonga e"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "Tuku ana ..."
+  },
+  "sending_message_75923692": {
+    "message": "E tuku Karere ana"
   },
   "sent_fe0a1eb4": {
     "message": "Kua tukuna"

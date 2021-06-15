@@ -59,6 +59,9 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d items" = "%d items";
+
+/* No comment provided by engineer. */
 "%d Replies" = "%d Antwoorden";
 
 /* No comment provided by engineer. */
@@ -1603,6 +1606,9 @@
 /* No comment provided by engineer. */
 "Redo" = "Opnieuw";
 
+/* Downloading new content has started */
+"Refreshing" = "Bezig met verversen";
+
 /* No comment provided by engineer. */
 "Remove" = "Verwijderen";
 
@@ -2091,6 +2097,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Bijgewerkte taalinstellingen";
+
+/* No comment provided by engineer. */
+"Updating" = "Bezig met bijwerken";
 
 /* No comment provided by engineer. */
 "Upload File" = "Bestand uploaden";

@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Kāore he tukunga mo tēnei whakataunga mo tēnei ākoranga.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Ke te hunahia ngā whakautu a tēnei ākonga no te mea he ingoamuna tēnei whakataunga.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Kaore he kōnae mo tēnei tāpaetanga.";
 
 /* No comment provided by engineer. */

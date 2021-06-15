@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "メッセージオプション"
   },
+  "message_sent_de26a937": {
+    "message": "メッセージを送信しました"
+  },
   "message_students_who_778ce759": {
     "message": "次の状態の受講者にメッセージを送る..."
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "送信しています..."
+  },
+  "sending_message_75923692": {
+    "message": "メッセージを送信中"
   },
   "sent_fe0a1eb4": {
     "message": "送信しました"

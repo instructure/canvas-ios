@@ -143,7 +143,7 @@
 			<key>one</key>
 			<string>%d ítem</string>
 			<key>other</key>
-			<string>%d Elementos</string>
+			<string>%d ítems</string>
 		</dict>
 	</dict>
 	<key>d_likes</key>
