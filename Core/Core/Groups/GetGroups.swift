@@ -67,13 +67,15 @@ public class GetDashboardGroups: CollectionUseCase {
 
     public var cacheKey: String? { "users/self/groups" }
     public var request: GetGroupsRequest { GetGroupsRequest(context: .currentUser) }
-    public var scope: Scope { .where(
-        #keyPath(Group.showOnDashboard), equals: true,
-        sortDescriptors: [
-            NSSortDescriptor(key: #keyPath(Group.name), ascending: true, naturally: true),
-            NSSortDescriptor(key: #keyPath(Group.id), ascending: true, naturally: true),
-        ]
-    ) }
+    public var scope: Scope {
+        let showOnDashboard = NSPredicate(key: #keyPath(Group.showOnDashboard), equals: true)
+        let accessRestrictedByDate = NSPredicate(key: #keyPath(Group.course.accessRestrictedByDate), equals: false)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [showOnDashboard, accessRestrictedByDate])
+        return Scope(predicate: predicate,
+                     order: [NSSortDescriptor(key: #keyPath(Group.name), ascending: true, naturally: true),
+                             NSSortDescriptor(key: #keyPath(Group.id), ascending: true, naturally: true),
+                     ])
+    }
 }
 
 class GetGroupsInCategory: CollectionUseCase {
