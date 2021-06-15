@@ -848,6 +848,9 @@
 		CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */; };
 		CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC6126497BC100C1C173 /* Refreshable.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
+		CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */; };
+		CF7C368B2678AF1300ACAC79 /* balsamiq_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */; };
+		CF7C368C2678AF1300ACAC79 /* balsamiq_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
 		CF7C6DAD25E56A0000363203 /* GroupContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */; };
@@ -856,6 +859,7 @@
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
+		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
@@ -1993,6 +1997,9 @@
 		CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModel.swift; sourceTree = "<group>"; };
 		CF60CC6126497BC100C1C173 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
+		CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
+		CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_regular.ttf; sourceTree = "<group>"; };
+		CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_bold.ttf; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
 		CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardTests.swift; sourceTree = "<group>"; };
@@ -2001,6 +2008,7 @@
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
@@ -2577,6 +2585,7 @@
 		7D101945215E87B80058FDD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF7C368E2678AFA300ACAC79 /* Fonts */,
 				7D101946215E87D40058FDD1 /* defaultHeaderImage.png */,
 			);
 			path = Resources;
@@ -3248,6 +3257,7 @@
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
 				7D742F3F25564CF200FD6CF1 /* SwiftUIExtensions.swift */,
 				7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */,
+				CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */,
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
 				789C9BC02138516300B37AC4 /* UIColorExtensions.swift */,
@@ -4196,6 +4206,16 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		CF7C368E2678AFA300ACAC79 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */,
+				CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */,
+				CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		CF7C6D9A25E5114D00363203 /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -4720,6 +4740,7 @@
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
+				CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */,
 				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,
 				7D159CEF242E559600A77A15 /* ModuleSectionHeaderView.xib in Resources */,
 				7D159CF0242E55AD00A77A15 /* ModuleListViewController.storyboard in Resources */,
@@ -4736,6 +4757,7 @@
 				49428D5824BA525F00EF3EAB /* GradeStatisticGraphView.xib in Resources */,
 				7D06A2B52469B7EF00D76267 /* DiscussionReplyViewController.storyboard in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
+				CF7C368B2678AF1300ACAC79 /* balsamiq_regular.ttf in Resources */,
 				7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				3B4D89282450A8E9004ED120 /* ComposeViewController.storyboard in Resources */,
@@ -4762,6 +4784,7 @@
 				7DA260FD23F77281005D2121 /* SyllabusSummaryItemCell.xib in Resources */,
 				9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */,
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
+				CF7C368C2678AF1300ACAC79 /* balsamiq_bold.ttf in Resources */,
 				7DAC16F624FD8AE6001F48A1 /* FileListViewController.storyboard in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
 				7D6E58032551C1530068D3C3 /* AnnouncementListViewController.storyboard in Resources */,
@@ -5601,6 +5624,7 @@
 				CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */,
 				E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */,
 				E83BB40625196E2C000E5B00 /* ConversationListCell.swift in Sources */,
+				CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */,
 				7DA2602223F7227A005D2121 /* UIButtonExtensions.swift in Sources */,
 				7DA2609A23F7233D005D2121 /* Store.swift in Sources */,
 				7DA2601523F7227A005D2121 /* UIImageViewExtensions.swift in Sources */,

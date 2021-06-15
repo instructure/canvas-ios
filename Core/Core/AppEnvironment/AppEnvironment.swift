@@ -39,7 +39,12 @@ open class AppEnvironment {
     public var currentSession: LoginSession?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults?
-    public var isK5Enabled = false
+    public var isK5Enabled = false {
+        didSet {
+            UITabBar.updateFontAppearance(useK5Fonts: isK5Enabled)
+            UIBarButtonItem.updateFontAppearance(useK5Fonts: isK5Enabled)
+        }
+    }
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?
     open var isTest: Bool { false }

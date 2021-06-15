@@ -23,7 +23,7 @@ public extension UIFont {
     enum Name: String, CaseIterable {
         case regular10, regular11Monodigit, regular12, regular13, regular14, regular14Italic, regular16, regular17, regular20, regular24, regular20Monodigit, regular30
         case medium10, medium12, medium14, medium16, medium20
-        case semibold11, semibold12, semibold14, semibold16, semibold16Italic, semibold18, semibold20
+        case semibold11, semibold12, semibold14, semibold16, semibold17, semibold16Italic, semibold18, semibold20
         case bold11, bold15, bold17, bold20, bold24, bold34
         case heavy24
     }
@@ -34,71 +34,96 @@ public extension UIFont {
     static func scaledNamedFont(_ name: Name) -> UIFont {
         switch name {
         case .regular10:
-            return scaledFont(.caption2, for: .systemFont(ofSize: 10, weight: .regular))
+            return scaledFont(.caption2, for: applicationFont(ofSize: 10, weight: .regular))
         case .regular11Monodigit:
-            return scaledFont(.caption1, for: .monospacedDigitSystemFont(ofSize: 11, weight: .regular))
+            return scaledFont(.caption1, for: .monospacedApplicationFont(ofSize: 11, weight: .regular))
         case .regular12:
-            return scaledFont(.caption1, for: .systemFont(ofSize: 12, weight: .regular))
+            return scaledFont(.caption1, for: applicationFont(ofSize: 12, weight: .regular))
         case .regular13:
-            return scaledFont(.caption1, for: .systemFont(ofSize: 13, weight: .regular))
+            return scaledFont(.caption1, for: applicationFont(ofSize: 13, weight: .regular))
         case .regular14:
-            return scaledFont(.body, for: .systemFont(ofSize: 14, weight: .regular))
+            return scaledFont(.body, for: applicationFont(ofSize: 14, weight: .regular))
         case .regular14Italic:
-            return scaledFont(.body, for: .systemFont(ofSize: 14, weight: .regular), traits: .traitItalic)
+            return scaledFont(.body, for: applicationFont(ofSize: 14, weight: .regular), traits: .traitItalic)
         case .regular16:
-            return scaledFont(.body, for: .systemFont(ofSize: 16, weight: .regular))
+            return scaledFont(.body, for: applicationFont(ofSize: 16, weight: .regular))
         case .regular17:
-            return scaledFont(.body, for: .systemFont(ofSize: 17, weight: .regular))
+            return scaledFont(.body, for: applicationFont(ofSize: 17, weight: .regular))
         case .regular20:
-            return scaledFont(.callout, for: .systemFont(ofSize: 20, weight: .regular))
+            return scaledFont(.callout, for: applicationFont(ofSize: 20, weight: .regular))
         case .regular20Monodigit:
-            return scaledFont(.title3, for: .monospacedDigitSystemFont(ofSize: 20, weight: .regular))
+            return scaledFont(.title3, for: .monospacedApplicationFont(ofSize: 20, weight: .regular))
         case .regular24:
-            return scaledFont(.body, for: .systemFont(ofSize: 24, weight: .regular))
+            return scaledFont(.body, for: applicationFont(ofSize: 24, weight: .regular))
         case .regular30:
-            return scaledFont(.title1, for: .systemFont(ofSize: 30, weight: .regular))
+            return scaledFont(.title1, for: applicationFont(ofSize: 30, weight: .regular))
 
         case .medium10:
-            return scaledFont(.title3, for: .systemFont(ofSize: 10, weight: .medium))
+            return scaledFont(.title3, for: applicationFont(ofSize: 10, weight: .medium))
         case .medium12:
-            return scaledFont(.caption1, for: .systemFont(ofSize: 12, weight: .medium))
+            return scaledFont(.caption1, for: applicationFont(ofSize: 12, weight: .medium))
         case .medium14:
-            return scaledFont(.body, for: .systemFont(ofSize: 14, weight: .medium))
+            return scaledFont(.body, for: applicationFont(ofSize: 14, weight: .medium))
         case .medium16:
-            return scaledFont(.title2, for: .systemFont(ofSize: 16, weight: .medium))
+            return scaledFont(.title2, for: applicationFont(ofSize: 16, weight: .medium))
         case .medium20:
-            return scaledFont(.title1, for: .systemFont(ofSize: 20, weight: .medium))
+            return scaledFont(.title1, for: applicationFont(ofSize: 20, weight: .medium))
 
         case .semibold11:
-            return scaledFont(.body, for: .systemFont(ofSize: 11, weight: .semibold))
+            return scaledFont(.body, for: applicationFont(ofSize: 11, weight: .semibold))
         case .semibold12:
-            return scaledFont(.body, for: .systemFont(ofSize: 12, weight: .semibold))
+            return scaledFont(.body, for: applicationFont(ofSize: 12, weight: .semibold))
         case .semibold14:
-            return scaledFont(.callout, for: .systemFont(ofSize: 14, weight: .semibold))
+            return scaledFont(.callout, for: applicationFont(ofSize: 14, weight: .semibold))
         case .semibold16:
-            return scaledFont(.callout, for: .systemFont(ofSize: 16, weight: .semibold))
+            return scaledFont(.callout, for: applicationFont(ofSize: 16, weight: .semibold))
         case .semibold16Italic:
-            return scaledFont(.callout, for: .systemFont(ofSize: 16, weight: .semibold), traits: .traitItalic)
+            return scaledFont(.callout, for: applicationFont(ofSize: 16, weight: .semibold), traits: .traitItalic)
+        case .semibold17:
+            return scaledFont(.callout, for: applicationFont(ofSize: 17, weight: .semibold))
         case .semibold18:
-            return scaledFont(.title2, for: .systemFont(ofSize: 18, weight: .semibold))
+            return scaledFont(.title2, for: applicationFont(ofSize: 18, weight: .semibold))
         case .semibold20:
-            return scaledFont(.title3, for: .systemFont(ofSize: 20, weight: .semibold))
+            return scaledFont(.title3, for: applicationFont(ofSize: 20, weight: .semibold))
 
         case .bold11:
-            return scaledFont(.body, for: .systemFont(ofSize: 11, weight: .bold))
+            return scaledFont(.body, for: applicationFont(ofSize: 11, weight: .bold))
         case .bold15:
-            return scaledFont(.title2, for: .systemFont(ofSize: 15, weight: .bold))
+            return scaledFont(.title2, for: applicationFont(ofSize: 15, weight: .bold))
         case .bold17:
-            return scaledFont(.title2, for: .systemFont(ofSize: 17, weight: .bold))
+            return scaledFont(.title2, for: applicationFont(ofSize: 17, weight: .bold))
         case .bold20:
-            return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .bold))
+            return UIFontMetrics(forTextStyle: .title3).scaledFont(for: applicationFont(ofSize: 20, weight: .bold))
         case .bold24:
-            return scaledFont(.largeTitle, for: .systemFont(ofSize: 24, weight: .bold))
+            return scaledFont(.largeTitle, for: applicationFont(ofSize: 24, weight: .bold))
         case .bold34:
-            return scaledFont(.largeTitle, for: .systemFont(ofSize: 34, weight: .bold))
+            return scaledFont(.largeTitle, for: applicationFont(ofSize: 34, weight: .bold))
 
         case .heavy24:
-            return scaledFont(.title1, for: .systemFont(ofSize: 24, weight: .heavy))
+            return scaledFont(.title1, for: applicationFont(ofSize: 24, weight: .heavy))
+        }
+    }
+
+    private static func monospacedApplicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
+        if AppEnvironment.shared.isK5Enabled {
+            return applicationFont(ofSize: fontSize, weight: weight)
+        } else {
+            return .monospacedDigitSystemFont(ofSize: fontSize, weight: weight)
+        }
+    }
+
+    private static func applicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
+        if AppEnvironment.shared.isK5Enabled {
+            let fontName: String
+            switch weight {
+            case .bold, .heavy:
+                fontName = "BalsamiqSans-Bold"
+            default:
+                fontName = "BalsamiqSans-Regular"
+            }
+            return UIFont(name: fontName, size: fontSize)!
+        } else {
+            return .systemFont(ofSize: fontSize, weight: weight)
         }
     }
 

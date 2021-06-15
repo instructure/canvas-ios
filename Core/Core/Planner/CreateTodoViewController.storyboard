@@ -63,7 +63,7 @@
                                                         <rect key="frame" x="20" y="0.0" width="374" height="62"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Course (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-fF-7HV" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="232" height="62"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="206.5" height="62"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgJ-rV-aa6" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="240" y="0.0" width="110" height="62"/>
+                                                                <rect key="frame" x="214.5" y="0.0" width="64" height="62"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GvP-Wx-aid" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="358" y="0.0" width="16" height="62"/>
+                                                                <rect key="frame" x="286.5" y="0.0" width="87.5" height="62"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="4aM-SZ-XDj"/>
                                                                 </constraints>
@@ -198,6 +198,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                                                         <color key="value" name="textDark"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                         </subviews>
@@ -243,9 +244,6 @@
         <designable name="3te-NC-l05">
             <size key="intrinsicContentSize" width="40.5" height="18.5"/>
         </designable>
-        <designable name="GvP-Wx-aid">
-            <size key="intrinsicContentSize" width="24" height="24"/>
-        </designable>
         <designable name="VgJ-rV-aa6">
             <size key="intrinsicContentSize" width="41" height="20.5"/>
         </designable>
@@ -261,7 +259,7 @@
     </designables>
     <resources>
         <namedColor name="textDark">
-            <color red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.33333333333333331" green="0.396078431372549" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
