@@ -322,6 +322,7 @@ extension StudentAppDelegate {
 
 extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
+        environment.isK5Enabled = false
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
