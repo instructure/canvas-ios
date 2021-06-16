@@ -44,6 +44,7 @@ public protocol CoreWebViewSizeDelegate: class {
 open class CoreWebView: WKWebView {
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
+        // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
 
