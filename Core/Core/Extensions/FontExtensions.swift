@@ -47,6 +47,7 @@ public extension Font {
     static var semibold20: Font { Font(UIFont.scaledNamedFont(.semibold20)) }
 
     static var bold11: Font { Font(UIFont.scaledNamedFont(.bold11)) }
+    static var bold13: Font { Font(UIFont.scaledNamedFont(.bold13)) }
     static var bold15: Font { Font(UIFont.scaledNamedFont(.bold15)) }
     static var bold17: Font { Font(UIFont.scaledNamedFont(.bold17)) }
     static var bold20: Font { Font(UIFont.scaledNamedFont(.bold20)) }

@@ -43,6 +43,7 @@ open class AppEnvironment {
         didSet {
             UITabBar.updateFontAppearance(useK5Fonts: isK5Enabled)
             UIBarButtonItem.updateFontAppearance(useK5Fonts: isK5Enabled)
+            UISegmentedControl.updateFontAppearance()
         }
     }
     public weak var loginDelegate: LoginDelegate?
