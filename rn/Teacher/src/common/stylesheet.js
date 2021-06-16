@@ -52,6 +52,7 @@ export const vars = {
   hairlineWidth: StyleSheet.hairlineWidth,
   padding: 16,
   tabBarHeight: 49,
+  isK5Enabled: false,
 }
 
 export function isDark (color) {
@@ -64,7 +65,8 @@ export function isDark (color) {
   return yiq < 128
 }
 
-export function setupBranding (brand) {
+export function setupBranding (brand, isK5Enabled) {
+  vars['isK5Enabled'] = isK5Enabled
   Object.assign(colors, brand)
   updateStyleSheets()
 }
