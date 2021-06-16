@@ -22,24 +22,18 @@ struct SideMenuHeaderView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @ObservedObject var profileStore: Store<GetUserProfile>
     @ObservedObject private var viewModel = ImagePickerViewModel()
+    @ObservedObject var userModel = UserModel()
 
     @State private var canUpdateAvatar: Bool = false
     @State private var isShowingActionSheet = false
     @State private var isUploadingImage = false
 
-    private var userName: String? { profileStore.first?.name ?? env.currentSession?.userName }
-    private var avatarURL: URL? { profileStore.first?.avatarURL }
-    private var initials: String { userName ?? "" }
-    private var name: String { userName.flatMap { User.displayName($0, pronouns: profileStore.first?.pronouns) } ?? "" }
-    private var email: String { profileStore.first?.email ?? "" }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
             let avatarLabel = canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
-            Avatar(name: initials, url: avatarURL, size: 72, isAccessible: true)
+            Avatar(name: userModel.initials, url: userModel.avatarURL, size: 72, isAccessible: true)
                 .padding(.bottom, 12).onTapGesture {
                     if canUpdateAvatar {
                         isShowingActionSheet = true
@@ -62,11 +56,11 @@ struct SideMenuHeaderView: View {
                 }
                 .opacity(isUploadingImage ? 0.4 : 1)
                 .overlay(isUploadingImage ? CircleProgress().padding(.bottom, 12) : nil)
-            Text(name)
+            Text(userModel.name)
                 .font(.bold20)
                 .padding(.bottom, 2)
                 .identifier("Profile.userNameLabel")
-            Text(email)
+            Text(userModel.email)
                 .font(.regular14)
                 .foregroundColor(.ash)
                 .minimumScaleFactor(0.2)
@@ -87,7 +81,7 @@ struct SideMenuHeaderView: View {
                         switch result {
                         case .success:
                             // Trigger save to CoreData
-                            profileStore.refresh(force: true)
+                            userModel.profile.refresh(force: true)
                         case .failure(let error):
                             showError(error)
                         }
@@ -124,11 +118,43 @@ extension SideMenuHeaderView {
             isPresentingImagePicker = true
         }
     }
+
+    final class UserModel: ObservableObject {
+        @Environment(\.appEnvironment) var env
+
+        lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
+            self?.profileUpdated()
+        }
+
+        @Published var userName: String?
+        @Published var avatarURL: URL?
+        @Published var initials: String = ""
+        @Published var shortName: String?
+        @Published var name: String = ""
+        @Published var email: String = ""
+
+        init() {
+            profile.refresh()
+        }
+
+        private func profileUpdated() {
+            guard let profile = profile.first, let userID = env.currentSession?.userID else { return }
+            userName = env.currentSession?.userName ?? ""
+            avatarURL = profile.avatarURL
+            initials = userName ?? ""
+            env.api.makeRequest(GetUserRequest(userID: "self")) {[weak self] (user, _, error) in
+                if let userShortName = user?.short_name {
+                    self?.shortName = User.displayName(userShortName, pronouns: self?.profile.first?.pronouns)
+                }
+            }
+            name = shortName ?? userName.flatMap { User.displayName($0, pronouns: profile.pronouns) } ?? ""
+            email = profile.email ?? ""
+        }
+    }
 }
 
 struct SideMenuHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        let profile = AppEnvironment.shared.subscribe(GetUserProfile(userID: "self"))
-        SideMenuHeaderView(profileStore: profile)
+        SideMenuHeaderView()
     }
 }
