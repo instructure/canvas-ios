@@ -88,6 +88,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.subscribeToPushChannel()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
+            self.environment.isK5Enabled = (apiProfile?.k5_user == true)
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
@@ -96,7 +97,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 DispatchQueue.main.async { NativeLoginManager.login(as: session) }
             }
-            self.environment.isK5Enabled = (apiProfile?.k5_user == true)
         }
         Analytics.shared.logSession(session)
     }
