@@ -30,7 +30,7 @@ public struct APIPlannable: Codable, Equatable {
     let context_name: String?
     let plannable: plannable?
     public let plannable_date: Date
-    let submissions: Submissions?
+    let submissions: TypeSafeCodable<Submissions, Bool>?
 
     //  swiftlint:disable:next type_name
     public struct plannable: Codable, Equatable {
@@ -99,7 +99,7 @@ extension APIPlannable {
             context_name: context_name,
             plannable: plannable,
             plannable_date: plannable_date,
-            submissions: submissions
+            submissions: TypeSafeCodable(value1: submissions, value2: nil)
         )
     }
 }
