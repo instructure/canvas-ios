@@ -81,10 +81,10 @@ class TypeSafeCodableTests: XCTestCase {
     }
 }
 
-private struct TestDecodable: Codable {
+private struct TestDecodable: Codable, Equatable {
     public let submissions: TypeSafeCodable<Bool, Type2Decodable>?
 }
 
-private struct Type2Decodable: Codable {
+private struct Type2Decodable: Codable, Equatable {
     public let excused: String
 }
