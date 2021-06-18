@@ -23,9 +23,21 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
     /** Instead of the first viewcontroller we return the full screen capable overlay viewcontroller. */
     public override var masterNavigationController: UINavigationController? { fullscreenPrimaryController }
 
+    private enum State {
+        case fullScreen
+        case divided
+        case hidden
+    }
     private weak var fullscreenPrimaryController: UINavigationController?
-    private var fullscreenWidthConstraint: NSLayoutConstraint?
-    private var splitModeConstraint: NSLayoutConstraint?
+    private var state: State = .fullScreen {
+        didSet {
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.view.layoutIfNeeded()
+                self?.updateFrame()
+                self?.view.layoutIfNeeded()
+            }
+        }
+    }
 
     public init(primary: UINavigationController, secondary: UINavigationController) {
         super.init(nibName: nil, bundle: nil)
@@ -33,16 +45,7 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         // This view won't be visible because our primary overlay viewcontroller will fully cover it. We use this to set the width of the primary overlay controller when not in full screen mode.
         let primaryPlaceHolder = UIViewController()
         viewControllers = [primaryPlaceHolder, secondary]
-        embed(primary, in: view) { [weak self] childViewController, containerView in
-            let childView = childViewController.view!
-            childView.translatesAutoresizingMaskIntoConstraints = false
-            childView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0).isActive = true
-            childView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0).isActive = true
-            containerView.bottomAnchor.constraint(equalTo: childView.bottomAnchor, constant: 0).isActive = true
-            self?.fullscreenWidthConstraint = containerView.trailingAnchor.constraint(equalTo: childView.trailingAnchor, constant: 0)
-            self?.fullscreenWidthConstraint?.isActive = true
-        }
-        splitModeConstraint = primary.view.trailingAnchor.constraint(equalTo: primaryPlaceHolder.view.trailingAnchor)
+        embed(primary, in: view) { _, _ in }
         fullscreenPrimaryController = primary
     }
 
@@ -50,26 +53,49 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func togglePrimaryFullscreen(to isFullscreen: Bool) {
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.view.layoutIfNeeded()
-            self?.splitModeConstraint?.isActive = !isFullscreen
-            self?.fullscreenWidthConstraint?.isActive = isFullscreen
-            self?.view.layoutIfNeeded()
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateFrame()
+    }
+
+    /**
+     UISplitViewController still uses auto resizing masks instead of auto layout constraints, so we can't use constraints and have to manually update view frames.
+     */
+    private func updateFrame() {
+        guard let overlayView = fullscreenPrimaryController?.view else { return }
+
+        switch state {
+            case .fullScreen: // copy size of the parent split view controller
+                overlayView.frame = view.frame
+            case .divided: // copy primary view's size
+                var frame = viewControllers[0].view.frame
+                frame.origin.x = 0
+                overlayView.frame = frame
+            case .hidden: // push view out of screen to the left
+                var frame = overlayView.frame
+                frame.origin.x = -frame.width
+                overlayView.frame = frame
         }
+    }
+
+    // MARK: - UISplitViewControllerDelegate
+
+    public override func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        super.splitViewController(svc, willChangeTo: displayMode)
+        state = (displayMode == .secondaryOnly ? .hidden : .divided)
     }
 
     // MARK: - UINavigationControllerDelegate
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count != 1 {
-            togglePrimaryFullscreen(to: false)
+            state = .divided
         }
     }
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count == 1 {
-            togglePrimaryFullscreen(to: true)
+            state = .fullScreen
         }
     }
 }
