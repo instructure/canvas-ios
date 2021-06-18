@@ -18,9 +18,11 @@
 
 /**
  The purpose of this view controller is to display the split view's primary viewcontroller in full screen mode. This is achieved by passing a placeholder primary view to the split viewcontroller while manually adding the real primary viewcontroller as an overlay on top of the split view. Setting the size of this overlay viewcontroller will achieve the full screen mode.
+
+ Do not use the `viewControllers` array directly. Use `masterNavigationController` and `detailNavigationController`helper properties instead.
  */
 public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
-    /** Instead of the first viewcontroller we return the full screen capable overlay viewcontroller. */
+    /** Instead of the first viewcontroller (which is just a placeholder) we return the full screen capable overlay viewcontroller. */
     public override var masterNavigationController: UINavigationController? { fullscreenPrimaryController }
 
     private enum State {

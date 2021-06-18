@@ -46,7 +46,9 @@ class StudentTabBarController: UITabBarController {
         let split: HelmSplitViewController
 
         if AppEnvironment.shared.isK5Enabled {
-            split = FullScreenPrimaryHelmSplitViewController(primary: HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView())), secondary: HelmNavigationController(rootViewController: EmptyViewController()))
+            let primary = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
+            let secondary = HelmNavigationController(rootViewController: EmptyViewController())
+            split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
         } else {
             split = HelmSplitViewController()
             split.viewControllers = [

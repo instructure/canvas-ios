@@ -28,7 +28,7 @@ extension UITabBarController {
             navigationController.dismiss(animated: false, completion: nil)
             navigationController.popToRootViewController(animated: true)
         } else if let splitViewController = viewController as? UISplitViewController,
-            let masterNav = splitViewController.viewControllers.first as? UINavigationController {
+                  let masterNav = splitViewController.masterNavigationController {
             masterNav.dismiss(animated: false, completion: nil)
             if (splitViewController.displayMode == .allVisible) {
                 masterNav.popToRootViewController(animated: true)
