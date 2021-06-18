@@ -100,7 +100,19 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
 
     public override func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
         super.splitViewController(svc, willChangeTo: displayMode)
-        state = (displayMode == .secondaryOnly ? .hidden : .divided)
+        state = {
+            if displayMode == .secondaryOnly {
+                return .hidden
+            }
+
+            guard let primaryNav = fullscreenPrimaryController else { return .divided }
+
+            if primaryNav.viewControllers.count == 1 {
+                return .fullScreen
+            } else {
+                return .divided
+            }
+        }()
 
         // When collapsing the primary overlay view the placeholder beneath it becomes visible during the animation's duration. Applying the same nav bar style makes it look better.
         if displayMode == .secondaryOnly {
