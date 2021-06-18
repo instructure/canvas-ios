@@ -852,6 +852,8 @@
 		CF7C368B2678AF1300ACAC79 /* balsamiq_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */; };
 		CF7C368C2678AF1300ACAC79 /* balsamiq_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */; };
 		CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C3690267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift */; };
+		CF7C3696267A3CEE00ACAC79 /* TypeSafeCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C3695267A3CEE00ACAC79 /* TypeSafeCodable.swift */; };
+		CF7C3699267A3E3400ACAC79 /* TypeSafeCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C3698267A3E3400ACAC79 /* TypeSafeCodableTests.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
 		CF7C6DAD25E56A0000363203 /* GroupContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */; };
@@ -2006,6 +2008,8 @@
 		CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_regular.ttf; sourceTree = "<group>"; };
 		CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_bold.ttf; sourceTree = "<group>"; };
 		CF7C3690267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControlExtensions.swift; sourceTree = "<group>"; };
+		CF7C3695267A3CEE00ACAC79 /* TypeSafeCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeCodable.swift; sourceTree = "<group>"; };
+		CF7C3698267A3E3400ACAC79 /* TypeSafeCodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeCodableTests.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
 		CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardTests.swift; sourceTree = "<group>"; };
@@ -3304,6 +3308,7 @@
 				7D80AC1E212B738500C40ECE /* APITests.swift */,
 				B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
+				CF7C3698267A3E3400ACAC79 /* TypeSafeCodableTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -3371,6 +3376,7 @@
 				7D8262EA212B1A7B00BD268D /* APIRequestable.swift */,
 				B11AAC3C237A2428002BC41F /* APIURL.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
+				CF7C3695267A3CEE00ACAC79 /* TypeSafeCodable.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -5015,6 +5021,7 @@
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
 				B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */,
+				CF7C3699267A3E3400ACAC79 /* TypeSafeCodableTests.swift in Sources */,
 				B1CA3348233948870015CBB4 /* UserTests.swift in Sources */,
 				D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */,
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
@@ -5617,6 +5624,7 @@
 				7DA260B823F72352005D2121 /* GetQuiz.swift in Sources */,
 				7DA2605923F722D9005D2121 /* Quiz.swift in Sources */,
 				CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */,
+				CF7C3696267A3CEE00ACAC79 /* TypeSafeCodable.swift in Sources */,
 				7D531D44254B105700CBFCA6 /* AssignmentAssigneePicker.swift in Sources */,
 				CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */,
 				7DA260BD23F72352005D2121 /* GetSubmissions.swift in Sources */,
