@@ -43,7 +43,7 @@ public struct Avatar: View {
             Text(initials)
                 .accessibility(hidden: !isAccessible)
                 .allowsTightening(true)
-                .font(.system(size: size / 2.25, weight: .semibold))
+                .font(Font(UIFont.applicationFont(ofSize: size / 2.25, weight: .semibold)))
                 .foregroundColor(.textDark)
                 .background(Color.backgroundLightest)
                 .frame(width: size, height: size)

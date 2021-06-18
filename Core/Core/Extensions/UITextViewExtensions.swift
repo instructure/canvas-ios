@@ -27,16 +27,15 @@ extension UITextView {
             return label
         } else {
             let label = PlaceholderLabel(frame: .zero)
-            label.font = font
             addSubview(label)
-            resizePlaceholder()
+            updatePlaceholder()
             observeProperties()
             return label
         }
     }
 
     private func observeProperties() {
-        let observingKeys = ["frame", "bounds"]
+        let observingKeys = ["frame", "bounds", "font"]
         for key in observingKeys {
             addObserver(self, forKeyPath: key, options: [.new], context: nil)
         }
@@ -49,16 +48,17 @@ extension UITextView {
         change: [NSKeyValueChangeKey: Any]?,
         context: UnsafeMutableRawPointer?
     ) {
-        resizePlaceholder()
+        updatePlaceholder()
     }
 
-    private func resizePlaceholder() {
+    private func updatePlaceholder() {
         let lineFragmentPadding = textContainer.lineFragmentPadding
         let x: CGFloat = lineFragmentPadding + textContainerInset.left
         let y: CGFloat = textContainerInset.top
         let width: CGFloat = bounds.width - x - lineFragmentPadding - textContainerInset.right
         let height: CGFloat = placeholderLabel.sizeThatFits(CGSize(width: width, height: 0)).height
         placeholderLabel.frame = CGRect(x: x, y: y, width: width, height: height)
+        placeholderLabel.font = font
     }
 
     @IBInspectable
@@ -71,7 +71,7 @@ extension UITextView {
             placeholderLabel.text = newValue
             placeholderLabel.numberOfLines = 0
             placeholderLabel.accessibilityElementsHidden = true
-            resizePlaceholder()
+            updatePlaceholder()
             textStorage.delegate = self
         }
     }

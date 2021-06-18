@@ -66,6 +66,7 @@ const loginHandler = async ({
   countryCode,
   locale,
   isFakeStudent,
+  isK5Enabled,
 }: {
   appId: AppId,
   authToken: string,
@@ -77,6 +78,7 @@ const loginHandler = async ({
   countryCode: string,
   locale: string,
   isFakeStudent: boolean,
+  isK5Enabled: boolean,
 }) => {
   setupI18n(locale || NativeModules.SettingsManager.settings.AppleLocale)
   App.setCurrentApp(appId)
@@ -87,7 +89,7 @@ const loginHandler = async ({
   }
 
   if (branding) {
-    setupBranding(branding)
+    setupBranding(branding, isK5Enabled)
   }
 
   const session = { authToken, baseURL, user, actAsUserID, refreshToken, clientID, clientSecret, isFakeStudent }

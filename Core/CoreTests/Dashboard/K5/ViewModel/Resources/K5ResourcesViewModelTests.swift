@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2021-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,17 @@
 //
 
 import XCTest
+@testable import Core
 
-public enum CourseNavigation: String, ElementWrapper, CaseIterable {
-    case announcements
-    case assignments
-    case discussions
-    case files
-    case grades
-    case modules
-    case pages
-    case people
-    case quizzes
-    case conferences
-    case syllabus
+class K5ResourcesViewModelTests: CoreTestCase {
 
-    public var id: String { "courses-details.\(rawValue)-cell" }
+    func testRefresh() {
+        let refreshExpectation = expectation(description: "Refresh finished")
+        let testee = K5ResourcesViewModel()
+        testee.refresh {
+            refreshExpectation.fulfill()
+        }
+
+        wait(for: [refreshExpectation], timeout: 2.5)
+    }
 }

@@ -36,7 +36,7 @@ public class GetK5HomeroomDueItemCount: CollectionUseCase {
         for plannable in plannables {
             let model: K5HomeroomDueItemCount = client.first(where: #keyPath(K5HomeroomDueItemCount.courseId), equals: plannable.course_id?.rawValue) ?? client.insert()
             model.courseId = plannable.course_id?.rawValue ?? ""
-            model.due += (plannable.submissions?.submitted == false ? 1 : 0)
+            model.due += (plannable.submissions?.value1?.submitted == false ? 1 : 0)
         }
     }
 }
