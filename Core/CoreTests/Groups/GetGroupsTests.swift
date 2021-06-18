@@ -126,4 +126,12 @@ class GetDashboardGroupsTest: CoreTestCase {
         groups = databaseClient.fetch(getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
         XCTAssertEqual(groups.count, 0)
     }
+
+    func testShowsGroupsWithoutCourse() {
+        let group = Group.make(from: .make(id: "1", name: "Old Name"), showOnDashboard: true)
+        let getGroup = GetDashboardGroups()
+        let groups: [Group] = databaseClient.fetch(getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
+        XCTAssertEqual(groups.count, 1)
+        XCTAssertEqual(groups.first, group)
+    }
 }
