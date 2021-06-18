@@ -29,6 +29,8 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         case hidden
     }
     private weak var fullscreenPrimaryController: UINavigationController?
+    // This view won't be visible because our primary overlay viewcontroller will fully cover it. We use this to set the width of the primary overlay controller when not in full screen mode.
+    private weak var primaryPlaceHolder: UINavigationController?
     private var state: State = .fullScreen {
         didSet {
             UIView.animate(withDuration: 0.3) { [weak self] in
@@ -42,8 +44,8 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
     public init(primary: UINavigationController, secondary: UINavigationController) {
         super.init(nibName: nil, bundle: nil)
 
-        // This view won't be visible because our primary overlay viewcontroller will fully cover it. We use this to set the width of the primary overlay controller when not in full screen mode.
-        let primaryPlaceHolder = UIViewController()
+        let primaryPlaceHolder = HelmNavigationController()
+        self.primaryPlaceHolder = primaryPlaceHolder
         viewControllers = [primaryPlaceHolder, secondary]
         embed(primary, in: view) { _, _ in }
         fullscreenPrimaryController = primary
@@ -68,7 +70,7 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
             case .fullScreen: // copy size of the parent split view controller
                 overlayView.frame = view.frame
             case .divided: // copy primary view's size
-                var frame = viewControllers[0].view.frame
+                var frame = primaryPlaceHolder?.view.frame ?? .zero
                 frame.origin.x = 0
                 overlayView.frame = frame
             case .hidden: // push view out of screen to the left
@@ -78,11 +80,32 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         }
     }
 
+    private func applyDetailNavBarStyleToPlaceholder() {
+        guard
+            let placeholderNavBar = primaryPlaceHolder?.navigationBar,
+            let detailNavBar = detailNavigationController?.navigationBar
+        else {
+            return
+        }
+
+        placeholderNavBar.barTintColor = detailNavBar.barTintColor
+        placeholderNavBar.tintColor = detailNavBar.tintColor
+        placeholderNavBar.shadowImage = detailNavBar.shadowImage
+        placeholderNavBar.isTranslucent = detailNavBar.isTranslucent
+        placeholderNavBar.barStyle = detailNavBar.barStyle
+        placeholderNavBar.titleTextAttributes = detailNavBar.titleTextAttributes
+    }
+
     // MARK: - UISplitViewControllerDelegate
 
     public override func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
         super.splitViewController(svc, willChangeTo: displayMode)
         state = (displayMode == .secondaryOnly ? .hidden : .divided)
+
+        // When collapsing the primary overlay view the placeholder beneath it becomes visible during the animation's duration. Applying the same nav bar style makes it look better.
+        if displayMode == .secondaryOnly {
+            applyDetailNavBarStyleToPlaceholder()
+        }
     }
 
     // MARK: - UINavigationControllerDelegate

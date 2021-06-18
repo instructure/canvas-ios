@@ -26,7 +26,7 @@ public class HelmSplitViewController: UISplitViewController {
     }
 
     public override var prefersStatusBarHidden: Bool {
-        return viewControllers.first?.prefersStatusBarHidden ?? false
+        return masterNavigationController?.prefersStatusBarHidden ?? false
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
