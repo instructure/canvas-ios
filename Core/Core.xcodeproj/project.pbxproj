@@ -848,6 +848,10 @@
 		CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */; };
 		CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC6126497BC100C1C173 /* Refreshable.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
+		CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */; };
+		CF7C368B2678AF1300ACAC79 /* balsamiq_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */; };
+		CF7C368C2678AF1300ACAC79 /* balsamiq_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */; };
+		CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C3690267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift */; };
 		CF7C3696267A3CEE00ACAC79 /* TypeSafeCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C3695267A3CEE00ACAC79 /* TypeSafeCodable.swift */; };
 		CF7C3699267A3E3400ACAC79 /* TypeSafeCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C3698267A3E3400ACAC79 /* TypeSafeCodableTests.swift */; };
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
@@ -857,7 +861,12 @@
 		CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */; };
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
+		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
+		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
+		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
+		CF941B1E267B439600700DE9 /* K5ScheduleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
+		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
@@ -1995,6 +2004,10 @@
 		CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModel.swift; sourceTree = "<group>"; };
 		CF60CC6126497BC100C1C173 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
+		CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
+		CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_regular.ttf; sourceTree = "<group>"; };
+		CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_bold.ttf; sourceTree = "<group>"; };
+		CF7C3690267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControlExtensions.swift; sourceTree = "<group>"; };
 		CF7C3695267A3CEE00ACAC79 /* TypeSafeCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeCodable.swift; sourceTree = "<group>"; };
 		CF7C3698267A3E3400ACAC79 /* TypeSafeCodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeCodableTests.swift; sourceTree = "<group>"; };
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
@@ -2004,7 +2017,12 @@
 		CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensionsTests.swift; sourceTree = "<group>"; };
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
+		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
+		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
+		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
+		CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleViewModelTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
@@ -2581,6 +2599,7 @@
 		7D101945215E87B80058FDD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF7C368E2678AFA300ACAC79 /* Fonts */,
 				7D101946215E87D40058FDD1 /* defaultHeaderImage.png */,
 			);
 			path = Resources;
@@ -3252,6 +3271,7 @@
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
 				7D742F3F25564CF200FD6CF1 /* SwiftUIExtensions.swift */,
 				7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */,
+				CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */,
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
 				789C9BC02138516300B37AC4 /* UIColorExtensions.swift */,
@@ -3260,6 +3280,7 @@
 				7D4D5EB1213F2A200080AC14 /* UIImageViewExtensions.swift */,
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
 				B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */,
+				CF7C3690267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift */,
 				7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */,
 				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 				7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */,
@@ -3299,6 +3320,7 @@
 				7DDC4510215BF7AA003F3209 /* BundleExtensionsTests.swift */,
 				7DD694802194CE8C00BA4984 /* DateExtensionsTests.swift */,
 				B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */,
+				CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */,
 				7D7BA23E24DC776000B1A68B /* InstColorExtensionsTests.swift */,
 				7DA20E922168128400F5FD19 /* InstIconExtensionsTests.swift */,
 				7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */,
@@ -4202,6 +4224,16 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		CF7C368E2678AFA300ACAC79 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */,
+				CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */,
+				CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		CF7C6D9A25E5114D00363203 /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -4249,6 +4281,30 @@
 				CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */,
 			);
 			path = Group;
+			sourceTree = "<group>";
+		};
+		CF941B12267B425800700DE9 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
+		CF941B17267B431500700DE9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CF941B1C267B438600700DE9 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
@@ -4359,7 +4415,10 @@
 		CFFA9D762668BEFC00C1648E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF941B12267B425800700DE9 /* Grades */,
 				CFFA9D7E2668DF0B00C1648E /* Homeroom */,
+				CF941B17267B431500700DE9 /* Resources */,
+				CF941B1C267B438600700DE9 /* Schedule */,
 				CFCBB88926692BB00026CEDF /* K5DashboardNavigationViewModelTests.swift */,
 				CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */,
 			);
@@ -4726,6 +4785,7 @@
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
+				CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */,
 				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,
 				7D159CEF242E559600A77A15 /* ModuleSectionHeaderView.xib in Resources */,
 				7D159CF0242E55AD00A77A15 /* ModuleListViewController.storyboard in Resources */,
@@ -4742,6 +4802,7 @@
 				49428D5824BA525F00EF3EAB /* GradeStatisticGraphView.xib in Resources */,
 				7D06A2B52469B7EF00D76267 /* DiscussionReplyViewController.storyboard in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
+				CF7C368B2678AF1300ACAC79 /* balsamiq_regular.ttf in Resources */,
 				7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				3B4D89282450A8E9004ED120 /* ComposeViewController.storyboard in Resources */,
@@ -4768,6 +4829,7 @@
 				7DA260FD23F77281005D2121 /* SyllabusSummaryItemCell.xib in Resources */,
 				9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */,
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
+				CF7C368C2678AF1300ACAC79 /* balsamiq_bold.ttf in Resources */,
 				7DAC16F624FD8AE6001F48A1 /* FileListViewController.storyboard in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
 				7D6E58032551C1530068D3C3 /* AnnouncementListViewController.storyboard in Resources */,
@@ -4944,6 +5006,7 @@
 				B1571E69230756D2009CAA58 /* APIFeatureFlagTests.swift in Sources */,
 				7D88EA2A23A96EA600D5F8FD /* AvatarGroupViewTests.swift in Sources */,
 				7DC35305255B316C00B36CD3 /* TodoListViewControllerTests.swift in Sources */,
+				CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,
@@ -5033,6 +5096,7 @@
 				7D80AC2D212C801600C40ECE /* APIOAuthTests.swift in Sources */,
 				B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */,
 				7D64A96A23622D3A004EAEDF /* CalendarDayIconViewTests.swift in Sources */,
+				CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */,
 				7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */,
 				3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */,
 				B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */,
@@ -5206,6 +5270,7 @@
 				7DCF203A216D5712003AF358 /* QuizTypeTests.swift in Sources */,
 				7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */,
 				7D7F71DE241FDDDB00D6F9CB /* ConferenceTests.swift in Sources */,
+				CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */,
 				7D1758C8215A9A7800F88613 /* TitleSubtitleViewTests.swift in Sources */,
 				9FCD79DA2188E3CD0054293A /* GetSubmissionsTests.swift in Sources */,
 				9F5C93032375F682005105BB /* GetPageTests.swift in Sources */,
@@ -5219,6 +5284,7 @@
 				B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */,
 				B10E89072384807B00E7684E /* GradeListViewControllerTests.swift in Sources */,
 				7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */,
+				CF941B1E267B439600700DE9 /* K5ScheduleViewModelTests.swift in Sources */,
 				7DCF1EC0216BC97F003AF358 /* TabVisibilityTests.swift in Sources */,
 				7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */,
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
@@ -5370,6 +5436,7 @@
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
+				CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* SideMenuTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
@@ -5609,6 +5676,7 @@
 				CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */,
 				E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */,
 				E83BB40625196E2C000E5B00 /* ConversationListCell.swift in Sources */,
+				CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */,
 				7DA2602223F7227A005D2121 /* UIButtonExtensions.swift in Sources */,
 				7DA2609A23F7233D005D2121 /* Store.swift in Sources */,
 				7DA2601523F7227A005D2121 /* UIImageViewExtensions.swift in Sources */,

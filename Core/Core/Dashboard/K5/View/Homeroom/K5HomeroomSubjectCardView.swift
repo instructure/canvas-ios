@@ -79,10 +79,11 @@ public struct K5HomeroomSubjectCardView: View {
 
     private var infoLines: some View {
         VStack(alignment: .leading, spacing: 5) {
-            ForEach(0..<viewModel.infoLines.count) { index in
-                infoLine(from: viewModel.infoLines[index])
+            let infoLines = viewModel.infoLines
+            ForEach(0..<infoLines.count) { index in
+                infoLine(from: infoLines[index])
 
-                if index != viewModel.infoLines.count - 1 {
+                if index != infoLines.count - 1 {
                     Divider()
                 }
             }

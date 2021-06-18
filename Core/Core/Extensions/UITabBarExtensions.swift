@@ -38,4 +38,11 @@ extension UITabBar {
             item.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         }
     }
+
+    public static func updateFontAppearance(useK5Fonts: Bool) {
+        let attributes = useK5Fonts ? [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular12)] : [:]
+        let appearance = UITabBarItem.appearance()
+        appearance.setTitleTextAttributes(attributes, for: .normal)
+        appearance.setBadgeTextAttributes(attributes, for: .normal)
+    }
 }

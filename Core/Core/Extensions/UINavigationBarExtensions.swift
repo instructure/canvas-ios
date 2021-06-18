@@ -41,6 +41,7 @@ extension UINavigationBar {
         barTintColor = background
         barStyle = .black
         isTranslucent = false
+        updateFontAppearance()
     }
 
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
@@ -51,6 +52,7 @@ extension UINavigationBar {
         barTintColor = background
         barStyle = background.luminance < 0.5 ? .black : .default
         isTranslucent = false
+        updateFontAppearance()
     }
 
     public func useModalStyle(brand: Brand = Brand.shared) {
@@ -60,5 +62,12 @@ extension UINavigationBar {
         barTintColor = .backgroundLightest
         barStyle = .default
         isTranslucent = false
+        updateFontAppearance()
+    }
+
+    public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.isK5Enabled) {
+        if useK5Fonts {
+            titleTextAttributes?[NSAttributedString.Key.font] = UIFont.scaledNamedFont(.bold17)
+        }
     }
 }

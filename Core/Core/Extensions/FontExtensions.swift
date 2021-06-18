@@ -19,39 +19,40 @@
 import SwiftUI
 
 public extension Font {
-    static let regular10 = Font(UIFont.scaledNamedFont(.regular10))
-    static let regular11Monodigit = Font(UIFont.scaledNamedFont(.regular11Monodigit))
-    static let regular12 = Font(UIFont.scaledNamedFont(.regular12))
-    static let regular13 = Font(UIFont.scaledNamedFont(.regular13))
-    static let regular14 = Font(UIFont.scaledNamedFont(.regular14))
-    static let regular14Italic = Font(UIFont.scaledNamedFont(.regular14Italic))
-    static let regular16 = Font(UIFont.scaledNamedFont(.regular16))
-    static let regular17 = Font(UIFont.scaledNamedFont(.regular17))
-    static let regular20 = Font(UIFont.scaledNamedFont(.regular20))
-    static let regular24 = Font(UIFont.scaledNamedFont(.regular24))
-    static let regular20Monodigit = Font(UIFont.scaledNamedFont(.regular20Monodigit))
-    static let regular30 = Font(UIFont.scaledNamedFont(.regular30))
+    static var regular10: Font { Font(UIFont.scaledNamedFont(.regular10)) }
+    static var regular11Monodigit: Font { Font(UIFont.scaledNamedFont(.regular11Monodigit)) }
+    static var regular12: Font { Font(UIFont.scaledNamedFont(.regular12)) }
+    static var regular13: Font { Font(UIFont.scaledNamedFont(.regular13)) }
+    static var regular14: Font { Font(UIFont.scaledNamedFont(.regular14)) }
+    static var regular14Italic: Font { Font(UIFont.scaledNamedFont(.regular14Italic)) }
+    static var regular16: Font { Font(UIFont.scaledNamedFont(.regular16)) }
+    static var regular17: Font { Font(UIFont.scaledNamedFont(.regular17)) }
+    static var regular20: Font { Font(UIFont.scaledNamedFont(.regular20)) }
+    static var regular24: Font { Font(UIFont.scaledNamedFont(.regular24)) }
+    static var regular20Monodigit: Font { Font(UIFont.scaledNamedFont(.regular20Monodigit)) }
+    static var regular30: Font { Font(UIFont.scaledNamedFont(.regular30)) }
 
-    static let medium10 = Font(UIFont.scaledNamedFont(.medium10))
-    static let medium12 = Font(UIFont.scaledNamedFont(.medium12))
-    static let medium14 = Font(UIFont.scaledNamedFont(.medium14))
-    static let medium16 = Font(UIFont.scaledNamedFont(.medium16))
-    static let medium20 = Font(UIFont.scaledNamedFont(.medium20))
+    static var medium10: Font { Font(UIFont.scaledNamedFont(.medium10)) }
+    static var medium12: Font { Font(UIFont.scaledNamedFont(.medium12)) }
+    static var medium14: Font { Font(UIFont.scaledNamedFont(.medium14)) }
+    static var medium16: Font { Font(UIFont.scaledNamedFont(.medium16)) }
+    static var medium20: Font { Font(UIFont.scaledNamedFont(.medium20)) }
 
-    static let semibold11 = Font(UIFont.scaledNamedFont(.semibold11))
-    static let semibold12 = Font(UIFont.scaledNamedFont(.semibold12))
-    static let semibold14 = Font(UIFont.scaledNamedFont(.semibold14))
-    static let semibold16 = Font(UIFont.scaledNamedFont(.semibold16))
-    static let semibold16Italic = Font(UIFont.scaledNamedFont(.semibold16Italic))
-    static let semibold18 = Font(UIFont.scaledNamedFont(.semibold18))
-    static let semibold20 = Font(UIFont.scaledNamedFont(.semibold20))
+    static var semibold11: Font { Font(UIFont.scaledNamedFont(.semibold11)) }
+    static var semibold12: Font { Font(UIFont.scaledNamedFont(.semibold12)) }
+    static var semibold14: Font { Font(UIFont.scaledNamedFont(.semibold14)) }
+    static var semibold16: Font { Font(UIFont.scaledNamedFont(.semibold16)) }
+    static var semibold16Italic: Font { Font(UIFont.scaledNamedFont(.semibold16Italic)) }
+    static var semibold18: Font { Font(UIFont.scaledNamedFont(.semibold18)) }
+    static var semibold20: Font { Font(UIFont.scaledNamedFont(.semibold20)) }
 
-    static let bold11 = Font(UIFont.scaledNamedFont(.bold11))
-    static let bold15 = Font(UIFont.scaledNamedFont(.bold15))
-    static let bold17 = Font(UIFont.scaledNamedFont(.bold17))
-    static let bold20 = Font(UIFont.scaledNamedFont(.bold20))
-    static let bold24 = Font(UIFont.scaledNamedFont(.bold24))
-    static let bold34 = Font(UIFont.scaledNamedFont(.bold34))
+    static var bold11: Font { Font(UIFont.scaledNamedFont(.bold11)) }
+    static var bold13: Font { Font(UIFont.scaledNamedFont(.bold13)) }
+    static var bold15: Font { Font(UIFont.scaledNamedFont(.bold15)) }
+    static var bold17: Font { Font(UIFont.scaledNamedFont(.bold17)) }
+    static var bold20: Font { Font(UIFont.scaledNamedFont(.bold20)) }
+    static var bold24: Font { Font(UIFont.scaledNamedFont(.bold24)) }
+    static var bold34: Font { Font(UIFont.scaledNamedFont(.bold34)) }
 
-    static let heavy24 = Font(UIFont.scaledNamedFont(.heavy24))
+    static var heavy24: Font { Font(UIFont.scaledNamedFont(.heavy24)) }
 }
