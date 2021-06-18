@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "خيارات الرسالة"
   },
+  "message_sent_de26a937": {
+    "message": "تم إرسال الرسالة"
+  },
   "message_students_who_778ce759": {
     "message": "إرسال رسائل للطلاب الذين"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "جارٍ الإرسال..."
+  },
+  "sending_message_75923692": {
+    "message": "جارٍ إرسال رسالة"
   },
   "sent_fe0a1eb4": {
     "message": "تم الإرسال"

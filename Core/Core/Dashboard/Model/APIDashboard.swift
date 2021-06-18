@@ -30,6 +30,8 @@ struct APIDashboardCardLink: Codable, Equatable {
 struct APIDashboardCard: Codable, Equatable {
     let assetString: String
     let courseCode: String
+    /** Teacher assigned hex color for K5 courses */
+    let color: String?
     let enrollmentType: String
     let href: String
     let id: ID
@@ -49,6 +51,7 @@ extension APIDashboardCard {
     static func make(
         assetString: String = "course_1",
         courseCode: String = "C1",
+        color: String? = nil,
         enrollmentType: String = "StudentEnrollment",
         href: String = "/courses/1",
         id: ID = 1,
@@ -65,6 +68,7 @@ extension APIDashboardCard {
         return APIDashboardCard(
             assetString: assetString,
             courseCode: courseCode,
+            color: color,
             enrollmentType: enrollmentType,
             href: href,
             id: id,

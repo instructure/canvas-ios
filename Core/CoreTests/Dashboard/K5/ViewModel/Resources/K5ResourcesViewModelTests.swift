@@ -16,6 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct APIEnvironmentFeatureFlags: Codable, Equatable {
-    public let canvas_for_elementary: Bool?
+import XCTest
+@testable import Core
+
+class K5ResourcesViewModelTests: CoreTestCase {
+
+    func testRefresh() {
+        let refreshExpectation = expectation(description: "Refresh finished")
+        let testee = K5ResourcesViewModel()
+        testee.refresh {
+            refreshExpectation.fulfill()
+        }
+
+        wait(for: [refreshExpectation], timeout: 2.5)
+    }
 }

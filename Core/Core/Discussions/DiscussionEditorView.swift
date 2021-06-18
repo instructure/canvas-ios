@@ -72,7 +72,7 @@ public struct DiscussionEditorView: View {
                 leading: Button(action: {
                     env.router.dismiss(controller)
                 }, label: {
-                    Text("Cancel", bundle: .core).fontWeight(.regular)
+                    Text("Cancel", bundle: .core).font(.regular17)
                 })
                     .identifier("screen.dismiss"),
                 trailing: HStack {
@@ -83,7 +83,7 @@ public struct DiscussionEditorView: View {
                         .disabled(isLoading || isSaving)
                         .identifier("DiscussionEditor.attachmentButton")
                     Button(action: save, label: {
-                        Text("Done", bundle: .core).bold()
+                        Text("Done", bundle: .core).font(.bold17)
                     })
                         .disabled(isLoading || isSaving)
                         .identifier("DiscussionEditor.doneButton")

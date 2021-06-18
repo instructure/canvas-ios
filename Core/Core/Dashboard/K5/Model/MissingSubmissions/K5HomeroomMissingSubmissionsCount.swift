@@ -16,12 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
-import XCTest
+import CoreData
 
-class GetEnvironmentFeatureFlagsRequestTests: XCTestCase {
-
-    func testPath() {
-        XCTAssertEqual(GetEnvironmentFeatureFlagsRequest().path, "features/environment")
-    }
+public class K5HomeroomMissingSubmissionsCount: NSManagedObject {
+    @NSManaged public var courseId: String
+    @NSManaged public var missing: Int64
 }

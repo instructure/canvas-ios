@@ -30,6 +30,8 @@ public struct APIPlannable: Codable, Equatable {
     let context_name: String?
     let plannable: plannable?
     public let plannable_date: Date
+    let submissions: TypeSafeCodable<Submissions, Bool>?
+
     //  swiftlint:disable:next type_name
     public struct plannable: Codable, Equatable {
         let title: String?
@@ -41,6 +43,17 @@ public struct APIPlannable: Codable, Equatable {
             self.points_possible = points_possible
             self.details = details
         }
+    }
+
+    public struct Submissions: Codable, Equatable {
+        let submitted: Bool?
+        let excused: Bool?
+        let graded: Bool?
+        let late: Bool?
+        let missing: Bool?
+        let needs_grading: Bool?
+        let has_feedback: Bool?
+        let redo_request: Bool?
     }
 }
 
@@ -71,7 +84,8 @@ extension APIPlannable {
         html_url: URL? = URL(string: "http://localhost")!,
         context_name: String? = "Assignment Grades",
         plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a", details: "description"),
-        plannable_date: Date = Clock.now
+        plannable_date: Date = Clock.now,
+        submissions: Submissions? = nil
     ) -> APIPlannable {
         return APIPlannable(
             course_id: course_id,
@@ -84,8 +98,32 @@ extension APIPlannable {
             html_url: APIURL(rawValue: html_url),
             context_name: context_name,
             plannable: plannable,
-            plannable_date: plannable_date
+            plannable_date: plannable_date,
+            submissions: TypeSafeCodable(value1: submissions, value2: nil)
         )
+    }
+}
+
+extension APIPlannable.Submissions {
+    public static func make(
+        submitted: Bool? = false,
+        excused: Bool? = false,
+        graded: Bool? = false,
+        late: Bool? = false,
+        missing: Bool? = false,
+        needs_grading: Bool? = false,
+        has_feedback: Bool? = false,
+        redo_request: Bool? = false
+    ) -> APIPlannable.Submissions {
+        return APIPlannable.Submissions(
+            submitted: submitted,
+            excused: excused,
+            graded: graded,
+            late: late,
+            missing: missing,
+            needs_grading: needs_grading,
+            has_feedback: has_feedback,
+            redo_request: redo_request)
     }
 }
 

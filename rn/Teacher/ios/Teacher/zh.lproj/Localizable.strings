@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "此学生未提交此作业。";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "由于作业是匿名安排的，所以隐藏了此学生的回答。";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "提交项中没有文件。";
 
 /* No comment provided by engineer. */

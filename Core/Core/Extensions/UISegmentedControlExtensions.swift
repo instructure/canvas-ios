@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
+public extension UISegmentedControl {
 
-public class EnvironmentFeatureFlags: NSManagedObject {
-    @NSManaged public var isCanvasForElementaryEnabled: Bool
+    static func updateFontAppearance() {
+        Self.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular13)], for: .normal)
+        Self.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.scaledNamedFont(.bold13)], for: .selected)
+    }
 }

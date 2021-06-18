@@ -42,6 +42,12 @@ public protocol CoreWebViewSizeDelegate: class {
 
 @IBDesignable
 open class CoreWebView: WKWebView {
+    private static var BalsamiqRegularCSSFontFace: String = {
+        let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
+        // swiftlint:disable:next force_try
+        return try! String(contentsOf: url)
+    }()
+
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
@@ -141,12 +147,20 @@ open class CoreWebView: WKWebView {
         let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
         let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
+        var font = "system-ui"
+        var fontCSS = ""
+
+        if AppEnvironment.shared.isK5Enabled {
+            font = "BalsamiqSans-Regular"
+            fontCSS = Self.BalsamiqRegularCSSFontFace
+        }
 
         return """
+            \(fontCSS)
             html {
                 background: \(UIColor.backgroundLightest.hexString);
                 color: \(UIColor.textDarkest.hexString);
-                font-family: system-ui;
+                font-family: \(font);
                 font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
                 -webkit-tap-highlight-color: transparent;
             }

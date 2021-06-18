@@ -59,6 +59,9 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d items" = "%d عناصر";
+
+/* No comment provided by engineer. */
 "%d Replies" = "%d ردود";
 
 /* No comment provided by engineer. */
@@ -1603,6 +1606,9 @@
 /* No comment provided by engineer. */
 "Redo" = "إعادة";
 
+/* Downloading new content has started */
+"Refreshing" = "جارٍ التحديث";
+
 /* No comment provided by engineer. */
 "Remove" = "إزالة";
 
@@ -2091,6 +2097,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "إعدادات اللغة المحدثة";
+
+/* No comment provided by engineer. */
+"Updating" = "جارٍ التحديث";
 
 /* No comment provided by engineer. */
 "Upload File" = "تحميل ملف";

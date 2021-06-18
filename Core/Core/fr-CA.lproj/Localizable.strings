@@ -59,6 +59,9 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d items" = "%d éléments";
+
+/* No comment provided by engineer. */
 "%d Replies" = "%d Réponses";
 
 /* No comment provided by engineer. */
@@ -1603,6 +1606,9 @@
 /* No comment provided by engineer. */
 "Redo" = "Rétablir";
 
+/* Downloading new content has started */
+"Refreshing" = "Actualisation en cours";
+
 /* No comment provided by engineer. */
 "Remove" = "Retirer";
 
@@ -2091,6 +2097,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Paramètres de langue mis à jour";
+
+/* No comment provided by engineer. */
+"Updating" = "Mise à jour en cours";
 
 /* No comment provided by engineer. */
 "Upload File" = "Téléverser le fichier";

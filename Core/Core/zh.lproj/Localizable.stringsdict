@@ -125,7 +125,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d项目</string>
+			<string>%d 个项目</string>
 		</dict>
 	</dict>
 	<key>d_likes</key>

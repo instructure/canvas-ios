@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Aquest estudiant no té cap entrega per a aquesta tasca.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Les respostes d'aquest estudiant estan amagades perquè la tasca és anònima.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Aquesta entrega no té cap fitxer.";
 
 /* No comment provided by engineer. */

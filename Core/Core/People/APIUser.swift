@@ -130,6 +130,7 @@ public struct APIProfile: Codable, Equatable {
     public let avatar_url: APIURL?
     public let calendar: APICalendar?
     public let pronouns: String?
+    public let k5_user: Bool?
 }
 
 #if DEBUG
@@ -216,7 +217,8 @@ extension APIProfile {
         login_id: String? = nil,
         avatar_url: URL? = nil,
         calendar: APIProfile.APICalendar? = .make(),
-        pronouns: String? = nil
+        pronouns: String? = nil,
+        k5_user: Bool? = nil
     ) -> APIProfile {
         return APIProfile(
             id: id,
@@ -225,7 +227,8 @@ extension APIProfile {
             login_id: login_id,
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             calendar: calendar,
-            pronouns: pronouns
+            pronouns: pronouns,
+            k5_user: k5_user
         )
     }
 }

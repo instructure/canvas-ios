@@ -16,8 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetEnvironmentFeatureFlagsRequest: APIRequestable {
-    public typealias Response = APIEnvironmentFeatureFlags
+import XCTest
+@testable import Core
 
-    public let path = "features/environment"
+class K5GradesViewModelTests: CoreTestCase {
+
+    func testRefresh() {
+        let refreshExpectation = expectation(description: "Refresh finished")
+        let testee = K5GradesViewModel()
+        testee.refresh {
+            refreshExpectation.fulfill()
+        }
+
+        wait(for: [refreshExpectation], timeout: 2.5)
+    }
 }

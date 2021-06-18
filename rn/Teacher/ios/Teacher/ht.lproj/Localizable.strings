@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Elèv sa a pa gen soumisyon pou sesyon sa a.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Repons elèv sa a kache paske sesyon sa a anonim.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Soumisyon sa a pa gen fichye.";
 
 /* No comment provided by engineer. */

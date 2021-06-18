@@ -434,6 +434,9 @@
   "message_options_59805b8e": {
     "message": "Opciones del mensaje"
   },
+  "message_sent_de26a937": {
+    "message": "Mensaje enviado"
+  },
   "message_students_who_778ce759": {
     "message": "Enviar mensaje a estudiantes que"
   },
@@ -724,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "Enviando..."
+  },
+  "sending_message_75923692": {
+    "message": "Enviando mensaje"
   },
   "sent_fe0a1eb4": {
     "message": "Enviado"

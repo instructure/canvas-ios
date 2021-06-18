@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
 import XCTest
 @testable import Core
 
@@ -50,7 +51,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
     // MARK: - Announcement Tests
 
     func testLoadsHomeroomAnnouncements() {
-        mockAnnouncements(message: "message 2")
+        mockAnnouncements(homeroomTitle: "title 2")
         mockDashboardCards()
 
         let testee = K5HomeroomViewModel()
@@ -64,13 +65,13 @@ class K5HomeroomViewModelTests: CoreTestCase {
     }
 
     func testRefreshesAnnouncements() {
-        mockAnnouncements(message: "original message")
+        mockAnnouncements(homeroomTitle: "original title")
         mockDashboardCards()
         let testee = K5HomeroomViewModel()
         let refrehCompleted = expectation(description: "Refresh completed")
         refrehCompleted.assertForOverFulfill = true
 
-        mockAnnouncements(message: "updated message")
+        mockAnnouncements(homeroomTitle: "updated title")
         testee.refresh {
             refrehCompleted.fulfill()
         }
@@ -78,7 +79,29 @@ class K5HomeroomViewModelTests: CoreTestCase {
         wait(for: [refrehCompleted], timeout: 1)
         XCTAssertEqual(testee.announcements.count, 1)
         guard let announcement = testee.announcements.first else { return }
-        XCTAssertEqual(announcement.htmlContent, "updated message")
+        XCTAssertEqual(announcement.htmlContent, "message 2")
+    }
+
+    // MARK: - Subject Card Tests
+
+    func testLoadsNonHomeroomCourses() {
+        mockDashboardCards()
+        mockAnnouncements(nonHomeroomTitle: "Non homeroom announcement")
+        mockDueItems()
+        mockMissingSubmissions()
+
+        let testee = K5HomeroomViewModel()
+
+        XCTAssertEqual(testee.subjectCards.count, 1)
+        guard let card = testee.subjectCards.first else { return }
+        XCTAssertEqual(card.name, "COURSE 1")
+        XCTAssertEqual(card.courseRoute, "/courses/1")
+        XCTAssertEqual(card.imageURL, URL(string: "https://instructure.com"))
+        XCTAssertEqual(card.color, Color(hexString: "#DEAD00"))
+
+        guard card.infoLines.count == 2 else { XCTFail("Info line count mismatch"); return }
+        XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .k5dueToday, route: "/courses/1/assignments", text: "1 due today | ", highlightedText: "2 missing"))
+        XCTAssertEqual(card.infoLines[1], K5HomeroomSubjectCardViewModel.InfoLine(icon: .announcementLine, route: "/courses/1/announcements", text: "Non homeroom announcement"))
     }
 
     // MARK: - Private Helpers
@@ -89,10 +112,11 @@ class K5HomeroomViewModelTests: CoreTestCase {
         api.mock(mockRequest, value: mockResponse)
     }
 
-    private func mockAnnouncements(message: String) {
+    private func mockAnnouncements(homeroomTitle: String = "", nonHomeroomTitle: String = "") {
         let mockRequest = GetAllAnnouncementsRequest(contextCodes: ["course_2", "course_1"], activeOnly: true, latestOnly: true)
         let mockResponse = [
-            APIDiscussionTopic.make(context_code: "course_2", message: message, posted_at: Date(timeIntervalSince1970: 74874), title: "title 2"),
+            APIDiscussionTopic.make(context_code: "course_1", message: "message 1", posted_at: Date(timeIntervalSince1970: 74874), title: nonHomeroomTitle),
+            APIDiscussionTopic.make(context_code: "course_2", message: "message 2", posted_at: Date(timeIntervalSince1970: 74874), title: homeroomTitle),
         ]
         api.mock(mockRequest, value: mockResponse)
     }
@@ -100,10 +124,27 @@ class K5HomeroomViewModelTests: CoreTestCase {
     private func mockDashboardCards() {
         let mockRequest = GetDashboardCardsRequest()
         let mockResponse = [
-            APIDashboardCard.make(id: "1", isHomeroom: false),
+            APIDashboardCard.make(color: "#DEAD00", id: "1", image: "https://instructure.com", isHomeroom: false),
             APIDashboardCard.make(id: "2", isHomeroom: true, shortName: "course2 name"),
         ]
         api.mock(mockRequest, value: mockResponse)
+    }
 
+    private func mockDueItems() {
+        let mockRequest = GetK5HomeroomDueItemCount(courseIds: ["1"])
+        let mockResponse = [
+            APIPlannable.make(course_id: "1", submissions: APIPlannable.Submissions.make(submitted: false)),
+        ]
+        api.mock(mockRequest, value: mockResponse)
+    }
+
+    private func mockMissingSubmissions() {
+        let mockRequest = GetK5HomeroomMissingSubmissionsCount(courseIds: ["1"])
+        let mockResponse = [
+            APIAssignment.make(course_id: "1", id: "1", planner_override: .make(dismissed: false)),
+            APIAssignment.make(course_id: "1", id: "2", planner_override: .make(dismissed: true)),
+            APIAssignment.make(course_id: "1", id: "3", planner_override: nil),
+        ]
+        api.mock(mockRequest, value: mockResponse)
     }
 }

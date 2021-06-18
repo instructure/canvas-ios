@@ -87,18 +87,15 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         NotificationManager.shared.subscribeToPushChannel()
 
-        let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { _, urlResponse, _ in
+        GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
+            self.environment.isK5Enabled = (apiProfile?.k5_user == true)
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
             PageViewEventController.instance.userDidChange()
             DispatchQueue.main.async { self.refreshNotificationTab() }
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                GetEnvironmentFeatureFlags().fetch(environment: self.environment) { _, _, _ in
-                    GetEnvironmentFeatureFlags.updateAppEnvironmentFlags()
-                    DispatchQueue.main.async { NativeLoginManager.login(as: session) }
-                }
+                DispatchQueue.main.async { NativeLoginManager.login(as: session) }
             }
         }
         Analytics.shared.logSession(session)
@@ -325,6 +322,7 @@ extension StudentAppDelegate {
 
 extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
+        environment.isK5Enabled = false
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)

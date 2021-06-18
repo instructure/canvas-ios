@@ -59,6 +59,9 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d items" = "%dアイテム";
+
+/* No comment provided by engineer. */
 "%d Replies" = "%d返信";
 
 /* No comment provided by engineer. */
@@ -1603,6 +1606,9 @@
 /* No comment provided by engineer. */
 "Redo" = "やり直し";
 
+/* Downloading new content has started */
+"Refreshing" = "更新中";
+
 /* No comment provided by engineer. */
 "Remove" = "削除";
 
@@ -2091,6 +2097,9 @@
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "更新された言語設定";
+
+/* No comment provided by engineer. */
+"Updating" = "更新しています";
 
 /* No comment provided by engineer. */
 "Upload File" = "ファイルアップロード";

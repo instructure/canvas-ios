@@ -299,6 +299,9 @@
 "This student does not have a submission for this assignment." = "Этот студент не имеет отправки для этого задания.";
 
 /* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Ответы студентов скрыты, поскольку задание анонимно.";
+
+/* No comment provided by engineer. */
 "This submission has no files." = "Данная отправка не содержит файлов.";
 
 /* No comment provided by engineer. */
