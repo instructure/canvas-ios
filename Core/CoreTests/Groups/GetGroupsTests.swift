@@ -133,5 +133,6 @@ class GetDashboardGroupsTest: CoreTestCase {
         let groups: [Group] = databaseClient.fetch(getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
         XCTAssertEqual(groups.count, 1)
         XCTAssertEqual(groups.first, group)
+        XCTAssertNil(groups.first?.course)
     }
 }
