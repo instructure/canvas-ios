@@ -106,7 +106,7 @@ public extension UIFont {
         }
     }
 
-    private static func monospacedApplicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
+    static func monospacedApplicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
         if AppEnvironment.shared.isK5Enabled {
             return applicationFont(ofSize: fontSize, weight: weight)
         } else {
@@ -114,7 +114,7 @@ public extension UIFont {
         }
     }
 
-    private static func applicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
+    static func applicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
         if AppEnvironment.shared.isK5Enabled {
             let fontName: String
             switch weight {
