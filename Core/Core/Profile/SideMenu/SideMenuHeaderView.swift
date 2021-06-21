@@ -25,17 +25,16 @@ struct SideMenuHeaderView: View {
     @ObservedObject private var viewModel = ImagePickerViewModel()
     @ObservedObject var userModel = UserModel()
 
-    @State private var canUpdateAvatar: Bool = false
     @State private var isShowingActionSheet = false
     @State private var isUploadingImage = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
-            let avatarLabel = canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
-            Avatar(name: userModel.initials, url: userModel.avatarURL, size: 72, isAccessible: true)
+            let avatarLabel = userModel.canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
+            Avatar(name: userModel.userName, url: userModel.avatarURL, size: 72, isAccessible: true)
                 .padding(.bottom, 12).onTapGesture {
-                    if canUpdateAvatar {
+                    if userModel.canUpdateAvatar {
                         isShowingActionSheet = true
                     }
                 }
@@ -43,15 +42,15 @@ struct SideMenuHeaderView: View {
                 .accessibility(label: avatarLabel)
                 .actionSheet(isPresented: $isShowingActionSheet) {
                     ActionSheet(title: Text("Choose Profile Picture", bundle: .core), buttons: [
-                                    .default(Text("Take Photo", bundle: .core)) {
-                                        viewModel.takePhoto()
-                                    },
-                                    .default(Text("Choose Photo", bundle: .core)) {
-                                        viewModel.choosePhoto()
-                                    },
-                                    .cancel(Text("Cancel", bundle: .core)) {
-                                        isShowingActionSheet = false
-                                    },
+                        .default(Text("Take Photo", bundle: .core)) {
+                            viewModel.takePhoto()
+                        },
+                        .default(Text("Choose Photo", bundle: .core)) {
+                            viewModel.choosePhoto()
+                        },
+                        .cancel(Text("Cancel", bundle: .core)) {
+                            isShowingActionSheet = false
+                        },
                     ])
                 }
                 .opacity(isUploadingImage ? 0.4 : 1)
@@ -65,11 +64,7 @@ struct SideMenuHeaderView: View {
                 .foregroundColor(.ash)
                 .minimumScaleFactor(0.2)
                 .identifier("Profile.userEmailLabel")
-        }.padding(20).frame(height: 185).onAppear {
-            env.api.makeRequest(GetUserRequest(userID: "self")) {user, _, _ in
-                canUpdateAvatar = user?.permissions?.can_update_avatar == true
-            }
-        }
+        }.padding(20).frame(height: 185)
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
             ProfileImagePicker(sourceType: viewModel.sourceType) { image in
                 viewModel.isPresentingImagePicker = false
@@ -126,29 +121,27 @@ extension SideMenuHeaderView {
             self?.profileUpdated()
         }
 
-        @Published var userName: String?
+        @Published var userName: String = ""
         @Published var avatarURL: URL?
-        @Published var initials: String = ""
         @Published var shortName: String?
         @Published var name: String = ""
         @Published var email: String = ""
+        @Published var canUpdateAvatar = false
 
         init() {
             profile.refresh()
         }
 
         private func profileUpdated() {
-            guard let profile = profile.first, let userID = env.currentSession?.userID else { return }
-            userName = env.currentSession?.userName ?? ""
+            guard let profile = profile.first else { return }
+            userName = profile.name
             avatarURL = profile.avatarURL
-            initials = userName ?? ""
-            env.api.makeRequest(GetUserRequest(userID: "self")) {[weak self] (user, _, error) in
-                if let userShortName = user?.short_name {
-                    self?.shortName = User.displayName(userShortName, pronouns: self?.profile.first?.pronouns)
-                }
-            }
-            name = shortName ?? userName.flatMap { User.displayName($0, pronouns: profile.pronouns) } ?? ""
             email = profile.email ?? ""
+            env.api.makeRequest(GetUserRequest(userID: "self")) { [weak self] (user, _, _) in performUIUpdate {
+                self?.canUpdateAvatar = user?.permissions?.can_update_avatar == true
+                let displayName = user?.short_name ?? self?.userName ?? ""
+                self?.name = User.displayName(displayName, pronouns: profile.pronouns)
+            }}
         }
     }
 }
