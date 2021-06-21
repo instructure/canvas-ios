@@ -22,26 +22,19 @@ struct SideMenuHeaderView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @ObservedObject var profileStore: Store<GetUserProfile>
     @ObservedObject private var viewModel = ImagePickerViewModel()
+    @ObservedObject var userModel = UserModel()
 
-    @State private var canUpdateAvatar: Bool = false
     @State private var isShowingActionSheet = false
     @State private var isUploadingImage = false
-
-    private var userName: String? { profileStore.first?.name ?? env.currentSession?.userName }
-    private var avatarURL: URL? { profileStore.first?.avatarURL }
-    private var initials: String { userName ?? "" }
-    private var name: String { userName.flatMap { User.displayName($0, pronouns: profileStore.first?.pronouns) } ?? "" }
-    private var email: String { profileStore.first?.email ?? "" }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
-            let avatarLabel = canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
-            Avatar(name: initials, url: avatarURL, size: 72, isAccessible: true)
+            let avatarLabel = userModel.canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
+            Avatar(name: userModel.userName, url: userModel.avatarURL, size: 72, isAccessible: true)
                 .padding(.bottom, 12).onTapGesture {
-                    if canUpdateAvatar {
+                    if userModel.canUpdateAvatar {
                         isShowingActionSheet = true
                     }
                 }
@@ -49,33 +42,29 @@ struct SideMenuHeaderView: View {
                 .accessibility(label: avatarLabel)
                 .actionSheet(isPresented: $isShowingActionSheet) {
                     ActionSheet(title: Text("Choose Profile Picture", bundle: .core), buttons: [
-                                    .default(Text("Take Photo", bundle: .core)) {
-                                        viewModel.takePhoto()
-                                    },
-                                    .default(Text("Choose Photo", bundle: .core)) {
-                                        viewModel.choosePhoto()
-                                    },
-                                    .cancel(Text("Cancel", bundle: .core)) {
-                                        isShowingActionSheet = false
-                                    },
+                        .default(Text("Take Photo", bundle: .core)) {
+                            viewModel.takePhoto()
+                        },
+                        .default(Text("Choose Photo", bundle: .core)) {
+                            viewModel.choosePhoto()
+                        },
+                        .cancel(Text("Cancel", bundle: .core)) {
+                            isShowingActionSheet = false
+                        },
                     ])
                 }
                 .opacity(isUploadingImage ? 0.4 : 1)
                 .overlay(isUploadingImage ? CircleProgress().padding(.bottom, 12) : nil)
-            Text(name)
+            Text(userModel.name)
                 .font(.bold20)
                 .padding(.bottom, 2)
                 .identifier("Profile.userNameLabel")
-            Text(email)
+            Text(userModel.email)
                 .font(.regular14)
                 .foregroundColor(.ash)
                 .minimumScaleFactor(0.2)
                 .identifier("Profile.userEmailLabel")
-        }.padding(20).frame(height: 185).onAppear {
-            env.api.makeRequest(GetUserRequest(userID: "self")) {user, _, _ in
-                canUpdateAvatar = user?.permissions?.can_update_avatar == true
-            }
-        }
+        }.padding(20).frame(height: 185)
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
             ProfileImagePicker(sourceType: viewModel.sourceType) { image in
                 viewModel.isPresentingImagePicker = false
@@ -87,7 +76,7 @@ struct SideMenuHeaderView: View {
                         switch result {
                         case .success:
                             // Trigger save to CoreData
-                            profileStore.refresh(force: true)
+                            userModel.profile.refresh(force: true)
                         case .failure(let error):
                             showError(error)
                         }
@@ -124,11 +113,41 @@ extension SideMenuHeaderView {
             isPresentingImagePicker = true
         }
     }
+
+    final class UserModel: ObservableObject {
+        @Environment(\.appEnvironment) var env
+
+        lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
+            self?.profileUpdated()
+        }
+
+        @Published var userName: String = ""
+        @Published var avatarURL: URL?
+        @Published var shortName: String?
+        @Published var name: String = ""
+        @Published var email: String = ""
+        @Published var canUpdateAvatar = false
+
+        init() {
+            profile.refresh()
+        }
+
+        private func profileUpdated() {
+            guard let profile = profile.first else { return }
+            userName = profile.name
+            avatarURL = profile.avatarURL
+            email = profile.email ?? ""
+            env.api.makeRequest(GetUserRequest(userID: "self")) { [weak self] (user, _, _) in performUIUpdate {
+                self?.canUpdateAvatar = user?.permissions?.can_update_avatar == true
+                let displayName = user?.short_name ?? self?.userName ?? ""
+                self?.name = User.displayName(displayName, pronouns: profile.pronouns)
+            }}
+        }
+    }
 }
 
 struct SideMenuHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        let profile = AppEnvironment.shared.subscribe(GetUserProfile(userID: "self"))
-        SideMenuHeaderView(profileStore: profile)
+        SideMenuHeaderView()
     }
 }

@@ -19,22 +19,17 @@
 import SwiftUI
 
 public struct SideMenuView: View {
-    @Environment(\.appEnvironment) var env
-    @ObservedObject var profile: Store<GetUserProfile>
-
     let enrollment: HelpLinkEnrollment
 
     public init(_ enrollment: HelpLinkEnrollment) {
         self.enrollment = enrollment
-        let env = AppEnvironment.shared
-        profile = env.subscribe(GetUserProfile(userID: "self"))
     }
 
     public var body: some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    SideMenuHeaderView(profileStore: profile)
+                    SideMenuHeaderView()
                     Divider()
                     SideMenuMainSection(enrollment)
                     Divider()
@@ -47,8 +42,6 @@ public struct SideMenuView: View {
                 }
             }.clipped()
             SideMenuFooterView()
-        }.onAppear {
-            profile.refresh()
         }
     }
 }
