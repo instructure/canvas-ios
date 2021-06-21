@@ -69,7 +69,10 @@ public class GetDashboardGroups: CollectionUseCase {
     public var request: GetGroupsRequest { GetGroupsRequest(context: .currentUser) }
     public var scope: Scope {
         let showOnDashboard = NSPredicate(key: #keyPath(Group.showOnDashboard), equals: true)
-        let accessRestrictedByDate = NSPredicate(key: #keyPath(Group.course.accessRestrictedByDate), equals: false)
+        let accessRestrictedByDate = NSCompoundPredicate(orPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Group.course.accessRestrictedByDate), equals: false),
+            NSPredicate(format: "%K == nil", #keyPath(Group.course)),
+        ])
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [showOnDashboard, accessRestrictedByDate])
         return Scope(predicate: predicate,
                      order: [NSSortDescriptor(key: #keyPath(Group.name), ascending: true, naturally: true),
