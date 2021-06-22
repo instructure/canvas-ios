@@ -50,7 +50,7 @@ extension User: WriteableModel {
         if let enrollments = item.enrollments {
             for item in enrollments {
                 let enrollment = context.insert() as Enrollment
-                var course: Course? = nil
+                var course: Course?
                 if let courseID = item.course_id?.value {
                     course = context.first(where: #keyPath(Course.id), equals: courseID)
                 }
