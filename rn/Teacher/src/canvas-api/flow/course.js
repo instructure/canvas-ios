@@ -31,7 +31,7 @@ export type Course = {
   name: string,
   original_name?: ?string,
   course_code: string,
-  /** Teacher assigned course color for K5 in hex format. */
+  /** Teacher assigned course color for K5 in hex format. */
   course_color: ?string,
   short_name?: string,
   image_download_url?: ?string,

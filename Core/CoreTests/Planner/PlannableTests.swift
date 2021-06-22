@@ -77,7 +77,23 @@ class PlannableTests: CoreTestCase {
 
         XCTAssertEqual(Plannable.make(from: .make(course_id: "2", context_type: "Course")).color, .blue)
         XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
+        XCTAssertEqual(Plannable.make(from: .make(group_id: "8", context_type: "Group")).color, .ash)
         XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
         XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .ash)
+    }
+
+    func testK5Color() {
+        environment.isK5Enabled = true
+        Course.make(from: .make(id: "2", course_color: "#0DEAD0"))
+        Course.make(from: .make(id: "0", course_color: nil))
+        ContextColor.make(canvasContextID: "course_2", color: .blue)
+        ContextColor.make(canvasContextID: "group_7", color: .red)
+        ContextColor.make(canvasContextID: "user_3", color: .brown)
+
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "2", context_type: "Course")).color, UIColor(hexString: "#0DEAD0")!)
+        XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
+        XCTAssertEqual(Plannable.make(from: .make(group_id: "8", context_type: "Group")).color, .ash)
+        XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, UIColor(hexString: "#394B58")!)
     }
 }
