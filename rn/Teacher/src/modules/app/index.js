@@ -22,6 +22,7 @@ export type AppId = 'student' | 'teacher' | 'parent'
 export type App = {
   appId: AppId,
   filterCourse: (course: Course) => boolean,
+  isK5Enabled: boolean,
 }
 
 const teacher = {
@@ -39,22 +40,25 @@ const teacher = {
       ].includes(e.type.toLowerCase())
     )
   },
+  isK5Enabled: false,
 }
 
 const student = {
   appId: 'student',
   filterCourse: (course: Course): boolean => !course.access_restricted_by_date,
+  isK5Enabled: false,
 }
 
 const parent = {
   appId: 'parent',
   filterCourse: (course: Course): boolean => true,
+  isK5Enabled: false,
 }
 
 let current: App = teacher
 
 const app = {
-  setCurrentApp: (appId: AppId): void => {
+  setCurrentApp: (appId: AppId, isK5Enabled: boolean = false): void => {
     switch (appId) {
       case 'student':
         current = student
@@ -66,6 +70,8 @@ const app = {
         current = parent
         break
     }
+
+    current.isK5Enabled = isK5Enabled
   },
   current: (): App => current,
 }

@@ -35,6 +35,7 @@ import { enrollments } from '../enrollments/enrollments-refs-reducer'
 import attendanceTool from '../external-tools/attendance-tool-reducer'
 import groups from '../groups/group-refs-reducer'
 import { refs as gradingPeriods } from '../assignments/grading-periods-reducer'
+import app from '../app'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
@@ -85,7 +86,12 @@ const emptyCourseState: CourseContentState = {
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {
   const { id } = course
-  const color = colors[id] || '#aaa'
+  let color = colors[id] || '#aaa'
+
+  if (app.current().isK5Enabled) {
+    color = course.course_color || '#394B58'
+  }
+
   return {
     ...prevState,
     course: {

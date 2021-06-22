@@ -81,7 +81,7 @@ const loginHandler = async ({
   isK5Enabled: boolean,
 }) => {
   setupI18n(locale || NativeModules.SettingsManager.settings.AppleLocale)
-  App.setCurrentApp(appId)
+  App.setCurrentApp(appId, isK5Enabled)
   stopUpdatingBadgeCounts()
 
   if (!authToken || !baseURL) {
