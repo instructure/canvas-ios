@@ -252,7 +252,7 @@ class PeopleListCell: UITableViewCell {
         avatarView.name = user?.name ?? ""
         avatarView.url = user?.avatarURL
         nameLabel.text = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
-        let courseEnrollments = user?.enrollments.filter { $0.canvasContextID?.contains(user?.courseID ?? "") ?? false }
+        let courseEnrollments = user?.enrollments.filter { $0.course?.id == user?.courseID }
         var roles = courseEnrollments?.compactMap { $0.formattedRole } ?? []
         roles = Set(roles).sorted()
         rolesLabel.text = ListFormatter.localizedString(from: roles)

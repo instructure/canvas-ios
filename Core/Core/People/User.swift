@@ -50,7 +50,11 @@ extension User: WriteableModel {
         if let enrollments = item.enrollments {
             for item in enrollments {
                 let enrollment = context.insert() as Enrollment
-                enrollment.update(fromApiModel: item, course: nil, in: context)
+                var course: Course? = nil
+                if let courseID = item.course_id?.value {
+                    course = context.first(where: #keyPath(Course.id), equals: courseID)
+                }
+                enrollment.update(fromApiModel: item, course: course, in: context)
             }
         }
         return user
