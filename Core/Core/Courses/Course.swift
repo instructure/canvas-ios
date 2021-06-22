@@ -27,6 +27,8 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var canCreateDiscussionTopic: Bool
     @NSManaged var contextColor: ContextColor?
     @NSManaged public var courseCode: String?
+    /** Teacher assigned course color for K5 in hex format. */
+    @NSManaged public var courseColor: String?
     @NSManaged var defaultViewRaw: String?
     @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var grades: Set<Grade>?
@@ -53,7 +55,13 @@ final public class Course: NSManagedObject, WriteableModel {
         Context(.course, id: id).canvasContextID
     }
 
-    public var color: UIColor { contextColor?.color ?? .ash }
+    public var color: UIColor {
+        if AppEnvironment.shared.isK5Enabled {
+            return UIColor(hexString: courseColor) ?? UIColor(hexString: "#394B58")!
+        } else {
+            return contextColor?.color ?? .ash
+        }
+    }
 
     @discardableResult
     public static func save(_ item: APICourse, in context: NSManagedObjectContext) -> Course {
@@ -62,6 +70,7 @@ final public class Course: NSManagedObject, WriteableModel {
         model.name = item.name
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
+        model.courseColor = item.course_color
         model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue

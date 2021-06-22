@@ -28,6 +28,22 @@ class CourseTests: CoreTestCase {
         XCTAssertEqual(a.color, UIColor.red)
     }
 
+    func testDefaultK5Color() {
+        ContextColor.make(canvasContextID: "course_1", color: .red)
+        let a = Course.make(from: .make(id: "1"))
+        environment.isK5Enabled = true
+
+        XCTAssertEqual(a.color, UIColor(hexString: "#394B58"))
+    }
+
+    func testK5Color() {
+        ContextColor.make(canvasContextID: "course_1", color: .red)
+        let a = Course.make(from: .make(id: "1", course_color: "#0DEAD0"))
+        environment.isK5Enabled = true
+
+        XCTAssertEqual(a.color, UIColor(hexString: "#0DEAD0"))
+    }
+
     func testDefaultView() {
         let expected = CourseDefaultView.assignments
         let a = Course.make()
