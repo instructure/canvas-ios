@@ -77,7 +77,7 @@ public class ContextCardViewModel: ObservableObject {
         course.refresh()
         colors.refresh()
         sections.refresh()
-        submissions.refresh(force: true)
+        submissions.exhaust(force: true)
         permissions.refresh()
         gradingPeriods.refresh()
     }
@@ -85,7 +85,7 @@ public class ContextCardViewModel: ObservableObject {
     func gradingPeriodsDidUpdate() {
         if gradingPeriods.pending == false && gradingPeriods.requested {
             currentGradingPeriodID = gradingPeriods.all.current?.id
-            enrollments.refresh(force: true)
+            enrollments.exhaust(force: true)
         }
     }
 
@@ -113,10 +113,10 @@ public class ContextCardViewModel: ObservableObject {
             course.pending ||
             colors.pending ||
             sections.pending ||
-            submissions.pending ||
+            submissions.pending || !submissions.requested || submissions.hasNextPage ||
             permissions.pending ||
             gradingPeriods.pending ||
-            enrollments.pending || !enrollments.requested ||
+            enrollments.pending || !enrollments.requested || enrollments.hasNextPage ||
             userAPICallResponsePending
         if newPending == true { return }
         pending = newPending
