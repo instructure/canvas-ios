@@ -33,7 +33,7 @@ struct SideMenuBottomSection: View {
             dashboard = tabs.selectedViewController ?? tabs
         }
         if let split = dashboard as? UISplitViewController {
-            dashboard = split.viewControllers.first ?? split
+            dashboard = split.masterNavigationController ?? split
         }
         return dashboard
     }

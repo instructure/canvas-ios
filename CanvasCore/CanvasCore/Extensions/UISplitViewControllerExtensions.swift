@@ -19,10 +19,6 @@
 import UIKit
 
 public extension UISplitViewController {
-    var masterNavigationController: UINavigationController? {
-        viewControllers.first as? UINavigationController
-    }
-
     var detailNavigationController: UINavigationController? {
         guard viewControllers.count > 1 else { return nil }
         return viewControllers.last as? UINavigationController

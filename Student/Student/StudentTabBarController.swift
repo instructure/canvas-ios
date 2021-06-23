@@ -43,19 +43,20 @@ class StudentTabBarController: UITabBarController {
     }
 
     func dashboardTab() -> UIViewController {
-        let dashboard: UIViewController
+        let split: HelmSplitViewController
 
         if AppEnvironment.shared.isK5Enabled {
-            dashboard = CoreHostingController(K5DashboardView())
+            let primary = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
+            let secondary = HelmNavigationController(rootViewController: EmptyViewController())
+            split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
         } else {
-            dashboard = CoreHostingController(DashboardCardView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false))
+            split = HelmSplitViewController()
+            split.viewControllers = [
+                HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false))),
+                HelmNavigationController(rootViewController: EmptyViewController()),
+            ]
         }
 
-        let split = HelmSplitViewController()
-        split.viewControllers = [
-            HelmNavigationController(rootViewController: dashboard),
-            HelmNavigationController(rootViewController: EmptyViewController()),
-        ]
         split.masterNavigationController?.delegate = split
         split.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
         split.tabBarItem.image = .dashboardTab
