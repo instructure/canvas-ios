@@ -31,6 +31,7 @@ class GetContextUsersTests: CoreTestCase {
         XCTAssertEqual(useCase.request.path, "courses/1/users")
         XCTAssertEqual(useCase.request.queryItems, [
             URLQueryItem(name: "exclude_inactive", value: "true"),
+            URLQueryItem(name: "enrollment_state", value: "active"),
             URLQueryItem(name: "sort", value: "username"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "include[]", value: "avatar_url"),
@@ -40,6 +41,7 @@ class GetContextUsersTests: CoreTestCase {
         XCTAssertEqual(useCase2.request.path, "groups/1/users")
         XCTAssertEqual(useCase2.request.queryItems, [
             URLQueryItem(name: "exclude_inactive", value: "true"),
+            URLQueryItem(name: "enrollment_state", value: "active"),
             URLQueryItem(name: "sort", value: "username"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "include[]", value: "avatar_url"),
