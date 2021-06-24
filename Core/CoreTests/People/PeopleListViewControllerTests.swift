@@ -22,6 +22,7 @@ import XCTest
 
 class PeopleListViewControllerTests: CoreTestCase {
     let course1 = Context(.course, id: "1")
+    let course2 = Context(.course, id: "2")
     lazy var controller = PeopleListViewController.create(context: course1)
 
     override func setUp() {
@@ -36,6 +37,7 @@ class PeopleListViewControllerTests: CoreTestCase {
                 sortable_name: "jane doe",
                 short_name: "jane",
                 enrollments: [ .make(id: "2", course_id: "1", user_id: "2", role: "StudentEnrollment"),
+                               .make(id: "2", course_id: "2", user_id: "2", role: "TeacherEnrollment"),
                                .make(id: "3", course_id: "1", user_id: "2", role: "Custom"),
                                .make(id: "4", course_id: "1", user_id: "2", role: "StudentEnrollment"), ],
                 pronouns: "She/Her"
