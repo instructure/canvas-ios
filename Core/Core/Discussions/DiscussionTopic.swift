@@ -76,6 +76,13 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     }
 
     @discardableResult
+    public static func save(_ item: APIDiscussionTopic, apiPosition: Int = 0, in context: NSManagedObjectContext) -> DiscussionTopic {
+        let model = save(item, in: context)
+        model.position = apiPosition
+        return model
+    }
+
+    @discardableResult
     public static func save(_ item: APIDiscussionTopic, in context: NSManagedObjectContext) -> DiscussionTopic {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(DiscussionTopic.id), item.id.value)
         let model: DiscussionTopic = context.fetch(predicate).first ?? context.insert()
