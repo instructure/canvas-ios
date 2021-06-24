@@ -32,10 +32,12 @@ class SubmissionListViewControllerTests: TeacherTestCase {
             .make(id: "1", course_id: "1", course_section_id: "1", user_id: "1"),
             .make(id: "2", course_id: "1", course_section_id: "2", user_id: "2"),
             .make(id: "3", course_id: "1", course_section_id: "2", enrollment_state: .inactive, user_id: "3"),
+            .make(id: "4", course_id: "1", course_section_id: "3", user_id: "4", role: "CustomEnrollment"),
         ])
         api.mock(controller.sections, value: [
             .make(id: "1", name: "One"),
             .make(id: "2", name: "Two"),
+            .make(id: "3", name: "Three"),
         ])
         api.mock(controller.submissions, value: [
             .make(
@@ -51,8 +53,16 @@ class SubmissionListViewControllerTests: TeacherTestCase {
             ),
             .make(
                 submission_history: [],
+                submitted_at: nil,
                 user: .make(id: "3", name: "Christine", sortable_name: "Christine"),
                 user_id: "3",
+                workflow_state: .unsubmitted
+            ),
+            .make(
+                submission_history: [],
+                submitted_at: nil,
+                user: .make(id: "4", name: "Rebecca", sortable_name: "Rebecca"),
+                user_id: "4",
                 workflow_state: .unsubmitted
             ),
         ])
@@ -77,7 +87,7 @@ class SubmissionListViewControllerTests: TeacherTestCase {
         XCTAssertEqual(cell?.statusLabel.text, "Submitted")
         XCTAssertEqual(cell?.needsGradingView.isHidden, false)
 
-        cell = controller.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SubmissionListCell
+        cell = controller.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? SubmissionListCell
         XCTAssertNil(cell)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
@@ -87,6 +97,13 @@ class SubmissionListViewControllerTests: TeacherTestCase {
         let picker = router.presented as? SubmissionFilterPickerViewController
         picker?.onChange([ .section([ "1", "2" ]) ])
         XCTAssertEqual(controller.filter, [ .section([ "1", "2" ]) ])
+
+        picker?.onChange([ .section(["3"]), .notSubmitted ])
+        XCTAssertEqual(controller.filter, [ .section(["3"]), .notSubmitted ])
+        cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SubmissionListCell
+        XCTAssertEqual(cell?.nameLabel.text, "Rebecca")
+        XCTAssertEqual(cell?.statusLabel.text, "Not submitted")
+        XCTAssertEqual(cell?.needsGradingView.isHidden, true)
 
         api.mock(controller.submissions, error: NSError.internalError())
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
