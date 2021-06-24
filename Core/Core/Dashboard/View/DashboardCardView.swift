@@ -136,6 +136,7 @@ public struct DashboardCardView: View {
                     Text("Courses", bundle: .core)
                         .font(.heavy24).foregroundColor(.textDarkest)
                         .accessibility(identifier: "dashboard.courses.heading-lbl")
+                        .accessibility(addTraits: .isHeader)
                     Spacer()
                     Button(action: showAllCourses, label: {
                         Text("All Courses", bundle: .core)
@@ -185,6 +186,7 @@ public struct DashboardCardView: View {
                 header: HStack(alignment: .lastTextBaseline) {
                     Text("Groups", bundle: .core)
                         .font(.heavy24).foregroundColor(.textDarkest)
+                        .accessibility(addTraits: .isHeader)
                     Spacer()
                 }
                     .padding(.top, 16).padding(.bottom, 8)) {

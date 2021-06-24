@@ -63,7 +63,7 @@ struct CourseCard: View {
                     .shadow(color: Color.black.opacity(0.2), radius: 1, x: 0, y: 1)
             })
                 .buttonStyle(ScaleButtonStyle(scale: 1))
-                .accessibility(label: Text(verbatim: "\(card.shortName) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
+                .accessibility(label: Text(verbatim: "\(card.shortName) \(card.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
                 .identifier("DashboardCourseCell.\(card.id)")
 
             gradePill
