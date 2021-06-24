@@ -66,6 +66,10 @@ public struct ContextCardView: View {
                 }.onAppear {
                     UIAccessibility.post(notification: .screenChanged, argument: nil)
                 }
+            } else if let course = model.course.first, let apiUser = model.apiUser,
+                      let apiEnrollment = apiUser.enrollments?.first(where: { $0.course_id?.rawValue == course.id}),
+                      apiEnrollment.enrollment_state == EnrollmentState.invited {
+                EmptyPanda(.Sleeping, title: Text("Not enrolled"), message: Text("Invitation pending"))
             } else {
                 EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))
             }
