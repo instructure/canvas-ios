@@ -102,7 +102,7 @@ class SubmissionListViewControllerTests: TeacherTestCase {
         XCTAssertEqual(controller.filter, [ .section(["3"]), .notSubmitted ])
         cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SubmissionListCell
         XCTAssertEqual(cell?.nameLabel.text, "Rebecca")
-        XCTAssertEqual(cell?.statusLabel.text, "Not submitted")
+        XCTAssertEqual(cell?.statusLabel.text?.lowercased(), "Not Submitted".lowercased())
         XCTAssertEqual(cell?.needsGradingView.isHidden, true)
 
         api.mock(controller.submissions, error: NSError.internalError())
