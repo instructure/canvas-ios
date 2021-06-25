@@ -205,7 +205,7 @@ public class GetSubmissions: CollectionUseCase {
         NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
         NSCompoundPredicate(orPredicateWithSubpredicates: [
             NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
-            NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
+            NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
         ]),
     ]}
 
