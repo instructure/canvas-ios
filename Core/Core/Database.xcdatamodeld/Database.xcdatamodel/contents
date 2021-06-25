@@ -214,6 +214,7 @@
         <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canCreateDiscussionTopic" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>
+        <attribute name="courseColor" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
         <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>

@@ -370,6 +370,7 @@ const styles = createStyleSheet((colors, vars) => ({
 
 const Refreshed = refresh(
   props => {
+    props.refreshCourse(props.courseID)
     props.refreshAssignmentList(props.courseID)
     props.refreshGradingPeriods(props.courseID)
   },

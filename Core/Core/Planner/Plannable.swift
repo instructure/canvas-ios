@@ -125,9 +125,21 @@ extension Plannable {
 
     public var color: UIColor {
         guard let canvasContextID = canvasContextIDRaw else { return .ash }
-        if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
-            return color.color
+
+        if AppEnvironment.shared.isK5Enabled,
+           let context = Context(canvasContextID: canvasContextID),
+           context.contextType == .course {
+            if let course: Course = managedObjectContext?.first(where: #keyPath(Course.id), equals: context.id) {
+                return course.color
+            } else {
+                return UIColor(hexString: "#394B58")!
+            }
+        } else {
+            if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
+                return color.color
+            } else {
+                return .ash
+            }
         }
-        return .ash
     }
 }

@@ -27,6 +27,8 @@ public struct APICourse: Codable, Equatable {
     // let sis_import_id: String?
     let name: String?
     let course_code: String?
+    /** Teacher assigned course color for K5 in hex format. */
+    let course_color: String?
     let workflow_state: CourseWorkflowState?
     let account_id: String?
     // let root_account_id: String?
@@ -113,6 +115,7 @@ extension APICourse {
         id: ID = "1",
         name: String? = "Course One",
         course_code: String? = "C1",
+        course_color: String? = nil,
         workflow_state: CourseWorkflowState? = nil,
         account_id: String? = nil,
         start_at: Date? = nil,
@@ -140,6 +143,7 @@ extension APICourse {
             id: id,
             name: name,
             course_code: course_code,
+            course_color: course_color,
             workflow_state: workflow_state,
             account_id: account_id,
             start_at: start_at,
