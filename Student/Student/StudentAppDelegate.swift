@@ -88,7 +88,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.subscribeToPushChannel()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
-            self.environment.isK5Enabled = (apiProfile?.k5_user == true)
+            self.environment.shouldUseK5Mode = (apiProfile?.k5_user == true)
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
@@ -322,7 +322,7 @@ extension StudentAppDelegate {
 
 extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
-        environment.isK5Enabled = false
+        environment.shouldUseK5Mode = false
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
