@@ -106,8 +106,7 @@ class BottomSheetPresentationController: UIPresentationController {
 
     override var frameOfPresentedViewInContainerView: CGRect {
         guard let view = containerView else { return .zero }
-        var presented = presentedViewController.view.frame
-        presented.size.height += view.safeAreaInsets.bottom
+        let presented = presentedViewController.view.frame
         return CGRect(x: 0, y: view.frame.height - presented.height, width: presented.width, height: presented.height)
     }
 
