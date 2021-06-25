@@ -38,4 +38,11 @@ class DiscussionTopicTests: CoreTestCase {
         let topics: [DiscussionTopic] =  databaseClient.fetch()
         XCTAssertEqual(topics.count, 1)
     }
+
+    func testSavePosition() {
+        let api = APIDiscussionTopic.make()
+        DiscussionTopic.save(api, apiPosition: 99, in: databaseClient)
+        let topics: [DiscussionTopic] =  databaseClient.fetch()
+        XCTAssertEqual(topics.first!.position, 99)
+    }
 }

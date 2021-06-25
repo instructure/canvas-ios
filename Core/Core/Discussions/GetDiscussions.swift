@@ -36,8 +36,14 @@ class GetAnnouncements: CollectionUseCase {
             NSPredicate(key: #keyPath(DiscussionTopic.isAnnouncement), equals: true),
             NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID),
         ]),
-        orderBy: #keyPath(DiscussionTopic.postedAt), ascending: false
+        orderBy: #keyPath(DiscussionTopic.position), ascending: true
     ) }
+
+    func write(response: [APIDiscussionTopic]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        response?.enumerated().forEach {
+            Model.save($0.element, apiPosition: $0.offset, in: client)
+        }
+    }
 }
 
 class GetDiscussionTopics: CollectionUseCase {
