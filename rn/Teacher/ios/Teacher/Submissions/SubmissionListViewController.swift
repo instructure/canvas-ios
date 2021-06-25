@@ -49,7 +49,7 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
     lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var enrollments = env.subscribe(GetEnrollments(context: context, roles: [ .student ])) { [weak self] in
+    lazy var enrollments = env.subscribe(GetEnrollments(context: context)) { [weak self] in
         self?.update()
     }
     lazy var sections = env.subscribe(GetCourseSections(courseID: context.id)) { [weak self] in
@@ -170,7 +170,7 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
         self.filter = filter
         submissions.useCase.filter = filter
         submissions.setScope(submissions.useCase.scope)
-        update()
+        submissions.exhaust()
     }
 
     @objc func showFilters() {
