@@ -202,7 +202,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     } else if (assignment.quiz_id) {
       this.props.navigator.show(`/courses/${assignment.course_id}/quizzes/${assignment.quiz_id}`)
     } else {
-      this.props.navigator.show(assignment.html_url)
+      this.props.navigator.show(`/courses/${assignment.course_id}/assignments/${assignment.id}`)
     }
   }
 
