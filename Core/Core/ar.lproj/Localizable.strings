@@ -1841,6 +1841,9 @@
 "Student" = "الطالب";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "تعليق توضيحي لطالب";
+
+/* No comment provided by engineer. */
 "Student Appointment Signups" = "مواعيد التسجيل للطالب";
 
 /* No comment provided by engineer. */
@@ -2190,6 +2193,12 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "أسبوعيًا";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "مرحبًا، (userName)!";
+
+/* No comment provided by engineer. */
+"Welcome!" = "مرحبًا!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "أحسنت!";

@@ -1841,6 +1841,9 @@
 "Student" = "Ākonga";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Ākonga Tuhipoka";
+
+/* No comment provided by engineer. */
 "Student Appointment Signups" = "Haina runga Ākonga Wāhui";
 
 /* No comment provided by engineer. */
@@ -2190,6 +2193,12 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Wiki";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "Nau mai userName!";
+
+/* No comment provided by engineer. */
+"Welcome!" = "Nau Mai!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Tino Pai!";

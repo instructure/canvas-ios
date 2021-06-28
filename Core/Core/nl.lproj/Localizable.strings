@@ -1841,6 +1841,9 @@
 "Student" = "Cursist";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Cursistaantekening";
+
+/* No comment provided by engineer. */
 "Student Appointment Signups" = "Aanmeldingen voor afspraak van cursist";
 
 /* No comment provided by engineer. */
@@ -2190,6 +2193,12 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Wekelijks";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "Welkom, (userName)!";
+
+/* No comment provided by engineer. */
+"Welcome!" = "Welkom!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Goed gedaan!";

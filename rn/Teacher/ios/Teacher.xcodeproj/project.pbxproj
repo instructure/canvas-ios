@@ -398,6 +398,11 @@
 		5BCF9F7B240B9B7A00A32C47 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BCF9F7C240B9B7A00A32C47 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BD2499B243085590005CCE3 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ht; path = ht.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5BD3D0842689AC98003D70B4 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BD3D0852689AC98003D70B4 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BD3D0862689AC98003D70B4 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = th; path = th.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5BD3D0872689AC98003D70B4 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5BD3D0882689AC98003D70B4 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BD8D4E32430855C00A7DC0C /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = is; path = is.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5BDE09B22430855E007EA704 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BDE09B32430855E007EA704 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = it; path = it.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -1134,6 +1139,7 @@
 				"en-CA",
 				ca,
 				it,
+				th,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1719,6 +1725,7 @@
 				5B7D063E2430853300E655CE /* ca */,
 				5BA7690A2430854600A6F9D2 /* en-CA */,
 				5BDE09B22430855E007EA704 /* it */,
+				5BD3D0852689AC98003D70B4 /* th */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1793,6 +1800,7 @@
 				5B0F3DB4242749FA0032CEF0 /* en-CA */,
 				5B7D063F2430853300E655CE /* ca */,
 				5BDE09B42430855E007EA704 /* it */,
+				5BD3D0882689AC98003D70B4 /* th */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1832,6 +1840,7 @@
 				5B82CD7324CD6315003F1A74 /* sv */,
 				5B8798F124CD631600D95768 /* zh-HK */,
 				5B8CB22924CD6318001095A0 /* zh */,
+				5BD3D0842689AC98003D70B4 /* th */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1871,6 +1880,7 @@
 				5B82CD7424CD6315003F1A74 /* sv */,
 				5B8798F224CD631700D95768 /* zh-HK */,
 				5B8CB22824CD6318001095A0 /* zh */,
+				5BD3D0872689AC98003D70B4 /* th */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1911,6 +1921,7 @@
 				5B2C672D24308583001B37CE /* zh-HK */,
 				5B32899E2430858500CC2D57 /* zh */,
 				5B64B98C244C341D006D035F /* ca */,
+				5BD3D0862689AC98003D70B4 /* th */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";

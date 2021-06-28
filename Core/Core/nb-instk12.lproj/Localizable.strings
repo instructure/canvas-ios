@@ -1841,6 +1841,9 @@
 "Student" = "Elev";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Elevmerknad";
+
+/* No comment provided by engineer. */
 "Student Appointment Signups" = "Påmeldinger til elev-avtaler";
 
 /* No comment provided by engineer. */
@@ -2190,6 +2193,12 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Ukentlig";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "Velkommen, (userName)!";
+
+/* No comment provided by engineer. */
+"Welcome!" = "Velkommen!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Bra gjort!";
