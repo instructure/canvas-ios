@@ -31,7 +31,8 @@ class CourseTests: CoreTestCase {
     func testDefaultK5Color() {
         ContextColor.make(canvasContextID: "course_1", color: .red)
         let a = Course.make(from: .make(id: "1"))
-        environment.isK5Enabled = true
+        environment.shouldUseK5Mode = true
+        ExperimentalFeature.K5Dashboard.isEnabled = true
 
         XCTAssertEqual(a.color, UIColor(hexString: "#394B58"))
     }
@@ -39,7 +40,8 @@ class CourseTests: CoreTestCase {
     func testK5Color() {
         ContextColor.make(canvasContextID: "course_1", color: .red)
         let a = Course.make(from: .make(id: "1", course_color: "#0DEAD0"))
-        environment.isK5Enabled = true
+        environment.shouldUseK5Mode = true
+        ExperimentalFeature.K5Dashboard.isEnabled = true
 
         XCTAssertEqual(a.color, UIColor(hexString: "#0DEAD0"))
     }

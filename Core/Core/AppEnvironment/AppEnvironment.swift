@@ -39,13 +39,16 @@ open class AppEnvironment {
     public var currentSession: LoginSession?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults?
-    public var isK5Enabled = false {
+    /** This flag indicates that the logged in user requested K5 mode. The app might not follow this if the K5 feature flag is turned off. */
+    public var shouldUseK5Mode = false {
         didSet {
             UITabBar.updateFontAppearance(useK5Fonts: isK5Enabled)
             UIBarButtonItem.updateFontAppearance(useK5Fonts: isK5Enabled)
             UISegmentedControl.updateFontAppearance()
         }
     }
+    /** This flag indicates if K5 mode is turned on and should be used. */
+    public var isK5Enabled: Bool { shouldUseK5Mode && ExperimentalFeature.K5Dashboard.isEnabled }
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?
     open var isTest: Bool { false }
@@ -74,7 +77,7 @@ open class AppEnvironment {
         userDefaults = nil
         Logger.shared.database = database
         refreshWidgets()
-        isK5Enabled = false
+        shouldUseK5Mode = false
     }
 
     public static var shared = AppEnvironment()
