@@ -34,12 +34,13 @@ class ProfileE2ETests: CoreUITestCase {
             Profile.showGradesToggle.tap()
         }
         Profile.close()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments 72.73%")
+        app.swipeDown()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments 72.73%")
 
         Profile.open()
         Profile.showGradesToggle.tap()
         Profile.close()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label().trimmingCharacters(in: .whitespacesAndNewlines), "Assignments")
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label().trimmingCharacters(in: .whitespacesAndNewlines), "Assignments assignments")
     }
 
     func testProfileDisplaysUsername() {

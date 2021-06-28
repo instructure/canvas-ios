@@ -54,7 +54,7 @@ class DashboardE2ETests: CoreUITestCase {
 
     func testCourseCardInfo() {
         Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments")
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments")
     }
 
     func testSeeAllButtonDisplaysCorrectCourses() {
