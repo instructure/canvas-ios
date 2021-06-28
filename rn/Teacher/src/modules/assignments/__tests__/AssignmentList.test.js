@@ -263,7 +263,7 @@ describe('AssignmentList', () => {
     let traits = { window: { horizontal: 'regular' } }
     defaultProps.navigator.traitCollection = jest.fn(fn => fn(traits))
     defaultProps.assignmentGroups = [templates.assignmentGroup({
-    assignments: [templates.assignment()],
+      assignments: [templates.assignment()],
     })]
     let screen = shallow(
       <AssignmentList {...defaultProps} />
