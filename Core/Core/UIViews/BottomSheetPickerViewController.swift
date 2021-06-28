@@ -55,7 +55,7 @@ public class BottomSheetPickerViewController: UIViewController {
         super.viewWillLayoutSubviews()
         let topPadding: CGFloat = 8
         let buttonHeight: CGFloat = 56
-        view.frame.size.height = topPadding + CGFloat(stackView.arrangedSubviews.count) * buttonHeight
+        view.frame.size.height = topPadding + CGFloat(stackView.arrangedSubviews.count) * buttonHeight + view.safeAreaInsets.bottom
     }
 
     public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
