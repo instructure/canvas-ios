@@ -60,7 +60,7 @@ public struct RouteHandler {
                 guard parts.removeFirst() == template else { return nil }
             case .param(let name):
                 guard !parts.isEmpty else { return nil } // too short
-                params[name] = String(parts.removeFirst())
+                params[name] = ID.expandTildeID(String(parts.removeFirst()))
             case .splat(let name):
                 params[name] = parts.joined(separator: "/")
                 parts = []
