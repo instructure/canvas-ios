@@ -87,7 +87,9 @@ struct SideMenuBottomSection: View {
                 let leaveText = Text("Leave Student View", bundle: .core)
                 let stopText = Text("Stop Act as User", bundle: .core)
                 let logoutTitleText = isFakeStudent ? leaveText : stopText
-                SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: logoutTitleText, badgeValue: 0)
+                SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: logoutTitleText, badgeValue: 0).onTapGesture {
+                    handleLogout()
+                }
             } else {
                 SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core), badgeValue: 0).onTapGesture {
                     handleLogout()
