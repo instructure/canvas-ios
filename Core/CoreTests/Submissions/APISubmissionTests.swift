@@ -63,7 +63,7 @@ class APISubmissionTests: CoreTestCase {
     func testPutSubmissionGradeRequestComment() {
         XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(text: "comment").text_comment, "comment")
         XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio, forGroup: true).text_comment, "This is a media comment")
-        XCTAssertNil(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio).text_comment)
+        XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio).text_comment, "")
     }
 
     func testGetSubmissionsRequest() {

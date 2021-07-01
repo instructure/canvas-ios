@@ -471,7 +471,7 @@ public struct PutSubmissionGradeRequest: APIRequestable {
                 group_comment = forGroup
                 media_comment_id = mediaID
                 media_comment_type = type
-                text_comment = forGroup ? NSLocalizedString("This is a media comment", bundle: .core, comment: "") : nil
+                text_comment = forGroup ? NSLocalizedString("This is a media comment", bundle: .core, comment: "") : ""
                 file_ids = nil
             }
 
@@ -480,7 +480,7 @@ public struct PutSubmissionGradeRequest: APIRequestable {
                 file_ids = fileIDs
                 media_comment_id = nil
                 media_comment_type = nil
-                text_comment = nil
+                text_comment = ""
             }
         }
         public struct Submission: Codable, Equatable {
