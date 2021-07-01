@@ -1841,6 +1841,9 @@
 "Student" = "受講者";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "受講生の注釈";
+
+/* No comment provided by engineer. */
 "Student Appointment Signups" = "受講生予約サインアップ";
 
 /* No comment provided by engineer. */
@@ -2190,6 +2193,12 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "毎週";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "よこそ、(userName)さん！";
+
+/* No comment provided by engineer. */
+"Welcome!" = "どういたしまして！";
 
 /* No comment provided by engineer. */
 "Well Done!" = "よくできました！";

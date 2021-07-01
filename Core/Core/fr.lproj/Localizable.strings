@@ -1841,6 +1841,9 @@
 "Student" = "Élève";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Annotation d'élève";
+
+/* No comment provided by engineer. */
 "Student Appointment Signups" = "Inscriptions aux rendez-vous élèves";
 
 /* No comment provided by engineer. */
@@ -2190,6 +2193,12 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Toutes les semaines";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "Bienvenue, (userName) !";
+
+/* No comment provided by engineer. */
+"Welcome!" = "Bienvenue !";
 
 /* No comment provided by engineer. */
 "Well Done!" = "Bravo !";
