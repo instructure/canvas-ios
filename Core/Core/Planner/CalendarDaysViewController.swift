@@ -53,8 +53,7 @@ class CalendarDaysViewController: UIViewController {
         weeksStackView.pin(inside: view, top: nil, bottom: nil)
         topOffset.isActive = true
 
-        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: selectedDate), to: selectedDate.startOfDay())!
-        currentDate = calendar.date(byAdding: .day, value: calendar.firstWeekday - calendar.component(.weekday, from: currentDate), to: currentDate)!
+        var currentDate = selectedDate.startOfMonth().startOfWeek()
         start = currentDate
         while calendar.compare(currentDate, to: selectedDate, toGranularity: .month) != .orderedDescending {
             let week = UIStackView()
