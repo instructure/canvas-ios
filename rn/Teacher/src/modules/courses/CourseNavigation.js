@@ -129,17 +129,13 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
 
   onTraitCollectionChange = () => {
     this.props.navigator.traitCollection((traits) => {
-      if (
-        this.state.windowTraits.horizontal === 'compact' &&
-        traits.window.horizontal !== 'compact'
-      ) {
-        this.homeDidShow = false
-      }
       this.setState({ windowTraits: traits.window })
     })
   }
 
   selectTab = (tab: Tab) => {
+    // disable automatically changing to course home after a tab was shown
+    this.homeDidShow = true
     logEvent('course_tab_selected', { tabId: tab.id })
     if (tab.id === this.props.attendanceTabID && this.props.course) {
       const toolID = tab.id.replace('context_external_tool_', '')
