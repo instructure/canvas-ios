@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d in scadenza oggi";
+
 /* No comment provided by engineer. */
 "%d items" = "%d elementi";
+
+/* Number of missing submissions */
+"%d missing" = "%d mancante";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Risposte";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Non urgente";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Niente in scadenza oggi";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Errore di notifica";

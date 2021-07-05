@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "Срок сдачи %d — сегодня";
+
 /* No comment provided by engineer. */
 "%d items" = "%d элементов";
+
+/* Number of missing submissions */
+"%d missing" = "%d отсутствует";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Ответы";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Не срочно";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Сегодня ничего сдавать не нужно";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Ошибка уведомления";

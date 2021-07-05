@@ -1147,6 +1147,9 @@
 "Request a feature" = "แจ้งขอคุณสมบัติการทำงาน";
 
 /* No comment provided by engineer. */
+"Resubmission Failed" = "การจัดส่งใหม่ล้มเหลว";
+
+/* No comment provided by engineer. */
 "Resubmit Assignment" = "ส่งภารกิจใหม่อีกครั้ง";
 
 /* No comment provided by engineer. */
@@ -1269,6 +1272,9 @@
 
 /* No comment provided by engineer. */
 "Submission In Progress..." = "กำลังจัดส่ง...";
+
+/* Text submission editor accessibility label */
+"Submission text" = "ข้อความจัดส่ง";
 
 /* No comment provided by engineer. */
 "Submission Types" = "ประเภทการจัดส่ง";

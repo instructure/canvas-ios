@@ -17,6 +17,9 @@
   "add_attachment_dcdb8bf8": {
     "message": "เพิ่มเอกสารแนบ"
   },
+  "add_description_5321f1d": {
+    "message": "เพิ่มรายละเอียด"
+  },
   "add_due_date_65b08f6c": {
     "message": "เพิ่มวันครบกำหนด"
   },
@@ -422,11 +425,17 @@
   "media_recording_77cddc52": {
     "message": "การบันทึกสื่อมีเดีย"
   },
+  "message_body_bf4a882c": {
+    "message": "เนื้อหาข้อความ"
+  },
   "message_details_342e931f": {
     "message": "รายละเอียดข้อความ"
   },
   "message_options_59805b8e": {
     "message": "ตัวเลือกข้อความ"
+  },
+  "message_sent_de26a937": {
+    "message": "ส่งข้อความแล้ว"
   },
   "message_students_who_778ce759": {
     "message": "ส่งข้อความถึงผู้เรียนที่"
@@ -718,6 +727,9 @@
   },
   "sending_bf324366": {
     "message": "กำลังส่ง..."
+  },
+  "sending_message_75923692": {
+    "message": "กำลังส่งข้อความ"
   },
   "sent_fe0a1eb4": {
     "message": "ส่งแล้ว"

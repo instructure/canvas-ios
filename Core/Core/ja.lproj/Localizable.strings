@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d 今日が期限";
+
 /* No comment provided by engineer. */
 "%d items" = "%dアイテム";
+
+/* Number of missing submissions */
+"%d missing" = "%d 欠如";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d返信";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "緊急ではありません";
+
+/* No due assignments for today */
+"Nothing Due Today" = "今日が期限のものなし";
 
 /* No comment provided by engineer. */
 "Notification Error" = "通知エラー";

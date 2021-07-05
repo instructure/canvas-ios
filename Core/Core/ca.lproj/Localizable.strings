@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d venç avui";
+
 /* No comment provided by engineer. */
 "%d items" = "%d elements";
+
+/* Number of missing submissions */
+"%d missing" = "Falta %d";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Respostes";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "No és urgent";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Res venç avui";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Error de notificació";

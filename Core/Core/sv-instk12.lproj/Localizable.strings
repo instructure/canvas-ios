@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d förfaller i dag";
+
 /* No comment provided by engineer. */
 "%d items" = "%d objekt";
+
+/* Number of missing submissions */
+"%d missing" = "%d saknas";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Svar";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Inget måste lämnas in i dag";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Aviseringsfel";
