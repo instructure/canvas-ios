@@ -271,7 +271,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
     func downloadFile(at url: URL) {
         localURL = prepLocalURL()
         if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete() }
-        downloadTask = API(urlSession: URLSession(configuration: .ephemeral, delegate: self, delegateQueue: nil)).makeDownloadRequest(url)
+        downloadTask = API(env.currentSession, urlSession: URLSession(configuration: env.api.urlSession.configuration, delegate: self, delegateQueue: nil)).makeDownloadRequest(url)
         downloadTask?.resume()
     }
 

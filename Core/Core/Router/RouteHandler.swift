@@ -41,7 +41,7 @@ public struct RouteHandler {
             if part.hasPrefix("*") {
                 return .splat(String(part.dropFirst()))
             } else if part.hasPrefix(":") {
-                return .param(String(part.dropFirst()))
+                return .param(ID.expandTildeID(String(part.dropFirst())))
             }
             return .literal(String(part))
         }
