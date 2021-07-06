@@ -206,7 +206,7 @@ public struct GetCoursesRequest: APIRequestable {
     }
 
     public enum State: String {
-        case available, completed, unpublished
+        case available, completed, unpublished, current_and_concluded
     }
 
     private enum Include: String, CaseIterable {
