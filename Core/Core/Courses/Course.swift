@@ -35,6 +35,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var hideFinalGrades: Bool
     @NSManaged public var id: String
     @NSManaged public var imageDownloadURL: URL?
+    @NSManaged public var isCourseDeleted: Bool
     @NSManaged public var isFavorite: Bool
     @NSManaged public var isFutureEnrollment: Bool
     @NSManaged public var isHomeroomCourse: Bool
@@ -83,6 +84,7 @@ final public class Course: NSManagedObject, WriteableModel {
         }
         model.enrollments = nil
         model.hideFinalGrades = item.hide_final_grades ?? false
+        model.isCourseDeleted = item.workflow_state == .deleted
         model.isPastEnrollment = (
             item.workflow_state == .completed ||
             (item.end_at ?? .distantFuture) < Clock.now ||

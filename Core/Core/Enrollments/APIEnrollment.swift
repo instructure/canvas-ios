@@ -89,7 +89,7 @@ public struct APIEnrollment: Codable, Equatable {
 }
 
 public enum EnrollmentState: String, Codable, CaseIterable {
-    case active, inactive, invited, completed, creation_pending, rejected
+    case active, inactive, invited, completed, creation_pending, rejected, deleted
 }
 
 #if DEBUG
@@ -212,7 +212,7 @@ public struct GetEnrollmentsRequest: APIRequestable {
     }
 
     public enum State: String {
-        case creation_pending, active, invited, current_and_future, completed
+        case creation_pending, active, invited, current_and_future, completed, deleted
         public static var allForParentObserver: [State] {
             return [.creation_pending, .active, .invited, .current_and_future, .completed]
         }
