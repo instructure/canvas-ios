@@ -100,6 +100,7 @@
 		C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990D8192668ADBF00034C90 /* TodosE2ETests.swift */; };
 		C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1834A265CEBC800B35D52 /* PagesE2ETest.swift */; };
 		C9A3C02F268C4CBB00DAE8E1 /* GradesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C02E268C4CBB00DAE8E1 /* GradesE2ETests.swift */; };
+		C9A3C03C2694198A00DAE8E1 /* SubmissionsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C03B2694198A00DAE8E1 /* SubmissionsE2ETests.swift */; };
 		CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */; };
 		D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
@@ -510,6 +511,7 @@
 		C990D8192668ADBF00034C90 /* TodosE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosE2ETests.swift; sourceTree = "<group>"; };
 		C9A1834A265CEBC800B35D52 /* PagesE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesE2ETest.swift; sourceTree = "<group>"; };
 		C9A3C02E268C4CBB00DAE8E1 /* GradesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesE2ETests.swift; sourceTree = "<group>"; };
+		C9A3C03B2694198A00DAE8E1 /* SubmissionsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsE2ETests.swift; sourceTree = "<group>"; };
 		CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderTests.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D082A88269C8C11CA67734AC /* Pods-needs-pspdfkit-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 				C9279700267C7AFC00582AC5 /* PeopleE2ETests.swift */,
 				C927971226830DA700582AC5 /* DiscussionsE2ETests.swift */,
 				C9A3C02E268C4CBB00DAE8E1 /* GradesE2ETests.swift */,
+				C9A3C03B2694198A00DAE8E1 /* SubmissionsE2ETests.swift */,
 			);
 			path = TeacherE2ETests;
 			sourceTree = "<group>";
@@ -1666,6 +1669,7 @@
 				C956719D266E033B001FEA9B /* ModulesE2ETests.swift in Sources */,
 				C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */,
 				C9A3C02F268C4CBB00DAE8E1 /* GradesE2ETests.swift in Sources */,
+				C9A3C03C2694198A00DAE8E1 /* SubmissionsE2ETests.swift in Sources */,
 				C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */,
 				C927971326830DA700582AC5 /* DiscussionsE2ETests.swift in Sources */,
 				C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */,
