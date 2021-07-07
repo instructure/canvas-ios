@@ -58,10 +58,12 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
   }
 
   editAssignment = () => {
-    let route = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/edit`
     if (this.props.quizID) {
-      route = `/courses/${this.props.courseID}/quizzes/${this.props.quizID}/edit`
+      let route = `/courses/${this.props.courseID}/quizzes/${this.props.quizID}/edit`
+      this.props.navigator.show(route, { modal: true })
+      return
     }
+    let route = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/edit`
     this.props.navigator.show(route, { embedInNavigationController: false, modal: true })
   }
 
