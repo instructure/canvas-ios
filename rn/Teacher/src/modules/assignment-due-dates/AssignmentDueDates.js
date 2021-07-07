@@ -62,7 +62,7 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
     if (this.props.quizID) {
       route = `/courses/${this.props.courseID}/quizzes/${this.props.quizID}/edit`
     }
-    this.props.navigator.show(route, { modal: true })
+    this.props.navigator.show(route, { embedInNavigationController: false, modal: true })
   }
 
   renderRow (date: AssignmentDate, dates: AssignmentDates) {

@@ -48,32 +48,34 @@ public struct AssignmentEditorView: View {
     }
 
     public var body: some View {
-        form
-            .navigationBarTitle(Text("Edit Assignment", bundle: .core), displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: {
-                    env.router.dismiss(controller)
-                }, label: {
-                    Text("Cancel", bundle: .core).fontWeight(.regular)
-                })
+        NavigationView {
+            form
+                .navigationBarTitle(Text("Edit Assignment", bundle: .core), displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button(action: {
+                        env.router.dismiss(controller)
+                    }, label: {
+                        Text("Cancel", bundle: .core).fontWeight(.regular)
+                    })
                     .identifier("screen.dismiss"),
-                trailing: Button(action: save, label: {
-                    Text("Done", bundle: .core).bold()
-                })
+                    trailing: Button(action: save, label: {
+                        Text("Done", bundle: .core).bold()
+                    })
                     .disabled(isLoading || isSaving)
                     .identifier("AssignmentEditor.doneButton")
-            )
+                )
 
-            .alert(item: $alert) { alert in
-                switch alert {
-                case .error(let error):
-                    return Alert(title: Text(error.localizedDescription))
-                case .removeOverride(let override):
-                    return AssignmentOverridesEditor.alert(toRemove: override, from: $overrides)
+                .alert(item: $alert) { alert in
+                    switch alert {
+                    case .error(let error):
+                        return Alert(title: Text(error.localizedDescription))
+                    case .removeOverride(let override):
+                        return AssignmentOverridesEditor.alert(toRemove: override, from: $overrides)
+                    }
                 }
-            }
 
-            .onAppear(perform: load)
+                .onAppear(perform: load)
+        }.animation(.none)
     }
 
     enum AlertItem: Identifiable {
