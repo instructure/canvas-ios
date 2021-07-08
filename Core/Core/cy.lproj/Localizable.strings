@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d i fod i mewn heddiw";
+
 /* No comment provided by engineer. */
 "%d items" = "%d eitem";
+
+/* Number of missing submissions */
+"%d missing" = "%d ar goll";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Ateb";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Dim Brys";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Dim byd i fod i mewn heddiw";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Gwall Hysbysu";

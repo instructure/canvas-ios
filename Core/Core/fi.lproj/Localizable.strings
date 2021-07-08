@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d erääntyy tänään";
+
 /* No comment provided by engineer. */
 "%d items" = "%d kohdetta";
+
+/* Number of missing submissions */
+"%d missing" = "%d puuttuu";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Vastausta";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ei kiireellinen";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Tänään ei eräänny mitään";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Ilmoitusvirhe";

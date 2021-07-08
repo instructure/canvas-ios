@@ -58,6 +58,15 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d ครบกำหนดวันนี้";
+
+/* No comment provided by engineer. */
+"%d items" = "%d รายการ";
+
+/* Number of missing submissions */
+"%d missing" = "%d ขาดหายไป";
+
 /* No comment provided by engineer. */
 "%d Replies" = "%d การตอบกลับ";
 
@@ -129,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Add Item" = "เพิ่มรายการ";
+
+/* No comment provided by engineer. */
+"Add message" = "เพิ่มข้อความ";
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "เพิ่มหมายเหตุแผนงาน";
@@ -512,6 +524,9 @@
 "Could not save notification preference" = "ไม่สามารถบันทึกค่าปรับตั้งการแจ้งเตือน";
 
 /* No comment provided by engineer. */
+"Course (optional)" = "บทเรียน (เผื่อเลือก)";
+
+/* No comment provided by engineer. */
 "Course Activities" = "กิจกรรมในบทเรียน";
 
 /* No comment provided by engineer. */
@@ -656,6 +671,9 @@
 "Details" = "รายละเอียด";
 
 /* No comment provided by engineer. */
+"Developer menu" = "เมนูสำหรับผู้พัฒนา";
+
+/* No comment provided by engineer. */
 "discussion" = "การพูดคุย";
 
 /* No comment provided by engineer. */
@@ -748,6 +766,9 @@
 /* No comment provided by engineer. */
 "Edit Syllabus" = "แก้ไขหลักสูตร";
 
+/* No comment provided by engineer. */
+"Email address" = "อีเมลแอดเดรส";
+
 /* Description for email communication channel */
 "Email Notifications" = "การแจ้งข้อมูลทางอีเมล";
 
@@ -830,6 +851,9 @@
 "File Upload" = "การอัพโหลดไฟล์";
 
 /* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "อัพโหลดไฟล์ล้มเหลว กรุณายกเลิกผลงานจัดส่งของคุณและลองอัพโหลดอีกครั้ง";
+
+/* No comment provided by engineer. */
 "Files" = "ไฟล์";
 
 /* No comment provided by engineer. */
@@ -864,6 +888,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "ค้นหาสถานศึกษาหรือพื้นที่ของคุณ";
+
+/* No comment provided by engineer. */
+"Folder Name" = "ชื่อโฟลเดอร์";
 
 /* No comment provided by engineer. */
 "for %@" = "สำหรับ %@";
@@ -923,6 +950,9 @@
 "Grades" = "เกรด";
 
 /* No comment provided by engineer. */
+"Grades Details" = "รายละเอียดเกรด";
+
+/* No comment provided by engineer. */
 "Grading" = "การให้เกรด";
 
 /* No comment provided by engineer. */
@@ -954,6 +984,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "สูง: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "โฮมรูม";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "จะค้นหาสถานศึกษาของฉันได้อย่างไร";
@@ -1235,6 +1268,9 @@
 "Multiple Due Dates" = "วันครบกำหนดหลายรายการ";
 
 /* No comment provided by engineer. */
+"My Subjects" = "หัวข้อของฉัน";
+
+/* No comment provided by engineer. */
 "N/A" = "ไม่มี";
 
 /* No comment provided by engineer. */
@@ -1360,6 +1396,9 @@
 /* No comment provided by engineer. */
 "Not Urgent" = "ไม่ด่วน";
 
+/* No due assignments for today */
+"Nothing Due Today" = "ไม่มีวันครบกำหนดวันนี้";
+
 /* No comment provided by engineer. */
 "Notification Error" = "ข้อผิดพลาดการแจ้งข้อมูล";
 
@@ -1412,6 +1451,9 @@
 "Options" = "ตัวเลือก";
 
 /* No comment provided by engineer. */
+"OPTIONS" = "ตัวเลือก";
+
+/* No comment provided by engineer. */
 "orange" = "ส้ม";
 
 /* No comment provided by engineer. */
@@ -1431,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "หน้า";
+
+/* No comment provided by engineer. */
+"Page content" = "เนื้อหาในเพจ";
 
 /* No comment provided by engineer. */
 "Page Details" = "รายละเอียดหน้าเพจ";
@@ -1511,6 +1556,12 @@
 "Privacy Policy" = "นโยบายความเป็นส่วนตัว";
 
 /* No comment provided by engineer. */
+"Profile avatar" = "ภาพประจำตัวสำหรับโพรไฟล์";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "ภาพประจำตัวสำหรับโพรไฟล์ กดสองครั้งเพื่อแก้ไข";
+
+/* No comment provided by engineer. */
 "Profile Menu" = "เมนูโพรไฟล์";
 
 /* No comment provided by engineer. */
@@ -1563,6 +1614,9 @@
 
 /* No comment provided by engineer. */
 "Redo" = "ทำซ้ำ";
+
+/* Downloading new content has started */
+"Refreshing" = "กำลังรีเฟรช";
 
 /* No comment provided by engineer. */
 "Remove" = "ลบ";
@@ -1625,6 +1679,12 @@
 "Request Failed!" = "คำขอล้มเหลว!";
 
 /* No comment provided by engineer. */
+"Resources" = "ทรัพยากร";
+
+/* No comment provided by engineer. */
+"Resources Details" = "รายละเอียดทรัพยากร";
+
+/* No comment provided by engineer. */
 "Restricted" = "หวงห้าม";
 
 /* No comment provided by engineer. */
@@ -1640,10 +1700,16 @@
 "Scanning not supported" = "ไม่รองรับการสแกน";
 
 /* No comment provided by engineer. */
+"Schedule" = "กำหนดเวลา";
+
+/* No comment provided by engineer. */
 "Schedule student availability" = "กำหนดเวลาความพร้อมของผู้เรียน";
 
 /* No comment provided by engineer. */
 "Scheduling" = "กำลังกำหนดเวลา";
+
+/* No comment provided by engineer. */
+"School’s name" = "ชื่อสถานศึกษา";
 
 /* No comment provided by engineer. */
 "Score at least %@" = "คะแนนอย่างน้อย %@";
@@ -1683,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Select Course" = "เลือกบทเรียน";
+
+/* No comment provided by engineer. */
+"Select Impact" = "เลือกผลกระทบ";
 
 /* No comment provided by engineer. */
 "Select One" = "เลือกหนึ่งรายการ";
@@ -1781,6 +1850,9 @@
 "Student" = "ผู้เรียน";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "หมายเหตุกำกับสำหรับผู้เรียน";
+
+/* No comment provided by engineer. */
 "Student Appointment Signups" = "การรับนัดหมายของผู้เรียน";
 
 /* No comment provided by engineer. */
@@ -1830,6 +1902,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "หลักสูตร";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "เนื้อหาหลักสูตร";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
@@ -2036,6 +2111,9 @@
 "Updated Language Settings" = "ค่าภาษาที่อัพเดต";
 
 /* No comment provided by engineer. */
+"Updating" = "กำลังอัพเดต";
+
+/* No comment provided by engineer. */
 "Upload File" = "อัพโหลดไฟล์";
 
 /* No comment provided by engineer. */
@@ -2099,6 +2177,9 @@
 "View more replies" = "ดูการตอบกลับเพิ่มเติม";
 
 /* No comment provided by engineer. */
+"View Previous Announcements" = "ดูประกาศก่อนหน้า";
+
+/* No comment provided by engineer. */
 "Viewed" = "ที่ดู";
 
 /* No comment provided by engineer. */
@@ -2121,6 +2202,12 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "รายสัปดาห์";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "ยินดีต้อนรับ (userName)!";
+
+/* No comment provided by engineer. */
+"Welcome!" = "ยินดีต้อนรับ!";
 
 /* No comment provided by engineer. */
 "Well Done!" = "ดีมาก!";

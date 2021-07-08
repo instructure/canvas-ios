@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d个今天到期";
+
 /* No comment provided by engineer. */
 "%d items" = "%d 个项目";
+
+/* Number of missing submissions */
+"%d missing" = "%d个缺失";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d回复";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "不紧急";
+
+/* No due assignments for today */
+"Nothing Due Today" = "没有今天到期的项目";
 
 /* No comment provided by engineer. */
 "Notification Error" = "通知错误";

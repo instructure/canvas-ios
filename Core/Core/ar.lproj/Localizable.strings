@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d مستحق اليوم";
+
 /* No comment provided by engineer. */
 "%d items" = "%d عناصر";
+
+/* Number of missing submissions */
+"%d missing" = "%d مفقود";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d ردود";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "ليس عاجلاً";
+
+/* No due assignments for today */
+"Nothing Due Today" = "لا شيء مستحق اليوم";
 
 /* No comment provided by engineer. */
 "Notification Error" = "خطأ في الإخطارات";

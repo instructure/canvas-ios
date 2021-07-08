@@ -131,6 +131,9 @@
 "Grade post policy" = "นโยบายการโพสต์เกรด";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "แถบเลื่อนเกรด";
+
+/* No comment provided by engineer. */
 "Graded" = "ให้เกรดแล้ว";
 
 /* No comment provided by engineer. */
@@ -212,7 +215,13 @@
 "Percent (%)" = "เปอร์เซ็นต์ (%)";
 
 /* No comment provided by engineer. */
+"Points" = "คะแนน";
+
+/* No comment provided by engineer. */
 "Post Grades" = "แจ้งเกรด";
+
+/* No comment provided by engineer. */
+"Post settings" = "โพสต์ค่าปรับตั้ง";
 
 /* No comment provided by engineer. */
 "Post Settings" = "โพสต์ค่าปรับตั้ง";
@@ -288,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "This student does not have a submission for this assignment." = "ผู้เรียนนี้ไม่มีผลงานจัดส่งสำหรับภารกิจนี้";
+
+/* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "การตอบกลับของผู้เรียนรายนี้ถูกซ่อนไว้เนื่องจากภารกิจไม่เปิดเผยตัว";
 
 /* No comment provided by engineer. */
 "This submission has no files." = "ผลงานจัดส่งนี้ไม่มีไฟล์ข้อมูล";
