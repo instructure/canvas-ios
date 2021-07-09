@@ -45,7 +45,7 @@ public struct AssignmentDetailsView: View {
             .navigationBarItems(trailing: Button(action: { env.router.route(
                 to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
                 from: controller,
-                options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+                options: .modal(.formSheet, isDismissable: false, embedInNav: false)
             ) }, label: {
                 Text("Edit", bundle: .core).fontWeight(.regular)
             }))
