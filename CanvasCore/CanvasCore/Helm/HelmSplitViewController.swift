@@ -99,6 +99,17 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
     }
     
     public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+        // This logic fixes the rotation glitches on course home and assignments list screens on larger iPhones where master/detail split view is supported in landscape mode.
+        // When react-native is removed we need to re-think how the we'll handle split view rotation events since `canBecomeMaster` navigation option is only available in react-native routing.
+        if let nav = primaryViewController as? UINavigationController,
+           nav.viewControllers.count > 1,
+           let newDetail = nav.viewControllers.last,
+           let moduleName = (newDetail as? HelmViewController)?.moduleName,
+           ["/courses/:courseID", "/courses/:courseID/assignments"].contains(moduleName)
+        {
+            return HelmNavigationController(rootViewController: EmptyViewController())
+        }
+
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)
