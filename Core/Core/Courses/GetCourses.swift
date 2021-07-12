@@ -90,7 +90,7 @@ public class GetAllCourses: CollectionUseCase {
     public let cacheKey: String? = "courses"
 
     public var request: GetCoursesRequest {
-        return GetCoursesRequest(enrollmentState: nil, state: [ .current_and_concluded ], perPage: 100)
+        return GetCoursesRequest(enrollmentState: nil, state: [ .current_and_concluded, .available, .unpublished ], perPage: 100)
     }
 
     private var scopePredicate: NSPredicate { return NSCompoundPredicate(andPredicateWithSubpredicates: [
