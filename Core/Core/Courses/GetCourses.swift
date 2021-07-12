@@ -90,12 +90,12 @@ public class GetAllCourses: CollectionUseCase {
     public let cacheKey: String? = "courses"
 
     public var request: GetCoursesRequest {
-        return GetCoursesRequest(enrollmentState: nil, state: [ .current_and_concluded, .available, .unpublished ], perPage: 100)
+        return GetCoursesRequest(enrollmentState: nil, state: [ .current_and_concluded ], perPage: 100)
     }
 
     private var scopePredicate: NSPredicate { return NSCompoundPredicate(andPredicateWithSubpredicates: [
-                                                                            NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw),
-                                                                                        [EnrollmentState.invited.rawValue, EnrollmentState.deleted.rawValue]),
+                                                                            NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw), [EnrollmentState.invited.rawValue]),
+                                                                            NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.deleted.rawValue),
                                                                             NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false), ])
     }
 
