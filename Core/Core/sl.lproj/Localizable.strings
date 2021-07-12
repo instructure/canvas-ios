@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d poteče danes";
+
 /* No comment provided by engineer. */
 "%d items" = "%d elementov";
+
+/* Number of missing submissions */
+"%d missing" = "%d manjka";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Odgovori";
@@ -1389,6 +1395,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ni nujno";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Danes nič ne poteče";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Napaka pri sporočilu";

@@ -58,8 +58,14 @@
 /* score/points possible (grade) */
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
+/* Number of assignments due today */
+"%d due today" = "%d e tika ana mo tēnei rā";
+
 /* No comment provided by engineer. */
 "%d items" = "%d ngā tūemi";
+
+/* Number of missing submissions */
+"%d missing" = "%d e ngaro ana";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Ngā whakautu";
@@ -869,7 +875,7 @@
 "Final Grade: %@" = "Kōeke whakamutunga: %@";
 
 /* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts kōeke_whakamutunga";
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Kimihia he waehere hei ";
@@ -902,13 +908,13 @@
 "Future Enrollments" = "Whakaurunga e heke mai nei";
 
 /* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible i waho i g kōinga e taea ai";
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
 "g_points" = "g_points";
 
 /* No comment provided by engineer. */
-"g_pts" = "g_pts i waho i g kōinga e taea ai";
+"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Haere ki te rā";
@@ -1097,7 +1103,7 @@
 "Late Grading" = "kōeke tūreiti";
 
 /* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts whiu tōmuri";
+"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Neke Taputapu Waho";
@@ -1390,6 +1396,9 @@
 /* No comment provided by engineer. */
 "Not Urgent" = "Kaore i te Whakahihiri";
 
+/* No due assignments for today */
+"Nothing Due Today" = "Kaore e Tika ana mō tēnei rā";
+
 /* No comment provided by engineer. */
 "Notification Error" = "Hapa whakamōhiotanga";
 
@@ -1457,7 +1466,7 @@
 "out of" = "i waho i te";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts i waho i g ngā koinga";
+"out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
 "page" = "Whārangi";
@@ -1523,7 +1532,7 @@
 "Please wait, this might take a minute." = "Tēnā koa, tatari ka roa pea he meneti.";
 
 /* No comment provided by engineer. */
-"plural_points" = "plural_points nui ngā kōinga";
+"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Ngā Koinga";
