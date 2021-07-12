@@ -55,7 +55,7 @@ extension NativeLoginManager {
                 "primary_email": entry.userEmail,
             ],
             "isFakeStudent": entry.isFakeStudent,
-            "isK5Enabled": AppEnvironment.shared.isK5Enabled,
+            "isK5Enabled": AppEnvironment.shared.k5.isK5Enabled,
         ]
         if let actAsUserID = entry.actAsUserID {
             body["actAsUserID"] = actAsUserID

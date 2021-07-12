@@ -84,7 +84,7 @@ class PlannableTests: CoreTestCase {
 
     func testK5Color() {
         ExperimentalFeature.K5Dashboard.isEnabled = true
-        environment.shouldUseK5Mode = true
+        environment.k5.shouldUseK5Mode = true
         Course.make(from: .make(id: "2", course_color: "#0DEAD0"))
         Course.make(from: .make(id: "0", course_color: nil))
         ContextColor.make(canvasContextID: "course_2", color: .blue)

@@ -869,6 +869,7 @@
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
+		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
@@ -2031,6 +2032,7 @@
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
+		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
@@ -2326,6 +2328,7 @@
 				B17F23B02137981B00771F86 /* Clock.swift */,
 				7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */,
 				7D63F789215D46AB00151E49 /* GetBrandVariables.swift */,
+				CFB3A1E3269C8D4A00429B3E /* K5State.swift */,
 				3B158CB522E230510039A568 /* Keychain.swift */,
 				7DAFB46221A361C400311275 /* LocalizationManager.swift */,
 				B1BEB2CA22458B5E00E893A4 /* MDMManager.swift */,
@@ -5643,6 +5646,7 @@
 				B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */,
 				CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
+				CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */,
 				7DA260E223F72359005D2121 /* KeyboardTransitioning.swift in Sources */,
 				7DA2600923F7227A005D2121 /* NSErrorExtensions.swift in Sources */,
 				CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */,
