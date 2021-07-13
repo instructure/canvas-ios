@@ -90,14 +90,22 @@ public class GetAllCourses: CollectionUseCase {
     public let cacheKey: String? = "courses"
 
     public var request: GetCoursesRequest {
-        return GetCoursesRequest(enrollmentState: nil, state: [ .available, .completed, .unpublished ], perPage: 100)
+        return GetCoursesRequest(enrollmentState: nil, state: [ .current_and_concluded ], perPage: 100)
     }
 
-    public let scope = Scope(predicate: NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.invited.rawValue), order: [
-        NSSortDescriptor(key: #keyPath(Course.isPastEnrollment), ascending: true),
-        NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
-        NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
-    ], sectionNameKeyPath: #keyPath(Course.isPastEnrollment))
+    private var scopePredicate: NSPredicate { return NSCompoundPredicate(andPredicateWithSubpredicates: [
+                                                                            NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw), [EnrollmentState.invited.rawValue]),
+                                                                            NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.deleted.rawValue),
+                                                                            NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false), ])
+    }
+
+    public var scope: Scope {
+        Scope(predicate: scopePredicate, order: [
+            NSSortDescriptor(key: #keyPath(Course.isPastEnrollment), ascending: true),
+            NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
+            NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+        ], sectionNameKeyPath: #keyPath(Course.isPastEnrollment))
+    }
 
     public init() {}
 }

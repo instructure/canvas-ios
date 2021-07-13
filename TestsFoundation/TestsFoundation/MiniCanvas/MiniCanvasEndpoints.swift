@@ -253,6 +253,8 @@ enum MiniCanvasEndpoints {
                 enrollmentStates.append(contentsOf: [ .active, .creation_pending ])
             case .completed:
                 enrollmentStates.append(.completed)
+            case .deleted:
+                enrollmentStates.append(.deleted)
             }
             }
             return request.state.userEnrollments(state: Set(enrollmentStates))

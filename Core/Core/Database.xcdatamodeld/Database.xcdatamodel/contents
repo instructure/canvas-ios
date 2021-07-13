@@ -219,6 +219,7 @@
         <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
+        <attribute name="isCourseDeleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFutureEnrollment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isHomeroomCourse" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
