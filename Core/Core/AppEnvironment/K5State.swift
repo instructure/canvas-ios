@@ -17,8 +17,8 @@
 //
 
 public class K5State {
-    /** This flag indicates that the logged in user requested K5 mode. The app might not follow this if the K5 feature flag is turned off. */
-    public var shouldUseK5Mode = false {
+    /** This flag indicates that the logged in user is under a K5 enabled account. The app might not follow this if the K5 feature flag is turned off. */
+    public private(set) var isK5Account = false {
         didSet {
             UITabBar.updateFontAppearance(useK5Fonts: isK5Enabled)
             UIBarButtonItem.updateFontAppearance(useK5Fonts: isK5Enabled)
@@ -26,9 +26,17 @@ public class K5State {
         }
     }
     /** This flag indicates if K5 mode is turned on and should be used. */
-    public var isK5Enabled: Bool { shouldUseK5Mode && ExperimentalFeature.K5Dashboard.isEnabled }
+    public var isK5Enabled: Bool { isK5Account && ExperimentalFeature.K5Dashboard.isEnabled }
+
+    public func userDidLogin(profile: APIProfile?) {
+        isK5Account = (profile?.k5_user == true)
+    }
+
+    public func userDidLogin(isK5Account: Bool) {
+        self.isK5Account = isK5Account
+    }
 
     public func userDidLogout() {
-        shouldUseK5Mode = false
+        isK5Account = false
     }
 }

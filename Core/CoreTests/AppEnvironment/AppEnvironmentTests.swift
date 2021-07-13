@@ -68,25 +68,25 @@ class AppEnvironmentTests: CoreTestCase {
         let env = AppEnvironment()
         let session = LoginSession.make(accessToken: "token")
         env.userDidLogin(session: session)
-        env.k5.shouldUseK5Mode = true
+        env.k5.userDidLogin(isK5Account: true)
         XCTAssertTrue(env.k5.isK5Enabled)
         env.userDidLogout(session: session)
-        XCTAssertFalse(env.k5.shouldUseK5Mode)
+        XCTAssertFalse(env.k5.isK5Account)
         XCTAssertFalse(env.k5.isK5Enabled)
     }
 
     func testK5ModeDependsOnFeatureFlag() {
         let env = AppEnvironment()
-        XCTAssertFalse(env.k5.shouldUseK5Mode)
+        XCTAssertFalse(env.k5.isK5Account)
         XCTAssertFalse(env.k5.isK5Enabled)
 
-        env.k5.shouldUseK5Mode = true
+        env.k5.userDidLogin(isK5Account: true)
         XCTAssertFalse(env.k5.isK5Enabled)
 
         ExperimentalFeature.K5Dashboard.isEnabled = true
         XCTAssertTrue(env.k5.isK5Enabled)
 
-        env.k5.shouldUseK5Mode = false
+        env.k5.userDidLogin(isK5Account: false)
         XCTAssertFalse(env.k5.isK5Enabled)
     }
 }
