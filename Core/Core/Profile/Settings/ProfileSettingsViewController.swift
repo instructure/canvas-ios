@@ -192,7 +192,6 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.toggle.isOn = switchRow.value
             cell.onToggleChange = { toggle in
                 switchRow.value = toggle.isOn
-                switchRow.onSelect(toggle.isOn)
             }
             cell.backgroundColor = .backgroundGroupedCell
             cell.textLabel?.text = switchRow.title
@@ -210,7 +209,6 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         } else if let switchCell = tableView.cellForRow(at: indexPath) as? SwitchTableViewCell, let switchRow = row as? Switch {
             let newValue = !switchCell.toggle.isOn
             switchCell.toggle.setOn(newValue, animated: true)
-            switchRow.onSelect(newValue)
             switchRow.value = newValue
         }
 
@@ -253,8 +251,12 @@ private struct Row {
 
 private class Switch {
     let title: String
-    var value: Bool
-    let onSelect: (_ value: Bool) -> Void
+    var value: Bool {
+        didSet {
+            onSelect(value)
+        }
+    }
+    private let onSelect: (_ value: Bool) -> Void
 
     init(_ title: String, initialValue: Bool = false, onSelect: @escaping (_ value: Bool) -> Void) {
         self.title = title
