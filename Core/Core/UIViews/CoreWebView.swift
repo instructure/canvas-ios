@@ -53,6 +53,7 @@ open class CoreWebView: WKWebView {
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
 
     public var isLinkNavigationEnabled = true
+    private var isPopup = false
 
     public static let processPool = WKProcessPool()
 
@@ -81,6 +82,8 @@ open class CoreWebView: WKWebView {
 
     init(externalConfiguration: WKWebViewConfiguration) {
         super.init(frame: .zero, configuration: externalConfiguration)
+        navigationDelegate = self
+        uiDelegate = self
     }
 
     func setup() {
@@ -308,6 +311,18 @@ extension CoreWebView: WKNavigationDelegate {
             return
         }
 
+        if isPopup,
+           let baseUrl = AppEnvironment.shared.currentSession?.baseURL.absoluteString,
+           let requestUrl = action.request.url?.absoluteString,
+           requestUrl.contains(baseUrl),
+           let url = action.request.url?.path, let from = linkDelegate?.routeLinksFrom,
+           let vc = linkDelegate as? UIViewController {
+            vc.dismiss(animated: true) {
+                AppEnvironment.shared.router.route(to: url, from: from)
+            }
+            return decisionHandler(.cancel)
+        }
+
         // Check for #fragment link click
         if action.navigationType == .linkActivated, action.sourceFrame == action.targetFrame,
             let url = action.request.url, let fragment = url.fragment,
@@ -428,6 +443,8 @@ extension CoreWebView: WKUIDelegate {
         let controller = CoreWebViewController()
         // Don't change the processPool of this configuration otherwise it will crash
         controller.webView = CoreWebView(externalConfiguration: configuration)
+        controller.webView.isPopup = true
+        controller.webView.linkDelegate = linkDelegate
         AppEnvironment.shared.router.show(
             controller,
             from: from,
