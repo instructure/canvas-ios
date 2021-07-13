@@ -74,19 +74,4 @@ class AppEnvironmentTests: CoreTestCase {
         XCTAssertFalse(env.k5.isK5Account)
         XCTAssertFalse(env.k5.isK5Enabled)
     }
-
-    func testK5ModeDependsOnFeatureFlag() {
-        let env = AppEnvironment()
-        XCTAssertFalse(env.k5.isK5Account)
-        XCTAssertFalse(env.k5.isK5Enabled)
-
-        env.k5.userDidLogin(isK5Account: true)
-        XCTAssertFalse(env.k5.isK5Enabled)
-
-        ExperimentalFeature.K5Dashboard.isEnabled = true
-        XCTAssertTrue(env.k5.isK5Enabled)
-
-        env.k5.userDidLogin(isK5Account: false)
-        XCTAssertFalse(env.k5.isK5Enabled)
-    }
 }

@@ -870,6 +870,7 @@
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
+		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
@@ -2033,6 +2034,7 @@
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
+		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
@@ -3432,6 +3434,7 @@
 				B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */,
 				7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
+				CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */,
 				3B158CB722E241130039A568 /* KeychainTests.swift */,
 				7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */,
 				B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */,
@@ -5138,6 +5141,7 @@
 				9FE84DDC214FE5C500B95A68 /* GetGroupsTests.swift in Sources */,
 				7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */,
 				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,
+				CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */,
 				B1A32BE22159A3100071B41E /* APIAssignmentTests.swift in Sources */,
 				7DC7046A24ABA3C100CD1C46 /* ObserverAlertTests.swift in Sources */,
 				7D4F44FD241BFB2300233B92 /* APIConferenceTests.swift in Sources */,
