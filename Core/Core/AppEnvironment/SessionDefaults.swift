@@ -53,6 +53,11 @@ public struct SessionDefaults {
         }
     }
 
+    public var isK5DashboardEnabled: Bool {
+        get { (self["isK5DashboardEnabled"] as? Bool) ?? true }
+        set { self["isK5DashboardEnabled"] = newValue }
+    }
+
     public var landingPath: String? {
         mutating get {
             if let landingPath = self["landingPath"] as? String {
