@@ -155,8 +155,8 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     private var k5DashboardSwitch: [Any] {
         guard AppEnvironment.shared.k5.isK5Account, AppEnvironment.shared.k5.isRemoteFeatureFlagEnabled else { return [] }
 
-        let row = Switch(NSLocalizedString("Elementary View", bundle: .core, comment: ""), initialValue: AppEnvironment.shared.userDefaults?.isK5DashboardEnabled ?? false) { isOn in
-            AppEnvironment.shared.userDefaults?.isK5DashboardEnabled = isOn
+        let row = Switch(NSLocalizedString("Elementary View", bundle: .core, comment: ""), initialValue: AppEnvironment.shared.userDefaults?.isElementaryViewEnabled ?? false) { isOn in
+            AppEnvironment.shared.userDefaults?.isElementaryViewEnabled = isOn
         }
         return [row]
     }

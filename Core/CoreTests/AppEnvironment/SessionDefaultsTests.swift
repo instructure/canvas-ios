@@ -42,8 +42,8 @@ class SessionDefaultsTests: XCTestCase {
         XCTAssertTrue(defaults.hasSetPSPDFKitLastUsedValues)
     }
 
-    func testEnableK5DashboardDefault() {
+    func testElementaryViewEnabledDefaultValue() {
         defaults.reset()
-        XCTAssertTrue(defaults.isK5DashboardEnabled)
+        XCTAssertTrue(defaults.isElementaryViewEnabled)
     }
 }

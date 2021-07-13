@@ -53,9 +53,9 @@ public struct SessionDefaults {
         }
     }
 
-    public var isK5DashboardEnabled: Bool {
-        get { (self["isK5DashboardEnabled"] as? Bool) ?? true }
-        set { self["isK5DashboardEnabled"] = newValue }
+    public var isElementaryViewEnabled: Bool {
+        get { (self["isElementaryViewEnabled"] as? Bool) ?? true }
+        set { self["isElementaryViewEnabled"] = newValue }
     }
 
     public var landingPath: String? {
