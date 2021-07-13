@@ -26,7 +26,8 @@ public class K5State {
         }
     }
     /** This flag indicates if K5 mode is turned on and should be used. */
-    public var isK5Enabled: Bool { isK5Account && ExperimentalFeature.K5Dashboard.isEnabled }
+    public var isK5Enabled: Bool { isK5Account && isRemoteFeatureFlagEnabled }
+    public var isRemoteFeatureFlagEnabled: Bool { ExperimentalFeature.K5Dashboard.isEnabled }
 
     public func userDidLogin(profile: APIProfile?) {
         isK5Account = (profile?.k5_user == true)
