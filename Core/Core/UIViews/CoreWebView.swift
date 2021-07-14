@@ -150,7 +150,7 @@ open class CoreWebView: WKWebView {
         var font = "system-ui"
         var fontCSS = ""
 
-        if AppEnvironment.shared.isK5Enabled {
+        if AppEnvironment.shared.k5.isK5Enabled {
             font = "BalsamiqSans-Regular"
             fontCSS = Self.BalsamiqRegularCSSFontFace
         }

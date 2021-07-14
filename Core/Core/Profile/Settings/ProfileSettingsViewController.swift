@@ -21,6 +21,7 @@ import UIKit
 public class ProfileSettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     let env = AppEnvironment.shared
     private var sections: [Section] = []
+    private var onElementaryViewToggleChanged: (() -> Void)?
 
     private var landingPage: LandingPage {
         get { return LandingPage(rawValue: env.userDefaults?.landingPath ?? "/") ?? .dashboard }
@@ -37,8 +38,10 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
     let tableView = UITableView(frame: .zero, style: .grouped)
 
-    public static func create() -> ProfileSettingsViewController {
-        return ProfileSettingsViewController()
+    public static func create(onElementaryViewToggleChanged: (() -> Void)? = nil) -> ProfileSettingsViewController {
+        let viewController = ProfileSettingsViewController()
+        viewController.onElementaryViewToggleChanged = onElementaryViewToggleChanged
+        return viewController
     }
 
     public override func loadView() {
@@ -57,6 +60,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.registerCell(RightDetailTableViewCell.self)
+        tableView.registerCell(SwitchTableViewCell.self)
         tableView.sectionFooterHeight = 0
         tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
@@ -101,7 +105,9 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         delegate: self
                     ), sender: self)
                 },
-            ] + channelTypes.values.map({ channels -> Row in
+            ]
+            + k5DashboardSwitch
+            + channelTypes.values.map({ channels -> Row in
                 Row(channels[0].type.name) { [weak self] in
                     guard let self = self else { return }
                     if channels.count == 1, let channel = channels.first {
@@ -148,6 +154,16 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         }
         tableView.reloadData()
     }
+
+    private var k5DashboardSwitch: [Any] {
+        guard AppEnvironment.shared.k5.isK5Account, AppEnvironment.shared.k5.isRemoteFeatureFlagEnabled else { return [] }
+
+        let row = Switch(NSLocalizedString("Elementary View", bundle: .core, comment: ""), initialValue: AppEnvironment.shared.userDefaults?.isElementaryViewEnabled ?? false) { [weak self] isOn in
+            AppEnvironment.shared.userDefaults?.isElementaryViewEnabled = isOn
+            self?.onElementaryViewToggleChanged?()
+        }
+        return [row]
+    }
 }
 
 extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -167,16 +183,39 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
-        cell.backgroundColor = .backgroundGroupedCell
-        cell.textLabel?.text = row.title
-        cell.detailTextLabel?.text = row.detail
-        cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
-        return cell
+
+        if let row = row as? Row {
+            let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+            cell.backgroundColor = .backgroundGroupedCell
+            cell.textLabel?.text = row.title
+            cell.detailTextLabel?.text = row.detail
+            cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
+            return cell
+        } else if let switchRow = row as? Switch {
+            let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)
+            cell.toggle.isOn = switchRow.value
+            cell.onToggleChange = { toggle in
+                switchRow.value = toggle.isOn
+            }
+            cell.backgroundColor = .backgroundGroupedCell
+            cell.textLabel?.text = switchRow.title
+            return cell
+        }
+
+        return UITableViewCell()
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sections[indexPath.section].rows[indexPath.row].onSelect()
+        let row = sections[indexPath.section].rows[indexPath.row]
+
+        if let row = row as? Row {
+            row.onSelect()
+        } else if let switchCell = tableView.cellForRow(at: indexPath) as? SwitchTableViewCell, let switchRow = row as? Switch {
+            let newValue = !switchCell.toggle.isOn
+            switchCell.toggle.setOn(newValue, animated: true)
+            switchRow.value = newValue
+        }
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -190,9 +229,9 @@ extension ProfileSettingsViewController: ItemPickerDelegate {
 
 private struct Section {
     let title: String
-    let rows: [Row]
+    let rows: [Any]
 
-    init(_ title: String, rows: [Row]) {
+    init(_ title: String, rows: [Any]) {
         self.title = title
         self.rows = rows
     }
@@ -210,6 +249,22 @@ private struct Row {
         self.detail = detail
         self.style = style
         self.hasDisclosure = hasDisclosure
+        self.onSelect = onSelect
+    }
+}
+
+private class Switch {
+    let title: String
+    var value: Bool {
+        didSet {
+            onSelect(value)
+        }
+    }
+    private let onSelect: (_ value: Bool) -> Void
+
+    init(_ title: String, initialValue: Bool = false, onSelect: @escaping (_ value: Bool) -> Void) {
+        self.title = title
+        self.value = initialValue
         self.onSelect = onSelect
     }
 }

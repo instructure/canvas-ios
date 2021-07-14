@@ -70,7 +70,7 @@ class CoreTestCase: XCTestCase {
         Analytics.shared.handler = analytics
         environment.app = .student
         environment.window = window
-        environment.shouldUseK5Mode = false
+        environment.k5.userDidLogout()
         window.rootViewController = mainViewController
         window.makeKeyAndVisible()
     }

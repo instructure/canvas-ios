@@ -65,7 +65,7 @@ extension UINavigationBar {
         updateFontAppearance()
     }
 
-    public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.isK5Enabled) {
+    public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.k5.isK5Enabled) {
         if useK5Fonts {
             titleTextAttributes?[NSAttributedString.Key.font] = UIFont.scaledNamedFont(.bold17)
         }

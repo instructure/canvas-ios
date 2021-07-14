@@ -358,7 +358,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/profile/settings": { _, _, _ in
-        return ProfileSettingsViewController.create()
+        return ProfileSettingsViewController.create(onElementaryViewToggleChanged: {
+            HelmManager.shared.reload()
+        })
     },
 
     "/support/problem": { _, _, _ in
