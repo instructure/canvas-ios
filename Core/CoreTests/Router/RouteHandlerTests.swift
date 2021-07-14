@@ -58,4 +58,17 @@ class RouteHandlerTests: XCTestCase {
         let route = RouteHandler("/courses") { _, _, _ in return UIViewController() }
         XCTAssertNotNil(route.match(.parse("courses")))
     }
+
+    func testTildeIDExpansion() {
+        let route = RouteHandler(":contextID") { _, _, _ in return UIViewController() }
+        let parts = route.match(.parse("1234~5678"))
+        XCTAssertEqual(parts?["contextID"], "12340000000005678")
+    }
+
+    func testTildeIDRoute() {
+        let route = RouteHandler("/courses/:courseID/quizzes/:quizID") { _, _, _ in return UIViewController() }
+        let parts = route.match(.parse("courses/1234~5678/quizzes/1234~567"))
+        XCTAssertEqual(parts?["courseID"], "12340000000005678")
+        XCTAssertEqual(parts?["quizID"], "12340000000000567")
+    }
 }
