@@ -25,7 +25,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        vc = ProfileSettingsViewController.create(onElementaryViewToggleChanged: {})
+        vc = ProfileSettingsViewController.create()
     }
 
     func load() {

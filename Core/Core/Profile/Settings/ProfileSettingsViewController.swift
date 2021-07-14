@@ -38,7 +38,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
     let tableView = UITableView(frame: .zero, style: .grouped)
 
-    public static func create(onElementaryViewToggleChanged: @escaping () -> Void) -> ProfileSettingsViewController {
+    public static func create(onElementaryViewToggleChanged: (() -> Void)? = nil) -> ProfileSettingsViewController {
         let viewController = ProfileSettingsViewController()
         viewController.onElementaryViewToggleChanged = onElementaryViewToggleChanged
         return viewController
