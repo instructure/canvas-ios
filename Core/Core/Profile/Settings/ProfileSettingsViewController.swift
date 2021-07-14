@@ -21,6 +21,7 @@ import UIKit
 public class ProfileSettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     let env = AppEnvironment.shared
     private var sections: [Section] = []
+    private var onElementaryViewToggleChanged: (() -> Void)?
 
     private var landingPage: LandingPage {
         get { return LandingPage(rawValue: env.userDefaults?.landingPath ?? "/") ?? .dashboard }
@@ -37,8 +38,10 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
     let tableView = UITableView(frame: .zero, style: .grouped)
 
-    public static func create() -> ProfileSettingsViewController {
-        return ProfileSettingsViewController()
+    public static func create(onElementaryViewToggleChanged: @escaping () -> Void) -> ProfileSettingsViewController {
+        let viewController = ProfileSettingsViewController()
+        viewController.onElementaryViewToggleChanged = onElementaryViewToggleChanged
+        return viewController
     }
 
     public override func loadView() {
@@ -155,8 +158,9 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     private var k5DashboardSwitch: [Any] {
         guard AppEnvironment.shared.k5.isK5Account, AppEnvironment.shared.k5.isRemoteFeatureFlagEnabled else { return [] }
 
-        let row = Switch(NSLocalizedString("Elementary View", bundle: .core, comment: ""), initialValue: AppEnvironment.shared.userDefaults?.isElementaryViewEnabled ?? false) { isOn in
+        let row = Switch(NSLocalizedString("Elementary View", bundle: .core, comment: ""), initialValue: AppEnvironment.shared.userDefaults?.isElementaryViewEnabled ?? false) { [weak self] isOn in
             AppEnvironment.shared.userDefaults?.isElementaryViewEnabled = isOn
+            self?.onElementaryViewToggleChanged?()
         }
         return [row]
     }
