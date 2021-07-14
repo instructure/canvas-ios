@@ -25,9 +25,13 @@ public class K5State {
             UISegmentedControl.updateFontAppearance()
         }
     }
-    /** This flag indicates if K5 mode is turned on and should be used. */
-    public var isK5Enabled: Bool { isK5Account && isRemoteFeatureFlagEnabled }
     public var isRemoteFeatureFlagEnabled: Bool { ExperimentalFeature.K5Dashboard.isEnabled }
+    public var isElementaryViewEnabled: Bool { sessionDefaults?.isElementaryViewEnabled ?? false }
+    /** External dependency. */
+    public var sessionDefaults: SessionDefaults?
+
+    /** This flag indicates if K5 mode is turned on and should be used. */
+    public var isK5Enabled: Bool { isK5Account && isRemoteFeatureFlagEnabled && isElementaryViewEnabled }
 
     public func userDidLogin(profile: APIProfile?) {
         isK5Account = (profile?.k5_user == true)

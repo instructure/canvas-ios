@@ -68,10 +68,23 @@ class AppEnvironmentTests: CoreTestCase {
         let env = AppEnvironment()
         let session = LoginSession.make(accessToken: "token")
         env.userDidLogin(session: session)
+        env.userDefaults?.isElementaryViewEnabled = true
         env.k5.userDidLogin(isK5Account: true)
         XCTAssertTrue(env.k5.isK5Enabled)
         env.userDidLogout(session: session)
         XCTAssertFalse(env.k5.isK5Account)
         XCTAssertFalse(env.k5.isK5Enabled)
+    }
+
+    func testUpdatesK5SessionDependency() {
+        let session = LoginSession.make()
+        let env = AppEnvironment()
+        XCTAssertNil(env.k5.sessionDefaults)
+
+        env.userDidLogin(session: session)
+        XCTAssertNotNil(env.k5.sessionDefaults)
+
+        env.userDidLogout(session: session)
+        XCTAssertNil(env.k5.sessionDefaults)
     }
 }

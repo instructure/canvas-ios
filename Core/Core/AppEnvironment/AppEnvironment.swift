@@ -38,7 +38,11 @@ open class AppEnvironment {
     public var router: Router
     public var currentSession: LoginSession?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
-    public var userDefaults: SessionDefaults?
+    public var userDefaults: SessionDefaults? {
+        didSet {
+            k5.sessionDefaults = userDefaults
+        }
+    }
     public let k5 = K5State()
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?

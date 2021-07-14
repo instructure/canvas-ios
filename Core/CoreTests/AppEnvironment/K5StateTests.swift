@@ -22,6 +22,12 @@ import TestsFoundation
 
 class K5StateTests: CoreTestCase {
 
+    override func setUp() {
+        super.setUp()
+        ExperimentalFeature.K5Dashboard.isEnabled = false
+        environment.userDefaults?.isElementaryViewEnabled = false
+    }
+
     func testK5AccountStateUpdates() {
         let testee = K5State()
         XCTAssertFalse(testee.isK5Account)
@@ -54,15 +60,20 @@ class K5StateTests: CoreTestCase {
         XCTAssertFalse(testee.isK5Account)
     }
 
-    func testK5ModeDependsOnFeatureFlag() {
+    func testK5ModeDepencies() {
         let testee = K5State()
+        testee.sessionDefaults = environment.userDefaults
         XCTAssertFalse(testee.isK5Account)
         XCTAssertFalse(testee.isK5Enabled)
+        XCTAssertFalse(testee.isElementaryViewEnabled)
 
         testee.userDidLogin(isK5Account: true)
         XCTAssertFalse(testee.isK5Enabled)
 
         ExperimentalFeature.K5Dashboard.isEnabled = true
+        XCTAssertFalse(testee.isK5Enabled)
+
+        environment.userDefaults?.isElementaryViewEnabled = true
         XCTAssertTrue(testee.isK5Enabled)
 
         testee.userDidLogin(isK5Account: false)
@@ -71,6 +82,7 @@ class K5StateTests: CoreTestCase {
 
     func testFontAppearanceUpdated() {
         ExperimentalFeature.K5Dashboard.isEnabled = true
+        environment.userDefaults?.isElementaryViewEnabled = true
         AppEnvironment.shared.k5.userDidLogin(isK5Account: false)
 
         let oldTabFont = UITabBarItem.appearance().titleTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
