@@ -82,9 +82,10 @@ public struct OptionalDatePicker<Label: View>: View {
                 withAnimation(.default) { selection = initial }
             }, content: {
                 label
-                Spacer()
+                Spacer().accessibility(hidden: true)
                 placeholder
                     .font(.medium16).foregroundColor(.textDark)
+                    .accessibility(label: Text("No date selected", bundle: .core))
             })
         }
     }
