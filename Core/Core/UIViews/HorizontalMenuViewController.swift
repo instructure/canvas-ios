@@ -221,7 +221,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == menu {
-            return CGSize(width: menuCellWidth, height: menuCellHeight)
+            return CGSize(width: max(0, menuCellWidth), height: max(0, menuCellHeight))
         } else {
             return collectionView.bounds.size
         }
