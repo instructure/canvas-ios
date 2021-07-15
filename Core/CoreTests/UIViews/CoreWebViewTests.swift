@@ -190,8 +190,10 @@ class CoreWebViewTests: CoreTestCase {
                                           for: MockNavigationAction(url: "https://canvas.instructure.com/courses/1/assignments/2", type: .other),
                                           windowFeatures: WKWindowFeatures()) as! CoreWebView
         controller.webView.linkDelegate = linkDelegate
-        controller.webView.webView(view, decidePolicyFor: MockNavigationAction(url: "https://canvas.instructure.com/courses/1/assignments/2", type: .other)) { policy in
-            XCTAssertEqual(policy, .cancel)
+        linkDelegate.present(controller, animated: false) {
+            controller.webView.webView(view, decidePolicyFor: MockNavigationAction(url: "https://canvas.instructure.com/courses/1/assignments/2", type: .other)) { policy in
+                XCTAssertEqual(policy, .cancel)
+            }
         }
     }
 
