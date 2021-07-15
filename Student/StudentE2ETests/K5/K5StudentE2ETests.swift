@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2021-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+import TestsFoundation
 
-public enum TabBar: String, ElementWrapper {
-    case dashboardTab, calendarTab, todoTab, notificationsTab, inboxTab
-
-    // parent only
-    case coursesTab, alertsTab
-    
-    //K5 specific
-    case myCanvasTab
+class K5StudentE2ETests: K5UITestCase {
+    func testStudentK5(){
+        Dashboard.courseCard(id: "263").waitToExist()
+    }
 }

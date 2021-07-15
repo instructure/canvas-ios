@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2021-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+@testable import Core
 
-public enum TabBar: String, ElementWrapper {
-    case dashboardTab, calendarTab, todoTab, notificationsTab, inboxTab
+open class K5UITestCase: CoreUITestCase {
 
-    // parent only
-    case coursesTab, alertsTab
+    open override var homeScreen: Element {
+        return TabBar.dashboardTab
+    }
     
-    //K5 specific
-    case myCanvasTab
+    open override var user: UITestUser? {
+        return .readStudentK5
+    }
 }

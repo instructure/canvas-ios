@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2021-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,12 +18,6 @@
 
 import Foundation
 
-public enum TabBar: String, ElementWrapper {
-    case dashboardTab, calendarTab, todoTab, notificationsTab, inboxTab
-
-    // parent only
-    case coursesTab, alertsTab
-    
-    //K5 specific
-    case myCanvasTab
+public enum K5NavigationBar: String, ElementWrapper {
+    case homeroom, schedule, grades, resources
 }
