@@ -41,4 +41,9 @@ class SessionDefaultsTests: XCTestCase {
         defaults.hasSetPSPDFKitLastUsedValues = true
         XCTAssertTrue(defaults.hasSetPSPDFKitLastUsedValues)
     }
+
+    func testElementaryViewEnabledDefaultValue() {
+        defaults.reset()
+        XCTAssertTrue(defaults.isElementaryViewEnabled)
+    }
 }

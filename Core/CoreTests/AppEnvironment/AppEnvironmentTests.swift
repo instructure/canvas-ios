@@ -68,25 +68,23 @@ class AppEnvironmentTests: CoreTestCase {
         let env = AppEnvironment()
         let session = LoginSession.make(accessToken: "token")
         env.userDidLogin(session: session)
-        env.shouldUseK5Mode = true
-        XCTAssertTrue(env.isK5Enabled)
+        env.userDefaults?.isElementaryViewEnabled = true
+        env.k5.userDidLogin(isK5Account: true)
+        XCTAssertTrue(env.k5.isK5Enabled)
         env.userDidLogout(session: session)
-        XCTAssertFalse(env.shouldUseK5Mode)
-        XCTAssertFalse(env.isK5Enabled)
+        XCTAssertFalse(env.k5.isK5Account)
+        XCTAssertFalse(env.k5.isK5Enabled)
     }
 
-    func testK5ModeDependsOnFeatureFlag() {
+    func testUpdatesK5SessionDependency() {
+        let session = LoginSession.make()
         let env = AppEnvironment()
-        XCTAssertFalse(env.shouldUseK5Mode)
-        XCTAssertFalse(env.isK5Enabled)
+        XCTAssertNil(env.k5.sessionDefaults)
 
-        env.shouldUseK5Mode = true
-        XCTAssertFalse(env.isK5Enabled)
+        env.userDidLogin(session: session)
+        XCTAssertNotNil(env.k5.sessionDefaults)
 
-        ExperimentalFeature.K5Dashboard.isEnabled = true
-        XCTAssertTrue(env.isK5Enabled)
-
-        env.shouldUseK5Mode = false
-        XCTAssertFalse(env.isK5Enabled)
+        env.userDidLogout(session: session)
+        XCTAssertNil(env.k5.sessionDefaults)
     }
 }

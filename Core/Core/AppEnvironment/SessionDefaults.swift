@@ -53,6 +53,11 @@ public struct SessionDefaults {
         }
     }
 
+    public var isElementaryViewEnabled: Bool {
+        get { (self["isElementaryViewEnabled"] as? Bool) ?? true }
+        set { self["isElementaryViewEnabled"] = newValue }
+    }
+
     public var landingPath: String? {
         mutating get {
             if let landingPath = self["landingPath"] as? String {

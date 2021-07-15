@@ -45,7 +45,7 @@ class StudentTabBarController: UITabBarController {
     func dashboardTab() -> UIViewController {
         let split: HelmSplitViewController
 
-        if AppEnvironment.shared.isK5Enabled {
+        if AppEnvironment.shared.k5.isK5Enabled {
             let primary = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
             let secondary = HelmNavigationController(rootViewController: EmptyViewController())
             split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
