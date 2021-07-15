@@ -181,6 +181,22 @@ class CoreWebViewTests: CoreTestCase {
         }
     }
 
+    func testDecidePolicyForCourseLink() {
+        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let linkDelegate = CoreWebViewController()
+        view.linkDelegate = linkDelegate
+        let controller = CoreWebViewController()
+        controller.webView = view.webView(view, createWebViewWith: WKWebViewConfiguration(),
+                                          for: MockNavigationAction(url: "https://canvas.instructure.com/courses/1/assignments/2", type: .other),
+                                          windowFeatures: WKWindowFeatures()) as! CoreWebView
+        controller.webView.linkDelegate = linkDelegate
+        linkDelegate.present(controller, animated: false) {
+            controller.webView.webView(view, decidePolicyFor: MockNavigationAction(url: "https://canvas.instructure.com/courses/1/assignments/2", type: .other)) { policy in
+                XCTAssertEqual(policy, .cancel)
+            }
+        }
+    }
+
     func testKeepCookieAlive() {
         environment.api = API(.make(accessToken: nil))
         CoreWebView.keepCookieAlive(for: environment)
