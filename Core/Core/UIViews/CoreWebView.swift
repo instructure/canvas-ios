@@ -53,7 +53,6 @@ open class CoreWebView: WKWebView {
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
 
     public var isLinkNavigationEnabled = true
-    private var isPopup = false
 
     public static let processPool = WKProcessPool()
 
@@ -311,12 +310,11 @@ extension CoreWebView: WKNavigationDelegate {
             return
         }
 
-        if isPopup,
+        if let from = linkDelegate?.routeLinksFrom, let vc = from.presentedViewController,
            let baseUrl = AppEnvironment.shared.currentSession?.baseURL.absoluteString,
            let requestUrl = action.request.url?.absoluteString,
            requestUrl.contains(baseUrl),
-           let url = action.request.url?.path, let from = linkDelegate?.routeLinksFrom,
-           let vc = linkDelegate as? UIViewController {
+           let url = action.request.url?.path {
             vc.dismiss(animated: true) {
                 AppEnvironment.shared.router.route(to: url, from: from)
             }
@@ -443,7 +441,6 @@ extension CoreWebView: WKUIDelegate {
         let controller = CoreWebViewController()
         // Don't change the processPool of this configuration otherwise it will crash
         controller.webView = CoreWebView(externalConfiguration: configuration)
-        controller.webView.isPopup = true
         controller.webView.linkDelegate = linkDelegate
         AppEnvironment.shared.router.show(
             controller,
