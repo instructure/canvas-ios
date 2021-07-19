@@ -154,13 +154,6 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
     return item.userID
   }
 
-  openSubmissionSettings = () => {
-    this.props.navigator.show(
-      `/courses/${this.props.courseID}/assignments/${this.props.quiz.data.assignment_id}/submission_settings`,
-      { modal: true }
-    )
-  }
-
   messageStudentsWho = () => {
     var subject = ''
     let jointTitles = joinTitles(this.state.filterOptions)
@@ -188,14 +181,6 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
       testID: 'submission-list.message-who-btn',
       action: this.messageStudentsWho,
     }]
-    if (this.props.quiz && this.props.quiz.data.assignment_id) {
-      rightBarButtons.push({
-        accessibilityLabel: i18n('Submission Settings'),
-        image: Images.course.settings,
-        testID: 'quiz-submissions.settings',
-        action: this.openSubmissionSettings,
-      })
-    }
 
     return (
       <Screen
