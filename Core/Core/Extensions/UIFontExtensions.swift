@@ -134,7 +134,13 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: style).scaledFont(for: font)
         }
         let descriptor = font.fontDescriptor
-        let font = UIFont(descriptor: descriptor.withSymbolicTraits(descriptor.symbolicTraits.union(traits))!, size: descriptor.pointSize)
+
+        // If `font` doesn't support the requested traits the `withSymbolicTraits` method returns nil.
+        guard let descriptorWithSymbolicTraits = descriptor.withSymbolicTraits(descriptor.symbolicTraits.union(traits)) else {
+            return UIFontMetrics(forTextStyle: style).scaledFont(for: font)
+        }
+
+        let font = UIFont(descriptor: descriptorWithSymbolicTraits, size: descriptor.pointSize)
         return UIFontMetrics(forTextStyle: style).scaledFont(for: font)
     }
 }
