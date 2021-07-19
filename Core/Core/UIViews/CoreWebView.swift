@@ -313,7 +313,8 @@ extension CoreWebView: WKNavigationDelegate {
         if let from = linkDelegate?.routeLinksFrom, let vc = from.presentedViewController,
            let baseUrl = AppEnvironment.shared.currentSession?.baseURL.absoluteString,
            let requestUrl = action.request.url?.absoluteString,
-           requestUrl.contains(baseUrl),
+           let webViewUrl = webView.url?.absoluteString,
+           requestUrl.contains(baseUrl), !webViewUrl.contains(baseUrl),
            let url = action.request.url?.path {
             vc.dismiss(animated: true) {
                 AppEnvironment.shared.router.route(to: url, from: from)
