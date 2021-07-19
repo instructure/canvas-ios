@@ -170,7 +170,7 @@ describe('AssignmentList', () => {
     )
     let button = tree.find(`[testID="assignment-list.assignment-list-row.cell-${assignment.id}"]`)
     button.simulate('press')
-    expect(navigator.show).toHaveBeenCalledWith(`/courses/${assignment.course_id}/quizzes/${assignment.quiz_id}`)
+    expect(navigator.show).toHaveBeenCalledWith(assignment.html_url)
   })
 
   it('hides filter button without grading periods', () => {
@@ -263,14 +263,13 @@ describe('AssignmentList', () => {
     let traits = { window: { horizontal: 'regular' } }
     defaultProps.navigator.traitCollection = jest.fn(fn => fn(traits))
     defaultProps.assignmentGroups = [templates.assignmentGroup({
-      assignments: [templates.assignment()],
+      assignments: [templates.assignment({ html_url: '/courses/1/assignments/2' })],
     })]
     let screen = shallow(
       <AssignmentList {...defaultProps} />
     )
     screen.props().onTraitCollectionChange()
-    let assignment = defaultProps.assignmentGroups[0].assignments[0]
-    expect(defaultProps.navigator.show).toHaveBeenCalledWith(`/courses/${assignment.course_id}/assignments/${assignment.id}`)
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/2')
   })
 
   it('does not select first item on regular horizontal trait collection when is modal', () => {
