@@ -1501,7 +1501,7 @@
 "Unavailable" = "Ej tillgänglig";
 
 /* Title for grade button when no grade is present */
-"Ungraded" = "Ej bedömda";
+"Ungraded" = "Ej bedömd";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "okänd";
