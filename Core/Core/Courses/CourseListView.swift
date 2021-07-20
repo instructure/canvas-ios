@@ -180,7 +180,7 @@ public struct CourseListView: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .lineLimit(2)
                         HStack(spacing: 8) {
-                            let role = course.enrollments?.first?.formattedRole
+                            let role = course.enrollments?.first { $0.state != .deleted }?.formattedRole
                             course.termName.map { Text($0) }
                             if course.termName != nil && role != nil {
                                 Text(verbatim: "|")
