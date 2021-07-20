@@ -19,5 +19,9 @@
 import Foundation
 
 public enum K5NavigationBar: String, ElementWrapper {
-    case homeroom, schedule, grades, resources
+    case schedule, grades, resources
+
+    public static var homeroom: Element {
+        return app.find(label: "Homeroom")
+    }
 }

@@ -70,6 +70,10 @@ public enum ProfileSettings {
     public static var notificationPreferences: Element {
         return app.find(label: "Notification Preferences")
     }
+    
+    public static var enableElementaryView: Element {
+        return app.find(label: "Elementary View")
+    }
 }
 
 public enum LandingPageCell: Int, ElementWrapper, CaseIterable {

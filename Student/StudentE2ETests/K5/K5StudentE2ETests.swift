@@ -18,9 +18,15 @@
 
 import XCTest
 import TestsFoundation
+@testable import Core
 
 class K5StudentE2ETests: K5UITestCase {
+
     func testStudentK5(){
-        Dashboard.courseCard(id: "263").waitToExist()
+        app.swipeDown()
+        //enableElementaryView()
+        XCTAssertTrue(K5NavigationBar.homeroom.exists())
+        app.find(id: "DashboardCourseCell.21025").waitToExist()
+        Dashboard.courseCard(id: "21025").waitToExist()
     }
 }
