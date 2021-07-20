@@ -220,9 +220,9 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let a = model.assignment(for: indexPath)
-        guard let courseID = courseID, let assignmentID = a?.id else { return }
-        env.router.route(to: "/courses/\(courseID)/assignments/\(assignmentID)", from: self, options: .detail)
+        let assignment = model.assignment(for: indexPath)
+        guard let url = assignment?.htmlUrl else { return }
+        env.router.route(to: url, from: self, options: .detail)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

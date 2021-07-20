@@ -41,6 +41,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         setupFirebase()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
+
         #if DEBUG
             UITestHelpers.setup(self)
         #endif

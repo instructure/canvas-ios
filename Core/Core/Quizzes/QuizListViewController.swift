@@ -104,10 +104,10 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.isHidden = quizzes.state != .error
         tableView.reloadData()
 
-        if !selectedFirstQuiz, quizzes.state != .loading, let quizID = quizzes.first?.id {
+        if !selectedFirstQuiz, quizzes.state != .loading, let url = quizzes.first?.htmlURL {
             selectedFirstQuiz = true
             if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
-                env.router.route(to: "/courses/\(courseID)/quizzes/\(quizID)", from: self, options: .detail)
+                env.router.route(to: url, from: self, options: .detail)
             }
         }
     }
@@ -135,8 +135,8 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let quizID = quizzes[indexPath]?.id else { return }
-        env.router.route(to: "/courses/\(courseID)/quizzes/\(quizID)", from: self, options: .detail)
+        guard let htmlURL = quizzes[indexPath]?.htmlURL else { return }
+        env.router.route(to: htmlURL, from: self, options: .detail)
     }
 }
 
