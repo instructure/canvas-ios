@@ -129,23 +129,6 @@ describe('QuizSubmissionList', () => {
     expect(showSnackbar).toHaveBeenCalled()
   })
 
-  test('navigate to submission settings', () => {
-    let localProps = cloneDeep(props)
-    localProps.quiz.data.assignment_id = '1'
-    let navigator = template.navigator()
-
-    let tree = renderer.create(
-      <QuizSubmissionList {...localProps} navigator={navigator} filterType='whatisthis' />
-    )
-
-    expect(tree.toJSON()).toMatchSnapshot()
-    tree.getInstance().openSubmissionSettings()
-    expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/12/assignments/1/submission_settings`,
-      { modal: true },
-    )
-  })
-
   test('refresh function', () => {
     refreshQuizSubmissionData(props)
     expect(props.refreshQuizSubmissions).toHaveBeenCalledWith(props.courseID, props.quizID)
