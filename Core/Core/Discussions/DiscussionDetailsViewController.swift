@@ -53,6 +53,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     var showRepliesToEntryID: String?
     var topicID = ""
     private var newReplyIDFromCurrentUser: String?
+    private var isContentLargerThanView: Bool { webView.scrollView.contentSize.height > view.frame.size.height }
 
     var assignment: Store<GetAssignment>?
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -440,8 +441,12 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     }
 
     private func focusOnNewReplyIfNecessary() {
-        guard let newReplyIDFromCurrentUser = newReplyIDFromCurrentUser else { return }
-        webView.scrollIntoView(fragment: "entry-\(newReplyIDFromCurrentUser)")
+        if let newReplyIDFromCurrentUser = newReplyIDFromCurrentUser,
+           isContentLargerThanView // if the webview content is smaller than the screen then scrolling will trigger the pull to refresh icon
+        {
+            webView.scrollIntoView(fragment: "entry-\(newReplyIDFromCurrentUser)")
+        }
+
         self.newReplyIDFromCurrentUser = nil
     }
 }
