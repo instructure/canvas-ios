@@ -88,7 +88,6 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         } else {
             group.refresh()
         }
-        users.refresh()
 
         if context.contextType == .course {
             env.api.makeRequest(GetSearchRecipientsRequest(context: context, includeContexts: true)) { [weak self] recipients, _, _ in
@@ -104,6 +103,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        users.refresh()
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
@@ -254,6 +254,9 @@ class PeopleListCell: UITableViewCell {
         nameLabel.text = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
         let courseEnrollments = user?.enrollments.filter { $0.course?.id == user?.courseID }
         var roles = courseEnrollments?.compactMap { $0.formattedRole } ?? []
+        if roles.count == 0 {
+
+        }
         roles = Set(roles).sorted()
         rolesLabel.text = ListFormatter.localizedString(from: roles)
         rolesLabel.isHidden = roles.isEmpty
