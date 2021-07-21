@@ -79,6 +79,7 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
 
         postPolicyButton.accessibilityIdentifier = "SubmissionsList.postPolicyButton"
         postPolicyButton.accessibilityLabel = NSLocalizedString("Grade post policy", comment: "")
+        messageUsersButton.accessibilityLabel = NSLocalizedString("Send message to users", comment: "")
 
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
