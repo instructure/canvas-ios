@@ -17,21 +17,11 @@
 //
 
 import XCTest
-import TestsFoundation
-@testable import Core
 
-class K5StudentE2ETests: K5UITestCase {
-
-    func testStudentK5(){
-        app.swipeDown()
-        //enableElementaryView()
-        XCTAssertTrue(K5NavigationBar.homeroom.exists())
-        //XCTAssertTrue(K5CourseCard.courseCard(name: "Math").exists())
-        app.find(labelContaining: "MATH").waitToExist()
-        
-        //app.find(id: "Math").waitToExist()
-        //app.find(id: "DashboardCourseCell.21025").waitToExist()
-        
-        //Dashboard.courseCard(id: "21025").waitToExist()
+public enum K5CourseCard: String, ElementWrapper {
+    case courseCard
+    
+    public static func courseCard(name: String) -> Element {
+        app.find(label: name)
     }
 }
