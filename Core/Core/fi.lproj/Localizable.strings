@@ -1046,6 +1046,9 @@
 "Invitation" = "Kutsu";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Kutsu odottaa";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Kutsu hyväksytty!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Ei mitään";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ei ilmoittautunut";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ei arvosteltu";

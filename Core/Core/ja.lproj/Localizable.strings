@@ -1046,6 +1046,9 @@
 "Invitation" = "招待状";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "招待保留中";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "招待が受け入れられました！";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "なし";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "未登録";
 
 /* No comment provided by engineer. */
 "Not Graded" = "採点されていません";

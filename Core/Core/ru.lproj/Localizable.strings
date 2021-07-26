@@ -1046,6 +1046,9 @@
 "Invitation" = "Приглашение";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Приглашение ожидается";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Приглашение принято!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Нет";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Не зарегистрирован";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Оценка не выставлена";

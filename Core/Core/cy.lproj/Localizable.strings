@@ -1046,6 +1046,9 @@
 "Invitation" = "Gwahoddiad";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Gwahoddiad ar y ffordd";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Mae'r gwahoddiad wedi’i dderbyn!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Dim";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ddim wedi ymrestru";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Heb eu graddio";

@@ -1046,6 +1046,9 @@
 "Invitation" = "คำเชิญ";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "กำลังรอคำเชิญ";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "ตอบรับคำเชิญแล้ว!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "ไม่มี";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "ไม่ได้ลงทะเบียน";
 
 /* No comment provided by engineer. */
 "Not Graded" = "ไม่ได้ลงเกรด";

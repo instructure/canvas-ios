@@ -1046,6 +1046,9 @@
 "Invitation" = "Envitasyon";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Envitasyon annatant";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Envitasyon an aksepte!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Okenn";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Pa enskri";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Pa Klase";

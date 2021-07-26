@@ -1046,6 +1046,9 @@
 "Invitation" = "Povabilo";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Povabilo na čakanju";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Povabilo sprejeto.";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Brez";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ni vpisan";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno";

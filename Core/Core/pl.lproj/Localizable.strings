@@ -1046,6 +1046,9 @@
 "Invitation" = "Zaproszenie";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Oczekujące zaproszenie";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Zaakceptowano zaproszenie!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Brak";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Nie zarejestrowany";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Nie oceniono";
