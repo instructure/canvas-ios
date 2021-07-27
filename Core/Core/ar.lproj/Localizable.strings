@@ -1046,6 +1046,9 @@
 "Invitation" = "دعوة";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "الدعوة معلقة";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "تم قبول الدعوة!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "بلا";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "غير مسجل";
 
 /* No comment provided by engineer. */
 "Not Graded" = "لم يتم التقييم";

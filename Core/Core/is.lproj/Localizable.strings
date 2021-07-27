@@ -1046,6 +1046,9 @@
 "Invitation" = "Boð";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Boð í bið";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Boð samþykkt!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Ekkert";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ekki innritaður";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ekki metið";

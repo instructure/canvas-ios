@@ -1046,6 +1046,9 @@
 "Invitation" = "Uitnodiging";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Uitnodiging in behandeling";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Uitnodiging geaccepteerd!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Geen";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Niet ingeschreven";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Niet beoordeeld";

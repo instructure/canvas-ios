@@ -1046,6 +1046,9 @@
 "Invitation" = "Invitación";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Invitación pendiente";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "¡Invitación aceptada!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Ninguno";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "No inscripto";
 
 /* No comment provided by engineer. */
 "Not Graded" = "No calificado";

@@ -488,7 +488,7 @@
 "Content" = "Innehåll";
 
 /* No comment provided by engineer. */
-"Content Link Error" = "Fel med innehållslänk";
+"Content Link Error" = "Fel på innehållslänk";
 
 /* No comment provided by engineer. */
 "Contribute" = "Bidra";
@@ -1046,6 +1046,9 @@
 "Invitation" = "Inbjudan";
 
 /* No comment provided by engineer. */
+"Invitation pending" = "Väntande inbjudan";
+
+/* No comment provided by engineer. */
 "Invite accepted!" = "Inbjudan accepterades!";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Inga";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ej registrerad";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ej bedömd";
@@ -1877,7 +1883,7 @@
 "Submissions" = "Inlämningar";
 
 /* No comment provided by engineer. */
-"Submit" = "Skicka in";
+"Submit" = "Spara";
 
 /* No comment provided by engineer. */
 "Submitted" = "Inskickad";
