@@ -16,13 +16,51 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5GradesViewModel {
+public class K5GradesViewModel: ObservableObject {
 
+    @Published public private(set) var grades: [K5GradeCellViewModel] = []
+
+    private let env = AppEnvironment.shared
+    // MARK: Data Sources
+    private var studentID = ""
+    private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
+        self?.coursesUpdated()
+    }
+    // MARK: Refresh
+    private var refreshCompletion: (() -> Void)?
+    private var forceRefresh = false
+
+    init() {
+        studentID = env.currentSession?.userID ?? ""
+        courses.refresh()
+    }
+
+    private func coursesUpdated() {
+        courses.forEach { course in
+            let cell = K5GradeCellViewModel(a11yId: "K5GradeCell.\(course.id)",
+                                            title: course.name ?? "",
+                                            imageURL: course.imageDownloadURL,
+                                            grade: Int(course.enrollments?.first?.computedCurrentScore ?? 0),
+                                            color: course.color)
+            grades.append(cell)
+        }
+        finishRefresh()
+    }
+
+    private func finishRefresh() {
+        forceRefresh = false
+        performUIUpdate {
+            self.refreshCompletion?()
+            self.refreshCompletion = nil
+        }
+    }
 }
 
 extension K5GradesViewModel: Refreshable {
 
-    func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
+    public func refresh(completion: @escaping () -> Void) {
+        forceRefresh = true
+        refreshCompletion = completion
+        courses.refresh(force: true)
     }
 }

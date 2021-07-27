@@ -936,6 +936,9 @@
 		EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BCB2632E3D300A19A5A /* SideMenuSubHeaderView.swift */; };
 		EB2A9BCF2632E40600A19A5A /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BCE2632E40600A19A5A /* SideMenuItem.swift */; };
 		EB2A9BD22632E43600A19A5A /* SideMenuToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BD12632E43600A19A5A /* SideMenuToggleItem.swift */; };
+		EB35FA5526B0085B00AA8C22 /* K5GradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */; };
+		EB35FA6126B02FCA00AA8C22 /* GetCoursesWithGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA6026B02FC900AA8C22 /* GetCoursesWithGrades.swift */; };
+		EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */; };
 		EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66DB9426451CAE002D3325 /* CustomTextField.swift */; };
 		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
 		EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */; };
@@ -2109,6 +2112,9 @@
 		EB2A9BCB2632E3D300A19A5A /* SideMenuSubHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSubHeaderView.swift; sourceTree = "<group>"; };
 		EB2A9BCE2632E40600A19A5A /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
 		EB2A9BD12632E43600A19A5A /* SideMenuToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuToggleItem.swift; sourceTree = "<group>"; };
+		EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCell.swift; sourceTree = "<group>"; };
+		EB35FA6026B02FC900AA8C22 /* GetCoursesWithGrades.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCoursesWithGrades.swift; sourceTree = "<group>"; };
+		EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModel.swift; sourceTree = "<group>"; };
 		EB66DB9426451CAE002D3325 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
@@ -4127,8 +4133,10 @@
 		CF575E3D266679D100F8515F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EB35FA5A26B02F6D00AA8C22 /* New Group */,
 				CF53F738266FBB0000FA58D7 /* Announcements */,
 				CF53F736266FBA2A00FA58D7 /* DueItems */,
+				EB35FA5F26B02FC900AA8C22 /* Grades */,
 				CF53F742266FBB9200FA58D7 /* MissingSubmissions */,
 			);
 			path = Model;
@@ -4194,6 +4202,7 @@
 			isa = PBXGroup;
 			children = (
 				CF60CC322645524500C1C173 /* K5GradesView.swift */,
+				EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -4210,6 +4219,7 @@
 			isa = PBXGroup;
 			children = (
 				CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */,
+				EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -4564,6 +4574,21 @@
 				EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */,
 			);
 			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		EB35FA5A26B02F6D00AA8C22 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		EB35FA5F26B02FC900AA8C22 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				EB35FA6026B02FC900AA8C22 /* GetCoursesWithGrades.swift */,
+			);
+			path = Grades;
 			sourceTree = "<group>";
 		};
 		EE584C7822F2043300D1E201 /* Pages */ = {
@@ -5406,6 +5431,7 @@
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */,
 				7DA260E023F72359005D2121 /* IconView.swift in Sources */,
+				EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */,
 				7D4B2740253CEE6800A98DE3 /* AudioPlayer.swift in Sources */,
 				7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */,
 				7DA25FEE23F721DE005D2121 /* GetConversations.swift in Sources */,
@@ -5434,6 +5460,7 @@
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
 				CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */,
+				EB35FA6126B02FCA00AA8C22 /* GetCoursesWithGrades.swift in Sources */,
 				E8D20399250A723E009B2ABE /* InboxView.swift in Sources */,
 				7DA260FA23F724D7005D2121 /* Database.xcdatamodeld in Sources */,
 				7DA25FA923F72136005D2121 /* APIDiscussion.swift in Sources */,
@@ -5753,6 +5780,7 @@
 				7D70868F2568D6CA00647D37 /* GroupCard.swift in Sources */,
 				7DA2608823F72315005D2121 /* NotificationChannelsViewController.swift in Sources */,
 				D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */,
+				EB35FA5526B0085B00AA8C22 /* K5GradeCell.swift in Sources */,
 				7DA2606C23F722D9005D2121 /* Activity.swift in Sources */,
 				3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */,
 				7DA260F123F72391005D2121 /* FileUploadTarget.swift in Sources */,

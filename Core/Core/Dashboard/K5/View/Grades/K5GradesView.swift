@@ -20,7 +20,12 @@ import SwiftUI
 
 struct K5GradesView: View {
 
+    @ObservedObject private var viewModel: K5GradesViewModel
     @State var gradeSelectorOpen = false
+
+    init(viewModel: K5GradesViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -40,7 +45,10 @@ struct K5GradesView: View {
             Divider()
             ScrollView {
                 VStack {
-                    Text("Grade cells go here")
+                    ForEach(viewModel.grades) {
+                        K5GradeCell(with: $0)
+                        Divider()
+                    }
                     Spacer()
                 }
             }
@@ -50,64 +58,6 @@ struct K5GradesView: View {
 
 struct K5GradesView_Previews: PreviewProvider {
     static var previews: some View {
-        K5GradesView()
-    }
-}
-
-struct K5GradeCell: View {
-
-    @State var color: Color
-    @State var title: String
-    @State var gradeValue: Int
-
-    var body: some View {
-        GeometryReader { geometry in
-            HStack(spacing: 13) {
-                if geometry.size.width > 396 {
-                    Image.eyeSolid.frame(width: 72, height: 72).cornerRadius(4).foregroundColor(color)
-                }
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(title)
-                        .font(.bold17)
-                    GradeProgressBar(value: gradeValue, color: color).frame(height: 16)
-                    Text("\(gradeValue)" + "%").font(.regular17)
-                }
-            }
-        }.frame(minHeight: 72).padding(.top, 13.5).padding(.bottom, 13.5)
-    }
-}
-
-struct K5GradeCell_Previews: PreviewProvider {
-    static var previews: some View {
-        K5GradeCell(color: .yellow, title: "ART", gradeValue: 50)
-    }
-}
-
-struct GradeProgressBar: View {
-    @State var value: Int
-    @State var color: Color
-    @State private var animate: Bool = false
-
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
-                    .foregroundColor(.clear)
-                    .border(color, width: 1)
-
-                Rectangle().frame(width: min(CGFloat(animate ? value : 0)/100.0*geometry.size.width, geometry.size.width),
-                                  height: geometry.size.height)
-                    .foregroundColor(color)
-                    .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5))
-            }
-        }.onAppear {
-            animate.toggle()
-        }
-    }
-}
-
-struct GradeProgressBar_Previews: PreviewProvider {
-    static var previews: some View {
-        GradeProgressBar(value: 50, color: .red).frame(height: 16)
+        K5GradesView(viewModel: K5GradesViewModel() )
     }
 }

@@ -67,7 +67,7 @@ public struct K5DashboardView: View {
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.grades.refresh(completion: endRefreshing)
                 }
-                K5GradesView()
+                K5GradesView(viewModel: viewModel.viewModels.grades)
             case 3:
                 CircleRefresh { endRefreshing in
                     viewModel.viewModels.resources.refresh(completion: endRefreshing)
