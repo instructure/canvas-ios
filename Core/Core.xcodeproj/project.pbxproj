@@ -868,6 +868,8 @@
 		CF941B1E267B439600700DE9 /* K5ScheduleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
+		CFAD79D826AEC02A0000A90D /* K5ScheduleEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */; };
+		CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
@@ -2032,6 +2034,8 @@
 		CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleViewModelTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
+		CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModel.swift; sourceTree = "<group>"; };
+		CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryView.swift; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
@@ -4186,6 +4190,7 @@
 			isa = PBXGroup;
 			children = (
 				CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */,
+				CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -4236,6 +4241,7 @@
 			isa = PBXGroup;
 			children = (
 				CF60CC5526496EA500C1C173 /* K5ScheduleViewModel.swift */,
+				CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -5423,6 +5429,7 @@
 				B14D993524BE65A9006DFF12 /* CommonCourse.swift in Sources */,
 				7DA260D123F72359005D2121 /* CoreWebView.swift in Sources */,
 				7D89A2C92509326B009D0FD2 /* DisclosureIndicator.swift in Sources */,
+				CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */,
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
@@ -5716,6 +5723,7 @@
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
 				7DA260F823F723AB005D2121 /* FileDetailsViewController.swift in Sources */,
 				7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */,
+				CFAD79D826AEC02A0000A90D /* K5ScheduleEntryViewModel.swift in Sources */,
 				E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */,
 				B17F27652459EDF100CD47A1 /* MasteryPathViewController.swift in Sources */,
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
