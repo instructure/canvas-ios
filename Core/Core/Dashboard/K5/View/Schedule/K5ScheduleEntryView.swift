@@ -28,13 +28,7 @@ public struct K5ScheduleEntryView: View {
     public var body: some View {
         Button(action: viewModel.actionTriggered, label: {
             HStack(spacing: 0) {
-                switch viewModel.leading {
-                case .checkbox(let isChecked):
-                    checkBox(isChecked: isChecked)
-                case .warning:
-                    Image.warningLine.foregroundColor(.crimson)
-                }
-
+                leading
                 icon
 
                 VStack(alignment: .leading, spacing: 0) {
@@ -49,6 +43,7 @@ public struct K5ScheduleEntryView: View {
                     }
                 }
                 .padding(.leading, 12)
+                .padding(.vertical, 8)
 
                 VStack(alignment: .trailing) {
                     if let scoreText = viewModel.score {
@@ -58,19 +53,31 @@ public struct K5ScheduleEntryView: View {
                     due
                 }
                 .padding(.leading, 8)
+                .padding(.vertical, 8)
 
                 disclosureIndicator
             }
-            .padding(.leading, 19)
             .padding(.trailing, 11)
-            .padding(.vertical, 8)
         })
+        .fixedSize(horizontal: false, vertical: true)
+    }
+
+    @ViewBuilder
+    private var leading: some View {
+        switch viewModel.leading {
+        case .warning:
+            Image.warningLine
+                .foregroundColor(.crimson)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
+        case .checkbox(let isChecked):
+            checkBox(isChecked: isChecked)
+        }
     }
 
     private var icon: some View {
         viewModel.icon
             .foregroundColor(.licorice)
-            .padding(.leading, 20)
     }
 
     private var title: some View {
@@ -118,13 +125,16 @@ public struct K5ScheduleEntryView: View {
 
     private func checkBox(isChecked: Bool) -> some View {
         Button(action: viewModel.checkboxTapped, label: {
+            // This allows the hit area to be big while keeping the icon normal sized
+            let background = Color.clear
+                .frame(width: 60)
+                .frame(maxHeight: .infinity)
+
             if isChecked {
-                Image.filterCheckbox
-                    .frame(width: 21, height: 21)
+                background.overlay(Image.filterCheckbox)
             } else {
-                RoundedRectangle(cornerRadius: 3)
-                    .stroke(Color.licorice, lineWidth: 1)
-                    .frame(width: 21, height: 21)
+                let icon = RoundedRectangle(cornerRadius: 3).stroke(Color.licorice, lineWidth: 1).frame(width: 21, height: 21)
+                background.overlay(icon)
             }
         })
     }

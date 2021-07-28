@@ -60,7 +60,7 @@ public class K5ScheduleEntryViewModel: ObservableObject {
 }
 
 extension K5ScheduleEntryViewModel {
-    public enum RowLeading {
+    public enum RowLeading: Equatable {
         case checkbox(isChecked: Bool)
         case warning
     }
