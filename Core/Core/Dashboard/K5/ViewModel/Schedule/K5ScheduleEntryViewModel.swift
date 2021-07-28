@@ -33,7 +33,9 @@ public class K5ScheduleEntryViewModel: ObservableObject {
     private let checkboxChanged: ((_ isSelected: Bool) -> Void)?
     private let action: () -> Void
 
-    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String, checkboxChanged: ((_ isSelected: Bool) -> Void)?, action: @escaping () -> Void) {
+    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String,
+                checkboxChanged: ((_ isSelected: Bool) -> Void)?,
+                action: @escaping () -> Void) {
         self.leading = leading
         self.icon = icon
         self.title = title

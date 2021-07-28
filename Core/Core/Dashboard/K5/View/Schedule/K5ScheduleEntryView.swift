@@ -168,7 +168,8 @@ struct K5ScheduleEntryView_Previews: PreviewProvider {
             subtitle: .init(text: "You've marked it as done", color: .ash, font: .regular12),
             labels: [
                 .init(text: "REPLIES", color: .ash),
-                .init(text: "REDO", color: .crimson)],
+                .init(text: "REDO", color: .crimson),
+            ],
             score: "5 pts",
             dueText: "Due: 11:59 PM",
             checkboxChanged: nil,
@@ -186,6 +187,7 @@ struct K5ScheduleEntryView_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
+        // swiftlint:disable:next redundant_discardable_let
         let _ = setupK5Mode()
         ForEach(0..<models.count) {
             K5ScheduleEntryView(viewModel: models[$0]).previewLayout(.sizeThatFits)
