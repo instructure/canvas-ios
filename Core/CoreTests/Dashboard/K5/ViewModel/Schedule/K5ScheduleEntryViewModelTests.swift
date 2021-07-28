@@ -23,7 +23,9 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
 
     func testInvokesActionOnTap() {
         let actionInvokedExpectation = expectation(description: "Action invoked")
-        let testee = K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: .init(text: "", color: .black, font: .bold11), labels: [.init(text: "", color: .black)], score: nil, dueText: "", checkboxChanged: nil) {
+        let subtitle = K5ScheduleEntryViewModel.SubtitleViewModel(text: "", color: .black, font: .bold11)
+        let labels = [K5ScheduleEntryViewModel.LabelViewModel(text: "", color: .black)]
+        let testee = K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: subtitle, labels: labels, score: nil, dueText: "", checkboxChanged: nil) {
             actionInvokedExpectation.fulfill()
         }
 
