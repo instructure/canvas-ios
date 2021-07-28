@@ -97,14 +97,14 @@ public struct K5ScheduleEntryView: View {
 
     private var labels: some View {
         HStack(spacing: 4) {
-            ForEach(0..<viewModel.labels.count) {
-                Text(viewModel.labels[$0].text)
+            ForEach(viewModel.labels) {
+                Text($0.text)
                     .padding(.horizontal, 8)
                     .padding(.top, 4)
                     .padding(.bottom, 3)
-                    .foregroundColor(viewModel.labels[$0].color)
+                    .foregroundColor($0.color)
                     .font(.regular12)
-                    .background(Capsule().stroke(viewModel.labels[$0].color))
+                    .background(Capsule().stroke($0.color))
             }
         }
         .padding(.bottom, 7)
@@ -189,8 +189,8 @@ struct K5ScheduleEntryView_Previews: PreviewProvider {
     static var previews: some View {
         // swiftlint:disable:next redundant_discardable_let
         let _ = setupK5Mode()
-        ForEach(0..<models.count) {
-            K5ScheduleEntryView(viewModel: models[$0]).previewLayout(.sizeThatFits)
+        ForEach(models) {
+            K5ScheduleEntryView(viewModel: $0).previewLayout(.sizeThatFits)
         }
     }
 

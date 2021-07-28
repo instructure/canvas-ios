@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class K5ScheduleEntryViewModel: ObservableObject {
+public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
     @Published public var leading: RowLeading
 
     public let icon: Image
@@ -67,7 +67,7 @@ extension K5ScheduleEntryViewModel {
         case warning
     }
 
-    public class LabelViewModel {
+    public class LabelViewModel: Identifiable {
         public let text: String
         public let color: Color
 
