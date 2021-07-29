@@ -28,7 +28,7 @@ public enum QuizDetails: String, ElementWrapper {
     public static func text(string: String) -> Element {
         return app.find(labelContaining: string)
     }
-    
+
     public static var previewQuiz: Element {
         return app.find(label: "Preview Quiz")
     }
