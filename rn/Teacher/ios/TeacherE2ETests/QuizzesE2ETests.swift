@@ -38,7 +38,7 @@ class QuizzesE2ETests: CoreUITestCase {
         app.find(label: "Edit").tap()
         app.find(labelContaining: "Edit Quiz Details").waitToExist()
         XCTAssertTrue(app.find(labelContaining: "Shuffle Answers").exists())
-        app.find(label: "Done").tap()
-        QuizDetails.previewQuiz.waitToExist()
+        app.find(id: "quizzes.edit.doneButton").tap()
+        app.find(labelContaining: "Edit Quiz Details").waitToVanish()
     }
 }
