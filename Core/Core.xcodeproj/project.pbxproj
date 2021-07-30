@@ -881,9 +881,12 @@
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
 		CFCBB899266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */; };
 		CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE214B2656895E00E3B32A /* Bounds.swift */; };
+		CFD5814626B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD5814526B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */; };
+		CFE7B42326B19F3F0092593D /* K5ScheduleSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */; };
 		CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7E361267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift */; };
+		CFEC7F3426B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */; };
 		CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */; };
 		CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */; };
 		CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */; };
@@ -2046,9 +2049,12 @@
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardView.swift; sourceTree = "<group>"; };
 		CFCE214B2656895E00E3B32A /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
+		CFD5814526B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectViewModel.swift; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModelTests.swift; sourceTree = "<group>"; };
+		CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectView.swift; sourceTree = "<group>"; };
 		CFE7E361267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
+		CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectViewModelTests.swift; sourceTree = "<group>"; };
 		CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
 		CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemViewModel.swift; sourceTree = "<group>"; };
 		CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModel.swift; sourceTree = "<group>"; };
@@ -4186,8 +4192,9 @@
 		CF60CC2F2645520500C1C173 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */,
 				CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */,
+				CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */,
+				CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -4237,8 +4244,9 @@
 		CF60CC5126496A2900C1C173 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				CF60CC5526496EA500C1C173 /* K5ScheduleViewModel.swift */,
 				CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */,
+				CFD5814526B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift */,
+				CF60CC5526496EA500C1C173 /* K5ScheduleViewModel.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -4322,6 +4330,7 @@
 			isa = PBXGroup;
 			children = (
 				CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */,
+				CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */,
 				CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */,
 			);
 			path = Schedule;
@@ -5294,6 +5303,7 @@
 				7D7F71DE241FDDDB00D6F9CB /* ConferenceTests.swift in Sources */,
 				CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */,
 				7D1758C8215A9A7800F88613 /* TitleSubtitleViewTests.swift in Sources */,
+				CFEC7F3426B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift in Sources */,
 				9FCD79DA2188E3CD0054293A /* GetSubmissionsTests.swift in Sources */,
 				9F5C93032375F682005105BB /* GetPageTests.swift in Sources */,
 				B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */,
@@ -5539,6 +5549,7 @@
 				7DA25FE123F72154005D2121 /* AudioRecorderViewController.swift in Sources */,
 				3B4D892D2450A8E9004ED120 /* ComposeRecipientsView.swift in Sources */,
 				7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */,
+				CFD5814626B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift in Sources */,
 				7DA2604523F722D9005D2121 /* Enrollment.swift in Sources */,
 				7DA25FD923F72148005D2121 /* ExperimentalFeature.swift in Sources */,
 				7DA2601023F7227A005D2121 /* UIColorExtensions.swift in Sources */,
@@ -5550,6 +5561,7 @@
 				7DA2603A23F722D9005D2121 /* Assignment.swift in Sources */,
 				7DA25FDF23F72148005D2121 /* UUID.swift in Sources */,
 				7DA2606523F722D9005D2121 /* Syllabus.swift in Sources */,
+				CFE7B42326B19F3F0092593D /* K5ScheduleSubjectView.swift in Sources */,
 				7DA2609823F72338005D2121 /* Router.swift in Sources */,
 				7DA260D823F72359005D2121 /* EmptyViewController.swift in Sources */,
 				EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */,

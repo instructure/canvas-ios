@@ -45,6 +45,8 @@ public struct K5ScheduleEntryView: View {
                 .padding(.leading, 12)
                 .padding(.vertical, 8)
 
+                Spacer(minLength: 0)
+
                 VStack(alignment: .trailing) {
                     if let scoreText = viewModel.score {
                         score(text: scoreText)
@@ -57,7 +59,7 @@ public struct K5ScheduleEntryView: View {
 
                 disclosureIndicator
             }
-            .padding(.trailing, 11)
+            .padding(.trailing, 15)
         })
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -68,8 +70,8 @@ public struct K5ScheduleEntryView: View {
         case .warning:
             Image.warningLine
                 .foregroundColor(.crimson)
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
+                .padding(.leading, 18)
+                .padding(.trailing, 18)
         case .checkbox(let isChecked):
             checkBox(isChecked: isChecked)
         }
@@ -150,7 +152,7 @@ public struct K5ScheduleEntryView: View {
 #if DEBUG
 
 struct K5ScheduleEntryView_Previews: PreviewProvider {
-    private static let models: [K5ScheduleEntryViewModel] = [
+    static let models: [K5ScheduleEntryViewModel] = [
         K5ScheduleEntryViewModel(
             leading: .checkbox(isChecked: false),
             icon: .calendarTab,
@@ -189,9 +191,13 @@ struct K5ScheduleEntryView_Previews: PreviewProvider {
     static var previews: some View {
         // swiftlint:disable:next redundant_discardable_let
         let _ = setupK5Mode()
-        ForEach(models) {
-            K5ScheduleEntryView(viewModel: $0).previewLayout(.sizeThatFits)
-        }
+
+        // Add to one stack to test if different layouts have their elements horizontally aligned
+        VStack(alignment: .leading) {
+            ForEach(models) {
+                K5ScheduleEntryView(viewModel: $0)
+            }
+        }.previewLayout(.sizeThatFits)
     }
 
     private static func setupK5Mode() {
