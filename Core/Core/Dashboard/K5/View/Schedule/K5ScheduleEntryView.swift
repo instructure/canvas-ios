@@ -152,74 +152,16 @@ public struct K5ScheduleEntryView: View {
 #if DEBUG
 
 struct K5ScheduleEntryView_Previews: PreviewProvider {
-    static let models: [K5ScheduleEntryViewModel] = [
-        K5ScheduleEntryViewModel(
-            leading: .checkbox(isChecked: false),
-            icon: .calendarTab,
-            title: "I created this todo for today",
-            subtitle: nil,
-            labels: [],
-            score: nil,
-            dueText: "To Do: 1:59 PM",
-            checkboxChanged: nil,
-            action: {}),
-        K5ScheduleEntryViewModel(
-            leading: .checkbox(isChecked: true),
-            icon: .assignmentLine,
-            title: "Attributes of Polygons",
-            subtitle: .init(text: "You've marked it as done", color: .ash, font: .regular12),
-            labels: [
-                .init(text: "REPLIES", color: .ash),
-                .init(text: "REDO", color: .crimson),
-            ],
-            score: "5 pts",
-            dueText: "Due: 11:59 PM",
-            checkboxChanged: nil,
-            action: {}),
-        K5ScheduleEntryViewModel(
-            leading: .warning,
-            icon: .assignmentLine,
-            title: "Identifying Physical Changes I.",
-            subtitle: .init(text: "SCIENCE", color: Color(hexString: "#8BD448")!, font: .regular10),
-            labels: [],
-            score: "5 pts",
-            dueText: "Due Yesterday",
-            checkboxChanged: nil,
-            action: {}),
-    ]
-
     static var previews: some View {
         // swiftlint:disable:next redundant_discardable_let
-        let _ = setupK5Mode()
+        let _ = K5Preview.setupK5Mode()
 
         // Add to one stack to test if different layouts have their elements horizontally aligned
         VStack(alignment: .leading) {
-            ForEach(models) {
+            ForEach(K5Preview.Data.Schedule.entries) {
                 K5ScheduleEntryView(viewModel: $0)
             }
         }.previewLayout(.sizeThatFits)
-    }
-
-    private static func setupK5Mode() {
-        let session = LoginSession(
-            accessToken: "token",
-            baseURL: URL(string: "https://canvas.instructure.com")!,
-            expiresAt: nil,
-            lastUsedAt: Date(),
-            locale: "en",
-            masquerader: nil,
-            refreshToken: nil,
-            userAvatarURL: nil,
-            userID: "1",
-            userName: "Eve",
-            userEmail: nil,
-            clientID: nil,
-            clientSecret: nil
-        )
-        AppEnvironment.shared.userDidLogin(session: session)
-        AppEnvironment.shared.k5.userDidLogin(isK5Account: true)
-        AppEnvironment.shared.userDefaults?.isElementaryViewEnabled = true
-        ExperimentalFeature.K5Dashboard.isEnabled = true
     }
 }
 
