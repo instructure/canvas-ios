@@ -128,21 +128,22 @@ public struct K5ScheduleSubjectView: View {
 #if DEBUG
 
 struct K5ScheduleSubjectView_Previews: PreviewProvider {
-    private static let img = Image("PandaBlocks", bundle: .core)
-    private static let model = K5ScheduleSubjectViewModel(name: "MATH", color: Color(hexString: "#FF8277")!, image: img, entries: K5ScheduleEntryView_Previews.models, tapAction: {})
-    private static let todoModel = K5ScheduleSubjectViewModel(name: "TODO", color: .electric, image: nil, entries: K5ScheduleEntryView_Previews.models, tapAction: nil)
-
     static var previews: some View {
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = K5Preview.setupK5Mode()
+
         VStack {
-            K5ScheduleSubjectView(viewModel: model)
-            K5ScheduleSubjectView(viewModel: todoModel)
+            ForEach(K5Preview.Data.Schedule.subjects) {
+                K5ScheduleSubjectView(viewModel: $0)
+            }
         }
         .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
         .environment(\.containerWidth, 500)
 
         VStack {
-            K5ScheduleSubjectView(viewModel: model)
-            K5ScheduleSubjectView(viewModel: todoModel)
+            ForEach(K5Preview.Data.Schedule.subjects) {
+                K5ScheduleSubjectView(viewModel: $0)
+            }
         }
             .previewLayout(.device)
     }

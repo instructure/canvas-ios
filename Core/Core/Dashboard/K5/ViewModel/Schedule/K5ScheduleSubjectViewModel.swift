@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class K5ScheduleSubjectViewModel {
+public class K5ScheduleSubjectViewModel: Identifiable {
     public let name: String
     public let color: Color
     public let image: Image?
