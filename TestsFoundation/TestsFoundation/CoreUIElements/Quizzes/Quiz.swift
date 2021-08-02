@@ -32,4 +32,8 @@ public enum QuizDetails: String, ElementWrapper {
     public static var previewQuiz: Element {
         return app.find(label: "Preview Quiz")
     }
+
+    public static var launchExternalToolButton: Element {
+        return app.find(label: "Launch External Tool")
+    }
 }
