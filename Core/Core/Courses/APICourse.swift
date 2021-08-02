@@ -38,6 +38,7 @@ public struct APICourse: Codable, Equatable {
     let end_at: Date?
     let locale: String?
     var enrollments: [APIEnrollment]?
+    var grading_periods: [APIGradingPeriod]?
     // let total_students: Int? // include[]=total_students
     // let calendar: ?
     let default_view: CourseDefaultView?
@@ -213,6 +214,7 @@ public struct GetCoursesRequest: APIRequestable {
         case course_image
         case current_grading_period_scores
         case favorites
+        case grading_periods
         case needs_grading_count
         case observed_users
         case sections
