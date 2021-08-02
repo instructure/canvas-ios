@@ -767,6 +767,9 @@
 "Edit Syllabus" = "تحرير المنهج الدراسي";
 
 /* No comment provided by engineer. */
+"Elementary View" = "طريقة عرض المدارس الابتدائية";
+
+/* No comment provided by engineer. */
 "Email address" = "عنوان البريد الإلكتروني";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "لا يوجد أي مساق";
+
+/* No comment provided by engineer. */
+"No date selected" = "لا يوجد تاريخ محدد";
 
 /* No comment provided by engineer. */
 "No description" = "بلا وصف";

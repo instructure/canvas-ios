@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Golygu Maes Llafur";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Gwedd Sylfaenol";
+
+/* No comment provided by engineer. */
 "Email address" = "Cyfeiriad e-bost";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "Dim Cyrsiau";
+
+/* No comment provided by engineer. */
+"No date selected" = "Dim dyddiad wedi’i ddewis";
 
 /* No comment provided by engineer. */
 "No description" = "Dim disgrifiad";

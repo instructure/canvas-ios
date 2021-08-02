@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Uredi učni načrt predmeta";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Osnovni pogled";
+
+/* No comment provided by engineer. */
 "Email address" = "E-poštni naslov";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "Ni predmetov";
+
+/* No comment provided by engineer. */
+"No date selected" = "Izbran ni noben datum";
 
 /* No comment provided by engineer. */
 "No description" = "Brez opisa";

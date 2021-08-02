@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Editar Syllabus";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Vista Elementar";
+
+/* No comment provided by engineer. */
 "Email address" = "Endereço de email";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "Sem Disciplinas";
+
+/* No comment provided by engineer. */
+"No date selected" = "Sem data selecionada";
 
 /* No comment provided by engineer. */
 "No description" = "Sem descrição";

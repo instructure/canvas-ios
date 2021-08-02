@@ -149,7 +149,7 @@
 "Add Title" = "Lägg till titel";
 
 /* No comment provided by engineer. */
-"Added To Conversation" = "Tillagd i konversationen";
+"Added To Conversation" = "Tillagd i konversation";
 
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Administrativa aviseringar";
@@ -203,13 +203,13 @@
 "Anyone" = "Vem som helst";
 
 /* No comment provided by engineer. */
-"Appointment Availability" = "Mötestillgänglighet";
+"Appointment Availability" = "Lediga mötestillfällen";
 
 /* No comment provided by engineer. */
-"Appointment Cancellations" = "Inställda bokade möten";
+"Appointment Cancellations" = "Avbokningar för mötestillfälle";
 
 /* No comment provided by engineer. */
-"Appointment Signups" = "Mötesbokningar";
+"Appointment Signups" = "Nya mötestillfällen";
 
 /* No comment provided by engineer. */
 "Archived" = "Arkiverade";
@@ -500,13 +500,13 @@
 "Conversation Created By Me" = "Konversation skapad av mig";
 
 /* No comment provided by engineer. */
-"Conversation Message" = "Konversationsmeddelande";
+"Conversation Message" = "Meddelande i Inkorgen";
 
 /* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
-"Conversations" = "Konversationer";
+"Conversations" = "Inkorgen";
 
 /* No comment provided by engineer. */
 "Copied!" = "Kopierad!";
@@ -765,6 +765,9 @@
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Redigera kursöversikten";
+
+/* No comment provided by engineer. */
+"Elementary View" = "Elementary-vy";
 
 /* No comment provided by engineer. */
 "Email address" = "E-postadress";
@@ -1340,6 +1343,9 @@
 "No Courses" = "Inga kurser";
 
 /* No comment provided by engineer. */
+"No date selected" = "Inget datum har valts";
+
+/* No comment provided by engineer. */
 "No description" = "Ingen beskrivning";
 
 /* No comment provided by engineer. */
@@ -1712,7 +1718,7 @@
 "Schedule student availability" = "Schemalägg studentens tillgänglighet";
 
 /* No comment provided by engineer. */
-"Scheduling" = "Schemalägger";
+"Scheduling" = "Mötesbokning";
 
 /* No comment provided by engineer. */
 "School’s name" = "Skolans namn";
@@ -1859,7 +1865,7 @@
 "Student Annotation" = "Studentnotering";
 
 /* No comment provided by engineer. */
-"Student Appointment Signups" = "Registreringar till studentmöte";
+"Student Appointment Signups" = "Ny bokning för mötestillfälle";
 
 /* No comment provided by engineer. */
 "Students" = "Studenter";

@@ -767,6 +767,9 @@
 "Edit Syllabus" = "編輯課程大綱";
 
 /* No comment provided by engineer. */
+"Elementary View" = "小學版檢視";
+
+/* No comment provided by engineer. */
 "Email address" = "電郵地址";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "無課程";
+
+/* No comment provided by engineer. */
+"No date selected" = "沒有選定的日期";
 
 /* No comment provided by engineer. */
 "No description" = "沒有說明";
