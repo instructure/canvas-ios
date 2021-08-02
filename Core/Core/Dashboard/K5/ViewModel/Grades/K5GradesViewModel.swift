@@ -19,6 +19,7 @@
 public class K5GradesViewModel: ObservableObject {
 
     @Published public private(set) var grades: [K5GradeCellViewModel] = []
+    @Published public private(set) var gradingPeriods: [GradingPeriod] = []
 
     private let env = AppEnvironment.shared
     // MARK: Data Sources
@@ -36,14 +37,15 @@ public class K5GradesViewModel: ObservableObject {
     }
 
     private func coursesUpdated() {
-        courses.forEach { course in
-            let cell = K5GradeCellViewModel(a11yId: "K5GradeCell.\(course.id)",
-                                            title: course.name ?? "",
-                                            imageURL: course.imageDownloadURL,
-                                            grade: Int(course.enrollments?.first?.computedCurrentScore ?? 0),
-                                            color: course.color)
-            grades.append(cell)
+        grades.removeAll()
+        grades = courses.map {
+            return K5GradeCellViewModel(a11yId: "K5GradeCell.\($0.id)",
+                                        title: $0.name ?? "",
+                                        imageURL: $0.imageDownloadURL,
+                                        grade: Int($0.enrollments?.first?.computedCurrentScore ?? 0),
+                                        color: $0.color)
         }
+        gradingPeriods = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
         finishRefresh()
     }
 

@@ -29,28 +29,40 @@ struct K5GradesView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Select").font(.regular13)
-                HStack {
-                    Text("Current Grading Period").font(.bold24)
-                    Image.arrowOpenDownSolid.rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0)).animation(.easeOut)
-                    Spacer()
-                }.onTapGesture {
-                    gradeSelectorOpen.toggle()
-                }
-                if gradeSelectorOpen {
-                    Text("Grading periods go here")
-                }
-            }.padding(.top, 15).padding(.bottom, 13)
-            Divider()
-            ScrollView {
-                VStack {
-                    ForEach(viewModel.grades) {
-                        K5GradeCell(with: $0)
-                        Divider()
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("Select").font(.regular13).background(Color.white)
+                    HStack {
+                        Text("Current Grading Period").font(.bold24)
+                        Image.arrowOpenDownSolid.rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0)).animation(.easeOut)
+                        Spacer()
+                    }.onTapGesture {
+                        withAnimation {
+                            gradeSelectorOpen.toggle()
+                        }
                     }
-                    Spacer()
+                    Divider()
+                }.zIndex(1).background(Color.white).padding(.top, 0).padding(.bottom, 13)
+                if gradeSelectorOpen {
+                    VStack() {
+                        ForEach(viewModel.gradingPeriods, id:\.self) { (gradingPeriod: GradingPeriod) in
+                            Text(gradingPeriod.title ?? "").font(.bold20)
+                            Divider()
+                        }
+                    }.transition(.move(edge: .top))
                 }
+            }.clipped()
+            Spacer()
+            ScrollView {
+                ForEach(viewModel.grades) {
+                    K5GradeCell(with: $0)
+                    Divider()
+                }
+            }
+            Spacer()
+        }.padding(.top, 15).onTapGesture {
+            withAnimation {
+                gradeSelectorOpen = false
             }
         }
     }
