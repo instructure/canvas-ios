@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Edita el temari";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Visualització elemental";
+
+/* No comment provided by engineer. */
 "Email address" = "Adreça electrònica";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "No hi ha cap curs";
+
+/* No comment provided by engineer. */
+"No date selected" = "No s’ha seleccionat cap data";
 
 /* No comment provided by engineer. */
 "No description" = "Sense descripció";

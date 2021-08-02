@@ -767,6 +767,9 @@
 "Edit Syllabus" = "แก้ไขหลักสูตร";
 
 /* No comment provided by engineer. */
+"Elementary View" = "มุมมองระดับประถมศึกษา";
+
+/* No comment provided by engineer. */
 "Email address" = "อีเมลแอดเดรส";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "ไม่มีบทเรียน";
+
+/* No comment provided by engineer. */
+"No date selected" = "ไม่ได้เลือกวันที่ไว้";
 
 /* No comment provided by engineer. */
 "No description" = "ไม่มีรายละเอียด";

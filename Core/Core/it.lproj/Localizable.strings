@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Modifica Programma Piano di studio";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Visualizzazione elementare";
+
+/* No comment provided by engineer. */
 "Email address" = "Indirizzo e-mail";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "Nessun corso";
+
+/* No comment provided by engineer. */
+"No date selected" = "Nessuna data selezionata";
 
 /* No comment provided by engineer. */
 "No description" = "Nessuna descrizione";

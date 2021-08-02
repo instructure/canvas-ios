@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Chanje Pwogram";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Afichaj Elemantè";
+
+/* No comment provided by engineer. */
 "Email address" = "Adrès imèl";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "Pa gen Kou";
+
+/* No comment provided by engineer. */
+"No date selected" = "Pa gen dat ki seleksyone ";
 
 /* No comment provided by engineer. */
 "No description" = "Pa gen deskripsyon";

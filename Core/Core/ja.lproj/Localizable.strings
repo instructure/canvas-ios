@@ -767,6 +767,9 @@
 "Edit Syllabus" = "シラバスを編集";
 
 /* No comment provided by engineer. */
+"Elementary View" = "エレメンタリービュー";
+
+/* No comment provided by engineer. */
 "Email address" = "メールアドレス";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "コースはありません";
+
+/* No comment provided by engineer. */
+"No date selected" = "選択された日付なし";
 
 /* No comment provided by engineer. */
 "No description" = "説明なし";
