@@ -34,7 +34,7 @@ struct K5GradesView: View {
                     Text("Select").font(.regular13).background(Color.white)
                     HStack {
                         Text("Current Grading Period").font(.bold24)
-                        Image.arrowOpenDownSolid.rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0)).animation(.easeOut)
+                        Image.arrowOpenDownLine.rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0)).animation(.easeOut)
                         Spacer()
                     }.onTapGesture {
                         withAnimation {
@@ -44,7 +44,7 @@ struct K5GradesView: View {
                     Divider()
                 }.zIndex(1).background(Color.white).padding(.top, 0).padding(.bottom, 13)
                 if gradeSelectorOpen {
-                    VStack() {
+                    VStack(alignment: .leading) {
                         ForEach(viewModel.gradingPeriods, id:\.self) { (gradingPeriod: GradingPeriod) in
                             Text(gradingPeriod.title ?? "").font(.bold20)
                             Divider()

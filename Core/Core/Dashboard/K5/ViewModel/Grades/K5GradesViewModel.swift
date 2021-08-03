@@ -43,7 +43,8 @@ public class K5GradesViewModel: ObservableObject {
                                         title: $0.name ?? "",
                                         imageURL: $0.imageDownloadURL,
                                         grade: Int($0.enrollments?.first?.computedCurrentScore ?? 0),
-                                        color: $0.color)
+                                        color: $0.color,
+                                        courseID: $0.id)
         }
         gradingPeriods = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
         finishRefresh()

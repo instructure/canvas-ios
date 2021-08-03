@@ -20,6 +20,8 @@ import SwiftUI
 
 struct K5GradeCell: View {
 
+    @Environment(\.appEnvironment) var env
+    @Environment(\.viewController) var controller
     var viewModel: K5GradeCellViewModel
 
     init(with viewModel: K5GradeCellViewModel) {
@@ -39,17 +41,23 @@ struct K5GradeCell: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(viewModel.title)
                         .font(.bold17)
-                    GradeProgressBar(value: viewModel.grade, color: viewModel.color).frame(height: 16)
+                    HStack {
+                        GradeProgressBar(value: viewModel.grade, color: viewModel.color).frame(height: 16)
+                        Image.arrowOpenRightLine.foregroundColor(.ash)
+                    }
                     Text("\(viewModel.grade)" + "%").font(.regular17)
                 }
             }
         }.frame(minHeight: 72).padding(.top, 13.5).padding(.bottom, 13.5)
+        .onTapGesture {
+            env.router.route(to: "/courses/\(viewModel.courseID)/grades/", from: controller, options: .push)
+        }
     }
 }
 
 struct K5GradeCell_Previews: PreviewProvider {
     static var previews: some View {
-        K5GradeCell(with: K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: 55, color: .yellow))
+        K5GradeCell(with: K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: 55, color: .yellow, courseID: ""))
     }
 }
 
@@ -66,12 +74,14 @@ struct GradeProgressBar: View {
                     .border(color, width: 1)
 
                 Rectangle().frame(width: min(CGFloat(animate ? value : 0)/100.0*geometry.size.width, geometry.size.width),
-                                  height: geometry.size.height)
+                                  height: geometry.size.height, alignment: .leading)
                     .foregroundColor(color)
-                    .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5))
-            }
+                    .animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0.55))
+            }.clipped()
         }.onAppear {
-            animate.toggle()
+            animate = true
+        }.onDisappear {
+            animate = false
         }
     }
 }
