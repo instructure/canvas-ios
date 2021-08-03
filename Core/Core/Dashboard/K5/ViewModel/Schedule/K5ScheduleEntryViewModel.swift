@@ -18,6 +18,9 @@
 
 import SwiftUI
 
+/**
+ One to-do item in the schedule list.
+ */
 public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
     @Published public var leading: RowLeading
 

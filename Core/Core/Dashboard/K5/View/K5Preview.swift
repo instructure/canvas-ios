@@ -95,6 +95,27 @@ struct K5Preview {
                 K5ScheduleSubjectViewModel(name: "MATH", color: Color(hexString: "#FF8277")!, image: Image("PandaBlocks", bundle: .core), entries: entries, tapAction: {}),
                 K5ScheduleSubjectViewModel(name: "TODO", color: .electric, image: nil, entries: entries, tapAction: nil),
             ]
+
+            static let weeks = [
+                K5ScheduleWeekViewModel(isTodayButtonAvailable: true, days: [
+                    K5ScheduleDayViewModel(weekday: "Monday", date: "September 24", subjects: [K5Preview.Data.Schedule.subjects[0]]),
+                    K5ScheduleDayViewModel(weekday: "Today", date: "September 25", subjects: K5Preview.Data.Schedule.subjects),
+                    K5ScheduleDayViewModel(weekday: "Tomorrow", date: "September 26", subjects: [K5Preview.Data.Schedule.subjects[1]]),
+                    K5ScheduleDayViewModel(weekday: "Thursday", date: "September 27", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Friday", date: "September 28", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Saturday", date: "September 29", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Sunday", date: "September 30", subjects: []),
+                ]),
+                K5ScheduleWeekViewModel(isTodayButtonAvailable: false, days: [
+                    K5ScheduleDayViewModel(weekday: "Monday", date: "October 1", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Tuesday", date: "October 2", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Wednesday", date: "October 3", subjects: [K5Preview.Data.Schedule.subjects[1]]),
+                    K5ScheduleDayViewModel(weekday: "Thursday", date: "October 4", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Friday", date: "October 5", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Saturday", date: "October 6", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Sunday", date: "October 7", subjects: []),
+                ]),
+            ]
         }
     }
 }

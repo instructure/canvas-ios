@@ -16,29 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+public class K5ScheduleWeekViewModel {
+    public let todayViewId = NSLocalizedString("Today", comment: "")
+    public let isTodayButtonAvailable: Bool
+    public let days: [K5ScheduleDayViewModel]
 
-/**
- Model to group all to-do items related to a single subject.
- */
-public class K5ScheduleSubjectViewModel: Identifiable {
-    public let name: String
-    public let color: Color
-    public let image: Image?
-    public let entries: [K5ScheduleEntryViewModel]
-    public var hasTapAction: Bool { tapAction != nil }
-
-    private let tapAction: (() -> Void)?
-
-    public init(name: String, color: Color, image: Image?, entries: [K5ScheduleEntryViewModel], tapAction: (() -> Void)?) {
-        self.name = name
-        self.color = color
-        self.image = image
-        self.entries = entries
-        self.tapAction = tapAction
-    }
-
-    public func viewTapped() {
-        tapAction?()
+    public init(isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
+        self.isTodayButtonAvailable = isTodayButtonAvailable
+        self.days = days
     }
 }

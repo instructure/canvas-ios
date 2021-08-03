@@ -16,29 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-
 /**
- Model to group all to-do items related to a single subject.
+ Model for a single day in the schedule view, this holds multiple subjects.
  */
-public class K5ScheduleSubjectViewModel: Identifiable {
-    public let name: String
-    public let color: Color
-    public let image: Image?
-    public let entries: [K5ScheduleEntryViewModel]
-    public var hasTapAction: Bool { tapAction != nil }
+public class K5ScheduleDayViewModel: Identifiable {
+    public let weekday: String
+    public let date: String
+    public let subjects: [K5ScheduleSubjectViewModel]
 
-    private let tapAction: (() -> Void)?
-
-    public init(name: String, color: Color, image: Image?, entries: [K5ScheduleEntryViewModel], tapAction: (() -> Void)?) {
-        self.name = name
-        self.color = color
-        self.image = image
-        self.entries = entries
-        self.tapAction = tapAction
+    public init(weekday: String, date: String, subjects: [K5ScheduleSubjectViewModel]) {
+        self.weekday = weekday
+        self.date = date
+        self.subjects = subjects
     }
+}
 
-    public func viewTapped() {
-        tapAction?()
+extension K5ScheduleDayViewModel: Equatable {
+
+    public static func == (lhs: K5ScheduleDayViewModel, rhs: K5ScheduleDayViewModel) -> Bool {
+        lhs.weekday == rhs.weekday && lhs.date == rhs.date
     }
 }

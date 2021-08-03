@@ -18,27 +18,14 @@
 
 import SwiftUI
 
-/**
- Model to group all to-do items related to a single subject.
- */
-public class K5ScheduleSubjectViewModel: Identifiable {
-    public let name: String
-    public let color: Color
-    public let image: Image?
-    public let entries: [K5ScheduleEntryViewModel]
-    public var hasTapAction: Bool { tapAction != nil }
+extension View {
 
-    private let tapAction: (() -> Void)?
-
-    public init(name: String, color: Color, image: Image?, entries: [K5ScheduleEntryViewModel], tapAction: (() -> Void)?) {
-        self.name = name
-        self.color = color
-        self.image = image
-        self.entries = entries
-        self.tapAction = tapAction
-    }
-
-    public func viewTapped() {
-        tapAction?()
+    @ViewBuilder
+    public func hidden(_ isHidden: Bool) -> some View {
+        if isHidden {
+            self.hidden()
+        } else {
+            self
+        }
     }
 }

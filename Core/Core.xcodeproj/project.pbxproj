@@ -887,7 +887,11 @@
 		CFE7B42326B19F3F0092593D /* K5ScheduleSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */; };
 		CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7E361267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift */; };
 		CFEC7F3426B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */; };
+		CFEC7F3826B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F3726B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift */; };
+		CFEC7F3B26B409D1008B9F77 /* K5ScheduleWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F3A26B409D1008B9F77 /* K5ScheduleWeekView.swift */; };
 		CFEC7F4226B42E50008B9F77 /* K5Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4126B42E50008B9F77 /* K5Preview.swift */; };
+		CFEC7F4826B7E853008B9F77 /* K5ScheduleWeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */; };
+		CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */; };
 		CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */; };
 		CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */; };
 		CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */; };
@@ -2056,7 +2060,11 @@
 		CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectView.swift; sourceTree = "<group>"; };
 		CFE7E361267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectViewModelTests.swift; sourceTree = "<group>"; };
+		CFEC7F3726B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleDayViewModel.swift; sourceTree = "<group>"; };
+		CFEC7F3A26B409D1008B9F77 /* K5ScheduleWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekView.swift; sourceTree = "<group>"; };
 		CFEC7F4126B42E50008B9F77 /* K5Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Preview.swift; sourceTree = "<group>"; };
+		CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModel.swift; sourceTree = "<group>"; };
+		CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 		CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
 		CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemViewModel.swift; sourceTree = "<group>"; };
 		CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModel.swift; sourceTree = "<group>"; };
@@ -4198,6 +4206,7 @@
 				CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */,
 				CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */,
 				CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */,
+				CFEC7F3A26B409D1008B9F77 /* K5ScheduleWeekView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -4247,9 +4256,11 @@
 		CF60CC5126496A2900C1C173 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				CFEC7F3726B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift */,
 				CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */,
 				CFD5814526B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift */,
 				CF60CC5526496EA500C1C173 /* K5ScheduleViewModel.swift */,
+				CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -4416,6 +4427,14 @@
 			path = ViewPreferences;
 			sourceTree = "<group>";
 		};
+		CFEC7F4E26B92ECE008B9F77 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		CFFA6CE826553DB800B47380 /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -4510,6 +4529,7 @@
 			children = (
 				CFFA6CE826553DB800B47380 /* TopBar */,
 				CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */,
+				CFEC7F4E26B92ECE008B9F77 /* ViewModifiers */,
 				CFCE214A2656894100E3B32A /* ViewPreferences */,
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
 				CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */,
@@ -5396,6 +5416,7 @@
 				7DA2601923F7227A005D2121 /* UITableViewCellExtensions.swift in Sources */,
 				7DA4DA2B2440C94D009CA964 /* GetPages.swift in Sources */,
 				7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */,
+				CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */,
 				7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */,
 				7DA2601F23F7227A005D2121 /* URLResponseExtensions.swift in Sources */,
 				7DA2602423F722B3005D2121 /* LogEventListViewController.swift in Sources */,
@@ -5605,6 +5626,7 @@
 				7D1E85662567294A00D093C5 /* ScaleButtonStyle.swift in Sources */,
 				7DA260B923F72352005D2121 /* GetQuizSubmission.swift in Sources */,
 				7DA260F023F72391005D2121 /* FileUploadContext.swift in Sources */,
+				CFEC7F3B26B409D1008B9F77 /* K5ScheduleWeekView.swift in Sources */,
 				7D2E812925631BEC008C568F /* AssignmentDateSection.swift in Sources */,
 				EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */,
 				7DA25FAD23F72136005D2121 /* APIEnrollment.swift in Sources */,
@@ -5620,6 +5642,7 @@
 				7DA260EB23F72359005D2121 /* TokenLabelView.swift in Sources */,
 				7DA25FED23F721DE005D2121 /* CreateConversation.swift in Sources */,
 				7DA2607E23F722FA005D2121 /* PageViewSession.swift in Sources */,
+				CFEC7F4826B7E853008B9F77 /* K5ScheduleWeekViewModel.swift in Sources */,
 				7DA25FC723F72136005D2121 /* APIPostPolicyInfo.swift in Sources */,
 				3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */,
 				EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */,
@@ -5643,6 +5666,7 @@
 				7DA2610E23FCD907005D2121 /* CircleRefreshControl.swift in Sources */,
 				7DA2609723F72338005D2121 /* RouteHandler.swift in Sources */,
 				B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */,
+				CFEC7F3826B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift in Sources */,
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
 				EB2A9BC62632E31F00A19A5A /* SideMenuFooterView.swift in Sources */,
