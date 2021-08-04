@@ -18,10 +18,13 @@
 
 public class K5ScheduleWeekViewModel {
     public let todayViewId = NSLocalizedString("Today", comment: "")
+
+    public let weekRange: Range<Date>
     public let isTodayButtonAvailable: Bool
     public let days: [K5ScheduleDayViewModel]
 
-    public init(isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
+    public init(weekRange: Range<Date>, isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
+        self.weekRange = weekRange
         self.isTodayButtonAvailable = isTodayButtonAvailable
         self.days = days
     }

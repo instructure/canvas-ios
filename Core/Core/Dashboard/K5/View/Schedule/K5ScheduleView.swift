@@ -18,10 +18,37 @@
 
 import SwiftUI
 
-struct K5ScheduleView: View {
+public struct K5ScheduleView: View {
     @ObservedObject var viewModel: K5ScheduleViewModel
 
-    var body: some View {
-        Text(viewModel.content)
+    public var body: some View {
+        let collectionViewWrapper = WeakObject<UICollectionView>()
+        GeometryReader { geometry in
+            HorizontalPager(pageCount: viewModel.weekModels.count, size: geometry.size, proxy: collectionViewWrapper) { pageIndex in
+                K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
+                    .environment(\.containerWidth, geometry.size.width)
+            }
+            .onAppear {
+                DispatchQueue.main.async {
+                    collectionViewWrapper.object?.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
+                }
+            }
+        }
     }
 }
+
+#if DEBUG
+
+struct K5ScheduleView_Previews: PreviewProvider {
+    static var previews: some View {
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = K5Preview.setupK5Mode()
+
+        K5ScheduleView(viewModel: K5Preview.Data.Schedule.rootModel)
+            .previewDevice(PreviewDevice(stringLiteral: "iPhone 12"))
+        K5ScheduleView(viewModel: K5Preview.Data.Schedule.rootModel)
+            .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+    }
+}
+
+#endif

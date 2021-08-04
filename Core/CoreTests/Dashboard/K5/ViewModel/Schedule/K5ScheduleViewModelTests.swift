@@ -21,17 +21,15 @@ import XCTest
 
 class K5ScheduleViewModelTests: CoreTestCase {
 
-    func testRefresh() {
-        let refreshExpectation = expectation(description: "Refresh finished")
-        let testee = K5ScheduleViewModel()
-        RunLoop.main.run(until: Date() + 1.1)
+    func testWeekRangeCalculation() {
+        var calendar = Calendar.init(identifier: .iso8601)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        let testee = K5ScheduleViewModel(currentDate: Date(fromISOString: "2021-12-31T12:00:00+00:00")!, calendar: calendar)
 
-        XCTAssertTrue(testee.content.hasSuffix("."))
-        testee.refresh {
-            refreshExpectation.fulfill()
-        }
-
-        wait(for: [refreshExpectation], timeout: 2.1)
-        XCTAssertEqual(testee.content, "Binding test")
+        XCTAssertEqual(testee.weekModels.count, 53)
+        XCTAssertEqual(testee.weekModels[25].weekRange, Date(fromISOString: "2021-12-20T00:00:00+00:00")!..<Date(fromISOString: "2021-12-27T00:00:00+00:00")!)
+        // current week is in the middle
+        XCTAssertEqual(testee.weekModels[testee.defaultWeekIndex].weekRange, Date(fromISOString: "2021-12-27T00:00:00+00:00")!..<Date(fromISOString: "2022-01-03T00:00:00+00:00")!)
+        XCTAssertEqual(testee.weekModels[27].weekRange, Date(fromISOString: "2022-01-03T00:00:00+00:00")!..<Date(fromISOString: "2022-01-10T00:00:00+00:00")!)
     }
 }

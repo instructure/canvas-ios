@@ -818,6 +818,7 @@
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
 		CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */; };
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
+		CF5123DB26BA922E00C1EB27 /* HorizontalPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */; };
 		CF53F730266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */; };
 		CF53F734266F836000FA58D7 /* K5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */; };
 		CF53F73C266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F73B266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift */; };
@@ -1991,6 +1992,7 @@
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
 		CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
+		CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPager.swift; sourceTree = "<group>"; };
 		CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetK5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
 		CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
 		CF53F73B266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetK5HomeroomMissingSubmissionsCount.swift; sourceTree = "<group>"; };
@@ -4427,14 +4429,6 @@
 			path = ViewPreferences;
 			sourceTree = "<group>";
 		};
-		CFEC7F4E26B92ECE008B9F77 /* ViewModifiers */ = {
-			isa = PBXGroup;
-			children = (
-				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
-			);
-			path = ViewModifiers;
-			sourceTree = "<group>";
-		};
 		CFFA6CE826553DB800B47380 /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -4529,7 +4523,6 @@
 			children = (
 				CFFA6CE826553DB800B47380 /* TopBar */,
 				CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */,
-				CFEC7F4E26B92ECE008B9F77 /* ViewModifiers */,
 				CFCE214A2656894100E3B32A /* ViewPreferences */,
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
 				CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */,
@@ -4541,6 +4534,7 @@
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
 				7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */,
+				CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */,
 				7D1E856A2567356400D093C5 /* JustifiedGrid.swift */,
 				7D531D4B254C664900CBFCA6 /* ListSectionHeader.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
@@ -4570,6 +4564,7 @@
 			children = (
 				E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */,
 				7DBD150525477CEB00750F52 /* Badge.swift */,
+				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
 				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
 			);
 			path = ViewModifiers;
@@ -5434,6 +5429,7 @@
 				7DA25FF923F7226E005D2121 /* DocViewerAnnotationProvider.swift in Sources */,
 				7DA2608623F7230F005D2121 /* ErrorViewController.swift in Sources */,
 				7D531D4C254C664900CBFCA6 /* ListSectionHeader.swift in Sources */,
+				CF5123DB26BA922E00C1EB27 /* HorizontalPager.swift in Sources */,
 				7DA25F9823F72136005D2121 /* API.swift in Sources */,
 				7DA260AD23F72352005D2121 /* GetContextTabs.swift in Sources */,
 				7DA25FA823F72136005D2121 /* APIDashboard.swift in Sources */,

@@ -16,27 +16,39 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5ScheduleViewModel: ObservableObject {
-    @Published var content: String = "Binding test"
-    private var timer: Timer!
+public class K5ScheduleViewModel: ObservableObject {
+    public let weekModels: [K5ScheduleWeekViewModel]
+    public private(set) var defaultWeekIndex = 26
+    private let weekRangeFromCurrentWeek = -26...26
 
-    init() {
-        timer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
-            self?.content.append(".")
-        }
-        RunLoop.main.add(timer, forMode: .default)
+    #if DEBUG
+
+    init(weekModels: [K5ScheduleWeekViewModel]) {
+        self.weekModels = weekModels
+        self.defaultWeekIndex = weekModels.count / 2 + 1
     }
 
-    deinit {
-        timer.invalidate()
+    #endif
+    
+    public init(currentDate: Date = Date(), calendar: Calendar = Calendar.current) {
+        let currentWeekStartDate = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate))!
+        let currentWeekEndDate = calendar.date(byAdding: .weekOfYear, value: 1, to: currentWeekStartDate)!
+        var weekModels: [K5ScheduleWeekViewModel] = []
+
+        for i in weekRangeFromCurrentWeek {
+            let weekStartDate = calendar.date(byAdding: .weekOfYear, value: i, to: currentWeekStartDate)!
+            let weekEndDate = calendar.date(byAdding: .weekOfYear, value: i, to: currentWeekEndDate)!
+            weekModels.append(K5ScheduleWeekViewModel(weekRange: weekStartDate..<weekEndDate, isTodayButtonAvailable: (i == defaultWeekIndex), days: []))
+        }
+
+        self.weekModels = weekModels
     }
 }
 
 extension K5ScheduleViewModel: Refreshable {
 
-    func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.content = "Binding test"
+    public func refresh(completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             completion()
         }
     }
