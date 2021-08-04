@@ -21,9 +21,9 @@ import SwiftUI
 public struct K5HomeroomMySubjectsView: View {
     public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel]
 
-    @Environment(\.containerWidth) private var containerWidth
+    @Environment(\.containerSize) private var containerSize
     // allow even an iPhoneSE2 to hold 2 cards next to each other in landscape
-    private var isCompact: Bool { containerWidth < 600 }
+    private var isCompact: Bool { containerSize.width < 600 }
     private let cardSpacing: CGFloat = 24
 
     public var body: some View {
@@ -32,8 +32,8 @@ public struct K5HomeroomMySubjectsView: View {
                 .font(.bold20)
                 .foregroundColor(.licorice)
                 .padding(.bottom, 16)
-            let cardWidth = calculateCardWidth(containerWidth: containerWidth)
-            JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: containerWidth) { cardIndex in
+            let cardWidth = calculateCardWidth(containerWidth: containerSize.width)
+            JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: containerSize.width) { cardIndex in
                 K5HomeroomSubjectCardView(viewModel: subjectCards[cardIndex], width: cardWidth)
             }.padding(.bottom, cardSpacing)
         }
@@ -72,10 +72,10 @@ struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
     static var previews: some View {
         K5HomeroomMySubjectsView(subjectCards: cards)
             .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
-            .environment(\.containerWidth, 800)
+            .environment(\.containerSize, CGSize(width: 800, height: 0))
         K5HomeroomMySubjectsView(subjectCards: cards)
             .previewDevice(PreviewDevice(stringLiteral: "iPhone SE (2nd generation)"))
-            .environment(\.containerWidth, 370)
+            .environment(\.containerSize, CGSize(width: 370, height: 0))
     }
 }
 

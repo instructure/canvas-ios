@@ -20,8 +20,8 @@ import SwiftUI
 
 public struct K5ScheduleSubjectView: View {
     private let viewModel: K5ScheduleSubjectViewModel
-    @Environment(\.containerWidth) private var containerWidth
-    private var isCompact: Bool { containerWidth < 500 }
+    @Environment(\.containerSize) private var containerSize
+    private var isCompact: Bool { containerSize.width < 500 }
 
     public init(viewModel: K5ScheduleSubjectViewModel) {
         self.viewModel = viewModel
@@ -138,7 +138,7 @@ struct K5ScheduleSubjectView_Previews: PreviewProvider {
             }
         }
         .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
-        .environment(\.containerWidth, 500)
+        .environment(\.containerSize, CGSize(width: 500, height: 0))
 
         VStack {
             ForEach(K5Preview.Data.Schedule.subjects) {

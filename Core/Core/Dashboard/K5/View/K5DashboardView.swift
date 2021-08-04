@@ -33,7 +33,7 @@ public struct K5DashboardView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     content
                         .padding(.horizontal, horizontalMargin)
-                        .environment(\.containerWidth, geometry.size.width - 2 * horizontalMargin)
+                        .environment(\.containerSize, CGSize(width: geometry.size.width - 2 * horizontalMargin, height: geometry.size.height))
                 }
             }
         }
