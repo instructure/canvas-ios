@@ -29,7 +29,7 @@ public struct K5ScheduleWeekView: View {
     }
 
     public var body: some View {
-        CompatibleScrollViewReader { proxy in
+        CompatibleScrollViewReader { scrollProxy in
             List {
                 let dayModels = viewModel.days
                 ForEach(dayModels) { dayModel in
@@ -49,14 +49,16 @@ public struct K5ScheduleWeekView: View {
                     .id(dayModel.weekday)
                 }
             }
+            // This removes the gray highlight from list items on tap
+            .buttonStyle(BorderlessButtonStyle())
             // This adds some extra space on top but without this the content
             // scrolls below the sticky section header. clipped() clips the
             // section header's top for some reason so we can't use that.
             .padding(.top, 1)
             .onAppear(perform: {
-                proxy.scrollTo(viewModel.todayViewId, anchor: .top)
+                scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
             })
-            .overlay(todayButton(scrollProxy: proxy), alignment: .topTrailing)
+            .overlay(todayButton(scrollProxy: scrollProxy), alignment: .topTrailing)
         }
     }
 

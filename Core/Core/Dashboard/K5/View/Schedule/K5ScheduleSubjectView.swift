@@ -64,6 +64,8 @@ public struct K5ScheduleSubjectView: View {
             Divider()
             entries
         }
+        // This makes button inside button work if contained in a list
+        .buttonStyle(BorderlessButtonStyle())
     }
 
     private var largeView: some View {
