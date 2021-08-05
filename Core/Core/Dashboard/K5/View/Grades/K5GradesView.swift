@@ -31,36 +31,51 @@ struct K5GradesView: View {
         VStack(spacing: 0) {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Select").font(.regular13).background(Color.white)
-                    HStack {
-                        Text("Current Grading Period").font(.bold24)
-                        Image.arrowOpenDownLine.rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0)).animation(.easeOut)
+                    Text("Select")
+                        .font(.regular13)
+                        .background(Color.white)
+                        .foregroundColor(.ash)
+                    HStack(spacing: 7) {
+                        Text("Current Grading Period")
+                            .font(.bold24)
+                            .foregroundColor(.licorice)
+                        Image.arrowOpenDownLine
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(.licorice)
+                            .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
+                            .animation(.easeOut)
                         Spacer()
-                    }.onTapGesture {
+                    }
+                    .padding(.bottom, 13)
+                    .onTapGesture {
                         withAnimation {
                             gradeSelectorOpen.toggle()
                         }
                     }
                     Divider()
-                }.zIndex(1).background(Color.white).padding(.top, 0).padding(.bottom, 13)
+                }
+                .zIndex(1)
+                .background(Color.white)
+                .padding(.top, 0)
                 if gradeSelectorOpen {
                     VStack(alignment: .leading) {
-                        ForEach(viewModel.gradingPeriods, id:\.self) { (gradingPeriod: GradingPeriod) in
-                            Text(gradingPeriod.title ?? "").font(.bold20)
+                        ForEach(viewModel.gradingPeriods, id: \.self) { (gradingPeriod: GradingPeriod) in
+                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white)
                             Divider()
                         }
                     }.transition(.move(edge: .top))
                 }
             }.clipped()
             Spacer()
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ForEach(viewModel.grades) {
                     K5GradeCell(with: $0)
                     Divider()
                 }
             }
             Spacer()
-        }.padding(.top, 15).onTapGesture {
+        }.padding().onTapGesture {
             withAnimation {
                 gradeSelectorOpen = false
             }

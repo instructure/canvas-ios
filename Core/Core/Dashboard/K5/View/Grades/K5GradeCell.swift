@@ -55,7 +55,10 @@ struct K5GradeCell: View {
                     HStack {
                         let percentage = gradePercentage
                         GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
-                        Image.arrowOpenRightLine.foregroundColor(.ash).frame(height: 16)
+                        Image.arrowOpenRightLine
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .foregroundColor(.ash)
                     }
                     if viewModel.grade == nil, viewModel.score == nil {
                         Text("Not Graded").font(.regular17)
