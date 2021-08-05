@@ -23,10 +23,10 @@ public struct K5DashboardView: View {
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel = K5DashboardViewModel()
+    private var padding: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
         GeometryReader { geometry in
-            let padding: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16
             VStack(spacing: 0) {
                 TopBarView(viewModel: viewModel.topBarViewModel, leftInset: padding)
                 Divider()
