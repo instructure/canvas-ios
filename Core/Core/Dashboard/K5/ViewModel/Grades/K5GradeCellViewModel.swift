@@ -23,15 +23,17 @@ public struct K5GradeCellViewModel {
     public let a11yId: String
     public let title: String
     public let imageURL: URL?
-    public let grade: Int
+    public let grade: String?
+    public let score: Double?
     public let color: Color
     public let courseID: String
 
-    init(a11yId: String, title: String, imageURL: URL?, grade: Int, color: UIColor?, courseID: String) {
+    init(a11yId: String, title: String, imageURL: URL?, grade: String?, score: Double?, color: UIColor?, courseID: String) {
         self.a11yId = a11yId
         self.title = title
         self.imageURL = imageURL
         self.grade = grade
+        self.score = score
         self.color = ((color != nil) ? Color(color!) : Color(hexString: "#394B58")!)
         self.courseID = courseID
     }

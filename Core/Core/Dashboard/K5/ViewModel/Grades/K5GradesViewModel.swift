@@ -38,11 +38,12 @@ public class K5GradesViewModel: ObservableObject {
 
     private func coursesUpdated() {
         grades.removeAll()
-        grades = courses.map {
+        grades = courses.filter({ !$0.isHomeroomCourse }).map {
             return K5GradeCellViewModel(a11yId: "K5GradeCell.\($0.id)",
                                         title: $0.name ?? "",
                                         imageURL: $0.imageDownloadURL,
-                                        grade: Int($0.enrollments?.first?.computedCurrentScore ?? 0),
+                                        grade: $0.enrollments?.first?.computedCurrentGrade,
+                                        score: $0.enrollments?.first?.computedCurrentScore,
                                         color: $0.color,
                                         courseID: $0.id)
         }

@@ -24,6 +24,16 @@ struct K5GradeCell: View {
     @Environment(\.viewController) var controller
     var viewModel: K5GradeCellViewModel
 
+    var gradePercentage: Double {
+        guard let grade = viewModel.grade else { return viewModel.score ?? 0 }
+        return Double(grade) ?? 0 / 0.05
+    }
+
+    var roundedDisplayGrade: String {
+        guard let score = viewModel.score else { return viewModel.grade ?? "" }
+        return "\(Int(score.rounded()))%"
+    }
+
     init(with viewModel: K5GradeCellViewModel) {
         self.viewModel = viewModel
     }
@@ -39,13 +49,20 @@ struct K5GradeCell: View {
                     }
                 }
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(viewModel.title)
+                    Text(viewModel.title.uppercased())
                         .font(.bold17)
+                        .foregroundColor(viewModel.color)
                     HStack {
-                        GradeProgressBar(value: viewModel.grade, color: viewModel.color).frame(height: 16)
-                        Image.arrowOpenRightLine.foregroundColor(.ash)
+                        let percentage = gradePercentage
+                        GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
+                        Image.arrowOpenRightLine.foregroundColor(.ash).frame(height: 16)
                     }
-                    Text("\(viewModel.grade)" + "%").font(.regular17)
+                    if viewModel.grade == nil, viewModel.score == nil {
+                        Text("Not Graded").font(.regular17)
+                    } else {
+                        Text(roundedDisplayGrade).font(.regular17)
+                    }
+
                 }
             }
         }.frame(minHeight: 72).padding(.top, 13.5).padding(.bottom, 13.5)
@@ -57,12 +74,12 @@ struct K5GradeCell: View {
 
 struct K5GradeCell_Previews: PreviewProvider {
     static var previews: some View {
-        K5GradeCell(with: K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: 55, color: .yellow, courseID: ""))
+        K5GradeCell(with: K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: nil, score: 55, color: .yellow, courseID: ""))
     }
 }
 
 struct GradeProgressBar: View {
-    @State var value: Int
+    @State var percentage: Double
     @State var color: Color
     @State private var animate: Bool = false
 
@@ -72,8 +89,7 @@ struct GradeProgressBar: View {
                 Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
                     .foregroundColor(.clear)
                     .border(color, width: 1)
-
-                Rectangle().frame(width: min(CGFloat(animate ? value : 0)/100.0*geometry.size.width, geometry.size.width),
+                Rectangle().frame(width: abs(min(CGFloat(animate ? percentage : 1)/100.0*geometry.size.width, geometry.size.width)),
                                   height: geometry.size.height, alignment: .leading)
                     .foregroundColor(color)
                     .animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0.55))
@@ -88,6 +104,6 @@ struct GradeProgressBar: View {
 
 struct GradeProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        GradeProgressBar(value: 50, color: .red).frame(height: 16)
+        GradeProgressBar(percentage: 50, color: .red).frame(height: 16)
     }
 }
