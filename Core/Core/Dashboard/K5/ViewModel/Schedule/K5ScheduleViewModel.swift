@@ -25,7 +25,7 @@ public class K5ScheduleViewModel: ObservableObject {
 
     init(weekModels: [K5ScheduleWeekViewModel]) {
         self.weekModels = weekModels
-        self.defaultWeekIndex = weekModels.count / 2 + 1
+        self.defaultWeekIndex = weekModels.count / 2
     }
 
     #endif

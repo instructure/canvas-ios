@@ -19,9 +19,9 @@
 import SwiftUI
 
 public struct K5ScheduleWeekView: View {
-    @Environment(\.containerWidth) private var containerWidth
-    private var isCompact: Bool { containerWidth < 500 }
-    private var horizontalPadding: CGFloat { isCompact ? 16 : 32 }
+    @Environment(\.containerSize) private var containerSize
+    @Environment(\.horizontalPadding) private var horizontalPadding
+    private var isCompact: Bool { containerSize.width < 500 }
     private let viewModel: K5ScheduleWeekViewModel
 
     public init(viewModel: K5ScheduleWeekViewModel) {
@@ -117,7 +117,7 @@ struct K5ScheduleWeekView_Previews: PreviewProvider {
 
         K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0])
             .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
-            .environment(\.containerWidth, 500)
+            .environment(\.containerSize, CGSize(width: 500, height: 0))
     }
 }
 

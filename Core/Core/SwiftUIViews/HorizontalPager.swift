@@ -24,12 +24,14 @@ import SwiftUI
 public struct HorizontalPager<Page: View>: UIViewRepresentable {
     private let pageCount: Int
     private let size: CGSize
+    private let initialPageIndex: Int
     private let proxy: WeakObject<UICollectionView>?
     private let pageFactory: (_ pageIndex: Int) -> Page
 
-    public init(pageCount: Int, size: CGSize, proxy: WeakObject<UICollectionView>? = nil, _ cellFactory: @escaping (_ pageIndex: Int) -> Page) {
+    public init(pageCount: Int, size: CGSize, initialPageIndex: Int = 0, proxy: WeakObject<UICollectionView>? = nil, _ cellFactory: @escaping (_ pageIndex: Int) -> Page) {
         self.pageCount = pageCount
         self.size = size
+        self.initialPageIndex = initialPageIndex
         self.proxy = proxy
         self.pageFactory = cellFactory
     }
@@ -47,12 +49,13 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
     }
 
     public func makeCoordinator() -> Coordinator {
-        HorizontalPager.Coordinator(pageCount: pageCount, pageFactory)
+        HorizontalPager.Coordinator(pageCount: pageCount, initialPageIndex: initialPageIndex, pageFactory)
     }
 
     public func updateUIView(_ collectionView: UICollectionView, context: Self.Context) {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.dataSource = context.coordinator
+        collectionView.delegate = context.coordinator
         collectionView.backgroundColor = .clear
         collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
         proxy?.object = collectionView
@@ -62,12 +65,15 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
 // MARK: - UICollectionView DataSource
 
 extension HorizontalPager {
-    public class Coordinator: NSObject, UICollectionViewDataSource {
+    public class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
         private let pageCount: Int
+        private let initialPageIndex: Int
         private let pageFactory: (_ pageIndex: Int) -> Page
+        private var scrolledToInitialPage = false
 
-        public init(pageCount: Int, _ pageFactory: @escaping (_ pageIndex: Int) -> Page) {
+        public init(pageCount: Int, initialPageIndex: Int, _ pageFactory: @escaping (_ pageIndex: Int) -> Page) {
             self.pageCount = pageCount
+            self.initialPageIndex = initialPageIndex
             self.pageFactory = pageFactory
         }
 
@@ -90,6 +96,13 @@ extension HorizontalPager {
              NSLayoutConstraint.activate(constraints)
 
             return cell
+        }
+
+        public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            if scrolledToInitialPage { return }
+
+            scrolledToInitialPage = true
+            collectionView.scrollToItem(at: IndexPath(row: initialPageIndex, section: 0), at: .centeredHorizontally, animated: false)
         }
     }
 }
@@ -115,16 +128,11 @@ struct HorizontalPager_Previews: PreviewProvider {
 
     static var previews: some View {
         GeometryReader { geometry in
-            HorizontalPager(pageCount: colors.count, size: geometry.size, proxy: collectionViewProxy) { pageIndex in
+            HorizontalPager(pageCount: colors.count, size: geometry.size, initialPageIndex: 1, proxy: collectionViewProxy) { pageIndex in
                 ZStack {
                     colors[pageIndex]
                     Text(verbatim: "\(pageIndex)")
                         .foregroundColor(.white)
-                }
-            }
-            .onAppear {
-                DispatchQueue.main.async {
-                    collectionViewProxy.object?.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
                 }
             }
         }

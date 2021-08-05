@@ -20,19 +20,12 @@ import SwiftUI
 
 public struct K5ScheduleView: View {
     @ObservedObject var viewModel: K5ScheduleViewModel
+    @Environment(\.containerSize) private var containerSize
 
     public var body: some View {
         let collectionViewWrapper = WeakObject<UICollectionView>()
-        GeometryReader { geometry in
-            HorizontalPager(pageCount: viewModel.weekModels.count, size: geometry.size, proxy: collectionViewWrapper) { pageIndex in
-                K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
-                    .environment(\.containerWidth, geometry.size.width)
-            }
-            .onAppear {
-                DispatchQueue.main.async {
-                    collectionViewWrapper.object?.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
-                }
-            }
+        HorizontalPager(pageCount: viewModel.weekModels.count, size: containerSize, initialPageIndex: viewModel.defaultWeekIndex, proxy: collectionViewWrapper) { pageIndex in
+            K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
         }
     }
 }
