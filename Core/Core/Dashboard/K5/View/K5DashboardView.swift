@@ -23,18 +23,16 @@ public struct K5DashboardView: View {
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel = K5DashboardViewModel()
-    private var horizontalMargin: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
         GeometryReader { geometry in
+            let padding: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16
             VStack(spacing: 0) {
-                TopBarView(viewModel: viewModel.topBarViewModel, leftInset: horizontalMargin)
+                TopBarView(viewModel: viewModel.topBarViewModel, leftInset: padding)
                 Divider()
-                ScrollView(.vertical, showsIndicators: false) {
-                    content
-                        .padding(.horizontal, horizontalMargin)
-                        .environment(\.containerSize, CGSize(width: geometry.size.width - 2 * horizontalMargin, height: geometry.size.height))
-                }
+                content
+                    .environment(\.containerSize, geometry.size)
+                    .environment(\.horizontalPadding, padding)
             }
         }
         .navigationBarGlobal()
@@ -54,24 +52,12 @@ public struct K5DashboardView: View {
         VStack(spacing: 0) {
             switch viewModel.topBarViewModel.selectedItemIndex {
             case 0:
-                CircleRefresh { endRefreshing in
-                    viewModel.viewModels.homeroom.refresh(completion: endRefreshing)
-                }
-                K5HomeroomView(viewModel: viewModel.viewModels.homeroom, containerHorizontalMargin: horizontalMargin)
+                K5HomeroomView(viewModel: viewModel.viewModels.homeroom)
             case 1:
-                CircleRefresh { endRefreshing in
-                    viewModel.viewModels.schedule.refresh(completion: endRefreshing)
-                }
                 K5ScheduleView(viewModel: viewModel.viewModels.schedule)
             case 2:
-                CircleRefresh { endRefreshing in
-                    viewModel.viewModels.grades.refresh(completion: endRefreshing)
-                }
                 K5GradesView()
             case 3:
-                CircleRefresh { endRefreshing in
-                    viewModel.viewModels.resources.refresh(completion: endRefreshing)
-                }
                 K5ResourcesView()
             default:
                 SwiftUI.EmptyView()

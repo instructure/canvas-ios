@@ -19,29 +19,35 @@
 import SwiftUI
 
 public struct K5HomeroomView: View {
+    @Environment(\.horizontalPadding) private var horizontalPadding
     @ObservedObject private var viewModel: K5HomeroomViewModel
-    private let containerHorizontalMargin: CGFloat
 
-    public init(viewModel: K5HomeroomViewModel, containerHorizontalMargin: CGFloat) {
+    public init(viewModel: K5HomeroomViewModel) {
         self.viewModel = viewModel
-        self.containerHorizontalMargin = containerHorizontalMargin
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(viewModel.welcomeText)
-                .foregroundColor(.licorice)
-                .font(.bold34)
-                .padding(.top)
-            ForEach(viewModel.announcements) {
-                K5HomeroomAnnouncementView(viewModel: $0)
-                    .padding(.vertical, 23)
-                Divider()
-                    .padding(.horizontal, -containerHorizontalMargin) // make sure the divider fills the parent view horizontally
+        ScrollView(.vertical, showsIndicators: false) {
+            CircleRefresh { endRefreshing in
+                viewModel.refresh(completion: endRefreshing)
             }
 
-            K5HomeroomMySubjectsView(subjectCards: viewModel.subjectCards)
-                .padding(.top, 23)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(viewModel.welcomeText)
+                    .foregroundColor(.licorice)
+                    .font(.bold34)
+                    .padding(.top)
+                ForEach(viewModel.announcements) {
+                    K5HomeroomAnnouncementView(viewModel: $0)
+                        .padding(.vertical, 23)
+                    Divider()
+                        .padding(.horizontal, -horizontalPadding) // make sure the divider fills the parent view horizontally
+                }
+
+                K5HomeroomMySubjectsView(subjectCards: viewModel.subjectCards)
+                    .padding(.top, 23)
+            }
+            .padding(.horizontal, horizontalPadding)
         }
     }
 }
@@ -50,7 +56,7 @@ public struct K5HomeroomView: View {
 
 struct K5HomeroomView_Previews: PreviewProvider {
     static var previews: some View {
-        K5HomeroomView(viewModel: K5HomeroomViewModel(), containerHorizontalMargin: 0).previewLayout(.sizeThatFits)
+        K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
     }
 }
 

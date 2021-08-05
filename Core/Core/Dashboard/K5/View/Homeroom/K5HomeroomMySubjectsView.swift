@@ -21,6 +21,7 @@ import SwiftUI
 public struct K5HomeroomMySubjectsView: View {
     public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel]
 
+    @Environment(\.horizontalPadding) private var horizontalPadding
     @Environment(\.containerSize) private var containerSize
     // allow even an iPhoneSE2 to hold 2 cards next to each other in landscape
     private var isCompact: Bool { containerSize.width < 600 }
@@ -32,7 +33,7 @@ public struct K5HomeroomMySubjectsView: View {
                 .font(.bold20)
                 .foregroundColor(.licorice)
                 .padding(.bottom, 16)
-            let cardWidth = calculateCardWidth(containerWidth: containerSize.width)
+            let cardWidth = calculateCardWidth(containerWidth: containerSize.width - 2 * horizontalPadding)
             JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: containerSize.width) { cardIndex in
                 K5HomeroomSubjectCardView(viewModel: subjectCards[cardIndex], width: cardWidth)
             }.padding(.bottom, cardSpacing)
