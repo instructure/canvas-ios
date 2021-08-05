@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Muokkaa opinto-ohjelmaa";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Elementary-näkymä";
+
+/* No comment provided by engineer. */
 "Email address" = "Sähköpostiosoite";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Kutsu";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Kutsu odottaa";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Kutsu hyväksytty!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Ei kursseja";
 
 /* No comment provided by engineer. */
+"No date selected" = "Päivämääriä ei ole valittu";
+
+/* No comment provided by engineer. */
 "No description" = "Ei kuvausta";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Ei mitään";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ei ilmoittautunut";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ei arvosteltu";

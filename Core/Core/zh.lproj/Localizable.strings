@@ -767,6 +767,9 @@
 "Edit Syllabus" = "编辑教学大纲";
 
 /* No comment provided by engineer. */
+"Elementary View" = "基本视图";
+
+/* No comment provided by engineer. */
 "Email address" = "电子邮件地址";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "邀请";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "邀请处理中";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "已接受邀请！";
@@ -1337,6 +1343,9 @@
 "No Courses" = "没有课程";
 
 /* No comment provided by engineer. */
+"No date selected" = "未选择日期";
+
+/* No comment provided by engineer. */
 "No description" = "无描述";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "无";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "未注册";
 
 /* No comment provided by engineer. */
 "Not Graded" = "未评分";

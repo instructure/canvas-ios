@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Syllabus bewerken";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Elementaire weergave";
+
+/* No comment provided by engineer. */
 "Email address" = "E-mailadres";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Uitnodiging";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Uitnodiging in behandeling";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Uitnodiging geaccepteerd!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Geen cursussen";
 
 /* No comment provided by engineer. */
+"No date selected" = "Geen datum geselecteerd";
+
+/* No comment provided by engineer. */
 "No description" = "Geen beschrijving";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Geen";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Niet ingeschreven";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Niet beoordeeld";

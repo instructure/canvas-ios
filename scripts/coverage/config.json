@@ -19,7 +19,8 @@
     "UITestHelpers\/",
     "\/Teacher\/SpeedGrader\/",
     "SubmissionButtonPresenter.swift",
-    "NSPersistentContainerExtensions.swift"
+    "NSPersistentContainerExtensions.swift",
+    "K5Preview.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

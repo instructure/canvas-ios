@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Breyta kennsluáætlun";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Grunnsýn";
+
+/* No comment provided by engineer. */
 "Email address" = "Netfang";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Boð";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Boð í bið";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Boð samþykkt!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Engin námskeið";
 
 /* No comment provided by engineer. */
+"No date selected" = "Engin dagsetning valin";
+
+/* No comment provided by engineer. */
 "No description" = "Engin lýsing";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Ekkert";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ekki innritaður";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ekki metið";

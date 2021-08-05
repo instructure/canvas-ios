@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Editar programa curricular";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Visualização elementar";
+
+/* No comment provided by engineer. */
 "Email address" = "Endereço de e-mail";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Convite";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Convite pendente";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Convite aceito!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Sem Cursos";
 
 /* No comment provided by engineer. */
+"No date selected" = "Nenhuma data selecionada";
+
+/* No comment provided by engineer. */
 "No description" = "Sem descrição";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Nenhum";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Não matriculado";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Sem nota";

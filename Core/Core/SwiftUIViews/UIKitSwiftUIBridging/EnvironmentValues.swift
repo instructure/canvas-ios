@@ -26,7 +26,11 @@ extension UIViewController: EnvironmentKey {
     public static var defaultValue: WeakViewController { WeakViewController() }
 }
 
-struct ContainerWidth: EnvironmentKey {
+struct ContainerSize: EnvironmentKey {
+    public static var defaultValue: CGSize { .zero }
+}
+
+struct HorizontalPadding: EnvironmentKey {
     public static var defaultValue: CGFloat { 0 }
 }
 
@@ -41,8 +45,19 @@ extension EnvironmentValues {
         set { self[UIViewController.self] = newValue }
     }
 
-    public var containerWidth: CGFloat {
-        get { self[ContainerWidth.self] }
-        set { self[ContainerWidth.self] = newValue }
+    /**
+     This environment value can be used to pass a size read with GeometryReader down the view hierarchy.
+     */
+    public var containerSize: CGSize {
+        get { self[ContainerSize.self] }
+        set { self[ContainerSize.self] = newValue }
+    }
+
+    /**
+     Useful for passing the expected horizontal padding to child views if padding cannot be set on the root view for some reason.
+     */
+    public var horizontalPadding: CGFloat {
+        get { self[HorizontalPadding.self] }
+        set { self[HorizontalPadding.self] = newValue }
     }
 }

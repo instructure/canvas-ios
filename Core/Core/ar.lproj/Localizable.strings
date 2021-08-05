@@ -767,6 +767,9 @@
 "Edit Syllabus" = "تحرير المنهج الدراسي";
 
 /* No comment provided by engineer. */
+"Elementary View" = "طريقة عرض المدارس الابتدائية";
+
+/* No comment provided by engineer. */
 "Email address" = "عنوان البريد الإلكتروني";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "دعوة";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "الدعوة معلقة";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "تم قبول الدعوة!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "لا يوجد أي مساق";
 
 /* No comment provided by engineer. */
+"No date selected" = "لا يوجد تاريخ محدد";
+
+/* No comment provided by engineer. */
 "No description" = "بلا وصف";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "بلا";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "غير مسجل";
 
 /* No comment provided by engineer. */
 "Not Graded" = "لم يتم التقييم";

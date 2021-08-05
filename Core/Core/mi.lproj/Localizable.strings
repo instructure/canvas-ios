@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Whakatika Marautanga";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Tiro Tuatahi";
+
+/* No comment provided by engineer. */
 "Email address" = "Īmēra wāhitau";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "pōwhiri";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Kei te tatari te tono";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Kua whakāetia te tono!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Kāore he Akoranga";
 
 /* No comment provided by engineer. */
+"No date selected" = "Kaore he rā i tīpakohia";
+
+/* No comment provided by engineer. */
 "No description" = "Kāore he whakaahuatanga";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Kaore";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Kaore i whakaurutia";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Kāore i kōeketia";

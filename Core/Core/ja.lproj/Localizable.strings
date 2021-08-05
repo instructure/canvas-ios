@@ -767,6 +767,9 @@
 "Edit Syllabus" = "シラバスを編集";
 
 /* No comment provided by engineer. */
+"Elementary View" = "エレメンタリービュー";
+
+/* No comment provided by engineer. */
 "Email address" = "メールアドレス";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "招待状";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "招待保留中";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "招待が受け入れられました！";
@@ -1337,6 +1343,9 @@
 "No Courses" = "コースはありません";
 
 /* No comment provided by engineer. */
+"No date selected" = "選択された日付なし";
+
+/* No comment provided by engineer. */
 "No description" = "説明なし";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "なし";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "未登録";
 
 /* No comment provided by engineer. */
 "Not Graded" = "採点されていません";

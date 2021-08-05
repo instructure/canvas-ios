@@ -17,13 +17,25 @@
 //
 
 import SwiftUI
-import XCTest
-@testable import Core
 
-class K5DashboardNavigationViewModelTests: CoreTestCase {
+public class K5ScheduleSubjectViewModel: Identifiable {
+    public let name: String
+    public let color: Color
+    public let image: Image?
+    public let entries: [K5ScheduleEntryViewModel]
+    public var hasTapAction: Bool { tapAction != nil }
 
-    func testId() {
-        let testee = K5DashboardNavigationViewModel(type: .homeroom, icon: .addAudioLine, label: Text("homeroom"))
-        XCTAssertEqual(testee.id, "homeroom")
+    private let tapAction: (() -> Void)?
+
+    public init(name: String, color: Color, image: Image?, entries: [K5ScheduleEntryViewModel], tapAction: (() -> Void)?) {
+        self.name = name
+        self.color = color
+        self.image = image
+        self.entries = entries
+        self.tapAction = tapAction
+    }
+
+    public func viewTapped() {
+        tapAction?()
     }
 }

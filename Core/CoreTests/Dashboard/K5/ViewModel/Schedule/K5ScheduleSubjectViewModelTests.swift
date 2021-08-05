@@ -16,19 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import XCTest
+@testable import Core
 
-struct K5DashboardNavigationViewModel: Identifiable {
-    enum ContentType: String {
-        case homeroom
-        case schedule
-        case grades
-        case resources
+class K5ScheduleSubjectViewModelTests: CoreTestCase {
+
+    func testInvokesTapAction() {
+        let tapActionExpectation = expectation(description: "Tap action triggered")
+        let testee = K5ScheduleSubjectViewModel(name: "", color: .red, image: nil, entries: []) {
+            tapActionExpectation.fulfill()
+        }
+
+        testee.viewTapped()
+
+        wait(for: [tapActionExpectation], timeout: 0.1)
     }
 
-    var id: String { type.rawValue }
-
-    let type: ContentType
-    let icon: Image
-    let label: Text
+    func testHasTapActionProperty() {
+        XCTAssertTrue(K5ScheduleSubjectViewModel(name: "", color: .red, image: nil, entries: []) {}.hasTapAction)
+        XCTAssertFalse(K5ScheduleSubjectViewModel(name: "", color: .red, image: nil, entries: [], tapAction: nil).hasTapAction)
+    }
 }

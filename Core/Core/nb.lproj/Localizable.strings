@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Rediger emneoversikt";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Grunnskolevisning";
+
+/* No comment provided by engineer. */
 "Email address" = "E-postadresse";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Invitasjon";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Invitasjon venter";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Invitasjonen ble akseptert!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Ingen emner";
 
 /* No comment provided by engineer. */
+"No date selected" = "Ingen dato er valgt";
+
+/* No comment provided by engineer. */
 "No description" = "Ingen beskrivelse";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Ingen";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ikke påmeldt";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ikke karaktersatt";

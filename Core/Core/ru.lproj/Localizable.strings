@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Редактировать программу";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Простой вид";
+
+/* No comment provided by engineer. */
 "Email address" = "Адрес электронной почты";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Приглашение";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Приглашение ожидается";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Приглашение принято!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Курсы отсутствуют";
 
 /* No comment provided by engineer. */
+"No date selected" = "Дата не выбрана";
+
+/* No comment provided by engineer. */
 "No description" = "Описание отсутствует";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Нет";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Не зарегистрирован";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Оценка не выставлена";

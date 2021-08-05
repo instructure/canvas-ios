@@ -767,6 +767,9 @@
 "Edit Syllabus" = "แก้ไขหลักสูตร";
 
 /* No comment provided by engineer. */
+"Elementary View" = "มุมมองระดับประถมศึกษา";
+
+/* No comment provided by engineer. */
 "Email address" = "อีเมลแอดเดรส";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "คำเชิญ";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "กำลังรอคำเชิญ";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "ตอบรับคำเชิญแล้ว!";
@@ -1337,6 +1343,9 @@
 "No Courses" = "ไม่มีบทเรียน";
 
 /* No comment provided by engineer. */
+"No date selected" = "ไม่ได้เลือกวันที่ไว้";
+
+/* No comment provided by engineer. */
 "No description" = "ไม่มีรายละเอียด";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "ไม่มี";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "ไม่ได้ลงทะเบียน";
 
 /* No comment provided by engineer. */
 "Not Graded" = "ไม่ได้ลงเกรด";

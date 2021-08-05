@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Uredi učni načrt predmeta";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Osnovni pogled";
+
+/* No comment provided by engineer. */
 "Email address" = "E-poštni naslov";
 
 /* Description for email communication channel */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Povabilo";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Povabilo na čakanju";
 
 /* No comment provided by engineer. */
 "Invite accepted!" = "Povabilo sprejeto.";
@@ -1337,6 +1343,9 @@
 "No Courses" = "Ni predmetov";
 
 /* No comment provided by engineer. */
+"No date selected" = "Izbran ni noben datum";
+
+/* No comment provided by engineer. */
 "No description" = "Brez opisa";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "None" = "Brez";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Ni vpisan";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno";
