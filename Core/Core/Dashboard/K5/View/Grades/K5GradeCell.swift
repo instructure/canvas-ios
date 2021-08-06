@@ -68,7 +68,9 @@ struct K5GradeCell: View {
 
                 }
             }
-        }.frame(minHeight: 72).padding(.top, 13.5).padding(.bottom, 13.5)
+        }
+        .frame(minHeight: 72).padding(.top, 13.5).padding(.bottom, 13.5)
+        .contentShape(Rectangle())
         .onTapGesture {
             env.router.route(to: "/courses/\(viewModel.courseID)/grades/", from: controller, options: .push)
         }

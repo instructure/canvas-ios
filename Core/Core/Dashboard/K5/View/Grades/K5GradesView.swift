@@ -48,6 +48,7 @@ struct K5GradesView: View {
                         Spacer()
                     }
                     .padding(.bottom, 13)
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         withAnimation {
                             gradeSelectorOpen.toggle()
@@ -66,7 +67,8 @@ struct K5GradesView: View {
                         }
                     }.transition(.move(edge: .top))
                 }
-            }.clipped()
+            }
+            .clipped()
             Spacer()
             ScrollView(showsIndicators: false) {
                 ForEach(viewModel.grades) {
@@ -75,7 +77,10 @@ struct K5GradesView: View {
                 }
             }
             Spacer()
-        }.padding().onTapGesture {
+        }
+        .padding()
+        .contentShape(Rectangle())
+        .onTapGesture {
             withAnimation {
                 gradeSelectorOpen = false
             }
