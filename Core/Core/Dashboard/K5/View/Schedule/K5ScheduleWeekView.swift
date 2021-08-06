@@ -35,10 +35,13 @@ public struct K5ScheduleWeekView: View {
                 ForEach(dayModels) { dayModel in
                     Section(header: header(for: dayModel)) {
                         VStack(spacing: 24) {
-                            if dayModel.subjects.isEmpty {
+                            switch (dayModel.subjects) {
+                            case .empty:
                                 nothingPlannedView
-                            } else {
-                                ForEach(dayModel.subjects) { subjectModel in
+                            case .loading:
+                                loadingView
+                            case .data(let subjects):
+                                ForEach(subjects) { subjectModel in
                                     K5ScheduleSubjectView(viewModel: subjectModel)
                                 }
                             }
@@ -110,6 +113,12 @@ public struct K5ScheduleWeekView: View {
             .frame(maxWidth: .infinity)
             .background(RoundedRectangle(cornerRadius: 6).stroke(Color.tiara, lineWidth: 4))
             .cornerRadius(3)
+    }
+
+    private var loadingView: some View {
+        CircleProgress()
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
     }
 }
 

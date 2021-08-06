@@ -19,16 +19,35 @@
 /**
  Model for a single day in the schedule view, this holds multiple subjects.
  */
-public class K5ScheduleDayViewModel: Identifiable {
+public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
+    public enum Subject {
+        case loading
+        case empty
+        case data([K5ScheduleSubjectViewModel])
+    }
     public let weekday: String
     public let date: String
-    public let subjects: [K5ScheduleSubjectViewModel]
+    @Published public var subjects: Subject
 
-    public init(weekday: String, date: String, subjects: [K5ScheduleSubjectViewModel]) {
+    public init(weekday: String, date: String) {
+        self.weekday = weekday
+        self.date = date
+        self.subjects = .loading
+    }
+
+#if DEBUG
+
+    // MARK: - Preview Support
+
+    public init(weekday: String, date: String, subjects: Subject) {
         self.weekday = weekday
         self.date = date
         self.subjects = subjects
     }
+
+    // MARK: Preview Support -
+
+#endif
 }
 
 extension K5ScheduleDayViewModel: Equatable {

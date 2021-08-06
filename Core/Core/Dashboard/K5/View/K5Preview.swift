@@ -98,22 +98,22 @@ struct K5Preview {
 
             static let weeks = [
                 K5ScheduleWeekViewModel(weekRange: Date()..<Date(), isTodayButtonAvailable: true, days: [
-                    K5ScheduleDayViewModel(weekday: "Monday", date: "September 24", subjects: [K5Preview.Data.Schedule.subjects[0]]),
-                    K5ScheduleDayViewModel(weekday: "Today", date: "September 25", subjects: K5Preview.Data.Schedule.subjects),
-                    K5ScheduleDayViewModel(weekday: "Tomorrow", date: "September 26", subjects: [K5Preview.Data.Schedule.subjects[1]]),
-                    K5ScheduleDayViewModel(weekday: "Thursday", date: "September 27", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Friday", date: "September 28", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Saturday", date: "September 29", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Sunday", date: "September 30", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Monday", date: "September 24", subjects: .data([K5Preview.Data.Schedule.subjects[0]])),
+                    K5ScheduleDayViewModel(weekday: "Today", date: "September 25", subjects: .data(K5Preview.Data.Schedule.subjects)),
+                    K5ScheduleDayViewModel(weekday: "Tomorrow", date: "September 26", subjects: .data([K5Preview.Data.Schedule.subjects[1]])),
+                    K5ScheduleDayViewModel(weekday: "Thursday", date: "September 27", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Friday", date: "September 28", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Saturday", date: "September 29", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Sunday", date: "September 30", subjects: .empty),
                 ]),
                 K5ScheduleWeekViewModel(weekRange: Date()..<Date(), isTodayButtonAvailable: false, days: [
-                    K5ScheduleDayViewModel(weekday: "Monday", date: "October 1", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Tuesday", date: "October 2", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Wednesday", date: "October 3", subjects: [K5Preview.Data.Schedule.subjects[1]]),
-                    K5ScheduleDayViewModel(weekday: "Thursday", date: "October 4", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Friday", date: "October 5", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Saturday", date: "October 6", subjects: []),
-                    K5ScheduleDayViewModel(weekday: "Sunday", date: "October 7", subjects: []),
+                    K5ScheduleDayViewModel(weekday: "Monday", date: "October 1", subjects: .loading),
+                    K5ScheduleDayViewModel(weekday: "Tuesday", date: "October 2", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Wednesday", date: "October 3", subjects: .data([K5Preview.Data.Schedule.subjects[1]])),
+                    K5ScheduleDayViewModel(weekday: "Thursday", date: "October 4", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Friday", date: "October 5", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Saturday", date: "October 6", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Sunday", date: "October 7", subjects: .empty),
                 ]),
             ]
 
