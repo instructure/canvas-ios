@@ -29,9 +29,16 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
     public let date: String
     @Published public var subjects: Subject
 
-    public init(weekday: String, date: String) {
-        self.weekday = weekday
-        self.date = date
+    public init(dayRange: Range<Date>, calendar: Calendar) {
+        if calendar.isDateInToday(dayRange.lowerBound) {
+            self.weekday = NSLocalizedString("Today", comment: "")
+        } else if calendar.isDateInTomorrow(dayRange.lowerBound) {
+            self.weekday = NSLocalizedString("Tomorrow", comment: "")
+        } else {
+            self.weekday = dayRange.lowerBound.weekdayName
+        }
+        
+        self.date = dayRange.lowerBound.dayInMonth
         self.subjects = .loading
     }
 

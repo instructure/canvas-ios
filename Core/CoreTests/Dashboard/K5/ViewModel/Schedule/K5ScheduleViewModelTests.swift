@@ -22,7 +22,7 @@ import XCTest
 class K5ScheduleViewModelTests: CoreTestCase {
 
     func testWeekRangeCalculation() {
-        var calendar = Calendar.init(identifier: .iso8601)
+        var calendar = Calendar(identifier: .iso8601)
         calendar.timeZone = TimeZone(secondsFromGMT: 0)!
         let testee = K5ScheduleViewModel(currentDate: Date(fromISOString: "2021-12-31T12:00:00+00:00")!, calendar: calendar)
 

@@ -38,7 +38,16 @@ public class K5ScheduleViewModel: ObservableObject {
         for i in weekRangeFromCurrentWeek {
             let weekStartDate = calendar.date(byAdding: .weekOfYear, value: i, to: currentWeekStartDate)!
             let weekEndDate = calendar.date(byAdding: .weekOfYear, value: i, to: currentWeekEndDate)!
-            weekModels.append(K5ScheduleWeekViewModel(weekRange: weekStartDate..<weekEndDate, isTodayButtonAvailable: (i == defaultWeekIndex), days: []))
+            let dayModels: [K5ScheduleDayViewModel] = {
+                var dayModels: [K5ScheduleDayViewModel] = []
+                for dayIndex in 0..<7 {
+                    let dayStartDate = calendar.date(byAdding: .day, value: dayIndex, to: weekStartDate)!
+                    let dayEndDate = calendar.date(byAdding: .day, value: 1, to: dayStartDate)!
+                    dayModels.append(K5ScheduleDayViewModel(dayRange: dayStartDate..<dayEndDate, calendar: calendar))
+                }
+                return dayModels
+            }()
+            weekModels.append(K5ScheduleWeekViewModel(weekRange: weekStartDate..<weekEndDate, isTodayButtonAvailable: (i == defaultWeekIndex), days: dayModels))
         }
 
         self.weekModels = weekModels
