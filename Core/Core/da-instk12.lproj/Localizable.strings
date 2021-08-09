@@ -767,6 +767,9 @@
 "Edit Syllabus" = "Rediger fagplanen";
 
 /* No comment provided by engineer. */
+"Elementary View" = "Folkeskole-visning";
+
+/* No comment provided by engineer. */
 "Email address" = "E-mailadresse";
 
 /* Description for email communication channel */
@@ -1338,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "No Courses" = "Ingen fag";
+
+/* No comment provided by engineer. */
+"No date selected" = "Ingen dato valgt";
 
 /* No comment provided by engineer. */
 "No description" = "Ingen beskrivelse";
