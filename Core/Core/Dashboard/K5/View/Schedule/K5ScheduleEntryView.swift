@@ -39,7 +39,11 @@ public struct K5ScheduleEntryView: View {
                     }
 
                     if !viewModel.labels.isEmpty {
-                        labels
+                        if #available(iOS 14, *) {
+                            labels.textCase(.uppercase)
+                        } else {
+                            labels
+                        }
                     }
                 }
                 .padding(.leading, 12)
@@ -98,7 +102,7 @@ public struct K5ScheduleEntryView: View {
     }
 
     private var labels: some View {
-        HStack(spacing: 4) {
+        FlowStack { leading, top in
             ForEach(viewModel.labels) {
                 Text($0.text)
                     .padding(.horizontal, 8)
@@ -107,6 +111,10 @@ public struct K5ScheduleEntryView: View {
                     .foregroundColor($0.color)
                     .font(.regular12)
                     .background(Capsule().stroke($0.color))
+                    .padding(.trailing, 4)
+                    .padding(.bottom, 4)
+                    .alignmentGuide(.leading, computeValue: leading)
+                    .alignmentGuide(.top, computeValue: top)
             }
         }
         .padding(.bottom, 7)

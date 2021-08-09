@@ -77,8 +77,31 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                     let pointsTemplate = NSLocalizedString("g_pts", bundle: .core, comment: "")
                     return String.localizedStringWithFormat(pointsTemplate, points)
                 }()
+                let labels: [K5ScheduleEntryViewModel.LabelViewModel] = {
+                    guard let submissionStates = plannable.submissions?.value1 else { return [] }
+                    var labels: [K5ScheduleEntryViewModel.LabelViewModel] = []
 
-                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: [], score: pointsText, dueText: dueText, checkboxChanged: nil, action: {})
+                    if submissionStates.graded == true {
+                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Graded", comment: ""), color: .ash))
+                    }
+                    if submissionStates.has_feedback == true {
+                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Feedback", comment: ""), color: .ash))
+                    }
+                    if submissionStates.late == true {
+                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Late", comment: ""), color: .crimson))
+                    }
+                    if submissionStates.redo_request == true {
+                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Redo", comment: ""), color: .crimson))
+                    }
+                    if submissionStates.missing == true {
+                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Missing", comment: ""), color: .crimson))
+                    }
+
+                    // TODO: replies
+                    return labels
+                }()
+
+                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: labels, score: pointsText, dueText: dueText, checkboxChanged: nil, action: {})
             }
             subjects.append(K5ScheduleSubjectViewModel(name: subject.name, color: subject.color, image: subject.image, entries: entries, tapAction: nil))
         }
