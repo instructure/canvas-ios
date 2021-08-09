@@ -112,7 +112,8 @@ public struct K5ScheduleEntryView: View {
                     .font(.regular12)
                     .background(Capsule().stroke($0.color))
                     .padding(.trailing, 4)
-                    .padding(.bottom, 4)
+                    .padding(.bottom, 2)
+                    .padding(.top, 2)
                     .alignmentGuide(.leading, computeValue: leading)
                     .alignmentGuide(.top, computeValue: top)
             }

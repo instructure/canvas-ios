@@ -84,17 +84,20 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                     if submissionStates.graded == true {
                         labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Graded", comment: ""), color: .ash))
                     }
-                    if submissionStates.has_feedback == true {
-                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Feedback", comment: ""), color: .ash))
-                    }
                     if submissionStates.late == true {
                         labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Late", comment: ""), color: .crimson))
+                    }
+                    if submissionStates.has_feedback == true {
+                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Feedback", comment: ""), color: .ash))
                     }
                     if submissionStates.redo_request == true {
                         labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Redo", comment: ""), color: .crimson))
                     }
                     if submissionStates.missing == true {
                         labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Missing", comment: ""), color: .crimson))
+                    }
+                    if submissionStates.submitted == true && submissionStates.late == false {
+                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Submitted", comment: ""), color: .ash))
                     }
 
                     // TODO: replies
