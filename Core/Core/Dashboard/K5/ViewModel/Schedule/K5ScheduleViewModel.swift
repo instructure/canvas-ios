@@ -43,7 +43,7 @@ public class K5ScheduleViewModel: ObservableObject {
                 for dayIndex in 0..<7 {
                     let dayStartDate = calendar.date(byAdding: .day, value: dayIndex, to: weekStartDate)!
                     let dayEndDate = calendar.date(byAdding: .day, value: 1, to: dayStartDate)!
-                    dayModels.append(K5ScheduleDayViewModel(dayRange: dayStartDate..<dayEndDate, calendar: calendar))
+                    dayModels.append(K5ScheduleDayViewModel(range: dayStartDate..<dayEndDate, calendar: calendar))
                 }
                 return dayModels
             }()

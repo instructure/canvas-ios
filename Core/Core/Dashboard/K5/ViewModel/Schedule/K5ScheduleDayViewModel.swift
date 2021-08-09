@@ -25,21 +25,23 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
         case empty
         case data([K5ScheduleSubjectViewModel])
     }
+    public let range: Range<Date>
     public let weekday: String
     public let date: String
     @Published public var subjects: Subject
 
-    public init(dayRange: Range<Date>, calendar: Calendar) {
-        if calendar.isDateInToday(dayRange.lowerBound) {
+    public init(range: Range<Date>, calendar: Calendar) {
+        if calendar.isDateInToday(range.lowerBound) {
             self.weekday = NSLocalizedString("Today", comment: "")
-        } else if calendar.isDateInTomorrow(dayRange.lowerBound) {
+        } else if calendar.isDateInTomorrow(range.lowerBound) {
             self.weekday = NSLocalizedString("Tomorrow", comment: "")
         } else {
-            self.weekday = dayRange.lowerBound.weekdayName
+            self.weekday = range.lowerBound.weekdayName
         }
         
-        self.date = dayRange.lowerBound.dayInMonth
+        self.date = range.lowerBound.dayInMonth
         self.subjects = .loading
+        self.range = range
     }
 
 #if DEBUG
@@ -50,6 +52,7 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
         self.weekday = weekday
         self.date = date
         self.subjects = subjects
+        self.range = Date()..<Date()
     }
 
     // MARK: Preview Support -

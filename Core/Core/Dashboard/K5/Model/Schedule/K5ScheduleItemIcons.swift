@@ -18,23 +18,22 @@
 
 import SwiftUI
 
-/**
- Model to group all to-do items related to a single subject.
- */
-public class K5ScheduleSubjectViewModel: Identifiable {
-    public let subject: K5ScheduleSubject
-    public let entries: [K5ScheduleEntryViewModel]
-    public var hasTapAction: Bool { tapAction != nil }
+public extension APIPlannable {
+    var k5ScheduleIcon: Image {
 
-    private let tapAction: (() -> Void)?
-
-    public init(name: String, color: Color, image: Image?, entries: [K5ScheduleEntryViewModel], tapAction: (() -> Void)?) {
-        self.subject = K5ScheduleSubject(name: name, color: color, image: image)
-        self.entries = entries
-        self.tapAction = tapAction
-    }
-
-    public func viewTapped() {
-        tapAction?()
+        switch plannableType {
+        case .announcement:
+            return Image.announcementLine
+        case .assignment:
+            return Image.assignmentLine
+        case .calendar_event:
+            return Image.calendarTab
+        case .discussion_topic:
+            return Image.discussionLine
+        case .planner_note:
+            return Image.noteLine
+        default:
+            return Image.addLine
+        }
     }
 }

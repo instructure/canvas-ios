@@ -127,7 +127,12 @@ public extension Date {
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMMd", options: 0, locale: NSLocale.current)
         return dateFormatter
     }()
-
+    static var timeOnlyFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
 
     var dateOnlyString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
@@ -158,5 +163,8 @@ public extension Date {
      */
     var dayInMonth: String {
         Date.dayInMonthFormatter.string(from: self)
+    }
+    var timeString: String {
+        Date.timeOnlyFormatter.string(from: self)
     }
 }

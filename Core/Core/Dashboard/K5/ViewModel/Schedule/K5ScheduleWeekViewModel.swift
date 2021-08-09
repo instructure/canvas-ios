@@ -16,16 +16,73 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public class K5ScheduleWeekViewModel {
+public class K5ScheduleWeekViewModel: ObservableObject {
     public let todayViewId = NSLocalizedString("Today", comment: "")
 
     public let weekRange: Range<Date>
     public let isTodayButtonAvailable: Bool
-    public let days: [K5ScheduleDayViewModel]
+    @Published public var days: [K5ScheduleDayViewModel]
+
+    private var downloadTask: APITask?
+    private var isDownloadFinished: Bool {
+        guard let downloadTask = downloadTask else { return false }
+        return downloadTask.state == .completed
+    }
 
     public init(weekRange: Range<Date>, isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
         self.weekRange = weekRange
         self.isTodayButtonAvailable = isTodayButtonAvailable
         self.days = days
+    }
+
+    public func viewDidAppear() {
+        if isDownloadFinished {
+            return
+        }
+
+        let request = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
+        downloadTask = AppEnvironment.shared.api.makeRequest(request) { [weak self] entities, _, _ in
+            self?.downloadFinished(entities: entities ?? [])
+        }
+    }
+
+    private func downloadFinished(entities: [APIPlannable]) {
+        let activeItems = entities.filter {
+            guard let override = $0.planner_override else { return true }
+            return !override.dismissed && !override.marked_complete
+        }
+        for day in days {
+            let plannables = activeItems.filter { day.range.contains($0.plannable_date) }
+            performUIUpdate { day.subjects = self.subjects(from: plannables) }
+        }
+    }
+
+    private func subjects(from plannables: [APIPlannable]) -> K5ScheduleDayViewModel.Subject {
+        if plannables.isEmpty {
+            return .empty
+        }
+
+        let plannablesBySubjects: [K5ScheduleSubject: [APIPlannable]] = Dictionary(grouping: plannables) { plannable in
+            K5ScheduleSubject(name: plannable.context_name ?? NSLocalizedString("To Do", comment: ""), color: .electric, image: nil)
+        }
+
+        var subjects: [K5ScheduleSubjectViewModel] = []
+
+        for (subject, plannables) in plannablesBySubjects {
+            let entries: [K5ScheduleEntryViewModel] = plannables.map { plannable in
+                let dueTemplate = NSLocalizedString("Due: %@", bundle: .core, comment: "")
+                let dueText = String.localizedStringWithFormat(dueTemplate, plannable.plannable_date.timeString)
+                let pointsText: String? = {
+                    guard let points = plannable.pointsPossible else { return nil }
+                    let pointsTemplate = NSLocalizedString("g_pts", bundle: .core, comment: "")
+                    return String.localizedStringWithFormat(pointsTemplate, points)
+                }()
+
+                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: [], score: pointsText, dueText: dueText, checkboxChanged: nil, action: {})
+            }
+            subjects.append(K5ScheduleSubjectViewModel(name: subject.name, color: subject.color, image: subject.image, entries: entries, tapAction: nil))
+        }
+
+        return .data(subjects)
     }
 }

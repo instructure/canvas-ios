@@ -22,7 +22,7 @@ public struct K5ScheduleWeekView: View {
     @Environment(\.containerSize) private var containerSize
     @Environment(\.horizontalPadding) private var horizontalPadding
     private var isCompact: Bool { containerSize.width < 500 }
-    private let viewModel: K5ScheduleWeekViewModel
+    @ObservedObject private var viewModel: K5ScheduleWeekViewModel
 
     public init(viewModel: K5ScheduleWeekViewModel) {
         self.viewModel = viewModel
@@ -34,20 +34,9 @@ public struct K5ScheduleWeekView: View {
                 let dayModels = viewModel.days
                 ForEach(dayModels) { dayModel in
                     Section(header: header(for: dayModel)) {
-                        VStack(spacing: 24) {
-                            switch (dayModel.subjects) {
-                            case .empty:
-                                nothingPlannedView
-                            case .loading:
-                                loadingView
-                            case .data(let subjects):
-                                ForEach(subjects) { subjectModel in
-                                    K5ScheduleSubjectView(viewModel: subjectModel)
-                                }
-                            }
-                        }
-                        .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
-                        .padding(.bottom, dayModels.last == dayModel ? 24 : 0)
+                        K5ScheduleDayView(viewModel: dayModel)
+                            .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
+                            .padding(.bottom, dayModels.last == dayModel ? 24 : 0)
                     }
                     .id(dayModel.weekday)
                 }
@@ -60,6 +49,7 @@ public struct K5ScheduleWeekView: View {
             .padding(.top, 1)
             .onAppear(perform: {
                 scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
+                viewModel.viewDidAppear()
             })
             .overlay(todayButton(scrollProxy: scrollProxy), alignment: .topTrailing)
         }
@@ -103,22 +93,6 @@ public struct K5ScheduleWeekView: View {
             .frame(minHeight: 93)
 
         return background.overlay(content, alignment: .topLeading)
-    }
-
-    private var nothingPlannedView: some View {
-        Text("Nothing planned yet", bundle: .core)
-            .font(.regular17)
-            .foregroundColor(.licorice)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .background(RoundedRectangle(cornerRadius: 6).stroke(Color.tiara, lineWidth: 4))
-            .cornerRadius(3)
-    }
-
-    private var loadingView: some View {
-        CircleProgress()
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
     }
 }
 

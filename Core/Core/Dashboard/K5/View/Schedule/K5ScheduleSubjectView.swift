@@ -30,7 +30,7 @@ public struct K5ScheduleSubjectView: View {
     public var body: some View {
         content
         .padding(.horizontal, 2)
-        .background(RoundedRectangle(cornerRadius: 6).stroke(viewModel.color, lineWidth: 4))
+        .background(RoundedRectangle(cornerRadius: 6).stroke(viewModel.subject.color, lineWidth: 4))
         .cornerRadius(3)
     }
 
@@ -76,12 +76,12 @@ public struct K5ScheduleSubjectView: View {
                         .font(.bold13)
                         .frame(minHeight: 25)
                     ZStack {
-                        if let image = viewModel.image {
+                        if let image = viewModel.subject.image {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                         }
-                        viewModel.color.opacity(0.75)
+                        viewModel.subject.color.opacity(0.75)
                     }
                 }
                 .padding(.vertical, 2)
@@ -96,8 +96,8 @@ public struct K5ScheduleSubjectView: View {
     }
 
     private var subjectName: some View {
-        Text(viewModel.name)
-            .foregroundColor(viewModel.color)
+        Text(viewModel.subject.name)
+            .foregroundColor(viewModel.subject.color)
     }
 
     private var disclosureIndicator: some View {
@@ -110,7 +110,7 @@ public struct K5ScheduleSubjectView: View {
     }
 
     private var verticalSeparator: some View {
-        viewModel.color
+        viewModel.subject.color
             .frame(width: 2)
     }
 

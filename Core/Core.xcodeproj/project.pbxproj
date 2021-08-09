@@ -883,6 +883,9 @@
 		CFCBB899266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */; };
 		CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE214B2656895E00E3B32A /* Bounds.swift */; };
 		CFD5814626B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD5814526B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift */; };
+		CFD6F6C026C12AEC00F5C445 /* K5ScheduleDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6F6BF26C12AEC00F5C445 /* K5ScheduleDayView.swift */; };
+		CFD6F6C526C13E3C00F5C445 /* K5ScheduleSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6F6C426C13E3C00F5C445 /* K5ScheduleSubject.swift */; };
+		CFD6F6C926C15C5500F5C445 /* K5ScheduleItemIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6F6C826C15C5500F5C445 /* K5ScheduleItemIcons.swift */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */; };
 		CFE7B42326B19F3F0092593D /* K5ScheduleSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */; };
@@ -2057,6 +2060,9 @@
 		CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardView.swift; sourceTree = "<group>"; };
 		CFCE214B2656895E00E3B32A /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		CFD5814526B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectViewModel.swift; sourceTree = "<group>"; };
+		CFD6F6BF26C12AEC00F5C445 /* K5ScheduleDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleDayView.swift; sourceTree = "<group>"; };
+		CFD6F6C426C13E3C00F5C445 /* K5ScheduleSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubject.swift; sourceTree = "<group>"; };
+		CFD6F6C826C15C5500F5C445 /* K5ScheduleItemIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleItemIcons.swift; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModelTests.swift; sourceTree = "<group>"; };
 		CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectView.swift; sourceTree = "<group>"; };
@@ -4150,6 +4156,7 @@
 				CF53F738266FBB0000FA58D7 /* Announcements */,
 				CF53F736266FBA2A00FA58D7 /* DueItems */,
 				CF53F742266FBB9200FA58D7 /* MissingSubmissions */,
+				CFD6F6C326C13E1500F5C445 /* Schedule */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4205,6 +4212,7 @@
 		CF60CC2F2645520500C1C173 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				CFD6F6BF26C12AEC00F5C445 /* K5ScheduleDayView.swift */,
 				CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */,
 				CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */,
 				CF60CC3C2645526B00C1C173 /* K5ScheduleView.swift */,
@@ -4427,6 +4435,15 @@
 				CFCE214B2656895E00E3B32A /* Bounds.swift */,
 			);
 			path = ViewPreferences;
+			sourceTree = "<group>";
+		};
+		CFD6F6C326C13E1500F5C445 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				CFD6F6C426C13E3C00F5C445 /* K5ScheduleSubject.swift */,
+				CFD6F6C826C15C5500F5C445 /* K5ScheduleItemIcons.swift */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		CFFA6CE826553DB800B47380 /* TopBar */ = {
@@ -5424,6 +5441,7 @@
 				E888382A24DDD20D00DDF691 /* SequenceExtensions.swift in Sources */,
 				7DA25FD423F72136005D2121 /* ID.swift in Sources */,
 				7DA2608323F72303005D2121 /* PeopleListViewController.swift in Sources */,
+				CFD6F6C926C15C5500F5C445 /* K5ScheduleItemIcons.swift in Sources */,
 				7DA25FA623F72136005D2121 /* APICourse.swift in Sources */,
 				CF60CC4626458C0800C1C173 /* K5HomeroomMySubjectsView.swift in Sources */,
 				7DA25FF923F7226E005D2121 /* DocViewerAnnotationProvider.swift in Sources */,
@@ -5586,6 +5604,7 @@
 				7DA260D823F72359005D2121 /* EmptyViewController.swift in Sources */,
 				EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */,
 				7DA25FE223F721DA005D2121 /* UserAgent.swift in Sources */,
+				CFD6F6C026C12AEC00F5C445 /* K5ScheduleDayView.swift in Sources */,
 				7D264DBD253767C9007CDD90 /* TransactionExtensions.swift in Sources */,
 				7DA260A923F72352005D2121 /* GetAssignments.swift in Sources */,
 				B11AEBB524070F9400B736D6 /* PlannerFilterViewController.swift in Sources */,
@@ -5867,6 +5886,7 @@
 				7DA260D523F72359005D2121 /* DynamicLabel.swift in Sources */,
 				7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */,
 				7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */,
+				CFD6F6C526C13E3C00F5C445 /* K5ScheduleSubject.swift in Sources */,
 				3B4D892C2450A8E9004ED120 /* AttachmentCardsViewController.swift in Sources */,
 				7DA2603C23F722D9005D2121 /* Context.swift in Sources */,
 				7DA25FB923F72136005D2121 /* APILatePolicy.swift in Sources */,
