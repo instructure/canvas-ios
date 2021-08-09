@@ -92,8 +92,8 @@ struct K5Preview {
             ]
 
             static let subjects = [
-                K5ScheduleSubjectViewModel(name: "MATH", color: Color(hexString: "#FF8277")!, image: Image("PandaBlocks", bundle: .core), entries: entries, tapAction: {}),
-                K5ScheduleSubjectViewModel(name: "TODO", color: .electric, image: nil, entries: entries, tapAction: nil),
+                K5ScheduleSubjectViewModel(name: "Math", color: Color(hexString: "#FF8277")!, image: Image("PandaBlocks", bundle: .core), entries: entries, tapAction: {}),
+                K5ScheduleSubjectViewModel(name: "To Do", color: .electric, image: nil, entries: entries, tapAction: nil),
             ]
 
             static let weeks = [

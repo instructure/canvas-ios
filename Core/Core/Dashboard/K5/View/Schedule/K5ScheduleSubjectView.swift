@@ -95,9 +95,15 @@ public struct K5ScheduleSubjectView: View {
         }
     }
 
+    @ViewBuilder
     private var subjectName: some View {
-        Text(viewModel.subject.name)
-            .foregroundColor(viewModel.subject.color)
+        let text = Text(viewModel.subject.name).foregroundColor(viewModel.subject.color)
+
+        if #available(iOS 14, *) {
+            text.textCase(.uppercase)
+        } else {
+            text
+        }
     }
 
     private var disclosureIndicator: some View {
