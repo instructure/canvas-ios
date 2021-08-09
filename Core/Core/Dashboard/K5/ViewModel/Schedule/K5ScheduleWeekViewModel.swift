@@ -63,7 +63,15 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         }
 
         let plannablesBySubjects: [K5ScheduleSubject: [APIPlannable]] = Dictionary(grouping: plannables) { plannable in
-            K5ScheduleSubject(name: plannable.context_name ?? NSLocalizedString("To Do", comment: ""), color: .electric, image: nil)
+            let name: String = {
+                if plannable.plannableType == .calendar_event {
+                    return NSLocalizedString("To Do", comment: "")
+                } else {
+                    return plannable.context_name ?? NSLocalizedString("To Do", comment: "")
+                }
+            }()
+
+            return K5ScheduleSubject(name: name, color: .electric, image: nil)
         }
 
         var subjects: [K5ScheduleSubjectViewModel] = []
@@ -108,6 +116,8 @@ public class K5ScheduleWeekViewModel: ObservableObject {
             }
             subjects.append(K5ScheduleSubjectViewModel(name: subject.name, color: subject.color, image: subject.image, entries: entries, tapAction: nil))
         }
+
+        subjects.sort { $0.subject.name < $1.subject.name }
 
         return .data(subjects)
     }
