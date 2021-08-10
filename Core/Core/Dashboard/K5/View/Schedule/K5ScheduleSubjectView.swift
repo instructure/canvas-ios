@@ -50,6 +50,7 @@ public struct K5ScheduleSubjectView: View {
                 HStack(spacing: 0) {
                     subjectName
                         .font(.bold17)
+                        .padding(.top, 5)
                         .frame(minHeight: 50)
                     Spacer()
 
@@ -74,6 +75,7 @@ public struct K5ScheduleSubjectView: View {
                 VStack(spacing: 0) {
                     subjectName
                         .font(.bold13)
+                        .padding(.top, 3)
                         .frame(minHeight: 25)
                     ZStack {
                         if let image = viewModel.subject.image {
