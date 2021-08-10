@@ -45,6 +45,12 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = context.coordinator
+        collectionView.delegate = context.coordinator
+        proxy?.object = collectionView
+
         return collectionView
     }
 
@@ -53,12 +59,7 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
     }
 
     public func updateUIView(_ collectionView: UICollectionView, context: Self.Context) {
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.dataSource = context.coordinator
-        collectionView.delegate = context.coordinator
-        collectionView.backgroundColor = .clear
-        collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
-        proxy?.object = collectionView
+        // TODO: Fix rotation
     }
 }
 
