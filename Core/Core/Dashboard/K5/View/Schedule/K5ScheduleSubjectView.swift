@@ -83,7 +83,7 @@ public struct K5ScheduleSubjectView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                         }
-                        viewModel.subject.color.opacity(0.75)
+                        viewModel.subject.color.opacity(viewModel.subject.image == nil ? 1 : 0.75)
                     }
                 }
                 .padding(.vertical, 2)

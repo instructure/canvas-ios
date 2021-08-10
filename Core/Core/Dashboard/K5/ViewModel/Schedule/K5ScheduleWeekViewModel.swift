@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
+
 public class K5ScheduleWeekViewModel: ObservableObject {
     public let todayViewId = NSLocalizedString("Today", comment: "")
 
@@ -23,11 +25,14 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     public let isTodayButtonAvailable: Bool
     @Published public var days: [K5ScheduleDayViewModel]
 
-    private var downloadTask: APITask?
-    private var isDownloadFinished: Bool {
-        guard let downloadTask = downloadTask else { return false }
-        return downloadTask.state == .completed
+    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+        self?.coursesRefreshed()
     }
+    private var plannableDownloadTask: APITask?
+    private var isDownloadStarted = false
+
+    private var plannables: [APIPlannable] = []
+    private var courseColorsByCourseIDs: [String: Color] = [:]
 
     public init(weekRange: Range<Date>, isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
         self.weekRange = weekRange
@@ -36,25 +41,40 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     }
 
     public func viewDidAppear() {
-        if isDownloadFinished {
+        if isDownloadStarted {
             return
         }
 
-        let request = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
-        downloadTask = AppEnvironment.shared.api.makeRequest(request) { [weak self] entities, _, _ in
-            self?.downloadFinished(entities: entities ?? [])
+        isDownloadStarted = true
+        let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
+        plannableDownloadTask = AppEnvironment.shared.api.makeRequest(plannablesRequest) { [weak self] plannables, _, _ in
+            // Filter to active todo items
+            self?.plannables = (plannables ?? []).filter {
+                guard let override = $0.planner_override else { return true }
+                return !override.dismissed && !override.marked_complete
+            }
+            self?.courses.refresh()
         }
     }
 
-    private func downloadFinished(entities: [APIPlannable]) {
-        let activeItems = entities.filter {
-            guard let override = $0.planner_override else { return true }
-            return !override.dismissed && !override.marked_complete
+    private func coursesRefreshed() {
+        if courses.pending || !courses.requested {
+            return
         }
+
+        setupCourseColors()
+
         for day in days {
-            let plannables = activeItems.filter { day.range.contains($0.plannable_date) }
-            performUIUpdate { day.subjects = self.subjects(from: plannables) }
+            let plannablesForDay = plannables.filter { day.range.contains($0.plannable_date) }
+            let subjects = self.subjects(from: plannablesForDay)
+            performUIUpdate { day.subjects = subjects }
         }
+    }
+
+    private func setupCourseColors() {
+        let coursesByIDs = Dictionary(grouping: courses.all) { $0.id }
+        let courseColorsByCourseIDs = coursesByIDs.mapValues { Color($0[0].color) }
+        self.courseColorsByCourseIDs = courseColorsByCourseIDs
     }
 
     private func subjects(from plannables: [APIPlannable]) -> K5ScheduleDayViewModel.Subject {
@@ -70,8 +90,14 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                     return plannable.context_name ?? NSLocalizedString("To Do", comment: "")
                 }
             }()
-
-            return K5ScheduleSubject(name: name, color: .electric, image: nil)
+            let color: Color = {
+                if let courseID = plannable.course_id?.value, let color = self.courseColorsByCourseIDs[courseID] {
+                    return color
+                } else {
+                    return Color(Brand.shared.primary)
+                }
+            }()
+            return K5ScheduleSubject(name: name, color: color, image: nil)
         }
 
         var subjects: [K5ScheduleSubjectViewModel] = []
