@@ -65,6 +65,7 @@ public struct K5ScheduleEntryView: View {
             }
             .padding(.trailing, 15)
         })
+        .frame(minHeight: 66)
         .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -118,8 +119,8 @@ public struct K5ScheduleEntryView: View {
                     .alignmentGuide(.top, computeValue: top)
             }
         }
-        .padding(.bottom, 7)
-        .padding(.top, 7)
+        .padding(.bottom, 5)
+        .padding(.top, 5)
     }
 
     private var due: some View {

@@ -78,8 +78,14 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
         for (subject, plannables) in plannablesBySubjects {
             let entries: [K5ScheduleEntryViewModel] = plannables.map { plannable in
-                let dueTemplate = NSLocalizedString("Due: %@", bundle: .core, comment: "")
-                let dueText = String.localizedStringWithFormat(dueTemplate, plannable.plannable_date.timeString)
+                let dueText: String = {
+                    if plannable.plannable?.all_day == true {
+                        return NSLocalizedString("All Day", comment: "")
+                    } else {
+                        let dueTemplate = NSLocalizedString("Due: %@", bundle: .core, comment: "")
+                        return String.localizedStringWithFormat(dueTemplate, plannable.plannable_date.timeString)
+                    }
+                }()
                 let pointsText: String? = {
                     guard let points = plannable.pointsPossible else { return nil }
                     let pointsTemplate = NSLocalizedString("g_pts", bundle: .core, comment: "")
