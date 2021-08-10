@@ -62,7 +62,10 @@ struct K5GradesView: View {
                 if gradeSelectorOpen {
                     VStack(alignment: .leading) {
                         ForEach(viewModel.gradingPeriods, id: \.self) { (gradingPeriod: GradingPeriod) in
-                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white)
+                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white).contentShape(Rectangle()).onTapGesture {
+                                guard let gradingPeriodID = gradingPeriod.id else { return }
+                                viewModel.didSelect(gradingPeriodID: gradingPeriodID)
+                            }
                             Divider()
                         }
                     }.transition(.move(edge: .top))

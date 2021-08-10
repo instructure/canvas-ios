@@ -24,8 +24,17 @@ public class K5GradesViewModel: ObservableObject {
     private let env = AppEnvironment.shared
     // MARK: Data Sources
     private var studentID = ""
+    private var currentGradingPeriodID = ""
     private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
         self?.coursesUpdated()
+    }
+    public lazy var enrollments = env.subscribe(GetEnrollments(
+        context: .currentUser,
+        gradingPeriodID: currentGradingPeriodID,
+        types: [ "StudentEnrollment" ],
+        states: [ .active ]
+    )) { [weak self] in
+        self?.enrollmentsUpdated()
     }
     // MARK: Refresh
     private var refreshCompletion: (() -> Void)?
@@ -51,12 +60,32 @@ public class K5GradesViewModel: ObservableObject {
         finishRefresh()
     }
 
+    private func enrollmentsUpdated() {
+        guard enrollments.requested, !enrollments.pending, !enrollments.hasNextPage else { return }
+        grades.removeAll()
+        grades = enrollments.map { (enrollment: Enrollment) in
+            return K5GradeCellViewModel(a11yId: "K5GradeCell.\(enrollment.course?.id ?? "")",
+                                        title: enrollment.course?.name ?? "",
+                                        imageURL: enrollment.course?.imageDownloadURL,
+                                        grade: enrollment.computedCurrentGrade,
+                                        score: enrollment.computedCurrentScore,
+                                        color: enrollment.course?.color,
+                                        courseID: enrollment.course?.id ?? "")
+        }
+        finishRefresh()
+    }
+
     private func finishRefresh() {
         forceRefresh = false
         performUIUpdate {
             self.refreshCompletion?()
             self.refreshCompletion = nil
         }
+    }
+
+    public func didSelect(gradingPeriodID: String) {
+        currentGradingPeriodID = gradingPeriodID
+        enrollments.exhaust(force: true)
     }
 }
 
