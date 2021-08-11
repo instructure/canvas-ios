@@ -19,18 +19,17 @@
 public class K5GradesViewModel: ObservableObject {
 
     @Published public private(set) var grades: [K5GradeCellViewModel] = []
-    @Published public private(set) var gradingPeriods: [GradingPeriod] = []
+    @Published public private(set) var gradingPeriods: [K5GradingPeriod] = []
+    @Published public private(set) var currentGradingPeriod: K5GradingPeriod
 
     private let env = AppEnvironment.shared
-    // MARK: Data Sources
     private var studentID = ""
-    private var currentGradingPeriodID = ""
     private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
         self?.coursesUpdated()
     }
     public lazy var enrollments = env.subscribe(GetEnrollments(
         context: .currentUser,
-        gradingPeriodID: currentGradingPeriodID,
+        gradingPeriodID: currentGradingPeriod.periodID,
         types: [ "StudentEnrollment" ],
         states: [ .active ]
     )) { [weak self] in
@@ -42,11 +41,13 @@ public class K5GradesViewModel: ObservableObject {
 
     init() {
         studentID = env.currentSession?.userID ?? ""
+        currentGradingPeriod = K5GradingPeriod(periodID: nil, title: "Current grading period")
         courses.refresh()
     }
 
     private func coursesUpdated() {
         grades.removeAll()
+        gradingPeriods = [K5GradingPeriod(periodID: nil, title: "current grading period")]
         grades = courses.filter({ !$0.isHomeroomCourse }).map {
             return K5GradeCellViewModel(a11yId: "K5GradeCell.\($0.id)",
                                         title: $0.name ?? "",
@@ -56,7 +57,8 @@ public class K5GradesViewModel: ObservableObject {
                                         color: $0.color,
                                         courseID: $0.id)
         }
-        gradingPeriods = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
+        let gradingPeriodModels = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
+        gradingPeriods.append(contentsOf: gradingPeriodModels.map { return K5GradingPeriod(periodID: $0.id, title: $0.title) })
         finishRefresh()
     }
 
@@ -83,9 +85,9 @@ public class K5GradesViewModel: ObservableObject {
         }
     }
 
-    public func didSelect(gradingPeriodID: String) {
-        currentGradingPeriodID = gradingPeriodID
-        enrollments.exhaust(force: true)
+    public func didSelect(gradingPeriod: K5GradingPeriod) {
+        currentGradingPeriod = gradingPeriod
+        reloadData()
     }
 }
 
@@ -94,6 +96,25 @@ extension K5GradesViewModel: Refreshable {
     public func refresh(completion: @escaping () -> Void) {
         forceRefresh = true
         refreshCompletion = completion
-        courses.refresh(force: true)
+        reloadData()
+    }
+
+    func reloadData() {
+        guard currentGradingPeriod.periodID != nil else {
+            courses.exhaust(force: true)
+            return
+        }
+        enrollments.exhaust(force: true)
+    }
+}
+
+public class K5GradingPeriod: NSObject {
+    
+    let periodID: String?
+    let title: String?
+
+    init(periodID: String?, title: String?) {
+        self.periodID = periodID
+        self.title = title
     }
 }

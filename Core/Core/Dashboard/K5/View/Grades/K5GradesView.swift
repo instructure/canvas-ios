@@ -36,7 +36,7 @@ struct K5GradesView: View {
                         .background(Color.white)
                         .foregroundColor(.ash)
                     HStack(spacing: 7) {
-                        Text("Current Grading Period")
+                        Text(viewModel.currentGradingPeriod.title ?? "")
                             .font(.bold24)
                             .foregroundColor(.licorice)
                         Image.arrowOpenDownLine
@@ -61,10 +61,13 @@ struct K5GradesView: View {
                 .padding(.top, 0)
                 if gradeSelectorOpen {
                     VStack(alignment: .leading) {
-                        ForEach(viewModel.gradingPeriods, id: \.self) { (gradingPeriod: GradingPeriod) in
+                        ForEach(viewModel.gradingPeriods, id: \.self) {
+                            let gradingPeriod = $0
                             Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white).contentShape(Rectangle()).onTapGesture {
-                                guard let gradingPeriodID = gradingPeriod.id else { return }
-                                viewModel.didSelect(gradingPeriodID: gradingPeriodID)
+                                viewModel.didSelect(gradingPeriod: gradingPeriod)
+                                withAnimation {
+                                    gradeSelectorOpen = false
+                                }
                             }
                             Divider()
                         }
