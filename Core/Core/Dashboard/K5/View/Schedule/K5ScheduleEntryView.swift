@@ -19,6 +19,8 @@
 import SwiftUI
 
 public struct K5ScheduleEntryView: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: K5ScheduleEntryViewModel
 
     public init(viewModel: K5ScheduleEntryViewModel) {
@@ -26,7 +28,9 @@ public struct K5ScheduleEntryView: View {
     }
 
     public var body: some View {
-        Button(action: viewModel.actionTriggered, label: {
+        Button(action: {
+            viewModel.itemTapped(router: env.router, viewController: viewController)
+        }, label: {
             HStack(spacing: 0) {
                 leading
                 icon
@@ -100,6 +104,7 @@ public struct K5ScheduleEntryView: View {
             .frame(width: 16, height: 16)
             .foregroundColor(.ash)
             .padding(.leading, 10)
+            .hidden(!viewModel.isTappable)
     }
 
     private var labels: some View {

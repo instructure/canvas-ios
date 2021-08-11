@@ -33,12 +33,11 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
     public let score: String?
     public let dueText: String
 
+    public var isTappable: Bool { route != nil }
+    private let route: URL?
     private let checkboxChanged: ((_ isSelected: Bool) -> Void)?
-    private let action: () -> Void
 
-    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String,
-                checkboxChanged: ((_ isSelected: Bool) -> Void)?,
-                action: @escaping () -> Void) {
+    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String, route: URL?, checkboxChanged: ((_ isSelected: Bool) -> Void)?) {
         self.leading = leading
         self.icon = icon
         self.title = title
@@ -46,8 +45,8 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
         self.labels = labels
         self.score = score
         self.dueText = dueText
+        self.route = route
         self.checkboxChanged = checkboxChanged
-        self.action = action
     }
 
     public func checkboxTapped() {
@@ -59,8 +58,9 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
         checkboxChanged?(!isChecked)
     }
 
-    public func actionTriggered() {
-        action()
+    public func itemTapped(router: Router, viewController: WeakViewController) {
+        guard let route = route else { return }
+        router.route(to: route, from: viewController.value)
     }
 }
 

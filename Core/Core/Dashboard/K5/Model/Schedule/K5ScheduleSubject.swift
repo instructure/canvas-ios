@@ -18,10 +18,11 @@
 
 import SwiftUI
 
-public struct K5ScheduleSubject{
+public struct K5ScheduleSubject {
     public let name: String
     public let color: Color
     public let image: Image?
+    public let route: URL?
 }
 
 extension K5ScheduleSubject: Hashable {

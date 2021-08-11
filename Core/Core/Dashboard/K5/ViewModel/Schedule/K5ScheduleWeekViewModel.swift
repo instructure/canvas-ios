@@ -97,7 +97,11 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                     return Color(Brand.shared.primary)
                 }
             }()
-            return K5ScheduleSubject(name: name, color: color, image: nil)
+            let route : URL? = {
+                guard let context = plannable.context, context.contextType != .user else { return nil }
+                return URL(string: context.pathComponent)
+            }()
+            return K5ScheduleSubject(name: name, color: color, image: nil, route: route)
         }
 
         var subjects: [K5ScheduleSubjectViewModel] = []
@@ -144,9 +148,10 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                     return labels
                 }()
 
-                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: labels, score: pointsText, dueText: dueText, checkboxChanged: nil, action: {})
+                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: labels, score: pointsText, dueText: dueText, route: plannable.htmlURL, checkboxChanged: nil)
             }
-            subjects.append(K5ScheduleSubjectViewModel(name: subject.name, color: subject.color, image: subject.image, entries: entries, tapAction: nil))
+
+            subjects.append(K5ScheduleSubjectViewModel(subject: subject, entries: entries))
         }
 
         subjects.sort { $0.subject.name < $1.subject.name }

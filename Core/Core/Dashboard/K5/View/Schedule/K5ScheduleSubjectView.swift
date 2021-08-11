@@ -20,6 +20,8 @@ import SwiftUI
 
 public struct K5ScheduleSubjectView: View {
     private let viewModel: K5ScheduleSubjectViewModel
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var viewController
     @Environment(\.containerSize) private var containerSize
     private var isCompact: Bool { containerSize.width < 500 }
 
@@ -46,7 +48,9 @@ public struct K5ScheduleSubjectView: View {
 
     private var smallView: some View {
         VStack(spacing: 0) {
-            Button(action: viewModel.viewTapped, label: {
+            Button(action: {
+                viewModel.viewTapped(router: env.router, viewController: viewController)
+            }, label: {
                 HStack(spacing: 0) {
                     subjectName
                         .font(.bold17)
@@ -54,14 +58,14 @@ public struct K5ScheduleSubjectView: View {
                         .frame(minHeight: 50)
                     Spacer()
 
-                    if viewModel.hasTapAction {
+                    if viewModel.isTappable {
                         disclosureIndicator
                     }
                 }
                 .padding(.leading, 18)
                 .padding(.trailing, 15)
             })
-            .disabled(!viewModel.hasTapAction)
+            .disabled(!viewModel.isTappable)
             Divider()
             entries
         }
@@ -71,7 +75,9 @@ public struct K5ScheduleSubjectView: View {
 
     private var largeView: some View {
         HStack(spacing: 0) {
-            Button(action: viewModel.viewTapped, label: {
+            Button(action: {
+                viewModel.viewTapped(router: env.router, viewController: viewController)
+            }, label: {
                 VStack(spacing: 0) {
                     subjectName
                         .font(.bold13)
@@ -90,7 +96,7 @@ public struct K5ScheduleSubjectView: View {
                 .frame(width: 147)
                 .clipped()
             })
-            .disabled(!viewModel.hasTapAction)
+            .disabled(!viewModel.isTappable)
             verticalSeparator
             entries
                 .padding(.vertical, 2)

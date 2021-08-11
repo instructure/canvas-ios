@@ -64,8 +64,8 @@ struct K5Preview {
                     labels: [],
                     score: nil,
                     dueText: "To Do: 1:59 PM",
-                    checkboxChanged: nil,
-                    action: {}),
+                    route: nil,
+                    checkboxChanged: nil),
                 K5ScheduleEntryViewModel(
                     leading: .checkbox(isChecked: true),
                     icon: .assignmentLine,
@@ -77,8 +77,8 @@ struct K5Preview {
                     ],
                     score: "5 pts",
                     dueText: "Due: 11:59 PM",
-                    checkboxChanged: nil,
-                    action: {}),
+                    route: nil,
+                    checkboxChanged: nil),
                 K5ScheduleEntryViewModel(
                     leading: .warning,
                     icon: .assignmentLine,
@@ -87,13 +87,13 @@ struct K5Preview {
                     labels: [],
                     score: "5 pts",
                     dueText: "Due Yesterday",
-                    checkboxChanged: nil,
-                    action: {}),
+                    route: nil,
+                    checkboxChanged: nil),
             ]
 
             static let subjects = [
-                K5ScheduleSubjectViewModel(name: "Math", color: Color(hexString: "#FF8277")!, image: Image("PandaBlocks", bundle: .core), entries: entries, tapAction: {}),
-                K5ScheduleSubjectViewModel(name: "To Do", color: .electric, image: nil, entries: entries, tapAction: nil),
+                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "Math", color: Color(hexString: "#FF8277")!, image: Image("PandaBlocks", bundle: .core), route: URL(string: "https://i.com")), entries: entries),
+                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "To Do", color: .electric, image: nil, route: nil), entries: entries),
             ]
 
             static let weeks = [

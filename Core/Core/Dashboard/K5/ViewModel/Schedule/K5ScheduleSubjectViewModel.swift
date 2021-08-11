@@ -24,17 +24,19 @@ import SwiftUI
 public class K5ScheduleSubjectViewModel: Identifiable {
     public let subject: K5ScheduleSubject
     public let entries: [K5ScheduleEntryViewModel]
-    public var hasTapAction: Bool { tapAction != nil }
+    public var isTappable: Bool { subject.route != nil }
 
-    private let tapAction: (() -> Void)?
-
-    public init(name: String, color: Color, image: Image?, entries: [K5ScheduleEntryViewModel], tapAction: (() -> Void)?) {
-        self.subject = K5ScheduleSubject(name: name, color: color, image: image)
+    public init(subject: K5ScheduleSubject, entries: [K5ScheduleEntryViewModel]) {
+        self.subject = subject
         self.entries = entries
-        self.tapAction = tapAction
     }
 
-    public func viewTapped() {
-        tapAction?()
+    func profileButtonPressed(router: Router, viewController: WeakViewController) {
+        router.route(to: "/profile", from: viewController, options: .modal())
+    }
+
+    public func viewTapped(router: Router, viewController: WeakViewController) {
+        guard let route = subject.route else { return }
+        router.route(to: route, from: viewController.value)
     }
 }
