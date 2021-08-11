@@ -71,6 +71,7 @@ public struct K5ScheduleEntryView: View {
         })
         .frame(minHeight: 66)
         .fixedSize(horizontal: false, vertical: true)
+        .disabled(!viewModel.isTappable)
     }
 
     @ViewBuilder
