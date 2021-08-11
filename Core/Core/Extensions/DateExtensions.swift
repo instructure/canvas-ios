@@ -112,6 +112,15 @@ public extension Date {
         return formatter
     }()
     /**
+     Date formatter to create a from-to string between two times within a day because no date component is displayed only hours and minutes.
+     */
+    static var timeIntervalFormatter: DateIntervalFormatter = {
+        let formatter = DateIntervalFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    /**
      This date formatter displays only the name of the weekday. E.g.: Monday, Saturday.
      */
     static var weekdayFormatter: DateFormatter = {
@@ -151,6 +160,12 @@ public extension Date {
     }
     func intervalStringTo(_ to: Date) -> String {
         return Date.intervalDateTimeFormatter.string(from: self, to: to)
+    }
+    /**
+     E.g.: 8:30-10:30 PM
+     */
+    func timeIntervalString(to date: Date) -> String {
+        Date.timeIntervalFormatter.string(from: self, to: date)
     }
     /**
      E.g.: Monday, Saturday.
