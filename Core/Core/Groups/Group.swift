@@ -54,7 +54,7 @@ public final class Group: NSManagedObject, WriteableModel {
     }
 
     public var isActive: Bool {
-        courseID == nil || getCourse() != nil
+        courseID == nil || getCourse()?.enrollments?.contains(where: {$0.state == .active}) == true
     }
 
     @discardableResult
