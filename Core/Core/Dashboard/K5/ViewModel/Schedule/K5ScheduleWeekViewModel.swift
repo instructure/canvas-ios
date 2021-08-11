@@ -51,7 +51,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
             // Filter to active todo items
             self?.plannables = (plannables ?? []).filter {
                 guard let override = $0.planner_override else { return true }
-                return !override.dismissed && !override.marked_complete
+                return !override.dismissed
             }
             self?.courses.refresh()
         }
@@ -149,8 +149,9 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                     // TODO: replies
                     return labels
                 }()
+                let isCompleted = (plannable.planner_override?.marked_complete == true)
 
-                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: labels, score: pointsText, dueText: dueText, route: plannable.htmlURL, checkboxChanged: nil)
+                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: isCompleted), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: labels, score: pointsText, dueText: dueText, route: plannable.htmlURL, checkboxChanged: nil)
             }
 
             subjects.append(K5ScheduleSubjectViewModel(subject: subject, entries: entries))
