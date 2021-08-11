@@ -18,10 +18,9 @@
 
 import XCTest
 
-public enum K5CourseCard: String, ElementWrapper {
-    case courseCard
-    
-    public static func courseCard(name: String) -> Element {
-        app.find(label: name)
+public enum K5CourseCard: ElementWrapper {
+
+    public static func courseCard(id: String) -> Element {
+        app.find(id: "DashboardCourseCell.\(id)")
     }
 }

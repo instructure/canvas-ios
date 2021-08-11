@@ -23,7 +23,7 @@ public enum TabBar: String, ElementWrapper {
 
     // parent only
     case coursesTab, alertsTab
-    
-    //K5 specific
+
+    // K5 specific
     case myCanvasTab
 }

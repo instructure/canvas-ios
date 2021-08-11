@@ -21,20 +21,26 @@ import XCTest
 
 open class K5UITestCase: CoreUITestCase {
     let env = AppEnvironment()
-    override open var experimentalFeatures: [ExperimentalFeature]{ return [ExperimentalFeature.K5Dashboard]}
-    
+    override open var experimentalFeatures: [ExperimentalFeature] { return [ExperimentalFeature.K5Dashboard]}
+
+    open func resetAppStateForK5() {
+        app.terminate()
+        launch()
+        sleep(5)
+    }
+
     open override func setUp() {
         super.setUp()
     }
-    
+
     open override var homeScreen: Element {
         return TabBar.dashboardTab
     }
-    
+
     open override var user: UITestUser? {
         return .readStudentK5
     }
-    
+
     open override func tearDown() {
         env.userDefaults?.isElementaryViewEnabled = false
         super.tearDown()

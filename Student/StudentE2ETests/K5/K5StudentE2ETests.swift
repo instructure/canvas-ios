@@ -22,16 +22,39 @@ import TestsFoundation
 
 class K5StudentE2ETests: K5UITestCase {
 
-    func testStudentK5(){
-        app.swipeDown()
-        //enableElementaryView()
-        XCTAssertTrue(K5NavigationBar.homeroom.exists())
-        //XCTAssertTrue(K5CourseCard.courseCard(name: "Math").exists())
-        app.find(labelContaining: "MATH").waitToExist()
-        
-        //app.find(id: "Math").waitToExist()
-        //app.find(id: "DashboardCourseCell.21025").waitToExist()
-        
-        //Dashboard.courseCard(id: "21025").waitToExist()
+    func testStudentK5() {
+        setUpK5()
+        K5CourseCard.courseCard(id: "21025").waitToExist()
+        K5CourseCard.courseCard(id: "21025").tap()
+        CourseNavigation.discussions.waitToExist()
+        CourseNavigation.grades.waitToExist()
+        CourseNavigation.people.waitToExist()
+        CourseNavigation.syllabus.waitToExist()
+        XCTAssertEqual(CourseNavigation.syllabus.label(), "Important Info")
+
+        CourseNavigation.discussions.tap()
+        app.find(labelContaining: "K5 disco").waitToExist()
+        NavBar.backButton.tap()
+
+        CourseNavigation.people.tap()
+        CoursePeople.person(name: "iOS Student K5").waitToExist()
+
+        NavBar.backButton.tap()
+        NavBar.backButton.tap()
+        K5NavigationBar.homeroom.waitToExist()
+        app.find(labelContaining: "My Subjects").waitToExist()
+    }
+
+    func testK5Reset() {
+        XCTAssertFalse(K5CourseCard.courseCard(id: "21025").exists(), "K5 course seems to be visible before app reset")
+        setUpK5()
+        K5CourseCard.courseCard(id: "21025").waitToExist()
+    }
+
+    func setUpK5() {
+        K5NavigationBar.homeroom.waitToExist()
+        super.resetAppStateForK5()
+        pullToRefresh()
+        K5NavigationBar.homeroom.waitToExist()
     }
 }
