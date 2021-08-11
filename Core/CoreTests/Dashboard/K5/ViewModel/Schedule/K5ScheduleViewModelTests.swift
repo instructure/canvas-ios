@@ -32,4 +32,17 @@ class K5ScheduleViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.weekModels[testee.defaultWeekIndex].weekRange, Date(fromISOString: "2021-12-27T00:00:00+00:00")!..<Date(fromISOString: "2022-01-03T00:00:00+00:00")!)
         XCTAssertEqual(testee.weekModels[27].weekRange, Date(fromISOString: "2022-01-03T00:00:00+00:00")!..<Date(fromISOString: "2022-01-10T00:00:00+00:00")!)
     }
+
+    func testTodayButtonVisibility() {
+        var calendar = Calendar(identifier: .iso8601)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        let currentDate = Date(fromISOString: "2021-12-31T12:00:00+00:00")!
+        let testee = K5ScheduleViewModel(currentDate: currentDate, calendar: calendar)
+        let currentWeekRange = Date(fromISOString: "2021-12-27T00:00:00+00:00")!..<Date(fromISOString: "2022-01-03T00:00:00+00:00")!
+
+        for weekModel in testee.weekModels {
+            let isCurrentWeek = (weekModel.weekRange == currentWeekRange)
+            XCTAssertEqual(weekModel.isTodayButtonAvailable, isCurrentWeek)
+        }
+    }
 }

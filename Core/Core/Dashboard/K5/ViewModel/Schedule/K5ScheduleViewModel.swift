@@ -47,7 +47,8 @@ public class K5ScheduleViewModel: ObservableObject {
                 }
                 return dayModels
             }()
-            weekModels.append(K5ScheduleWeekViewModel(weekRange: weekStartDate..<weekEndDate, isTodayButtonAvailable: (i == defaultWeekIndex), days: dayModels))
+            let isTodayButtonVisible = (currentDate >= weekStartDate && currentDate < weekEndDate)
+            weekModels.append(K5ScheduleWeekViewModel(weekRange: weekStartDate..<weekEndDate, isTodayButtonAvailable: isTodayButtonVisible, days: dayModels))
         }
 
         self.weekModels = weekModels
