@@ -85,20 +85,16 @@ extension HorizontalPager {
 
         public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let embeddedViewTag = 382576
-            let wrapperView = UIHostingController(rootView: pageFactory(indexPath.row)).view!
-            wrapperView.translatesAutoresizingMaskIntoConstraints = false
-            wrapperView.tag = embeddedViewTag
 
             let cell = collectionView.dequeue(withReuseIdentifier: "cell", for: indexPath)
             cell.viewWithTag(embeddedViewTag)?.removeFromSuperview()
-            cell.addSubview(wrapperView)
-            cell.translatesAutoresizingMaskIntoConstraints = false
+            cell.backgroundColor = .red
 
-            let constraints = [
-                wrapperView.widthAnchor.constraint(equalToConstant: collectionView.frame.size.width),
-                wrapperView.heightAnchor.constraint(equalToConstant: collectionView.frame.size.height),
-             ]
-             NSLayoutConstraint.activate(constraints)
+            let wrapperView = UIHostingController(rootView: pageFactory(indexPath.row)).view!
+            wrapperView.tag = embeddedViewTag
+            wrapperView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            wrapperView.frame = CGRect(origin: .zero, size: cell.frame.size)
+            cell.addSubview(wrapperView)
 
             return cell
         }
