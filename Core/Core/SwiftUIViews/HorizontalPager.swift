@@ -84,10 +84,13 @@ extension HorizontalPager {
         }
 
         public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let embeddedViewTag = 382576
             let wrapperView = UIHostingController(rootView: pageFactory(indexPath.row)).view!
             wrapperView.translatesAutoresizingMaskIntoConstraints = false
+            wrapperView.tag = embeddedViewTag
 
             let cell = collectionView.dequeue(withReuseIdentifier: "cell", for: indexPath)
+            cell.viewWithTag(embeddedViewTag)?.removeFromSuperview()
             cell.addSubview(wrapperView)
             cell.translatesAutoresizingMaskIntoConstraints = false
 
