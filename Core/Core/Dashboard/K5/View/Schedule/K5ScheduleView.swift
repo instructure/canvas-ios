@@ -20,11 +20,10 @@ import SwiftUI
 
 public struct K5ScheduleView: View {
     @ObservedObject var viewModel: K5ScheduleViewModel
-    @Environment(\.containerSize) private var containerSize
 
     public var body: some View {
         let collectionViewWrapper = WeakObject<UICollectionView>()
-        HorizontalPager(pageCount: viewModel.weekModels.count, size: containerSize, initialPageIndex: viewModel.defaultWeekIndex, proxy: collectionViewWrapper) { pageIndex in
+        HorizontalPager(pageCount: viewModel.weekModels.count, initialPageIndex: viewModel.defaultWeekIndex, proxy: collectionViewWrapper) { pageIndex in
             K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
         }
     }

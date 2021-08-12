@@ -23,14 +23,12 @@ import SwiftUI
 
 public struct HorizontalPager<Page: View>: UIViewRepresentable {
     private let pageCount: Int
-    private let size: CGSize
     private let initialPageIndex: Int
     private let proxy: WeakObject<UICollectionView>?
     private let pageFactory: (_ pageIndex: Int) -> Page
 
-    public init(pageCount: Int, size: CGSize, initialPageIndex: Int = 0, proxy: WeakObject<UICollectionView>? = nil, _ cellFactory: @escaping (_ pageIndex: Int) -> Page) {
+    public init(pageCount: Int, initialPageIndex: Int = 0, proxy: WeakObject<UICollectionView>? = nil, _ cellFactory: @escaping (_ pageIndex: Int) -> Page) {
         self.pageCount = pageCount
-        self.size = size
         self.initialPageIndex = initialPageIndex
         self.proxy = proxy
         self.pageFactory = cellFactory
@@ -39,7 +37,6 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
     public func makeUIView(context: Self.Context) -> UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = size
         layout.minimumLineSpacing = 0
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -47,8 +44,9 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = .clear
-        collectionView.dataSource = context.coordinator
+        // Delegate has to be set before datasource, otherwise UICollectionViewDelegateFlowLayout methods won't be called.
         collectionView.delegate = context.coordinator
+        collectionView.dataSource = context.coordinator
         proxy?.object = collectionView
 
         return collectionView
@@ -58,15 +56,16 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
         HorizontalPager.Coordinator(pageCount: pageCount, initialPageIndex: initialPageIndex, pageFactory)
     }
 
-    public func updateUIView(_ collectionView: UICollectionView, context: Self.Context) {
-        // TODO: Fix rotation
+    public func updateUIView(_ collectionView: UICollectionView, context: HorizontalPager.Context) {
+        // Force a layout update so cells always match the actual size of the UICollectionView
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
 // MARK: - UICollectionView DataSource
 
 extension HorizontalPager {
-    public class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+    public class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         private let pageCount: Int
         private let initialPageIndex: Int
         private let pageFactory: (_ pageIndex: Int) -> Page
@@ -77,6 +76,8 @@ extension HorizontalPager {
             self.initialPageIndex = initialPageIndex
             self.pageFactory = pageFactory
         }
+
+        // MARK: UICollectionViewDataSource
 
         public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             pageCount
@@ -99,11 +100,27 @@ extension HorizontalPager {
             return cell
         }
 
+        // MARK: UICollectionViewDelegate
+        
         public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             if scrolledToInitialPage { return }
 
             scrolledToInitialPage = true
             collectionView.scrollToItem(at: IndexPath(row: initialPageIndex, section: 0), at: .centeredHorizontally, animated: false)
+        }
+
+        /**
+         This method keeps the collectionview's scroll focused on the same cell after the device is rotated.
+         */
+        public func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+            guard let currentCellIndex = collectionView.indexPathsForVisibleItems.first else { return collectionView.contentOffset }
+            return CGPoint(x: collectionView.frame.size.width * CGFloat(currentCellIndex.row), y: 0)
+        }
+
+        // MARK: UICollectionViewDelegateFlowLayout
+
+        public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            collectionView.frame.size
         }
     }
 }
@@ -128,13 +145,11 @@ struct HorizontalPager_Previews: PreviewProvider {
     private static let collectionViewProxy = WeakObject<UICollectionView>()
 
     static var previews: some View {
-        GeometryReader { geometry in
-            HorizontalPager(pageCount: colors.count, size: geometry.size, initialPageIndex: 1, proxy: collectionViewProxy) { pageIndex in
-                ZStack {
-                    colors[pageIndex]
-                    Text(verbatim: "\(pageIndex)")
-                        .foregroundColor(.white)
-                }
+        HorizontalPager(pageCount: colors.count, initialPageIndex: 1, proxy: collectionViewProxy) { pageIndex in
+            ZStack {
+                colors[pageIndex]
+                Text(verbatim: "\(pageIndex)")
+                    .foregroundColor(.white)
             }
         }
         .previewDevice(PreviewDevice(stringLiteral: "iPhone 12"))
