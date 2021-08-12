@@ -48,8 +48,10 @@ public struct K5ScheduleWeekView: View {
             // section header's top for some reason so we can't use that.
             .padding(.top, 1)
             .onAppear(perform: {
-                scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
-                viewModel.viewDidAppear()
+                DispatchQueue.main.async {
+                    scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
+                    viewModel.viewDidAppear()
+                }
             })
             .overlay(todayButton(scrollProxy: scrollProxy), alignment: .topTrailing)
         }
