@@ -94,7 +94,8 @@ struct GradeProgressBar: View {
                 Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
                     .foregroundColor(.clear)
                     .border(color, width: 1)
-                Rectangle().frame(width: abs(min(CGFloat(animate ? percentage : 1)/100.0*geometry.size.width, geometry.size.width)),
+                let clampedPercentage = min(max(percentage, 0), 100)
+                Rectangle().frame(width: abs(min(CGFloat(animate ? clampedPercentage : 1)/100.0*geometry.size.width, geometry.size.width)),
                                   height: geometry.size.height, alignment: .leading)
                     .foregroundColor(color)
                     .animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0.55))
