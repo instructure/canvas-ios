@@ -504,6 +504,8 @@
 				C9FDE92126BBCBE600DF0106 /* Announcements.swift */,
 			);
 			path = Announcements;
+			sourceTree = "<group>";
+		};
 		C9A3C08E26A804F600DAE8E1 /* K5 */ = {
 			isa = PBXGroup;
 			children = (
