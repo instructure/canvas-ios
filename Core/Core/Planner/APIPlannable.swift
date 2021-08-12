@@ -200,6 +200,41 @@ public struct GetPlannablesRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/planner.html#method.planner_overrides.update
+public struct UpdatePlannerOverrideRequest: APIRequestable {
+    public typealias Response = APINoContent
+    public struct Body: Codable, Equatable {
+        let marked_complete: Bool
+    }
+    public var method: APIMethod = .put
+    public var path: String { "planner/overrides/\(overrideId)" }
+    public let body: Body?
+
+    private let overrideId: String
+
+    public init(overrideId: String, body: Body) {
+        self.overrideId = overrideId
+        self.body = body
+    }
+}
+
+// https://canvas.instructure.com/doc/api/planner.html#method.planner_overrides.create
+public struct CreatePlannerOverrideRequest: APIRequestable {
+    public typealias Response = APIPlannerOverride
+    public struct Body: Codable, Equatable {
+        let plannable_type: String
+        let plannable_id: String
+        let marked_complete: Bool
+    }
+    public var method: APIMethod = .post
+    public var path: String { "planner/overrides" }
+    public let body: Body?
+
+    public init(body: Body) {
+        self.body = body
+    }
+}
+
 // https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.create
 public struct PostPlannerNoteRequest: APIRequestable {
     public typealias Response = APINoContent

@@ -848,6 +848,8 @@
 		CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */; };
 		CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC6126497BC100C1C173 /* Refreshable.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
+		CF6C100326C5235B002E7FE6 /* PlannerOverrideUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C100226C5235B002E7FE6 /* PlannerOverrideUpdater.swift */; };
+		CF6C100726C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C100626C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift */; };
 		CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */; };
 		CF7C368B2678AF1300ACAC79 /* balsamiq_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */; };
 		CF7C368C2678AF1300ACAC79 /* balsamiq_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */; };
@@ -2025,6 +2027,8 @@
 		CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModel.swift; sourceTree = "<group>"; };
 		CF60CC6126497BC100C1C173 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
+		CF6C100226C5235B002E7FE6 /* PlannerOverrideUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerOverrideUpdater.swift; sourceTree = "<group>"; };
+		CF6C100626C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerOverrideUpdaterTests.swift; sourceTree = "<group>"; };
 		CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_regular.ttf; sourceTree = "<group>"; };
 		CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_bold.ttf; sourceTree = "<group>"; };
@@ -4173,6 +4177,7 @@
 		CF575E47266792BB00F8515F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF6C100526C52F2B002E7FE6 /* Schedule */,
 				CF575E4C2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift */,
 				CF575E48266792CA00F8515F /* LatestAnnouncementTests.swift */,
 			);
@@ -4271,6 +4276,14 @@
 				CFD5814526B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift */,
 				CF60CC5526496EA500C1C173 /* K5ScheduleViewModel.swift */,
 				CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		CF6C100526C52F2B002E7FE6 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				CF6C100626C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -4442,6 +4455,7 @@
 			children = (
 				CFD6F6C426C13E3C00F5C445 /* K5ScheduleSubject.swift */,
 				CFD6F6C826C15C5500F5C445 /* K5ScheduleItemIcons.swift */,
+				CF6C100226C5235B002E7FE6 /* PlannerOverrideUpdater.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -5119,6 +5133,7 @@
 				3BEA6CCA24588D1400BE4589 /* ConversationCoursesActionSheetTests.swift in Sources */,
 				CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */,
 				7D54D6AF24646AF800409520 /* DiscussionParticipantTests.swift in Sources */,
+				CF6C100726C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift in Sources */,
 				7D288B04257589520013FF65 /* TransactionExtensionTests.swift in Sources */,
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,
@@ -5538,6 +5553,7 @@
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
+				CF6C100326C5235B002E7FE6 /* PlannerOverrideUpdater.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
 				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,

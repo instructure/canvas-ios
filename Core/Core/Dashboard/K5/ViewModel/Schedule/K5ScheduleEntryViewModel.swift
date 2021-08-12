@@ -35,9 +35,9 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
 
     public var isTappable: Bool { route != nil }
     private let route: URL?
-    private let checkboxChanged: ((_ isSelected: Bool) -> Void)?
+    private let apiService: PlannerOverrideUpdater
 
-    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String, route: URL?, checkboxChanged: ((_ isSelected: Bool) -> Void)?) {
+    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String, route: URL?, apiService: PlannerOverrideUpdater) {
         self.leading = leading
         self.icon = icon
         self.title = title
@@ -46,16 +46,25 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
         self.score = score
         self.dueText = dueText
         self.route = route
-        self.checkboxChanged = checkboxChanged
+        self.apiService = apiService
     }
 
     public func checkboxTapped() {
-        guard case RowLeading.checkbox(let isChecked) = leading else {
+        guard case .checkbox(let isChecked) = leading else {
             return
         }
 
-        leading = .checkbox(isChecked: !isChecked)
-        checkboxChanged?(!isChecked)
+        let newState = !isChecked
+        leading = .checkbox(isChecked: newState)
+
+        apiService.markAsComplete(isComplete: newState) { [weak self] succeeded in
+            if !succeeded {
+                // Update failed, revert UI to original state
+                performUIUpdate {
+                    self?.leading = .checkbox(isChecked: isChecked)
+                }
+            }
+        }
     }
 
     public func itemTapped(router: Router, viewController: WeakViewController) {

@@ -65,7 +65,7 @@ struct K5Preview {
                     score: nil,
                     dueText: "To Do: 1:59 PM",
                     route: nil,
-                    checkboxChanged: nil),
+                    apiService: PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: .make())),
                 K5ScheduleEntryViewModel(
                     leading: .checkbox(isChecked: true),
                     icon: .assignmentLine,
@@ -78,7 +78,7 @@ struct K5Preview {
                     score: "5 pts",
                     dueText: "Due: 11:59 PM",
                     route: nil,
-                    checkboxChanged: nil),
+                    apiService: PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: .make())),
                 K5ScheduleEntryViewModel(
                     leading: .warning,
                     icon: .assignmentLine,
@@ -88,7 +88,7 @@ struct K5Preview {
                     score: "5 pts",
                     dueText: "Due Yesterday",
                     route: nil,
-                    checkboxChanged: nil),
+                    apiService: PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: .make())),
             ]
 
             static let subjects = [

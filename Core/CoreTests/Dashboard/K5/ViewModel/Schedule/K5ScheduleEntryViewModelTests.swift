@@ -20,38 +20,27 @@ import XCTest
 @testable import Core
 
 class K5ScheduleEntryViewModelTests: CoreTestCase {
+    private lazy var mockAPIService = PlannerOverrideUpdater(api: api, plannable: .make())
 
     func testIsTappableFlag() {
-        XCTAssertTrue(K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: URL(string: "/a")!, checkboxChanged: nil).isTappable)
-        XCTAssertFalse(K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: nil, checkboxChanged: nil).isTappable)
+        XCTAssertTrue(K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: URL(string: "/a")!, apiService: mockAPIService).isTappable)
+        XCTAssertFalse(K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: nil, apiService: mockAPIService).isTappable)
     }
 
     func testInvokesActionOnTap() {
         router.routeExpectation = expectation(description: "Route happened")
         let subtitle = K5ScheduleEntryViewModel.SubtitleViewModel(text: "", color: .black, font: .bold11)
         let labels = [K5ScheduleEntryViewModel.LabelViewModel(text: "", color: .black)]
-        let testee = K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: subtitle, labels: labels, score: nil, dueText: "", route: URL(string: "/a")!, checkboxChanged: nil)
+        let testee = K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: subtitle, labels: labels, score: nil, dueText: "", route: URL(string: "/a")!, apiService: mockAPIService)
 
         testee.itemTapped(router: router, viewController: WeakViewController(UIViewController()))
 
         wait(for: [router.routeExpectation], timeout: 0.1)
     }
 
-    func testInvokesCheckboxCheckedCallback() {
-        let checkboxChangedExpectation = expectation(description: "Checkbox changed callback")
-        let testee = K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: nil, checkboxChanged: { isChecked in
-            XCTAssertTrue(isChecked)
-            checkboxChangedExpectation.fulfill()
-        })
-
-        testee.checkboxTapped()
-
-        wait(for: [checkboxChangedExpectation], timeout: 0.1)
-    }
-
     func testLeadingSetterTriggersChangeEvent() {
         let refreshTriggeredExpectation = expectation(description: "Refresh expectation")
-        let testee = K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: nil, checkboxChanged: nil)
+        let testee = K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false), icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: nil, apiService: mockAPIService)
         let subscription = testee.objectWillChange.sink {
             refreshTriggeredExpectation.fulfill()
         }
