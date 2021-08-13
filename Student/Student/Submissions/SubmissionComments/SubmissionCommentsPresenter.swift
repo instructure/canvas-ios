@@ -20,7 +20,7 @@ import Foundation
 import Core
 import CoreData
 
-protocol SubmissionCommentsViewProtocol: class {
+protocol SubmissionCommentsViewProtocol: AnyObject {
     func reload()
     func showError(_ error: Error)
 }

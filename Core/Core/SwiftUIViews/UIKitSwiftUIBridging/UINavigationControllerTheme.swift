@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-protocol NavigationBarStyled: class {
+protocol NavigationBarStyled: AnyObject {
     var navigationBarStyle: UINavigationBar.Style { get set }
 }
 

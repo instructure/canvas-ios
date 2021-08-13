@@ -55,39 +55,43 @@ public struct FlowStack<Content: View>: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            ZStack(alignment: .topLeading) {
-                var x: CGFloat = 0, y: CGFloat = 0, maxY: CGFloat = 0
-                // Reset for next layout pass
-                Color.clear.alignmentGuide(.top) { _ in
+            self.stack(in: geometry)
+        }.frame(height: height)
+    }
+
+    private func stack(in geometry: GeometryProxy) -> some View {
+        var x: CGFloat = 0, y: CGFloat = 0, maxY: CGFloat = 0
+
+        return ZStack(alignment: .topLeading) {
+            // Reset for next layout pass
+            Color.clear.alignmentGuide(.top) { _ in
+                x = 0
+                y = 0
+                maxY = 0
+                return 0
+            }
+
+            content({ item in
+                if x + item.width > geometry.size.width {
                     x = 0
-                    y = 0
-                    maxY = 0
-                    return 0
+                    y += item.height + spacing.vertical
                 }
+                maxY = max(maxY, y + item.height)
+                let result = x
+                x += item.width + spacing.horizontal
+                return -result
+            }, { _ in
+                -y
+            })
 
-                content({ item in
-                    if x + item.width > geometry.size.width {
-                        x = 0
-                        y += item.height + spacing.vertical
-                    }
-                    maxY = max(maxY, y + item.height)
-                    let result = x
-                    x += item.width + spacing.horizontal
-                    return -result
-                }, { _ in
-                    -y
-                })
-
-                // Save calculated height
-                Color.clear.alignmentGuide(.top) { _ in
-                    if maxY != height { DispatchQueue.main.async {
-                        height = maxY
-                    } }
-                    return 0
-                }
+            // Save calculated height
+            Color.clear.alignmentGuide(.top) { _ in
+                if maxY != height { DispatchQueue.main.async {
+                    height = maxY
+                } }
+                return 0
             }
         }
-            .frame(height: height)
     }
 }
 

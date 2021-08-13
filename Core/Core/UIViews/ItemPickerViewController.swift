@@ -42,7 +42,7 @@ public struct ItemPickerItem {
     }
 }
 
-public protocol ItemPickerDelegate: class {
+public protocol ItemPickerDelegate: AnyObject {
     func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath)
 }
 

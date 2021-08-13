@@ -18,7 +18,7 @@
 
 import UIKit
 
-public protocol ColoredNavViewProtocol: class {
+public protocol ColoredNavViewProtocol: AnyObject {
     var color: UIColor? { get set }
     var navigationController: UINavigationController? { get }
     var titleSubtitleView: TitleSubtitleView { get }

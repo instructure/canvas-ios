@@ -18,7 +18,7 @@
 
 import UIKit
 
-protocol LoginStartSessionDelegate: class {
+protocol LoginStartSessionDelegate: AnyObject {
     func removeSession(_ session: LoginSession)
 }
 

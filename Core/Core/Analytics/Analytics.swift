@@ -18,7 +18,7 @@
 
 import Foundation
 
-public protocol AnalyticsHandler: class {
+public protocol AnalyticsHandler: AnyObject {
     func handleEvent(_ name: String, parameters: [String: Any]?)
 }
 

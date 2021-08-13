@@ -19,7 +19,7 @@
 import AVFoundation
 import UIKit
 
-public protocol ScannerDelegate: class {
+public protocol ScannerDelegate: AnyObject {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String)
 }
 

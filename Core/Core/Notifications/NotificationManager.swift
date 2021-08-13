@@ -19,7 +19,7 @@
 import Foundation
 import UserNotifications
 
-public protocol UserNotificationCenterProtocol: class {
+public protocol UserNotificationCenterProtocol: AnyObject {
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
     func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
     func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void)

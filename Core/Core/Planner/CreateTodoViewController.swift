@@ -172,7 +172,7 @@ extension CreateTodoViewController: SelectCourseProtocol {
     }
 }
 
-protocol SelectCourseProtocol: class {
+protocol SelectCourseProtocol: AnyObject {
     func userDidSelect(course: Course)
     func userDidUnselectCourse()
 }

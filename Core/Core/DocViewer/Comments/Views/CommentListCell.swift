@@ -19,7 +19,7 @@
 import UIKit
 import PSPDFKit
 
-protocol CommentListCellDelegate: class {
+protocol CommentListCellDelegate: AnyObject {
     func deletePressed(on: DocViewerCommentReplyAnnotation)
 }
 

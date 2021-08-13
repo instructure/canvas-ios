@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-protocol TestTreeHolder: class {
+protocol TestTreeHolder: AnyObject {
     var testTree: TestTree? { get set }
 }
 

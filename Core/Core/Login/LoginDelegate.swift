@@ -18,7 +18,7 @@
 
 import UIKit
 
-public protocol LoginDelegate: class {
+public protocol LoginDelegate: AnyObject {
     var supportsCanvasNetwork: Bool { get }
     var helpURL: URL? { get }
     var whatsNewURL: URL? { get }

@@ -19,7 +19,7 @@
 import Foundation
 import PSPDFKit
 
-protocol DocViewerAnnotationProviderDelegate: class {
+protocol DocViewerAnnotationProviderDelegate: AnyObject {
     func annotationDidExceedLimit(annotation: APIDocViewerAnnotation)
     func annotationDidFailToSave(error: Error)
     func annotationSaveStateChanges(saving: Bool)
