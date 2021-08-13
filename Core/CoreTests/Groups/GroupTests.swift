@@ -39,4 +39,16 @@ class GroupTests: CoreTestCase {
 
         XCTAssertEqual(group.color, .red)
     }
+
+    func testIsActive() {
+        var group = Group.make(from: .make(course_id: "1"))
+        XCTAssertFalse(group.isActive)
+
+        group = Group.make(from: .make(course_id: nil))
+        XCTAssertTrue(group.isActive)
+
+        Course.make()
+        group = Group.make(from: .make(course_id: "1"))
+        XCTAssertTrue(group.isActive)
+    }
 }
