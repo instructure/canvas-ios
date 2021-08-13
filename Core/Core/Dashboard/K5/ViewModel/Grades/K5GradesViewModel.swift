@@ -27,14 +27,7 @@ public class K5GradesViewModel: ObservableObject {
     private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
         self?.coursesUpdated()
     }
-    public lazy var enrollments = env.subscribe(GetEnrollments(
-        context: .currentUser,
-        gradingPeriodID: currentGradingPeriod.periodID,
-        types: [ "StudentEnrollment" ],
-        states: [ .active ]
-    )) { [weak self] in
-        self?.enrollmentsUpdated()
-    }
+
     // MARK: Refresh
     private var refreshCompletion: (() -> Void)?
     private var forceRefresh = false
@@ -62,17 +55,25 @@ public class K5GradesViewModel: ObservableObject {
         finishRefresh()
     }
 
-    private func enrollmentsUpdated() {
-        guard enrollments.requested, !enrollments.pending, !enrollments.hasNextPage else { return }
+    private func updateEnrollments(for gradingPeriodID: String) {
         grades.removeAll()
-        grades = enrollments.map { (enrollment: Enrollment) in
-            return K5GradeCellViewModel(a11yId: "K5GradeCell.\(enrollment.course?.id ?? "")",
-                                        title: enrollment.course?.name ?? "",
-                                        imageURL: enrollment.course?.imageDownloadURL,
-                                        grade: enrollment.computedCurrentGrade,
-                                        score: enrollment.computedCurrentScore,
-                                        color: enrollment.course?.color,
-                                        courseID: enrollment.course?.id ?? "")
+        let request = GetEnrollmentsRequest(context: .currentUser, userID: studentID, gradingPeriodID: gradingPeriodID, types: [ "StudentEnrollment" ], states: [ .active ])
+        env.api.makeRequest(request) { [weak self] apiEnrollments, _, _ in
+            var grades: [K5GradeCellViewModel] = []
+            apiEnrollments?.forEach { enrollment in
+                guard let course = self?.courses.first(where: { $0.id == enrollment.course_id?.rawValue }), !course.isHomeroomCourse else { return }
+                let cellModel = K5GradeCellViewModel(a11yId: "K5GradeCell.\(course.id)",
+                                                     title: course.name ?? "",
+                                                     imageURL: course.imageDownloadURL,
+                                                     grade: enrollment.computed_current_grade,
+                                                     score: enrollment.computed_current_score,
+                                                     color: course.color,
+                                                     courseID: course.id)
+                grades.append(cellModel)
+            }
+            performUIUpdate {
+                self?.grades = grades
+            }
         }
         finishRefresh()
     }
@@ -100,11 +101,11 @@ extension K5GradesViewModel: Refreshable {
     }
 
     func reloadData() {
-        guard currentGradingPeriod.periodID != nil else {
+        guard let periodID = currentGradingPeriod.periodID else {
             courses.exhaust(force: true)
             return
         }
-        enrollments.exhaust(force: true)
+        updateEnrollments(for: periodID)
     }
 }
 

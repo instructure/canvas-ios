@@ -30,35 +30,37 @@ struct K5GradesView: View {
     var body: some View {
         VStack(spacing: 0) {
             VStack(alignment: .leading) {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Select")
-                        .font(.regular13)
-                        .background(Color.white)
-                        .foregroundColor(.ash)
-                    HStack(spacing: 7) {
-                        Text(viewModel.currentGradingPeriod.title ?? "")
-                            .font(.bold24)
-                            .foregroundColor(.licorice)
-                        Image.arrowOpenDownLine
-                            .resizable()
-                            .frame(width: 12, height: 12)
-                            .foregroundColor(.licorice)
-                            .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
-                            .animation(.easeOut)
-                        Spacer()
+                Button(action: {
+                    withAnimation {
+                        gradeSelectorOpen.toggle()
                     }
-                    .padding(.bottom, 13)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        withAnimation {
-                            gradeSelectorOpen.toggle()
+                }, label: {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Select", bundle: .core)
+                            .font(.regular13)
+                            .background(Color.white)
+                            .foregroundColor(.ash)
+                            .padding(.top, 15)
+                        HStack(spacing: 7) {
+                            Text(viewModel.currentGradingPeriod.title ?? "")
+                                .font(.bold24)
+                                .foregroundColor(.licorice)
+                            Image.arrowOpenDownLine
+                                .resizable()
+                                .frame(width: 12, height: 12)
+                                .foregroundColor(.licorice)
+                                .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
+                                .animation(.easeOut)
+                            Spacer()
                         }
+                        .padding(.bottom, 13)
+                        Divider()
                     }
-                    Divider()
-                }
+                })
                 .zIndex(1)
                 .background(Color.white)
                 .padding(.top, 0)
+
                 if gradeSelectorOpen {
                     VStack(alignment: .leading) {
                         ForEach(viewModel.gradingPeriods, id: \.self) {
@@ -77,14 +79,16 @@ struct K5GradesView: View {
             .clipped()
             Spacer()
             ScrollView(showsIndicators: false) {
+                CircleRefresh { endRefreshing in
+                    viewModel.refresh(completion: endRefreshing)
+                }
                 ForEach(viewModel.grades) {
                     K5GradeCell(with: $0)
                     Divider()
                 }
             }
-            Spacer()
         }
-        .padding()
+        .padding(.horizontal)
         .contentShape(Rectangle())
         .onTapGesture {
             withAnimation {

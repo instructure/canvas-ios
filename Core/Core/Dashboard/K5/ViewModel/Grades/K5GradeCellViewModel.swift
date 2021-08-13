@@ -40,5 +40,7 @@ public struct K5GradeCellViewModel {
 }
 
 extension K5GradeCellViewModel: Identifiable {
-    public var id: String { a11yId }
+    public var id: String {
+        UUID.string
+    }
 }

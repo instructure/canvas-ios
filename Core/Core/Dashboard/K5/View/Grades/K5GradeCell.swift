@@ -40,40 +40,40 @@ struct K5GradeCell: View {
 
     var body: some View {
         GeometryReader { geometry in
-            HStack(spacing: 13) {
-                if geometry.size.width > 396 {
-                    if let imageURL = viewModel.imageURL {
-                        RemoteImage(imageURL, width: 72, height: 72).cornerRadius(4)
-                    } else {
-                        Rectangle().frame(width: 72, height: 72).cornerRadius(4).foregroundColor(viewModel.color)
+            Button(action: {
+                env.router.route(to: "/courses/\(viewModel.courseID)/grades/", from: controller, options: .push)
+            }, label: {
+                HStack(spacing: 13) {
+                    if geometry.size.width > 396 {
+                        if let imageURL = viewModel.imageURL {
+                            RemoteImage(imageURL, width: 72, height: 72).cornerRadius(4)
+                        } else {
+                            Rectangle().frame(width: 72, height: 72).cornerRadius(4).foregroundColor(viewModel.color)
+                        }
                     }
-                }
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(viewModel.title.uppercased())
-                        .font(.bold17)
-                        .foregroundColor(viewModel.color)
-                    HStack {
-                        let percentage = gradePercentage
-                        GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
-                        Image.arrowOpenRightLine
-                            .resizable()
-                            .frame(width: 16, height: 16)
-                            .foregroundColor(.ash)
-                    }
-                    if viewModel.grade == nil, viewModel.score == nil {
-                        Text("Not Graded").font(.regular17)
-                    } else {
-                        Text(roundedDisplayGrade).font(.regular17)
-                    }
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(viewModel.title.uppercased())
+                            .font(.bold17)
+                            .foregroundColor(viewModel.color)
+                        HStack {
+                            let percentage = gradePercentage
+                            GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
+                            Image.arrowOpenRightLine
+                                .resizable()
+                                .frame(width: 16, height: 16)
+                                .foregroundColor(.ash)
+                        }
+                        if viewModel.grade == nil, viewModel.score == nil {
+                            Text("Not Graded", bundle: .core).font(.regular17)
+                        } else {
+                            Text(roundedDisplayGrade).font(.regular17)
+                        }
 
+                    }
                 }
-            }
+            })
         }
         .frame(minHeight: 72).padding(.top, 13.5).padding(.bottom, 13.5)
-        .contentShape(Rectangle())
-        .onTapGesture {
-            env.router.route(to: "/courses/\(viewModel.courseID)/grades/", from: controller, options: .push)
-        }
     }
 }
 
@@ -95,16 +95,17 @@ struct GradeProgressBar: View {
                     .foregroundColor(.clear)
                     .border(color, width: 1)
                 let clampedPercentage = min(max(percentage, 0), 100)
-                Rectangle().frame(width: abs(min(CGFloat(animate ? clampedPercentage : 1)/100.0*geometry.size.width, geometry.size.width)),
+                Rectangle().frame(width: abs(min(CGFloat(clampedPercentage) / 100.0 * geometry.size.width, geometry.size.width)),
                                   height: geometry.size.height, alignment: .leading)
                     .foregroundColor(color)
-                    .animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0.55))
+                //.animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0.55))
             }.clipped()
-        }.onAppear {
-            animate = true
-        }.onDisappear {
-            animate = false
         }
+//         .onAppear {
+//            animate = true
+//        }.onDisappear {
+//            animate = false
+//        }
     }
 }
 
