@@ -110,7 +110,7 @@ extension K5GradesViewModel: Refreshable {
 }
 
 public class K5GradingPeriod: NSObject {
-    
+
     let periodID: String?
     let title: String?
 
