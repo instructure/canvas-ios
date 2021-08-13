@@ -30,6 +30,8 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     }
     private var plannableDownloadTask: APITask?
     private var isDownloadStarted = false
+    private var isForceUpdate = false
+    private var pullToRefreshCompletion: (() -> Void)?
 
     private var plannables: [APIPlannable] = []
     private var courseColorsByCourseIDs: [String: Color] = [:]
@@ -45,15 +47,31 @@ public class K5ScheduleWeekViewModel: ObservableObject {
             return
         }
 
+        downloadData()
+    }
+
+    public func pullToRefreshTriggered(completion: @escaping () -> Void) {
+        if isDownloadStarted {
+            completion()
+            return
+        }
+
+        isForceUpdate = true
+        pullToRefreshCompletion = completion
+        downloadData()
+    }
+
+    private func downloadData() {
         isDownloadStarted = true
         let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
         plannableDownloadTask = AppEnvironment.shared.api.makeRequest(plannablesRequest) { [weak self] plannables, _, _ in
+            guard let self = self else { return }
             // Filter to active todo items
-            self?.plannables = (plannables ?? []).filter {
+            self.plannables = (plannables ?? []).filter {
                 guard let override = $0.planner_override else { return true }
                 return !override.dismissed
             }
-            self?.courses.refresh()
+            self.courses.refresh(force: self.isForceUpdate)
         }
     }
 
@@ -68,6 +86,13 @@ public class K5ScheduleWeekViewModel: ObservableObject {
             let plannablesForDay = plannables.filter { day.range.contains($0.plannable_date) }
             let subjects = self.subjects(from: plannablesForDay)
             performUIUpdate { day.subjects = subjects }
+        }
+
+        performUIUpdate { [weak self] in
+            self?.isForceUpdate = false
+            self?.pullToRefreshCompletion?()
+            self?.pullToRefreshCompletion = nil
+            self?.isDownloadStarted = false
         }
     }
 
