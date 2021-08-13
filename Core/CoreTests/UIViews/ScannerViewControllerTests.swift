@@ -50,7 +50,7 @@ extension ScannerViewControllerTests: ScannerDelegate {
         self.code = code
     }
 }
-//init is unavailable, need to find another workaround
+// init is unavailable, need to find another workaround
 /*
 class MockAVMetadataMachineReadableCodeObject: AVMetadataMachineReadableCodeObject {
     var mockStringValue: String?
