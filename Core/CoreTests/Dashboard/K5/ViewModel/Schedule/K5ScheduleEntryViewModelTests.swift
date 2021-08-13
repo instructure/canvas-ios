@@ -27,7 +27,7 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
         XCTAssertFalse(K5ScheduleEntryViewModel(leading: .warning, icon: .addAudioLine, title: "", subtitle: nil, labels: [], score: nil, dueText: "", route: nil, apiService: mockAPIService).isTappable)
     }
 
-    func testInvokesActionOnTap() {
+    func testRoutesModally() {
         router.routeExpectation = expectation(description: "Route happened")
         let subtitle = K5ScheduleEntryViewModel.SubtitleViewModel(text: "", color: .black, font: .bold11)
         let labels = [K5ScheduleEntryViewModel.LabelViewModel(text: "", color: .black)]
@@ -36,6 +36,7 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
         testee.itemTapped(router: router, viewController: WeakViewController(UIViewController()))
 
         wait(for: [router.routeExpectation], timeout: 0.1)
+        XCTAssertTrue(router.lastRoutedTo("/a", withOptions: .modal(isDismissable: false, embedInNav: true, addDoneButton: true)))
     }
 
     func testLeadingSetterTriggersChangeEvent() {

@@ -88,7 +88,6 @@ extension HorizontalPager {
 
             let cell = collectionView.dequeue(withReuseIdentifier: "cell", for: indexPath)
             cell.viewWithTag(embeddedViewTag)?.removeFromSuperview()
-            cell.backgroundColor = .red
 
             let wrapperView = UIHostingController(rootView: pageFactory(indexPath.row)).view!
             wrapperView.tag = embeddedViewTag

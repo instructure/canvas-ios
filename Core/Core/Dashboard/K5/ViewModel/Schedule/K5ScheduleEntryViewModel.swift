@@ -69,7 +69,8 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
 
     public func itemTapped(router: Router, viewController: WeakViewController) {
         guard let route = route else { return }
-        router.route(to: route, from: viewController.value)
+        // Any non-modal routing will put the view into the master view of the split view so we use modal to work this around
+        router.route(to: route, from: viewController, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
     }
 }
 
