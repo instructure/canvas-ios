@@ -61,6 +61,10 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         downloadData()
     }
 
+    public func isTodayModel(_ model: K5ScheduleDayViewModel) -> Bool {
+        model.weekday == todayViewId
+    }
+
     private func downloadData() {
         isDownloadStarted = true
         let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")

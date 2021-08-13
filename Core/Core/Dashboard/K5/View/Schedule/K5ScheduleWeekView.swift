@@ -23,6 +23,9 @@ public struct K5ScheduleWeekView: View {
     @Environment(\.horizontalPadding) private var horizontalPadding
     private var isCompact: Bool { containerSize.width < 500 }
     @ObservedObject private var viewModel: K5ScheduleWeekViewModel
+    @State private var isTodayCellVisible = false
+    // If we animate the today button during the first render cycle it causes glitches in List Section headers.
+    @State private var isInitialRenderFinished = false
 
     public init(viewModel: K5ScheduleWeekViewModel) {
         self.viewModel = viewModel
@@ -38,6 +41,16 @@ public struct K5ScheduleWeekView: View {
                             .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
                             .padding(.bottom, dayModels.last == dayModel ? 24 : 0)
                     }
+                    .onAppear {
+                        if viewModel.isTodayModel(dayModel) {
+                            updateTodayCellVisibility(to: true)
+                        }
+                    }
+                    .onDisappear {
+                        if viewModel.isTodayModel(dayModel) {
+                            updateTodayCellVisibility(to: false)
+                        }
+                    }
                     .id(dayModel.weekday)
                 }
             }
@@ -51,6 +64,7 @@ public struct K5ScheduleWeekView: View {
                 DispatchQueue.main.async {
                     scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
                     viewModel.viewDidAppear()
+                    isInitialRenderFinished = true
                 }
             })
             .overlay(todayButton(scrollProxy: scrollProxy), alignment: .topTrailing)
@@ -69,7 +83,7 @@ public struct K5ScheduleWeekView: View {
                 .padding(.trailing, horizontalPadding)
                 .padding(.top, 55)
         })
-        .hidden(!viewModel.isTodayButtonAvailable)
+        .hidden(!viewModel.isTodayButtonAvailable || isTodayCellVisible)
     }
 
     private func header(for model: K5ScheduleDayViewModel) -> some View {
@@ -95,6 +109,16 @@ public struct K5ScheduleWeekView: View {
             .frame(minHeight: 93)
 
         return background.overlay(content, alignment: .topLeading)
+    }
+
+    private func updateTodayCellVisibility(to isVisible: Bool) {
+        if isInitialRenderFinished {
+            withAnimation {
+                isTodayCellVisible = isVisible
+            }
+        } else {
+            isTodayCellVisible = isVisible
+        }
     }
 }
 
