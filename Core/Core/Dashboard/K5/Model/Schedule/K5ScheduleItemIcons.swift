@@ -20,7 +20,6 @@ import SwiftUI
 
 public extension APIPlannable {
     var k5ScheduleIcon: Image {
-
         switch plannableType {
         case .announcement:
             return Image.announcementLine

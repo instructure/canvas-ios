@@ -168,7 +168,7 @@ public extension Date {
         Date.timeIntervalFormatter.string(from: self, to: date)
     }
     /**
-     E.g.: Monday, Saturday.
+     E.g.: Monday
      */
     var weekdayName: String {
         Date.weekdayFormatter.string(from: self)

@@ -113,6 +113,8 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                         return NSLocalizedString("All Day", comment: "")
                     } else if let start = plannable.plannable?.start_at, let end = plannable.plannable?.end_at {
                         return start.timeIntervalString(to: end)
+                    } else if plannable.plannableType == .announcement {
+                        return plannable.plannable_date.timeString
                     } else {
                         let dueTemplate = NSLocalizedString("Due: %@", bundle: .core, comment: "")
                         return String.localizedStringWithFormat(dueTemplate, plannable.plannable_date.timeString)
