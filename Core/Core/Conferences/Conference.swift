@@ -134,7 +134,7 @@ final class ConferenceRecording: NSManagedObject, WriteableModel {
         let model: ConferenceRecording = context.first(where: #keyPath(ConferenceRecording.recordingID), equals: item.recording_id.value) ?? context.insert()
         model.createdAt = item.created_at.rawValue
         model.duration = item.duration_minutes
-        model.playbackURL = item.playback_url?.rawValue ?? item.playback_formats.first { $0.type.contains("video") }?.url.rawValue
+        model.playbackURL = item.playback_url?.rawValue ?? item.playback_formats.first { $0.type.contains("presentation") }?.url.rawValue
         model.recordingID = item.recording_id.value
         model.title = item.title
         model.updatedAt = item.updated_at?.rawValue
