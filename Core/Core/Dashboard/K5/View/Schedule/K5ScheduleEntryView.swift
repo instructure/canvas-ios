@@ -28,50 +28,53 @@ public struct K5ScheduleEntryView: View {
     }
 
     public var body: some View {
-        Button(action: {
-            viewModel.itemTapped(router: env.router, viewController: viewController)
-        }, label: {
-            HStack(spacing: 0) {
-                leading
-                icon
+        HStack(spacing: 0) {
+            leading
 
-                VStack(alignment: .leading, spacing: 0) {
-                    title
+            Button(action: {
+                viewModel.itemTapped(router: env.router, viewController: viewController)
+            }, label: {
+                HStack(spacing: 0) {
+                    icon
 
-                    if let subtitleModel = viewModel.subtitle {
-                        subtitle(model: subtitleModel)
-                    }
+                    VStack(alignment: .leading, spacing: 0) {
+                        title
 
-                    if !viewModel.labels.isEmpty {
-                        if #available(iOS 14, *) {
-                            labels.textCase(.uppercase)
-                        } else {
-                            labels
+                        if let subtitleModel = viewModel.subtitle {
+                            subtitle(model: subtitleModel)
+                        }
+
+                        if !viewModel.labels.isEmpty {
+                            if #available(iOS 14, *) {
+                                labels.textCase(.uppercase)
+                            } else {
+                                labels
+                            }
                         }
                     }
-                }
-                .padding(.leading, 12)
-                .padding(.vertical, 8)
+                    .padding(.leading, 12)
+                    .padding(.vertical, 8)
 
-                Spacer(minLength: 0)
+                    Spacer(minLength: 0)
 
-                VStack(alignment: .trailing) {
-                    if let scoreText = viewModel.score {
-                        score(text: scoreText)
+                    VStack(alignment: .trailing) {
+                        if let scoreText = viewModel.score {
+                            score(text: scoreText)
+                        }
+
+                        due
                     }
+                    .padding(.leading, 8)
+                    .padding(.vertical, 8)
 
-                    due
+                    disclosureIndicator
                 }
-                .padding(.leading, 8)
-                .padding(.vertical, 8)
-
-                disclosureIndicator
-            }
-            .padding(.trailing, 15)
-        })
+            })
+            .disabled(!viewModel.isTappable)
+        }
+        .padding(.trailing, 15)
         .frame(minHeight: 66)
         .fixedSize(horizontal: false, vertical: true)
-        .disabled(!viewModel.isTappable)
     }
 
     @ViewBuilder
