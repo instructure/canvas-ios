@@ -161,7 +161,7 @@
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
-"Incomplete" = "ofullständig";
+"Incomplete" = "Inte färdig";
 
 /* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Det verkar inte finnas några giltiga inlämningar att bedöma.";
@@ -261,6 +261,9 @@
 
 /* No comment provided by engineer. */
 "Send" = "Skicka";
+
+/* No comment provided by engineer. */
+"Send message to users" = "Skicka meddelande till användare";
 
 /* No comment provided by engineer. */
 "Similarity Score" = "Likhetsresultat";
