@@ -16,31 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
 import SwiftUI
+@testable import Core
 
-public struct K5GradeCellViewModel {
+class K5GradeCellViewModelTests: CoreTestCase {
 
-    public let a11yId: String
-    public let title: String
-    public let imageURL: URL?
-    public let grade: String?
-    public let score: Double?
-    public let color: Color
-    public let courseID: String
-
-    init(a11yId: String, title: String, imageURL: URL?, grade: String?, score: Double?, color: UIColor?, courseID: String) {
-        self.a11yId = a11yId
-        self.title = title
-        self.imageURL = imageURL
-        self.grade = grade
-        self.score = score
-        self.color = ((color != nil) ? Color(color!) : Color.oxford)
-        self.courseID = courseID
+    func testDefaultK5Color() {
+        let cellViewModel = K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: nil, score: 55, color: nil, courseID: "")
+        XCTAssertEqual(cellViewModel.color, Color.oxford)
     }
 }
 
-extension K5GradeCellViewModel: Identifiable {
-    public var id: String {
-        UUID.string
-    }
-}
