@@ -49,6 +49,8 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
         collectionView.dataSource = context.coordinator
         proxy?.object = collectionView
 
+        context.coordinator.observeFrameChange(on: collectionView)
+
         return collectionView
     }
 
@@ -57,8 +59,6 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
     }
 
     public func updateUIView(_ collectionView: UICollectionView, context: HorizontalPager.Context) {
-        // Force a layout update so cells always match the actual size of the UICollectionView
-        collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -70,11 +70,19 @@ extension HorizontalPager {
         private let initialPageIndex: Int
         private let pageFactory: (_ pageIndex: Int) -> Page
         private var scrolledToInitialPage = false
+        private var observation: NSKeyValueObservation?
 
         public init(pageCount: Int, initialPageIndex: Int, _ pageFactory: @escaping (_ pageIndex: Int) -> Page) {
             self.pageCount = pageCount
             self.initialPageIndex = initialPageIndex
             self.pageFactory = pageFactory
+        }
+
+        public func observeFrameChange(on collectionView: UICollectionView) {
+            observation = collectionView.observe(\.frame) { collectionView, _ in
+                // Force a layout update so cells always match the actual size of the UICollectionView
+                collectionView.collectionViewLayout.invalidateLayout()
+            }
         }
 
         // MARK: UICollectionViewDataSource
@@ -108,7 +116,7 @@ extension HorizontalPager {
         }
 
         /**
-         This method keeps the collectionview's scroll focused on the same cell after the device is rotated.
+         This method keeps the collectionview's scroll focused on the same cell (page) after the device is rotated.
          */
         public func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
             guard let currentCellIndex = collectionView.indexPathsForVisibleItems.first else { return collectionView.contentOffset }
