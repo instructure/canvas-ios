@@ -46,8 +46,7 @@ public struct APIPlannable: Codable, Equatable {
                     end_at: Date? = nil,
                     points_possible: Double? = nil,
                     start_at: Date? = nil,
-                    title: String? = nil)
-        {
+                    title: String? = nil) {
             self.all_day = all_day
             self.details = details
             self.end_at = end_at

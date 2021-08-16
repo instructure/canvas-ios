@@ -97,7 +97,7 @@ public extension APIPlannable {
                 return Color(Brand.shared.primary)
             }
         }()
-        let route : URL? = {
+        let route: URL? = {
             guard let context = context, context.contextType != .user else { return nil }
             return URL(string: context.pathComponent)
         }()

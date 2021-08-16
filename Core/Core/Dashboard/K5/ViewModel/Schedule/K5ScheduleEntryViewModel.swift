@@ -37,7 +37,15 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
     private let route: URL?
     private let apiService: PlannerOverrideUpdater
 
-    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String, route: URL?, apiService: PlannerOverrideUpdater) {
+    public init(leading: RowLeading,
+                icon: Image,
+                title: String,
+                subtitle: SubtitleViewModel?,
+                labels: [LabelViewModel],
+                score: String?,
+                dueText: String,
+                route: URL?,
+                apiService: PlannerOverrideUpdater) {
         self.leading = leading
         self.icon = icon
         self.title = title

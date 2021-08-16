@@ -33,7 +33,7 @@ public class K5ScheduleViewModel: ObservableObject {
     // MARK: Preview Support -
 
     #endif
-    
+
     public init(currentDate: Date = Date(), calendar: Calendar = Calendar.current) {
         let currentWeekStartDate = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate))!
         let currentWeekEndDate = calendar.date(byAdding: .weekOfYear, value: 1, to: currentWeekStartDate)!

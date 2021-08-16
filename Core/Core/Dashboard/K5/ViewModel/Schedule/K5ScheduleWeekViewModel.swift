@@ -121,7 +121,15 @@ public class K5ScheduleWeekViewModel: ObservableObject {
             let entries: [K5ScheduleEntryViewModel] = plannables.map { plannable in
                 let isCompleted = (plannable.planner_override?.marked_complete == true)
                 let apiService = PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: plannable)
-                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: isCompleted), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: plannable.k5ScheduleLabels.map { K5ScheduleEntryViewModel.LabelViewModel(text: $0.text, color: $0.color)}, score: plannable.k5SchedulePoints, dueText: plannable.k5ScheduleDueText, route: plannable.htmlURL, apiService: apiService)
+                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: isCompleted),
+                                                icon: plannable.k5ScheduleIcon,
+                                                title: plannable.plannableTitle ?? "",
+                                                subtitle: nil,
+                                                labels: plannable.k5ScheduleLabels.map { K5ScheduleEntryViewModel.LabelViewModel(text: $0.text, color: $0.color)},
+                                                score: plannable.k5SchedulePoints,
+                                                dueText: plannable.k5ScheduleDueText,
+                                                route: plannable.htmlURL,
+                                                apiService: apiService)
             }
 
             subjects.append(K5ScheduleSubjectViewModel(subject: subject, entries: entries))

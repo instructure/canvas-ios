@@ -99,7 +99,7 @@ extension HorizontalPager {
         }
 
         // MARK: UICollectionViewDelegate
-        
+
         public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             if scrolledToInitialPage { return }
 

@@ -92,7 +92,9 @@ struct K5Preview {
             ]
 
             static let subjects = [
-                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "Math", color: Color(hexString: "#FF8277")!, image: Image("PandaBlocks", bundle: .core), route: URL(string: "https://i.com")), entries: entries),
+                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "Math", color: Color(hexString: "#FF8277")!,
+                                                                      image: Image("PandaBlocks", bundle: .core),
+                                                                      route: URL(string: "https://i.com")), entries: entries),
                 K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "To Do", color: .electric, image: nil, route: nil), entries: entries),
             ]
 

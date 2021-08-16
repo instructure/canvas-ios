@@ -38,7 +38,7 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
         } else {
             self.weekday = range.lowerBound.weekdayName
         }
-        
+
         self.date = range.lowerBound.dayInMonth
         self.subjects = .loading
         self.range = range
