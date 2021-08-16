@@ -48,6 +48,9 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
 
     // MARK: - Preview Support
 
+    /**
+     User only for SwiftUI previews.
+    */
     public init(weekday: String, date: String, subjects: Subject) {
         self.weekday = weekday
         self.date = date

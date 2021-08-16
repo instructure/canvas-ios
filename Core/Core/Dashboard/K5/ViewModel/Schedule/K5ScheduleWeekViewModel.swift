@@ -93,6 +93,8 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         }
 
         performUIUpdate { [weak self] in
+            // Modifying an object inside `days` doesn't trigger a UI update so we do it manually
+            self?.objectWillChange.send()
             self?.isForceUpdate = false
             self?.pullToRefreshCompletion?()
             self?.pullToRefreshCompletion = nil

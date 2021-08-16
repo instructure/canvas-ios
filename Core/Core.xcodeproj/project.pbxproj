@@ -865,6 +865,7 @@
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF86C2B4267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
+		CF8CB51326CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
@@ -2045,6 +2046,7 @@
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
+		CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
@@ -4372,6 +4374,7 @@
 				CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */,
 				CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */,
 				CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */,
+				CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -5321,6 +5324,7 @@
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
 				9FAE410321B6C88000FE7F58 /* APIExternalToolTests.swift in Sources */,
 				E87A5E4424D4BF930065B2AA /* PreviewStoreTests.swift in Sources */,
+				CF8CB51326CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift in Sources */,
 				B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */,
 				7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */,
 				7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */,
