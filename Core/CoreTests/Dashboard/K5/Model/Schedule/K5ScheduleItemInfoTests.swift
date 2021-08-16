@@ -31,14 +31,14 @@ class K5ScheduleItemInfoTests: CoreTestCase {
     }
 
     func testScheduleSubjectName() {
-        XCTAssertEqual(APIPlannable.make(plannable_type: "calendar_event").k5ScheduleSubject(courseColorsByCourseIDs: [:]).name, NSLocalizedString("To Do", comment: ""))
-        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: nil).k5ScheduleSubject(courseColorsByCourseIDs: [:]).name, NSLocalizedString("To Do", comment: ""))
-        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: "testName").k5ScheduleSubject(courseColorsByCourseIDs: [:]).name, "testName")
+        XCTAssertEqual(APIPlannable.make(plannable_type: "calendar_event").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, NSLocalizedString("To Do", comment: ""))
+        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: nil).k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, NSLocalizedString("To Do", comment: ""))
+        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: "testName").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, "testName")
     }
 
     func testSheduleSubjectRoute() {
-        XCTAssertNil(APIPlannable.make(user_id: ID("testId"), context_type: "User").k5ScheduleSubject(courseColorsByCourseIDs: [:]).route)
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testId"), context_type: "Course").k5ScheduleSubject(courseColorsByCourseIDs: [:]).route, URL(string: "courses/testId")!)
+        XCTAssertNil(APIPlannable.make(user_id: ID("testId"), context_type: "User").k5ScheduleSubject(courseInfoByCourseIDs: [:]).route)
+        XCTAssertEqual(APIPlannable.make(course_id: ID("testId"), context_type: "Course").k5ScheduleSubject(courseInfoByCourseIDs: [:]).route, URL(string: "courses/testId")!)
     }
 
     func testScheduleSubjectColor() {
@@ -58,9 +58,9 @@ class K5ScheduleItemInfoTests: CoreTestCase {
                              navTextColor: nil,
                              navTextColorActive: nil,
                              primary: .red)
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseColorsByCourseIDs: ["testID": .green]).color, .green)
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseColorsByCourseIDs: [:]).color, Color(.red))
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testID_2")).k5ScheduleSubject(courseColorsByCourseIDs: ["testID": .green]).color, Color(.red))
+        XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil)]).color, .green)
+        XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: [:]).color, Color(.red))
+        XCTAssertEqual(APIPlannable.make(course_id: ID("testID_2")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil)]).color, Color(.red))
     }
 
     func testDueText() {

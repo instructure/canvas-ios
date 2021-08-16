@@ -21,7 +21,7 @@ import SwiftUI
 public struct K5ScheduleSubject {
     public let name: String
     public let color: Color
-    public let image: Image?
+    public let image: URL?
     public let route: URL?
 }
 

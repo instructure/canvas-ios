@@ -34,7 +34,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     private var pullToRefreshCompletion: (() -> Void)?
 
     private var plannables: [APIPlannable] = []
-    private var courseColorsByCourseIDs: [String: Color] = [:]
+    private var courseInfoByCourseIDs: [String: (color: Color, image: URL?)] = [:]
 
     public init(weekRange: Range<Date>, isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
         self.weekRange = weekRange
@@ -102,8 +102,8 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
     private func setupCourseColors() {
         let coursesByIDs = Dictionary(grouping: courses.all) { $0.id }
-        let courseColorsByCourseIDs = coursesByIDs.mapValues { Color($0[0].color) }
-        self.courseColorsByCourseIDs = courseColorsByCourseIDs
+        let courseInfoByCourseIDs = coursesByIDs.mapValues { (Color($0[0].color), $0[0].imageDownloadURL) }
+        self.courseInfoByCourseIDs = courseInfoByCourseIDs
     }
 
     private func subjects(from plannables: [APIPlannable]) -> K5ScheduleDayViewModel.Subject {
@@ -112,7 +112,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         }
 
         let plannablesBySubjects: [K5ScheduleSubject: [APIPlannable]] = Dictionary(grouping: plannables) { plannable in
-            plannable.k5ScheduleSubject(courseColorsByCourseIDs: courseColorsByCourseIDs)
+            plannable.k5ScheduleSubject(courseInfoByCourseIDs: courseInfoByCourseIDs)
         }
 
         var subjects: [K5ScheduleSubjectViewModel] = []

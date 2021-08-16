@@ -82,7 +82,7 @@ public extension APIPlannable {
         return labels
     }
 
-    func k5ScheduleSubject(courseColorsByCourseIDs: [String: Color]) -> K5ScheduleSubject {
+    func k5ScheduleSubject(courseInfoByCourseIDs: [String: (color: Color, image: URL?)]) -> K5ScheduleSubject {
         let name: String = {
             if plannableType == .calendar_event {
                 return NSLocalizedString("To Do", comment: "")
@@ -91,7 +91,7 @@ public extension APIPlannable {
             }
         }()
         let color: Color = {
-            if let courseID = course_id?.value, let color = courseColorsByCourseIDs[courseID] {
+            if let courseID = course_id?.value, let color = courseInfoByCourseIDs[courseID]?.color {
                 return color
             } else {
                 return Color(Brand.shared.primary)
@@ -101,6 +101,10 @@ public extension APIPlannable {
             guard let context = context, context.contextType != .user else { return nil }
             return URL(string: context.pathComponent)
         }()
-        return K5ScheduleSubject(name: name, color: color, image: nil, route: route)
+        let image: URL? = {
+            guard let courseID = course_id?.value else { return nil }
+            return courseInfoByCourseIDs[courseID]?.image
+        }()
+        return K5ScheduleSubject(name: name, color: color, image: image, route: route)
     }
 }

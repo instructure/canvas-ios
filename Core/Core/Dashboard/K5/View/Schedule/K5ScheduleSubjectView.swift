@@ -85,9 +85,13 @@ public struct K5ScheduleSubjectView: View {
                         .frame(minHeight: 25)
                     ZStack {
                         if let image = viewModel.subject.image {
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
+                            GeometryReader { geometry in
+                                RemoteImage(image, width: geometry.size.width, height: geometry.size.height)
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipped()
+                                    // Fix big course image consuming tap events.
+                                    .contentShape(Path(CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height)))
+                            }
                         }
                         viewModel.subject.color.opacity(viewModel.subject.image == nil ? 1 : 0.75)
                     }
