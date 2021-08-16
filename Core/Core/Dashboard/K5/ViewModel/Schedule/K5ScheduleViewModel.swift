@@ -23,10 +23,14 @@ public class K5ScheduleViewModel: ObservableObject {
 
     #if DEBUG
 
+    // MARK: - Preview Support
+
     init(weekModels: [K5ScheduleWeekViewModel]) {
         self.weekModels = weekModels
         self.defaultWeekIndex = weekModels.count / 2
     }
+
+    // MARK: Preview Support -
 
     #endif
     
@@ -38,28 +42,23 @@ public class K5ScheduleViewModel: ObservableObject {
         for i in weekRangeFromCurrentWeek {
             let weekStartDate = calendar.date(byAdding: .weekOfYear, value: i, to: currentWeekStartDate)!
             let weekEndDate = calendar.date(byAdding: .weekOfYear, value: i, to: currentWeekEndDate)!
-            let dayModels: [K5ScheduleDayViewModel] = {
-                var dayModels: [K5ScheduleDayViewModel] = []
-                for dayIndex in 0..<7 {
-                    let dayStartDate = calendar.date(byAdding: .day, value: dayIndex, to: weekStartDate)!
-                    let dayEndDate = calendar.date(byAdding: .day, value: 1, to: dayStartDate)!
-                    dayModels.append(K5ScheduleDayViewModel(range: dayStartDate..<dayEndDate, calendar: calendar))
-                }
-                return dayModels
-            }()
+            let dayModels = Self.dayModelsForWeek(weekStartDate: weekStartDate, calendar: calendar)
             let isTodayButtonVisible = (currentDate >= weekStartDate && currentDate < weekEndDate)
             weekModels.append(K5ScheduleWeekViewModel(weekRange: weekStartDate..<weekEndDate, isTodayButtonAvailable: isTodayButtonVisible, days: dayModels))
         }
 
         self.weekModels = weekModels
     }
-}
 
-extension K5ScheduleViewModel: Refreshable {
+    private static func dayModelsForWeek(weekStartDate: Date, calendar: Calendar) -> [K5ScheduleDayViewModel] {
+        var dayModels: [K5ScheduleDayViewModel] = []
 
-    public func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            completion()
+        for dayIndex in 0..<7 {
+            let dayStartDate = calendar.date(byAdding: .day, value: dayIndex, to: weekStartDate)!
+            let dayEndDate = calendar.date(byAdding: .day, value: 1, to: dayStartDate)!
+            dayModels.append(K5ScheduleDayViewModel(range: dayStartDate..<dayEndDate, calendar: calendar))
         }
+
+        return dayModels
     }
 }

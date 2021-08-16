@@ -112,78 +112,16 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         }
 
         let plannablesBySubjects: [K5ScheduleSubject: [APIPlannable]] = Dictionary(grouping: plannables) { plannable in
-            let name: String = {
-                if plannable.plannableType == .calendar_event {
-                    return NSLocalizedString("To Do", comment: "")
-                } else {
-                    return plannable.context_name ?? NSLocalizedString("To Do", comment: "")
-                }
-            }()
-            let color: Color = {
-                if let courseID = plannable.course_id?.value, let color = self.courseColorsByCourseIDs[courseID] {
-                    return color
-                } else {
-                    return Color(Brand.shared.primary)
-                }
-            }()
-            let route : URL? = {
-                guard let context = plannable.context, context.contextType != .user else { return nil }
-                return URL(string: context.pathComponent)
-            }()
-            return K5ScheduleSubject(name: name, color: color, image: nil, route: route)
+            plannable.k5ScheduleSubject(courseColorsByCourseIDs: courseColorsByCourseIDs)
         }
 
         var subjects: [K5ScheduleSubjectViewModel] = []
 
         for (subject, plannables) in plannablesBySubjects {
             let entries: [K5ScheduleEntryViewModel] = plannables.map { plannable in
-                let dueText: String = {
-                    if plannable.plannable?.all_day == true {
-                        return NSLocalizedString("All Day", comment: "")
-                    } else if let start = plannable.plannable?.start_at, let end = plannable.plannable?.end_at {
-                        return start.timeIntervalString(to: end)
-                    } else if plannable.plannableType == .announcement {
-                        return plannable.plannable_date.timeString
-                    } else {
-                        let dueTemplate = NSLocalizedString("Due: %@", bundle: .core, comment: "")
-                        return String.localizedStringWithFormat(dueTemplate, plannable.plannable_date.timeString)
-                    }
-                }()
-                let pointsText: String? = {
-                    guard let points = plannable.pointsPossible else { return nil }
-                    let pointsTemplate = NSLocalizedString("g_pts", bundle: .core, comment: "")
-                    return String.localizedStringWithFormat(pointsTemplate, points)
-                }()
-                let labels: [K5ScheduleEntryViewModel.LabelViewModel] = {
-                    guard let submissionStates = plannable.submissions?.value1 else { return [] }
-                    var labels: [K5ScheduleEntryViewModel.LabelViewModel] = []
-
-                    if submissionStates.graded == true {
-                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Graded", comment: ""), color: .ash))
-                    }
-                    if submissionStates.late == true {
-                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Late", comment: ""), color: .crimson))
-                    }
-                    if submissionStates.has_feedback == true {
-                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Feedback", comment: ""), color: .ash))
-                    }
-                    if submissionStates.redo_request == true {
-                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Redo", comment: ""), color: .crimson))
-                    }
-                    if submissionStates.missing == true {
-                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Missing", comment: ""), color: .crimson))
-                    }
-                    if submissionStates.submitted == true && submissionStates.late == false {
-                        labels.append(K5ScheduleEntryViewModel.LabelViewModel(text: NSLocalizedString("Submitted", comment: ""), color: .ash))
-                    }
-
-                    // TODO: replies
-                    return labels
-                }()
                 let isCompleted = (plannable.planner_override?.marked_complete == true)
                 let apiService = PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: plannable)
-
-                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: isCompleted), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: labels, score: pointsText, dueText: dueText, route: plannable.htmlURL, apiService: apiService)
+                return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: isCompleted), icon: plannable.k5ScheduleIcon, title: plannable.plannableTitle ?? "", subtitle: nil, labels: plannable.k5ScheduleLabels.map { K5ScheduleEntryViewModel.LabelViewModel(text: $0.text, color: $0.color)}, score: plannable.k5SchedulePoints, dueText: plannable.k5ScheduleDueText, route: plannable.htmlURL, apiService: apiService)
             }
 
             subjects.append(K5ScheduleSubjectViewModel(subject: subject, entries: entries))
