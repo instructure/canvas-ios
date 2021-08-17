@@ -34,7 +34,7 @@ public struct K5GradeCellViewModel {
         self.imageURL = imageURL
         self.grade = grade
         self.score = score
-        self.color = ((color != nil) ? Color(color!) : Color.oxford)
+        self.color = ((color != nil) ? Color(color!) : .oxford)
         self.courseID = courseID
     }
 }

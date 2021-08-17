@@ -24,7 +24,6 @@ class K5GradeCellViewModelTests: CoreTestCase {
 
     func testDefaultK5Color() {
         let cellViewModel = K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: nil, score: 55, color: nil, courseID: "")
-        XCTAssertEqual(cellViewModel.color, Color.oxford)
+        XCTAssertEqual(cellViewModel.color, .oxford)
     }
 }
-
