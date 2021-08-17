@@ -58,7 +58,7 @@ public struct K5DashboardView: View {
             case 2:
                 K5GradesView()
             case 3:
-                K5ResourcesView()
+                K5ResourcesView(viewModel: viewModel.viewModels.resources)
             default:
                 SwiftUI.EmptyView()
             }

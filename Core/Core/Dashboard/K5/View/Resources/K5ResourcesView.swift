@@ -18,8 +18,109 @@
 
 import SwiftUI
 
-struct K5ResourcesView: View {
-    var body: some View {
-        Text("Resources Details", bundle: .core)
+public struct K5ResourcesView: View {
+    @Environment(\.horizontalPadding) private var horizontalPadding
+    @ObservedObject public var viewModel: K5ResourcesViewModel
+
+    public init(viewModel: K5ResourcesViewModel) {
+        self.viewModel = viewModel
+    }
+
+    public var body: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            CircleRefresh { endRefreshing in
+                viewModel.refresh(completion: endRefreshing)
+            }
+
+            VStack(alignment: .leading) {
+                if !viewModel.homeroomInfos.isEmpty {
+                    importantInfo
+                }
+
+                if !viewModel.applications.isEmpty {
+                    applications
+                }
+
+                if !viewModel.contacts.isEmpty {
+                    contacts
+                }
+            }
+            .padding(.top)
+        }
+        .padding(.horizontal, horizontalPadding)
+        .onAppear {
+            viewModel.viewDidAppear()
+        }
+    }
+
+    private var importantInfo: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Important Info", bundle: .core)
+                .foregroundColor(.licorice)
+                .font(.bold20)
+                .padding(.bottom)
+
+            ForEach(viewModel.homeroomInfos) { info in
+                HStack {
+                    Image.coursesLine
+                    Text(info.homeroomName)
+                        .foregroundColor(.licorice)
+                        .font(.bold17)
+                }
+                WebView(html: info.htmlContent)
+                    .frameToFit()
+                    .padding(.horizontal, -16) // Removes padding in CSS
+                    .disabled(true)
+
+                if info != viewModel.homeroomInfos.last {
+                    Divider().padding(.bottom)
+                }
+            }
+        }
+    }
+
+    private var applications: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Student Applications", bundle: .core)
+                .foregroundColor(.licorice)
+                .font(.bold20)
+                .padding(.bottom)
+
+            ForEach(viewModel.applications) { application in
+                Text(application.name)
+            }
+        }
+    }
+
+    private var contacts: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Staff Contact Info", bundle: .core)
+                .foregroundColor(.licorice)
+                .font(.bold20)
+                .padding(.bottom)
+
+            ForEach(viewModel.contacts) { contact in
+                Text(contact.name)
+            }
+        }
     }
 }
+
+#if DEBUG
+
+struct K5ResourcesView_Previews: PreviewProvider {
+    private static let env = AppEnvironment.shared
+    private static let context = env.globalDatabase.viewContext
+
+    static var previews: some View {
+        let courses = [
+            APICourse.make(id: "1", name: "Homeroom 1", syllabus_body: "<h1>Infos</h1><p>This is a paragraph</p>", homeroom_course: true),
+            APICourse.make(id: "2", name: "Homeroom 2", syllabus_body: "<b>IMPORTANT</b><p>Read the previous note</p>", homeroom_course: true),
+        ]
+        Course.save(courses, in: context)
+
+        return K5ResourcesView(viewModel: K5ResourcesViewModel()).environment(\.horizontalPadding, 16)
+    }
+}
+
+#endif

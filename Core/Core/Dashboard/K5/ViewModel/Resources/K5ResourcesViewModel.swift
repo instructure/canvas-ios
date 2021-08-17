@@ -16,13 +16,65 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5ResourcesViewModel {
+public struct K5ResourcesHomeroomInfo: Equatable, Identifiable {
+    public var id: String { homeroomName }
 
+    public let homeroomName: String
+    public let htmlContent: String
+}
+
+public struct K5ResourcesApplication: Equatable, Identifiable {
+    public var id: String { name }
+
+    public let image: URL?
+    public let name: String
+    public let route: String
+}
+
+public struct K5ResourcesContact: Equatable, Identifiable {
+    public var id: String { route }
+
+    public let image: URL?
+    public let name: String
+    public let role: String
+    public let route: String
+}
+
+public class K5ResourcesViewModel: ObservableObject {
+    @Published public var homeroomInfos: [K5ResourcesHomeroomInfo] = []
+    @Published public var applications: [K5ResourcesApplication] = []
+    @Published public var contacts: [K5ResourcesContact] = []
+
+    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+        self?.coursesRefreshed()
+    }
+
+    public init() {
+
+    }
+
+    public func viewDidAppear() {
+        courses.refresh()
+    }
+
+    private func coursesRefreshed() {
+        if courses.pending || !courses.requested {
+            return
+        }
+
+        let homeroomCourses = courses.all.filter { $0.isHomeroomCourse }
+        homeroomInfos = homeroomCourses.compactMap {
+            guard let name = $0.name, let syllabus = $0.syllabusBody else { return nil }
+            return K5ResourcesHomeroomInfo(homeroomName: name, htmlContent: syllabus)
+        }
+    }
 }
 
 extension K5ResourcesViewModel: Refreshable {
 
-    func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
+    public func refresh(completion: @escaping () -> Void) {
+        courses.refresh(force: true) {_ in
+            completion()
+        }
     }
 }
