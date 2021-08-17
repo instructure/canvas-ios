@@ -45,7 +45,7 @@ public struct K5ResourcesView: View {
                     contacts
                 }
             }
-            .padding(.top)
+            .padding(.vertical)
         }
         .padding(.horizontal, horizontalPadding)
         .onAppear {
@@ -80,14 +80,14 @@ public struct K5ResourcesView: View {
     }
 
     private var applications: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 9) {
             Text("Student Applications", bundle: .core)
                 .foregroundColor(.licorice)
                 .font(.bold20)
-                .padding(.bottom)
+                .padding(.bottom, 8)
 
             ForEach(viewModel.applications) { application in
-                Text(application.name)
+                K5ResourcesApplicationView(model: application)
             }
         }
     }

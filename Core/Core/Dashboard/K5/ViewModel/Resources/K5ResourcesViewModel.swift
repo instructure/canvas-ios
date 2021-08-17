@@ -23,12 +23,24 @@ public struct K5ResourcesHomeroomInfo: Equatable, Identifiable {
     public let htmlContent: String
 }
 
-public struct K5ResourcesApplication: Equatable, Identifiable {
+public struct K5ResourcesApplication: Equatable, Identifiable, Hashable {
     public var id: String { name }
 
     public let image: URL?
     public let name: String
-    public let route: String
+    private let route: URL
+
+    public init(image: URL?, name: String, route: URL) {
+        self.image = image
+        self.name = name
+        self.route = route
+    }
+
+    public func applicationTapped(router: Router, viewController: WeakViewController) {
+        let webViewController = CoreWebViewController()
+        webViewController.webView.load(URLRequest(url: route))
+        router.show(webViewController, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: true))
+    }
 }
 
 public struct K5ResourcesContact: Equatable, Identifiable {
@@ -48,6 +60,7 @@ public class K5ResourcesViewModel: ObservableObject {
     private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
         self?.coursesRefreshed()
     }
+    private var applicationsRequest: APITask?
 
     public init() {
 
@@ -66,6 +79,32 @@ public class K5ResourcesViewModel: ObservableObject {
         homeroomInfos = homeroomCourses.compactMap {
             guard let name = $0.name, let syllabus = $0.syllabusBody else { return nil }
             return K5ResourcesHomeroomInfo(homeroomName: name, htmlContent: syllabus)
+        }
+        let nonHomeroomCourses = courses.all.filter { !$0.isHomeroomCourse }
+        requestApplications(for: nonHomeroomCourses)
+    }
+
+    private func requestApplications(for courses: [Course]) {
+        guard applicationsRequest == nil else { return }
+        let request = GetCourseNavigationToolsRequest(courseContextsCodes: courses.map { $0.canvasContextID })
+        applicationsRequest = AppEnvironment.shared.api.makeRequest(request) { [weak self] tools, _, _ in
+            self?.handleApplicationsResponse(tools ?? [])
+        }
+    }
+
+    private func handleApplicationsResponse(_ tools: [CourseNavigationTool]) {
+        applicationsRequest = nil
+        var applications: [K5ResourcesApplication] = tools.compactMap {
+            guard
+                let name = $0.course_navigation?.text ?? $0.name,
+                let route = $0.course_navigation?.url
+            else { return nil }
+            return K5ResourcesApplication(image: $0.course_navigation?.icon_url, name: name, route: route)
+        }
+        applications = Array(Set(applications)).sorted { $0.name < $1.name }
+
+        performUIUpdate {
+            self.applications = applications
         }
     }
 }
