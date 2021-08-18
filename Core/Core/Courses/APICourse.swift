@@ -129,6 +129,7 @@ extension APICourse {
             role: "StudentEnrollment",
             role_id: "3"
         ), ],
+        grading_periods: [APIGradingPeriod]? = [],
         default_view: CourseDefaultView? = nil,
         syllabus_body: String? = nil,
         term: Term? = nil,
@@ -151,7 +152,7 @@ extension APICourse {
             end_at: end_at,
             locale: locale,
             enrollments: enrollments,
-            default_view: default_view,
+            grading_periods: grading_periods, default_view: default_view,
             syllabus_body: syllabus_body,
             term: term,
             permissions: permissions,

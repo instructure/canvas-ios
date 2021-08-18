@@ -30,4 +30,116 @@ class K5GradesViewModelTests: CoreTestCase {
 
         wait(for: [refreshExpectation], timeout: 2.5)
     }
+
+    func testLoadGrades() {
+        api.mock(GetUserProfileRequest(userID: "self"), value: APIProfile.make())
+        mockCourses()
+
+        let testee = K5GradesViewModel()
+
+        XCTAssertEqual(testee.grades.count, 3)
+
+        XCTAssertEqual(testee.grades[0].grade, "A")
+        XCTAssertEqual(testee.grades[1].grade, "B")
+        XCTAssertNil(testee.grades[2].grade)
+
+        XCTAssertEqual(testee.grades[0].score, 95)
+        XCTAssertNil(testee.grades[1].score)
+        XCTAssertEqual(testee.grades[2].score, 55)
+    }
+
+    func testGradingPeriods() {
+        api.mock(GetUserProfileRequest(userID: "self"), value: APIProfile.make())
+        mockCourses()
+
+        let testee = K5GradesViewModel()
+
+        XCTAssertEqual(testee.currentGradingPeriod.title, "Current Grading Period")
+        XCTAssertEqual(testee.gradingPeriods.count, 3)
+        XCTAssertEqual(testee.gradingPeriods[1].periodID, "2")
+    }
+
+    func testGradingPeriodChange() {
+        api.mock(GetUserProfileRequest(userID: "self"), value: APIProfile.make())
+        mockCourses()
+        api.mock(GetEnrollmentsRequest(context: .currentUser, userID: "1", gradingPeriodID: "1", types: [ "StudentEnrollment" ], states: [ .active ]), value: [
+            .make(id: "1", course_id: "3", grades: .make(current_grade: "C"))
+        ])
+        
+        let testee = K5GradesViewModel()
+        testee.didSelect(gradingPeriod: testee.gradingPeriods[2])
+
+        XCTAssertEqual(testee.currentGradingPeriod.title, "grading period 1")
+        XCTAssertEqual(testee.grades.first?.grade, "C")
+    }
+
+    // MARK: - Private Helpers
+
+    private func mockCourses() {
+        let gradingPeriods: [APIGradingPeriod] = [
+            .make(id: "1", title: "grading period 1", start_date: Clock.now),
+            .make(id: "2", title: "grading period 2", start_date: Clock.now.addDays(-7))
+        ]
+        api.mock(GetUserCourses(userID: "1"), value: [
+            .make(
+                id: "1",
+                name: "Homeroom",
+                course_code: "CRS-1",
+                enrollments: [
+                    .make(
+                        id: "1",
+                        course_id: "1",
+                        user_id: "1"
+                    ),
+                ],
+                grading_periods: gradingPeriods,
+                homeroom_course: true
+            ),
+            .make(
+                id: "2",
+                name: "Course B",
+                course_code: "CRS-2",
+                enrollments: [
+                    .make(
+                        id: "2",
+                        course_id: "2",
+                        user_id: "1",
+                        computed_current_score: 95,
+                        computed_current_grade: "A"
+                    ),
+                ],
+                grading_periods: gradingPeriods
+            ),
+            .make(
+                id: "3",
+                name: "Course C",
+                course_code: "CRS-3",
+                enrollments: [
+                    .make(
+                        id: "3",
+                        course_id: "3",
+                        user_id: "1",
+                        computed_current_score: nil,
+                        computed_current_grade: "B"
+                    ),
+                ],
+                grading_periods: gradingPeriods
+            ),
+            .make(
+                id: "4",
+                name: "Course D",
+                course_code: "CRS-4",
+                enrollments: [
+                    .make(
+                        id: "4",
+                        course_id: "4",
+                        user_id: "1",
+                        computed_current_score: 55,
+                        computed_current_grade: nil
+                    ),
+                ],
+                grading_periods: gradingPeriods
+            ),
+        ])
+    }
 }
