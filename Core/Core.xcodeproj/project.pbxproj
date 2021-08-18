@@ -865,7 +865,9 @@
 		CF8CB52226CBC41D008361E2 /* K5ResourcesApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */; };
 		CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */; };
 		CF8CB52B26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */; };
-		CF8CB52F26CC0BF6008361E2 /* K5ResourcesContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52E26CC0BF6008361E2 /* K5ResourcesContact.swift */; };
+		CF8CB52F26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */; };
+		CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */; };
+		CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
@@ -2039,7 +2041,9 @@
 		CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationView.swift; sourceTree = "<group>"; };
 		CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffContactInfoService.swift; sourceTree = "<group>"; };
 		CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactInfoView.swift; sourceTree = "<group>"; };
-		CF8CB52E26CC0BF6008361E2 /* K5ResourcesContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContact.swift; sourceTree = "<group>"; };
+		CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactViewModel.swift; sourceTree = "<group>"; };
+		CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModel.swift; sourceTree = "<group>"; };
+		CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
@@ -4253,7 +4257,9 @@
 		CF60CC5026496A1F00C1C173 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CF8CB52E26CC0BF6008361E2 /* K5ResourcesContact.swift */,
+				CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */,
+				CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */,
+				CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */,
 				CF60CC5826496EBD00C1C173 /* K5ResourcesViewModel.swift */,
 			);
 			path = Resources;
@@ -5466,6 +5472,7 @@
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
+				CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */,
 				7DA260CB23F72359005D2121 /* AvatarView.swift in Sources */,
 				7DA2607323F722F3005D2121 /* PageDetailsViewController.swift in Sources */,
 				CF8CB52226CBC41D008361E2 /* K5ResourcesApplicationView.swift in Sources */,
@@ -5681,6 +5688,7 @@
 				7DA2603923F722D9005D2121 /* AssignmentGroup.swift in Sources */,
 				7DD6FB3625081CD900DB5286 /* OptionalDatePicker.swift in Sources */,
 				7DA2601423F7227A005D2121 /* InstIconExtensions.swift in Sources */,
+				CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */,
 				7D159CEC242E556900A77A15 /* ModuleListViewController.swift in Sources */,
 				7DA260C623F72352005D2121 /* GetConversationCourses.swift in Sources */,
 				7DA260B823F72352005D2121 /* GetQuiz.swift in Sources */,
@@ -5842,7 +5850,7 @@
 				7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */,
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
-				CF8CB52F26CC0BF6008361E2 /* K5ResourcesContact.swift in Sources */,
+				CF8CB52F26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift in Sources */,
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
 				CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */,
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,

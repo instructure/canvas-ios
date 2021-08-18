@@ -21,9 +21,9 @@ import SwiftUI
 public struct K5ResourcesContactInfoView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var viewController
-    private let model: K5ResourcesContact
+    private let model: K5ResourcesContactViewModel
 
-    public init(model: K5ResourcesContact) {
+    public init(model: K5ResourcesContactViewModel) {
         self.model = model
     }
 
@@ -54,8 +54,8 @@ struct K5ResourcesContactInfoView_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            K5ResourcesContactInfoView(model: K5ResourcesContact(image: nil, name: "Preview Teacher", role: "Teacher", userId: "1", courseContextID: "", courseName: ""))
-            K5ResourcesContactInfoView(model: K5ResourcesContact(image: nil, name: "Preview TA", role: "Teacher's Assistant", userId: "1", courseContextID: "", courseName: ""))
+            K5ResourcesContactInfoView(model: K5ResourcesContactViewModel(image: nil, name: "Preview Teacher", role: "Teacher", userId: "1", courseContextID: "", courseName: ""))
+            K5ResourcesContactInfoView(model: K5ResourcesContactViewModel(image: nil, name: "Preview TA", role: "Teacher's Assistant", userId: "1", courseContextID: "", courseName: ""))
         }.padding()
     }
 }

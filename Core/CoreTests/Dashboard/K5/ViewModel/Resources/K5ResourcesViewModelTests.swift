@@ -37,8 +37,8 @@ class K5ResourcesViewModelTests: CoreTestCase {
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.homeroomInfos, [
-            K5ResourcesHomeroomInfo(homeroomName: "Homeroom 1", htmlContent: "<h1>Infos</h1><p>This is a paragraph</p>"),
-            K5ResourcesHomeroomInfo(homeroomName: "Homeroom 2", htmlContent: "<b>IMPORTANT</b><p>Read the previous note</p>"),
+            K5ResourcesHomeroomInfoViewModel(homeroomName: "Homeroom 1", htmlContent: "<h1>Infos</h1><p>This is a paragraph</p>"),
+            K5ResourcesHomeroomInfoViewModel(homeroomName: "Homeroom 2", htmlContent: "<b>IMPORTANT</b><p>Read the previous note</p>"),
         ])
     }
 
@@ -62,8 +62,8 @@ class K5ResourcesViewModelTests: CoreTestCase {
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.applications, [
-            K5ResourcesApplication(image: URL(string: "https://instructure.com/icon2.png")!, name: "Google Apps 2", route: URL(string: "https://instructure2.com")!),
-            K5ResourcesApplication(image: URL(string: "https://instructure.com/icon.png")!, name: "Google Drive Text", route: URL(string: "https://instructure.com")!),
+            K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon2.png")!, name: "Google Apps 2", route: URL(string: "https://instructure2.com")!),
+            K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon.png")!, name: "Google Drive Text", route: URL(string: "https://instructure.com")!),
         ])
     }
 
@@ -91,8 +91,8 @@ class K5ResourcesViewModelTests: CoreTestCase {
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.contacts, [
-            K5ResourcesContact(image: URL(string: "https://instucture.com/TA.png")!, name: "K5TA", role: "Teacher's Assistant", userId: "2", courseContextID: "1", courseName: "Homeroom 1"),
-            K5ResourcesContact(image: URL(string: "https://instucture.com/teacher.png")!, name: "K5Teacher", role: "Teacher", userId: "1", courseContextID: "2", courseName: "Homeroom 2"),
+            K5ResourcesContactViewModel(image: URL(string: "https://instucture.com/TA.png")!, name: "K5TA", role: "Teacher's Assistant", userId: "2", courseContextID: "1", courseName: "Homeroom 1"),
+            K5ResourcesContactViewModel(image: URL(string: "https://instucture.com/teacher.png")!, name: "K5Teacher", role: "Teacher", userId: "1", courseContextID: "2", courseName: "Homeroom 2"),
         ])
     }
 

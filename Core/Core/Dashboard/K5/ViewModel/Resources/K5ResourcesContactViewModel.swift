@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct K5ResourcesContact {
+public struct K5ResourcesContactViewModel {
     public let image: URL?
     public let name: String
     public let role: String
@@ -38,7 +38,7 @@ public struct K5ResourcesContact {
     /**
      - parameters:
         - user: The teacher's user profile.
-        - courses: The teacher's courses where the current user is a student.
+        - courses: The list of homeroom courses where the teacher is enrolled as a teacher or a TA.
      */
     public init(_ user: APIUser, courses: [Course]) {
         let firstActiveEnrollment = user.enrollments?.first { $0.enrollment_state == .active }
@@ -70,23 +70,23 @@ public struct K5ResourcesContact {
     }
 }
 
-extension K5ResourcesContact: Comparable {
-    public static func < (lhs: K5ResourcesContact, rhs: K5ResourcesContact) -> Bool {
+extension K5ResourcesContactViewModel: Comparable {
+    public static func < (lhs: K5ResourcesContactViewModel, rhs: K5ResourcesContactViewModel) -> Bool {
         lhs.name < rhs.name
     }
 }
 
-extension K5ResourcesContact: Equatable {
-    public static func == (lhs: K5ResourcesContact, rhs: K5ResourcesContact) -> Bool {
+extension K5ResourcesContactViewModel: Equatable {
+    public static func == (lhs: K5ResourcesContactViewModel, rhs: K5ResourcesContactViewModel) -> Bool {
         lhs.name == rhs.name
     }
 }
 
-extension K5ResourcesContact: Hashable {
+extension K5ResourcesContactViewModel: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(name)
     }
 }
-extension K5ResourcesContact: Identifiable {
+extension K5ResourcesContactViewModel: Identifiable {
     public var id: String { userId + courseContextID }
 }

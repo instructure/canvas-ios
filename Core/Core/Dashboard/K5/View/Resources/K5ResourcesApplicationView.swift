@@ -21,9 +21,9 @@ import SwiftUI
 public struct K5ResourcesApplicationView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var viewController
-    private let model: K5ResourcesApplication
+    private let model: K5ResourcesApplicationViewModel
 
-    public init(model: K5ResourcesApplication) {
+    public init(model: K5ResourcesApplicationViewModel) {
         self.model = model
     }
 
@@ -76,12 +76,12 @@ struct K5ResourcesApplicationView_Previews: PreviewProvider {
 
         VStack {
             K5ResourcesApplicationView(model:
-                                        K5ResourcesApplication(
+                                        K5ResourcesApplicationViewModel(
                                             image: URL(string: "https://google-drive-lti-iad-prod.instructure.com/icon.png")!,
                                             name: "Google Drive",
                                             route: URL(string: "https://instructure.com")!))
             K5ResourcesApplicationView(model:
-                                        K5ResourcesApplication(
+                                        K5ResourcesApplicationViewModel(
                                             image: nil,
                                             name: "Google Drive Without Image",
                                             route: URL(string: "https://instructure.com")!))

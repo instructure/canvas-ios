@@ -16,37 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct K5ResourcesHomeroomInfo: Equatable, Identifiable {
-    public var id: String { homeroomName }
-
-    public let homeroomName: String
-    public let htmlContent: String
-}
-
-public struct K5ResourcesApplication: Equatable, Identifiable, Hashable {
-    public var id: String { name }
-
-    public let image: URL?
-    public let name: String
-    private let route: URL
-
-    public init(image: URL?, name: String, route: URL) {
-        self.image = image
-        self.name = name
-        self.route = route
-    }
-
-    public func applicationTapped(router: Router, viewController: WeakViewController) {
-        let webViewController = CoreWebViewController()
-        webViewController.webView.load(URLRequest(url: route))
-        router.show(webViewController, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: true))
-    }
-}
+import SwiftUI
 
 public class K5ResourcesViewModel: ObservableObject {
-    @Published public var homeroomInfos: [K5ResourcesHomeroomInfo] = []
-    @Published public var applications: [K5ResourcesApplication] = []
-    @Published public var contacts: [K5ResourcesContact] = []
+    @Published public var homeroomInfos: [K5ResourcesHomeroomInfoViewModel] = []
+    @Published public var applications: [K5ResourcesApplicationViewModel] = []
+    @Published public var contacts: [K5ResourcesContactViewModel] = []
 
     private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
         self?.coursesRefreshed()
@@ -69,7 +44,7 @@ public class K5ResourcesViewModel: ObservableObject {
         let homeroomCourses = courses.all.filter { $0.isHomeroomCourse }
         homeroomInfos = homeroomCourses.compactMap {
             guard let name = $0.name, let syllabus = $0.syllabusBody else { return nil }
-            return K5ResourcesHomeroomInfo(homeroomName: name, htmlContent: syllabus)
+            return K5ResourcesHomeroomInfoViewModel(homeroomName: name, htmlContent: syllabus)
         }
         let nonHomeroomCourses = courses.all.filter { !$0.isHomeroomCourse }
         requestApplications(for: nonHomeroomCourses)
@@ -88,12 +63,12 @@ public class K5ResourcesViewModel: ObservableObject {
 
     private func handleApplicationsResponse(_ tools: [CourseNavigationTool]) {
         applicationsRequest = nil
-        var applications: [K5ResourcesApplication] = tools.compactMap {
+        var applications: [K5ResourcesApplicationViewModel] = tools.compactMap {
             guard
                 let name = $0.course_navigation?.text ?? $0.name,
                 let route = $0.course_navigation?.url
             else { return nil }
-            return K5ResourcesApplication(image: $0.course_navigation?.icon_url, name: name, route: route)
+            return K5ResourcesApplicationViewModel(image: $0.course_navigation?.icon_url, name: name, route: route)
         }
         applications = Array(Set(applications)).sorted { $0.name < $1.name }
 
@@ -114,7 +89,7 @@ public class K5ResourcesViewModel: ObservableObject {
     private func handleStaffInfoResponse(_ users: [APIUser]) {
         contactInfoService = nil
 
-        var contacts: [K5ResourcesContact] = users.map { K5ResourcesContact($0, courses: courses.all) }
+        var contacts: [K5ResourcesContactViewModel] = users.map { K5ResourcesContactViewModel($0, courses: courses.all) }
         contacts = Array(Set(contacts)).sorted()
 
         performUIUpdate {
