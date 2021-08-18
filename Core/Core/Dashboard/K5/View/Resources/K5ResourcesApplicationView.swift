@@ -75,8 +75,16 @@ struct K5ResourcesApplicationView_Previews: PreviewProvider {
         let _ = K5Preview.setupK5Mode()
 
         VStack {
-            K5ResourcesApplicationView(model: K5ResourcesApplication(image: URL(string: "https://google-drive-lti-iad-prod.instructure.com/icon.png")!, name: "Google Drive", route: URL(string: "https://instructure.com")!))
-            K5ResourcesApplicationView(model: K5ResourcesApplication(image: nil, name: "Google Drive Without Image", route: URL(string: "https://instructure.com")!))
+            K5ResourcesApplicationView(model:
+                                        K5ResourcesApplication(
+                                            image: URL(string: "https://google-drive-lti-iad-prod.instructure.com/icon.png")!,
+                                            name: "Google Drive",
+                                            route: URL(string: "https://instructure.com")!))
+            K5ResourcesApplicationView(model:
+                                        K5ResourcesApplication(
+                                            image: nil,
+                                            name: "Google Drive Without Image",
+                                            route: URL(string: "https://instructure.com")!))
         }.padding(.horizontal)
     }
 }
