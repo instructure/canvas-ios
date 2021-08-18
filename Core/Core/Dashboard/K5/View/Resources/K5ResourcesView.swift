@@ -59,10 +59,12 @@ public struct K5ResourcesView: View {
                 .foregroundColor(.licorice)
                 .font(.bold20)
                 .padding(.bottom)
+                .accessibility(addTraits: .isHeader)
 
             ForEach(viewModel.homeroomInfos) { info in
                 HStack {
                     Image.coursesLine
+                        .accessibility(hidden: true)
                     Text(info.homeroomName)
                         .foregroundColor(.licorice)
                         .font(.bold17)
@@ -85,6 +87,7 @@ public struct K5ResourcesView: View {
                 .foregroundColor(.licorice)
                 .font(.bold20)
                 .padding(.bottom, 8)
+                .accessibility(addTraits: .isHeader)
 
             ForEach(viewModel.applications) { application in
                 K5ResourcesApplicationView(model: application)
@@ -98,6 +101,7 @@ public struct K5ResourcesView: View {
                 .foregroundColor(.licorice)
                 .font(.bold20)
                 .padding(.bottom, 8)
+                .accessibility(addTraits: .isHeader)
             Divider()
 
             ForEach(viewModel.contacts) { contact in

@@ -54,6 +54,7 @@ public struct K5ResourcesApplicationView: View {
             .cornerRadius(4)
             .shadow(color: Color.black.opacity(0.15), radius: 1, x: 0, y: 2)
         })
+        .accessibility(hint: Text("Open application", bundle: .core))
     }
 
     private var disclosureIndicator: some View {

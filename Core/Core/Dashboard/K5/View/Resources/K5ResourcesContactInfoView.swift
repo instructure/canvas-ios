@@ -45,6 +45,8 @@ public struct K5ResourcesContactInfoView: View {
             }
             .foregroundColor(.licorice)
         })
+        .accessibility(label: Text(verbatim: "\(model.role), \(model.name)"))
+        .accessibility(hint: Text("Send message", bundle: .core))
     }
 }
 
