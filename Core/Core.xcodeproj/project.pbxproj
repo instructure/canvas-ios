@@ -868,6 +868,8 @@
 		CF8CB52F26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */; };
 		CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */; };
 		CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */; };
+		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
+		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
@@ -2044,6 +2046,8 @@
 		CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactViewModel.swift; sourceTree = "<group>"; };
 		CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModel.swift; sourceTree = "<group>"; };
 		CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
+		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
+		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
@@ -4353,6 +4357,8 @@
 		CF941B17267B431500700DE9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */,
+				CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */,
 				CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */,
 			);
 			path = Resources;
@@ -5357,6 +5363,7 @@
 				EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */,
+				CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */,
 				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
 				7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
@@ -5370,6 +5377,7 @@
 				7DCB2E9E247DA0380071F172 /* GetSubmissionCommentsTests.swift in Sources */,
 				3B383045237F178800B3DF05 /* APIActivityTests.swift in Sources */,
 				3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */,
+				CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */,
 				7D67C26B242E6BF100BC5CD1 /* ModuleListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
