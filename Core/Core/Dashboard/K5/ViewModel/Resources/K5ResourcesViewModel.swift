@@ -43,15 +43,6 @@ public struct K5ResourcesApplication: Equatable, Identifiable, Hashable {
     }
 }
 
-public struct K5ResourcesContact: Equatable, Identifiable {
-    public var id: String { route }
-
-    public let image: URL?
-    public let name: String
-    public let role: String
-    public let route: String
-}
-
 public class K5ResourcesViewModel: ObservableObject {
     @Published public var homeroomInfos: [K5ResourcesHomeroomInfo] = []
     @Published public var applications: [K5ResourcesApplication] = []
@@ -61,9 +52,9 @@ public class K5ResourcesViewModel: ObservableObject {
         self?.coursesRefreshed()
     }
     private var applicationsRequest: APITask?
+    private var contactInfoService: StaffContactInfoService?
 
     public init() {
-
     }
 
     public func viewDidAppear() {
@@ -82,7 +73,10 @@ public class K5ResourcesViewModel: ObservableObject {
         }
         let nonHomeroomCourses = courses.all.filter { !$0.isHomeroomCourse }
         requestApplications(for: nonHomeroomCourses)
+        requestStaffInfo(for: homeroomCourses)
     }
+
+    // MARK: - Applications
 
     private func requestApplications(for courses: [Course]) {
         guard applicationsRequest == nil else { return }
@@ -105,6 +99,39 @@ public class K5ResourcesViewModel: ObservableObject {
 
         performUIUpdate {
             self.applications = applications
+        }
+    }
+
+    // MARK: - Staff Info
+
+    private func requestStaffInfo(for courses: [Course]) {
+        guard contactInfoService == nil else { return }
+        contactInfoService = StaffContactInfoService(courses: courses) { [weak self] users in
+            self?.handleStaffInfoResponse(users)
+        }
+    }
+
+    private func handleStaffInfoResponse(_ users: [APIUser]) {
+        contactInfoService = nil
+
+        var contacts: [K5ResourcesContact] = users.map {
+            let firstActiveEnrollment = $0.enrollments?.first { $0.enrollment_state == .active }
+            let firstActiveRole = firstActiveEnrollment?.role
+            let role = firstActiveRole == "TeacherEnrollment" ? NSLocalizedString("Teacher", comment: "") : NSLocalizedString("Teacher's Assistant", comment: "")
+            let courseCode: String = {
+                if let courseId = firstActiveEnrollment?.course_id {
+                    return "course_\(courseId)"
+                } else {
+                    return ""
+                }
+            }()
+            let courseName = courses.all.first { course in course.canvasContextID == courseCode }?.name ?? ""
+            return K5ResourcesContact(image: $0.avatar_url?.rawValue, name: $0.name, role: role, userId: $0.id.rawValue, courseContextID: courseCode, courseName: courseName)
+        }
+        contacts = Array(Set(contacts)).sorted()
+
+        performUIUpdate {
+            self.contacts = contacts
         }
     }
 }

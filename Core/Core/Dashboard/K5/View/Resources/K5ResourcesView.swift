@@ -97,12 +97,15 @@ public struct K5ResourcesView: View {
             Text("Staff Contact Info", bundle: .core)
                 .foregroundColor(.licorice)
                 .font(.bold20)
-                .padding(.bottom)
+                .padding(.bottom, 8)
+            Divider()
 
             ForEach(viewModel.contacts) { contact in
-                Text(contact.name)
+                K5ResourcesContactInfoView(model: contact)
+                Divider()
             }
         }
+        .padding(.top, 27)
     }
 }
 

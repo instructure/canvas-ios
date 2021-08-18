@@ -863,6 +863,9 @@
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
 		CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */; };
 		CF8CB52226CBC41D008361E2 /* K5ResourcesApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */; };
+		CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */; };
+		CF8CB52B26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */; };
+		CF8CB52F26CC0BF6008361E2 /* K5ResourcesContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52E26CC0BF6008361E2 /* K5ResourcesContact.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
@@ -2034,6 +2037,9 @@
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
 		CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseNavigationToolsRequest.swift; sourceTree = "<group>"; };
 		CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationView.swift; sourceTree = "<group>"; };
+		CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffContactInfoService.swift; sourceTree = "<group>"; };
+		CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactInfoView.swift; sourceTree = "<group>"; };
+		CF8CB52E26CC0BF6008361E2 /* K5ResourcesContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContact.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
@@ -4145,6 +4151,7 @@
 				CF53F738266FBB0000FA58D7 /* Announcements */,
 				CF53F736266FBA2A00FA58D7 /* DueItems */,
 				CF53F742266FBB9200FA58D7 /* MissingSubmissions */,
+				CF8CB52526CBEDE5008361E2 /* Resources */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4219,6 +4226,7 @@
 			isa = PBXGroup;
 			children = (
 				CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */,
+				CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */,
 				CF60CC392645525F00C1C173 /* K5ResourcesView.swift */,
 			);
 			path = Resources;
@@ -4245,6 +4253,7 @@
 		CF60CC5026496A1F00C1C173 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF8CB52E26CC0BF6008361E2 /* K5ResourcesContact.swift */,
 				CF60CC5826496EBD00C1C173 /* K5ResourcesViewModel.swift */,
 			);
 			path = Resources;
@@ -4317,6 +4326,14 @@
 				CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */,
 			);
 			path = Group;
+			sourceTree = "<group>";
+		};
+		CF8CB52526CBEDE5008361E2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		CF941B12267B425800700DE9 /* Grades */ = {
@@ -5621,6 +5638,7 @@
 				7DA25FDE23F72148005D2121 /* SessionDefaults.swift in Sources */,
 				7DA2600723F7227A005D2121 /* LoggerExtensions.swift in Sources */,
 				7DA2602023F7227A005D2121 /* WKWebViewExtensions.swift in Sources */,
+				CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */,
 				7DA260EE23F72391005D2121 /* APIFile.swift in Sources */,
 				7DA2603823F722D9005D2121 /* AlertThreshold.swift in Sources */,
 				7DA260F223F72391005D2121 /* GetFile.swift in Sources */,
@@ -5688,6 +5706,7 @@
 				EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */,
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,
 				E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
+				CF8CB52B26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift in Sources */,
 				7DC3530D255B3DD900B36CD3 /* AssignmentEditorView.swift in Sources */,
 				7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */,
 				CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */,
@@ -5823,6 +5842,7 @@
 				7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */,
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
+				CF8CB52F26CC0BF6008361E2 /* K5ResourcesContact.swift in Sources */,
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
 				CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */,
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
