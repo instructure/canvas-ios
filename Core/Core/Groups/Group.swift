@@ -53,6 +53,10 @@ public final class Group: NSManagedObject, WriteableModel {
         return course
     }
 
+    public var isActive: Bool {
+        courseID == nil || getCourse()?.enrollments?.contains(where: {$0.state == .active}) == true
+    }
+
     @discardableResult
     public static func save(_ item: APIGroup, in context: NSManagedObjectContext) -> Group {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Group.id), item.id.value)

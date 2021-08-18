@@ -19,6 +19,8 @@
 import SwiftUI
 
 public struct K5ScheduleEntryView: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: K5ScheduleEntryViewModel
 
     public init(viewModel: K5ScheduleEntryViewModel) {
@@ -26,41 +28,52 @@ public struct K5ScheduleEntryView: View {
     }
 
     public var body: some View {
-        Button(action: viewModel.actionTriggered, label: {
-            HStack(spacing: 0) {
-                leading
-                icon
+        HStack(spacing: 0) {
+            leading
 
-                VStack(alignment: .leading, spacing: 0) {
-                    title
+            Button(action: {
+                viewModel.itemTapped(router: env.router, viewController: viewController)
+            }, label: {
+                HStack(spacing: 0) {
+                    icon
 
-                    if let subtitleModel = viewModel.subtitle {
-                        subtitle(model: subtitleModel)
+                    VStack(alignment: .leading, spacing: 0) {
+                        title
+
+                        if let subtitleModel = viewModel.subtitle {
+                            subtitle(model: subtitleModel)
+                        }
+
+                        if !viewModel.labels.isEmpty {
+                            if #available(iOS 14, *) {
+                                labels.textCase(.uppercase)
+                            } else {
+                                labels
+                            }
+                        }
                     }
+                    .padding(.leading, 12)
+                    .padding(.vertical, 8)
 
-                    if !viewModel.labels.isEmpty {
-                        labels
+                    Spacer(minLength: 0)
+
+                    VStack(alignment: .trailing) {
+                        if let scoreText = viewModel.score {
+                            score(text: scoreText)
+                        }
+
+                        due
                     }
+                    .padding(.leading, 8)
+                    .padding(.vertical, 8)
+
+                    disclosureIndicator
                 }
-                .padding(.leading, 12)
-                .padding(.vertical, 8)
-
-                Spacer(minLength: 0)
-
-                VStack(alignment: .trailing) {
-                    if let scoreText = viewModel.score {
-                        score(text: scoreText)
-                    }
-
-                    due
-                }
-                .padding(.leading, 8)
-                .padding(.vertical, 8)
-
-                disclosureIndicator
-            }
-            .padding(.trailing, 15)
-        })
+            })
+            .disabled(!viewModel.isTappable)
+        }
+        .padding(.trailing, 15)
+        .frame(minHeight: 66)
         .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -95,10 +108,11 @@ public struct K5ScheduleEntryView: View {
             .frame(width: 16, height: 16)
             .foregroundColor(.ash)
             .padding(.leading, 10)
+            .hidden(!viewModel.isTappable)
     }
 
     private var labels: some View {
-        HStack(spacing: 4) {
+        FlowStack { leading, top in
             ForEach(viewModel.labels) {
                 Text($0.text)
                     .padding(.horizontal, 8)
@@ -107,10 +121,15 @@ public struct K5ScheduleEntryView: View {
                     .foregroundColor($0.color)
                     .font(.regular12)
                     .background(Capsule().stroke($0.color))
+                    .padding(.trailing, 4)
+                    .padding(.bottom, 2)
+                    .padding(.top, 2)
+                    .alignmentGuide(.leading, computeValue: leading)
+                    .alignmentGuide(.top, computeValue: top)
             }
         }
-        .padding(.bottom, 7)
-        .padding(.top, 7)
+        .padding(.bottom, 5)
+        .padding(.top, 5)
     }
 
     private var due: some View {

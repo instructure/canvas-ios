@@ -18,24 +18,34 @@
 
 import SwiftUI
 
+/**
+ One to-do item in the schedule list.
+ */
 public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
     @Published public var leading: RowLeading
 
     public let icon: Image
 
     public let title: String
-    public let subtitle: SubtitleViewModel?
+    @Published public private(set) var subtitle: SubtitleViewModel?
     public let labels: [LabelViewModel]
 
     public let score: String?
     public let dueText: String
 
-    private let checkboxChanged: ((_ isSelected: Bool) -> Void)?
-    private let action: () -> Void
+    public var isTappable: Bool { route != nil }
+    private let route: URL?
+    private let apiService: PlannerOverrideUpdater
 
-    public init(leading: RowLeading, icon: Image, title: String, subtitle: SubtitleViewModel?, labels: [LabelViewModel], score: String?, dueText: String,
-                checkboxChanged: ((_ isSelected: Bool) -> Void)?,
-                action: @escaping () -> Void) {
+    public init(leading: RowLeading,
+                icon: Image,
+                title: String,
+                subtitle: SubtitleViewModel?,
+                labels: [LabelViewModel],
+                score: String?,
+                dueText: String,
+                route: URL?,
+                apiService: PlannerOverrideUpdater) {
         self.leading = leading
         self.icon = icon
         self.title = title
@@ -43,21 +53,41 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
         self.labels = labels
         self.score = score
         self.dueText = dueText
-        self.checkboxChanged = checkboxChanged
-        self.action = action
+        self.route = route
+        self.apiService = apiService
+        updateSubtitle()
     }
 
     public func checkboxTapped() {
-        guard case RowLeading.checkbox(let isChecked) = leading else {
+        guard case .checkbox(let isChecked) = leading else {
             return
         }
 
-        leading = .checkbox(isChecked: !isChecked)
-        checkboxChanged?(!isChecked)
+        let newState = !isChecked
+        leading = .checkbox(isChecked: newState)
+        updateSubtitle()
+
+        apiService.markAsComplete(isComplete: newState) { [weak self] succeeded in
+            if !succeeded {
+                // Update failed, revert UI to original state
+                performUIUpdate {
+                    self?.leading = .checkbox(isChecked: isChecked)
+                    self?.updateSubtitle()
+                    self?.subtitle = nil
+                }
+            }
+        }
     }
 
-    public func actionTriggered() {
-        action()
+    public func itemTapped(router: Router, viewController: WeakViewController) {
+        guard let route = route else { return }
+        // Any non-modal routing will put the view into the master view of the split view so we use modal to work this around
+        router.route(to: route, from: viewController, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
+    }
+
+    private func updateSubtitle() {
+        guard case .checkbox(let isChecked) = leading else { return }
+        subtitle = isChecked ? SubtitleViewModel(text: NSLocalizedString("You've marked it as done.", comment: ""), color: .ash, font: .regular12) : nil
     }
 }
 

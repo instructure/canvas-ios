@@ -20,6 +20,8 @@ import SwiftUI
 
 public struct K5ScheduleSubjectView: View {
     private let viewModel: K5ScheduleSubjectViewModel
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var viewController
     @Environment(\.containerSize) private var containerSize
     private var isCompact: Bool { containerSize.width < 500 }
 
@@ -30,7 +32,7 @@ public struct K5ScheduleSubjectView: View {
     public var body: some View {
         content
         .padding(.horizontal, 2)
-        .background(RoundedRectangle(cornerRadius: 6).stroke(viewModel.color, lineWidth: 4))
+        .background(RoundedRectangle(cornerRadius: 6).stroke(viewModel.subject.color, lineWidth: 4))
         .cornerRadius(3)
     }
 
@@ -46,56 +48,74 @@ public struct K5ScheduleSubjectView: View {
 
     private var smallView: some View {
         VStack(spacing: 0) {
-            Button(action: viewModel.viewTapped, label: {
+            Button(action: {
+                viewModel.viewTapped(router: env.router, viewController: viewController)
+            }, label: {
                 HStack(spacing: 0) {
                     subjectName
                         .font(.bold17)
+                        .padding(.top, 5)
                         .frame(minHeight: 50)
                     Spacer()
 
-                    if viewModel.hasTapAction {
+                    if viewModel.isTappable {
                         disclosureIndicator
                     }
                 }
                 .padding(.leading, 18)
                 .padding(.trailing, 15)
             })
-            .disabled(!viewModel.hasTapAction)
+            .disabled(!viewModel.isTappable)
             Divider()
             entries
         }
+        // This makes button inside button work if contained in a list
+        .buttonStyle(BorderlessButtonStyle())
     }
 
     private var largeView: some View {
         HStack(spacing: 0) {
-            Button(action: viewModel.viewTapped, label: {
+            Button(action: {
+                viewModel.viewTapped(router: env.router, viewController: viewController)
+            }, label: {
                 VStack(spacing: 0) {
                     subjectName
                         .font(.bold13)
+                        .padding(.top, 3)
                         .frame(minHeight: 25)
                     ZStack {
-                        if let image = viewModel.image {
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
+                        if let image = viewModel.subject.image {
+                            GeometryReader { geometry in
+                                RemoteImage(image, width: geometry.size.width, height: geometry.size.height)
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipped()
+                                    // Fix big course image consuming tap events.
+                                    .contentShape(Path(CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height)))
+                            }
                         }
-                        viewModel.color.opacity(0.75)
+                        viewModel.subject.color.opacity(viewModel.subject.image == nil ? 1 : 0.75)
                     }
                 }
                 .padding(.vertical, 2)
                 .frame(width: 147)
                 .clipped()
             })
-            .disabled(!viewModel.hasTapAction)
+            .disabled(!viewModel.isTappable)
             verticalSeparator
             entries
                 .padding(.vertical, 2)
         }
     }
 
+    @ViewBuilder
     private var subjectName: some View {
-        Text(viewModel.name)
-            .foregroundColor(viewModel.color)
+        let text = Text(viewModel.subject.name).foregroundColor(viewModel.subject.color)
+
+        if #available(iOS 14, *) {
+            text.textCase(.uppercase)
+        } else {
+            text
+        }
     }
 
     private var disclosureIndicator: some View {
@@ -108,7 +128,7 @@ public struct K5ScheduleSubjectView: View {
     }
 
     private var verticalSeparator: some View {
-        viewModel.color
+        viewModel.subject.color
             .frame(width: 2)
     }
 

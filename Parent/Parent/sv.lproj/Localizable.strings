@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Studenten du försöker lägga till tillhör en annan institution.\n                    Logga in eller skapa ett konto med den institutiionen för att lägga till den här studenten.\n                    ";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Studenten du försöker lägga till tillhör ett annat lärosäte.\n                    Logga in eller skapa ett konto med den institutiionen för att lägga till den här studenten.\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ska vara klar %2$@";

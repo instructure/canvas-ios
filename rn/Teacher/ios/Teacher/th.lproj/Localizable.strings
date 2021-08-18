@@ -263,6 +263,9 @@
 "Send" = "ส่ง";
 
 /* No comment provided by engineer. */
+"Send message to users" = "ส่งข้อความไปยังผู้ใช้";
+
+/* No comment provided by engineer. */
 "Similarity Score" = "คะแนนความใกล้เคียง";
 
 /* No comment provided by engineer. */

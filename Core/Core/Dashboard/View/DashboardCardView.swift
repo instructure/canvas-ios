@@ -181,7 +181,8 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder var groupCards: some View {
-        if !groups.isEmpty && shouldShowGroupList {
+        let filteredGroups = groups.all.filter { $0.isActive }
+        if !filteredGroups.isEmpty && shouldShowGroupList {
             Section(
                 header: HStack(alignment: .lastTextBaseline) {
                     Text("Groups", bundle: .core)
@@ -190,7 +191,7 @@ public struct DashboardCardView: View {
                     Spacer()
                 }
                     .padding(.top, 16).padding(.bottom, 8)) {
-                ForEach(groups.all, id: \.id) { group in
+                ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.getCourse())
                         // outside the GroupCard, because that isn't observing colors
                         .accentColor(Color(group.color.ensureContrast(against: .white)))

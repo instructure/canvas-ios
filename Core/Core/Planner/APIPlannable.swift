@@ -34,14 +34,25 @@ public struct APIPlannable: Codable, Equatable {
 
     //  swiftlint:disable:next type_name
     public struct plannable: Codable, Equatable {
-        let title: String?
-        let points_possible: Double?
+        let all_day: Bool?
         let details: String?
+        let end_at: Date?
+        let points_possible: Double?
+        let start_at: Date?
+        let title: String?
 
-        public init(title: String? = nil, points_possible: Double? = nil, details: String? = nil) {
-            self.title = title
-            self.points_possible = points_possible
+        public init(all_day: Bool? = nil,
+                    details: String? = nil,
+                    end_at: Date? = nil,
+                    points_possible: Double? = nil,
+                    start_at: Date? = nil,
+                    title: String? = nil) {
+            self.all_day = all_day
             self.details = details
+            self.end_at = end_at
+            self.points_possible = points_possible
+            self.start_at = start_at
+            self.title = title
         }
     }
 
@@ -83,7 +94,7 @@ extension APIPlannable {
         plannable_type: String = "Assignment",
         html_url: URL? = URL(string: "http://localhost")!,
         context_name: String? = "Assignment Grades",
-        plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a", details: "description"),
+        plannable: APIPlannable.plannable? = APIPlannable.plannable(details: "description", title: "assignment a"),
         plannable_date: Date = Clock.now,
         submissions: Submissions? = nil
     ) -> APIPlannable {
@@ -185,6 +196,41 @@ public struct GetPlannablesRequest: APIRequestable {
             .array("context_codes", contextCodes),
             .value("filter", filter),
         ]
+    }
+}
+
+// https://canvas.instructure.com/doc/api/planner.html#method.planner_overrides.update
+public struct UpdatePlannerOverrideRequest: APIRequestable {
+    public typealias Response = APINoContent
+    public struct Body: Codable, Equatable {
+        let marked_complete: Bool
+    }
+    public var method: APIMethod = .put
+    public var path: String { "planner/overrides/\(overrideId)" }
+    public let body: Body?
+
+    private let overrideId: String
+
+    public init(overrideId: String, body: Body) {
+        self.overrideId = overrideId
+        self.body = body
+    }
+}
+
+// https://canvas.instructure.com/doc/api/planner.html#method.planner_overrides.create
+public struct CreatePlannerOverrideRequest: APIRequestable {
+    public typealias Response = APIPlannerOverride
+    public struct Body: Codable, Equatable {
+        let plannable_type: String
+        let plannable_id: String
+        let marked_complete: Bool
+    }
+    public var method: APIMethod = .post
+    public var path: String { "planner/overrides" }
+    public let body: Body?
+
+    public init(body: Body) {
+        self.body = body
     }
 }
 

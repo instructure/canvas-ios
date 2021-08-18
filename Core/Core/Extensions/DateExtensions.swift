@@ -111,6 +111,37 @@ public extension Date {
         formatter.timeStyle = .short
         return formatter
     }()
+    /**
+     Date formatter to create a from-to string between two times within a day because no date component is displayed only hours and minutes.
+     */
+    static var timeIntervalFormatter: DateIntervalFormatter = {
+        let formatter = DateIntervalFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    /**
+     This date formatter displays only the name of the weekday. E.g.: Monday, Saturday.
+     */
+    static var weekdayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("EEEE")
+        return formatter
+    }()
+    /**
+     This date formatter displays the full month name and the day of the month. E.g.: September 6.
+     */
+    static var dayInMonthFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMMd", options: 0, locale: NSLocale.current)
+        return dateFormatter
+    }()
+    static var timeOnlyFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
 
     var dateOnlyString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
@@ -129,5 +160,26 @@ public extension Date {
     }
     func intervalStringTo(_ to: Date) -> String {
         return Date.intervalDateTimeFormatter.string(from: self, to: to)
+    }
+    /**
+     E.g.: 8:30-10:30 PM
+     */
+    func timeIntervalString(to date: Date) -> String {
+        Date.timeIntervalFormatter.string(from: self, to: date)
+    }
+    /**
+     E.g.: Monday
+     */
+    var weekdayName: String {
+        Date.weekdayFormatter.string(from: self)
+    }
+    /**
+     E.g.: September 6.
+     */
+    var dayInMonth: String {
+        Date.dayInMonthFormatter.string(from: self)
+    }
+    var timeString: String {
+        Date.timeOnlyFormatter.string(from: self)
     }
 }

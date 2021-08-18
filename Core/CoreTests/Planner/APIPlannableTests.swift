@@ -85,3 +85,35 @@ class PostPlannerNoteRequestTests: XCTestCase {
         XCTAssertEqual(req.body?.linked_object_id, "1")
     }
 }
+
+class UpdatePlannerOverrideRequestTests: XCTestCase {
+    private let testee = UpdatePlannerOverrideRequest(overrideId: "testID", body: .init(marked_complete: true))
+
+    func testRequestPath() {
+        XCTAssertEqual(testee.path, "planner/overrides/testID")
+    }
+
+    func testMethod() {
+        XCTAssertEqual(testee.method, .put)
+    }
+
+    func testBody() {
+        XCTAssertNotNil(testee.body)
+    }
+}
+
+class CreatePlannerOverrideRequestTests: XCTestCase {
+    private let testee = CreatePlannerOverrideRequest(body: .init(plannable_type: "testType", plannable_id: "testID", marked_complete: false))
+
+    func testRequestPath() {
+        XCTAssertEqual(testee.path, "planner/overrides")
+    }
+
+    func testMethod() {
+        XCTAssertEqual(testee.method, .post)
+    }
+
+    func testBody() {
+        XCTAssertNotNil(testee.body)
+    }
+}

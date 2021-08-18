@@ -461,7 +461,7 @@
 "Complete" = "Färdig";
 
 /* No comment provided by engineer. */
-"Complete/Incomplete" = "Färdig/ofullständig";
+"Complete/Incomplete" = "Färdig/Inte färdig";
 
 /* concluded datetime */
 "Concluded %@" = "Avslutad %@";
@@ -1031,16 +1031,16 @@
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
-"Incomplete" = "ofullständig";
+"Incomplete" = "Inte färdig";
 
 /* No comment provided by engineer. */
 "Indigo" = "Indigo";
 
 /* No comment provided by engineer. */
-"Institution Announcement" = "Institutionsmeddelande";
+"Institution Announcement" = "Meddelande från lärosätet";
 
 /* No comment provided by engineer. */
-"Institution announcements" = "Institutionens anslag";
+"Institution announcements" = "Meddelande från lärosätet";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "Interaktioner på den här sidan har begränsats av din institution.";
