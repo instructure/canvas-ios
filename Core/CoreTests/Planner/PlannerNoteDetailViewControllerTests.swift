@@ -29,7 +29,7 @@ class PlannerNoteDetailViewControllerTests: CoreTestCase {
         p = Plannable.make(from: .make(
             plannable_type: PlannableType.planner_note.rawValue,
             plannable: APIPlannable.plannable(
-                title: "title", details: "description"),
+                details: "description", title: "title"),
             plannable_date: date),
                            in: databaseClient)
         vc = PlannerNoteDetailViewController.create(plannable: p)
