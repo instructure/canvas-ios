@@ -22,6 +22,7 @@ public struct K5ResourcesApplicationView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var viewController
     private let model: K5ResourcesApplicationViewModel
+    @State private var isShowingSubjectPicker = false
 
     public init(model: K5ResourcesApplicationViewModel) {
         self.model = model
@@ -29,7 +30,7 @@ public struct K5ResourcesApplicationView: View {
 
     public var body: some View {
         Button(action: {
-            model.applicationTapped(router: env.router, viewController: viewController)
+            isShowingSubjectPicker.toggle()
         },
         label: {
             HStack(spacing: 0) {
@@ -55,6 +56,9 @@ public struct K5ResourcesApplicationView: View {
             .shadow(color: Color.black.opacity(0.15), radius: 1, x: 0, y: 2)
         })
         .accessibility(hint: Text("Open application", bundle: .core))
+        .actionSheet(isPresented: $isShowingSubjectPicker) {
+            ActionSheet(title: Text("Choose a subject", bundle: .core), buttons: subjectPickerButtons)
+        }
     }
 
     private var disclosureIndicator: some View {
@@ -64,6 +68,16 @@ public struct K5ResourcesApplicationView: View {
             .frame(width: 16, height: 16)
             .foregroundColor(.ash)
             .padding(.leading, 10)
+    }
+
+    private var subjectPickerButtons: [ActionSheet.Button] {
+        var buttons: [ActionSheet.Button] = model.routesBySubjectNames.map { nameAndRoute in
+            return ActionSheet.Button.default(Text(nameAndRoute.0)) {
+                model.applicationTapped(router: env.router, route: nameAndRoute.1, viewController: viewController)
+            }
+        }
+        buttons.append(.cancel(Text("Cancel", bundle: .core)))
+        return buttons
     }
 }
 
@@ -80,12 +94,12 @@ struct K5ResourcesApplicationView_Previews: PreviewProvider {
                                         K5ResourcesApplicationViewModel(
                                             image: URL(string: "https://google-drive-lti-iad-prod.instructure.com/icon.png")!,
                                             name: "Google Drive",
-                                            route: URL(string: "https://instructure.com")!))
+                                            routesBySubjectNames: [("Math", URL(string: "https://instructure.com")!)]))
             K5ResourcesApplicationView(model:
                                         K5ResourcesApplicationViewModel(
                                             image: nil,
                                             name: "Google Drive Without Image",
-                                            route: URL(string: "https://instructure.com")!))
+                                            routesBySubjectNames: [("Art", URL(string: "https://instructure.com")!)]))
         }.padding(.horizontal)
     }
 }

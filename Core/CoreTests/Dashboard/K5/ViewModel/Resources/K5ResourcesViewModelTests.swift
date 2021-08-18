@@ -45,12 +45,27 @@ class K5ResourcesViewModelTests: CoreTestCase {
     func testApplicationsFetch() {
         api.mock(GetCourseNavigationToolsRequest(courseContextsCodes: ["course_3"]), value: [
             CourseNavigationTool(
+                id: "1",
+                context_name: "Art",
+                context_id: "course_art",
                 course_navigation: .init(text: "Google Drive Text",
                                          url: URL(string: "https://instructure.com")!,
                                          label: "Google Drive Label",
                                          icon_url: URL(string: "https://instructure.com/icon.png")!),
                 name: "Google Apps"),
             CourseNavigationTool(
+                id: "1",
+                context_name: "Math",
+                context_id: "course_math",
+                course_navigation: .init(text: "Google Drive Text",
+                                         url: URL(string: "https://instructure.com")!,
+                                         label: "Google Drive Label",
+                                         icon_url: URL(string: "https://instructure.com/icon.png")!),
+                name: "Google Apps"),
+            CourseNavigationTool(
+                id: "2",
+                context_name: "Math",
+                context_id: "course_math",
                 course_navigation: .init(text: nil,
                                          url: URL(string: "https://instructure2.com")!,
                                          label: "Google Drive 2 Label",
@@ -62,8 +77,13 @@ class K5ResourcesViewModelTests: CoreTestCase {
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.applications, [
-            K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon2.png")!, name: "Google Apps 2", route: URL(string: "https://instructure2.com")!),
-            K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon.png")!, name: "Google Drive Text", route: URL(string: "https://instructure.com")!),
+            K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon2.png")!, name: "Google Apps 2", routesBySubjectNames: [
+                ("Math", URL(string: "/courses/course_math/external_tools/2")!),
+            ]),
+            K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon.png")!, name: "Google Drive Text", routesBySubjectNames: [
+                ("Art", URL(string: "/courses/course_math/external_tools/1")!),
+                ("Math", URL(string: "/courses/course_art/external_tools/1")!),
+            ]),
         ])
     }
 

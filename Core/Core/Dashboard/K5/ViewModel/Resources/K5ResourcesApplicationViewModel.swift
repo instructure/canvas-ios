@@ -18,22 +18,34 @@
 
 import SwiftUI
 
-public struct K5ResourcesApplicationViewModel: Equatable, Identifiable, Hashable {
-    public var id: String { name }
-
+public struct K5ResourcesApplicationViewModel {
     public let image: URL?
     public let name: String
-    private let route: URL
+    public let routesBySubjectNames: [(String, URL)]
 
-    public init(image: URL?, name: String, route: URL) {
+    public init(image: URL?, name: String, routesBySubjectNames: [(String, URL)]) {
         self.image = image
         self.name = name
-        self.route = route
+        self.routesBySubjectNames = routesBySubjectNames
     }
 
-    public func applicationTapped(router: Router, viewController: WeakViewController) {
-        let webViewController = CoreWebViewController()
-        webViewController.webView.load(URLRequest(url: route))
-        router.show(webViewController, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: true))
+    public func applicationTapped(router: Router, route: URL, viewController: WeakViewController) {
+        router.route(to: route, from: viewController)
+    }
+}
+
+extension K5ResourcesApplicationViewModel: Identifiable {
+    public var id: String { name }
+}
+
+extension K5ResourcesApplicationViewModel: Equatable {
+    public static func == (lhs: K5ResourcesApplicationViewModel, rhs: K5ResourcesApplicationViewModel) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension K5ResourcesApplicationViewModel: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

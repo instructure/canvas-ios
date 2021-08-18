@@ -22,17 +22,23 @@ import XCTest
 class K5ResourcesApplicationViewModelTests: CoreTestCase {
 
     func testApplicationOpening() {
-        let testee = K5ResourcesApplicationViewModel(image: nil, name: "test app", route: URL(string: "https://instructure.com")!)
-        testee.applicationTapped(router: router, viewController: WeakViewController())
+        let testee = K5ResourcesApplicationViewModel(image: nil, name: "test app", routesBySubjectNames: [("Art", URL(string: "https://instructure.com")!)])
+        testee.applicationTapped(router: router, route: URL(string: "https://instructure.com")!, viewController: WeakViewController())
 
-        wait(for: [router.showExpectation], timeout: 0.1)
+        XCTAssertTrue(router.lastRoutedTo("https://instructure.com"))
+        wait(for: [router.routeExpectation], timeout: 0.1)
+    }
 
-        if let webViewController = router.viewControllerCalls.last?.0 as? CoreWebViewController {
-            XCTAssertEqual(webViewController.webView.url, URL(string: "https://instructure.com/")!)
-        } else {
-            XCTFail("Failed to get presented controller.")
-        }
+    func testEquatable() {
+        let testee1 = K5ResourcesApplicationViewModel(image: nil, name: "a", routesBySubjectNames: [])
+        let testee2 = K5ResourcesApplicationViewModel(image: nil, name: "b", routesBySubjectNames: [])
+        let testee3 = K5ResourcesApplicationViewModel(image: URL(string: "/image.png"), name: "b", routesBySubjectNames: [])
+        XCTAssertNotEqual(testee1, testee2)
+        XCTAssertEqual(testee2, testee3)
+    }
 
-        XCTAssertEqual(router.viewControllerCalls.last?.2, RouteOptions.modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: true))
+    func testIdentifiable() {
+        let testee = K5ResourcesApplicationViewModel(image: nil, name: "a", routesBySubjectNames: [])
+        XCTAssertEqual(testee.id, testee.name)
     }
 }

@@ -63,12 +63,17 @@ public class K5ResourcesViewModel: ObservableObject {
 
     private func handleApplicationsResponse(_ tools: [CourseNavigationTool]) {
         applicationsRequest = nil
-        var applications: [K5ResourcesApplicationViewModel] = tools.compactMap {
-            guard
-                let name = $0.course_navigation?.text ?? $0.name,
-                let route = $0.course_navigation?.url
-            else { return nil }
-            return K5ResourcesApplicationViewModel(image: $0.course_navigation?.icon_url, name: name, route: route)
+        let validTools = tools.filter {
+            ($0.course_navigation?.text != nil || $0.name != nil) &&
+            $0.context_name != nil &&
+            $0.id != nil &&
+            $0.context_id != nil
+        }
+        let toolsByNames = Dictionary(grouping: validTools) { $0.course_navigation?.text ?? $0.name! }
+        var applications: [K5ResourcesApplicationViewModel] = toolsByNames.map { name, tools in
+            var routesAndSubjectNames = tools.map { (name: $0.context_name!, route: URL(string: "/courses/\($0.context_id!)/external_tools/\($0.id!)")!) }
+            routesAndSubjectNames.sort { $0.name < $1.name }
+            return K5ResourcesApplicationViewModel(image: tools.first?.course_navigation?.icon_url, name: name, routesBySubjectNames: routesAndSubjectNames)
         }
         applications = Array(Set(applications)).sorted { $0.name < $1.name }
 
