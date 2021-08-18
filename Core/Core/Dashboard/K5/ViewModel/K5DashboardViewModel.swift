@@ -22,7 +22,7 @@ import SwiftUI
 public class K5DashboardViewModel: ObservableObject {
     @Published private(set) var topBarViewModel = TopBarViewModel(items: [
         TopBarItemViewModel(icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
-//        TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
+        TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
 //        TopBarItemViewModel(icon: .k5grades, label: Text("Grades", bundle: .core)),
 //        TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core)),
     ])

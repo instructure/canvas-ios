@@ -22,18 +22,16 @@ import XCTest
 class K5ScheduleSubjectViewModelTests: CoreTestCase {
 
     func testInvokesTapAction() {
-        let tapActionExpectation = expectation(description: "Tap action triggered")
-        let testee = K5ScheduleSubjectViewModel(name: "", color: .red, image: nil, entries: []) {
-            tapActionExpectation.fulfill()
-        }
+        router.routeExpectation = expectation(description: "Route happened")
+        let testee = K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: URL(string: "/a")!), entries: [])
 
-        testee.viewTapped()
+        testee.viewTapped(router: router, viewController: WeakViewController(UIViewController()))
 
-        wait(for: [tapActionExpectation], timeout: 0.1)
+        wait(for: [router.routeExpectation], timeout: 0.1)
     }
 
     func testHasTapActionProperty() {
-        XCTAssertTrue(K5ScheduleSubjectViewModel(name: "", color: .red, image: nil, entries: []) {}.hasTapAction)
-        XCTAssertFalse(K5ScheduleSubjectViewModel(name: "", color: .red, image: nil, entries: [], tapAction: nil).hasTapAction)
+        XCTAssertTrue(K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: URL(string: "/a")!), entries: []).isTappable)
+        XCTAssertFalse(K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: nil), entries: []).isTappable)
     }
 }
