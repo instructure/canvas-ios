@@ -27,7 +27,7 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
     public let icon: Image
 
     public let title: String
-    public let subtitle: SubtitleViewModel?
+    @Published public private(set) var subtitle: SubtitleViewModel?
     public let labels: [LabelViewModel]
 
     public let score: String?
@@ -55,6 +55,7 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
         self.dueText = dueText
         self.route = route
         self.apiService = apiService
+        updateSubtitle()
     }
 
     public func checkboxTapped() {
@@ -64,12 +65,15 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
 
         let newState = !isChecked
         leading = .checkbox(isChecked: newState)
+        updateSubtitle()
 
         apiService.markAsComplete(isComplete: newState) { [weak self] succeeded in
             if !succeeded {
                 // Update failed, revert UI to original state
                 performUIUpdate {
                     self?.leading = .checkbox(isChecked: isChecked)
+                    self?.updateSubtitle()
+                    self?.subtitle = nil
                 }
             }
         }
@@ -79,6 +83,11 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
         guard let route = route else { return }
         // Any non-modal routing will put the view into the master view of the split view so we use modal to work this around
         router.route(to: route, from: viewController, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
+    }
+
+    private func updateSubtitle() {
+        guard case .checkbox(let isChecked) = leading else { return }
+        subtitle = isChecked ? SubtitleViewModel(text: NSLocalizedString("You've marked it as done.", comment: ""), color: .ash, font: .regular12) : nil
     }
 }
 

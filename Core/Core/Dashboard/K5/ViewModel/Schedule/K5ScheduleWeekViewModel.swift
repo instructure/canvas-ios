@@ -25,9 +25,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     public let isTodayButtonAvailable: Bool
     @Published public var days: [K5ScheduleDayViewModel]
 
-    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
-        self?.coursesRefreshed()
-    }
+    private var courses: Store<GetCourses>?
     private var plannableDownloadTask: APITask?
     private var isDownloadStarted = false
     private var isForceUpdate = false
@@ -75,16 +73,23 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                 guard let override = $0.planner_override else { return true }
                 return !override.dismissed
             }
-            self.courses.refresh(force: self.isForceUpdate)
+
+            let courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+                self?.coursesRefreshed()
+             }
+            self.courses = courses
+            courses.refresh(force: self.isForceUpdate)
         }
     }
 
     private func coursesRefreshed() {
+        guard let courses = courses else { return }
+
         if courses.pending || !courses.requested {
             return
         }
 
-        setupCourseColors()
+        setupCourseColors(courses.all)
 
         for day in days {
             let plannablesForDay = plannables.filter { day.range.contains($0.plannable_date) }
@@ -95,6 +100,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         performUIUpdate { [weak self] in
             // Modifying an object inside `days` doesn't trigger a UI update so we do it manually
             self?.objectWillChange.send()
+            self?.courses = nil
             self?.isForceUpdate = false
             self?.pullToRefreshCompletion?()
             self?.pullToRefreshCompletion = nil
@@ -102,8 +108,8 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         }
     }
 
-    private func setupCourseColors() {
-        let coursesByIDs = Dictionary(grouping: courses.all) { $0.id }
+    private func setupCourseColors(_ courses: [Course]) {
+        let coursesByIDs = Dictionary(grouping: courses) { $0.id }
         let courseInfoByCourseIDs = coursesByIDs.mapValues { (Color($0[0].color), $0[0].imageDownloadURL) }
         self.courseInfoByCourseIDs = courseInfoByCourseIDs
     }
