@@ -896,6 +896,7 @@
 		D9436D1725A4BAD200DD3873 /* GetCourseSingleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */; };
 		D9436D1D25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */; };
 		D94FA2A826CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */; };
+		D94FA2AE26CBE787007B9CA4 /* K5GradeProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FA2AD26CBE787007B9CA4 /* K5GradeProgressBar.swift */; };
 		D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020BC257FB554002B7B73 /* ContextCardView.swift */; };
 		D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */; };
 		D9BFFC7325921C04001B5E7B /* ContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */; };
@@ -2068,6 +2069,7 @@
 		D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUser.swift; sourceTree = "<group>"; };
 		D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUserTests.swift; sourceTree = "<group>"; };
 		D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModelTests.swift; sourceTree = "<group>"; };
+		D94FA2AD26CBE787007B9CA4 /* K5GradeProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeProgressBar.swift; sourceTree = "<group>"; };
 		D97020BC257FB554002B7B73 /* ContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardView.swift; sourceTree = "<group>"; };
 		D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardHeaderView.swift; sourceTree = "<group>"; };
 		D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardTests.swift; sourceTree = "<group>"; };
@@ -4143,7 +4145,6 @@
 		CF575E3D266679D100F8515F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EB35FA5A26B02F6D00AA8C22 /* New Group */,
 				CF53F738266FBB0000FA58D7 /* Announcements */,
 				CF53F736266FBA2A00FA58D7 /* DueItems */,
 				CF53F742266FBB9200FA58D7 /* MissingSubmissions */,
@@ -4214,6 +4215,7 @@
 			children = (
 				CF60CC322645524500C1C173 /* K5GradesView.swift */,
 				EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */,
+				D94FA2AD26CBE787007B9CA4 /* K5GradeProgressBar.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -4589,13 +4591,6 @@
 				EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */,
 			);
 			path = SideMenu;
-			sourceTree = "<group>";
-		};
-		EB35FA5A26B02F6D00AA8C22 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		EE584C7822F2043300D1E201 /* Pages */ = {
@@ -5471,6 +5466,7 @@
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
 				CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */,
 				E8D20399250A723E009B2ABE /* InboxView.swift in Sources */,
+				D94FA2AE26CBE787007B9CA4 /* K5GradeProgressBar.swift in Sources */,
 				7DA260FA23F724D7005D2121 /* Database.xcdatamodeld in Sources */,
 				7DA25FA923F72136005D2121 /* APIDiscussion.swift in Sources */,
 				7DA25FDC23F72148005D2121 /* MDMManager.swift in Sources */,

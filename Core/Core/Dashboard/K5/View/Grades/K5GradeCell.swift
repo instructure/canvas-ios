@@ -57,7 +57,7 @@ struct K5GradeCell: View {
                             .foregroundColor(viewModel.color)
                         HStack {
                             let percentage = gradePercentage
-                            GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
+                            K5GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
                             Image.arrowOpenRightLine
                                 .resizable()
                                 .frame(width: 16, height: 16)
@@ -80,37 +80,5 @@ struct K5GradeCell: View {
 struct K5GradeCell_Previews: PreviewProvider {
     static var previews: some View {
         K5GradeCell(with: K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: nil, score: 55, color: .yellow, courseID: ""))
-    }
-}
-
-struct GradeProgressBar: View {
-    @State var percentage: Double
-    @State var color: Color
-    @State private var animate: Bool = false
-
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
-                    .foregroundColor(.clear)
-                    .border(color, width: 1)
-                let clampedPercentage = min(max(percentage, 0), 100)
-                Rectangle().frame(width: abs(min(CGFloat(clampedPercentage) / 100.0 * geometry.size.width, geometry.size.width)),
-                                  height: geometry.size.height, alignment: .leading)
-                    .foregroundColor(color)
-                //  .animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0.55))
-            }.clipped()
-        }
-//         .onAppear {
-//            animate = true
-//        }.onDisappear {
-//            animate = false
-//        }
-    }
-}
-
-struct GradeProgressBar_Previews: PreviewProvider {
-    static var previews: some View {
-        GradeProgressBar(percentage: 50, color: .red).frame(height: 16)
     }
 }

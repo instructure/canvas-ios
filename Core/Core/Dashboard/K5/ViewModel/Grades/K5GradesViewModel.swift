@@ -27,6 +27,7 @@ public class K5GradesViewModel: ObservableObject {
     private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
         self?.coursesUpdated()
     }
+    private let defaultCurrentGradingPeriod = K5GradingPeriod(periodID: nil, title: "Current Grading Period")
 
     // MARK: Refresh
     private var refreshCompletion: (() -> Void)?
@@ -34,13 +35,13 @@ public class K5GradesViewModel: ObservableObject {
 
     init() {
         studentID = env.currentSession?.userID ?? ""
-        currentGradingPeriod = K5GradingPeriod(periodID: nil, title: "Current grading period")
+        currentGradingPeriod = defaultCurrentGradingPeriod
         courses.refresh()
     }
 
     private func coursesUpdated() {
         grades.removeAll()
-        gradingPeriods = [K5GradingPeriod(periodID: nil, title: "current grading period")]
+        gradingPeriods = [defaultCurrentGradingPeriod]
         grades = courses.filter({ !$0.isHomeroomCourse }).map {
             return K5GradeCellViewModel(a11yId: "K5GradeCell.\($0.id)",
                                         title: $0.name ?? "",
@@ -50,7 +51,11 @@ public class K5GradesViewModel: ObservableObject {
                                         color: $0.color,
                                         courseID: $0.id)
         }
-        let gradingPeriodModels = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
+        var gradingPeriodModels = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
+        gradingPeriodModels.sort(by: {
+            guard let date0 = $0.startDate, let date1 = $1.startDate else { return false }
+            return date0 < date1
+        })
         gradingPeriods.append(contentsOf: gradingPeriodModels.map { return K5GradingPeriod(periodID: $0.id, title: $0.title) })
         finishRefresh()
     }
@@ -65,12 +70,13 @@ public class K5GradesViewModel: ObservableObject {
                 let cellModel = K5GradeCellViewModel(a11yId: "K5GradeCell.\(course.id)",
                                                      title: course.name ?? "",
                                                      imageURL: course.imageDownloadURL,
-                                                     grade: enrollment.computed_current_grade,
-                                                     score: enrollment.computed_current_score,
+                                                     grade: enrollment.computed_current_grade ?? enrollment.grades?.current_grade,
+                                                     score: enrollment.computed_current_score ?? enrollment.grades?.current_score,
                                                      color: course.color,
                                                      courseID: course.id)
                 grades.append(cellModel)
             }
+            grades.sort(by: {$0.title < $1.title})
             performUIUpdate {
                 self?.grades = grades
             }
