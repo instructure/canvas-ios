@@ -63,8 +63,7 @@ struct K5GradesView: View {
 
                 if gradeSelectorOpen {
                     VStack(alignment: .leading) {
-                        ForEach(viewModel.gradingPeriods, id: \.self) {
-                            let gradingPeriod = $0
+                        ForEach(viewModel.gradingPeriods, id: \.self) { gradingPeriod in
                             Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white).contentShape(Rectangle()).onTapGesture {
                                 viewModel.didSelect(gradingPeriod: gradingPeriod)
                                 withAnimation {
@@ -98,8 +97,12 @@ struct K5GradesView: View {
     }
 }
 
+#if DEBUG
+
 struct K5GradesView_Previews: PreviewProvider {
     static var previews: some View {
         K5GradesView(viewModel: K5GradesViewModel() )
     }
 }
+
+#endif

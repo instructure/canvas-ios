@@ -24,16 +24,6 @@ struct K5GradeCell: View {
     @Environment(\.viewController) var controller
     var viewModel: K5GradeCellViewModel
 
-    var gradePercentage: Double {
-        guard let grade = viewModel.grade else { return viewModel.score ?? 0 }
-        return Double(grade) ?? 0 / 0.05
-    }
-
-    var roundedDisplayGrade: String {
-        guard let score = viewModel.score else { return viewModel.grade ?? "" }
-        return "\(Int(score.rounded()))%"
-    }
-
     init(with viewModel: K5GradeCellViewModel) {
         self.viewModel = viewModel
     }
@@ -41,7 +31,7 @@ struct K5GradeCell: View {
     var body: some View {
         GeometryReader { geometry in
             Button(action: {
-                env.router.route(to: "/courses/\(viewModel.courseID)/grades/", from: controller, options: .push)
+                env.router.route(to: viewModel.route, from: controller, options: .push)
             }, label: {
                 HStack(spacing: 13) {
                     if geometry.size.width > 396 {
@@ -56,7 +46,7 @@ struct K5GradeCell: View {
                             .font(.bold17)
                             .foregroundColor(viewModel.color)
                         HStack {
-                            let percentage = gradePercentage
+                            let percentage = viewModel.gradePercentage
                             K5GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
                             Image.arrowOpenRightLine
                                 .resizable()
@@ -66,19 +56,22 @@ struct K5GradeCell: View {
                         if viewModel.grade == nil, viewModel.score == nil {
                             Text("Not Graded", bundle: .core).font(.regular17)
                         } else {
-                            Text(roundedDisplayGrade).font(.regular17)
+                            Text(viewModel.roundedDisplayGrade).font(.regular17)
                         }
-
                     }
                 }
             })
         }
-        .frame(minHeight: 72).padding(.top, 13.5).padding(.bottom, 13.5)
+        .frame(minHeight: 72).padding(.vertical, 13.5)
     }
 }
 
+#if DEBUG
+
 struct K5GradeCell_Previews: PreviewProvider {
     static var previews: some View {
-        K5GradeCell(with: K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: nil, score: 55, color: .yellow, courseID: ""))
+        K5GradeCell(with: K5GradeCellViewModel(title: "ART", imageURL: nil, grade: nil, score: 55, color: .yellow, courseID: ""))
     }
 }
+
+#endif

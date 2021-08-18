@@ -28,14 +28,28 @@ public struct K5GradeCellViewModel {
     public let color: Color
     public let courseID: String
 
-    init(a11yId: String, title: String, imageURL: URL?, grade: String?, score: Double?, color: UIColor?, courseID: String) {
-        self.a11yId = a11yId
-        self.title = title
+    init(title: String?, imageURL: URL?, grade: String?, score: Double?, color: UIColor?, courseID: String) {
+        self.title = title ?? ""
         self.imageURL = imageURL
         self.grade = grade
         self.score = score
         self.color = ((color != nil) ? Color(color!) : .oxford)
         self.courseID = courseID
+        self.a11yId = "K5GradeCell.\(courseID)"
+    }
+
+    public var gradePercentage: Double {
+        guard let grade = grade else { return score ?? 0 }
+        return Double(grade) ?? 0 / 0.05
+    }
+
+    public var roundedDisplayGrade: String {
+        guard let score = score else { return grade ?? "" }
+        return "\(Int(score.rounded()))%"
+    }
+
+    public var route: String {
+        "/courses/\(courseID)/grades/"
     }
 }
 

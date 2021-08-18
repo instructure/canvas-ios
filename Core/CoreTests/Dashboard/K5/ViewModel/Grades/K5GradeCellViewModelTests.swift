@@ -23,7 +23,27 @@ import SwiftUI
 class K5GradeCellViewModelTests: CoreTestCase {
 
     func testDefaultK5Color() {
-        let cellViewModel = K5GradeCellViewModel(a11yId: "", title: "ART", imageURL: nil, grade: nil, score: 55, color: nil, courseID: "")
-        XCTAssertEqual(cellViewModel.color, .oxford)
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: nil, score: 55, color: nil, courseID: "")
+        XCTAssertEqual(testee.color, .oxford)
+    }
+
+    func testGradePercentage() {
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "55", score: 55, color: nil, courseID: "")
+        XCTAssertEqual(testee.gradePercentage, 55)
+    }
+
+    func testGradePercentageWithoutScore() {
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "B", score: nil, color: nil, courseID: "")
+        XCTAssertEqual(testee.gradePercentage, 0)
+    }
+
+    func testRoundedDisplayGrade() {
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "A", score: 99.9, color: nil, courseID: "")
+        XCTAssertEqual(testee.roundedDisplayGrade, "100%")
+    }
+
+    func testRoute() {
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "A", score: 99.9, color: nil, courseID: "66")
+        XCTAssertEqual(testee.route, "/courses/66/grades/")
     }
 }

@@ -27,7 +27,7 @@ public class K5GradesViewModel: ObservableObject {
     private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
         self?.coursesUpdated()
     }
-    private let defaultCurrentGradingPeriod = K5GradingPeriod(periodID: nil, title: "Current Grading Period")
+    private let defaultCurrentGradingPeriod = K5GradingPeriod(periodID: nil, title: NSLocalizedString("Current Grading Period", bundle: .core, comment: ""))
 
     // MARK: Refresh
     private var refreshCompletion: (() -> Void)?
@@ -40,11 +40,9 @@ public class K5GradesViewModel: ObservableObject {
     }
 
     private func coursesUpdated() {
-        grades.removeAll()
         gradingPeriods = [defaultCurrentGradingPeriod]
         grades = courses.filter({ !$0.isHomeroomCourse }).map {
-            return K5GradeCellViewModel(a11yId: "K5GradeCell.\($0.id)",
-                                        title: $0.name ?? "",
+            return K5GradeCellViewModel(title: $0.name,
                                         imageURL: $0.imageDownloadURL,
                                         grade: $0.enrollments?.first?.computedCurrentGrade,
                                         score: $0.enrollments?.first?.computedCurrentScore,
@@ -56,19 +54,17 @@ public class K5GradesViewModel: ObservableObject {
             guard let date0 = $0.startDate, let date1 = $1.startDate else { return false }
             return date0 < date1
         })
-        gradingPeriods.append(contentsOf: gradingPeriodModels.map { return K5GradingPeriod(periodID: $0.id, title: $0.title) })
+        gradingPeriods.append(contentsOf: gradingPeriodModels.map { K5GradingPeriod(periodID: $0.id, title: $0.title) })
         finishRefresh()
     }
 
     private func updateEnrollments(for gradingPeriodID: String) {
-        grades.removeAll()
-        let request = GetEnrollmentsRequest(context: .currentUser, userID: studentID, gradingPeriodID: gradingPeriodID, types: [ "StudentEnrollment" ], states: [ .active ])
+        let request = GetEnrollmentsRequest(context: .currentUser, userID: studentID, gradingPeriodID: gradingPeriodID, types: [ Role.student.rawValue ], states: [ .active ])
         env.api.makeRequest(request) { [weak self] apiEnrollments, _, _ in
             var grades: [K5GradeCellViewModel] = []
             apiEnrollments?.forEach { enrollment in
                 guard let course = self?.courses.first(where: { $0.id == enrollment.course_id?.rawValue }), !course.isHomeroomCourse else { return }
-                let cellModel = K5GradeCellViewModel(a11yId: "K5GradeCell.\(course.id)",
-                                                     title: course.name ?? "",
+                let cellModel = K5GradeCellViewModel(title: course.name ?? "",
                                                      imageURL: course.imageDownloadURL,
                                                      grade: enrollment.computed_current_grade ?? enrollment.grades?.current_grade,
                                                      score: enrollment.computed_current_score ?? enrollment.grades?.current_score,
@@ -80,8 +76,8 @@ public class K5GradesViewModel: ObservableObject {
             performUIUpdate {
                 self?.grades = grades
             }
+            self?.finishRefresh()
         }
-        finishRefresh()
     }
 
     private func finishRefresh() {
@@ -115,7 +111,7 @@ extension K5GradesViewModel: Refreshable {
     }
 }
 
-public class K5GradingPeriod: NSObject {
+public struct K5GradingPeriod: Hashable {
 
     let periodID: String?
     let title: String?

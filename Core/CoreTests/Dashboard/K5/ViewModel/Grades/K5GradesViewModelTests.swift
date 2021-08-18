@@ -63,9 +63,9 @@ class K5GradesViewModelTests: CoreTestCase {
         api.mock(GetUserProfileRequest(userID: "self"), value: APIProfile.make())
         mockCourses()
         api.mock(GetEnrollmentsRequest(context: .currentUser, userID: "1", gradingPeriodID: "1", types: [ "StudentEnrollment" ], states: [ .active ]), value: [
-            .make(id: "1", course_id: "3", grades: .make(current_grade: "C"))
+            .make(id: "1", course_id: "3", grades: .make(current_grade: "C")),
         ])
-        
+
         let testee = K5GradesViewModel()
         testee.didSelect(gradingPeriod: testee.gradingPeriods[2])
 
@@ -78,7 +78,7 @@ class K5GradesViewModelTests: CoreTestCase {
     private func mockCourses() {
         let gradingPeriods: [APIGradingPeriod] = [
             .make(id: "1", title: "grading period 1", start_date: Clock.now),
-            .make(id: "2", title: "grading period 2", start_date: Clock.now.addDays(-7))
+            .make(id: "2", title: "grading period 2", start_date: Clock.now.addDays(-7)),
         ]
         api.mock(GetUserCourses(userID: "1"), value: [
             .make(

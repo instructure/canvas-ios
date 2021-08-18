@@ -44,8 +44,12 @@ struct K5GradeProgressBar: View {
     }
 }
 
+#if DEBUG
+
 struct K5GradeProgressBar_Previews: PreviewProvider {
     static var previews: some View {
         K5GradeProgressBar(percentage: 50, color: .red).frame(height: 16)
     }
 }
+
+#endif
