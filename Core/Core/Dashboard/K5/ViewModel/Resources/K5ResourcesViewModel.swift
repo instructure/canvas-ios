@@ -114,20 +114,7 @@ public class K5ResourcesViewModel: ObservableObject {
     private func handleStaffInfoResponse(_ users: [APIUser]) {
         contactInfoService = nil
 
-        var contacts: [K5ResourcesContact] = users.map {
-            let firstActiveEnrollment = $0.enrollments?.first { $0.enrollment_state == .active }
-            let firstActiveRole = firstActiveEnrollment?.role
-            let role = firstActiveRole == "TeacherEnrollment" ? NSLocalizedString("Teacher", comment: "") : NSLocalizedString("Teacher's Assistant", comment: "")
-            let courseCode: String = {
-                if let courseId = firstActiveEnrollment?.course_id {
-                    return "course_\(courseId)"
-                } else {
-                    return ""
-                }
-            }()
-            let courseName = courses.all.first { course in course.canvasContextID == courseCode }?.name ?? ""
-            return K5ResourcesContact(image: $0.avatar_url?.rawValue, name: $0.name, role: role, userId: $0.id.rawValue, courseContextID: courseCode, courseName: courseName)
-        }
+        var contacts: [K5ResourcesContact] = users.map { K5ResourcesContact($0, courses: courses.all) }
         contacts = Array(Set(contacts)).sorted()
 
         performUIUpdate {

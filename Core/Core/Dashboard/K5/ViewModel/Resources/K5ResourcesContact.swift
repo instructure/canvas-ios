@@ -26,6 +26,34 @@ public struct K5ResourcesContact {
     public let courseContextID: String
     public let courseName: String
 
+    public init(image: URL?, name: String, role: String, userId: String, courseContextID: String, courseName: String) {
+        self.image = image
+        self.name = name
+        self.role = role
+        self.userId = userId
+        self.courseContextID = courseContextID
+        self.courseName = courseName
+    }
+
+    /**
+     - parameters:
+        - user: The teacher's user profile.
+        - courses: The teacher's courses where the current user is a student.
+     */
+    public init(_ user: APIUser, courses: [Course]) {
+        let firstActiveEnrollment = user.enrollments?.first { $0.enrollment_state == .active }
+        let firstActiveRole = firstActiveEnrollment?.role
+        let role = firstActiveRole == "TeacherEnrollment" ? NSLocalizedString("Teacher", comment: "") : NSLocalizedString("Teacher's Assistant", comment: "")
+        let courseCode: String = {
+            if let courseId = firstActiveEnrollment?.course_id {
+                return "course_\(courseId)"
+            } else {
+                return ""
+            }
+        }()
+        let courseName = courses.first { course in course.canvasContextID == courseCode }?.name ?? ""
+        self.init(image: user.avatar_url?.rawValue, name: user.name, role: role, userId: user.id.rawValue, courseContextID: courseCode, courseName: courseName)
+    }
 
     public func contactTapped(router: Router, viewController: WeakViewController) {
         let recipient: [String: Any?] = [
