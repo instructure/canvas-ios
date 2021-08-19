@@ -865,6 +865,15 @@
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF86C2B4267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
+		CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */; };
+		CF8CB52226CBC41D008361E2 /* K5ResourcesApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */; };
+		CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */; };
+		CF8CB52B26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */; };
+		CF8CB52F26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */; };
+		CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */; };
+		CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */; };
+		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
+		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
 		CF8CB51326CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
@@ -2050,6 +2059,15 @@
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
+		CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseNavigationToolsRequest.swift; sourceTree = "<group>"; };
+		CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationView.swift; sourceTree = "<group>"; };
+		CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffContactInfoService.swift; sourceTree = "<group>"; };
+		CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactInfoView.swift; sourceTree = "<group>"; };
+		CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactViewModel.swift; sourceTree = "<group>"; };
+		CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModel.swift; sourceTree = "<group>"; };
+		CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
+		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
+		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
@@ -3172,6 +3190,7 @@
 				7D64A9722363732D004EAEDF /* CourseSection.swift */,
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7D64A974236759FA004EAEDF /* GetCourseSections.swift */,
+				CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */,
 				E890AF2F24CF5C28000401FB /* CourseListView.swift */,
 			);
 			path = Courses;
@@ -4172,6 +4191,7 @@
 				CF53F738266FBB0000FA58D7 /* Announcements */,
 				CF53F736266FBA2A00FA58D7 /* DueItems */,
 				CF53F742266FBB9200FA58D7 /* MissingSubmissions */,
+				CF8CB52526CBEDE5008361E2 /* Resources */,
 				CFD6F6C326C13E1500F5C445 /* Schedule */,
 			);
 			path = Model;
@@ -4251,6 +4271,8 @@
 		CF60CC312645521100C1C173 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF8CB52126CBC41D008361E2 /* K5ResourcesApplicationView.swift */,
+				CF8CB52A26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift */,
 				CF60CC392645525F00C1C173 /* K5ResourcesView.swift */,
 			);
 			path = Resources;
@@ -4278,6 +4300,9 @@
 		CF60CC5026496A1F00C1C173 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF8CB54226CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift */,
+				CF8CB52E26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift */,
+				CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */,
 				CF60CC5826496EBD00C1C173 /* K5ResourcesViewModel.swift */,
 			);
 			path = Resources;
@@ -4363,6 +4388,14 @@
 			path = Group;
 			sourceTree = "<group>";
 		};
+		CF8CB52526CBEDE5008361E2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CF941B12267B425800700DE9 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
@@ -4375,6 +4408,8 @@
 		CF941B17267B431500700DE9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */,
+				CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */,
 				CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */,
 			);
 			path = Resources;
@@ -5396,6 +5431,7 @@
 				EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */,
+				CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */,
 				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
 				7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
@@ -5409,6 +5445,7 @@
 				7DCB2E9E247DA0380071F172 /* GetSubmissionCommentsTests.swift in Sources */,
 				3B383045237F178800B3DF05 /* APIActivityTests.swift in Sources */,
 				3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */,
+				CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */,
 				7D67C26B242E6BF100BC5CD1 /* ModuleListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5515,8 +5552,10 @@
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
+				CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */,
 				7DA260CB23F72359005D2121 /* AvatarView.swift in Sources */,
 				7DA2607323F722F3005D2121 /* PageDetailsViewController.swift in Sources */,
+				CF8CB52226CBC41D008361E2 /* K5ResourcesApplicationView.swift in Sources */,
 				7DA25FE023F72154005D2121 /* AudioPlayerViewController.swift in Sources */,
 				7DA260DE23F72359005D2121 /* HorizontalMenuViewController.swift in Sources */,
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
@@ -5690,6 +5729,7 @@
 				7DA25FDE23F72148005D2121 /* SessionDefaults.swift in Sources */,
 				7DA2600723F7227A005D2121 /* LoggerExtensions.swift in Sources */,
 				7DA2602023F7227A005D2121 /* WKWebViewExtensions.swift in Sources */,
+				CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */,
 				7DA260EE23F72391005D2121 /* APIFile.swift in Sources */,
 				7DA2603823F722D9005D2121 /* AlertThreshold.swift in Sources */,
 				7DA260F223F72391005D2121 /* GetFile.swift in Sources */,
@@ -5734,6 +5774,7 @@
 				7DA2603923F722D9005D2121 /* AssignmentGroup.swift in Sources */,
 				7DD6FB3625081CD900DB5286 /* OptionalDatePicker.swift in Sources */,
 				7DA2601423F7227A005D2121 /* InstIconExtensions.swift in Sources */,
+				CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */,
 				7D159CEC242E556900A77A15 /* ModuleListViewController.swift in Sources */,
 				7DA260C623F72352005D2121 /* GetConversationCourses.swift in Sources */,
 				7DA260B823F72352005D2121 /* GetQuiz.swift in Sources */,
@@ -5759,6 +5800,7 @@
 				EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */,
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,
 				E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
+				CF8CB52B26CBFD9E008361E2 /* K5ResourcesContactInfoView.swift in Sources */,
 				7DC3530D255B3DD900B36CD3 /* AssignmentEditorView.swift in Sources */,
 				7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */,
 				CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */,
@@ -5808,6 +5850,7 @@
 				97F5520424061AF1005D80FC /* PlannerNoteDetailViewController.swift in Sources */,
 				7DBD14E32547213F00750F52 /* QuizListViewController.swift in Sources */,
 				CF60CC332645524500C1C173 /* K5GradesView.swift in Sources */,
+				CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
@@ -5894,6 +5937,7 @@
 				7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */,
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
+				CF8CB52F26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift in Sources */,
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
 				CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */,
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,

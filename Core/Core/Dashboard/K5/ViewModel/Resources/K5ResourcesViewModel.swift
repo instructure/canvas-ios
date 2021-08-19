@@ -16,13 +16,98 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5ResourcesViewModel {
+import SwiftUI
 
+public class K5ResourcesViewModel: ObservableObject {
+    @Published public var homeroomInfos: [K5ResourcesHomeroomInfoViewModel] = []
+    @Published public var applications: [K5ResourcesApplicationViewModel] = []
+    @Published public var contacts: [K5ResourcesContactViewModel] = []
+
+    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+        self?.coursesRefreshed()
+    }
+    private var applicationsRequest: APITask?
+    private var contactInfoService: StaffContactInfoService?
+
+    public init() {
+    }
+
+    public func viewDidAppear() {
+        courses.refresh()
+    }
+
+    private func coursesRefreshed() {
+        if courses.pending || !courses.requested {
+            return
+        }
+
+        let homeroomCourses = courses.all.filter { $0.isHomeroomCourse }
+        homeroomInfos = homeroomCourses.compactMap {
+            guard let name = $0.name, let syllabus = $0.syllabusBody else { return nil }
+            return K5ResourcesHomeroomInfoViewModel(homeroomName: name, htmlContent: syllabus)
+        }
+        let nonHomeroomCourses = courses.all.filter { !$0.isHomeroomCourse }
+        requestApplications(for: nonHomeroomCourses)
+        requestStaffInfo(for: homeroomCourses)
+    }
+
+    // MARK: - Applications
+
+    private func requestApplications(for courses: [Course]) {
+        guard applicationsRequest == nil else { return }
+        let request = GetCourseNavigationToolsRequest(courseContextsCodes: courses.map { $0.canvasContextID })
+        applicationsRequest = AppEnvironment.shared.api.makeRequest(request) { [weak self] tools, _, _ in
+            self?.handleApplicationsResponse(tools ?? [])
+        }
+    }
+
+    private func handleApplicationsResponse(_ tools: [CourseNavigationTool]) {
+        applicationsRequest = nil
+        let validTools = tools.filter {
+            ($0.course_navigation?.text != nil || $0.name != nil) &&
+            $0.context_name != nil &&
+            $0.id != nil &&
+            $0.context_id != nil
+        }
+        let toolsByNames = Dictionary(grouping: validTools) { $0.course_navigation?.text ?? $0.name! }
+        var applications: [K5ResourcesApplicationViewModel] = toolsByNames.map { name, tools in
+            var routesAndSubjectNames = tools.map { (name: $0.context_name!, route: URL(string: "/courses/\($0.context_id!)/external_tools/\($0.id!)")!) }
+            routesAndSubjectNames.sort { $0.name < $1.name }
+            return K5ResourcesApplicationViewModel(image: tools.first?.course_navigation?.icon_url, name: name, routesBySubjectNames: routesAndSubjectNames)
+        }
+        applications = Array(Set(applications)).sorted { $0.name < $1.name }
+
+        performUIUpdate {
+            self.applications = applications
+        }
+    }
+
+    // MARK: - Staff Info
+
+    private func requestStaffInfo(for courses: [Course]) {
+        guard contactInfoService == nil else { return }
+        contactInfoService = StaffContactInfoService(courses: courses) { [weak self] users in
+            self?.handleStaffInfoResponse(users)
+        }
+    }
+
+    private func handleStaffInfoResponse(_ users: [APIUser]) {
+        contactInfoService = nil
+
+        var contacts: [K5ResourcesContactViewModel] = users.map { K5ResourcesContactViewModel($0, courses: courses.all) }
+        contacts = Array(Set(contacts)).sorted()
+
+        performUIUpdate {
+            self.contacts = contacts
+        }
+    }
 }
 
 extension K5ResourcesViewModel: Refreshable {
 
-    func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
+    public func refresh(completion: @escaping () -> Void) {
+        courses.refresh(force: true) {_ in
+            completion()
+        }
     }
 }
