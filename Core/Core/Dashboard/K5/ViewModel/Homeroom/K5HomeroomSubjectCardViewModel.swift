@@ -31,7 +31,7 @@ public struct K5HomeroomSubjectCardViewModel {
         self.courseRoute = "/courses/\(courseId)"
         self.imageURL = imageURL
         self.name = name.uppercased()
-        self.color = ((color != nil) ? Color(color!) : Color(hexString: "#394B58")!)
+        self.color = ((color != nil) ? Color(color!) : .oxford)
         self.infoLines = infoLines
     }
 }

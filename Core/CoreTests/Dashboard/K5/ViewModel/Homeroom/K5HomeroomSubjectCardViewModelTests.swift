@@ -25,7 +25,7 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
     func testDefaultCardColor() {
         let testee = K5HomeroomSubjectCardViewModel(courseId: "", imageURL: nil, name: "", color: nil, infoLines: [])
 
-        XCTAssertEqual(testee.color, Color(hexString: "#394B58"))
+        XCTAssertEqual(testee.color, .oxford)
     }
 
     func testUpparcaseName() {

@@ -16,13 +16,108 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class K5GradesViewModel {
+public class K5GradesViewModel: ObservableObject {
 
+    @Published public private(set) var grades: [K5GradeCellViewModel] = []
+    @Published public private(set) var gradingPeriods: [K5GradingPeriod] = []
+    @Published public private(set) var currentGradingPeriod: K5GradingPeriod
+
+    private let env = AppEnvironment.shared
+    private var studentID = ""
+    private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
+        self?.coursesUpdated()
+    }
+    private let defaultCurrentGradingPeriod = K5GradingPeriod(periodID: nil, title: NSLocalizedString("Current Grading Period", bundle: .core, comment: ""))
+
+    // MARK: Refresh
+    private var refreshCompletion: (() -> Void)?
+    private var forceRefresh = false
+
+    init() {
+        studentID = env.currentSession?.userID ?? ""
+        currentGradingPeriod = defaultCurrentGradingPeriod
+        courses.refresh()
+    }
+
+    private func coursesUpdated() {
+        gradingPeriods = [defaultCurrentGradingPeriod]
+        grades = courses.filter({ !$0.isHomeroomCourse }).map {
+            return K5GradeCellViewModel(title: $0.name,
+                                        imageURL: $0.imageDownloadURL,
+                                        grade: $0.enrollments?.first?.computedCurrentGrade,
+                                        score: $0.enrollments?.first?.computedCurrentScore,
+                                        color: $0.color,
+                                        courseID: $0.id)
+        }
+        var gradingPeriodModels = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
+        gradingPeriodModels.sort(by: {
+            guard let date0 = $0.startDate, let date1 = $1.startDate else { return false }
+            return date0 < date1
+        })
+        gradingPeriods.append(contentsOf: gradingPeriodModels.map { K5GradingPeriod(periodID: $0.id, title: $0.title) })
+        finishRefresh()
+    }
+
+    private func updateEnrollments(for gradingPeriodID: String) {
+        let request = GetEnrollmentsRequest(context: .currentUser, userID: studentID, gradingPeriodID: gradingPeriodID, types: [ Role.student.rawValue ], states: [ .active ])
+        env.api.makeRequest(request) { [weak self] apiEnrollments, _, _ in
+            var grades: [K5GradeCellViewModel] = []
+            apiEnrollments?.forEach { enrollment in
+                guard let course = self?.courses.first(where: { $0.id == enrollment.course_id?.rawValue }), !course.isHomeroomCourse else { return }
+                let cellModel = K5GradeCellViewModel(title: course.name ?? "",
+                                                     imageURL: course.imageDownloadURL,
+                                                     grade: enrollment.computed_current_grade ?? enrollment.grades?.current_grade,
+                                                     score: enrollment.computed_current_score ?? enrollment.grades?.current_score,
+                                                     color: course.color,
+                                                     courseID: course.id)
+                grades.append(cellModel)
+            }
+            grades.sort(by: {$0.title < $1.title})
+            performUIUpdate {
+                self?.grades = grades
+            }
+            self?.finishRefresh()
+        }
+    }
+
+    private func finishRefresh() {
+        forceRefresh = false
+        performUIUpdate {
+            self.refreshCompletion?()
+            self.refreshCompletion = nil
+        }
+    }
+
+    public func didSelect(gradingPeriod: K5GradingPeriod) {
+        currentGradingPeriod = gradingPeriod
+        reloadData()
+    }
 }
 
 extension K5GradesViewModel: Refreshable {
 
-    func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: completion)
+    public func refresh(completion: @escaping () -> Void) {
+        forceRefresh = true
+        refreshCompletion = completion
+        reloadData()
+    }
+
+    func reloadData() {
+        guard let periodID = currentGradingPeriod.periodID else {
+            courses.exhaust(force: true)
+            return
+        }
+        updateEnrollments(for: periodID)
+    }
+}
+
+public struct K5GradingPeriod: Hashable {
+
+    let periodID: String?
+    let title: String?
+
+    init(periodID: String?, title: String?) {
+        self.periodID = periodID
+        self.title = title
     }
 }
