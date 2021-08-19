@@ -53,8 +53,8 @@ class StudentTabBarController: UITabBarController {
             let secondary = HelmNavigationController(rootViewController: EmptyViewController())
             split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
             tabBarTitle = NSLocalizedString("Homeroom", comment: "Homeroom tab title")
-            tabBarImage = .k5homeroom
-            tabBarImageSelected = nil
+            tabBarImage =  .homeroomTab
+            tabBarImageSelected = .homeroomTabActive
         } else {
             split = HelmSplitViewController()
             split.viewControllers = [

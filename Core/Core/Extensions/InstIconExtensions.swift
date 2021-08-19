@@ -219,6 +219,8 @@ public extension UIImage {
     static var dashboardTabActive: UIImage { UIImage(named: "dashboardTabActive", in: .core, compatibleWith: nil)! }
     static var dropdown: UIImage { UIImage(named: "dropdown", in: .core, compatibleWith: nil)! }
     static var filterCheckbox: UIImage { UIImage(named: "filterCheckbox", in: .core, compatibleWith: nil)! }
+    static var homeroomTab: UIImage { UIImage(named: "homeroomTab", in: .core, compatibleWith: nil)! }
+    static var homeroomTabActive: UIImage { UIImage(named: "homeroomTabActive", in: .core, compatibleWith: nil)! }
     static var inboxTab: UIImage { UIImage(named: "inboxTab", in: .core, compatibleWith: nil)! }
     static var inboxTabActive: UIImage { UIImage(named: "inboxTabActive", in: .core, compatibleWith: nil)! }
     static var k5dueToday: UIImage { UIImage(named: "k5dueToday", in: .core, compatibleWith: nil)! }
@@ -430,6 +432,8 @@ public extension Image {
     static var dashboardTabActive: Image { Image("dashboardTabActive", bundle: .core) }
     static var dropdown: Image { Image("dropdown", bundle: .core) }
     static var filterCheckbox: Image { Image("filterCheckbox", bundle: .core) }
+    static var homeroomTab: Image { Image("homeroomTab", bundle: .core) }
+    static var homeroomTabActive: Image { Image("homeroomTabActive", bundle: .core) }
     static var inboxTab: Image { Image("inboxTab", bundle: .core) }
     static var inboxTabActive: Image { Image("inboxTabActive", bundle: .core) }
     static var k5dueToday: Image { Image("k5dueToday", bundle: .core) }
