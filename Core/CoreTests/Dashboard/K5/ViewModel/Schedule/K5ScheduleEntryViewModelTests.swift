@@ -81,4 +81,55 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
         wait(for: [refreshTriggeredExpectation], timeout: 0.1)
         subscription.cancel()
     }
+
+    func testTapOnWarningIcon() {
+        let testee = K5ScheduleEntryViewModel(leading: .warning,
+                                              icon: .addAudioLine,
+                                              title: "",
+                                              subtitle: nil,
+                                              labels: [],
+                                              score: nil,
+                                              dueText: "",
+                                              route: nil,
+                                              apiService: mockAPIService)
+
+        let refreshTriggeredExpectation = expectation(description: "Refresh expectation")
+        refreshTriggeredExpectation.isInverted = true
+        let subscription = testee.objectWillChange.sink {
+            refreshTriggeredExpectation.fulfill()
+        }
+
+        testee.checkboxTapped()
+
+        wait(for: [refreshTriggeredExpectation], timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testTapOnCheckbox() {
+        let testee = K5ScheduleEntryViewModel(leading: .checkbox(isChecked: false),
+                                              icon: .addAudioLine,
+                                              title: "",
+                                              subtitle: nil,
+                                              labels: [],
+                                              score: nil,
+                                              dueText: "",
+                                              route: nil,
+                                              apiService: mockAPIService)
+
+        let refreshTriggeredExpectation = expectation(description: "Refresh expectation")
+        refreshTriggeredExpectation.assertForOverFulfill = false
+        let subscription = testee.objectWillChange.sink {
+            refreshTriggeredExpectation.fulfill()
+        }
+
+        XCTAssertNil(testee.subtitle)
+        testee.checkboxTapped()
+        XCTAssertEqual(testee.leading, .checkbox(isChecked: true))
+        XCTAssertEqual(testee.subtitle?.text, "You've marked it as done.")
+        XCTAssertEqual(testee.subtitle?.color, .ash)
+        XCTAssertEqual(testee.subtitle?.font, .regular12)
+
+        wait(for: [refreshTriggeredExpectation], timeout: 0.1)
+        subscription.cancel()
+    }
 }
