@@ -56,7 +56,7 @@ public struct K5DashboardView: View {
             case 1:
                 K5ScheduleView(viewModel: viewModel.viewModels.schedule)
             case 2:
-                K5GradesView()
+                K5GradesView(viewModel: viewModel.viewModels.grades)
             case 3:
                 K5ResourcesView()
             default:

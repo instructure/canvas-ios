@@ -32,6 +32,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged var defaultViewRaw: String?
     @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var grades: Set<Grade>?
+    @NSManaged public var gradingPeriods: Set<GradingPeriod>?
     @NSManaged public var hideFinalGrades: Bool
     @NSManaged public var id: String
     @NSManaged public var imageDownloadURL: URL?
@@ -58,7 +59,7 @@ final public class Course: NSManagedObject, WriteableModel {
 
     public var color: UIColor {
         if AppEnvironment.shared.k5.isK5Enabled {
-            return UIColor(hexString: courseColor) ?? UIColor(hexString: "#394B58")!
+            return UIColor(hexString: courseColor) ?? .oxford
         } else {
             return contextColor?.color ?? .ash
         }
@@ -83,6 +84,13 @@ final public class Course: NSManagedObject, WriteableModel {
             }
         }
         model.enrollments = nil
+        if let apiGradingPeriods = item.grading_periods {
+            let gradingPeriods: [GradingPeriod] = apiGradingPeriods.map { apiGradingPeriod in
+                let gp: GradingPeriod = GradingPeriod.save(apiGradingPeriod, courseID: model.id, in: context)
+                return gp
+            }
+            model.gradingPeriods = Set(gradingPeriods)
+        }
         model.hideFinalGrades = item.hide_final_grades ?? false
         model.isCourseDeleted = item.workflow_state == .deleted
         model.isPastEnrollment = (

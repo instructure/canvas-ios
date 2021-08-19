@@ -34,7 +34,7 @@ class CourseTests: CoreTestCase {
         environment.k5.userDidLogin(isK5Account: true)
         ExperimentalFeature.K5Dashboard.isEnabled = true
 
-        XCTAssertEqual(a.color, UIColor(hexString: "#394B58"))
+        XCTAssertEqual(a.color, .oxford)
     }
 
     func testK5Color() {

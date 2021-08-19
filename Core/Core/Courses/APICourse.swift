@@ -38,6 +38,7 @@ public struct APICourse: Codable, Equatable {
     let end_at: Date?
     let locale: String?
     var enrollments: [APIEnrollment]?
+    var grading_periods: [APIGradingPeriod]?
     // let total_students: Int? // include[]=total_students
     // let calendar: ?
     let default_view: CourseDefaultView?
@@ -128,6 +129,7 @@ extension APICourse {
             role: "StudentEnrollment",
             role_id: "3"
         ), ],
+        grading_periods: [APIGradingPeriod]? = [],
         default_view: CourseDefaultView? = nil,
         syllabus_body: String? = nil,
         term: Term? = nil,
@@ -150,7 +152,7 @@ extension APICourse {
             end_at: end_at,
             locale: locale,
             enrollments: enrollments,
-            default_view: default_view,
+            grading_periods: grading_periods, default_view: default_view,
             syllabus_body: syllabus_body,
             term: term,
             permissions: permissions,
@@ -213,6 +215,7 @@ public struct GetCoursesRequest: APIRequestable {
         case course_image
         case current_grading_period_scores
         case favorites
+        case grading_periods
         case needs_grading_count
         case observed_users
         case sections
