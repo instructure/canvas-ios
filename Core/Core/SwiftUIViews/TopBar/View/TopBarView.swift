@@ -72,6 +72,8 @@ public struct TopBarView: View {
     }
 }
 
+#if DEBUG
+
 struct TopBarView_Previews: PreviewProvider {
     static var previews: some View {
         let properties: [(leftInset: CGFloat, itemSpaing: CGFloat)] = [
@@ -91,3 +93,5 @@ struct TopBarView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif
