@@ -27,7 +27,7 @@ public struct K5DashboardView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            TopBarView(viewModel: viewModel.topBarViewModel, leftInset: padding)
+            TopBarView(viewModel: viewModel.topBarViewModel, leftInset: padding, itemSpacing: padding)
             Divider()
             GeometryReader { geometry in
                 content

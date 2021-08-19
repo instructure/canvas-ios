@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct K5HomeroomSubjectCardView: View {
-    public static let Height: CGFloat = 195
+    public static let Height: CGFloat = 275
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
@@ -31,7 +31,7 @@ public struct K5HomeroomSubjectCardView: View {
     public init(viewModel: K5HomeroomSubjectCardViewModel, width: CGFloat) {
         self.viewModel = viewModel
         self.cardSize = CGSize(width: width, height: Self.Height)
-        self.imageSize = CGSize(width: width, height: 82)
+        self.imageSize = CGSize(width: width, height: 150)
     }
 
     public var body: some View {

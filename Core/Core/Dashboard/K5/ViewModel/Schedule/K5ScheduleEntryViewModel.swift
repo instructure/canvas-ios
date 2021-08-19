@@ -73,7 +73,6 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
                 performUIUpdate {
                     self?.leading = .checkbox(isChecked: isChecked)
                     self?.updateSubtitle()
-                    self?.subtitle = nil
                 }
             }
         }
