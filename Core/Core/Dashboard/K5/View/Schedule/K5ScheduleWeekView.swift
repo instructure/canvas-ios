@@ -25,7 +25,7 @@ public struct K5ScheduleWeekView: View {
     @ObservedObject private var viewModel: K5ScheduleWeekViewModel
     @State private var isTodayCellVisible = false
     // If we animate the today button during the first render cycle it causes glitches in List Section headers.
-    @State private var isInitialRenderFinished = false
+    @State private var didAppear = false
 
     public init(viewModel: K5ScheduleWeekViewModel) {
         self.viewModel = viewModel
@@ -61,10 +61,12 @@ public struct K5ScheduleWeekView: View {
             // section header's top for some reason so we can't use that.
             .padding(.top, 1)
             .onAppear(perform: {
+                if didAppear { return }
+
                 DispatchQueue.main.async {
                     scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
                     viewModel.viewDidAppear()
-                    isInitialRenderFinished = true
+                    didAppear = true
                 }
             })
             .overlay(todayButton(scrollProxy: scrollProxy), alignment: .topTrailing)
@@ -112,7 +114,7 @@ public struct K5ScheduleWeekView: View {
     }
 
     private func updateTodayCellVisibility(to isVisible: Bool) {
-        if isInitialRenderFinished {
+        if didAppear {
             withAnimation {
                 isTodayCellVisible = isVisible
             }
