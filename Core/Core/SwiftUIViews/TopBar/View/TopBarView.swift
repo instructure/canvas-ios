@@ -22,16 +22,21 @@ public struct TopBarView: View {
     @ObservedObject private var viewModel: TopBarViewModel
     private let selectionIndicatorHeight: CGFloat = 3
     private let leftInset: CGFloat
+    private let itemSpacing: CGFloat
 
-    public init(viewModel: TopBarViewModel, leftInset: CGFloat) {
+    public init(viewModel: TopBarViewModel, leftInset: CGFloat, itemSpacing: CGFloat) {
         self.viewModel = viewModel
         self.leftInset = leftInset
+        self.itemSpacing = itemSpacing
     }
 
     public var body: some View {
         ScrollViewWithReader(.horizontal, showsIndicators: false) { scrollViewProxy in
-            HStack(spacing: 0) {
-                Color.clear.frame(width: leftInset, height: 0)
+            HStack(spacing: itemSpacing) {
+                if leftInset > 0 {
+                    Color.clear.frame(width: abs(itemSpacing - leftInset), height: 0)
+                }
+
                 ForEach(0..<viewModel.items.count) { index in
                     TopBarItemView(viewModel: viewModel.items[index]) {
                         viewModel.selectedItemIndex = index
@@ -57,7 +62,7 @@ public struct TopBarView: View {
             .frame(width: selectedItemBounds.width, height: selectionIndicatorHeight)
             .clipShape(TopBarSelectionShape())
             .offset(x: selectedItemBounds.minX, y: selectedItemBounds.maxY - selectionIndicatorHeight)
-            .animation(.default)
+            .animation(.interactiveSpring())
     }
 
     private func boundsForSelectedItem(in geometry: GeometryProxy, using preferences: [ViewBoundsPreferenceData]) -> CGRect {
@@ -69,12 +74,20 @@ public struct TopBarView: View {
 
 struct TopBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TopBarView(viewModel: TopBarViewModel(items: [
-            TopBarItemViewModel(icon: .addLine, label: Text(verbatim: "Add")),
-            TopBarItemViewModel(icon: .audioLine, label: Text(verbatim: "Audio")),
-            TopBarItemViewModel(icon: .noteLine, label: Text(verbatim: "Note")),
-            TopBarItemViewModel(icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite")),
-        ]), leftInset: 16)
-            .previewLayout(.sizeThatFits)
+        let properties: [(leftInset: CGFloat, itemSpaing: CGFloat)] = [
+            (16, 16),
+            (0, 16),
+            (32, 16),
+        ]
+
+        ForEach(0..<properties.count) {
+            TopBarView(viewModel: TopBarViewModel(items: [
+                TopBarItemViewModel(icon: .addLine, label: Text(verbatim: "Add")),
+                TopBarItemViewModel(icon: .audioLine, label: Text(verbatim: "Audio")),
+                TopBarItemViewModel(icon: .noteLine, label: Text(verbatim: "Note")),
+                TopBarItemViewModel(icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite")),
+            ]), leftInset: properties[$0].leftInset, itemSpacing: properties[$0].itemSpaing)
+                .previewLayout(.sizeThatFits)
+        }
     }
 }
