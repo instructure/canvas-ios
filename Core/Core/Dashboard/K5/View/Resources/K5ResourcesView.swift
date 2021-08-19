@@ -72,7 +72,6 @@ public struct K5ResourcesView: View {
                 WebView(html: info.htmlContent)
                     .frameToFit()
                     .padding(.horizontal, -16) // Removes padding in CSS
-                    .disabled(true)
 
                 if info != viewModel.homeroomInfos.last {
                     Divider().padding(.bottom)
