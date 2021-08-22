@@ -1,2 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="matrix(0.010416666666666666 0 0 0.010416666666666666 2 2)"><path d="M175 .024V1920l1570.845-959.927L175 .024zm121.648 216.9l1215.875 743.149-1215.875 743.028V216.923z" stroke="none" stroke-width="1" fill-rule="evenodd"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path fill-rule="evenodd" stroke="none" stroke-width="1" d="M175 .024V1920l1570.845-959.927L175 .024zm121.648 216.9l1215.875 743.149-1215.875 743.028V216.923z" transform="matrix(0.010416666666666666 0 0 0.010416666666666666 2 2)"/></g></svg>
