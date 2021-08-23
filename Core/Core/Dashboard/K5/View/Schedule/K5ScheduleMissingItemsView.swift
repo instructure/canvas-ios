@@ -19,7 +19,8 @@
 import SwiftUI
 
 public struct K5ScheduleMissingItemsView: View {
-    @State private var isOpened = false
+    @Environment(\.appEnvironment) var env
+    @State private var isOpened: Bool = AppEnvironment.shared.userDefaults?.isMissingItemsSectionOpenOnK5Schedule ?? true
     private let missingItems: [K5ScheduleEntryViewModel]
 
     public init(missingItems: [K5ScheduleEntryViewModel]) {
@@ -33,6 +34,7 @@ public struct K5ScheduleMissingItemsView: View {
             Button(action: {
                 withAnimation {
                     isOpened.toggle()
+                    env.userDefaults?.isMissingItemsSectionOpenOnK5Schedule = isOpened
                 }
             }, label: {
                 HStack(spacing: 12) {
@@ -68,11 +70,8 @@ public struct K5ScheduleMissingItemsView: View {
     }
 
     private var missingItemsText: String {
-        if isOpened {
-            return String.localizedStringWithFormat(NSLocalizedString("hide_%d_missing_items", comment: "Do not translate this"), missingItems.count)
-        } else {
-            return String.localizedStringWithFormat(NSLocalizedString("show_%d_missing_items", comment: "Do not translate this"), missingItems.count)
-        }
+        let format = isOpened ? NSLocalizedString("hide_%d_missing_items", comment: "") : NSLocalizedString("show_%d_missing_items", comment: "")
+        return String.localizedStringWithFormat(format, missingItems.count)
     }
 }
 

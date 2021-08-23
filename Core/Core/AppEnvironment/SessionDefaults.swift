@@ -53,6 +53,11 @@ public struct SessionDefaults {
         }
     }
 
+    public var isMissingItemsSectionOpenOnK5Schedule: Bool? {
+        get { return self["isMissingItemsSectionOpenOnK5Schedule"] as? Bool }
+        set { self["isMissingItemsSectionOpenOnK5Schedule"] = newValue }
+    }
+
     public var isElementaryViewEnabled: Bool {
         get { (self["isElementaryViewEnabled"] as? Bool) ?? true }
         set { self["isElementaryViewEnabled"] = newValue }
