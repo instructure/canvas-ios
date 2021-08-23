@@ -98,10 +98,31 @@ struct K5Preview {
                 K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "To Do", color: .electric, image: nil, route: nil), entries: entries),
             ]
 
+            static let missingItems = [
+                K5ScheduleEntryViewModel(
+                    leading: .warning,
+                    icon: .assignmentLine,
+                    title: "Attributes of Polygons",
+                    subtitle: .init(text: "Math", color: Color(hexString: "#FF8277")!, font: .bold11),
+                    labels: [],
+                    score: "10 pts",
+                    dueText: "Due Yesterday",
+                    route: URL(string: "https://i.com")!),
+                K5ScheduleEntryViewModel(
+                    leading: .warning,
+                    icon: .assignmentLine,
+                    title: "Identifying Physical Changes I.",
+                    subtitle: .init(text: "Science", color: Color(hexString: "#8BD448")!, font: .bold11),
+                    labels: [],
+                    score: "5 pts",
+                    dueText: "Due Yesterday",
+                    route: nil),
+            ]
+
             static let weeks = [
                 K5ScheduleWeekViewModel(weekRange: Date()..<Date(), isTodayButtonAvailable: true, days: [
                     K5ScheduleDayViewModel(weekday: "Monday", date: "September 24", subjects: .data([K5Preview.Data.Schedule.subjects[0]])),
-                    K5ScheduleDayViewModel(weekday: "Today", date: "September 25", subjects: .data(K5Preview.Data.Schedule.subjects)),
+                    K5ScheduleDayViewModel(weekday: "Today", date: "September 25", subjects: .data(K5Preview.Data.Schedule.subjects), missingItems: missingItems),
                     K5ScheduleDayViewModel(weekday: "Tomorrow", date: "September 26", subjects: .data([K5Preview.Data.Schedule.subjects[1]])),
                     K5ScheduleDayViewModel(weekday: "Thursday", date: "September 27", subjects: .empty),
                     K5ScheduleDayViewModel(weekday: "Friday", date: "September 28", subjects: .empty),

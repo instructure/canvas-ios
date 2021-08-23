@@ -36,6 +36,10 @@ public struct K5ScheduleDayView: View {
                 ForEach(subjects) { subjectModel in
                     K5ScheduleSubjectView(viewModel: subjectModel)
                 }
+
+                if !viewModel.missingItems.isEmpty {
+                    K5ScheduleMissingItemsView(missingItems: viewModel.missingItems)
+                }
             }
         }
     }
