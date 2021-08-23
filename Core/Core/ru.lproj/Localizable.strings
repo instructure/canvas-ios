@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Редактировать программу";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Простой вид";
-
-/* No comment provided by engineer. */
 "Email address" = "Адрес электронной почты";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Оценки";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Информация об оценках";
 
 /* No comment provided by engineer. */
 "Grading" = "Выставление оценок";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Ресурсы";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Подробная информация о ресурсах";
 
 /* No comment provided by engineer. */
 "Restricted" = "Доступ ограничен";

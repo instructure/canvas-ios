@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Uredi učni načrt predmeta";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Osnovni pogled";
-
-/* No comment provided by engineer. */
 "Email address" = "E-poštni naslov";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Ocene";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Podrobnosti o ocenah";
 
 /* No comment provided by engineer. */
 "Grading" = "Ocenjevanje";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Viri";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Podrobnosti o virih";
 
 /* No comment provided by engineer. */
 "Restricted" = "Omejeno";

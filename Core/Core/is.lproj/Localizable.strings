@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Breyta kennsluáætlun";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Grunnsýn";
-
-/* No comment provided by engineer. */
 "Email address" = "Netfang";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Einkunnir";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Upplýsingar um einkunnir";
 
 /* No comment provided by engineer. */
 "Grading" = "Einkunnagjöf";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Hjálparefni";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Upplýsingar um hjálparefni";
 
 /* No comment provided by engineer. */
 "Restricted" = "Takmarkað";

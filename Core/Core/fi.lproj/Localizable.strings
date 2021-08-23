@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Muokkaa opinto-ohjelmaa";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Elementary-näkymä";
-
-/* No comment provided by engineer. */
 "Email address" = "Sähköpostiosoite";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Arvosanat";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Arvosanojen tiedot";
 
 /* No comment provided by engineer. */
 "Grading" = "Arvosanojen anto";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Resurssit";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Resurssin tiedot";
 
 /* No comment provided by engineer. */
 "Restricted" = "Rajoitettu";

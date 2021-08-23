@@ -767,9 +767,6 @@
 "Edit Syllabus" = "تحرير المنهج الدراسي";
 
 /* No comment provided by engineer. */
-"Elementary View" = "طريقة عرض المدارس الابتدائية";
-
-/* No comment provided by engineer. */
 "Email address" = "عنوان البريد الإلكتروني";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "الدرجات";
-
-/* No comment provided by engineer. */
-"Grades Details" = "تفاصيل التقديرات";
 
 /* No comment provided by engineer. */
 "Grading" = "تقييم الدرجات";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "الموارد";
-
-/* No comment provided by engineer. */
-"Resources Details" = "تفاصيل الموارد";
 
 /* No comment provided by engineer. */
 "Restricted" = "مقيد";

@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Redigera kursöversikten";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Elementary-vy";
-
-/* No comment provided by engineer. */
 "Email address" = "E-postadress";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Omdömen";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Information om omdöme";
 
 /* No comment provided by engineer. */
 "Grading" = "Bedömning";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Resurser";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Information om resurser";
 
 /* No comment provided by engineer. */
 "Restricted" = "Begränsat";

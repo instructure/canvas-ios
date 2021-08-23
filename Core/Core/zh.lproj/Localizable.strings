@@ -767,9 +767,6 @@
 "Edit Syllabus" = "编辑教学大纲";
 
 /* No comment provided by engineer. */
-"Elementary View" = "基本视图";
-
-/* No comment provided by engineer. */
 "Email address" = "电子邮件地址";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "评分";
-
-/* No comment provided by engineer. */
-"Grades Details" = "评分详情";
 
 /* No comment provided by engineer. */
 "Grading" = "评分";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "资源";
-
-/* No comment provided by engineer. */
-"Resources Details" = "资源详情";
 
 /* No comment provided by engineer. */
 "Restricted" = "限制";

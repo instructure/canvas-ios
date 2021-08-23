@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Rediger emneoversikt";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Grunnskolevisning";
-
-/* No comment provided by engineer. */
 "Email address" = "E-postadresse";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Karakterer";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Karakterdetaljer";
 
 /* No comment provided by engineer. */
 "Grading" = "Karaktersetting";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Ressurser";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Ressursdetaljer";
 
 /* No comment provided by engineer. */
 "Restricted" = "Begrenset";
