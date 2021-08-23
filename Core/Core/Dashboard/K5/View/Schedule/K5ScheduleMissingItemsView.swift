@@ -69,9 +69,9 @@ public struct K5ScheduleMissingItemsView: View {
 
     private var missingItemsText: String {
         if isOpened {
-            return NSLocalizedString("Hide 2 missing items", comment: "")
+            return String.localizedStringWithFormat(NSLocalizedString("hide_%d_missing_items", comment: "Do not translate this"), missingItems.count)
         } else {
-            return NSLocalizedString("Show 2 missing items", comment: "")
+            return String.localizedStringWithFormat(NSLocalizedString("show_%d_missing_items", comment: "Do not translate this"), missingItems.count)
         }
     }
 }
@@ -83,14 +83,18 @@ struct K5ScheduleMissingItemsView_Previews: PreviewProvider {
         // swiftlint:disable:next redundant_discardable_let
         let _ = K5Preview.setupK5Mode()
 
-        VStack() {
+        VStack(spacing: 0) {
             K5ScheduleMissingItemsView(missingItems: [
                 K5Preview.Data.Schedule.entries[2],
                 K5Preview.Data.Schedule.entries[2],
+                K5Preview.Data.Schedule.entries[2],
+            ])
+            K5ScheduleMissingItemsView(missingItems: [
                 K5Preview.Data.Schedule.entries[2],
             ])
             Spacer()
         }
     }
 }
+
 #endif
