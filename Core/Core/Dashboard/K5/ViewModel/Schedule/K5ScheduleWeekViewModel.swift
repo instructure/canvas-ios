@@ -32,6 +32,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     private var pullToRefreshCompletion: (() -> Void)?
 
     private var plannables: [APIPlannable] = []
+    private var missingSubmissions: [APIAssignment] = []
     private var courseInfoByCourseIDs: [String: (color: Color, image: URL?)] = [:]
 
     public init(weekRange: Range<Date>, isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
@@ -45,7 +46,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
             return
         }
 
-        downloadData()
+        downloadPlannables()
     }
 
     public func pullToRefreshTriggered(completion: @escaping () -> Void) {
@@ -56,14 +57,14 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
         isForceUpdate = true
         pullToRefreshCompletion = completion
-        downloadData()
+        downloadPlannables()
     }
 
     public func isTodayModel(_ model: K5ScheduleDayViewModel) -> Bool {
         model.weekday == todayViewId
     }
 
-    private func downloadData() {
+    private func downloadPlannables() {
         isDownloadStarted = true
         let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
         plannableDownloadTask = AppEnvironment.shared.api.makeRequest(plannablesRequest) { [weak self] plannables, _, _ in
@@ -74,12 +75,28 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                 return !override.dismissed
             }
 
-            let courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
-                self?.coursesRefreshed()
-             }
-            self.courses = courses
-            courses.refresh(force: self.isForceUpdate)
+            self.downloadMissingAssignments()
         }
+    }
+
+    private func downloadMissingAssignments() {
+        if isTodayButtonAvailable {
+            let missingSubmissionsRequest = GetMissingSubmissionsRequest(includes: [.course, .planner_overrides])
+            AppEnvironment.shared.api.makeRequest(missingSubmissionsRequest) { [weak self] missingSubmissions, _, _ in
+                self?.missingSubmissions = missingSubmissions ?? []
+                self?.downloadCourses()
+            }
+        } else {
+            downloadCourses()
+        }
+    }
+
+    private func downloadCourses() {
+        let courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+            self?.coursesRefreshed()
+         }
+        self.courses = courses
+        courses.refresh(force: self.isForceUpdate)
     }
 
     private func coursesRefreshed() {
@@ -90,11 +107,18 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         }
 
         setupCourseColors(courses.all)
+        let missingItems = makeMissingItems()
 
         for day in days {
             let plannablesForDay = plannables.filter { day.range.contains($0.plannable_date) }
             let subjects = self.subjects(from: plannablesForDay)
-            performUIUpdate { day.subjects = subjects }
+            performUIUpdate {
+                day.subjects = subjects
+
+                if self.isTodayModel(day) {
+                    day.missingItems = missingItems
+                }
+            }
         }
 
         performUIUpdate { [weak self] in
@@ -112,6 +136,22 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         let coursesByIDs = Dictionary(grouping: courses) { $0.id }
         let courseInfoByCourseIDs = coursesByIDs.mapValues { (Color($0[0].color), $0[0].imageDownloadURL) }
         self.courseInfoByCourseIDs = courseInfoByCourseIDs
+    }
+
+    private func makeMissingItems() -> [K5ScheduleEntryViewModel] {
+        return missingSubmissions.map { assignment in
+            let score = APIPlannable.k5SchedulePoints(from: assignment.points_possible) ?? ""
+            let dueText = assignment.due_at?.relativeShortDateOnlyString ?? ""
+            let courseColor: Color = courseInfoByCourseIDs[assignment.course_id.rawValue]?.color ?? .oxford
+            return K5ScheduleEntryViewModel(leading: .warning,
+                                            icon: .assignmentLine,
+                                            title: assignment.name,
+                                            subtitle: .init(text: assignment.course?.name?.uppercased() ?? "", color: courseColor, font: .bold10),
+                                            labels: [],
+                                            score: score,
+                                            dueText: dueText,
+                                            route: assignment.html_url)
+        }
     }
 
     private func subjects(from plannables: [APIPlannable]) -> K5ScheduleDayViewModel.Subject {

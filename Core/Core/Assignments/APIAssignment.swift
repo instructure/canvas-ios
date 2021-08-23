@@ -28,6 +28,7 @@ public struct APIAssignment: Codable, Equatable {
     let assignment_group_id: ID?
     let can_submit: Bool?
     let course_id: ID
+    let course: APICourse?
     let description: String?
     let discussion_topic: APIDiscussionTopic?
     let due_at: Date?
@@ -105,6 +106,7 @@ extension APIAssignment {
         assignment_group_id: ID? = nil,
         can_submit: Bool? = true,
         course_id: ID = "1",
+        course: APICourse? = nil,
         description: String? = "<p>Do the following:</p>...",
         discussion_topic: APIDiscussionTopic? = nil,
         due_at: Date? = nil,
@@ -154,6 +156,7 @@ extension APIAssignment {
             assignment_group_id: assignment_group_id,
             can_submit: can_submit,
             course_id: course_id,
+            course: course,
             description: description,
             discussion_topic: discussion_topic,
             due_at: due_at,
