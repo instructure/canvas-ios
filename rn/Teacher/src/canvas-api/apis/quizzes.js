@@ -54,6 +54,7 @@ export function updateQuiz (quiz: Quiz, courseID: string): ApiPromise<Quiz> {
     ...quiz,
     one_question_at_a_time: quiz.one_question_at_a_time || 0, // silly Canvas
   }
+  delete params.important_dates // API sends this to the app but doesn't accept in PUT
   const url = `courses/${courseID}/quizzes/${quiz.id}`
   return httpClient.put(url, { quiz: params })
 }
