@@ -25,6 +25,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     public let isTodayButtonAvailable: Bool
     @Published public var days: [K5ScheduleDayViewModel]
 
+    private var submissionObserver: Store<LocalUseCase<Submission>>?
     private var courses: Store<GetCourses>?
     private var plannableDownloadTask: APITask?
     private var isDownloadStarted = false
@@ -47,17 +48,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         }
 
         downloadPlannables()
-    }
-
-    public func pullToRefreshTriggered(completion: @escaping () -> Void) {
-        if isDownloadStarted {
-            completion()
-            return
-        }
-
-        isForceUpdate = true
-        pullToRefreshCompletion = completion
-        downloadPlannables()
+        startSubmissionObserving()
     }
 
     public func isTodayModel(_ model: K5ScheduleDayViewModel) -> Bool {
@@ -186,5 +177,24 @@ public class K5ScheduleWeekViewModel: ObservableObject {
         subjects.sort { $0.subject.name < $1.subject.name }
 
         return .data(subjects)
+    }
+
+    /**
+     In case a submission happens it's written back to CoreData. In order to hide the completed item from screen we subscribe to Submission changes in CoreData to trigger a refresh.
+     We do this only for the current week.
+     */
+    private func startSubmissionObserving() {
+        guard submissionObserver == nil, isTodayButtonAvailable else { return }
+        submissionObserver = AppEnvironment.shared.subscribe(scope: .all(orderBy: #keyPath(Submission.userID))) { [weak self] in
+            self?.refresh()
+        }
+    }
+
+    private func refresh() {
+        if isDownloadStarted {
+            return
+        }
+
+        downloadPlannables()
     }
 }
