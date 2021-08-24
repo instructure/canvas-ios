@@ -62,8 +62,12 @@ private struct Badge: View {
     }
 }
 
+#if DEBUG
+
 struct SideMenuItem_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: 42)
     }
 }
+
+#endif

@@ -79,8 +79,12 @@ extension SideMenuOptionsSection {
     }
 }
 
+#if DEBUG
+
 struct SideMenuOptionsSection_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuOptionsSection(enrollment: .student)
     }
 }
+
+#endif

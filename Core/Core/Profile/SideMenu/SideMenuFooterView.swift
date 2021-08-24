@@ -39,8 +39,12 @@ struct SideMenuFooterView: View {
     }
 }
 
+#if DEBUG
+
 struct SideMenuFooterView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuFooterView()
     }
 }
+
+#endif
