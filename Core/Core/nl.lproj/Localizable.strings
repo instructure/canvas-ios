@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Syllabus bewerken";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Elementaire weergave";
-
-/* No comment provided by engineer. */
 "Email address" = "E-mailadres";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Cijfers";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Cijferdetails";
 
 /* No comment provided by engineer. */
 "Grading" = "Beoordeling";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Hulpbronnen";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Details van hulpbronnen";
 
 /* No comment provided by engineer. */
 "Restricted" = "Beperkt";

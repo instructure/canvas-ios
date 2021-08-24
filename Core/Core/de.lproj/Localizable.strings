@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Kursplan bearbeiten";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Elementare Ansicht";
-
-/* No comment provided by engineer. */
 "Email address" = "E-Mail-Adresse";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Noten";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Notendetails";
 
 /* No comment provided by engineer. */
 "Grading" = "Benotung";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Ressourcen";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Ressourcendetails";
 
 /* No comment provided by engineer. */
 "Restricted" = "Eingeschränkt";

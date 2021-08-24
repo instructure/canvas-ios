@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Golygu Maes Llafur";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Gwedd Sylfaenol";
-
-/* No comment provided by engineer. */
 "Email address" = "Cyfeiriad e-bost";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Graddau";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Manylion Graddau";
 
 /* No comment provided by engineer. */
 "Grading" = "Graddio";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Adnoddau";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Manylion Adnoddau";
 
 /* No comment provided by engineer. */
 "Restricted" = "Cyfyngedig";

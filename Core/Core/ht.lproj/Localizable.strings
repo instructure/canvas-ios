@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Chanje Pwogram";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Afichaj Elemantè";
-
-/* No comment provided by engineer. */
 "Email address" = "Adrès imèl";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Nòt";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Detay Nòt";
 
 /* No comment provided by engineer. */
 "Grading" = "Klasman";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Resous";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Detay Resous";
 
 /* No comment provided by engineer. */
 "Restricted" = "Limite";

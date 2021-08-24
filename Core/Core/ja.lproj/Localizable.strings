@@ -767,9 +767,6 @@
 "Edit Syllabus" = "シラバスを編集";
 
 /* No comment provided by engineer. */
-"Elementary View" = "エレメンタリービュー";
-
-/* No comment provided by engineer. */
 "Email address" = "メールアドレス";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
-
-/* No comment provided by engineer. */
-"Grades Details" = "成績の詳細";
 
 /* No comment provided by engineer. */
 "Grading" = "採点";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "リソース";
-
-/* No comment provided by engineer. */
-"Resources Details" = "リソース詳細";
 
 /* No comment provided by engineer. */
 "Restricted" = "部外秘";

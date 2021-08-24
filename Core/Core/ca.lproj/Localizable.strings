@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Edita el temari";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Visualització elemental";
-
-/* No comment provided by engineer. */
 "Email address" = "Adreça electrònica";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Qualificacions";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Detalls de les qualificacions";
 
 /* No comment provided by engineer. */
 "Grading" = "Qualificació";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Recursos";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Detalls dels recursos";
 
 /* No comment provided by engineer. */
 "Restricted" = "Restringit";

@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Editar programa del curso";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Vista de primaria";
-
-/* No comment provided by engineer. */
 "Email address" = "Dirección de correo electrónico";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Calificaciones";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Información de calificaciones";
 
 /* No comment provided by engineer. */
 "Grading" = "Calificación";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Recursos";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Información de recursos";
 
 /* No comment provided by engineer. */
 "Restricted" = "Restringido";

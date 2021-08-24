@@ -767,9 +767,6 @@
 "Edit Syllabus" = "編輯課程大綱";
 
 /* No comment provided by engineer. */
-"Elementary View" = "小學版檢視";
-
-/* No comment provided by engineer. */
 "Email address" = "電郵地址";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
-
-/* No comment provided by engineer. */
-"Grades Details" = "成績詳細資料";
 
 /* No comment provided by engineer. */
 "Grading" = "等級評分";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "資源";
-
-/* No comment provided by engineer. */
-"Resources Details" = "資源詳細資料";
 
 /* No comment provided by engineer. */
 "Restricted" = "受限";

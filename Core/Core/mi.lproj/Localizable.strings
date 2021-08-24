@@ -767,9 +767,6 @@
 "Edit Syllabus" = "Whakatika Marautanga";
 
 /* No comment provided by engineer. */
-"Elementary View" = "Tiro Tuatahi";
-
-/* No comment provided by engineer. */
 "Email address" = "Īmēra wāhitau";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "Ngā Kōeke";
-
-/* No comment provided by engineer. */
-"Grades Details" = "Ngā kōeke Taipitopito";
 
 /* No comment provided by engineer. */
 "Grading" = "Kōeke";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "Rauemi";
-
-/* No comment provided by engineer. */
-"Resources Details" = "Ngā Rauemi taipitopito";
 
 /* No comment provided by engineer. */
 "Restricted" = "Rāhuitia";

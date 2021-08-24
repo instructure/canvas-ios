@@ -767,9 +767,6 @@
 "Edit Syllabus" = "แก้ไขหลักสูตร";
 
 /* No comment provided by engineer. */
-"Elementary View" = "มุมมองระดับประถมศึกษา";
-
-/* No comment provided by engineer. */
 "Email address" = "อีเมลแอดเดรส";
 
 /* Description for email communication channel */
@@ -951,9 +948,6 @@
 
 /* No comment provided by engineer. */
 "Grades" = "เกรด";
-
-/* No comment provided by engineer. */
-"Grades Details" = "รายละเอียดเกรด";
 
 /* No comment provided by engineer. */
 "Grading" = "การให้เกรด";
@@ -1692,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Resources" = "ทรัพยากร";
-
-/* No comment provided by engineer. */
-"Resources Details" = "รายละเอียดทรัพยากร";
 
 /* No comment provided by engineer. */
 "Restricted" = "หวงห้าม";
