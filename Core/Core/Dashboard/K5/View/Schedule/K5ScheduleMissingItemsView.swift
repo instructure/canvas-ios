@@ -21,6 +21,7 @@ import SwiftUI
 public struct K5ScheduleMissingItemsView: View {
     @Environment(\.appEnvironment) var env
     @State private var isOpened: Bool = AppEnvironment.shared.userDefaults?.isMissingItemsSectionOpenOnK5Schedule ?? true
+    @State private var isArrowPointingDown = AppEnvironment.shared.userDefaults?.isMissingItemsSectionOpenOnK5Schedule ?? true
     private let missingItems: [K5ScheduleEntryViewModel]
 
     public init(missingItems: [K5ScheduleEntryViewModel]) {
@@ -32,9 +33,10 @@ public struct K5ScheduleMissingItemsView: View {
             Divider()
 
             Button(action: {
+                isOpened.toggle()
+                env.userDefaults?.isMissingItemsSectionOpenOnK5Schedule = isOpened
                 withAnimation {
-                    isOpened.toggle()
-                    env.userDefaults?.isMissingItemsSectionOpenOnK5Schedule = isOpened
+                    isArrowPointingDown.toggle()
                 }
             }, label: {
                 HStack(spacing: 12) {
@@ -43,7 +45,7 @@ public struct K5ScheduleMissingItemsView: View {
                         .padding(.leading, 18)
                     Image.arrowOpenDownLine
                         .foregroundColor(Color(Brand.shared.primary))
-                        .rotationEffect(.degrees(isOpened ? -180 : 0))
+                        .rotationEffect(.degrees(isArrowPointingDown ? -180 : 0))
                     Text(missingItemsText)
                         .font(.regular17)
                         .foregroundColor(Color(Brand.shared.primary))
@@ -52,7 +54,6 @@ public struct K5ScheduleMissingItemsView: View {
             })
             .frame(height: 58)
             .background(Color.white)
-            .zIndex(1)
 
             if isOpened {
                 VStack(spacing: 0) {
@@ -61,12 +62,10 @@ public struct K5ScheduleMissingItemsView: View {
                         K5ScheduleEntryView(viewModel: $0)
                     }
                 }
-                .transition(.move(edge: .top))
             }
 
             Divider()
         }
-        .clipped()
     }
 
     private var missingItemsText: String {

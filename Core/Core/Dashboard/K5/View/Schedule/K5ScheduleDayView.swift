@@ -30,16 +30,14 @@ public struct K5ScheduleDayView: View {
             switch (viewModel.subjects) {
             case .empty:
                 nothingPlannedView
+                missingItemsView
             case .loading:
                 loadingView
             case .data(let subjects):
                 ForEach(subjects) { subjectModel in
                     K5ScheduleSubjectView(viewModel: subjectModel)
                 }
-
-                if !viewModel.missingItems.isEmpty {
-                    K5ScheduleMissingItemsView(missingItems: viewModel.missingItems)
-                }
+                missingItemsView
             }
         }
     }
@@ -58,6 +56,13 @@ public struct K5ScheduleDayView: View {
         CircleProgress()
             .frame(height: 55)
             .frame(maxWidth: .infinity)
+    }
+
+    @ViewBuilder
+    private var missingItemsView: some View {
+        if !viewModel.missingItems.isEmpty {
+            K5ScheduleMissingItemsView(missingItems: viewModel.missingItems)
+        }
     }
 }
 
