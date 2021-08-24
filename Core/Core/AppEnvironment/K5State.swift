@@ -26,11 +26,15 @@ public class K5State {
         }
     }
     public var isRemoteFeatureFlagEnabled: Bool { ExperimentalFeature.K5Dashboard.isEnabled }
+    /** Reflects the sate of the local switch in the options menu. */
     public var isElementaryViewEnabled: Bool { sessionDefaults?.isElementaryViewEnabled ?? false }
     /** External dependency. */
     public var sessionDefaults: SessionDefaults?
 
-    /** This flag indicates if K5 mode is turned on and should be used. */
+    /**
+     This flag indicates if K5 mode is turned on and should be used.
+     True if all of these flags are true: `isK5Account`, `isRemoteFeatureFlagEnabled`, `isElementaryViewEnabled`.
+     */
     public var isK5Enabled: Bool { isK5Account && isRemoteFeatureFlagEnabled && isElementaryViewEnabled }
 
     public func userDidLogin(profile: APIProfile?) {

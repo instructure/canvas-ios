@@ -19,6 +19,7 @@
 import SwiftUI
 
 public struct SideMenuView: View {
+    @Environment(\.appEnvironment) private var environment
     let enrollment: HelpLinkEnrollment
 
     public init(_ enrollment: HelpLinkEnrollment) {
@@ -33,7 +34,7 @@ public struct SideMenuView: View {
                     Divider()
                     SideMenuMainSection(enrollment)
                     Divider()
-                    if enrollment != .observer {
+                    if enrollment != .observer, !environment.k5.isK5Enabled {
                         SideMenuOptionsSection(enrollment: enrollment)
                         Divider()
                     }
@@ -46,8 +47,12 @@ public struct SideMenuView: View {
     }
 }
 
+#if DEBUG
+
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuView(.student)
     }
 }
+
+#endif
