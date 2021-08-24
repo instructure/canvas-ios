@@ -31,8 +31,12 @@ struct SideMenuSubHeaderView: View {
     }
 }
 
+#if DEBUG
+
 struct SideMenuSubHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuSubHeaderView(title: Text("OPTIONS", bundle: .core))
     }
 }
+
+#endif

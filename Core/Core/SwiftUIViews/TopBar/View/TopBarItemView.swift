@@ -42,9 +42,13 @@ public struct TopBarItemView: View {
     }
 }
 
+#if DEBUG
+
 struct TopBarItemView_Previews: PreviewProvider {
     static var previews: some View {
         TopBarItemView(viewModel: TopBarItemViewModel(icon: .k5homeroom, label: Text(verbatim: "Menu Item")), selectAction: {})
             .previewLayout(.sizeThatFits)
     }
 }
+
+#endif

@@ -55,9 +55,13 @@ struct SideMenuToggleItem: View {
     }
 }
 
+#if DEBUG
+
 struct SideMenuToggleItem_Previews: PreviewProvider {
 
     static var previews: some View {
         SideMenuToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: .constant(true))
     }
 }
+
+#endif

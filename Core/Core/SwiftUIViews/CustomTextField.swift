@@ -46,9 +46,13 @@ struct CustomTextField: View {
     }
 }
 
+#if DEBUG
+
 struct CustomTextField_Previews: PreviewProvider {
 
     static var previews: some View {
         CustomTextField(placeholder: Text(verbatim: "Placeholder"), text: .constant(""), identifier: "This.TextField", accessibilityLabel: Text(verbatim: "TextField"))
     }
 }
+
+#endif
