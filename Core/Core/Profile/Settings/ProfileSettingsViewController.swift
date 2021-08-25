@@ -134,8 +134,8 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             + [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
                     guard let url = self?.profile.first?.calendarURL else { return }
                     self?.env.loginDelegate?.openExternalURL(url)
-                }]
-            ),
+               },
+            ]),
 
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: "")) { [weak self] in
@@ -161,11 +161,13 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     private var pairWithObserverButton: [Any] {
         guard isPairingWithObserverAllowed else { return [] }
 
-        return [Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: "")) { [weak self] in
-            guard let self = self else { return }
-            let vc = PairWithObserverViewController.create()
-            self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
-        }]
+        return [
+            Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: "")) { [weak self] in
+                guard let self = self else { return }
+                let vc = PairWithObserverViewController.create()
+                self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
+            },
+        ]
     }
 
     private var k5DashboardSwitch: [Any] {
