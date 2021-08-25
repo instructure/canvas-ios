@@ -50,19 +50,20 @@ public struct AssignmentEditorView: View {
     public var body: some View {
         form
             .navigationBarTitle(Text("Edit Assignment", bundle: .core), displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: {
+            .compatibleNavBarItems(leading: {
+                Button(action: {
                     env.router.dismiss(controller)
                 }, label: {
                     Text("Cancel", bundle: .core).fontWeight(.regular)
                 })
-                    .identifier("screen.dismiss"),
-                trailing: Button(action: save, label: {
+                    .identifier("screen.dismiss")
+            }, trailing: {
+                Button(action: save, label: {
                     Text("Done", bundle: .core).bold()
                 })
                     .disabled(isLoading || isSaving)
                     .identifier("AssignmentEditor.doneButton")
-            )
+            })
 
             .alert(item: $alert) { alert in
                 switch alert {

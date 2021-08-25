@@ -31,4 +31,17 @@ extension View {
             self.navigationBarItems(trailing: trailing())
         }
     }
+
+    @available(iOS, obsoleted: 14)
+    @ViewBuilder
+    public func compatibleNavBarItems<L, T>(leading: () -> L, trailing: () -> T) -> some View where L: View, T: View {
+        if #available(iOS 14, *) {
+            self.toolbar {
+                ToolbarItem(placement: .navigationBarLeading, content: leading)
+                ToolbarItem(placement: .navigationBarTrailing, content: trailing)
+            }
+        } else {
+            self.navigationBarItems(leading: leading(), trailing: trailing())
+        }
+    }
 }
