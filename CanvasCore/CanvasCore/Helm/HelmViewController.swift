@@ -459,7 +459,7 @@ extension UIViewController {
         if navigationItem.rightBarButtonItems?.count ?? 0 == 0 {
             button.style = .done
             navigationItem.rightBarButtonItem = button
-        } else {
+        } else if navigationItem.leftBarButtonItems?.count ?? 0 == 0 {
             navigationItem.leftBarButtonItem = button
         }
     }
