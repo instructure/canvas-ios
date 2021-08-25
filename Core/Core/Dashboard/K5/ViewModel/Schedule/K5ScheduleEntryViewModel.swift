@@ -35,7 +35,7 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
 
     public var isTappable: Bool { route != nil }
     private let route: URL?
-    private let apiService: PlannerOverrideUpdater
+    private let apiService: PlannerOverrideUpdater?
 
     public init(leading: RowLeading,
                 icon: Image,
@@ -45,7 +45,7 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
                 score: String?,
                 dueText: String,
                 route: URL?,
-                apiService: PlannerOverrideUpdater) {
+                apiService: PlannerOverrideUpdater? = nil) {
         self.leading = leading
         self.icon = icon
         self.title = title
@@ -67,7 +67,7 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
         leading = .checkbox(isChecked: newState)
         updateSubtitle()
 
-        apiService.markAsComplete(isComplete: newState) { [weak self] succeeded in
+        apiService?.markAsComplete(isComplete: newState) { [weak self] succeeded in
             if !succeeded {
                 // Update failed, revert UI to original state
                 performUIUpdate {

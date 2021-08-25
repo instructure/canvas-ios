@@ -37,8 +37,10 @@ public extension APIPlannable {
         }
     }
 
-    var k5SchedulePoints: String? {
-        guard let points = pointsPossible else { return nil }
+    var k5SchedulePoints: String? { Self.k5SchedulePoints(from: pointsPossible) }
+
+    static func k5SchedulePoints(from points: Double?) -> String? {
+        guard let points = points else { return nil }
         let pointsTemplate = NSLocalizedString("g_pts", bundle: .core, comment: "")
         return String.localizedStringWithFormat(pointsTemplate, points)
     }

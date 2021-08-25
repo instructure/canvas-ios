@@ -113,8 +113,12 @@ struct SideMenuMainSection: View {
     }
 }
 
+#if DEBUG
+
 struct SideMenuMainSection_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuMainSection(.student)
     }
 }
+
+#endif

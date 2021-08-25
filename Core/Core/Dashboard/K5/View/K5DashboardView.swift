@@ -69,8 +69,12 @@ public struct K5DashboardView: View {
     }
 }
 
+#if DEBUG
+
 struct K5DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         K5DashboardView()
     }
 }
+
+#endif

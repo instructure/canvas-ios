@@ -29,6 +29,7 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
     public let weekday: String
     public let date: String
     @Published public var subjects: Subject
+    @Published public var missingItems: [K5ScheduleEntryViewModel] = []
 
     public init(range: Range<Date>, calendar: Calendar) {
         if calendar.isDateInToday(range.lowerBound) {
@@ -51,10 +52,11 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
     /**
      User only for SwiftUI previews.
     */
-    public init(weekday: String, date: String, subjects: Subject) {
+    public init(weekday: String, date: String, subjects: Subject, missingItems: [K5ScheduleEntryViewModel] = []) {
         self.weekday = weekday
         self.date = date
         self.subjects = subjects
+        self.missingItems = missingItems
         self.range = Date()..<Date()
     }
 

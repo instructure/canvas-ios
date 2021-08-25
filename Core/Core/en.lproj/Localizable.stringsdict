@@ -2,6 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>show_%d_missing_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@show_missing_items@</string>
+		<key>show_missing_items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Show %d missing item</string>
+			<key>other</key>
+			<string>Show %d missing items</string>
+		</dict>
+	</dict>
+	<key>hide_%d_missing_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@hide_missing_items@</string>
+		<key>hide_missing_items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Hide %d missing item</string>
+			<key>other</key>
+			<string>Hide %d missing items</string>
+		</dict>
+	</dict>
 	<key>d_items</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

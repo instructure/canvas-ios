@@ -91,6 +91,14 @@ public extension Date {
         formatter.timeStyle = .none
         return formatter
     }()
+    static var relativeShortDateOnlyFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.doesRelativeDateFormatting = true
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+
+        return formatter
+    }()
     static var relativeDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.doesRelativeDateFormatting = true
@@ -149,8 +157,17 @@ public extension Date {
     var dateTimeString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .short)
     }
+    /**
+     E.g.: Jul 14, 2021
+     */
     var relativeDateOnlyString: String {
         Date.relativeDateOnlyFormatter.string(from: self)
+    }
+    /**
+     E.g.: 8/16/21
+     */
+    var relativeShortDateOnlyString: String {
+        Date.relativeShortDateOnlyFormatter.string(from: self)
     }
     var relativeDateTimeString: String {
         Date.relativeDateTimeFormatter.string(from: self)
