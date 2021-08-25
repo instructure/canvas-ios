@@ -21,6 +21,7 @@ import SwiftUI
 /**
  The purpose os this View is to be able to use ScrollViewReader on iOS 13 without any `if #available` statements. Acts as a ScrollViewReader on iOS 14, does nothing below that since there's no support from Apple.
  */
+@available(iOS, obsoleted: 14)
 public struct CompatibleScrollViewReader<Content: View>: View {
     private let content: (CompatibleScrollViewProxy) -> Content
 
