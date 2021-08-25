@@ -40,6 +40,7 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
         layout.minimumLineSpacing = 0
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isPrefetchingEnabled = false
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
