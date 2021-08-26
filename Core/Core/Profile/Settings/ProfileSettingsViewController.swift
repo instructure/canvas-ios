@@ -182,11 +182,17 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
     private func refreshTermsOfService() {
         termsOfServiceRequest = env.api.makeRequest(GetAccountTermsOfServiceRequest()) { [weak self] response, _, _ in
-            defer { self?.termsOfServiceRequest = nil }
-            guard let self_registration = response?.self_registration_type else { return }
+            self?.termsOfServiceRequest = nil
+            let isPairingAllowed: Bool
+
+            if let self_registration = response?.self_registration_type {
+                isPairingAllowed = [APISelfRegistrationType.all, .observer].contains(self_registration)
+            } else {
+                isPairingAllowed = false
+            }
 
             performUIUpdate {
-                self?.isPairingWithObserverAllowed = [APISelfRegistrationType.all, .observer].contains(self_registration)
+                self?.isPairingWithObserverAllowed = isPairingAllowed
             }
         }
     }
