@@ -42,6 +42,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         ]
         api.mock(vc.profile, value: APIProfile.make())
         api.mock(vc.channels, value: channels)
+        api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
 
         load()
 
