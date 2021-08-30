@@ -170,6 +170,9 @@
 "All Courses" = "Kaikki kurssit";
 
 /* No comment provided by engineer. */
+"All Day" = "Koko päivä";
+
+/* No comment provided by engineer. */
 "All People" = "Kaikki henkilöt";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Määräpäivä:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Määräpäivä: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Muokkaa";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "suosikki";
+
+/* No comment provided by engineer. */
+"Feedback" = "Palaute";
 
 /* No comment provided by engineer. */
 "file" = "tiedosto";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Homeroom";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Homeroom-näkymä";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Miten löydän kouluni";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Tänään ei eräänny mitään";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Ei mitään vielä suunniteltuna";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Ilmoitusvirhe";
@@ -2069,6 +2084,12 @@
 "To Do" = "Tehtävä";
 
 /* No comment provided by engineer. */
+"Today" = "Tänään";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Huomenna";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Kokonaisarvosana";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Lopetat toimimasta tänä käyttäjänä ja palaat tilillesi.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Olet merkinnyt sen tehdyksi.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Tämän lapsen kursseja ei ehkä vielä julkaista.";

@@ -170,6 +170,9 @@
 "All Courses" = "Tout Kou";
 
 /* No comment provided by engineer. */
+"All Day" = "Tout Jounen";
+
+/* No comment provided by engineer. */
 "All People" = "Tout Moun";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Delè:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Delè: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Modifye";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "prefere";
+
+/* No comment provided by engineer. */
+"Feedback" = "Kòmantè";
 
 /* No comment provided by engineer. */
 "file" = "fichye";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Sal kou";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Apèsi Sal la";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Kijan pou mwen jwenn lekòl mwen an?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Pa gen Anyen ki gen Delè pou Jodi a";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Anyen poko planifye";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Erè Notifikasyon";
@@ -2069,6 +2084,12 @@
 "To Do" = "Pou Fè";
 
 /* No comment provided by engineer. */
+"Today" = "Jodi a";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Demen";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Klas Total";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Ou pral sispann aji tankou yon itilizatè epi retounen sou kont ou.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Ou te make li fini.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kou pitit ou a gendwa poko pibliye.";

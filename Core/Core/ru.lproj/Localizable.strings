@@ -170,6 +170,9 @@
 "All Courses" = "Все курсы";
 
 /* No comment provided by engineer. */
+"All Day" = "Весь день";
+
+/* No comment provided by engineer. */
 "All People" = "Все люди";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Срок:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Срок: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Редактировать";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "предпочтительный";
+
+/* No comment provided by engineer. */
+"Feedback" = "Оценка";
 
 /* No comment provided by engineer. */
 "file" = "файл";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "«Домашняя комната»";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Представление домашней комнаты";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Как мне найти свою школу?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Сегодня ничего сдавать не нужно";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Пока ничего не запланировано";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Ошибка уведомления";
@@ -2069,6 +2084,12 @@
 "To Do" = "Задачи";
 
 /* No comment provided by engineer. */
+"Today" = "Сегодня";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Завтра";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Общая оценка";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Вы прекратите действовать как этот пользователь и вернетесь в свою учетную запись.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Вы отметили это как выполненное.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Курсы вашего ребенка пока еще не могут быть опубликованы.";

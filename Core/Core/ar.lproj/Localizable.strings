@@ -170,6 +170,9 @@
 "All Courses" = "جميع المساقات";
 
 /* No comment provided by engineer. */
+"All Day" = "طوال اليوم";
+
+/* No comment provided by engineer. */
 "All People" = "جميع الأشخاص";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "تاريخ الاستحقاق:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "تاريخ الاستحقاق: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "تحرير";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "مفضلة";
+
+/* No comment provided by engineer. */
+"Feedback" = "الملاحظات";
 
 /* No comment provided by engineer. */
 "file" = "ملف";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "جلسة التسجيل";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "عرض جلسة التسجيل";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "كيف أعثر على مدرستي؟";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "لا شيء مستحق اليوم";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "لم يتم تخطيط أي شيء بعد";
 
 /* No comment provided by engineer. */
 "Notification Error" = "خطأ في الإخطارات";
@@ -2069,6 +2084,12 @@
 "To Do" = "قائمة المهام";
 
 /* No comment provided by engineer. */
+"Today" = "اليوم";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "غدًا";
+
+/* No comment provided by engineer. */
 "Total Grade" = "التقدير الإجمالي";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "ستتوقف عن التصرف باعتبارك هذا المستخدم وستعود إلى حسابك.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "قمت بتمييزه بأنه تم.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "ربما لم يتم نشر مساقات الطالب بعد.";

@@ -170,6 +170,9 @@
 "All Courses" = "Pob Cwrs";
 
 /* No comment provided by engineer. */
+"All Day" = "Drwy’r Dydd";
+
+/* No comment provided by engineer. */
 "All People" = "Holl Bobl";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Erbyn:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Erbyn: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Golygu";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "ffefryn";
+
+/* No comment provided by engineer. */
+"Feedback" = "Adborth";
 
 /* No comment provided by engineer. */
 "file" = "ffeil";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Ystafell hafan";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Gwedd Homeroom";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Sut ydw i’n dod o hyd i fy ysgol?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Dim byd i fod i mewn heddiw";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Does dim byd wedi’i drefnu hyd yma";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Gwall Hysbysu";
@@ -2069,6 +2084,12 @@
 "To Do" = "Tasgau i’w Gwneud";
 
 /* No comment provided by engineer. */
+"Today" = "Heddiw";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Yfory";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Gradd Gyffredinol";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Byddwch yn stopio gweithredu fel y defnyddiwr hwn ac yn dychwelyd i’ch cyfrif eich hun.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Rydych chi wedi’i farcio fel wedi’i orffen.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Efallai nad yw cyrsiau eich plentyn wedi cael eu cyhoeddi eto.";

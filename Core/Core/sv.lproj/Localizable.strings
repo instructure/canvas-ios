@@ -170,6 +170,9 @@
 "All Courses" = "Alla kurser";
 
 /* No comment provided by engineer. */
+"All Day" = "Hela dagen";
+
+/* No comment provided by engineer. */
 "All People" = "Alla personer";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Förfallodatum:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Förfallodatum: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Redigera";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "favorit";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
 
 /* No comment provided by engineer. */
 "file" = "fil";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Fjärrundervisningsrum";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Vy för fjärrundervisningsrum";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hur hittar jag min skola?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Inget måste lämnas in i dag";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Inget planerat ännu";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Aviseringsfel";
@@ -2069,6 +2084,12 @@
 "To Do" = "Att göra";
 
 /* No comment provided by engineer. */
+"Today" = "I dag";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "I morgon";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Total omdöme";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du kommer att sluta att agera som den här användaren och gå tillbaka till ditt konto.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Du har markerat den som färdig.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ditt barns kurs kanske inte publicerats än.";

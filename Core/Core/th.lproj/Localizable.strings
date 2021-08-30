@@ -170,6 +170,9 @@
 "All Courses" = "บทเรียนทั้งหมด";
 
 /* No comment provided by engineer. */
+"All Day" = "ทั้งวัน";
+
+/* No comment provided by engineer. */
 "All People" = "ทุกคน";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "ครบกำหนด:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "ครบกำหนด: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "แก้ไข";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "รายการโปรด";
+
+/* No comment provided by engineer. */
+"Feedback" = "ผลตอบรับ";
 
 /* No comment provided by engineer. */
 "file" = "ไฟล์";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "โฮมรูม";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "มุมมองโฮมรูม";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "จะค้นหาสถานศึกษาของฉันได้อย่างไร";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "ไม่มีวันครบกำหนดวันนี้";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "ยังไม่มีแผนตอนนี้";
 
 /* No comment provided by engineer. */
 "Notification Error" = "ข้อผิดพลาดการแจ้งข้อมูล";
@@ -2069,6 +2084,12 @@
 "To Do" = "สิ่งที่ต้องดำเนินการ";
 
 /* No comment provided by engineer. */
+"Today" = "วันนี้";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "พรุ่งนี้";
+
+/* No comment provided by engineer. */
 "Total Grade" = "เกรดรวม";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "คุณจะหยุดดำเนินการในฐานะผู้ใช้นี้และกลับไปยังบัญชีของคุณ";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "คุณกำกับว่าเสร็จสิ้นแล้ว";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "บทเรียนเชื่อมโยงของคุณอาจยังไม่ได้เผยแพร่";

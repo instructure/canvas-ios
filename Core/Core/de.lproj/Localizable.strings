@@ -170,6 +170,9 @@
 "All Courses" = "Alle Kurse";
 
 /* No comment provided by engineer. */
+"All Day" = "Den ganzen Tag";
+
+/* No comment provided by engineer. */
 "All People" = "Alle Personen";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Fällig:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Fällig: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Ändern";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "Favorit";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
 
 /* No comment provided by engineer. */
 "file" = "Datei";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Organisationsstunde";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Organisationsstundenansicht";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Wie finde ich meine Schule?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Heute ist nichts fällig.";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Noch nichts geplant";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Benachrichtigungsfehler";
@@ -2069,6 +2084,12 @@
 "To Do" = "Zu erledigen";
 
 /* No comment provided by engineer. */
+"Today" = "Heute";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Morgen";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Endnote";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Sie hören auf, als dieser Benutzer zu handeln, und kehren zu Ihrem Konto zurück.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Sie haben es als erledigt markiert.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ihre untergeordneten Kurse sind möglicherweise noch nicht veröffentlicht.";

@@ -170,6 +170,9 @@
 "All Courses" = "Tots els cursos";
 
 /* No comment provided by engineer. */
+"All Day" = "Tot el dia";
+
+/* No comment provided by engineer. */
 "All People" = "Totes les persones";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Venciment:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Venciment: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Edita";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "preferit";
+
+/* No comment provided by engineer. */
+"Feedback" = "Suggeriments";
 
 /* No comment provided by engineer. */
 "file" = "fitxer";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Tutoria";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Vista de la tutoria.";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Com puc trobar l'escola?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Res venç avui";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Encara no hi ha res planificat";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Error de notificació";
@@ -2069,6 +2084,12 @@
 "To Do" = "Tasques pendents";
 
 /* No comment provided by engineer. */
+"Today" = "Avui";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Demà";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Qualificació total";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Deixareu de fer d'aquest usuari i tornareu al vostre compte.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "L’heu marcat com a fet.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "És possible que encara no s'hagin publicat els cursos del vostre fill.";

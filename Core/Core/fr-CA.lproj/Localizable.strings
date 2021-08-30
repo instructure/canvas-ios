@@ -170,6 +170,9 @@
 "All Courses" = "Tous les cours";
 
 /* No comment provided by engineer. */
+"All Day" = "Toute la journée";
+
+/* No comment provided by engineer. */
 "All People" = "Toutes les personnes";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Échéance :";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Échéance : %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Modifier";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "favori";
+
+/* No comment provided by engineer. */
+"Feedback" = "Rétroaction";
 
 /* No comment provided by engineer. */
 "file" = "fichier";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Classe titulaire";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Vue de la salle d’accueil";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Comment puis-je trouver mon école?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Rien n’est dû aujourd’hui";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Rien de planifié en ce moment";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Erreur de notification";
@@ -2069,6 +2084,12 @@
 "To Do" = "À faire";
 
 /* No comment provided by engineer. */
+"Today" = "Aujourd’hui";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Demain";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Note totale";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Vous allez cesser d’agir en tant que cet utilisateur et retournerez à votre compte.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Vous l’avez marqué comme terminé.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Vos cours dépendants peuvent ne pas être encore publiés.";

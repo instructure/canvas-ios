@@ -170,6 +170,9 @@
 "All Courses" = "所有课程";
 
 /* No comment provided by engineer. */
+"All Day" = "全天";
+
+/* No comment provided by engineer. */
 "All People" = "所有人员";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "到期：";
 
 /* No comment provided by engineer. */
+"Due: %@" = "到期：%@";
+
+/* No comment provided by engineer. */
 "Edit" = "编辑";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "收藏";
+
+/* No comment provided by engineer. */
+"Feedback" = "反馈";
 
 /* No comment provided by engineer. */
 "file" = "文件";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "指导教室";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "教室视图";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "如何查找我的学校？";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "没有今天到期的项目";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "暂无任何计划";
 
 /* No comment provided by engineer. */
 "Notification Error" = "通知错误";
@@ -2069,6 +2084,12 @@
 "To Do" = "待办事项";
 
 /* No comment provided by engineer. */
+"Today" = "今天";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "明天";
+
+/* No comment provided by engineer. */
 "Total Grade" = "总分";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "你将停止担当该用户并返回至帐号。";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "您已将它标记为“完成”。";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "您孩子的课程可能尚未发布。";
