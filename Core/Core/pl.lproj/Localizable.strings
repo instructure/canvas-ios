@@ -170,6 +170,9 @@
 "All Courses" = "Wszystkie kursy";
 
 /* No comment provided by engineer. */
+"All Day" = "Cały dzień";
+
+/* No comment provided by engineer. */
 "All People" = "Wszystkie osoby";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Termin:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Termin: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Edytuj";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "dodano do ulubionych";
+
+/* No comment provided by engineer. */
+"Feedback" = "Informacje zwrotne";
 
 /* No comment provided by engineer. */
 "file" = "plik";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Pokój główny";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Widok pokoju głównego";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Jak mogę znaleźć swoją szkołę?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Brak elementów z dzisiejszym terminem";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Nic jeszcze nie zaplanowano";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Błąd powiadomienia";
@@ -2069,6 +2084,12 @@
 "To Do" = "Lista zadań";
 
 /* No comment provided by engineer. */
+"Today" = "Dzisiaj";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Jutro";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Łączna ocena";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Zatrzymasz podszywanie się jako ten użytkownik i powrócisz do swojego konta.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Oznaczono to jako gotowe.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kursy Twojego dziecka mogły nie zostać jeszcze opublikowane.";

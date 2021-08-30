@@ -170,6 +170,9 @@
 "All Courses" = "Öll námskeið";
 
 /* No comment provided by engineer. */
+"All Day" = "Allan dag";
+
+/* No comment provided by engineer. */
 "All People" = "Allt fólk";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Skil:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Skil: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Breyta";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "eftirlæti";
+
+/* No comment provided by engineer. */
+"Feedback" = "Endurgjöf";
 
 /* No comment provided by engineer. */
 "file" = "skrá";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Námssalur";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Yfirlit yfir námssal";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hvernig finn ég skólann minn?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Ekkert á skilum í dag";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Ekkert skipulagt ennþá";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Tilkynningarvilla";
@@ -2069,6 +2084,12 @@
 "To Do" = "Verkefni";
 
 /* No comment provided by engineer. */
+"Today" = "Í dag";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Á morgun";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Heildareinkunn";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Þú munt hætta að bregðast við sem þessi notandi og fara aftur í þinn reikning.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Þú hefur merkt þetta sem lokið.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Námskeið barnsins þíns eru ef til vill ekki birt enn.";

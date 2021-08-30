@@ -268,6 +268,20 @@
 			<string>%gポイント</string>
 		</dict>
 	</dict>
+	<key>hide_%d_missing_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@hide_missing_items@</string>
+		<key>hide_missing_items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Hide %d missing items</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -308,6 +322,20 @@
 			<string>g</string>
 			<key>other</key>
 			<string>ポイント</string>
+		</dict>
+	</dict>
+	<key>show_%d_missing_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@show_missing_items@</string>
+		<key>show_missing_items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Show %d missing items</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>

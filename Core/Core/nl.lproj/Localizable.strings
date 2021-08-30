@@ -170,6 +170,9 @@
 "All Courses" = "Alle cursussen";
 
 /* No comment provided by engineer. */
+"All Day" = "De hele dag";
+
+/* No comment provided by engineer. */
 "All People" = "Alle personen";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Inleverdatum:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Inleverdatum: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Bewerken";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "favoriet";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
 
 /* No comment provided by engineer. */
 "file" = "bestand";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Klas";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Huisklasweergave";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hoe vind ik mijn school?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Vandaag niets in te leveren";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Nog niets gepland";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Meldingsfout";
@@ -2069,6 +2084,12 @@
 "To Do" = "Opdrachtenlijst";
 
 /* No comment provided by engineer. */
+"Today" = "Vandaag";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Morgen";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Totaalcijfer";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Je stopt met optreden als deze gebruiker en keert terug naar je account.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Je hebt het als klaar gemarkeerd.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "De cursussen van je cursist zijn mogelijk nog niet gepubliceerd.";

@@ -170,6 +170,9 @@
 "All Courses" = "Todos os cursos";
 
 /* No comment provided by engineer. */
+"All Day" = "Dia inteiro";
+
+/* No comment provided by engineer. */
 "All People" = "Todas as pessoas";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Vencimento:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Vencimento: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Editar";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "favorito";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
 
 /* No comment provided by engineer. */
 "file" = "arquivo";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Sala de aula";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Visualização da sala de aula";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Como encontrar minha escola?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Nada com prazo vencendo hoje";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Nada planejado ainda";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Erro de notificação";
@@ -2069,6 +2084,12 @@
 "To Do" = "Lista de Tarefas";
 
 /* No comment provided by engineer. */
+"Today" = "Hoje";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Amanhã";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Nota Total";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Você parará de agir como esse usuário e voltará à sua conta.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Você marcou como concluído.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Os cursos do seu filho podem ainda não ter sido publicados.";

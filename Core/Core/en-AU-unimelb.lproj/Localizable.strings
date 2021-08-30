@@ -170,6 +170,9 @@
 "All Courses" = "All Subjects";
 
 /* No comment provided by engineer. */
+"All Day" = "All Day";
+
+/* No comment provided by engineer. */
 "All People" = "All People";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Due:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Due: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Edit";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "favourite";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
 
 /* No comment provided by engineer. */
 "file" = "file";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Homeroom";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Homeroom View";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "How do I find my school?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Nothing Due Today";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Nothing planned yet";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Notification Error";
@@ -2069,6 +2084,12 @@
 "To Do" = "To Do";
 
 /* No comment provided by engineer. */
+"Today" = "Today";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Tomorrow";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Total Grade";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "You've marked it as done.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Your child's subjects might not be published yet.";

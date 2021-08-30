@@ -170,6 +170,9 @@
 "All Courses" = "Todos los cursos";
 
 /* No comment provided by engineer. */
+"All Day" = "Todo el día";
+
+/* No comment provided by engineer. */
 "All People" = "Todas las personas";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Fecha de entrega:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Fecha de entrega: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Editar";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "favorito";
+
+/* No comment provided by engineer. */
+"Feedback" = "Comentarios";
 
 /* No comment provided by engineer. */
 "file" = "archivo";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Aula principal";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Vista del aula";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "¿Cómo encuentro mi escuela?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Nada con fecha límite el día de hoy";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Aún no hay nada planificado";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Error de notificación";
@@ -2069,6 +2084,12 @@
 "To Do" = "Por hacer";
 
 /* No comment provided by engineer. */
+"Today" = "Hoy";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Mañana";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Calificación total";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Usted dejará de actuar en nombre de este usuario y volverá a su cuenta.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Lo marcó como terminado.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Es posible que los cursos de su hijo aún no estén publicados.";

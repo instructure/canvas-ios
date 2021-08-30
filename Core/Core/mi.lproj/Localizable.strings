@@ -170,6 +170,9 @@
 "All Courses" = "Ngā akoranga katoa";
 
 /* No comment provided by engineer. */
+"All Day" = "Te rā katoa";
+
+/* No comment provided by engineer. */
 "All People" = "Ngā tāngata katoa";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "E tika ana:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "E tika ana: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Whakatika";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "makau";
+
+/* No comment provided by engineer. */
+"Feedback" = "Urupare";
 
 /* No comment provided by engineer. */
 "file" = "kōnae";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Kainga rūma";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Kainga rūma Tiro";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Me pehea e kitea ai e ahau taku kura?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Kaore e Tika ana mō tēnei rā";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Heoi kaore he mahere";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Hapa whakamōhiotanga";
@@ -2069,6 +2084,12 @@
 "To Do" = "Hei mahi";
 
 /* No comment provided by engineer. */
+"Today" = "I tēnei rā tonu";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Apopo";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Kōeke Tapeke";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Ka mutu tō mahi hei kaiwhakamahi nei, ka hoki ki tāu pūkete.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Kua tohua e koe kua oti.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kaore e pānuitia ngā akoranga a tō tamaiti i tēnei wā.";

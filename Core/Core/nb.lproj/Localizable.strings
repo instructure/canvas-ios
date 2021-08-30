@@ -170,6 +170,9 @@
 "All Courses" = "Alle emner";
 
 /* No comment provided by engineer. */
+"All Day" = "Hele dagen";
+
+/* No comment provided by engineer. */
 "All People" = "Alle folk";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Frist:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Frist: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Rediger";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "favoritt";
+
+/* No comment provided by engineer. */
+"Feedback" = "Tilbakemelding";
 
 /* No comment provided by engineer. */
 "file" = "fil";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Hjem";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Vis hjemmerom";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hvordan finner jeg skolen min?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Ingenting forfaller i dag";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Ingenting planlagt enda";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Varslingsfeil";
@@ -2069,6 +2084,12 @@
 "To Do" = "Å gjøre";
 
 /* No comment provided by engineer. */
+"Today" = "I dag";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "I morgen";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Samlet karakter";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du vil slutte å opptre som denne brukeren og gå tilbake til din egen konto.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Du har merket det som fullført.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Dine underordnede emner er kanskje ikke publisert enda.";
