@@ -28,27 +28,13 @@ public class ContextCardViewModel: ObservableObject {
     public lazy var submissions = env.subscribe(GetSubmissionsForStudent(context: context, studentID: userID)) { [weak self] in self?.updateLoadingState() }
     public lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .sendMessages ])) { [weak self] in self?.updateLoadingState() }
     public lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in self?.gradingPeriodsDidUpdate() }
-    public lazy var enrollments = env.subscribe(GetEnrollments(
-        context: context,
-        gradingPeriodID: currentGradingPeriodID,
-        states: [ .active ]
-    )) { [weak self] in
-        self?.updateLoadingState()
-    }
 
     public var apiUser: APIUser?
     public let isViewingAnotherUser: Bool
     public let context: Context
     public let isSubmissionRowsVisible: Bool
     public let isLastActivityVisible: Bool
-
-    public var enrollment: Enrollment? {
-        return enrollments.first {
-            $0.id != nil &&
-            $0.state == .active &&
-            $0.userID == userID
-        }
-    }
+    public var enrollment: Enrollment?
 
     @Environment(\.appEnvironment) private var env
     private var isFirstAppear = true
@@ -85,7 +71,24 @@ public class ContextCardViewModel: ObservableObject {
     func gradingPeriodsDidUpdate() {
         if gradingPeriods.pending == false && gradingPeriods.requested {
             currentGradingPeriodID = gradingPeriods.all.current?.id
-            enrollments.exhaust(force: true)
+            let request = GetEnrollmentsRequest(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ])
+            env.api.exhaust(request) { [weak self] (enrollments, _, _) in performUIUpdate {
+                    guard let self = self else { return }
+
+                    let apiEnrollment = enrollments?.first {
+                        $0.id != nil &&
+                        $0.enrollment_state == .active &&
+                        $0.user_id.value == self.userID
+                    }
+                    if let apiEnrollment = apiEnrollment, let id = apiEnrollment.id?.value {
+                        let databaseContext = self.env.database.viewContext
+                        let enrollment: Enrollment = databaseContext.first(where: #keyPath(Enrollment.id), equals: id) ?? databaseContext.insert()
+                        enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseContext)
+                        self.enrollment = enrollment
+                    }
+                    self.updateLoadingState()
+                }
+            }
         }
     }
 
@@ -116,7 +119,6 @@ public class ContextCardViewModel: ObservableObject {
             submissions.pending || !submissions.requested || submissions.hasNextPage ||
             permissions.pending ||
             gradingPeriods.pending ||
-            enrollments.pending || !enrollments.requested || enrollments.hasNextPage ||
             userAPICallResponsePending
         if newPending == true { return }
         pending = newPending
