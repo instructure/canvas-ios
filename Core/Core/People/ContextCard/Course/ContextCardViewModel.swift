@@ -41,6 +41,7 @@ public class ContextCardViewModel: ObservableObject {
     private let courseID: String
     private let userID: String
     private var userAPICallResponsePending = true
+    private var enrollmentsAPICallResponsePending = true
     private var currentGradingPeriodID: String?
 
     public init(courseID: String, userID: String, currentUserID: String, isSubmissionRowsVisible: Bool = true, isLastActivityVisible: Bool = true) {
@@ -86,6 +87,7 @@ public class ContextCardViewModel: ObservableObject {
                         enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseContext)
                         self.enrollment = enrollment
                     }
+                    self.enrollmentsAPICallResponsePending = false
                     self.updateLoadingState()
                 }
             }
@@ -119,6 +121,7 @@ public class ContextCardViewModel: ObservableObject {
             submissions.pending || !submissions.requested || submissions.hasNextPage ||
             permissions.pending ||
             gradingPeriods.pending ||
+            enrollmentsAPICallResponsePending ||
             userAPICallResponsePending
         if newPending == true { return }
         pending = newPending
