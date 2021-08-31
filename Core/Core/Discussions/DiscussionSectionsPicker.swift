@@ -24,6 +24,8 @@ struct DiscussionSectionsPicker: View {
 
     @ObservedObject var sections: Store<GetCourseSections>
 
+    @Environment(\.viewController) private var viewController
+
     init(courseID: String, selection: Binding<Set<CourseSection>>) {
         self.courseID = courseID
         sections = AppEnvironment.shared.subscribe(GetCourseSections(courseID: courseID))
@@ -61,6 +63,16 @@ struct DiscussionSectionsPicker: View {
         }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
             .navigationBarTitle(Text("Sections", bundle: .core))
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading:
+                                    Button(action: {
+                                        viewController.value.navigationController?.popViewController(animated: true)
+                                    }, label: {
+                                        HStack(spacing: 2) {
+                                            Image.arrowOpenLeftSolid.padding(.leading, -14)
+                                            Text("Back", bundle: .core).font(.regular17)
+                                        }
+                                    }))
 
             .onAppear(perform: load)
     }
