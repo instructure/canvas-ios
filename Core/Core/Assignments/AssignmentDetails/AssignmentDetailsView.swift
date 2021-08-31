@@ -41,15 +41,15 @@ public struct AssignmentDetailsView: View {
         states
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
-
-            .navigationBarItems(trailing: Button(action: { env.router.route(
-                to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                from: controller,
-                options: .modal(.formSheet, isDismissable: false, embedInNav: false)
-            ) }, label: {
-                Text("Edit", bundle: .core).fontWeight(.regular)
-            }))
-
+            .compatibleNavBarItems(trailing: {
+                Button(action: { env.router.route(
+                    to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                    from: controller,
+                    options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+                ) }, label: {
+                    Text("Edit", bundle: .core).fontWeight(.regular)
+                })
+            })
             .onAppear {
                 assignment.refresh()
                 course.refresh()

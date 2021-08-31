@@ -112,6 +112,9 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
 
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
+            // If there's a presented controller it will cause glitches so it's better to remove it.
+            // Presenting it again on the details view controller or self doesn't work at this point.
+            newDeets.dismissModal(animated: false)
             nav.popViewController(animated: true)
 
             if let helmVC = newDeets as? HelmViewController {

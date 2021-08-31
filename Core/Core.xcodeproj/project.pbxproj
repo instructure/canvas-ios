@@ -811,6 +811,7 @@
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
 		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
+		CF12DFC826D63937000BE452 /* CompatibleNavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */; };
 		CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */; };
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
@@ -2006,6 +2007,7 @@
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
 		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
+		CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleNavBarItems.swift; sourceTree = "<group>"; };
 		CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleMissingItemsView.swift; sourceTree = "<group>"; };
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
@@ -4651,6 +4653,7 @@
 			children = (
 				E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */,
 				7DBD150525477CEB00750F52 /* Badge.swift */,
+				CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */,
 				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
 				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
 			);
@@ -5952,6 +5955,7 @@
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,
 				7D81F3F724F0112700C482D2 /* APIAccountTermsOfService.swift in Sources */,
+				CF12DFC826D63937000BE452 /* CompatibleNavBarItems.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
 				7DA25FBD23F72136005D2121 /* APIMediaComment.swift in Sources */,
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,

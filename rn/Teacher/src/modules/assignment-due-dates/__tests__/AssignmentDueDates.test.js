@@ -115,7 +115,7 @@ test('routes to assignment edit', () => {
   ).toJSON()
   const editButton: any = explore(tree).selectRightBarButton('assignment-due-dates.edit-btn')
   editButton.action()
-  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/1/edit', { embedInNavigationController: false, modal: true })
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/1/edit', { modal: true })
 })
 
 test('routes to quiz edit', () => {
