@@ -26,12 +26,10 @@ class NewQuizzesE2ETests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
         app.find(label: "Read-only Quiz").tap()
         QuizDetails.launchExternalToolButton.tap()
-        app.find(labelContaining: "This is an essay question").waitToExist()
-        app.find(labelContaining: "Please don't put text in this box.").waitToExist()
-        app.find(labelContaining: "More Quiz Actions").waitToExist()
+        app.find(labelContaining: "Return").waitToExist()
         app.find(labelContaining: "Toolbar").waitToExist()
+        app.find(labelContaining: "Read-only Quiz").waitToExist()
         app.find(label: "Done").tap()
-        app.find(labelContaining: "This is an essay question").waitToVanish()
         app.find(labelContaining: "Toolbar").waitToVanish()
     }
 }
