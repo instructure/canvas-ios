@@ -37,6 +37,12 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     }
 
     let tableView = UITableView(frame: .zero, style: .grouped)
+    private var isPairingWithObserverAllowed = false {
+        didSet {
+            reloadData()
+        }
+    }
+    private var termsOfServiceRequest: APITask?
 
     public static func create(onElementaryViewToggleChanged: (() -> Void)? = nil) -> ProfileSettingsViewController {
         let viewController = ProfileSettingsViewController()
@@ -82,6 +88,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         let force = sender != nil
         channels.exhaust(while: { _ in true })
         profile.refresh(force: force)
+        refreshTermsOfService()
     }
 
     func reloadData() {
@@ -122,16 +129,12 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         self.env.router.show(vc, from: self)
                     }
                 }
-            }).sorted(by: { $0.title < $1.title }) + [
-                Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: "")) { [weak self] in
-                    guard let sself = self else { return }
-                    let vc = PairWithObserverViewController.create()
-                    sself.env.router.show(vc, from: sself, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
-                },
-                Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
+            }).sorted(by: { $0.title < $1.title })
+            + pairWithObserverButton
+            + [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
                     guard let url = self?.profile.first?.calendarURL else { return }
                     self?.env.loginDelegate?.openExternalURL(url)
-                },
+               },
             ]),
 
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
@@ -149,10 +152,22 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                 },
             ]),
         ]
-        if !channels.pending && !profile.pending {
+        if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
             tableView.refreshControl?.endRefreshing()
         }
         tableView.reloadData()
+    }
+
+    private var pairWithObserverButton: [Any] {
+        guard isPairingWithObserverAllowed else { return [] }
+
+        return [
+            Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: "")) { [weak self] in
+                guard let self = self else { return }
+                let vc = PairWithObserverViewController.create()
+                self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
+            },
+        ]
     }
 
     private var k5DashboardSwitch: [Any] {
@@ -163,6 +178,23 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             self?.onElementaryViewToggleChanged?()
         }
         return [row]
+    }
+
+    private func refreshTermsOfService() {
+        termsOfServiceRequest = env.api.makeRequest(GetAccountTermsOfServiceRequest()) { [weak self] response, _, _ in
+            self?.termsOfServiceRequest = nil
+            let isPairingAllowed: Bool
+
+            if let self_registration = response?.self_registration_type {
+                isPairingAllowed = [APISelfRegistrationType.all, .observer].contains(self_registration)
+            } else {
+                isPairingAllowed = false
+            }
+
+            performUIUpdate {
+                self?.isPairingWithObserverAllowed = isPairingAllowed
+            }
+        }
     }
 }
 

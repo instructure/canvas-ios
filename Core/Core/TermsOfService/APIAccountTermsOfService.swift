@@ -18,12 +18,19 @@
 
 import Foundation
 
+public enum APISelfRegistrationType: String, Codable {
+    case all
+    case none
+    case observer
+}
+
 public struct APIAccountTermsOfService: Codable, Equatable {
     let account_id: ID
     let content: String?
     let id: ID?
     let passive: Bool?
     let terms_type: String?
+    let self_registration_type: APISelfRegistrationType?
 }
 
 #if DEBUG
@@ -33,14 +40,16 @@ extension APIAccountTermsOfService {
         content: String? = "content",
         id: ID? = nil,
         passive: Bool? = false,
-        terms_type: String? = nil
+        terms_type: String? = nil,
+        self_registration_type: APISelfRegistrationType? = nil
     ) -> APIAccountTermsOfService {
         return APIAccountTermsOfService(
             account_id: account_id,
             content: content,
             id: id,
             passive: passive,
-            terms_type: terms_type
+            terms_type: terms_type,
+            self_registration_type: self_registration_type
         )
     }
 }
