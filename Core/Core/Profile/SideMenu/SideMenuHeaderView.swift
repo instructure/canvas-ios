@@ -133,7 +133,19 @@ extension SideMenuHeaderView {
         }
 
         private func profileUpdated() {
-            guard let profile = profile.first else { return }
+            guard let profile = profile.first else {
+                env.api.makeRequest(GetEnrollmentsRequest(context: .currentUser)) { [weak self] (enrollments, _, _) in performUIUpdate {
+                    if let enrollment = enrollments?.first, let user = enrollment.user {
+                        self?.userName = user.name
+                        self?.avatarURL = user.avatar_url?.rawValue
+                        self?.email = user.email ?? ""
+                        self?.canUpdateAvatar = user.permissions?.can_update_avatar == true
+                        if let displayName = user.short_name.isEmpty ? self?.userName : user.short_name {
+                            self?.name = User.displayName(displayName, pronouns: user.pronouns)
+                        }
+                    }
+                }}
+                return }
             userName = profile.name
             avatarURL = profile.avatarURL
             email = profile.email ?? ""
