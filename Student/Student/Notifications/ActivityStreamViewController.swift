@@ -28,7 +28,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     }
 
     let env = AppEnvironment.shared
-    lazy var activities = env.subscribe(GetActivities()) { [weak self] in
+    lazy var activities = env.subscribe(GetActivities(context: context)) { [weak self] in
         self?.update()
     }
 
@@ -54,9 +54,11 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     }()
 
     var courseCache: [String: Info] = [:]
+    var context: Context?
 
-    static func create() -> ActivityStreamViewController {
+    static func create(context: Context? = nil) -> ActivityStreamViewController {
         let vc = loadFromStoryboard()
+        vc.context = context
         return vc
     }
 

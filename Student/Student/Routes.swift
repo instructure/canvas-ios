@@ -70,8 +70,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return GroupNavigationViewController.create(context: context)
     },
 
-    "/:context/:contextID/activity_stream": { _, _, _ in
-        return ActivityStreamViewController.create()
+    "/:context/:contextID/activity_stream": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return ActivityStreamViewController.create(context: context)
     },
 
     "/:context/:contextID/announcements": { url, _, _ in
