@@ -70,6 +70,10 @@ public class ModuleItem: NSManagedObject {
 
     public var isLocked: Bool {
 
+        if module?.state == .completed || completed == true {
+            return false
+        }
+
         if masteryPath?.locked == true || module?.state == .locked || lockedForUser == true {
             return true
         }
@@ -91,7 +95,7 @@ public class ModuleItem: NSManagedObject {
 
     private func prevModuleItemIsComplete() -> Bool? {
         if let index = module?.items.firstIndex(of: self), index > 0 {
-            return module?.items[index-1].completed ?? false
+            return module?.items[index-1].completed ?? true
         }
         return nil
     }
