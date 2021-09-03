@@ -137,8 +137,7 @@ export default function mapStateToProps (state: AppState, { courseID, quizID }: 
       if (!e) return false
       return (e.type === 'StudentEnrollment' ||
               e.type === 'StudentViewEnrollment') &&
-              (e.enrollment_state === 'active' ||
-              e.enrollment_state === 'invited')
+              (e.enrollment_state === 'active')
     })
       .reduce((accum, current) => {
         if (accum.findIndex(e => e.user_id === current.user_id) >= 0) {
