@@ -23,7 +23,10 @@ public class GetActivities: CollectionUseCase {
 
     public typealias Model = Activity
 
-    public init() {}
+    private let context: Context?
+    public init(context: Context? = nil) {
+        self.context = context
+    }
 
     public var cacheKey: String? {
         return "get-activities"
@@ -34,8 +37,15 @@ public class GetActivities: CollectionUseCase {
                                #keyPath(Activity.typeRaw), ActivityType.conference.rawValue,
                                #keyPath(Activity.typeRaw), ActivityType.collaboration.rawValue,
                                #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
+        var contextFilter: NSPredicate {
+            guard let contextID = context?.canvasContextID  else {
+                return NSPredicate(value: true)
+            }
+            return NSPredicate(format: "%K == %@", #keyPath(Activity.canvasContextIDRaw), contextID)
+        }
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, contextFilter])
         let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false), ]
-        return Scope(predicate: pred, order: order, sectionNameKeyPath: nil)
+        return Scope(predicate: predicate, order: order, sectionNameKeyPath: nil)
     }
 
     public var request: GetActivitiesRequest {
