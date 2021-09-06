@@ -170,6 +170,9 @@
 "All Courses" = "Vsi predmeti";
 
 /* No comment provided by engineer. */
+"All Day" = "Ves dan";
+
+/* No comment provided by engineer. */
 "All People" = "Vsi sodelujoči";
 
 /* No comment provided by engineer. */
@@ -734,6 +737,9 @@
 "Due:" = "Roki:";
 
 /* No comment provided by engineer. */
+"Due: %@" = "Rok: %@";
+
+/* No comment provided by engineer. */
 "Edit" = "Uredi";
 
 /* No comment provided by engineer. */
@@ -837,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "favorite" = "priljubljeno";
+
+/* No comment provided by engineer. */
+"Feedback" = "Povratne informacije";
 
 /* No comment provided by engineer. */
 "file" = "datoteka";
@@ -984,6 +993,9 @@
 
 /* No comment provided by engineer. */
 "Homeroom" = "Matični";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Pogled matičnega razreda";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Kako najdem svojo šolo?";
@@ -1404,6 +1416,9 @@
 
 /* No due assignments for today */
 "Nothing Due Today" = "Danes nič ne poteče";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Nič še ni načrtovano";
 
 /* No comment provided by engineer. */
 "Notification Error" = "Napaka pri sporočilu";
@@ -2069,6 +2084,12 @@
 "To Do" = "Čakajoča opravila";
 
 /* No comment provided by engineer. */
+"Today" = "Danes";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Jutri";
+
+/* No comment provided by engineer. */
 "Total Grade" = "Skupna ocena";
 
 /* No comment provided by engineer. */
@@ -2259,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Prenehali boste nastopati v vlogi tega uporabnika in se boste vrnili v svoj račun.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "To ste označili kot končano.";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Predmeti vašega otroka morda še niso objavljeni.";
