@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2021-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,23 +17,19 @@
 //
 
 import XCTest
+import TestsFoundation
 
-public enum QuizDetails: String, ElementWrapper {
-    case takeButton
-
-    public static var submitButton: Element {
-        return app.buttons.matching(label: "Submit").firstElement
-    }
-
-    public static func text(string: String) -> Element {
-        return app.find(labelContaining: string)
-    }
-
-    public static var previewQuiz: Element {
-        return app.find(label: "Preview Quiz")
-    }
-
-    public static var launchExternalToolButton: Element {
-        return app.find(label: "Launch External Tool")
+class NewQuizzesE2ETests: CoreUITestCase {
+    func testNewQuizzesE2E() {
+        Dashboard.courseCard(id: "399").waitToExist()
+        Dashboard.courseCard(id: "399").tap()
+        CourseNavigation.quizzes.tap()
+        app.find(label: "Read-only Quiz").tap()
+        QuizDetails.launchExternalToolButton.tap()
+        app.find(labelContaining: "Return").waitToExist()
+        app.find(labelContaining: "Toolbar").waitToExist()
+        app.find(labelContaining: "Read-only Quiz").waitToExist()
+        app.find(label: "Done").tap()
+        app.find(labelContaining: "Toolbar").waitToVanish()
     }
 }
