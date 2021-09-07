@@ -25,18 +25,22 @@ extension UINavigationController {
         self.navigationBar.barTintColor = color
         syncStyles()
     }
-    
+
     // Looks at what is in the master, if in split view, and applies what master has to detail
     public func syncStyles() {
         guard let svc = self.splitViewController else { return }
         guard let master = svc.masterNavigationController else { return }
         guard let detail = svc.detailNavigationController else { return }
-        detail.navigationBar.barTintColor = master.navigationBar.barTintColor
-        detail.navigationBar.tintColor = master.navigationBar.tintColor
-        detail.navigationBar.shadowImage = master.navigationBar.shadowImage
-        detail.navigationBar.isTranslucent = master.navigationBar.isTranslucent
-        detail.navigationBar.barStyle = master.navigationBar.barStyle
-        detail.navigationBar.titleTextAttributes = master.navigationBar.titleTextAttributes
+        syncStyles(from: master, to: detail)
+    }
+
+    public func syncStyles(from: UINavigationController, to: UINavigationController) {
+        to.navigationBar.barTintColor = from.navigationBar.barTintColor
+        to.navigationBar.tintColor = from.navigationBar.tintColor
+        to.navigationBar.shadowImage = from.navigationBar.shadowImage
+        to.navigationBar.isTranslucent = from.navigationBar.isTranslucent
+        to.navigationBar.barStyle = from.navigationBar.barStyle
+        to.navigationBar.titleTextAttributes = from.navigationBar.titleTextAttributes
     }
 
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

@@ -107,6 +107,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
            let moduleName = (newDetail as? HelmViewController)?.moduleName,
            ["/courses/:courseID", "/courses/:courseID/assignments"].contains(moduleName)
         {
+            // If all the above conditions pass the current controller can act as primary so we put an empty view as secondary.
             return HelmNavigationController(rootViewController: EmptyViewController())
         }
 
@@ -134,7 +135,12 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
             }
 
             if let nav = newDeets as? UINavigationController {
-                nav.syncStyles()
+                // If newDeets is a newly created navigation controller then it won't have a splitViewController yet, so syncStyles() won't work at this point.
+                if newDeets.splitViewController == nil, let masterNav = primaryViewController as? UINavigationController {
+                    nav.syncStyles(from: masterNav, to: nav)
+                } else {
+                    nav.syncStyles()
+                }
             }
 
             return newDeets
