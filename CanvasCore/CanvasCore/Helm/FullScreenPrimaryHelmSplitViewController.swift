@@ -152,6 +152,10 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         }
     }
 
+    public override func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+        super.splitViewController(splitViewController, separateSecondaryFrom: masterNavigationController ?? UIViewController())
+    }
+
     // MARK: - UINavigationControllerDelegate
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
