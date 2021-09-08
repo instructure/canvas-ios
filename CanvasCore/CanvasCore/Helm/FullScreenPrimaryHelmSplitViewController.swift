@@ -161,6 +161,8 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count != 1 {
             state = .divided
+        } else if navigationController.viewControllers.count == 1 { // if the nav controller pops to root then willShow won't trigger the fullscreen mode
+            state = .fullScreen
         }
     }
 
