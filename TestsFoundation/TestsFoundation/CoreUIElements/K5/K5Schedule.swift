@@ -16,20 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 
-public enum K5NavigationBar: String, ElementWrapper {
-    case resources
-
-    public static var homeroom: Element {
-        return app.find(label: "Homeroom")
-    }
-
-    public static var schedule: Element {
-        return app.find(label: "Schedule")
-    }
-
-    public static var grades: Element {
-        return app.find(label: "Grades")
-    }
+public enum K5Schedule: ElementWrapper {
+    case today
 }

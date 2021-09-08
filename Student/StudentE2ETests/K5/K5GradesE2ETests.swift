@@ -16,20 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+import TestsFoundation
 
-public enum K5NavigationBar: String, ElementWrapper {
-    case resources
+class K5GradesE2ETests: K5UITestCase {
+    func testK5GradesE2E() {
+        setUpK5()
 
-    public static var homeroom: Element {
-        return app.find(label: "Homeroom")
-    }
-
-    public static var schedule: Element {
-        return app.find(label: "Schedule")
-    }
-
-    public static var grades: Element {
-        return app.find(label: "Grades")
+        K5CourseCard.courseCard(id: "21025").waitToExist()
+        K5NavigationBar.grades.tap()
+        K5Grades.gradingPeriodSelectorCurrent.waitToExist()
+        app.find(labelContaining: "MATH").waitToExist()
+        app.find(labelContaining: "MATH").tap()
+        K5CourseGrades.emptyGradesForCourse.waitToExist()
+        NavBar.backButton.tap()
+        app.find(labelContaining: "AUTOMATION 101").waitToExist()
+        app.find(labelContaining: "AUTOMATION 101").tap()
+        app.find(label: "Auto Intro").waitToExist()
+        K5CourseGrades.gradedPointsOutOf(actual: "4", outOf: "5").waitToExist()
     }
 }

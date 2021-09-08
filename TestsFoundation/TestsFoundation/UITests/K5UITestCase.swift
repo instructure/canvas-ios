@@ -45,4 +45,11 @@ open class K5UITestCase: CoreUITestCase {
         env.userDefaults?.isElementaryViewEnabled = false
         super.tearDown()
     }
+
+    open func setUpK5() {
+        K5NavigationBar.homeroom.waitToExist()
+        resetAppStateForK5()
+        pullToRefresh()
+        K5NavigationBar.homeroom.waitToExist()
+    }
 }

@@ -50,11 +50,4 @@ class K5StudentE2ETests: K5UITestCase {
         setUpK5()
         K5CourseCard.courseCard(id: "21025").waitToExist()
     }
-
-    func setUpK5() {
-        K5NavigationBar.homeroom.waitToExist()
-        super.resetAppStateForK5()
-        pullToRefresh()
-        K5NavigationBar.homeroom.waitToExist()
-    }
 }
