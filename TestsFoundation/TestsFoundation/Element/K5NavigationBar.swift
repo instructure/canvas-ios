@@ -22,14 +22,14 @@ public enum K5NavigationBar: String, ElementWrapper {
     case resources
 
     public static var homeroom: Element {
-        return app.find(label: "Homeroom")
+        app.find(label: "Homeroom")
     }
 
     public static var schedule: Element {
-        return app.find(label: "Schedule")
+        app.find(label: "Schedule")
     }
 
     public static var grades: Element {
-        return app.find(label: "Grades")
+        app.find(label: "Grades")
     }
 }

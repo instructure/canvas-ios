@@ -21,17 +21,17 @@ import XCTest
 public enum K5Grades: ElementWrapper {
 
     public static var gradingPeriodSelectorCurrent: Element {
-        return app.find(label: "Select, Current Grading Period")
+        app.find(label: "Select, Current Grading Period")
     }
 }
 
 public enum K5CourseGrades: ElementWrapper {
 
     public static var emptyGradesForCourse: Element {
-        return app.find(label: "No Assignments")
+        app.find(label: "No Assignments")
     }
 
     public static func gradedPointsOutOf(actual: String, outOf: String) -> Element {
-    return app.find(label: "Grade, \(actual) out of \(outOf)")
+        app.find(label: "Grade, \(actual) out of \(outOf)")
     }
 }
