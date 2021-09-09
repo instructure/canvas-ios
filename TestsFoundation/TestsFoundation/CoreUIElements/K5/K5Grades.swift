@@ -16,20 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 
-public enum K5NavigationBar: String, ElementWrapper {
-    case resources
+public enum K5Grades: ElementWrapper {
 
-    public static var homeroom: Element {
-        app.find(label: "Homeroom")
+    public static var gradingPeriodSelectorCurrent: Element {
+        app.find(label: "Select, Current Grading Period")
+    }
+}
+
+public enum K5CourseGrades: ElementWrapper {
+
+    public static var emptyGradesForCourse: Element {
+        app.find(label: "No Assignments")
     }
 
-    public static var schedule: Element {
-        app.find(label: "Schedule")
-    }
-
-    public static var grades: Element {
-        app.find(label: "Grades")
+    public static func gradedPointsOutOf(actual: String, outOf: String) -> Element {
+        app.find(label: "Grade, \(actual) out of \(outOf)")
     }
 }
