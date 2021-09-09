@@ -24,13 +24,16 @@ import SwiftUI
 public struct HorizontalPager<Page: View>: UIViewRepresentable {
     private let pageCount: Int
     private let initialPageIndex: Int
-    private let proxy: WeakObject<UICollectionView>?
+    @Binding private var currentPageIndex: Int
     private let pageFactory: (_ pageIndex: Int) -> Page
 
-    public init(pageCount: Int, initialPageIndex: Int = 0, proxy: WeakObject<UICollectionView>? = nil, _ cellFactory: @escaping (_ pageIndex: Int) -> Page) {
+    public init(pageCount: Int,
+                initialPageIndex: Int = 0,
+                currentPageIndex: Binding<Int>,
+                _ cellFactory: @escaping (_ pageIndex: Int) -> Page) {
         self.pageCount = pageCount
         self.initialPageIndex = initialPageIndex
-        self.proxy = proxy
+        self._currentPageIndex = currentPageIndex
         self.pageFactory = cellFactory
     }
 
@@ -48,7 +51,6 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
         // Delegate has to be set before datasource, otherwise UICollectionViewDelegateFlowLayout methods won't be called.
         collectionView.delegate = context.coordinator
         collectionView.dataSource = context.coordinator
-        proxy?.object = collectionView
 
         context.coordinator.observeFrameChange(on: collectionView)
 
@@ -56,7 +58,7 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
     }
 
     public func makeCoordinator() -> Coordinator {
-        HorizontalPager.Coordinator(pageCount: pageCount, initialPageIndex: initialPageIndex, pageFactory)
+        HorizontalPager.Coordinator(pageCount: pageCount, initialPageIndex: initialPageIndex, currentPageIndex: $currentPageIndex, pageFactory)
     }
 
     public func updateUIView(_ collectionView: UICollectionView, context: HorizontalPager.Context) {
@@ -69,13 +71,18 @@ extension HorizontalPager {
     public class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         private let pageCount: Int
         private let initialPageIndex: Int
+        @Binding private var currentPageIndex: Int
         private let pageFactory: (_ pageIndex: Int) -> Page
         private var scrolledToInitialPage = false
         private var observation: NSKeyValueObservation?
 
-        public init(pageCount: Int, initialPageIndex: Int, _ pageFactory: @escaping (_ pageIndex: Int) -> Page) {
+        public init(pageCount: Int,
+                    initialPageIndex: Int,
+                    currentPageIndex: Binding<Int>,
+                    _ pageFactory: @escaping (_ pageIndex: Int) -> Page) {
             self.pageCount = pageCount
             self.initialPageIndex = initialPageIndex
+            self._currentPageIndex = currentPageIndex
             self.pageFactory = pageFactory
         }
 
@@ -129,13 +136,17 @@ extension HorizontalPager {
         public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             collectionView.frame.size
         }
+
+        // MARK: UIScrollViewDelegate
+
+        public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+
+            if pageIndex != currentPageIndex {
+                currentPageIndex = pageIndex
+            }
+        }
     }
-}
-
-// MARK: - UICollectionView Proxy To SwiftUI
-
-public class WeakObject<T: AnyObject> {
-    public weak var object: T?
 }
 
 // MARK: - Preview
@@ -149,10 +160,9 @@ struct HorizontalPager_Previews: PreviewProvider {
         Color.green,
         Color.black,
     ]
-    private static let collectionViewProxy = WeakObject<UICollectionView>()
 
     static var previews: some View {
-        HorizontalPager(pageCount: colors.count, initialPageIndex: 1, proxy: collectionViewProxy) { pageIndex in
+        HorizontalPager(pageCount: colors.count, initialPageIndex: 1, currentPageIndex: .constant(0)) { pageIndex in
             ZStack {
                 colors[pageIndex]
                 Text(verbatim: "\(pageIndex)")
