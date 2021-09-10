@@ -21,7 +21,7 @@ import SwiftUI
 public struct K5ScheduleView: View {
     @ObservedObject var viewModel: K5ScheduleViewModel
     @State private var currentPageIndex: Int = 0
-    private let pagerProxy = HorizontalPagerProxy()
+    @State private var pagerProxy = HorizontalPagerProxy()
     private let animation = Animation.easeOut(duration: 0.2)
 
     public var body: some View {
