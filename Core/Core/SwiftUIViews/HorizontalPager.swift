@@ -16,8 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 import SwiftUI
+
+/**
+ A utility entity which can be passed to a `HorizontalPager` in order to change pages programatically.
+ */
+public struct HorizontalPagerProxy {
+    public let scrollToNextPageSubject = PassthroughSubject<Void, Never>()
+    public let scrollToPreviousPageSubject = PassthroughSubject<Void, Never>()
+
+    public func scrollToNextPage() {
+        scrollToNextPageSubject.send()
+    }
+
+    public func scrollToPreviousPage() {
+        scrollToPreviousPageSubject.send()
+    }
+}
 
 // MARK: - UICollectionView Wrapping
 
@@ -25,15 +42,24 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
     private let pageCount: Int
     private let initialPageIndex: Int
     @Binding private var currentPageIndex: Int
+    private let pagerProxy: HorizontalPagerProxy?
     private let pageFactory: (_ pageIndex: Int) -> Page
+    @State private var nextPageEventListener: AnyCancellable?
+    @State private var previousPageEventListener: AnyCancellable?
 
+    /**
+     - parameters:
+        - currentPageIndex: The actual page's index is written into this binding by this view. Modifying it from outside has no effect, use `pagerProxy` to control scrolling.
+     */
     public init(pageCount: Int,
                 initialPageIndex: Int = 0,
                 currentPageIndex: Binding<Int>,
+                pagerProxy: HorizontalPagerProxy? = nil,
                 _ cellFactory: @escaping (_ pageIndex: Int) -> Page) {
         self.pageCount = pageCount
         self.initialPageIndex = initialPageIndex
         self._currentPageIndex = currentPageIndex
+        self.pagerProxy = pagerProxy
         self.pageFactory = cellFactory
     }
 
@@ -53,6 +79,18 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
         collectionView.dataSource = context.coordinator
 
         context.coordinator.observeFrameChange(on: collectionView)
+
+        // async to avoid "Modifying state during view update, this will cause undefined behavior." error
+        DispatchQueue.main.async {
+            previousPageEventListener = pagerProxy?.scrollToPreviousPageSubject.sink {
+                let safeIndex = min(max(0, currentPageIndex - 1), pageCount - 1)
+                collectionView.scrollToItem(at: IndexPath(row: safeIndex, section: 0), at: .centeredHorizontally, animated: true)
+            }
+            nextPageEventListener = pagerProxy?.scrollToNextPageSubject.sink {
+                let safeIndex = min(max(0, currentPageIndex + 1), pageCount - 1)
+                collectionView.scrollToItem(at: IndexPath(row: safeIndex, section: 0), at: .centeredHorizontally, animated: true)
+            }
+        }
 
         return collectionView
     }

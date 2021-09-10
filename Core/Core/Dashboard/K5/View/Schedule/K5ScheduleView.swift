@@ -21,10 +21,15 @@ import SwiftUI
 public struct K5ScheduleView: View {
     @ObservedObject var viewModel: K5ScheduleViewModel
     @State private var currentPageIndex: Int = 0
+    private let pagerProxy = HorizontalPagerProxy()
+    private let animation = Animation.easeOut(duration: 0.2)
 
     public var body: some View {
         VStack(spacing: 0) {
-            HorizontalPager(pageCount: viewModel.weekModels.count, initialPageIndex: viewModel.defaultWeekIndex, currentPageIndex: $currentPageIndex.animation(.easeOut(duration: 0.3))) { pageIndex in
+            HorizontalPager(pageCount: viewModel.weekModels.count,
+                            initialPageIndex: viewModel.defaultWeekIndex,
+                            currentPageIndex: $currentPageIndex.animation(animation),
+                            pagerProxy: pagerProxy) { pageIndex in
                 K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
             }
             Divider()
@@ -34,7 +39,7 @@ public struct K5ScheduleView: View {
 
     private var pageSwitcherButtons: some View {
         HStack(spacing: 0) {
-            Button(action: {}) {
+            Button(action: pagerProxy.scrollToPreviousPage) {
                 HStack(spacing: 0) {
                     Image.miniArrowStartSolid
                     Text("Previous Week", bundle: .core)
@@ -47,7 +52,7 @@ public struct K5ScheduleView: View {
 
             Spacer()
 
-            Button(action: {}) {
+            Button(action: pagerProxy.scrollToNextPage) {
                 HStack(spacing: 0) {
                     Text("Next Week", bundle: .core)
                     Image.miniArrowEndSolid
