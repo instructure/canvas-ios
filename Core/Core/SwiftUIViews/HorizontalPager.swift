@@ -178,6 +178,20 @@ extension HorizontalPager {
         // MARK: UIScrollViewDelegate
 
         public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            // When the collectionview receives VoiceOver focus from above, it will scroll to the first cell.
+            // If the focus moves from below to the collectionview then it scrolls to the last cell.
+            // We try to catch these scrolling events and restore the scroll position to its original state.
+            if UIAccessibility.isVoiceOverRunning {
+                let isJumpingToFirstPage = scrollView.contentOffset == .zero && currentPageIndex != 1
+                let lastPageContentOffset = scrollView.contentSize.width - scrollView.frame.size.width
+                let isJumpingToLastPage = scrollView.contentOffset.x == lastPageContentOffset && currentPageIndex != pageCount - 2
+
+                if isJumpingToFirstPage || isJumpingToLastPage {
+                    scrollView.scrollRectToVisible(CGRect(origin: CGPoint(x: currentPageIndex * Int(scrollView.frame.size.width), y: 0), size: scrollView.frame.size), animated: false)
+                    return
+                }
+            }
+
             let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
 
             if pageIndex != currentPageIndex {
