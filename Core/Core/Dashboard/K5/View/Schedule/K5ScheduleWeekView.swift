@@ -110,7 +110,7 @@ public struct K5ScheduleWeekView: View {
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .frame(minHeight: 93)
 
-        return background.overlay(content, alignment: .topLeading)
+        return background.overlay(content, alignment: .topLeading).accessibilityElement(children: .combine)
     }
 
     private func updateTodayCellVisibility(to isVisible: Bool) {

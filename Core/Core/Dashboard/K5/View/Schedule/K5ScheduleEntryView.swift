@@ -70,6 +70,7 @@ public struct K5ScheduleEntryView: View {
                     disclosureIndicator
                 }
             })
+            .accessibility(hint: Text("Open item details", bundle: .core))
             .disabled(!viewModel.isTappable)
         }
         .padding(.trailing, 15)
@@ -85,6 +86,7 @@ public struct K5ScheduleEntryView: View {
                 .foregroundColor(.crimson)
                 .padding(.leading, 18)
                 .padding(.trailing, 18)
+                .accessibility(hidden: true)
         case .checkbox(let isChecked):
             checkBox(isChecked: isChecked)
         }
@@ -145,7 +147,7 @@ public struct K5ScheduleEntryView: View {
     }
 
     private func checkBox(isChecked: Bool) -> some View {
-        Button(action: viewModel.checkboxTapped, label: {
+        var button = Button(action: viewModel.checkboxTapped, label: {
             // This allows the hit area to be big while keeping the icon normal sized
             let background = Color.clear
                 .frame(width: 60)
@@ -158,6 +160,15 @@ public struct K5ScheduleEntryView: View {
                 background.overlay(icon)
             }
         })
+        .accessibility(label: Text("Mark item as done", bundle: .core))
+
+        if isChecked {
+            button = button.accessibility(addTraits: .isSelected)
+        } else {
+            button = button.accessibility(removeTraits: .isSelected)
+        }
+
+        return button
     }
 
     private func subtitle(model: K5ScheduleEntryViewModel.SubtitleViewModel) -> some View {
