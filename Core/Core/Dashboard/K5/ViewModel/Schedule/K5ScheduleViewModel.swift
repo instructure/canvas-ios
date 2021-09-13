@@ -50,6 +50,14 @@ public class K5ScheduleViewModel: ObservableObject {
         self.weekModels = weekModels
     }
 
+    public func isOnFirstPage(currentPageIndex: Int) -> Bool {
+        currentPageIndex == 0
+    }
+
+    public func isOnLastPage(currentPageIndex: Int) -> Bool {
+        currentPageIndex == weekModels.count - 1
+    }
+
     private static func dayModelsForWeek(weekStartDate: Date, calendar: Calendar) -> [K5ScheduleDayViewModel] {
         var dayModels: [K5ScheduleDayViewModel] = []
 

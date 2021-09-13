@@ -20,12 +20,53 @@ import SwiftUI
 
 public struct K5ScheduleView: View {
     @ObservedObject var viewModel: K5ScheduleViewModel
+    @Environment(\.horizontalPadding) private var horizontalPadding
+    @State private var currentPageIndex: Int = 0
+    @State private var pagerProxy = HorizontalPagerProxy()
+    private let animation = Animation.easeOut(duration: 0.2)
 
     public var body: some View {
-        let collectionViewWrapper = WeakObject<UICollectionView>()
-        HorizontalPager(pageCount: viewModel.weekModels.count, initialPageIndex: viewModel.defaultWeekIndex, proxy: collectionViewWrapper) { pageIndex in
-            K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
+        VStack(spacing: 0) {
+            HorizontalPager(pageCount: viewModel.weekModels.count,
+                            initialPageIndex: viewModel.defaultWeekIndex,
+                            currentPageIndex: $currentPageIndex.animation(animation),
+                            pagerProxy: pagerProxy) { pageIndex in
+                K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
+            }
+            Divider()
+            pageSwitcherButtons
         }
+    }
+
+    private var pageSwitcherButtons: some View {
+        HStack(spacing: 0) {
+            Button(action: pagerProxy.scrollToPreviousPage) {
+                HStack(spacing: 0) {
+                    Image.miniArrowStartSolid
+                    Text("Previous Week", bundle: .core)
+                }
+            }
+            .frame(maxHeight: .infinity)
+            .padding(.leading, horizontalPadding - 7) // -7 to offset the arrow's burnt in padding
+            .padding(.trailing, 16)
+            .hidden(viewModel.isOnFirstPage(currentPageIndex: currentPageIndex))
+
+            Spacer()
+
+            Button(action: pagerProxy.scrollToNextPage) {
+                HStack(spacing: 0) {
+                    Text("Next Week", bundle: .core)
+                    Image.miniArrowEndSolid
+                }
+            }
+            .frame(maxHeight: .infinity)
+            .padding(.leading, 16)
+            .padding(.trailing, horizontalPadding - 7) // -7 to offset the arrow's burnt in padding
+            .hidden(viewModel.isOnLastPage(currentPageIndex: currentPageIndex))
+        }
+        .frame(height: 56)
+        .foregroundColor(.licorice)
+        .font(.regular16)
     }
 }
 

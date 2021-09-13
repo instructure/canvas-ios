@@ -65,6 +65,7 @@ public struct K5ScheduleSubjectView: View {
                 .padding(.leading, 18)
                 .padding(.trailing, 15)
             })
+            .accessibility(hint: Text("Open course details", bundle: .core))
             .disabled(!viewModel.isTappable)
             Divider()
             entries
@@ -100,6 +101,7 @@ public struct K5ScheduleSubjectView: View {
                 .frame(width: 147)
                 .clipped()
             })
+            .accessibility(hint: Text("Open course details", bundle: .core))
             .disabled(!viewModel.isTappable)
             verticalSeparator
             entries
