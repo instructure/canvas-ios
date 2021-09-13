@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-protocol RubricCircleViewButtonDelegate: class {
+protocol RubricCircleViewButtonDelegate: AnyObject {
     func didClickRating(atIndex: Int, rubric: RubricViewModel)
 }
 

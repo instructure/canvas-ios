@@ -20,7 +20,7 @@ import MobileCoreServices
 import UIKit
 import WebKit
 
-public protocol RichContentEditorDelegate: class {
+public protocol RichContentEditorDelegate: AnyObject {
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool)
     func rce(_ editor: RichContentEditorViewController, didError error: Error)
 }

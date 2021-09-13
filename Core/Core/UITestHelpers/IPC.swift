@@ -106,7 +106,7 @@ extension IPCDriverServerMessage: Codable {
     }
 }
 
-protocol IPCDriverServerDelegate: class {
+protocol IPCDriverServerDelegate: AnyObject {
     func handler(_ message: IPCDriverServerMessage) -> Data?
 }
 

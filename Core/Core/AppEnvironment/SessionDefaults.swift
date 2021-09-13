@@ -77,7 +77,7 @@ public struct SessionDefaults {
                     "Messages": "/conversations",
                 ]
                 if let path = map[legacy] {
-                    landingPath = path
+                    self.landingPath = path
                     return path
                 }
             }

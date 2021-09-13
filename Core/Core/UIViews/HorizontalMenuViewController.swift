@@ -335,7 +335,7 @@ public extension HorizontalMenuViewController {
     }
 }
 
-public protocol HorizontalPagedMenuDelegate: class {
+public protocol HorizontalPagedMenuDelegate: AnyObject {
     var viewControllers: [UIViewController] { get }
     var menuHeight: CGFloat { get }
     var menuItemSelectedColor: UIColor? { get }

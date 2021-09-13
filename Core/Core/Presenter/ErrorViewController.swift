@@ -18,7 +18,7 @@
 
 import Foundation
 
-public protocol ErrorViewController: class {
+public protocol ErrorViewController: AnyObject {
     func showAlert(title: String?, message: String?)
     func showError(_ error: Error)
     func showError(message: String)

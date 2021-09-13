@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-protocol CalendarViewControllerDelegate: class {
+protocol CalendarViewControllerDelegate: AnyObject {
     func calendarDidSelectDate(_ date: Date)
     func calendarDidTransitionToDate(_ date: Date)
     func calendarDidResize(height: CGFloat, animated: Bool)

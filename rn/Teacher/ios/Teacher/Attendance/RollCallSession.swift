@@ -26,7 +26,7 @@ func attendanceError(message: String, code: Int = 0) -> Error {
     ])
 }
 
-protocol RollCallSessionDelegate: class {
+protocol RollCallSessionDelegate: AnyObject {
     func session(_ session: RollCallSession, didFailWithError error: Error)
     func sessionDidBecomeActive(_ session: RollCallSession)
 }

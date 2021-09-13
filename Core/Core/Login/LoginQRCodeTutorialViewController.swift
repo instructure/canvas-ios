@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-protocol LoginQRCodeTutorialDelegate: class {
+protocol LoginQRCodeTutorialDelegate: AnyObject {
     func loginQRCodeTutorialDidFinish(_ controller: LoginQRCodeTutorialViewController)
 }
 

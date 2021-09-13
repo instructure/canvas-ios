@@ -19,7 +19,7 @@
 import Core
 import WebKit
 
-protocol ArcSubmissionDelegate: class {
+protocol ArcSubmissionDelegate: AnyObject {
     func arcSubmission(_ controller: ArcSubmissionViewController, didFinishWithURL url: URL)
     func arcSubmission(_ controller: ArcSubmissionViewController, didFinishWithError error: Error)
 }

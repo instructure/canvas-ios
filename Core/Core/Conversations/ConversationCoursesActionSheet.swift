@@ -19,7 +19,7 @@
 import UIKit
 import CoreData
 
-public protocol ConversationCoursesActionSheetDelegate: class {
+public protocol ConversationCoursesActionSheetDelegate: AnyObject {
     func courseSelected(course: Course, user: User)
 }
 

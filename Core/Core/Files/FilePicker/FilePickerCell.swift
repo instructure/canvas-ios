@@ -18,7 +18,7 @@
 
 import UIKit
 
-protocol FilePickerCellDelegate: class {
+protocol FilePickerCellDelegate: AnyObject {
     func removeFile(_ file: File)
 }
 

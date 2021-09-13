@@ -18,7 +18,7 @@
 
 import UIKit
 
-protocol PlannerListDelegate: class, UIScrollViewDelegate {
+protocol PlannerListDelegate: UIScrollViewDelegate {
     func plannerListWillRefresh()
     func getPlannables(from: Date, to: Date) -> GetPlannables
 }

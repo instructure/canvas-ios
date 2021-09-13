@@ -26,7 +26,7 @@ public enum FilePickerSource: Int, CaseIterable {
     static var defaults: [FilePickerSource] = [.camera, .library, .files, .documentScan]
 }
 
-public protocol FilePickerControllerDelegate: class {
+public protocol FilePickerControllerDelegate: AnyObject {
     func cancel(_ controller: FilePickerViewController)
     func submit(_ controller: FilePickerViewController)
     func retry(_ controller: FilePickerViewController)

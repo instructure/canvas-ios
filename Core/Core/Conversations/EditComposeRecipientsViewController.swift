@@ -18,7 +18,7 @@
 
 import UIKit
 
-protocol EditComposeRecipientsViewControllerDelegate: class {
+protocol EditComposeRecipientsViewControllerDelegate: AnyObject {
     func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController)
 }
 

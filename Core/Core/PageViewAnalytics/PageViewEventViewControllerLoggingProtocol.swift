@@ -21,7 +21,7 @@ import Foundation
 private var tagAssociationStartKey: UInt8 = 0
 private var tagAssociationEndKey: UInt8 = 0
 
-public protocol PageViewEventViewControllerLoggingProtocol: class {
+public protocol PageViewEventViewControllerLoggingProtocol: AnyObject {
     var timeOnViewControllerStart: Date? { get set }
     var timeOnViewControllerEnd: Date? { get set }
     func startTrackingTimeOnViewController()

@@ -18,7 +18,7 @@
 
 import WebKit
 
-public protocol CoreWebViewLinkDelegate: class {
+public protocol CoreWebViewLinkDelegate: AnyObject {
     func handleLink(_ url: URL) -> Bool
     func finishedNavigation()
     var routeLinksFrom: UIViewController { get }
@@ -36,7 +36,7 @@ extension CoreWebViewLinkDelegate where Self: UIViewController {
     public var routeLinksFrom: UIViewController { return self }
 }
 
-public protocol CoreWebViewSizeDelegate: class {
+public protocol CoreWebViewSizeDelegate: AnyObject {
     func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat)
 }
 

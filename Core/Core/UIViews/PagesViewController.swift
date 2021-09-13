@@ -18,12 +18,12 @@
 
 import UIKit
 
-public protocol PagesViewControllerDataSource: class {
+public protocol PagesViewControllerDataSource: AnyObject {
     func pagesViewController(_ pages: PagesViewController, pageBefore page: UIViewController) -> UIViewController?
     func pagesViewController(_ pages: PagesViewController, pageAfter page: UIViewController) -> UIViewController?
 }
 
-@objc public protocol PagesViewControllerDelegate: class {
+@objc public protocol PagesViewControllerDelegate: AnyObject {
     @objc optional func pagesViewController(_ pages: PagesViewController, isShowing list: [UIViewController])
     @objc optional func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController)
 }

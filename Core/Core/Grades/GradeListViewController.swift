@@ -18,7 +18,7 @@
 
 import UIKit
 
-public protocol ColorDelegate: class {
+public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
 }
 
@@ -277,6 +277,6 @@ public class GradeListCell: UITableViewCell {
     }
 }
 
-public protocol GradeListCellIconDelegate: class {
+public protocol GradeListCellIconDelegate: AnyObject {
     func iconImage(for assignment: Assignment?) -> UIImage?
 }

@@ -19,7 +19,7 @@
 import AVKit
 import UIKit
 
-public protocol AudioRecorderDelegate: class {
+public protocol AudioRecorderDelegate: AnyObject {
     func cancel(_ controller: AudioRecorderViewController)
     func send(_ controller: AudioRecorderViewController, url: URL)
 }
