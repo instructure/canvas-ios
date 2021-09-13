@@ -23,6 +23,7 @@ public struct K5ScheduleWeekView: View {
     @Environment(\.horizontalPadding) private var horizontalPadding
     private var isCompact: Bool { containerSize.width < 500 }
     @ObservedObject private var viewModel: K5ScheduleWeekViewModel
+    // In case this isn't the current week we don't update this variable so the Today button will be always visible
     @State private var isTodayCellVisible = false
     // If we animate the today button during the first render cycle it causes glitches in List Section headers.
     @State private var didAppear = false
