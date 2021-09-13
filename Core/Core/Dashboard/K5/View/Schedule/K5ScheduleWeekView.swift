@@ -26,9 +26,11 @@ public struct K5ScheduleWeekView: View {
     @State private var isTodayCellVisible = false
     // If we animate the today button during the first render cycle it causes glitches in List Section headers.
     @State private var didAppear = false
+    private let todayPressed: () -> Void
 
-    public init(viewModel: K5ScheduleWeekViewModel) {
+    public init(viewModel: K5ScheduleWeekViewModel, todayPressed: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.todayPressed = todayPressed
     }
 
     public var body: some View {
@@ -85,6 +87,7 @@ public struct K5ScheduleWeekView: View {
             withAnimation {
                 scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
             }
+            todayPressed()
         }, label: {
             Text("Today", bundle: .core)
                 .font(.regular17)
@@ -138,10 +141,10 @@ struct K5ScheduleWeekView_Previews: PreviewProvider {
         // swiftlint:disable:next redundant_discardable_let
         let _ = K5Preview.setupK5Mode()
 
-        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0])
-        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[1])
+        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0], todayPressed: {})
+        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[1], todayPressed: {})
 
-        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0])
+        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0], todayPressed: {})
             .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
             .environment(\.containerSize, CGSize(width: 500, height: 0))
     }

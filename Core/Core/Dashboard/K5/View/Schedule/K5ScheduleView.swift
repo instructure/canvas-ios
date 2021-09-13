@@ -31,7 +31,9 @@ public struct K5ScheduleView: View {
                             initialPageIndex: viewModel.defaultWeekIndex,
                             currentPageIndex: $currentPageIndex.animation(animation),
                             pagerProxy: pagerProxy) { pageIndex in
-                K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex])
+                K5ScheduleWeekView(viewModel: viewModel.weekModels[pageIndex], todayPressed: {
+                    pagerProxy.scrollToPage(viewModel.defaultWeekIndex, animated: false)
+                })
             }
             Divider()
             pageSwitcherButtons
