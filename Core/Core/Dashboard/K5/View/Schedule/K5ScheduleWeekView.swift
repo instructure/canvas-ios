@@ -36,22 +36,7 @@ public struct K5ScheduleWeekView: View {
             List {
                 let dayModels = viewModel.days
                 ForEach(dayModels) { dayModel in
-                    Section(header: header(for: dayModel)) {
-                        K5ScheduleDayView(viewModel: dayModel)
-                            .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
-                            .padding(.bottom, dayModels.last == dayModel ? 24 : 0)
-                    }
-                    .onAppear {
-                        if viewModel.isTodayModel(dayModel) {
-                            updateTodayCellVisibility(to: true)
-                        }
-                    }
-                    .onDisappear {
-                        if viewModel.isTodayModel(dayModel) {
-                            updateTodayCellVisibility(to: false)
-                        }
-                    }
-                    .id(dayModel.weekday)
+                    dayCell(for: dayModel, isLastDay: dayModels.last == dayModel)
                 }
             }
             // This removes the gray highlight from list items on tap
@@ -73,6 +58,28 @@ public struct K5ScheduleWeekView: View {
         }
     }
 
+    @ViewBuilder
+    private func dayCell(for dayModel: K5ScheduleDayViewModel, isLastDay: Bool) -> some View {
+        let section = Section(header: header(for: dayModel)) {
+            K5ScheduleDayView(viewModel: dayModel)
+                .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
+                .padding(.bottom, isLastDay ? 24 : 0)
+        }
+        .id(dayModel.weekday)
+
+        if viewModel.isTodayModel(dayModel) {
+            section
+                .onAppear {
+                    setTodayCellVisible(to: true)
+                }
+                .onDisappear {
+                    setTodayCellVisible(to: false)
+                }
+        } else {
+            section
+        }
+    }
+
     private func todayButton(scrollProxy: CompatibleScrollViewProxy) -> some View {
         Button(action: {
             withAnimation {
@@ -85,7 +92,7 @@ public struct K5ScheduleWeekView: View {
                 .padding(.trailing, horizontalPadding)
                 .padding(.top, 55)
         })
-        .hidden(!viewModel.isTodayButtonAvailable || isTodayCellVisible)
+        .hidden(isTodayCellVisible)
     }
 
     private func header(for model: K5ScheduleDayViewModel) -> some View {
@@ -113,7 +120,7 @@ public struct K5ScheduleWeekView: View {
         return background.overlay(content, alignment: .topLeading).accessibilityElement(children: .combine)
     }
 
-    private func updateTodayCellVisibility(to isVisible: Bool) {
+    private func setTodayCellVisible(to isVisible: Bool) {
         if didAppear {
             withAnimation {
                 isTodayCellVisible = isVisible
