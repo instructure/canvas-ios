@@ -68,15 +68,6 @@ public struct K5ScheduleView: View {
         .foregroundColor(.licorice)
         .font(.regular16)
     }
-
-    private func scrollToNextPage() {
-
-    }
-
-    private func scrollToPreviousPage() {
-
-    }
-
 }
 
 #if DEBUG
