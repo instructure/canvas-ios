@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct K5ScheduleView: View {
     @ObservedObject var viewModel: K5ScheduleViewModel
+    @Environment(\.horizontalPadding) private var horizontalPadding
     @State private var currentPageIndex: Int = 0
     @State private var pagerProxy = HorizontalPagerProxy()
     private let animation = Animation.easeOut(duration: 0.2)
@@ -46,7 +47,7 @@ public struct K5ScheduleView: View {
                 }
             }
             .frame(maxHeight: .infinity)
-            .padding(.leading, 8)
+            .padding(.leading, horizontalPadding - 7) // -7 to offset the arrow's burnt in padding
             .padding(.trailing, 16)
             .hidden(viewModel.isOnFirstPage(currentPageIndex: currentPageIndex))
 
@@ -60,7 +61,7 @@ public struct K5ScheduleView: View {
             }
             .frame(maxHeight: .infinity)
             .padding(.leading, 16)
-            .padding(.trailing, 8)
+            .padding(.trailing, horizontalPadding - 7) // -7 to offset the arrow's burnt in padding
             .hidden(viewModel.isOnLastPage(currentPageIndex: currentPageIndex))
         }
         .frame(height: 56)
