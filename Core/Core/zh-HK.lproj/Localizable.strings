@@ -332,6 +332,9 @@
 "Available Until:" = "可用截止時間：";
 
 /* No comment provided by engineer. */
+"Back" = "返回";
+
+/* No comment provided by engineer. */
 "black" = "黑色";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "選擇檔案";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "選擇主題";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "選擇照片";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "目前評分";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "目前評分期";
 
 /* No comment provided by engineer. */
 "Current position" = "目前位置";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "隱藏此項目的內容：%@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "高：%@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影響程度";
+
+/* No comment provided by engineer. */
+"Important Info" = "重要資訊";
 
 /* No comment provided by engineer. */
 "In Progress" = "進行中";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "打開 %@ 用戶偏好設定";
 
 /* No comment provided by engineer. */
+"Open application" = "開啟應用程式";
+
+/* No comment provided by engineer. */
 "Options" = "選項";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "顯示更多選項";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "由於這是群組討論，每個群組都有其自己針對此主題的交談。以下是您可以訪問的討論區。";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "按點讚分類";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "員工聯絡資料";
+
+/* No comment provided by engineer. */
 "Starred" = "已加星號";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "學生註釋";
+
+/* No comment provided by engineer. */
+"Student Applications" = "學生應用程式";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "學生登記預約";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "教師";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "助教";
 
 /* No comment provided by engineer. */
 "Teachers" = "教師";

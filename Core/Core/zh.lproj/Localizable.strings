@@ -332,6 +332,9 @@
 "Available Until:" = "截止可用日期：";
 
 /* No comment provided by engineer. */
+"Back" = "返回";
+
+/* No comment provided by engineer. */
 "black" = "黑色";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "选择文件";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "选择一个主题";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "选择照片";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "当前评分";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "当前评分周期";
 
 /* No comment provided by engineer. */
 "Current position" = "当前位置";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "隐藏...的内容%@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "高：%@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影响级别";
+
+/* No comment provided by engineer. */
+"Important Info" = "重要信息";
 
 /* No comment provided by engineer. */
 "In Progress" = "进行中";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "打开%@用户首选项";
 
 /* No comment provided by engineer. */
+"Open application" = "打开申请";
+
+/* No comment provided by engineer. */
 "Options" = "选项";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "显示更多的选项";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "这是一项小组讨论，每个小组都有关于这个主题的会话。这些是您可以参与的讨论。";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "按赞数排序";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "员工联系信息";
+
+/* No comment provided by engineer. */
 "Starred" = "已标记";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "学生注释";
+
+/* No comment provided by engineer. */
+"Student Applications" = "学生申请";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "学生预约注册";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "教师";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "教师助手";
 
 /* No comment provided by engineer. */
 "Teachers" = "教师";

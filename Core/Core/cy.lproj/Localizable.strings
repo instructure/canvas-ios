@@ -332,6 +332,9 @@
 "Available Until:" = "Ar gael Tan:";
 
 /* No comment provided by engineer. */
+"Back" = "Yn ôl";
+
+/* No comment provided by engineer. */
 "black" = "du";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Dewiswch Ffeil";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Dewis pwnc";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Dewiswch Lun";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Gradd Bresennol";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Cyfnod Graddio Presennol";
 
 /* No comment provided by engineer. */
 "Current position" = "Lleoliad presennol";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Cuddio cynnwys ar gyfer %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Uchel: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Lefel yr Effaith";
+
+/* No comment provided by engineer. */
+"Important Info" = "Gwybodaeth bwysig";
 
 /* No comment provided by engineer. */
 "In Progress" = "Ar y Gweill";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Agor dewisiadau defnyddiwr ar gyfer %@";
 
 /* No comment provided by engineer. */
+"Open application" = "Agor rhaglen";
+
+/* No comment provided by engineer. */
 "Options" = "Opsiynau";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Dangos mwy o ddewisiadau";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Gan fod hon yn drafodaeth grŵp, mae gan bob grŵp ei sgwrs ei hun ar gyfer y pwnc hwn. Dyma’r trafodaethau mae gennych chi fynediad atyn nhw.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Trefnu yn ôl y nifer sydd wedi’i hoffi";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Manylion Cyswllt Staff";
+
+/* No comment provided by engineer. */
 "Starred" = "Wedi cael seren";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Anodiad gan Fyfyriwr";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Ceisiadau Myfyriwr";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Archebu Apwyntiadau gan Fyfyrwyr";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Athro";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Cynorthwyydd Athro";
 
 /* No comment provided by engineer. */
 "Teachers" = "Athrawon";

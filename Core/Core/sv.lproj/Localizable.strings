@@ -332,6 +332,9 @@
 "Available Until:" = "Tillgänglig tills:";
 
 /* No comment provided by engineer. */
+"Back" = "Tillbaka";
+
+/* No comment provided by engineer. */
 "black" = "svart";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Välj en fil";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Välj ett ämne";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Välj foto";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Aktuellt omdöme";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Aktuell omdömesperiod";
 
 /* No comment provided by engineer. */
 "Current position" = "Aktuell position";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Dölj innehåll för %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Hög: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Inverkansnivå";
+
+/* No comment provided by engineer. */
+"Important Info" = "Viktig information";
 
 /* No comment provided by engineer. */
 "In Progress" = "Pågående";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Öppna %@ användarinställningar";
 
 /* No comment provided by engineer. */
+"Open application" = "Öppna programmet";
+
+/* No comment provided by engineer. */
 "Options" = "Alternativ";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Visa fler alternativ";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Eftersom det här är en gruppdiskussion, har varje grupp sin egen konversation för det här ämnet. Här är de diskussioner som du har åtkomst till.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Sortera efter antal ”gilla”";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Kontaktuppgifter för personal";
+
+/* No comment provided by engineer. */
 "Starred" = "Stjärnmärkta";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Studentnotering";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Studentansökningar";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Ny bokning för mötestillfälle";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Lärare";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Lärarassistent";
 
 /* No comment provided by engineer. */
 "Teachers" = "Lärare";

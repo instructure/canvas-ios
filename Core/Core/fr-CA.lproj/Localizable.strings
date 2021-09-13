@@ -332,6 +332,9 @@
 "Available Until:" = "Disponibles jusqu’au :";
 
 /* No comment provided by engineer. */
+"Back" = "Retour";
+
+/* No comment provided by engineer. */
 "black" = "noir";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Choisir un fichier";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Choisir un sujet";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Choisir une photo";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Note actuelle";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Période de notation actuelle";
 
 /* No comment provided by engineer. */
 "Current position" = "Job actuel";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Masquer le contenu de %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Élevé : %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Niveau d'impact";
+
+/* No comment provided by engineer. */
+"Important Info" = "Informations importantes";
 
 /* No comment provided by engineer. */
 "In Progress" = "En cours";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Ouvrir les préférences utilisateur de %@";
 
 /* No comment provided by engineer. */
+"Open application" = "Ouvrir l’application";
+
+/* No comment provided by engineer. */
 "Options" = "Options";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Afficher plus d’options";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Puisqu’il s’agit d’une discussion de groupe, chaque groupe a sa propre conversation pour ce sujet. Voici les discussions auxquelles vous avez accès.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Classer par nombre de rétroactions de type « J’aime »";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Coordonnées du personnel";
+
+/* No comment provided by engineer. */
 "Starred" = "Avec un astérisque";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Annotation de l’étudiant";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Dossiers de l’étudiant";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Inscriptions de rendez-vous d'étudiant";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Enseignant";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Aide enseignant";
 
 /* No comment provided by engineer. */
 "Teachers" = "Enseignants";

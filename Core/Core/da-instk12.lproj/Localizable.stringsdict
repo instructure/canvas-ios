@@ -473,9 +473,9 @@
 			<key>many</key>
 			<string>Hide %d missing items</string>
 			<key>one</key>
-			<string>Hide %d missing item</string>
+			<string>Skjul %d manglende element</string>
 			<key>other</key>
-			<string>Hide %d missing items</string>
+			<string>Skjul %d manglende elementer</string>
 			<key>two</key>
 			<string>Hide %d missing items</string>
 			<key>zero</key>
@@ -569,9 +569,9 @@
 			<key>many</key>
 			<string>Show %d missing items</string>
 			<key>one</key>
-			<string>Show %d missing item</string>
+			<string>Vis %d manglende element</string>
 			<key>other</key>
-			<string>Show %d missing items</string>
+			<string>Vis %d manglende elementer</string>
 			<key>two</key>
 			<string>Show %d missing items</string>
 			<key>zero</key>

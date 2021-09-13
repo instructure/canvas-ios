@@ -473,9 +473,9 @@
 			<key>many</key>
 			<string>Hide %d missing items</string>
 			<key>one</key>
-			<string>Hide %d missing item</string>
+			<string>Huna %d tuemi e ngaro ana</string>
 			<key>other</key>
-			<string>Hide %d missing items</string>
+			<string>Huna %d ngā tuemi e ngaro ana</string>
 			<key>two</key>
 			<string>Hide %d missing items</string>
 			<key>zero</key>
@@ -569,9 +569,9 @@
 			<key>many</key>
 			<string>Show %d missing items</string>
 			<key>one</key>
-			<string>Show %d missing item</string>
+			<string>Whakāturia %d tūemi e ngaro ana</string>
 			<key>other</key>
-			<string>Show %d missing items</string>
+			<string>Whakāturia %d ngā tūemi e ngaro ana</string>
 			<key>two</key>
 			<string>Show %d missing items</string>
 			<key>zero</key>

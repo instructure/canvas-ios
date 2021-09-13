@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "隐藏评分";
 
+/* Homeroom tab title */
+"Homeroom" = "指导教室";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "您喜欢 Canvas 吗？";
 

@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "成績を非表示にする";
 
+/* Homeroom tab title */
+"Homeroom" = "ホームルーム";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Canvasがどのくらい好きですか？";
 

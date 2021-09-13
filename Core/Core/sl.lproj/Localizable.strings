@@ -332,6 +332,9 @@
 "Available Until:" = "Na voljo do:";
 
 /* No comment provided by engineer. */
+"Back" = "Nazaj";
+
+/* No comment provided by engineer. */
 "black" = "črna";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Izberi datoteko";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Izberi zadevo";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Izberi fotografijo";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Trenutna ocena";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Trenutno ocenjevalno obdobje";
 
 /* No comment provided by engineer. */
 "Current position" = "Trenutni položaj";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Skrij vsebino za %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Visoko: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Raven vpliva";
+
+/* No comment provided by engineer. */
+"Important Info" = "Pomembne informacije";
 
 /* No comment provided by engineer. */
 "In Progress" = "Poteka";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Odpri prednostne nastavitve uporabnika %@.";
 
 /* No comment provided by engineer. */
+"Open application" = "Odpri aplikacijo";
+
+/* No comment provided by engineer. */
 "Options" = "Možnosti";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Prikaži več možnosti";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Ker je to razprava skupine, ima za to temo vsaka skupina svoj pogovor. Tu so razprave, do katerih imate dostop.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Razvrsti po všečkih";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Kontaktni podatki osebja";
+
+/* No comment provided by engineer. */
 "Starred" = "Označeno z zvezdico";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Opomba študenta";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Vloge študentov";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Prijave študentov na sestanke";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Izvajalec";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Pomočnik izvajalca";
 
 /* No comment provided by engineer. */
 "Teachers" = "Izvajalci";

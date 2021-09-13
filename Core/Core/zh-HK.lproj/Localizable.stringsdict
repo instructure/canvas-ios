@@ -279,7 +279,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Hide %d missing items</string>
+			<string>隱藏 %d 個缺少的項目</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -335,7 +335,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Show %d missing items</string>
+			<string>顯示 %d 個缺少的項目</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>

@@ -332,6 +332,9 @@
 "Available Until:" = "Disponibile fino a:";
 
 /* No comment provided by engineer. */
+"Back" = "Indietro";
+
+/* No comment provided by engineer. */
 "black" = "nero";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Scegli un file";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Scegli un oggetto";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Scegli foto";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Voto attuale";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Periodo di valutazione attuale";
 
 /* No comment provided by engineer. */
 "Current position" = "Posizione attuale";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Nascondi contenuto per  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Alto: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Livello di impatto";
+
+/* No comment provided by engineer. */
+"Important Info" = "Info importanti";
 
 /* No comment provided by engineer. */
 "In Progress" = "In corso";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Apri le preferenze utente di %@";
 
 /* No comment provided by engineer. */
+"Open application" = "Apri applicazione ";
+
+/* No comment provided by engineer. */
 "Options" = "Opzioni";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Mostra più opzioni";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Poiché questa è una discussione di gruppo, ciascun gruppo ha la propria conversazione per questo argomento. Ecco le discussioni a cui hai accesso.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Ordina per Mi piace";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Informazioni di contatto del personale";
+
+/* No comment provided by engineer. */
 "Starred" = "Aggiunto a Speciali";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Annotazione studente";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Applicazioni studente";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Registrazioni appuntamenti studenti";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Insegnante";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Assistente insegnante";
 
 /* No comment provided by engineer. */
 "Teachers" = "Insegnanti";

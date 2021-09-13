@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "Huna ngā Kōeke";
 
+/* Homeroom tab title */
+"Homeroom" = "Kainga rūma";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Kia pehea tō mahi rite ki Canvas?";
 

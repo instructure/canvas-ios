@@ -332,6 +332,9 @@
 "Available Until:" = "ใช้ได้จนถึง:";
 
 /* No comment provided by engineer. */
+"Back" = "ย้อนกลับ";
+
+/* No comment provided by engineer. */
 "black" = "ดำ";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "เลือกไฟล์";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "เลือกวิชา";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "เลือกภาพ";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "เกรดในปัจจุบัน";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "ระยะเวลาการให้เกรดในปัจจุบัน";
 
 /* No comment provided by engineer. */
 "Current position" = "สถานะปัจจุบัน";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "ซ่อนเนื้อหาสำหรับ %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "สูง: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "ระดับผลกระทบ";
+
+/* No comment provided by engineer. */
+"Important Info" = "ข้อมูลสำคัญ";
 
 /* No comment provided by engineer. */
 "In Progress" = "กำลังดำเนินการ";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "เปิดค่าปรับตั้งผู้ใช้ %@";
 
 /* No comment provided by engineer. */
+"Open application" = "เปิดแอพพลิเคชั่น ";
+
+/* No comment provided by engineer. */
 "Options" = "ตัวเลือก";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "แสดงตัวเลือกเพิ่มเติม";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "เนื่องจากนี้เป็นการพูดคุยเป็นกลุ่ม แต่ละกลุ่มจะมีการพูดคุยของตนเองสำหรับหัวข้อนี้ ต่อไปนี้เป็นการพูดคุยที่คุณสามารถเข้าถึงได้";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "เรียงจากไลค์";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "ข้อมูลติดต่อบุคลากร";
+
+/* No comment provided by engineer. */
 "Starred" = "ให้ดาวแล้ว";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "หมายเหตุกำกับสำหรับผู้เรียน";
+
+/* No comment provided by engineer. */
+"Student Applications" = "แอพพลิเคชั่นของผู้เรียน";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "การรับนัดหมายของผู้เรียน";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "ผู้สอน";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "ผู้ช่วยสอน";
 
 /* No comment provided by engineer. */
 "Teachers" = "ผู้สอน";

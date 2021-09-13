@@ -397,9 +397,9 @@
 			<key>many</key>
 			<string>Hide %d missing items</string>
 			<key>one</key>
-			<string>Hide %d missing item</string>
+			<string>Скрыть %d отсутствующие элементы</string>
 			<key>other</key>
-			<string>Hide %d missing items</string>
+			<string>Скрыть %d отсутствующие элементы</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -477,9 +477,9 @@
 			<key>many</key>
 			<string>Show %d missing items</string>
 			<key>one</key>
-			<string>Show %d missing item</string>
+			<string>Показать %d отсутствующие элементы</string>
 			<key>other</key>
-			<string>Show %d missing items</string>
+			<string>Показать %d отсутствующие элементы</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>
