@@ -20,8 +20,8 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/notification_preferences.html#NotificationPreference
 public struct APINotificationPreference: Codable {
-    let notification: String
-    let category: String
+    let notification: String?
+    let category: String?
     let frequency: NotificationFrequency
 }
 

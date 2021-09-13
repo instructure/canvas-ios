@@ -60,8 +60,10 @@ struct GetNotificationCategories: CollectionUseCase {
         guard let preferences = response?.notification_preferences else { return }
         var categories: [String: ([String], NotificationFrequency)] = [:]
         for pref in preferences {
-            categories[pref.category] = categories[pref.category] ?? ([], pref.frequency)
-            categories[pref.category]?.0.append(pref.notification)
+            if let category = pref.category, let notification = pref.notification {
+                categories[category] = categories[category] ?? ([], pref.frequency)
+                categories[category]?.0.append(notification)
+            }
         }
         for (category, (notifications, frequency)) in categories {
             let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
