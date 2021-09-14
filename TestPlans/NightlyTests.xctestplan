@@ -111,15 +111,15 @@
     {
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
-        "identifier" : "E8E1BE4923C6891F000E3A76",
-        "name" : "ParentUITests"
+        "identifier" : "3B36A2DE2322C26A00599A1E",
+        "name" : "ParentUnitTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
-        "identifier" : "3B36A2DE2322C26A00599A1E",
-        "name" : "ParentUnitTests"
+        "identifier" : "E8E1BE4923C6891F000E3A76",
+        "name" : "ParentUITests"
       }
     },
     {
