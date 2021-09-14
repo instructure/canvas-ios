@@ -24,6 +24,7 @@ import Combine
 public struct HorizontalPagerProxy {
     public let scrollToNextPageSubject = PassthroughSubject<Void, Never>()
     public let scrollToPreviousPageSubject = PassthroughSubject<Void, Never>()
+    public let scrollToPageSubject = PassthroughSubject<(pageIndex: Int, animated: Bool), Never>()
 
     public func scrollToNextPage() {
         scrollToNextPageSubject.send()
@@ -31,5 +32,9 @@ public struct HorizontalPagerProxy {
 
     public func scrollToPreviousPage() {
         scrollToPreviousPageSubject.send()
+    }
+
+    public func scrollToPage(_ pageIndex: Int, animated: Bool) {
+        scrollToPageSubject.send((pageIndex, animated))
     }
 }

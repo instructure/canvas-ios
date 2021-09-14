@@ -23,12 +23,15 @@ public struct K5ScheduleWeekView: View {
     @Environment(\.horizontalPadding) private var horizontalPadding
     private var isCompact: Bool { containerSize.width < 500 }
     @ObservedObject private var viewModel: K5ScheduleWeekViewModel
+    // In case this isn't the current week we don't update this variable so the Today button will be always visible
     @State private var isTodayCellVisible = false
     // If we animate the today button during the first render cycle it causes glitches in List Section headers.
     @State private var didAppear = false
+    private let todayPressed: () -> Void
 
-    public init(viewModel: K5ScheduleWeekViewModel) {
+    public init(viewModel: K5ScheduleWeekViewModel, todayPressed: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.todayPressed = todayPressed
     }
 
     public var body: some View {
@@ -36,22 +39,7 @@ public struct K5ScheduleWeekView: View {
             List {
                 let dayModels = viewModel.days
                 ForEach(dayModels) { dayModel in
-                    Section(header: header(for: dayModel)) {
-                        K5ScheduleDayView(viewModel: dayModel)
-                            .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
-                            .padding(.bottom, dayModels.last == dayModel ? 24 : 0)
-                    }
-                    .onAppear {
-                        if viewModel.isTodayModel(dayModel) {
-                            updateTodayCellVisibility(to: true)
-                        }
-                    }
-                    .onDisappear {
-                        if viewModel.isTodayModel(dayModel) {
-                            updateTodayCellVisibility(to: false)
-                        }
-                    }
-                    .id(dayModel.weekday)
+                    dayCell(for: dayModel, isLastDay: dayModels.last == dayModel)
                 }
             }
             // This removes the gray highlight from list items on tap
@@ -73,11 +61,34 @@ public struct K5ScheduleWeekView: View {
         }
     }
 
+    @ViewBuilder
+    private func dayCell(for dayModel: K5ScheduleDayViewModel, isLastDay: Bool) -> some View {
+        let section = Section(header: header(for: dayModel)) {
+            K5ScheduleDayView(viewModel: dayModel)
+                .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
+                .padding(.bottom, isLastDay ? 24 : 0)
+        }
+        .id(dayModel.weekday)
+
+        if viewModel.isTodayModel(dayModel) {
+            section
+                .onAppear {
+                    setTodayCellVisible(to: true)
+                }
+                .onDisappear {
+                    setTodayCellVisible(to: false)
+                }
+        } else {
+            section
+        }
+    }
+
     private func todayButton(scrollProxy: CompatibleScrollViewProxy) -> some View {
         Button(action: {
             withAnimation {
                 scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
             }
+            todayPressed()
         }, label: {
             Text("Today", bundle: .core)
                 .font(.regular17)
@@ -85,7 +96,7 @@ public struct K5ScheduleWeekView: View {
                 .padding(.trailing, horizontalPadding)
                 .padding(.top, 55)
         })
-        .hidden(!viewModel.isTodayButtonAvailable || isTodayCellVisible)
+        .hidden(isTodayCellVisible)
     }
 
     private func header(for model: K5ScheduleDayViewModel) -> some View {
@@ -113,7 +124,7 @@ public struct K5ScheduleWeekView: View {
         return background.overlay(content, alignment: .topLeading).accessibilityElement(children: .combine)
     }
 
-    private func updateTodayCellVisibility(to isVisible: Bool) {
+    private func setTodayCellVisible(to isVisible: Bool) {
         if didAppear {
             withAnimation {
                 isTodayCellVisible = isVisible
@@ -131,10 +142,10 @@ struct K5ScheduleWeekView_Previews: PreviewProvider {
         // swiftlint:disable:next redundant_discardable_let
         let _ = K5Preview.setupK5Mode()
 
-        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0])
-        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[1])
+        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0], todayPressed: {})
+        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[1], todayPressed: {})
 
-        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0])
+        K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0], todayPressed: {})
             .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
             .environment(\.containerSize, CGSize(width: 500, height: 0))
     }

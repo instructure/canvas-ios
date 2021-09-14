@@ -30,6 +30,7 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
     private let pageFactory: (_ pageIndex: Int) -> Page
     @State private var nextPageEventListener: AnyCancellable?
     @State private var previousPageEventListener: AnyCancellable?
+    @State private var scrollToPageEventListener: AnyCancellable?
 
     /**
      - parameters:
@@ -64,15 +65,20 @@ public struct HorizontalPager<Page: View>: UIViewRepresentable {
 
         context.coordinator.observeFrameChange(on: collectionView)
 
+        let safeIndex = { index in
+            min(max(0, index), pageCount - 1)
+        }
+
         // async to avoid "Modifying state during view update, this will cause undefined behavior." error
         DispatchQueue.main.async {
             previousPageEventListener = pagerProxy?.scrollToPreviousPageSubject.sink {
-                let safeIndex = min(max(0, currentPageIndex - 1), pageCount - 1)
-                collectionView.scrollToItem(at: IndexPath(row: safeIndex, section: 0), at: .centeredHorizontally, animated: true)
+                collectionView.scrollToItem(at: IndexPath(row: safeIndex(currentPageIndex - 1), section: 0), at: .centeredHorizontally, animated: true)
             }
             nextPageEventListener = pagerProxy?.scrollToNextPageSubject.sink {
-                let safeIndex = min(max(0, currentPageIndex + 1), pageCount - 1)
-                collectionView.scrollToItem(at: IndexPath(row: safeIndex, section: 0), at: .centeredHorizontally, animated: true)
+                collectionView.scrollToItem(at: IndexPath(row: safeIndex(currentPageIndex + 1), section: 0), at: .centeredHorizontally, animated: true)
+            }
+            scrollToPageEventListener = pagerProxy?.scrollToPageSubject.sink { (pageIndex, animated) in
+                collectionView.scrollToItem(at: IndexPath(row: safeIndex(pageIndex), section: 0), at: .centeredHorizontally, animated: animated)
             }
         }
 
