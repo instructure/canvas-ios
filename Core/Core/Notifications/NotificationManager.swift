@@ -119,7 +119,7 @@ extension NotificationManager {
             guard let preferences = response?.notification_preferences else { return }
             let ignore = [ "registration", "summaries", "other", "migration", "alert", "reminder", "recording_ready" ]
             let notifications = preferences.compactMap {
-                ignore.contains($0.category) ? nil : $0.notification
+                ignore.contains($0.category ?? "") ? nil : $0.notification
             }
             let req = PutNotificationPreferencesRequest(channelID: channelID, notifications: notifications, frequency: .immediately)
             api.makeRequest(req) { _, _, error in
