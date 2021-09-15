@@ -332,6 +332,9 @@
 "Available Until:" = "Disponib Jiska:";
 
 /* No comment provided by engineer. */
+"Back" = "Retounen";
+
+/* No comment provided by engineer. */
 "black" = "nwa";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Chwazi yon Fichye";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Chwazi yon sijè";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Chwazi Foto";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Klas Aktyèl";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Peryòd Klasman Aktyèl";
 
 /* No comment provided by engineer. */
 "Current position" = "Pozisyon aktyèl";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Kache kontni pou %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Wo: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Nivo Enpak:";
+
+/* No comment provided by engineer. */
+"Important Info" = "Enfo Enpòtan";
 
 /* No comment provided by engineer. */
 "In Progress" = "Ap Avanse";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Ouvri %@ preferans itilizatè";
 
 /* No comment provided by engineer. */
+"Open application" = "Ouvri aplikasyon";
+
+/* No comment provided by engineer. */
 "Options" = "Opsyon";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Afiche plis opsyon";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Lefèt ke sa a se yon gwoup diskisyon, chak gwoup gen pwòp konvèsasyon pa li pou sijè sa a. Men a ki diskisyon ou gen aksè.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Klase pa Jèm";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Kontakte Anplwaye";
+
+/* No comment provided by engineer. */
 "Starred" = "Favori";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Nòt Elèv";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Aplikasyon Elèv";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Elèv Randevou Enskripsyon";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Pwofesè";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Asistan Pwofesè";
 
 /* No comment provided by engineer. */
 "Teachers" = "Pwofesè";

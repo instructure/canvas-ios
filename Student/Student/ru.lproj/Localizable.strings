@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "Скрыть Оценки";
 
+/* Homeroom tab title */
+"Homeroom" = "«Домашняя комната»";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Как вам нравится Canvas?";
 

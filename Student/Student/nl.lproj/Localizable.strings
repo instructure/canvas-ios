@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "Cijfers verbergen";
 
+/* Homeroom tab title */
+"Homeroom" = "Huisklas";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Wat vind je van Canvas?";
 

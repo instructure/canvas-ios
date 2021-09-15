@@ -332,6 +332,9 @@
 "Available Until:" = "Tilgængelig Indtil:";
 
 /* No comment provided by engineer. */
+"Back" = "Tilbage";
+
+/* No comment provided by engineer. */
 "black" = "sort";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Vælg en fil";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Vælg et emne";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Vælg foto";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Nuværende vurdering";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Nuværende vurderingsperiode";
 
 /* No comment provided by engineer. */
 "Current position" = "Aktuel position";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Skjul indhold for %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Høj: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Betydningsniveau";
+
+/* No comment provided by engineer. */
+"Important Info" = "Vigtig info";
 
 /* No comment provided by engineer. */
 "In Progress" = "I gang";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Åbn brugerpræferencer for %@";
 
 /* No comment provided by engineer. */
+"Open application" = "Åbn applikation";
+
+/* No comment provided by engineer. */
 "Options" = "Muligheder";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Vis flere muligheder";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Da dette er en gruppediskussion, har hver gruppe sin egen Diskussion for dette emne. Her er de diskussioner, du har adgang til.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Sorter efter 'synes godt om'";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Kontaktoplysninger for personale";
+
+/* No comment provided by engineer. */
 "Starred" = "Markeret med stjerne";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Elevs anmærkning";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Applikationer for elev";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Tilmeldinger til elevaftale";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Lærer";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Undervisningsassistent";
 
 /* No comment provided by engineer. */
 "Teachers" = "Lærere";

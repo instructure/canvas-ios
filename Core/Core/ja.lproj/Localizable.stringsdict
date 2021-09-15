@@ -279,7 +279,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Hide %d missing items</string>
+			<string>%dの欠如アイテムを非表示にする</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -335,7 +335,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Show %d missing items</string>
+			<string>%dの欠如アイテムを表示する</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>

@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "Kache Klas";
 
+/* Homeroom tab title */
+"Homeroom" = "Sal kou";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Èske w renmen Canvas anpil?";
 

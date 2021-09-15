@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "Noten ausblenden";
 
+/* Homeroom tab title */
+"Homeroom" = "Organisationsstunde";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Wie gefällt Ihnen Canvas?";
 

@@ -332,6 +332,9 @@
 "Available Until:" = "متوفر حتى:";
 
 /* No comment provided by engineer. */
+"Back" = "عودة";
+
+/* No comment provided by engineer. */
 "black" = "أسود";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "اختر ملفًا";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "اختر موضوعًا";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "اختيار صورة";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "التقدير الحالي";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "فترة منح العلامات الحالية";
 
 /* No comment provided by engineer. */
 "Current position" = "المركز الحالي";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "إخفاء محتوى لـ %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "المرتفع: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "مستوى التأثير";
+
+/* No comment provided by engineer. */
+"Important Info" = "المعلومات الهامة";
 
 /* No comment provided by engineer. */
 "In Progress" = "قيد التقدم";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "فتح تفضيلات مستخدم %@";
 
 /* No comment provided by engineer. */
+"Open application" = "فتح تطبيق";
+
+/* No comment provided by engineer. */
 "Options" = "الخيارات";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "إظهار خيارات أكثر";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "بما أنها مناقشة لمجموعات، فإن لكل مجموعة محادثة خاصة لهذا الموضوع. فيما يلي النقاشات التي يمكنك الوصول إليها:";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "الترتيب حسب الإعجابات";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "معلومات الاتصال الخاصة بالعاملين";
+
+/* No comment provided by engineer. */
 "Starred" = "تم وضع نجمة عليها";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "تعليق توضيحي لطالب";
+
+/* No comment provided by engineer. */
+"Student Applications" = "طلبات الطالب";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "مواعيد التسجيل للطالب";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "المعلم";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "المعلم المساعد";
 
 /* No comment provided by engineer. */
 "Teachers" = "المعلمون";

@@ -707,6 +707,9 @@
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "Cuddio Graddau";
 
+/* Homeroom tab title */
+"Homeroom" = "Ystafell hafan";
+
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Beth yw eich barn am Canvas?";
 

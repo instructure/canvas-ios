@@ -332,6 +332,9 @@
 "Available Until:" = "Wātea kī:";
 
 /* No comment provided by engineer. */
+"Back" = "Hoki";
+
+/* No comment provided by engineer. */
 "black" = "pango";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Kōwhiria he Kōnae";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Tīpako he marau";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Kōwhiri Whakāhua";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Kōeke ō naianei";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Hanga Kōeke Wā";
 
 /* No comment provided by engineer. */
 "Current position" = "Te wāhanga o nāianei";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Hunga ihirangi mō %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Tiketike: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Pae o te Pānga";
+
+/* No comment provided by engineer. */
+"Important Info" = "He mea nui pūrongo";
 
 /* No comment provided by engineer. */
 "In Progress" = "I roto i te ahunga whakamua";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Huaki %@ ngā manakohanga o ngā kaiwhakamahi";
 
 /* No comment provided by engineer. */
+"Open application" = "Huaki tono";
+
+/* No comment provided by engineer. */
 "Options" = "Ngā kōwhiringa";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Whakātu  kōwhiringa nui atu";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Mai te mea he kōrero rōpū tēnei, kei ia rōpū ngā kōrerorero mō tēnei kaupapa. Anei ngā kōrero hei whakauru atu mau.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Kōmaka mā te momo";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Kaimahi Whakapā Pūrongo";
+
+/* No comment provided by engineer. */
 "Starred" = "Whetūtia";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Ākonga Tuhipoka";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Ākonga Tono";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Haina runga Ākonga Wāhui";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Kaiako";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Kaiako Kaiāwhina";
 
 /* No comment provided by engineer. */
 "Teachers" = "Ngā Kaiako";

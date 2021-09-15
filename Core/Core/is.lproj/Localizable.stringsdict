@@ -317,9 +317,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Hide %d missing item</string>
+			<string>Fela %d hlut sem vantar</string>
 			<key>other</key>
-			<string>Hide %d missing items</string>
+			<string>Fela %d hluti sem vantar</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -381,9 +381,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Show %d missing item</string>
+			<string>Sýna %d hlut sem vantar</string>
 			<key>other</key>
-			<string>Show %d missing items</string>
+			<string>Sýna %d hluti sem vantar</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>

@@ -332,6 +332,9 @@
 "Available Until:" = "最終利用可能日：";
 
 /* No comment provided by engineer. */
+"Back" = "戻る";
+
+/* No comment provided by engineer. */
 "black" = "ブラック";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "ファイルの選択";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "科目を選択する";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "写真を選択する";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "現在の成績";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "現在の採点期間";
 
 /* No comment provided by engineer. */
 "Current position" = "現在のポジション";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "（）にコンテンツを非表示にする%@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "高：%@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影響のレベル";
+
+/* No comment provided by engineer. */
+"Important Info" = "重要な情報";
 
 /* No comment provided by engineer. */
 "In Progress" = "進行中";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "%@ ユーザー設定を開く";
 
 /* No comment provided by engineer. */
+"Open application" = "アプリケーションを開く";
+
+/* No comment provided by engineer. */
 "Options" = "オプション";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "オプションを多く表示する";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "これはグループディスカッションのため、各グループはこのトピックについてそれぞれの会話を行います。利用するディスカッションは以下のとおりです。";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "いいね順";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "スタッフの連絡先情報";
+
+/* No comment provided by engineer. */
 "Starred" = "スターあり";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "受講生の注釈";
+
+/* No comment provided by engineer. */
+"Student Applications" = "生徒アプリケーション";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "受講生予約サインアップ";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "講師";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "講師のアシスタント";
 
 /* No comment provided by engineer. */
 "Teachers" = "講師";

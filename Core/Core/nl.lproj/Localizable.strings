@@ -332,6 +332,9 @@
 "Available Until:" = "Beschikbaar tot:";
 
 /* No comment provided by engineer. */
+"Back" = "Terug";
+
+/* No comment provided by engineer. */
 "black" = "zwart";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Een bestand kiezen";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Een vak kiezen";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Foto kiezen";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Huidig cijfer";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Huidige beoordelingsperiode";
 
 /* No comment provided by engineer. */
 "Current position" = "Huidige positie";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Inhoud verbergen voor  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Hoog: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Impactniveau";
+
+/* No comment provided by engineer. */
+"Important Info" = "Belangrijke informatie";
 
 /* No comment provided by engineer. */
 "In Progress" = "Wordt uitgevoerd";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Gebruikersvoorkeuren %@ openen";
 
 /* No comment provided by engineer. */
+"Open application" = "Applicatie openen";
+
+/* No comment provided by engineer. */
 "Options" = "Opties";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Meer opties weergeven";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Aangezien dit een groepsdiscussie is, voert elke groep zijn eigen gesprek over dit onderwerp. Hier zijn de discussies waartoe je toegang tot hebt.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Op likes sorteren";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Contactgegevens van medewerkers";
+
+/* No comment provided by engineer. */
 "Starred" = "Met ster";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Cursistaantekening";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Cursistapplicaties";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Aanmeldingen voor afspraak van cursist";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Docent";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Onderwijsassistent";
 
 /* No comment provided by engineer. */
 "Teachers" = "Docenten";

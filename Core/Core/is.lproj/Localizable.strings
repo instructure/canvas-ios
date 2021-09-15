@@ -332,6 +332,9 @@
 "Available Until:" = "Tiltækt til:";
 
 /* No comment provided by engineer. */
+"Back" = "Til baka";
+
+/* No comment provided by engineer. */
 "black" = "svart";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Velja skrá";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Veldu efni";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Veldu mynd";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Núverandi einkunn";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Núverandi einkunnatímabil";
 
 /* No comment provided by engineer. */
 "Current position" = "Núverandi staða";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Fela efni fyrir %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Hátt: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Stig áhrifa";
+
+/* No comment provided by engineer. */
+"Important Info" = "Mikilvægar upplýsingar";
 
 /* No comment provided by engineer. */
 "In Progress" = "Í gangi";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Opna %@ kjörstillingar notanda";
 
 /* No comment provided by engineer. */
+"Open application" = "Opna forrit";
+
+/* No comment provided by engineer. */
 "Options" = "Valkostir";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Sýna fleiri möguleika";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Þar sem þetta er hópumræða, hefur hver hópur eigið samtal um þetta efni. Þetta er það sem þú hefur aðgang að.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Raða eftir „líkar við“";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Samskiptaupplýsingar starfsfólks";
+
+/* No comment provided by engineer. */
 "Starred" = "Stjörnumerkt";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Athugasemd nemanda";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Forrit nemenda";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Fundaskráningar nemanda";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Kennari";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Aðstoðarmaður kennara";
 
 /* No comment provided by engineer. */
 "Teachers" = "Kennarar";

@@ -332,6 +332,9 @@
 "Available Until:" = "Saatavissa asti:";
 
 /* No comment provided by engineer. */
+"Back" = "Takaisin";
+
+/* No comment provided by engineer. */
 "black" = "musta";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Valitse tiedosto";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Valitse aihe";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Valitse valokuva";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Kurssin arvosana";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Nykyinen arvosanojen antojakso";
 
 /* No comment provided by engineer. */
 "Current position" = "Nykyinen asema";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Piilota sisältö kohteesta  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Korkea: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Vaikutustaso";
+
+/* No comment provided by engineer. */
+"Important Info" = "Tärkeitä tietoja";
 
 /* No comment provided by engineer. */
 "In Progress" = "Käynnissä";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Avaa %@ käyttäjäasetukset";
 
 /* No comment provided by engineer. */
+"Open application" = "Avaa sovellus";
+
+/* No comment provided by engineer. */
 "Options" = "Asetukset";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Näytä lisäasetukset";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Koska tämä on ryhmäkeskustelu, jokaisella ryhmällä on oma keskustelu tällä aiheelle. Täällä on ne keskustelut, joihin sinulla on käyttöoikeus:";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Lajittele tykkäysten perusteella";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Henkilökunnan yhteistiedot";
+
+/* No comment provided by engineer. */
 "Starred" = "Tähdellä merkityt";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Opiskelijan jättämä huomautus";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Opiskeluhakemukset";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Opiskelijatapaamisen rekisteröitymiset";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Opettaja";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Apuopettaja";
 
 /* No comment provided by engineer. */
 "Teachers" = "Opettajat";

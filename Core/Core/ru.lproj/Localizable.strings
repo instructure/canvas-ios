@@ -332,6 +332,9 @@
 "Available Until:" = "Доступно до:";
 
 /* No comment provided by engineer. */
+"Back" = "Назад";
+
+/* No comment provided by engineer. */
 "black" = "черный";
 
 /* No comment provided by engineer. */
@@ -408,6 +411,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Выбрать файл";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Выберите предмет";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Выбрать фото";
@@ -579,6 +585,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Текущая оценка";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Текущий период оценки";
 
 /* No comment provided by engineer. */
 "Current position" = "Текущая позиция";
@@ -989,6 +998,9 @@
 "Hide content for %@" = "Скрыть контент для  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Высокий: %@";
 
 /* No comment provided by engineer. */
@@ -1029,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Уровень воздействия";
+
+/* No comment provided by engineer. */
+"Important Info" = "Важная информация";
 
 /* No comment provided by engineer. */
 "In Progress" = "Выполняется";
@@ -1469,6 +1484,9 @@
 "Open %@ user preferences" = "Открыть %@ пользовательские предпочтения";
 
 /* No comment provided by engineer. */
+"Open application" = "Открыть приложение";
+
+/* No comment provided by engineer. */
 "Options" = "Опции";
 
 /* No comment provided by engineer. */
@@ -1820,6 +1838,9 @@
 "Show more options" = "Показать больше вариантов";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Поскольку это групповое обсуждение, у каждой группы есть свой разговор на эту тему. Вот обсуждения, к которым у вас есть доступ.";
 
 /* No comment provided by engineer. */
@@ -1847,6 +1868,9 @@
 "Sort by likes" = "Сортировать по лайкам";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Контактная информация персонала";
+
+/* No comment provided by engineer. */
 "Starred" = "Отмечено звездочкой";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Аннотация учащегося";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Заявки учащихся";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Заявления о регистрации студентов";
@@ -1944,6 +1971,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Преподаватель";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Ассистент преподавателя";
 
 /* No comment provided by engineer. */
 "Teachers" = "Учителя";
