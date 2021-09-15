@@ -35,10 +35,15 @@ struct K5GradeCell: View {
             }, label: {
                 HStack(spacing: 13) {
                     if geometry.size.width > 396 {
-                        if let imageURL = viewModel.imageURL {
-                            RemoteImage(imageURL, width: 72, height: 72).cornerRadius(4)
-                        } else {
-                            Rectangle().frame(width: 72, height: 72).cornerRadius(4).foregroundColor(viewModel.color)
+                        ZStack {
+                            if let imageURL = viewModel.imageURL {
+                                RemoteImage(imageURL, width: 72, height: 72).cornerRadius(4)
+                            }
+                            Rectangle()
+                                .frame(width: 72, height: 72)
+                                .cornerRadius(4)
+                                .foregroundColor(viewModel.color)
+                                .opacity(0.75)
                         }
                     }
                     VStack(alignment: .leading, spacing: 6) {
@@ -70,6 +75,7 @@ struct K5GradeCell: View {
 
 struct K5GradeCell_Previews: PreviewProvider {
     static var previews: some View {
+        K5GradeCell(with: K5GradeCellViewModel(title: "ART", imageURL: URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!, grade: nil, score: 55, color: .yellow, courseID: ""))
         K5GradeCell(with: K5GradeCellViewModel(title: "ART", imageURL: nil, grade: nil, score: 55, color: .yellow, courseID: ""))
     }
 }
