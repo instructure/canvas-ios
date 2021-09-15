@@ -22,18 +22,18 @@ public enum K5Schedule: ElementWrapper {
     case today
 
     public static var previousWeekButton: Element {
-        app.find(label: "Previous Week", type: XCUIElement.ElementType.button)
+        app.find(label: "Previous Week", type: .button)
     }
 
     public static var nextWeekButton: Element {
-        app.find(label: "Next Week", type: XCUIElement.ElementType.button)
+        app.find(label: "Next Week", type: .button)
     }
 
     public static var todayHeader: Element {
-        app.find(labelContaining: "Today", type: XCUIElement.ElementType.staticText)
+        app.find(labelContaining: "Today", type: .staticText)
     }
 
     public static var todayButton: Element {
-        app.find(label: "Today", type: XCUIElement.ElementType.button)
+        app.find(label: "Today", type: .button)
     }
 }
