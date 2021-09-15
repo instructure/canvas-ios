@@ -60,9 +60,8 @@ public struct K5ResourcesView: View {
                 .font(.bold20)
                 .padding(.bottom)
                 .accessibility(addTraits: .isHeader)
-            let infosWithContent = viewModel.homeroomInfos.filter { !$0.htmlContent.isEmpty }
-            let shouldShowTitle = infosWithContent.count > 1
-            ForEach(infosWithContent) { info in
+            let shouldShowTitle = viewModel.homeroomInfos.count > 1
+            ForEach(viewModel.homeroomInfos) { info in
                 if shouldShowTitle {
                     HStack {
                         Image.coursesLine
@@ -76,7 +75,7 @@ public struct K5ResourcesView: View {
                     .frameToFit()
                     .padding(.horizontal, -16) // Removes padding in CSS
 
-                if info != infosWithContent.last {
+                if info != viewModel.homeroomInfos.last {
                     Divider().padding(.bottom)
                 }
             }

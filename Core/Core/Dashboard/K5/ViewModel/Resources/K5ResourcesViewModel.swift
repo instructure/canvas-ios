@@ -43,7 +43,7 @@ public class K5ResourcesViewModel: ObservableObject {
 
         let homeroomCourses = courses.all.filter { $0.isHomeroomCourse }
         homeroomInfos = homeroomCourses.compactMap {
-            guard let name = $0.name, let syllabus = $0.syllabusBody else { return nil }
+            guard let name = $0.name, let syllabus = $0.syllabusBody, !syllabus.isEmpty else { return nil }
             return K5ResourcesHomeroomInfoViewModel(homeroomName: name, htmlContent: syllabus)
         }
         let nonHomeroomCourses = courses.all.filter { !$0.isHomeroomCourse }
