@@ -23,6 +23,10 @@ public class K5ResourcesViewModel: ObservableObject {
     @Published public var applications: [K5ResourcesApplicationViewModel] = []
     @Published public var contacts: [K5ResourcesContactViewModel] = []
 
+    public var showInfoTitle: Bool {
+        return homeroomInfos.count > 1
+    }
+
     private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
         self?.coursesRefreshed()
     }

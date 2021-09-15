@@ -60,9 +60,8 @@ public struct K5ResourcesView: View {
                 .font(.bold20)
                 .padding(.bottom)
                 .accessibility(addTraits: .isHeader)
-            let shouldShowTitle = viewModel.homeroomInfos.count > 1
             ForEach(viewModel.homeroomInfos) { info in
-                if shouldShowTitle {
+                if viewModel.showInfoTitle {
                     HStack {
                         Image.coursesLine
                             .accessibility(hidden: true)
