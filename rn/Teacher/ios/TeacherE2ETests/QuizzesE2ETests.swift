@@ -26,7 +26,6 @@ class QuizzesE2ETests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
         app.find(label: "Quiz One").tap()
         QuizDetails.previewQuiz.waitToExist()
-        app.find(label: "This is the first quiz.").waitToExist()
         QuizDetails.previewQuiz.tap()
         app.find(label: "Quiz Preview").waitToExist()
         app.find(label: "Quiz Instructions").waitToExist()

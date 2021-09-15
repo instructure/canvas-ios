@@ -21,16 +21,6 @@ import XCTest
 @testable import Core
 
 class QuizzesE2ETests: CoreUITestCase {
-    func testQuizQuestionsNoMoreNativeView() throws {
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.quizzes.tap()
-
-        app.find(labelContaining: "Quiz One").tap()
-        QuizDetails.takeButton.tapUntil {
-            app.find(label: "Attempt History").exists
-        }
-        app.find(label: "This is the first quiz.").waitToExist()
-    }
 
     func testQuizQuestionsOpenInWebView() throws {
         Dashboard.courseCard(id: "263").tap()
