@@ -25,7 +25,6 @@ public struct K5ScheduleWeekView: View {
     @ObservedObject private var viewModel: K5ScheduleWeekViewModel
     // In case this isn't the current week we don't update this variable so the Today button will be always visible
     @State private var isTodayCellVisible = false
-    // If we animate the today button during the first render cycle it causes glitches in List Section headers.
     @State private var didAppear = false
     private let todayPressed: () -> Void
 
@@ -35,52 +34,49 @@ public struct K5ScheduleWeekView: View {
     }
 
     public var body: some View {
-        CompatibleScrollViewReader { scrollProxy in
-            List {
-                let dayModels = viewModel.days
-                ForEach(dayModels) { dayModel in
-                    dayCell(for: dayModel, isLastDay: dayModels.last == dayModel)
+        GeometryReader { geometry in
+            CompatibleScrollViewReader { scrollProxy in
+                List {
+                    let dayModels = viewModel.days
+                    ForEach(dayModels) { dayModel in
+                        let isLastDay = dayModels.last == dayModel
+                        let isToday = viewModel.isTodayModel(dayModel)
+                        dayCell(for: dayModel, isLastDay: isLastDay, isToday: isToday, geometry: geometry)
+                    }
                 }
-            }
-            // This removes the gray highlight from list items on tap
-            .buttonStyle(BorderlessButtonStyle())
-            // This adds some extra space on top but without this the content
-            // scrolls below the sticky section header. clipped() clips the
-            // section header's top for some reason so we can't use that.
-            .padding(.top, 1)
-            .onAppear(perform: {
-                if didAppear { return }
+                // This removes the gray highlight from list items on tap
+                .buttonStyle(BorderlessButtonStyle())
+                // This adds some extra space on top but without this the content
+                // scrolls below the sticky section header. clipped() clips the
+                // section header's top for some reason so we can't use that.
+                .padding(.top, 1)
+                .onAppear(perform: {
+                    if didAppear { return }
 
-                DispatchQueue.main.async {
-                    scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
-                    viewModel.viewDidAppear()
-                    didAppear = true
-                }
-            })
-            .overlay(todayButton(scrollProxy: scrollProxy), alignment: .topTrailing)
+                    DispatchQueue.main.async {
+                        scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
+                        viewModel.viewDidAppear()
+                        didAppear = true
+                    }
+                })
+                .overlay(todayButton(scrollProxy: scrollProxy), alignment: .topTrailing)
+                .onPreferenceChange(ViewBoundsKey.self, perform: { value in
+                    guard let frame = value.first?.bounds else { return }
+                    todayHeaderPositionDidUpdate(frame, in: geometry)
+                })
+            }
         }
     }
 
-    @ViewBuilder
-    private func dayCell(for dayModel: K5ScheduleDayViewModel, isLastDay: Bool) -> some View {
-        let section = Section(header: header(for: dayModel)) {
-            K5ScheduleDayView(viewModel: dayModel)
-                .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
-                .padding(.bottom, isLastDay ? 24 : 0)
-        }
-        .id(dayModel.weekday)
+    private func dayCell(for dayModel: K5ScheduleDayViewModel, isLastDay: Bool, isToday: Bool, geometry: GeometryProxy) -> some View {
+        let header = header(for: dayModel, isToday: isToday, geometry: geometry)
+        let body = K5ScheduleDayView(viewModel: dayModel)
+            .listRowInsets(EdgeInsets(top: 0, leading: horizontalPadding, bottom: 0, trailing: horizontalPadding))
+            .padding(.bottom, isLastDay ? 24 : 0)
+        let section = Section(header: header) { body }
+            .id(dayModel.weekday)
 
-        if viewModel.isTodayModel(dayModel) {
-            section
-                .onAppear {
-                    setTodayCellVisible(to: true)
-                }
-                .onDisappear {
-                    setTodayCellVisible(to: false)
-                }
-        } else {
-            section
-        }
+        return section
     }
 
     private func todayButton(scrollProxy: CompatibleScrollViewProxy) -> some View {
@@ -99,7 +95,8 @@ public struct K5ScheduleWeekView: View {
         .hidden(isTodayCellVisible)
     }
 
-    private func header(for model: K5ScheduleDayViewModel) -> some View {
+    @ViewBuilder
+    private func header(for model: K5ScheduleDayViewModel, isToday: Bool, geometry: GeometryProxy) -> some View {
         let content = VStack(alignment: .leading) {
             let weekday = Text(model.weekday).font(.bold24)
             let date = Text(model.date).font(.bold17)
@@ -120,17 +117,36 @@ public struct K5ScheduleWeekView: View {
             .fill(Color.white)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .frame(minHeight: 93)
+        let header = background
+            .overlay(content, alignment: .topLeading)
+            .accessibilityElement(children: .combine)
 
-        return background.overlay(content, alignment: .topLeading).accessibilityElement(children: .combine)
+        if isToday {
+            header
+                // Save the frame of the today header cell so we can inspect its changes and show/hide the today button based on its value
+                .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
+                    preferences = [.init(viewId: 0, bounds: geometry[bounds])]
+                }
+        } else {
+            header
+        }
     }
 
-    private func setTodayCellVisible(to isVisible: Bool) {
+    private func todayHeaderPositionDidUpdate(_ frame: CGRect, in geometry: GeometryProxy) {
+        // Constants are to offset paddings of the Today label so when the label goes out of screen we can show the Today button instantly
+        let isScrolledOutOnTop = frame.maxY - 20 <= 0
+        let isScrolledOutOnBottom = frame.minY + 30 > geometry.size.height
+        let isTodayCellVisible = !(isScrolledOutOnTop || isScrolledOutOnBottom)
+
+        guard self.isTodayCellVisible != isTodayCellVisible else { return }
+
+        // If we animate the today button during the first render cycle it causes glitches in List Section headers.
         if didAppear {
             withAnimation {
-                isTodayCellVisible = isVisible
+                self.isTodayCellVisible = isTodayCellVisible
             }
         } else {
-            isTodayCellVisible = isVisible
+            self.isTodayCellVisible = isTodayCellVisible
         }
     }
 }
