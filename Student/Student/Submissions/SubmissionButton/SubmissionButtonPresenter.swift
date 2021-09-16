@@ -292,7 +292,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
             let success = UIAlertController(title: NSLocalizedString("Successfully submitted!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
             self?.show(success) {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                    self?.env.router.dismiss(success)
+                    env.router.dismiss(success)
                 }
             }
         }
