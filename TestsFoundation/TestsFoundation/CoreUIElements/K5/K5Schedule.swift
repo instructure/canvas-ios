@@ -20,4 +20,20 @@ import XCTest
 
 public enum K5Schedule: ElementWrapper {
     case today
+
+    public static var previousWeekButton: Element {
+        app.find(label: "Previous Week", type: .button)
+    }
+
+    public static var nextWeekButton: Element {
+        app.find(label: "Next Week", type: .button)
+    }
+
+    public static var todayHeader: Element {
+        app.find(labelContaining: "Today", type: .staticText)
+    }
+
+    public static var todayButton: Element {
+        app.find(label: "Today", type: .button)
+    }
 }
