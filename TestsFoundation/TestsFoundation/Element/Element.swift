@@ -175,7 +175,7 @@ public extension Element {
     }
 
     @discardableResult
-    func waitToExist(_ timeout: TimeInterval = 30, file: StaticString = #file, line: UInt = #line) -> Element {
+    func waitToExist(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Element {
         waitUntil(timeout, file: file, line: line, failureMessage: "Element \(self) still doesn't exist") {
             exists(file: file, line: line)
         }
@@ -183,7 +183,7 @@ public extension Element {
     }
 
     @discardableResult
-    func waitToVanish(_ timeout: TimeInterval = 30, file: StaticString = #file, line: UInt = #line) -> Element {
+    func waitToVanish(_ timeout: TimeInterval = 15, file: StaticString = #file, line: UInt = #line) -> Element {
         waitUntil(timeout, file: file, line: line, failureMessage: "Element \(id) still exists") {
             !exists(file: file, line: line)
         }
