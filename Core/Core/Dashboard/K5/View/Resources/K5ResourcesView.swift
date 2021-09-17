@@ -60,14 +60,15 @@ public struct K5ResourcesView: View {
                 .font(.bold20)
                 .padding(.bottom)
                 .accessibility(addTraits: .isHeader)
-
             ForEach(viewModel.homeroomInfos) { info in
-                HStack {
-                    Image.coursesLine
-                        .accessibility(hidden: true)
-                    Text(info.homeroomName)
-                        .foregroundColor(.licorice)
-                        .font(.bold17)
+                if viewModel.showInfoTitle {
+                    HStack {
+                        Image.coursesLine
+                            .accessibility(hidden: true)
+                        Text(info.homeroomName)
+                            .foregroundColor(.licorice)
+                            .font(.bold17)
+                    }
                 }
                 WebView(html: info.htmlContent)
                     .frameToFit()
