@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    ผู้เรียนที่คุณพยายามเพิ่มอยู่ในสถาบันอื่นของ Canvas\n                    ลงชื่อเข้าใช้หรือจัดทำบัญชีผู้ใช้ของสถาบันดังกล่าวเพื่อเพิ่มผู้เรียนรายนี้\n                    ";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ครบกำหนดเมื่อ %2$@";
 
 /* No comment provided by engineer. */

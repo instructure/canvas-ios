@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Mae’r myfyriwr rydych chi’n ceisio ei ychwanegu yn perthyn i un o sefydliadau eraill Canvas.\n                    Mae angen i chi fewngofnodi neu greu cyfrif gyda’r sefydliad hwnnw i ychwanegu’r myfyriwr yma.\n                    ";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ erbyn %2$@";
 
 /* No comment provided by engineer. */

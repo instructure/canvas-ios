@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Студент, которого вы пытаетесь добавить, находится в другом учебном заведении Canvas.\n                    Выполните вход или создайте учетную запись в этом учебном заведении, чтобы добавить этого студента.\n                    ";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ необходимо завершить через %2$@";
 
 /* No comment provided by engineer. */
