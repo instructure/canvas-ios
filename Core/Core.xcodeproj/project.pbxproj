@@ -813,6 +813,8 @@
 		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
 		CF0894FB26FA218C0051A1BA /* AssignmentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */; };
 		CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */; };
+		CF11565026FB56E900DE25B6 /* AttachmentCopyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */; };
+		CF11565226FB5C4C00DE25B6 /* AttachmentSubmissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */; };
 		CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */; };
 		CF12DFC826D63937000BE452 /* CompatibleNavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */; };
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
@@ -2017,6 +2019,8 @@
 		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
 		CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModel.swift; sourceTree = "<group>"; };
 		CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
+		CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCopyService.swift; sourceTree = "<group>"; };
+		CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionService.swift; sourceTree = "<group>"; };
 		CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleMissingItemsView.swift; sourceTree = "<group>"; };
 		CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleNavBarItems.swift; sourceTree = "<group>"; };
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
@@ -4085,6 +4089,15 @@
 			path = ModuleItems;
 			sourceTree = "<group>";
 		};
+		CF11564E26FB566D00DE25B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */,
+				CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CF22C94125F286E000C2E012 /* Accessibility */ = {
 			isa = PBXGroup;
 			children = (
@@ -4364,6 +4377,7 @@
 		CF6C7FC326F8CD3A002937E5 /* SubmitAssignmentExtension */ = {
 			isa = PBXGroup;
 			children = (
+				CF11564E26FB566D00DE25B6 /* Model */,
 				CF6C7FC426F8D0D4002937E5 /* View */,
 				CF6C7FC926F8DEB8002937E5 /* ViewModel */,
 			);
@@ -5726,6 +5740,7 @@
 				7D531D48254C606800CBFCA6 /* AssignmentAssigneeList.swift in Sources */,
 				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
 				3BC84268247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */,
+				CF11565226FB5C4C00DE25B6 /* AttachmentSubmissionService.swift in Sources */,
 				7DA25FE523F721DA005D2121 /* App.swift in Sources */,
 				7DA2606B23F722D9005D2121 /* UTI.swift in Sources */,
 				7DA2602123F7227A005D2121 /* StringExtensions.swift in Sources */,
@@ -6023,6 +6038,7 @@
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
 				7DA25FBD23F72136005D2121 /* APIMediaComment.swift in Sources */,
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,
+				CF11565026FB56E900DE25B6 /* AttachmentCopyService.swift in Sources */,
 				7DA2602923F722C2005D2121 /* LoginManualOAuthViewController.swift in Sources */,
 				CF60CC3A2645525F00C1C173 /* K5ResourcesView.swift in Sources */,
 				7DA25FFE23F7226E005D2121 /* DocViewerSession.swift in Sources */,

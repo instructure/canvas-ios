@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class SubmitAssignmentExtensionViewModel: ObservableObject {
@@ -35,14 +36,58 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
             selectAssignmentButtonTitle = selectedAssignment.map { Text($0.name) } ?? Self.selectAssignmentText
         }
     }
-    @Published public var assignmentPickerViewModel: AssignmentPickerViewModel?
-    @Published public var isSubmitButtonDisabled: Bool = true
-    @Published public var selectCourseButtonTitle: Text = selectCourseText
-    @Published public var selectAssignmentButtonTitle: Text = selectAssignmentText
+    @Published public private(set) var assignmentPickerViewModel: AssignmentPickerViewModel?
+    @Published public private(set) var isSubmitButtonDisabled: Bool = true
+    @Published public private(set) var selectCourseButtonTitle: Text = selectCourseText
+    @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
+    @Published public private(set) var isProcessingFiles: Bool = true
 
     public let coursePickerViewModel = CoursePickerViewModel()
 
-    public init() {
+    private var selectedFileURLs: [URL] = []
+    private let submissionService: AttachmentSubmissionService
+    private var assignmentCopyServiceStateSubscription: AnyCancellable?
+    private let shareCompleted: () -> Void
+
+    public init(attachmentCopyService: AttachmentCopyService,
+                submissionService: AttachmentSubmissionService,
+                shareCompleted: @escaping () -> Void) {
+        self.submissionService = submissionService
+        self.shareCompleted = shareCompleted
+        subscribeToAssignmentCopyServiceUpdates(attachmentCopyService)
+    }
+
+    public func submitTapped() {
+        submissionService.submit(urls: selectedFileURLs, courseID: selectedCourse!.id, assignmentID: selectedAssignment!.id, comment: "", callback: shareCompleted)
+    }
+
+    public func cancelTapped() {
+        shareCompleted()
+    }
+
+    private func subscribeToAssignmentCopyServiceUpdates(_ attachmentCopyService: AttachmentCopyService) {
+        assignmentCopyServiceStateSubscription = attachmentCopyService.state.sink { [weak self] state in
+            self?.isProcessingFiles = {
+                switch state {
+                case .loading:
+                    return true
+                case .completed(let result):
+                    switch result {
+                    case .success(let urls):
+                        return urls.isEmpty ? true : false
+                    case .failure:
+                        return true
+                    }
+                }
+            }()
+            self?.selectedFileURLs = {
+                if case .completed(let result) = state, case .success(let urls) = result {
+                    return urls
+                } else {
+                    return []
+                }
+            }()
+        }
     }
 
     private func recreateAssignmentViewModel() {

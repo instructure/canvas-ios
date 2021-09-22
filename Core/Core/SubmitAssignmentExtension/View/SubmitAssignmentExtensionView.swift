@@ -102,17 +102,22 @@ public struct SubmitAssignmentExtensionView: View {
     }
 
     private var cancelButton: some View {
-        Button(action: {}) {
+        Button(action: viewModel.cancelTapped) {
             Text("Cancel", bundle: .core)
                 .foregroundColor(.electric)
         }
     }
 
+    @ViewBuilder
     private var submitButton: some View {
-        Button(action: {}) {
-            Text("Submit", bundle: .core)
+        if viewModel.isProcessingFiles {
+            CircleProgress(size: 20)
+        } else {
+            Button(action: viewModel.submitTapped) {
+                Text("Submit", bundle: .core)
+            }
+            .disabled(viewModel.isSubmitButtonDisabled)
         }
-        .disabled(viewModel.isSubmitButtonDisabled)
     }
 }
 
@@ -121,7 +126,12 @@ public struct SubmitAssignmentExtensionView: View {
 struct SubmitAssignmentExtensionView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SubmitAssignmentExtensionView(viewModel: SubmitAssignmentExtensionViewModel())
+        let viewModel = SubmitAssignmentExtensionViewModel(
+            attachmentCopyService: AttachmentCopyService(extensionContext: nil),
+            submissionService: AttachmentSubmissionService(),
+            shareCompleted: {}
+        )
+        SubmitAssignmentExtensionView(viewModel: viewModel)
     }
 }
 
