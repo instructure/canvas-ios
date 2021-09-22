@@ -68,16 +68,10 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     private func subscribeToAssignmentCopyServiceUpdates(_ attachmentCopyService: AttachmentCopyService) {
         assignmentCopyServiceStateSubscription = attachmentCopyService.state.sink { [weak self] state in
             self?.isProcessingFiles = {
-                switch state {
-                case .loading:
+                if case .completed(let result) = state, case .success(let urls) = result, urls.isEmpty == false {
+                    return false
+                } else {
                     return true
-                case .completed(let result):
-                    switch result {
-                    case .success(let urls):
-                        return urls.isEmpty ? true : false
-                    case .failure:
-                        return true
-                    }
                 }
             }()
             self?.selectedFileURLs = {
