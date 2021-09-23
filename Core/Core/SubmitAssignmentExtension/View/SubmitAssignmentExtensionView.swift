@@ -31,11 +31,7 @@ public struct SubmitAssignmentExtensionView: View {
                 selectCourseButton
                 divider
                 selectAssignmentButton
-                TextEditor(text: .constant("Add comment (optional)"), maxHeight: 200)
-                    .foregroundColor(.textDark)
-                    .font(.regular16)
-                    .padding(.top, 20)
-                    .frame(height: 300, alignment: .top)
+                commentBox
                 divider
                 Spacer()
             }
@@ -46,6 +42,22 @@ public struct SubmitAssignmentExtensionView: View {
                 trailing: { submitButton }
             )
             .padding(.horizontal, 20)
+        }
+    }
+
+    private var commentBox: some View {
+        ZStack(alignment: .topLeading) {
+            if viewModel.comment.isEmpty {
+                Text("Add comment (optional)", comment: "")
+                    .foregroundColor(.textDark)
+                    .font(.regular16)
+                    .padding(.top, 20)
+            }
+
+            TextEditor(text: $viewModel.comment, maxHeight: 200)
+                .foregroundColor(.textDarkest)
+                .font(.regular16)
+                .padding(.vertical, 20)
         }
     }
 

@@ -41,6 +41,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     @Published public private(set) var selectCourseButtonTitle: Text = selectCourseText
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
+    @Published public var comment = ""
 
     public let coursePickerViewModel: CoursePickerViewModel
 
@@ -73,7 +74,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     }
 
     public func submitTapped() {
-        submissionService.submit(urls: selectedFileURLs, courseID: selectedCourse!.id, assignmentID: selectedAssignment!.id, comment: "", callback: shareCompleted)
+        submissionService.submit(urls: selectedFileURLs, courseID: selectedCourse!.id, assignmentID: selectedAssignment!.id, comment: comment, callback: shareCompleted)
     }
 
     public func cancelTapped() {
