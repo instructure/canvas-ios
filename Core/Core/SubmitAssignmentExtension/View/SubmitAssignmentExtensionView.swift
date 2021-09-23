@@ -27,27 +27,25 @@ public struct SubmitAssignmentExtensionView: View {
 
     public var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                Text("Course", bundle: .core)
+            VStack(alignment: .leading, spacing: 0) {
                 selectCourseButton
                 divider
-                Text("Assignment", bundle: .core)
                 selectAssignmentButton
+                TextEditor(text: .constant("Add comment (optional)"), maxHeight: 200)
+                    .foregroundColor(.textDark)
+                    .font(.regular16)
+                    .padding(.top, 20)
+                    .frame(height: 300, alignment: .top)
                 divider
-                HStack {
-                    Text("Comment", bundle: .core)
-                    Text("(Optional)", bundle: .core)
-                }
-                TextEditor(text: .constant("Enter comment"), maxHeight: 200)
                 Spacer()
             }
             .navigationBarGlobal()
-            .navigationBarTitleView(Text("Canvas Student", bundle: .core), displayMode: .inline)
+            .navigationBarTitleView(Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
             .compatibleNavBarItems(
                 leading: { cancelButton },
                 trailing: { submitButton }
             )
-            .padding(16)
+            .padding(.horizontal, 20)
         }
     }
 
@@ -55,16 +53,17 @@ public struct SubmitAssignmentExtensionView: View {
         NavigationLink(destination: CoursePickerView(viewModel: viewModel.coursePickerViewModel, selectedCourse: $viewModel.selectedCourse)) {
             HStack {
                 viewModel.selectCourseButtonTitle
-                    .foregroundColor(.electric)
+                    .foregroundColor(viewModel.selectedCourse == nil ? .textDark : .textDarkest)
+                    .font(.regular16)
                 Spacer()
                 disclosureIndicator
             }
         }
-        .frame(minHeight: 30)
+        .frame(height: 54)
     }
 
     private var divider: some View {
-        Divider().padding(.horizontal, -16)
+        Divider().padding(.horizontal, -20)
     }
 
     @ViewBuilder
@@ -72,23 +71,18 @@ public struct SubmitAssignmentExtensionView: View {
         if let assignmentViewModel = viewModel.assignmentPickerViewModel {
             let viewToPush = AssignmentPickerView(viewModel: assignmentViewModel, selectedAssignment: $viewModel.selectedAssignment)
             NavigationLink(destination: viewToPush) {
-                HStack {
-                    viewModel.selectAssignmentButtonTitle
-                        .foregroundColor(.electric)
-                    Spacer()
-                    disclosureIndicator
+                VStack(spacing: 0) {
+                    HStack {
+                        viewModel.selectAssignmentButtonTitle
+                            .foregroundColor(viewModel.selectedAssignment == nil ? .textDark : .textDarkest)
+                            .font(.regular16)
+                        Spacer()
+                        disclosureIndicator
+                    }
+                        .frame(height: 54)
+                    divider
                 }
             }
-            .frame(minHeight: 30)
-        } else {
-            HStack {
-                Text("No course selected", bundle: .core)
-                    .foregroundColor(.textDark)
-                Spacer()
-                disclosureIndicator
-                    .opacity(0.5)
-            }
-            .frame(minHeight: 30)
         }
     }
 
@@ -104,7 +98,8 @@ public struct SubmitAssignmentExtensionView: View {
     private var cancelButton: some View {
         Button(action: viewModel.cancelTapped) {
             Text("Cancel", bundle: .core)
-                .foregroundColor(.electric)
+                .foregroundColor(.crimson)
+                .font(.regular17)
         }
     }
 
@@ -115,6 +110,7 @@ public struct SubmitAssignmentExtensionView: View {
         } else {
             Button(action: viewModel.submitTapped) {
                 Text("Submit", bundle: .core)
+                    .font(.semibold17)
             }
             .disabled(viewModel.isSubmitButtonDisabled)
         }
@@ -126,12 +122,16 @@ public struct SubmitAssignmentExtensionView: View {
 struct SubmitAssignmentExtensionView_Previews: PreviewProvider {
 
     static var previews: some View {
-        let viewModel = SubmitAssignmentExtensionViewModel(
-            attachmentCopyService: AttachmentCopyService(extensionContext: nil),
-            submissionService: AttachmentSubmissionService(),
-            shareCompleted: {}
-        )
+        let coursePickerViewModel = CoursePickerViewModel(data: .courses([
+            .init(id: "0", name: "American Literature"),
+            .init(id: "1", name: "History"),
+            .init(id: "2", name: "Math"),
+            .init(id: "3", name: "Biology"),
+        ]))
+
+        let viewModel = SubmitAssignmentExtensionViewModel(coursePickerViewModel: coursePickerViewModel)
         SubmitAssignmentExtensionView(viewModel: viewModel)
+            .previewDevice(PreviewDevice(stringLiteral: "iPhone 12"))
     }
 }
 

@@ -29,7 +29,7 @@ public struct CoursePickerView: View {
 
     public var body: some View {
         content
-            .navigationBarTitleView(Text("Select Course", bundle: .core), displayMode: .inline)
+            .navigationBarTitleView(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
     }
 
     @ViewBuilder
@@ -59,7 +59,7 @@ public struct CoursePickerView: View {
                     }) {
                         HStack(spacing: 0) {
                             Text(course.name)
-                                .font(.bold17)
+                                .font(.regular16)
                                 .foregroundColor(.textDarkest)
                                 .frame(height: 50)
                             Spacer()
@@ -84,19 +84,16 @@ public struct CoursePickerView: View {
 #if DEBUG
 
 struct CoursePickerView_Previews: PreviewProvider {
-    static var dataModel: CoursePickerViewModel {
+
+    static var previews: some View {
+        let loadingModel = CoursePickerViewModel(data: .loading)
+        let errorModel = CoursePickerViewModel(data: .error("Something went wrong"))
         let dataModel = CoursePickerViewModel(data: .courses([
             .init(id: "0", name: "American Literature"),
             .init(id: "1", name: "History"),
             .init(id: "2", name: "Math"),
             .init(id: "3", name: "Biology"),
         ]))
-        return dataModel
-    }
-
-    static var previews: some View {
-        let loadingModel = CoursePickerViewModel(data: .loading)
-        let errorModel = CoursePickerViewModel(data: .error("Something went wrong"))
         CoursePickerView(viewModel: dataModel, selectedCourse: .constant(nil))
             .previewLayout(.fixed(width: 500, height: 500))
         CoursePickerView(viewModel: loadingModel, selectedCourse: .constant(nil))

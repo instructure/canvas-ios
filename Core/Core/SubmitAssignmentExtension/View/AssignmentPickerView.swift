@@ -29,7 +29,7 @@ public struct AssignmentPickerView: View {
 
     public var body: some View {
         content
-            .navigationBarTitleView(Text("Select Assignment", bundle: .core), displayMode: .inline)
+            .navigationBarTitleView(Text("Select Assignment", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
     }
 
     @ViewBuilder
@@ -63,7 +63,7 @@ public struct AssignmentPickerView: View {
                     }) {
                         HStack(spacing: 0) {
                             Text(assignment.name)
-                                .font(.bold17)
+                                .font(.regular16)
                                 .foregroundColor(.textDarkest)
                                 .frame(height: 50)
                             Spacer()

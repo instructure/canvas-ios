@@ -42,18 +42,33 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
 
-    public let coursePickerViewModel = CoursePickerViewModel()
+    public let coursePickerViewModel: CoursePickerViewModel
 
     private var selectedFileURLs: [URL] = []
     private let submissionService: AttachmentSubmissionService
     private var assignmentCopyServiceStateSubscription: AnyCancellable?
     private let shareCompleted: () -> Void
 
+    #if DEBUG
+
+    // MARK: - Preview Support
+
+    public init(coursePickerViewModel: CoursePickerViewModel) {
+        self.submissionService = AttachmentSubmissionService()
+        self.shareCompleted = {}
+        self.coursePickerViewModel = coursePickerViewModel
+    }
+
+    // MARK: Preview Support -
+
+    #endif
+
     public init(attachmentCopyService: AttachmentCopyService,
                 submissionService: AttachmentSubmissionService,
                 shareCompleted: @escaping () -> Void) {
         self.submissionService = submissionService
         self.shareCompleted = shareCompleted
+        self.coursePickerViewModel = CoursePickerViewModel()
         subscribeToAssignmentCopyServiceUpdates(attachmentCopyService)
     }
 
