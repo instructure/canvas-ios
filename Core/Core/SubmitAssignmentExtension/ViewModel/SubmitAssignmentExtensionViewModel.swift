@@ -42,6 +42,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
     @Published public var comment = ""
+    @Published public private(set) var previews: [URL] = []
 
     public let coursePickerViewModel: CoursePickerViewModel
 
@@ -83,20 +84,23 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
 
     private func subscribeToAssignmentCopyServiceUpdates(_ attachmentCopyService: AttachmentCopyService) {
         assignmentCopyServiceStateSubscription = attachmentCopyService.state.sink { [weak self] state in
-            self?.isProcessingFiles = {
-                if case .completed(let result) = state, case .success(let urls) = result, urls.isEmpty == false {
+            guard let self = self else { return }
+
+            self.isProcessingFiles = {
+                if case .completed(let result) = state, case .success(let attachments) = result, attachments.isEmpty == false {
                     return false
                 } else {
                     return true
                 }
             }()
-            self?.selectedFileURLs = {
-                if case .completed(let result) = state, case .success(let urls) = result {
-                    return urls
+            self.previews = {
+                if case .completed(let result) = state, case .success(let data) = result {
+                    return data
                 } else {
                     return []
                 }
             }()
+            self.selectedFileURLs = self.previews
         }
     }
 

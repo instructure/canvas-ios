@@ -29,7 +29,7 @@ public class AttachmentCopyService {
     }
 
     public let state = CurrentValueSubject<State, Never>(.loading)
-    private var urls: [URL] = []
+    private var attachments: [URL] = []
     private var error: Error?
 
     public init(extensionContext: NSExtensionContext?) {
@@ -45,8 +45,8 @@ public class AttachmentCopyService {
                 loadGroup.enter()
                 load(attachment: attachment) { [weak self] result in
                     switch result {
-                    case .success(let url):
-                        self?.urls.append(url)
+                    case .success(let data):
+                        self?.attachments.append(data)
                     case .failure(let error):
                         self?.error = error
                     }
@@ -103,8 +103,8 @@ public class AttachmentCopyService {
     private func updateState() {
         let result: Result<[URL], Error>
 
-        if error == nil && !urls.isEmpty {
-            result = .success(urls)
+        if error == nil && !attachments.isEmpty {
+            result = .success(attachments)
         } else if let error = error {
             result = .failure(error)
         } else {

@@ -856,6 +856,7 @@
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF67B29226EBA12F00E51F13 /* HorizontalPagerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */; };
 		CF67B29626EBA19700E51F13 /* HorizontalPagerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */; };
+		CF6A07C126FDDBCE0056EEC1 /* AttachmentPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6A07C026FDDBCE0056EEC1 /* AttachmentPreviewView.swift */; };
 		CF6C100326C5235B002E7FE6 /* PlannerOverrideUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C100226C5235B002E7FE6 /* PlannerOverrideUpdater.swift */; };
 		CF6C100726C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C100626C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift */; };
 		CF6C101026CA4F00002E7FE6 /* K5ScheduleItemInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C100F26CA4F00002E7FE6 /* K5ScheduleItemInfoTests.swift */; };
@@ -2062,6 +2063,7 @@
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerProxy.swift; sourceTree = "<group>"; };
 		CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerCoordinator.swift; sourceTree = "<group>"; };
+		CF6A07C026FDDBCE0056EEC1 /* AttachmentPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPreviewView.swift; sourceTree = "<group>"; };
 		CF6C100226C5235B002E7FE6 /* PlannerOverrideUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerOverrideUpdater.swift; sourceTree = "<group>"; };
 		CF6C100626C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerOverrideUpdaterTests.swift; sourceTree = "<group>"; };
 		CF6C100F26CA4F00002E7FE6 /* K5ScheduleItemInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleItemInfoTests.swift; sourceTree = "<group>"; };
@@ -4388,6 +4390,7 @@
 			isa = PBXGroup;
 			children = (
 				CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */,
+				CF6A07C026FDDBCE0056EEC1 /* AttachmentPreviewView.swift */,
 				CF6C7FC726F8DC15002937E5 /* CoursePickerView.swift */,
 				CF6C7FC526F8D106002937E5 /* SubmitAssignmentExtensionView.swift */,
 			);
@@ -5910,6 +5913,7 @@
 				CF53F745266FBE4F00FA58D7 /* GetMissingSubmissionsRequest.swift in Sources */,
 				EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */,
 				7DA2608423F72303005D2121 /* User.swift in Sources */,
+				CF6A07C126FDDBCE0056EEC1 /* AttachmentPreviewView.swift in Sources */,
 				7DA260E623F72359005D2121 /* RightDetailTableViewCell.swift in Sources */,
 				7DA2600823F7227A005D2121 /* NotificationCenterExtensions.swift in Sources */,
 				7DA2606723F722D9005D2121 /* TabType.swift in Sources */,

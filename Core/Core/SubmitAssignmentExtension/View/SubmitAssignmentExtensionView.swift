@@ -33,6 +33,7 @@ public struct SubmitAssignmentExtensionView: View {
                 selectAssignmentButton
                 commentBox
                 divider
+                filesSection
                 Spacer()
             }
             .navigationBarGlobal()
@@ -127,6 +128,26 @@ public struct SubmitAssignmentExtensionView: View {
             .disabled(viewModel.isSubmitButtonDisabled)
         }
     }
+
+    private var filesSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(String.localizedStringWithFormat(NSLocalizedString("d_items", comment: ""), viewModel.previews.count))
+                .font(.regular12)
+                .foregroundColor(.textDark)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    Spacer().frame(width: 20)
+                    ForEach(viewModel.previews, id: \.self) {
+                        AttachmentPreviewView(url: $0)
+                    }
+                    Spacer().frame(width: 20)
+                }
+            }
+                .padding(.top, 10)
+                .padding(.horizontal, -20)
+        }
+        .padding(.top, 20)
+    }
 }
 
 #if DEBUG
@@ -143,7 +164,6 @@ struct SubmitAssignmentExtensionView_Previews: PreviewProvider {
 
         let viewModel = SubmitAssignmentExtensionViewModel(coursePickerViewModel: coursePickerViewModel)
         SubmitAssignmentExtensionView(viewModel: viewModel)
-            .previewDevice(PreviewDevice(stringLiteral: "iPhone 12"))
     }
 }
 
