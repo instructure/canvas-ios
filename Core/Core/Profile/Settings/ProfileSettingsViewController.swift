@@ -112,29 +112,28 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         delegate: self
                     ), sender: self)
                 },
-            ]
-            + k5DashboardSwitch
-            + channelTypes.values.map({ channels -> Row in
-                Row(channels[0].type.name) { [weak self] in
-                    guard let self = self else { return }
-                    if channels.count == 1, let channel = channels.first {
-                        let vc = NotificationCategoriesViewController.create(
-                            title: channel.type.name,
-                            channelID: channel.id,
-                            type: channel.type
-                        )
-                        self.env.router.show(vc, from: self)
-                    } else {
-                        let vc = NotificationChannelsViewController.create(type: channels[0].type)
-                        self.env.router.show(vc, from: self)
+                k5DashboardSwitch,
+                channelTypes.values.map({ channels -> Row in
+                    Row(channels[0].type.name) { [weak self] in
+                        guard let self = self else { return }
+                        if channels.count == 1, let channel = channels.first {
+                            let vc = NotificationCategoriesViewController.create(
+                                title: channel.type.name,
+                                channelID: channel.id,
+                                type: channel.type
+                            )
+                            self.env.router.show(vc, from: self)
+                        } else {
+                            let vc = NotificationChannelsViewController.create(type: channels[0].type)
+                            self.env.router.show(vc, from: self)
+                        }
                     }
-                }
-            }).sorted(by: { $0.title < $1.title })
-            + pairWithObserverButton
-            + [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
+                }).sorted(by: { $0.title < $1.title }),
+                pairWithObserverButton,
+                [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
                     guard let url = self?.profile.first?.calendarURL else { return }
                     self?.env.loginDelegate?.openExternalURL(url)
-               },
+                }]
             ]),
 
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
