@@ -29,6 +29,8 @@ class SubmitAssignmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        isModalInPresentation = true
+
         if let session = LoginSession.mostRecent {
             AppEnvironment.shared.userDidLogin(session: session)
         }
