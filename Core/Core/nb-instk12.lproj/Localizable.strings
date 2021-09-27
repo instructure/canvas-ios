@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        For å opprette en konto, må eleven opprette en sammenkoblingskode for deg fra Innstillinger-delen av Canvas Elev-appen som vist nedenfor, og deretter skanne koden herfra.\n        Hvis eleven ikke ser alternativet for å opprette en sammenkoblingskode, må du kontakte skolen din for å opprette kontoen din.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "Merk ferdig";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Merk element som gjort";
+
+/* No comment provided by engineer. */
 "Marked done" = "Merket ferdig";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Neste";
+
+/* No comment provided by engineer. */
+"Next Week" = "Neste uke";
 
 /* No comment provided by engineer. */
 "Nickname" = "Kallenavn";
@@ -1487,6 +1490,12 @@
 "Open application" = "Åpne applikasjon";
 
 /* No comment provided by engineer. */
+"Open course details" = "Åpne fagdetaljer";
+
+/* No comment provided by engineer. */
+"Open item details" = "Åpne elementdetaljer";
+
+/* No comment provided by engineer. */
 "Options" = "Valg";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Tidligere innlogginger";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Forrige uke";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Personvernregler";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "til %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "For å opprette en konto, må eleven opprette en sammenkoblingskode for deg fra Innstillinger-delen av Canvas Elev-appen som vist nedenfor, og deretter skanne koden herfra.\nHvis eleven ikke ser alternativet for å opprette en sammenkoblingskode, må du kontakte skolen din for å opprette kontoen din.";
 
 /* No comment provided by engineer. */
 "To Do" = "Å gjøre";

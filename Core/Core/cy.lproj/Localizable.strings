@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn.\n        Os nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "Marcio eu bod wedi’u gwneud";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Marcio eitem fel wedi ei wneud";
+
+/* No comment provided by engineer. */
 "Marked done" = "Wedi'u marcio eu bod wedi’u gwneud";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Nesaf";
+
+/* No comment provided by engineer. */
+"Next Week" = "Wythnos Nesaf";
 
 /* No comment provided by engineer. */
 "Nickname" = "Llysenw";
@@ -1487,6 +1490,12 @@
 "Open application" = "Agor rhaglen";
 
 /* No comment provided by engineer. */
+"Open course details" = "Agor manylion cwrs";
+
+/* No comment provided by engineer. */
+"Open item details" = "Agor manylion eitem";
+
+/* No comment provided by engineer. */
 "Options" = "Opsiynau";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Manylion Mewngofnodi Blaenorol";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Wythnos Flaenorol";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Polisi Preifatrwydd";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "i %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn.\nOs nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
