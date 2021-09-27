@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        要创建帐户，请要求学生从 Canvas 学生版应用程序的“设置”部分为您创建一个配对码，如下所示，然后从这里扫描该配对码。\n        如果学生没有看到创建配对码的选项，请您联系学校为您创建帐户。\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "标记为完成";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "将项目标记为完成";
+
+/* No comment provided by engineer. */
 "Marked done" = "已做记号";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "下一步";
+
+/* No comment provided by engineer. */
+"Next Week" = "下个星期";
 
 /* No comment provided by engineer. */
 "Nickname" = "昵称";
@@ -1487,6 +1490,12 @@
 "Open application" = "打开申请";
 
 /* No comment provided by engineer. */
+"Open course details" = "打开课程详情";
+
+/* No comment provided by engineer. */
+"Open item details" = "打开项目详情";
+
+/* No comment provided by engineer. */
 "Options" = "选项";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "历史登录记录";
+
+/* No comment provided by engineer. */
+"Previous Week" = "上一周";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "隐私政策";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "至%@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "要创建帐户，请要求学生从 Canvas 学生版应用程序的“设置”部分为您创建一个配对码，如下所示，然后从这里扫描该配对码。\n如果学生没有看到创建配对码的选项，请您联系学校为您创建帐户。";
 
 /* No comment provided by engineer. */
 "To Do" = "待办事项";

@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        如要建立帳戶，請讓您的學生在 Cavnas 學生應用程式內的設定（見下圖）為您建立配對碼，然後在此處掃描該條碼。\n        如果學生未看見建立配對碼的選項，您需要聯絡所屬學校以建立帳戶。\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "標記為已完成";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "標記項目為已完成";
+
+/* No comment provided by engineer. */
 "Marked done" = "已標記為完成";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "下一個";
+
+/* No comment provided by engineer. */
+"Next Week" = "下週";
 
 /* No comment provided by engineer. */
 "Nickname" = "暱稱";
@@ -1487,6 +1490,12 @@
 "Open application" = "開啟應用程式";
 
 /* No comment provided by engineer. */
+"Open course details" = "開啟課程詳細資料";
+
+/* No comment provided by engineer. */
+"Open item details" = "開啟項目詳細資料";
+
+/* No comment provided by engineer. */
 "Options" = "選項";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "先前登入";
+
+/* No comment provided by engineer. */
+"Previous Week" = "上週";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "隱私政策";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "至%@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "如要建立帳戶，請讓您的學生在 Cavnas 學生應用程式內的設定（見下圖）為您建立配對碼，然後在此處掃描該條碼。\n如果學生未看見建立配對碼的選項，您需要聯絡所屬學校以建立帳戶。";
 
 /* No comment provided by engineer. */
 "To Do" = "待辦事項";

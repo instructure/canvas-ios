@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    ";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ is due at %2$@";
 
 /* No comment provided by engineer. */
@@ -179,6 +176,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Subject Overview";
+
+/* No comment provided by engineer. */
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student.";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "The value must a number between 0 and 100";

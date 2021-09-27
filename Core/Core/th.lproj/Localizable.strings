@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        จัดทำบัญชีผู้ใช้โดยให้ผู้เรียนจัดทำรหัสเข้าคู่สำหรับคุณจากหัวข้อ ค่าปรับตั้ง ของแอพ Canvas Student ตามที่แสดงด้านล่าง จากนั้นสแกนรหัสจากที่นี่\n        หากผู้เรียนไม่พบตัวเลือกดังกล่าวในการจัดทำรหัสเข้าคู่ คุณจะต้องติดต่อกับสถานศึกษาของคุณเพื่อจัดทำบัญชีผู้ใช้ของคุณ\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "กำกับว่าเสร็จสิ้น";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "กำกับรายการว่าเสร็จสิ้น";
+
+/* No comment provided by engineer. */
 "Marked done" = "กำกับว่าเสร็จสิ้นแล้ว";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "ถัดไป";
+
+/* No comment provided by engineer. */
+"Next Week" = "สัปดาห์ถัดไป";
 
 /* No comment provided by engineer. */
 "Nickname" = "ชื่อเล่น";
@@ -1487,6 +1490,12 @@
 "Open application" = "เปิดแอพพลิเคชั่น ";
 
 /* No comment provided by engineer. */
+"Open course details" = "เปิดรายละเอียดบทเรียน";
+
+/* No comment provided by engineer. */
+"Open item details" = "เปิดรายละเอียดรายการ";
+
+/* No comment provided by engineer. */
 "Options" = "ตัวเลือก";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "การล็อกอินก่อนหน้า";
+
+/* No comment provided by engineer. */
+"Previous Week" = "สัปดาห์ก่อนหน้า";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "นโยบายความเป็นส่วนตัว";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "ถึง %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "จัดทำบัญชีผู้ใช้โดยให้ผู้เรียนจัดทำรหัสเข้าคู่สำหรับคุณจากหัวข้อ ค่าปรับตั้ง ของแอพ Canvas Student ตามที่แสดงด้านล่าง จากนั้นสแกนรหัสจากที่นี่\nหากผู้เรียนไม่พบตัวเลือกดังกล่าวในการจัดทำรหัสเข้าคู่ คุณจะต้องติดต่อกับสถานศึกษาของคุณเพื่อจัดทำบัญชีผู้ใช้ของคุณ";
 
 /* No comment provided by engineer. */
 "To Do" = "สิ่งที่ต้องดำเนินการ";

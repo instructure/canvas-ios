@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Hei hanga he pūkete, me mahi tō ākonga ki te hanga he waihere hono mōū mai i te wāhanga Tautuhinga o te Canvas Ākonga Taupanga e whakātuhia nei i raro, ana ka matawai i taua waehere mai konei.\n        Mehemea ka kore tō ākonga i kite i te kōwhiringa ki te hanga he waihere hono, me toro atu kioe ki tō kura ki te hanga i tō pūkete.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "Tohu mahia";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Māka tuemi kua oti";
+
+/* No comment provided by engineer. */
 "Marked done" = "Kua tohua mea ai";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "E haere ake nei";
+
+/* No comment provided by engineer. */
+"Next Week" = "Wiki Muri";
 
 /* No comment provided by engineer. */
 "Nickname" = "Ingoakāinga";
@@ -1487,6 +1490,12 @@
 "Open application" = "Huaki tono";
 
 /* No comment provided by engineer. */
+"Open course details" = "Huaki taipitopito akoranga";
+
+/* No comment provided by engineer. */
+"Open item details" = "Huaki ngā taipitopito tūemi";
+
+/* No comment provided by engineer. */
 "Options" = "Ngā kōwhiringa";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Ngā takiurunga o mua";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Te Wiki o Mua";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Kaupapahere Tūmataiti";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "kī %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Hei hanga he pūkete, me mahi tō ākonga ki te hanga he waihere hono mōū mai i te wāhanga Tautuhinga o te Canvas Ākonga Taupanga e whakātuhia nei i raro, ana ka matawai i taua waehere mai konei.\nMehemea ka kore tō ākonga i kite i te kōwhiringa ki te hanga he waihere hono, me toro atu kioe ki tō kura ki te hanga i tō pūkete.";
 
 /* No comment provided by engineer. */
 "To Do" = "Hei mahi";

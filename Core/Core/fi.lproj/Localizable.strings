@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.\n        Jos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "Merkitse valmiiksi";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Merkitse kohteet tehdyiksi";
+
+/* No comment provided by engineer. */
 "Marked done" = "Merkitse valmiiksi";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Seuraava";
+
+/* No comment provided by engineer. */
+"Next Week" = "Ensi viikolla";
 
 /* No comment provided by engineer. */
 "Nickname" = "Lempinimi";
@@ -1487,6 +1490,12 @@
 "Open application" = "Avaa sovellus";
 
 /* No comment provided by engineer. */
+"Open course details" = "Avaa kurssitiedot";
+
+/* No comment provided by engineer. */
+"Open item details" = "Avaa kohteen tiedot";
+
+/* No comment provided by engineer. */
 "Options" = "Asetukset";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Edelliset kirjautumiset";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Edellinen viikko";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Tietosuojakäytäntö";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "- %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.\nJos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";
