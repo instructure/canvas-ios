@@ -1,0 +1,180 @@
+"0WBvkr" = "Gets a collection of all courses.";
+
+"3S47vQ" = "Start At";
+
+"3Vo8wT" = "None";
+
+"58HO0L" = "Course";
+
+"5QYOJM" = "Teacher";
+
+"82JI68" = "Observer";
+
+"82MMqp" = "Enrollment Type Filter";
+
+"9OnBwY" = "Check Course Grade";
+
+"9UjyKw" = "Your grade is ${combinedGradeOutput}.";
+
+"ByTbRO" = "Service Name";
+
+"C2GWVP" = "Get courses";
+
+"CjlFku" = "Student";
+
+"ClTY2F-3Vo8wT" = "There are ${count} options matching ‘None’.";
+
+"ClTY2F-5QYOJM" = "There are ${count} options matching ‘Teacher’.";
+
+"ClTY2F-82JI68" = "There are ${count} options matching ‘Observer’.";
+
+"ClTY2F-CjlFku" = "There are ${count} options matching ‘Student’.";
+
+"ClTY2F-W7E9hc" = "There are ${count} options matching ‘Designer’.";
+
+"ClTY2F-iVGdj8" = "There are ${count} options matching ‘TA’.";
+
+"DMIMdB" = "Course State Filter";
+
+"DRcPjw-F7VTuq" = "There are ${count} options matching ‘Invited or Pending’.";
+
+"DRcPjw-Fa1lBJ" = "There are ${count} options matching ‘Active’.";
+
+"DRcPjw-LIUlYL" = "There are ${count} options matching ‘Completed’.";
+
+"DRcPjw-Tmsc9P" = "There are ${count} options matching ‘None’.";
+
+"ERAfQe" = "Available";
+
+"F7VTuq" = "Invited or Pending";
+
+"FJbNa9" = "Get Courses";
+
+"Fa1lBJ" = "Active";
+
+"FzYwSL" = "Color";
+
+"GS1d76" = "Something went wrong checking your grade.";
+
+"HDGgiG-ERAfQe" = "There are ${count} options matching ‘Available’.";
+
+"HDGgiG-O5AdgG" = "There are ${count} options matching ‘Current or Concluded’.";
+
+"HDGgiG-WNYXaC" = "There are ${count} options matching ‘Unpublished’.";
+
+"HDGgiG-xEPth2" = "There are ${count} options matching ‘None’.";
+
+"HDGgiG-zta2p2" = "There are ${count} options matching ‘Completed’.";
+
+"LIUlYL" = "Completed";
+
+"LiqHhv" = "You don't have a grade for this course.";
+
+"NkwZva-F7VTuq" = "Just to confirm, you wanted ‘Invited or Pending’?";
+
+"NkwZva-Fa1lBJ" = "Just to confirm, you wanted ‘Active’?";
+
+"NkwZva-LIUlYL" = "Just to confirm, you wanted ‘Completed’?";
+
+"NkwZva-Tmsc9P" = "Just to confirm, you wanted ‘None’?";
+
+"O5AdgG" = "Current or Concluded";
+
+"PCCAwS" = "Sender";
+
+"Q0bXwv" = "Name";
+
+"RLeCrB" = "Course State Filter";
+
+"SendMessage-DisplayName-content" = "Content";
+
+"SendMessage-DisplayName-recipients" = "Recipients";
+
+"SendMessage-DisplayName-speakableGroupName" = "Group Name";
+
+"T2CERK" = "Check grade for ${course}";
+
+"TGLrOI" = "Your grade is ${combinedGradeOutput}.";
+
+"TfdYiZ" = "Course";
+
+"Tmsc9P" = "None";
+
+"V9svmQ-ERAfQe" = "Just to confirm, you wanted ‘Available’?";
+
+"V9svmQ-O5AdgG" = "Just to confirm, you wanted ‘Current or Concluded’?";
+
+"V9svmQ-WNYXaC" = "Just to confirm, you wanted ‘Unpublished’?";
+
+"V9svmQ-xEPth2" = "Just to confirm, you wanted ‘None’?";
+
+"V9svmQ-zta2p2" = "Just to confirm, you wanted ‘Completed’?";
+
+"VPBvKA" = "Formatted Grade Percentage";
+
+"Vz6lSm" = "End At";
+
+"W7E9hc" = "Designer";
+
+"WNYXaC" = "Unpublished";
+
+"WVMqeJ" = "Check grade for ${course}";
+
+"Wjp1vo" = "Combined Grade Output";
+
+"WwA3RT" = "Enrollment State Filter";
+
+"du8Klg" = "Code";
+
+"dzvSLD-3Vo8wT" = "Just to confirm, you wanted ‘None’?";
+
+"dzvSLD-5QYOJM" = "Just to confirm, you wanted ‘Teacher’?";
+
+"dzvSLD-82JI68" = "Just to confirm, you wanted ‘Observer’?";
+
+"dzvSLD-CjlFku" = "Just to confirm, you wanted ‘Student’?";
+
+"dzvSLD-W7E9hc" = "Just to confirm, you wanted ‘Designer’?";
+
+"dzvSLD-iVGdj8" = "Just to confirm, you wanted ‘TA’?";
+
+"i0XFoW" = "For which course?";
+
+"iVGdj8" = "TA";
+
+"jT3rYB" = "You don't have a grade for this course.";
+
+"kzFa0S" = "Checks the current grade in a course.";
+
+"mjLtxO" = "Send Message";
+
+"pM4n34" = "Course";
+
+"qsOBul" = "A request to send a message to the designated recipients.";
+
+"r7jr7O" = "Outgoing Message Type";
+
+"rKcwBB" = "Courses";
+
+"reNyBi" = "Enrollment State Filter";
+
+"rf45or" = "Enrollment Type Filter";
+
+"tjmTwf" = "Conversation Identifier";
+
+"tjwcNf" = "There are ${count} courses matching ‘${course}’.";
+
+"tk6995" = "Grade Percentage";
+
+"v0qUig" = "Attachments";
+
+"vS4nQh" = "Something went wrong checking your grade.";
+
+"xEPth2" = "None";
+
+"zAVDiA" = "Just to confirm, you wanted ‘${course}’?";
+
+"zIvQFB" = "Grade Name";
+
+"zta2p2" = "Completed";
+

@@ -34,6 +34,12 @@
 		5E6441951C3EE2E0003D7397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441931C3EE2E0003D7397 /* LaunchScreen.storyboard */; };
 		5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB551C1C483E7200953B20 /* CoreData.framework */; };
 		6603B81D43D1722F21CA35E8 /* Pods_parent_defaults_Parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD9E310CF6459ADE27807CA /* Pods_parent_defaults_Parent.framework */; };
+		6A150B8627050DDF0092A727 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A150B8527050DDF0092A727 /* Core.framework */; };
+		6A8DDFD52703604D00CA6F71 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8DDFD42703604D00CA6F71 /* Intents.framework */; };
+		6A8DDFD82703604D00CA6F71 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DDFD72703604D00CA6F71 /* IntentHandler.swift */; };
+		6A8DDFDC2703604D00CA6F71 /* ParentSiriExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6A8DDFD32703604D00CA6F71 /* ParentSiriExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6AA07F252703D1E100A2D646 /* Parent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07F242703D1E100A2D646 /* Parent.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
+		6AA07F372704346500A2D646 /* Parent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07F242703D1E100A2D646 /* Parent.intentdefinition */; };
 		785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 785AC17E20CEDAD300C28E46 /* Settings.bundle */; };
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
 		78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */; };
@@ -98,6 +104,13 @@
 			remoteGlobalIDString = 5E6441861C3EE2E0003D7397;
 			remoteInfo = Parent;
 		};
+		6A8DDFDA2703604D00CA6F71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E64417F1C3EE2E0003D7397 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A8DDFD22703604D00CA6F71;
+			remoteInfo = SiriExtension;
+		};
 		E80763C923E08DA10085DAFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E64417F1C3EE2E0003D7397 /* Project object */;
@@ -124,6 +137,17 @@
 				3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A8DDFDD2703604D00CA6F71 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6A8DDFDC2703604D00CA6F71 /* ParentSiriExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E80763CF23E08DA10085DAFB /* Embed Frameworks */ = {
@@ -265,6 +289,15 @@
 		5E6441961C3EE2E0003D7397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6442331C3F1C9C003D7397 /* Parent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Parent-Bridging-Header.h"; sourceTree = "<group>"; };
 		5EEB551C1C483E7200953B20 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6A150B8527050DDF0092A727 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A8DDFD32703604D00CA6F71 /* ParentSiriExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ParentSiriExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A8DDFD42703604D00CA6F71 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		6A8DDFD72703604D00CA6F71 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		6A8DDFD92703604D00CA6F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A8DDFE62703949900CA6F71 /* ParentSiriExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParentSiriExtension.entitlements; sourceTree = "<group>"; };
+		6A8DDFE92703AA9C00CA6F71 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A8DDFED2703ACC100CA6F71 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AA07F242703D1E100A2D646 /* Parent.intentdefinition */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.intentdefinition; path = Parent.intentdefinition; sourceTree = "<group>"; };
 		6CD9E310CF6459ADE27807CA /* Pods_parent_defaults_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent_defaults_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E6BDD2513908E187E77D0C6 /* Pods-defaults-common_tests-ParentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-ParentTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-ParentTests/Pods-defaults-common_tests-ParentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6F81215C648C522BCD82F22E /* Pods_parent_defaults_ParentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent_defaults_ParentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -388,6 +421,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A8DDFD02703604D00CA6F71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A8DDFD52703604D00CA6F71 /* Intents.framework in Frameworks */,
+				6A150B8627050DDF0092A727 /* Core.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E80763CD23E08DA10085DAFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -484,11 +526,13 @@
 		5E64417E1C3EE2E0003D7397 = {
 			isa = PBXGroup;
 			children = (
+				6AA07F212703CE9400A2D646 /* CustomIntents */,
 				785AC17E20CEDAD300C28E46 /* Settings.bundle */,
 				5E6441891C3EE2E0003D7397 /* Parent */,
 				3B36A2E02322C26A00599A1E /* ParentUnitTests */,
 				E8E1BE4B23C6891F000E3A76 /* ParentUITests */,
 				E80763D723E08DC80085DAFB /* ParentE2ETests */,
+				6A8DDFD62703604D00CA6F71 /* ParentSiriExtension */,
 				5E7790AF1C46CBA100429BF8 /* Frameworks */,
 				5E6441881C3EE2E0003D7397 /* Products */,
 				E2CB0046CD9881A39071A512 /* Pods */,
@@ -502,6 +546,7 @@
 				3B36A2DF2322C26A00599A1E /* ParentUnitTests.xctest */,
 				E8E1BE4A23C6891F000E3A76 /* ParentUITests.xctest */,
 				E80763D523E08DA10085DAFB /* ParentE2ETests.xctest */,
+				6A8DDFD32703604D00CA6F71 /* ParentSiriExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -538,6 +583,9 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A150B8527050DDF0092A727 /* Core.framework */,
+				6A8DDFED2703ACC100CA6F71 /* Core.framework */,
+				6A8DDFE92703AA9C00CA6F71 /* Core.framework */,
 				E8E1BE5A23C68A2B000E3A76 /* Core.framework */,
 				3BD0CD742327027000B3341E /* Core.framework */,
 				E8E1BE5823C68A14000E3A76 /* CoreUITests.framework */,
@@ -563,8 +611,27 @@
 				8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */,
 				6CD9E310CF6459ADE27807CA /* Pods_parent_defaults_Parent.framework */,
 				6F81215C648C522BCD82F22E /* Pods_parent_defaults_ParentUnitTests.framework */,
+				6A8DDFD42703604D00CA6F71 /* Intents.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A8DDFD62703604D00CA6F71 /* ParentSiriExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6A8DDFE62703949900CA6F71 /* ParentSiriExtension.entitlements */,
+				6A8DDFD72703604D00CA6F71 /* IntentHandler.swift */,
+				6A8DDFD92703604D00CA6F71 /* Info.plist */,
+			);
+			path = ParentSiriExtension;
+			sourceTree = "<group>";
+		};
+		6AA07F212703CE9400A2D646 /* CustomIntents */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07F242703D1E100A2D646 /* Parent.intentdefinition */,
+			);
+			path = CustomIntents;
 			sourceTree = "<group>";
 		};
 		7893BDCE20D1A74700231DF7 /* Admin */ = {
@@ -816,15 +883,34 @@
 				5E6441851C3EE2E0003D7397 /* Resources */,
 				5E75B5FF1C4D4A7F00A44160 /* Embed Frameworks */,
 				ADAFC3B5838CDB330E525883 /* [CP] Embed Pods Frameworks */,
+				6A8DDFDD2703604D00CA6F71 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6A8DDFDB2703604D00CA6F71 /* PBXTargetDependency */,
 			);
 			name = Parent;
 			productName = Parent;
 			productReference = 5E6441871C3EE2E0003D7397 /* Parent.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6A8DDFD22703604D00CA6F71 /* ParentSiriExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A8DDFE02703604D00CA6F71 /* Build configuration list for PBXNativeTarget "ParentSiriExtension" */;
+			buildPhases = (
+				6A8DDFCF2703604D00CA6F71 /* Sources */,
+				6A8DDFD02703604D00CA6F71 /* Frameworks */,
+				6A8DDFD12703604D00CA6F71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ParentSiriExtension;
+			productName = SiriExtension;
+			productReference = 6A8DDFD32703604D00CA6F71 /* ParentSiriExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		E80763C723E08DA10085DAFB /* ParentE2ETests */ = {
 			isa = PBXNativeTarget;
@@ -874,7 +960,7 @@
 		5E64417F1C3EE2E0003D7397 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
@@ -900,6 +986,11 @@
 								enabled = 1;
 							};
 						};
+					};
+					6A8DDFD22703604D00CA6F71 = {
+						CreatedOnToolsVersion = 13.0;
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
 					};
 					E80763C723E08DA10085DAFB = {
 						DevelopmentTeam = B6333T4PXQ;
@@ -965,6 +1056,7 @@
 				3B36A2DE2322C26A00599A1E /* ParentUnitTests */,
 				E8E1BE4923C6891F000E3A76 /* ParentUITests */,
 				E80763C723E08DA10085DAFB /* ParentE2ETests */,
+				6A8DDFD22703604D00CA6F71 /* ParentSiriExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1001,6 +1093,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A8DDFD12703604D00CA6F71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E80763CE23E08DA10085DAFB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1025,8 +1124,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-ParentE2ETests/Pods-needs-pspdfkit-ParentE2ETests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1070,8 +1169,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1111,8 +1210,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1134,14 +1233,16 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
@@ -1229,6 +1330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AA07F252703D1E100A2D646 /* Parent.intentdefinition in Sources */,
 				78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */,
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
 				3BEA6CC1245887F000BE4589 /* ParentConversationListViewController.swift in Sources */,
@@ -1248,6 +1350,15 @@
 				7D00F34024573B1600C370D5 /* StudentDetailsViewController.swift in Sources */,
 				7D1801B324BF9C0C00A7F023 /* UserNotificationReminder.swift in Sources */,
 				7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A8DDFCF2703604D00CA6F71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AA07F372704346500A2D646 /* Parent.intentdefinition in Sources */,
+				6A8DDFD82703604D00CA6F71 /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1278,6 +1389,11 @@
 			isa = PBXTargetDependency;
 			target = 5E6441861C3EE2E0003D7397 /* Parent */;
 			targetProxy = 3B36A2E42322C26B00599A1E /* PBXContainerItemProxy */;
+		};
+		6A8DDFDB2703604D00CA6F71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A8DDFD22703604D00CA6F71 /* ParentSiriExtension */;
+			targetProxy = 6A8DDFDA2703604D00CA6F71 /* PBXContainerItemProxy */;
 		};
 		E80763C823E08DA10085DAFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1576,6 +1692,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E03AFC6A296E0CCA5F13C25A /* Pods-parent_defaults-Parent.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Parent/Parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: iOS Builds (73MVYX3ELK)";
@@ -1607,6 +1724,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E403D6B1080D654745FB1A78 /* Pods-parent_defaults-Parent.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Parent/Parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Instructure, Inc. (B6333T4PXQ)";
@@ -1629,6 +1747,74 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Parent/Parent-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		6A8DDFDE2703604D00CA6F71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ParentSiriExtension/ParentSiriExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: iOS Builds (73MVYX3ELK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParentSiriExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ParentSiriExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Instructure Inc. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp.ParentSiriExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A8DDFDF2703604D00CA6F71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ParentSiriExtension/ParentSiriExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Instructure, Inc. (B6333T4PXQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParentSiriExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ParentSiriExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Instructure Inc. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp.ParentSiriExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1757,6 +1943,15 @@
 			buildConfigurations = (
 				5E6441B01C3EE2E0003D7397 /* Debug */,
 				5E6441B11C3EE2E0003D7397 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A8DDFE02703604D00CA6F71 /* Build configuration list for PBXNativeTarget "ParentSiriExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A8DDFDE2703604D00CA6F71 /* Debug */,
+				6A8DDFDF2703604D00CA6F71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -36,6 +36,46 @@
 		5B57D3A322ED802B00DEA620 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B57D3A122ED802B00DEA620 /* InfoPlist.strings */; };
 		5B57D3A622ED802B00DEA620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B57D3A422ED802B00DEA620 /* Localizable.strings */; };
 		61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F438E21DD4E60B00552D14 /* AVFoundation.framework */; };
+		6A57F1CD2705FDF500B3FFE1 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AA2705FDF200B3FFE1 /* it.lproj */; };
+		6A57F1CE2705FDF500B3FFE1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AB2705FDF200B3FFE1 /* en.lproj */; };
+		6A57F1CF2705FDF500B3FFE1 /* en-GB-instukhe.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AC2705FDF200B3FFE1 /* en-GB-instukhe.lproj */; };
+		6A57F1D02705FDF500B3FFE1 /* sl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AD2705FDF200B3FFE1 /* sl.lproj */; };
+		6A57F1D12705FDF500B3FFE1 /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AE2705FDF300B3FFE1 /* pl.lproj */; };
+		6A57F1D22705FDF500B3FFE1 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AF2705FDF300B3FFE1 /* ar.lproj */; };
+		6A57F1D32705FDF500B3FFE1 /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B02705FDF300B3FFE1 /* sv.lproj */; };
+		6A57F1D42705FDF500B3FFE1 /* en-CY.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B12705FDF300B3FFE1 /* en-CY.lproj */; };
+		6A57F1D52705FDF500B3FFE1 /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B22705FDF300B3FFE1 /* fi.lproj */; };
+		6A57F1D62705FDF500B3FFE1 /* zh.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B32705FDF300B3FFE1 /* zh.lproj */; };
+		6A57F1D72705FDF500B3FFE1 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B42705FDF300B3FFE1 /* Base.lproj */; };
+		6A57F1D82705FDF500B3FFE1 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B52705FDF300B3FFE1 /* ru.lproj */; };
+		6A57F1D92705FDF500B3FFE1 /* cy.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B62705FDF300B3FFE1 /* cy.lproj */; };
+		6A57F1DA2705FDF500B3FFE1 /* en-CA.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B72705FDF300B3FFE1 /* en-CA.lproj */; };
+		6A57F1DB2705FDF500B3FFE1 /* da-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B82705FDF300B3FFE1 /* da-instk12.lproj */; };
+		6A57F1DC2705FDF500B3FFE1 /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B92705FDF400B3FFE1 /* ca.lproj */; };
+		6A57F1DD2705FDF500B3FFE1 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BA2705FDF400B3FFE1 /* da.lproj */; };
+		6A57F1DE2705FDF500B3FFE1 /* en-AU-unimelb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BB2705FDF400B3FFE1 /* en-AU-unimelb.lproj */; };
+		6A57F1DF2705FDF500B3FFE1 /* en-AU.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BC2705FDF400B3FFE1 /* en-AU.lproj */; };
+		6A57F1E02705FDF500B3FFE1 /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BD2705FDF400B3FFE1 /* th.lproj */; };
+		6A57F1E12705FDF500B3FFE1 /* zh-HK.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BE2705FDF400B3FFE1 /* zh-HK.lproj */; };
+		6A57F1E22705FDF500B3FFE1 /* is.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BF2705FDF400B3FFE1 /* is.lproj */; };
+		6A57F1E32705FDF500B3FFE1 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C02705FDF400B3FFE1 /* nb.lproj */; };
+		6A57F1E42705FDF500B3FFE1 /* fr-CA.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C12705FDF400B3FFE1 /* fr-CA.lproj */; };
+		6A57F1E52705FDF500B3FFE1 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C22705FDF400B3FFE1 /* nl.lproj */; };
+		6A57F1E62705FDF500B3FFE1 /* nb-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C32705FDF400B3FFE1 /* nb-instk12.lproj */; };
+		6A57F1E72705FDF500B3FFE1 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C42705FDF400B3FFE1 /* ja.lproj */; };
+		6A57F1E82705FDF500B3FFE1 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C52705FDF500B3FFE1 /* pt.lproj */; };
+		6A57F1E92705FDF500B3FFE1 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C62705FDF500B3FFE1 /* de.lproj */; };
+		6A57F1EA2705FDF500B3FFE1 /* ht.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C72705FDF500B3FFE1 /* ht.lproj */; };
+		6A57F1EB2705FDF500B3FFE1 /* mi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C82705FDF500B3FFE1 /* mi.lproj */; };
+		6A57F1EC2705FDF500B3FFE1 /* sv-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C92705FDF500B3FFE1 /* sv-instk12.lproj */; };
+		6A57F1ED2705FDF500B3FFE1 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1CA2705FDF500B3FFE1 /* es.lproj */; };
+		6A57F1EE2705FDF500B3FFE1 /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1CB2705FDF500B3FFE1 /* pt-BR.lproj */; };
+		6A57F1EF2705FDF500B3FFE1 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1CC2705FDF500B3FFE1 /* fr.lproj */; };
+		6A58276026FBBAD30081C713 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A58275F26FBBAD30081C713 /* Intents.framework */; };
+		6A58276326FBBAD30081C713 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A58276226FBBAD30081C713 /* IntentHandler.swift */; };
+		6A58277826FBBAD30081C713 /* StudentSiriExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6A58275E26FBBAD30081C713 /* StudentSiriExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6A62B95726FCEC5A0019E5B2 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A62B95626FCEC5A0019E5B2 /* Core.framework */; };
+		7B932FB2AE6F1E26C2E28075 /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A62B94926FCE4500019E5B2 /* Pods_defaults_Student.framework */; };
 		7D0E22B923A19E430075E879 /* SubmissionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E22B823A19E430075E879 /* SubmissionDetailsViewControllerTests.swift */; };
 		7D14864E230EF4AF003944A2 /* TextSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */; };
 		7D148654230F0EAF003944A2 /* SubmissionButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */; };
@@ -248,6 +288,13 @@
 			remoteGlobalIDString = 3B6DCCA41FB502CD005EE8D2;
 			remoteInfo = GradesWidget;
 		};
+		6A58277626FBBAD30081C713 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A58275D26FBBAD30081C713;
+			remoteInfo = SiriExtension;
+		};
 		7DC5717522F8B16200F2E9BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
@@ -302,6 +349,7 @@
 				B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */,
 				3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */,
 				D9FD8F412546C3F500C6842B /* Widgets.appex in Embed App Extensions */,
+				6A58277826FBBAD30081C713 /* StudentSiriExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +612,51 @@
 		6784CACE8F4CE3D651D62113 /* Pods_defaults_PreSubmissionAnnotations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_PreSubmissionAnnotations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
+		6A57F1AA2705FDF200B3FFE1 /* it.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = it.lproj; path = ../../../Core/Core/CustomIntents/it.lproj; sourceTree = "<group>"; };
+		6A57F1AB2705FDF200B3FFE1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = ../../../Core/Core/CustomIntents/en.lproj; sourceTree = "<group>"; };
+		6A57F1AC2705FDF200B3FFE1 /* en-GB-instukhe.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-GB-instukhe.lproj"; path = "../../../Core/Core/CustomIntents/en-GB-instukhe.lproj"; sourceTree = "<group>"; };
+		6A57F1AD2705FDF200B3FFE1 /* sl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sl.lproj; path = ../../../Core/Core/CustomIntents/sl.lproj; sourceTree = "<group>"; };
+		6A57F1AE2705FDF300B3FFE1 /* pl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pl.lproj; path = ../../../Core/Core/CustomIntents/pl.lproj; sourceTree = "<group>"; };
+		6A57F1AF2705FDF300B3FFE1 /* ar.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ar.lproj; path = ../../../Core/Core/CustomIntents/ar.lproj; sourceTree = "<group>"; };
+		6A57F1B02705FDF300B3FFE1 /* sv.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sv.lproj; path = ../../../Core/Core/CustomIntents/sv.lproj; sourceTree = "<group>"; };
+		6A57F1B12705FDF300B3FFE1 /* en-CY.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-CY.lproj"; path = "../../../Core/Core/CustomIntents/en-CY.lproj"; sourceTree = "<group>"; };
+		6A57F1B22705FDF300B3FFE1 /* fi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fi.lproj; path = ../../../Core/Core/CustomIntents/fi.lproj; sourceTree = "<group>"; };
+		6A57F1B32705FDF300B3FFE1 /* zh.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = zh.lproj; path = ../../../Core/Core/CustomIntents/zh.lproj; sourceTree = "<group>"; };
+		6A57F1B42705FDF300B3FFE1 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = ../../../Core/Core/CustomIntents/Base.lproj; sourceTree = "<group>"; };
+		6A57F1B52705FDF300B3FFE1 /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ru.lproj; path = ../../../Core/Core/CustomIntents/ru.lproj; sourceTree = "<group>"; };
+		6A57F1B62705FDF300B3FFE1 /* cy.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cy.lproj; path = ../../../Core/Core/CustomIntents/cy.lproj; sourceTree = "<group>"; };
+		6A57F1B72705FDF300B3FFE1 /* en-CA.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-CA.lproj"; path = "../../../Core/Core/CustomIntents/en-CA.lproj"; sourceTree = "<group>"; };
+		6A57F1B82705FDF300B3FFE1 /* da-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "da-instk12.lproj"; path = "../../../Core/Core/CustomIntents/da-instk12.lproj"; sourceTree = "<group>"; };
+		6A57F1B92705FDF400B3FFE1 /* ca.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ca.lproj; path = ../../../Core/Core/CustomIntents/ca.lproj; sourceTree = "<group>"; };
+		6A57F1BA2705FDF400B3FFE1 /* da.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = da.lproj; path = ../../../Core/Core/CustomIntents/da.lproj; sourceTree = "<group>"; };
+		6A57F1BB2705FDF400B3FFE1 /* en-AU-unimelb.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-AU-unimelb.lproj"; path = "../../../Core/Core/CustomIntents/en-AU-unimelb.lproj"; sourceTree = "<group>"; };
+		6A57F1BC2705FDF400B3FFE1 /* en-AU.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-AU.lproj"; path = "../../../Core/Core/CustomIntents/en-AU.lproj"; sourceTree = "<group>"; };
+		6A57F1BD2705FDF400B3FFE1 /* th.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = th.lproj; path = ../../../Core/Core/CustomIntents/th.lproj; sourceTree = "<group>"; };
+		6A57F1BE2705FDF400B3FFE1 /* zh-HK.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-HK.lproj"; path = "../../../Core/Core/CustomIntents/zh-HK.lproj"; sourceTree = "<group>"; };
+		6A57F1BF2705FDF400B3FFE1 /* is.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = is.lproj; path = ../../../Core/Core/CustomIntents/is.lproj; sourceTree = "<group>"; };
+		6A57F1C02705FDF400B3FFE1 /* nb.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nb.lproj; path = ../../../Core/Core/CustomIntents/nb.lproj; sourceTree = "<group>"; };
+		6A57F1C12705FDF400B3FFE1 /* fr-CA.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "fr-CA.lproj"; path = "../../../Core/Core/CustomIntents/fr-CA.lproj"; sourceTree = "<group>"; };
+		6A57F1C22705FDF400B3FFE1 /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nl.lproj; path = ../../../Core/Core/CustomIntents/nl.lproj; sourceTree = "<group>"; };
+		6A57F1C32705FDF400B3FFE1 /* nb-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "nb-instk12.lproj"; path = "../../../Core/Core/CustomIntents/nb-instk12.lproj"; sourceTree = "<group>"; };
+		6A57F1C42705FDF400B3FFE1 /* ja.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ja.lproj; path = ../../../Core/Core/CustomIntents/ja.lproj; sourceTree = "<group>"; };
+		6A57F1C52705FDF500B3FFE1 /* pt.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pt.lproj; path = ../../../Core/Core/CustomIntents/pt.lproj; sourceTree = "<group>"; };
+		6A57F1C62705FDF500B3FFE1 /* de.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = de.lproj; path = ../../../Core/Core/CustomIntents/de.lproj; sourceTree = "<group>"; };
+		6A57F1C72705FDF500B3FFE1 /* ht.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ht.lproj; path = ../../../Core/Core/CustomIntents/ht.lproj; sourceTree = "<group>"; };
+		6A57F1C82705FDF500B3FFE1 /* mi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mi.lproj; path = ../../../Core/Core/CustomIntents/mi.lproj; sourceTree = "<group>"; };
+		6A57F1C92705FDF500B3FFE1 /* sv-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "sv-instk12.lproj"; path = "../../../Core/Core/CustomIntents/sv-instk12.lproj"; sourceTree = "<group>"; };
+		6A57F1CA2705FDF500B3FFE1 /* es.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = es.lproj; path = ../../../Core/Core/CustomIntents/es.lproj; sourceTree = "<group>"; };
+		6A57F1CB2705FDF500B3FFE1 /* pt-BR.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "pt-BR.lproj"; path = "../../../Core/Core/CustomIntents/pt-BR.lproj"; sourceTree = "<group>"; };
+		6A57F1CC2705FDF500B3FFE1 /* fr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fr.lproj; path = ../../../Core/Core/CustomIntents/fr.lproj; sourceTree = "<group>"; };
+		6A58275E26FBBAD30081C713 /* StudentSiriExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudentSiriExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A58275F26FBBAD30081C713 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		6A58276226FBBAD30081C713 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		6A58276426FBBAD30081C713 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A58276A26FBBAD30081C713 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		6A58965E2700F22C00A0ACE6 /* StudentSiriExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudentSiriExtension.entitlements; sourceTree = "<group>"; };
+		6A62B94626FCE40A0019E5B2 /* Fuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Fuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A62B94926FCE4500019E5B2 /* Pods_defaults_Student.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_defaults_Student.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A62B94D26FCE4780019E5B2 /* Fuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Fuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A62B95626FCEC5A0019E5B2 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD5E4D6FDF453975C625E3B /* Pods-defaults-StudentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		71D54F08318539FDBC0122EE /* Pods-defaults-Student.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.release.xcconfig"; sourceTree = "<group>"; };
 		7D06113E2481A7E50014C8E4 /* Student-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Student-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -744,6 +837,7 @@
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A7EB4034F74A2C78B0470206 /* Pods-needs-pspdfkit-StudentE2ETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentE2ETests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentE2ETests/Pods-needs-pspdfkit-StudentE2ETests.debug.xcconfig"; sourceTree = "<group>"; };
 		A822480779578C4C9DDD6C8B /* Pods-needs-pspdfkit-StudentE2ETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentE2ETests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentE2ETests/Pods-needs-pspdfkit-StudentE2ETests.release.xcconfig"; sourceTree = "<group>"; };
+		ABF354B06150705FFF4BBBD9 /* Pods-app_extension-SiriExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_extension-SiriExtension.release.xcconfig"; path = "../Pods/Target Support Files/Pods-app_extension-SiriExtension/Pods-app_extension-SiriExtension.release.xcconfig"; sourceTree = "<group>"; };
 		B11028B923CFC92A00FFAB7E /* SubmissionCommentsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsViewControllerTests.swift; sourceTree = "<group>"; };
 		B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentsViewController.storyboard; sourceTree = "<group>"; };
 		B157A61022BD790200963E56 /* AssignmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
@@ -820,6 +914,7 @@
 		B5F122D01D8C4E050045063A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDDBB798D4D4EA95C1F9796 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C555969F8563957A5CFE1FBD /* Pods-defaults-SiriExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SiriExtension.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-SiriExtension/Pods-defaults-SiriExtension.release.xcconfig"; sourceTree = "<group>"; };
 		C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizzesE2ETests.swift; sourceTree = "<group>"; };
 		C935D42F26E0EAE700C940F7 /* K5ScheduleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleE2ETests.swift; sourceTree = "<group>"; };
 		C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesE2ETests.swift; sourceTree = "<group>"; };
@@ -890,9 +985,11 @@
 		E8EA860A2304974C00E4FD76 /* NotificationsListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsListTests.swift; sourceTree = "<group>"; };
 		E8EA860D230497AC00E4FD76 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
 		E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
+		E98B2A132F9A509E3D67B05C /* Pods-app_extension-SiriExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_extension-SiriExtension.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-app_extension-SiriExtension/Pods-app_extension-SiriExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		EB3ECFC926375AF100289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
 		EC9D739AAC5FF4C6AAF4F8A7 /* Pods_needs_pspdfkit_StudentE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_StudentE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
+		FE944144A618DCA0859A792E /* Pods-defaults-SiriExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SiriExtension.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-SiriExtension/Pods-defaults-SiriExtension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -922,6 +1019,16 @@
 				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
 				2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */,
 				F1FDF738C22DCB5A94323B15 /* Pods_defaults_Student.framework in Frameworks */,
+				7B932FB2AE6F1E26C2E28075 /* Pods_defaults_Student.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A58275B26FBBAD30081C713 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A58276026FBBAD30081C713 /* Intents.framework in Frameworks */,
+				6A62B95726FCEC5A0019E5B2 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,6 +1120,10 @@
 				A822480779578C4C9DDD6C8B /* Pods-needs-pspdfkit-StudentE2ETests.release.xcconfig */,
 				D668B463DC17BB3443A13DB4 /* Pods-needs-pspdfkit-StudentUITests.debug.xcconfig */,
 				D125492B8610602A8B0B08BC /* Pods-needs-pspdfkit-StudentUITests.release.xcconfig */,
+				FE944144A618DCA0859A792E /* Pods-defaults-SiriExtension.debug.xcconfig */,
+				C555969F8563957A5CFE1FBD /* Pods-defaults-SiriExtension.release.xcconfig */,
+				E98B2A132F9A509E3D67B05C /* Pods-app_extension-SiriExtension.debug.xcconfig */,
+				ABF354B06150705FFF4BBBD9 /* Pods-app_extension-SiriExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1029,6 +1140,7 @@
 				B1BB7A8322BAC820006CA068 /* SubmitAssignment */,
 				B1CA092F22C4237C008AA352 /* SubmitAssignmentTests */,
 				D9FD8F2F2546C39D00C6842B /* Widgets */,
+				6A58276126FBBAD30081C713 /* StudentSiriExtension */,
 				492704741CF4AF7100C631C6 /* Products */,
 				5B0FCCDFB07A88D993D5871D /* Frameworks */,
 				3BFCA4310566C5CB96383521 /* Pods */,
@@ -1046,6 +1158,7 @@
 				7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */,
 				E8C6F50023D626220086B865 /* StudentE2ETests.xctest */,
 				D9FD8F342546C3F300C6842B /* Widgets.appex */,
+				6A58275E26FBBAD30081C713 /* StudentSiriExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1053,6 +1166,7 @@
 		492704751CF4AF7100C631C6 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				6AA07F1D2703C29A00A2D646 /* CustomIntents */,
 				49F9FA4A1CF7B73100654758 /* Assets.xcassets */,
 				7DCF0E9D22F89FB0000AACCE /* Assignments */,
 				7DCF0EB122F89FC2000AACCE /* Courses */,
@@ -1090,6 +1204,10 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A62B95626FCEC5A0019E5B2 /* Core.framework */,
+				6A62B94D26FCE4780019E5B2 /* Fuse.framework */,
+				6A62B94926FCE4500019E5B2 /* Pods_defaults_Student.framework */,
+				6A62B94626FCE40A0019E5B2 /* Fuse.framework */,
 				CF4A448D254700D600F76207 /* Core.framework */,
 				D9FD900F2546CB4C00C6842B /* Core.framework */,
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
@@ -1120,8 +1238,62 @@
 				3C806B61E5A681BC20FC41E9 /* Pods_needs_pspdfkit_StudentUITests.framework */,
 				D9FD8F352546C3F300C6842B /* WidgetKit.framework */,
 				D9FD8F372546C3F300C6842B /* SwiftUI.framework */,
+				6A58275F26FBBAD30081C713 /* Intents.framework */,
+				6A58276A26FBBAD30081C713 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A58276126FBBAD30081C713 /* StudentSiriExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6A58965E2700F22C00A0ACE6 /* StudentSiriExtension.entitlements */,
+				6A58276226FBBAD30081C713 /* IntentHandler.swift */,
+				6A58276426FBBAD30081C713 /* Info.plist */,
+			);
+			path = StudentSiriExtension;
+			sourceTree = "<group>";
+		};
+		6AA07F1D2703C29A00A2D646 /* CustomIntents */ = {
+			isa = PBXGroup;
+			children = (
+				6A57F1AF2705FDF300B3FFE1 /* ar.lproj */,
+				6A57F1B42705FDF300B3FFE1 /* Base.lproj */,
+				6A57F1B92705FDF400B3FFE1 /* ca.lproj */,
+				6A57F1B62705FDF300B3FFE1 /* cy.lproj */,
+				6A57F1B82705FDF300B3FFE1 /* da-instk12.lproj */,
+				6A57F1BA2705FDF400B3FFE1 /* da.lproj */,
+				6A57F1C62705FDF500B3FFE1 /* de.lproj */,
+				6A57F1BB2705FDF400B3FFE1 /* en-AU-unimelb.lproj */,
+				6A57F1BC2705FDF400B3FFE1 /* en-AU.lproj */,
+				6A57F1B72705FDF300B3FFE1 /* en-CA.lproj */,
+				6A57F1B12705FDF300B3FFE1 /* en-CY.lproj */,
+				6A57F1AC2705FDF200B3FFE1 /* en-GB-instukhe.lproj */,
+				6A57F1AB2705FDF200B3FFE1 /* en.lproj */,
+				6A57F1CA2705FDF500B3FFE1 /* es.lproj */,
+				6A57F1B22705FDF300B3FFE1 /* fi.lproj */,
+				6A57F1C12705FDF400B3FFE1 /* fr-CA.lproj */,
+				6A57F1CC2705FDF500B3FFE1 /* fr.lproj */,
+				6A57F1C72705FDF500B3FFE1 /* ht.lproj */,
+				6A57F1BF2705FDF400B3FFE1 /* is.lproj */,
+				6A57F1AA2705FDF200B3FFE1 /* it.lproj */,
+				6A57F1C42705FDF400B3FFE1 /* ja.lproj */,
+				6A57F1C82705FDF500B3FFE1 /* mi.lproj */,
+				6A57F1C32705FDF400B3FFE1 /* nb-instk12.lproj */,
+				6A57F1C02705FDF400B3FFE1 /* nb.lproj */,
+				6A57F1C22705FDF400B3FFE1 /* nl.lproj */,
+				6A57F1AE2705FDF300B3FFE1 /* pl.lproj */,
+				6A57F1CB2705FDF500B3FFE1 /* pt-BR.lproj */,
+				6A57F1C52705FDF500B3FFE1 /* pt.lproj */,
+				6A57F1B52705FDF300B3FFE1 /* ru.lproj */,
+				6A57F1AD2705FDF200B3FFE1 /* sl.lproj */,
+				6A57F1C92705FDF500B3FFE1 /* sv-instk12.lproj */,
+				6A57F1B02705FDF300B3FFE1 /* sv.lproj */,
+				6A57F1BD2705FDF400B3FFE1 /* th.lproj */,
+				6A57F1BE2705FDF400B3FFE1 /* zh-HK.lproj */,
+				6A57F1B32705FDF300B3FFE1 /* zh.lproj */,
+			);
+			path = CustomIntents;
 			sourceTree = "<group>";
 		};
 		7D148652230F0E7F003944A2 /* SubmissionButton */ = {
@@ -2199,6 +2371,7 @@
 				3B6DCCB01FB502CE005EE8D2 /* PBXTargetDependency */,
 				B1BB7A8B22BAC820006CA068 /* PBXTargetDependency */,
 				D9FD8F402546C3F500C6842B /* PBXTargetDependency */,
+				6A58277726FBBAD30081C713 /* PBXTargetDependency */,
 			);
 			name = Student;
 			packageProductDependencies = (
@@ -2207,6 +2380,23 @@
 			productName = Canvas;
 			productReference = 492704731CF4AF7100C631C6 /* Student.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6A58275D26FBBAD30081C713 /* StudentSiriExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A58277E26FBBAD30081C713 /* Build configuration list for PBXNativeTarget "StudentSiriExtension" */;
+			buildPhases = (
+				6A58275A26FBBAD30081C713 /* Sources */,
+				6A58275B26FBBAD30081C713 /* Frameworks */,
+				6A58275C26FBBAD30081C713 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StudentSiriExtension;
+			productName = SiriExtension;
+			productReference = 6A58275E26FBBAD30081C713 /* StudentSiriExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		7DC5716F22F8B16200F2E9BB /* StudentUITests */ = {
 			isa = PBXNativeTarget;
@@ -2328,7 +2518,7 @@
 		4927046B1CF4AF7100C631C6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -2368,6 +2558,9 @@
 								enabled = 1;
 							};
 						};
+					};
+					6A58275D26FBBAD30081C713 = {
+						CreatedOnToolsVersion = 12.5.1;
 					};
 					7DC5716F22F8B16200F2E9BB = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -2478,6 +2671,7 @@
 				7DC5716F22F8B16200F2E9BB /* StudentUITests */,
 				E8C6F4CF23D626220086B865 /* StudentE2ETests */,
 				D9FD8F332546C3F300C6842B /* Widgets */,
+				6A58275D26FBBAD30081C713 /* StudentSiriExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -2497,32 +2691,74 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A57F1CE2705FDF500B3FFE1 /* en.lproj in Resources */,
 				7DCF0FCA22F8A8D7000AACCE /* SubmissionFilesViewController.storyboard in Resources */,
+				6A57F1DF2705FDF500B3FFE1 /* en-AU.lproj in Resources */,
+				6A57F1E32705FDF500B3FFE1 /* nb.lproj in Resources */,
 				2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */,
+				6A57F1DE2705FDF500B3FFE1 /* en-AU-unimelb.lproj in Resources */,
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
+				6A57F1EC2705FDF500B3FFE1 /* sv-instk12.lproj in Resources */,
+				6A57F1E12705FDF500B3FFE1 /* zh-HK.lproj in Resources */,
+				6A57F1E92705FDF500B3FFE1 /* de.lproj in Resources */,
+				6A57F1EF2705FDF500B3FFE1 /* fr.lproj in Resources */,
+				6A57F1ED2705FDF500B3FFE1 /* es.lproj in Resources */,
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
 				3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */,
 				9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */,
+				6A57F1D62705FDF500B3FFE1 /* zh.lproj in Resources */,
+				6A57F1D12705FDF500B3FFE1 /* pl.lproj in Resources */,
+				6A57F1D42705FDF500B3FFE1 /* en-CY.lproj in Resources */,
+				6A57F1D92705FDF500B3FFE1 /* cy.lproj in Resources */,
 				7DCF0FBD22F8A8D7000AACCE /* Drawer.xib in Resources */,
+				6A57F1DA2705FDF500B3FFE1 /* en-CA.lproj in Resources */,
 				7DCF0FC122F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.xib in Resources */,
 				495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */,
+				6A57F1D72705FDF500B3FFE1 /* Base.lproj in Resources */,
 				7D38A7D724CF610E00A4373E /* QuizDetailsViewController.storyboard in Resources */,
 				2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */,
+				6A57F1E62705FDF500B3FFE1 /* nb-instk12.lproj in Resources */,
 				7DCF0FAE22F8A8D7000AACCE /* RubricCollectionViewCell.xib in Resources */,
+				6A57F1E02705FDF500B3FFE1 /* th.lproj in Resources */,
+				6A57F1E82705FDF500B3FFE1 /* pt.lproj in Resources */,
+				6A57F1CF2705FDF500B3FFE1 /* en-GB-instukhe.lproj in Resources */,
+				6A57F1E72705FDF500B3FFE1 /* ja.lproj in Resources */,
 				7DCF0FC322F8A8D7000AACCE /* SubmissionDetailsViewController.storyboard in Resources */,
+				6A57F1E22705FDF500B3FFE1 /* is.lproj in Resources */,
+				6A57F1DB2705FDF500B3FFE1 /* da-instk12.lproj in Resources */,
+				6A57F1D22705FDF500B3FFE1 /* ar.lproj in Resources */,
+				6A57F1E42705FDF500B3FFE1 /* fr-CA.lproj in Resources */,
 				7DCF0FD022F8A8D7000AACCE /* UrlSubmissionViewController.storyboard in Resources */,
+				6A57F1EE2705FDF500B3FFE1 /* pt-BR.lproj in Resources */,
 				2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */,
+				6A57F1D32705FDF500B3FFE1 /* sv.lproj in Resources */,
 				7DCF0FB522F8A8D7000AACCE /* SubmissionCommentFileView.xib in Resources */,
 				7DCF0FAF22F8A8D7000AACCE /* RubricViewController.storyboard in Resources */,
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				7DB3C84024AA613B00B85D35 /* CalendarEventDetailsViewController.storyboard in Resources */,
 				7DCF0FB822F8A8D7000AACCE /* SubmissionCommentsViewController.storyboard in Resources */,
+				6A57F1DC2705FDF500B3FFE1 /* ca.lproj in Resources */,
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
+				6A57F1D82705FDF500B3FFE1 /* ru.lproj in Resources */,
+				6A57F1D52705FDF500B3FFE1 /* fi.lproj in Resources */,
+				6A57F1E52705FDF500B3FFE1 /* nl.lproj in Resources */,
 				7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */,
+				6A57F1EB2705FDF500B3FFE1 /* mi.lproj in Resources */,
+				6A57F1EA2705FDF500B3FFE1 /* ht.lproj in Resources */,
 				7D1D5BE2249184B4009EA317 /* confetti.json in Resources */,
+				6A57F1DD2705FDF500B3FFE1 /* da.lproj in Resources */,
 				7DCF0FBF22F8A8D7000AACCE /* SubmissionDetailsEmptyView.xib in Resources */,
+				6A57F1CD2705FDF500B3FFE1 /* it.lproj in Resources */,
+				6A57F1D02705FDF500B3FFE1 /* sl.lproj in Resources */,
 				7DCF0FCD22F8A8D7000AACCE /* TextSubmissionViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A58275C26FBBAD30081C713 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2590,8 +2826,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-StudentE2ETests/Pods-needs-pspdfkit-StudentE2ETests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2688,8 +2924,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2774,8 +3010,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2854,8 +3090,9 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2897,6 +3134,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
@@ -2988,6 +3226,14 @@
 				7DCF0FB422F8A8D7000AACCE /* SubmissionCommentFileView.swift in Sources */,
 				7DCF0FAB22F8A8D7000AACCE /* SubmissionButtonPresenter.swift in Sources */,
 				7DCF0FBA22F8A8D7000AACCE /* SubmissionCommentTextCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A58275A26FBBAD30081C713 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A58276326FBBAD30081C713 /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3150,6 +3396,11 @@
 			isa = PBXTargetDependency;
 			target = 3B6DCCA41FB502CD005EE8D2 /* GradesWidget */;
 			targetProxy = 3B6DCCAF1FB502CE005EE8D2 /* PBXContainerItemProxy */;
+		};
+		6A58277726FBBAD30081C713 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A58275D26FBBAD30081C713 /* StudentSiriExtension */;
+			targetProxy = 6A58277626FBBAD30081C713 /* PBXContainerItemProxy */;
 		};
 		7DC5717622F8B16200F2E9BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3747,6 +3998,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Student/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3777,6 +4029,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Student/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3786,6 +4039,68 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Student/Student-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		6A58277926FBBAD30081C713 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = StudentSiriExtension/StudentSiriExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StudentSiriExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentSiriExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A58277A26FBBAD30081C713 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = StudentSiriExtension/StudentSiriExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StudentSiriExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.StudentSiriExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -4171,6 +4486,15 @@
 			buildConfigurations = (
 				4927049C1CF4AF7200C631C6 /* Debug */,
 				4927049D1CF4AF7200C631C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A58277E26FBBAD30081C713 /* Build configuration list for PBXNativeTarget "StudentSiriExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A58277926FBBAD30081C713 /* Debug */,
+				6A58277A26FBBAD30081C713 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

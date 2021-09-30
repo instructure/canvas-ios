@@ -20,51 +20,51 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/enrollments.html#Enrollment
 public struct APIEnrollment: Codable, Equatable {
-    let id: ID?
-    let course_id: ID?
+    public let id: ID?
+    public let course_id: ID?
     // let sis_course_id: String?
     // let course_integration_id: String?
-    let course_section_id: ID?
+    public let course_section_id: ID?
     // let section_integration_id: String?
     // let sis_account_id: String?
     // let sis_section_id: String?
     // let sis_user_id: String?
-    let enrollment_state: EnrollmentState
+    public let enrollment_state: EnrollmentState
     // let limit_privileges_to_course_section: Bool?
     // let sis_import_id: String?
     // let root_account_id: String
-    let type: String
-    let user_id: ID
-    let associated_user_id: ID?
-    let role: String
-    let role_id: String
+    public let type: String
+    public let user_id: ID
+    public let associated_user_id: ID?
+    public let role: String
+    public let role_id: String
     // let created_at: Date
     // let updated_at: Date
-    let start_at: Date?
-    let end_at: Date?
-    let last_activity_at: Date?
+    public let start_at: Date?
+    public let end_at: Date?
+    public let last_activity_at: Date?
     // let last_attended_at: Date?
     // let total_activity_time: TimeInterval
     // let html_url: String
-    let grades: Grades?
-    let user: APIUser?
-    let computed_current_score: Double?
-    let computed_final_score: Double?
-    let computed_current_grade: String?
-    let computed_final_grade: String?
+    public let grades: Grades?
+    public let user: APIUser?
+    public let computed_current_score: Double?
+    public let computed_final_score: Double?
+    public let computed_current_grade: String?
+    public let computed_final_grade: String?
     // let unposted_current_grade: String?
     // let unposted_final_grade: String?
     // let unposted_current_score: String?
     // let unposted_final_score: String?
     // let has_grading_periods: Bool?
-    let multiple_grading_periods_enabled: Bool?
-    let totals_for_all_grading_periods_option: Bool?
+    public let multiple_grading_periods_enabled: Bool?
+    public let totals_for_all_grading_periods_option: Bool?
     // let current_grading_period_title: String?
-    let current_grading_period_id: String?
-    let current_period_computed_current_score: Double?
-    let current_period_computed_final_score: Double?
-    let current_period_computed_current_grade: String?
-    let current_period_computed_final_grade: String?
+    public let current_grading_period_id: String?
+    public let current_period_computed_current_score: Double?
+    public let current_period_computed_final_score: Double?
+    public let current_period_computed_current_grade: String?
+    public let current_period_computed_final_grade: String?
     // let current_period_unposted_current_score: Double?
     // let current_period_unposted_final_score: Double?
     // let current_period_unposted_current_grade: String?

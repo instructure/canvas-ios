@@ -271,11 +271,25 @@ public struct PostAddMessageRequest: APIRequestable {
 }
 
 public struct PostConversationRequest: APIRequestable {
+    public init(body: Body?) {
+        self.body = body
+    }
+
     // because it is possible to create one conversation per recipient
     // the response is an array
     public typealias Response = [APIConversation]
 
     public struct Body: Encodable, Equatable {
+        public init(subject: String, body: String, recipients: [String], context_code: String? = nil, media_comment_id: String? = nil, media_comment_type: MediaCommentType? = nil, attachment_ids: [String]?) {
+            self.subject = subject
+            self.body = body
+            self.recipients = recipients
+            self.context_code = context_code
+            self.media_comment_id = media_comment_id
+            self.media_comment_type = media_comment_type
+            self.attachment_ids = attachment_ids
+        }
+
         public let subject: String
         public let body: String
         public let recipients: [String]

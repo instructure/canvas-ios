@@ -68,7 +68,7 @@ public struct GetSearchRecipientsRequest: APIRequestable {
     }
 
     public init(
-        context: Context,
+        context: Context? = nil,
         qualifier: ContextQualifier? = nil,
         search: String = "",
         userID: String? = nil,
@@ -76,13 +76,13 @@ public struct GetSearchRecipientsRequest: APIRequestable {
         includeContexts: Bool = false,
         perPage: Int = 50
     ) {
-        var context = context.canvasContextID
+        var context = context?.canvasContextID
         if let qualifier = qualifier {
-            context.append("_\(qualifier.rawValue)")
+            context?.append("_\(qualifier.rawValue)")
         }
         var items: [APIQueryItem] = [
             .perPage(perPage),
-            .value("context", context),
+            .optionalValue("context", context),
             .value("search", search),
             .value("synthetic_contexts", "1"),
             .optionalValue("user_id", userID),

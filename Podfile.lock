@@ -70,6 +70,7 @@ PODS:
     - boost-for-react-native
     - DoubleConversion
     - glog
+  - Fuse (1.4.0)
   - glog (0.3.5)
   - GoogleAppMeasurement (6.9.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
@@ -393,6 +394,7 @@ DEPENDENCIES:
   - Firebase/Crashlytics (~> 6.34.0)
   - Firebase/RemoteConfig (~> 6.34.0)
   - Folly (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - Fuse
   - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities (~> 6.0)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
@@ -444,6 +446,7 @@ SPEC REPOS:
     - FirebaseCrashlytics
     - FirebaseInstallations
     - FirebaseRemoteConfig
+    - Fuse
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -549,6 +552,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
   FirebaseRemoteConfig: 35a729305f254fb15a2e541d4b36f3a379da7fdc
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
+  Fuse: 48eaf66d0c407c7f8b0ddb168888dc4637e87f14
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   GoogleAppMeasurement: a6a3a066369828db64eda428cb2856dc1cdc7c4e
   GoogleDataTransport: 445302b7da4216da63071a4c29e7023f47192e5a
@@ -591,6 +595,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: deb910f21b8e6c6da25a7a5585d47163a9686475
+PODFILE CHECKSUM: 6d7170ca72136e680c70ceda5caf56cb7f8ee991
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

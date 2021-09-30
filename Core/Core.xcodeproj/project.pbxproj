@@ -76,6 +76,11 @@
 		49E3BF3A24BBC7E200EF1E8F /* GradeStatisticsGraphViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3BF3924BBC7E200EF1E8F /* GradeStatisticsGraphViewTests.swift */; };
 		5BA4695B261AEDBA00A3BFF6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA46959261AEDBA00A3BFF6 /* InfoPlist.strings */; };
 		5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786A8218599B600471A5F /* InfoPlist.strings */; };
+		6A57F1632705FD7700B3FFE1 /* Shared.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6A57F1652705FD7700B3FFE1 /* Shared.intentdefinition */; };
+		6A8DDFE32703608D00CA6F71 /* SendMessageIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DDFE22703608D00CA6F71 /* SendMessageIntentHandler.swift */; };
+		6A8DDFE5270366A800CA6F71 /* CanvasIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DDFE4270366A800CA6F71 /* CanvasIntentHandler.swift */; };
+		6A8DDFE82703A12600CA6F71 /* GetCoursesIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DDFE72703A12600CA6F71 /* GetCoursesIntentHandler.swift */; };
+		6AA07F3927048E5600A2D646 /* CheckCourseGradeIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07F3827048E5600A2D646 /* CheckCourseGradeIntentHandler.swift */; };
 		76C331C8F363ABC602A1B6DD /* Pods_needs_pspdfkit_CoreTester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BC2536A70738540E5EE74 /* Pods_needs_pspdfkit_CoreTester.framework */; };
 		78151DCF21AE7E0500692862 /* APIDiscussionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCE21AE7E0500692862 /* APIDiscussionTests.swift */; };
 		7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D016B5C23E883AC00C6E0CA /* FilePickerTests.swift */; };
@@ -1324,6 +1329,45 @@
 		5BFDE65421BCF6CA00040DF2 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BFDE65521BCF6CA00040DF2 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-CY"; path = "en-CY.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		5BFDE65621BCF6CA00040DF2 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Main.strings"; sourceTree = "<group>"; };
+		6A57F1642705FD7700B3FFE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Shared.intentdefinition; sourceTree = "<group>"; };
+		6A57F1672705FD7B00B3FFE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1692705FD7D00B3FFE1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F16B2705FD8000B3FFE1 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F16D2705FD8200B3FFE1 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F16F2705FD8400B3FFE1 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F1712705FD8600B3FFE1 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1732705FD8900B3FFE1 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F1752705FD8B00B3FFE1 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1772705FD8D00B3FFE1 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F1792705FD8F00B3FFE1 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F17B2705FD9200B3FFE1 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F17D2705FD9300B3FFE1 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F17F2705FD9600B3FFE1 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F1812705FD9B00B3FFE1 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1832705FD9D00B3FFE1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1852705FD9F00B3FFE1 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F1872705FDA100B3FFE1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1892705FDA800B3FFE1 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F18B2705FDAA00B3FFE1 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F18D2705FDAE00B3FFE1 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F18F2705FDB100B3FFE1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1912705FDB300B3FFE1 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1932705FDB600B3FFE1 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1952705FDB900B3FFE1 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F1972705FDBB00B3FFE1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1992705FDBE00B3FFE1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F19B2705FDC000B3FFE1 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F19D2705FDC300B3FFE1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F19F2705FDC600B3FFE1 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1A12705FDC900B3FFE1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1A32705FDCC00B3FFE1 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1A52705FDCF00B3FFE1 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Shared.strings"; sourceTree = "<group>"; };
+		6A57F1A72705FDD100B3FFE1 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A57F1A92705FDD400B3FFE1 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Shared.strings; sourceTree = "<group>"; };
+		6A8DDFE22703608D00CA6F71 /* SendMessageIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageIntentHandler.swift; sourceTree = "<group>"; };
+		6A8DDFE4270366A800CA6F71 /* CanvasIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasIntentHandler.swift; sourceTree = "<group>"; };
+		6A8DDFE72703A12600CA6F71 /* GetCoursesIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesIntentHandler.swift; sourceTree = "<group>"; };
+		6AA07F3827048E5600A2D646 /* CheckCourseGradeIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCourseGradeIntentHandler.swift; sourceTree = "<group>"; };
 		78151DCA21AE75D400692862 /* APIDiscussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussion.swift; sourceTree = "<group>"; };
 		78151DCE21AE7E0500692862 /* APIDiscussionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTests.swift; sourceTree = "<group>"; };
 		7851D9B22138264800E76EC3 /* GetCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomColors.swift; sourceTree = "<group>"; };
@@ -2247,6 +2291,8 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				6AA07F2B27042F7900A2D646 /* CustomIntents */,
+				6A8DDFE12703606C00CA6F71 /* IntentHandlers */,
 				CF22C94125F286E000C2E012 /* Accessibility */,
 				7DB92CA824C5FD4A004A6C16 /* AccountNotifications */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
@@ -2617,6 +2663,25 @@
 			);
 			name = Pods;
 			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		6A8DDFE12703606C00CA6F71 /* IntentHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				6A8DDFE22703608D00CA6F71 /* SendMessageIntentHandler.swift */,
+				6A8DDFE4270366A800CA6F71 /* CanvasIntentHandler.swift */,
+				6A8DDFE72703A12600CA6F71 /* GetCoursesIntentHandler.swift */,
+				6AA07F3827048E5600A2D646 /* CheckCourseGradeIntentHandler.swift */,
+			);
+			path = IntentHandlers;
+			sourceTree = "<group>";
+		};
+		6AA07F2B27042F7900A2D646 /* CustomIntents */ = {
+			isa = PBXGroup;
+			children = (
+				6A57F1652705FD7700B3FFE1 /* Shared.intentdefinition */,
+			);
+			path = CustomIntents;
 			sourceTree = "<group>";
 		};
 		7D062AF02124968200677F66 /* Models */ = {
@@ -5071,11 +5136,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-CoreTester/Pods-needs-pspdfkit-CoreTester-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
@@ -5091,11 +5158,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-CoreTests/Pods-needs-pspdfkit-CoreTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
@@ -5572,6 +5641,7 @@
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
+				6A8DDFE82703A12600CA6F71 /* GetCoursesIntentHandler.swift in Sources */,
 				CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */,
 				7DA260CB23F72359005D2121 /* AvatarView.swift in Sources */,
 				7DA2607323F722F3005D2121 /* PageDetailsViewController.swift in Sources */,
@@ -5609,6 +5679,7 @@
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* SideMenuTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
+				6AA07F3927048E5600A2D646 /* CheckCourseGradeIntentHandler.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
@@ -5674,6 +5745,7 @@
 				7D7D6D5025100D11002B1485 /* EmptyPanda.swift in Sources */,
 				7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */,
 				7DDE6E0B2476DF15006523D4 /* DiscussionHTML.swift in Sources */,
+				6A8DDFE32703608D00CA6F71 /* SendMessageIntentHandler.swift in Sources */,
 				E8A0193224D36D3D009185DC /* PreviewStore.swift in Sources */,
 				7DA2609523F72327005D2121 /* RichContentToolbarView.swift in Sources */,
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
@@ -5754,6 +5826,7 @@
 				7DA2602023F7227A005D2121 /* WKWebViewExtensions.swift in Sources */,
 				CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */,
 				7DA260EE23F72391005D2121 /* APIFile.swift in Sources */,
+				6A57F1632705FD7700B3FFE1 /* Shared.intentdefinition in Sources */,
 				7DA2603823F722D9005D2121 /* AlertThreshold.swift in Sources */,
 				7DA260F223F72391005D2121 /* GetFile.swift in Sources */,
 				7DA260EB23F72359005D2121 /* TokenLabelView.swift in Sources */,
@@ -5958,6 +6031,7 @@
 				7DA25FD823F72148005D2121 /* Clock.swift in Sources */,
 				CF60CC5926496EBD00C1C173 /* K5ResourcesViewModel.swift in Sources */,
 				7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */,
+				6A8DDFE5270366A800CA6F71 /* CanvasIntentHandler.swift in Sources */,
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
 				CF8CB52F26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift in Sources */,
@@ -6115,6 +6189,48 @@
 				5BE8A1C221859A8B00D6247B /* zh-HK */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6A57F1652705FD7700B3FFE1 /* Shared.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A57F1642705FD7700B3FFE1 /* Base */,
+				6A57F1672705FD7B00B3FFE1 /* en */,
+				6A57F1692705FD7D00B3FFE1 /* ar */,
+				6A57F16B2705FD8000B3FFE1 /* ca */,
+				6A57F16D2705FD8200B3FFE1 /* zh */,
+				6A57F16F2705FD8400B3FFE1 /* zh-HK */,
+				6A57F1712705FD8600B3FFE1 /* da */,
+				6A57F1732705FD8900B3FFE1 /* da-instk12 */,
+				6A57F1752705FD8B00B3FFE1 /* nl */,
+				6A57F1772705FD8D00B3FFE1 /* en-AU-unimelb */,
+				6A57F1792705FD8F00B3FFE1 /* en-AU */,
+				6A57F17B2705FD9200B3FFE1 /* en-CA */,
+				6A57F17D2705FD9300B3FFE1 /* en-CY */,
+				6A57F17F2705FD9600B3FFE1 /* en-GB-instukhe */,
+				6A57F1812705FD9B00B3FFE1 /* fi */,
+				6A57F1832705FD9D00B3FFE1 /* fr */,
+				6A57F1852705FD9F00B3FFE1 /* fr-CA */,
+				6A57F1872705FDA100B3FFE1 /* de */,
+				6A57F1892705FDA800B3FFE1 /* ht */,
+				6A57F18B2705FDAA00B3FFE1 /* is */,
+				6A57F18D2705FDAE00B3FFE1 /* it */,
+				6A57F18F2705FDB100B3FFE1 /* ja */,
+				6A57F1912705FDB300B3FFE1 /* mi */,
+				6A57F1932705FDB600B3FFE1 /* nb */,
+				6A57F1952705FDB900B3FFE1 /* nb-instk12 */,
+				6A57F1972705FDBB00B3FFE1 /* pl */,
+				6A57F1992705FDBE00B3FFE1 /* pt */,
+				6A57F19B2705FDC000B3FFE1 /* pt-BR */,
+				6A57F19D2705FDC300B3FFE1 /* ru */,
+				6A57F19F2705FDC600B3FFE1 /* sl */,
+				6A57F1A12705FDC900B3FFE1 /* es */,
+				6A57F1A32705FDCC00B3FFE1 /* sv */,
+				6A57F1A52705FDCF00B3FFE1 /* sv-instk12 */,
+				6A57F1A72705FDD100B3FFE1 /* th */,
+				6A57F1A92705FDD400B3FFE1 /* cy */,
+			);
+			name = Shared.intentdefinition;
 			sourceTree = "<group>";
 		};
 		7DCF1ECE216BFE5D003AF358 /* Localizable.strings */ = {

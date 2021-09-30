@@ -29,6 +29,13 @@ extension Course {
     }
 }
 
+extension APICourse {
+    var route: URL {
+        guard let host = host else { return defaultRoute }
+        return URL(string: "\(scheme)\(host)/courses/\(id)/grades")!
+    }
+}
+
 extension Assignment {
     var route: URL {
         guard let host = host else { return defaultRoute }

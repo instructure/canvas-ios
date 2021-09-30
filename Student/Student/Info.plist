@@ -62,6 +62,13 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>INAlternativeAppNames</key>
+	<array>
+		<dict>
+			<key>INAlternativeAppName</key>
+			<string>Canvas</string>
+		</dict>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<true/>
 	<key>ITSEncryptionExportComplianceCode</key>
@@ -98,6 +105,9 @@
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>CheckCourseGradeIntent</string>
+		<string>GetCoursesIntent</string>
+		<string>INSendMessageIntent</string>
 		<string>com.instructure.icanvas.watchApp</string>
 		<string>com.instructure.siri.shortcut.getgrades</string>
 	</array>
