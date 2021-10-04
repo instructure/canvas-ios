@@ -68,7 +68,7 @@ final public class SubmissionComment: NSManagedObject {
         let model: SubmissionComment = client.first(where: #keyPath(SubmissionComment.id), equals: id ?? item.id) ?? client.insert()
         model.id = item.id
         model.assignmentID = submission.assignment_id.value
-        model.authorAvatarURL = item.author.avatar_image_url
+        model.authorAvatarURL = item.author.avatar_image_url?.rawValue
         model.authorID = item.author_id?.value
         model.authorName = item.author.display_name ?? item.author_name
         model.authorPronouns = item.author.pronouns
