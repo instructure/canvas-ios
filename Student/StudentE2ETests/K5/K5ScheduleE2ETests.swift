@@ -28,7 +28,6 @@ class K5ScheduleE2ETests: K5UITestCase {
         K5NavigationBar.schedule.waitToExist()
         K5NavigationBar.schedule.tap()
         K5Schedule.todayHeader.waitToExist()
-        K5Schedule.todayButton.waitToExist()
         app.swipeLeft()
         K5Schedule.todayHeader.waitToVanish()
         K5Schedule.todayButton.waitToExist()
