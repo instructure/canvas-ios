@@ -32,7 +32,7 @@ class ComposeReplyViewControllerTests: CoreTestCase {
 
         environment.window?.rootViewController = navigation
         drainMainQueue()
-        
+
         XCTAssertEqual(navigation.navigationBar.barTintColor, .backgroundLightest)
         XCTAssertEqual(controller.bodyMinHeight.constant, -controller.bodyView.frame.minY)
         XCTAssertEqual(controller.title, "Reply All")
