@@ -134,7 +134,14 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
             : "1 \((item.last_reply_at ?? item.created_at ?? .distantPast).isoString()) \(model.id)"
         model.orderSection = item.pinned == true ? 0 : item.locked == true ? 2 : 1
         model.pinned = item.pinned == true
-        model.position = item.pinned == true ? item.position ?? 0 : Int.max
+
+        // In case of announcements we use the API's natural ordering. When we fetch a single instance
+        // we don't want to overwrite the previously set position in save(_:apiPosition:in:). Also, announcements
+        // cannot be pinned.
+        if !model.isAnnouncement {
+            model.position = item.pinned == true ? item.position ?? 0 : Int.max
+        }
+
         model.postedAt = item.delayed_post_at ?? item.posted_at
         model.published = item.published
         model.requireInitialPost = item.require_initial_post == true
