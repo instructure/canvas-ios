@@ -50,6 +50,8 @@ class StudentTabBarController: UITabBarController {
 
         if AppEnvironment.shared.k5.isK5Enabled {
             let primary = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
+            // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in HelmNavigationController.
+            primary.interactivePopGestureRecognizer?.isEnabled = false
             let secondary = HelmNavigationController(rootViewController: EmptyViewController())
             split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
             tabBarTitle = NSLocalizedString("Homeroom", comment: "Homeroom tab title")
