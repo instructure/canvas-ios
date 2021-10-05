@@ -20,7 +20,7 @@ public protocol CanvasIntentHandler {
     var env: AppEnvironment { get }
     var isLoggedIn: Bool { get }
 
-    func setupLastLoginCredentials() -> Void
+    func setupLastLoginCredentials()
 }
 
 extension CanvasIntentHandler {

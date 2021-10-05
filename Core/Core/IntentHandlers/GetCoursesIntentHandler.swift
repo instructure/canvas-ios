@@ -20,15 +20,15 @@ public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesI
     public func resolveEnrollmentTypeFilter(for intent: GetCoursesIntent, with completion: @escaping (EnrollmentTypeFilterResolutionResult) -> Void) {
         completion(EnrollmentTypeFilterResolutionResult.success(with: intent.enrollmentTypeFilter))
     }
-    
+
     public func resolveEnrollmentStateFilter(for intent: GetCoursesIntent, with completion: @escaping (EnrollmentStateFilterResolutionResult) -> Void) {
         completion(EnrollmentStateFilterResolutionResult.success(with: intent.enrollmentStateFilter))
     }
-    
+
     public func resolveCourseStateFilter(for intent: GetCoursesIntent, with completion: @escaping (CourseStateFilterResolutionResult) -> Void) {
         completion(CourseStateFilterResolutionResult.success(with: intent.courseStateFilter))
     }
-    
+
     public func confirm(intent: GetCoursesIntent, completion: (GetCoursesIntentResponse) -> Void) {
         guard isLoggedIn else {
             completion(GetCoursesIntentResponse.init(code: .failureRequiringAppLaunch, userActivity: nil))
@@ -70,7 +70,7 @@ public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesI
                 return nil
             }
         }()
-        
+
         let courseStateFilter: [GetCoursesRequest.State]? = {
             switch intent.courseStateFilter {
             case .available:
@@ -86,7 +86,12 @@ public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesI
             }
         }()
 
-        let request = GetCoursesRequest(enrollmentState: enrollmentStateFilter, enrollmentType: enrollmentTypeFilter, state: courseStateFilter, perPage: 100, studentID: LoginSession.mostRecent?.userID, include: [])
+        let request = GetCoursesRequest(enrollmentState: enrollmentStateFilter,
+                                        enrollmentType: enrollmentTypeFilter,
+                                        state: courseStateFilter,
+                                        perPage: 100,
+                                        studentID: LoginSession.mostRecent?.userID,
+                                        include: [])
 
         env.api.makeRequest(request) { courses, response, error in
             guard error == nil && courses != nil else {
@@ -103,7 +108,7 @@ public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesI
                 inCourse.color = course.course_color
                 return inCourse
             }.compactMap({$0})
-            
+
             let response = GetCoursesIntentResponse(code: .success, userActivity: nil)
             response.courses = studentCourses
 

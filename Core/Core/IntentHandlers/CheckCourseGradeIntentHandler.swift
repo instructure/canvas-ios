@@ -45,7 +45,7 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
 
         let request = GetCoursesRequest(enrollmentState: .active, enrollmentType: .student, state: [.current_and_concluded], perPage: 20, studentID: LoginSession.mostRecent?.userID, include: [])
 
-        env.api.makeRequest(request) { courses, response, error in
+        env.api.makeRequest(request) { courses, _, error in
             guard let courses = courses else { return }
             guard error == nil else { return }
 
@@ -54,7 +54,6 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
         }
     }
 
-    
     @available(iOSApplicationExtension 14.0, *)
     public func provideCourseOptionsCollection(for intent: CheckCourseGradeIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<INCourse>?, Error?) -> Void) {
         guard isLoggedIn else {
@@ -66,7 +65,7 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
 
         let request = GetCoursesRequest(enrollmentState: .active, enrollmentType: .student, state: [.current_and_concluded], perPage: 20, studentID: LoginSession.mostRecent?.userID, include: [])
 
-        env.api.makeRequest(request) { courses, response, error in
+        env.api.makeRequest(request) { courses, _, error in
             guard let courses = courses else { return }
             guard error == nil else { return }
 
@@ -86,7 +85,7 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
             return
         }
     }
-    
+
     public func confirm(intent: CheckCourseGradeIntent, completion: @escaping (CheckCourseGradeIntentResponse) -> Void) {
         guard isLoggedIn else {
             completion(CheckCourseGradeIntentResponse(code: .failureRequiringAppLaunch, userActivity: nil))
@@ -101,7 +100,7 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
         setupLastLoginCredentials()
 
         let request = GetCourseRequest(courseID: courseID, include: [.currentGradingPeriodScores, .totalScores])
-        
+
         env.api.makeRequest(request) { course, response, error in
             guard let course = course else { return }
             guard error == nil else { return }
@@ -122,7 +121,7 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
             completion(response)
         }
     }
-    
+
     private static func mapApiCourse(_ course: APICourse) -> INCourse? {
         guard !(course.course_code ?? "").isEmpty || !(course.name ?? "").isEmpty else { return nil }
         let studentCourse = INCourse(identifier: course.id.rawValue, display: [course.course_code, course.name].compactMap({$0}).joined(separator: " - "))
@@ -148,7 +147,7 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
         } else if enrollment.multiple_grading_periods_enabled ?? false && enrollment.totals_for_all_grading_periods_option == false {
             return (nil, nil, NSLocalizedString("N/A", comment: ""))
         }
-        
+
         guard let scoreValue = score == nil ? nil : NSNumber(value: score), let scoreString = Course.scoreFormatter.string(from: scoreValue) else {
             return (nil, grade, nil)
         }

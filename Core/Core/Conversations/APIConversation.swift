@@ -280,7 +280,13 @@ public struct PostConversationRequest: APIRequestable {
     public typealias Response = [APIConversation]
 
     public struct Body: Encodable, Equatable {
-        public init(subject: String, body: String, recipients: [String], context_code: String? = nil, media_comment_id: String? = nil, media_comment_type: MediaCommentType? = nil, attachment_ids: [String]?) {
+        public init(subject: String,
+                    body: String,
+                    recipients: [String],
+                    context_code: String? = nil,
+                    media_comment_id: String? = nil,
+                    media_comment_type: MediaCommentType? = nil,
+                    attachment_ids: [String]?) {
             self.subject = subject
             self.body = body
             self.recipients = recipients

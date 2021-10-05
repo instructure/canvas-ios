@@ -37,14 +37,21 @@ public class SendMessageIntentHandler: NSObject, CanvasIntentHandler, INSendMess
         var completedRequests = 0
 
         for (index, request) in requests.enumerated() {
-            env.api.makeRequest(request) { results, response, error in
+            env.api.makeRequest(request) { results, _, error in
+                guard error == nil else { return [] }
+
                 let persons: [INPerson] = results?.map { result in
-                    var avatar: INImage? = nil
+                    var avatar: INImage?
                     if let avatarUrl = result.avatar_url {
                         avatar = INImage(url: avatarUrl.rawValue)
                     }
-                    
-                    return INPerson(personHandle: INPersonHandle(value: result.id.rawValue, type: .unknown, label: INPersonHandleLabel("Canvas user ID")), nameComponents: nil, displayName: result.name, image: avatar, contactIdentifier: nil, customIdentifier: result.id.rawValue)
+
+                    return INPerson(personHandle: INPersonHandle(value: result.id.rawValue, type: .unknown, label: INPersonHandleLabel("Canvas user ID")),
+                                    nameComponents: nil,
+                                    displayName: result.name,
+                                    image: avatar,
+                                    contactIdentifier: nil,
+                                    customIdentifier: result.id.rawValue)
                 } ?? []
 
                 switch persons.count {
@@ -85,7 +92,7 @@ public class SendMessageIntentHandler: NSObject, CanvasIntentHandler, INSendMess
             completion(INOutgoingMessageTypeResolutionResult.unsupported())
             return
         }
-        
+
         completion(INOutgoingMessageTypeResolutionResult.success(with: .outgoingMessageText))
     }
 
@@ -97,12 +104,12 @@ public class SendMessageIntentHandler: NSObject, CanvasIntentHandler, INSendMess
 
         completion(INSendMessageIntentResponse.init(code: .ready, userActivity: nil))
     }
-    
+
     public func handle(intent: INSendMessageIntent, completion: @escaping (INSendMessageIntentResponse) -> Void) {
         let body = PostConversationRequest.Body(subject: "", body: intent.content ?? "", recipients: intent.recipients?.map { $0.customIdentifier ?? "" } ?? [], attachment_ids: nil)
         let request = PostConversationRequest(body: body)
-        
-        env.api.makeRequest(request) { results, response, error in
+
+        env.api.makeRequest(request) { results, _, error in
             guard error == nil else {
                 completion(INSendMessageIntentResponse(code: .failure, userActivity: nil))
                 return

@@ -30,5 +30,4 @@ class IntentHandler: INExtension, CanvasIntentHandler {
             return self
         }
     }
-    
 }
