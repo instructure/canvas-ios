@@ -18,6 +18,9 @@
 
 import UIKit
 
+/**
+ Used in Parent only.
+ */
 class ComposeReplyViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var attachmentsContainer: UIView!
     let attachmentsController = AttachmentCardsViewController.create()

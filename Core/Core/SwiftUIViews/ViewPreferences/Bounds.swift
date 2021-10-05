@@ -18,17 +18,42 @@
 
 import SwiftUI
 
+// MARK: - Saving View Anchor To Retrieve Bounds
+
 public struct ViewBoundsPreferenceData {
     public let viewId: Int
     public let bounds: Anchor<CGRect>
 }
 
+/**
+ This key allows one to save an anchor to the view's frame by an ID to the preference store so the actual frame can be retrieved later with a `GeometryProxy`.
+ */
 public struct ViewBoundsPreferenceKey: PreferenceKey {
     public typealias Value = [ViewBoundsPreferenceData]
 
     public static var defaultValue: [ViewBoundsPreferenceData] = []
 
     public static func reduce(value: inout [ViewBoundsPreferenceData], nextValue: () -> [ViewBoundsPreferenceData]) {
+        value.append(contentsOf: nextValue())
+    }
+}
+
+// MARK: - Saving View Bounds Directly
+
+public struct ViewBounds: Equatable {
+    public let viewId: Int
+    public let bounds: CGRect
+}
+
+/**
+ This key allows one to save a view's frame by an ID to the preference store.
+ */
+public struct ViewBoundsKey: PreferenceKey {
+    public typealias Value = [ViewBounds]
+
+    public static var defaultValue: [ViewBounds] = []
+
+    public static func reduce(value: inout [ViewBounds], nextValue: () -> [ViewBounds]) {
         value.append(contentsOf: nextValue())
     }
 }
