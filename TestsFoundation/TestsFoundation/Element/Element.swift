@@ -78,15 +78,15 @@ public extension Element {
     }
 
     func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
-        waitToExist(30, file: file, line: line)
+        waitToExist(15, file: file, line: line)
         return rawElement.frame
     }
     func label(file: StaticString = #file, line: UInt = #line) -> String {
-        waitToExist(30, file: file, line: line)
+        waitToExist(15, file: file, line: line)
         return rawElement.label
     }
     func value(file: StaticString = #file, line: UInt = #line) -> String? {
-        waitToExist(30, file: file, line: line)
+        waitToExist(15, file: file, line: line)
         return rawElement.value as? String
     }
 
@@ -242,7 +242,7 @@ public extension Element {
 }
 
 public func waitUntil(
-    _ timeout: TimeInterval = 30,
+    _ timeout: TimeInterval = 10,
     file: StaticString = #file,
     line: UInt = #line,
     failureMessage: @autoclosure () -> String = "waitUntil timed out",
@@ -272,8 +272,8 @@ public struct XCUIElementQueryWrapper: Element {
 
     public func snapshot(file: StaticString = #file, line: UInt = #line) -> XCUIElementSnapshot? {
         var snapshot: XCUIElementSnapshot?
-        let timeout = 30
-        waitUntil(30, file: file, line: line, failureMessage: "failed to get snapshot within \(timeout) seconds") {
+        let timeout = 15
+        waitUntil(Double(timeout), file: file, line: line, failureMessage: "failed to get snapshot within \(timeout) seconds") {
             do {
                 snapshot = try query.allMatchingSnapshots().first as? XCUIElementSnapshot
                 return true
