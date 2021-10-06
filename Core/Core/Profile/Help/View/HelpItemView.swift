@@ -24,7 +24,7 @@ struct HelpItemView: View {
             tapAction(model)
         }, label: {
             VStack(alignment: .leading, spacing: 5) {
-                Text(model.text)
+                Text(model.text ?? "")
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
                     .testID()

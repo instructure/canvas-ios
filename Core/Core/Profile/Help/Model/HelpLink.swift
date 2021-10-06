@@ -19,15 +19,23 @@
 import CoreData
 
 public class HelpLink: NSManagedObject {
-    @NSManaged public var availableToRaw: String
-    @NSManaged public var id: String
+    @NSManaged public var availableToRaw: String?
+    @NSManaged public var id: String?
     @NSManaged public var position: Int
     @NSManaged public var subtext: String?
-    @NSManaged public var text: String
+    @NSManaged public var text: String?
     @NSManaged public var url: URL?
 
-    public var availableTo: [HelpLinkEnrollment] {
-        get { return availableToRaw.components(separatedBy: ",").compactMap { HelpLinkEnrollment(rawValue: $0) } }
-        set { availableToRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
+    public var availableTo: [HelpLinkEnrollment]? {
+        get {
+            guard let availableToRaw = availableToRaw else { return nil }
+            return availableToRaw.components(separatedBy: ",").compactMap { HelpLinkEnrollment(rawValue: $0) }
+        }
+        set {
+            guard let newValue = newValue else {
+                availableToRaw = nil
+                return
+            }
+            availableToRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H524" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -489,12 +489,12 @@
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo"/>
     </entity>
     <entity name="HelpLink" representedClassName="Core.HelpLink" syncable="YES">
-        <attribute name="availableToRaw" attributeType="String" defaultValueString="unenrolled"/>
-        <attribute name="id" attributeType="String"/>
+        <attribute name="availableToRaw" optional="YES" attributeType="String" defaultValueString="unenrolled"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="subtext" optional="YES" attributeType="String"/>
-        <attribute name="text" attributeType="String"/>
-        <attribute name="url" attributeType="URI"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
     </entity>
     <entity name="K5HomeroomDueItemCount" representedClassName="Core.K5HomeroomDueItemCount" syncable="YES">
         <attribute name="courseId" attributeType="String"/>
