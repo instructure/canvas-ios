@@ -41,6 +41,8 @@ extension UINavigationBar {
         barTintColor = background
         barStyle = .black
         isTranslucent = false
+
+        applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground, isTransparent: true)
         updateFontAppearance()
     }
 
@@ -52,6 +54,8 @@ extension UINavigationBar {
         barTintColor = background
         barStyle = background.luminance < 0.5 ? .black : .default
         isTranslucent = false
+
+        applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
         updateFontAppearance()
     }
 
@@ -62,7 +66,26 @@ extension UINavigationBar {
         barTintColor = .backgroundLightest
         barStyle = .default
         isTranslucent = false
+
+        applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: foreground)
         updateFontAppearance()
+    }
+
+    public func applyAppearanceChanges(backgroundColor: UIColor?, foreGroundColor: UIColor?, isTransparent: Bool = false) {
+        let appearance = UINavigationBarAppearance()
+        if isTransparent == true {
+            appearance.configureWithTransparentBackground()
+        } else {
+            appearance.configureWithDefaultBackground()
+            if let backgroundColor = backgroundColor {
+                appearance.backgroundColor = backgroundColor
+            }
+        }
+        if let foreGroundColor = foreGroundColor {
+            appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
+        }
+        standardAppearance = appearance;
+        scrollEdgeAppearance = standardAppearance
     }
 
     public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.k5.isK5Enabled) {
