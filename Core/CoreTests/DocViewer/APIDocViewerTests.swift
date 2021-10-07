@@ -44,7 +44,7 @@ class APIDocViewerTests: XCTestCase {
         let data2 = """
             {"data":[{"id":"1","user_name":"a","page":1,"type":"text","created_at":"\(dateStr2)"}]}
         """.data(using: .utf8)!
-        XCTAssertThrowsError(try GetDocViewerAnnotationsRequest(sessionID: "{}").decode(data2))
+        XCTAssertNoThrow(try GetDocViewerAnnotationsRequest(sessionID: "{}").decode(data2))
     }
 
     func testPutDocViewerAnnotationRequest() {
@@ -80,7 +80,7 @@ class APIDocViewerTests: XCTestCase {
         let data2 = """
             {"id":"1","user_name":"a","page":1,"type":"text","created_at":"\(dateStr2)"}
         """.data(using: .utf8)!
-        XCTAssertThrowsError(try PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").decode(data2))
+        XCTAssertNoThrow(try PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").decode(data2))
     }
 
     func testDeleteDocViewerAnnotationRequest() {
