@@ -40,7 +40,7 @@ class DashboardE2ETests: CoreUITestCase {
         AccountNotifications.dismissButton(id: "2").waitToVanish()
     }
 
-    func testNavigateToDashboard() throws{
+    func testNavigateToDashboard() throws {
         try XCTSkipIf(true, "passes locally but fails on bitrise")
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
@@ -58,7 +58,7 @@ class DashboardE2ETests: CoreUITestCase {
         XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments")
     }
 
-    func testSeeAllButtonDisplaysCorrectCourses() throws{
+    func testSeeAllButtonDisplaysCorrectCourses() throws {
         try XCTSkipIf(true, "passes locally but fails on bitrise")
         Dashboard.seeAllButton.tap()
 
