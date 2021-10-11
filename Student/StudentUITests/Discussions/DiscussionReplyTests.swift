@@ -138,8 +138,8 @@ class DiscussionReplyTests: CoreUITestCase {
         }
     }
 
-    func testReplyingWithAttachment() throws {
-        try XCTSkipIf(true, "passes locally but fails on bitrise")
+    func testReplyingWithAttachment() {
+        // Disabled test, passes locally but fails on bitrise. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         mockBaseRequests()
         mockCoursePermission()
         let discussion = mockDiscussion(APIDiscussionTopic.make(permissions: .make(attach: true, reply: true)))

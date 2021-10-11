@@ -88,9 +88,14 @@
     },
     {
       "skippedTests" : [
+        "DiscussionEditorTests\/testCreateDiscussionWithAttachment()",
+        "DiscussionReplyTests\/testReplyingWithAttachment()",
         "IPadAssignmentsTest",
+        "InboxTests\/testCanMessageAttachment()",
         "SpringBoardTests",
-        "SubmissionButtonTests\/testOnlineUpload()"
+        "SubmissionButtonTests\/testOnlineUpload()",
+        "UserFilesTests\/testAddFileAudio()",
+        "UserFilesTests\/testAddFileFiles()"
       ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
@@ -100,7 +105,11 @@
     },
     {
       "skippedTests" : [
+        "DiscussionsUITests\/testCloseDiscussion()",
+        "FilesUITests\/testAddFileFromLibrary()",
+        "FilesUITests\/testUploadAudioFile()",
         "IPadSpeedGraderTests",
+        "SpeedGraderCommentUITests\/testNewAudioComment()",
         "SpeedGraderIPadTests"
       ],
       "target" : {
@@ -117,6 +126,9 @@
       }
     },
     {
+      "skippedTests" : [
+        "InboxTests\/testReplyWithAttachments()"
+      ],
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
         "identifier" : "E8E1BE4923C6891F000E3A76",
@@ -138,6 +150,9 @@
       }
     },
     {
+      "skippedTests" : [
+        "PlannerTests\/testSwipes()"
+      ],
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
         "identifier" : "E80763C723E08DA10085DAFB",
