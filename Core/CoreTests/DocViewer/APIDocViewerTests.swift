@@ -91,4 +91,16 @@ class APIDocViewerTests: XCTestCase {
             HttpHeader.authorization: nil,
         ])
     }
+
+    func testCanvaDocSessionRequest() {
+        XCTAssertEqual(CanvaDocsSessionRequest.DraftAttempt, "draft")
+
+        let testee = CanvaDocsSessionRequest(submissionId: "1", attempt: "2")
+        XCTAssertEqual(testee.body, CanvaDocsSessionRequest.RequestBody(submission_attempt: "2", submission_id: "1"))
+        XCTAssertEqual(testee.method, .post)
+        XCTAssertEqual(testee.path, "canvadoc_session")
+
+        let defaultParamTestee = CanvaDocsSessionRequest(submissionId: "3")
+        XCTAssertEqual(defaultParamTestee.body, CanvaDocsSessionRequest.RequestBody(submission_attempt: "draft", submission_id: "3"))
+    }
 }
