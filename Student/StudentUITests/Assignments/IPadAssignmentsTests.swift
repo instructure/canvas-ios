@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-class IPadAssignmentsTest: MiniCanvasUITestCase {
+class IPadAssignmentsTest: IPadMiniCanvasUITestCase {
     func assertHas(assignment: APIAssignment) {
         let id = assignment.id.value
         let expectedLabel = "\(assignment.name) \(assignment.due_at == nil ? "No Due Date" : "Due")"
@@ -54,9 +54,7 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
     }
 
     func testAssignments() {
-        XCUIDevice.shared.orientation = .landscapeLeft
-        SpringBoard.shared.setupSplitScreenWithSafariOnRight()
-        SpringBoard.shared.moveSplit(toFraction: 0.75)
+        resetAppWithSplitView()
 
         let now = Date(fromISOString: "2019-11-20T06:00:00Z")!
         let pointsTextAssignment = MiniAssignment(makePointsTextAssignment(), state: mocked)
@@ -92,6 +90,7 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         firstCourse.add(assignment: letterGradeTextAssignment)
         firstCourse.add(assignment: percentFileAssignment)
 
+        Dashboard.courseCard(id: firstCourse.id).waitToExist()
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.assignments.tap()
         assertHas(assignment: pointsTextAssignment.api)
@@ -112,6 +111,9 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         pointsTextAssignment.add(submission: makeTextSubmission(score: 13))
 
         pullToRefresh()
+        sleep(5)
+        pullToRefresh()
+
         AssignmentDetails.submittedText.waitToVanish()
         XCTAssertEqual(AssignmentDetails.gradeCircle.waitToExist().label(), "Scored 13 out of 15 points possible")
 

@@ -20,14 +20,13 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-class IPadSpeedGraderTests: MiniCanvasUITestCase {
+class IPadSpeedGraderTests: IPadMiniCanvasUITestCase {
     func testSpeedGrader() {
-        XCUIDevice.shared.orientation = .landscapeLeft
-        SpringBoard.shared.setupSplitScreenWithSafariOnRight()
-        SpringBoard.shared.moveSplit(toFraction: 0.5)
+        resetAppWithSplitView(split: 0.5)
 
         let students = mocked.students
 
+        Dashboard.courseCard(id: firstCourse.id).waitToExist()
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: firstAssignment.id).tap()

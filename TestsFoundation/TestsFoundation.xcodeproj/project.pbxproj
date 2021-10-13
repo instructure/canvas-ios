@@ -73,6 +73,7 @@
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
+		C9238FB92716BF5E00D095C5 /* IPadMiniCanvasUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9238FB82716BF5E00D095C5 /* IPadMiniCanvasUITestCase.swift */; };
 		C935D43726E0EB9700C940F7 /* K5Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43626E0EB9700C940F7 /* K5Schedule.swift */; };
 		C935D43A26E5F59700C940F7 /* K5Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43926E5F59700C940F7 /* K5Grades.swift */; };
 		C9A3C046269D7D3100DAE8E1 /* K5UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */; };
@@ -203,6 +204,7 @@
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
+		C9238FB82716BF5E00D095C5 /* IPadMiniCanvasUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadMiniCanvasUITestCase.swift; sourceTree = "<group>"; };
 		C935D43626E0EB9700C940F7 /* K5Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Schedule.swift; sourceTree = "<group>"; };
 		C935D43926E5F59700C940F7 /* K5Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Grades.swift; sourceTree = "<group>"; };
 		C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5UITestCase.swift; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 				E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */,
 				5859560B4512977756206840 /* MiniCanvasUITestCase.swift */,
 				C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */,
+				C9238FB82716BF5E00D095C5 /* IPadMiniCanvasUITestCase.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				E80936C524C2480B00D15E9A /* ConferenceDetails.swift in Sources */,
 				E80936C624C2480B00D15E9A /* ConferencesList.swift in Sources */,
 				E818EF21234652A20035613A /* XCTestCaseExtensions.swift in Sources */,
+				C9238FB92716BF5E00D095C5 /* IPadMiniCanvasUITestCase.swift in Sources */,
 				B1CA334423393FEC0015CBB4 /* UserFixture.swift in Sources */,
 				E80936DD24C2480B00D15E9A /* SpringBoard.swift in Sources */,
 				E80936C424C2480B00D15E9A /* Attachments.swift in Sources */,
