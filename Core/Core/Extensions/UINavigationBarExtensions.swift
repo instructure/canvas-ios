@@ -67,7 +67,7 @@ extension UINavigationBar {
         barStyle = .default
         isTranslucent = false
 
-        applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: foreground)
+        applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: UIColor.textDarkest)
         updateFontAppearance()
     }
 
