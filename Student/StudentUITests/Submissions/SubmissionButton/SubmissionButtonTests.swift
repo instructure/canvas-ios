@@ -23,8 +23,8 @@ import XCTest
 class SubmissionButtonTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
-    func testOnlineUpload() throws {
-        try XCTSkipIf(true, "passes locally but fails on bitrise")
+    func testOnlineUpload() {
+        // Disabled test, passes locally but fails on bitrise. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .online_upload ]))
         let target = FileUploadTarget.make()

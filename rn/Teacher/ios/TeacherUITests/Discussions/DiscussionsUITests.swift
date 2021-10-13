@@ -78,8 +78,7 @@ class DiscussionsUITests: MiniCanvasUITestCase {
     }
 
     func testCloseDiscussion() throws {
-        try XCTSkipIf(true, "parseMultiPartFormData doesn't find any of our data")
-
+        // Disabled test, parseMultiPartFormData doesn't find any of our data. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.discussions.tap()
         DiscussionListCell.cell(id: discussion.id).tap()

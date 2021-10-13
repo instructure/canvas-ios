@@ -100,7 +100,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
     }
 
     func testNewAudioComment() throws {
-        try XCTSkipIf(true, "recordButton.tap() doesn't start recording on bitrise")
+        // Disabled test, recordButton.tap() doesn't start recording on bitrise. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         showSubmission()
         SpeedGrader.Segment.comments.tap()
         SubmissionComments.addMediaButton.tapUntil {
