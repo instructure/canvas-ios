@@ -306,3 +306,29 @@ struct DeleteDocViewerAnnotationRequest: APIRequestable {
         HttpHeader.authorization: nil,
     ]
 }
+
+public struct CanvaDocsSessionRequest: APIRequestable {
+    public static let DraftAttempt = "draft"
+    public struct RequestBody: Encodable, Equatable {
+        let submission_attempt: String
+        let submission_id: String
+    }
+    public struct ResponseBody: Codable {
+        public let annotation_context_launch_id: String?
+        public let canvadocs_session_url: APIURL?
+    }
+    public typealias Response = ResponseBody
+    public typealias Body = RequestBody
+
+    public let body: Body?
+    public let method = APIMethod.post
+    public let path = "canvadoc_session"
+
+    /**
+     - parameters:
+        - attempt: Use `CanvaDocsSessionRequest.DraftAttempt` to create a new annotation context for a new submission, otherwise use the index of the submission attempt: "1", "2", ... to retrieve the context for that particular attempt.
+     */
+    public init(submissionId: String, attempt: String = DraftAttempt) {
+        self.body = RequestBody(submission_attempt: attempt, submission_id: submissionId)
+    }
+}
