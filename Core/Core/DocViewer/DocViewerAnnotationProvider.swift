@@ -153,7 +153,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         guard let apiAnnotation = annotation.apiAnnotation() else { return }
 
         if let inkAnnotation = annotation as? InkAnnotation, (inkAnnotation.lines?.count ??  0) > 120 {
-            documentProvider?.document?.undoController?.undo()
+            documentProvider?.document?.undoController.undoManager.undo()
             docViewerDelegate?.annotationDidExceedLimit(annotation: apiAnnotation)
             return
         }
