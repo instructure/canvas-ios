@@ -41,11 +41,13 @@ struct SubmissionGrader: View {
         selected.attachments?.first { fileID == $0.id } ??
         selected.attachments?.sorted(by: File.idCompare).first
     }
+    @ObservedObject private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
 
     init(
         index: Int,
         assignment: Assignment,
         submission: Submission,
+        studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel,
         handleRefresh: (() -> Void)?
     ) {
         self.index = index
@@ -60,6 +62,7 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self.handleRefresh = handleRefresh
+        self.studentAnnotationViewModel = studentAnnotationViewModel
     }
 
     var body: some View {
@@ -87,6 +90,7 @@ struct SubmissionGrader: View {
                                         assignment: assignment,
                                         submission: selected,
                                         fileID: fileID,
+                                        studentAnnotationViewModel: studentAnnotationViewModel,
                                         handleRefresh: handleRefresh
                                     )
                                 }
@@ -126,9 +130,9 @@ struct SubmissionGrader: View {
                                     assignment: assignment,
                                     submission: selected,
                                     fileID: fileID,
+                                    studentAnnotationViewModel: studentAnnotationViewModel,
                                     handleRefresh: handleRefresh
                                 )
-
                             }
                                 .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
                                 .accessibility(hidden: isSubmissionContentHiddenFromA11y)

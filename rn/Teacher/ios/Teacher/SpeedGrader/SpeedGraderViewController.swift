@@ -38,6 +38,8 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
     lazy var submissions = env.subscribe(GetSubmissions(context: context, assignmentID: assignmentID, filter: filter)) { [weak self] in
         self?.update()
     }
+    /** We want to keep these view models persistent between update() calls so SwiftUI can properly update the view body. */
+    private var studentAnnotationViewModelsBySubmissionIDs: [String: StudentAnnotationSubmissionViewerViewModel] = [:]
 
     init(context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
         self.assignmentID = assignmentID
@@ -159,10 +161,14 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
 
     func grader(for index: Int) -> SubmissionGrader? {
         guard index >= 0, index < submissions.all.count, let assignment = assignment.first else { return nil }
+
+        let submission = submissions.all[index]
+
         return SubmissionGrader(
             index: index,
             assignment: assignment,
-            submission: submissions.all[index],
+            submission: submission,
+            studentAnnotationViewModel: studentAnnotationViewModel(for: submission),
             handleRefresh: { [weak self] in
                 self?.submissions.refresh(force: true)
             }
@@ -174,6 +180,16 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
             if let grader = grader(for: page.rootView.content.index) {
                 page.rootView.content = grader
             }
+        }
+    }
+
+    private func studentAnnotationViewModel(for submission: Submission) -> StudentAnnotationSubmissionViewerViewModel {
+        if let storedStudentAnnotatioViewModel = studentAnnotationViewModelsBySubmissionIDs[submission.id] {
+            return storedStudentAnnotatioViewModel
+        } else {
+            let viewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
+            studentAnnotationViewModelsBySubmissionIDs[submission.id] = viewModel
+            return viewModel
         }
     }
 }
