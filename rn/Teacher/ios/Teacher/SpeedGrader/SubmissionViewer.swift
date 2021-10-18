@@ -19,46 +19,6 @@
 import SwiftUI
 import Core
 
-class StudentAnnotationSubmissionViewerViewModel: ObservableObject {
-    @Published public private(set) var session: Result<URL, Error>?
-
-    private var isInitialLoadStarted = false
-    private let request: CanvaDocsSessionRequest
-
-    public init(submission: Submission) {
-        self.request = CanvaDocsSessionRequest(submissionId: submission.id, attempt: "\(submission.attempt)")
-    }
-
-    public func viewDidAppear() {
-        if isInitialLoadStarted { return }
-
-        isInitialLoadStarted = true
-        initializeAnnotationSession()
-    }
-
-    public func retry() {
-        session = nil
-        initializeAnnotationSession()
-    }
-
-    private func initializeAnnotationSession() {
-        AppEnvironment.shared.api.makeRequest(request) { [weak self] session, _, error in
-            var result: Result<URL, Error>?
-
-            if let session = session?.canvadocs_session_url?.rawValue {
-                result = .success(session)
-            } else {
-                let errorResult = error ?? NSError.instructureError(NSLocalizedString("Unknown Error", bundle: .core, comment: ""))
-                result = .failure(errorResult)
-            }
-
-            performUIUpdate {
-                self?.session = result
-            }
-        }
-    }
-}
-
 struct SubmissionViewer: View {
     let assignment: Assignment
     let submission: Submission
