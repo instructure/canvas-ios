@@ -33,7 +33,7 @@ public class CircleProgressView: UIView {
         didSet { tintColorDidChange() }
     }
 
-    public var progress: CGFloat? = nil {
+    public var progress: CGFloat? {
         didSet { updateProgress() }
     }
 

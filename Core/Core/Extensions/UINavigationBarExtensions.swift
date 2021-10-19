@@ -84,7 +84,7 @@ extension UINavigationBar {
         if let foreGroundColor = foreGroundColor {
             appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
         }
-        standardAppearance = appearance;
+        standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance
     }
 

@@ -133,7 +133,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                 [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
                     guard let url = self?.profile.first?.calendarURL else { return }
                     self?.env.loginDelegate?.openExternalURL(url)
-                }]
+                }, ],
             ]),
 
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
