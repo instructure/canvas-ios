@@ -24,23 +24,23 @@ import ArgumentParser
 private let maxTries = 5
 
 struct RunUITests: ParsableCommand {
-    @Option(default: "NightlyTests")
-    var scheme: String
+    @Option()
+    var scheme: String = "NightlyTests"
 
-    @Option(default: "iPhone SE (2nd generation)")
-    var deviceName: String
+    @Option()
+    var deviceName: String = "iPhone SE (2nd generation)"
 
     @Flag(help: "build test target first")
-    var build: Bool
+    var build: Bool = false
 
     @Flag(help: "append to ui-test-results instead of clobbering it")
-    var appendResults: Bool
+    var appendResults: Bool = false
 
     @Flag(help: "run all tests in scheme")
-    var allTests: Bool
+    var allTests: Bool = false
 
-    @Flag()
-    var verbose: Bool
+    @Flag(help: "Show all log")
+    var verbose: Bool = false
 
     @Argument(help: "tests/suites to run")
     var tests: [String]
@@ -294,7 +294,7 @@ private class Runner {
                            "-scheme", command.scheme,
                          ])
         }
-        return cmd("xcodebuild", arguments: flags + args).output(overwritingFile: "/dev/null", fd: STDERR_FILENO)
+        return cmd("xcodebuild", arguments: flags + args).output(overwritingFile: "/dev/null", fd: FileDescriptor(rawValue: STDERR_FILENO))
     }
 
     func xcpretty(quiet: Bool = false) -> Command {
@@ -356,7 +356,7 @@ private func banner(_ message: String) {
 extension Command {
     var silent: Command {
         self
-          .output(overwritingFile: "/dev/null", fd: STDOUT_FILENO)
-          .output(overwritingFile: "/dev/null", fd: STDERR_FILENO)
+          .output(overwritingFile: "/dev/null", fd: FileDescriptor(rawValue: STDOUT_FILENO))
+          .output(overwritingFile: "/dev/null", fd: FileDescriptor(rawValue: STDERR_FILENO))
     }
 }

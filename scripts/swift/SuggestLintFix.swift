@@ -42,7 +42,7 @@ struct SuggestLintFix: ParsableCommand {
             snapshotHash = "HEAD"
         }
 
-        _ = try cmd("./scripts/runSwiftLint.sh", "fix").runString(joinErr: true)
+        _ = try cmd("./scripts/runSwiftLint.sh", "fix").runString()
         try inDir("rn/Teacher") { try cmd("yarn", "lint:fix").run() }
 
         // don't read gitconfig, it might mess with diff format
