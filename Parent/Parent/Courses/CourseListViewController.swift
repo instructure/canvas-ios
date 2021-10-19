@@ -129,7 +129,7 @@ class CourseListCell: UITableViewCell {
         if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
             return NSLocalizedString("N/A", comment: "")
         }
-        
+
         if course.hideTotalGrade {
             return ""
         }
