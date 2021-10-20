@@ -37,3 +37,13 @@ extension CanvasIntentHandler {
         env.userDidLogin(session: session)
     }
 }
+
+extension INCourse {
+    convenience init?(_ course: APICourse) {
+        guard !(course.course_code ?? "").isEmpty || !(course.name ?? "").isEmpty else { return nil }
+        self.init(identifier: course.id.rawValue, display: [course.course_code, course.name].compactMap({$0}).joined(separator: " - "))
+        name = course.name
+        code = course.course_code
+        color = course.course_color
+    }
+}

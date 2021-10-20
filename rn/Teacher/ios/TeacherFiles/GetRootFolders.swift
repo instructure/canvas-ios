@@ -76,7 +76,7 @@ public class GetRootFolders: UseCase {
                 }
             }
             group.enter()
-            environment.api.exhaust(GetCoursesRequest(include: []), callback: handleCourses)
+            environment.api.exhaust(GetCoursesRequest(includes: []), callback: handleCourses)
         }
         group.notify(queue: .main) {
             completionHandler(folders, resp, err)

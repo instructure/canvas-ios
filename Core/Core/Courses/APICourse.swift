@@ -239,7 +239,7 @@ public struct GetCoursesRequest: APIRequestable {
         .total_scores,
     ]
 
-    var include: [Include] = defaultIncludes
+    var includes: [Include]
 
     let enrollmentState: EnrollmentState?
     let enrollmentType: EnrollmentType?
@@ -253,14 +253,14 @@ public struct GetCoursesRequest: APIRequestable {
         state: [State]? = nil,
         perPage: Int = 10,
         studentID: String? = nil,
-        include: [Include] = defaultIncludes
+        includes: [Include] = defaultIncludes
     ) {
         self.enrollmentState = enrollmentState
         self.enrollmentType = enrollmentType
         self.state = state
         self.perPage = perPage
         self.studentID = studentID
-        self.include = include
+        self.includes = includes
     }
 
     public var path: String {
@@ -273,7 +273,7 @@ public struct GetCoursesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         [
-            .include(include.map { $0.rawValue }),
+            .include(includes.map { $0.rawValue }),
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", (state ?? []).map { $0.rawValue }),

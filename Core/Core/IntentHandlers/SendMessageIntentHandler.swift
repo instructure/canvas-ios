@@ -18,91 +18,90 @@
 
 import Intents
 
-public class SendMessageIntentHandler: NSObject, CanvasIntentHandler, INSendMessageIntentHandling {
+extension INPerson {
+    convenience init(_ searchRecipient: APISearchRecipient) {
+        var avatar: INImage?
+        if let avatarUrl = searchRecipient.avatar_url {
+            avatar = INImage(url: avatarUrl.rawValue)
+        }
 
+        self.init(personHandle: INPersonHandle(value: searchRecipient.id.rawValue, type: .unknown, label: INPersonHandleLabel("Canvas user ID")),
+                  nameComponents: nil,
+                  displayName: searchRecipient.name,
+                  image: avatar,
+                  contactIdentifier: nil,
+                  customIdentifier: searchRecipient.id.rawValue)
+    }
+}
+
+public class SendMessageIntentHandler: NSObject, CanvasIntentHandler, INSendMessageIntentHandling {
     public func resolveRecipients(for intent: INSendMessageIntent, with completion: @escaping ([INSendMessageRecipientResolutionResult]) -> Void) {
         guard isLoggedIn else { return } // Unfortunately, there doesn't seem to be a way to fail here if the user is not logged in
         guard let recipients = intent.recipients else {
-            completion([INSendMessageRecipientResolutionResult.needsValue()])
+            completion([.needsValue()])
             return
         }
 
         setupLastLoginCredentials()
 
-        let requests = recipients.map { recipient in
-            GetSearchRecipientsRequest(search: recipient.displayName)
-        }
+        let requests = recipients.map { GetSearchRecipientsRequest(search: $0.displayName) }
 
-        var responses = [INSendMessageRecipientResolutionResult?](repeating: nil, count: requests.count)
-        var completedRequests = 0
+        var responses = [INSendMessageRecipientResolutionResult](repeating: .unsupported(), count: requests.count)
 
+        let requestGroup = DispatchGroup()
         for (index, request) in requests.enumerated() {
+            requestGroup.enter()
             env.api.makeRequest(request) { results, _, error in
-                guard error == nil else { return [] }
-
-                let persons: [INPerson] = results?.map { result in
-                    var avatar: INImage?
-                    if let avatarUrl = result.avatar_url {
-                        avatar = INImage(url: avatarUrl.rawValue)
-                    }
-
-                    return INPerson(personHandle: INPersonHandle(value: result.id.rawValue, type: .unknown, label: INPersonHandleLabel("Canvas user ID")),
-                                    nameComponents: nil,
-                                    displayName: result.name,
-                                    image: avatar,
-                                    contactIdentifier: nil,
-                                    customIdentifier: result.id.rawValue)
-                } ?? []
+                let persons: [INPerson] = error == nil ? results?.map { INPerson($0) } ?? [] : []
 
                 switch persons.count {
-                case 2 ... 4:
-                    responses[index] = INSendMessageRecipientResolutionResult.disambiguation(with: persons)
+                case 2 ... Int.max:
+                    responses[index] = .disambiguation(with: persons)
                 case 1:
                     guard let person = persons.first else {fallthrough}
                     if person.displayName.caseInsensitiveCompare(recipients[index].displayName) == .orderedSame {
-                        responses[index] = INSendMessageRecipientResolutionResult.success(with: person)
+                        responses[index] = .success(with: person)
                     } else {
-                        responses[index] = INSendMessageRecipientResolutionResult.confirmationRequired(with: person)
+                        responses[index] = .confirmationRequired(with: person)
                     }
                 default:
-                    responses[index] = INSendMessageRecipientResolutionResult.unsupported()
+                    responses[index] = .unsupported()
                 }
 
-                completedRequests += 1
-
-                // Call the callback once all requests have been completed
-                if (completedRequests == requests.count) {
-                    completion(responses as! [INSendMessageRecipientResolutionResult])
-                }
+                requestGroup.leave()
             }
+        }
+
+        requestGroup.notify(queue: .main) {
+            completion(responses)
         }
     }
 
     public func resolveContent(for intent: INSendMessageIntent, with completion: (INStringResolutionResult) -> Void) {
         if let text = intent.content, !text.isEmpty {
-            completion(INStringResolutionResult.success(with: text))
+            completion(.success(with: text))
         } else {
-            completion(INStringResolutionResult.needsValue())
+            completion(.needsValue())
         }
     }
 
     @available(iOSApplicationExtension 14.0, *)
     public func resolveOutgoingMessageType(for intent: INSendMessageIntent, with completion: @escaping (INOutgoingMessageTypeResolutionResult) -> Void) {
         guard intent.outgoingMessageType != .outgoingMessageAudio else {
-            completion(INOutgoingMessageTypeResolutionResult.unsupported())
+            completion(.unsupported())
             return
         }
 
-        completion(INOutgoingMessageTypeResolutionResult.success(with: .outgoingMessageText))
+        completion(.success(with: .outgoingMessageText))
     }
 
     public func confirm(intent: INSendMessageIntent, completion: (INSendMessageIntentResponse) -> Void) {
         guard isLoggedIn else {
-            completion(INSendMessageIntentResponse.init(code: .failureRequiringAppLaunch, userActivity: nil))
+            completion(INSendMessageIntentResponse(code: .failureRequiringAppLaunch, userActivity: nil))
             return
         }
 
-        completion(INSendMessageIntentResponse.init(code: .ready, userActivity: nil))
+        completion(INSendMessageIntentResponse(code: .ready, userActivity: nil))
     }
 
     public func handle(intent: INSendMessageIntent, completion: @escaping (INSendMessageIntentResponse) -> Void) {

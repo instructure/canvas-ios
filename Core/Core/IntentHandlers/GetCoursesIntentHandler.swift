@@ -18,24 +18,24 @@
 
 public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesIntentHandling {
     public func resolveEnrollmentTypeFilter(for intent: GetCoursesIntent, with completion: @escaping (EnrollmentTypeFilterResolutionResult) -> Void) {
-        completion(EnrollmentTypeFilterResolutionResult.success(with: intent.enrollmentTypeFilter))
+        completion(.success(with: intent.enrollmentTypeFilter))
     }
 
     public func resolveEnrollmentStateFilter(for intent: GetCoursesIntent, with completion: @escaping (EnrollmentStateFilterResolutionResult) -> Void) {
-        completion(EnrollmentStateFilterResolutionResult.success(with: intent.enrollmentStateFilter))
+        completion(.success(with: intent.enrollmentStateFilter))
     }
 
     public func resolveCourseStateFilter(for intent: GetCoursesIntent, with completion: @escaping (CourseStateFilterResolutionResult) -> Void) {
-        completion(CourseStateFilterResolutionResult.success(with: intent.courseStateFilter))
+        completion(.success(with: intent.courseStateFilter))
     }
 
     public func confirm(intent: GetCoursesIntent, completion: (GetCoursesIntentResponse) -> Void) {
         guard isLoggedIn else {
-            completion(GetCoursesIntentResponse.init(code: .failureRequiringAppLaunch, userActivity: nil))
+            completion(GetCoursesIntentResponse(code: .failureRequiringAppLaunch, userActivity: nil))
             return
         }
 
-        completion(GetCoursesIntentResponse.init(code: .ready, userActivity: nil))
+        completion(GetCoursesIntentResponse(code: .ready, userActivity: nil))
     }
 
     public func handle(intent: GetCoursesIntent, completion: @escaping (GetCoursesIntentResponse) -> Void) {
@@ -43,46 +43,31 @@ public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesI
 
         let enrollmentStateFilter: GetCoursesRequest.EnrollmentState? = {
             switch intent.enrollmentStateFilter {
-            case .active:
-                return GetCoursesRequest.EnrollmentState.active
-            case .completed:
-                return GetCoursesRequest.EnrollmentState.completed
-            case .invitedOrPending:
-                return GetCoursesRequest.EnrollmentState.invited_or_pending
-            default:
-                return nil
+            case .active: return .active
+            case .completed: return .completed
+            case .invitedOrPending: return .invited_or_pending
+            default: return nil
             }
         }()
 
         let enrollmentTypeFilter: GetCoursesRequest.EnrollmentType? = {
             switch intent.enrollmentTypeFilter {
-            case .student:
-                return GetCoursesRequest.EnrollmentType.student
-            case .teacher:
-                return GetCoursesRequest.EnrollmentType.teacher
-            case .observer:
-                return GetCoursesRequest.EnrollmentType.observer
-            case .ta:
-                return GetCoursesRequest.EnrollmentType.ta
-            case .designer:
-                return GetCoursesRequest.EnrollmentType.designer
-            default:
-                return nil
+            case .student: return .student
+            case .teacher: return .teacher
+            case .observer: return .observer
+            case .ta: return .ta
+            case .designer: return .designer
+            default: return nil
             }
         }()
 
         let courseStateFilter: [GetCoursesRequest.State]? = {
             switch intent.courseStateFilter {
-            case .available:
-                return [GetCoursesRequest.State.available]
-            case .completed:
-                return [GetCoursesRequest.State.completed]
-            case .currentAndConcluded:
-                return [GetCoursesRequest.State.current_and_concluded]
-            case .unpublished:
-                return [GetCoursesRequest.State.unpublished]
-            default:
-                return nil
+            case .available: return [.available]
+            case .completed: return [.completed]
+            case .currentAndConcluded: return [.current_and_concluded]
+            case .unpublished: return [.unpublished]
+            default: return nil
             }
         }()
 
@@ -91,7 +76,7 @@ public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesI
                                         state: courseStateFilter,
                                         perPage: 100,
                                         studentID: LoginSession.mostRecent?.userID,
-                                        include: [])
+                                        includes: [])
 
         env.api.makeRequest(request) { courses, response, error in
             guard error == nil && courses != nil else {
@@ -99,18 +84,8 @@ public class GetCoursesIntentHandler: NSObject, CanvasIntentHandler, GetCoursesI
                 return
             }
 
-            let studentCourses = (courses ?? []).map { (course: APICourse) -> INCourse? in
-                guard !(course.course_code ?? "").isEmpty || !(course.name ?? "").isEmpty else { return nil }
-
-                let inCourse = INCourse(identifier: course.id.rawValue, display: [course.course_code, course.name].compactMap({$0}).joined(separator: " - "))
-                inCourse.name = course.name
-                inCourse.code = course.course_code
-                inCourse.color = course.course_color
-                return inCourse
-            }.compactMap({$0})
-
             let response = GetCoursesIntentResponse(code: .success, userActivity: nil)
-            response.courses = studentCourses
+            response.courses = (courses ?? []).map({INCourse($0)}).compactMap({$0})
 
             completion(response)
         }

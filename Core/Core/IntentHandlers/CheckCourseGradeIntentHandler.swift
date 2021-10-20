@@ -28,28 +28,27 @@ extension INCourse: Fuseable {
 public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, CheckCourseGradeIntentHandling {
     public func resolveCourse(for intent: CheckCourseGradeIntent, with completion: @escaping (INCourseResolutionResult) -> Void) {
         guard let studentCourse = intent.course else {
-            completion(INCourseResolutionResult.needsValue())
+            completion(.needsValue())
             return
         }
-        completion(INCourseResolutionResult.success(with: studentCourse))
+        completion(.success(with: studentCourse))
     }
 
     @available(iOSApplicationExtension, introduced: 13.0, deprecated: 14.0, message: "")
     public func provideCourseOptions(for intent: CheckCourseGradeIntent, with completion: @escaping ([INCourse]?, Error?) -> Void) {
         guard isLoggedIn else {
-            completion(nil, INIntentError.init(_nsError: NSError(domain: "com.instructure.icanvas.Core", code: -1, userInfo: [NSLocalizedDescriptionKey: "Please log in via the application"])))
+            completion(nil, INIntentError(_nsError: NSError.instructureError("Please log in via the application")))
             return
         }
 
         setupLastLoginCredentials()
 
-        let request = GetCoursesRequest(enrollmentState: .active, enrollmentType: .student, state: [.current_and_concluded], perPage: 20, studentID: LoginSession.mostRecent?.userID, include: [])
+        let request = GetCoursesRequest(enrollmentState: .active, enrollmentType: .student, state: [.current_and_concluded], perPage: 20, studentID: LoginSession.mostRecent?.userID, includes: [])
 
         env.api.makeRequest(request) { courses, _, error in
-            guard let courses = courses else { return }
-            guard error == nil else { return }
+            guard let courses = courses, error == nil else { return }
 
-            completion(courses.map {CheckCourseGradeIntentHandler.mapApiCourse($0)}.compactMap({$0}), nil)
+            completion(courses.map {INCourse($0)}.compactMap({$0}), nil)
             return
         }
     }
@@ -57,19 +56,19 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
     @available(iOSApplicationExtension 14.0, *)
     public func provideCourseOptionsCollection(for intent: CheckCourseGradeIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<INCourse>?, Error?) -> Void) {
         guard isLoggedIn else {
-            completion(nil, INIntentError.init(_nsError: NSError(domain: "com.instructure.icanvas.Core", code: -1, userInfo: [NSLocalizedDescriptionKey: "Please log in via the application"])))
+            completion(nil, INIntentError(_nsError: NSError.instructureError("Please log in via the application")))
             return
         }
 
         setupLastLoginCredentials()
 
-        let request = GetCoursesRequest(enrollmentState: .active, enrollmentType: .student, state: [.current_and_concluded], perPage: 20, studentID: LoginSession.mostRecent?.userID, include: [])
+        let request = GetCoursesRequest(enrollmentState: .active, enrollmentType: .student, state: [.current_and_concluded], perPage: 20, studentID: LoginSession.mostRecent?.userID, includes: [])
 
         env.api.makeRequest(request) { courses, _, error in
             guard let courses = courses else { return }
             guard error == nil else { return }
 
-            let studentCourses = courses.map {CheckCourseGradeIntentHandler.mapApiCourse($0)}.compactMap({$0})
+            let studentCourses = courses.map {INCourse($0)}.compactMap({$0})
 
             let search = searchTerm ?? ""
 
@@ -79,7 +78,7 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
             }
 
             let fuse = Fuse()
-            completion(INObjectCollection(items: fuse.search(search, in: studentCourses).map { (index, _, _) in
+            completion(INObjectCollection(items: fuse.search(search, in: studentCourses).map { index, _, _ in
                 studentCourses[index]
             }), nil)
             return
@@ -120,14 +119,6 @@ public class CheckCourseGradeIntentHandler: NSObject, CanvasIntentHandler, Check
             response.combinedGradeOutput = "\(scoreString ?? "")\(grade != nil ? " (\(grade ?? ""))" : "")"
             completion(response)
         }
-    }
-
-    private static func mapApiCourse(_ course: APICourse) -> INCourse? {
-        guard !(course.course_code ?? "").isEmpty || !(course.name ?? "").isEmpty else { return nil }
-        let studentCourse = INCourse(identifier: course.id.rawValue, display: [course.course_code, course.name].compactMap({$0}).joined(separator: " - "))
-        studentCourse.name = course.name
-        studentCourse.code = course.course_code
-        return studentCourse
     }
 
     private static func displayGrade(_ course: APICourse?, studentID: String) -> (NSNumber?, String?, String?) {
