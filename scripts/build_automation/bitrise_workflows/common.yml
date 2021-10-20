@@ -211,7 +211,7 @@ workflows:
     - cocoapods-install:
         inputs:
         - verbose: 'false'
-    - ios-auto-provision-appstoreconnect:
+    - ios-auto-provision-appstoreconnect@2.1.3:
         run_if: '{{enveq "BITRISE_SCHEME" "" | not}}'
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
