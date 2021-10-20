@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Študent, ki ga poskušate dodati, je v drugi ustanovi Canvas.\n                    Prijavite se ali ustvarite račun pri tej ustanovi, če želite dodati tega študenta.\n                    ";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ima rok ob %2$@";
 
 /* No comment provided by engineer. */
@@ -179,6 +176,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
+
+/* No comment provided by engineer. */
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Študent, ki ga poskušate dodati, je v drugi ustanovi Canvas.\nPrijavite se ali ustvarite račun pri tej ustanovi, če želite dodati tega študenta.";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Vrednost mora biti število 0–100";

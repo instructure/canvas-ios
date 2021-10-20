@@ -156,4 +156,19 @@ class APISubmissionTests: CoreTestCase {
         XCTAssertEqual(testee?.group?.id?.value, "284")
         XCTAssertEqual(testee?.group?.name, "Assignment 2")
     }
+
+    func testDecodesCommentAuthorWithSpaceInAvatarURL() {
+        let json = """
+            {
+                "id": "1503",
+                "display_name": "Test User",
+                "avatar_image_url": "https://test.com/profile pic.jpg",
+                "html_url": "https://test.com/courses/1/users/1",
+                "pronouns": null
+            }
+        """
+
+        let testee = try? JSONDecoder().decode(APISubmissionCommentAuthor.self, from: json.data(using: .utf8)!)
+        XCTAssertNotNil(testee)
+    }
 }

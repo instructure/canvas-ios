@@ -56,8 +56,8 @@ class DiscussionEditorTests: CoreUITestCase {
         DiscussionEditor.titleField.waitToVanish()
     }
 
-    func testCreateDiscussionWithAttachment() throws {
-        try XCTSkipIf(true, "Photo library picker doesn't work on bitrise simulator.")
+    func testCreateDiscussionWithAttachment() {
+        // Disabled test, Photo library picker doesn't work on bitrise simulator. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         mockBaseRequests()
         mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
         mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])

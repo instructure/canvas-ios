@@ -75,6 +75,9 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     var currentFileID: String?
     var currentSubmission: Submission?
     var currentDrawerTab: Drawer.Tab?
+    // Used for student_annotation type submissions to launch DocViewer
+    private var docViewerSessionURL: URL?
+    private var docViewerSessionRequest: APITask?
 
     init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String) {
         self.context = context
@@ -122,7 +125,11 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
             view?.embedInDrawer(viewControllerForDrawer())
         }
         if assignmentChanged || fileIDChanged || submissionChanged {
-            view?.embed(viewControllerForContent())
+            if let submission = submission, case submission.type = SubmissionType.student_annotation {
+                requestDocviewerSession(for: submission.id, attempt: submission.attempt)
+            } else {
+                view?.embed(viewControllerForContent())
+            }
         }
         view?.reload()
         view?.reloadNavBar()
@@ -135,6 +142,18 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
             submissionButtonPresenter.arcID = .none
         }
         update()
+    }
+
+    private func requestDocviewerSession(for submissionId: String, attempt: Int) {
+        docViewerSessionRequest?.cancel()
+        docViewerSessionRequest = env.api.makeRequest(CanvaDocsSessionRequest(submissionId: submissionId, attempt: "\(attempt)")) { [weak self] response, _, _ in
+            self?.docViewerSessionRequest = nil
+            guard let docViewerSessionURL = response?.canvadocs_session_url else { return }
+            self?.docViewerSessionURL = docViewerSessionURL.rawValue
+            performUIUpdate {
+                self?.view?.embed(self?.viewControllerForContent())
+            }
+        }
     }
 
     @objc func quizRefresh(_ notification: Notification) {
@@ -245,6 +264,14 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                 url: submission.externalToolURL
             )
             return LTIViewController.create(tools: tools)
+        case .student_annotation:
+            guard let docViewerSessionURL = docViewerSessionURL else { return nil }
+            return DocViewerViewController.create(
+                filename: "", // filename unknown because this isn't a file the user attached but one attached to the assignment
+                previewURL: docViewerSessionURL,
+                fallbackURL: docViewerSessionURL,
+                navigationItem: view?.navigationItem
+            )
         default:
             return nil
         }

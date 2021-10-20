@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la.\n        Si elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "Make tankou li fini";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Make eleman tankou li fini";
+
+/* No comment provided by engineer. */
 "Marked done" = "Make Fini";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Pwochen";
+
+/* No comment provided by engineer. */
+"Next Week" = "Semenn Pwochen";
 
 /* No comment provided by engineer. */
 "Nickname" = "Ti Non Jwèt";
@@ -1487,6 +1490,12 @@
 "Open application" = "Ouvri aplikasyon";
 
 /* No comment provided by engineer. */
+"Open course details" = "Ouvri detay kou";
+
+/* No comment provided by engineer. */
+"Open item details" = "Ouvri detay eleman";
+
+/* No comment provided by engineer. */
 "Options" = "Opsyon";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Ansyen Koneksyon";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Semenn Pase";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Politik Konfidansyalite";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "pou %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la.\nSi elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";

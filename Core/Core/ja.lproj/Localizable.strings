@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        アカウントを作成するには、下に示すように受講生にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\n        ペアリングコードを作成するオプションが受講生に表示されない場合は、学校に連絡してアカウントを作成する必要があります。\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "完了にする";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "アイテムを完了とマークする";
+
+/* No comment provided by engineer. */
 "Marked done" = "完了済み";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "次へ";
+
+/* No comment provided by engineer. */
+"Next Week" = "次週";
 
 /* No comment provided by engineer. */
 "Nickname" = "ニックネーム";
@@ -1487,6 +1490,12 @@
 "Open application" = "アプリケーションを開く";
 
 /* No comment provided by engineer. */
+"Open course details" = "コース詳細を開く";
+
+/* No comment provided by engineer. */
+"Open item details" = "アイテム 詳細を開く";
+
+/* No comment provided by engineer. */
 "Options" = "オプション";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "以前のログイン";
+
+/* No comment provided by engineer. */
+"Previous Week" = "前の週";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "個人情報保護方針";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "～へ%@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "アカウントを作成するには、下に示すように受講生にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\nペアリングコードを作成するオプションが受講生に表示されない場合は、学校に連絡してアカウントを作成する必要があります。";
 
 /* No comment provided by engineer. */
 "To Do" = "タスク";

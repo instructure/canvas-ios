@@ -21,8 +21,8 @@ import Foundation
 @testable import TestsFoundation
 
 class InboxTests: ParentUITestCase {
-    func testReplyWithAttachments() throws {
-        try XCTSkipIf(true, "passes locally but fails on bitrise")
+    func testReplyWithAttachments() {
+        // Disabled test, passes locally but fails on bitrise. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         mockBaseRequests()
         let message = APIConversationMessage.make(
             id: "1",

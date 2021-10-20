@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Če želite ustvariti račun, mora študent za vas ustvariti kodo za seznanitev v razdelku Nastavitve aplikacije Canvas Student, kot je prikazano spodaj, nato pa kodo odčitate tam.\n        Če študent ne vidi možnosti za ustvarjanje kode za seznanitev, boste se morali za ustvarjanje računa obrniti na šolo.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "Označi kot dokončano";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Element označi kot dokončan";
+
+/* No comment provided by engineer. */
 "Marked done" = "Označeno kot dokončano";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Naprej";
+
+/* No comment provided by engineer. */
+"Next Week" = "Naslednji teden";
 
 /* No comment provided by engineer. */
 "Nickname" = "Vzdevek";
@@ -1487,6 +1490,12 @@
 "Open application" = "Odpri aplikacijo";
 
 /* No comment provided by engineer. */
+"Open course details" = "Odpri podrobnosti o predmetu";
+
+/* No comment provided by engineer. */
+"Open item details" = "Odpri podrobnosti o elementu";
+
+/* No comment provided by engineer. */
 "Options" = "Možnosti";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Predhodne prijave";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Prejšnji teden";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Pravilnik o zasebnosti";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "naslovnik %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Če želite ustvariti račun, mora študent za vas ustvariti kodo za seznanitev v razdelku Nastavitve aplikacije Canvas Student, kot je prikazano spodaj, nato pa kodo odčitate tam.\nČe študent ne vidi možnosti za ustvarjanje kode za seznanitev, boste se morali za ustvarjanje računa obrniti na šolo.";
 
 /* No comment provided by engineer. */
 "To Do" = "Čakajoča opravila";

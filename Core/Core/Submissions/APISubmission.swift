@@ -76,7 +76,7 @@ public struct APISubmissionComment: Codable, Equatable {
 public struct APISubmissionCommentAuthor: Codable, Equatable {
     let id: ID?
     let display_name: String?
-    let avatar_image_url: URL?
+    let avatar_image_url: APIURL?
     let html_url: URL?
     let pronouns: String?
 }
@@ -240,7 +240,7 @@ extension APISubmissionCommentAuthor {
     public static func make(
         id: ID? = "1",
         display_name: String? = "Steve",
-        avatar_image_url: URL? = nil,
+        avatar_image_url: APIURL? = nil,
         html_url: URL? = URL(string: "/users/1"),
         pronouns: String? = nil
     ) -> APISubmissionCommentAuthor {
@@ -257,7 +257,7 @@ extension APISubmissionCommentAuthor {
         APISubmissionCommentAuthor(
             id: user.id,
             display_name: user.name,
-            avatar_image_url: user.avatar_url?.rawValue,
+            avatar_image_url: user.avatar_url,
             html_url: URL(string: "/users/\(user.id)"),
             pronouns: user.pronouns
         )

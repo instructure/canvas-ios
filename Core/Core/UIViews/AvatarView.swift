@@ -20,41 +20,6 @@ import UIKit
 
 @IBDesignable
 open class AvatarView: UIView {
-    public let imageView = UIImageView()
-    public let label = UILabel()
-
-    open override func layoutSubviews() {
-        // One time setup.
-        if imageView.superview == nil {
-            addSubview(imageView)
-            imageView.pin(inside: self)
-            imageView.backgroundColor = .backgroundLight
-            imageView.clipsToBounds = true
-            imageView.contentMode = .scaleAspectFill
-            imageView.isAccessibilityElement = false
-            imageView.tintColor = .textDark
-
-            addSubview(label)
-            label.pin(inside: self)
-            label.allowsDefaultTighteningForTruncation = true
-            label.backgroundColor = .backgroundLightest
-            label.clipsToBounds = true
-            label.isAccessibilityElement = false
-            label.layer.borderColor = UIColor.borderMedium.cgColor
-            label.layer.borderWidth = 1 / UIScreen.main.scale
-            label.lineBreakMode = .byClipping
-            label.textAlignment = .center
-            label.textColor = .textDark
-        }
-
-        // Size dependent layout needs to happen every time.
-        label.font = .systemFont(ofSize: round(frame.width / 2.25), weight: .semibold)
-        label.layer.cornerRadius = frame.width / 2
-        imageView.layer.cornerRadius = frame.width / 2
-
-        super.layoutSubviews()
-    }
-
     public var url: URL? {
         didSet {
             let url = Avatar.scrubbedURL(self.url)
@@ -83,5 +48,72 @@ open class AvatarView: UIView {
             label.text = ""
             label.isHidden = false
         }
+    }
+
+    private let imageView = AvatarView.makeimageView()
+    private let label = AvatarView.makeLabel()
+    private var frameChangeObservation: NSKeyValueObservation?
+
+    // MARK: - Initializers
+
+    public init() {
+        super.init(frame: .null)
+        addSubViews()
+    }
+
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        addSubViews()
+    }
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubViews()
+    }
+
+    // MARK: - Private Methods
+
+    private func addSubViews() {
+        addSubview(imageView)
+        imageView.pin(inside: self)
+
+        addSubview(label)
+        label.pin(inside: self)
+
+        updateSubviews()
+
+        frameChangeObservation = observe(\.bounds) { [weak self] _, _ in
+            self?.updateSubviews()
+        }
+    }
+
+    private func updateSubviews() {
+        label.font = .systemFont(ofSize: round(frame.width / 2.25), weight: .semibold)
+        label.layer.cornerRadius = frame.width / 2
+        imageView.layer.cornerRadius = frame.width / 2
+    }
+
+    private static func makeLabel() -> UILabel {
+        let label = UILabel()
+        label.allowsDefaultTighteningForTruncation = true
+        label.backgroundColor = .backgroundLightest
+        label.clipsToBounds = true
+        label.isAccessibilityElement = false
+        label.layer.borderColor = UIColor.borderMedium.cgColor
+        label.layer.borderWidth = 1 / UIScreen.main.scale
+        label.lineBreakMode = .byClipping
+        label.textAlignment = .center
+        label.textColor = .textDark
+        return label
+    }
+
+    public static func makeimageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .backgroundLight
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.isAccessibilityElement = false
+        imageView.tintColor = .textDark
+        return imageView
     }
 }

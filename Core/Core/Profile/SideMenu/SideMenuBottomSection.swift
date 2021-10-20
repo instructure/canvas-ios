@@ -62,7 +62,7 @@ struct SideMenuBottomSection: View {
         VStack(spacing: 0) {
 
             if let root = helpLinks.first, helpLinks.count > 1 {
-                SideMenuItem(id: "help", image: .questionLine, title: Text("\(root.text)", bundle: .core), badgeValue: 0).onTapGesture {
+                SideMenuItem(id: "help", image: .questionLine, title: Text("\(root.text ?? "")", bundle: .core), badgeValue: 0).onTapGesture {
                     showHelpMenu()
                 }
             }

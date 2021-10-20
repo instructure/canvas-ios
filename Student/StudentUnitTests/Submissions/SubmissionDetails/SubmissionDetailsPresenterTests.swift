@@ -278,6 +278,24 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         XCTAssertEqual(ltiController.tools.url, submission.externalToolURL!)
     }
 
+    func testEmbedStudentAnnotation() {
+        Assignment.make()
+        Submission.make(from: .make(attempt: 1, submission_type: .student_annotation))
+
+        let request = CanvaDocsSessionRequest(submissionId: "1", attempt: "1")
+        let response = CanvaDocsSessionRequest.Response(annotation_context_launch_id: nil, canvadocs_session_url: APIURL(rawValue: URL(string: "https://instructure.com")!))
+        api.mock(request, value: response)
+
+        presenter.update()
+
+        XCTAssert(view.embedded is DocViewerViewController)
+
+        guard let docViewer = view.embedded as? DocViewerViewController else { return }
+        XCTAssertEqual(docViewer.filename, "")
+        XCTAssertEqual(docViewer.previewURL, URL(string: "https://instructure.com")!)
+        XCTAssertEqual(docViewer.fallbackURL, URL(string: "https://instructure.com")!)
+    }
+
     func testEmbedNothing() {
         Assignment.make()
         presenter.update()

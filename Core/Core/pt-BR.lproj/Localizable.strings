@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Para criar uma conta, peça ao aluno que crie um código de emparelhamento para você na seção Configurações do aplicativo Canvas Student, como mostrado abaixo, e depois faça a leitura desse código aqui.\n        Se o aluno não encontrar a opção de criar um código de emparelhamento, entre em contato com sua escola para criar sua conta.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -1259,6 +1256,9 @@
 "Mark done" = "Marcar como concluído";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Marcar item como pronto";
+
+/* No comment provided by engineer. */
 "Marked done" = "Marcado como concluído";
 
 /* No comment provided by engineer. */
@@ -1338,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Próximo";
+
+/* No comment provided by engineer. */
+"Next Week" = "Próxima Semana";
 
 /* No comment provided by engineer. */
 "Nickname" = "Apelido";
@@ -1487,6 +1490,12 @@
 "Open application" = "Abrir formulário";
 
 /* No comment provided by engineer. */
+"Open course details" = "Abrir detalhes do curso";
+
+/* No comment provided by engineer. */
+"Open item details" = "Abrir detalhes do item";
+
+/* No comment provided by engineer. */
 "Options" = "Opções";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Logins prévios";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Semana anterior";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Política de privacidade";
@@ -2109,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "a %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Para criar uma conta, peça ao aluno que crie um código de emparelhamento para você na seção Configurações do aplicativo Canvas Student, como mostrado abaixo, e depois faça a leitura desse código aqui.\nSe o aluno não encontrar a opção de criar um código de emparelhamento, entre em contato com sua escola para criar sua conta.";
 
 /* No comment provided by engineer. */
 "To Do" = "Lista de Tarefas";

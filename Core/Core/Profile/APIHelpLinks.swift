@@ -28,12 +28,34 @@ public struct APIHelpLinks: Codable {
 
 // https://canvas.instructure.com/doc/api/accounts.html#HelpLink
 public struct APIHelpLink: Codable {
-    let id: String
-    let text: String
+
+    let id: String?
+    let text: String?
     let subtext: String?
     // let type: 'default' | 'custom'
-    let available_to: [HelpLinkEnrollment]
-    let url: URL
+    let available_to: [HelpLinkEnrollment]?
+    let url: URL?
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(String.self, forKey: .id)
+        text = try container.decodeIfPresent(String.self, forKey: .text)
+        subtext = try container.decodeIfPresent(String.self, forKey: .subtext)
+        available_to = try container.decodeIfPresent([HelpLinkEnrollment].self, forKey: .available_to)
+        do {
+            url = try container.decode(URL.self, forKey: .url)
+        } catch( _) {
+            url = nil
+        }
+    }
+
+    public init(id: String?, text: String?, subtext: String?, available_to: [HelpLinkEnrollment]?, url: URL?) {
+        self.id = id
+        self.text = text
+        self.subtext = subtext
+        self.available_to = available_to
+        self.url = url
+    }
 }
 
 public enum HelpLinkEnrollment: String, Codable {
@@ -63,11 +85,11 @@ extension APIHelpLinks {
 
 extension APIHelpLink {
     public static func make(
-        id: String = "instructor_question",
-        text: String = "Ask Your Instructor a Question",
+        id: String? = "instructor_question",
+        text: String? = "Ask Your Instructor a Question",
         subtext: String? = "Questions are submitted to your instructor",
-        available_to: [HelpLinkEnrollment] = [ .student ],
-        url: URL = URL(string: "#teacher_feedback")!
+        available_to: [HelpLinkEnrollment]? = [ .student ],
+        url: URL? = URL(string: "#teacher_feedback")!
     ) -> APIHelpLink {
         return APIHelpLink(
             id: id,
