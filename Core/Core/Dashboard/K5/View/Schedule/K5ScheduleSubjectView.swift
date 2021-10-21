@@ -159,7 +159,7 @@ struct K5ScheduleSubjectView_Previews: PreviewProvider {
                 K5ScheduleSubjectView(viewModel: $0)
             }
         }
-        .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+        .previewDevice(PreviewDevice(stringLiteral: "iPad (9th generation)"))
         .environment(\.containerSize, CGSize(width: 500, height: 0))
 
         VStack {

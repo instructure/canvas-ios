@@ -42,10 +42,12 @@ public struct K5ScheduleWeekView: View {
                         let isLastDay = dayModels.last == dayModel
                         let isToday = viewModel.isTodayModel(dayModel)
                         dayCell(for: dayModel, isLastDay: isLastDay, isToday: isToday, geometry: geometry)
+                            .iOS15ListRowSeparator(.hidden)
                     }
                 }
+                .listStyle(.plain)
                 // This removes the gray highlight from list items on tap
-                .buttonStyle(BorderlessButtonStyle())
+                .buttonStyle(.borderless)
                 // This adds some extra space on top but without this the content
                 // scrolls below the sticky section header. clipped() clips the
                 // section header's top for some reason so we can't use that.
@@ -162,7 +164,7 @@ struct K5ScheduleWeekView_Previews: PreviewProvider {
         K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[1], todayPressed: {})
 
         K5ScheduleWeekView(viewModel: K5Preview.Data.Schedule.weeks[0], todayPressed: {})
-            .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+            .previewDevice(PreviewDevice(stringLiteral: "iPad (9th generation)"))
             .environment(\.containerSize, CGSize(width: 500, height: 0))
     }
 }
