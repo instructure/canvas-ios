@@ -44,7 +44,7 @@ class LoginWebViewControllerTests: CoreTestCase {
         controller.mobileVerifyModel = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "s")
         controller.view.layoutIfNeeded()
         let urlExpectation = expectation(description: "")
-        let observation = controller.webView.observe(\.url, options: .new) { webview, change in
+        let observation = controller.webView.observe(\.url, options: .new) { _, change in
             if let newUrlValue = change.newValue, let newUrl = newUrlValue,
                newUrl.absoluteString == "https://localhost/?username=u&password=p" {
                 urlExpectation.fulfill()
