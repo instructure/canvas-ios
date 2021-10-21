@@ -49,7 +49,6 @@ class LoginWebViewControllerTests: CoreTestCase {
                newUrl.absoluteString == "https://localhost/?username=u&password=p" {
                 urlExpectation.fulfill()
             }
-            print(change.newValue ?? "")
         }
         controller.webView.loadHTMLString("""
         <!doctype html>
