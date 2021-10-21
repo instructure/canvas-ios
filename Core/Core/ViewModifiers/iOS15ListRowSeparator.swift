@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public enum iOS15ListRowSeparatorVisibility {
+public enum IOS15ListRowSeparatorVisibility {
     case automatic
     case visible
     case hidden
@@ -31,7 +31,7 @@ extension View {
      */
     @available(iOS, obsoleted: 15)
     @ViewBuilder
-    public func iOS15ListRowSeparator(_ visibility: iOS15ListRowSeparatorVisibility) -> some View {
+    public func iOS15ListRowSeparator(_ visibility: IOS15ListRowSeparatorVisibility) -> some View {
         if #available(iOS 15, *) {
             let mappedVisibility: Visibility = {
                 switch visibility {
