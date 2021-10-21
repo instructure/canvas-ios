@@ -24,8 +24,7 @@ import TestsFoundation
 class LoginWebViewControllerTests: CoreTestCase {
     var opened: URL?
     var loggedIn: LoginSession?
-    var observation: NSKeyValueObservation?
-    let url = URL(string: "https://localhost:1")!
+    let url = URL(string: "https://localhost")!
     lazy var controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin)
 
     override func setUp() {
@@ -37,13 +36,21 @@ class LoginWebViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
-        XCTAssertEqual(controller.webView.url, URL(string: "https://localhost:1/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"))
+        XCTAssertEqual(controller.webView.url, URL(string: "https://localhost/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"))
     }
 
     func testPreloaded() {
-        controller.mdmLogin = MDMLogin(host: "localhost:1", username: "u", password: "p")
+        controller.mdmLogin = MDMLogin(host: "localhost", username: "u", password: "p")
         controller.mobileVerifyModel = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "s")
         controller.view.layoutIfNeeded()
+        let urlExpectation = expectation(description: "")
+        let observation = controller.webView.observe(\.url, options: .new) { webview, change in
+            if let newUrlValue = change.newValue, let newUrl = newUrlValue,
+               newUrl.absoluteString == "https://localhost/?username=u&password=p" {
+                urlExpectation.fulfill()
+            }
+            print(change.newValue ?? "")
+        }
         controller.webView.loadHTMLString("""
         <!doctype html>
         <form action="/" method="GET" id="login_form">
@@ -52,8 +59,8 @@ class LoginWebViewControllerTests: CoreTestCase {
         <input type="submit" />
         </form>
         """, baseURL: url)
-        let done = keyValueObservingExpectation(for: controller.webView, keyPath: #keyPath(WKWebView.url), expectedValue: URL(string: "https://localhost:1/?username=u&password=p"))
-        wait(for: [done], timeout: 9)
+        wait(for: [urlExpectation], timeout: 9)
+        observation.invalidate()
     }
 
     func testRedirectFlow() {
