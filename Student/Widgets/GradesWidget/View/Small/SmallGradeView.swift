@@ -52,7 +52,7 @@ struct SmallGradeViewPreviews: PreviewProvider {
         ForEach(PreviewSimulator.allCases, id: \.self) { device in
             SmallGradeView(gradeItem: GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "95.50 / 100", color: .crimson))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .previewDevice(PreviewDevice(rawValue: device.rawValue))
+                .previewDevice(device)
                 .previewDisplayName(device.rawValue)
         }
     }
