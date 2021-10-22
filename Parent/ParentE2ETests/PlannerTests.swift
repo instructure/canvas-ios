@@ -40,9 +40,11 @@ class PlannerTests: CoreUITestCase {
         while calendar.compare(shown, to: reference, toGranularity: .month) != .orderedSame {
             let isPast = calendar.compare(shown, to: reference, toGranularity: .month) == .orderedAscending
             if isPast {
-                PlannerCalendar.dayButton(for: shown).swipeLeft()
+                PlannerCalendar.dayButton(for: shown).waitToExist()
+                app.swipeLeft()
             } else {
-                PlannerCalendar.dayButton(for: shown).swipeRight()
+                PlannerCalendar.dayButton(for: shown).waitToExist()
+                app.swipeRight()
             }
             shown = shown.addMonths(isPast ? 1 : -1)
         }
