@@ -49,7 +49,7 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         DiscussionEditor.doneButton.tap()
         wait(for: [expectation], timeout: 5)
 
-        DiscussionDetails.options.waitToExist()
+        DiscussionEditor.titleField.waitToVanish()
 
         XCTAssertEqual(DiscussionDetails.title.label(), "new title")
         XCTAssertEqual(discussion.api.title, "new title")
