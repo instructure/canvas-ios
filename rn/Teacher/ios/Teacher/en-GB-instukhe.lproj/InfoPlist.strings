@@ -1,12 +1,18 @@
-/* (No Comment) */
+/* Bundle display name */
+"CFBundleDisplayName" = "Teacher";
+
+/* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Attach photos and videos to submission comments.";
 
-/* (No Comment) */
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
+/* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "Attach audio recordings to submission comments.";
 
-/* (No Comment) */
+/* Privacy - Photo Library Additions Usage Description */
 "NSPhotoLibraryAddUsageDescription" = "Attach photos and videos to submission comments.";
 
-/* (No Comment) */
-"NSPhotoLibraryUsageDescription" = "Upload content to courses.";
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Upload content to modules.";
 

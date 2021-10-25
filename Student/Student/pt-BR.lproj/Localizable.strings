@@ -681,13 +681,13 @@
 "Grade: %1$i / %2$g" = "Nota: %1$i / %2$g";
 
 /* Label for a discussion */
-"Graded Discussion" = "Fórum Avaliada";
+"Graded Discussion" = "Fórum Avaliado";
 
 /* Lets user know discussion is graded */
-"Graded discussion." = "Fórum avaliada.";
+"Graded discussion." = "Fórum avaliado.";
 
 /* Graded discussion. 25 points possible */
-"Graded discussion. %g points possible." = "Fórum avaliada. %g pontos possíveis.";
+"Graded discussion. %g points possible." = "Fórum avaliado. %g pontos possíveis.";
 
 /* Title for Grades view controller */
 "Grades" = "Notas";
