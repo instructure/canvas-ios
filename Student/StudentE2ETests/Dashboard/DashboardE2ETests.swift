@@ -29,6 +29,7 @@ class DashboardE2ETests: CoreUITestCase {
     func testAnnouncementToggle() {
         // Dont mind me, just testing
         // I mean, for real!
+        // Checking GH Statuses
         let label = "This is a global announcement for students."
         AccountNotifications.toggleButton(id: "2").waitToExist()
         XCTAssertFalse(AccountNotifications.dismissButton(id: "2").isVisible)
