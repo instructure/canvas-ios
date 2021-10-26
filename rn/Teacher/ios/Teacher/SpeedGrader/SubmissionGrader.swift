@@ -35,6 +35,8 @@ struct SubmissionGrader: View {
     @State var showAttempts = false
     @State var tab: GraderTab = .grades
     @State var showRecorder: MediaCommentType?
+    /** This is mainly used by `SubmissionCommentList` but since it's re-created on rotation and app backgrounding the entered text is lost. */
+    @State var enteredComment: String = ""
 
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
@@ -249,7 +251,8 @@ struct SubmissionGrader: View {
                         attempts: attempts,
                         attempt: drawerAttempt,
                         fileID: drawerFileID,
-                        showRecorder: $showRecorder
+                        showRecorder: $showRecorder,
+                        enteredComment: $enteredComment
                     )
                         .clipped()
                     if showRecorder != .video || drawerState == .min {
