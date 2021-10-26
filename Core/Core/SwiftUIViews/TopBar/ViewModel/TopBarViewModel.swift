@@ -26,6 +26,10 @@ public class TopBarViewModel: ObservableObject {
         }
     }
 
+    public var selectedItemId: String? {
+        return items[selectedItemIndex].id
+    }
+
     public init(items: [TopBarItemViewModel]) {
         self.items = items
         updateSelectedItemState()
