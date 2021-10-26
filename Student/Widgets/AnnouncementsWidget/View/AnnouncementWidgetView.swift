@@ -48,11 +48,11 @@ private enum PreviewConfig {
         .make(),
     ]
 
-    static func preview(for family: WidgetFamily) -> some View {
+    static func preview(for family: WidgetFamily, device: PreviewDevice = PreviewDevice(PreviewSimulator.allCases[0])) -> some View {
         ForEach(data) { entry in
             AnnouncementsWidgetView(entry: entry)
                 .previewContext(WidgetPreviewContext(family: family))
-                .previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
+                .previewDevice(device)
         }
     }
 }
@@ -67,6 +67,13 @@ struct MediumWidgets: PreviewProvider {
 
 struct LargeWidgets: PreviewProvider {
     static var previews: some View { PreviewConfig.preview(for: .systemLarge) }
+}
+
+@available(iOSApplicationExtension 15.0, *)
+struct ExtraLargeWidgets: PreviewProvider {
+    static var previews: some View {
+        PreviewConfig.preview(for: .systemExtraLarge, device: PreviewDevice(.iPadPro_9_7))
+    }
 }
 
 #endif

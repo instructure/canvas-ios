@@ -23,24 +23,24 @@ class SideMenuUITests: MiniCanvasUITestCase {
     func testFiles() {
         Profile.open()
         Profile.filesButton.tap()
-        XCTAssertTrue(app.navigationBars["Files"].exists)
+        waitUntil { app.navigationBars["Files"].exists }
     }
 
     func testSettings() {
         Profile.open()
         Profile.settingsButton.tap()
-        XCTAssertTrue(app.navigationBars["Settings"].exists)
+        waitUntil { app.navigationBars["Settings"].exists }
     }
 
     func testChangeUser() {
         Profile.open()
         Profile.changeUserButton.tap()
-        XCTAssertTrue(app.buttons["LoginStart.findSchoolButton"].exists)
+        waitUntil { app.buttons["LoginStart.findSchoolButton"].exists }
     }
 
     func testLogOut() {
         Profile.open()
         Profile.logOutButton.tap()
-        XCTAssertTrue(app.buttons["LoginStart.findSchoolButton"].exists)
+        waitUntil { app.buttons["LoginStart.findSchoolButton"].exists }
     }
 }

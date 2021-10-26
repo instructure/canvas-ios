@@ -232,7 +232,11 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         if !screenConfig.config.isEmpty {
             switch screenConfig[PropKeys.navBarStyle] as? String {
             case "context":
-                navigationController?.navigationBar.useContextColor(screenConfig.navBarColor)
+                if #available(iOS 14, *) {
+                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: screenConfig.navBarTransparent)
+                } else {
+                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: false)
+                }
             case "global":
                 navigationController?.navigationBar.useGlobalNavStyle()
             default:

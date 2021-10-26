@@ -108,7 +108,8 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         XCTAssertEqual(empty?.contents, "")
         XCTAssertEqual(empty?.fontName, "Helvetica")
         XCTAssertEqual(empty?.fontSize, 14 * 0.85)
-        XCTAssertEqual(empty?.fillColor, UIColor(hexString: "#ffffff"))
+        guard let fillColor = empty?.fillColor, let testColor = UIColor(hexString: "#ffffff") else { XCTFail(); return }
+        XCTAssertEqual(Double(fillColor.difference(to: testColor)), 0, accuracy: 0.000001)
     }
 
     func testPoint() {

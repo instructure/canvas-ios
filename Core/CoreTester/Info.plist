@@ -38,6 +38,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Attach audio recordings to messages and discussion posts or turn them in as assignment submissions.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

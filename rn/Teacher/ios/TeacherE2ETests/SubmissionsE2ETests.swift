@@ -31,19 +31,19 @@ class SubmissionsE2ETests: CoreUITestCase {
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Graded").tap()
         app.find(label: "Done").tap()
-        XCTAssertTrue(app.find(labelContaining: "Student One").exists())
+        app.find(labelContaining: "Student One").waitToExist()
 
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Needs Grading").tap()
         app.find(label: "Done").tap()
-        XCTAssertTrue(app.find(labelContaining: "No Submissions").exists())
+        app.find(labelContaining: "No Submissions").waitToExist()
 
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Not Submitted").tap()
         app.find(label: "Done").tap()
-        XCTAssertTrue(app.find(labelContaining: "Test Student").exists())
-        XCTAssertTrue(app.find(labelContaining: "Student Two").exists())
-        XCTAssertFalse(app.find(labelContaining: "Student One").exists())
+        app.find(labelContaining: "Test Student").waitToExist()
+        app.find(labelContaining: "Student Two").waitToExist()
+        app.find(labelContaining: "Student One").waitToVanish()
 
         // On the submissions list screen, the navbar's back button is somehow different
         app.find(labelContaining: "Assignment Details, Assignments").tap()
@@ -55,18 +55,18 @@ class SubmissionsE2ETests: CoreUITestCase {
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Graded").tap()
         app.find(label: "Done").tap()
-        XCTAssertTrue(app.find(labelContaining: "No Submissions").exists())
+        app.find(labelContaining: "No Submissions").waitToExist()
 
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Needs Grading").tap()
         app.find(label: "Done").tap()
-        XCTAssertTrue(app.find(labelContaining: "No Submissions").exists())
+        app.find(labelContaining: "No Submissions").waitToExist()
 
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Not Submitted").tap()
         app.find(label: "Done").tap()
-        XCTAssertTrue(app.find(labelContaining: "Test Student").exists())
-        XCTAssertTrue(app.find(labelContaining: "Student Two").exists())
-        XCTAssertTrue(app.find(labelContaining: "Student One").exists())
+        app.find(labelContaining: "Test Student").waitToExist()
+        app.find(labelContaining: "Student Two").waitToExist()
+        app.find(labelContaining: "Student One").waitToExist()
     }
 }

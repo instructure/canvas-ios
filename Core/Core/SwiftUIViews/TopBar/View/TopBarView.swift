@@ -88,7 +88,7 @@ struct TopBarView_Previews: PreviewProvider {
             (32, 16),
         ]
 
-        ForEach(0..<properties.count) {
+        ForEach(0..<3) {
             TopBarView(viewModel: TopBarViewModel(items: [
                 TopBarItemViewModel(icon: .addLine, label: Text(verbatim: "Add")),
                 TopBarItemViewModel(icon: .audioLine, label: Text(verbatim: "Audio")),

@@ -59,11 +59,11 @@ struct MediumLargeAnnouncementViewPreviews: PreviewProvider {
         ForEach(PreviewSimulator.allCases, id: \.self) { simulator in
             AnnouncementsWidgetView(entry: .make())
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
-                .previewDevice(PreviewDevice(rawValue: simulator.rawValue))
+                .previewDevice(simulator)
                 .previewDisplayName(simulator.rawValue)
             AnnouncementsWidgetView(entry: .make())
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
-                .previewDevice(PreviewDevice(rawValue: simulator.rawValue))
+                .previewDevice(simulator)
                 .previewDisplayName(simulator.rawValue)
         }
     }

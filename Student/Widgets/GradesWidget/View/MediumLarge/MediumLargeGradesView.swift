@@ -90,7 +90,7 @@ private enum PreviewConfig {
         ForEach(PreviewConfig.previewConfigs, id: \.self) { config in
             MediumLargeGradesView(model: model, lineCount: config.lineCount)
                 .previewContext(WidgetPreviewContext(family: config.family))
-                .previewDevice(PreviewDevice(rawValue: config.device.rawValue))
+                .previewDevice(config.device)
                 .previewDisplayName(config.device.rawValue)
         }
     }
