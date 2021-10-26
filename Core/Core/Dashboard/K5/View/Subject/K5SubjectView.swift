@@ -30,16 +30,20 @@ public struct K5SubjectView: View {
                 if let topBarViewModel = viewModel.topBarViewModel {
                     TopBarView(viewModel: topBarViewModel, horizontalInset: padding, itemSpacing: padding)
                     Divider()
+                    K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear))
+                        .padding(padding)
+
                     WebView(url: viewModel.pageUrl(with: topBarViewModel.selectedItemId))
+                    Divider()
                 }
             }
-            .navigationBarStyle(.color(self.viewModel.subjectColor))
-            .navigationTitle(self.viewModel.subjectTitle ?? "", subtitle: nil)
+            .navigationBarStyle(.color(self.viewModel.courseColor))
+            .navigationTitle(self.viewModel.courseTitle ?? "", subtitle: nil)
     }
 
     public init(context: Context) {
         self.viewModel = K5SubjectViewModel(context: context)
-        self.controller.value.navigationController?.navigationBar.tintColor = self.viewModel.subjectColor
+        self.controller.value.navigationController?.navigationBar.tintColor = self.viewModel.courseColor
     }
 }
 

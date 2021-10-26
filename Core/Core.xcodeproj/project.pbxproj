@@ -961,6 +961,7 @@
 		E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */; };
 		E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */; };
 		E8E070F424E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */; };
+		EB2460262728380E00E4F331 /* K5SubjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2460252728380E00E4F331 /* K5SubjectHeaderView.swift */; };
 		EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */; };
 		EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */; };
 		EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */; };
@@ -2182,6 +2183,7 @@
 		E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardAreaTests.swift; sourceTree = "<group>"; };
 		E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensions.swift; sourceTree = "<group>"; };
 		E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
+		EB2460252728380E00E4F331 /* K5SubjectHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectHeaderView.swift; sourceTree = "<group>"; };
 		EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainSection.swift; sourceTree = "<group>"; };
 		EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionsSection.swift; sourceTree = "<group>"; };
 		EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuBottomSection.swift; sourceTree = "<group>"; };
@@ -4163,9 +4165,9 @@
 				CF60CC2E264551FE00C1C173 /* Homeroom */,
 				CF60CC312645521100C1C173 /* Resources */,
 				CF60CC2F2645520500C1C173 /* Schedule */,
+				EB246027272843EE00E4F331 /* Subject */,
 				CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */,
 				CFEC7F4126B42E50008B9F77 /* K5Preview.swift */,
-				EBF58AC82721A862008EE2DF /* K5SubjectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4700,6 +4702,15 @@
 				E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		EB246027272843EE00E4F331 /* Subject */ = {
+			isa = PBXGroup;
+			children = (
+				EB2460252728380E00E4F331 /* K5SubjectHeaderView.swift */,
+				EBF58AC82721A862008EE2DF /* K5SubjectView.swift */,
+			);
+			path = Subject;
 			sourceTree = "<group>";
 		};
 		EB2A9BBB2632E0BB00A19A5A /* SideMenu */ = {
@@ -5950,6 +5961,7 @@
 				7DA25F9D23F72136005D2121 /* APIAssignmentGroup.swift in Sources */,
 				7DA2602E23F722C2005D2121 /* LoginStartViewController.swift in Sources */,
 				7DA2606223F722D9005D2121 /* SubmissionComment.swift in Sources */,
+				EB2460262728380E00E4F331 /* K5SubjectHeaderView.swift in Sources */,
 				7DA25FF323F72260005D2121 /* DeveloperMenuViewController.swift in Sources */,
 				7DA25FFF23F7226E005D2121 /* DocViewerViewController.swift in Sources */,
 				D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */,

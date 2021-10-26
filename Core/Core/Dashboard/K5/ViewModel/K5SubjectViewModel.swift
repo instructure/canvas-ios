@@ -24,9 +24,10 @@ public class K5SubjectViewModel: ObservableObject {
     @Environment(\.appEnvironment) private var env
 
     @Published var topBarViewModel: TopBarViewModel?
-    @Published var subjectTitle: String?
-    @Published var subjectColor: UIColor?
+    @Published var courseTitle: String?
+    @Published var courseColor: UIColor?
     @Published var currentPageURL: URL?
+    @Published var courseImageUrl: URL?
 
     private let context: Context
 
@@ -59,8 +60,10 @@ public class K5SubjectViewModel: ObservableObject {
     }
 
     private func courseUpdated() {
-        subjectTitle = course.first?.name
-        subjectColor = course.first?.color
+        guard let course = course.first else { return }
+        courseTitle = course.name
+        courseColor = course.color
+        courseImageUrl = course.imageDownloadURL
     }
 
     func pageUrl(with itemId: String?) -> URL? {
