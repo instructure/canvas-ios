@@ -975,6 +975,8 @@
 		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
 		EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */; };
+		EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */; };
+		EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC82721A862008EE2DF /* K5SubjectView.swift */; };
 		EE424B3422E8DE2E00D083EE /* APIPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3322E8DE2E00D083EE /* APIPageTests.swift */; };
 		EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3522E8E16D00D083EE /* GetPagesTests.swift */; };
 		EE584C7E22F2048D00D1E201 /* PageListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE584C7A22F2048C00D1E201 /* PageListViewController.storyboard */; };
@@ -2194,6 +2196,8 @@
 		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
+		EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
+		EBF58AC82721A862008EE2DF /* K5SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectView.swift; sourceTree = "<group>"; };
 		EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFrontPage.swift; sourceTree = "<group>"; };
 		EE424B3322E8DE2E00D083EE /* APIPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageTests.swift; sourceTree = "<group>"; };
 		EE424B3522E8E16D00D083EE /* GetPagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPagesTests.swift; sourceTree = "<group>"; };
@@ -4161,6 +4165,7 @@
 				CF60CC2F2645520500C1C173 /* Schedule */,
 				CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */,
 				CFEC7F4126B42E50008B9F77 /* K5Preview.swift */,
+				EBF58AC82721A862008EE2DF /* K5SubjectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4174,6 +4179,7 @@
 				CF60CC5126496A2900C1C173 /* Schedule */,
 				CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */,
 				CF60CC6126497BC100C1C173 /* Refreshable.swift */,
+				EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5653,6 +5659,7 @@
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
 				CF6C100326C5235B002E7FE6 /* PlannerOverrideUpdater.swift in Sources */,
+				EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
 				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
@@ -5892,6 +5899,7 @@
 				CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
+				EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
 				7DA260F823F723AB005D2121 /* FileDetailsViewController.swift in Sources */,
 				7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */,
