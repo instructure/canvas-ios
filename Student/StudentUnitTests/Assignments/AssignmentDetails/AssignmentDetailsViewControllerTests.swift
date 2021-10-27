@@ -452,7 +452,6 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertTrue(viewController.submittedView!.isHidden)
         XCTAssertTrue(viewController.gradeSection!.isHidden)
         XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
-        XCTAssertTrue(viewController.gradedView!.isHidden)
     }
 
     func setupFileForSubmittedLabel(removeID: Bool = false, taskID: String? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
