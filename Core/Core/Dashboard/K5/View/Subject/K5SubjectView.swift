@@ -26,17 +26,20 @@ public struct K5SubjectView: View {
     private var padding: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
-            VStack(spacing: 0) {
-                if let topBarViewModel = viewModel.topBarViewModel {
-                    TopBarView(viewModel: topBarViewModel, horizontalInset: padding, itemSpacing: padding)
-                    Divider()
-                    K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear))
-                        .padding(padding)
-
-                    WebView(url: viewModel.pageUrl(with: topBarViewModel.selectedItemId))
-                    Divider()
+        VStack(spacing: 0) {
+            if let topBarViewModel = viewModel.topBarViewModel {
+                TopBarView(viewModel: topBarViewModel, horizontalInset: padding, itemSpacing: padding)
+                Divider()
+                ScrollView {
+                    VStack(spacing: 0) {
+                        K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear))
+                            .padding(padding)
+                        WebView(url: viewModel.pageUrl(with: topBarViewModel.selectedItemId)).frameToFit()
+                    }
                 }
+                Divider()
             }
+        }
             .navigationBarStyle(.color(self.viewModel.courseColor))
             .navigationTitle(self.viewModel.courseTitle ?? "", subtitle: nil)
     }
