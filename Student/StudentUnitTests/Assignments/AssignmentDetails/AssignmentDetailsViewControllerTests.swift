@@ -432,6 +432,29 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     }
 
+    func testGradedToNotGraded() {
+        let course = APICourse.make(id: ID(courseID))
+        api.mock(viewController.presenter!.courses, value: course)
+        let assignment = APIAssignment.make(
+            course_id: ID(courseID),
+            grading_type: .not_graded,
+            id: ID(assignmentID),
+            submission: .make(
+                grade: "10",
+                score: 10,
+                submission_type: .discussion_topic,
+                workflow_state: .graded
+            )
+        )
+        api.mock(viewController.presenter!.assignments, value: assignment)
+        load()
+        drainMainQueue()
+        XCTAssertTrue(viewController.submittedView!.isHidden)
+        XCTAssertTrue(viewController.gradeSection!.isHidden)
+        XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
+        XCTAssertTrue(viewController.gradedView!.isHidden)
+    }
+
     func setupFileForSubmittedLabel(removeID: Bool = false, taskID: String? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)

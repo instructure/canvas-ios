@@ -78,7 +78,7 @@ public class GradeCircleView: UIView {
         circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
-        guard let submission = assignment.submission, submission.workflowState != .unsubmitted, assignment.gradingType != .not_graded else {
+        guard let submission = assignment.submission, submission.workflowState != .unsubmitted else {
             isHidden = true
             return
         }

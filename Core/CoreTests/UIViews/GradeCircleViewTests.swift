@@ -170,16 +170,4 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertFalse(view.displayGrade.isHidden)
         XCTAssertEqual(view.displayGrade.text, "Excused")
     }
-
-    func testItHidesWhenChangedToNotGraded() {
-        let a = Assignment.make(from: .make(
-            grading_type: .not_graded
-        ))
-        a.submission = Submission.make(from: .make(
-            grade: "99",
-            workflow_state: .submitted
-        ))
-        view.update(a)
-        XCTAssertTrue(view.isHidden)
-    }
 }
