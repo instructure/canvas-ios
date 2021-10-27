@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 /**
  The purpose of this view controller is to display the split view's primary viewcontroller in full screen mode. This is achieved by passing a placeholder primary view to the split viewcontroller while manually adding the real primary viewcontroller as an overlay on top of the split view. Setting the size of this overlay viewcontroller will achieve the full screen mode.
 
@@ -160,6 +162,11 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count != 1 {
+            // Exception for the full screen K5SubjectView
+            if navigationController.viewControllers.last is CoreHostingController<K5SubjectView> {
+                state = .fullScreen
+                return
+            }
             state = .divided
         } else if navigationController.viewControllers.count == 1 { // if the nav controller pops to root then willShow won't trigger the fullscreen mode
             state = .fullScreen
