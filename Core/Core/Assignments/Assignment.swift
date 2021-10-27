@@ -164,7 +164,7 @@ extension Assignment {
         moderatedGrading = item.moderated_grading == true
         name = item.name
         pointsPossible = item.points_possible
-        position = item.position
+        position = item.position ?? Int.max
         published = item.published != false
         quizID = item.quiz_id?.value
         submissionTypes = item.submission_types

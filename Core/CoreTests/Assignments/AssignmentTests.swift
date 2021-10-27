@@ -145,6 +145,12 @@ class AssignmentTests: CoreTestCase {
         XCTAssertNil(result?.scoreStatistics)
     }
 
+    func testUpdateFromAPIItemWithNilPosition() {
+        let api = APIAssignment.make(position: nil)
+        let savedAssignment = Assignment.save(api, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        XCTAssertEqual(savedAssignment.position, Int.max)
+    }
+
     func testCanMakeSubmissions() {
         XCTAssertTrue(Assignment.make(from: .make(submission_types: [.online_upload])).canMakeSubmissions)
         XCTAssertFalse(Assignment.make(from: .make(submission_types: [.none])).canMakeSubmissions)
