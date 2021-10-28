@@ -55,8 +55,6 @@ class RoutesTests: XCTestCase {
 
         XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
 
-        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
-
         XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
         XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
@@ -87,6 +85,13 @@ class RoutesTests: XCTestCase {
 
         XCTAssert(router.match("/users/1/files/2") is FileDetailsViewController)
         XCTAssert(router.match("/users/1/files/2?origin=globalAnnouncement") is FileDetailsViewController)
+    }
+
+    func testRoutesWithK5Alternative() {
+        AppEnvironment.shared.k5.userDidLogin(isK5Account: true)
+        XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
+        AppEnvironment.shared.k5.userDidLogin(isK5Account: false)
+        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
     }
 
     func testModuleItems() {

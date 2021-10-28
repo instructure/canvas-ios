@@ -975,6 +975,7 @@
 		EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66DB9426451CAE002D3325 /* CustomTextField.swift */; };
 		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
 		EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */; };
+		EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */; };
 		EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */; };
 		EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC82721A862008EE2DF /* K5SubjectView.swift */; };
@@ -2197,6 +2198,7 @@
 		EB66DB9426451CAE002D3325 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
+		EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModelTests.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
 		EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
 		EBF58AC82721A862008EE2DF /* K5SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectView.swift; sourceTree = "<group>"; };
@@ -4589,6 +4591,7 @@
 				CF941B17267B431500700DE9 /* Resources */,
 				CF941B1C267B438600700DE9 /* Schedule */,
 				CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */,
+				EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5489,6 +5492,7 @@
 				7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
 				CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */,
+				EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */,
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DD4763C23FF21B600AB045C /* CalendarDaysViewControllerTests.swift in Sources */,
 				7D54D6B32464705100409520 /* DiscussionDetailsViewControllerTests.swift in Sources */,
