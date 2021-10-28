@@ -42,7 +42,7 @@ struct K5SubjectHeaderView: View {
                 HStack {
                     Text(title.uppercased()).foregroundColor(.white).font(.regular17).padding(.leading, 16)
                     Spacer()
-                }.padding(8)
+                }.padding(.bottom, 8)
             }
         }.frame(height: 113).cornerRadius(4)
     }
@@ -51,6 +51,10 @@ struct K5SubjectHeaderView: View {
 struct K5SubjectHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         let imageUrl = URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!
-        K5SubjectHeaderView(title: "Math", imageUrl: imageUrl, backgroundColor: .red)
+        K5SubjectHeaderView(title: "Math", imageUrl: imageUrl, backgroundColor: Color(hexString: "#FF8277"))
+            .previewLayout(.sizeThatFits)
+            .padding(16)
+            .previewDisplayName(String(describing: K5SubjectHeaderView.self))
+            .frame(width: 600)
     }
 }
