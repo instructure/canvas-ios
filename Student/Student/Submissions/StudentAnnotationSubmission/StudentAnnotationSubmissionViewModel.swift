@@ -36,7 +36,11 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
                        subtitle: assignmentName,
                        color: courseColor,
                        closeButtonTitle: NSLocalizedString("Close", bundle: .core, comment: ""))
-        self.submissionUseCase = CreateSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID, submissionType: .student_annotation, annotatableAttachmentID: annotatableAttachmentID)
+        self.submissionUseCase = CreateSubmission(context: .course(courseID),
+                                                  assignmentID: assignmentID,
+                                                  userID: userID,
+                                                  submissionType: .student_annotation,
+                                                  annotatableAttachmentID: annotatableAttachmentID)
     }
 
     public func postSubmission() {
