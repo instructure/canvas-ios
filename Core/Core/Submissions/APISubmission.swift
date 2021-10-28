@@ -398,6 +398,7 @@ public struct CreateSubmissionRequest: APIRequestable {
     public typealias Response = APISubmission
     public struct Body: Codable, Equatable {
         struct Submission: Codable, Equatable {
+            let annotatable_attachment_id: String? // Required if submission_type is student_annotation
             let text_comment: String?
             let submission_type: SubmissionType
             let body: String? // Requires submission_type of online_text_entry
@@ -407,6 +408,7 @@ public struct CreateSubmissionRequest: APIRequestable {
             let media_comment_type: MediaCommentType? // Requires submission_type of media_recording
 
             init(
+                annotatable_attachment_id: String? = nil,
                 text_comment: String? = nil,
                 submission_type: SubmissionType,
                 body: String? = nil,
@@ -415,6 +417,7 @@ public struct CreateSubmissionRequest: APIRequestable {
                 media_comment_id: String? = nil,
                 media_comment_type: MediaCommentType? = nil
             ) {
+                self.annotatable_attachment_id = annotatable_attachment_id
                 self.text_comment = text_comment
                 self.submission_type = submission_type
                 self.body = body
