@@ -303,7 +303,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
         let showGradeSection = assignment.submission?.needsGrading == true ||
-            assignment.submission?.isGraded == true ||
+            (assignment.submission?.isGraded == true  && assignment.gradingType != .not_graded ) ||
             presenter.onlineUploadState != nil
         attemptsView.isHidden = presenter.attemptsIsHidden()
         gradeSection?.isHidden = !showGradeSection
