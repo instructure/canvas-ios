@@ -49,7 +49,8 @@ public struct StudentAnnotationSubmissionView: View {
 
     private var doneButton: some View {
         Button(action: viewModel.postSubmission, label: {
-            // If we use Text alone here then its style will be overridden by the nav bar but
+            // TODO: SwiftUIWorkaround
+            // If we use Text alone here then its font weight will be overridden by the nav bar but
             // if we wrap it in a stack and add an image next to it we can customize the appearance.
             HStack {
                 Image.assignmentLine.frame(width: 0, height: 0).clipped() // We don't want this image to be visible
