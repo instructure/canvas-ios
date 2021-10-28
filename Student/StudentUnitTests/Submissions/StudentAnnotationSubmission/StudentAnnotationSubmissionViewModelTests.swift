@@ -26,7 +26,7 @@ class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
                                                               courseID: "123",
                                                               assignmentID: "321",
                                                               userID: "111",
-                                                              annotatableAttachmentID: 3,
+                                                              annotatableAttachmentID: "3",
                                                               assignmentName: "Test Assignment",
                                                               courseColor: UIColor(hexString: "#BEEF00")!)
 
