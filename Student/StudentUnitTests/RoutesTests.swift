@@ -88,10 +88,12 @@ class RoutesTests: XCTestCase {
     }
 
     func testRoutesWithK5Alternative() {
+        ExperimentalFeature.K5Dashboard.isEnabled = true
         let env = AppEnvironment.shared
         guard let session = env.currentSession else { XCTFail(); return }
         env.userDidLogin(session: session)
         env.k5.userDidLogin(isK5Account: true)
+        env.userDefaults?.isElementaryViewEnabled = true
         XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
         env.k5.userDidLogin(isK5Account: false)
         XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
