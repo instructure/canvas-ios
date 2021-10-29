@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "39732E69-1E54-463C-B493-C8F7111A76DD",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Student.xcodeproj",
+          "identifier" : "492704721CF4AF7100C631C6",
+          "name" : "Student"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "E8C6F4CF23D626220086B865",
+        "name" : "StudentE2ETests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "7DC5716F22F8B16200F2E9BB",
+        "name" : "StudentUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
