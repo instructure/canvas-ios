@@ -23,18 +23,17 @@ class K5SubjectViewModelTests: CoreTestCase {
 
     var courseId: String!
     var context: Context!
-    var testee: K5SubjectViewModel!
 
     override func setUp() {
         super.setUp()
         courseId = "1"
         context = Context(.course, id: courseId)
-        testee = K5SubjectViewModel(context: context)
     }
 
     func testTopBarViewResources() {
         Tab.make(from: .make(id: "home", type: .internal), context: context)
         Tab.make(from: .make(id: "context_external_tool_test", type: .external), context: context)
+        let testee = K5SubjectViewModel(context: context)
         guard let topBarItems = testee.topBarViewModel?.items else { XCTFail(); return }
         XCTAssertEqual(topBarItems.count, 2)
         XCTAssertEqual(topBarItems.filter({ $0.id == "resources" }).count, 1)
@@ -42,7 +41,7 @@ class K5SubjectViewModelTests: CoreTestCase {
 
     func testPageUrl() {
         let pageId = "schedule"
-        let url = testee.pageUrl(with: pageId)
+        let url = K5SubjectViewModel(context: context).pageUrl(with: pageId)
         XCTAssertEqual(url?.path, "/courses/" + courseId)
         XCTAssertEqual(url?.query, "embed=true")
         XCTAssertEqual(url?.fragment, "\(pageId)")
