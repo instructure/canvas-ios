@@ -57,3 +57,18 @@ public struct ViewBoundsKey: PreferenceKey {
         value.append(contentsOf: nextValue())
     }
 }
+
+// MARK: - Saving a Single View's Size
+
+/**
+ This key allows one to save a view's size to the preference store.
+ */
+public struct ViewSizeKey: PreferenceKey {
+    public typealias Value = CGSize
+
+    public static var defaultValue = CGSize.zero
+
+    public static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        value = nextValue()
+    }
+}
