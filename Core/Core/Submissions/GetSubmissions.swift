@@ -55,13 +55,15 @@ public class CreateSubmission: APIUseCase {
         url: URL? = nil,
         fileIDs: [String]? = nil,
         mediaCommentID: String? = nil,
-        mediaCommentType: MediaCommentType? = nil
+        mediaCommentType: MediaCommentType? = nil,
+        annotatableAttachmentID: String? = nil
     ) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
 
         let submission = CreateSubmissionRequest.Body.Submission(
+            annotatable_attachment_id: annotatableAttachmentID,
             text_comment: textComment,
             submission_type: submissionType,
             body: body,

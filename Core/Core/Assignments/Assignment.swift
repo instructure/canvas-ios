@@ -23,6 +23,10 @@ public class Assignment: NSManagedObject {
     @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
     @NSManaged public var allowedExtensionsRaw: String
+    /**
+     The ID of the file to be annotated by students in case of a student_annotation type assignment, nil otherwise.
+     */
+    @NSManaged public var annotatableAttachmentID: String?
     @NSManaged public var anonymizeStudents: Bool
     @NSManaged public var anonymousSubmissions: Bool
     @NSManaged public var assignmentGroup: AssignmentGroup?
@@ -141,6 +145,7 @@ extension Assignment {
     func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) {
         allowedAttempts = item.allowed_attempts ?? 0
         allowedExtensions = item.allowed_extensions ?? []
+        annotatableAttachmentID = item.annotatable_attachment_id
         anonymizeStudents = item.anonymize_students == true
         anonymousSubmissions = item.anonymous_submissions == true
         assignmentGroupID = item.assignment_group_id?.value

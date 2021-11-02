@@ -31,12 +31,13 @@ class AssignmentTests: CoreTestCase {
     func testUpdateFromAPIItemWithAPISubmission() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", submission: nil))
-        let api = APIAssignment.make(name: "api_a", submission: .make())
+        let api = APIAssignment.make(annotatable_attachment_id: "Test Annotatable Attachment ID", name: "api_a", submission: .make())
 
         XCTAssertNil(a.submission)
 
         a.update(fromApiModel: api, in: client, updateSubmission: true, updateScoreStatistics: false)
 
+        XCTAssertEqual(a.annotatableAttachmentID, "Test Annotatable Attachment ID")
         XCTAssertEqual(a.id, api.id.value)
         XCTAssertEqual(a.name, api.name)
         XCTAssertEqual(a.courseID, api.course_id.value)
