@@ -876,6 +876,7 @@
 		CF7CEAEC26035BE500967EA0 /* ChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */; };
 		CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */; };
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
+		CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */; };
 		CF86C2B4267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
 		CF8CB51326CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */; };
@@ -1182,7 +1183,15 @@
 		5B1B7E90218599CE00B89833 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		5B1B7E91218599CF00B89833 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5B1B7E93218599CF00B89833 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B1C45BA271D53E300656E9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B1C45BB271D53E300656E9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5B1C45BC271D53E300656E9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		5B1C45BD271D53E300656E9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B1DDCE9261AEDC800319AAF /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B215642271D53E500BFBB1F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B215643271D53E500BFBB1F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5B215644271D53E500BFBB1F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		5B215645271D53E500BFBB1F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B22A078261AEDCB00700284 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B27A7DC261AEDCE009916AD /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B27C4DA218599D700AE6206 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1224,6 +1233,9 @@
 		5B57FEE1218599FD00569E4C /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "fr-CA"; path = "fr-CA.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		5B57FEE2218599FE00569E4C /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Main.strings"; sourceTree = "<group>"; };
 		5B57FEE3218599FE00569E4C /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5B58009A271D53AC00A70F30 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B58009B271D53AC00A70F30 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5B58009C271D53AC00A70F30 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B5A2CDE261AEDF00086B3B2 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B5F016C261AEDF40057557B /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B6308D221859A070035CFF0 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -2083,6 +2095,7 @@
 		CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeObserver.swift; sourceTree = "<group>"; };
 		CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensionsTests.swift; sourceTree = "<group>"; };
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
+		CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15ListRowSeparator.swift; sourceTree = "<group>"; };
 		CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
 		CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModelTests.swift; sourceTree = "<group>"; };
@@ -4726,6 +4739,7 @@
 			children = (
 				E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */,
 				7DBD150525477CEB00750F52 /* Badge.swift */,
+				CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */,
 				CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */,
 				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
 				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
@@ -4958,6 +4972,8 @@
 				ca,
 				it,
 				th,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 2C964824211E2F1A002C3255;
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
@@ -5989,6 +6005,7 @@
 				3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */,
 				7DA260F123F72391005D2121 /* FileUploadTarget.swift in Sources */,
 				CF7CEAEC26035BE500967EA0 /* ChangeObserver.swift in Sources */,
+				CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */,
 				7DA25F9D23F72136005D2121 /* APIAssignmentGroup.swift in Sources */,
 				7DA2602E23F722C2005D2121 /* LoginStartViewController.swift in Sources */,
 				7DA2606223F722D9005D2121 /* SubmissionComment.swift in Sources */,
@@ -6153,6 +6170,9 @@
 				5BA069CC261AEE1F006FBFAA /* zh-HK */,
 				5BA5F7E5261AEE23009F0930 /* zh */,
 				5BA548742689AC1A00091EB3 /* th */,
+				5B58009C271D53AC00A70F30 /* en-GB-instukhe */,
+				5B1C45BD271D53E300656E9E /* zh-Hans */,
+				5B215645271D53E500BFBB1F /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -6222,6 +6242,9 @@
 				5BDEF95724307FE50095367F /* ca */,
 				5BAE7FF5243080420020997A /* it */,
 				5BA548772689AC1A00091EB3 /* th */,
+				5B58009A271D53AC00A70F30 /* en-GB-instukhe */,
+				5B1C45BA271D53E300656E9E /* zh-Hans */,
+				5B215642271D53E500BFBB1F /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -6263,6 +6286,9 @@
 				5BDEF95624307FE50095367F /* ca */,
 				5BAE7FF4243080420020997A /* it */,
 				5BA548762689AC1A00091EB3 /* th */,
+				5B58009B271D53AC00A70F30 /* en-GB-instukhe */,
+				5B1C45BB271D53E300656E9E /* zh-Hans */,
+				5B215643271D53E500BFBB1F /* zh-Hant */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -6305,6 +6331,8 @@
 				5BDEF95824307FE50095367F /* ca */,
 				5BAE7FF6243080420020997A /* it */,
 				5BA548752689AC1A00091EB3 /* th */,
+				5B1C45BC271D53E300656E9E /* zh-Hans */,
+				5B215644271D53E500BFBB1F /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

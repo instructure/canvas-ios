@@ -16,21 +16,21 @@ workflows:
     - _ad-hoc-vars
     - _setup
     steps:
-    - ios-auto-provision-appstoreconnect:
+    - ios-auto-provision-appstoreconnect@2.1.3:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
         - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Student'
-    - ios-auto-provision-appstoreconnect:
+    - ios-auto-provision-appstoreconnect@2.1.3:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
         - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Teacher'
-    - ios-auto-provision-appstoreconnect:
+    - ios-auto-provision-appstoreconnect@2.1.3:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
         - api_issuer: "$APPLE_API_ISSUER"
@@ -211,7 +211,7 @@ workflows:
     - cocoapods-install:
         inputs:
         - verbose: 'false'
-    - ios-auto-provision-appstoreconnect:
+    - ios-auto-provision-appstoreconnect@2.1.3:
         run_if: '{{enveq "BITRISE_SCHEME" "" | not}}'
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
@@ -227,6 +227,9 @@ workflows:
     - set-xcode-build-number:
         inputs:
         - plist_path: Student/SubmitAssignment/Info.plist
+    - set-xcode-build-number:
+        inputs:
+        - plist_path: Student/Widgets/Resources/Info.plist
     - set-xcode-build-number:
         inputs:
         - plist_path: rn/Teacher/ios/Teacher/Info.plist
@@ -294,7 +297,7 @@ workflows:
             envman add --key BITRISE_SCHEME --value Student
             envman add --key RELEASE_BRANCH --value release/student
             envman add --key APP_NAME --value Student
-            envman add --key INFO_PLISTS --value "Student/Student/Info.plist Student/GradesWidget/Info.plist Student/SubmitAssignment/Info.plist"
+            envman add --key INFO_PLISTS --value "Student/Student/Info.plist Student/GradesWidget/Info.plist Student/SubmitAssignment/Info.plist Student/Widgets/Resources/Info.plist"
 
             envman add --key BITRISE_EXPORT_METHOD --value app-store
 

@@ -116,6 +116,10 @@ class PageListViewControllerTests: CoreTestCase {
     }
 
     func testPaginatedRefresh() {
+        // The controller needs to be on screen for this test because the Loading cell needs to appear to trigger the next page load
+        window.rootViewController = controller
+        drainMainQueue()
+
         api.mock(controller.frontPage)
         controller.view.layoutIfNeeded()
         api.mock(controller.pages, value: [.make()], response: HTTPURLResponse(next: "/courses/42/pages?page=2"))
@@ -127,6 +131,7 @@ class PageListViewControllerTests: CoreTestCase {
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
         let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? LoadingCell
         XCTAssertNotNil(loading)
+        drainMainQueue() // Give some time for the loading cell to trigger the next page load and for the tableview to refresh
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
         let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PageListCell
         XCTAssertEqual(cell.titleLabel.text, "z next page")

@@ -58,8 +58,8 @@ class UserFilesTests: CoreUITestCase {
         wait(for: [uploadExpectation], timeout: 30)
     }
 
-    func testAddFileAudio() throws {
-        try XCTSkipIf(true, "passes locally but fails on bitrise")
+    func testAddFileAudio() {
+        // Disabled test, passes locally but fails on bitrise. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         FileList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToMicrophone {
@@ -73,8 +73,8 @@ class UserFilesTests: CoreUITestCase {
         }
     }
 
-    func testAddFileFiles() throws {
-        try XCTSkipIf(true, "mockUpload doesn't seem to work for this yet")
+    func testAddFileFiles() {
+        // Disabled test, mockUpload doesn't seem to work for this yet. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         FileList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToPhotos {

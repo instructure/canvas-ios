@@ -232,11 +232,14 @@ struct GetDocViewerAnnotationsRequest: APIRequestable {
 
     static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [ .withInternetDateTime, .withFractionalSeconds ]
+        let formatter1 = ISO8601DateFormatter()
+        formatter1.formatOptions = [ .withInternetDateTime, .withFractionalSeconds ]
+        // This is mainly to support mocking because when the mock encodes APIDocViewerAnnotations it doesn't add franctions so response parsing fails.
+        let formatter2 = ISO8601DateFormatter()
+        formatter2.formatOptions = [ .withInternetDateTime]
         decoder.dateDecodingStrategy = .custom { decoder in
             let dateStr = try decoder.singleValueContainer().decode(String.self)
-            guard let date = formatter.date(from: dateStr) else {
+            guard let date = (formatter1.date(from: dateStr) ?? formatter2.date(from: dateStr)) else {
                 throw APIDocViewerError.badDateFormat(dateStr)
             }
             return date
@@ -302,4 +305,30 @@ struct DeleteDocViewerAnnotationRequest: APIRequestable {
         HttpHeader.accept: "application/json",
         HttpHeader.authorization: nil,
     ]
+}
+
+public struct CanvaDocsSessionRequest: APIRequestable {
+    public static let DraftAttempt = "draft"
+    public struct RequestBody: Encodable, Equatable {
+        let submission_attempt: String
+        let submission_id: String
+    }
+    public struct ResponseBody: Codable {
+        public let annotation_context_launch_id: String?
+        public let canvadocs_session_url: APIURL?
+    }
+    public typealias Response = ResponseBody
+    public typealias Body = RequestBody
+
+    public let body: Body?
+    public let method = APIMethod.post
+    public let path = "canvadoc_session"
+
+    /**
+     - parameters:
+        - attempt: Use `CanvaDocsSessionRequest.DraftAttempt` to create a new annotation context for a new submission, otherwise use the index of the submission attempt: "1", "2", ... to retrieve the context for that particular attempt.
+     */
+    public init(submissionId: String, attempt: String = DraftAttempt) {
+        self.body = RequestBody(submission_attempt: attempt, submission_id: submissionId)
+    }
 }

@@ -26,23 +26,28 @@ protocol DocViewerAnnotationProviderDelegate: AnyObject {
 }
 
 class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
-    let api: API
-    var apiAnnotations: [String: APIDocViewerAnnotation] = [:]
-    weak var docViewerDelegate: DocViewerAnnotationProviderDelegate?
-    let sessionID: String
-    let fileAnnotationProvider: PDFFileAnnotationProvider
+    public weak var docViewerDelegate: DocViewerAnnotationProviderDelegate?
 
+    var apiAnnotations: [String: APIDocViewerAnnotation] = [:]
     var requestsInFlight = 0 {
         didSet {
-            self.docViewerDelegate?.annotationSaveStateChanges(saving: requestsInFlight != 0)
+            // If we have a failed upload don't communicate success even if subsequent upload succeed.
+            guard uploadDidFail == false else { return }
+            docViewerDelegate?.annotationSaveStateChanges(saving: requestsInFlight != 0)
         }
     }
 
-    init(documentProvider: PDFDocumentProvider!,
-         fileAnnotationProvider: PDFFileAnnotationProvider,
-         metadata: APIDocViewerMetadata,
-         annotations: [APIDocViewerAnnotation],
-         api: API, sessionID: String) {
+    private let api: API
+    private let sessionID: String
+    private let fileAnnotationProvider: PDFFileAnnotationProvider
+    private var uploadDidFail = false
+
+    public init(documentProvider: PDFDocumentProvider!,
+                fileAnnotationProvider: PDFFileAnnotationProvider,
+                metadata: APIDocViewerMetadata,
+                annotations: [APIDocViewerAnnotation],
+                api: API,
+                sessionID: String) {
 
         self.api = api
         self.sessionID = sessionID
@@ -69,7 +74,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         setAnnotations(allAnnotations, append: false)
     }
 
-    func getReplies (to: Annotation) -> [DocViewerCommentReplyAnnotation] {
+    public func getReplies (to: Annotation) -> [DocViewerCommentReplyAnnotation] {
         return allAnnotations
             .compactMap { $0 as? DocViewerCommentReplyAnnotation }
             .filter { $0.inReplyToName == to.name }
@@ -80,7 +85,18 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             }
     }
 
-    override func add(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> [Annotation]? {
+    public override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
+        // First, fetch the annotations from the file annotation provider.
+        let fileAnnotations = fileAnnotationProvider.annotationsForPage(at: pageIndex) ?? []
+        // Then ask `super` to retrieve the custom annotations from cache.
+        let docViewerAnnotations = super.annotationsForPage(at: pageIndex) ?? []
+        // Merge annotations loaded from the file annotation provider with our custom ones.
+        return fileAnnotations + docViewerAnnotations
+    }
+
+    // MARK: - Annotation Change Callbacks From PSPDFKit
+
+    public override func add(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> [Annotation]? {
         super.add(annotations, options: options)
         var added: [Annotation] = []
         for annotation in annotations {
@@ -95,7 +111,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         return added
     }
 
-    override func remove(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> [Annotation]? {
+    public override func remove(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> [Annotation]? {
         super.remove(annotations, options: options)
         var removed: [Annotation] = []
         for annotation in annotations {
@@ -112,14 +128,11 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         return removed
     }
 
-    override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
-        // First, fetch the annotations from the file annotation provider.
-        let fileAnnotations = fileAnnotationProvider.annotationsForPage(at: pageIndex) ?? []
-        // Then ask `super` to retrieve the custom annotations from cache.
-        let docViewerAnnotations = super.annotationsForPage(at: pageIndex) ?? []
-        // Merge annotations loaded from the file annotation provider with our custom ones.
-        return fileAnnotations + docViewerAnnotations
+    public override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {
+        syncAnnotation(annotation)
     }
+
+    // MARK: - API Sync
 
     private func put(_ body: APIDocViewerAnnotation) {
         requestsInFlight += 1
@@ -130,6 +143,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             } else if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
                 self?.docViewerDelegate?.annotationDidExceedLimit(annotation: body)
             } else {
+                self?.uploadDidFail = true
                 self?.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
             }
         } }
@@ -145,15 +159,24 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         } }
     }
 
-    override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {
-        syncAnnotation(annotation)
+    // MARK: - User Triggered Events
+
+    public func syncAllAnnotations() {
+        uploadDidFail = false
+
+        if allAnnotations.count == 0 {
+            requestsInFlight = 0
+        }
+        allAnnotations.forEach(syncAnnotation)
     }
 
-    func syncAnnotation(_ annotation: Annotation) {
+    // MARK: - Private Methods
+
+    private func syncAnnotation(_ annotation: Annotation) {
         guard let apiAnnotation = annotation.apiAnnotation() else { return }
 
         if let inkAnnotation = annotation as? InkAnnotation, (inkAnnotation.lines?.count ??  0) > 120 {
-            documentProvider?.document?.undoController?.undo()
+            documentProvider?.document?.undoController.undoManager.undo()
             docViewerDelegate?.annotationDidExceedLimit(annotation: apiAnnotation)
             return
         }
@@ -164,12 +187,5 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             return // don't save to network if empty comment reply or free text
         }
         put(apiAnnotation)
-    }
-
-    func syncAllAnnotations() {
-        if allAnnotations.count == 0 {
-            requestsInFlight = 0
-        }
-        allAnnotations.forEach(syncAnnotation)
     }
 }
