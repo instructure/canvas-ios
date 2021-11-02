@@ -48,7 +48,7 @@ public struct APIAssignment: Codable, Equatable {
     let overrides: [APIAssignmentOverride]?
     let planner_override: APIPlannerOverride?
     let points_possible: Double?
-    let position: Int
+    let position: Int?
     let published: Bool?
     let quiz_id: ID?
     var rubric: [APIRubric]?
@@ -127,7 +127,7 @@ extension APIAssignment {
         overrides: [APIAssignmentOverride]? = nil,
         planner_override: APIPlannerOverride? = nil,
         points_possible: Double? = 10,
-        position: Int = 0,
+        position: Int? = 0,
         published: Bool? = true,
         quiz_id: ID? = nil,
         rubric: [APIRubric]? = nil,
