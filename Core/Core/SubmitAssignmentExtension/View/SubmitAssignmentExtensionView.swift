@@ -27,14 +27,17 @@ public struct SubmitAssignmentExtensionView: View {
 
     public var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 0) {
-                selectCourseButton
-                divider
-                selectAssignmentButton
-                commentBox
-                divider
-                filesSection
-                Spacer()
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    selectCourseButton
+                    divider
+                    selectAssignmentButton
+                    commentBox
+                    divider
+                    filesSection
+                    Spacer()
+                }
+                .padding(.horizontal, 20)
             }
             .navigationBarGlobal()
             .navigationBarTitleView(Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
@@ -42,7 +45,6 @@ public struct SubmitAssignmentExtensionView: View {
                 leading: { cancelButton },
                 trailing: { submitButton }
             )
-            .padding(.horizontal, 20)
         }
     }
 
