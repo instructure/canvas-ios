@@ -19,6 +19,7 @@
 import SwiftUI
 
 public struct CoursePickerView: View {
+    @Environment(\.presentationMode) private var presentationMode
     @ObservedObject private var viewModel: CoursePickerViewModel
     @Binding private var selectedCourse: CoursePickerViewModel.Course?
 
@@ -56,6 +57,9 @@ public struct CoursePickerView: View {
                 ForEach(courses) { course in
                     Button(action: {
                         selectedCourse = course
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }) {
                         HStack(spacing: 0) {
                             Text(course.name)

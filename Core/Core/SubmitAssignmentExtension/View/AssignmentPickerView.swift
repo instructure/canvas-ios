@@ -19,6 +19,7 @@
 import SwiftUI
 
 public struct AssignmentPickerView: View {
+    @Environment(\.presentationMode) private var presentationMode
     @ObservedObject private var viewModel: AssignmentPickerViewModel
     @Binding private var selectedAssignment: AssignmentPickerViewModel.Assignment?
 
@@ -60,6 +61,9 @@ public struct AssignmentPickerView: View {
                 ForEach(assignments) { assignment in
                     Button(action: {
                         selectedAssignment = assignment
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }) {
                         HStack(spacing: 0) {
                             Text(assignment.name)
