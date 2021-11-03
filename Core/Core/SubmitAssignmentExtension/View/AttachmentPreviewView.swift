@@ -45,6 +45,7 @@ public struct AttachmentPreviewView: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: size, height: size)
+            .clipped()
     }
 
     public func moviePreview(_ frame: UIImage, movieLength: Double) -> some View {
@@ -52,9 +53,9 @@ public struct AttachmentPreviewView: View {
             Image(uiImage: frame)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .clipped()
                 .contentShape(Rectangle())
                 .frame(width: size, height: size)
+                .clipped()
             Text(videoLengthFormatter.string(from: movieLength) ?? "")
                 .font(.bold13)
                 .padding(4)
