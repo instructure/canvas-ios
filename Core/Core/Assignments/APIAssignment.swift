@@ -60,6 +60,9 @@ public struct APIAssignment: Codable, Equatable {
     let unpublishable: Bool?
     let url: URL?
     let use_rubric_for_grading: Bool?
+
+    /** This also returns true if the assignment is locked by date, so there's no need to manually check the `lock_at` and `unlock_at` parameters. */
+    public var isLockedForUser: Bool { locked_for_user ?? false }
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate

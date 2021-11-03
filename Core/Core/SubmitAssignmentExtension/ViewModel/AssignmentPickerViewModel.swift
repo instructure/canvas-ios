@@ -41,10 +41,7 @@ public class AssignmentPickerViewModel: ObservableObject {
             let newState: Data
 
             if let assignments = assignments {
-                let validAssignments: [Assignment] = assignments.compactMap {
-                    return Assignment(id: $0.id.value, name: $0.name)
-                }
-                newState = .assignments(validAssignments)
+                newState = .assignments(Self.filterAssignments(assignments))
             } else {
                 let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
                 newState = .error(errorMessage)
@@ -53,6 +50,13 @@ public class AssignmentPickerViewModel: ObservableObject {
             performUIUpdate {
                 self.data = newState
             }
+        }
+    }
+
+    private static func filterAssignments(_ assignments: [APIAssignment]) -> [Assignment] {
+        assignments.compactMap {
+            guard $0.isLockedForUser == false, $0.submission_types.contains(.online_upload) else { return nil }
+            return Assignment(id: $0.id.value, name: $0.name)
         }
     }
 }
