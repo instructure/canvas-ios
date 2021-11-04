@@ -19,7 +19,7 @@
 import SwiftUI
 
 public class CoursePickerViewModel: ObservableObject {
-    public typealias Course = SubmitAssignmentExtensionViewModel.Course
+    public typealias Course = IdentifiableName
 
     @Published public var data: Data = .loading
 

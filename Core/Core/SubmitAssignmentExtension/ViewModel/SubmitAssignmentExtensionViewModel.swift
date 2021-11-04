@@ -23,7 +23,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     private static let selectAssignmentText = Text("Select assignment", bundle: .core)
     private static let selectCourseText = Text("Select course", bundle: .core)
 
-    @Published public var selectedCourse: Course? = nil {
+    @Published public var selectedCourse: CoursePickerViewModel.Course? = nil {
         didSet {
             recreateAssignmentViewModel()
             selectCourseButtonTitle = selectedCourse.map { Text($0.name) } ?? Self.selectCourseText
@@ -36,14 +36,13 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
             selectAssignmentButtonTitle = selectedAssignment.map { Text($0.name) } ?? Self.selectAssignmentText
         }
     }
+    @Published public var comment = ""
     @Published public private(set) var assignmentPickerViewModel: AssignmentPickerViewModel?
     @Published public private(set) var isSubmitButtonDisabled: Bool = true
     @Published public private(set) var selectCourseButtonTitle: Text = selectCourseText
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
-    @Published public var comment = ""
     @Published public private(set) var previews: [URL] = []
-
     public let coursePickerViewModel: CoursePickerViewModel
 
     private var selectedFileURLs: [URL] = []
@@ -112,16 +111,9 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
         }
     }
 
-    private func resetSelectedAssignmentIfNecesssary(newCourse: Course?) {
+    private func resetSelectedAssignmentIfNecesssary(newCourse: CoursePickerViewModel.Course?) {
         if newCourse != selectedCourse {
             selectedAssignment = nil
         }
-    }
-}
-
-extension SubmitAssignmentExtensionViewModel {
-    public struct Course: Identifiable, Equatable {
-        public let id: String
-        public let name: String
     }
 }
