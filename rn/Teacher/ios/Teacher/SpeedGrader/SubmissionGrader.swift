@@ -41,6 +41,7 @@ struct SubmissionGrader: View {
     @State var showRecorder: MediaCommentType?
     /** This is mainly used by `SubmissionCommentList` but since it's re-created on rotation and app backgrounding the entered text is lost. */
     @State var enteredComment: String = ""
+    /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
 
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
@@ -308,7 +309,7 @@ struct SubmissionGrader: View {
     private func layoutForWidth(_ width: CGFloat) -> Layout {
         // On iPads if the app is backgrounded then it changes the device orientation back and forth causing the UI to re-render and the submission to re-load.
         // To overcome this we force the last presented layout in case the app is in the background.
-        guard UIApplication.shared.applicationState == .active else {
+        guard UIApplication.shared.applicationState != .background else {
             return lastPresentedLayout
         }
         return width > 834 ? .landscape : .portrait
