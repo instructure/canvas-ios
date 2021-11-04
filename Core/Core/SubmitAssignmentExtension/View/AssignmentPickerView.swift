@@ -33,12 +33,12 @@ public struct AssignmentPickerView: View {
 
     @ViewBuilder
     private var content: some View {
-        switch viewModel.data {
+        switch viewModel.state {
         case .loading:
             CircleProgress()
         case .error(let message):
             error(message: message)
-        case .assignments(let assignments):
+        case .data(let assignments):
             if assignments.isEmpty {
                 error(message: NSLocalizedString("There are no active assignments in this course.", comment: ""))
             } else {
@@ -91,7 +91,7 @@ public struct AssignmentPickerView: View {
 
 struct AssignmentPickerView_Previews: PreviewProvider {
     static var dataModel: AssignmentPickerViewModel {
-        let dataModel = AssignmentPickerViewModel(data: .assignments([
+        let dataModel = AssignmentPickerViewModel(state: .data([
             .init(id: "0", name: "American Literature"),
             .init(id: "1", name: "History"),
             .init(id: "2", name: "Math"),
@@ -101,8 +101,8 @@ struct AssignmentPickerView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        let loadingModel = AssignmentPickerViewModel(data: .loading)
-        let errorModel = AssignmentPickerViewModel(data: .error("Something went wrong"))
+        let loadingModel = AssignmentPickerViewModel(state: .loading)
+        let errorModel = AssignmentPickerViewModel(state: .error("Something went wrong"))
         AssignmentPickerView(viewModel: dataModel)
             .previewLayout(.fixed(width: 500, height: 500))
         AssignmentPickerView(viewModel: loadingModel)

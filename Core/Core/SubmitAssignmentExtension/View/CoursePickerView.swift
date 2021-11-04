@@ -33,12 +33,12 @@ public struct CoursePickerView: View {
 
     @ViewBuilder
     private var content: some View {
-        switch viewModel.data {
+        switch viewModel.state {
         case .loading:
             CircleProgress()
         case .error(let message):
             error(message: message)
-        case .courses(let courses):
+        case .data(let courses):
             self.courses(courses: courses)
         }
     }
@@ -88,9 +88,9 @@ public struct CoursePickerView: View {
 struct CoursePickerView_Previews: PreviewProvider {
 
     static var previews: some View {
-        let loadingModel = CoursePickerViewModel(data: .loading)
-        let errorModel = CoursePickerViewModel(data: .error("Something went wrong"))
-        let dataModel = CoursePickerViewModel(data: .courses([
+        let loadingModel = CoursePickerViewModel(state: .loading)
+        let errorModel = CoursePickerViewModel(state: .error("Something went wrong"))
+        let dataModel = CoursePickerViewModel(state: .data([
             .init(id: "0", name: "American Literature"),
             .init(id: "1", name: "History"),
             .init(id: "2", name: "Math"),

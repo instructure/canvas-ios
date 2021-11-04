@@ -191,7 +191,7 @@ public struct SubmitAssignmentExtensionView: View {
 struct SubmitAssignmentExtensionView_Previews: PreviewProvider {
 
     static var previews: some View {
-        let coursePickerViewModel = CoursePickerViewModel(data: .courses([
+        let coursePickerViewModel = CoursePickerViewModel(state: .data([
             .init(id: "0", name: "American Literature"),
             .init(id: "1", name: "History"),
             .init(id: "2", name: "Math"),

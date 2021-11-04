@@ -21,7 +21,7 @@ import SwiftUI
 public class AssignmentPickerViewModel: ObservableObject {
     public typealias Assignment = IdentifiableName
 
-    @Published public var data: Data = .loading
+    @Published public var state: ViewModelState<[Assignment]> = .loading
     @Published public var selectedAssignment: AssignmentPickerViewModel.Assignment?
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
@@ -33,8 +33,8 @@ public class AssignmentPickerViewModel: ObservableObject {
 
     // MARK: - Preview Support
 
-    public init(data: Data) {
-        self.data = data
+    public init(state: ViewModelState<[Assignment]>) {
+        self.state = state
     }
 
     // MARK: Preview Support -
@@ -52,7 +52,7 @@ public class AssignmentPickerViewModel: ObservableObject {
             selectedAssignment = nil
             fetchAssignments(for: newValue)
         } else {
-            data = .loading
+            state = .loading
         }
     }
 
@@ -61,17 +61,17 @@ public class AssignmentPickerViewModel: ObservableObject {
 
         let request = GetAssignmentsRequest(courseID: courseID, perPage: 100)
         requestTask = AppEnvironment.shared.api.makeRequest(request) { assignments, urlResponse, error in
-            let newState: Data
+            let newState: ViewModelState<[Assignment]>
 
             if let assignments = assignments {
-                newState = .assignments(Self.filterAssignments(assignments))
+                newState = .data(Self.filterAssignments(assignments))
             } else {
                 let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
                 newState = .error(errorMessage)
             }
 
             performUIUpdate {
-                self.data = newState
+                self.state = newState
                 self.selectDefaultAssignment()
             }
         }
@@ -86,19 +86,12 @@ public class AssignmentPickerViewModel: ObservableObject {
 
     private func selectDefaultAssignment() {
         guard
-            case .assignments(let assignments) = data,
+            case .data(let assignments) = state,
             let defaultAssignmentID = AppEnvironment.shared.userDefaults?.submitAssignmentID,
             let defaultAssignment = assignments.first(where: { $0.id == defaultAssignmentID })
         else { return }
 
         selectedAssignment = defaultAssignment
-    }
-}
-
-extension AssignmentPickerViewModel {
-    public enum Data {
-        case loading
-        case error(String)
-        case assignments([Assignment])
+        AppEnvironment.shared.userDefaults?.submitAssignmentID = nil
     }
 }

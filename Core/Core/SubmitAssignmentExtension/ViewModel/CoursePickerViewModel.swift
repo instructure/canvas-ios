@@ -22,14 +22,14 @@ public class CoursePickerViewModel: ObservableObject {
     public typealias Course = IdentifiableName
 
     @Published public var selectedCourse: CoursePickerViewModel.Course?
-    @Published public var data: Data = .loading
+    @Published public var state: ViewModelState<[Course]> = .loading
 
     #if DEBUG
 
     // MARK: - Preview Support
 
-    public init(data: Data) {
-        self.data = data
+    public init(state: ViewModelState<[Course]>) {
+        self.state = state
     }
 
     // MARK: Preview Support -
@@ -39,21 +39,21 @@ public class CoursePickerViewModel: ObservableObject {
     public init() {
         let request = GetCoursesRequest(enrollmentState: .active, perPage: 100)
         AppEnvironment.shared.api.makeRequest(request) { courses, urlResponse, error in
-            let newState: Data
+            let newState: ViewModelState<[Course]>
 
             if let courses = courses {
                 let validCourses: [Course] = courses.compactMap {
                     guard let name = $0.name else { return nil }
                     return Course(id: $0.id.value, name: name)
                 }
-                newState = .courses(validCourses)
+                newState = .data(validCourses)
             } else {
                 let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
                 newState = .error(errorMessage)
             }
 
             performUIUpdate {
-                self.data = newState
+                self.state = newState
                 self.selectDefaultCourse()
             }
         }
@@ -61,19 +61,12 @@ public class CoursePickerViewModel: ObservableObject {
 
     private func selectDefaultCourse() {
         guard
-            case .courses(let courses) = data,
+            case .data(let courses) = state,
             let defaultCourseID = AppEnvironment.shared.userDefaults?.submitAssignmentCourseID,
             let defaultCourse = courses.first(where: { $0.id == defaultCourseID })
         else { return }
 
         selectedCourse = defaultCourse
-    }
-}
-
-extension CoursePickerViewModel {
-    public enum Data {
-        case loading
-        case error(String)
-        case courses([Course])
+        AppEnvironment.shared.userDefaults?.submitAssignmentCourseID = nil
     }
 }
