@@ -152,12 +152,10 @@
 		B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1CA093922C42520008AA352 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1CA093A22C425C8008AA352 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; };
-		B1CF949D23EB82C600FD0698 /* AssignmentsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF949C23EB82C600FD0698 /* AssignmentsViewControllerTests.swift */; };
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
 		B1D5EF6423590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */; };
 		B1D5EF652359182B00B3ACD3 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1D766A122C5049B0097561E /* SubmitAssignmentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A022C5049A0097561E /* SubmitAssignmentTestCase.swift */; };
-		B1D766A422C505770097561E /* CoursesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A322C505770097561E /* CoursesViewControllerTests.swift */; };
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
@@ -802,11 +800,9 @@
 		B1BB7A9C22BAEC1C006CA068 /* SubmitAssignment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SubmitAssignment.entitlements; sourceTree = "<group>"; };
 		B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SubmitAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CA093222C4237C008AA352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B1CF949C23EB82C600FD0698 /* AssignmentsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D766A022C5049A0097561E /* SubmitAssignmentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentTestCase.swift; sourceTree = "<group>"; };
-		B1D766A322C505770097561E /* CoursesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewControllerTests.swift; sourceTree = "<group>"; };
 		B1FF02CF2404353E004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		B5E212D41D88856B009D8C07 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5E212D91D8885AA009D8C07 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1679,29 +1675,11 @@
 		B1CA092F22C4237C008AA352 /* SubmitAssignmentTests */ = {
 			isa = PBXGroup;
 			children = (
-				B1D766A622C509100097561E /* Assignments */,
-				B1D766A222C5055E0097561E /* Courses */,
 				B1D766A022C5049A0097561E /* SubmitAssignmentTestCase.swift */,
 				B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */,
 				B1CA093222C4237C008AA352 /* Info.plist */,
 			);
 			path = SubmitAssignmentTests;
-			sourceTree = "<group>";
-		};
-		B1D766A222C5055E0097561E /* Courses */ = {
-			isa = PBXGroup;
-			children = (
-				B1D766A322C505770097561E /* CoursesViewControllerTests.swift */,
-			);
-			path = Courses;
-			sourceTree = "<group>";
-		};
-		B1D766A622C509100097561E /* Assignments */ = {
-			isa = PBXGroup;
-			children = (
-				B1CF949C23EB82C600FD0698 /* AssignmentsViewControllerTests.swift */,
-			);
-			path = Assignments;
 			sourceTree = "<group>";
 		};
 		C9A3C04B26A03B8200DAE8E1 /* K5 */ = {
@@ -3082,8 +3060,6 @@
 			files = (
 				B1D766A122C5049B0097561E /* SubmitAssignmentTestCase.swift in Sources */,
 				B1D5EF6423590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift in Sources */,
-				B1D766A422C505770097561E /* CoursesViewControllerTests.swift in Sources */,
-				B1CF949D23EB82C600FD0698 /* AssignmentsViewControllerTests.swift in Sources */,
 				B1D5EF652359182B00B3ACD3 /* SubmitAssignmentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
