@@ -72,6 +72,7 @@ public class AssignmentPickerViewModel: ObservableObject {
 
             performUIUpdate {
                 self.data = newState
+                self.selectDefaultAssignment()
             }
         }
     }
@@ -81,6 +82,16 @@ public class AssignmentPickerViewModel: ObservableObject {
             guard $0.isLockedForUser == false, $0.submission_types.contains(.online_upload) else { return nil }
             return Assignment(id: $0.id.value, name: $0.name)
         }
+    }
+
+    private func selectDefaultAssignment() {
+        guard
+            case .assignments(let assignments) = data,
+            let defaultAssignmentID = AppEnvironment.shared.userDefaults?.submitAssignmentID,
+            let defaultAssignment = assignments.first(where: { $0.id == defaultAssignmentID })
+        else { return }
+
+        selectedAssignment = defaultAssignment
     }
 }
 

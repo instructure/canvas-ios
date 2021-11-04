@@ -54,8 +54,19 @@ public class CoursePickerViewModel: ObservableObject {
 
             performUIUpdate {
                 self.data = newState
+                self.selectDefaultCourse()
             }
         }
+    }
+
+    private func selectDefaultCourse() {
+        guard
+            case .courses(let courses) = data,
+            let defaultCourseID = AppEnvironment.shared.userDefaults?.submitAssignmentCourseID,
+            let defaultCourse = courses.first(where: { $0.id == defaultCourseID })
+        else { return }
+
+        selectedCourse = defaultCourse
     }
 }
 
