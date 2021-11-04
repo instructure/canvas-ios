@@ -23,32 +23,20 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     private static let selectAssignmentText = Text("Select assignment", bundle: .core)
     private static let selectCourseText = Text("Select course", bundle: .core)
 
-    @Published public var selectedCourse: CoursePickerViewModel.Course? = nil {
-        didSet {
-            recreateAssignmentViewModel()
-            selectCourseButtonTitle = selectedCourse.map { Text($0.name) } ?? Self.selectCourseText
-        }
-        willSet { resetSelectedAssignmentIfNecesssary(newCourse: newValue) }
-    }
-    @Published public var selectedAssignment: AssignmentPickerViewModel.Assignment? {
-        didSet {
-            isSubmitButtonDisabled = (assignmentPickerViewModel == nil)
-            selectAssignmentButtonTitle = selectedAssignment.map { Text($0.name) } ?? Self.selectAssignmentText
-        }
-    }
     @Published public var comment = ""
-    @Published public private(set) var assignmentPickerViewModel: AssignmentPickerViewModel?
     @Published public private(set) var isSubmitButtonDisabled: Bool = true
     @Published public private(set) var selectCourseButtonTitle: Text = selectCourseText
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
     @Published public private(set) var previews: [URL] = []
     public let coursePickerViewModel: CoursePickerViewModel
+    public let assignmentPickerViewModel = AssignmentPickerViewModel()
 
     private var selectedFileURLs: [URL] = []
     private let submissionService: AttachmentSubmissionService
     private var assignmentCopyServiceStateSubscription: AnyCancellable?
     private let shareCompleted: () -> Void
+    private var subscriptions: Set<AnyCancellable> = []
 
     #if DEBUG
 
@@ -71,10 +59,14 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
         self.shareCompleted = shareCompleted
         self.coursePickerViewModel = CoursePickerViewModel()
         subscribeToAssignmentCopyServiceUpdates(attachmentCopyService)
+        updateCourseNameOnCourseSelection()
+        refreshAssignmentListOnCourseSelection()
+        updateAssignmentNameOnAssignmentSelection()
+        updateSubmitButtonStateOnAssignmentChange()
     }
 
     public func submitTapped() {
-        submissionService.submit(urls: selectedFileURLs, courseID: selectedCourse!.id, assignmentID: selectedAssignment!.id, comment: comment, callback: shareCompleted)
+        submissionService.submit(urls: selectedFileURLs, courseID: coursePickerViewModel.selectedCourse!.id, assignmentID: assignmentPickerViewModel.selectedAssignment!.id, comment: comment, callback: shareCompleted)
     }
 
     public func cancelTapped() {
@@ -103,17 +95,42 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
         }
     }
 
-    private func recreateAssignmentViewModel() {
-        if let selectedCourseId = selectedCourse?.id {
-            assignmentPickerViewModel = AssignmentPickerViewModel(courseID: selectedCourseId)
-        } else {
-            assignmentPickerViewModel = nil
-        }
+    private func updateCourseNameOnCourseSelection() {
+        coursePickerViewModel.$selectedCourse
+            .removeDuplicates()
+            .compactMap { $0 }
+            .map { Text($0.name) }
+            .assign(to: \.selectCourseButtonTitle, on: self)
+            .store(in: &subscriptions)
     }
 
-    private func resetSelectedAssignmentIfNecesssary(newCourse: CoursePickerViewModel.Course?) {
-        if newCourse != selectedCourse {
-            selectedAssignment = nil
-        }
+    private func refreshAssignmentListOnCourseSelection() {
+        coursePickerViewModel.$selectedCourse
+            .removeDuplicates()
+            .map { $0?.id }
+            .assign(to: \.courseID, on: assignmentPickerViewModel)
+            .store(in: &subscriptions)
+    }
+
+    private func updateAssignmentNameOnAssignmentSelection() {
+        assignmentPickerViewModel.$selectedAssignment
+            .removeDuplicates()
+            .map { assignment -> Text in
+                if let assignment = assignment {
+                    return Text(assignment.name)
+                } else {
+                    return Self.selectAssignmentText
+                }
+            }
+            .assign(to: \.selectAssignmentButtonTitle, on: self)
+            .store(in: &subscriptions)
+    }
+
+    private func updateSubmitButtonStateOnAssignmentChange() {
+        assignmentPickerViewModel.$selectedAssignment
+            .removeDuplicates()
+            .map { $0 == nil }
+            .assign(to: \.isSubmitButtonDisabled, on: self)
+            .store(in: &subscriptions)
     }
 }

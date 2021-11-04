@@ -21,11 +21,9 @@ import SwiftUI
 public struct CoursePickerView: View {
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject private var viewModel: CoursePickerViewModel
-    @Binding private var selectedCourse: CoursePickerViewModel.Course?
 
-    public init(viewModel: CoursePickerViewModel, selectedCourse: Binding<CoursePickerViewModel.Course?>) {
+    public init(viewModel: CoursePickerViewModel) {
         self.viewModel = viewModel
-        self._selectedCourse = selectedCourse
     }
 
     public var body: some View {
@@ -56,7 +54,7 @@ public struct CoursePickerView: View {
             VStack(spacing: 0) {
                 ForEach(courses) { course in
                     Button(action: {
-                        selectedCourse = course
+                        viewModel.selectedCourse = course
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             presentationMode.wrappedValue.dismiss()
                         }
@@ -68,7 +66,7 @@ public struct CoursePickerView: View {
                                 .frame(height: 50)
                             Spacer()
 
-                            if selectedCourse == course {
+                            if viewModel.selectedCourse == course {
                                 Image.checkSolid
                                     .frame(width: 50, height: 50)
                                     .foregroundColor(.electric)
@@ -98,11 +96,11 @@ struct CoursePickerView_Previews: PreviewProvider {
             .init(id: "2", name: "Math"),
             .init(id: "3", name: "Biology"),
         ]))
-        CoursePickerView(viewModel: dataModel, selectedCourse: .constant(nil))
+        CoursePickerView(viewModel: dataModel)
             .previewLayout(.fixed(width: 500, height: 500))
-        CoursePickerView(viewModel: loadingModel, selectedCourse: .constant(nil))
+        CoursePickerView(viewModel: loadingModel)
             .previewLayout(.fixed(width: 500, height: 500))
-        CoursePickerView(viewModel: errorModel, selectedCourse: .constant(.init(id: "2", name: "Math")))
+        CoursePickerView(viewModel: errorModel)
             .previewLayout(.fixed(width: 500, height: 500))
     }
 }

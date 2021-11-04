@@ -99,10 +99,10 @@ public struct SubmitAssignmentExtensionView: View {
     }
 
     private var selectCourseButton: some View {
-        NavigationLink(destination: CoursePickerView(viewModel: viewModel.coursePickerViewModel, selectedCourse: $viewModel.selectedCourse)) {
+        NavigationLink(destination: CoursePickerView(viewModel: viewModel.coursePickerViewModel)) {
             HStack {
                 viewModel.selectCourseButtonTitle
-                    .foregroundColor(viewModel.selectedCourse == nil ? .textDark : .textDarkest)
+                    .foregroundColor(viewModel.coursePickerViewModel.selectedCourse == nil ? .textDark : .textDarkest)
                     .font(.regular16)
                 Spacer()
                 disclosureIndicator
@@ -117,13 +117,13 @@ public struct SubmitAssignmentExtensionView: View {
 
     @ViewBuilder
     private var selectAssignmentButton: some View {
-        if let assignmentViewModel = viewModel.assignmentPickerViewModel {
-            let viewToPush = AssignmentPickerView(viewModel: assignmentViewModel, selectedAssignment: $viewModel.selectedAssignment)
+        if viewModel.assignmentPickerViewModel.courseID != nil {
+            let viewToPush = AssignmentPickerView(viewModel: viewModel.assignmentPickerViewModel)
             NavigationLink(destination: viewToPush) {
                 VStack(spacing: 0) {
                     HStack {
                         viewModel.selectAssignmentButtonTitle
-                            .foregroundColor(viewModel.selectedAssignment == nil ? .textDark : .textDarkest)
+                            .foregroundColor(viewModel.assignmentPickerViewModel.selectedAssignment == nil ? .textDark : .textDarkest)
                             .font(.regular16)
                         Spacer()
                         disclosureIndicator

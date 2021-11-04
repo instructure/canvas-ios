@@ -21,11 +21,9 @@ import SwiftUI
 public struct AssignmentPickerView: View {
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject private var viewModel: AssignmentPickerViewModel
-    @Binding private var selectedAssignment: AssignmentPickerViewModel.Assignment?
 
-    public init(viewModel: AssignmentPickerViewModel, selectedAssignment: Binding<AssignmentPickerViewModel.Assignment?>) {
+    public init(viewModel: AssignmentPickerViewModel) {
         self.viewModel = viewModel
-        self._selectedAssignment = selectedAssignment
     }
 
     public var body: some View {
@@ -60,7 +58,7 @@ public struct AssignmentPickerView: View {
             VStack(spacing: 0) {
                 ForEach(assignments) { assignment in
                     Button(action: {
-                        selectedAssignment = assignment
+                        viewModel.selectedAssignment = assignment
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             presentationMode.wrappedValue.dismiss()
                         }
@@ -72,7 +70,7 @@ public struct AssignmentPickerView: View {
                                 .frame(height: 50)
                             Spacer()
 
-                            if selectedAssignment == assignment {
+                            if viewModel.selectedAssignment == assignment {
                                 Image.checkSolid
                                     .frame(width: 50, height: 50)
                                     .foregroundColor(.electric)
@@ -105,11 +103,11 @@ struct AssignmentPickerView_Previews: PreviewProvider {
     static var previews: some View {
         let loadingModel = AssignmentPickerViewModel(data: .loading)
         let errorModel = AssignmentPickerViewModel(data: .error("Something went wrong"))
-        AssignmentPickerView(viewModel: dataModel, selectedAssignment: .constant(nil))
+        AssignmentPickerView(viewModel: dataModel)
             .previewLayout(.fixed(width: 500, height: 500))
-        AssignmentPickerView(viewModel: loadingModel, selectedAssignment: .constant(nil))
+        AssignmentPickerView(viewModel: loadingModel)
             .previewLayout(.fixed(width: 500, height: 500))
-        AssignmentPickerView(viewModel: errorModel, selectedAssignment: .constant(.init(id: "2", name: "Math")))
+        AssignmentPickerView(viewModel: errorModel)
             .previewLayout(.fixed(width: 500, height: 500))
     }
 }

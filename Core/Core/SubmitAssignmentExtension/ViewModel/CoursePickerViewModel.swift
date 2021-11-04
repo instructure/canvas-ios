@@ -21,6 +21,7 @@ import SwiftUI
 public class CoursePickerViewModel: ObservableObject {
     public typealias Course = IdentifiableName
 
+    @Published public var selectedCourse: CoursePickerViewModel.Course?
     @Published public var data: Data = .loading
 
     #if DEBUG

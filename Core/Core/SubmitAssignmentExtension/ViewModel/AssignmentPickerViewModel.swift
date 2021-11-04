@@ -22,6 +22,12 @@ public class AssignmentPickerViewModel: ObservableObject {
     public typealias Assignment = IdentifiableName
 
     @Published public var data: Data = .loading
+    @Published public var selectedAssignment: AssignmentPickerViewModel.Assignment?
+    public var courseID: String? {
+        willSet { courseIdWillChange(to: newValue) }
+    }
+
+    private var requestTask: APITask?
 
     #if DEBUG
 
@@ -35,9 +41,26 @@ public class AssignmentPickerViewModel: ObservableObject {
 
     #endif
 
-    public init(courseID: String) {
+    public init() {
+    }
+
+    private func courseIdWillChange(to newValue: String?) {
+        // If the same course was selected we don't reload
+        if courseID == newValue { return }
+
+        if let newValue = newValue {
+            selectedAssignment = nil
+            fetchAssignments(for: newValue)
+        } else {
+            data = .loading
+        }
+    }
+
+    private func fetchAssignments(for courseID: String) {
+        requestTask?.cancel()
+
         let request = GetAssignmentsRequest(courseID: courseID, perPage: 100)
-        AppEnvironment.shared.api.makeRequest(request) { assignments, urlResponse, error in
+        requestTask = AppEnvironment.shared.api.makeRequest(request) { assignments, urlResponse, error in
             let newState: Data
 
             if let assignments = assignments {
