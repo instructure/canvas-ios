@@ -19,9 +19,14 @@
 import SwiftUI
 
 public class AssignmentGroupViewModel: ObservableObject {
-    @Published public private(set) var assignments: [Assignment] = []
 
-    public init() {
+    @Published public private (set) var assignments: [Assignment] = []
+    public private (set) var name: String
+    public private (set) var id: String
 
+    public init(assignmentGroup: AssignmentGroup, assignments: [Assignment]) {
+        self.name = assignmentGroup.name
+        self.id = assignmentGroup.id
+        self.assignments = assignments
     }
 }

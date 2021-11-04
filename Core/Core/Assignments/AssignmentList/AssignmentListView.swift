@@ -34,28 +34,38 @@ public struct AssignmentListView: View {
                 Button(action:{}, label: {Text("Filter")})
             }.padding(16)
             List {
-                Section(header: Text("Assignments")) {
-                    assignmentCell
+                ForEach(viewModel.assignmentGroups, id: \.id) { assignmentGroup in
+                    assignmentGroupView(assignmentGroup: assignmentGroup)
                 }
+            }
+            .listStyle(.plain)
+            .buttonStyle(.borderless)
+            .padding(.top, 1)
+        }
+        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .navigationBarStyle(.global)
+        .navigationTitle(NSLocalizedString("Assignments", comment: ""), subtitle: nil)
+    }
+
+    private func assignmentGroupView(assignmentGroup: AssignmentGroupViewModel) -> some View {
+        return Section(header: ListSectionHeader { Text(assignmentGroup.name) }) {
+            ForEach(assignmentGroup.assignments, id: \.id) { assignment in
+                assignmentCell(assignment: assignment)
             }
         }
     }
 
-    @ViewBuilder var assignmentGroup: some View {
-        Text("YOLO")
-    }
-
-    @ViewBuilder var assignmentCell: some View {
-        Button(action: {}, label: {
+    private func assignmentCell(assignment: Assignment) -> some View {
+        return Button(action: {}, label: {
             HStack {
                 Image.assignmentLine
                     .resizable()
                     .frame(width: 16, height: 16)
                     .foregroundColor(.ash)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Assignment Title")
+                    Text(assignment.name)
                     .font(.bold17)
-                    Text("Details")
+                    Text(assignment.dueText)
                 }
                 Image.arrowOpenRightLine
                     .resizable()
@@ -69,7 +79,8 @@ public struct AssignmentListView: View {
 #if DEBUG
 struct AssignmentListView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = AssignmentListViewModel()
+
+        let viewModel = AssignmentListViewModel(context: Context(.course, id: "1"))
         AssignmentListView(viewModel: viewModel)
     }
 }

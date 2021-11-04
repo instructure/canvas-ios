@@ -22,21 +22,24 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var assignmentGroups: [AssignmentGroupViewModel] = []
 
     @Environment(\.appEnvironment) private var env
-    private let context: Context
     private let courseID: String
 
-
-    lazy var apiAssignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
+    lazy var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()
     }
 
     public init(context: Context) {
-        self.context = context
         self.courseID = context.id
+        apiAssignments.refresh()
     }
 
     func assignmentGroupsDidUpdate() {
-
+        assignmentGroups = []
+        for section in 0..<(apiAssignments.sections?.count ?? 0) {
+            if let group = apiAssignments[IndexPath(row: 0, section: section)]?.assignmentGroup {
+                let assignments: [Assignment] = apiAssignments.filter {$0.assignmentGroup == group}
+                assignmentGroups.append(AssignmentGroupViewModel(assignmentGroup: group, assignments: assignments))
+            }
+        }
     }
-
 }
