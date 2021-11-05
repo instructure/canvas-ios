@@ -909,6 +909,7 @@
 		CFC2C27D273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27C273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift */; };
 		CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27E2735354F006CA3E0 /* CoursePickerViewModelTests.swift */; };
 		CFC2C281273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C280273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift */; };
+		CFC2C28327358796006CA3E0 /* AttachmentSubmissionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */; };
 		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
 		CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */; };
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
@@ -2133,6 +2134,7 @@
 		CFC2C27C273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModelTests.swift; sourceTree = "<group>"; };
 		CFC2C27E2735354F006CA3E0 /* CoursePickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePickerViewModelTests.swift; sourceTree = "<group>"; };
 		CFC2C280273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentExtensionViewModelTests.swift; sourceTree = "<group>"; };
+		CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionServiceTests.swift; sourceTree = "<group>"; };
 		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
@@ -4611,6 +4613,7 @@
 		CFC2C27A2735328C006CA3E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5513,6 +5516,7 @@
 				B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */,
 				7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */,
 				7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */,
+				CFC2C28327358796006CA3E0 /* AttachmentSubmissionServiceTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
 				3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */,
 				7D288B0B25758B100013FF65 /* GradeSubmissionTests.swift in Sources */,

@@ -19,12 +19,10 @@
 import Foundation
 
 public class AttachmentSubmissionService {
-    private let uploadManager = UploadManager(
-        identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads",
-        sharedContainerIdentifier: "group.instructure.shared"
-    )
+    private let uploadManager: UploadManager
 
-    public init() {
+    public init(uploadManager: UploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads", sharedContainerIdentifier: "group.instructure.shared")) {
+        self.uploadManager = uploadManager
     }
 
     public func submit(urls: [URL], courseID: String, assignmentID: String, comment: String?, callback: @escaping () -> Void) {
