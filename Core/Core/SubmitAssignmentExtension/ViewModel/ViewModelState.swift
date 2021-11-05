@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum ViewModelState<DataType> {
+public enum ViewModelState<DataType>: Equatable where DataType: Equatable {
     case loading
     case error(String)
     case data(DataType)

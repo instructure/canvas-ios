@@ -23,6 +23,7 @@ public class AssignmentPickerViewModel: ObservableObject {
 
     @Published public var state: ViewModelState<[Assignment]> = .loading
     @Published public var selectedAssignment: AssignmentPickerViewModel.Assignment?
+    /** Modify this to trigger the assignment list fetch for the give course ID. */
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
     }
@@ -48,11 +49,11 @@ public class AssignmentPickerViewModel: ObservableObject {
         // If the same course was selected we don't reload
         if courseID == newValue { return }
 
+        state = .loading
+
         if let newValue = newValue {
             selectedAssignment = nil
             fetchAssignments(for: newValue)
-        } else {
-            state = .loading
         }
     }
 

@@ -906,6 +906,8 @@
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */; };
 		CFC2C27827344053006CA3E0 /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27727344053006CA3E0 /* ViewModelState.swift */; };
+		CFC2C27D273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27C273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift */; };
+		CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27E2735354F006CA3E0 /* CoursePickerViewModelTests.swift */; };
 		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
 		CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */; };
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
@@ -2127,6 +2129,8 @@
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableName.swift; sourceTree = "<group>"; };
 		CFC2C27727344053006CA3E0 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
+		CFC2C27C273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModelTests.swift; sourceTree = "<group>"; };
+		CFC2C27E2735354F006CA3E0 /* CoursePickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePickerViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
@@ -2306,7 +2310,6 @@
 				7DAFBE6E2318567300E9A37D /* ErrorReports */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
 				7D08B1D02371E9C70075623A /* Files */,
-				CF6C7FC326F8CD3A002937E5 /* SubmitAssignmentExtension */,
 				3B4D86112329521F005126A5 /* Grades */,
 				7D1D5BE32492A5FA009EA317 /* Groups */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
@@ -2332,6 +2335,7 @@
 				7D2FADBC225BA4BC00BCE19E /* RichContentEditor */,
 				2C964858211E3049002C3255 /* Router */,
 				B11D321521E4649B00F37ABF /* Store */,
+				CF6C7FC326F8CD3A002937E5 /* SubmitAssignmentExtension */,
 				7DCB2E97247D95FA0071F172 /* Submissions */,
 				E8A8FA8C24D3289D000B27DF /* SwiftUIViews */,
 				3BF34288233D2C7F0095D0D3 /* Syllabus */,
@@ -2390,6 +2394,7 @@
 				2C964859211E30A0002C3255 /* Router */,
 				B1EF7AB521E7E40400D653D7 /* Store */,
 				7DCB2E98247D987A0071F172 /* Submissions */,
+				CFC2C27927353241006CA3E0 /* SubmitAssignmentExtension */,
 				E8258E54251003BE0033334F /* SwiftUIViews */,
 				3B1669DB233DAF2300B2EFAB /* Syllabus */,
 				7D81F3F824F011C300C482D2 /* TermsOfService */,
@@ -4592,6 +4597,31 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		CFC2C27927353241006CA3E0 /* SubmitAssignmentExtension */ = {
+			isa = PBXGroup;
+			children = (
+				CFC2C27A2735328C006CA3E0 /* Model */,
+				CFC2C27B27353291006CA3E0 /* ViewModel */,
+			);
+			path = SubmitAssignmentExtension;
+			sourceTree = "<group>";
+		};
+		CFC2C27A2735328C006CA3E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFC2C27B27353291006CA3E0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFC2C27C273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift */,
+				CFC2C27E2735354F006CA3E0 /* CoursePickerViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CFCE214A2656894100E3B32A /* ViewPreferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -5355,6 +5385,7 @@
 				7D70DEA4233EB07300F5C3D4 /* NotificationCategoryTests.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupsTests.swift in Sources */,
+				CFC2C27D273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift in Sources */,
 				7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */,
 				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,
 				CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */,
@@ -5455,6 +5486,7 @@
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
 				7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */,
+				CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,
 				9F900E7923217CC000BB44B4 /* APISearchRecipientsTests.swift in Sources */,
 				7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */,
