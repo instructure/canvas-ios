@@ -150,12 +150,7 @@
 		B1B4E992252641C300B0DDD8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B1B4E991252641C300B0DDD8 /* Lottie */; };
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
-		B1CA093922C42520008AA352 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
-		B1CA093A22C425C8008AA352 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; };
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
-		B1D5EF6423590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */; };
-		B1D5EF652359182B00B3ACD3 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
-		B1D766A122C5049B0097561E /* SubmitAssignmentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A022C5049A0097561E /* SubmitAssignmentTestCase.swift */; };
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
@@ -260,13 +255,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B1BB7A8122BAC820006CA068;
 			remoteInfo = ShareSubmission;
-		};
-		B1CA093322C4237C008AA352 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 492704721CF4AF7100C631C6;
-			remoteInfo = Canvas;
 		};
 		D9FD8F3F2546C3F500C6842B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -798,11 +786,7 @@
 		B1BB7A8922BAC820006CA068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1BB7A9022BADAC1006CA068 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BB7A9C22BAEC1C006CA068 /* SubmitAssignment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SubmitAssignment.entitlements; sourceTree = "<group>"; };
-		B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SubmitAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1CA093222C4237C008AA352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
-		B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentViewControllerTests.swift; sourceTree = "<group>"; };
-		B1D766A022C5049A0097561E /* SubmitAssignmentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentTestCase.swift; sourceTree = "<group>"; };
 		B1FF02CF2404353E004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		B5E212D41D88856B009D8C07 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5E212D91D8885AA009D8C07 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -957,15 +941,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B1CA092B22C4237C008AA352 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B1CA093922C42520008AA352 /* Core.framework in Frameworks */,
-				B1CA093A22C425C8008AA352 /* TestsFoundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9FD8F312546C3F300C6842B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1035,7 +1010,6 @@
 				7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */,
 				3B6DCCA81FB502CE005EE8D2 /* GradesWidget */,
 				B1BB7A8322BAC820006CA068 /* SubmitAssignment */,
-				B1CA092F22C4237C008AA352 /* SubmitAssignmentTests */,
 				D9FD8F2F2546C39D00C6842B /* Widgets */,
 				492704741CF4AF7100C631C6 /* Products */,
 				5B0FCCDFB07A88D993D5871D /* Frameworks */,
@@ -1049,7 +1023,6 @@
 				492704731CF4AF7100C631C6 /* Student.app */,
 				3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */,
 				B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */,
-				B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */,
 				7DE1160722F8AAB1005BFE98 /* StudentUnitTests.xctest */,
 				7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */,
 				E8C6F50023D626220086B865 /* StudentE2ETests.xctest */,
@@ -1672,16 +1645,6 @@
 			path = SubmitAssignment;
 			sourceTree = "<group>";
 		};
-		B1CA092F22C4237C008AA352 /* SubmitAssignmentTests */ = {
-			isa = PBXGroup;
-			children = (
-				B1D766A022C5049A0097561E /* SubmitAssignmentTestCase.swift */,
-				B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */,
-				B1CA093222C4237C008AA352 /* Info.plist */,
-			);
-			path = SubmitAssignmentTests;
-			sourceTree = "<group>";
-		};
 		C9A3C04B26A03B8200DAE8E1 /* K5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2254,24 +2217,6 @@
 			productReference = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		B1CA092D22C4237C008AA352 /* SubmitAssignmentTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B1CA093722C4237D008AA352 /* Build configuration list for PBXNativeTarget "SubmitAssignmentTests" */;
-			buildPhases = (
-				B1CA092A22C4237C008AA352 /* Sources */,
-				B1CA092B22C4237C008AA352 /* Frameworks */,
-				B1CA092C22C4237C008AA352 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B1CA093422C4237C008AA352 /* PBXTargetDependency */,
-			);
-			name = SubmitAssignmentTests;
-			productName = SubmitAssignmentTests;
-			productReference = B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		D9FD8F332546C3F300C6842B /* Widgets */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9FD8F422546C3F500C6842B /* Build configuration list for PBXNativeTarget "Widgets" */;
@@ -2377,11 +2322,6 @@
 							};
 						};
 					};
-					B1CA092D22C4237C008AA352 = {
-						CreatedOnToolsVersion = 10.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 492704721CF4AF7100C631C6;
-					};
 					D9FD8F332546C3F300C6842B = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -2463,7 +2403,6 @@
 				492704721CF4AF7100C631C6 /* Student */,
 				3B6DCCA41FB502CD005EE8D2 /* GradesWidget */,
 				B1BB7A8122BAC820006CA068 /* SubmitAssignment */,
-				B1CA092D22C4237C008AA352 /* SubmitAssignmentTests */,
 				7DE1160622F8AAB1005BFE98 /* StudentUnitTests */,
 				7DC5716F22F8B16200F2E9BB /* StudentUITests */,
 				E8C6F4CF23D626220086B865 /* StudentE2ETests */,
@@ -2538,13 +2477,6 @@
 			files = (
 				5B57D3A622ED802B00DEA620 /* Localizable.strings in Resources */,
 				5B57D3A322ED802B00DEA620 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B1CA092C22C4237C008AA352 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3054,16 +2986,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B1CA092A22C4237C008AA352 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B1D766A122C5049B0097561E /* SubmitAssignmentTestCase.swift in Sources */,
-				B1D5EF6423590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift in Sources */,
-				B1D5EF652359182B00B3ACD3 /* SubmitAssignmentViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9FD8F302546C3F300C6842B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3147,11 +3069,6 @@
 			isa = PBXTargetDependency;
 			target = B1BB7A8122BAC820006CA068 /* SubmitAssignment */;
 			targetProxy = B1BB7A8A22BAC820006CA068 /* PBXContainerItemProxy */;
-		};
-		B1CA093422C4237C008AA352 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 492704721CF4AF7100C631C6 /* Student */;
-			targetProxy = B1CA093322C4237C008AA352 /* PBXContainerItemProxy */;
 		};
 		D9FD8F402546C3F500C6842B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3957,60 +3874,6 @@
 			};
 			name = Release;
 		};
-		B1CA093522C4237D008AA352 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = SubmitAssignmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SubmitAssignmentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
-			};
-			name = Debug;
-		};
-		B1CA093622C4237D008AA352 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = SubmitAssignmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SubmitAssignmentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Student.app/Student";
-			};
-			name = Release;
-		};
 		D9FD8F432546C3F500C6842B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4192,15 +4055,6 @@
 			buildConfigurations = (
 				B1BB7A8D22BAC820006CA068 /* Debug */,
 				B1BB7A8E22BAC820006CA068 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B1CA093722C4237D008AA352 /* Build configuration list for PBXNativeTarget "SubmitAssignmentTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B1CA093522C4237D008AA352 /* Debug */,
-				B1CA093622C4237D008AA352 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

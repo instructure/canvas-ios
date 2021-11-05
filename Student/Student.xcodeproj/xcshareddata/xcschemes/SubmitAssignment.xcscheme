@@ -67,16 +67,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1CA092D22C4237C008AA352"
-               BuildableName = "SubmitAssignmentTests.xctest"
-               BlueprintName = "SubmitAssignmentTests"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "7DE1160622F8AAB1005BFE98"
                BuildableName = "StudentUnitTests.xctest"
                BlueprintName = "StudentUnitTests"
@@ -108,9 +98,9 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "1"
+         runnableDebuggingMode = "0"
          BundleIdentifier = "com.apple.mobileslideshow"
-         RemotePath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/Applications/MobileSlideShow.app">
+         RemotePath = "/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 14.5.simruntime/Contents/Resources/RuntimeRoot/Applications/MobileSlideShow.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
