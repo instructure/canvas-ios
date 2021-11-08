@@ -922,6 +922,7 @@
 		D9212768273187AB00BE7719 /* AssignmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9212767273187AB00BE7719 /* AssignmentListView.swift */; };
 		D921276A2731892200BE7719 /* AssignmentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92127692731892200BE7719 /* AssignmentListViewModel.swift */; };
 		D921276D2731938500BE7719 /* AssignmentGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D921276C2731938500BE7719 /* AssignmentGroupViewModel.swift */; };
+		D921277127356ADD00BE7719 /* AssignmentGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D921277027356ADD00BE7719 /* AssignmentGroupView.swift */; };
 		D9436D1725A4BAD200DD3873 /* GetCourseSingleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */; };
 		D9436D1D25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */; };
 		D94FA2A826CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */; };
@@ -2135,6 +2136,7 @@
 		D9212767273187AB00BE7719 /* AssignmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListView.swift; sourceTree = "<group>"; };
 		D92127692731892200BE7719 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
 		D921276C2731938500BE7719 /* AssignmentGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroupViewModel.swift; sourceTree = "<group>"; };
+		D921277027356ADD00BE7719 /* AssignmentGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroupView.swift; sourceTree = "<group>"; };
 		D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUser.swift; sourceTree = "<group>"; };
 		D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUserTests.swift; sourceTree = "<group>"; };
 		D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -4607,6 +4609,7 @@
 			children = (
 				D921276B2731935300BE7719 /* ViewModel */,
 				D9212767273187AB00BE7719 /* AssignmentListView.swift */,
+				D921277027356ADD00BE7719 /* AssignmentGroupView.swift */,
 			);
 			path = AssignmentList;
 			sourceTree = "<group>";
@@ -5540,6 +5543,7 @@
 				7DA260CE23F72359005D2121 /* CalendarDayIconView.swift in Sources */,
 				7DA25FEA23F721DE005D2121 /* Conversation.swift in Sources */,
 				CF60CC372645525400C1C173 /* K5HomeroomView.swift in Sources */,
+				D921277127356ADD00BE7719 /* AssignmentGroupView.swift in Sources */,
 				7DA2600323F7227A005D2121 /* BundleExtensions.swift in Sources */,
 				3B4D89412450AD58004ED120 /* UITextViewExtensions.swift in Sources */,
 				7D742F3D25563EFD00FD6CF1 /* FlowStack.swift in Sources */,

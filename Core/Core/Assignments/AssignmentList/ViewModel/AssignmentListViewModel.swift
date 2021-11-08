@@ -20,26 +20,59 @@ import SwiftUI
 
 public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var assignmentGroups: [AssignmentGroupViewModel] = []
+    public private(set) var courseColor: UIColor?
+    public private(set) var courseName: String?
+    public var selectedGradingPeriod: GradingPeriod? //TODO: persist 
 
     @Environment(\.appEnvironment) private var env
     private let courseID: String
 
-    lazy var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
+    lazy private var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()
+    }
+
+    lazy private var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.courseDidUpdate()
+    }
+
+    lazy public private (set) var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
+        self?.gradingPeriodsDidUpdate()
     }
 
     public init(context: Context) {
         self.courseID = context.id
+        course.refresh()
         apiAssignments.refresh()
+        gradingPeriods.refresh()
     }
 
-    func assignmentGroupsDidUpdate() {
+    public func gradingPeriodSelected(_ gradingPeriod: GradingPeriod?) {
+        selectedGradingPeriod = gradingPeriod
+
+        apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
+            self?.assignmentGroupsDidUpdate()
+        }
+        apiAssignments.refresh(force: true)
+    }
+
+    private func assignmentGroupsDidUpdate() {
         assignmentGroups = []
         for section in 0..<(apiAssignments.sections?.count ?? 0) {
             if let group = apiAssignments[IndexPath(row: 0, section: section)]?.assignmentGroup {
                 let assignments: [Assignment] = apiAssignments.filter {$0.assignmentGroup == group}
                 assignmentGroups.append(AssignmentGroupViewModel(assignmentGroup: group, assignments: assignments))
             }
+        }
+    }
+
+    private func courseDidUpdate() {
+        courseColor = course.first?.color
+        courseName = course.first?.name
+    }
+
+    private func gradingPeriodsDidUpdate() {
+        if gradingPeriods.pending == false && gradingPeriods.requested {
+            selectedGradingPeriod = gradingPeriods.all.current
         }
     }
 }

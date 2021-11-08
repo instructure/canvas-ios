@@ -21,6 +21,7 @@ import SwiftUI
 public struct AssignmentListView: View {
 
     @ObservedObject private var viewModel: AssignmentListViewModel
+    @State private var isShowingGradingPeriodPicker = false
 
     public init(viewModel: AssignmentListViewModel) {
         self.viewModel = viewModel
@@ -29,13 +30,31 @@ public struct AssignmentListView: View {
     public var body: some View {
         VStack {
             HStack {
-                Text("Grading period Title").font(.bold20)
+                if let gradingPeriodTitle = viewModel.selectedGradingPeriod?.title {
+                    Text(gradingPeriodTitle).font(.bold20)
+                } else {
+                    Text("All").font(.bold20)
+                }
                 Spacer(minLength: 8)
-                Button(action:{}, label: {Text("Filter")})
+                if (viewModel.selectedGradingPeriod == nil) {
+                    Button(action:{
+                        isShowingGradingPeriodPicker = true
+                    }, label: {
+                        Text("Filter", bundle: .core)
+                    }).actionSheet(isPresented: $isShowingGradingPeriodPicker) {
+                        ActionSheet(title: Text("Filter by", bundle: .core), buttons: gradingPeriodButtons)
+                    }
+                } else {
+                    Button(action:{
+                        viewModel.gradingPeriodSelected(nil)
+                    }, label: {
+                        Text("Clear Filter", bundle: .core)
+                    })
+                }
             }.padding(16)
             List {
                 ForEach(viewModel.assignmentGroups, id: \.id) { assignmentGroup in
-                    assignmentGroupView(assignmentGroup: assignmentGroup)
+                    assignmentGroupView(viewModel: assignmentGroup)
                 }
             }
             .listStyle(.plain)
@@ -43,36 +62,17 @@ public struct AssignmentListView: View {
             .padding(.top, 1)
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .navigationBarStyle(.global)
-        .navigationTitle(NSLocalizedString("Assignments", comment: ""), subtitle: nil)
+        .navigationBarStyle(.color(viewModel.courseColor))
+        .navigationTitle(NSLocalizedString("Assignments", comment: ""), subtitle: viewModel.courseName)
     }
 
-    private func assignmentGroupView(assignmentGroup: AssignmentGroupViewModel) -> some View {
-        return Section(header: ListSectionHeader { Text(assignmentGroup.name) }) {
-            ForEach(assignmentGroup.assignments, id: \.id) { assignment in
-                assignmentCell(assignment: assignment)
+    private var gradingPeriodButtons: [ActionSheet.Button] {
+        viewModel.gradingPeriods.all.map { gradingPeriod in
+            ActionSheet.Button.default(Text(gradingPeriod.title ?? "")) {
+                viewModel.gradingPeriodSelected(gradingPeriod)
+                isShowingGradingPeriodPicker = false
             }
         }
-    }
-
-    private func assignmentCell(assignment: Assignment) -> some View {
-        return Button(action: {}, label: {
-            HStack {
-                Image.assignmentLine
-                    .resizable()
-                    .frame(width: 16, height: 16)
-                    .foregroundColor(.ash)
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(assignment.name)
-                    .font(.bold17)
-                    Text(assignment.dueText)
-                }
-                Image.arrowOpenRightLine
-                    .resizable()
-                    .frame(width: 16, height: 16)
-                    .foregroundColor(.ash)
-            }
-        })
     }
 }
 

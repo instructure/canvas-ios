@@ -20,7 +20,7 @@ import SwiftUI
 
 public class AssignmentGroupViewModel: ObservableObject {
 
-    @Published public private (set) var assignments: [Assignment] = []
+    public private (set) var assignments: [Assignment] = []
     public private (set) var name: String
     public private (set) var id: String
 
@@ -28,5 +28,15 @@ public class AssignmentGroupViewModel: ObservableObject {
         self.name = assignmentGroup.name
         self.id = assignmentGroup.id
         self.assignments = assignments
+    }
+
+    public func routeFor(assignment: Assignment) -> URL? {
+        return assignment.htmlURL
+        //guard let url = assignment.htmlURL else { return nil }
+
+        /*if (assignment.discussion_topic && isTeacher()) {
+          this.props.navigator.show(`/courses/${assignment.course_id}/discussion_topics/${assignment.discussion_topic.id}`)
+        } else {
+          this.props.navigator.show(assignment.html_url)*/
     }
 }
