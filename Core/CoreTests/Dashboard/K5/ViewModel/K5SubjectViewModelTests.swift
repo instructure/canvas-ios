@@ -41,7 +41,7 @@ class K5SubjectViewModelTests: CoreTestCase {
 
     func testPageUrl() {
         let pageId = "schedule"
-        let url = K5SubjectViewModel(context: context).pageUrl(with: pageId)
+        let url = K5SubjectViewModel(context: context).pageUrl(for: pageId)
         XCTAssertEqual(url?.path, "/courses/" + courseId)
         XCTAssertEqual(url?.query, "embed=true")
         XCTAssertEqual(url?.fragment, "\(pageId)")

@@ -27,7 +27,7 @@ public class TopBarViewModel: ObservableObject {
     }
 
     public var selectedItemId: String? {
-        return items[selectedItemIndex].id
+        items[selectedItemIndex].id
     }
 
     public init(items: [TopBarItemViewModel]) {

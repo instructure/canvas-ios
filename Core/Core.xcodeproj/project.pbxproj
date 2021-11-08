@@ -3213,6 +3213,7 @@
 		7D5F10352429722300803324 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				EBEDDFBE27392B4000CD49AF /* K5 */,
 				7D8262EE212B228F00BD268D /* APICourse.swift */,
 				7D8262F8212B3B2000BD268D /* APICourseSection.swift */,
 				7DF4FFC8217116BC007E5F81 /* Course.swift */,
@@ -4167,7 +4168,6 @@
 				CF60CC2E264551FE00C1C173 /* Homeroom */,
 				CF60CC312645521100C1C173 /* Resources */,
 				CF60CC2F2645520500C1C173 /* Schedule */,
-				EB246027272843EE00E4F331 /* Subject */,
 				CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */,
 				CFEC7F4126B42E50008B9F77 /* K5Preview.swift */,
 			);
@@ -4183,7 +4183,6 @@
 				CF60CC5126496A2900C1C173 /* Schedule */,
 				CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */,
 				CF60CC6126497BC100C1C173 /* Refreshable.swift */,
-				EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4732,6 +4731,31 @@
 				EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */,
 			);
 			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		EBEDDFBE27392B4000CD49AF /* K5 */ = {
+			isa = PBXGroup;
+			children = (
+				EBEDDFBF27392B4A00CD49AF /* View */,
+				EBEDDFC027392B5400CD49AF /* ViewModel */,
+			);
+			path = K5;
+			sourceTree = "<group>";
+		};
+		EBEDDFBF27392B4A00CD49AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB246027272843EE00E4F331 /* Subject */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EBEDDFC027392B5400CD49AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EE584C7822F2043300D1E201 /* Pages */ = {

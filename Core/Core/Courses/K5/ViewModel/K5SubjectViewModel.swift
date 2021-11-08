@@ -23,7 +23,7 @@ public class K5SubjectViewModel: ObservableObject {
 
     @Environment(\.appEnvironment) private var env
 
-    @Published var topBarViewModel: TopBarViewModel?
+    @Published private(set) var topBarViewModel: TopBarViewModel?
     @Published var courseTitle: String?
     @Published var courseColor: UIColor?
     @Published var currentPageURL: URL?
@@ -41,11 +41,17 @@ public class K5SubjectViewModel: ObservableObject {
 
     private var topBarChangeListener: AnyCancellable?
 
+    init(context: Context) {
+        self.context = context
+        course.refresh()
+        tabs.refresh()
+    }
+
     private func tabsUpdated() {
         guard topBarViewModel == nil, !tabs.isEmpty else { return }
         var tabItems: [TopBarItemViewModel] = []
         tabs.filter({ $0.type == .internal && !($0.hidden ?? false)}).forEach { tab in
-            tabItems.append(TopBarItemViewModel(tab: tab))
+            tabItems.append(TopBarItemViewModel(tab: tab, iconImage: tabIconImage(for: tab.id)))
         }
         if !tabs.filter({$0.id.contains("context_external_tool_") && !($0.hidden ?? false) }).isEmpty {
             let resurceTabItem = TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core))
@@ -65,8 +71,11 @@ public class K5SubjectViewModel: ObservableObject {
         courseColor = course.color
         courseImageUrl = course.imageDownloadURL
     }
+}
 
-    func pageUrl(with itemId: String?) -> URL? {
+extension K5SubjectViewModel {
+
+    func pageUrl(for itemId: String?) -> URL? {
         let path = context.pathComponent
         var urlComposition = URLComponents(string: env.api.baseURL.absoluteString + "/\(path)")
         urlComposition?.queryItems = [URLQueryItem(name: "embed", value: "true")]
@@ -74,9 +83,13 @@ public class K5SubjectViewModel: ObservableObject {
         return urlComposition?.url
     }
 
-    init(context: Context) {
-        self.context = context
-        course.refresh()
-        tabs.refresh()
+    func tabIconImage(for tabId: String) -> Image? {
+        switch tabId {
+        case "home": return .k5homeroom
+        case "schedule": return .k5schedule
+        case "modules": return .moduleLine
+        case "grades": return .k5grades
+        default: return nil
+        }
     }
 }

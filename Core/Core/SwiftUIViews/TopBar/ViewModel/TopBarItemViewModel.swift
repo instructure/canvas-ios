@@ -29,19 +29,9 @@ public class TopBarItemViewModel: ObservableObject {
         self.label = label
     }
 
-    public init(tab: Tab) {
+    public init(tab: Tab, iconImage: Image?) {
         self.label = Text(tab.label)
         self.id = tab.id
-        self.icon = iconImage(for: tab.id)
-    }
-
-    func iconImage(for id: String) -> Image? {
-        switch id {
-        case "home": return .k5homeroom
-        case "schedule": return .k5schedule
-        case "modules": return .moduleLine
-        case "grades": return .k5grades
-        default: return nil
-        }
+        self.icon = iconImage
     }
 }

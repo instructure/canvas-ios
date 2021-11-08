@@ -59,10 +59,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses": { _, _, _ in CoreHostingController(CourseListView()) },
 
     "/courses/:courseID": { url, params, _ in
-        guard AppEnvironment.shared.k5.isK5Enabled == true, let context = Context(path: url.path) else {
+        if AppEnvironment.shared.k5.isK5Enabled == true, let context = Context(path: url.path) {
+            return CoreHostingController(K5SubjectView(context: context))
+        } else {
             return HelmViewController(moduleName: "/courses/:courseID", url: url, params: params, userInfo: nil)
         }
-        return CoreHostingController(K5SubjectView(context: context))
     },
     "/courses/:courseID/tabs": nil,
 
