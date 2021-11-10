@@ -24,10 +24,10 @@ public class K5SubjectViewModel: ObservableObject {
     @Environment(\.appEnvironment) private var env
 
     @Published private(set) var topBarViewModel: TopBarViewModel?
-    @Published var courseTitle: String?
-    @Published var courseColor: UIColor?
-    @Published var currentPageURL: URL?
-    @Published var courseImageUrl: URL?
+    @Published private(set) var courseTitle: String?
+    @Published private(set) var courseColor: UIColor?
+    @Published private(set) var currentPageURL: URL?
+    @Published private(set) var courseImageUrl: URL?
 
     private let context: Context
 
