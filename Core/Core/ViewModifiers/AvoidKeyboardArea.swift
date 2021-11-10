@@ -30,7 +30,11 @@ struct AvoidKeyboardArea<Content: View>: View {
         let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification).map { _ in
             CGFloat(0)
         }
-        return Publishers.MergeMany(willShow, willChange, willHide).eraseToAnyPublisher()
+        let willResignActive = NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification).map { _ in
+            CGFloat(0)
+        }
+
+        return Publishers.MergeMany(willShow, willChange, willHide, willResignActive).eraseToAnyPublisher()
     }
 
     let content: Content

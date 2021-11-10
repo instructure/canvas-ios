@@ -815,6 +815,7 @@
 		CF12DFC826D63937000BE452 /* CompatibleNavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */; };
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
+		CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */; };
 		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2029,6 +2030,7 @@
 		CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleNavBarItems.swift; sourceTree = "<group>"; };
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
+		CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
 		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -4652,6 +4654,7 @@
 				CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
+				CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */,
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
 				7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */,
@@ -5671,6 +5674,7 @@
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
 				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
+				CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */,
 				CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */,
 				7D531D51254CC18F00CBFCA6 /* DiscussionSectionsPicker.swift in Sources */,
 				CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */,
