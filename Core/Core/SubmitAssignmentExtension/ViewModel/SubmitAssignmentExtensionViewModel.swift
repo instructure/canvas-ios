@@ -29,6 +29,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
     @Published public private(set) var previews: [URL] = []
+    public var isUserLoggedIn: Bool { LoginSession.mostRecent != nil }
     public let coursePickerViewModel: CoursePickerViewModel
     public let assignmentPickerViewModel = AssignmentPickerViewModel()
 

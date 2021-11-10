@@ -27,6 +27,25 @@ public struct SubmitAssignmentExtensionView: View {
     }
 
     public var body: some View {
+        if viewModel.isUserLoggedIn {
+            contentView
+        } else {
+            notLoggedInView
+        }
+    }
+
+    private var notLoggedInView: some View {
+        NavigationView {
+            Text("Please log in via the application")
+                .foregroundColor(.textDarkest)
+                .font(.regular16)
+                .navigationBarGlobal()
+                .navigationBarTitleView(Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
+                .compatibleNavBarItems(trailing: { cancelButton })
+        }
+    }
+
+    private var contentView: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
