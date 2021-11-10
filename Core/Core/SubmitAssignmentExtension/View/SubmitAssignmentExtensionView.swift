@@ -27,45 +27,47 @@ public struct SubmitAssignmentExtensionView: View {
     }
 
     public var body: some View {
-        if viewModel.isUserLoggedIn {
-            contentView
-        } else {
-            notLoggedInView
-        }
+        NavigationView {
+            if viewModel.isUserLoggedIn {
+                contentView
+            } else {
+                notLoggedInView
+            }
+        }.navigationViewStyle(.stack)
     }
 
     private var notLoggedInView: some View {
-        NavigationView {
-            Text("Please log in via the application")
-                .foregroundColor(.textDarkest)
-                .font(.regular16)
-                .navigationBarGlobal()
-                .navigationBarTitleView(Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
-                .compatibleNavBarItems(trailing: { cancelButton })
-        }
+        Text("Please log in via the application")
+            .foregroundColor(.textDarkest)
+            .font(.regular16)
+            .navigationBarGlobal()
+            .navigationBarTitleView(titleView, displayMode: .inline)
+            .compatibleNavBarItems(trailing: { cancelButton })
     }
 
     private var contentView: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    selectCourseButton
-                    divider
-                    selectAssignmentButton
-                    commentBox
-                    divider
-                    filesSection
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                selectCourseButton
+                divider
+                selectAssignmentButton
+                commentBox
+                divider
+                filesSection
+                Spacer()
             }
-            .navigationBarGlobal()
-            .navigationBarTitleView(Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
-            .compatibleNavBarItems(
-                leading: { cancelButton },
-                trailing: { submitButton }
-            )
+            .padding(.horizontal, 20)
         }
+        .navigationBarGlobal()
+        .navigationBarTitleView(titleView, displayMode: .inline)
+        .compatibleNavBarItems(
+            leading: { cancelButton },
+            trailing: { submitButton }
+        )
+    }
+
+    private var titleView: some View {
+        Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
     }
 
     @ViewBuilder
