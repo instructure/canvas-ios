@@ -43,7 +43,7 @@ class AttachmentCopyServiceTests: CoreTestCase {
         XCTAssertEqual(error.localizedDescription, NSLocalizedString("No supported files to submit", comment: ""))
     }
 
-    // This test fails because AttachmentCopyService can't create the destination url for the CoreTester bundle
+    // Upload fails in this test because AttachmentCopyService can't create the destination url for the CoreTester bundle
     func testFailureStateOnInvalidAppBundle() {
         let stateUpdateExpectation = expectation(description: "State updated")
         stateUpdateExpectation.expectedFulfillmentCount = 2 // loading, failure

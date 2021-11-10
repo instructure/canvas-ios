@@ -38,7 +38,7 @@ public class CoursePickerViewModel: ObservableObject {
 
     public init() {
         let request = GetCoursesRequest(enrollmentState: .active, perPage: 100)
-        AppEnvironment.shared.api.makeRequest(request) { courses, urlResponse, error in
+        AppEnvironment.shared.api.makeRequest(request) { courses, _, error in
             let newState: ViewModelState<[Course]>
 
             if let courses = courses {

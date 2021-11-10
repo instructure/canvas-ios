@@ -61,7 +61,7 @@ public class AssignmentPickerViewModel: ObservableObject {
         requestTask?.cancel()
 
         let request = GetAssignmentsRequest(courseID: courseID, perPage: 100)
-        requestTask = AppEnvironment.shared.api.makeRequest(request) { assignments, urlResponse, error in
+        requestTask = AppEnvironment.shared.api.makeRequest(request) { assignments, _, error in
             let newState: ViewModelState<[Assignment]>
 
             if let assignments = assignments {

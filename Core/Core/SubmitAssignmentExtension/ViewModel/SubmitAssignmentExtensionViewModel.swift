@@ -66,7 +66,11 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     }
 
     public func submitTapped() {
-        submissionService.submit(urls: selectedFileURLs, courseID: coursePickerViewModel.selectedCourse!.id, assignmentID: assignmentPickerViewModel.selectedAssignment!.id, comment: comment, callback: shareCompleted)
+        submissionService.submit(urls: selectedFileURLs,
+                                 courseID: coursePickerViewModel.selectedCourse!.id,
+                                 assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
+                                 comment: comment,
+                                 callback: shareCompleted)
     }
 
     public func cancelTapped() {

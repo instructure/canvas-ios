@@ -24,12 +24,12 @@ public struct AttachmentPreviewView: View {
     private let size: CGFloat = 200
     private let videoLengthFormatter = DateComponentsFormatter()
 
-    public init(url :URL) {
+    public init(url: URL) {
         self.url = url
         videoLengthFormatter.allowedUnits = [.second, .minute]
         videoLengthFormatter.zeroFormattingBehavior = .pad
     }
-    
+
     public var body: some View {
         if let image = self.image {
             imagePreview(image)

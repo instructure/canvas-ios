@@ -26,7 +26,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
 
         let testUploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads", sharedContainerIdentifier: "group.instructure.shared")
-        
+
         let testee = AttachmentSubmissionService(uploadManager: testUploadManager)
         var completionCalled = false
         testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment") {
