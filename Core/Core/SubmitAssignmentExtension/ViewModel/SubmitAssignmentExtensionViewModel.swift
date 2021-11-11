@@ -64,6 +64,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
         refreshAssignmentListOnCourseSelection()
         updateAssignmentNameOnAssignmentSelection()
         updateSubmitButtonStateOnAssignmentChange()
+        attachmentCopyService.startCopying()
     }
 
     public func submitTapped() {

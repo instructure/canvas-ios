@@ -32,6 +32,7 @@ class AttachmentCopyServiceTests: CoreTestCase {
             stateUpdateExpectation.fulfill()
         }
 
+        testee.startCopying()
         wait(for: [stateUpdateExpectation], timeout: 0.1)
         subscription.cancel()
 
@@ -57,6 +58,7 @@ class AttachmentCopyServiceTests: CoreTestCase {
             stateUpdateExpectation.fulfill()
         }
 
+        testee.startCopying()
         wait(for: [stateUpdateExpectation], timeout: 0.1)
         subscription.cancel()
 

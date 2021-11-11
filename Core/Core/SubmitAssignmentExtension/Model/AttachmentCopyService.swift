@@ -29,12 +29,16 @@ public class AttachmentCopyService {
     }
 
     public let state = CurrentValueSubject<State, Never>(.loading)
+    private let extensionItems: [NSExtensionItem]
     private var attachments: [URL] = []
     private var error: Error?
 
     public init(extensionContext: NSExtensionContext?) {
-        let items = extensionContext?.inputItems as? [NSExtensionItem] ?? []
-        load(items: items)
+        self.extensionItems = extensionContext?.inputItems as? [NSExtensionItem] ?? []
+    }
+
+    public func startCopying() {
+        load(items: extensionItems)
     }
 
     private func load(items: [NSExtensionItem]) {
