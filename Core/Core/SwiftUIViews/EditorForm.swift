@@ -29,11 +29,14 @@ public struct EditorForm<Content: View>: View {
 
     public var body: some View {
         ZStack {
-            ScrollView { VStack(alignment: .leading, spacing: 0) {
-                HStack { Spacer() } // fill width
-                content
-            } }
-                .disabled(isSpinning)
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        content.frame(width: geometry.size.width)
+                    }
+                }.disabled(isSpinning)
+            }
+
             if isSpinning {
                 VStack {
                     HStack { Spacer() }
@@ -67,11 +70,14 @@ public struct EditorSection<Label: View, Content: View>: View {
     }
 
     public var body: some View { SwiftUI.Group {
-        label
-            .font(.semibold14).foregroundColor(.textDark)
-            .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
-            .accessibility(hidden: !hasLabel)
-            .accessibility(addTraits: .isHeader)
+        HStack {
+            label
+                .font(.semibold14).foregroundColor(.textDark)
+                .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                .accessibility(hidden: !hasLabel)
+                .accessibility(addTraits: .isHeader)
+            Spacer()
+        }
         Divider()
         content.background(Color.backgroundLightest)
         Divider()
