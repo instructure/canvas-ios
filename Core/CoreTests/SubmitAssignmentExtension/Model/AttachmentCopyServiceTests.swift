@@ -33,11 +33,11 @@ class AttachmentCopyServiceTests: CoreTestCase {
         }
 
         testee.startCopying()
-        wait(for: [stateUpdateExpectation], timeout: 0.1)
+        wait(for: [stateUpdateExpectation], timeout: 0.5)
         subscription.cancel()
 
         guard case .completed(let result) = receivedState, case .failure(let error) = result else {
-            XCTFail("Invalid state received")
+            XCTFail("Invalid state \(String(describing: receivedState)) received.")
             return
         }
 
@@ -59,11 +59,11 @@ class AttachmentCopyServiceTests: CoreTestCase {
         }
 
         testee.startCopying()
-        wait(for: [stateUpdateExpectation], timeout: 0.1)
+        wait(for: [stateUpdateExpectation], timeout: 0.5)
         subscription.cancel()
 
         guard case .completed(let result) = receivedState, case .failure(let error) = result else {
-            XCTFail("Invalid state received")
+            XCTFail("Invalid state \(String(describing: receivedState)) received.")
             return
         }
 
