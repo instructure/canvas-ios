@@ -34,7 +34,7 @@ struct K5SubjectHeaderView: View {
                         .contentShape(Path(CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height)))
                 }
             }
-            Rectangle().foregroundColor(backgroundColor).opacity(0.75)
+            Rectangle().foregroundColor(backgroundColor).opacity(imageUrl == nil ? 1 : 0.75)
             Rectangle().fill(
                 LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .leading, endPoint: .trailing)
             ).frame(height: 38).opacity(0.60)

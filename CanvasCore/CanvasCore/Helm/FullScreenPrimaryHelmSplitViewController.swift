@@ -163,7 +163,7 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count != 1 {
             // Exception for the full screen K5SubjectView
-            if navigationController.viewControllers.last is CoreHostingController<K5SubjectView> {
+            if navigationController.viewControllers.contains(where: { $0 is CoreHostingController<K5SubjectView> }) {
                 state = .fullScreen
                 return
             }
