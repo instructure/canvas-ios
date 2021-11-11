@@ -14,94 +14,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "492704721CF4AF7100C631C6"
-               BuildableName = "Student.app"
-               BlueprintName = "Student"
-               ReferencedContainer = "container:../../../Student/Student.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "Teacher.app"
                BlueprintName = "Teacher"
                ReferencedContainer = "container:Teacher.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5E6441861C3EE2E0003D7397"
-               BuildableName = "Parent.app"
-               BlueprintName = "Parent"
-               ReferencedContainer = "container:../../../Parent/Parent.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E81918E3230348440039616A"
-               BuildableName = "CoreUITests.framework"
-               BlueprintName = "CoreUITests"
-               ReferencedContainer = "container:../../../Core/Core.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7DE1160622F8AAB1005BFE98"
-               BuildableName = "StudentUnitTests.xctest"
-               BlueprintName = "StudentUnitTests"
-               ReferencedContainer = "container:../../../Student/Student.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1CA092D22C4237C008AA352"
-               BuildableName = "SubmitAssignmentTests.xctest"
-               BlueprintName = "SubmitAssignmentTests"
-               ReferencedContainer = "container:../../../Student/Student.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7DC5716F22F8B16200F2E9BB"
-               BuildableName = "StudentUITests.xctest"
-               BlueprintName = "StudentUITests"
-               ReferencedContainer = "container:../../../Student/Student.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -113,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES"
       onlyGenerateCoverageForSpecifiedTargets = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492704721CF4AF7100C631C6"
-            BuildableName = "Student.app"
-            BlueprintName = "Student"
-            ReferencedContainer = "container:../../../Student/Student.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -179,38 +86,6 @@
             default = "YES">
          </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B15CA25C221DDB820014FB02"
-               BuildableName = "TeacherTests.xctest"
-               BlueprintName = "TeacherTests"
-               ReferencedContainer = "container:Teacher.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E8315D3522FC9E60003CD27C"
-               BuildableName = "TeacherUITests.xctest"
-               BlueprintName = "TeacherUITests"
-               ReferencedContainer = "container:Teacher.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E841D8A223D6472F00685A63"
-               BuildableName = "TeacherE2ETests.xctest"
-               BlueprintName = "TeacherE2ETests"
-               ReferencedContainer = "container:Teacher.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -222,23 +97,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Teacher.app"
-            BlueprintName = "Teacher"
-            ReferencedContainer = "container:Teacher.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-   </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Release"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -248,6 +106,13 @@
             ReferencedContainer = "container:Teacher.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
