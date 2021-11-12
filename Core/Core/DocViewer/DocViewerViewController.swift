@@ -208,8 +208,12 @@ extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateMan
         in annotationRect: CGRect,
         on pageView: PDFPageView
     ) -> [MenuItem] {
-        guard env.app == .teacher || annotations?.isEmpty == false else {
-            return [] // no items for adding new annotations in Student
+        guard isAnnotatable, metadata?.annotations?.enabled == true else {
+            return []
+        }
+        // Only the teacher app should show the context menu when long tapped on an empty area
+        if (annotations == nil || annotations?.isEmpty == true) && env.app != .teacher {
+            return []
         }
 
         annotations?.forEach {

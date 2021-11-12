@@ -29,6 +29,7 @@ class DocViewerViewControllerTests: CoreTestCase {
             navigationItem: navigationItem
         )
         controller.session = session
+        controller.isAnnotatable = true
         return controller
     }()
     let navigationItem = UINavigationItem()
@@ -45,7 +46,13 @@ class DocViewerViewControllerTests: CoreTestCase {
             loading = downloadURL
         }
     }
-    lazy var session = MockSession { [weak self] in self?.controller.sessionIsReady() }
+    lazy var session: MockSession = {
+        let session = MockSession { [weak self] in
+            self?.controller.sessionIsReady()
+        }
+        session.metadata = .make() // to ensure metadata allows annotations
+        return session
+    }()
 
     func testOriginalSession() {
         let controller = DocViewerViewController.create(
@@ -121,6 +128,45 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertEqual(results?[0], menuItems[0])
     }
 
+    func testAnnotationContextMenuForNonAnnotatableDocuments() {
+        let menuItems: [MenuItem] = [
+            MenuItem(title: "test", block: {}),
+        ]
+        controller.isAnnotatable = false
+        controller.view.layoutIfNeeded()
+        let results = controller.pdf.delegate?.pdfViewController?(
+            controller.pdf,
+            shouldShow: menuItems,
+            atSuggestedTargetRect: .zero,
+            for: [],
+            in: .zero,
+            on: PDFPageView(frame: .zero)
+        )
+        guard let results = results else { XCTFail("Nil array received"); return }
+
+        XCTAssertTrue(results.isEmpty)
+    }
+
+    func testAnnotationContextMenuForAnnotationDisabledDocuments() {
+        let menuItems: [MenuItem] = [
+            MenuItem(title: "test", block: {}),
+        ]
+        controller.isAnnotatable = true
+        controller.metadata = APIDocViewerMetadata.make(annotations: .make(enabled: false))
+        controller.view.layoutIfNeeded()
+        let results = controller.pdf.delegate?.pdfViewController?(
+            controller.pdf,
+            shouldShow: menuItems,
+            atSuggestedTargetRect: .zero,
+            for: [],
+            in: .zero,
+            on: PDFPageView(frame: .zero)
+        )
+        guard let results = results else { XCTFail("Nil array received"); return }
+
+        XCTAssertTrue(results.isEmpty)
+    }
+
     class MockPDFDocument: Document {
         var added: [Annotation]?
         override func add(annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> Bool {
@@ -147,6 +193,8 @@ class DocViewerViewControllerTests: CoreTestCase {
             MenuItem(title: "test", block: {}),
             MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuOpacity.rawValue),
         ]
+        // mock metadata because sessionIsReady() loads the fallback and not the pdf
+        controller.metadata = .make(annotations: .make())
         controller.view.layoutIfNeeded()
         environment.app = .teacher
         var results = controller.pdf.delegate?.pdfViewController?(
