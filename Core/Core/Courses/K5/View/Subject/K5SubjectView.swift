@@ -33,7 +33,7 @@ public struct K5SubjectView: View {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
                 }
-                WebView(url: viewModel.pageUrl(for: topBarViewModel.selectedItemId))
+                WebView(url: viewModel.pageUrl(for: topBarViewModel.selectedItemId), customUserAgentName: nil, disableZoom: true)
                 Divider()
             }
         }
