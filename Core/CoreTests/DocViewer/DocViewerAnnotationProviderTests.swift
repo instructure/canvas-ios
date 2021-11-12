@@ -47,12 +47,14 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
     func getProvider(
         annotations: [APIDocViewerAnnotation] = [ APIDocViewerAnnotation.make() ],
         enabled: Bool = true,
-        permissions: APIDocViewerPermissions = .readwritemanage
+        permissions: APIDocViewerPermissions = .readwritemanage,
+        isAnnotationEditingDisabled: Bool = false,
+        useMockFileAnnotationProvider: Bool = false
     ) -> DocViewerAnnotationProvider {
         let document = Document(url: Bundle(for: DocViewerAnnotationProviderTests.self).url(forResource: "instructure", withExtension: "pdf")!)
         let metadata = APIDocViewerAnnotationsMetadata(enabled: enabled, user_id: "1", user_name: "a", permissions: permissions)
         let documentProvider = document.documentProviders.first!
-        let fileAnnotationProvider = documentProvider.annotationManager.fileAnnotationProvider!
+        let fileAnnotationProvider = useMockFileAnnotationProvider ? MockPDFFileAnnotationProvider(documentProvider: documentProvider) : documentProvider.annotationManager.fileAnnotationProvider!
         let provider = DocViewerAnnotationProvider(
             documentProvider: documentProvider,
             fileAnnotationProvider: fileAnnotationProvider,
@@ -64,7 +66,8 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
             ),
             annotations: annotations,
             api: environment.api,
-            sessionID: "a"
+            sessionID: "a",
+            isAnnotationEditingDisabled: isAnnotationEditingDisabled
         )
         documentProvider.annotationManager.annotationProviders.append(provider)
         return provider
@@ -225,5 +228,36 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         provider.didChange(secondAnnotation, keyPaths: [])
         // Despite that upload succeeded the error from the first upload shouldn't be cleared
         XCTAssertNotNil(delegate.error)
+    }
+
+    func testUserAnnotationIsReadOnlyWhenAnnotationIsDisabled() {
+        let provider = getProvider(isAnnotationEditingDisabled: true)
+
+        guard let annotation = provider.allAnnotations.first else { XCTFail("No annotations to test"); return }
+
+        XCTAssertTrue(annotation.flags.contains(.readOnly))
+    }
+
+    func testAnnotationFromPDFIsReadOnlyWhenAnnotatingIsEnabled() {
+        let provider = getProvider(annotations: [], isAnnotationEditingDisabled: false, useMockFileAnnotationProvider: true)
+
+        guard let annotation = provider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
+
+        XCTAssertTrue(annotation.flags.contains(.readOnly))
+    }
+
+    func testAnnotationFromPDFIsReadOnlyWhenAnnotatingIsDisabled() {
+        let provider = getProvider(annotations: [], isAnnotationEditingDisabled: true, useMockFileAnnotationProvider: true)
+
+        guard let annotation = provider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
+
+        XCTAssertTrue(annotation.flags.contains(.readOnly))
+    }
+}
+
+class MockPDFFileAnnotationProvider: PDFFileAnnotationProvider {
+
+    override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
+        [Annotation.from(.make(), metadata: .make())!]
     }
 }

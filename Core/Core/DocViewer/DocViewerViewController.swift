@@ -108,7 +108,8 @@ public class DocViewerViewController: UIViewController {
                                                            metadata: metadata,
                                                            annotations: annotations,
                                                            api: self.session.api,
-                                                           sessionID: sessionID)
+                                                           sessionID: sessionID,
+                                                           isAnnotationEditingDisabled: !self.isAnnotatable || metadata.annotations?.enabled == false)
                 provider.docViewerDelegate = self
                 documentProvider.annotationManager.annotationProviders = [provider]
                 self.annotationProvider = provider
