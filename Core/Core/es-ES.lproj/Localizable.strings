@@ -329,6 +329,9 @@
 "Available Until:" = "Disponible hasta:";
 
 /* No comment provided by engineer. */
+"Back" = "Volver";
+
+/* No comment provided by engineer. */
 "black" = "negro";
 
 /* No comment provided by engineer. */
@@ -405,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Choose a File" = "Elegir un archivo";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Elija un tema";
 
 /* No comment provided by engineer. */
 "Choose Photo" = "Elegir foto";
@@ -576,6 +582,9 @@
 
 /* No comment provided by engineer. */
 "Current Grade" = "Nota actual";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Período de evaluación actual";
 
 /* No comment provided by engineer. */
 "Current position" = "Posición actual";
@@ -986,6 +995,9 @@
 "Hide content for %@" = "Ocultar contenido para %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "ocultar_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Alto: %@";
 
 /* No comment provided by engineer. */
@@ -1026,6 +1038,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Nivel de impacto";
+
+/* No comment provided by engineer. */
+"Important Info" = "Información importante";
 
 /* No comment provided by engineer. */
 "In Progress" = "En progreso";
@@ -1241,6 +1256,9 @@
 "Mark done" = "Marcar como hecho";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Marcar el ítem como hecho";
+
+/* No comment provided by engineer. */
 "Marked done" = "Marcado como hecho";
 
 /* No comment provided by engineer. */
@@ -1320,6 +1338,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Siguiente";
+
+/* No comment provided by engineer. */
+"Next Week" = "Siguiente semana";
 
 /* No comment provided by engineer. */
 "Nickname" = "Apodo";
@@ -1466,6 +1487,15 @@
 "Open %@ user preferences" = "Abrir %@ preferencias de usuario";
 
 /* No comment provided by engineer. */
+"Open application" = "Abrir aplicación ";
+
+/* No comment provided by engineer. */
+"Open course details" = "Abrir detalles del curso";
+
+/* No comment provided by engineer. */
+"Open item details" = "Abrir detalles del ítem";
+
+/* No comment provided by engineer. */
 "Options" = "Opciones";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1599,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Inicios de sesión anteriores";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Semana anterior";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Política de privacidad";
@@ -1817,6 +1850,9 @@
 "Show more options" = "Mostrar más opciones";
 
 /* No comment provided by engineer. */
+"show_%d_missing_items" = "mostrar_%d_missing_items";
+
+/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Al tratarse de un foro de discusión grupal, cada grupo tiene su propia conversación en este foro. Estos son los foros de discusión a los que puede acceder.";
 
 /* No comment provided by engineer. */
@@ -1844,6 +1880,9 @@
 "Sort by likes" = "Ordenar por Me gusta";
 
 /* No comment provided by engineer. */
+"Staff Contact Info" = "Información de contacto del personal";
+
+/* No comment provided by engineer. */
 "Starred" = "Destacado";
 
 /* No comment provided by engineer. */
@@ -1866,6 +1905,9 @@
 
 /* No comment provided by engineer. */
 "Student Annotation" = "Anotación del alumno";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Solicitudes del alumno";
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Registros de citas para alumnos";
@@ -1941,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Profesor";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Profesor auxiliar";
 
 /* No comment provided by engineer. */
 "Teachers" = "Profesores";
@@ -2076,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "a %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Para crear una cuenta, pídale a su alumno que le cree un código de emparejamiento desde la sección Configuraciones de la aplicación Canvas Student como se muestra a continuación y, a luego, escanee ese código desde aquí.\nSi su alumno no ve la opción de crear un código de emparejamiento, usted deberá ponerse en contacto con la escuela para crear una cuenta.";
 
 /* No comment provided by engineer. */
 "To Do" = "Pendiente";
