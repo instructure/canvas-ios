@@ -68,7 +68,7 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public init(customUserAgentName: String? = nil) {
+    public init(customUserAgentName: String? = nil, disableZoom: Bool = false) {
         let configuration = WKWebViewConfiguration()
         configuration.allowsInlineMediaPlayback = true
         configuration.processPool = CoreWebView.processPool
@@ -76,6 +76,9 @@ open class CoreWebView: WKWebView {
             configuration.applicationNameForUserAgent = customUserAgentName
         }
         super.init(frame: .zero, configuration: configuration)
+        if disableZoom {
+            addScript(zoomScript)
+        }
         setup()
     }
 
@@ -143,6 +146,13 @@ open class CoreWebView: WKWebView {
             \(content)
             </html>
         """
+    }
+
+    var zoomScript: String {
+        "var meta = document.createElement('meta');" +
+        "meta.name = 'viewport';" +
+        "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
+        "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
     }
 
     var css: String {

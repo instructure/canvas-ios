@@ -19,12 +19,19 @@
 import SwiftUI
 
 public class TopBarItemViewModel: ObservableObject {
-    public var icon: Image
+    public var icon: Image?
     public var label: Text
+    public var id: String?
     @Published public var isSelected = false
 
     public init(icon: Image, label: Text) {
         self.icon = icon
         self.label = label
+    }
+
+    public init(tab: Tab, iconImage: Image?) {
+        self.label = Text(tab.label)
+        self.id = tab.id
+        self.icon = iconImage
     }
 }
