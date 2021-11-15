@@ -33,6 +33,9 @@
       }
     },
     {
+      "skippedTests" : [
+        "IPadSpeedGraderTests\/testSpeedGrader()"
+      ],
       "target" : {
         "containerPath" : "container:Teacher.xcodeproj",
         "identifier" : "E8315D3522FC9E60003CD27C",
