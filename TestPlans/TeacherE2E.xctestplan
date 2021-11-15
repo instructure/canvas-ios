@@ -34,6 +34,9 @@
     },
     {
       "skippedTests" : [
+        "DiscussionsUITests\/testCloseDiscussion()",
+        "FilesUITests\/testAddFileFromLibrary()",
+        "FilesUITests\/testUploadAudioFile()",
         "IPadSpeedGraderTests\/testSpeedGrader()"
       ],
       "target" : {
