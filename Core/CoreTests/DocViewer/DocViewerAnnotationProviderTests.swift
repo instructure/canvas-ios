@@ -253,6 +253,14 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
         XCTAssertTrue(annotation.flags.contains(.readOnly))
     }
+
+    func testAnnotationFromPDFIsFlagged() {
+        let provider = getProvider(annotations: [], isAnnotationEditingDisabled: true, useMockFileAnnotationProvider: true)
+
+        guard let fileAnnotation = provider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
+
+        XCTAssertTrue(fileAnnotation.isFileAnnotation)
+    }
 }
 
 class MockPDFFileAnnotationProvider: PDFFileAnnotationProvider {

@@ -181,11 +181,6 @@ public class DocViewerViewController: UIViewController {
     }
 }
 
-private let disabledMenuItems: [String] = [
-    TextMenu.annotationMenuOpacity.rawValue,
-    TextMenu.annotationMenuThickness.rawValue,
-]
-
 extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateManagerDelegate {
     // swiftlint:disable function_parameter_count
     public func pdfViewController(
@@ -208,50 +203,22 @@ extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateMan
         in annotationRect: CGRect,
         on pageView: PDFPageView
     ) -> [MenuItem] {
-        guard isAnnotatable, metadata?.annotations?.enabled == true else {
-            return []
+        let commentTapHandler: DocViewerAnnotationContextMenuModel.CommentTapHandler = { [weak self] annotation, document, metadata in
+            let comments = self?.annotationProvider?.getReplies(to: annotation) ?? []
+            let view = CommentListViewController.create(comments: comments, inReplyTo: annotation, document: document, metadata: metadata)
+            self?.env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
         }
-        // Only the teacher app should show the context menu when long tapped on an empty area
-        if (annotations == nil || annotations?.isEmpty == true) && env.app != .teacher {
-            return []
+        let deleteTapHandler: DocViewerAnnotationContextMenuModel.DeleteTapHandler = { annotation, document in
+            document.remove(annotations: [annotation], options: nil)
         }
-
-        annotations?.forEach {
-            (pageView.annotationView(for: $0) as? FreeTextAnnotationView)?.resizableView?.allowRotating = false
-        }
-        if annotations?.count == 1, let annotation = annotations?.first, let document = pdfController.document, let metadata = metadata?.annotations {
-            var realMenuItems = [MenuItem]()
-            realMenuItems.append(MenuItem(title: NSLocalizedString("Comments", bundle: .core, comment: "")) { [weak self] in
-                let comments = self?.annotationProvider?.getReplies(to: annotation) ?? []
-                let view = CommentListViewController.create(comments: comments, inReplyTo: annotation, document: document, metadata: metadata)
-                self?.env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
-            })
-
-            realMenuItems.append(contentsOf: menuItems.filter {
-                guard let identifier = $0.identifier else { return true }
-                if identifier == TextMenu.annotationMenuInspector.rawValue {
-                    $0.title = NSLocalizedString("Style", bundle: .core, comment: "")
-                }
-                return (
-                    identifier != TextMenu.annotationMenuRemove.rawValue &&
-                    identifier != TextMenu.annotationMenuCopy.rawValue &&
-                    identifier != TextMenu.annotationMenuNote.rawValue &&
-                    !disabledMenuItems.contains(identifier)
-                )
-            })
-
-            if annotation.isEditable || metadata.permissions == .readwritemanage {
-                realMenuItems.append(MenuItem(title: NSLocalizedString("Remove", bundle: .core, comment: ""), image: .trashLine, block: {
-                    pdfController.document?.remove(annotations: [annotation], options: nil)
-                }, identifier: TextMenu.annotationMenuRemove.rawValue))
-            }
-            return realMenuItems
-        }
-
-        return menuItems.filter {
-            guard let identifier = $0.identifier else { return true }
-            return !disabledMenuItems.contains(identifier)
-        }
+        let model = DocViewerAnnotationContextMenuModel(env: env,
+                                                        isAnnotationEnabled: isAnnotatable,
+                                                        metadata: metadata,
+                                                        pageView: pageView,
+                                                        pdfController: pdfController,
+                                                        commentTapHandler: commentTapHandler,
+                                                        deleteTapHandler: deleteTapHandler)
+        return model.shouldShow(menuItems, for: annotations ?? [])
     }
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
