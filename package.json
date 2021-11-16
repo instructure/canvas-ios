@@ -19,7 +19,7 @@
     "update-headers": "./scripts/update-headers.js"
   },
   "devDependencies": {
-    "aws-sdk": "^2.178.0",
+    "aws-sdk": "^2.814.0",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "danger": "^3.7.18",
