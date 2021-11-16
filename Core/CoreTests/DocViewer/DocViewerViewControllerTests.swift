@@ -215,7 +215,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertEqual(results[1].title, "test2")
     }
 
-    func testAnnotationContextMenuForMultipleAnnotationsWhenAnootationDisabled() {
+    func testAnnotationContextMenuForMultipleAnnotationsWhenAnnotationDisabled() {
         let menuItems: [MenuItem] = [
             MenuItem(title: "test1", block: {}),
             MenuItem(title: "test2", block: {}),
@@ -237,7 +237,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertTrue(results.isEmpty)
     }
 
-    func testAnnotationContextMenuForSingleAnnotationWithoutCommentsWhenAnootationDisabled() {
+    func testAnnotationContextMenuForSingleAnnotationWithoutCommentsWhenAnnotationDisabled() {
         let menuItems: [MenuItem] = [
             MenuItem(title: "test1", block: {}),
             MenuItem(title: "test2", block: {}),
@@ -259,7 +259,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertTrue(results.isEmpty)
     }
 
-    func testAnnotationContextMenuForSingleAnnotationWithCommentWhenAnootationDisabled() {
+    func testAnnotationContextMenuForSingleAnnotationWithCommentWhenAnnotationDisabled() {
         let menuItems: [MenuItem] = [
             MenuItem(title: "test1", block: {}),
             MenuItem(title: "test2", block: {}),
