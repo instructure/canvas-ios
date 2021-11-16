@@ -35,7 +35,8 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         DiscussionDetails.options.tap()
         DiscussionDetails.edit.tap()
 
-        XCTAssertEqual(DiscussionEditor.titleField.value(), discussion.api.title)
+        // Editor details load asynchronously, let's wait until it finishes
+        waitUntil { DiscussionEditor.titleField.value() == discussion.api.title }
 
         app.webViews.staticTexts.lastElement.cutText()
         DiscussionEditor.titleField.cutText().typeText("new title")
@@ -48,7 +49,7 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         DiscussionEditor.doneButton.tap()
         wait(for: [expectation], timeout: 5)
 
-        DiscussionDetails.options.waitToExist()
+        DiscussionEditor.titleField.waitToVanish()
 
         XCTAssertEqual(DiscussionDetails.title.label(), "new title")
         XCTAssertEqual(discussion.api.title, "new title")

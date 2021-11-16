@@ -305,7 +305,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 }
 
-extension FileDetailsViewControllerTests: PDFDocumentDelegate {
+extension FileDetailsViewControllerTests: PSPDFKit.PDFDocumentDelegate {
     func  pdfDocumentDidSave(_ document: Document) {
         saveWasCalled = true
     }

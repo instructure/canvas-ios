@@ -41,6 +41,9 @@ extension UINavigationController {
         to.navigationBar.isTranslucent = from.navigationBar.isTranslucent
         to.navigationBar.barStyle = from.navigationBar.barStyle
         to.navigationBar.titleTextAttributes = from.navigationBar.titleTextAttributes
+
+        to.navigationBar.standardAppearance = from.navigationBar.standardAppearance
+        to.navigationBar.scrollEdgeAppearance = from.navigationBar.scrollEdgeAppearance
     }
 
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

@@ -134,7 +134,7 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
             ]),
         ]
 
-        ForEach(0..<models.count) { index in
+        ForEach(0..<2) { index in
             K5HomeroomSubjectCardView(viewModel: models[index], width: 193).previewLayout(.sizeThatFits)
             K5HomeroomSubjectCardView(viewModel: models[index], width: 400).previewLayout(.sizeThatFits)
         }

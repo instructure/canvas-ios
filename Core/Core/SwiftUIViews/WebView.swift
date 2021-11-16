@@ -29,6 +29,7 @@ public struct WebView: UIViewRepresentable {
     var handleNavigationFinished: (() -> Void)?
     let source: Source?
     var customUserAgentName: String?
+    var disableZoom: Bool = false
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -37,9 +38,10 @@ public struct WebView: UIViewRepresentable {
         source = url.map { .url($0) }
     }
 
-    public init(url: URL?, customUserAgentName: String?) {
+    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false) {
         self.init(url: url)
         self.customUserAgentName = customUserAgentName
+        self.disableZoom = disableZoom
     }
 
     public init(html: String?) {
@@ -81,7 +83,7 @@ public struct WebView: UIViewRepresentable {
     }
 
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(customUserAgentName: customUserAgentName)
+        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom)
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {

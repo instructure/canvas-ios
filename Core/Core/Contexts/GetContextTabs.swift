@@ -32,6 +32,9 @@ public class GetContextTabs: CollectionUseCase {
     }
 
     public var request: GetTabsRequest {
+        if AppEnvironment.shared.k5.isK5Enabled {
+            return GetTabsRequest(context: context, include: [.course_subject_tabs])
+        }
         return GetTabsRequest(context: context)
     }
 
@@ -47,7 +50,10 @@ public class GetContextTabs: CollectionUseCase {
         }
 
         for item in response {
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(Tab.htmlURL), item.html_url as CVarArg)
+            var predicate = NSPredicate(format: "%K == %@", #keyPath(Tab.htmlURL), item.html_url as CVarArg)
+            if AppEnvironment.shared.k5.isK5Enabled {
+                predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, NSPredicate(format: "%K == %@", #keyPath(Tab.label), item.label)])
+            }
             let model: Tab = client.fetch(predicate).first ?? client.insert()
             model.save(item, in: client, context: context)
         }

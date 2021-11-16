@@ -78,13 +78,13 @@ struct K5ScheduleDayView_Previews: PreviewProvider {
         K5ScheduleDayView(viewModel: K5Preview.Data.Schedule.weeks[1].days[1])
 
         K5ScheduleDayView(viewModel: K5Preview.Data.Schedule.weeks[0].days[1])
-            .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+            .previewDevice(PreviewDevice(stringLiteral: "iPad (9th generation)"))
             .environment(\.containerSize, CGSize(width: 500, height: 0))
         K5ScheduleDayView(viewModel: K5Preview.Data.Schedule.weeks[1].days[0])
-            .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+            .previewDevice(PreviewDevice(stringLiteral: "iPad (9th generation)"))
             .environment(\.containerSize, CGSize(width: 500, height: 0))
         K5ScheduleDayView(viewModel: K5Preview.Data.Schedule.weeks[1].days[1])
-            .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+            .previewDevice(PreviewDevice(stringLiteral: "iPad (9th generation)"))
             .environment(\.containerSize, CGSize(width: 500, height: 0))
     }
 }

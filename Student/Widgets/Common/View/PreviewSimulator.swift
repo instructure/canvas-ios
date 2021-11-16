@@ -18,7 +18,7 @@
 
 #if DEBUG
 
-import Foundation
+import SwiftUI
 
 /**
  Simulators are listed by widget size, ascending.
@@ -29,6 +29,26 @@ enum PreviewSimulator: String, CaseIterable {
     case iPhone8Plus = "iPhone 8 Plus"
     case iPhone11 = "iPhone 11"
     case iPhone12ProMax = "iPhone 12 Pro Max"
+    case iPadPro_9_7 = "iPad Pro (9.7-inch)" // for extra large widget support
+}
+
+extension PreviewDevice {
+
+    init(_ simulator: PreviewSimulator) {
+        self.init(rawValue: simulator.rawValue)
+    }
+}
+
+extension View {
+
+    @ViewBuilder
+    func previewDevice(_ simulator: PreviewSimulator?) -> some View {
+        if let simulator = simulator {
+            self.previewDevice(PreviewDevice(simulator))
+        } else {
+            self.previewDevice(nil as PreviewDevice?)
+        }
+    }
 }
 
 #endif

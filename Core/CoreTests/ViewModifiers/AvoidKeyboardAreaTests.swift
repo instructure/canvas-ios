@@ -40,6 +40,16 @@ class AvoidKeyboardAreaTests: CoreTestCase {
         XCTAssertEqual(received, [100])
         NotificationCenter.default.post(name: UIApplication.keyboardWillHideNotification, object: nil, userInfo: [:])
         XCTAssertEqual(received, [100, 0])
+        NotificationCenter.default.post(name: UIApplication.keyboardWillChangeFrameNotification, object: nil, userInfo: [
+            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 150),
+        ])
+        XCTAssertEqual(received, [100, 0, 150])
+        NotificationCenter.default.post(name: UIApplication.willResignActiveNotification, object: nil, userInfo: [:])
+        XCTAssertEqual(received, [100, 0, 150, 0])
+        NotificationCenter.default.post(name: UIApplication.keyboardWillShowNotification, object: nil, userInfo: [:])
+        XCTAssertEqual(received, [100, 0, 150, 0, 0])
+        NotificationCenter.default.post(name: UIApplication.keyboardWillChangeFrameNotification, object: nil, userInfo: [:])
+        XCTAssertEqual(received, [100, 0, 150, 0, 0, 0])
     }
 
     func testBody() {
