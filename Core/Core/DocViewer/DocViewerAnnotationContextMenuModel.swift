@@ -81,7 +81,7 @@ struct DocViewerAnnotationContextMenuModel {
                 return self.menuItems(for: annotation, suggestedMenuItems: menuItems, annotationMetadata: annotationMetadata)
             } else {
                 // Even if we can't annotate but the annotation has a comment added we should show the comment menu
-                // so the user can we previous comments and add new ones to the thread
+                // so the user can view previous comments and add new ones to the thread
                 if annotation.hasReplies == true {
                     return makeCommentOnlyMenu(for: annotation, annotationMetadata: annotationMetadata)
                 } else {
