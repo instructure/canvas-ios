@@ -25,6 +25,7 @@ class GetPageTests: CoreTestCase {
 
     func testEncodedString() {
         XCTAssertEqual(GetPage(context: context, url: "pipe-%7C-pipe").url, "pipe-|-pipe")
+        XCTAssertEqual(UpdatePage(context: context, url: "`").url, "%60")
     }
 
     func testCacheKey() {
