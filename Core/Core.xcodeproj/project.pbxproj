@@ -926,6 +926,7 @@
 		CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */; };
 		CFE7B42326B19F3F0092593D /* K5ScheduleSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */; };
 		CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7E361267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift */; };
+		CFE83FA827468AD200C1278F /* GetEnrollmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE83FA727468AD200C1278F /* GetEnrollmentsTests.swift */; };
 		CFEC7F3426B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */; };
 		CFEC7F3826B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F3726B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift */; };
 		CFEC7F3B26B409D1008B9F77 /* K5ScheduleWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F3A26B409D1008B9F77 /* K5ScheduleWeekView.swift */; };
@@ -2162,6 +2163,7 @@
 		CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModelTests.swift; sourceTree = "<group>"; };
 		CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectView.swift; sourceTree = "<group>"; };
 		CFE7E361267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
+		CFE83FA727468AD200C1278F /* GetEnrollmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnrollmentsTests.swift; sourceTree = "<group>"; };
 		CFEC7F3326B2F262008B9F77 /* K5ScheduleSubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectViewModelTests.swift; sourceTree = "<group>"; };
 		CFEC7F3726B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleDayViewModel.swift; sourceTree = "<group>"; };
 		CFEC7F3A26B409D1008B9F77 /* K5ScheduleWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekView.swift; sourceTree = "<group>"; };
@@ -3381,6 +3383,7 @@
 			children = (
 				B1A6BC89218A977D000515E3 /* APIEnrollmentTests.swift */,
 				9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */,
+				CFE83FA727468AD200C1278F /* GetEnrollmentsTests.swift */,
 				B109249323CE81C400796903 /* RoleTests.swift */,
 			);
 			path = Enrollments;
@@ -5492,6 +5495,7 @@
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
 				B149098C23D9154C0051D961 /* LTIViewControllerTests.swift in Sources */,
+				CFE83FA827468AD200C1278F /* GetEnrollmentsTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
 				9F88ED01224A742F00DCCA09 /* EnrollmentTests.swift in Sources */,
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,
