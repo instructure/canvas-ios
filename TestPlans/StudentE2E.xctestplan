@@ -35,7 +35,9 @@
     {
       "skippedTests" : [
         "IPadAssignmentsTest\/testAssignments()",
-        "SpringBoardTests\/testMultitaskingSetup()"
+        "InboxTests\/testCanMessageAttachment()",
+        "SpringBoardTests\/testMultitaskingSetup()",
+        "UserFilesTests\/testAddFileFiles()"
       ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
