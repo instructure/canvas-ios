@@ -26,6 +26,9 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "PlannerTests\/testSwipes()"
+      ],
       "target" : {
         "containerPath" : "container:Parent.xcodeproj",
         "identifier" : "E80763C723E08DA10085DAFB",
