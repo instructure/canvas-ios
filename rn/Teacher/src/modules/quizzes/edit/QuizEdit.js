@@ -360,6 +360,7 @@ export class QuizEdit extends Component<Props, any> {
                         value={extractDateFromString(quiz.show_correct_answers_at) || defaultDate}
                         onChange={(e, d) => this._setQuiz({ show_correct_answers_at: d.toISOString() }, true)}
                         testID='quizzes.edit.show-correct-answers-at-date-picker'
+                        mode='datetime'
                       />
                     }
                     <View style={{ flexDirection: 'row' }}>
@@ -385,6 +386,7 @@ export class QuizEdit extends Component<Props, any> {
                         value={extractDateFromString(quiz.hide_correct_answers_at) || defaultDate}
                         onChange={(e, d) => this._setQuiz({ hide_correct_answers_at: d.toISOString() }, true)}
                         testID='quizzes.edit.hide-correct-answers-at-date-picker'
+                        mode='datetime'
                       />
                     }
                   </View>
