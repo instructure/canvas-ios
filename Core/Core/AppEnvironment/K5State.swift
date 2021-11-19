@@ -37,7 +37,7 @@ public class K5State {
      */
     public var isK5Enabled: Bool { isK5Account && isRemoteFeatureFlagEnabled && isElementaryViewEnabled }
 
-    public func userDidLogin(profile: APIProfile?, isK5StudentView: Bool? = false) {
+    public func userDidLogin(profile: APIProfile?, isK5StudentView: Bool = false) {
         isK5Account = (profile?.k5_user == true) || isK5StudentView == true
     }
 
@@ -47,5 +47,6 @@ public class K5State {
 
     public func userDidLogout() {
         isK5Account = false
+        AppEnvironment.shared.userDefaults?.isK5StudentView = false
     }
 }

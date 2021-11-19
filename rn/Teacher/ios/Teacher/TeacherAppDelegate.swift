@@ -39,7 +39,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         return env
     }()
 
-    var isK5User = false
+    private var isK5User = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
@@ -259,7 +259,6 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
-        isK5User = false
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
