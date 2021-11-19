@@ -37,7 +37,8 @@
         "DiscussionsUITests\/testCloseDiscussion()",
         "FilesUITests\/testAddFileFromLibrary()",
         "FilesUITests\/testUploadAudioFile()",
-        "IPadSpeedGraderTests\/testSpeedGrader()"
+        "IPadSpeedGraderTests\/testSpeedGrader()",
+        "SpeedGraderCommentUITests\/testNewAudioComment()"
       ],
       "target" : {
         "containerPath" : "container:Teacher.xcodeproj",
