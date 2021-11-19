@@ -279,7 +279,8 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
             userName: NSLocalizedString("Test Student", comment: ""),
             userEmail: session.userEmail,
             clientID: session.clientID,
-            clientSecret: session.clientSecret
+            clientSecret: session.clientSecret,
+            isK5Session: environment.k5.isRemoteFeatureFlagEnabled
         )
         LoginSession.add(entry, to: .shared, forKey: .fakeStudents)
         if let url = URL(string: "canvas-student:student_view") {

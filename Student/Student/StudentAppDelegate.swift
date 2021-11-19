@@ -89,6 +89,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.subscribeToPushChannel()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
+            if self.environment.currentSession?.isK5Session == true {
+                ExperimentalFeature.K5Dashboard.isEnabled = true
+                self.environment.k5.sessionDefaults?.isElementaryViewEnabled = true
+            }
             self.environment.k5.userDidLogin(profile: apiProfile)
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
@@ -110,6 +114,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
             if environment.currentSession != nil {
                 NativeLoginManager.shared().logout() // Cleanup old to prevent token errors
+            }
+            if self.environment.currentSession?.isK5Session == true {
+                ExperimentalFeature.K5Dashboard.isEnabled = true
+                self.environment.k5.sessionDefaults?.isElementaryViewEnabled = true
             }
             userDidLogin(session: fakeStudent)
             return true
