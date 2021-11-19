@@ -39,6 +39,8 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         return env
     }()
 
+    var isK5User = false
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupFirebase()
@@ -86,6 +88,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 }
                 return
             }
+            self.isK5User = response?.k5_user == true
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 NativeLoginManager.login(as: session)
             }
@@ -256,6 +259,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        isK5User = false
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
@@ -279,11 +283,14 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
             userName: NSLocalizedString("Test Student", comment: ""),
             userEmail: session.userEmail,
             clientID: session.clientID,
-            clientSecret: session.clientSecret,
-            isK5Session: environment.k5.isRemoteFeatureFlagEnabled
+            clientSecret: session.clientSecret
         )
         LoginSession.add(entry, to: .shared, forKey: .fakeStudents)
-        if let url = URL(string: "canvas-student:student_view") {
+        var deepLink = "canvas-student:student_view"
+        if isK5User == true {
+            deepLink.append("_k5")
+        }
+        if let url = URL(string: deepLink) {
             UIApplication.shared.open(url)
         }
     }
