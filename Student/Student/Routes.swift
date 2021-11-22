@@ -60,7 +60,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID": { url, params, _ in
         if AppEnvironment.shared.k5.isK5Enabled == true, let context = Context(path: url.path) {
-            return CoreHostingController(K5SubjectView(context: context))
+            let selectedTabId = url.queryItems?.first(where: { $0.name == "selectedTabId" })?.value
+            return CoreHostingController(K5SubjectView(context: context, selectedTabId: selectedTabId))
         } else {
             return HelmViewController(moduleName: "/courses/:courseID", url: url, params: params, userInfo: nil)
         }

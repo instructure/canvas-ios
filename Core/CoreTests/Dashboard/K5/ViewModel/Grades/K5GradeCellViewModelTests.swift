@@ -44,6 +44,6 @@ class K5GradeCellViewModelTests: CoreTestCase {
 
     func testRoute() {
         let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "A", score: 99.9, color: nil, courseID: "66")
-        XCTAssertEqual(testee.route, "/courses/66/grades/")
+        XCTAssertEqual(testee.route, "/courses/66?selectedTabId=grades")
     }
 }
