@@ -47,6 +47,6 @@ public class K5State {
 
     public func userDidLogout() {
         isK5Account = false
-        AppEnvironment.shared.userDefaults?.isK5StudentView = false
+        sessionDefaults?.isK5StudentView = false
     }
 }
