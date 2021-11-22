@@ -253,17 +253,6 @@ open class CoreWebView: WKWebView {
                     }
                     if (/\\/(courses|accounts)\\/[^\\/]+\\/external_tools\\/retrieve/.test(iframe.src)) {
                         replace(iframe)
-                    } else if (/\\/media_objects_iframe\\/m-\\w+/.test(iframe.src)) {
-                        const match = iframe.src.match(/\\/media_objects_iframe\\/(m-\\w+)/)
-                        if (match.length == 2) {
-                            const mediaID = match[1]
-                            const video = document.createElement('video')
-                            video.src = '/users/self/media_download?entryId='+mediaID+'&media_type=video&redirect=1'
-                            video.setAttribute('poster', '/media_objects/'+mediaID+'/thumbnail?width=550&height=448')
-                            video.setAttribute('controls', '')
-                            video.setAttribute('preload', 'none')
-                            iframe.replaceWith(video)
-                        }
                     } else {
                         iframe.addEventListener('error', event => replace(event.target))
                     }
