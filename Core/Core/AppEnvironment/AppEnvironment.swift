@@ -68,11 +68,11 @@ open class AppEnvironment {
         guard session == currentSession else { return }
         database = globalDatabase
         api = API()
+        k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
         Logger.shared.database = database
         refreshWidgets()
-        k5.userDidLogout()
     }
 
     public static var shared = AppEnvironment()
