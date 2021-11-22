@@ -125,7 +125,7 @@
 "Add description" = "Adicionar descrição";
 
 /* No comment provided by engineer. */
-"Add Due Date" = "Adicionar data de vencimento";
+"Add Due Date" = "Adicionar data de limite";
 
 /* No comment provided by engineer. */
 "Add File" = "Adicionar ficheiro";
@@ -248,16 +248,16 @@
 "Assignment Details" = "Detalhes da tarefa";
 
 /* No comment provided by engineer. */
-"Assignment grade above" = "Classificação de atribuição acima";
+"Assignment grade above" = "Classificação de tarefa acima";
 
 /* No comment provided by engineer. */
-"Assignment Grade Above %d" = "Classificação de atribuição acima %d";
+"Assignment Grade Above %d" = "Classificação de tarefa acima %d";
 
 /* No comment provided by engineer. */
-"Assignment grade below" = "Classificação de atribuição abaixo";
+"Assignment grade below" = "Classificação de tarefa abaixo";
 
 /* No comment provided by engineer. */
-"Assignment Grade Below %d" = "Classificação de atribuição abaixo %d";
+"Assignment Grade Below %d" = "Classificação de tarefa abaixo %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Tarefa em falta";
@@ -728,22 +728,22 @@
 "Done" = "Feito";
 
 /* No comment provided by engineer. */
-"Due" = "Vencimento";
+"Due" = "Limite";
 
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
-"Due %@" = "Vencimento %@";
+"Due %@" = "Limite %@";
 
 /* No comment provided by engineer. */
-"Due Date" = "Data de entrega";
+"Due Date" = "Data limite";
 
 /* No comment provided by engineer. */
-"Due Dates, Double tap for details." = "Datas devidas, toque duas vezes para obter detalhes.";
+"Due Dates, Double tap for details." = "Datas limite, toque duas vezes para obter detalhes.";
 
 /* No comment provided by engineer. */
-"Due:" = "Vencimento:";
+"Due:" = "Limite:";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Vencimento: %@";
+"Due: %@" = "Data limite: %@";
 
 /* No comment provided by engineer. */
 "Edit" = "Editar";
@@ -752,7 +752,7 @@
 "Edit Announcement" = "Editar anúncio";
 
 /* No comment provided by engineer. */
-"Edit Assignment" = "Editar atribuição";
+"Edit Assignment" = "Editar tarefa";
 
 /* No comment provided by engineer. */
 "Edit attachment (1)" = "Editar anexo (1)";
@@ -1199,7 +1199,7 @@
 "Locked until \"%@\" is graded" = "Bloqueado até que \"%@\" seja classificado";
 
 /* No comment provided by engineer. */
-"Log In" = "Registar";
+"Log In" = "Iniciar Sessão";
 
 /* No comment provided by engineer. */
 "Log In Again" = "Faça o login novamente";
@@ -1292,7 +1292,7 @@
 "Modules" = "Módulos";
 
 /* No comment provided by engineer. */
-"Multiple Due Dates" = "Datas de entrega múltiplas";
+"Multiple Due Dates" = "Datas limite múltiplas";
 
 /* No comment provided by engineer. */
 "My Subjects" = "Minhas Disciplinas";
@@ -1376,10 +1376,10 @@
 "No Discussions" = "Sem Discussões";
 
 /* No comment provided by engineer. */
-"No Due Date" = "Sem data de vencimento";
+"No Due Date" = "Sem data de limite";
 
 /* No comment provided by engineer. */
-"No due date set." = "Não há data de vencimento definida.";
+"No due date set." = "Não há data de limite definida.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Nenhum evento hoje!";
@@ -1685,7 +1685,7 @@
 "Remove date" = "Remover data";
 
 /* No comment provided by engineer. */
-"Remove Due Date?" = "Remover data de vencimento?";
+"Remove Due Date?" = "Remover data limite?";
 
 /* No comment provided by engineer. */
 "Remove File" = "Remover ficheiro";
@@ -2105,7 +2105,7 @@
 "This page has been disabled for this course." = "Esta página foi desativada para esta disciplina.";
 
 /* No comment provided by engineer. */
-"This will remove the due date and all of the associated assignees." = "Isso eliminará a data de vencimento e todos os cessionários associados.";
+"This will remove the due date and all of the associated assignees." = "Isso eliminará a data limite e todos os cessionários associados.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tempo decorrido";

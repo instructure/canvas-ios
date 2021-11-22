@@ -29,7 +29,7 @@
 "Assignment Details" = "Detalhes da tarefa";
 
 /* No comment provided by engineer. */
-"Assignment reminder" = "Lembrete de atribuição";
+"Assignment reminder" = "Lembrete de tarefa";
 
 /* No comment provided by engineer. */
 "Back" = "Voltar";
@@ -74,7 +74,7 @@
 "Domain mismatch" = "Descoordenação de domínios";
 
 /* No comment provided by engineer. */
-"Due" = "Vencimento";
+"Due" = "Data limite";
 
 /* No comment provided by engineer. */
 "Event Details" = "Detalhes do evento";
@@ -128,7 +128,7 @@
 "No Courses" = "Sem Disicplinas";
 
 /* No comment provided by engineer. */
-"No Due Date" = "Sem data de vencimento";
+"No Due Date" = "Sem data limite";
 
 /* No comment provided by engineer. */
 "No Grade" = "Sem Nota";
