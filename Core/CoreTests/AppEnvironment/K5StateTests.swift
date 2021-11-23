@@ -49,6 +49,9 @@ class K5StateTests: CoreTestCase {
 
         testee.userDidLogin(profile: APIProfile.make(k5_user: true))
         XCTAssertTrue(testee.isK5Account)
+
+        testee.userDidLogin(profile: APIProfile.make(k5_user: false), isK5StudentView: true)
+        XCTAssertTrue(testee.isK5Account)
     }
 
     func testLogoutUpdatesK5AccountState() {
