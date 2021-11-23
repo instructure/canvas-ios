@@ -30,6 +30,7 @@ public class K5SubjectViewModel: ObservableObject {
     @Published private(set) var courseImageUrl: URL?
 
     private let context: Context
+    private let selectedTabId: String?
 
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
         self?.tabsUpdated()
@@ -41,8 +42,13 @@ public class K5SubjectViewModel: ObservableObject {
 
     private var topBarChangeListener: AnyCancellable?
 
-    init(context: Context) {
+    /**
+     - parameters:
+        - selectedTabId: The identifier of the subject tab that should be selected when the page appears.
+     */
+    init(context: Context, selectedTabId: String? = nil) {
         self.context = context
+        self.selectedTabId = selectedTabId
         course.refresh()
         tabs.refresh()
     }
@@ -62,6 +68,10 @@ public class K5SubjectViewModel: ObservableObject {
         // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
         topBarChangeListener = topBarViewModel?.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
+        }
+
+        if let selectedTabId = selectedTabId, let selectedTabIndex = tabItems.firstIndex(where: { $0.id == selectedTabId }) {
+            topBarViewModel?.selectedItemIndex = selectedTabIndex
         }
     }
 
