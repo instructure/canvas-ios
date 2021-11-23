@@ -59,7 +59,7 @@ public class SpringBoard {
     func bringUpDock() {
         let start = relativeCoordinate(x: 0.5, y: 1.0)
         let dest = relativeCoordinate(x: 0.5, y: 0.9)
-        start.press(forDuration: 1, thenDragTo: dest)
+        start.press(forDuration: 0, thenDragTo: dest)
     }
 
     internal func hideSafariKeyboard() {
