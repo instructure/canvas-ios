@@ -33,6 +33,8 @@ public struct K5HomeroomView: View {
             }
 
             VStack(alignment: .leading, spacing: 0) {
+                conferences
+
                 Text(viewModel.welcomeText)
                     .foregroundColor(.licorice)
                     .font(.bold34)
@@ -48,6 +50,13 @@ public struct K5HomeroomView: View {
                     .padding(.top, 23)
             }
             .padding(.horizontal, horizontalPadding)
+        }
+    }
+
+    private var conferences: some View {
+        ForEach(viewModel.conferencesViewModel.conferences, id: \.entity.id) { conference in
+            ConferenceCard(conference: conference.entity, contextName: conference.contextName)
+                .padding(.top, 16)
         }
     }
 }
