@@ -115,7 +115,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
-        - xcodebuild_options: "-allowProvisioningUpdates"
+        - distribution_method: "app-store"
     - script:
         inputs:
         - content: |-
@@ -140,6 +140,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+        - distribution_method: "app-store"
     - script:
         inputs:
         - content: |-
@@ -164,6 +165,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+        - distribution_method: "app-store"
     - script:
         inputs:
         - content: |-
