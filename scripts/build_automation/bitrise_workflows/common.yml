@@ -115,6 +115,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+        - xcodebuild_options: "-allowProvisioningUpdates"
     - script:
         inputs:
         - content: |-
