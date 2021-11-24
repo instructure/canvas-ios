@@ -42,8 +42,8 @@ public class DashboardConferencesViewModel: ObservableObject {
 
     public func refresh(force: Bool = false) {
         conferencesStore.refresh(force: force)
-        coursesStore.refresh(force: force)
-        groupsStore.refresh(force: force)
+        coursesStore.exhaust(force: force)
+        groupsStore.exhaust(force: force)
     }
 
     // MARK: - Private Methods
