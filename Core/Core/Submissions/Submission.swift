@@ -273,9 +273,11 @@ extension Submission {
             return attachments?.first?.icon
         case .online_url:
             return UIImage.linkLine
+        case .student_annotation:
+            return UIImage.annotateLine
         case .wiki_page:
             return UIImage.documentLine
-        case .none, .not_graded, .on_paper, .student_annotation:
+        case .none, .not_graded, .on_paper:
             return nil
         }
     }
