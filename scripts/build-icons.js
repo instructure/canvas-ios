@@ -42,6 +42,7 @@ const whitelist = [
   'add',
   'address-book',
   'alerts',
+  'annotate',
   'announcement',
   'arrow-open-down',
   'arrow-open-left',
