@@ -84,7 +84,7 @@ public extension APIPlannable {
         return labels
     }
 
-    func k5ScheduleSubject(courseInfoByCourseIDs: [String: (color: Color, image: URL?)]) -> K5ScheduleSubject {
+    func k5ScheduleSubject(courseInfoByCourseIDs: [String: (color: Color, image: URL?, isHomeroom: Bool)]) -> K5ScheduleSubject {
         let name: String = {
             if plannableType == .calendar_event {
                 return NSLocalizedString("To Do", comment: "")
@@ -100,7 +100,14 @@ public extension APIPlannable {
             }
         }()
         let route: URL? = {
-            guard let context = context, context.contextType != .user else { return nil }
+            let isHomeroom: Bool = {
+                guard let courseID = course_id?.value else {
+                    return false
+                }
+                return courseInfoByCourseIDs[courseID]?.isHomeroom ?? false
+            }()
+
+            guard let context = context, context.contextType != .user, !isHomeroom  else { return nil }
             return URL(string: context.pathComponent)
         }()
         let image: URL? = {
