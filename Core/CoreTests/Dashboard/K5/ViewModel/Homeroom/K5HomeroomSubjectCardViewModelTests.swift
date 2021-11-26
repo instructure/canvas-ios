@@ -49,7 +49,7 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee?.icon, .announcementLine)
         XCTAssertEqual(testee?.text, "Test announcement title.")
-        XCTAssertEqual(testee?.route, "/courses/test/announcements")
+        XCTAssertEqual(testee?.route, "/courses/test")
     }
 
     func testInfoLineFromNoAnnouncements() {
@@ -64,7 +64,7 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "Nothing Due Today")
         XCTAssertEqual(testee.highlightedText, "")
-        XCTAssertEqual(testee.route, "/courses/test/assignments")
+        XCTAssertEqual(testee.route, "/courses/test#schedule")
     }
 
     func testInfoLineFromDueAssignments() {
@@ -73,7 +73,7 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "3 due today")
         XCTAssertEqual(testee.highlightedText, "")
-        XCTAssertEqual(testee.route, "/courses/test/assignments")
+        XCTAssertEqual(testee.route, "/courses/test#schedule")
     }
 
     func testInfoLineFromMissingAssignments() {
@@ -82,7 +82,7 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "")
         XCTAssertEqual(testee.highlightedText, "3 missing")
-        XCTAssertEqual(testee.route, "/courses/test/assignments")
+        XCTAssertEqual(testee.route, "/courses/test#schedule")
     }
 
     func testInfoLineFromDueAndMissingAssignments() {
@@ -91,6 +91,6 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.icon, .k5dueToday)
         XCTAssertEqual(testee.text, "3 due today | ")
         XCTAssertEqual(testee.highlightedText, "1 missing")
-        XCTAssertEqual(testee.route, "/courses/test/assignments")
+        XCTAssertEqual(testee.route, "/courses/test#schedule")
     }
 }
