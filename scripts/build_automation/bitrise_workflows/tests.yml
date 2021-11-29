@@ -170,7 +170,7 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -euo pipefail
+            set -xeuo pipefail
 
             ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult 2>/dev/null |
                 jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
