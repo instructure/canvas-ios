@@ -43,19 +43,18 @@ struct SubmissionGrader: View {
     @State var enteredComment: String = ""
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
+    @State private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
 
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
         selected.attachments?.first { fileID == $0.id } ??
         selected.attachments?.sorted(by: File.idCompare).first
     }
-    @ObservedObject private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
 
     init(
         index: Int,
         assignment: Assignment,
         submission: Submission,
-        studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel,
         handleRefresh: (() -> Void)?
     ) {
         self.index = index
@@ -70,7 +69,7 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self.handleRefresh = handleRefresh
-        self.studentAnnotationViewModel = studentAnnotationViewModel
+        self.studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
     }
 
     var body: some View {
@@ -194,8 +193,13 @@ struct SubmissionGrader: View {
             VStack(spacing: 0) {
                 Picker(selection: Binding(get: { selected.attempt }, set: { newValue in
                     withTransaction(.exclusive()) {
+                        let attemptChanged = (selected.attempt != newValue)
                         attempt = newValue
                         fileID = nil
+
+                        if attemptChanged {
+                            studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selected)
+                        }
                     }
                     showAttempts = false
                 }), label: Text(verbatim: "")) {
