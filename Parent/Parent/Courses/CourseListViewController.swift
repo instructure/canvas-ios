@@ -56,15 +56,16 @@ class CourseListViewController: UIViewController {
         refreshControl.color = nil
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
-
-        courses.exhaust()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
+
+        courses.exhaust()
     }
 
     func update() {
