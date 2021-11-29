@@ -478,7 +478,7 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
   renderDatePicker = (date: StagedAssignmentDate, type: ModifyDateType) => {
     if (type === 'none') return <View />
     return <View style={styles.dateEditorContainer}>
-      <DateTimePicker value={date[type] ? new Date(date[type]) : new Date()} onChange={(event, updated) => this.updateDate(date, type, updated)}/>
+      <DateTimePicker value={date[type] ? new Date(date[type]) : new Date()} onChange={(event, updated) => this.updateDate(date, type, updated)} mode='datetime'/>
     </View>
   }
 

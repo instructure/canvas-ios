@@ -21,7 +21,7 @@
     "message": "Adicionar descrição"
   },
   "add_due_date_65b08f6c": {
-    "message": "Adicionar data de vencimento"
+    "message": "Adicionar data limite"
   },
   "add_recipient_7de2dc74": {
     "message": "Adicionar destinatário"
@@ -78,13 +78,13 @@
     "message": "Obrigatórios"
   },
   "assignment_group_1a781505": {
-    "message": "Grupo de atribuições"
+    "message": "Grupo de tarefas"
   },
   "assignments_1e02582c": {
     "message": "Tarefas"
   },
   "assignments_list_fe3e54be": {
-    "message": "Lista de atribuições"
+    "message": "Lista de tarefas"
   },
   "attachment_deffe5a9": {
     "message": "Anexo"
@@ -174,7 +174,7 @@
     "message": "Opções de conversa"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
-    "message": "Não foi possível obter a lista de atribuições"
+    "message": "Não foi possível obter a lista de tarefas"
   },
   "could_not_start_recording_8f31c2e4": {
     "message": "Não foi possível iniciar a gravação"
@@ -246,19 +246,19 @@
     "message": "Data final:"
   },
   "due_a73610f6": {
-    "message": "Vencimento"
+    "message": "Data limite"
   },
   "due_date_822625d8": {
     "message": "Data Final"
   },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
-    "message": "''Data de vencimento '' deve estar entre datas '' Disponível de '' e '' Disponível até"
+    "message": "''Data limite '' deve estar entre datas '' Disponível de '' e '' Disponível até"
   },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Datas devidas, toque duas vezes para obter detalhes."
   },
   "due_datestring_be4410c7": {
-    "message": "Vencimento { dateString }"
+    "message": "Data limite { dateString }"
   },
   "edit_attachments_count_5e9276ea": {
     "message": "Editar anexos ({ count })"
@@ -498,7 +498,7 @@
     "message": "Sem Data Final"
   },
   "no_due_date_set_bb3a2bf7": {
-    "message": "Não há data de vencimento definida."
+    "message": "Não há data limite definida."
   },
   "no_e16d9132": {
     "message": "Não"
@@ -654,7 +654,7 @@
     "message": "Remover data"
   },
   "remove_due_date_c1cc8f7": {
-    "message": "Remover data de vencimento"
+    "message": "Remover data limite"
   },
   "remove_f47dc62a": {
     "message": "Remover"
@@ -816,7 +816,7 @@
     "message": "Não há tarefas a serem exibidas."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
-    "message": "Ocorreu um problema ao carregar as submissões de atribuição."
+    "message": "Ocorreu um problema ao carregar as submissões de tarefa."
   },
   "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
     "message": "Ocorreu um problema ao carregar os períodos de classificação."
@@ -858,7 +858,7 @@
     "message": "Esta é a sua definição de cor pessoal. Somente você verá essa cor para a disciplina."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
-    "message": "Isso eliminará a data de vencimento e todos os cessionários associados."
+    "message": "Isso eliminará a data limite e todos os cessionários associados."
   },
   "time_elapsed_minutes_seconds_f5d82cb": {
     "message": "Tempo decorrido: { minutes }, { seconds }."

@@ -41,6 +41,10 @@ class K5ScheduleItemInfoTests: CoreTestCase {
         XCTAssertEqual(APIPlannable.make(course_id: ID("testId"), context_type: "Course").k5ScheduleSubject(courseInfoByCourseIDs: [:]).route, URL(string: "courses/testId")!)
     }
 
+    func testHomeroomSubjectRoute() {
+        XCTAssertNil(APIPlannable.make(course_id: ID("testId"), context_type: "Course").k5ScheduleSubject(courseInfoByCourseIDs: ["testId": (color: .green, image: nil, isHomeroom: true)]).route)
+    }
+
     func testScheduleSubjectColor() {
         Brand.shared = Brand(buttonPrimaryBackground: nil,
                              buttonPrimaryText: nil,
@@ -58,9 +62,9 @@ class K5ScheduleItemInfoTests: CoreTestCase {
                              navTextColor: nil,
                              navTextColorActive: nil,
                              primary: .red)
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil)]).color, .green)
+        XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil, isHomeroom: false)]).color, .green)
         XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: [:]).color, Color(.red))
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testID_2")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil)]).color, Color(.red))
+        XCTAssertEqual(APIPlannable.make(course_id: ID("testID_2")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil, isHomeroom: false)]).color, Color(.red))
     }
 
     func testDueText() {

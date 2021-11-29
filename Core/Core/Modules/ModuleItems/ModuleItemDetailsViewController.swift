@@ -84,10 +84,10 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         spinnerView.isHidden = true
         errorView.isHidden = itemViewController != nil && store.error == nil
         container.isHidden = !lockedView.isHidden || !errorView.isHidden
-        updateNavBar()
         children.forEach { $0.unembed() }
         if let viewController = itemViewController, !container.isHidden {
             embed(viewController, in: container)
+            navigationItem.rightBarButtonItems = []
             observations = syncNavigationBar(with: viewController)
             NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
                 "moduleID": moduleID!,
@@ -97,6 +97,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
                 markAsViewed()
             }
         }
+        updateNavBar()
     }
 
     func updateNavBar() {
@@ -122,8 +123,8 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
             title = NSLocalizedString("Module Item", bundle: .core, comment: "")
         }
         setupTitleViewInNavbar(title: title)
-        navigationItem.rightBarButtonItems = []
         if item?.completionRequirementType == .must_mark_done {
+            navigationItem.rightBarButtonItems = []
             navigationItem.rightBarButtonItems?.append(optionsButton)
         }
     }

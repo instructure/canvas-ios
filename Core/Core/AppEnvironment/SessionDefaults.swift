@@ -65,6 +65,11 @@ public struct SessionDefaults {
         set { self["isElementaryViewEnabled"] = newValue }
     }
 
+    public var isK5StudentView: Bool {
+        get { (self["isK5StudentView"] as? Bool) ?? false }
+        set { self["isK5StudentView"] = newValue }
+    }
+
     public var landingPath: String? {
         mutating get {
             if let landingPath = self["landingPath"] as? String {

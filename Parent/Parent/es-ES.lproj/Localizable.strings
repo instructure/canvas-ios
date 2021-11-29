@@ -178,6 +178,9 @@
 "Syllabus" = "Programa del curso";
 
 /* No comment provided by engineer. */
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "El alumno que intenta añadir se encuentra en una institución diferente de Canvas.\nInicie sesión o cree una cuenta con esa institución para añadir a este alumno.";
+
+/* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "El valor debe ser un número entre 0 y 100";
 
 /* No comment provided by engineer. */

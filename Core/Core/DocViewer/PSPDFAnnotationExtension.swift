@@ -26,6 +26,21 @@ private var annotationHasRepliesKey: UInt8 = 0
 private var fontSizeTransform: CGFloat = 0.85
 
 extension Annotation {
+    private static let isFileAnnotationKey = "isFileAnnotationKey"
+
+    /** Returns true if the annotation is loaded from file and not created by a Canvas user. Must be set from code upon loading the annotation. This property is stored in the `customData` dictionary. */
+    var isFileAnnotation: Bool {
+        get {
+            guard let isFileAnnotation = customData?[Self.isFileAnnotationKey] as? Bool else { return false }
+            return isFileAnnotation
+        }
+        set {
+            var oldCustomData = customData ?? ([:] as [String: Any])
+            oldCustomData[Self.isFileAnnotationKey] = newValue
+            customData = oldCustomData
+        }
+    }
+
     var userName: String? {
         get { return objc_getAssociatedObject(self, &annotationUserNameKey) as? String }
         set { objc_setAssociatedObject(self, &annotationUserNameKey, newValue, .OBJC_ASSOCIATION_COPY) }

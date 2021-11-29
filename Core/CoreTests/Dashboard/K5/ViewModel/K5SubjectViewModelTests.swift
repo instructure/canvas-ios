@@ -46,4 +46,13 @@ class K5SubjectViewModelTests: CoreTestCase {
         XCTAssertEqual(url?.query, "embed=true")
         XCTAssertEqual(url?.fragment, "\(pageId)")
     }
+
+    func testInitiallySelectedTab() {
+        Tab.make(from: .make(id: "home", type: .internal, position: 0), context: context)
+        Tab.make(from: .make(id: "grades", type: .internal, position: 1), context: context)
+
+        let testee = K5SubjectViewModel(context: context, selectedTabId: "grades")
+
+        XCTAssertEqual(testee.topBarViewModel?.selectedItemIndex, 1)
+    }
 }

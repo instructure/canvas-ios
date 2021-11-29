@@ -28,6 +28,8 @@ public extension UIImage {
     static var addressBookSolid: UIImage { UIImage(named: "addressBookSolid", in: .core, compatibleWith: nil)! }
     static var alertsLine: UIImage { UIImage(named: "alertsLine", in: .core, compatibleWith: nil)! }
     static var alertsSolid: UIImage { UIImage(named: "alertsSolid", in: .core, compatibleWith: nil)! }
+    static var annotateLine: UIImage { UIImage(named: "annotateLine", in: .core, compatibleWith: nil)! }
+    static var annotateSolid: UIImage { UIImage(named: "annotateSolid", in: .core, compatibleWith: nil)! }
     static var announcementLine: UIImage { UIImage(named: "announcementLine", in: .core, compatibleWith: nil)! }
     static var announcementSolid: UIImage { UIImage(named: "announcementSolid", in: .core, compatibleWith: nil)! }
     static var arrowOpenDownLine: UIImage { UIImage(named: "arrowOpenDownLine", in: .core, compatibleWith: nil)! }
@@ -241,6 +243,8 @@ public extension Image {
     static var addressBookSolid: Image { Image("addressBookSolid", bundle: .core) }
     static var alertsLine: Image { Image("alertsLine", bundle: .core) }
     static var alertsSolid: Image { Image("alertsSolid", bundle: .core) }
+    static var annotateLine: Image { Image("annotateLine", bundle: .core) }
+    static var annotateSolid: Image { Image("annotateSolid", bundle: .core) }
     static var announcementLine: Image { Image("announcementLine", bundle: .core) }
     static var announcementSolid: Image { Image("announcementSolid", bundle: .core) }
     static var arrowOpenDownLine: Image { Image("arrowOpenDownLine", bundle: .core) }

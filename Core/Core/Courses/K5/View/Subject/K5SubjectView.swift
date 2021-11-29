@@ -41,8 +41,8 @@ public struct K5SubjectView: View {
         .navigationTitle(self.viewModel.courseTitle ?? "", subtitle: nil)
     }
 
-    public init(context: Context) {
-        self.viewModel = K5SubjectViewModel(context: context)
+    public init(context: Context, selectedTabId: String? = nil) {
+        self.viewModel = K5SubjectViewModel(context: context, selectedTabId: selectedTabId)
         self.controller.value.navigationController?.navigationBar.tintColor = self.viewModel.courseColor
     }
 }

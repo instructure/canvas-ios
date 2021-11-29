@@ -108,6 +108,7 @@ class CourseListViewControllerTests: ParentTestCase {
 
     func testLayout() {
         controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 6)
 
