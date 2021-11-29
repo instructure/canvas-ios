@@ -213,6 +213,7 @@ struct SubmissionGrader: View {
                     }
                 }
                     .labelsHidden()
+                    .pickerStyle(WheelPickerStyle())
                 Divider()
             }
                 .background(Color.backgroundLightest)
