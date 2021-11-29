@@ -159,7 +159,6 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
 
     func grader(for index: Int) -> SubmissionGrader? {
         guard index >= 0, index < submissions.all.count, let assignment = assignment.first else { return nil }
-
         return SubmissionGrader(
             index: index,
             assignment: assignment,
