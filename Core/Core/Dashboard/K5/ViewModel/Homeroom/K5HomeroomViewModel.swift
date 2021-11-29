@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class K5HomeroomViewModel: ObservableObject {
@@ -23,9 +24,11 @@ public class K5HomeroomViewModel: ObservableObject {
     @Published public private(set) var welcomeText = ""
     @Published public private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
     @Published public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel] = []
+    @Published public private(set) var conferencesViewModel = DashboardConferencesViewModel()
 
     // MARK: - Private Variables -
     private let env = AppEnvironment.shared
+    private var conferencesChangeListener: AnyCancellable?
     // MARK: Data Sources
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.dashboardCardsUpdated()
@@ -43,8 +46,14 @@ public class K5HomeroomViewModel: ObservableObject {
     // MARK: - Public Interface -
 
     public init() {
+        // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
+        conferencesChangeListener = conferencesViewModel.objectWillChange.sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+
         cards.refresh()
         profile.refresh()
+        conferencesViewModel.refresh()
     }
 
     // MARK: - Private Methods -
@@ -179,5 +188,6 @@ extension K5HomeroomViewModel: Refreshable {
         dueItems = nil
         cards.refresh(force: true)
         profile.refresh(force: true)
+        conferencesViewModel.refresh(force: true)
     }
 }

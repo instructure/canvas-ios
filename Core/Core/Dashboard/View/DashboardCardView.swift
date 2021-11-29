@@ -21,12 +21,12 @@ import SwiftUI
 public struct DashboardCardView: View {
     @ObservedObject var cards: Store<GetDashboardCards>
     @ObservedObject var colors: Store<GetCustomColors>
-    @ObservedObject var conferences: Store<GetLiveConferences>
     @ObservedObject var courses: Store<GetCourses>
     @ObservedObject var groups: Store<GetDashboardGroups>
     @ObservedObject var invitations: Store<GetCourseInvitations>
     @ObservedObject var notifications: Store<GetAccountNotifications>
     @ObservedObject var settings: Store<GetUserSettings>
+    @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -43,7 +43,6 @@ public struct DashboardCardView: View {
         let env = AppEnvironment.shared
         cards = env.subscribe(GetDashboardCards())
         colors = env.subscribe(GetCustomColors())
-        conferences = env.subscribe(GetLiveConferences())
         courses = env.subscribe(GetCourses(enrollmentState: nil))
         groups = env.subscribe(GetDashboardGroups())
         invitations = env.subscribe(GetCourseInvitations())
@@ -99,13 +98,9 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder func list(_ size: CGSize) -> some View {
-        ForEach(conferences.all, id: \.id) { conference in
-            if let contextName = conference.context.contextType == .group ?
-                groups.first(where: { $0.id == conference.context.id })?.name :
-                courses.first(where: { $0.id == conference.context.id })?.name {
-                ConferenceCard(conference: conference, contextName: contextName)
-                    .padding(.top, 16)
-            }
+        ForEach(conferencesViewModel.conferences, id: \.entity.id) { conference in
+            ConferenceCard(conference: conference.entity, contextName: conference.contextName)
+                .padding(.top, 16)
         }
 
         ForEach(invitations.all, id: \.id) { enrollment in
@@ -205,7 +200,7 @@ public struct DashboardCardView: View {
         refreshCards(onComplete: onComplete)
         colors.refresh(force: force)
         courses.exhaust(force: force)
-        conferences.refresh(force: force)
+        conferencesViewModel.refresh(force: force)
         invitations.exhaust(force: force)
         groups.exhaust(force: force)
         notifications.exhaust(force: force)
