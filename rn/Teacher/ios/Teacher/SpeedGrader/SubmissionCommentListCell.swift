@@ -178,9 +178,11 @@ struct SubmissionAttempt: View {
             return Image.textLine
         case .online_url:
             return Image.linkLine
+        case .student_annotation:
+            return Image.annotateLine
         case .wiki_page:
             return Image.documentLine
-        case .none?, .not_graded, .on_paper, .online_upload, .student_annotation, nil:
+        case .none?, .not_graded, .on_paper, .online_upload, nil:
             return nil
         }
     }
