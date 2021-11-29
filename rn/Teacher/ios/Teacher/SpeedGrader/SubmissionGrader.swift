@@ -33,7 +33,16 @@ struct SubmissionGrader: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
-    @State var attempt: Int?
+    @State var attempt: Int? {
+        willSet {
+            let attemptChanged = (selected.attempt != newValue)
+
+            if attemptChanged {
+                let newAttempt = attempts.first { newValue == $0.attempt } ?? submission
+                studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: newAttempt)
+            }
+        }
+    }
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
@@ -193,13 +202,8 @@ struct SubmissionGrader: View {
             VStack(spacing: 0) {
                 Picker(selection: Binding(get: { selected.attempt }, set: { newValue in
                     withTransaction(.exclusive()) {
-                        let attemptChanged = (selected.attempt != newValue)
                         attempt = newValue
                         fileID = nil
-
-                        if attemptChanged {
-                            studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selected)
-                        }
                     }
                     showAttempts = false
                 }), label: Text(verbatim: "")) {

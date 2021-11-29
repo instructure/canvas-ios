@@ -167,21 +167,21 @@ struct SubmissionAttempt: View {
     var icon: Image? {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
-            return Image.ltiLine
+            return .ltiLine
         case .discussion_topic:
-            return Image.discussionLine
+            return .discussionLine
         case .media_recording:
-            return submission.mediaComment?.mediaType == .audio ? Image.audioLine : Image.videoLine
+            return submission.mediaComment?.mediaType == .audio ? .audioLine : .videoLine
         case .online_quiz:
-            return Image.quizLine
+            return .quizLine
         case .online_text_entry:
-            return Image.textLine
+            return .textLine
         case .online_url:
-            return Image.linkLine
+            return .linkLine
         case .student_annotation:
-            return Image.annotateLine
+            return .annotateLine
         case .wiki_page:
-            return Image.documentLine
+            return .documentLine
         case .none?, .not_graded, .on_paper, .online_upload, nil:
             return nil
         }
