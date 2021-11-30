@@ -172,14 +172,15 @@ workflows:
             #!/bin/zsh
             set -xeuo pipefail
 
-            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult 2>/dev/null |
-                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
-                curl -q -X POST \
-                    -H "Authorization: $SPLUNK_SECRET" \
-                    -H "Content-Type: application/json" \
-                    -H "Content-Encoding: gzip" \
-                    --data-binary @- \
-                    "$SPLUNK_ENDPOINT_URL"
+            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult | jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' > scripts/coverage/jqresults.json
+
+            curl -q -X POST \
+                -H "Authorization: $SPLUNK_SECRET" \
+                -H "Content-Type: application/json" \
+                --data-binary @"scripts/coverage/jqresults.json" \
+                "$SPLUNK_ENDPOINT_URL"
+
+            tar -cJf "$BITRISE_DEPLOY_DIR/jqresults.json.tar.xz" scripts/coverage/jqresults.json
         is_always_run: true
     - yarn:
         title: yarn danger ci
@@ -508,22 +509,21 @@ workflows:
             yarn coverage --scheme NightlyTests
     - script:
         title: Report tests
-        run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
-        is_skippable: true
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -euo pipefail
+            set -xeuo pipefail
 
-            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult 2>/dev/null |
-                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
-                curl -q -X POST \
-                    -H "Authorization: $SPLUNK_SECRET" \
-                    -H "Content-Type: application/json" \
-                    -H "Content-Encoding: gzip" \
-                    --data-binary @- \
-                    "$SPLUNK_ENDPOINT_URL"
+            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult | jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' > scripts/coverage/jqresults.json
+
+            curl -q -X POST \
+                -H "Authorization: $SPLUNK_SECRET" \
+                -H "Content-Type: application/json" \
+                --data-binary @"scripts/coverage/jqresults.json" \
+                "$SPLUNK_ENDPOINT_URL"
+
+            tar -cJf "$BITRISE_DEPLOY_DIR/jqresults.json.tar.xz" scripts/coverage/jqresults.json
         is_always_run: true
 
   beta-tests:
