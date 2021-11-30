@@ -473,6 +473,7 @@ workflows:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - buildslugs: "${NIGHTLY_B_ROUTER_SLUG}"
+        - abort_on_fail: 'no'
     - script:
         title: Get B results
         inputs:
@@ -493,6 +494,7 @@ workflows:
 
             mv merged.xcresult ui-test-results/merged-b.xcresult
             xcrun xcresulttool merge ui-test-results/merged-{a,b}.xcresult --output-path ui-test-results/merged.xcresult
+        is_always_run: true
     - script:
         title: Report Coverage
         inputs:
@@ -523,7 +525,7 @@ workflows:
 
             tar -cJf "$BITRISE_DEPLOY_DIR/jqresults.json.tar.xz" scripts/coverage/jqresults.json
         is_always_run: true
-
+    - deploy-to-bitrise-io: {}
   beta-tests:
     steps:
     - *set-time-zone
