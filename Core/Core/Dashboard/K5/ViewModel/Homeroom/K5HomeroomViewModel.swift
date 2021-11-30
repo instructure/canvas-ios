@@ -56,7 +56,7 @@ public class K5HomeroomViewModel: ObservableObject {
             self?.objectWillChange.send()
         }
 
-        cards.exhaust()
+        cards.refresh()
         profile.refresh()
         accountAnnouncementsStore.exhaust()
         conferencesViewModel.refresh()
@@ -198,7 +198,7 @@ extension K5HomeroomViewModel: Refreshable {
         announcementsStore = nil
         missingSubmissions = nil
         dueItems = nil
-        cards.exhaust(force: true)
+        cards.refresh(force: true)
         profile.refresh(force: true)
         accountAnnouncementsStore.exhaust(force: true)
         conferencesViewModel.refresh(force: true)
