@@ -25,10 +25,11 @@ public class K5HomeroomViewModel: ObservableObject {
     @Published public private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
     @Published public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel] = []
     @Published public private(set) var conferencesViewModel = DashboardConferencesViewModel()
+    @Published public private(set) var invitationsViewModel = DashboardInvitationsViewModel()
 
     // MARK: - Private Variables -
     private let env = AppEnvironment.shared
-    private var conferencesChangeListener: AnyCancellable?
+    private var childViewModelChangeListener: AnyCancellable?
     // MARK: Data Sources
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.dashboardCardsUpdated()
@@ -47,13 +48,14 @@ public class K5HomeroomViewModel: ObservableObject {
 
     public init() {
         // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
-        conferencesChangeListener = conferencesViewModel.objectWillChange.sink { [weak self] _ in
+        childViewModelChangeListener = conferencesViewModel.objectWillChange.merge(with: invitationsViewModel.objectWillChange).sink { [weak self] _ in
             self?.objectWillChange.send()
         }
 
         cards.refresh()
         profile.refresh()
         conferencesViewModel.refresh()
+        invitationsViewModel.refresh()
     }
 
     // MARK: - Private Methods -
@@ -189,5 +191,6 @@ extension K5HomeroomViewModel: Refreshable {
         cards.refresh(force: true)
         profile.refresh(force: true)
         conferencesViewModel.refresh(force: true)
+        invitationsViewModel.refresh(force: true)
     }
 }
