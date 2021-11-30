@@ -881,6 +881,8 @@
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */; };
 		CF86C2B4267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */; };
+		CF88FCDF2756171C004F2202 /* DashboardInvitationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88FCDE2756171C004F2202 /* DashboardInvitationsViewModel.swift */; };
+		CF88FCE127562DB1004F2202 /* DashboardInvitationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88FCE027562DB1004F2202 /* DashboardInvitationsViewModelTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
 		CF8CB51326CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */; };
 		CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */; };
@@ -2120,6 +2122,8 @@
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15ListRowSeparator.swift; sourceTree = "<group>"; };
 		CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
+		CF88FCDE2756171C004F2202 /* DashboardInvitationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationsViewModel.swift; sourceTree = "<group>"; };
+		CF88FCE027562DB1004F2202 /* DashboardInvitationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationsViewModelTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
 		CF8CB51226CA7415008361E2 /* K5ScheduleWeekViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseNavigationToolsRequest.swift; sourceTree = "<group>"; };
@@ -4468,6 +4472,7 @@
 			isa = PBXGroup;
 			children = (
 				CF748D1C274D43B9000EA34E /* DashboardConferencesViewModel.swift */,
+				CF88FCDE2756171C004F2202 /* DashboardInvitationsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4476,6 +4481,7 @@
 			isa = PBXGroup;
 			children = (
 				CF748D20274D52C6000EA34E /* DashboardConferencesViewModelTests.swift */,
+				CF88FCE027562DB1004F2202 /* DashboardInvitationsViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5471,6 +5477,7 @@
 				3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */,
 				B1A6BC8C218A9843000515E3 /* APILatePolicyTests.swift in Sources */,
 				977EAC452412AA26005E1290 /* CreateTodoViewControllerTests.swift in Sources */,
+				CF88FCE127562DB1004F2202 /* DashboardInvitationsViewModelTests.swift in Sources */,
 				7D70DEA4233EB07300F5C3D4 /* NotificationCategoryTests.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupsTests.swift in Sources */,
@@ -5872,6 +5879,7 @@
 				B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */,
 				7DA25FFB23F7226E005D2121 /* DocViewerConstants.swift in Sources */,
 				7DA2600623F7227A005D2121 /* Int64Extensions.swift in Sources */,
+				CF88FCDF2756171C004F2202 /* DashboardInvitationsViewModel.swift in Sources */,
 				CF67B29226EBA12F00E51F13 /* HorizontalPagerProxy.swift in Sources */,
 				7DA25F9123F72128005D2121 /* GradeListViewController.swift in Sources */,
 				7DA260A123F7234C005D2121 /* MockMessage.swift in Sources */,
