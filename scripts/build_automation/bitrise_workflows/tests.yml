@@ -475,7 +475,6 @@ workflows:
         - buildslugs: "${NIGHTLY_B_ROUTER_SLUG}"
     - script:
         title: Get B results
-        run_if: .IsCI
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -496,8 +495,6 @@ workflows:
             xcrun xcresulttool merge ui-test-results/merged-{a,b}.xcresult --output-path ui-test-results/merged.xcresult
     - script:
         title: Report Coverage
-        run_if: .IsCI
-        is_skippable: true
         inputs:
         - content: |-
             #!/usr/bin/env bash
@@ -507,6 +504,7 @@ workflows:
             rm -rf scripts/coverage/citests.xcresult
             mv ui-test-results/merged.xcresult scripts/coverage/nightlytests.xcresult
             yarn coverage --scheme NightlyTests
+        is_always_run: true
     - script:
         title: Report tests
         inputs:
@@ -515,7 +513,7 @@ workflows:
             #!/bin/zsh
             set -xeuo pipefail
 
-            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult | jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' > scripts/coverage/jqresults.json
+            ./scripts/run-swift summarize-test-results scripts/coverage/nightlytests.xcresult | jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' > scripts/coverage/jqresults.json
 
             curl -q -X POST \
                 -H "Authorization: $SPLUNK_SECRET" \
