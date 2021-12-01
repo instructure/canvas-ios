@@ -27,10 +27,19 @@ struct SubmissionViewer: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+    @ObservedObject private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
+
+    public init(assignment: Assignment, submission: Submission, fileID: String?, studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel, handleRefresh: (() -> Void)?) {
+        self.assignment = assignment
+        self.submission = submission
+        self.fileID = fileID
+        self.studentAnnotationViewModel = studentAnnotationViewModel
+        self.handleRefresh = handleRefresh
+    }
 
     var body: some View {
         switch submission.type {
-        case .basic_lti_launch, .external_tool, .student_annotation:
+        case .basic_lti_launch, .external_tool:
             WebSession(url: submission.previewUrl) { url in
                 WebView(url: url, customUserAgentName: UserAgent.safariLTI.description).onLink(openInSafari)
             }
@@ -71,6 +80,33 @@ struct SubmissionViewer: View {
             }
         case .online_url:
             URLSubmissionViewer(submission: submission)
+        case .student_annotation:
+            switch studentAnnotationViewModel.session {
+            case .success(let session):
+                DocViewer(filename: "", previewURL: session, fallbackURL: session)
+            case .failure(let error):
+                VStack(alignment: .center, spacing: 0) {
+                    Spacer()
+                    Text("Failed to load submission data!")
+                        .font(.regular16).foregroundColor(.textDarkest)
+                    Text(error.localizedDescription)
+                        .font(.regular16).foregroundColor(.textDarkest)
+                        .padding(.bottom, 10)
+                    Button(action: studentAnnotationViewModel.retry, label: {
+                        Text("Retry", bundle: .core)
+                            .foregroundColor(Color(Brand.shared.primary))
+                    })
+                    Spacer()
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+            case nil:
+                CircleProgress()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .onAppear {
+                        studentAnnotationViewModel.viewDidAppear()
+                    }
+            }
         default:
             VStack {
                 Spacer()

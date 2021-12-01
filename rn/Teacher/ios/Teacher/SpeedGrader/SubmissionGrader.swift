@@ -33,7 +33,16 @@ struct SubmissionGrader: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
-    @State var attempt: Int?
+    @State var attempt: Int? {
+        willSet {
+            let attemptChanged = (selected.attempt != newValue)
+
+            if attemptChanged {
+                let newAttempt = attempts.first { newValue == $0.attempt } ?? submission
+                studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: newAttempt)
+            }
+        }
+    }
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
@@ -43,6 +52,7 @@ struct SubmissionGrader: View {
     @State var enteredComment: String = ""
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
+    @State private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
 
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
@@ -68,6 +78,7 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self.handleRefresh = handleRefresh
+        self.studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
     }
 
     var body: some View {
@@ -97,6 +108,7 @@ struct SubmissionGrader: View {
                                         assignment: assignment,
                                         submission: selected,
                                         fileID: fileID,
+                                        studentAnnotationViewModel: studentAnnotationViewModel,
                                         handleRefresh: handleRefresh
                                     )
                                 }
@@ -137,9 +149,9 @@ struct SubmissionGrader: View {
                                     assignment: assignment,
                                     submission: selected,
                                     fileID: fileID,
+                                    studentAnnotationViewModel: studentAnnotationViewModel,
                                     handleRefresh: handleRefresh
                                 )
-
                             }
                                 .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
                                 .accessibility(hidden: isSubmissionContentHiddenFromA11y)
@@ -201,6 +213,7 @@ struct SubmissionGrader: View {
                     }
                 }
                     .labelsHidden()
+                    .pickerStyle(WheelPickerStyle())
                 Divider()
             }
                 .background(Color.backgroundLightest)
