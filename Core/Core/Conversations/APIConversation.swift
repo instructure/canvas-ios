@@ -285,9 +285,31 @@ public struct PostConversationRequest: APIRequestable {
         public let attachment_ids: [String]?
         public let group_conversation: Bool? = true
         public let force_new: Bool? = nil // Setting this seems to cause the api to ignore group_conversation
+
+        public init(subject: String,
+                    body: String,
+                    recipients: [String],
+                    context_code: String? = nil,
+                    media_comment_id: String? = nil,
+                    media_comment_type: MediaCommentType? = nil,
+                    attachment_ids: [String]?,
+                    group_conversation: Bool? = true,
+                    force_new: Bool? = nil) {
+            self.subject = subject
+            self.body = body
+            self.recipients = recipients
+            self.context_code = context_code
+            self.media_comment_id = media_comment_id
+            self.media_comment_type = media_comment_type
+            self.attachment_ids = attachment_ids
+        }
     }
 
     public let body: Body?
     public var path = "conversations"
     public let method = APIMethod.post
+
+    public init(body: Body?) {
+        self.body = body
+    }
 }

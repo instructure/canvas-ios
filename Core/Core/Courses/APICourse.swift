@@ -25,29 +25,29 @@ public struct APICourse: Codable, Equatable {
     // let uuid: String?
     // let integration_id: String?
     // let sis_import_id: String?
-    let name: String?
-    let course_code: String?
+    public let name: String?
+    public let course_code: String?
     /** Teacher assigned course color for K5 in hex format. */
-    let course_color: String?
-    let workflow_state: CourseWorkflowState?
-    let account_id: String?
+    public let course_color: String?
+    public let workflow_state: CourseWorkflowState?
+    public let account_id: String?
     // let root_account_id: String?
     // let enrollment_term_id: String?
     // let grading_standard_id: String?
-    let start_at: Date?
-    let end_at: Date?
-    let locale: String?
-    var enrollments: [APIEnrollment]?
-    var grading_periods: [APIGradingPeriod]?
+    public let start_at: Date?
+    public let end_at: Date?
+    public let locale: String?
+    public var enrollments: [APIEnrollment]?
+    public var grading_periods: [APIGradingPeriod]?
     // let total_students: Int? // include[]=total_students
     // let calendar: ?
-    let default_view: CourseDefaultView?
-    let syllabus_body: String? // include[]=syllabus_body
+    public let default_view: CourseDefaultView?
+    public let syllabus_body: String? // include[]=syllabus_body
     // let needs_grading_count: Int? // include[]=needs_grading_count
-    let term: Term? // include[]=term
+    public let term: Term? // include[]=term
     // let course_progress: ?
     // let apply_assignment_group_weights: Bool?
-    let permissions: Permissions?
+    public let permissions: Permissions?
     // let is_public: Bool?
     // let is_public_to_auth_users: Bool?
     // let public_syllabus: Bool?
@@ -55,8 +55,8 @@ public struct APICourse: Codable, Equatable {
     // let public_description: String?
     // let storage_quota_mb: Double?
     // let storage_quota_used_mb: Double? // include[]=storage_quota_used_mb
-    let hide_final_grades: Bool?
-    let homeroom_course: Bool?
+    public let hide_final_grades: Bool?
+    public let homeroom_course: Bool?
     // let license: String?
     // let allow_student_assignment_edits: Bool?
     // let allow_wiki_comments: Bool?
@@ -65,14 +65,14 @@ public struct APICourse: Codable, Equatable {
     // let self_enrollment: Bool?
     // let restrict_enrollments_to_course_dates: Bool?
     // let course_format: String?
-    let access_restricted_by_date: Bool?
+    public let access_restricted_by_date: Bool?
     // let time_zone: TimeZone?
     // let blueprint: Bool?
     // let blueprint_restrictions: ?
     // let blueprint_restrictions_by_object_type: ?
-    let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
-    var is_favorite: Bool? // include[]=favorites
-    let sections: [SectionRef]? // include[]=sections
+    public let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
+    public var is_favorite: Bool? // include[]=favorites
+    public let sections: [SectionRef]? // include[]=sections
 
     // https://canvas.instructure.com/doc/api/courses.html#Term
     public struct Term: Codable, Equatable {
@@ -211,7 +211,7 @@ public struct GetCoursesRequest: APIRequestable {
         case available, completed, unpublished, current_and_concluded
     }
 
-    private enum Include: String, CaseIterable {
+    public enum Include: String, CaseIterable {
         case course_image
         case current_grading_period_scores
         case favorites
@@ -225,6 +225,22 @@ public struct GetCoursesRequest: APIRequestable {
         case total_scores
     }
 
+    public static let defaultIncludes: [Include] = [
+        .course_image,
+        .current_grading_period_scores,
+        .favorites,
+        .grading_periods,
+        .needs_grading_count,
+        .observed_users,
+        .sections,
+        .syllabus_body,
+        .tabs,
+        .term,
+        .total_scores,
+    ]
+
+    var includes: [Include]
+
     let enrollmentState: EnrollmentState?
     let enrollmentType: EnrollmentType?
     let state: [State]?
@@ -236,13 +252,15 @@ public struct GetCoursesRequest: APIRequestable {
         enrollmentType: EnrollmentType? = nil,
         state: [State]? = nil,
         perPage: Int = 10,
-        studentID: String? = nil
+        studentID: String? = nil,
+        includes: [Include] = defaultIncludes
     ) {
         self.enrollmentState = enrollmentState
         self.enrollmentType = enrollmentType
         self.state = state
         self.perPage = perPage
         self.studentID = studentID
+        self.includes = includes
     }
 
     public var path: String {
@@ -255,7 +273,7 @@ public struct GetCoursesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         [
-            .include(Include.allCases.map { $0.rawValue }),
+            .include(includes.map { $0.rawValue }),
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", (state ?? []).map { $0.rawValue }),
@@ -295,7 +313,7 @@ public struct GetCourseRequest: APIRequestable {
 
     var include: [Include] = defaultIncludes
 
-    init(courseID: String, include: [Include] = defaultIncludes) {
+    public init(courseID: String, include: [Include] = defaultIncludes) {
         self.courseID = courseID
         self.include = include
     }

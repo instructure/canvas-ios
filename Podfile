@@ -46,7 +46,10 @@ end
 abstract_target 'needs-pspdfkit' do
   use_frameworks!
   pspdfkit
-  target 'Core' do project 'Core/Core.xcodeproj' end
+  target 'Core' do
+    project 'Core/Core.xcodeproj'
+    pod "Fuse"
+  end
   target 'CoreTests' do project 'Core/Core.xcodeproj' end
   target 'CoreTester' do project 'Core/Core.xcodeproj' end
   target 'StudentUITests' do project 'Student/Student.xcodeproj' end
@@ -66,6 +69,7 @@ abstract_target 'defaults' do
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     firebase_pods
+    pod "Fuse"
   end
 
   target 'TeacherTests' do
@@ -76,6 +80,7 @@ abstract_target 'defaults' do
   target 'Student' do
     project 'Student/Student.xcodeproj'
     firebase_pods
+    pod "Fuse"
   end
 
   target 'StudentUnitTests' do
@@ -97,6 +102,7 @@ abstract_target 'parent_defaults' do
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
+    pod "Fuse"
   end
 
   target 'ParentUnitTests' do

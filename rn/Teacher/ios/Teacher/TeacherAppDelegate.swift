@@ -369,6 +369,9 @@ extension TeacherAppDelegate {
             }
             return true
         }
+        if let path = userActivity.userInfo?["url"] as? String, let url = URL(string: path) {
+            return openURL(url)
+        }
         return false
     }
 }
