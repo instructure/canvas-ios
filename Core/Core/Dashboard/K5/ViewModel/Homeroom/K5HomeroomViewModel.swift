@@ -103,7 +103,7 @@ public class K5HomeroomViewModel: ObservableObject {
             self.updateSubjectCardViewModels()
         }
 
-        missingSubmissions?.refresh(force: forceRefresh)
+        missingSubmissions?.exhaust(force: forceRefresh)
     }
 
     private func updateSubjectCardViewModels() {

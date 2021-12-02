@@ -73,7 +73,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     private func downloadMissingAssignments() {
         if isTodayButtonAvailable {
             let missingSubmissionsRequest = GetMissingSubmissionsRequest(includes: [.course, .planner_overrides])
-            AppEnvironment.shared.api.makeRequest(missingSubmissionsRequest) { [weak self] missingSubmissions, _, _ in
+            AppEnvironment.shared.api.exhaust(missingSubmissionsRequest) { [weak self] missingSubmissions, _, _ in
                 self?.missingSubmissions = missingSubmissions ?? []
                 self?.downloadCourses()
             }
