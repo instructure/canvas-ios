@@ -42,6 +42,11 @@ public struct TopBarView: View {
                     selectionIndicator(selectedItemBounds: boundsForSelectedItem(in: geometry, using: boundsPreferences))
                 }
             }
+            .onReceive(viewModel.$selectedItemIndex) { selectedItemIndex in
+                withAnimation {
+                    scrollViewProxy.scrollTo(selectedItemIndex, anchor: nil)
+                }
+            }
         }
     }
 
@@ -50,9 +55,6 @@ public struct TopBarView: View {
         let isLastItem = (index == viewModel.items.count - 1)
         let item = TopBarItemView(viewModel: viewModel.items[index]) {
             viewModel.selectedItemIndex = index
-            withAnimation {
-                scrollViewProxy.scrollTo(index, anchor: nil)
-            }
         }
         .anchorPreference(key: ViewBoundsPreferenceKey.self, value: .bounds, transform: { [ViewBoundsPreferenceData(viewId: index, bounds: $0)] })
         .padding(.leading, isFirstItem ? horizontalInset : (itemSpacing / 2))
@@ -88,7 +90,7 @@ struct TopBarView_Previews: PreviewProvider {
             (32, 16),
         ]
 
-        ForEach(0..<properties.count) {
+        ForEach(0..<3) {
             TopBarView(viewModel: TopBarViewModel(items: [
                 TopBarItemViewModel(icon: .addLine, label: Text(verbatim: "Add")),
                 TopBarItemViewModel(icon: .audioLine, label: Text(verbatim: "Audio")),

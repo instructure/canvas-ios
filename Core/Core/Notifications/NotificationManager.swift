@@ -85,6 +85,9 @@ extension NotificationManager {
     }
 
     public func subscribeToPushChannel(token: Data? = nil, session: LoginSession? = AppEnvironment.shared.currentSession) {
+        guard AppEnvironment.shared.currentSession?.isFakeStudent == false else {
+            return
+        }
         let newToken = token ?? remoteToken
         guard newToken != remoteToken || session != remoteSession else { return }
         unsubscribeFromPushChannel()

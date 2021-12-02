@@ -41,17 +41,19 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     private let sessionID: String
     private let fileAnnotationProvider: PDFFileAnnotationProvider
     private var uploadDidFail = false
+    private let isAnnotationEditingDisabled: Bool
 
     public init(documentProvider: PDFDocumentProvider!,
                 fileAnnotationProvider: PDFFileAnnotationProvider,
                 metadata: APIDocViewerMetadata,
                 annotations: [APIDocViewerAnnotation],
                 api: API,
-                sessionID: String) {
-
+                sessionID: String,
+                isAnnotationEditingDisabled: Bool) {
         self.api = api
         self.sessionID = sessionID
         self.fileAnnotationProvider = fileAnnotationProvider
+        self.isAnnotationEditingDisabled = isAnnotationEditingDisabled
 
         super.init(documentProvider: documentProvider)
 
@@ -60,7 +62,14 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
             apiAnnotations[apiAnnotation.id] = apiAnnotation
             if let id = apiAnnotation.inreplyto { hasReplies.insert(id) }
-            return Annotation.from(apiAnnotation, metadata: annotationsMetadata)
+
+            let pspdfAnnotation = Annotation.from(apiAnnotation, metadata: annotationsMetadata)
+
+            if isAnnotationEditingDisabled {
+                pspdfAnnotation?.flags.update(with: .readOnly)
+            }
+
+            return pspdfAnnotation
         }
         for annotation in allAnnotations {
             annotation.hasReplies = hasReplies.contains(annotation.name ?? "")
@@ -88,6 +97,11 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     public override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
         // First, fetch the annotations from the file annotation provider.
         let fileAnnotations = fileAnnotationProvider.annotationsForPage(at: pageIndex) ?? []
+        // Editing of annotations stored in the pdf file are always disabled
+        fileAnnotations.forEach {
+            $0.flags.update(with: .readOnly)
+            $0.isFileAnnotation = true
+        }
         // Then ask `super` to retrieve the custom annotations from cache.
         let docViewerAnnotations = super.annotationsForPage(at: pageIndex) ?? []
         // Merge annotations loaded from the file annotation provider with our custom ones.
@@ -176,7 +190,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         guard let apiAnnotation = annotation.apiAnnotation() else { return }
 
         if let inkAnnotation = annotation as? InkAnnotation, (inkAnnotation.lines?.count ??  0) > 120 {
-            documentProvider?.document?.undoController?.undo()
+            documentProvider?.document?.undoController.undoManager.undo()
             docViewerDelegate?.annotationDidExceedLimit(annotation: apiAnnotation)
             return
         }

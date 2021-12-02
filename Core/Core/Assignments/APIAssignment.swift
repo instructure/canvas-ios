@@ -23,6 +23,7 @@ public struct APIAssignment: Codable, Equatable {
     let allowed_attempts: Int?
     let allowed_extensions: [String]?
     let all_dates: [APIAssignmentDate]?
+    let annotatable_attachment_id: String?
     let anonymize_students: Bool?
     let anonymous_submissions: Bool?
     let assignment_group_id: ID?
@@ -47,7 +48,7 @@ public struct APIAssignment: Codable, Equatable {
     let overrides: [APIAssignmentOverride]?
     let planner_override: APIPlannerOverride?
     let points_possible: Double?
-    let position: Int
+    let position: Int?
     let published: Bool?
     let quiz_id: ID?
     var rubric: [APIRubric]?
@@ -59,6 +60,9 @@ public struct APIAssignment: Codable, Equatable {
     let unpublishable: Bool?
     let url: URL?
     let use_rubric_for_grading: Bool?
+
+    /** This also returns true if the assignment is locked by date, so there's no need to manually check the `lock_at` and `unlock_at` parameters. */
+    public var isLockedForUser: Bool { locked_for_user ?? false }
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate
@@ -101,6 +105,7 @@ extension APIAssignment {
         allowed_attempts: Int? = -1,
         allowed_extensions: [String]? = nil,
         all_dates: [APIAssignmentDate]? = nil,
+        annotatable_attachment_id: String? = nil,
         anonymize_students: Bool? = nil,
         anonymous_submissions: Bool? = nil,
         assignment_group_id: ID? = nil,
@@ -125,7 +130,7 @@ extension APIAssignment {
         overrides: [APIAssignmentOverride]? = nil,
         planner_override: APIPlannerOverride? = nil,
         points_possible: Double? = 10,
-        position: Int = 0,
+        position: Int? = 0,
         published: Bool? = true,
         quiz_id: ID? = nil,
         rubric: [APIRubric]? = nil,
@@ -151,6 +156,7 @@ extension APIAssignment {
             allowed_attempts: allowed_attempts,
             allowed_extensions: allowed_extensions,
             all_dates: all_dates,
+            annotatable_attachment_id: annotatable_attachment_id,
             anonymize_students: anonymize_students,
             anonymous_submissions: anonymous_submissions,
             assignment_group_id: assignment_group_id,

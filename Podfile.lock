@@ -121,9 +121,9 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.11)
-  - PSPDFKit (10.3.0):
-    - PSPDFKit/Core (= 10.3.0)
-  - PSPDFKit/Core (10.3.0)
+  - PSPDFKit (11.0.0):
+    - PSPDFKit/Core (= 11.0.0)
+  - PSPDFKit/Core (11.0.0)
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
     - FBLazyVector (= 0.63.2)
@@ -398,7 +398,7 @@ DEPENDENCIES:
   - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities (~> 6.0)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
-  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/10.3.0.podspec`)
+  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/11.0.0.podspec`)
   - RCTRequired (from `./rn/Teacher/node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `./rn/Teacher/node_modules/react-native/Libraries/TypeSafety`)
   - React (from `./rn/Teacher/node_modules/react-native/`)
@@ -469,7 +469,7 @@ EXTERNAL SOURCES:
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   PSPDFKit:
-    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/10.3.0.podspec
+    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/11.0.0.podspec
   RCTRequired:
     :path: "./rn/Teacher/node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -560,7 +560,7 @@ SPEC CHECKSUMS:
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
-  PSPDFKit: b0c092464944b80ea44388aed09d934741999924
+  PSPDFKit: a4c99cb9f1df46b2431dba99f40aa0ed89f9899a
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a

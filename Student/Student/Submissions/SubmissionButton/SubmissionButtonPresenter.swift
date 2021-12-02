@@ -154,18 +154,37 @@ class SubmissionButtonPresenter: NSObject {
                 userID: userID
             ), from: view, options: .modal(.formSheet, embedInNav: true))
         case .student_annotation:
-            let urlToLoad = assignment.htmlURL ?? env.currentSession?.baseURL ?? URL(string: "https://instructure.com")!
-            env.api.makeRequest(GetWebSessionRequest(to: urlToLoad)) { [weak self] response, _, _ in
-                guard let self = self else { return }
-                performUIUpdate {
-                    let web = CoreWebViewController()
-                    web.title = assignment.name
-                    web.webView.load(URLRequest(url: response?.session_url ?? urlToLoad))
-                    self.env.router.show(web, from: view, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
-                }
-            }
+            presentStudentAnnotation(assignment: assignment, view: view)
         case .none, .not_graded, .on_paper, .wiki_page:
             break
+        }
+    }
+
+    private func presentStudentAnnotation(assignment: Assignment, view: UIViewController) {
+        let courseScope = Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Course.id), assignment.courseID), order: [])
+
+        guard
+            let submissionId = assignment.submission?.id,
+            let userID = assignment.submission?.userID,
+            let course: Course = env.database.viewContext.fetch(scope: courseScope).first
+        else { return }
+
+        env.api.makeRequest(CanvaDocsSessionRequest(submissionId: submissionId)) { [weak self] response, _, _ in
+            guard let self = self, let docViewerSessionURL = response?.canvadocs_session_url else { return }
+
+            let viewModel = StudentAnnotationSubmissionViewModel(documentURL: docViewerSessionURL.rawValue,
+                                                                 courseID: assignment.courseID,
+                                                                 assignmentID: assignment.id,
+                                                                 userID: userID,
+                                                                 annotatableAttachmentID: assignment.annotatableAttachmentID,
+                                                                 assignmentName: assignment.name,
+                                                                 courseColor: course.color)
+            let submissionView = StudentAnnotationSubmissionView(viewModel: viewModel)
+
+            performUIUpdate {
+                let hostingView = CoreHostingController(submissionView)
+                self.env.router.show(hostingView, from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: false))
+            }
         }
     }
 
@@ -327,7 +346,11 @@ extension SubmissionButtonPresenter {
     }
 
     func showConfetti() {
-        guard let view = (view as? UIViewController)?.view.window else { return }
+        let viewController = (view as? UIViewController)
+        let hostViewWindow = viewController?.view.window
+        let modallyPresentedViewWindow = viewController?.presentedViewController?.view.window
+
+        guard let view = hostViewWindow ?? modallyPresentedViewWindow else { return }
         let animation = AnimationView(name: "confetti")
         view.addSubview(animation)
         animation.pin(inside: view)

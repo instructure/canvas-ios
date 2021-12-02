@@ -46,7 +46,7 @@ public class MasteryPathAssignmentSet: NSManagedObject {
     public static func save(_ item: APIMasteryPath.AssignmentSet, in context: NSManagedObjectContext) -> MasteryPathAssignmentSet {
         let model = context.insert() as MasteryPathAssignmentSet
         model.id = item.id.value
-        model.assignments = Set(item.assignments?.map { .save($0, in: context) } ?? [])
+        model.assignments = Set(item.assignment_set_associations?.map { .save($0, in: context) } ?? [])
         model.position = item.position ?? 0
         return model
     }

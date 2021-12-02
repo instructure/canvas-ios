@@ -111,7 +111,7 @@ public struct K5ScheduleSubjectView: View {
 
     @ViewBuilder
     private var subjectName: some View {
-        let text = Text(viewModel.subject.name).foregroundColor(viewModel.subject.color)
+        let text = Text(viewModel.subject.name).foregroundColor(viewModel.subject.color).multilineTextAlignment(.leading)
 
         if #available(iOS 14, *) {
             text.textCase(.uppercase)
@@ -159,7 +159,7 @@ struct K5ScheduleSubjectView_Previews: PreviewProvider {
                 K5ScheduleSubjectView(viewModel: $0)
             }
         }
-        .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+        .previewDevice(PreviewDevice(stringLiteral: "iPad (9th generation)"))
         .environment(\.containerSize, CGSize(width: 500, height: 0))
 
         VStack {

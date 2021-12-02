@@ -158,7 +158,7 @@
 "All" = "Todos";
 
 /* No comment provided by engineer. */
-"All annotations saved." = "Todas as anotações salvas.";
+"All annotations saved." = "Todas as observações salvas.";
 
 /* No comment provided by engineer. */
 "All courses" = "Todos os cursos";
@@ -233,7 +233,7 @@
 "Are you sure you would like to delete this comment?" = "Tem certeza de que deseja excluir este comentário?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this discussion?" = "Tem certeza de que deseja excluir esta discussão?";
+"Are you sure you would like to delete this discussion?" = "Tem certeza de que deseja excluir este fórum?";
 
 /* No comment provided by engineer. */
 "Assign" = "Atribuir";
@@ -683,10 +683,10 @@
 "Developer menu" = "Menu do desenvolvedor";
 
 /* No comment provided by engineer. */
-"discussion" = "discussão";
+"discussion" = "fórum";
 
 /* No comment provided by engineer. */
-"Discussion" = "Discussão";
+"Discussion" = "Fórum";
 
 /* No comment provided by engineer. */
 "Discussion Comment" = "Comentário do fórum";
@@ -695,13 +695,13 @@
 "Discussion Details" = "Detalhes do fórum";
 
 /* No comment provided by engineer. */
-"Discussion Post" = "Postagem da discussão";
+"Discussion Post" = "Postagem do fórum";
 
 /* No comment provided by engineer. */
-"Discussion Replies" = "Respostas da discussão";
+"Discussion Replies" = "Respostas do fórum";
 
 /* No comment provided by engineer. */
-"Discussions" = "Discussões";
+"Discussions" = "Fóruns";
 
 /* No comment provided by engineer. */
 "Disk Error" = "Erro do disco";
@@ -1094,7 +1094,7 @@
 "It looks like assignments haven’t been created in this space yet." = "Parece que tarefas ainda não foram criadas nesse espaço.";
 
 /* No comment provided by engineer. */
-"It looks like discussions haven’t been created in this space yet." = "Parece que as discussões ainda não foram criadas neste espaço.";
+"It looks like discussions haven’t been created in this space yet." = "Parece que os fóruns ainda não foram criados neste espaço.";
 
 /* No comment provided by engineer. */
 "It looks like quizzes haven’t been created in this space yet." = "Parece que questionários ainda não foram criados neste espaço.";
@@ -1322,7 +1322,7 @@
 "New Conferences" = "Novas Conferências";
 
 /* No comment provided by engineer. */
-"New Discussion" = "Nova fórum";
+"New Discussion" = "Novo fórum";
 
 /* No comment provided by engineer. */
 "New Message" = "Nova mensagem";
@@ -1568,7 +1568,7 @@
 "Pink" = "Rosa";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Fóruns fixadas";
+"Pinned Discussions" = "Fóruns fixados";
 
 /* No comment provided by engineer. */
 "Play" = "Reproduzir";
@@ -1709,10 +1709,10 @@
 "Reply sent" = "Resposta enviada";
 
 /* No comment provided by engineer. */
-"Reply to main discussion" = "Responder à discussão principal";
+"Reply to main discussion" = "Responder ao fórum principal";
 
 /* No comment provided by engineer. */
-"Reply to the annotation or previous comments" = "Responder a anotação ou comentários anteriores";
+"Reply to the annotation or previous comments" = "Responder a observação ou comentários anteriores";
 
 /* No comment provided by engineer. */
 "Reply to thread" = "Responder ao tópico";
@@ -1904,7 +1904,7 @@
 "Student" = "Aluno";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Anotação do aluno";
+"Student Annotation" = "Observação do aluno";
 
 /* No comment provided by engineer. */
 "Student Applications" = "Inscrições de alunos";
@@ -2042,7 +2042,7 @@
 "There was an error loading courses. Pull to refresh to try again." = "Houve um erro ao carregar cursos. Puxe para atualizar para tentar novamente.";
 
 /* No comment provided by engineer. */
-"There was an error loading discussions. Pull to refresh to try again." = "Ocorreu um erro ao carregar as discussões. Puxe para atualizar para tentar novamente.";
+"There was an error loading discussions. Pull to refresh to try again." = "Ocorreu um erro ao carregar os fóruns. Puxe para atualizar para tentar novamente.";
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Houve um erro ao carregar eventos. Puxe para atualizar para tentar novamente.";

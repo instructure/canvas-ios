@@ -91,13 +91,26 @@ class CourseListViewControllerTests: ParentTestCase {
                     ),
                 ]
             ),
+            .make(
+                id: "6", name: "Course F (graded but hidden)", course_code: "CRS-6",
+                enrollments: [
+                    .make(
+                        id: "6",
+                        course_id: "6",
+                        computed_final_score: 85,
+                        computed_final_grade: nil
+                    ),
+                ], hide_final_grades: true
+            ),
+
         ])
     }
 
     func testLayout() {
         controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
 
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 5)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 6)
 
         var index = IndexPath(row: 0, section: 0)
         var cell = controller.tableView.cellForRow(at: index) as? Parent.CourseListCell
@@ -129,9 +142,15 @@ class CourseListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.codeLabel.text, "CRS-5")
         XCTAssertEqual(cell?.gradeLabel.text, "N/A")
 
+        index = IndexPath(row: 5, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? Parent.CourseListCell
+        XCTAssertEqual(cell?.nameLabel.text, "Course F (graded but hidden)")
+        XCTAssertEqual(cell?.codeLabel.text, "CRS-6")
+        XCTAssertEqual(cell?.gradeLabel.text, "")
+
         controller.tableView.selectRow(at: index, animated: false, scrollPosition: .none)
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
-        XCTAssert(router.lastRoutedTo("/courses/5/grades"))
+        XCTAssert(router.lastRoutedTo("/courses/6/grades"))
         controller.viewWillAppear(false)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
 

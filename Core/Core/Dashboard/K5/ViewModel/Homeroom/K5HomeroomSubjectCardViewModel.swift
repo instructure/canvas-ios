@@ -52,7 +52,7 @@ extension K5HomeroomSubjectCardViewModel {
 
         public static func make(from announcement: LatestAnnouncement?, courseId: String) -> InfoLine? {
             guard let announcement = announcement else { return nil }
-            return InfoLine(icon: .announcementLine, route: "/courses/\(courseId)/announcements", text: announcement.title)
+            return InfoLine(icon: .announcementLine, route: "/courses/\(courseId)", text: announcement.title)
         }
 
         public static func make(dueToday: Int, missing: Int, courseId: String) -> InfoLine {
@@ -73,7 +73,7 @@ extension K5HomeroomSubjectCardViewModel {
                 text += " | "
             }
 
-            return InfoLine(icon: .k5dueToday, route: "/courses/\(courseId)/assignments", text: text, highlightedText: highlightedText)
+            return InfoLine(icon: .k5dueToday, route: "/courses/\(courseId)#schedule", text: text, highlightedText: highlightedText)
         }
     }
 }

@@ -164,7 +164,7 @@ public struct APIMasteryPath: Codable, Equatable {
     public struct AssignmentSet: Codable, Equatable {
         public let id: ID
         public let position: Int?
-        public let assignments: [Assignment]?
+        public let assignment_set_associations: [Assignment]?
     }
 
     public struct Assignment: Codable, Equatable {
@@ -287,7 +287,7 @@ extension APIMasteryPath.AssignmentSet {
         position: Int = 0,
         assignments: [APIMasteryPath.Assignment] = [.make()]
     ) -> Self {
-        return .init(id: id, position: position, assignments: assignments)
+        return .init(id: id, position: position, assignment_set_associations: assignments)
     }
 }
 

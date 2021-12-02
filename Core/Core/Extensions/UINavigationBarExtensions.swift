@@ -32,7 +32,7 @@ extension UINavigationBar {
         }
     }
 
-    public func useContextColor(_ color: UIColor?) {
+    public func useContextColor(_ color: UIColor?, isTranslucent: Bool = false) {
         guard let color = color else { return }
         let foreground = UIColor.white // always white, even in dark mode
         let background = color.ensureContrast(against: foreground)
@@ -40,7 +40,9 @@ extension UINavigationBar {
         tintColor = foreground
         barTintColor = background
         barStyle = .black
-        isTranslucent = false
+        self.isTranslucent = isTranslucent
+
+        applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
         updateFontAppearance()
     }
 
@@ -52,6 +54,8 @@ extension UINavigationBar {
         barTintColor = background
         barStyle = background.luminance < 0.5 ? .black : .default
         isTranslucent = false
+
+        applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
         updateFontAppearance()
     }
 
@@ -62,7 +66,26 @@ extension UINavigationBar {
         barTintColor = .backgroundLightest
         barStyle = .default
         isTranslucent = false
+
+        applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: UIColor.textDarkest)
         updateFontAppearance()
+    }
+
+    private func applyAppearanceChanges(backgroundColor: UIColor?, foreGroundColor: UIColor?) {
+        let appearance = UINavigationBarAppearance()
+        if isTranslucent == true {
+            appearance.configureWithTransparentBackground()
+        } else {
+            appearance.configureWithDefaultBackground()
+            if let backgroundColor = backgroundColor {
+                appearance.backgroundColor = backgroundColor
+            }
+        }
+        if let foreGroundColor = foreGroundColor {
+            appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
+        }
+        standardAppearance = appearance
+        scrollEdgeAppearance = standardAppearance
     }
 
     public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.k5.isK5Enabled) {

@@ -170,16 +170,17 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -euo pipefail
+            set -xeuo pipefail
 
-            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult 2>/dev/null |
-                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
-                curl -q -X POST \
-                    -H "Authorization: $SPLUNK_SECRET" \
-                    -H "Content-Type: application/json" \
-                    -H "Content-Encoding: gzip" \
-                    --data-binary @- \
-                    "$SPLUNK_ENDPOINT_URL"
+            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult | jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' > scripts/coverage/jqresults.json
+
+            curl -q -X POST \
+                -H "Authorization: $SPLUNK_SECRET" \
+                -H "Content-Type: application/json" \
+                --data-binary @"scripts/coverage/jqresults.json" \
+                "$SPLUNK_ENDPOINT_URL"
+
+            tar -cJf "$BITRISE_DEPLOY_DIR/jqresults.json.tar.xz" scripts/coverage/jqresults.json
         is_always_run: true
     - yarn:
         title: yarn danger ci
@@ -430,27 +431,6 @@ workflows:
                 echo "unknown nightly group '$NIGHTLY_GROUP'"
                 exit 1
             fi
-    - script:
-        title: Export failed tests for blame bot
-        is_always_run: true
-        is_skippable: true
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            set -euxo pipefail
-            envman add --key FINAL_FAILED_TESTS --value "$(cat ui-test-results/final-failed.txt)"
-            envman add --key BUILD_LINK --value "$BITRISE_BUILD_URL"
-    - build-router-start:
-        title: Release the blame bot
-        run_if: and (enveq "BITRISE_GIT_BRANCH" "master") (enveq "TESTS_FAILED" "yes")
-        is_always_run: true
-        is_skippable: true
-        inputs:
-        - access_token: "$BITRISE_CI_TOKEN"
-        - workflows: "${BITRISE_TRIGGERED_WORKFLOW_ID}-blame-bot"
-        - environment_key_list: |-
-            FINAL_FAILED_TESTS
-            BUILD_LINK
     - &save-xcresult
       script:
         title: Save xcresult
@@ -493,9 +473,9 @@ workflows:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - buildslugs: "${NIGHTLY_B_ROUTER_SLUG}"
+        - abort_on_fail: 'no'
     - script:
         title: Get B results
-        run_if: .IsCI
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -514,10 +494,9 @@ workflows:
 
             mv merged.xcresult ui-test-results/merged-b.xcresult
             xcrun xcresulttool merge ui-test-results/merged-{a,b}.xcresult --output-path ui-test-results/merged.xcresult
+        is_always_run: true
     - script:
         title: Report Coverage
-        run_if: .IsCI
-        is_skippable: true
         inputs:
         - content: |-
             #!/usr/bin/env bash
@@ -527,44 +506,26 @@ workflows:
             rm -rf scripts/coverage/citests.xcresult
             mv ui-test-results/merged.xcresult scripts/coverage/nightlytests.xcresult
             yarn coverage --scheme NightlyTests
+        is_always_run: true
     - script:
         title: Report tests
-        run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
-        is_skippable: true
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -euo pipefail
+            set -xeuo pipefail
 
-            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult 2>/dev/null |
-                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
-                curl -q -X POST \
-                    -H "Authorization: $SPLUNK_SECRET" \
-                    -H "Content-Type: application/json" \
-                    -H "Content-Encoding: gzip" \
-                    --data-binary @- \
-                    "$SPLUNK_ENDPOINT_URL"
+            ./scripts/run-swift summarize-test-results scripts/coverage/nightlytests.xcresult | jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' > scripts/coverage/jqresults.json
+
+            curl -q -X POST \
+                -H "Authorization: $SPLUNK_SECRET" \
+                -H "Content-Type: application/json" \
+                --data-binary @"scripts/coverage/jqresults.json" \
+                "$SPLUNK_ENDPOINT_URL"
+
+            tar -cJf "$BITRISE_DEPLOY_DIR/jqresults.json.tar.xz" scripts/coverage/jqresults.json
         is_always_run: true
-
-  nightly-b-blame-bot:
-    after_run:
-    - nightly-blame-bot
-
-  nightly-blame-bot:
-    steps:
-    - *secrets
-    - cache-pull: {}
-    - *set-mtime
-    - *install-tools
-    - *yarn-install-root
-    - *yarn-install
-    - *cocoapods
-    - script:
-        title: blame
-        inputs:
-        - content: ./scripts/nightly-blame-bot.sh --relocate-before-execute
-
+    - deploy-to-bitrise-io: {}
   beta-tests:
     steps:
     - *set-time-zone

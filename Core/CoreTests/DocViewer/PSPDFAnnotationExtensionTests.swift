@@ -108,7 +108,8 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         XCTAssertEqual(empty?.contents, "")
         XCTAssertEqual(empty?.fontName, "Helvetica")
         XCTAssertEqual(empty?.fontSize, 14 * 0.85)
-        XCTAssertEqual(empty?.fillColor, UIColor(hexString: "#ffffff"))
+        guard let fillColor = empty?.fillColor, let testColor = UIColor(hexString: "#ffffff") else { XCTFail(); return }
+        XCTAssertEqual(Double(fillColor.difference(to: testColor)), 0, accuracy: 0.000001)
     }
 
     func testPoint() {
@@ -188,5 +189,24 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
             APIDocViewerInkPoint(x: 90, y: -2, width: nil, opacity: nil),
             APIDocViewerInkPoint(x: 100, y: 0, width: nil, opacity: nil),
         ])
+    }
+
+    func testIsFileAnnotation() {
+        let testee = try! Annotation(dictionary: nil)
+        XCTAssertFalse(testee.isFileAnnotation)
+
+        testee.isFileAnnotation = true
+        XCTAssertTrue(testee.isFileAnnotation)
+
+        testee.isFileAnnotation = false
+        XCTAssertFalse(testee.isFileAnnotation)
+
+        testee.isFileAnnotation = true
+        testee.customData = nil
+        XCTAssertFalse(testee.isFileAnnotation)
+
+        testee.isFileAnnotation = true
+        testee.customData = [:]
+        XCTAssertFalse(testee.isFileAnnotation)
     }
 }

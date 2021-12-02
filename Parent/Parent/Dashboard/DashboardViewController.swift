@@ -23,6 +23,10 @@ import Core
 /// Always uses the nav bar style to update status bar, even if hidden
 class DashboardNavigationController: UINavigationController {
     override var childForStatusBarStyle: UIViewController? { nil }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        self.navigationBar.tintColor.luminance > 0.5 ? .lightContent : .default
+    }
 }
 
 class DashboardViewController: UIViewController, ErrorViewController {
