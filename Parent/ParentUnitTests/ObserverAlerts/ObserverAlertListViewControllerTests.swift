@@ -56,6 +56,16 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
                 workflow_state: .read
             ),
             .make(id: "17", workflow_state: .dismissed),
+            .make(
+                action_date: DateComponents(calendar: .current, year: 2020, month: 6, day: 5).date,
+                alert_type: .courseGradeHigh,
+                context_id: "1", html_url: URL(string: "/courses/1"),
+                id: "11", observer_alert_threshold_id: "1",
+                title: "Course grade: 95% in C1",
+                user_id: "1",
+                workflow_state: .unread,
+                locked_for_user: true
+            ),
         ])
         api.mock(controller.thresholds, value: [
             .make(id: "1", user_id: "1", alert_type: .courseGradeHigh, threshold: 90),
@@ -70,7 +80,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         controller.viewWillAppear(false)
         XCTAssertEqual(nav.navigationBar.barTintColor, ColorScheme.observee("1").color)
 
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 4)
 
         var index = IndexPath(row: 0, section: 0)
         var cell = controller.tableView.cellForRow(at: index) as? ObserverAlertListCell
@@ -105,6 +115,19 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.iconView.image, .warningLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textDanger)
 
+        index.row = 3
+        cell = controller.tableView.cellForRow(at: index) as? ObserverAlertListCell
+        XCTAssertEqual(cell?.unreadView.isHidden, false)
+        XCTAssertEqual(cell?.typeLabel.text, "Course Grade Above 90 • Locked")
+        XCTAssertEqual(cell?.titleLabel.text, "Course grade: 95% in C1")
+        XCTAssertEqual(cell?.dateLabel.text, "Jun 5, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.iconView.image, .lockLine)
+        XCTAssertEqual(cell?.iconView.tintColor, .textInfo)
+
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
+        XCTAssert(router.last is UIAlertController)
+
+        index.row = 2
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
         XCTAssert(router.lastRoutedTo("/courses/1/assignments/1"))
 
