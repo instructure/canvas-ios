@@ -28,7 +28,7 @@ public class AssignmentPickerViewModel: ObservableObject {
         willSet { courseIdWillChange(to: newValue) }
     }
 
-    private var requestTask: APITask?
+    private var requestedCourseID: String?
 
     #if DEBUG
 
@@ -58,10 +58,15 @@ public class AssignmentPickerViewModel: ObservableObject {
     }
 
     private func fetchAssignments(for courseID: String) {
-        requestTask?.cancel()
-
+        requestedCourseID = courseID
         let request = GetAssignmentsRequest(courseID: courseID, perPage: 100)
-        requestTask = AppEnvironment.shared.api.makeRequest(request) { assignments, _, error in
+
+        AppEnvironment.shared.api.exhaust(request) { assignments, _, error in
+            // If the finished request was for an older fetch we ignore its results
+            if self.requestedCourseID != courseID {
+                return
+            }
+
             let newState: ViewModelState<[Assignment]>
 
             if let assignments = assignments {
