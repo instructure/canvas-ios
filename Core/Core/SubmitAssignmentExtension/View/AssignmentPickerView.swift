@@ -68,6 +68,7 @@ public struct AssignmentPickerView: View {
                                 .font(.regular16)
                                 .foregroundColor(.textDarkest)
                                 .frame(height: 50)
+                                .multilineTextAlignment(.leading)
                             Spacer()
 
                             if viewModel.selectedAssignment == assignment {
