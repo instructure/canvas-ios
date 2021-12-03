@@ -23,6 +23,7 @@ public struct AttachmentPreviewView: View {
     private let url: URL
     private let size: CGFloat = 200
     private let videoLengthFormatter = DateComponentsFormatter()
+    private var isPDFDocument: Bool { url.pathExtension.lowercased().hasSuffix("pdf") }
 
     public init(url: URL) {
         self.url = url
@@ -31,7 +32,9 @@ public struct AttachmentPreviewView: View {
     }
 
     public var body: some View {
-        if let image = self.image {
+        if isPDFDocument {
+            pdfPreview(fileName: url.lastPathComponent)
+        } else if let image = self.image {
             imagePreview(image)
         } else if let movieData = self.movieData {
             moviePreview(movieData.frame, movieLength: movieData.movieLength)
@@ -78,7 +81,23 @@ public struct AttachmentPreviewView: View {
         }
         .frame(width: size, height: size)
         .background(Color.backgroundLight)
+    }
 
+    public func pdfPreview(fileName: String) -> some View {
+        ZStack(alignment: .bottom) {
+            Image.pdfLine
+                .resizable()
+                .foregroundColor(.textDark)
+                .opacity(0.8)
+                .padding(30)
+            Text(fileName)
+                .lineLimit(1)
+                .padding(.horizontal, 10)
+                .padding(.bottom, 10)
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
+        }
+        .frame(width: size, height: size)
     }
 
     private var image: UIImage? {
@@ -111,6 +130,13 @@ struct AttachmentPreviewView_Previews: PreviewProvider {
         view.imagePreview(image).previewLayout(.sizeThatFits)
         view.moviePreview(image, movieLength: 186).previewLayout(.sizeThatFits)
         view.noPreview.previewLayout(.sizeThatFits)
+        view.noPreview
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
+        view.pdfPreview(fileName: "verylongfilenamejusttoseeifitfits.pdf").previewLayout(.sizeThatFits)
+        view.pdfPreview(fileName: "test.pdf")
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
     }
 }
 
