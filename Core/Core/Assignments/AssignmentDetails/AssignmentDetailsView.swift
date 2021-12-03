@@ -47,7 +47,9 @@ public struct AssignmentDetailsView: View {
                     from: controller,
                     options: .modal(.formSheet, isDismissable: false, embedInNav: true)
                 ) }, label: {
-                    Text("Edit", bundle: .core).fontWeight(.regular)
+                    Text("Edit", bundle: .core)
+                        .fontWeight(.regular)
+                        .foregroundColor(.textLightest)
                 })
             })
             .onAppear {
