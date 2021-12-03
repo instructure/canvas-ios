@@ -98,6 +98,5 @@ public class AssignmentPickerViewModel: ObservableObject {
         else { return }
 
         selectedAssignment = defaultAssignment
-        AppEnvironment.shared.userDefaults?.submitAssignmentID = nil
     }
 }

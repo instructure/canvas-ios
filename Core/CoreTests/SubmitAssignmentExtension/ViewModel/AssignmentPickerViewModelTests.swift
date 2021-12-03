@@ -83,7 +83,8 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data([
             .init(id: "A2", name: "online upload"),
         ]))
-        XCTAssertNil(environment.userDefaults?.submitAssignmentID)
+        // Keep the assignment ID so if the user submits another attempt without starting the app we'll pre-select
+        XCTAssertNotNil(environment.userDefaults?.submitAssignmentID)
     }
 
     func testCourseChangeRefreshesState() {
