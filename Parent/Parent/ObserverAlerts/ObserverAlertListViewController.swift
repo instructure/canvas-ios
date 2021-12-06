@@ -119,13 +119,15 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let alert = alerts[indexPath.row] else { return }
+
+        MarkObserverAlertRead(alertID: alert.id).fetch()
+
         guard alert.lockedForUser == false else {
             showItemLockedMessage()
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
 
-        MarkObserverAlertRead(alertID: alert.id).fetch()
         if [ .courseGradeLow, .courseGradeHigh ].contains(alert.alertType) {
             env.router.route(to: "/courses/\(alert.courseID ?? alert.contextID ?? "")/grades", from: self, options: .detail)
         } else if let url = alert.htmlURL {
