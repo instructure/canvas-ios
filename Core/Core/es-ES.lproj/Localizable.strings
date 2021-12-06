@@ -116,6 +116,9 @@
 "Add Attachments" = "Añadir adjuntos";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Añadir comentario (opcional)";
+
+/* No comment provided by engineer. */
 "Add content" = "Añadir contenido";
 
 /* No comment provided by engineer. */
@@ -917,6 +920,9 @@
 "Forget %@" = "Dejar de recordar %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Formato no compatible";
+
+/* No comment provided by engineer. */
 "Front Page" = "Página de inicio";
 
 /* No comment provided by engineer. */
@@ -1397,6 +1403,9 @@
 "No Pages" = "No hay páginas";
 
 /* No comment provided by engineer. */
+"No preview available" = "Vista previa no disponible";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "No hay evaluaciones";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "No hay entregas";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "No hay archivos para entregar";
 
 /* No comment provided by engineer. */
 "None" = "Ninguno";
@@ -1575,6 +1587,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Genere otro código QR y vuelva a intentarlo.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Inicie sesión a través de la aplicación";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Espere, esta acción puede tardar algo de tiempo.";
@@ -1794,6 +1809,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Seleccionar una ruta de acceso";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Seleccionar actividad";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Seleccionar actividad";
+
+/* No comment provided by engineer. */
+"Select course" = "Seleccionar curso";
 
 /* No comment provided by engineer. */
 "Select Course" = "Seleccionar curso";
@@ -2016,6 +2040,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "La aplicación debe reiniciarse para aplicar la nueva configuración de idioma. Vuelva a ejecutar la aplicación.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "No hay actividades activas en este curso.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Todavía no hay conferencias para mostrar.";

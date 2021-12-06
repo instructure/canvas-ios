@@ -116,6 +116,9 @@
 "Add Attachments" = "Lisää liite";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Lisää kommentti (valinnainen)";
+
+/* No comment provided by engineer. */
 "Add content" = "Lisää sisältö";
 
 /* No comment provided by engineer. */
@@ -917,6 +920,9 @@
 "Forget %@" = "Unohda %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Muotoa ei tueta";
+
+/* No comment provided by engineer. */
 "Front Page" = "Etusivu";
 
 /* No comment provided by engineer. */
@@ -1397,6 +1403,9 @@
 "No Pages" = "Ei sivuja";
 
 /* No comment provided by engineer. */
+"No preview available" = "Ei esikatselua saatavilla";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Ei tietovisoja";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ei lähetystä";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Ei lähetettäviä tuettuja tiedostoja";
 
 /* No comment provided by engineer. */
 "None" = "Ei mitään";
@@ -1575,6 +1587,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Luo toinen viivakoodi ja yritä uudelleen.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Kirjaudu sisään sovelluksen kautta";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Odota, tämä voi kestää hetken.";
@@ -1794,6 +1809,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Valitse polku";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Valitse tehtävä";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Valitse tehtävä";
+
+/* No comment provided by engineer. */
+"Select course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
 "Select Course" = "Valitse kurssi";
@@ -2016,6 +2040,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Tällä kurssilla ei ole aktiivisia tehtäviä.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Näytettäviä konferensseja ei vielä ole.";
