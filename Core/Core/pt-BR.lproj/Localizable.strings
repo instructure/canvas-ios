@@ -116,6 +116,9 @@
 "Add Attachments" = "Adicionar anexos";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Adicionar comentário (opcional)";
+
+/* No comment provided by engineer. */
 "Add content" = "Adicionar conteúdo";
 
 /* No comment provided by engineer. */
@@ -917,6 +920,9 @@
 "Forget %@" = "Esquecer %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Formato não suportado";
+
+/* No comment provided by engineer. */
 "Front Page" = "Primeira página";
 
 /* No comment provided by engineer. */
@@ -1397,6 +1403,9 @@
 "No Pages" = "Sem páginas";
 
 /* No comment provided by engineer. */
+"No preview available" = "Nenhuma prévia disponível";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Sem testes";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Sem envio";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Nenhum arquivo suportado para enviar";
 
 /* No comment provided by engineer. */
 "None" = "Nenhum";
@@ -1575,6 +1587,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Gere outro código QR e tente novamente.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Por favor, faça o login através do aplicativo";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Aguarde, isso pode levar um minuto.";
@@ -1794,6 +1809,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Selecionar um caminho";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Selecionar tarefa";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Selecionar tarefa";
+
+/* No comment provided by engineer. */
+"Select course" = "Selecionar curso";
 
 /* No comment provided by engineer. */
 "Select Course" = "Selecionar curso";
@@ -2016,6 +2040,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "O aplicativo precisa ser reiniciado para usar as novas configurações de idioma. Reinicie o aplicativo.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Não há tarefas ativas neste curso.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Ainda não há conferências para mostrar.";

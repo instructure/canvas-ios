@@ -116,6 +116,9 @@
 "Add Attachments" = "Tilføj vedhæftede filer";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Tilføj kommentar (valgfrit)";
+
+/* No comment provided by engineer. */
 "Add content" = "Tilføj indhold";
 
 /* No comment provided by engineer. */
@@ -917,6 +920,9 @@
 "Forget %@" = "Glem %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Format understøttes ikke";
+
+/* No comment provided by engineer. */
 "Front Page" = "Forside";
 
 /* No comment provided by engineer. */
@@ -1397,6 +1403,9 @@
 "No Pages" = "Ingen sier";
 
 /* No comment provided by engineer. */
+"No preview available" = "Ingen forhåndsvisning til rådighed";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Ingen test";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen aflevering";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Ingen understøttede filer at indsende";
 
 /* No comment provided by engineer. */
 "None" = "Ingen";
@@ -1575,6 +1587,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Generer en anden QR-kode, og prøv igen.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Log ind via applikationen";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vent venligst, dette kan tage et minut.";
@@ -1794,6 +1809,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Vælg en sti";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Vælg opgave";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Vælg opgave";
+
+/* No comment provided by engineer. */
+"Select course" = "Vælg fag";
 
 /* No comment provided by engineer. */
 "Select Course" = "Vælg fag";
@@ -2016,6 +2040,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart venligst appen.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Der er ingen aktive opgaver for dette fag";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Der er ikke nogen konferencer at vise endnu.";
