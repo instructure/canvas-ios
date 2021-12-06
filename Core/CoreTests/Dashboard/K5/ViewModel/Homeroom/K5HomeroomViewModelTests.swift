@@ -82,6 +82,17 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(announcement.htmlContent, "message 2")
     }
 
+    // MARK: - Account Announcement Tests
+
+    func testLoadsAccountAnnouncements() {
+        api.mock(GetAccountNotificationsRequest(), value: [.make()])
+
+        let testee = K5HomeroomViewModel()
+
+        XCTAssertEqual(testee.accountAnnouncements.count, 1)
+        XCTAssertEqual(testee.accountAnnouncements.first?.message, "The financial aid office is closed on Tuesdays.")
+    }
+
     // MARK: - Subject Card Tests
 
     func testLoadsNonHomeroomCourses() {
