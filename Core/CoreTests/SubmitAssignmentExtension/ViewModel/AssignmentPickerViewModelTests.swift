@@ -25,6 +25,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         testee = AssignmentPickerViewModel()
+        environment.userDefaults?.reset()
     }
 
     func testUnknownAPIError() {
@@ -34,19 +35,19 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testAPIError() {
-        api.mock(GetAssignmentsRequest(courseID: "failingID", perPage: 100), data: nil, response: nil, error: NSError.instructureError("Custom error"))
+        api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
         testee.courseID = "failingID"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .error("Custom error"))
     }
 
     func testAssignmentFetchSuccessful() {
-        api.mock(GetAssignmentsRequest(courseID: "successID", perPage: 100), value: [
-            APIAssignment.make(id: "A1", name: "unknown submission type"),
-            APIAssignment.make(id: "A2", name: "online upload", submission_types: [.online_upload]),
-            APIAssignment.make(id: "A3", locked_for_user: true, name: "online upload, locked", submission_types: [.online_upload]),
-            APIAssignment.make(id: "A4", name: "external tool", submission_types: [.external_tool]),
-        ])
+        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
+            mockAssignment(id: "A1", name: "unknown submission type"),
+            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
+            mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
+            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool]),
+        ]))
         testee.courseID = "successID"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
@@ -55,16 +56,16 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testSameCourseIdDoesntTriggerRefresh() {
-        api.mock(GetAssignmentsRequest(courseID: "successID", perPage: 100), value: [
-            APIAssignment.make(id: "A1", name: "online upload", submission_types: [.online_upload]),
-        ])
+        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
+            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
+        ]))
         testee.courseID = "successID"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
             .init(id: "A1", name: "online upload"),
         ]))
 
-        api.mock(GetAssignmentsRequest(courseID: "failingID", perPage: 100), data: nil, response: nil, error: NSError.instructureError("Custom error"))
+        api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
         testee.courseID = "successID"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
@@ -74,30 +75,31 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testDefaultAssignmentSelection() {
         environment.userDefaults?.submitAssignmentID = "A2"
-        api.mock(GetAssignmentsRequest(courseID: "successID", perPage: 100), value: [
-            APIAssignment.make(id: "A2", name: "online upload", submission_types: [.online_upload]),
-        ])
+        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
+            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
+        ]))
         testee.courseID = "successID"
         XCTAssertEqual(testee.selectedAssignment, .init(id: "A2", name: "online upload"))
         XCTAssertEqual(testee.state, .data([
             .init(id: "A2", name: "online upload"),
         ]))
-        XCTAssertNil(environment.userDefaults?.submitAssignmentID)
+        // Keep the assignment ID so if the user submits another attempt without starting the app we'll pre-select
+        XCTAssertNotNil(environment.userDefaults?.submitAssignmentID)
     }
 
     func testCourseChangeRefreshesState() {
-        api.mock(GetAssignmentsRequest(courseID: "successID", perPage: 100), value: [
-            APIAssignment.make(id: "A1", name: "online upload", submission_types: [.online_upload]),
-        ])
+        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
+            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
+        ]))
         testee.courseID = "successID"
         XCTAssertEqual(testee.state, .data([
             .init(id: "A1", name: "online upload"),
         ]))
 
         testee.selectedAssignment = .init(id: "A1", name: "online upload")
-        api.mock(GetAssignmentsRequest(courseID: "successID2", perPage: 100), value: [
-            APIAssignment.make(id: "A2", name: "online upload", submission_types: [.online_upload]),
-        ])
+        api.mock(AssignmentPickerListRequest(courseID: "successID2"), value: mockAssignments([
+            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
+        ]))
         testee.courseID = "successID2"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
@@ -109,5 +111,13 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         let testee = AssignmentPickerViewModel(state: .loading)
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .loading)
+    }
+
+    private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
+        return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
+    }
+
+    private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = []) -> AssignmentPickerListResponse.Assignment {
+        .init(name: name, _id: id, submissionTypes: submission_types, lockInfo: .init(isLocked: isLocked))
     }
 }

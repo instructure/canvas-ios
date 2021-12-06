@@ -125,6 +125,7 @@ public struct SubmitAssignmentExtensionView: View {
                 viewModel.selectCourseButtonTitle
                     .foregroundColor(viewModel.coursePickerViewModel.selectedCourse == nil ? .textDark : .textDarkest)
                     .font(.regular16)
+                    .multilineTextAlignment(.leading)
                 Spacer()
                 disclosureIndicator
             }
@@ -146,6 +147,7 @@ public struct SubmitAssignmentExtensionView: View {
                         viewModel.selectAssignmentButtonTitle
                             .foregroundColor(viewModel.assignmentPickerViewModel.selectedAssignment == nil ? .textDark : .textDarkest)
                             .font(.regular16)
+                            .multilineTextAlignment(.leading)
                         Spacer()
                         disclosureIndicator
                     }
