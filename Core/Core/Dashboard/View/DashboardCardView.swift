@@ -142,7 +142,7 @@ public struct DashboardCardView: View {
                 let filteredCards = showOnlyTeacherEnrollment ?
                     cards.all.filter { $0.isTeacherEnrollment } :
                     cards.all
-                JustifiedGrid(itemCount: filteredCards.count, itemSize: cardSize, spacing: spacing, width: size.width) { cardIndex in
+                DashboardGrid(itemCount: filteredCards.count, itemWidth: cardSize.width, spacing: spacing, columnCount: Int(columns)) { cardIndex in
                     let card = filteredCards[cardIndex]
                     CourseCard(
                         card: card,
@@ -152,6 +152,7 @@ public struct DashboardCardView: View {
                     )
                         // outside the CourseCard, because that isn't observing colors
                         .accentColor(Color(card.color.ensureContrast(against: .white)))
+                        .frame(minHeight: 160)
                 }
             }
         case .empty:
