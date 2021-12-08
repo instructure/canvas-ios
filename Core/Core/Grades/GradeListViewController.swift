@@ -270,8 +270,10 @@ public class GradeListCell: UITableViewCell {
         }
         gradeLabel.accessibilityLabel = assignment.flatMap { GradeFormatter.a11yString(from: $0, userID: userID, style: .medium) }.flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 }
         dueLabel.text = assignment?.dueText
-        statusLabel.isHidden = assignment?.isOnline != true
         let status = submission?.status ?? .notSubmitted
+        if status != .missing, status != .late {
+            statusLabel.isHidden = assignment?.isOnline != true
+        }
         statusLabel.text = status.text
         statusLabel.textColor = status.color
     }
