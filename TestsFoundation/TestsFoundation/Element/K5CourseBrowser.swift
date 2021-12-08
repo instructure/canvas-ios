@@ -18,32 +18,35 @@
 
 import Foundation
 
-public enum K5NavigationBar: ElementWrapper {
+public enum K5CourseNavigation: ElementWrapper {
 
-    public static var homeroom: Element {
-        app.find(label: "Homeroom")
+    public static var homeTab: Element {
+        app.find(label: "Home")
     }
 
-    public static var schedule: Element {
+    public static var scheduleTab: Element {
         app.find(label: "Schedule")
     }
 
-    public static var grades: Element {
-        app.find(label: "Grades")
+    public static var modulesTab: Element {
+        app.find(label: "Modules")
     }
 
-    public static var resources: Element {
-        app.find(label: "Resources")
+    public static var gradesTab: Element {
+        app.find(label: "Grades")
     }
 }
 
-public enum K5Dashboard: ElementWrapper {
+public enum K5CourseModulesPage: ElementWrapper {
 
-    public static var accountNotification: Element {
-        app.find(id: "AccountNotification.2.toggleButton")
+    public static var emptyPage: Element {
+        app.find(label: "Your modules will appear here after they're assembled.")
     }
+}
 
-    public static var accountNotificationString: Element {
-        app.find(label: "FYI, Tap to view announcement", type: XCUIElement.ElementType.button)
+public enum K5CourseHomePage: ElementWrapper {
+
+    public static var emptyPage: Element {
+        app.find(label: "This is where you'll land when your home is complete.")
     }
 }
