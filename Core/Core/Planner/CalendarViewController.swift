@@ -33,9 +33,9 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var daysContainer: UIView!
-    let daysPageController = PagesViewController()
+    let daysPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     var days: CalendarDaysViewController! {
-        daysPageController.currentPage as? CalendarDaysViewController
+        daysPageController.viewControllers?.first as? CalendarDaysViewController
     }
     @IBOutlet weak var daysHeight: NSLayoutConstraint!
     lazy var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
@@ -106,7 +106,7 @@ class CalendarViewController: UIViewController {
         embed(daysPageController, in: daysContainer)
         daysPageController.dataSource = self
         daysPageController.delegate = self
-        daysPageController.setCurrentPage(CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate))
+        daysPageController.setViewControllers([CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate)], direction: .forward, animated: false)
 
         updateSelectedDate(selectedDate)
     }
@@ -199,8 +199,10 @@ class CalendarViewController: UIViewController {
             ? calendar.compare(date, to: days.selectedDate, toGranularity: .month) != .orderedSame
             : days.hasDate(date, isExpanded: isExpanded) == false
         let page = CalendarDaysViewController.create(selectedDate: date, delegate: delegate)
-        daysPageController.setCurrentPage(page, direction: !animated ? nil : isReverse ? .reverse : .forward)
-        updateSelectedDate(date)
+        daysPageController.setViewControllers([page], direction: isReverse ? .reverse : .forward, animated: animated) { _ in
+            self.updateCalendarHeight(viewControllers: self.daysPageController.viewControllers)
+            self.updateSelectedDate(date)
+        }
     }
 
     func animateMonthTitle(_ title: String) {
@@ -225,16 +227,17 @@ class CalendarViewController: UIViewController {
     }
 }
 
-extension CalendarViewController: PagesViewControllerDataSource, PagesViewControllerDelegate {
-    func pagesViewController(_ pages: PagesViewController, pageBefore page: UIViewController) -> UIViewController? {
-        return daysPageDelta(-1, from: (page as? CalendarDaysViewController)!)
+extension CalendarViewController: UIPageViewControllerDataSource {
+
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        daysPageDelta(-1, from: (viewController as? CalendarDaysViewController)!)
     }
 
-    func pagesViewController(_ pages: PagesViewController, pageAfter page: UIViewController) -> UIViewController? {
-        return daysPageDelta(1, from: (page as? CalendarDaysViewController)!)
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        daysPageDelta(1, from: (viewController as? CalendarDaysViewController)!)
     }
 
-    func daysPageDelta(_ delta: Int, from days: CalendarDaysViewController) -> CalendarDaysViewController {
+    private func daysPageDelta(_ delta: Int, from days: CalendarDaysViewController) -> CalendarDaysViewController {
         var selectedDate = days.selectedDate
         if isExpanded {
             let midDate = calendar.date(byAdding: .month, value: 1 * delta, to: days.midDate(isExpanded: isExpanded))!
@@ -253,17 +256,24 @@ extension CalendarViewController: PagesViewControllerDataSource, PagesViewContro
             )
         return days
     }
+}
 
-    func pagesViewController(_ pages: PagesViewController, isShowing list: [UIViewController]) {
-        guard isExpanded, let list = list as? [CalendarDaysViewController] else { return }
-        daysHeight.constant = list.reduce(days.maxHeight) { height, page in
-            max(height, page.maxHeight)
-        }
+extension CalendarViewController: UIPageViewControllerDelegate {
+
+    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        delegate?.calendarDidTransitionToDate(days.selectedDate)
+        updateCalendarHeight(viewControllers: pageViewController.viewControllers)
+    }
+
+    public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let days = pendingViewControllers.first as? CalendarDaysViewController, isExpanded else { return }
+        daysHeight.constant = max(days.maxHeight, self.days.maxHeight)
         delegate?.calendarDidResize(height: height, animated: false)
     }
 
-    func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController) {
-        delegate?.calendarDidTransitionToDate(days.selectedDate)
-        UIAccessibility.post(notification: .layoutChanged, argument: page.view)
+    private func updateCalendarHeight(viewControllers: [UIViewController]?) {
+        guard let days = viewControllers?.first as? CalendarDaysViewController, isExpanded else { return }
+        daysHeight.constant = days.maxHeight
+        delegate?.calendarDidResize(height: height, animated: false)
     }
 }

@@ -24,9 +24,9 @@ public class PlannerViewController: UIViewController {
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))
 
     lazy var calendar = CalendarViewController.create(delegate: self, selectedDate: selectedDate)
-    let listPageController = PagesViewController()
+    let listPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     var list: PlannerListViewController! {
-        listPageController.currentPage as? PlannerListViewController
+        listPageController.viewControllers?.first as? PlannerListViewController
     }
 
     let env = AppEnvironment.shared
@@ -68,11 +68,11 @@ public class PlannerViewController: UIViewController {
 
         listPageController.dataSource = self
         listPageController.delegate = self
-        listPageController.setCurrentPage(PlannerListViewController.create(
+        listPageController.setViewControllers([PlannerListViewController.create(
             start: selectedDate.startOfDay(),
             end: selectedDate.startOfDay().addDays(1),
             delegate: self
-        ))
+        )], direction: .forward, animated: false)
 
         embed(calendar, in: view) { child, container in
             child.view.pinToLeftAndRightOfSuperview()
@@ -135,7 +135,7 @@ public class PlannerViewController: UIViewController {
         )
         newList.loadViewIfNeeded()
         newList.tableView.contentInset = list.tableView.contentInset
-        listPageController.setCurrentPage(newList, direction: date < list.start ? .reverse : .forward)
+        listPageController.setViewControllers([newList], direction: date < list.start ? .reverse : .forward, animated: true)
     }
 }
 
@@ -196,16 +196,17 @@ extension PlannerViewController: PlannerListDelegate {
     }
 }
 
-extension PlannerViewController: PagesViewControllerDataSource, PagesViewControllerDelegate {
-    public func pagesViewController(_ pages: PagesViewController, pageBefore page: UIViewController) -> UIViewController? {
-        return listPageDelta(-1, from: (page as? PlannerListViewController)!)
+extension PlannerViewController: UIPageViewControllerDataSource {
+
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        listPageDelta(-1, from: (viewController as? PlannerListViewController)!)
     }
 
-    public func pagesViewController(_ pages: PagesViewController, pageAfter page: UIViewController) -> UIViewController? {
-        return listPageDelta(1, from: (page as? PlannerListViewController)!)
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        listPageDelta(1, from: (viewController as? PlannerListViewController)!)
     }
 
-    func listPageDelta(_ delta: Int, from list: PlannerListViewController) -> PlannerListViewController {
+    private func listPageDelta(_ delta: Int, from list: PlannerListViewController) -> PlannerListViewController {
         let newList = PlannerListViewController.create(
             start: list.start.addDays(delta),
             end: list.end.addDays(delta),
@@ -217,8 +218,11 @@ extension PlannerViewController: PagesViewControllerDataSource, PagesViewControl
         newList.title = DateFormatter.localizedString(from: newList.start, dateStyle: .long, timeStyle: .none)
         return newList
     }
+}
 
-    public func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController) {
+extension PlannerViewController: UIPageViewControllerDelegate {
+
+    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         selectedDate = list.start
         calendar.showDate(list.start)
     }

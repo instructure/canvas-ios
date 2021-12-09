@@ -93,7 +93,6 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
             rightPage = right
         }
         view.setNeedsLayout()
-        view.layoutIfNeeded()
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -199,6 +198,5 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         currentPage = page
         view.setNeedsLayout()
         scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: direction != nil)
-        view.layoutIfNeeded()
     }
 }
