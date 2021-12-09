@@ -127,10 +127,6 @@ class CourseListCell: UITableViewCell {
             return ""
         }
 
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return NSLocalizedString("N/A", comment: "")
-        }
-
         if course.hideTotalGrade {
             return ""
         }
@@ -144,6 +140,8 @@ class CourseListCell: UITableViewCell {
         } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
             grade = enrollment.computedFinalGrade
             score = enrollment.computedFinalScore
+        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
+            return NSLocalizedString("N/A", comment: "")
         }
 
         guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {
