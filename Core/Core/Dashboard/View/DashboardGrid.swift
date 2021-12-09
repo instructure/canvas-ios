@@ -65,7 +65,7 @@ struct DashboardGridPreviews: PreviewProvider {
         let labels = [
             "1", "2222 2 222222 222222 22 2 2 2222 22 2222 222 22222",
             "3333 3 333 33 3333333 3333", "4",
-            "5"
+            "5",
         ]
         GeometryReader { geometry in
             let spacing: CGFloat = 8

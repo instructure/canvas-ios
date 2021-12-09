@@ -135,21 +135,17 @@ public struct DashboardCardView: View {
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
-                let minCardWidth: CGFloat = 150
-                let spacing: CGFloat = 16
-                let columns = max(2, floor(size.width / minCardWidth))
-                let cardSize = CGSize(width: (size.width - ((columns-1) * spacing)) / columns, height: 160)
                 let filteredCards = showOnlyTeacherEnrollment ?
                     cards.all.filter { $0.isTeacherEnrollment } :
                     cards.all
-                DashboardGrid(itemCount: filteredCards.count, itemWidth: cardSize.width, spacing: spacing, columnCount: Int(columns)) { cardIndex in
+                let spacing: CGFloat = 16
+                let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
+                // This allows 2 columns on iPhone SE landscape
+                let columns: CGFloat = (size.width >= 635 ? 2 : 1)
+                let cardWidth: CGFloat = (size.width - ((columns - 1) * spacing)) / columns
+                DashboardGrid(itemCount: filteredCards.count, itemWidth: cardWidth, spacing: spacing, columnCount: Int(columns)) { cardIndex in
                     let card = filteredCards[cardIndex]
-                    CourseCard(
-                        card: card,
-                        hideColorOverlay: settings.first?.hideDashcardColorOverlays == true,
-                        showGrade: showGrade,
-                        width: cardSize.width
-                    )
+                    CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: cardWidth)
                         // outside the CourseCard, because that isn't observing colors
                         .accentColor(Color(card.color.ensureContrast(against: .white)))
                         .frame(minHeight: 160)
