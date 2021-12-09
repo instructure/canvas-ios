@@ -36,6 +36,29 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         XCTAssertEqual((databaseClient.fetch() as [AssignmentGroup]).count, 0)
     }
 
+    func testPredicate() {
+        var useCase = GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2")
+        let predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: "1")
+        XCTAssertEqual(useCase.scope.predicate, NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: "1"))
+        useCase = GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2", gradedOnly: true)
+        XCTAssertEqual(useCase.scope.predicate, predicate.and(NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded")))
+    }
+
+    func testScope() {
+        let useCase = GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2")
+        XCTAssertEqual(useCase.scope, Scope(
+            predicate: NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: "1"),
+            order: [
+                NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
+                NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.name), ascending: true, naturally: true),
+                NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true),
+                NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true),
+                NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, naturally: true),
+            ],
+            sectionNameKeyPath: #keyPath(Assignment.assignmentGroup.position)
+        ))
+    }
+
     func testInvalidSectionOrderException() {
         let groups: [APIAssignmentGroup] = [
             .make(id: "9732", name: "Test Assignment Group", position: 1, assignments: [APIAssignment.make(assignment_group_id: "9732", id: "63603", name: "File Upload", position: 1)]),

@@ -60,6 +60,7 @@ public class GetAssignmentsByGroup: APIUseCase {
         order: [
             NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
             NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.name), ascending: true, naturally: true),
+            NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true),
             NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true),
             NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, naturally: true),
         ],
