@@ -128,7 +128,7 @@ class CourseListCell: UITableViewCell {
         }
 
         if course.hideTotalGrade {
-            return ""
+            return course.hideFinalGrades ? "" : NSLocalizedString("N/A", comment: "")
         }
 
         var grade = enrollment.computedCurrentGrade
