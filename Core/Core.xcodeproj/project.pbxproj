@@ -819,6 +819,7 @@
 		CF12DFC826D63937000BE452 /* CompatibleNavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */; };
 		CF2091A6275A5B37003E8EA6 /* AssignmentPickerListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A5275A5B37003E8EA6 /* AssignmentPickerListRequest.swift */; };
 		CF2091A8275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A7275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift */; };
+		CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */; };
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
 		CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */; };
@@ -2062,6 +2063,7 @@
 		CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleNavBarItems.swift; sourceTree = "<group>"; };
 		CF2091A5275A5B37003E8EA6 /* AssignmentPickerListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListRequest.swift; sourceTree = "<group>"; };
 		CF2091A7275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListResponse.swift; sourceTree = "<group>"; };
+		CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGrid.swift; sourceTree = "<group>"; };
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
 		CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
@@ -4210,6 +4212,7 @@
 				7D7086862568755300647D37 /* DashboardCardView.swift */,
 				7D70868E2568D6CA00647D37 /* GroupCard.swift */,
 				7D7086922569607D00647D37 /* NotificationCard.swift */,
+				CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5863,6 +5866,7 @@
 				7D0A28DA25194CE6004FB3B6 /* Avatar.swift in Sources */,
 				7DA260D423F72359005D2121 /* DynamicButton.swift in Sources */,
 				7DA260A323F7234C005D2121 /* IPC.swift in Sources */,
+				CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */,
 				CF575E1A265E920D00F8515F /* CompatibleScrollViewReader.swift in Sources */,
 				7D06A2B32469B7D100D76267 /* DiscussionReplyViewController.swift in Sources */,
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
