@@ -129,6 +129,7 @@ open class HorizontalMenuViewController: UIViewController {
         pages.showsHorizontalScrollIndicator = false
         pages.dataSource = self
         pages.delegate = self
+        pages.allowsSelection = false
 
         // we do not want to reuse these cells
         for i in 0..<itemCount {
