@@ -116,6 +116,9 @@
 "Add Attachments" = "Lägg till bilagor";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Lägg till kommentar (valfri)";
+
+/* No comment provided by engineer. */
 "Add content" = "Lägg till innehåll";
 
 /* No comment provided by engineer. */
@@ -917,6 +920,9 @@
 "Forget %@" = "Glöm %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Formatet stöds inte";
+
+/* No comment provided by engineer. */
 "Front Page" = "Framsida";
 
 /* No comment provided by engineer. */
@@ -1397,6 +1403,9 @@
 "No Pages" = "Inga sidor";
 
 /* No comment provided by engineer. */
+"No preview available" = "Förhandsgranskning är inte tillgängligt";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Inga quiz";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen inlämning";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Det finns inga filer som stöds att lämna in";
 
 /* No comment provided by engineer. */
 "None" = "Inga";
@@ -1575,6 +1587,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Generera en annan QR-kod och försök igen.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Logga in via programmet";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vänta, detta kan ta en minut.";
@@ -1794,6 +1809,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Välj en sökväg";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Välj uppgift";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Välj uppgift";
+
+/* No comment provided by engineer. */
+"Select course" = "Välj kurs";
 
 /* No comment provided by engineer. */
 "Select Course" = "Välj kurs";
@@ -2016,6 +2040,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen måste startas om för att börja använda de nya språkinställningarna. Starta om appen.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Det finns inga aktiva uppgifter i den här kursen.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Det finns inga konferenser att visa än.";
