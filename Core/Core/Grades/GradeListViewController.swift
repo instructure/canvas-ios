@@ -119,7 +119,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         colors.refresh()
         courses.refresh()
         enrollments.refresh()
-        gradingPeriods.refresh()
+        gradingPeriods.refresh(force: true)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
