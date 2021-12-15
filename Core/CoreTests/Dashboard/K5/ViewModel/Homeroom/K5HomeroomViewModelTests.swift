@@ -96,6 +96,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
     // MARK: - Subject Card Tests
 
     func testLoadsNonHomeroomCourses() {
+        mockCourses()
         mockDashboardCards()
         mockAnnouncements(nonHomeroomTitle: "Non homeroom announcement")
         mockDueItems()
@@ -116,6 +117,23 @@ class K5HomeroomViewModelTests: CoreTestCase {
     }
 
     // MARK: - Private Helpers
+
+    private func mockCourses() {
+        let course = APICourse.make(id: "1",
+                                    name: "Homeroom",
+                                    course_code: "course_1",
+                                    enrollments: [
+                                        .make(
+                                            id: "1",
+                                            course_id: "1",
+                                            user_id: "1"
+                                        ),
+                                    ],
+                                    homeroom_course: false
+        )
+        let getCourses = GetCourses()
+        getCourses.write(response: [course], urlResponse: nil, to: databaseClient)
+    }
 
     private func mockUserProfile(name: String) {
         let mockRequest = GetUserProfileRequest(userID: "self")
