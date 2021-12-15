@@ -46,6 +46,10 @@ final class DashboardCard: NSManagedObject {
 
     var course: Course? { managedObjectContext?.first(where: #keyPath(Course.id), equals: id) }
 
+    var shouldShow: Bool {
+        return course?.enrollments?.first?.state == .active
+    }
+
     @discardableResult
     static func save(_ item: APIDashboardCard, position: Int, in context: NSManagedObjectContext) -> Self {
         let model: Self = context.first(where: #keyPath(DashboardCard.id), equals: item.id.value) ?? context.insert()

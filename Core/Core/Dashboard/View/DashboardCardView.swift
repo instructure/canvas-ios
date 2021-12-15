@@ -135,9 +135,7 @@ public struct DashboardCardView: View {
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
-                let filteredCards = showOnlyTeacherEnrollment ?
-                    cards.all.filter { $0.isTeacherEnrollment } :
-                    cards.all
+                let filteredCards = (showOnlyTeacherEnrollment ? cards.all.filter { $0.isTeacherEnrollment } : cards.all).filter { $0.shouldShow }
                 let spacing: CGFloat = 16
                 let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
                 // This allows 2 columns on iPhone SE landscape
