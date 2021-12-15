@@ -28,6 +28,7 @@ class SubmissionsE2ETests: CoreUITestCase {
         AssignmentDetails.description("This is assignment one.").waitToExist()
 
         AssignmentDetails.viewAllSubmissionsButton.tap()
+        pullToRefresh()
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Graded").tap()
         app.find(label: "Done").tap()
