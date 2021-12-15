@@ -118,7 +118,8 @@ public class K5HomeroomViewModel: ObservableObject {
 
     private func updateSubjectCardViewModels() {
         let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
-        subjectCards = nonHomeroomCards.map { card in
+        subjectCards = nonHomeroomCards.compactMap { card in
+            guard card.shouldShow else { return nil }
             let announcement = announcementsStore?.first { $0.contextCode == Core.Context(.course, id: card.id).canvasContextID }
             var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: numberOfMissingItems(for: card.id), courseId: card.id)]
 
