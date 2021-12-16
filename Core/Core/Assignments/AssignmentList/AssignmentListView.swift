@@ -54,7 +54,7 @@ public struct AssignmentListView: View {
             }.padding(16)
             List {
                 ForEach(viewModel.assignmentGroups, id: \.id) { assignmentGroup in
-                    assignmentGroupView(viewModel: assignmentGroup)
+                    AssignmentGroupView(viewModel: assignmentGroup)
                 }
             }
             .listStyle(.plain)

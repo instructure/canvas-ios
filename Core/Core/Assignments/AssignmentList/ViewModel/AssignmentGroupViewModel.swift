@@ -29,14 +29,4 @@ public class AssignmentGroupViewModel: ObservableObject {
         self.id = assignmentGroup.id
         self.assignments = assignments
     }
-
-    public func routeFor(assignment: Assignment) -> URL? {
-        return assignment.htmlURL
-        //guard let url = assignment.htmlURL else { return nil }
-
-        /*if (assignment.discussion_topic && isTeacher()) {
-          this.props.navigator.show(`/courses/${assignment.course_id}/discussion_topics/${assignment.discussion_topic.id}`)
-        } else {
-          this.props.navigator.show(assignment.html_url)*/
-    }
 }

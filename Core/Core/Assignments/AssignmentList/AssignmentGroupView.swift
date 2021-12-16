@@ -18,9 +18,7 @@
 
 import SwiftUI
 
-public struct assignmentGroupView: View {
-    @Environment(\.appEnvironment) private var env
-    @Environment(\.viewController) private var controller
+public struct AssignmentGroupView: View {
 
     @ObservedObject private var viewModel: AssignmentGroupViewModel
 
@@ -31,37 +29,9 @@ public struct assignmentGroupView: View {
     public var body: some View {
         Section(header: ListSectionHeader { Text(viewModel.name) }) {
             ForEach(viewModel.assignments, id: \.id) { assignment in
-                assignmentCell(assignment: assignment)
+                let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment)
+                AssignmentCellView(viewModel: assignmentCellViewModel)
             }
         }
-    }
-
-    private func assignmentCell(assignment: Assignment) -> some View {
-        return Button(action: {
-            if let url = viewModel.routeFor(assignment: assignment) {
-                env.router.route(to: url, from: controller)
-            }
-        }, label: {
-            HStack {
-                Image(uiImage: assignment.icon ?? .assignmentLine)
-                    .resizable()
-                    .frame(width: 16, height: 16)
-                    .foregroundColor(.ash)
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(assignment.name)
-                        .font(.semibold16).foregroundColor(.textDarkest)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(2)
-                    Text(assignment.dueText)
-                        .font(.medium14).foregroundColor(.textDark)
-                }
-                Spacer()
-                Image.arrowOpenRightLine
-                    .resizable()
-                    .frame(width: 16, height: 16)
-                    .foregroundColor(.ash)
-            }
-        })
-            .buttonStyle(PlainButtonStyle())
-    }
+    }   
 }

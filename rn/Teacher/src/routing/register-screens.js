@@ -54,7 +54,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/tabs', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/settings', CourseSettings, store)
   registerScreen('/courses/:courseID/user_preferences', UserCoursePreferences, store)
-  registerScreen('/courses/:courseID/assignments', AssignmentList, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/assignments', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/courses/:courseID/lti_collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/:context/:contextID/discussions', null, store, { canBecomeMaster: true, deepLink: true })

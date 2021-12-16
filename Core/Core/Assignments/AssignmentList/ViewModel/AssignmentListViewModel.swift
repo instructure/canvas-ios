@@ -22,7 +22,7 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var assignmentGroups: [AssignmentGroupViewModel] = []
     public private(set) var courseColor: UIColor?
     public private(set) var courseName: String?
-    public var selectedGradingPeriod: GradingPeriod? //TODO: persist 
+    public var selectedGradingPeriod: GradingPeriod? 
 
     @Environment(\.appEnvironment) private var env
     private let courseID: String
@@ -42,8 +42,8 @@ public class AssignmentListViewModel: ObservableObject {
     public init(context: Context) {
         self.courseID = context.id
         course.refresh()
-        apiAssignments.refresh()
-        gradingPeriods.refresh()
+        apiAssignments.exhaust()
+        gradingPeriods.exhaust()
     }
 
     public func gradingPeriodSelected(_ gradingPeriod: GradingPeriod?) {
@@ -52,7 +52,7 @@ public class AssignmentListViewModel: ObservableObject {
         apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
-        apiAssignments.refresh(force: true)
+        apiAssignments.exhaust(force: true)
     }
 
     private func assignmentGroupsDidUpdate() {
