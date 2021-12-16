@@ -84,6 +84,7 @@ class SubmissionTests: CoreTestCase {
             .online_quiz: .quizLine,
             .online_text_entry: .textLine,
             .online_url: .linkLine,
+            .student_annotation: .annotateLine,
         ]
         for (type, icon) in map {
             submission.type = type

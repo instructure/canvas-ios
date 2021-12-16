@@ -33,6 +33,7 @@ class K5GradesE2ETests: K5UITestCase {
         app.find(labelContaining: "AUTOMATION 101").waitToExist()
         app.find(labelContaining: "AUTOMATION 101").tap()
         app.find(label: "Auto Intro").waitToExist()
-        K5CourseGrades.gradedPointsOutOf(actual: "4", outOf: "5").waitToExist()
+        K5CourseGrades.gradedPointsMax(maxPoints: "5").waitToExist()
+        K5CourseGrades.gradedPointsActual(actualPoints: "4").waitToExist()
     }
 }

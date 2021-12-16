@@ -1,0 +1,47 @@
+{
+  "configurations" : [
+    {
+      "id" : "7C70A9DB-B4DF-4E97-831C-2ADCE7D17A85",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
+          "identifier" : "5E6441861C3EE2E0003D7397",
+          "name" : "Parent"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
+      "identifier" : "5E6441861C3EE2E0003D7397",
+      "name" : "Parent"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "PlannerTests\/testSwipes()"
+      ],
+      "target" : {
+        "containerPath" : "container:Parent.xcodeproj",
+        "identifier" : "E80763C723E08DA10085DAFB",
+        "name" : "ParentE2ETests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Parent.xcodeproj",
+        "identifier" : "E8E1BE4923C6891F000E3A76",
+        "name" : "ParentUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

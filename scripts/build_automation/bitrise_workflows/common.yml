@@ -16,21 +16,21 @@ workflows:
     - _ad-hoc-vars
     - _setup
     steps:
-    - ios-auto-provision-appstoreconnect@2.1.3:
+    - ios-auto-provision-appstoreconnect:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
         - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Student'
-    - ios-auto-provision-appstoreconnect@2.1.3:
+    - ios-auto-provision-appstoreconnect:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
         - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Teacher'
-    - ios-auto-provision-appstoreconnect@2.1.3:
+    - ios-auto-provision-appstoreconnect:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
         - api_issuer: "$APPLE_API_ISSUER"
@@ -115,6 +115,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+        - distribution_method: "app-store"
     - script:
         inputs:
         - content: |-
@@ -139,6 +140,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+        - distribution_method: "app-store"
     - script:
         inputs:
         - content: |-
@@ -163,6 +165,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+        - distribution_method: "app-store"
     - script:
         inputs:
         - content: |-
@@ -211,7 +214,7 @@ workflows:
     - cocoapods-install:
         inputs:
         - verbose: 'false'
-    - ios-auto-provision-appstoreconnect@2.1.3:
+    - ios-auto-provision-appstoreconnect:
         run_if: '{{enveq "BITRISE_SCHEME" "" | not}}'
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"

@@ -91,6 +91,16 @@ class ObserverAlertListViewController: UIViewController {
         }
         thresholds.exhaust()
     }
+
+    private func showItemLockedMessage() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("Locked", bundle: .core, comment: ""),
+            message: NSLocalizedString("The linked item is no longer available.", bundle: .core, comment: ""),
+            preferredStyle: .alert
+        )
+        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .cancel))
+        env.router.show(alert, from: self, options: .modal())
+    }
 }
 
 extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -109,7 +119,15 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let alert = alerts[indexPath.row] else { return }
+
         MarkObserverAlertRead(alertID: alert.id).fetch()
+
+        guard alert.lockedForUser == false else {
+            showItemLockedMessage()
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+
         if [ .courseGradeLow, .courseGradeHigh ].contains(alert.alertType) {
             env.router.route(to: "/courses/\(alert.courseID ?? alert.contextID ?? "")/grades", from: self, options: .detail)
         } else if let url = alert.htmlURL {
@@ -159,5 +177,23 @@ class ObserverAlertListCell: UITableViewCell {
             iconView.tintColor = .textDark
             iconView.image = .infoLine
         }
+
+        if alert?.lockedForUser == true {
+            updateTitleToLockedState()
+            iconView.image = .lockLine
+        }
+    }
+
+    private func updateTitleToLockedState() {
+        var newTypeText = typeLabel.text ?? ""
+        let lockedText = NSLocalizedString("Locked", bundle: .core, comment: "")
+
+        if newTypeText.isEmpty {
+            newTypeText = lockedText
+        } else {
+            newTypeText.append(String(format: " • %@", lockedText))
+        }
+
+        typeLabel.text = newTypeText
     }
 }

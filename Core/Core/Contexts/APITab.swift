@@ -62,14 +62,24 @@ public struct GetTabsRequest: APIRequestable {
 
     let context: Context
     let perPage: Int?
+    let include: [Include]?
 
-    public init (context: Context, perPage: Int? = 100) {
+    public init (context: Context, perPage: Int? = 100, include: [Include]? = nil) {
         self.context = context
         self.perPage = perPage
+        self.include = include
+    }
+
+    public enum Include: String {
+        case course_subject_tabs
     }
 
     public var query: [APIQueryItem] {
-        [.perPage(perPage)]
+        var query: [APIQueryItem] = [.perPage(perPage)]
+        if let include = include {
+            query.insert(.include(include.map { $0.rawValue }), at: 0)
+        }
+        return query
     }
 
     public var path: String {

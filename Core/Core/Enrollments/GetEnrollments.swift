@@ -41,7 +41,9 @@ public class GetEnrollments: CollectionUseCase {
         self.gradingPeriodID = gradingPeriodID
         request = GetEnrollmentsRequest(
             context: context,
-            userID: userID,
+            // In case of observers the existence of the userID parameter results in an API error so we fetch all enrollments and filter them with CoreData predicate.
+            // TODO: Can be removed if the API gets a fix.
+            userID: (AppEnvironment.shared.app == .parent ? nil : userID),
             gradingPeriodID: gradingPeriodID,
             types: types,
             includes: includes,

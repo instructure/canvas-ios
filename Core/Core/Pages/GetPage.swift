@@ -86,7 +86,7 @@ struct UpdatePage: UseCase {
         front_page: Bool? = nil
     ) {
         self.context = context
-        self.url = url?.removingPercentEncoding
+        self.url = url?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         self.body = PutPageRequest.Body(wiki_page: PutPageRequest.WikiPage(
             title: title, body: body, editing_roles: editing_roles, published: published, front_page: front_page
         ))

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -609,6 +609,7 @@
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="observerID" attributeType="String"/>
         <attribute name="thresholdID" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
@@ -986,7 +987,7 @@
         <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="ModuleItemSequenceNode" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
-        <element name="ObserverAlert" positionX="-540" positionY="-18" width="128" height="208"/>
+        <element name="ObserverAlert" positionX="-540" positionY="-18" width="128" height="209"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>

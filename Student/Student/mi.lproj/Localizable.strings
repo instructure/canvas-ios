@@ -1253,6 +1253,9 @@
 "Student" = "Ākonga";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Ākonga Tuhipoka";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "Kaore e mōhiotia";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Kaore I Mōhiotia Te Hapa";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Kaore he mutunga";

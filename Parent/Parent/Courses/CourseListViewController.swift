@@ -56,15 +56,16 @@ class CourseListViewController: UIViewController {
         refreshControl.color = nil
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
-
-        courses.exhaust()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
+
+        courses.exhaust()
     }
 
     func update() {
@@ -126,12 +127,8 @@ class CourseListCell: UITableViewCell {
             return ""
         }
 
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return NSLocalizedString("N/A", comment: "")
-        }
-
         if course.hideTotalGrade {
-            return ""
+            return course.hideFinalGrades ? "" : NSLocalizedString("N/A", comment: "")
         }
 
         var grade = enrollment.computedCurrentGrade
@@ -143,6 +140,8 @@ class CourseListCell: UITableViewCell {
         } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
             grade = enrollment.computedFinalGrade
             score = enrollment.computedFinalScore
+        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
+            return NSLocalizedString("N/A", comment: "")
         }
 
         guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {

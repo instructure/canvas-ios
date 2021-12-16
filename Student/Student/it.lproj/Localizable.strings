@@ -1253,6 +1253,9 @@
 "Student" = "Studente";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Annotazione studente";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "Sconosciuto";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Errore sconosciuto";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Senza limiti";

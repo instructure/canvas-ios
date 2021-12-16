@@ -33,4 +33,23 @@ class ObserverAlertTests: CoreTestCase {
         alert.workflowState = .dismissed
         XCTAssertEqual(alert.workflowState, .dismissed)
     }
+
+    func testLockedForUserDefaultValue() {
+        let alert: ObserverAlert = databaseClient.insert()
+        XCTAssertEqual(alert.lockedForUser, false)
+    }
+
+    func testLockedForUserAPIMapping() {
+        let alert: ObserverAlert = databaseClient.insert()
+        alert.id = "testId"
+
+        ObserverAlert.save(.make(id: "testId", locked_for_user: nil), in: databaseClient)
+        XCTAssertEqual(alert.lockedForUser, false)
+
+        ObserverAlert.save(.make(id: "testId", locked_for_user: false), in: databaseClient)
+        XCTAssertEqual(alert.lockedForUser, false)
+
+        ObserverAlert.save(.make(id: "testId", locked_for_user: true), in: databaseClient)
+        XCTAssertEqual(alert.lockedForUser, true)
+    }
 }

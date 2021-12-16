@@ -1,3 +1,12 @@
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "Bæta myndum og myndböndum við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum.";
+"NSCameraUsageDescription" = "Hengja við myndir og myndbönd við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Hengja við hljóðupptökur við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Hengja við myndir og myndbönd við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Hengja við myndir og myndbönd við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum.";
 

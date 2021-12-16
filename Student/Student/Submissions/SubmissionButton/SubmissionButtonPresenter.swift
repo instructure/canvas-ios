@@ -346,7 +346,11 @@ extension SubmissionButtonPresenter {
     }
 
     func showConfetti() {
-        guard let view = (view as? UIViewController)?.view.window else { return }
+        let viewController = (view as? UIViewController)
+        let hostViewWindow = viewController?.view.window
+        let modallyPresentedViewWindow = viewController?.presentedViewController?.view.window
+
+        guard let view = hostViewWindow ?? modallyPresentedViewWindow else { return }
         let animation = AnimationView(name: "confetti")
         view.addSubview(animation)
         animation.pin(inside: view)

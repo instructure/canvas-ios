@@ -26,6 +26,7 @@ struct SubmissionCommentList: View {
     @Binding var attempt: Int?
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
+    @Binding var comment: String
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -33,7 +34,6 @@ struct SubmissionCommentList: View {
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
     @ObservedObject var comments: Store<GetSubmissionComments>
 
-    @State var comment: String = ""
     @State var error: Text?
     @State var showMediaOptions = false
 
@@ -43,13 +43,15 @@ struct SubmissionCommentList: View {
         attempts: Store<LocalUseCase<Submission>>,
         attempt: Binding<Int?>,
         fileID: Binding<String?>,
-        showRecorder: Binding<MediaCommentType?>
+        showRecorder: Binding<MediaCommentType?>,
+        enteredComment: Binding<String>
     ) {
         self.assignment = assignment
         self.submission = submission
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
+        self._comment = enteredComment
         self.attempts = attempts
         comments = AppEnvironment.shared.subscribe(GetSubmissionComments(
             context: .course(assignment.courseID),

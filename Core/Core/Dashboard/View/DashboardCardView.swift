@@ -21,12 +21,11 @@ import SwiftUI
 public struct DashboardCardView: View {
     @ObservedObject var cards: Store<GetDashboardCards>
     @ObservedObject var colors: Store<GetCustomColors>
-    @ObservedObject var conferences: Store<GetLiveConferences>
-    @ObservedObject var courses: Store<GetCourses>
     @ObservedObject var groups: Store<GetDashboardGroups>
-    @ObservedObject var invitations: Store<GetCourseInvitations>
     @ObservedObject var notifications: Store<GetAccountNotifications>
     @ObservedObject var settings: Store<GetUserSettings>
+    @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
+    @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -43,10 +42,7 @@ public struct DashboardCardView: View {
         let env = AppEnvironment.shared
         cards = env.subscribe(GetDashboardCards())
         colors = env.subscribe(GetCustomColors())
-        conferences = env.subscribe(GetLiveConferences())
-        courses = env.subscribe(GetCourses(enrollmentState: nil))
         groups = env.subscribe(GetDashboardGroups())
-        invitations = env.subscribe(GetCourseInvitations())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
     }
@@ -99,20 +95,14 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder func list(_ size: CGSize) -> some View {
-        ForEach(conferences.all, id: \.id) { conference in
-            if let contextName = conference.context.contextType == .group ?
-                groups.first(where: { $0.id == conference.context.id })?.name :
-                courses.first(where: { $0.id == conference.context.id })?.name {
-                ConferenceCard(conference: conference, contextName: contextName)
-                    .padding(.top, 16)
-            }
+        ForEach(conferencesViewModel.conferences, id: \.entity.id) { conference in
+            ConferenceCard(conference: conference.entity, contextName: conference.contextName)
+                .padding(.top, 16)
         }
 
-        ForEach(invitations.all, id: \.id) { enrollment in
-            if let id = enrollment.id, let course = courses.first(where: { "course_\($0.id)" == enrollment.canvasContextID }) {
-                CourseInvitationCard(course: course, enrollment: enrollment, id: id)
-                    .padding(.top, 16)
-            }
+        ForEach(invitationsViewModel.invitations, id: \.id) { (id, course, enrollment) in
+            CourseInvitationCard(course: course, enrollment: enrollment, id: id)
+                .padding(.top, 16)
         }
 
         ForEach(notifications.all, id: \.id) { notification in
@@ -145,23 +135,18 @@ public struct DashboardCardView: View {
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
-                let minCardWidth: CGFloat = 150
+                let filteredCards = (showOnlyTeacherEnrollment ? cards.all.filter { $0.isTeacherEnrollment } : cards.all).filter { $0.shouldShow }
                 let spacing: CGFloat = 16
-                let columns = max(2, floor(size.width / minCardWidth))
-                let cardSize = CGSize(width: (size.width - ((columns-1) * spacing)) / columns, height: 160)
-                let filteredCards = showOnlyTeacherEnrollment ?
-                    cards.all.filter { $0.isTeacherEnrollment } :
-                    cards.all
-                JustifiedGrid(itemCount: filteredCards.count, itemSize: cardSize, spacing: spacing, width: size.width) { cardIndex in
+                let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
+                // This allows 2 columns on iPhone SE landscape
+                let columns: CGFloat = (size.width >= 635 ? 2 : 1)
+                let cardWidth: CGFloat = (size.width - ((columns - 1) * spacing)) / columns
+                DashboardGrid(itemCount: filteredCards.count, itemWidth: cardWidth, spacing: spacing, columnCount: Int(columns)) { cardIndex in
                     let card = filteredCards[cardIndex]
-                    CourseCard(
-                        card: card,
-                        hideColorOverlay: settings.first?.hideDashcardColorOverlays == true,
-                        showGrade: showGrade,
-                        width: cardSize.width
-                    )
+                    CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: cardWidth)
                         // outside the CourseCard, because that isn't observing colors
                         .accentColor(Color(card.color.ensureContrast(against: .white)))
+                        .frame(minHeight: 160)
                 }
             }
         case .empty:
@@ -204,9 +189,8 @@ public struct DashboardCardView: View {
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
         refreshCards(onComplete: onComplete)
         colors.refresh(force: force)
-        courses.exhaust(force: force)
-        conferences.refresh(force: force)
-        invitations.exhaust(force: force)
+        conferencesViewModel.refresh(force: force)
+        invitationsViewModel.refresh(force: force)
         groups.exhaust(force: force)
         notifications.exhaust(force: force)
         settings.refresh(force: force)

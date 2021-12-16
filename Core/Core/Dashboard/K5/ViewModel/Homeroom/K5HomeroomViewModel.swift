@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class K5HomeroomViewModel: ObservableObject {
@@ -23,15 +24,22 @@ public class K5HomeroomViewModel: ObservableObject {
     @Published public private(set) var welcomeText = ""
     @Published public private(set) var announcements: [K5HomeroomAnnouncementViewModel] = []
     @Published public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel] = []
+    @Published public private(set) var conferencesViewModel = DashboardConferencesViewModel()
+    @Published public private(set) var invitationsViewModel = DashboardInvitationsViewModel()
+    @Published public private(set) var accountAnnouncements: [AccountNotification] = []
 
     // MARK: - Private Variables -
     private let env = AppEnvironment.shared
+    private var childViewModelChangeListener: AnyCancellable?
     // MARK: Data Sources
     private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.dashboardCardsUpdated()
     }
     private lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
         self?.profileUpdated()
+    }
+    private lazy var accountAnnouncementsStore = env.subscribe(GetAccountNotifications()) { [weak self] in
+        self?.accountAnnouncementsUpdated()
     }
     private var announcementsStore: Store<GetLatestAnnouncements>?
     private var dueItems: Store<GetK5HomeroomDueItemCount>?
@@ -43,8 +51,16 @@ public class K5HomeroomViewModel: ObservableObject {
     // MARK: - Public Interface -
 
     public init() {
+        // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
+        childViewModelChangeListener = conferencesViewModel.objectWillChange.merge(with: invitationsViewModel.objectWillChange).sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+
         cards.refresh()
         profile.refresh()
+        accountAnnouncementsStore.exhaust()
+        conferencesViewModel.refresh()
+        invitationsViewModel.refresh()
     }
 
     // MARK: - Private Methods -
@@ -67,6 +83,11 @@ public class K5HomeroomViewModel: ObservableObject {
         guard cards.requested, !cards.pending else { return }
         requestAnnouncements()
         requestItemsDueToday()
+    }
+
+    private func accountAnnouncementsUpdated() {
+        guard accountAnnouncementsStore.requested, !accountAnnouncementsStore.pending else { return }
+        accountAnnouncements = accountAnnouncementsStore.all
     }
 
     // MARK: Subject Cards
@@ -92,12 +113,13 @@ public class K5HomeroomViewModel: ObservableObject {
             self.updateSubjectCardViewModels()
         }
 
-        missingSubmissions?.refresh(force: forceRefresh)
+        missingSubmissions?.exhaust(force: forceRefresh)
     }
 
     private func updateSubjectCardViewModels() {
         let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
-        subjectCards = nonHomeroomCards.map { card in
+        subjectCards = nonHomeroomCards.compactMap { card in
+            guard card.shouldShow else { return nil }
             let announcement = announcementsStore?.first { $0.contextCode == Core.Context(.course, id: card.id).canvasContextID }
             var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: numberOfMissingItems(for: card.id), courseId: card.id)]
 
@@ -179,5 +201,8 @@ extension K5HomeroomViewModel: Refreshable {
         dueItems = nil
         cards.refresh(force: true)
         profile.refresh(force: true)
+        accountAnnouncementsStore.exhaust(force: true)
+        conferencesViewModel.refresh(force: true)
+        invitationsViewModel.refresh(force: true)
     }
 }

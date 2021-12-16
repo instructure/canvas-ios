@@ -107,6 +107,8 @@
 		C9A3C0412698391000DAE8E1 /* FilesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C0402698391000DAE8E1 /* FilesE2ETests.swift */; };
 		C9FDE91E26BBBE5500DF0106 /* AnnouncementsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDE91D26BBBE5500DF0106 /* AnnouncementsE2ETests.swift */; };
 		CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */; };
+		CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */; };
+		CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */; };
 		D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
@@ -329,6 +331,11 @@
 		5B2C672D24308583001B37CE /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-HK"; path = "zh-HK.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		5B2D24D224CD62F900958682 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B2D24D324CD62F900958682 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B2F6D5E272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B2F6D5F272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B2F6D60272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "es-ES"; path = "es-ES.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5B2F6D61272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B2F6D62272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B32899E2430858500CC2D57 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = zh; path = zh.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5B32BDD024CD62FB000E56D9 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B32BDD124CD62FB000E56D9 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -536,6 +543,8 @@
 		C9A3C0402698391000DAE8E1 /* FilesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesE2ETests.swift; sourceTree = "<group>"; };
 		C9FDE91D26BBBE5500DF0106 /* AnnouncementsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsE2ETests.swift; sourceTree = "<group>"; };
 		CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderTests.swift; sourceTree = "<group>"; };
+		CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModel.swift; sourceTree = "<group>"; };
+		CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModelTests.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D082A88269C8C11CA67734AC /* Pods-needs-pspdfkit-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
@@ -723,6 +732,7 @@
 				7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */,
 				7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */,
 				7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */,
+				CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */,
 				7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */,
 			);
 			path = SpeedGrader;
@@ -731,9 +741,10 @@
 		7D3DC0C4252432B000B0EBC1 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
-				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
-				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
 				EB71A24D261206CA0003241C /* GradeSliderTests.swift */,
+				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
+				CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */,
+				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -1176,6 +1187,7 @@
 				th,
 				"zh-Hans",
 				"zh-Hant",
+				"es-ES",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1608,6 +1620,7 @@
 				7D0A28E2251A8284004FB3B6 /* SubmissionHeader.swift in Sources */,
 				7DCA321A25423CDF00458651 /* SpeedGraderViewController.swift in Sources */,
 				7D742F452556566F00FD6CF1 /* CommentEditor.swift in Sources */,
+				CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
 				7D4B2748253F2D1600A98DE3 /* SubmissionCommentListCell.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
@@ -1655,6 +1668,7 @@
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
+				CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */,
 				7DE062A625126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift in Sources */,
 				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
@@ -1771,6 +1785,7 @@
 				5BD3D0852689AC98003D70B4 /* th */,
 				5BB1D928271D543E006DDCB6 /* zh-Hans */,
 				5BB644AD271D543F008A900D /* zh-Hant */,
+				5B2F6D5E272FC9A500BEF272 /* es-ES */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1848,6 +1863,7 @@
 				5BD3D0882689AC98003D70B4 /* th */,
 				5BB1D929271D543E006DDCB6 /* zh-Hans */,
 				5BB644AE271D543F008A900D /* zh-Hant */,
+				5B2F6D5F272FC9A500BEF272 /* es-ES */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1891,6 +1907,7 @@
 				5B3BD225271D5421002AE2A9 /* en-GB-instukhe */,
 				5BB1D92B271D543E006DDCB6 /* zh-Hans */,
 				5BB644B0271D543F008A900D /* zh-Hant */,
+				5B2F6D61272FC9A500BEF272 /* es-ES */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1934,6 +1951,7 @@
 				5B3BD226271D5421002AE2A9 /* en-GB-instukhe */,
 				5BB1D92C271D543E006DDCB6 /* zh-Hans */,
 				5BB644B1271D543F008A900D /* zh-Hant */,
+				5B2F6D62272FC9A500BEF272 /* es-ES */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1978,6 +1996,7 @@
 				5B3BD224271D5421002AE2A9 /* en-GB-instukhe */,
 				5BB1D92A271D543E006DDCB6 /* zh-Hans */,
 				5BB644AF271D543F008A900D /* zh-Hant */,
+				5B2F6D60272FC9A500BEF272 /* es-ES */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";

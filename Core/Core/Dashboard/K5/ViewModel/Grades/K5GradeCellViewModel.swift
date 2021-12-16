@@ -49,7 +49,7 @@ public struct K5GradeCellViewModel {
     }
 
     public var route: String {
-        "/courses/\(courseID)/grades/"
+        "/courses/\(courseID)#grades"
     }
 }
 

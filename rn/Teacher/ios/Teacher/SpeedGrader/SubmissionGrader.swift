@@ -20,6 +20,10 @@ import SwiftUI
 import Core
 
 struct SubmissionGrader: View {
+    private enum Layout {
+        case portrait
+        case landscape // only on iPads no matter the iPhone screen size
+    }
     let index: Int
     private let assignment: Assignment
     private let submission: Submission
@@ -29,12 +33,26 @@ struct SubmissionGrader: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
-    @State var attempt: Int?
+    @State var attempt: Int? {
+        willSet {
+            let attemptChanged = (selected.attempt != newValue)
+
+            if attemptChanged {
+                let newAttempt = attempts.first { newValue == $0.attempt } ?? submission
+                studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: newAttempt)
+            }
+        }
+    }
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
     @State var tab: GraderTab = .grades
     @State var showRecorder: MediaCommentType?
+    /** This is mainly used by `SubmissionCommentList` but since it's re-created on rotation and app backgrounding the entered text is lost. */
+    @State var enteredComment: String = ""
+    /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
+    @State private var lastPresentedLayout: Layout = .portrait
+    @State private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
 
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
@@ -60,6 +78,7 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self.handleRefresh = handleRefresh
+        self.studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
     }
 
     var body: some View {
@@ -71,7 +90,9 @@ struct SubmissionGrader: View {
             let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
             let scale = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 1, toMax: 0.9)
             let cornerRadius = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 0, toMax: 20)
-            if geometry.size.width > 834 {
+
+            switch layoutForWidth(geometry.size.width) {
+            case .landscape:
                 VStack(spacing: 0) {
                     SubmissionHeader(assignment: assignment, submission: submission)
                         .accessibility(sortPriority: 2)
@@ -87,6 +108,7 @@ struct SubmissionGrader: View {
                                         assignment: assignment,
                                         submission: selected,
                                         fileID: fileID,
+                                        studentAnnotationViewModel: studentAnnotationViewModel,
                                         handleRefresh: handleRefresh
                                     )
                                 }
@@ -111,7 +133,8 @@ struct SubmissionGrader: View {
                     .cornerRadius(cornerRadius)
                     .scaleEffect(scale)
                     .edgesIgnoringSafeArea(.bottom)
-            } else {
+                    .onAppear { didChangeLayout(to: .landscape) }
+            case .portrait:
                 ZStack(alignment: .bottom) {
                     VStack(alignment: .leading, spacing: 0) {
                         SubmissionHeader(assignment: assignment, submission: submission)
@@ -126,9 +149,9 @@ struct SubmissionGrader: View {
                                     assignment: assignment,
                                     submission: selected,
                                     fileID: fileID,
+                                    studentAnnotationViewModel: studentAnnotationViewModel,
                                     handleRefresh: handleRefresh
                                 )
-
                             }
                                 .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
                                 .accessibility(hidden: isSubmissionContentHiddenFromA11y)
@@ -144,6 +167,7 @@ struct SubmissionGrader: View {
                     .cornerRadius(cornerRadius)
                     .scaleEffect(scale)
                     .edgesIgnoringSafeArea(.bottom)
+                    .onAppear { didChangeLayout(to: .portrait) }
             }
         }
             .avoidKeyboardArea(force: true)
@@ -189,6 +213,7 @@ struct SubmissionGrader: View {
                     }
                 }
                     .labelsHidden()
+                    .pickerStyle(WheelPickerStyle())
                 Divider()
             }
                 .background(Color.backgroundLightest)
@@ -249,7 +274,8 @@ struct SubmissionGrader: View {
                         attempts: attempts,
                         attempt: drawerAttempt,
                         fileID: drawerFileID,
-                        showRecorder: $showRecorder
+                        showRecorder: $showRecorder,
+                        enteredComment: $enteredComment
                     )
                         .clipped()
                     if showRecorder != .video || drawerState == .min {
@@ -291,6 +317,24 @@ struct SubmissionGrader: View {
         } else {
             return isTabSelected
         }
+    }
+
+    private func layoutForWidth(_ width: CGFloat) -> Layout {
+        // On iPads if the app is backgrounded then it changes the device orientation back and forth causing the UI to re-render and the submission to re-load.
+        // To overcome this we force the last presented layout in case the app is in the background.
+        guard UIApplication.shared.applicationState != .background else {
+            return lastPresentedLayout
+        }
+        return width > 834 ? .landscape : .portrait
+    }
+
+    private func didChangeLayout(to layout: Layout) {
+        if lastPresentedLayout != layout {
+            // When the layout changes the keyboard disappears without any system notifications
+            // on iPads so we simulate one to allow .avoidKeyboardArea() to work correctly.
+            NotificationCenter.default.post(name: UIApplication.keyboardWillHideNotification, object: nil, userInfo: [:])
+        }
+        lastPresentedLayout = layout
     }
 }
 
