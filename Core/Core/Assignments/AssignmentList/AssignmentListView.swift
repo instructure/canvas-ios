@@ -33,7 +33,7 @@ public struct AssignmentListView: View {
                 if let gradingPeriodTitle = viewModel.selectedGradingPeriod?.title {
                     Text(gradingPeriodTitle).font(.bold20)
                 } else {
-                    Text("All").font(.bold20)
+                    Text("All", bundle: .core).font(.bold20)
                 }
                 Spacer(minLength: 8)
                 if (viewModel.selectedGradingPeriod == nil) {
@@ -58,8 +58,6 @@ public struct AssignmentListView: View {
                 }
             }
             .listStyle(.plain)
-            .buttonStyle(.borderless)
-            .padding(.top, 1)
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarStyle(.color(viewModel.courseColor))

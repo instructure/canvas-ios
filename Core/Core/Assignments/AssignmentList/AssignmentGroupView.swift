@@ -43,7 +43,7 @@ public struct assignmentGroupView: View {
             }
         }, label: {
             HStack {
-                Image.assignmentLine
+                Image(uiImage: assignment.icon ?? .assignmentLine)
                     .resizable()
                     .frame(width: 16, height: 16)
                     .foregroundColor(.ash)
