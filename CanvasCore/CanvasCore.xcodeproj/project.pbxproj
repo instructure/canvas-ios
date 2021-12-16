@@ -105,6 +105,7 @@
 		5BAAF8AB24308633005A9D81 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BDF109421BCFCB700664A58 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BE703DD2689AD34009CC235 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5BFDE318272FCA570013C5E3 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCrashlytics.h; sourceTree = "<group>"; };
 		78C610CC21CA022400913B93 /* CanvasCrashlytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasCrashlytics.m; sourceTree = "<group>"; };
 		7D0215A221BAE703009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -405,6 +406,7 @@
 				th,
 				"zh-Hans",
 				"zh-Hant",
+				"es-ES",
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
 			packageReferences = (
@@ -574,6 +576,7 @@
 				5BE703DD2689AD34009CC235 /* th */,
 				5B32B5D0271D54AD00EE82D7 /* zh-Hans */,
 				5B40ED7A271D54AE0058D1F1 /* zh-Hant */,
+				5BFDE318272FCA570013C5E3 /* es-ES */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
