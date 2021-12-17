@@ -36,8 +36,7 @@ public struct AssignmentCellView: View {
             }
         }, label: {
             HStack {
-                Image(uiImage: viewModel.icon)
-                    .resizable()
+                AccessIcon(image: viewModel.icon, published: viewModel.published)
                     .frame(width: 16, height: 16)
                     .foregroundColor(Color(viewModel.courseColor ?? .ash))
                 VStack(alignment: .leading, spacing: 6) {
@@ -47,6 +46,14 @@ public struct AssignmentCellView: View {
                         .lineLimit(2)
                     Text(viewModel.dueText)
                         .font(.medium14).foregroundColor(.textDark)
+                    if let needsGradingText = viewModel.needsGradingText {
+                        Text(needsGradingText)
+                            .font(.medium10)
+                            .foregroundColor(.borderInfo)
+                            .padding(.horizontal, 6).padding(.vertical, 2)
+                            .background(RoundedRectangle(cornerRadius: 9).stroke(Color.borderInfo, lineWidth: 1))
+                            .padding(.top, 4)
+                    }
                 }
                 Spacer()
                 Image.arrowOpenRightLine

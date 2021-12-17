@@ -38,11 +38,7 @@ public class AssignmentCellViewModel: ObservableObject {
     }
 
     public var icon: UIImage {
-        let icon = assignment.icon ?? .assignmentLine
-        return icon
-        if isTeacher {
-            icon
-        }
+        assignment.icon ?? .assignmentLine
     }
 
     public var name: String {
@@ -51,6 +47,14 @@ public class AssignmentCellViewModel: ObservableObject {
 
     public var dueText: String {
         assignment.dueText
+    }
+
+    public var published: Bool {
+        assignment.published
+    }
+
+    public var needsGradingText: String? {
+        return "1 NEEDS GRADING"
     }
 }
 
