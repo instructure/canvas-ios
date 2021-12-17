@@ -39,7 +39,7 @@ public struct AssignmentCellView: View {
                 Image(uiImage: viewModel.icon)
                     .resizable()
                     .frame(width: 16, height: 16)
-                    .foregroundColor(.ash)
+                    .foregroundColor(Color(viewModel.courseColor ?? .ash))
                 VStack(alignment: .leading, spacing: 6) {
                     Text(viewModel.name)
                         .font(.semibold16).foregroundColor(.textDarkest)

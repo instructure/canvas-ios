@@ -20,10 +20,13 @@ import Foundation
 
 public class AssignmentCellViewModel: ObservableObject {
     public private (set) var assignment: Assignment
+    public private(set) var courseColor: UIColor?
+
     private var isTeacher: Bool = true
 
-    public init(assignment: Assignment) {
+    public init(assignment: Assignment, courseColor: UIColor?) {
         self.assignment = assignment
+        self.courseColor = courseColor
     }
 
     public var route: URL? {
@@ -36,6 +39,7 @@ public class AssignmentCellViewModel: ObservableObject {
 
     public var icon: UIImage {
         let icon = assignment.icon ?? .assignmentLine
+        return icon
         if isTeacher {
             icon
         }

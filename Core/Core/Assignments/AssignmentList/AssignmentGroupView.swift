@@ -29,7 +29,7 @@ public struct AssignmentGroupView: View {
     public var body: some View {
         Section(header: ListSectionHeader { Text(viewModel.name) }) {
             ForEach(viewModel.assignments, id: \.id) { assignment in
-                let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment)
+                let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
                 AssignmentCellView(viewModel: assignmentCellViewModel)
             }
         }

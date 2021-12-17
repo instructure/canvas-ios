@@ -60,7 +60,7 @@ public class AssignmentListViewModel: ObservableObject {
         for section in 0..<(apiAssignments.sections?.count ?? 0) {
             if let group = apiAssignments[IndexPath(row: 0, section: section)]?.assignmentGroup {
                 let assignments: [Assignment] = apiAssignments.filter {$0.assignmentGroup == group}
-                assignmentGroups.append(AssignmentGroupViewModel(assignmentGroup: group, assignments: assignments))
+                assignmentGroups.append(AssignmentGroupViewModel(assignmentGroup: group, assignments: assignments, courseColor: courseColor))
             }
         }
     }

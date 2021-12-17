@@ -23,10 +23,12 @@ public class AssignmentGroupViewModel: ObservableObject {
     public private (set) var assignments: [Assignment] = []
     public private (set) var name: String
     public private (set) var id: String
+    public private(set) var courseColor: UIColor?
 
-    public init(assignmentGroup: AssignmentGroup, assignments: [Assignment]) {
+    public init(assignmentGroup: AssignmentGroup, assignments: [Assignment], courseColor: UIColor?) {
         self.name = assignmentGroup.name
         self.id = assignmentGroup.id
         self.assignments = assignments
+        self.courseColor = courseColor
     }
 }
