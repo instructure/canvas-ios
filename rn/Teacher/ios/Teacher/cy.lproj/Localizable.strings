@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Wedi methu llwytho adnodd galw cofrestr LTI.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Wedi methu llwytho data cyflwyno!";
+
+/* No comment provided by engineer. */
 "Files" = "Ffeiliau";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Ailosod";
 
 /* No comment provided by engineer. */
+"Retry" = "Ailgynnig";
+
+/* No comment provided by engineer. */
 "Rubric" = "Cyfarwyddyd sgorio";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Gwall Anhysbys";
 
 /* No comment provided by engineer. */
 "Unmark" = "Dad-farcio";

@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Preverjanja prisotnosti orodja LTI ni bilo mogoče zagnati.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Nalaganje podatkov o oddaji ni uspelo!";
+
+/* No comment provided by engineer. */
 "Files" = "Datoteke";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Obnovi";
 
 /* No comment provided by engineer. */
+"Retry" = "Ponovno poskusi";
+
+/* No comment provided by engineer. */
 "Rubric" = "Ocenjevalni vodnik";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Čakajoča opravila";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Neznana napaka";
 
 /* No comment provided by engineer. */
 "Unmark" = "Razveljavi oznako";
