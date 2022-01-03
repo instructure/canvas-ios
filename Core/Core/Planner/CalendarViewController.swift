@@ -200,8 +200,11 @@ class CalendarViewController: UIViewController {
             : days.hasDate(date, isExpanded: isExpanded) == false
         let page = CalendarDaysViewController.create(selectedDate: date, delegate: delegate)
         daysPageController.setViewControllers([page], direction: isReverse ? .reverse : .forward, animated: animated) { _ in
-            self.updateCalendarHeight(viewControllers: self.daysPageController.viewControllers)
-            self.updateSelectedDate(date)
+            // Without dispatch async UIPageViewController raises an exception
+            DispatchQueue.main.async {
+                self.updateCalendarHeight(viewControllers: self.daysPageController.viewControllers)
+                self.updateSelectedDate(date)
+            }
         }
     }
 
