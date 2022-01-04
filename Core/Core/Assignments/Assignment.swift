@@ -96,8 +96,6 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
-    public var quiz: Quiz? { managedObjectContext?.first(where: #keyPath(Quiz.id), equals: quizID) }
-
     public var allowedExtensions: [String] {
         get { return allowedExtensionsRaw.split(separator: ",").map { String($0) } }
         set { allowedExtensionsRaw = newValue.joined(separator: ",") }
@@ -181,10 +179,6 @@ extension Assignment {
 
         if anonymousSubmissions == true {
             anonymizeStudents = true
-        }
-
-        if let quiz = quiz {
-            lockedForUser = quiz.lockedForUser
         }
 
         if let topic = item.discussion_topic {
@@ -284,9 +278,6 @@ extension Assignment {
     }
 
     public func isOpenForSubmissions(referenceDate: Date = Clock.now) -> Bool {
-        if quizID != nil, lockedForUser == false, hasAttemptsLeft == true {
-            return true
-        }
         var open = !lockedForUser
         if let lockAt = lockAt {
             open = open && lockAt > referenceDate

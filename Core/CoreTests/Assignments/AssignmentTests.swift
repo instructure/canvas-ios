@@ -295,7 +295,7 @@ class AssignmentTests: CoreTestCase {
 
     func testIsOpenForSubmissions() {
         let df = ISO8601DateFormatter()
-        let a = Assignment.make(from: .make())
+        let a = Assignment.make(from: .make(lock_at: nil, unlock_at: nil))
         let now = df.date(from: "2018-10-01T06:00:00Z")!
         Clock.mockNow(now)
 
@@ -327,13 +327,6 @@ class AssignmentTests: CoreTestCase {
         a.unlockAt = df.date(from: "2018-10-01T05:00:00Z")
         a.lockAt   = df.date(from: "2018-10-01T06:01:00Z")
         XCTAssertTrue(a.isOpenForSubmissions())
-
-        let b = Assignment.make(from: .make(allowed_attempts: 3, quiz_id: "1234"))
-        b.submission = Submission.make()
-        b.submission?.attempt = 2
-        b.unlockAt = df.date(from: "1971-01-01T00:00:00Z")
-        b.lockAt = df.date(from: "1971-01-02T00:00:00Z")
-        XCTAssertTrue(b.isOpenForSubmissions())
     }
 
     func testAllDates() {
