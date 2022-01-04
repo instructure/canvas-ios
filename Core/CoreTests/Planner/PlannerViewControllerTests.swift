@@ -43,15 +43,18 @@ class PlannerViewControllerTests: CoreTestCase {
 
         let selected = DateComponents(calendar: .current, year: 2020, month: 2, day: 22).date!
         controller.calendar.delegate?.calendarDidSelectDate(selected)
+        drainMainQueue()
         XCTAssertEqual(controller.calendar.selectedDate, selected)
         XCTAssertEqual(controller.list.start, selected)
         XCTAssertEqual(controller.list.end, selected.addDays(1))
         controller.calendar.delegate?.calendarDidTransitionToDate(selected.addMonths(1))
+        drainMainQueue()
         let transitionTo = selected.addMonths(1)
         XCTAssertEqual(controller.list.start, transitionTo)
         XCTAssertEqual(controller.list.end, transitionTo.addDays(1))
         XCTAssertEqual(controller.calendar.selectedDate, transitionTo)
         controller.calendar.delegate?.calendarDidSelectDate(Clock.now)
+        drainMainQueue()
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now)
 
         // hide first calendar
@@ -115,23 +118,30 @@ class PlannerViewControllerTests: CoreTestCase {
         let list = controller.list!
         let dataSource = controller.listPageController.dataSource
         let delegate = controller.listPageController.delegate
-        let prev = dataSource?.pagesViewController(controller.listPageController, pageBefore: list) as? PlannerListViewController
+        let prev = dataSource?.pageViewController(controller.listPageController, viewControllerBefore: list) as? PlannerListViewController
         XCTAssertEqual(prev?.start, DateComponents(calendar: .current, year: 2020, month: 2, day: 13).date)
         XCTAssertEqual(prev?.end, DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date)
-        delegate?.pagesViewController?(controller.listPageController, isShowing: [ prev!, list ])
-        controller.listPageController.setCurrentPage(prev!)
-        delegate?.pagesViewController?(controller.listPageController, didTransitionTo: prev!)
+
+        delegate?.pageViewController?(controller.listPageController, willTransitionTo: [prev!, list])
+        controller.listPageController.setViewControllers([prev!], direction: .forward, animated: false)
+        delegate?.pageViewController?(controller.listPageController, didFinishAnimating: true, previousViewControllers: [list], transitionCompleted: true)
+        drainMainQueue()
+
         XCTAssertEqual(controller.calendar.selectedDate, prev?.start)
 
-        let next = dataSource?.pagesViewController(controller.listPageController, pageAfter: list) as? PlannerListViewController
+        let next = dataSource?.pageViewController(controller.listPageController, viewControllerAfter: list) as? PlannerListViewController
         XCTAssertEqual(next?.start, DateComponents(calendar: .current, year: 2020, month: 2, day: 15).date)
         XCTAssertEqual(next?.end, DateComponents(calendar: .current, year: 2020, month: 2, day: 16).date)
-        delegate?.pagesViewController?(controller.listPageController, isShowing: [ list, next! ])
-        controller.listPageController.setCurrentPage(next!)
-        delegate?.pagesViewController?(controller.listPageController, didTransitionTo: next!)
+
+        delegate?.pageViewController?(controller.listPageController, willTransitionTo: [list, next!])
+        controller.listPageController.setViewControllers([next!], direction: .forward, animated: false)
+        delegate?.pageViewController?(controller.listPageController, didFinishAnimating: true, previousViewControllers: [next!], transitionCompleted: true)
+        drainMainQueue()
+
         XCTAssertEqual(controller.calendar.selectedDate, next?.start)
 
         _ = controller.todayButton.target?.perform(controller.todayButton.action)
+        drainMainQueue()
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now.startOfDay())
         XCTAssertEqual(controller.list.start, Clock.now.startOfDay())
     }
