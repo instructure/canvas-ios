@@ -6766,7 +6766,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E14A7FC270275DE4A9E9263F /* Pods-needs-pspdfkit-CoreTester.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CoreTester/CoreTester.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -6774,7 +6773,6 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -6786,7 +6784,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39A8F03DC3D40D1ABAE8985A /* Pods-needs-pspdfkit-CoreTester.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CoreTester/CoreTester.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -6794,7 +6791,6 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
