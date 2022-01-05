@@ -68,11 +68,11 @@ public class PlannerViewController: UIViewController {
 
         listPageController.dataSource = self
         listPageController.delegate = self
-        listPageController.setViewControllers([PlannerListViewController.create(
-            start: selectedDate.startOfDay(),
-            end: selectedDate.startOfDay().addDays(1),
-            delegate: self
-        )], direction: .forward, animated: false)
+        listPageController.setViewControllers(
+            [PlannerListViewController.create(start: selectedDate.startOfDay(), end: selectedDate.startOfDay().addDays(1), delegate: self)],
+            direction: .forward,
+            animated: false
+        )
 
         embed(calendar, in: view) { child, container in
             child.view.pinToLeftAndRightOfSuperview()
