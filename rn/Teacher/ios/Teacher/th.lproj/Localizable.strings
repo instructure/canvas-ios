@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "ไม่สามารถเรียกใช้ LTI การขานชื่อ";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "ไม่สามารถโหลดข้อมูลผลงานจัดส่งได้!";
+
+/* No comment provided by engineer. */
 "Files" = "ไฟล์";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "รีเซ็ต";
 
 /* No comment provided by engineer. */
+"Retry" = "ลองใหม่";
+
+/* No comment provided by engineer. */
 "Rubric" = "เกณฑ์การให้คะแนน";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "สิ่งที่ต้องดำเนินการ";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "ข้อผิดพลาดที่ไม่รู้จัก";
 
 /* No comment provided by engineer. */
 "Unmark" = "เลิกกำกับ";

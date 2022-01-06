@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "啟動點名 LTI 工具失敗。";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "無法載入提交項目資料！";
+
+/* No comment provided by engineer. */
 "Files" = "檔案";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "重設";
 
 /* No comment provided by engineer. */
+"Retry" = "重試";
+
+/* No comment provided by engineer. */
 "Rubric" = "評分標準";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "待辦";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知問題";
 
 /* No comment provided by engineer. */
 "Unmark" = "取消標記";
