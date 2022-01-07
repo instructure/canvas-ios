@@ -66,8 +66,10 @@ public class PlannerViewController: UIViewController {
             listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         }
 
-        listPageController.dataSource = self
-        listPageController.delegate = self
+        // Commenting these lines out prevents users from manually scrolling the todo list
+        // which causes crashes if both the calendar and this todo list are scrolled simultaneously
+//        listPageController.dataSource = self
+//        listPageController.delegate = self
         listPageController.setViewControllers(
             [PlannerListViewController.create(start: selectedDate.startOfDay(), end: selectedDate.startOfDay().addDays(1), delegate: self)],
             direction: .forward,
