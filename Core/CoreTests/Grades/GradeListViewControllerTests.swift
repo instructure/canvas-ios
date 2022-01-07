@@ -210,6 +210,33 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
     }
 
+    func testShowFinalGradeLetter() {
+        api.mock(controller.courses, value: .make(enrollments: [ .make(
+            id: nil,
+            course_id: "1",
+            enrollment_state: .active,
+            user_id: currentSession.userID,
+            current_grading_period_id: "1"
+        ), ]))
+        api.mock(GetEnrollments(
+            context: .course("1"),
+            userID: currentSession.userID,
+            gradingPeriodID: "1",
+            types: [ "StudentEnrollment" ],
+            states: [ .active ]
+        ), value: [ .make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: self.currentSession.userID,
+            computed_final_grade: "C",
+            current_period_computed_current_score: 42
+        ), ])
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.totalGradeLabel.text, "42% (C)")
+    }
+
     func testPaginatedRefresh() {
         controller.view.layoutIfNeeded()
         api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "1"), value: [ groups[0] ], response: HTTPURLResponse(next: "/courses/1/assignment_groups?page=2"))
