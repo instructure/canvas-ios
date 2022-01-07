@@ -1262,8 +1262,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1377,8 +1377,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-TeacherE2ETests/Pods-needs-pspdfkit-TeacherE2ETests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1432,11 +1432,18 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-segmented-control/react_native_segmented_control.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1475,6 +1482,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_segmented_control.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1546,11 +1560,18 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-segmented-control/react_native_segmented_control.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1589,6 +1610,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_segmented_control.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
