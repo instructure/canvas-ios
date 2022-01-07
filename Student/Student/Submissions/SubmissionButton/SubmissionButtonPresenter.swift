@@ -70,9 +70,15 @@ class SubmissionButtonPresenter: NSObject {
             return nil
         }
 
+        let isQuizUnlocked = (
+            quiz?.id != nil &&
+            quiz?.lockedForUser == false &&
+            assignment.hasAttemptsLeft
+        )
+
         let canSubmit = (
             assignment.canMakeSubmissions &&
-            assignment.isOpenForSubmissions() &&
+            (assignment.isOpenForSubmissions() || isQuizUnlocked) &&
             assignment.hasAttemptsLeft &&
             course.hasStudentEnrollment &&
             onlineUpload == nil

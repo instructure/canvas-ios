@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "No s'ha pogut iniciar l'eina LTI de passar llista.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "No s'han pogut carregar les dades de l’entrega";
+
+/* No comment provided by engineer. */
 "Files" = "Fitxers";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Restableix";
 
 /* No comment provided by engineer. */
+"Retry" = "Torna-ho a provar";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rúbrica";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Tasques pendents";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Error desconegut";
 
 /* No comment provided by engineer. */
 "Unmark" = "Desmarca";

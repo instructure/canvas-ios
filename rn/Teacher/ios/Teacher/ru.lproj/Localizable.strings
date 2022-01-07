@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Не удалось запустить инструмент переклички LTI.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Не удалось загрузить данные отправки!";
+
+/* No comment provided by engineer. */
 "Files" = "Файлы";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Восстановить";
 
 /* No comment provided by engineer. */
+"Retry" = "Повторить";
+
+/* No comment provided by engineer. */
 "Rubric" = "Рубрика";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Для выполнения";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Неизвестная ошибка";
 
 /* No comment provided by engineer. */
 "Unmark" = "Снять выделение";

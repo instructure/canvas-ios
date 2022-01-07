@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Lykkes ikke å opprette LTI-verktøyet opprop.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Kunne ikke laste inn innleveringsdata!";
+
+/* No comment provided by engineer. */
 "Files" = "Filer";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Tilbakestill";
 
 /* No comment provided by engineer. */
+"Retry" = "Prøv igjen";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubrikk";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Gjøremål";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Ukjent feil";
 
 /* No comment provided by engineer. */
 "Unmark" = "Fjern merking";

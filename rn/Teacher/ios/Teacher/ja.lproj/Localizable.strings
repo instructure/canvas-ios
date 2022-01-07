@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "LTI ツールを起動できませんでした。";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "提出データ読み込みに失敗しました！";
+
+/* No comment provided by engineer. */
 "Files" = "ファイル";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "リセット";
 
 /* No comment provided by engineer. */
+"Retry" = "再試行";
+
+/* No comment provided by engineer. */
 "Rubric" = "ルービック";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "するべきこと";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知のエラー";
 
 /* No comment provided by engineer. */
 "Unmark" = "マークを外す";

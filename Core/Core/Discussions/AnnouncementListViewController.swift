@@ -91,6 +91,7 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
     }
 
     @objc func refresh() {
+        selectedFirstTopic = false
         colors.refresh(force: true)
         course?.refresh(force: true)
         group?.refresh(force: true)
