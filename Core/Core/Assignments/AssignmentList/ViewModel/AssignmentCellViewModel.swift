@@ -54,7 +54,16 @@ public class AssignmentCellViewModel: ObservableObject {
     }
 
     public var needsGradingText: String? {
-        return "1 NEEDS GRADING"
+        guard assignment.needsGradingCount > 0, assignment.gradingType != .not_graded else {
+            return nil
+        }
+        var text = ""
+        if assignment.needsGradingCount == 1 {
+            text = "1 needs grading"
+        } else {
+            text = "\(assignment.needsGradingCount) need grading"
+        }
+        return text.uppercased()
     }
 }
 
