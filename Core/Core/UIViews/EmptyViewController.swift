@@ -20,6 +20,7 @@ import UIKit
 
 public class EmptyViewController: UIViewController {
     let logoImageView = UIImageView(image: .instructureLine)
+    public var navBarStyle: UINavigationBar.Style = .global
 
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,6 @@ public class EmptyViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useGlobalNavStyle()
+        navigationController?.navigationBar.useStyle(navBarStyle)
     }
 }

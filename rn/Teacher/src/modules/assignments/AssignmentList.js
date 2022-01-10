@@ -69,7 +69,6 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   state: State
   isRegularScreenDisplayMode: boolean
   data: any = []
-  didSelectFirstItem = false
 
   static defaultProps = {
     ListRow: AssignmentListRowView,
@@ -105,10 +104,6 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     if (index >= 0) this.updateFilter(index)
   }
 
-  UNSAFE_componentWillMount () {
-    this.onTraitCollectionChange()
-  }
-
   UNSAFE_componentWillReceiveProps (nextProps: AssignmentListProps) {
     if (nextProps.assignmentGroups.length && nextProps.gradingPeriods.length) {
       NativeAccessibility.refresh()
@@ -124,34 +119,6 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     if (this.props.showTotalScore && currentScore > 90) {
       NativeModules.AppStoreReview.handleSuccessfulSubmit()
     }
-  }
-
-  onTraitCollectionChange () {
-    this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
-  }
-
-  traitCollectionDidChange (traits: TraitCollection) {
-    this.isRegularScreenDisplayMode = isRegularDisplayMode(traits)
-    if (!this.isRegularScreenDisplayMode) {
-      this.didSelectFirstItem = false
-    }
-    this.selectFirstListItemIfNecessary()
-  }
-
-  selectFirstListItemIfNecessary () {
-    let assignment = null
-    const isModal = this.props.navigator.isModal
-    if (!this.props.doNotSelectFirstItem && !this.didSelectFirstItem && this.isRegularScreenDisplayMode && !isModal && (assignment = this.firstAssignmentInList())) {
-      this.selectedAssignment(assignment)
-      this.didSelectFirstItem = true
-    }
-  }
-
-  firstAssignmentInList (): ?Assignment {
-    if (this.data.length > 0 && this.data[0].assignments.length > 0) {
-      return this.data[0].assignments.sort((a, b) => a.position - b.position)[0]
-    }
-    return null
   }
 
   prepareListData () {
@@ -267,7 +234,6 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     }
     if (this.data.length === 0) {
       this.data = this.prepareListData()
-      this.selectFirstListItemIfNecessary()
     } else {
       this.data = this.prepareListData()
     }
@@ -279,7 +245,6 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     return (
       <Screen
         title={this.props.screenTitle}
-        onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         subtitle={this.props.courseName}
         navBarColor={this.props.courseColor}
         navBarStyle='context'
