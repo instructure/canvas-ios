@@ -28,8 +28,10 @@ public class K5SubjectViewModel: ObservableObject {
     @Published private(set) var courseColor: UIColor?
     @Published private(set) var currentPageURL: URL?
     @Published private(set) var courseImageUrl: URL?
+    public var reloadWebView: AnyPublisher<Void, Never> { reloadWebViewTrigger.eraseToAnyPublisher() }
 
     private let context: Context
+    private let reloadWebViewTrigger = PassthroughSubject<Void, Never>()
     private let selectedTabId: String?
 
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
@@ -41,6 +43,7 @@ public class K5SubjectViewModel: ObservableObject {
     }
 
     private var topBarChangeListener: AnyCancellable?
+    private var moduleItemNotificationListener: NSObjectProtocol?
 
     /**
      - parameters:
@@ -49,8 +52,15 @@ public class K5SubjectViewModel: ObservableObject {
     init(context: Context, selectedTabId: String? = nil) {
         self.context = context
         self.selectedTabId = selectedTabId
+        reloadWebViewOnModuleItemProgressNotification()
         course.refresh()
         tabs.refresh()
+    }
+
+    private func reloadWebViewOnModuleItemProgressNotification() {
+        moduleItemNotificationListener = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [weak self] _ in
+            self?.reloadWebViewTrigger.send()
+        }
     }
 
     private func tabsUpdated() {
