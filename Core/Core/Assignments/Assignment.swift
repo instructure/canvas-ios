@@ -127,6 +127,10 @@ public class Assignment: NSManagedObject {
         set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 
+    public var hasMultipleDueDates: Bool {
+        allDates.count > 1
+    }
+
     @objc public var assignmentGroupSectionName: String? {
         guard let assignmentGroup = assignmentGroup else { return nil }
         return assignmentGroup.name

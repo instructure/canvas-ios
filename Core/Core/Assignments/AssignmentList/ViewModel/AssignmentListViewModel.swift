@@ -41,9 +41,6 @@ public class AssignmentListViewModel: ObservableObject {
 
     public init(context: Context) {
         self.courseID = context.id
-        course.refresh()
-        apiAssignments.exhaust()
-        gradingPeriods.exhaust()
     }
 
     public func gradingPeriodSelected(_ gradingPeriod: GradingPeriod?) {
@@ -53,6 +50,12 @@ public class AssignmentListViewModel: ObservableObject {
             self?.assignmentGroupsDidUpdate()
         }
         apiAssignments.exhaust(force: true)
+    }
+
+    public func viewDidAppear() {
+        course.refresh()
+        apiAssignments.exhaust()
+        gradingPeriods.exhaust()
     }
 
     private func assignmentGroupsDidUpdate() {
@@ -72,7 +75,19 @@ public class AssignmentListViewModel: ObservableObject {
 
     private func gradingPeriodsDidUpdate() {
         if gradingPeriods.pending == false && gradingPeriods.requested {
-            selectedGradingPeriod = gradingPeriods.all.current
+            //TODO: send "ready"
+        }
+    }
+}
+
+extension AssignmentListViewModel: Refreshable {
+
+    public func refresh(completion: @escaping () -> Void) {
+        apiAssignments.exhaust(force: true) { [weak self] _ in
+            if self?.apiAssignments.hasNextPage == false {
+                completion()
+            }
+            return true
         }
     }
 }

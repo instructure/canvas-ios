@@ -62,6 +62,9 @@ public struct AssignmentListView: View {
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarStyle(.color(viewModel.courseColor))
         .navigationTitle(NSLocalizedString("Assignments", comment: ""), subtitle: viewModel.courseName)
+        .onAppear {
+            viewModel.viewDidAppear()
+        }
     }
 
     private var gradingPeriodButtons: [ActionSheet.Button] {

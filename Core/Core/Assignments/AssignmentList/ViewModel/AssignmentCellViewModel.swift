@@ -16,13 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
 public class AssignmentCellViewModel: ObservableObject {
+    @Environment(\.appEnvironment) private var env
+
     public private (set) var assignment: Assignment
     public private(set) var courseColor: UIColor?
-
-    private var isTeacher: Bool = true
 
     public init(assignment: Assignment, courseColor: UIColor?) {
         self.assignment = assignment
@@ -45,12 +45,9 @@ public class AssignmentCellViewModel: ObservableObject {
         assignment.name
     }
 
-    public var dueText: String {
-        assignment.dueText
-    }
-
-    public var published: Bool {
-        assignment.published
+    public var published: Bool? {
+        guard isTeacher else { return nil }
+        return assignment.published
     }
 
     public var needsGradingText: String? {
@@ -59,11 +56,33 @@ public class AssignmentCellViewModel: ObservableObject {
         }
         var text = ""
         if assignment.needsGradingCount == 1 {
-            text = "1 needs grading"
+            text = NSLocalizedString("1 needs grading", bundle: .core, comment: "")
         } else {
-            text = "\(assignment.needsGradingCount) need grading"
+            let format = NSLocalizedString("%d need grading", bundle: .core, comment: "i.e. 5 need grading")
+            text = String.localizedStringWithFormat(format, assignment.needsGradingCount)
         }
         return text.uppercased()
+    }
+
+    public var formattedDueDate: String {
+        if let lockAt = assignment.lockAt, Clock.now > lockAt {
+            return NSLocalizedString("Availability: Closed", bundle: .core, comment: "")
+        }
+
+        if assignment.hasMultipleDueDates {
+            return NSLocalizedString("Multiple Due Dates", comment: "")
+        }
+
+        if let dueAt = assignment.dueAt {
+            let format = NSLocalizedString("Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
+            return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
+        }
+
+        return NSLocalizedString("No Due Date", bundle: .core, comment: "")
+    }
+
+    private var isTeacher: Bool {
+        env.app == .teacher
     }
 }
 

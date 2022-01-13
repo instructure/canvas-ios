@@ -44,7 +44,7 @@ public struct AssignmentCellView: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(2)
-                    Text(viewModel.dueText)
+                    Text(viewModel.formattedDueDate)
                         .font(.medium14).foregroundColor(.textDark)
                     if let needsGradingText = viewModel.needsGradingText {
                         Text(needsGradingText)
