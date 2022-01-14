@@ -21,29 +21,21 @@ import SwiftUI
 
 public class K5SubjectViewModel: ObservableObject {
 
-    @Environment(\.appEnvironment) private var env
-
-    @Published private(set) var topBarViewModel: TopBarViewModel?
-    @Published private(set) var courseTitle: String?
-    @Published private(set) var courseColor: UIColor?
-    @Published private(set) var currentPageURL: URL?
-    @Published private(set) var courseImageUrl: URL?
+    @Published public private(set) var topBarViewModel: TopBarViewModel?
+    @Published public private(set) var courseTitle: String?
+    @Published public private(set) var courseColor: UIColor?
+    @Published public private(set) var currentPageURL: URL?
+    @Published public private(set) var courseImageUrl: URL?
     public var reloadWebView: AnyPublisher<Void, Never> { reloadWebViewTrigger.eraseToAnyPublisher() }
 
+    @Environment(\.appEnvironment) private var env
     private let context: Context
     private let reloadWebViewTrigger = PassthroughSubject<Void, Never>()
     private let selectedTabId: String?
-
-    private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
-        self?.tabsUpdated()
-    }
-
-    private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
-        self?.courseUpdated()
-    }
-
-    private var topBarChangeListener: AnyCancellable?
+    private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in self?.tabsUpdated() }
+    private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in self?.courseUpdated() }
     private var moduleItemNotificationListener: NSObjectProtocol?
+    private var subscriptions = Set<AnyCancellable>()
 
     /**
      - parameters:
@@ -75,13 +67,35 @@ public class K5SubjectViewModel: ObservableObject {
             tabItems.append(resurceTabItem)
         }
         topBarViewModel = TopBarViewModel(items: tabItems)
-        // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
-        topBarChangeListener = topBarViewModel?.objectWillChange.sink { [weak self] _ in
-            self?.objectWillChange.send()
-        }
+        topBarViewModel!.selectedItemIndexPublisher
+            .sink { [weak self] _ in self?.tabChanged() }
+            .store(in: &subscriptions)
 
         if let selectedTabId = selectedTabId, let selectedTabIndex = tabItems.firstIndex(where: { $0.id == selectedTabId }) {
             topBarViewModel?.selectedItemIndex = selectedTabIndex
+        }
+    }
+
+    private var masqueradedSessionRequest: APITask?
+
+    private func tabChanged() {
+        guard let topBarViewModel = topBarViewModel else { return }
+        let url = pageUrl(for: topBarViewModel.selectedItemId)
+
+        if env.currentSession?.actAsUserID != nil, let url = url {
+            startMasqueradedSession(for: url)
+        } else {
+            currentPageURL = url
+        }
+    }
+
+    private func startMasqueradedSession(for url: URL) {
+        masqueradedSessionRequest?.cancel()
+        masqueradedSessionRequest = env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
+            performUIUpdate {
+                self?.currentPageURL = response?.session_url ?? url
+                self?.masqueradedSessionRequest = nil
+            }
         }
     }
 
@@ -91,17 +105,17 @@ public class K5SubjectViewModel: ObservableObject {
         courseColor = course.color
         courseImageUrl = course.imageDownloadURL
     }
-}
 
-extension K5SubjectViewModel {
-
-    func pageUrl(for itemId: String?) -> URL? {
+    private func pageUrl(for itemId: String?) -> URL? {
         let path = context.pathComponent
         var urlComposition = URLComponents(string: env.api.baseURL.absoluteString + "/\(path)")
         urlComposition?.queryItems = [URLQueryItem(name: "embed", value: "true")]
         urlComposition?.fragment = itemId
         return urlComposition?.url
     }
+}
+
+extension K5SubjectViewModel {
 
     func tabIconImage(for tabId: String) -> Image? {
         switch tabId {

@@ -168,6 +168,12 @@ extension APIRequestable {
         if let actAsUserID = actAsUserID {
             queryItems.append(URLQueryItem(name: "as_user_id", value: actAsUserID))
         }
+
+        if let returnToUrlQueryIndex = queryItems.firstIndex(where: { $0.name == "return_to" }) {
+            let returnToQueryItem = queryItems.remove(at: returnToUrlQueryIndex)
+            queryItems.append(returnToQueryItem)
+        }
+
         if !queryItems.isEmpty {
             components.queryItems = (components.queryItems ?? []) + queryItems
         }
