@@ -26,15 +26,17 @@ public class K5SubjectViewModel: ObservableObject {
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var currentPageURL: URL?
     @Published public private(set) var courseImageUrl: URL?
-    public var reloadWebView: AnyPublisher<Void, Never> { reloadWebViewTrigger.eraseToAnyPublisher() }
+    public var reloadWebView: AnyPublisher<Void, Never> {
+        NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted, object: nil)
+            .map { _ in () } // map received notification to Void
+            .eraseToAnyPublisher()
+    }
 
     @Environment(\.appEnvironment) private var env
     private let context: Context
-    private let reloadWebViewTrigger = PassthroughSubject<Void, Never>()
     private let selectedTabId: String?
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in self?.tabsUpdated() }
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in self?.courseUpdated() }
-    private var moduleItemNotificationListener: NSObjectProtocol?
     private var subscriptions = Set<AnyCancellable>()
 
     /**
@@ -44,15 +46,8 @@ public class K5SubjectViewModel: ObservableObject {
     init(context: Context, selectedTabId: String? = nil) {
         self.context = context
         self.selectedTabId = selectedTabId
-        reloadWebViewOnModuleItemProgressNotification()
         course.refresh()
         tabs.refresh()
-    }
-
-    private func reloadWebViewOnModuleItemProgressNotification() {
-        moduleItemNotificationListener = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [weak self] _ in
-            self?.reloadWebViewTrigger.send()
-        }
     }
 
     private func tabsUpdated() {
