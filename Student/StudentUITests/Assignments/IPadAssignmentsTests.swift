@@ -92,6 +92,9 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         firstCourse.add(assignment: letterGradeTextAssignment)
         firstCourse.add(assignment: percentFileAssignment)
 
+        TabBar.dashboardTab.tap()
+        Dashboard.coursesLabel.waitToExist()
+
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.assignments.tap()
         assertHas(assignment: pointsTextAssignment.api)
@@ -99,6 +102,7 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         assertHas(assignment: percentFileAssignment.api)
 
         // Let's submit a text assignment
+        AssignmentsList.assignment(id: pointsTextAssignment.id).tap()
         XCTAssertEqual(AssignmentDetails.name.label(), "Points Text Assignment")
 
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)

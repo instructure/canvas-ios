@@ -45,7 +45,7 @@ public class SpringBoard {
     public func moveSplit(toFraction fraction: CGFloat) {
         let divider = sbApp.find(id: "SideAppDivider")
         let dest = relativeCoordinate(x: fraction, y: 0.5)
-        divider.center.press(forDuration: 0, thenDragTo: dest)
+        divider.center.press(forDuration: 0.5, thenDragTo: dest)
         sleep(1)
     }
 
