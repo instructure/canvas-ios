@@ -47,7 +47,10 @@ final class DashboardCard: NSManagedObject {
     var course: Course? { managedObjectContext?.first(where: #keyPath(Course.id), equals: id) }
 
     var shouldShow: Bool {
-        return course?.enrollments?.first?.state == .active
+        guard let enrollments = course?.enrollments else { return false }
+        return enrollments.contains { enrollment in
+            enrollment.state == .active
+        }
     }
 
     @discardableResult
