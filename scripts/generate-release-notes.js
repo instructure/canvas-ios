@@ -170,13 +170,14 @@ function getReleaseNote (commit) {
 // Parses out all the jira ticket numbers in the commit
 // If there are none, returns an empty array
 // Only handles one refs token
+// the replace regex removes the tags in parentheses added by git eg. (#1234)
 function getJiras (commit) {
   const refs = /refs:(.+)/gi.exec(commit)
   if (!refs) {
     return []
   }
 
-  let jiras = refs[1].split(',').map(a => a.trim()).filter(a => a !== 'none')
+  let jiras = refs[1].replace(/\([^()]*\)/g, '').split(',').map(a => a.trim()).filter(a => a !== 'none')
   return jiras
 }
 

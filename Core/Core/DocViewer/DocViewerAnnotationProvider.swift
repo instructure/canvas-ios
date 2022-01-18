@@ -100,7 +100,8 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         // Editing of annotations stored in the pdf file are always disabled
         fileAnnotations.forEach {
             $0.flags.update(with: .readOnly)
-            $0.isFileAnnotation = true
+//            This is commented out to work around a PSPDFKit bug
+//            $0.isFileAnnotation = true
         }
         // Then ask `super` to retrieve the custom annotations from cache.
         let docViewerAnnotations = super.annotationsForPage(at: pageIndex) ?? []
