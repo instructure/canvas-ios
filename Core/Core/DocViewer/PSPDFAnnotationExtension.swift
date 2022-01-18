@@ -26,19 +26,16 @@ private var annotationHasRepliesKey: UInt8 = 0
 private var fontSizeTransform: CGFloat = 0.85
 
 extension Annotation {
-    private static let isFileAnnotationKey = "isFileAnnotationKey"
-
-    /** Returns true if the annotation is loaded from file and not created by a Canvas user. Must be set from code upon loading the annotation. This property is stored in the `customData` dictionary. */
+    /** Returns true if the annotation is loaded from the pdf file. */
     var isFileAnnotation: Bool {
-        get {
-            guard let isFileAnnotation = customData?[Self.isFileAnnotationKey] as? Bool else { return false }
-            return isFileAnnotation
-        }
-        set {
-            var oldCustomData = customData ?? ([:] as [String: Any])
-            oldCustomData[Self.isFileAnnotationKey] = newValue
-            customData = oldCustomData
-        }
+        let annotationProvider: DocViewerAnnotationProvider? = {
+            let result = documentProvider?.annotationManager.annotationProviders.first { $0 is DocViewerAnnotationProvider }
+            return result as? DocViewerAnnotationProvider
+        }()
+
+        guard let annotationProvider = annotationProvider else { return false }
+
+        return annotationProvider.isFileAnnotation(self)
     }
 
     var userName: String? {
