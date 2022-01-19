@@ -111,6 +111,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let include: [Include]
     public let allEvents: Bool?
     public let userID: String?
+    public let importantDates: Bool?
     private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
@@ -125,7 +126,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
         perPage: Int = 100,
         include: [Include] = [],
         allEvents: Bool? = nil,
-        userID: String? = nil
+        userID: String? = nil,
+        importantDates: Bool? = nil
     ) {
         self.contexts = contexts
         self.startDate = startDate
@@ -135,6 +137,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         self.include = include
         self.allEvents = allEvents
         self.userID = userID
+        self.importantDates = importantDates
     }
 
     public var query: [APIQueryItem] {
@@ -144,6 +147,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
             .include(include.map { $0.rawValue }),
             .optionalValue("start_date", startDate.map(GetCalendarEventsRequest.dateFormatter.string)),
             .optionalValue("end_date", endDate.map(GetCalendarEventsRequest.dateFormatter.string)),
+            .optionalBool("important_dates", importantDates)
         ]
         if let contexts = contexts {
             query.append(.array("context_codes", contexts.map { $0.canvasContextID }))
