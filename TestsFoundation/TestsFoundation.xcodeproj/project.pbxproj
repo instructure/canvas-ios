@@ -80,6 +80,10 @@
 		C9A3C09026A8050A00DAE8E1 /* K5CourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */; };
 		C9E9C2F727609B8E00FC60CB /* K5CourseBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */; };
 		C9FDE92226BBCBE600DF0106 /* Announcements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDE92126BBCBE600DF0106 /* Announcements.swift */; };
+		CFA078B527981BAF0078B27B /* DataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B427981BAF0078B27B /* DataSeeder.swift */; };
+		CFA078B8279861500078B27B /* DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B7279861500078B27B /* DSUser.swift */; };
+		CFA078BA279865210078B27B /* CreateDSUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B9279865210078B27B /* CreateDSUserRequest.swift */; };
+		CFA078BC279868160078B27B /* DataSeeder+DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078BB279868160078B27B /* DataSeeder+DSUser.swift */; };
 		E801ED7E2475BBC000DF2CB9 /* MiniDiscussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801ED7D2475BBC000DF2CB9 /* MiniDiscussion.swift */; };
 		E80936C024C247EB00D15E9A /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809366C24C21DFE00D15E9A /* Dashboard.swift */; };
 		E80936C124C247F100D15E9A /* AccountNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809366B24C21DFE00D15E9A /* AccountNotifications.swift */; };
@@ -211,6 +215,10 @@
 		C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseCard.swift; sourceTree = "<group>"; };
 		C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseBrowser.swift; sourceTree = "<group>"; };
 		C9FDE92126BBCBE600DF0106 /* Announcements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcements.swift; sourceTree = "<group>"; };
+		CFA078B427981BAF0078B27B /* DataSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSeeder.swift; sourceTree = "<group>"; };
+		CFA078B7279861500078B27B /* DSUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUser.swift; sourceTree = "<group>"; };
+		CFA078B9279865210078B27B /* CreateDSUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSUserRequest.swift; sourceTree = "<group>"; };
+		CFA078BB279868160078B27B /* DataSeeder+DSUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSUser.swift"; sourceTree = "<group>"; };
 		E801ED7D2475BBC000DF2CB9 /* MiniDiscussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniDiscussion.swift; sourceTree = "<group>"; };
 		E809366024C21DFE00D15E9A /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		E809366224C21DFE00D15E9A /* Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
@@ -297,6 +305,7 @@
 		3B032CFD215037AA00B570F7 /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				CFA078B327981B790078B27B /* DataSeeding */,
 				E8104C472406F57C0077D207 /* MiniCanvas */,
 				9F5C92FF23730D01005105BB /* Helpers */,
 				3B0CEB782150429300D07CFA /* Database */,
@@ -521,6 +530,25 @@
 				C9FDE92126BBCBE600DF0106 /* Announcements.swift */,
 			);
 			path = Announcements;
+			sourceTree = "<group>";
+		};
+		CFA078B327981B790078B27B /* DataSeeding */ = {
+			isa = PBXGroup;
+			children = (
+				CFA078B62798612F0078B27B /* User */,
+				CFA078B427981BAF0078B27B /* DataSeeder.swift */,
+			);
+			path = DataSeeding;
+			sourceTree = "<group>";
+		};
+		CFA078B62798612F0078B27B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				CFA078B9279865210078B27B /* CreateDSUserRequest.swift */,
+				CFA078B7279861500078B27B /* DSUser.swift */,
+				CFA078BB279868160078B27B /* DataSeeder+DSUser.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		E809366124C21DFE00D15E9A /* AudioVideo */ = {
@@ -901,6 +929,7 @@
 				3B0CEB722150406400D07CFA /* CourseFixture.swift in Sources */,
 				E80936C524C2480B00D15E9A /* ConferenceDetails.swift in Sources */,
 				E80936C624C2480B00D15E9A /* ConferencesList.swift in Sources */,
+				CFA078B8279861500078B27B /* DSUser.swift in Sources */,
 				E818EF21234652A20035613A /* XCTestCaseExtensions.swift in Sources */,
 				B1CA334423393FEC0015CBB4 /* UserFixture.swift in Sources */,
 				E80936DD24C2480B00D15E9A /* SpringBoard.swift in Sources */,
@@ -957,6 +986,7 @@
 				C9FDE92226BBCBE600DF0106 /* Announcements.swift in Sources */,
 				B19792F521767B830000369C /* ContextColorFixture.swift in Sources */,
 				E80936C124C247F100D15E9A /* AccountNotifications.swift in Sources */,
+				CFA078B527981BAF0078B27B /* DataSeeder.swift in Sources */,
 				B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */,
 				E80936C024C247EB00D15E9A /* Dashboard.swift in Sources */,
 				C9A3C09026A8050A00DAE8E1 /* K5CourseCard.swift in Sources */,
@@ -965,6 +995,7 @@
 				E801ED7E2475BBC000DF2CB9 /* MiniDiscussion.swift in Sources */,
 				E81B575D23E243CA002A0C38 /* ComposeReply.swift in Sources */,
 				E80936CA24C2480B00D15E9A /* DiscussionList.swift in Sources */,
+				CFA078BC279868160078B27B /* DataSeeder+DSUser.swift in Sources */,
 				E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */,
 				B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */,
 				3B3FCA2F238027470011F11A /* ActivityFixture.swift in Sources */,
@@ -973,6 +1004,7 @@
 				3B635B35225CDFB1001F353D /* CalendarEventFixture.swift in Sources */,
 				B15DCD57224121FA0044A8A2 /* MockUploadManager.swift in Sources */,
 				E80936C724C2480B00D15E9A /* CourseNavigation.swift in Sources */,
+				CFA078BA279865210078B27B /* CreateDSUserRequest.swift in Sources */,
 				3B0CEB752150406400D07CFA /* TTLFixture.swift in Sources */,
 				E8989F1623AD2AE800EF4B2B /* CoreUITestCase.swift in Sources */,
 				E80936C224C2480B00D15E9A /* AudioRecorder.swift in Sources */,
