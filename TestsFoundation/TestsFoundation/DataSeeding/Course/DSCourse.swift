@@ -16,28 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-
-struct CreateDSUserRequest: APIRequestable {
-    public typealias Response = DSUser
-
-    public let method = APIMethod.post
-    public var path: String { "accounts/self/users" }
-    public let body: Body?
-}
-
-extension CreateDSUserRequest {
-    public struct Body: Encodable, Equatable {
-        struct User: Encodable, Equatable {
-            let name: String
-        }
-
-        struct Pseudonym: Encodable, Equatable {
-            let unique_id = UUID().uuidString
-            let password: String
-        }
-
-        let user: User
-        let pseudonym: Pseudonym
-    }
+public struct DSCourse: Codable {
+    let id: String
+    let name: String
 }

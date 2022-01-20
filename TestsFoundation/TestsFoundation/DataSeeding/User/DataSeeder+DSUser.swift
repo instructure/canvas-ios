@@ -20,7 +20,7 @@ import Core
 
 extension DataSeeder {
 
-    public func createUser(name: String = "DataSeed iOS \(Date().timeIntervalSince1970)", password: String = "password") -> DSUser {
+    public func createUser(name: String = "DataSeed iOS \(Date().timeIntervalSince1970.rounded())", password: String = "password") -> DSUser {
         let requestedUser = CreateDSUserRequest.Body.User(name: name)
         let requestedPseudonym = CreateDSUserRequest.Body.Pseudonym(password: password)
         let request = CreateDSUserRequest(body: CreateDSUserRequest.Body(user: requestedUser, pseudonym: requestedPseudonym))

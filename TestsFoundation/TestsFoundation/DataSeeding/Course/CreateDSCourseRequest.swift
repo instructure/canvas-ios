@@ -18,26 +18,22 @@
 
 import Core
 
-struct CreateDSUserRequest: APIRequestable {
-    public typealias Response = DSUser
+// https://canvas.instructure.com/doc/api/courses.html#method.courses.create
+struct CreateDSCourseRequest: APIRequestable {
+    public typealias Response = DSCourse
 
     public let method = APIMethod.post
-    public var path: String { "accounts/self/users" }
+    public var path: String { "accounts/self/courses" }
+
     public let body: Body?
 }
 
-extension CreateDSUserRequest {
-    public struct Body: Encodable, Equatable {
-        struct User: Encodable, Equatable {
-            let name: String
-        }
+extension CreateDSCourseRequest {
+    public struct RequestedDSCourse: Encodable {
+        let name: String
+    }
 
-        struct Pseudonym: Encodable, Equatable {
-            let unique_id = UUID().uuidString
-            let password: String
-        }
-
-        let user: User
-        let pseudonym: Pseudonym
+    public struct Body: Encodable {
+        let course: RequestedDSCourse
     }
 }

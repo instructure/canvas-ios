@@ -16,28 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+extension DataSeeder {
 
-struct CreateDSUserRequest: APIRequestable {
-    public typealias Response = DSUser
-
-    public let method = APIMethod.post
-    public var path: String { "accounts/self/users" }
-    public let body: Body?
-}
-
-extension CreateDSUserRequest {
-    public struct Body: Encodable, Equatable {
-        struct User: Encodable, Equatable {
-            let name: String
-        }
-
-        struct Pseudonym: Encodable, Equatable {
-            let unique_id = UUID().uuidString
-            let password: String
-        }
-
-        let user: User
-        let pseudonym: Pseudonym
+    public func createCourse(name: String = "DataSeed iOS \(Date().timeIntervalSince1970.rounded())") -> DSCourse {
+        let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
+        let request = CreateDSCourseRequest(body: requestedBody)
+        return try! makeRequest(request)
     }
 }
