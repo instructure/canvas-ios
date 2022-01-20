@@ -18,21 +18,36 @@
 
 import Core
 
-// https://canvas.instructure.com/doc/api/courses.html#method.courses.create
-struct CreateDSCourseRequest: APIRequestable {
-    public typealias Response = DSCourse
-
-    public let method = APIMethod.post
-    public var path: String { "accounts/self/courses" }
-    public let body: Body?
+public enum DSEnrollmentType: String, Encodable {
+    case TaEnrollment
+    case TeacherEnrollment
+    case StudentEnrollment
+    case ObserverEnrollment
+    case DesignerEnrollment
 }
 
-extension CreateDSCourseRequest {
-    public struct RequestedDSCourse: Encodable {
-        let name: String
+// https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.create
+struct EnrollRequest: APIRequestable {
+    public typealias Response = APINoContent
+
+    public let method = APIMethod.post
+    public let path: String
+    public let body: Body?
+
+    public init(courseID: String, body: RequestedEnrollment) {
+        self.path = "courses/\(courseID)/enrollments"
+        self.body = Body(enrollment: body)
+    }
+}
+
+extension EnrollRequest {
+    public struct RequestedEnrollment: Encodable {
+        let enrollment_state: EnrollmentState
+        let user_id: String
+        let type: DSEnrollmentType
     }
 
     public struct Body: Encodable {
-        let course: RequestedDSCourse
+        let enrollment: RequestedEnrollment
     }
 }

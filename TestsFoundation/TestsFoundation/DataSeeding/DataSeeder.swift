@@ -30,9 +30,16 @@ public class DataSeeder {
         self.api = API(loginSession)
     }
 
+    @discardableResult
     public func makeRequest<Request: APIRequestable>(_ requestable: Request) throws -> Request.Response {
         let result = request(requestable)
+
+        if Request.Response.self is APINoContent.Type {
+            return APINoContent() as! Request.Response
+        }
+
         guard let dsUser = result.entity else { throw NSError.instructureError("API call failed") }
+
         return dsUser
     }
 

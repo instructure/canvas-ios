@@ -17,5 +17,6 @@
 //
 
 public struct DSUser: Codable {
+    let id: String
     let name: String
 }
