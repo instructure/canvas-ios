@@ -23,8 +23,13 @@ struct CreateDSCourseRequest: APIRequestable {
     public typealias Response = DSCourse
 
     public let method = APIMethod.post
-    public var path: String { "accounts/self/courses" }
+    public var path: String
     public let body: Body?
+
+    public init(body: Body, accountId: String = "self") {
+        self.body = body
+        self.path = "accounts/\(accountId)/courses"
+    }
 }
 
 extension CreateDSCourseRequest {
@@ -34,5 +39,6 @@ extension CreateDSCourseRequest {
 
     public struct Body: Encodable {
         let course: RequestedDSCourse
+        let offer = true // makes the course published after creation
     }
 }
