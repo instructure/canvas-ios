@@ -45,7 +45,7 @@ public class SpringBoard {
     public func moveSplit(toFraction fraction: CGFloat) {
         let divider = sbApp.find(id: "SideAppDivider")
         let dest = relativeCoordinate(x: fraction, y: 0.5)
-        divider.center.press(forDuration: 0.5, thenDragTo: dest, withVelocity: 200, thenHoldForDuration: 0.5)
+        divider.center.press(forDuration: 3, thenDragTo: dest, withVelocity: 50, thenHoldForDuration: 3)
         sleep(1)
     }
 
@@ -59,7 +59,7 @@ public class SpringBoard {
     func bringUpDock() {
         let start = relativeCoordinate(x: 0.5, y: 1.0)
         let dest = relativeCoordinate(x: 0.5, y: 0.9)
-        start.press(forDuration: 1, thenDragTo: dest)
+        start.press(forDuration: 3, thenDragTo: dest, withVelocity: 50, thenHoldForDuration: 3)
     }
 
     internal func hideSafariKeyboard() {
@@ -87,7 +87,7 @@ public class SpringBoard {
         let dock = sbApp.find(id: "user icon list view")
         let safari = dock.rawElement.find(id: "Safari")
         let dest = relativeCoordinate(x: 0.99, y: 0.5)
-        safari.center.press(forDuration: 0.5, thenDragTo: dest)
+        safari.center.press(forDuration: 3, thenDragTo: dest, withVelocity: 50, thenHoldForDuration: 3)
         sleep(2)
         hideSafariKeyboard()
     }
