@@ -18,10 +18,21 @@
 
 public class K5ImportantDatesViewModel: ObservableObject {
 
+    @Published public private(set) var importantDates: Set<K5ImportantDateItem> = []
+
     private let env = AppEnvironment.shared
-    var context: Context { Context(.user, id: env.currentSession?.userID ?? "") }
-    private lazy var dates = env.subscribe(GetCalendarEvents(context: context)) { [weak self] in
-        self?.datesUpdated()
+    private var contexts: [Context] = []
+
+    private lazy var courses = env.subscribe(GetUserCourses(userID: env.currentSession?.userID ?? "")) { [weak self] in
+        self?.coursesUpdated()
+    }
+
+    private lazy var events = env.subscribe(GetCalendarEvents(contexts: contexts, type: .event, importantDates: true)) { [weak self] in
+        self?.eventsUpdated()
+    }
+
+    private lazy var assignments = env.subscribe(GetCalendarEvents(contexts: contexts, type: .assignment, importantDates: true)) { [weak self] in
+        self?.assignmentsUpdated()
     }
 
     // MARK: Refresh
@@ -29,11 +40,33 @@ public class K5ImportantDatesViewModel: ObservableObject {
     private var forceRefresh = false
 
     init() {
-        dates.refresh()
+        courses.refresh()
+    }
+    private func coursesUpdated() {
+        contexts.removeAll()
+        courses.forEach { course in
+            contexts.append(Context(.course, id: course.id))
+        }
+        assignments.exhaust(force: true)
     }
 
-    private func datesUpdated() {
+    private func assignmentsUpdated() {
+        assignments.forEach { assignment in
+            importantDates.insert(importantDateItemFrom(event: assignment))
+        }
+        events.exhaust(force: true)
+    }
+
+    private func eventsUpdated() {
+        events.forEach { event in
+            importantDates.insert(importantDateItemFrom(event: event))
+        }
+
         finishRefresh()
+    }
+
+    private func importantDateItemFrom(event: CalendarEvent) -> K5ImportantDateItem {
+        return K5ImportantDateItem(title: event.title, color: .red, date: event.startAt, route: event.routingURL, type: event.type)
     }
 
     private func finishRefresh() {
@@ -54,6 +87,6 @@ extension K5ImportantDatesViewModel: Refreshable {
     }
 
     func reloadData() {
-        dates.exhaust(force: true)
+        courses.exhaust(force: true)
     }
 }

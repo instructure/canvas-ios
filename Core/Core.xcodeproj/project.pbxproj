@@ -1003,6 +1003,7 @@
 		EB75D49627903BA600AA273C /* K5ImportantDatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75D492278F124400AA273C /* K5ImportantDatesViewModel.swift */; };
 		EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */; };
 		EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */; };
+		EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */; };
 		EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */; };
 		EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC82721A862008EE2DF /* K5SubjectView.swift */; };
@@ -2258,6 +2259,7 @@
 		EB75D495278F155A00AA273C /* K5ImportantDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDatesView.swift; sourceTree = "<group>"; };
 		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
 		EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModelTests.swift; sourceTree = "<group>"; };
+		EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItem.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
 		EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
 		EBF58AC82721A862008EE2DF /* K5SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectView.swift; sourceTree = "<group>"; };
@@ -4250,9 +4252,9 @@
 		CF4BDB592645394400A91952 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EB75D494278F14FD00AA273C /* ImportantDates */,
 				CF60CC302645520C00C1C173 /* Grades */,
 				CF60CC2E264551FE00C1C173 /* Homeroom */,
+				EB75D494278F14FD00AA273C /* ImportantDates */,
 				CF60CC312645521100C1C173 /* Resources */,
 				CF60CC2F2645520500C1C173 /* Schedule */,
 				CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */,
@@ -4264,9 +4266,9 @@
 		CF4BDB5A2645394900A91952 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EB75D491278F122400AA273C /* ImportantDates */,
 				CF60CC4E26496A1100C1C173 /* Grades */,
 				CF60CC4F26496A1700C1C173 /* Homeroom */,
+				EB75D491278F122400AA273C /* ImportantDates */,
 				CF60CC5026496A1F00C1C173 /* Resources */,
 				CF60CC5126496A2900C1C173 /* Schedule */,
 				CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */,
@@ -4308,6 +4310,7 @@
 			children = (
 				CF53F738266FBB0000FA58D7 /* Announcements */,
 				CF53F736266FBA2A00FA58D7 /* DueItems */,
+				EBE92ED0279864080053C9A4 /* ImportantDates */,
 				CF53F742266FBB9200FA58D7 /* MissingSubmissions */,
 				CF8CB52526CBEDE5008361E2 /* Resources */,
 				CFD6F6C326C13E1500F5C445 /* Schedule */,
@@ -4912,6 +4915,14 @@
 			isa = PBXGroup;
 			children = (
 				EB75D495278F155A00AA273C /* K5ImportantDatesView.swift */,
+			);
+			path = ImportantDates;
+			sourceTree = "<group>";
+		};
+		EBE92ED0279864080053C9A4 /* ImportantDates */ = {
+			isa = PBXGroup;
+			children = (
+				EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */,
 			);
 			path = ImportantDates;
 			sourceTree = "<group>";
@@ -5924,6 +5935,7 @@
 				7DA260A123F7234C005D2121 /* MockMessage.swift in Sources */,
 				CF67B29626EBA19700E51F13 /* HorizontalPagerCoordinator.swift in Sources */,
 				7DA260B023F72352005D2121 /* GetCourseSections.swift in Sources */,
+				EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */,
 				7D7F71D6241C2A5A00D6F9CB /* ConferenceListViewController.swift in Sources */,
 				7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */,
 				7DA25FC523F72136005D2121 /* APIPermissions.swift in Sources */,
