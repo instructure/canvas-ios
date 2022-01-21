@@ -17,6 +17,6 @@
 //
 
 public struct DSCourse: Codable {
-    let id: String
-    let name: String
+    public let id: String
+    public let name: String
 }

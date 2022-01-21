@@ -17,8 +17,8 @@
 //
 
 public struct DSUser: Codable {
-    let id: String
+    public let id: String
     /** Use this as username when loggin in. */
-    let login_id: String
-    let name: String
+    public let login_id: String
+    public let name: String
 }

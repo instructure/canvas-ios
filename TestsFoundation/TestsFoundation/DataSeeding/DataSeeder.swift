@@ -37,15 +37,16 @@ public class DataSeeder {
         let result = request(requestable)
 
         if Request.Response.self is APINoContent.Type {
+            // swiftlint:disable:next force_cast
             return APINoContent() as! Request.Response
         }
 
-        guard let dsUser = result.entity else { throw NSError.instructureError("API call failed") }
+        guard let dsUser = result.entity else { throw result.error ?? NSError.instructureError("API call failed") }
 
         return dsUser
     }
 
-    private func request<Request: APIRequestable>(_ requestable: Request) -> (entity: Request.Response?, urlResponse: URLResponse?, Error?) {
+    private func request<Request: APIRequestable>(_ requestable: Request) -> (entity: Request.Response?, urlResponse: URLResponse?, error: Error?) {
         var result: (entity: Request.Response?, urlResponse: URLResponse?, Error?) = (nil, nil, nil)
 
         let serializer = DispatchSemaphore(value: 0)
