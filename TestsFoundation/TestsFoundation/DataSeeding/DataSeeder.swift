@@ -18,15 +18,17 @@
 
 import Core
 
-public let loginSession = LoginSession(accessToken: "",
-                                       baseURL: URL(string: "https://mobileqa.beta.instructure.com")!,
-                                       userID: "",
-                                       userName: "")
-
 public class DataSeeder {
     private let api: API
 
-    public init(_ loginSession: LoginSession = loginSession) {
+    public init() {
+        let loginSession: LoginSession = {
+            let dataSeedUser = UITestUser.dataSeedAdmin
+            return LoginSession(accessToken: dataSeedUser.password,
+                                baseURL: URL(string: "https://\(dataSeedUser.host)")!,
+                                userID: "",
+                                userName: "")
+        }()
         self.api = API(loginSession)
     }
 
