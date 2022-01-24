@@ -73,15 +73,4 @@ class K5SubjectViewModelTests: CoreTestCase {
         wait(for: [expectation], timeout: 0.1)
         reloadListener.cancel()
     }
-
-    func testMasqueradedUserUsesNonSharedCookieStorage() {
-        let testee = K5SubjectViewModel(context: context, selectedTabId: "home")
-        XCTAssertNil(testee.config)
-
-        let mockURL = URL(string: "/path")!
-        let masqueradedSession = LoginSession(baseURL: mockURL, masquerader: mockURL, userID: "1", userName: "masqueraded")
-        environment.currentSession = masqueradedSession
-        XCTAssertNotNil(testee.config)
-        XCTAssertNotEqual(testee.config?.websiteDataStore.httpCookieStore, WKWebsiteDataStore.default().httpCookieStore)
-    }
 }

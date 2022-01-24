@@ -897,6 +897,8 @@
 		CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */; };
 		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
 		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
+		CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */; };
+		CF911BA4279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
@@ -2142,6 +2144,8 @@
 		CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
 		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
+		CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSession.swift; sourceTree = "<group>"; };
+		CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSessionTests.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
@@ -3351,6 +3355,7 @@
 		7D724263242A5616007ED42F /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				CF911BA1279EEDB400E1EECB /* K5 */,
 				7D64A97623676025004EAEDF /* APICourseSectionTests.swift */,
 				7D80AC1C212B6B6200C40ECE /* APICourseTests.swift */,
 				7D64A978236760A1004EAEDF /* CourseSectionTests.swift */,
@@ -4572,6 +4577,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CF911BA1279EEDB400E1EECB /* K5 */ = {
+			isa = PBXGroup;
+			children = (
+				CF911BA2279EEDBB00E1EECB /* ViewModel */,
+			);
+			path = K5;
+			sourceTree = "<group>";
+		};
+		CF911BA2279EEDBB00E1EECB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */,
+				EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CF941B12267B425800700DE9 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
@@ -4769,7 +4791,6 @@
 				CF941B17267B431500700DE9 /* Resources */,
 				CF941B1C267B438600700DE9 /* Schedule */,
 				CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */,
-				EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4935,6 +4956,7 @@
 			isa = PBXGroup;
 			children = (
 				EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */,
+				CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5637,6 +5659,7 @@
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
 				7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */,
 				9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */,
+				CF911BA4279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift in Sources */,
 				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
 				9FAE410321B6C88000FE7F58 /* APIExternalToolTests.swift in Sources */,
@@ -6251,6 +6274,7 @@
 				CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */,
 				D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */,
 				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
+				CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */,
 				7DA2603723F722D9005D2121 /* TabViewable.swift in Sources */,
 				7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */,
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
