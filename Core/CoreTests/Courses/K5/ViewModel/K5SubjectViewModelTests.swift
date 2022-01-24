@@ -18,7 +18,6 @@
 
 import XCTest
 @testable import Core
-import WebKit
 
 class K5SubjectViewModelTests: CoreTestCase {
 
