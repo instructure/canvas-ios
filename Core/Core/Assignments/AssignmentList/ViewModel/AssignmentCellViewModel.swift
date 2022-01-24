@@ -85,4 +85,3 @@ public class AssignmentCellViewModel: ObservableObject {
         env.app == .teacher
     }
 }
-

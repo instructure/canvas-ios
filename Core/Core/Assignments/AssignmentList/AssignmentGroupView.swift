@@ -33,5 +33,5 @@ public struct AssignmentGroupView: View {
                 AssignmentCellView(viewModel: assignmentCellViewModel)
             }
         }
-    }   
+    }
 }

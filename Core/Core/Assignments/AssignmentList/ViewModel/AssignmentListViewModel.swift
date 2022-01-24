@@ -22,7 +22,7 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var assignmentGroups: [AssignmentGroupViewModel] = []
     public private(set) var courseColor: UIColor?
     public private(set) var courseName: String?
-    public var selectedGradingPeriod: GradingPeriod? 
+    public var selectedGradingPeriod: GradingPeriod?
 
     @Environment(\.appEnvironment) private var env
     private let courseID: String
@@ -75,7 +75,7 @@ public class AssignmentListViewModel: ObservableObject {
 
     private func gradingPeriodsDidUpdate() {
         if gradingPeriods.pending == false && gradingPeriods.requested {
-            //TODO: send "ready"
+            // TODO: send "ready"
         }
     }
 }

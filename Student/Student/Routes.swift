@@ -101,7 +101,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return DiscussionDetailsViewController.create(context: context, topicID: announcementID, isAnnouncement: true)
     },
 
-    "/courses/:courseID/assignments": { url, params, _ in
+    "/courses/:courseID/assignments": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         let viewModel = AssignmentListViewModel(context: context)
         return CoreHostingController(AssignmentListView(viewModel: viewModel))

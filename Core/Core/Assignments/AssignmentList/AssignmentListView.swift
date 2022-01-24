@@ -37,7 +37,7 @@ public struct AssignmentListView: View {
                 }
                 Spacer(minLength: 8)
                 if (viewModel.selectedGradingPeriod == nil) {
-                    Button(action:{
+                    Button(action: {
                         isShowingGradingPeriodPicker = true
                     }, label: {
                         Text("Filter", bundle: .core)
@@ -45,7 +45,7 @@ public struct AssignmentListView: View {
                         ActionSheet(title: Text("Filter by", bundle: .core), buttons: gradingPeriodButtons)
                     }
                 } else {
-                    Button(action:{
+                    Button(action: {
                         viewModel.gradingPeriodSelected(nil)
                     }, label: {
                         Text("Clear Filter", bundle: .core)

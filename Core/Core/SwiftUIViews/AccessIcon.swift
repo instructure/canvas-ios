@@ -29,16 +29,16 @@ struct AccessIcon: View {
     }
 
     public var body: some View {
-        ZStack(alignment: .bottomTrailing){
+        ZStack(alignment: .bottomTrailing) {
             Image(uiImage: image).size(24)
             if let published = published {
                 if published {
-                    Image(uiImage: .publishSolid).size(16).offset(x:4,y:4)
+                    Image(uiImage: .publishSolid).size(16).offset(x: 4, y: 4)
                         .foregroundColor(Color.textSuccess)
                 } else {
-                    Image.noSolid.size(16).offset(x:4,y:4)
+                    Image.noSolid.size(16).offset(x: 4, y: 4)
                         .foregroundColor(Color.textDark)
-                        .background(Circle().fill(Color.backgroundLightest).frame(width: 12, height: 12).offset(x:4,y:4))
+                        .background(Circle().fill(Color.backgroundLightest).frame(width: 12, height: 12).offset(x: 4, y: 4))
                 }
             }
         }
