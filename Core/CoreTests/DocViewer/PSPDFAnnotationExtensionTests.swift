@@ -190,23 +190,4 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
             APIDocViewerInkPoint(x: 100, y: 0, width: nil, opacity: nil),
         ])
     }
-
-    func testIsFileAnnotation() {
-        let testee = try! Annotation(dictionary: nil)
-        XCTAssertFalse(testee.isFileAnnotation)
-
-        testee.isFileAnnotation = true
-        XCTAssertTrue(testee.isFileAnnotation)
-
-        testee.isFileAnnotation = false
-        XCTAssertFalse(testee.isFileAnnotation)
-
-        testee.isFileAnnotation = true
-        testee.customData = nil
-        XCTAssertFalse(testee.isFileAnnotation)
-
-        testee.isFileAnnotation = true
-        testee.customData = [:]
-        XCTAssertFalse(testee.isFileAnnotation)
-    }
 }
