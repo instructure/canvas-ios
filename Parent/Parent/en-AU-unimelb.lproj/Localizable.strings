@@ -110,6 +110,9 @@
 "Location" = "Location";
 
 /* No comment provided by engineer. */
+"Locked" = "Locked";
+
+/* No comment provided by engineer. */
 "Login required" = "Login required";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Subject Overview";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "The linked item is no longer available.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student.";
