@@ -34,6 +34,7 @@ public struct K5SubjectView: View {
                     K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
                 }
                 WebView(url: viewModel.pageUrl(for: topBarViewModel.selectedItemId), customUserAgentName: nil, disableZoom: true)
+                    .reload(on: viewModel.reloadWebView)
                 Divider()
             }
         }

@@ -392,6 +392,13 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
     }
 
+    func testSubmitAssignmentButtonIsNotHiddenForUnlockedQuiz() {
+        Assignment.make(from: .make(locked_for_user: true, quiz_id: "1"))
+        Quiz.make(from: .make(id: "1", locked_for_user: false))
+        presenter.update()
+        XCTAssertFalse(presenter.submitAssignmentButtonIsHidden())
+    }
+
     func testPostsViewCompletedRequirement() {
         Course.make()
         Assignment.make()

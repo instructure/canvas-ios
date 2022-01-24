@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Det gick inte att starta LTI-verktyget för närvaro.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Det gick inte att läsa in inlämningsdata!";
+
+/* No comment provided by engineer. */
 "Files" = "Filer";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Återställ";
 
 /* No comment provided by engineer. */
+"Retry" = "Försök igen";
+
+/* No comment provided by engineer. */
 "Rubric" = "Matris";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Okänt fel";
 
 /* No comment provided by engineer. */
 "Unmark" = "Avmarkera";

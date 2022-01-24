@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Nie udało się uruchomić narzędzia LTI.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Nie udało się załadować danych przesyłki!";
+
+/* No comment provided by engineer. */
 "Files" = "Pliki";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Resetuj";
 
 /* No comment provided by engineer. */
+"Retry" = "Ponów próbę";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubryka";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Do zrobienia";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Nieznany błąd";
 
 /* No comment provided by engineer. */
 "Unmark" = "Usuń zaznaczenie";

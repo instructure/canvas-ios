@@ -55,4 +55,18 @@ class K5SubjectViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.topBarViewModel?.selectedItemIndex, 1)
     }
+
+    func testReloadsOnModuleRequirementCompletedNotification() {
+        let testee = K5SubjectViewModel(context: context, selectedTabId: "grades")
+        let expectation = self.expectation(description: "WebView reload trigger received")
+        expectation.expectedFulfillmentCount = 1
+
+        let reloadListener = testee.reloadWebView.sink {
+            expectation.fulfill()
+        }
+        NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+
+        wait(for: [expectation], timeout: 0.1)
+        reloadListener.cancel()
+    }
 }

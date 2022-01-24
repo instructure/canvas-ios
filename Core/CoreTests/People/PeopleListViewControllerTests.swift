@@ -134,6 +134,10 @@ class PeopleListViewControllerTests: CoreTestCase {
         let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? LoadingCell
         XCTAssertNotNil(loading)
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
+        // simulate cell appearance
+        tableView.delegate?.tableView?(tableView, willDisplay: loading!, forRowAt: IndexPath(row: 1, section: 0))
+        // wait until loading indicator appears and refresh finishes
+        RunLoop.main.run(until: Date() + 1)
         let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PeopleListCell
         XCTAssertEqual(cell.nameLabel.text, "Bob")
     }
