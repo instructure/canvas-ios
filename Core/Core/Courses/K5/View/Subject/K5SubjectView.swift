@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 public struct K5SubjectView: View {
     @Environment(\.appEnvironment) private var env
@@ -34,7 +35,7 @@ public struct K5SubjectView: View {
                     K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
                 }
                 if let currentPageURL = viewModel.currentPageURL {
-                    WebView(url: currentPageURL, customUserAgentName: nil, disableZoom: true)
+                    WebView(url: currentPageURL, customUserAgentName: nil, disableZoom: true, configuration: viewModel.config)
                         .reload(on: viewModel.reloadWebView)
                 }
                 Divider()

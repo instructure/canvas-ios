@@ -18,6 +18,7 @@
 
 import Combine
 import SwiftUI
+import WebKit
 
 public class K5SubjectViewModel: ObservableObject {
 
@@ -31,6 +32,13 @@ public class K5SubjectViewModel: ObservableObject {
             .map { _ in () } // map received notification to Void
             .eraseToAnyPublisher()
     }
+    /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
+    public var config: WKWebViewConfiguration? {
+        guard isMasqueradingUser else { return nil }
+        let result = WKWebViewConfiguration()
+        result.websiteDataStore = WKWebsiteDataStore.nonPersistent()
+        return result
+    }
 
     @Environment(\.appEnvironment) private var env
     private let context: Context
@@ -38,6 +46,10 @@ public class K5SubjectViewModel: ObservableObject {
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in self?.tabsUpdated() }
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in self?.courseUpdated() }
     private var subscriptions = Set<AnyCancellable>()
+    private var isMasqueradingUser: Bool { env.currentSession?.actAsUserID != nil }
+    /** To speed up tab change we store already initialized masqueraded session URLs for each tab. */
+    private var masqueradedSessionURLCacheByItemIndex: [Int: URL] = [:]
+    private var masqueradedSessionRequest: APITask?
 
     /**
      - parameters:
@@ -71,24 +83,27 @@ public class K5SubjectViewModel: ObservableObject {
         }
     }
 
-    private var masqueradedSessionRequest: APITask?
-
     private func tabChanged() {
         guard let topBarViewModel = topBarViewModel else { return }
         let url = pageUrl(for: topBarViewModel.selectedItemId)
 
-        if env.currentSession?.actAsUserID != nil, let url = url {
-            startMasqueradedSession(for: url)
+        if isMasqueradingUser, let url = url {
+            if let cachedURL = masqueradedSessionURLCacheByItemIndex[topBarViewModel.selectedItemIndex] {
+                currentPageURL = cachedURL
+            } else {
+                startMasqueradedSession(for: url, itemIndex: topBarViewModel.selectedItemIndex)
+            }
         } else {
             currentPageURL = url
         }
     }
 
-    private func startMasqueradedSession(for url: URL) {
+    private func startMasqueradedSession(for url: URL, itemIndex: Int) {
         masqueradedSessionRequest?.cancel()
-        masqueradedSessionRequest = env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
+        masqueradedSessionRequest = env.api.makeRequest(GetWebSessionRequest(to: url, path: "/api/v1/login/session_token")) { [weak self] response, _, _ in
             performUIUpdate {
                 self?.currentPageURL = response?.session_url ?? url
+                self?.masqueradedSessionURLCacheByItemIndex[itemIndex] = self?.currentPageURL
                 self?.masqueradedSessionRequest = nil
             }
         }

@@ -18,6 +18,7 @@
 
 import Combine
 import SwiftUI
+import WebKit
 
 public struct WebView: UIViewRepresentable {
     private var handleLink: ((URL) -> Bool)?
@@ -27,6 +28,7 @@ public struct WebView: UIViewRepresentable {
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
+    private var configuration: WKWebViewConfiguration?
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
@@ -37,10 +39,11 @@ public struct WebView: UIViewRepresentable {
         source = url.map { .url($0) }
     }
 
-    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false) {
+    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
         self.init(url: url)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
+        self.configuration = configuration
     }
 
     public init(html: String?) {
@@ -85,7 +88,7 @@ public struct WebView: UIViewRepresentable {
     // MARK: - UIViewRepresentable Protocol
 
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom)
+        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration)
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
