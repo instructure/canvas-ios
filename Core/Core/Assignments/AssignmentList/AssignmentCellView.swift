@@ -35,34 +35,51 @@ public struct AssignmentCellView: View {
                 env.router.route(to: url, from: controller)
             }
         }, label: {
-            HStack(spacing: 13) {
+            HStack(alignment: .top, spacing: 13) {
                 AccessIcon(image: viewModel.icon, published: viewModel.published)
-                    .frame(width: 16, height: 16)
+                    .frame(width: 20, height: 20)
                     .foregroundColor(Color(viewModel.courseColor ?? .ash))
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(viewModel.name)
-                        .font(.semibold16).foregroundColor(.textDarkest)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(2)
-                    Text(viewModel.formattedDueDate)
-                        .font(.medium14).foregroundColor(.textDark)
-                    if let needsGradingText = viewModel.needsGradingText {
-                        Text(needsGradingText)
-                            .font(.medium10)
-                            .foregroundColor(.borderInfo)
-                            .padding(.horizontal, 6).padding(.vertical, 2)
-                            .background(RoundedRectangle(cornerRadius: 9).stroke(Color.borderInfo, lineWidth: 1))
-                            .padding(.top, 4)
-                    }
+                    .padding(.top, 2)
+                VStack(alignment: .leading, spacing: 2) {
+                    assignmentName
+                    dueDate
+                    needsGradingBubble
                 }
+
                 Spacer()
                 Image.arrowOpenRightLine
                     .resizable()
                     .frame(width: 16, height: 16)
                     .foregroundColor(.ash)
             }
+            .padding(.vertical, 13)
+            .padding(.horizontal, 16)
         })
             .buttonStyle(PlainButtonStyle())
+    }
+
+    private var assignmentName: some View {
+        Text(viewModel.name)
+            .font(.semibold16).foregroundColor(.textDarkest)
+            .fixedSize(horizontal: false, vertical: true)
+            .lineLimit(2)
+    }
+
+    private var dueDate: some View {
+        Text(viewModel.formattedDueDate)
+            .font(.regular14).foregroundColor(.textDark)
+    }
+
+    @ViewBuilder
+    private var needsGradingBubble: some View {
+        if let needsGradingText = viewModel.needsGradingText {
+            Text(needsGradingText)
+                .font(.medium10)
+                .foregroundColor(.borderInfo)
+                .padding(.horizontal, 6).padding(.vertical, 2)
+                .background(RoundedRectangle(cornerRadius: 9).stroke(Color.borderInfo, lineWidth: 1))
+                .padding(.top, 4)
+        }
     }
 }
 
@@ -78,7 +95,7 @@ struct AssignmentCellView_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        VStack {
+        VStack(spacing: 0) {
             ForEach(assignments, id: \.id) {
                 let assignment = Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
                 let viewModel = AssignmentCellViewModel(assignment: assignment, courseColor: .blue)

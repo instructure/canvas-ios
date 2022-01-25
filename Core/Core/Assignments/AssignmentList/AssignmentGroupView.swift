@@ -32,6 +32,25 @@ public struct AssignmentGroupView: View {
                 let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
                 AssignmentCellView(viewModel: assignmentCellViewModel)
             }
-        }
+        }.listRowInsets(EdgeInsets())
     }
 }
+
+#if DEBUG
+
+struct AssignmentGroupView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        if #available(iOS 15.0, *) {
+            let _ = UITableView.appearance().sectionHeaderTopPadding = 0.0
+        }
+
+        List {
+            AssignmentGroupView(viewModel: AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: [], courseColor: .red))
+        }
+        .listStyle(PlainListStyle())
+        .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif
