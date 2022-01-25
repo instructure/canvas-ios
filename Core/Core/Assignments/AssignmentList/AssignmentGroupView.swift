@@ -30,9 +30,14 @@ public struct AssignmentGroupView: View {
         Section(header: ListSectionHeader { Text(viewModel.name) }) {
             ForEach(viewModel.assignments, id: \.id) { assignment in
                 let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
-                AssignmentCellView(viewModel: assignmentCellViewModel)
+                VStack(spacing: 0) {
+                    AssignmentCellView(viewModel: assignmentCellViewModel)
+                    Divider()
+                }
             }
-        }.listRowInsets(EdgeInsets())
+        }
+        .listRowInsets(EdgeInsets())
+        .iOS15ListRowSeparator(.hidden)
     }
 }
 
