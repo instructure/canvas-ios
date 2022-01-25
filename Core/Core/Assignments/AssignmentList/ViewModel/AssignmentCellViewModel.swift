@@ -21,8 +21,8 @@ import SwiftUI
 public class AssignmentCellViewModel: ObservableObject {
     @Environment(\.appEnvironment) private var env
 
-    public private (set) var assignment: Assignment
-    public private(set) var courseColor: UIColor?
+    public let assignment: Assignment
+    public let courseColor: UIColor?
 
     public init(assignment: Assignment, courseColor: UIColor?) {
         self.assignment = assignment

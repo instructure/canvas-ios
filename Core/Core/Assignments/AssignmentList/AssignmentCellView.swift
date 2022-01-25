@@ -35,7 +35,7 @@ public struct AssignmentCellView: View {
                 env.router.route(to: url, from: controller)
             }
         }, label: {
-            HStack {
+            HStack(spacing: 13) {
                 AccessIcon(image: viewModel.icon, published: viewModel.published)
                     .frame(width: 16, height: 16)
                     .foregroundColor(Color(viewModel.courseColor ?? .ash))
@@ -65,15 +65,25 @@ public struct AssignmentCellView: View {
             .buttonStyle(PlainButtonStyle())
     }
 }
-/*
-#if DEBUG
+
 struct AssignmentCellView_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+    private static let assignments: [APIAssignment] = [
+        APIAssignment.make(needs_grading_count: 0),
+        APIAssignment.make(id: "2", quiz_id: "1"),
+        APIAssignment.make(id: "3", submission_types: [.discussion_topic]),
+        APIAssignment.make(id: "4", submission_types: [.external_tool]),
+        APIAssignment.make(id: "5", locked_for_user: true),
+    ]
+
     static var previews: some View {
-        let apiAssignment = APIAssignment.make(name: "a", submission: nil)
-        let assignment = Assignment.make(from:)
-        AssignmentCellView(viewModel: AssignmentCellViewModel(assignment: Assignment.make(from: )
-))
+        VStack {
+            ForEach(assignments, id: \.id) {
+                let assignment = Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
+                let viewModel = AssignmentCellViewModel(assignment: assignment, courseColor: .blue)
+                AssignmentCellView(viewModel: viewModel)
+            }
+        }
     }
 }
-#endif
-*/
