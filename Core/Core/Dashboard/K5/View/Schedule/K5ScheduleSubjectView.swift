@@ -59,7 +59,7 @@ public struct K5ScheduleSubjectView: View {
                     Spacer()
 
                     if viewModel.isTappable {
-                        InstDisclosureIndicator()
+                        InstDisclosureIndicator().padding(.leading, 10)
                     }
                 }
                 .padding(.leading, 18)

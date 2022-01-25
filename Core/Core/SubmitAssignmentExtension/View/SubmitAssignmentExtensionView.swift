@@ -127,7 +127,7 @@ public struct SubmitAssignmentExtensionView: View {
                     .font(.regular16)
                     .multilineTextAlignment(.leading)
                 Spacer()
-                InstDisclosureIndicator()
+                InstDisclosureIndicator().padding(.leading, 10)
             }
         }
         .frame(height: 54)
@@ -149,7 +149,7 @@ public struct SubmitAssignmentExtensionView: View {
                             .font(.regular16)
                             .multilineTextAlignment(.leading)
                         Spacer()
-                        InstDisclosureIndicator()
+                        InstDisclosureIndicator().padding(.leading, 10)
                     }
                         .frame(height: 54)
                     divider

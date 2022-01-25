@@ -36,6 +36,5 @@ public struct InstDisclosureIndicator: View {
             .scaledToFit()
             .frame(width: 16, height: 16)
             .foregroundColor(.ash)
-            .padding(.leading, 10)
     }
 }
