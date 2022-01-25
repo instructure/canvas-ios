@@ -23,12 +23,38 @@ public struct K5ImportantDatesView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-
-        }
+            HStack(spacing: 0) {
+                Text("Important Dates", bundle: .core).font(.bold22)
+                Spacer()
+            }
+            List(viewModel.importantDates, id: \.self) { importantDate in
+                Section(header: Text(importantDate.title)) {
+                    let event = importantDate.events.first
+                    K5ImportantDatesCell(item: event!)
+                }
+            }
+            Spacer()
+        }.padding(16)
     }
+}
 
 struct K5ImportantDates_Previews: PreviewProvider {
+
+    static var model: K5ImportantDatesViewModel {
+        let viewModel = K5ImportantDatesViewModel()
+        let event = CalendarEvent()
+        event.startAt = Date()
+        event.title = "Subject name"
+        event.contextName = "This important date event"
+        event.type = .event
+        viewModel.addImportantDate(from: event)
+        return viewModel
+    }
+
     static var previews: some View {
-        K5ImportantDatesView()
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = K5Preview.setupK5Mode()
+
+        K5ImportantDatesView(viewModel: model)
     }
 }

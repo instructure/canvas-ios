@@ -18,7 +18,38 @@
 
 import SwiftUI
 
+public class K5ImportantDate {
+    public let title: String
+    public private(set) var events: [K5ImportantDateItem]
+
+    public func addEvent(_ event: CalendarEvent) {
+        events.append(importantDateItem(from: event))
+    }
+
+    private func importantDateItem(from event: CalendarEvent) -> K5ImportantDateItem {
+        return K5ImportantDateItem(subject: event.contextName, title: event.title, color: .red, date: event.startAt, route: event.routingURL, type: event.type)
+    }
+
+    init(with event: CalendarEvent) {
+        self.title = event.startAt?.dateOnlyString ?? ""
+        let dateEvent = K5ImportantDateItem(subject: event.contextName, title: event.title, color: .red, date: event.startAt, route: event.routingURL, type: event.type)
+        events = [dateEvent]
+    }
+}
+
+extension K5ImportantDate: Hashable {
+    public static func == (lhs: K5ImportantDate, rhs: K5ImportantDate) -> Bool {
+        return lhs.title == rhs.title
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
+}
+
 public struct K5ImportantDateItem {
+
+    public let subject: String
     public let title: String
     public let color: Color
     public let date: Date?
@@ -31,6 +62,15 @@ public struct K5ImportantDateItem {
         case .assignment:
             return Image.assignmentLine
         }
+    }
+
+    internal init(subject: String?, title: String, color: Color, date: Date?, route: URL?, type: CalendarEventType) {
+        self.subject = subject ?? ""
+        self.title = title
+        self.color = color
+        self.date = date
+        self.route = route
+        self.type = type
     }
 }
 

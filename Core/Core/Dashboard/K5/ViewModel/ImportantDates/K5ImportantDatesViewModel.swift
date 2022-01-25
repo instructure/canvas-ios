@@ -18,7 +18,7 @@
 
 public class K5ImportantDatesViewModel: ObservableObject {
 
-    @Published public private(set) var importantDates: Set<K5ImportantDateItem> = []
+    @Published public private(set) var importantDates: [K5ImportantDate] = []
 
     private let env = AppEnvironment.shared
     private var contexts: [Context] = []
@@ -52,21 +52,26 @@ public class K5ImportantDatesViewModel: ObservableObject {
 
     private func assignmentsUpdated() {
         assignments.forEach { assignment in
-            importantDates.insert(importantDateItemFrom(event: assignment))
+
+            addImportantDate(from: assignment)
         }
         events.exhaust(force: true)
     }
 
     private func eventsUpdated() {
         events.forEach { event in
-            importantDates.insert(importantDateItemFrom(event: event))
+            addImportantDate(from: event)
         }
-
         finishRefresh()
     }
 
-    private func importantDateItemFrom(event: CalendarEvent) -> K5ImportantDateItem {
-        return K5ImportantDateItem(title: event.title, color: .red, date: event.startAt, route: event.routingURL, type: event.type)
+    func addImportantDate(from event: CalendarEvent) {
+        let formattedDateTitle = event.startAt?.dateOnlyString
+        if let existingDate = importantDates.first(where: { $0.title == formattedDateTitle }) {
+            existingDate.addEvent(event)
+        } else {
+            importantDates.append(K5ImportantDate(with: event))
+        }
     }
 
     private func finishRefresh() {
