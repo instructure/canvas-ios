@@ -110,6 +110,9 @@
 "Location" = "Sted";
 
 /* No comment provided by engineer. */
+"Locked" = "Låst";
+
+/* No comment provided by engineer. */
 "Login required" = "Innlogging kreves";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Fagoversikt";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Det koblede elementet er ikke lenger tilgjengelig.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Eleven du forsøker å legge til, er på en annen Canvas-institusjon.\nLogg inn eller opprett en konto hos den institusjonen for å legge til denne eleven.";

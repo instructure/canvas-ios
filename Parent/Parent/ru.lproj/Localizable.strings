@@ -110,6 +110,9 @@
 "Location" = "Местоположение";
 
 /* No comment provided by engineer. */
+"Locked" = "Заблокировано";
+
+/* No comment provided by engineer. */
 "Login required" = "Требуется зарегистрироваться в системе";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Учебный план";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Связанная позиция больше не доступна.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Студент, которого вы пытаетесь добавить, находится в другом учебном заведении Canvas.\nВыполните вход или создайте учетную запись в этом учебном заведении, чтобы добавить этого студента.";

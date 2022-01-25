@@ -110,6 +110,9 @@
 "Location" = "Anplasman";
 
 /* No comment provided by engineer. */
+"Locked" = "Bloke";
+
+/* No comment provided by engineer. */
 "Login required" = "Koneksyon obligatwa";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Pwogram";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Atik ki asosye a pa disponib ankò.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Elèv w ap eseye ajoute a nan lòt enstitisyon Canvas.\nKonekte oswa kreye yon kont ak enstitisyon sa a pou w ka ajoute elèv sa a.";
