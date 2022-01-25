@@ -28,30 +28,15 @@ public struct AssignmentListView: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
-                if let gradingPeriodTitle = viewModel.selectedGradingPeriod?.title {
-                    Text(gradingPeriodTitle).font(.bold20)
-                } else {
-                    Text("All", bundle: .core).font(.bold20)
-                }
+                gradingPeriodTitle
                 Spacer(minLength: 8)
-                if (viewModel.selectedGradingPeriod == nil) {
-                    Button(action: {
-                        isShowingGradingPeriodPicker = true
-                    }, label: {
-                        Text("Filter", bundle: .core)
-                    }).actionSheet(isPresented: $isShowingGradingPeriodPicker) {
-                        ActionSheet(title: Text("Filter by", bundle: .core), buttons: gradingPeriodButtons)
-                    }
-                } else {
-                    Button(action: {
-                        viewModel.gradingPeriodSelected(nil)
-                    }, label: {
-                        Text("Clear Filter", bundle: .core)
-                    })
+                if viewModel.shouldShowFilterButton {
+                    gradingPeriodButton
                 }
-            }.padding(16)
+            }
+            .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
             List {
                 ForEach(viewModel.assignmentGroups, id: \.id) { assignmentGroup in
                     AssignmentGroupView(viewModel: assignmentGroup)
@@ -67,22 +52,72 @@ public struct AssignmentListView: View {
         }
     }
 
+    private var gradingPeriodTitle: some View {
+        var text = Text("All", bundle: .core)
+
+        if let gradingPeriodTitle = viewModel.selectedGradingPeriod?.title {
+            text = Text(gradingPeriodTitle)
+        }
+
+        return text.font(.bold20)
+    }
+
+    @ViewBuilder
+    private var gradingPeriodButton: some View {
+        if viewModel.selectedGradingPeriod == nil {
+            Button(action: {
+                isShowingGradingPeriodPicker = true
+            }, label: {
+                Text("Filter", bundle: .core)
+            }).actionSheet(isPresented: $isShowingGradingPeriodPicker) {
+                ActionSheet(title: Text("Filter by", bundle: .core), buttons: gradingPeriodButtons)
+            }
+        } else {
+            Button(action: viewModel.gradingPeriodFilterCleared) {
+                Text("Clear Filter", bundle: .core)
+            }
+        }
+    }
+
     private var gradingPeriodButtons: [ActionSheet.Button] {
-        viewModel.gradingPeriods.all.map { gradingPeriod in
+        var buttons: [ActionSheet.Button] = viewModel.gradingPeriods.all.map { gradingPeriod in
             ActionSheet.Button.default(Text(gradingPeriod.title ?? "")) {
                 viewModel.gradingPeriodSelected(gradingPeriod)
                 isShowingGradingPeriodPicker = false
             }
         }
+        buttons.append(.cancel(Text("Cancel", bundle: .core)))
+        return buttons
     }
 }
 
 #if DEBUG
-struct AssignmentListView_Previews: PreviewProvider {
-    static var previews: some View {
 
-        let viewModel = AssignmentListViewModel(context: Context(.course, id: "1"))
+struct AssignmentListView_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+    private static func createAssignments() -> [Assignment] {
+        let assignments: [APIAssignment] = [
+            APIAssignment.make(needs_grading_count: 0),
+            APIAssignment.make(id: "2", quiz_id: "1"),
+            APIAssignment.make(id: "3", submission_types: [.discussion_topic]),
+            APIAssignment.make(id: "4", submission_types: [.external_tool]),
+            APIAssignment.make(id: "5", locked_for_user: true),
+        ]
+        return assignments.map {
+            Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
+        }
+    }
+
+    static var previews: some View {
+        let assignments = createAssignments()
+        let assignmentGroups: [AssignmentGroupViewModel] = [
+            AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),
+            AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red),
+        ]
+        let viewModel = AssignmentListViewModel(assignmentGroups: assignmentGroups)
         AssignmentListView(viewModel: viewModel)
     }
 }
+
 #endif

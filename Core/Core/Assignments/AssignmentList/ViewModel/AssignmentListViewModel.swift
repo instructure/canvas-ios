@@ -23,6 +23,7 @@ public class AssignmentListViewModel: ObservableObject {
     public private(set) var courseColor: UIColor?
     public private(set) var courseName: String?
     public var selectedGradingPeriod: GradingPeriod?
+    public var shouldShowFilterButton: Bool { gradingPeriods.all.count > 1 }
 
     @Environment(\.appEnvironment) private var env
     private let courseID: String
@@ -41,6 +42,19 @@ public class AssignmentListViewModel: ObservableObject {
 
     public init(context: Context) {
         self.courseID = context.id
+    }
+
+    // MARK: - Preview Support
+
+    init(assignmentGroups: [AssignmentGroupViewModel]) {
+        self.courseID = ""
+        self.assignmentGroups = assignmentGroups
+    }
+
+    // MARK: Preview Support -
+
+    public func gradingPeriodFilterCleared() {
+        gradingPeriodSelected(nil)
     }
 
     public func gradingPeriodSelected(_ gradingPeriod: GradingPeriod?) {

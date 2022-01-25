@@ -19,16 +19,19 @@
 import SwiftUI
 
 public class AssignmentGroupViewModel: ObservableObject {
+    public let assignments: [Assignment]
+    public let name: String
+    public let id: String
+    public let courseColor: UIColor?
 
-    public private (set) var assignments: [Assignment] = []
-    public private (set) var name: String
-    public private (set) var id: String
-    public private(set) var courseColor: UIColor?
-
-    public init(assignmentGroup: AssignmentGroup, assignments: [Assignment], courseColor: UIColor?) {
-        self.name = assignmentGroup.name
-        self.id = assignmentGroup.id
+    public init(name: String, id: String, assignments: [Assignment], courseColor: UIColor?) {
+        self.name = name
+        self.id = id
         self.assignments = assignments
         self.courseColor = courseColor
+    }
+
+    public convenience init(assignmentGroup: AssignmentGroup, assignments: [Assignment], courseColor: UIColor?) {
+        self.init(name: assignmentGroup.name, id: assignmentGroup.id, assignments: assignments, courseColor: courseColor)
     }
 }
