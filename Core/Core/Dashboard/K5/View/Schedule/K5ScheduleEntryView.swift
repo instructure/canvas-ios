@@ -105,12 +105,7 @@ public struct K5ScheduleEntryView: View {
     }
 
     private var disclosureIndicator: some View {
-        Image.arrowOpenRightSolid
-            .resizable()
-            .scaledToFit()
-            .frame(width: 16, height: 16)
-            .foregroundColor(.ash)
-            .padding(.leading, 10)
+        InstDisclosureIndicator()
             .hidden(!viewModel.isTappable)
     }
 

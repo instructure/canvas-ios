@@ -35,27 +35,29 @@ public struct AssignmentCellView: View {
                 env.router.route(to: url, from: controller)
             }
         }, label: {
-            HStack(alignment: .top, spacing: 13) {
-                AccessIcon(image: viewModel.icon, published: viewModel.published)
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(Color(viewModel.courseColor ?? .ash))
-                    .padding(.top, 2)
+            HStack(spacing: 13) {
+                icon
                 VStack(alignment: .leading, spacing: 2) {
                     assignmentName
                     dueDate
                     needsGradingBubble
                 }
-
                 Spacer()
-                Image.arrowOpenRightLine
-                    .resizable()
-                    .frame(width: 16, height: 16)
-                    .foregroundColor(.ash)
+                InstDisclosureIndicator()
             }
             .padding(.vertical, 13)
             .padding(.horizontal, 16)
+            .fixedSize(horizontal: false, vertical: true)
         })
             .buttonStyle(PlainButtonStyle())
+    }
+
+    private var icon: some View {
+        AccessIcon(image: viewModel.icon, published: viewModel.published)
+            .frame(width: 20, height: 20)
+            .foregroundColor(Color(viewModel.courseColor ?? .ash))
+            .padding(.top, 2)
+            .frame(maxHeight: .infinity, alignment: .top)
     }
 
     private var assignmentName: some View {
@@ -98,7 +100,7 @@ struct AssignmentCellView_Previews: PreviewProvider {
         VStack(spacing: 0) {
             ForEach(assignments, id: \.id) {
                 let assignment = Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
-                let viewModel = AssignmentCellViewModel(assignment: assignment, courseColor: .blue)
+                let viewModel = AssignmentCellViewModel(assignment: assignment, courseColor: .red)
                 AssignmentCellView(viewModel: viewModel)
             }
         }
