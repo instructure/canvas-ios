@@ -110,6 +110,9 @@
 "Location" = "Mesto";
 
 /* No comment provided by engineer. */
+"Locked" = "Zaklenjeno";
+
+/* No comment provided by engineer. */
 "Login required" = "Zahtevana je prijava";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Povezani element ni več na voljo.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Študent, ki ga poskušate dodati, je v drugi ustanovi Canvas.\nPrijavite se ali ustvarite račun pri tej ustanovi, če želite dodati tega študenta.";

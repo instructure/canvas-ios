@@ -54,6 +54,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         prepareReactNative()
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        UITableView.setupDefaultSectionHeaderTopPadding()
 
         TabBarBadgeCounts.application = UIApplication.shared
 
