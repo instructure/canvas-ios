@@ -50,16 +50,20 @@ struct K5ImportantDateCell: View {
         }
         )
     }
+}
+#if DEBUG
 
-    struct K5ImportantDatesCell_Previews: PreviewProvider {
-        static var previews: some View {
-            // swiftlint:disable:next redundant_discardable_let
-            let _ = K5Preview.setupK5Mode()
+struct K5ImportantDatesCell_Previews: PreviewProvider {
+    static var previews: some View {
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = K5Preview.setupK5Mode()
 
-            List {
-                K5ImportantDateCell(item: K5ImportantDateItem(subject: "Math", title: "This important date event title", color: .red, date: Date(), route: nil, type: .event))
-                K5ImportantDateCell(item: K5ImportantDateItem(subject: "Supercalifragilisticexpialidociously long subject name", title: "This way more longer than needed important date assignment title", color: .blue, date: Date(), route: nil, type: .assignment))
-            }.environment(\.defaultMinListRowHeight, 10)
-        }
+        List {
+            K5ImportantDateCell(item: K5ImportantDateItem(subject: "Math", title: "This important date event title", color: .red, date: Date(), route: nil, type: .event))
+            K5ImportantDateCell(item: K5ImportantDateItem(subject: "Supercalifragilisticexpialidociously long subject name", title: "This way more longer than needed important date assignment title", color: .blue, date: Date(), route: nil, type: .assignment))
+        }.environment(\.defaultMinListRowHeight, 10)
     }
 }
+
+#endif
+

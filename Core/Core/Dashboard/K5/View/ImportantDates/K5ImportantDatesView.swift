@@ -68,6 +68,8 @@ public struct K5ImportantDatesView: View {
     }
 }
 
+#if DEBUG
+
 struct K5ImportantDates_Previews: PreviewProvider {
 
     static var model: K5ImportantDatesViewModel {
@@ -88,3 +90,5 @@ struct K5ImportantDates_Previews: PreviewProvider {
         K5ImportantDatesView(viewModel: model)
     }
 }
+
+#endif
