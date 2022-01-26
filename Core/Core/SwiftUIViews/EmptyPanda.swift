@@ -38,7 +38,7 @@ public struct EmptyPanda: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Spacer()
             Image(panda.name, bundle: .core)
             title?

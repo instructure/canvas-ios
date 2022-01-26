@@ -24,6 +24,7 @@ public class AssignmentListViewModel: ObservableObject {
     public private(set) var courseName: String?
     public var selectedGradingPeriod: GradingPeriod?
     public var shouldShowFilterButton: Bool { gradingPeriods.all.count > 1 }
+    public var isEmpty: Bool { assignmentGroups.isEmpty }
 
     @Environment(\.appEnvironment) private var env
     private let courseID: String

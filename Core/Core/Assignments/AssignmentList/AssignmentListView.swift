@@ -29,7 +29,7 @@ public struct AssignmentListView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            HStack {
+            HStack(alignment: .firstTextBaseline) {
                 gradingPeriodTitle
                 Spacer(minLength: 8)
                 if viewModel.shouldShowFilterButton {
@@ -37,12 +37,12 @@ public struct AssignmentListView: View {
                 }
             }
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
-            List {
-                ForEach(viewModel.assignmentGroups, id: \.id) { assignmentGroup in
-                    AssignmentGroupView(viewModel: assignmentGroup)
-                }
+
+            if viewModel.isEmpty {
+                emptyPanda
+            } else {
+                assignmentList
             }
-            .listStyle(.plain)
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarStyle(.color(viewModel.courseColor))
@@ -59,7 +59,7 @@ public struct AssignmentListView: View {
             text = Text(gradingPeriodTitle)
         }
 
-        return text.font(.bold20)
+        return text.font(.heavy24)
     }
 
     @ViewBuilder
@@ -69,12 +69,16 @@ public struct AssignmentListView: View {
                 isShowingGradingPeriodPicker = true
             }, label: {
                 Text("Filter", bundle: .core)
+                    .font(.semibold16)
+                    .foregroundColor(Color(Brand.shared.linkColor))
             }).actionSheet(isPresented: $isShowingGradingPeriodPicker) {
                 ActionSheet(title: Text("Filter by", bundle: .core), buttons: gradingPeriodButtons)
             }
         } else {
             Button(action: viewModel.gradingPeriodFilterCleared) {
                 Text("Clear Filter", bundle: .core)
+                    .font(.semibold16)
+                    .foregroundColor(Color(Brand.shared.linkColor))
             }
         }
     }
@@ -88,6 +92,29 @@ public struct AssignmentListView: View {
         }
         buttons.append(.cancel(Text("Cancel", bundle: .core)))
         return buttons
+    }
+
+    @ViewBuilder
+    private var emptyPanda: some View {
+        Divider()
+        GeometryReader { geometry in
+            List {
+                EmptyPanda(.NoEvents, title: Text("No Assignments", bundle: .core), message: Text("There are no assignments to display.", bundle: .core))
+                    .iOS15ListRowSeparator(.hidden)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: geometry.size.height)
+            }
+            .listStyle(.plain)
+        }
+    }
+
+    private var assignmentList: some View {
+        List {
+            ForEach(viewModel.assignmentGroups, id: \.id) { assignmentGroup in
+                AssignmentGroupView(viewModel: assignmentGroup)
+            }
+        }
+        .listStyle(.plain)
     }
 }
 
@@ -121,6 +148,11 @@ struct AssignmentListView_Previews: PreviewProvider {
         ]
         let viewModel = AssignmentListViewModel(assignmentGroups: assignmentGroups)
         AssignmentListView(viewModel: viewModel)
+
+        let emptyGroup: [AssignmentGroupViewModel] = [
+        ]
+        let emptyModel = AssignmentListViewModel(assignmentGroups: emptyGroup)
+        AssignmentListView(viewModel: emptyModel)
     }
 }
 
