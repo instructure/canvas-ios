@@ -55,6 +55,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         TabBarBadgeCounts.application = UIApplication.shared
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        UITableView.setupDefaultSectionHeaderTopPadding()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,

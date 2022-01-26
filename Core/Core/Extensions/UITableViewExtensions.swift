@@ -19,6 +19,13 @@
 import UIKit
 
 extension UITableView {
+
+    public static func setupDefaultSectionHeaderTopPadding() {
+        if #available(iOS 15.0, *) {
+            UITableView.appearance().sectionHeaderTopPadding = 0.0
+        }
+    }
+
     /// Returns a reusable table-view cell object of the specified type and adds it to the table.
     /// This can assume that the reuse identifier matches the type name.
     public func dequeue<T: UITableViewCell>(_ type: T.Type = T.self, withID identifier: String = String(describing: T.self), for indexPath: IndexPath) -> T {
