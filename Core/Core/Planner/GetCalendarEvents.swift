@@ -42,7 +42,7 @@ public class GetCalendarEvents: CollectionUseCase {
     }
 
     public var scope: Scope {
-        let context = NSPredicate(format: "%K IN %@", #keyPath(CalendarEvent.contextRaw), self.contexts.map{$0.canvasContextID})
+        let context = NSPredicate(format: "%K IN %@", #keyPath(CalendarEvent.contextRaw), self.contexts.map {$0.canvasContextID})
         let type = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.typeRaw), self.type.rawValue)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [context, type])
         let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)

@@ -147,7 +147,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
             .include(include.map { $0.rawValue }),
             .optionalValue("start_date", startDate.map(GetCalendarEventsRequest.dateFormatter.string)),
             .optionalValue("end_date", endDate.map(GetCalendarEventsRequest.dateFormatter.string)),
-            .optionalBool("important_dates", importantDates)
+            .optionalBool("important_dates", importantDates),
         ]
         if let contexts = contexts {
             query.append(.array("context_codes", contexts.map { $0.canvasContextID }))
