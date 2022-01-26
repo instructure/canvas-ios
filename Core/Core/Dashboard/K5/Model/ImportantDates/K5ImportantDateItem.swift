@@ -19,20 +19,23 @@
 import SwiftUI
 
 public class K5ImportantDate {
-    public let title: String
-    public private(set) var events: [K5ImportantDateItem]
+    public var title: String {
+        return date.weekdayName + ", " + date.dayInMonth
+    }
+    public let date: Date
+    public private(set) var events: Set<K5ImportantDateItem>
 
-    public func addEvent(_ event: CalendarEvent) {
-        events.append(importantDateItem(from: event))
+    public func addEvent(_ event: CalendarEvent, color: Color) {
+        events.insert(importantDateItem(from: event, color: color))
     }
 
-    private func importantDateItem(from event: CalendarEvent) -> K5ImportantDateItem {
-        return K5ImportantDateItem(subject: event.contextName, title: event.title, color: .red, date: event.startAt, route: event.routingURL, type: event.type)
+    private func importantDateItem(from event: CalendarEvent, color: Color) -> K5ImportantDateItem {
+        return K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
     }
 
-    init(with event: CalendarEvent) {
-        self.title = event.startAt?.dateOnlyString ?? ""
-        let dateEvent = K5ImportantDateItem(subject: event.contextName, title: event.title, color: .red, date: event.startAt, route: event.routingURL, type: event.type)
+    init(with event: CalendarEvent, color: Color) {
+        self.date = event.startAt ?? Date()
+        let dateEvent = K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
         events = [dateEvent]
     }
 }

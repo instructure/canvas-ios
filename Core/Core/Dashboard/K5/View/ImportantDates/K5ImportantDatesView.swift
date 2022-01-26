@@ -21,20 +21,50 @@ import SwiftUI
 public struct K5ImportantDatesView: View {
     @ObservedObject var viewModel: K5ImportantDatesViewModel
 
+    public init(viewModel: K5ImportantDatesViewModel) {
+        self.viewModel = viewModel
+    }
+
     public var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Text("Important Dates", bundle: .core).font(.bold22)
-                Spacer()
-            }
-            List(viewModel.importantDates, id: \.self) { importantDate in
-                Section(header: Text(importantDate.title)) {
-                    let event = importantDate.events.first
-                    K5ImportantDatesCell(item: event!)
+        VStack {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                HStack(spacing: 0) {
+                    Text("Important Dates", bundle: .core)
+                        .font(.bold22)
+                        .foregroundColor(.textDarkest)
+                        .padding(EdgeInsets(top: 28, leading: 16, bottom: 9, trailing: 24))
+                    Spacer()
                 }
             }
-            Spacer()
-        }.padding(16)
+            GeometryReader { geometry in
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        CircleRefresh { endRefreshing in
+                            viewModel.refresh(completion: endRefreshing)
+                        }
+                        if viewModel.importantDates.isEmpty {
+                            EmptyPanda(.NoImportantDates, message: Text("Waiting for important things to happen.", bundle: .core)).frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                        } else {
+                            ForEach(viewModel.importantDates, id: \.self) { importantDate in
+                                HStack {
+                                    Text(importantDate.title)
+                                        .font(.bold17)
+                                        .foregroundColor(.textDarkest)
+                                    Spacer()
+                                }
+                                .padding(EdgeInsets(top: 9, leading: 16, bottom: 0, trailing: 16))
+
+                                ForEach(Array(importantDate.events), id: \.self) { event in
+                                    K5ImportantDateCell(item: event)
+                                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 16, trailing: 16))
+                                }
+                            }
+                        }
+                        Spacer()
+                    }
+                }
+            }
+        }
     }
 }
 

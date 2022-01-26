@@ -19,7 +19,7 @@
 import SwiftUI
 
 public class TopBarViewModel: ObservableObject {
-    public let items: [TopBarItemViewModel]
+    public var items: [TopBarItemViewModel]
     @Published public var selectedItemIndex = 0 {
         didSet {
             updateSelectedItemState()

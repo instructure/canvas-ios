@@ -25,7 +25,6 @@ public class K5DashboardViewModel: ObservableObject {
         TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
         TopBarItemViewModel(icon: .k5grades, label: Text("Grades", bundle: .core)),
         TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core)),
-        TopBarItemViewModel(icon: .k5importantDates, label: Text("Important Dates", bundle: .core)),
     ])
 
     let viewModels = (
@@ -42,6 +41,10 @@ public class K5DashboardViewModel: ObservableObject {
         // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
         topBarChangeListener = topBarViewModel.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
+        }
+
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            topBarViewModel.items.append(TopBarItemViewModel(icon: .k5importantDates, label: Text("Important Dates", bundle: .core)))
         }
     }
 

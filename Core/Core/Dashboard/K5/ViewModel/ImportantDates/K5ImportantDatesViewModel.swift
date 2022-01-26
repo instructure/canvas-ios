@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
+
 public class K5ImportantDatesViewModel: ObservableObject {
 
     @Published public private(set) var importantDates: [K5ImportantDate] = []
@@ -40,14 +42,16 @@ public class K5ImportantDatesViewModel: ObservableObject {
     private var forceRefresh = false
 
     init() {
+        forceRefresh = true
         courses.refresh()
     }
+
     private func coursesUpdated() {
         contexts.removeAll()
         courses.forEach { course in
             contexts.append(Context(.course, id: course.id))
         }
-        assignments.exhaust(force: true)
+        assignments.exhaust(force: forceRefresh)
     }
 
     private func assignmentsUpdated() {
@@ -55,7 +59,7 @@ public class K5ImportantDatesViewModel: ObservableObject {
 
             addImportantDate(from: assignment)
         }
-        events.exhaust(force: true)
+        events.exhaust(force: forceRefresh)
     }
 
     private func eventsUpdated() {
@@ -66,11 +70,12 @@ public class K5ImportantDatesViewModel: ObservableObject {
     }
 
     func addImportantDate(from event: CalendarEvent) {
-        let formattedDateTitle = event.startAt?.dateOnlyString
-        if let existingDate = importantDates.first(where: { $0.title == formattedDateTitle }) {
-            existingDate.addEvent(event)
+        guard let course = courses.filter({ $0.id == event.context.id }).first else { return }
+        let courseColor = Color(course.color)
+        if let existingDate = importantDates.first(where: { $0.date == event.startAt }) {
+            existingDate.addEvent(event, color: courseColor)
         } else {
-            importantDates.append(K5ImportantDate(with: event))
+            importantDates.append(K5ImportantDate(with: event, color: courseColor))
         }
     }
 
@@ -92,6 +97,7 @@ extension K5ImportantDatesViewModel: Refreshable {
     }
 
     func reloadData() {
+        importantDates.removeAll()
         courses.exhaust(force: true)
     }
 }

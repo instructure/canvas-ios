@@ -1005,7 +1005,7 @@
 		EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */; };
 		EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */; };
 		EBE92ED3279AD7ED0053C9A4 /* K5ImportantDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75D495278F155A00AA273C /* K5ImportantDatesView.swift */; };
-		EBE92ED5279AF27A0053C9A4 /* K5ImportantDatesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED4279AF27A0053C9A4 /* K5ImportantDatesCell.swift */; };
+		EBE92ED5279AF27A0053C9A4 /* K5ImportantDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED4279AF27A0053C9A4 /* K5ImportantDateCell.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */; };
 		EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */; };
 		EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC82721A862008EE2DF /* K5SubjectView.swift */; };
@@ -2262,7 +2262,7 @@
 		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
 		EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModelTests.swift; sourceTree = "<group>"; };
 		EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItem.swift; sourceTree = "<group>"; };
-		EBE92ED4279AF27A0053C9A4 /* K5ImportantDatesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDatesCell.swift; sourceTree = "<group>"; };
+		EBE92ED4279AF27A0053C9A4 /* K5ImportantDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateCell.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
 		EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
 		EBF58AC82721A862008EE2DF /* K5SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectView.swift; sourceTree = "<group>"; };
@@ -4918,7 +4918,7 @@
 			isa = PBXGroup;
 			children = (
 				EB75D495278F155A00AA273C /* K5ImportantDatesView.swift */,
-				EBE92ED4279AF27A0053C9A4 /* K5ImportantDatesCell.swift */,
+				EBE92ED4279AF27A0053C9A4 /* K5ImportantDateCell.swift */,
 			);
 			path = ImportantDates;
 			sourceTree = "<group>";
@@ -6275,7 +6275,7 @@
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
 				7DA25FB723F72136005D2121 /* APIGroup.swift in Sources */,
 				7DB92CA224C5F5ED004A6C16 /* GetAccountNotifications.swift in Sources */,
-				EBE92ED5279AF27A0053C9A4 /* K5ImportantDatesCell.swift in Sources */,
+				EBE92ED5279AF27A0053C9A4 /* K5ImportantDateCell.swift in Sources */,
 				7DA2604123F722D9005D2121 /* CourseSection.swift in Sources */,
 				7DA25F8A23F7211E005D2121 /* GetPlannables.swift in Sources */,
 				7DA2602C23F722C2005D2121 /* LoginStartSessionCell.swift in Sources */,
