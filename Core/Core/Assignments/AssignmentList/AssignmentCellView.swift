@@ -50,6 +50,7 @@ public struct AssignmentCellView: View {
             .fixedSize(horizontal: false, vertical: true)
         })
             .buttonStyle(PlainButtonStyle())
+            .accessibility(identifier: "assignment-list.assignment-list-row.cell-\(viewModel.assignment.id)")
     }
 
     private var icon: some View {
