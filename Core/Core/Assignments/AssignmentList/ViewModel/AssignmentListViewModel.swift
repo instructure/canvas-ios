@@ -19,12 +19,17 @@
 import SwiftUI
 
 public class AssignmentListViewModel: ObservableObject {
-    @Published public private(set) var assignmentGroups: [AssignmentGroupViewModel] = []
-    public private(set) var courseColor: UIColor?
-    public private(set) var courseName: String?
+    public enum ViewModelState<T> {
+        case loading
+        case empty
+        case data(T)
+    }
+
+    @Published public private(set) var state: ViewModelState<[AssignmentGroupViewModel]> = .loading
+    @Published public private(set) var courseColor: UIColor?
+    @Published public private(set) var courseName: String?
     public var selectedGradingPeriod: GradingPeriod?
     public var shouldShowFilterButton: Bool { gradingPeriods.all.count > 1 }
-    public var isEmpty: Bool { assignmentGroups.isEmpty }
 
     @Environment(\.appEnvironment) private var env
     private let courseID: String
@@ -47,9 +52,9 @@ public class AssignmentListViewModel: ObservableObject {
 
     // MARK: - Preview Support
 
-    init(assignmentGroups: [AssignmentGroupViewModel]) {
+    init(state: ViewModelState<[AssignmentGroupViewModel]>) {
         self.courseID = ""
-        self.assignmentGroups = assignmentGroups
+        self.state = state
     }
 
     // MARK: Preview Support -
@@ -59,6 +64,7 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     public func gradingPeriodSelected(_ gradingPeriod: GradingPeriod?) {
+        state = .loading
         selectedGradingPeriod = gradingPeriod
 
         apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
@@ -74,13 +80,18 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func assignmentGroupsDidUpdate() {
-        assignmentGroups = []
+        if apiAssignments.requested, apiAssignments.pending { return }
+
+        var assignmentGroups: [AssignmentGroupViewModel] = []
+
         for section in 0..<(apiAssignments.sections?.count ?? 0) {
             if let group = apiAssignments[IndexPath(row: 0, section: section)]?.assignmentGroup {
                 let assignments: [Assignment] = apiAssignments.filter {$0.assignmentGroup == group}
                 assignmentGroups.append(AssignmentGroupViewModel(assignmentGroup: group, assignments: assignments, courseColor: courseColor))
             }
         }
+
+        state = (assignmentGroups.isEmpty ? .empty : .data(assignmentGroups))
     }
 
     private func courseDidUpdate() {

@@ -19,7 +19,6 @@
 import SwiftUI
 
 public struct AssignmentListView: View {
-
     @ObservedObject private var viewModel: AssignmentListViewModel
     @State private var isShowingGradingPeriodPicker = false
 
@@ -38,10 +37,13 @@ public struct AssignmentListView: View {
             }
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
 
-            if viewModel.isEmpty {
+            switch viewModel.state {
+            case .empty:
                 emptyPanda
-            } else {
-                assignmentList
+            case .loading:
+                loadingView
+            case .data(let groups):
+                assignmentList(groups)
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -111,9 +113,17 @@ public struct AssignmentListView: View {
         }
     }
 
-    private var assignmentList: some View {
+    @ViewBuilder
+    private var loadingView: some View {
+        Divider()
+        Spacer()
+        CircleProgress()
+        Spacer()
+    }
+
+    private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
         List {
-            ForEach(viewModel.assignmentGroups, id: \.id) { assignmentGroup in
+            ForEach(groups, id: \.id) { assignmentGroup in
                 AssignmentGroupView(viewModel: assignmentGroup)
             }
         }
@@ -152,13 +162,14 @@ struct AssignmentListView_Previews: PreviewProvider {
             AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),
             AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red),
         ]
-        let viewModel = AssignmentListViewModel(assignmentGroups: assignmentGroups)
+        let viewModel = AssignmentListViewModel(state: .data(assignmentGroups))
         AssignmentListView(viewModel: viewModel)
 
-        let emptyGroup: [AssignmentGroupViewModel] = [
-        ]
-        let emptyModel = AssignmentListViewModel(assignmentGroups: emptyGroup)
+        let emptyModel = AssignmentListViewModel(state: .empty)
         AssignmentListView(viewModel: emptyModel)
+
+        let loadingModel = AssignmentListViewModel(state: .loading)
+        AssignmentListView(viewModel: loadingModel)
     }
 }
 
