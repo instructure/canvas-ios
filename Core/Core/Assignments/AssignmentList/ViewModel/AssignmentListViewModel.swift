@@ -28,22 +28,19 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var state: ViewModelState<[AssignmentGroupViewModel]> = .loading
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
+    @Published public private(set) var shouldShowFilterButton = false
     public var selectedGradingPeriod: GradingPeriod?
-    public var shouldShowFilterButton: Bool { gradingPeriods.all.count > 1 }
+    public lazy private (set) var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
+        self?.gradingPeriodsDidUpdate()
+    }
 
     @Environment(\.appEnvironment) private var env
     private let courseID: String
-
-    lazy private var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
+    private lazy var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()
     }
-
-    lazy private var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseDidUpdate()
-    }
-
-    lazy public private (set) var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
-        self?.gradingPeriodsDidUpdate()
     }
 
     public init(context: Context) {
@@ -100,9 +97,8 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func gradingPeriodsDidUpdate() {
-        if gradingPeriods.pending == false && gradingPeriods.requested {
-            // TODO: send "ready"
-        }
+        if gradingPeriods.requested, gradingPeriods.pending { return }
+        shouldShowFilterButton = gradingPeriods.all.count > 1
     }
 }
 
