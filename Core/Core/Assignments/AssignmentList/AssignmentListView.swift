@@ -61,7 +61,9 @@ public struct AssignmentListView: View {
             text = Text(gradingPeriodTitle)
         }
 
-        return text.font(.heavy24)
+        return text
+            .font(.heavy24)
+            .accessibility(addTraits: .isHeader)
     }
 
     @ViewBuilder
