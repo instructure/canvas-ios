@@ -105,6 +105,9 @@ public struct AssignmentListView: View {
                     .frame(height: geometry.size.height)
             }
             .listStyle(.plain)
+            .iOS15Refreshable { completion in
+                viewModel.refresh(completion: completion)
+            }
         }
     }
 
@@ -115,6 +118,9 @@ public struct AssignmentListView: View {
             }
         }
         .listStyle(.plain)
+        .iOS15Refreshable { completion in
+            viewModel.refresh(completion: completion)
+        }
     }
 }
 
