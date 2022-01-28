@@ -40,8 +40,21 @@ public protocol CoreWebViewSizeDelegate: AnyObject {
     func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat)
 }
 
+private extension WKWebViewConfiguration {
+
+    func applyDefaultSettings() {
+        allowsInlineMediaPlayback = true
+        processPool = CoreWebView.processPool
+    }
+}
+
 @IBDesignable
 open class CoreWebView: WKWebView {
+    public static var defaultConfiguration: WKWebViewConfiguration = {
+        let configuration = WKWebViewConfiguration()
+        configuration.applyDefaultSettings()
+        return configuration
+    }()
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
@@ -62,33 +75,35 @@ open class CoreWebView: WKWebView {
     }
 
     public override init(frame: CGRect, configuration: WKWebViewConfiguration) {
-        configuration.allowsInlineMediaPlayback = true
-        configuration.processPool = CoreWebView.processPool
+        configuration.applyDefaultSettings()
         super.init(frame: frame, configuration: configuration)
         setup()
     }
 
-    public init(customUserAgentName: String? = nil, disableZoom: Bool = false) {
-        let configuration = WKWebViewConfiguration()
-        configuration.allowsInlineMediaPlayback = true
-        configuration.processPool = CoreWebView.processPool
+    public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
+        let config = configuration ?? Self.defaultConfiguration
+        config.applyDefaultSettings()
+
         if let customUserAgentName = customUserAgentName {
-            configuration.applicationNameForUserAgent = customUserAgentName
+            config.applicationNameForUserAgent = customUserAgentName
         }
-        super.init(frame: .zero, configuration: configuration)
+
+        super.init(frame: .zero, configuration: config)
+
         if disableZoom {
             addScript(zoomScript)
         }
+
         setup()
     }
 
-    init(externalConfiguration: WKWebViewConfiguration) {
+    private init(externalConfiguration: WKWebViewConfiguration) {
         super.init(frame: .zero, configuration: externalConfiguration)
         navigationDelegate = self
         uiDelegate = self
     }
 
-    func setup() {
+    private func setup() {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
         uiDelegate = self

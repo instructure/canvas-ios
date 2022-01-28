@@ -40,11 +40,14 @@ class K5SubjectViewModelTests: CoreTestCase {
     }
 
     func testPageUrl() {
-        let pageId = "schedule"
-        let url = K5SubjectViewModel(context: context).pageUrl(for: pageId)
+        Tab.make(from: .make(id: "grades", type: .internal, position: 0), context: context)
+        let testee = K5SubjectViewModel(context: context)
+
+        let url = testee.currentPageURL
+
         XCTAssertEqual(url?.path, "/courses/" + courseId)
         XCTAssertEqual(url?.query, "embed=true")
-        XCTAssertEqual(url?.fragment, "\(pageId)")
+        XCTAssertEqual(url?.fragment, "grades")
     }
 
     func testInitiallySelectedTab() {
