@@ -54,14 +54,9 @@ public class AssignmentCellViewModel: ObservableObject {
         guard assignment.needsGradingCount > 0, assignment.gradingType != .not_graded else {
             return nil
         }
-        var text = ""
-        if assignment.needsGradingCount == 1 {
-            text = NSLocalizedString("1 needs grading", bundle: .core, comment: "")
-        } else {
-            let format = NSLocalizedString("%d need grading", bundle: .core, comment: "i.e. 5 need grading")
-            text = String.localizedStringWithFormat(format, assignment.needsGradingCount)
-        }
-        return text.uppercased()
+
+        let format = NSLocalizedString("d_needs_grading", comment: "")
+        return String.localizedStringWithFormat(format, assignment.needsGradingCount).localizedUppercase
     }
 
     public var formattedDueDate: String {

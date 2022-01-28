@@ -86,6 +86,8 @@ public struct AssignmentCellView: View {
     }
 }
 
+#if DEBUG
+
 struct AssignmentCellView_Previews: PreviewProvider {
     private static let env = PreviewEnvironment()
     private static let context = env.globalDatabase.viewContext
@@ -107,3 +109,5 @@ struct AssignmentCellView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif
