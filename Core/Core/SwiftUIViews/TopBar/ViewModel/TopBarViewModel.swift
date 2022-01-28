@@ -16,19 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class TopBarViewModel: ObservableObject {
     public let items: [TopBarItemViewModel]
+    /** A Combine publisher for the `selectedItemIndex` property. The difference compared to the `@Published selectedItemIndex`variable is that **`selectedItemIndex`**
+     signals **before** the new value is set and the viewModel state is updated while **selectedItemIndexPublisher** signals **after** the new value is set and the viewModel state is updated. */
+    public var selectedItemIndexPublisher: AnyPublisher<Int, Never> { selectedItemIndexChanged.eraseToAnyPublisher() }
     @Published public var selectedItemIndex = 0 {
         didSet {
             updateSelectedItemState()
+            selectedItemIndexChanged.send(selectedItemIndex)
         }
     }
 
     public var selectedItemId: String? {
         items[selectedItemIndex].id
     }
+
+    private let selectedItemIndexChanged = CurrentValueSubject<Int, Never>(0)
 
     public init(items: [TopBarItemViewModel]) {
         self.items = items
