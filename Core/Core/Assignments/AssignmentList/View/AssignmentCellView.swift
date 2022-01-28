@@ -48,6 +48,7 @@ public struct AssignmentCellView: View {
             .padding(.vertical, 13)
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)
+            .contentShape(Rectangle())
         })
             .buttonStyle(PlainButtonStyle())
             .accessibility(identifier: "assignment-list.assignment-list-row.cell-\(viewModel.assignment.id)")
