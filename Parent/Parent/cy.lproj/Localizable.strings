@@ -110,6 +110,9 @@
 "Location" = "Lleoliad";
 
 /* No comment provided by engineer. */
+"Locked" = "Wedi Cloi";
+
+/* No comment provided by engineer. */
 "Login required" = "Angen mewngofnodi";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Maes Llafur";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Nid yw’r eitem cysylltiedig ar gael mwyach.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Mae’r myfyriwr rydych chi’n ceisio ei ychwanegu yn perthyn i un o sefydliadau eraill Canvas.\nMae angen i chi fewngofnodi neu greu cyfrif gyda’r sefydliad hwnnw i ychwanegu’r myfyriwr yma.";

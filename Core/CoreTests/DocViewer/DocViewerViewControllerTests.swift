@@ -168,16 +168,36 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 
     func testAnnotationContextMenuForFileAnnotations() {
+        // Setup view controller to load a local pdf with one annotation in it
+        let url = Bundle(for: Self.self).url(forResource: "file_annotation_from_ios", withExtension: "pdf")!
+        let controller: DocViewerViewController = {
+            let controller = DocViewerViewController.create(
+                filename: "file_annotation_from_ios.pdf",
+                previewURL: url, fallbackURL: url
+            )
+            controller.session = {
+                let session = MockSession { controller.sessionIsReady() }
+                session.annotations = []
+                session.sessionID = "abcd"
+                session.sessionURL = URL(string: "session")
+                session.localURL = url
+                session.metadata = .make(annotations: .make(enabled: true))
+                return session
+            }()
+
+            controller.isAnnotatable = true
+            return controller
+        }()
+        controller.view.layoutIfNeeded()
+
+        // Get a reference to that single annotation so we can call the delegate method with it
+        let fileAnnotation = controller.annotationProvider!.annotationsForPage(at: 0)!.first!
+        XCTAssertTrue(fileAnnotation.isFileAnnotation)
         let menuItems: [MenuItem] = [
             MenuItem(title: "test", block: {}),
         ]
-        controller.isAnnotatable = true
-        controller.metadata = APIDocViewerMetadata.make(annotations: .make(enabled: true))
-        controller.view.layoutIfNeeded()
 
-        let fileAnnotation = Annotation.from(.make(), metadata: .make())!
-        fileAnnotation.isFileAnnotation = true
-
+        // Call the delegate method with the file annotation and test if it returns no menu items
         let results = controller.pdf.delegate?.pdfViewController?(
             controller.pdf,
             shouldShow: menuItems,

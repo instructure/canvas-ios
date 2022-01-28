@@ -110,6 +110,9 @@
 "Location" = "الموقع";
 
 /* No comment provided by engineer. */
+"Locked" = "مؤمّن";
+
+/* No comment provided by engineer. */
 "Login required" = "تسجيل الدخول مطلوب";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "المناهج";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "العنصر المرتبط لم يعد متاحًا.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "الطالب الذي تحاول إضافته في مؤسسة تعليمية مختلفة على Canvas.\nسجّل الدخول أو أنشئ حساباً في هذه المؤسسة التعليمية لإضافة هذا الطالب.";
