@@ -35,3 +35,10 @@ public class AssignmentGroupViewModel: ObservableObject {
         self.init(name: assignmentGroup.name, id: assignmentGroup.id, assignments: assignments, courseColor: courseColor)
     }
 }
+
+extension AssignmentGroupViewModel: Equatable {
+
+    public static func == (lhs: AssignmentGroupViewModel, rhs: AssignmentGroupViewModel) -> Bool {
+        lhs.id == rhs.id
+    }
+}

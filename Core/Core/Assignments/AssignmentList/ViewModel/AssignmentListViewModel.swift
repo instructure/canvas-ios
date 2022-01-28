@@ -19,7 +19,7 @@
 import SwiftUI
 
 public class AssignmentListViewModel: ObservableObject {
-    public enum ViewModelState<T> {
+    public enum ViewModelState<T: Equatable>: Equatable {
         case loading
         case empty
         case data(T)
@@ -49,10 +49,14 @@ public class AssignmentListViewModel: ObservableObject {
 
     // MARK: - Preview Support
 
+#if DEBUG
+
     init(state: ViewModelState<[AssignmentGroupViewModel]>) {
         self.courseID = ""
         self.state = state
     }
+
+#endif
 
     // MARK: Preview Support -
 
