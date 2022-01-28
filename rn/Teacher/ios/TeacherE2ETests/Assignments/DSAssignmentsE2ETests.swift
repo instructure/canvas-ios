@@ -31,7 +31,8 @@ class DSAssignmentsE2ETests: E2ETestCase {
         seeder.enrollTeacher(teacher, in: course)
 
         let assignmentName = "Assignment 1"
-        let assignment = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName, description: "This a description", published: true))
+        let assignmentDescription = "This is a description for Assignment 1"
+        let assignment = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName, description: assignmentDescription, published: true))
 
         logInDSUser(teacher)
 
@@ -40,5 +41,8 @@ class DSAssignmentsE2ETests: E2ETestCase {
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: assignment.id).tap()
         XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
+        AssignmentDetails.description(assignmentDescription).waitToExist(5)
+        XCTAssertTrue(AssignmentDetails.published.exists())
+        XCTAssertTrue(AssignmentDetails.description(assignmentDescription).exists())
     }
 }

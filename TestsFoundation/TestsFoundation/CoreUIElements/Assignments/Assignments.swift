@@ -40,6 +40,8 @@ public enum AssignmentDetails: String, ElementWrapper {
     case submittedText
     case viewAllSubmissionsButton // teacher
     case viewSubmissionButton
+    case published
+    case unpublished
 
     public static func description(_ description: String) -> Element {
         return app.find(label: description)

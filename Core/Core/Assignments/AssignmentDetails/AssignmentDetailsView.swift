@@ -89,12 +89,12 @@ public struct AssignmentDetailsView: View {
                     Image.publishSolid.foregroundColor(.textSuccess)
                         .padding(.trailing, 4)
                     Text("Published", bundle: .core)
-                        .font(.medium16).foregroundColor(.textSuccess)
+                        .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
                 } else {
                     Image.noSolid.foregroundColor(.textDark)
                         .padding(.trailing, 4)
                     Text("Unpublished", bundle: .core)
-                        .font(.medium16).foregroundColor(.textDark)
+                        .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
                 }
                 Spacer()
             }
