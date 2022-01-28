@@ -80,7 +80,7 @@ public struct AssignmentDetailsView: View {
     @ViewBuilder func details(assignment: Assignment) -> some View {
         Section {
             Text(assignment.name)
-                .font(.heavy24).foregroundColor(.textDarkest)
+                .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "AssignmentDetails.name")
             HStack(spacing: 0) {
                 Text(assignment.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)

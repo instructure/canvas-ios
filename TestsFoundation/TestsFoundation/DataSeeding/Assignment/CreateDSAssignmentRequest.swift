@@ -16,4 +16,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+
+//https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.create
+public struct CreateDSAssignmentRequest: APIRequestable {
+    public typealias Response = DSAssignment
+
+    public let method = APIMethod.post
+    public var path: String
+    public let body: Body?
+
+    public init(body: Body, courseId: String) {
+        self.body = body
+        self.path = "/api/v1/courses/\(courseId)/assignments"
+    }
+}
+
+extension CreateDSAssignmentRequest {
+    public struct RequestDSAssignment: Encodable {
+        let name: String
+        let description: String?
+        let published: Bool
+
+        public init(name: String = "kaki", description: String? = nil, published: Bool = true) {
+            self.name = name
+            self.description = description
+            self.published = published
+        }
+    }
+
+    public struct Body: Encodable {
+        let assignment: RequestDSAssignment
+    }
+}

@@ -17,3 +17,28 @@
 //
 
 import Foundation
+import TestsFoundation
+
+class DSAssignmentsE2ETests: E2ETestCase {
+    func testCreateAssignment() {
+        let seeder = DataSeeder()
+        let users = seeder.createUsers(2)
+        let course = seeder.createCourse()
+        let student = users[0]
+        let teacher = users[1]
+
+        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
+
+        let assignmentName = "Assignment 1"
+        let assignment = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName, description: "This a description", published: true))
+
+        logInDSUser(teacher)
+
+        Dashboard.courseCard(id: course.id).waitToExist()
+        Dashboard.courseCard(id: course.id).tap()
+        CourseNavigation.assignments.tap()
+        AssignmentsList.assignment(id: assignment.id).tap()
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
+    }
+}
