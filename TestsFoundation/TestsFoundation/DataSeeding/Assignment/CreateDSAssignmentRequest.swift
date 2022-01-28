@@ -38,7 +38,7 @@ extension CreateDSAssignmentRequest {
         let description: String?
         let published: Bool
 
-        public init(name: String = "kaki", description: String? = nil, published: Bool = true) {
+        public init(name: String = "Assignment Name", description: String? = nil, published: Bool = true) {
             self.name = name
             self.description = description
             self.published = published
