@@ -898,6 +898,7 @@
 		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
 		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
 		CF911BA627A29B1800E1EECB /* iOS15Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */; };
+		CF911BAB27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
@@ -2151,6 +2152,7 @@
 		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
 		CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Refreshable.swift; sourceTree = "<group>"; };
+		CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCellViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
@@ -3867,6 +3869,7 @@
 		7DF4AACE2486AC0E00B07BB8 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
+				CF911BA827A2FD3000E1EECB /* AssignmentList */,
 				3B5542452369F401007D3CE0 /* APIAssignmentListTests.swift */,
 				B1A32BE12159A3100071B41E /* APIAssignmentTests.swift */,
 				B1A6BC8B218A9843000515E3 /* APILatePolicyTests.swift */,
@@ -4590,6 +4593,32 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CF911BA727A2FCD500E1EECB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D91BC84F276B7B2D008371B0 /* AssignmentListView.swift */,
+				D91BC850276B7B2D008371B0 /* AssignmentGroupView.swift */,
+				D91BC857276B9679008371B0 /* AssignmentCellView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF911BA827A2FD3000E1EECB /* AssignmentList */ = {
+			isa = PBXGroup;
+			children = (
+				CF911BA927A2FD3800E1EECB /* ViewModel */,
+			);
+			path = AssignmentList;
+			sourceTree = "<group>";
+		};
+		CF911BA927A2FD3800E1EECB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CF941B12267B425800700DE9 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
@@ -4789,10 +4818,8 @@
 		D91BC84D276B7AD3008371B0 /* AssignmentList */ = {
 			isa = PBXGroup;
 			children = (
+				CF911BA727A2FCD500E1EECB /* View */,
 				D91BC84E276B7AF6008371B0 /* ViewModel */,
-				D91BC84F276B7B2D008371B0 /* AssignmentListView.swift */,
-				D91BC850276B7B2D008371B0 /* AssignmentGroupView.swift */,
-				D91BC857276B9679008371B0 /* AssignmentCellView.swift */,
 			);
 			path = AssignmentList;
 			sourceTree = "<group>";
@@ -5649,6 +5676,7 @@
 				CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,
 				9F900E7923217CC000BB44B4 /* APISearchRecipientsTests.swift in Sources */,
+				CF911BAB27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift in Sources */,
 				7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */,
 				9F5C93052375FBBA005105BB /* EmptyViewControllerTests.swift in Sources */,
 				B19792FD21769E280000369C /* GroupTests.swift in Sources */,
