@@ -26,7 +26,11 @@ struct K5ImportantDateCell: View {
 
     var body: some View {
         Button(action: {
-            env.router.route(to: item.route!, from: controller, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                env.router.route(to: item.route!, from: controller, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
+            } else {
+                env.router.route(to: item.route!, from: controller, options: .detail)
+            }
         }, label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium, lineWidth: 2).background(Color.white)
@@ -39,7 +43,7 @@ struct K5ImportantDateCell: View {
                         }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 0))
                         HStack(alignment: .center, spacing: 0) {
                             item.iconImage.foregroundColor(item.color).padding(EdgeInsets(top: 0, leading: 9, bottom: 0, trailing: 3))
-                            Text(item.title).font(.regular16).frame(maxWidth: .infinity, alignment: .leading).multilineTextAlignment(.leading)
+                            Text(item.title).font(.regular16).foregroundColor(.textDarkest).frame(maxWidth: .infinity, alignment: .leading).multilineTextAlignment(.leading)
                             Spacer()
                         }.padding(.bottom, 9)
                     }
@@ -71,7 +75,7 @@ struct K5ImportantDatesCell_Previews: PreviewProvider {
                                                           date: Date(),
                                                           route: nil,
                                                           type: .assignment))
-        }.environment(\.defaultMinListRowHeight, 10)
+        }.environment(\.defaultMinListRowHeight, 10).previewLayout(.sizeThatFits)
     }
 }
 

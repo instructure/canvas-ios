@@ -1006,6 +1006,8 @@
 		EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */; };
 		EBE92ED3279AD7ED0053C9A4 /* K5ImportantDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75D495278F155A00AA273C /* K5ImportantDatesView.swift */; };
 		EBE92ED5279AF27A0053C9A4 /* K5ImportantDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED4279AF27A0053C9A4 /* K5ImportantDateCell.swift */; };
+		EBEA637727A17DB900EA0B2D /* K5ImportantDateItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA637627A17DB800EA0B2D /* K5ImportantDateItemTests.swift */; };
+		EBEA637927A2E84800EA0B2D /* K5ImportantDatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA637827A2E84800EA0B2D /* K5ImportantDatesViewModelTests.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */; };
 		EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */; };
 		EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF58AC82721A862008EE2DF /* K5SubjectView.swift */; };
@@ -2263,6 +2265,8 @@
 		EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModelTests.swift; sourceTree = "<group>"; };
 		EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItem.swift; sourceTree = "<group>"; };
 		EBE92ED4279AF27A0053C9A4 /* K5ImportantDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateCell.swift; sourceTree = "<group>"; };
+		EBEA637627A17DB800EA0B2D /* K5ImportantDateItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItemTests.swift; sourceTree = "<group>"; };
+		EBEA637827A2E84800EA0B2D /* K5ImportantDatesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDatesViewModelTests.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
 		EBF58AC62721A7DD008EE2DF /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
 		EBF58AC82721A862008EE2DF /* K5SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectView.swift; sourceTree = "<group>"; };
@@ -4336,6 +4340,7 @@
 				CF6C100526C52F2B002E7FE6 /* Schedule */,
 				CF575E4C2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift */,
 				CF575E48266792CA00F8515F /* LatestAnnouncementTests.swift */,
+				EBEA637627A17DB800EA0B2D /* K5ImportantDateItemTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4763,6 +4768,7 @@
 				CF941B1C267B438600700DE9 /* Schedule */,
 				CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */,
 				EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */,
+				EBEA637827A2E84800EA0B2D /* K5ImportantDatesViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5485,6 +5491,7 @@
 				CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */,
 				7D81F3FC24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift in Sources */,
 				CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */,
+				EBEA637927A2E84800EA0B2D /* K5ImportantDatesViewModelTests.swift in Sources */,
 				7D86285B224C05BB003A37DC /* APIMediaCommentTests.swift in Sources */,
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
@@ -5639,6 +5646,7 @@
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
 				7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */,
 				CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */,
+				EBEA637727A17DB900EA0B2D /* K5ImportantDateItemTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,
 				9F900E7923217CC000BB44B4 /* APISearchRecipientsTests.swift in Sources */,
 				7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */,

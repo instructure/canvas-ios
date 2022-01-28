@@ -45,24 +45,28 @@ public struct K5ImportantDatesView: View {
                         if viewModel.importantDates.isEmpty {
                             EmptyPanda(.NoImportantDates, message: Text("Waiting for important things to happen.", bundle: .core)).frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
                         } else {
-                            ForEach(viewModel.importantDates, id: \.self) { importantDate in
-                                HStack {
-                                    Text(importantDate.title)
-                                        .font(.bold17)
-                                        .foregroundColor(.textDarkest)
-                                    Spacer()
-                                }
-                                .padding(EdgeInsets(top: 9, leading: 16, bottom: 0, trailing: 16))
-
-                                ForEach(Array(importantDate.events), id: \.self) { event in
-                                    K5ImportantDateCell(item: event)
-                                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 16, trailing: 16))
-                                }
-                            }
+                            importandDatesList
                         }
                         Spacer()
                     }
                 }
+            }
+        }
+    }
+
+    @ViewBuilder var importandDatesList: some View {
+        ForEach(viewModel.importantDates, id: \.self) { importantDate in
+            HStack {
+                Text(importantDate.title)
+                    .font(.bold17)
+                    .foregroundColor(.textDarkest)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 9, leading: 16, bottom: 0, trailing: 16))
+
+            ForEach(Array(importantDate.events), id: \.self) { event in
+                K5ImportantDateCell(item: event)
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 16, trailing: 16))
             }
         }
     }
@@ -73,14 +77,30 @@ public struct K5ImportantDatesView: View {
 struct K5ImportantDates_Previews: PreviewProvider {
 
     static var model: K5ImportantDatesViewModel {
-        let viewModel = K5ImportantDatesViewModel()
-        let event = CalendarEvent()
-        event.startAt = Date()
-        event.title = "Subject name"
-        event.contextName = "This important date event"
-        event.type = .event
-        viewModel.addImportantDate(from: event)
-        return viewModel
+
+        let dates = [
+            K5ImportantDate(with: Date(fromISOString: "2022-01-03T08:00:00Z"),
+                            events: [K5ImportantDateItem(subject: "Math",
+                                                                       title: "This important math assignment",
+                                                                       color: .red,
+                                                                       date: Date(fromISOString: "2022-01-03T08:00:00Z"),
+                                                                       route: nil,
+                                                                       type: .assignment),
+                                     K5ImportantDateItem(subject: "Music",
+                                                                                title: "This important music assignment",
+                                                                                color: .blue,
+                                                                                date: Date(fromISOString: "2022-01-03T09:00:00Z"),
+                                                                                route: nil,
+                                                                                type: .assignment), ]),
+            K5ImportantDate(with: Date(fromISOString: "2022-01-04T08:00:00Z"),
+                            events: [K5ImportantDateItem(subject: "History",
+                                                                       title: "This important history event",
+                                                                       color: .green,
+                                                                       date: Date(fromISOString: "2022-01-03T08:00:00Z"),
+                                                                       route: nil,
+                                                                       type: .event), ]),
+        ]
+        return K5ImportantDatesViewModel(with: dates)
     }
 
     static var previews: some View {

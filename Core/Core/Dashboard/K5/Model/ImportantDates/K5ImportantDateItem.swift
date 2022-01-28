@@ -20,13 +20,19 @@ import SwiftUI
 
 public class K5ImportantDate {
     public var title: String {
-        return date.weekdayName + ", " + date.dayInMonth
+        if let date = date {
+            return date.weekdayName + ", " + date.dayInMonth
+        }
+        return ""
     }
-    public let date: Date
-    public private(set) var events: Set<K5ImportantDateItem>
+    public let date: Date?
+    public var events: [K5ImportantDateItem] {
+        return Array(uniqueEvents).filter({$0.date != nil}).sorted(by: {$0.date!.timeIntervalSince1970 < $1.date!.timeIntervalSince1970})
+    }
+    private var uniqueEvents: Set<K5ImportantDateItem>
 
     public func addEvent(_ event: CalendarEvent, color: Color) {
-        events.insert(importantDateItem(from: event, color: color))
+        uniqueEvents.insert(importantDateItem(from: event, color: color))
     }
 
     private func importantDateItem(from event: CalendarEvent, color: Color) -> K5ImportantDateItem {
@@ -34,10 +40,17 @@ public class K5ImportantDate {
     }
 
     init(with event: CalendarEvent, color: Color) {
-        self.date = event.startAt ?? Date()
+        self.date = event.startAt
         let dateEvent = K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
-        events = [dateEvent]
+        uniqueEvents = [dateEvent]
     }
+
+#if DEBUG
+    init(with date: Date?, events: Set<K5ImportantDateItem>) {
+        self.date = date
+        self.uniqueEvents = events
+    }
+#endif
 }
 
 extension K5ImportantDate: Hashable {

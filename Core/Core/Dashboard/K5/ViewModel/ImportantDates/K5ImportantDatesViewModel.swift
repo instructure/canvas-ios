@@ -46,7 +46,14 @@ public class K5ImportantDatesViewModel: ObservableObject {
         courses.refresh()
     }
 
+#if DEBUG
+    init(with dates: [K5ImportantDate]) {
+        self.importantDates = dates
+    }
+#endif
+
     private func coursesUpdated() {
+        guard courses.requested, !courses.pending, courses.count > 0 else { return }
         contexts.removeAll()
         courses.forEach { course in
             contexts.append(Context(.course, id: course.id))
@@ -72,7 +79,7 @@ public class K5ImportantDatesViewModel: ObservableObject {
     func addImportantDate(from event: CalendarEvent) {
         guard let course = courses.filter({ $0.id == event.context.id }).first else { return }
         let courseColor = Color(course.color)
-        if let existingDate = importantDates.first(where: { $0.date == event.startAt }) {
+        if let existingDate = importantDates.first(where: { $0.date?.dateOnlyString == event.startAt?.dateOnlyString }) {
             existingDate.addEvent(event, color: courseColor)
         } else {
             importantDates.append(K5ImportantDate(with: event, color: courseColor))
@@ -80,6 +87,7 @@ public class K5ImportantDatesViewModel: ObservableObject {
     }
 
     private func finishRefresh() {
+        importantDates = importantDates.sorted(by: {$0.date! < $1.date!})
         forceRefresh = false
         performUIUpdate {
             self.refreshCompletion?()
@@ -96,7 +104,7 @@ extension K5ImportantDatesViewModel: Refreshable {
         reloadData()
     }
 
-    func reloadData() {
+    private func reloadData() {
         importantDates.removeAll()
         courses.exhaust(force: true)
     }
