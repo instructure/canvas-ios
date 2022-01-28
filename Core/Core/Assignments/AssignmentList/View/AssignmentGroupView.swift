@@ -46,9 +46,8 @@ public struct AssignmentGroupView: View {
 struct AssignmentGroupView_Previews: PreviewProvider {
 
     static var previews: some View {
-        if #available(iOS 15.0, *) {
-            let _ = UITableView.appearance().sectionHeaderTopPadding = 0.0
-        }
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = UITableView.setupDefaultSectionHeaderTopPadding()
 
         List {
             AssignmentGroupView(viewModel: AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: [], courseColor: .red))

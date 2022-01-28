@@ -156,9 +156,8 @@ struct AssignmentListView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        if #available(iOS 15.0, *) {
-            let _ = UITableView.appearance().sectionHeaderTopPadding = 0.0
-        }
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = UITableView.setupDefaultSectionHeaderTopPadding()
 
         let assignments = createAssignments()
         let assignmentGroups: [AssignmentGroupViewModel] = [
