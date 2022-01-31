@@ -390,10 +390,10 @@
 
 /* Assignment grade: Complete
    Pass/fail assignment is complete */
-"Complete" = "Fullført";
+"Complete" = "Godkjent";
 
 /* No comment provided by engineer. */
-"Completed" = "Fullført";
+"Completed" = "Godkjent";
 
 /* hint for button to compose a message */
 "Compose a message" = "Skriv en melding";
@@ -948,7 +948,7 @@
 "Not available" = "Ikke tilgjengelig";
 
 /* Pass/fail assignment is not complete */
-"Not Complete" = "Ikke fullført";
+"Not Complete" = "Ikke godkjent";
 
 /* not graded string. */
 "Not graded" = "Ikke vurdert";
