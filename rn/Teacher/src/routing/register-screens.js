@@ -20,7 +20,6 @@
 import CourseNavigation from '../modules/courses/CourseNavigation'
 import CourseSettings from '../modules/courses/settings/CourseSettings'
 import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePreferences'
-import AssignmentList from '../modules/assignments/AssignmentList'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import Inbox from '../modules/inbox/Inbox'
 import Compose from '../modules/inbox/Compose'
