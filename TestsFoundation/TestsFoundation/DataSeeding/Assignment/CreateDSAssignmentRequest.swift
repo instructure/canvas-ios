@@ -23,7 +23,7 @@ public struct CreateDSAssignmentRequest: APIRequestable {
     public typealias Response = DSAssignment
 
     public let method = APIMethod.post
-    public var path: String
+    public let path: String
     public let body: Body?
 
     public init(body: Body, courseId: String) {

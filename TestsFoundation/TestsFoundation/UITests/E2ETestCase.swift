@@ -23,25 +23,12 @@ open class E2ETestCase: CoreUITestCase {
 
     open override var user: UITestUser {.dataSeedAdmin}
     private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
+    public let seeder = DataSeeder()
+    open override var useMocks: Bool {false}
 
     open override func setUp() {
-        LoginSession.useTestKeychain()
-        continueAfterFailure = false
-        if CoreUITestCase.needsLaunch || app.state != .runningForeground || isRetry {
-            CoreUITestCase.needsLaunch = false
-            launch()
-            if currentSession() != nil {
-                homeScreen.waitToExist()
-            }
-        }
-
-        reset()
-        send(.enableExperimentalFeatures(experimentalFeatures))
-
-        if case .passThruAndLog(toPath: let logPath) = missingMockBehavior {
-            // Clear old log
-            try? FileManager.default.removeItem(atPath: logPath)
-        }
+        doLoginAfterSetup = false
+        super.setUp()
     }
 
     open func logInDSUser(_ dsUser: DSUser) {

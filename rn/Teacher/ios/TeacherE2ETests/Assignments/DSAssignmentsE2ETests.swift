@@ -21,7 +21,6 @@ import TestsFoundation
 
 class DSAssignmentsE2ETests: E2ETestCase {
     func testCreateAssignment() {
-        let seeder = DataSeeder()
         let users = seeder.createUsers(2)
         let course = seeder.createCourse()
         let student = users[0]

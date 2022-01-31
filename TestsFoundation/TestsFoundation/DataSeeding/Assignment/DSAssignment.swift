@@ -26,7 +26,7 @@ public struct DSAssignment: Codable {
     public let description: String?
     // due_at accepts times in ISO 8601 format, e.g. 2014-10-21T18:48:00Z.
     public let due_at: Date?
-    public var published: Bool?
+    public let published: Bool?
     public let allowed_attemps: Int?
     public let anonymous_grading: Bool?
 }
