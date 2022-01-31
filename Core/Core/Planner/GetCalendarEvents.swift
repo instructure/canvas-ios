@@ -20,7 +20,10 @@ import Foundation
 
 public class GetCalendarEvents: CollectionUseCase {
     public typealias Model = CalendarEvent
-    public var cacheKey: String? { "\(contexts.first?.pathComponent ?? "")/calendar-events/\(type.rawValue)" }
+    public var cacheKey: String? {
+        let contextPathString = contexts.map({ $0.pathComponent }).joined(separator: "|")
+        return "(\(contextPathString))/calendar-events/\(type.rawValue)"
+    }
     public let contexts: [Context]
     public let type: CalendarEventType
     private let importantDates: Bool

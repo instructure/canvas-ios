@@ -54,10 +54,7 @@ public class K5ImportantDatesViewModel: ObservableObject {
 
     private func coursesUpdated() {
         guard courses.requested, !courses.pending, courses.count > 0 else { return }
-        contexts.removeAll()
-        courses.forEach { course in
-            contexts.append(Context(.course, id: course.id))
-        }
+        contexts = courses.map { Context(.course, id: $0.id) }
         assignments.exhaust(force: forceRefresh)
     }
 

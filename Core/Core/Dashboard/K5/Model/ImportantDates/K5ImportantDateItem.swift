@@ -31,14 +31,6 @@ public class K5ImportantDate {
     }
     private var uniqueEvents: Set<K5ImportantDateItem>
 
-    public func addEvent(_ event: CalendarEvent, color: Color) {
-        uniqueEvents.insert(importantDateItem(from: event, color: color))
-    }
-
-    private func importantDateItem(from event: CalendarEvent, color: Color) -> K5ImportantDateItem {
-        return K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
-    }
-
     init(with event: CalendarEvent, color: Color) {
         self.date = event.startAt
         let dateEvent = K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
@@ -51,6 +43,14 @@ public class K5ImportantDate {
         self.uniqueEvents = events
     }
 #endif
+
+    public func addEvent(_ event: CalendarEvent, color: Color) {
+        uniqueEvents.insert(importantDateItem(from: event, color: color))
+    }
+
+    private func importantDateItem(from event: CalendarEvent, color: Color) -> K5ImportantDateItem {
+        return K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
+    }
 }
 
 extension K5ImportantDate: Hashable {
@@ -80,7 +80,7 @@ public struct K5ImportantDateItem {
         }
     }
 
-    internal init(subject: String?, title: String, color: Color, date: Date?, route: URL?, type: CalendarEventType) {
+    init(subject: String?, title: String, color: Color, date: Date?, route: URL?, type: CalendarEventType) {
         self.subject = subject ?? ""
         self.title = title
         self.color = color

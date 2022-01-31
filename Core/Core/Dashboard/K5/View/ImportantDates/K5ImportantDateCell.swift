@@ -26,10 +26,11 @@ struct K5ImportantDateCell: View {
 
     var body: some View {
         Button(action: {
+            guard let route = item.route else { return }
             if UIDevice.current.userInterfaceIdiom == .pad {
-                env.router.route(to: item.route!, from: controller, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
+                env.router.route(to: route, from: controller, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
             } else {
-                env.router.route(to: item.route!, from: controller, options: .detail)
+                env.router.route(to: route, from: controller, options: .detail)
             }
         }, label: {
             ZStack {
@@ -37,15 +38,8 @@ struct K5ImportantDateCell: View {
                 HStack(spacing: 0) {
                     Rectangle().frame(width: 5).foregroundColor(item.color)
                     VStack(spacing: 2) {
-                        HStack {
-                            Text(item.subject.uppercased()).font(.regular10).foregroundColor(item.color).padding(.top, 7)
-                            Spacer()
-                        }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 0))
-                        HStack(alignment: .center, spacing: 0) {
-                            item.iconImage.foregroundColor(item.color).padding(EdgeInsets(top: 0, leading: 9, bottom: 0, trailing: 3))
-                            Text(item.title).font(.regular16).foregroundColor(.textDarkest).frame(maxWidth: .infinity, alignment: .leading).multilineTextAlignment(.leading)
-                            Spacer()
-                        }.padding(.bottom, 9)
+                        subjectView
+                        titleView
                     }
                 }
             }.clipShape(
@@ -54,7 +48,25 @@ struct K5ImportantDateCell: View {
         }
         )
     }
+
+    @ViewBuilder
+    var subjectView: some View {
+        HStack {
+            Text(item.subject.uppercased()).font(.regular10).foregroundColor(item.color).padding(.top, 7)
+            Spacer()
+        }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 0))
+    }
+
+    @ViewBuilder
+    var titleView: some View {
+        HStack(alignment: .center, spacing: 0) {
+            item.iconImage.foregroundColor(item.color).padding(EdgeInsets(top: 0, leading: 9, bottom: 0, trailing: 3))
+            Text(item.title).font(.regular16).foregroundColor(.textDarkest).frame(maxWidth: .infinity, alignment: .leading).multilineTextAlignment(.leading)
+            Spacer()
+        }.padding(.bottom, 9)
+    }
 }
+
 #if DEBUG
 
 struct K5ImportantDatesCell_Previews: PreviewProvider {

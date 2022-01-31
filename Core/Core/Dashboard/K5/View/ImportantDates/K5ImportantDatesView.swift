@@ -26,15 +26,12 @@ public struct K5ImportantDatesView: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                HStack(spacing: 0) {
-                    Text("Important Dates", bundle: .core)
-                        .font(.bold22)
-                        .foregroundColor(.textDarkest)
-                        .padding(EdgeInsets(top: 28, leading: 16, bottom: 9, trailing: 24))
-                    Spacer()
-                }
+                Text("Important Dates", bundle: .core)
+                    .font(.bold22)
+                    .foregroundColor(.textDarkest)
+                    .padding(EdgeInsets(top: 28, leading: 16, bottom: 9, trailing: 24))
             }
             GeometryReader { geometry in
                 ScrollView(showsIndicators: false) {
