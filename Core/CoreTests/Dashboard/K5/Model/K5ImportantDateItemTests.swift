@@ -22,7 +22,6 @@ import SwiftUI
 
 class K5ImportantDateItemTests: CoreTestCase {
 
-    let context = AppEnvironment.shared.globalDatabase.viewContext
     var calendarEvents: [CalendarEvent]!
     var importantDate: K5ImportantDate!
 
@@ -44,8 +43,8 @@ class K5ImportantDateItemTests: CoreTestCase {
             type: .event,
             context_name: "Test event name"
         )
-        calendarEvents = [CalendarEvent.make(from: assignment, in: context),
-                          CalendarEvent.make(from: event, in: context), ]
+        calendarEvents = [.make(from: assignment, in: databaseClient),
+                          .make(from: event, in: databaseClient), ]
         importantDate = K5ImportantDate(with: calendarEvents[0], color: .red)
     }
 

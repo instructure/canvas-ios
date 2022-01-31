@@ -60,7 +60,6 @@ public class K5ImportantDatesViewModel: ObservableObject {
 
     private func assignmentsUpdated() {
         assignments.forEach { assignment in
-
             addImportantDate(from: assignment)
         }
         events.exhaust(force: forceRefresh)
