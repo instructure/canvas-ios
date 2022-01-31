@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Respon</string>
+			<string>%d Resposta</string>
 			<key>other</key>
 			<string>%d Respostes</string>
 		</dict>
@@ -77,9 +77,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g punt</string>
+			<string>%g punt</string>
 			<key>other</key>
-			<string>%g punts</string>
+			<string>%g punts</string>
 		</dict>
 	</dict>
 	<key>conversation_recipients_to</key>
@@ -93,7 +93,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d altre</string>
+			<string>%d altres</string>
 			<key>other</key>
 			<string>%d altres</string>
 		</dict>
@@ -157,7 +157,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d m'agrada</string>
+			<string>%d entrada de m'agrada</string>
 			<key>other</key>
 			<string>%d entrades de m'agrada</string>
 		</dict>
@@ -173,9 +173,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d s'ha de qualificar</string>
+			<string>S'ha de qualificar %d</string>
 			<key>other</key>
-			<string>%d s'han de qualificar</string>
+			<string>S'han de qualificar %d</string>
 		</dict>
 	</dict>
 	<key>d_options</key>
@@ -191,7 +191,7 @@
 			<key>one</key>
 			<string>%d Opció</string>
 			<key>other</key>
-			<string>%d Opcions</string>
+			<string>Opcions de l'%d</string>
 		</dict>
 	</dict>
 	<key>d_questions</key>
@@ -205,9 +205,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Pregunta</string>
+			<string>%d pregunta</string>
 			<key>other</key>
-			<string>%d Preguntes</string>
+			<string>%d preguntes</string>
 		</dict>
 	</dict>
 	<key>date_d_events</key>
@@ -245,7 +245,7 @@
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Qualificació final: %#@points@</string>
+		<string>Nota final: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -253,9 +253,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g punt</string>
+			<string>%g punt</string>
 			<key>other</key>
-			<string>%g punts</string>
+			<string>%g punts</string>
 		</dict>
 	</dict>
 	<key>g_out_of_g_points_possible</key>
@@ -301,9 +301,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g punt</string>
+			<string>%g punt</string>
 			<key>other</key>
-			<string>%g punts</string>
+			<string>%g punts</string>
 		</dict>
 	</dict>
 	<key>hide_%d_missing_items</key>
@@ -317,9 +317,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Amaga %d element que falta</string>
+			<string>Amaga %d element no presentat</string>
 			<key>other</key>
-			<string>Amaga %d elements que falten</string>
+			<string>Amaga %d elements no presentats</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -333,9 +333,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g punt</string>
+			<string>%g punt</string>
 			<key>other</key>
-			<string>%g punts</string>
+			<string>%g punts</string>
 		</dict>
 	</dict>
 	<key>out_of_g_pts</key>
@@ -349,9 +349,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g punt</string>
+			<string>%g punt</string>
 			<key>other</key>
-			<string>%g punts</string>
+			<string>%g punts</string>
 		</dict>
 	</dict>
 	<key>plural_points</key>
@@ -381,9 +381,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Mostra %d element que falta</string>
+			<string>Mostra %d element no presentat</string>
 			<key>other</key>
-			<string>Mostra %d elements que falten</string>
+			<string>Mostra %d elements no presentats</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>
@@ -397,9 +397,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Hi ha %d beneficiari sense qualificació.</string>
+			<string>Hi ha %d beneficiari sense nota.</string>
 			<key>other</key>
-			<string>Hi ha %d beneficiaris sense qualificació.</string>
+			<string>Hi ha %d beneficiaris sense nota.</string>
 		</dict>
 	</dict>
 </dict>
