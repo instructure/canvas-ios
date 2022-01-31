@@ -59,6 +59,7 @@ public class K5ImportantDatesViewModel: ObservableObject {
     }
 
     private func assignmentsUpdated() {
+        importantDates.removeAll()
         assignments.forEach { assignment in
             addImportantDate(from: assignment)
         }
@@ -101,7 +102,6 @@ extension K5ImportantDatesViewModel: Refreshable {
     }
 
     private func reloadData() {
-        importantDates.removeAll()
         courses.exhaust(force: true)
     }
 }
