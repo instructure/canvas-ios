@@ -28,18 +28,22 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     @Published public private(set) var state = ViewModelState<[DashboardCard]>.loading
-    private lazy var cards: Store<GetDashboardCards> = AppEnvironment.shared.subscribe(GetDashboardCards()) { [weak self] in
+    private let env = AppEnvironment.shared
+    private lazy var cards: Store<GetDashboardCards> = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.update()
     }
     /**
      We need to observe courses because those contain the enrollment state of the dashboard card. Since courses get refreshed from
      ``DashboardInvitationsViewModel`` in ``DashboardCardView`` we just subscribe to the changes but don't request them here from the API. */
-    private lazy var courses: Store<LocalUseCase<Course>> = AppEnvironment.shared.subscribe(scope: .all(orderBy: #keyPath(Course.id))) { [weak self] in
+    private lazy var courses: Store<LocalUseCase<Course>> = env.subscribe(scope: .all(orderBy: #keyPath(Course.id))) { [weak self] in
         self?.update()
     }
     private let showOnlyTeacherEnrollment: Bool
     private var needsRefresh = false
     private var subscriptions = Set<AnyCancellable>()
+    private var enrollmentsRequest: APITask?
+    /** This dictionary contains the user's section IDs within courses referenced by their IDs. */
+    private var sectionIDsByCourseIDs: [String: String] = [:]
 
     public init(showOnlyTeacherEnrollment: Bool) {
         self.showOnlyTeacherEnrollment = showOnlyTeacherEnrollment
@@ -58,6 +62,30 @@ class DashboardCardsViewModel: ObservableObject {
             guard let self = self else { return }
             if self.needsRefresh { self.refresh() }
         }
+
+        refreshEnrollments()
+    }
+
+    private func refreshEnrollments() {
+        guard enrollmentsRequest == nil else { return }
+
+        let request = GetEnrollmentsRequest(context: .currentUser, types: [Role.student.rawValue], states: [.active])
+        enrollmentsRequest = env.api.makeRequest(request) { [weak self] enrollments, _, _ in
+            performUIUpdate {
+                self?.enrollmentsRequest = nil
+                self?.extractSectionInfo(from: enrollments ?? [])
+                self?.update()
+            }
+        }
+    }
+
+    private func extractSectionInfo(from enrollments: [APIEnrollment]) {
+        sectionIDsByCourseIDs = enrollments.reduce(into: [:]) { dictionary, enrollment in
+            guard let courseId = enrollment.course_id?.value, let sectionId = enrollment.course_section_id?.value else {
+                return
+            }
+            dictionary[courseId] = sectionId
+        }
     }
 
     private func favoritesDidChange() {
@@ -69,7 +97,7 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     private func update() {
-        guard cards.requested, !cards.pending else { return }
+        guard cards.requested, !cards.pending, enrollmentsRequest == nil else { return }
 
         guard cards.state != .error else {
             state = .error(cards.error?.localizedDescription ?? "")
@@ -81,12 +109,24 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     private func filteredCards() -> [DashboardCard] {
-        var filteredCards = cards.all.filter { $0.shouldShow }
+        var filteredCards = cards.all.filter { $0.shouldShow && isSectionActive(for: $0) }
 
         if showOnlyTeacherEnrollment {
             filteredCards = filteredCards.filter { $0.isTeacherEnrollment }
         }
 
         return filteredCards
+    }
+
+    private func isSectionActive(for card: DashboardCard) -> Bool {
+        let courseId = card.id
+
+        guard let sectionId = sectionIDsByCourseIDs[courseId],
+              let course = courses.all.first(where: { $0.id == courseId }),
+              let section = course.sections.first(where: { $0.id == sectionId }),
+              let sectionEndDate = section.endAt
+        else { return true }
+
+        return Clock.now < sectionEndDate
     }
 }
