@@ -80,7 +80,7 @@ public struct AssignmentDetailsView: View {
     @ViewBuilder func details(assignment: Assignment) -> some View {
         Section {
             Text(assignment.name)
-                .font(.heavy24).foregroundColor(.textDarkest)
+                .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "AssignmentDetails.name")
             HStack(spacing: 0) {
                 Text(assignment.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)
@@ -89,12 +89,12 @@ public struct AssignmentDetailsView: View {
                     Image.publishSolid.foregroundColor(.textSuccess)
                         .padding(.trailing, 4)
                     Text("Published", bundle: .core)
-                        .font(.medium16).foregroundColor(.textSuccess)
+                        .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
                 } else {
                     Image.noSolid.foregroundColor(.textDark)
                         .padding(.trailing, 4)
                     Text("Unpublished", bundle: .core)
-                        .font(.medium16).foregroundColor(.textDark)
+                        .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
                 }
                 Spacer()
             }

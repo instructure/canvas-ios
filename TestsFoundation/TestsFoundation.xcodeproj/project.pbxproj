@@ -75,6 +75,10 @@
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
 		C935D43726E0EB9700C940F7 /* K5Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43626E0EB9700C940F7 /* K5Schedule.swift */; };
 		C935D43A26E5F59700C940F7 /* K5Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43926E5F59700C940F7 /* K5Grades.swift */; };
+		C9A23D1C27A2950D00A1EE3B /* DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1B27A2950D00A1EE3B /* DSAssignment.swift */; };
+		C9A23D1E27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1D27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift */; };
+		C9A23D2027A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1F27A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift */; };
+		C9A23D2227A3D6E400A1EE3B /* E2ETestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D2127A3D6E400A1EE3B /* E2ETestCase.swift */; };
 		C9A3C046269D7D3100DAE8E1 /* K5UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */; };
 		C9A3C049269D8A2700DAE8E1 /* K5NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C048269D8A2700DAE8E1 /* K5NavigationBar.swift */; };
 		C9A3C09026A8050A00DAE8E1 /* K5CourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */; };
@@ -215,6 +219,10 @@
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
 		C935D43626E0EB9700C940F7 /* K5Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Schedule.swift; sourceTree = "<group>"; };
 		C935D43926E5F59700C940F7 /* K5Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Grades.swift; sourceTree = "<group>"; };
+		C9A23D1B27A2950D00A1EE3B /* DSAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAssignment.swift; sourceTree = "<group>"; };
+		C9A23D1D27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAssignmentRequest.swift; sourceTree = "<group>"; };
+		C9A23D1F27A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSAssignment.swift"; sourceTree = "<group>"; };
+		C9A23D2127A3D6E400A1EE3B /* E2ETestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2ETestCase.swift; sourceTree = "<group>"; };
 		C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5UITestCase.swift; sourceTree = "<group>"; };
 		C9A3C048269D8A2700DAE8E1 /* K5NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5NavigationBar.swift; sourceTree = "<group>"; };
 		C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseCard.swift; sourceTree = "<group>"; };
@@ -524,6 +532,16 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		C9A23D1A27A294C900A1EE3B /* Assignment */ = {
+			isa = PBXGroup;
+			children = (
+				C9A23D1B27A2950D00A1EE3B /* DSAssignment.swift */,
+				C9A23D1D27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift */,
+				C9A23D1F27A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift */,
+			);
+			path = Assignment;
+			sourceTree = "<group>";
+		};
 		C9A3C08E26A804F600DAE8E1 /* K5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +563,7 @@
 		CFA078B327981B790078B27B /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				C9A23D1A27A294C900A1EE3B /* Assignment */,
 				CFA078BD2799A7740078B27B /* Course */,
 				CFA078C42799AE780078B27B /* Enrollment */,
 				CFA078B62798612F0078B27B /* User */,
@@ -848,6 +867,7 @@
 				E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */,
 				5859560B4512977756206840 /* MiniCanvasUITestCase.swift */,
 				C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */,
+				C9A23D2127A3D6E400A1EE3B /* E2ETestCase.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -953,6 +973,7 @@
 				7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */,
 				B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */,
 				E80936C324C2480B00D15E9A /* Assignments.swift in Sources */,
+				C9A23D2027A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift in Sources */,
 				7D64A97F23676434004EAEDF /* CourseSectionFixture.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
 				E81B575E23E243CA002A0C38 /* Compose.swift in Sources */,
@@ -988,11 +1009,13 @@
 				7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */,
 				E871978624E5963600D9B062 /* TestTreeExtensions.swift in Sources */,
 				3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */,
+				C9A23D1C27A2950D00A1EE3B /* DSAssignment.swift in Sources */,
 				E81B575B23E243CA002A0C38 /* ConversationList.swift in Sources */,
 				E8D7EFDD2476E46F007BC5FD /* MiniFile.swift in Sources */,
 				E8F4B66924EED083003FBAFD /* SpeedGrader.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,
+				C9A23D1E27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift in Sources */,
 				E80936D924C2480B00D15E9A /* FileList.swift in Sources */,
 				7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */,
 				E80936DA24C2480B00D15E9A /* Quiz.swift in Sources */,
@@ -1050,6 +1073,7 @@
 				B16F0375215C2B340011E952 /* AssignmentFixture.swift in Sources */,
 				C9A3C046269D7D3100DAE8E1 /* K5UITestCase.swift in Sources */,
 				E80936D124C2480B00D15E9A /* Inbox.swift in Sources */,
+				C9A23D2227A3D6E400A1EE3B /* E2ETestCase.swift in Sources */,
 				E80936DB24C2480B00D15E9A /* RichContentToolbar.swift in Sources */,
 				B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */,
 				7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */,
