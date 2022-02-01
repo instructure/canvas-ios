@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct DashboardCardView: View {
-    @ObservedObject var cards: Store<GetDashboardCards>
+    @ObservedObject var cards: DashboardCardsViewModel
     @ObservedObject var colors: Store<GetCustomColors>
     @ObservedObject var groups: Store<GetDashboardGroups>
     @ObservedObject var notifications: Store<GetAccountNotifications>
@@ -30,17 +30,14 @@ public struct DashboardCardView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @State var needsRefresh = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
     private let shouldShowGroupList: Bool
-    private let showOnlyTeacherEnrollment: Bool
 
     public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
+        self.cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
-        self.showOnlyTeacherEnrollment = showOnlyTeacherEnrollment
         let env = AppEnvironment.shared
-        cards = env.subscribe(GetDashboardCards())
         colors = env.subscribe(GetCustomColors())
         groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
@@ -82,13 +79,6 @@ public struct DashboardCardView: View {
             )
 
             .onAppear { refresh(force: false) }
-            .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange).receive(on: DispatchQueue.main)) { _ in
-                if cards.pending {
-                    needsRefresh = true
-                } else {
-                    refreshCards()
-                }
-            }
             .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
                 showGrade = env.userDefaults?.showGradesOnDashboard == true
             }
@@ -120,7 +110,7 @@ public struct DashboardCardView: View {
         case .loading:
             ZStack { CircleProgress() }
                 .frame(minWidth: size.width, minHeight: size.height)
-        case .data:
+        case .data(let cards):
             Section(
                 header: HStack(alignment: .lastTextBaseline) {
                     Text("Courses", bundle: .core)
@@ -135,14 +125,13 @@ public struct DashboardCardView: View {
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
-                let filteredCards = (showOnlyTeacherEnrollment ? cards.all.filter { $0.isTeacherEnrollment } : cards.all).filter { $0.shouldShow }
                 let spacing: CGFloat = 16
                 let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
                 // This allows 2 columns on iPhone SE landscape
                 let columns: CGFloat = (size.width >= 635 ? 2 : 1)
                 let cardWidth: CGFloat = (size.width - ((columns - 1) * spacing)) / columns
-                DashboardGrid(itemCount: filteredCards.count, itemWidth: cardWidth, spacing: spacing, columnCount: Int(columns)) { cardIndex in
-                    let card = filteredCards[cardIndex]
+                DashboardGrid(itemCount: cards.count, itemWidth: cardWidth, spacing: spacing, columnCount: Int(columns)) { cardIndex in
+                    let card = cards[cardIndex]
                     CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: cardWidth)
                         // outside the CourseCard, because that isn't observing colors
                         .accentColor(Color(card.color.ensureContrast(against: .white)))
@@ -155,9 +144,9 @@ public struct DashboardCardView: View {
                 message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core)
             )
                 .frame(minWidth: size.width, minHeight: size.height)
-        case .error:
+        case .error(let message):
             ZStack {
-                Text(cards.error?.localizedDescription ?? "")
+                Text(message)
                     .font(.regular16).foregroundColor(.textDanger)
                     .multilineTextAlignment(.center)
             }
@@ -187,21 +176,13 @@ public struct DashboardCardView: View {
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
-        refreshCards(onComplete: onComplete)
+        invitationsViewModel.refresh(force: force)
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
-        invitationsViewModel.refresh(force: force)
         groups.exhaust(force: force)
         notifications.exhaust(force: force)
         settings.refresh(force: force)
-    }
-
-    func refreshCards(onComplete: (() -> Void)? = nil) {
-        needsRefresh = false
-        cards.refresh(force: true) { _ in
-            onComplete?()
-            if needsRefresh { refreshCards() }
-        }
+        cards.refresh(onComplete: onComplete)
     }
 
     func showAllCourses() {
