@@ -445,6 +445,7 @@ public extension Image {
     static var k5homeroom: Image { Image("k5homeroom", bundle: .core) }
     static var k5resources: Image { Image("k5resources", bundle: .core) }
     static var k5schedule: Image { Image("k5schedule", bundle: .core) }
+    static var k5importantDates: Image { Image("k5importantDates", bundle: .core) }
     static var logout: Image { Image("logout", bundle: .core) }
     static var qrCode: Image { Image("qrCode", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
