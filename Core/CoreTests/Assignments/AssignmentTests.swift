@@ -152,6 +152,12 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(savedAssignment.position, Int.max)
     }
 
+    func testUpdateFromAPIItemWithNeedsGradingCount() {
+        let api = APIAssignment.make(needs_grading_count: 5)
+        let savedAssignment = Assignment.save(api, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        XCTAssertEqual(savedAssignment.needsGradingCount, 5)
+    }
+
     func testCanMakeSubmissions() {
         XCTAssertTrue(Assignment.make(from: .make(submission_types: [.online_upload])).canMakeSubmissions)
         XCTAssertFalse(Assignment.make(from: .make(submission_types: [.none])).canMakeSubmissions)
@@ -362,5 +368,19 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.usedAttempts, 1)
         a.submission = Submission.make(from: .make(attempt: nil))
         XCTAssertEqual(a.usedAttempts, 0)
+    }
+
+    func testHasMultipleDueDates() {
+        let a = Assignment.make(from: .make(all_dates: [
+            .make(
+                id: 1,
+                due_at: DateComponents(calendar: .current, year: 2020, month: 6, day: 1).date
+            ),
+            .make(
+                id: 2,
+                due_at: DateComponents(calendar: .current, year: 2020, month: 6, day: 2).date
+            ),
+        ]))
+        XCTAssertTrue(a.hasMultipleDueDates)
     }
 }
