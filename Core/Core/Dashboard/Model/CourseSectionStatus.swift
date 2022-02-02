@@ -48,7 +48,7 @@ class CourseSectionStatus {
 
         let request = GetEnrollmentsRequest(context: .currentUser, types: [Role.student.rawValue], states: [.active])
         enrollmentsRequest = AppEnvironment.shared.api.makeRequest(request) { [weak self] enrollments, _, _ in
-            performUIUpdate {
+            DispatchQueue.main.async {
                 self?.enrollmentsRequest = nil
                 self?.extractSectionInfo(from: enrollments ?? [])
                 self?.initialUpdatePending = false
