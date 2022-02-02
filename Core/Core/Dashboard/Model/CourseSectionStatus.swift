@@ -18,7 +18,8 @@
 
 /**
  This class fetches the current user's enrollments and based on the extracted section info can return if the current user's
- section is expired or not in a given course.
+ section is expired or not in a given course. If the network request fails or the lookup fails because some data is missing
+ this class will report that the section is active.
  */
 class CourseSectionStatus {
     public var isUpdatePending: Bool { initialUpdatePending || enrollmentsRequest != nil }
@@ -29,7 +30,7 @@ class CourseSectionStatus {
     private var initialUpdatePending = true
 
     public func isSectionExpired(for card: DashboardCard, in courses: [Course]) -> Bool {
-        guard let course = courses.first(where: { $0.id == card.id }) else { return true }
+        guard let course = courses.first(where: { $0.id == card.id }) else { return false }
         return isSectionExpired(in: course)
     }
 
@@ -37,9 +38,9 @@ class CourseSectionStatus {
         guard let sectionId = sectionIDsByCourseIDs[course.id],
               let section = course.sections.first(where: { $0.id == sectionId }),
               let sectionEndDate = section.endAt
-        else { return true }
+        else { return false }
 
-        return Clock.now < sectionEndDate
+        return Clock.now > sectionEndDate
     }
 
     public func refresh(completion: @escaping () -> Void) {

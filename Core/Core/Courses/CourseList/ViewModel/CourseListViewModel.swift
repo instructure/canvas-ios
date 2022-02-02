@@ -39,8 +39,9 @@ public class CourseListViewModel: ObservableObject {
         }
     }
 
+    private let courseSectionStatus = CourseSectionStatus()
     private lazy var allCourses: Store<GetAllCourses> = AppEnvironment.shared.subscribe(GetAllCourses()) { [weak self] in
-        self?.coursesUpdated()
+        self?.update()
     }
 
     public init() {
@@ -60,6 +61,9 @@ public class CourseListViewModel: ObservableObject {
 
     public func viewDidAppear() {
         allCourses.exhaust()
+        courseSectionStatus.refresh { [weak self] in
+            self?.update()
+        }
     }
 
     public func refresh(completion: @escaping () -> Void) {
@@ -69,10 +73,13 @@ public class CourseListViewModel: ObservableObject {
             }
             return true
         }
+        courseSectionStatus.refresh { [weak self] in
+            self?.update()
+        }
     }
 
-    private func coursesUpdated() {
-        guard allCourses.requested, !allCourses.pending else { return }
+    private func update() {
+        guard allCourses.requested, !allCourses.pending, !courseSectionStatus.isUpdatePending else { return }
 
         guard allCourses.state != .error else {
             state = .error(allCourses.error?.localizedDescription ?? "")
@@ -87,6 +94,7 @@ public class CourseListViewModel: ObservableObject {
         var current: [Course] = []
         var past: [Course] = []
         var future: [Course] = []
+
         for course in allCourses {
             let matches = filter.isEmpty ||
                 course.name?.lowercased().contains(filter) == true ||
@@ -94,7 +102,7 @@ public class CourseListViewModel: ObservableObject {
             guard !course.accessRestrictedByDate, matches else { continue }
             if course.isFutureEnrollment {
                 future.append(course)
-            } else if course.isPastEnrollment {
+            } else if course.isPastEnrollment || courseSectionStatus.isSectionExpired(in: course) {
                 past.append(course)
             } else {
                 current.append(course)
