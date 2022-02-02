@@ -8,7 +8,7 @@
 "--:--" = "--:--";
 
 /* No comment provided by engineer. */
-"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Fer de\" consisteix essencialment a iniciar la sessió com a aquest usuari sense cap contrasenya. Podreu dur a terme accions com si fóssiu aquest usuari i, de cara a altres usuaris, serà com si les realitzés aquest usuari. No obstant això, als registres d'auditoria s'enregistrarà que vau ser qui va dur a terme les accions en nom d'aquest usuari.";
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Fer de\" consisteix essencialment a iniciar la sessió com a aquest usuari sense cap contrasenya. Podreu dur a terme accions com si fóssiu aquest usuari i, de cara a altres usuaris, serà com si les realitzés aquest usuari. Tanmateix, els registres d'auditoria enregistren que heu sigut vós qui ha dut a terme les accions en nom de l'altre usuari.";
 
 /* number of likes next to the like button */
 "(%d)" = "(%d)";
@@ -32,10 +32,10 @@
 "%@ late" = "%@ endarrerit";
 
 /* No comment provided by engineer. */
-"%@ missing" = "%@ falta";
+"%@ missing" = "%@ no presentat";
 
 /* No comment provided by engineer. */
-"%@ pts" = "%@ punts";
+"%@ pts" = "%@ punts";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ seccions";
@@ -62,7 +62,7 @@
 "%d items" = "%d elements";
 
 /* Number of missing submissions */
-"%d missing" = "Falta %d";
+"%d missing" = "%d no presentat";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Respostes";
@@ -101,10 +101,10 @@
 "Access" = "Accés";
 
 /* No comment provided by engineer. */
-"Account Group" = "Grup del compte";
+"Account Group" = "Grup de l'usuari";
 
 /* No comment provided by engineer. */
-"Act as User" = "Actua com a usuari";
+"Act as User" = "Actua com un usuari";
 
 /* No comment provided by engineer. */
 "Add Assignee" = "Afegeix el beneficiari";
@@ -122,13 +122,13 @@
 "Add content" = "Afegeix el contingut";
 
 /* No comment provided by engineer. */
-"Add Course Nickname" = "Afegeix un àlies del curs";
+"Add Course Nickname" = "Afegeix un àlies de l'assignatura";
 
 /* No comment provided by engineer. */
 "Add description" = "Afegeix una descripció";
 
 /* No comment provided by engineer. */
-"Add Due Date" = "Afegeix una data de venciment";
+"Add Due Date" = "Afegeix una data de lliurament";
 
 /* No comment provided by engineer. */
 "Add File" = "Afegeix un fitxer";
@@ -164,10 +164,10 @@
 "All annotations saved." = "S'han desat totes les anotacions.";
 
 /* No comment provided by engineer. */
-"All courses" = "Tots els cursos";
+"All courses" = "Totes les assignatures";
 
 /* No comment provided by engineer. */
-"All Courses" = "Tots els cursos";
+"All Courses" = "Totes les assignatures";
 
 /* No comment provided by engineer. */
 "All Day" = "Tot el dia";
@@ -191,7 +191,7 @@
 "Announcement" = "Anunci";
 
 /* No comment provided by engineer. */
-"Announcement Created By You" = "Anunci que heu creat";
+"Announcement Created By You" = "Anunci creat per vós";
 
 /* No comment provided by engineer. */
 "Announcement Details" = "Informació de l'anunci";
@@ -206,7 +206,7 @@
 "Anyone" = "Qualsevol persona";
 
 /* No comment provided by engineer. */
-"Appointment Availability" = "Disponibilitat per a la cita";
+"Appointment Availability" = "Disponibilitat de cites";
 
 /* No comment provided by engineer. */
 "Appointment Cancellations" = "Cancel·lacions de cites";
@@ -236,7 +236,7 @@
 "Are you sure you would like to delete this comment?" = "Segur que voldríeu suprimir aquest comentari?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this discussion?" = "Segur que voleu suprimir aquest debat?";
+"Are you sure you would like to delete this discussion?" = "Segur que voleu suprimir aquest fòrum?";
 
 /* No comment provided by engineer. */
 "Assign" = "Assigna";
@@ -245,31 +245,31 @@
 "Assign to" = "Assigna a";
 
 /* No comment provided by engineer. */
-"assignment" = "tasca";
+"assignment" = "activitat";
 
 /* No comment provided by engineer. */
-"Assignment Details" = "Detalls de la tasca";
+"Assignment Details" = "Detalls de l'activitat";
 
 /* No comment provided by engineer. */
-"Assignment grade above" = "Qualificació de la tasca per sobre de";
+"Assignment grade above" = "Nota de l'activitat per sobre de";
 
 /* No comment provided by engineer. */
-"Assignment Grade Above %d" = "Qualificació de la tasca per sobre de %d";
+"Assignment Grade Above %d" = "Nota de l'activitat per sobre de %d";
 
 /* No comment provided by engineer. */
-"Assignment grade below" = "Qualificació de la tasca per sota de";
+"Assignment grade below" = "Nota de l'activitat per sota de";
 
 /* No comment provided by engineer. */
-"Assignment Grade Below %d" = "Qualificació de la tasca per sota de %d";
+"Assignment Grade Below %d" = "Nota de l'activitat per sota de %d";
 
 /* No comment provided by engineer. */
-"Assignment missing" = "Falta la tasca";
+"Assignment missing" = "Activitat no presentada";
 
 /* No comment provided by engineer. */
-"Assignment Missing" = "Falta la tasca";
+"Assignment Missing" = "Activitat no presentada";
 
 /* No comment provided by engineer. */
-"Assignments" = "Tasques";
+"Assignments" = "Activitats";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Toqueu una de les opcions següents per adjuntar fitxers.";
@@ -302,7 +302,7 @@
 "Attribution Share Alike" = "Reconeixement Compartir Igual";
 
 /* No comment provided by engineer. */
-"Audio" = "Àudio";
+"Audio" = "So";
 
 /* No comment provided by engineer. */
 "Augment Reality" = "Realitat augmentada";
@@ -374,7 +374,7 @@
 "Cancel" = "Cancel·la";
 
 /* No comment provided by engineer. */
-"Canvas Guides" = "Guies de Canvas";
+"Canvas Guides" = "Guies del Canvas";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "Inici de sessió a Canvas";
@@ -389,7 +389,7 @@
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Estudiant de Canvas";
+"Canvas Student" = "Canvas Student";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -407,7 +407,7 @@
 "Check network and try again!" = "Reviseu la xarxa i torneu a provar-ho.";
 
 /* No comment provided by engineer. */
-"Choose a course to message" = "Trieu un curs per enviar el missatge";
+"Choose a course to message" = "Trieu una assignatura per enviar el missatge";
 
 /* No comment provided by engineer. */
 "Choose a File" = "Tria un fitxer";
@@ -422,7 +422,7 @@
 "Choose Profile Picture" = "Tria una imatge de perfil";
 
 /* No comment provided by engineer. */
-"Clear Course" = "Suprimeix el curs";
+"Clear Course" = "Suprimeix l'assignatura";
 
 /* No comment provided by engineer. */
 "Clear filter" = "Esborra el filtre";
@@ -458,7 +458,7 @@
 "Color" = "Color";
 
 /* No comment provided by engineer. */
-"Color Overlay" = "Capa de color";
+"Color Overlay" = "Superposició de color";
 
 /* No comment provided by engineer. */
 "Comment" = "Comentari";
@@ -491,13 +491,13 @@
 "Conferences" = "Conferències";
 
 /* No comment provided by engineer. */
-"Contact your school to create an account." = "Poseu-vos en contacte amb la vostra escola per crear un compte.";
+"Contact your school to create an account." = "Poseu-vos en contacte amb la vostra escola per crear un usuari.";
 
 /* No comment provided by engineer. */
 "Content" = "Contingut";
 
 /* No comment provided by engineer. */
-"Content Link Error" = "S'ha produït un error a l'enllaç al contingut";
+"Content Link Error" = "Error d'enllaç de contingut";
 
 /* No comment provided by engineer. */
 "Contribute" = "Contribueix";
@@ -533,49 +533,49 @@
 "Could not save notification preference" = "No s'ha pogut desar la preferència de notificació";
 
 /* No comment provided by engineer. */
-"Course (optional)" = "Curs (opcional)";
+"Course (optional)" = "Assignatura (opcional)";
 
 /* No comment provided by engineer. */
-"Course Activities" = "Activitats del curs";
+"Course Activities" = "Activitats de l'assignatura";
 
 /* No comment provided by engineer. */
-"Course Announcement" = "Anunci del curs";
+"Course Announcement" = "Anunci de l'assignatura";
 
 /* No comment provided by engineer. */
-"Course announcements" = "Anuncis del curs";
+"Course announcements" = "Anuncis de l'assignatura";
 
 /* No comment provided by engineer. */
-"Course Content" = "Contingut del curs";
+"Course Content" = "Contingut de l'assignatura";
 
 /* No comment provided by engineer. */
-"Course grade above" = "Qualificació del curs per sobre de";
+"Course grade above" = "Nota de l'assignatura per sobre de";
 
 /* No comment provided by engineer. */
-"Course Grade Above %d" = "Qualificació del curs per sobre de %d";
+"Course Grade Above %d" = "Nota de l'assignatura per sobre de %d";
 
 /* No comment provided by engineer. */
-"Course grade below" = "Qualificació del curs per sota de";
+"Course grade below" = "Nota de l'assignatura per sota de";
 
 /* No comment provided by engineer. */
-"Course Grade Below %d" = "Qualificació del curs per sota de %d";
+"Course Grade Below %d" = "Nota de l'assignatura per sota de %d";
 
 /* No comment provided by engineer. */
-"Course Sections" = "Seccions del curs";
+"Course Sections" = "Seccions de l'assignatura";
 
 /* No comment provided by engineer. */
-"Course Syllabus" = "Temari del curs";
+"Course Syllabus" = "Temari de l'assignatura";
 
 /* No comment provided by engineer. */
-"Courses" = "Cursos";
+"Courses" = "Assignatures";
 
 /* No comment provided by engineer. */
-"Create Account" = "Crea un compte";
+"Create Account" = "Crea un usuari";
 
 /* No comment provided by engineer. */
 "Create Announcement" = "Crea un anunci";
 
 /* No comment provided by engineer. */
-"Create Discussion" = "Crea un debat";
+"Create Discussion" = "Crea un fòrum";
 
 /* No comment provided by engineer. */
 "Creative Commons License" = "Llicència de Creative Commons";
@@ -584,7 +584,7 @@
 "Current Enrollments" = "Inscripcions actuals";
 
 /* No comment provided by engineer. */
-"Current Grade" = "Qualificació actual";
+"Current Grade" = "Nota actual";
 
 /* No comment provided by engineer. */
 "Current Grading Period" = "Període de qualificació actual";
@@ -593,7 +593,7 @@
 "Current position" = "Posició actual";
 
 /* No comment provided by engineer. */
-"Customize Course" = "Personalitza el curs";
+"Customize Course" = "Personalitza l'assignatura";
 
 /* No comment provided by engineer. */
 "Cyan" = "Cian";
@@ -617,7 +617,7 @@
 "Daily" = "Diari";
 
 /* No comment provided by engineer. */
-"Dashboard" = "Tauler de control";
+"Dashboard" = "Panell de control";
 
 /* No comment provided by engineer. */
 "Date" = "Data";
@@ -650,7 +650,7 @@
 "Delete Comment" = "Suprimeix el comentari";
 
 /* No comment provided by engineer. */
-"Delete Discussion" = "Suprimeix el debat";
+"Delete Discussion" = "Suprimeix el fòrum";
 
 /* No comment provided by engineer. */
 "Delete File" = "Suprimeix el fitxer";
@@ -686,25 +686,25 @@
 "Developer menu" = "Menú de desenvolupador";
 
 /* No comment provided by engineer. */
-"discussion" = "debat";
+"discussion" = "fòrum";
 
 /* No comment provided by engineer. */
-"Discussion" = "Debat";
+"Discussion" = "Fòrum";
 
 /* No comment provided by engineer. */
-"Discussion Comment" = "Comentari sobre el debat";
+"Discussion Comment" = "Comentari sobre el fòrum";
 
 /* No comment provided by engineer. */
-"Discussion Details" = "Informació sobre el debat";
+"Discussion Details" = "Informació sobre el fòrum";
 
 /* No comment provided by engineer. */
-"Discussion Post" = "Publicació sobre el debat";
+"Discussion Post" = "Publicació al fòrum";
 
 /* No comment provided by engineer. */
-"Discussion Replies" = "Respostes al debat";
+"Discussion Replies" = "Respostes al fòrum";
 
 /* No comment provided by engineer. */
-"Discussions" = "Debats";
+"Discussions" = "Fòrums";
 
 /* No comment provided by engineer. */
 "Disk Error" = "Error de disc";
@@ -719,10 +719,10 @@
 "Dismiss invitation to %@" = "Descarta la invitació per a %@";
 
 /* No comment provided by engineer. */
-"Display Grade as" = "Mostra la qualificació com";
+"Display Grade as" = "Mostra la nota com";
 
 /* No comment provided by engineer. */
-"Do not send me anything" = "No m'envieu res";
+"Do not send me anything" = "No m'enviïs res";
 
 /* No comment provided by engineer. */
 "Domain" = "Domini";
@@ -731,22 +731,22 @@
 "Done" = "Fet";
 
 /* No comment provided by engineer. */
-"Due" = "Venciment";
+"Due" = "Data de lliurament";
 
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
-"Due %@" = "Venciment %@";
+"Due %@" = "Venç el %@";
 
 /* No comment provided by engineer. */
-"Due Date" = "Data de venciment";
+"Due Date" = "Data de lliurament";
 
 /* No comment provided by engineer. */
-"Due Dates, Double tap for details." = "Dates de venciment. Toqueu dues vegades per obtenir informació.";
+"Due Dates, Double tap for details." = "Dates de lliurament. Toqueu dues vegades per obtenir informació.";
 
 /* No comment provided by engineer. */
-"Due:" = "Venciment:";
+"Due:" = "Data de lliurament:";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Venciment: %@";
+"Due: %@" = "Data de lliurament: %@";
 
 /* No comment provided by engineer. */
 "Edit" = "Edita";
@@ -755,7 +755,7 @@
 "Edit Announcement" = "Edita l'anunci";
 
 /* No comment provided by engineer. */
-"Edit Assignment" = "Edita la tasca";
+"Edit Assignment" = "Edita l'activitat";
 
 /* No comment provided by engineer. */
 "Edit attachment (1)" = "Edita el fitxer adjunt (1)";
@@ -764,7 +764,7 @@
 "Edit attachment (none)" = "Edita el fitxer adjunt (cap)";
 
 /* No comment provided by engineer. */
-"Edit Discussion" = "Edita el debat";
+"Edit Discussion" = "Edita el fòrum";
 
 /* No comment provided by engineer. */
 "Edit File" = "Edita el fitxer";
@@ -866,7 +866,7 @@
 "File Details" = "Detalls del fitxer";
 
 /* No comment provided by engineer. */
-"File Upload" = "Càrrega de fitxer";
+"File Upload" = "Penjada de fitxer";
 
 /* No comment provided by engineer. */
 "File upload failed. Please cancel your submission and try uploading again." = "No s'ha pogut penjar el fitxer. Cancel·leu l’entrega i torneu a provar de carregar-la.";
@@ -890,7 +890,7 @@
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
-"Final Grade: %@" = "Qualificació final: %@";
+"Final Grade: %@" = "Nota final: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
@@ -926,7 +926,7 @@
 "Front Page" = "Pàgina frontal";
 
 /* No comment provided by engineer. */
-"Future Enrollments" = "Inscripcions futures";
+"Future Enrollments" = "Assignatures futures";
 
 /* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
@@ -944,34 +944,34 @@
 "GPA Scale" = "Escala GPA";
 
 /* No comment provided by engineer. */
-"grade" = "qualificació";
+"grade" = "nota";
 
 /* No comment provided by engineer. */
-"Grade" = "Qualificació";
+"Grade" = "Nota";
 
 /* No comment provided by engineer. */
-"Grade after posting" = "Qualificació després de la publicació";
+"Grade after posting" = "Nota després de la publicació";
 
 /* No comment provided by engineer. */
-"Grade before posting" = "Qualificació abans de la publicació";
+"Grade before posting" = "Nota abans de la publicació";
 
 /* No comment provided by engineer. */
-"Grade override" = "Substitució de la qualificació";
+"Grade override" = "Substitució de la nota";
 
 /* No comment provided by engineer. */
-"Grade Override" = "Substitució de la qualificació";
+"Grade Override" = "Substitució de la nota";
 
 /* No comment provided by engineer. */
-"Graded" = "Qualificat";
+"Graded" = "Amb nota";
 
 /* No comment provided by engineer. */
-"Graded Surveys" = "Estudis qualificats";
+"Graded Surveys" = "Estudis amb nota";
 
 /* No comment provided by engineer. */
-"Grades" = "Qualificacions";
+"Grades" = "Notes";
 
 /* No comment provided by engineer. */
-"Grading" = "Qualificació";
+"Grading" = "Nota";
 
 /* No comment provided by engineer. */
 "Grading Policies" = "Normatives de qualificació";
@@ -995,7 +995,7 @@
 "Help" = "Ajuda";
 
 /* No comment provided by engineer. */
-"Help your students with this assignment by adding instructions." = "Afegiu instruccions a aquesta tasca per ajudar els estudiants a realitzar-la.";
+"Help your students with this assignment by adding instructions." = "Afegiu instruccions a aquesta activitat per ajudar els estudiants a realitzar-la.";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Amaga el contingut per a %@";
@@ -1016,13 +1016,13 @@
 "How do I find my school?" = "Com puc trobar l'escola?";
 
 /* No comment provided by engineer. */
-"I can't get things done until I hear back from you" = "No puc acabar de fer les coses fins que torni a tenir notícies teves";
+"I can't get things done until I hear back from you" = "No podré fer res fins que em respongueu";
 
 /* No comment provided by engineer. */
-"I don't have a Canvas account" = "No tinc un compte del Canvas";
+"I don't have a Canvas account" = "No tinc un usuari del Canvas";
 
 /* No comment provided by engineer. */
-"I have a Canvas account" = "Tinc un compte del Canvas";
+"I have a Canvas account" = "Tinc un usuari del Canvas";
 
 /* No comment provided by engineer. */
 "I hold the copyright" = "Soc el titular dels drets d'autor";
@@ -1097,19 +1097,19 @@
 "It looks like announcements haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap anunci.";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap tasca.";
+"It looks like assignments haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap activitat.";
 
 /* No comment provided by engineer. */
-"It looks like discussions haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap debat.";
+"It looks like discussions haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap fòrum.";
 
 /* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap qüestionari.";
+"It looks like quizzes haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap prova.";
 
 /* No comment provided by engineer. */
-"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Sembla que no hi ha cap curs associat a aquest compte. Aneu al lloc web per crear un curs ara mateix.";
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Sembla que no hi ha cap assignatura associada a aquest usuari. Aneu al lloc web per crear una assignatura ara mateix.";
 
 /* No comment provided by engineer. */
-"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembla que no us heu inscrit en cap curs com a %@. És possible que alguna de les altres aplicacions nostres us sigui més útil. Toqueu-ne una per anar a App Store.";
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembla que no us heu inscrit en cap assignatura com a %@. És possible que alguna de les altres aplicacions nostres us sigui més útil. Toqueu-ne una per anar a App Store.";
 
 /* No comment provided by engineer. */
 "Italic" = "Cursiva";
@@ -1130,7 +1130,7 @@
 "Late" = "Tardà";
 
 /* No comment provided by engineer. */
-"Late Grading" = "Qualificació tardana";
+"Late Grading" = "Nota endarrerida";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
@@ -1145,7 +1145,7 @@
 "Legal" = "Jurídic";
 
 /* No comment provided by engineer. */
-"Letter Grade" = "Qualificació amb lletra";
+"Letter Grade" = "Nota amb lletra";
 
 /* No comment provided by engineer. */
 "Library" = "Biblioteca";
@@ -1190,7 +1190,7 @@
 "Loading" = "S'està carregant";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "S'estan carregant més mòduls…";
+"Loading more modules..." = "S'estan carregant més continguts…";
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Localitzeu el codi QR";
@@ -1205,7 +1205,7 @@
 "Locked until \"%@\" is graded" = "Bloquejat fins que \"%@\" es qualifiqui";
 
 /* No comment provided by engineer. */
-"Log In" = "Inici de sessió";
+"Log In" = "Inicia la sessió";
 
 /* No comment provided by engineer. */
 "Log In Again" = "Torna a iniciar la sessió";
@@ -1271,7 +1271,7 @@
 "me" = "mi";
 
 /* No comment provided by engineer. */
-"me & %@" = "jo i %@";
+"me & %@" = "mi i %@";
 
 /* No comment provided by engineer. */
 "Mean: %@" = "Mitjana: %@";
@@ -1280,7 +1280,7 @@
 "Media Recording" = "Enregistrament multimèdia";
 
 /* No comment provided by engineer. */
-"Membership Update" = "Actualització de l'afiliació";
+"Membership Update" = "Actualització de la pertinença";
 
 /* No comment provided by engineer. */
 "Message" = "Missatge";
@@ -1289,16 +1289,16 @@
 "Message from %@, %@, on %@, %@" = "Missatge de %1$@, %2$@, el %3$@, %4$@";
 
 /* No comment provided by engineer. */
-"Missing" = "Falta";
+"Missing" = "No presentat";
 
 /* No comment provided by engineer. */
-"Module Item" = "Element del mòdul";
+"Module Item" = "Element del contingut";
 
 /* No comment provided by engineer. */
-"Modules" = "Mòduls";
+"Modules" = "Continguts";
 
 /* No comment provided by engineer. */
-"Multiple Due Dates" = "Dates de venciment múltiples";
+"Multiple Due Dates" = "Dates de lliurament múltiples";
 
 /* No comment provided by engineer. */
 "My Subjects" = "Les meves matèries";
@@ -1328,7 +1328,7 @@
 "New Conferences" = "Conferències noves";
 
 /* No comment provided by engineer. */
-"New Discussion" = "Debat nou";
+"New Discussion" = "Fòrum nou";
 
 /* No comment provided by engineer. */
 "New Message" = "Missatge nou";
@@ -1337,7 +1337,7 @@
 "New Page" = "Pàgina nova";
 
 /* No comment provided by engineer. */
-"New Quizzes" = "Qüestionaris nous";
+"New Quizzes" = "Proves noves";
 
 /* No comment provided by engineer. */
 "New To Do" = "Noves tasques pendents";
@@ -1355,22 +1355,22 @@
 "No Announcements" = "Cap anunci";
 
 /* No comment provided by engineer. */
-"No Assignments" = "No hi ha cap tasca";
+"No Assignments" = "No hi ha cap activitat";
 
 /* No comment provided by engineer. */
-"No available from date set." = "No hi ha cap conjunt de dates \"Disponible de\".";
+"No available from date set." = "No hi ha cap conjunt de dates \\\"Disponible de\\\".";
 
 /* No comment provided by engineer. */
-"No available until date set." = "No hi ha cap conjunt de dates \"Disponible fins a\".";
+"No available until date set." = "No hi ha cap conjunt de dates \\\"Disponible fins a\\\".";
 
 /* No comment provided by engineer. */
 "No Conferences" = "Cap conferència";
 
 /* No comment provided by engineer. */
-"No Content" = "Sense cap contingut";
+"No Content" = "Sense contingut";
 
 /* No comment provided by engineer. */
-"No Courses" = "No hi ha cap curs";
+"No Courses" = "No hi ha cap assignatura";
 
 /* No comment provided by engineer. */
 "No date selected" = "No s’ha seleccionat cap data";
@@ -1379,13 +1379,13 @@
 "No description" = "Sense descripció";
 
 /* No comment provided by engineer. */
-"No Discussions" = "No hi ha cap debat";
+"No Discussions" = "No hi ha cap fòrum";
 
 /* No comment provided by engineer. */
-"No Due Date" = "Sense data de venciment";
+"No Due Date" = "Sense data de lliurament";
 
 /* No comment provided by engineer. */
-"No due date set." = "Sense cap conjunt de dates de venciment.";
+"No due date set." = "Sense cap conjunt de dates de lliurament.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Avui no hi ha cap esdeveniment.";
@@ -1397,7 +1397,7 @@
 "No image found from image picker" = "No s'ha trobat cap imatge al selector d'imatges";
 
 /* No comment provided by engineer. */
-"No Modules" = "No hi ha cap mòdul";
+"No Modules" = "No hi ha cap contingut";
 
 /* No comment provided by engineer. */
 "No Pages" = "No hi ha cap pàgina";
@@ -1406,7 +1406,7 @@
 "No preview available" = "No hi ha cap visualització prèvia disponible";
 
 /* No comment provided by engineer. */
-"No Quizzes" = "No hi ha cap qüestionari";
+"No Quizzes" = "No hi ha cap prova";
 
 /* No comment provided by engineer. */
 "No Results" = "No hi ha cap resultat";
@@ -1418,7 +1418,7 @@
 "No Subject" = "Sense assumpte";
 
 /* No comment provided by engineer. */
-"No Submission" = "No hi ha cap entrega";
+"No Submission" = "Cap entrega";
 
 /* No comment provided by engineer. */
 "No supported files to submit" = "No hi ha cap fitxer admès per enviar";
@@ -1430,7 +1430,7 @@
 "Not enrolled" = "No s’ha inscrit";
 
 /* No comment provided by engineer. */
-"Not Graded" = "Sense qualificació";
+"Not Graded" = "Sense nota";
 
 /* No comment provided by engineer. */
 "Not Published" = "No s'ha publicat";
@@ -1439,7 +1439,7 @@
 "Not Started" = "No s'ha començat";
 
 /* No comment provided by engineer. */
-"Not Submitted" = "No s'ha enviat";
+"Not Submitted" = "No entregat";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "No és urgent";
@@ -1460,7 +1460,7 @@
 "Notifications are currently disabled in Settings. Tap to enable them again." = "En aquest moment, les notificacions estan desactivades a Configuració. Toqueu per tornar a activar-les.";
 
 /* No comment provided by engineer. */
-"Notify me right away" = "Notifiqueu-me de seguida";
+"Notify me right away" = "Notifica'm de seguida";
 
 /* No comment provided by engineer. */
 "Observer" = "Observador";
@@ -1502,7 +1502,7 @@
 "Open application" = "Obre l’aplicació";
 
 /* No comment provided by engineer. */
-"Open course details" = "Obre els detalls del curs";
+"Open course details" = "Obre els detalls de l'assignatura";
 
 /* No comment provided by engineer. */
 "Open item details" = "Obre els detalls de l'element";
@@ -1556,10 +1556,10 @@
 "Password" = "Contrasenya";
 
 /* No comment provided by engineer. */
-"Past Enrollments" = "Inscripcions anteriors";
+"Past Enrollments" = "Assignatures anteriors";
 
 /* No comment provided by engineer. */
-"Pause" = "Fes una pausa";
+"Pause" = "Posa en pausa";
 
 /* No comment provided by engineer. */
 "People" = "Persones";
@@ -1580,7 +1580,7 @@
 "Pink" = "Rosa";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Debats ancorats";
+"Pinned Discussions" = "Fòrums ancorats";
 
 /* No comment provided by engineer. */
 "Play" = "Reprodueix";
@@ -1604,7 +1604,7 @@
 "Post at" = "Publica el";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Qüestionaris de pràctica";
+"Practice Quizzes" = "Proves de pràctica";
 
 /* No comment provided by engineer. */
 "Preferences" = "Preferències";
@@ -1652,16 +1652,16 @@
 "Push Notifications" = "Notificacions d'inserció";
 
 /* No comment provided by engineer. */
-"quiz" = "qüestionari";
+"quiz" = "prova";
 
 /* No comment provided by engineer. */
-"Quiz" = "Qüestionari";
+"Quiz" = "Prova";
 
 /* No comment provided by engineer. */
-"Quiz Details" = "Informació del qüestionari";
+"Quiz Details" = "Informació de la prova";
 
 /* No comment provided by engineer. */
-"Quizzes" = "Qüestionaris";
+"Quizzes" = "Proves";
 
 /* No comment provided by engineer. */
 "Recipients" = "Destinataris";
@@ -1685,7 +1685,7 @@
 "Refreshing" = "S'estan actualitzant";
 
 /* No comment provided by engineer. */
-"Remove" = "Elimina";
+"Remove" = "Suprimeix";
 
 /* No comment provided by engineer. */
 "Remove %@" = "Elimina %@";
@@ -1700,16 +1700,16 @@
 "Remove date" = "Elimina la data";
 
 /* No comment provided by engineer. */
-"Remove Due Date?" = "Voleu suprimir la data de venciment?";
+"Remove Due Date?" = "Voleu suprimir la data de lliurament?";
 
 /* No comment provided by engineer. */
 "Remove File" = "Elimina el fitxer";
 
 /* No comment provided by engineer. */
-"Removed %1$@" = "Eliminat %1$@";
+"Removed %1$@" = "Eliminat el %1$@";
 
 /* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Eliminat %1$@ per %2$@";
+"Removed %1$@ by %2$@" = "Eliminat el %1$@ per %2$@";
 
 /* No comment provided by engineer. */
 "Replies" = "Respostes";
@@ -1724,7 +1724,7 @@
 "Reply sent" = "Resposta enviada";
 
 /* No comment provided by engineer. */
-"Reply to main discussion" = "Respon al debat principal";
+"Reply to main discussion" = "Respon al fòrum principal";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Responeu a l'anotació o als comentaris anteriors";
@@ -1751,7 +1751,7 @@
 "Restricted" = "Restringit";
 
 /* No comment provided by engineer. */
-"Retry" = "Torna a provar-ho";
+"Retry" = "Torna-ho a provar";
 
 /* No comment provided by engineer. */
 "Saving..." = "S'està desant…";
@@ -1769,19 +1769,19 @@
 "Schedule student availability" = "Planifica la disponibilitat dels estudiants";
 
 /* No comment provided by engineer. */
-"Scheduling" = "Planificació";
+"Scheduling" = "S'està planificant";
 
 /* No comment provided by engineer. */
 "School’s name" = "Nom del centre educatiu";
 
 /* No comment provided by engineer. */
-"Score at least %@" = "Puntuació mínima %@";
+"Score at least %@" = "Puntuació mínima: %@";
 
 /* No comment provided by engineer. */
 "Scored above %g" = "Puntuat per sobre %g";
 
 /* No comment provided by engineer. */
-"Scored at least %@" = "Puntuació mínima obtinguda %@";
+"Scored at least %@" = "Puntuació mínima obtinguda: %@";
 
 /* No comment provided by engineer. */
 "Scored below %g" = "Puntuat per sota %g";
@@ -1799,7 +1799,7 @@
 "Sections: %@" = "Seccions: %@";
 
 /* No comment provided by engineer. */
-"See attached files." = "Consulteu els fitxers adjunts.";
+"See attached files." = "Vegeu els fitxers adjunts.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Consulteu les novetats.";
@@ -1811,22 +1811,22 @@
 "Select a Path" = "Selecciona un camí d'accés";
 
 /* No comment provided by engineer. */
-"Select assignment" = "Selecciona una tasca";
+"Select assignment" = "Selecciona una activitat";
 
 /* No comment provided by engineer. */
-"Select Assignment" = "Selecciona una tasca";
+"Select Assignment" = "Selecciona una activitat";
 
 /* No comment provided by engineer. */
-"Select course" = "Selecciona el curs";
+"Select course" = "Selecciona l'assignatura";
 
 /* No comment provided by engineer. */
-"Select Course" = "Selecciona el curs";
+"Select Course" = "Selecciona l'assignatura";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Selecciona l’impacte";
 
 /* No comment provided by engineer. */
-"Select One" = "Seleccioneu-ne un";
+"Select One" = "Selecciona'n un";
 
 /* No comment provided by engineer. */
 "Selected!" = "Seleccionat!";
@@ -1841,13 +1841,13 @@
 "Send comment" = "Envia un comentari";
 
 /* No comment provided by engineer. */
-"Send daily summary" = "Envia el resum diari";
+"Send daily summary" = "Envia un resum diari";
 
 /* No comment provided by engineer. */
 "Send message" = "Envia el missatge";
 
 /* No comment provided by engineer. */
-"Send weekly summary" = "Envia el resum setmanal";
+"Send weekly summary" = "Envia un resum setmanal";
 
 /* No comment provided by engineer. */
 "Sent" = "Enviat";
@@ -1865,10 +1865,10 @@
 "Show a month at a time" = "Mostra un mes a la vegada";
 
 /* No comment provided by engineer. */
-"Show Course Summary" = "Mostra el resum del curs";
+"Show Course Summary" = "Mostra el resum de l'assignatura";
 
 /* No comment provided by engineer. */
-"Show Grades" = "Mostra les qualificacions";
+"Show Grades" = "Mostra les notes";
 
 /* No comment provided by engineer. */
 "Show more options" = "Mostra més opcions";
@@ -1877,13 +1877,13 @@
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
-"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Atès que aquest és un debat de grup, cada grup té la seva conversa per a aquest tema. Aquests són els debats als quals teniu accés.";
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Atès que aquest és un fòrum de grup, cada grup té la seva conversa per a aquest tema. Aquests són els fòrums als quals teniu accés.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Inici de sessió de l'administrador del lloc web";
 
 /* Description for Slack communication channel */
-"Slack Notifications" = "Notificacions de Slack";
+"Slack Notifications" = "Notificacions de l'Slack";
 
 /* Description for SMS communication channel */
 "SMS Notifications" = "Notificacions per SMS";
@@ -1913,7 +1913,7 @@
 "Start recording" = "Comença a enregistrar";
 
 /* started datetime */
-"Started %@" = "Iniciat %@";
+"Started %@" = "Ha començat el %@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Deixa d'actuar com a usuari";
@@ -1961,16 +1961,16 @@
 "Submit" = "Entrega";
 
 /* No comment provided by engineer. */
-"Submitted" = "Enviat";
+"Submitted" = "Entregat";
 
 /* Submitted date */
-"Submitted %@" = "Enviat %@";
+"Submitted %@" = "Entregat el %@";
 
 /* No comment provided by engineer. */
 "Subscribe" = "Subscriu-t'hi";
 
 /* No comment provided by engineer. */
-"Subscribe to Calendar Feed" = "Subscriu-te al canal de continguts del calendari";
+"Subscribe to Calendar Feed" = "Subscriu-te a Exporta el calendari";
 
 /* No comment provided by engineer. */
 "Success!" = "Operació correcta!";
@@ -1988,7 +1988,7 @@
 "Syllabus content" = "Contingut del temari";
 
 /* Teacher's Assistant (abbreviated) */
-"TA" = "TA";
+"TA" = "Auxiliar de professor";
 
 /* No comment provided by engineer. */
 "Take Photo" = "Fes una foto";
@@ -1997,7 +1997,7 @@
 "Tap here for help." = "Toqueu aquí per obtenir ajuda.";
 
 /* No comment provided by engineer. */
-"Tap to select the courses you want to see on the calendar." = "Toqueu per seleccionar els cursos que voleu veure al calendari.";
+"Tap to select the courses you want to see on the calendar." = "Toqueu per seleccionar les assignatures que voleu veure al calendari.";
 
 /* No comment provided by engineer. */
 "Tap to view announcement" = "Toqueu per veure l'anunci";
@@ -2042,13 +2042,13 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Per utilitzar la configuració d'idioma nova, cal reiniciar l'aplicació. Torneu a iniciar l'aplicació.";
 
 /* No comment provided by engineer. */
-"There are no active assignments in this course." = "No hi ha cap tasca activa en aquest curs.";
+"There are no active assignments in this course." = "No hi ha cap activitat activa en aquesta assignatura.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Encara no hi ha cap conferència per mostrar.";
 
 /* No comment provided by engineer. */
-"There are no modules to display yet." = "Encara no hi ha cap mòdul per mostrar.";
+"There are no modules to display yet." = "Encara no hi ha cap contingut per mostrar.";
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Encara no hi ha cap pàgina per mostrar.";
@@ -2066,10 +2066,10 @@
 "There was an error loading conferences. Pull to refresh to try again." = "S'ha produït un error en carregar les conferències. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
-"There was an error loading courses. Pull to refresh to try again." = "S'ha produït un error en carregar els cursos. Estireu per actualitzar per tornar-ho a provar.";
+"There was an error loading courses. Pull to refresh to try again." = "S'ha produït un error en carregar les assignatures. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
-"There was an error loading discussions. Pull to refresh to try again." = "S'ha produït un error en carregar els debats. Estireu per actualitzar per tornar-ho a provar.";
+"There was an error loading discussions. Pull to refresh to try again." = "S'ha produït un error en carregar els fòrums. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "S'ha produït un error en carregar els esdeveniments. Estireu per actualitzar per tornar-ho a provar.";
@@ -2078,13 +2078,13 @@
 "There was an error loading files. Pull to refresh to try again." = "S'ha produït un error en carregar els fitxers. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "S'ha produït un error en carregar les qualificacions. Estireu per actualitzar per tornar-ho a provar.";
+"There was an error loading grades. Pull to refresh to try again." = "S'ha produït un error en carregar les notes. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "There was an error loading items to do. Pull to refresh to try again." = "S'ha produït un error en carregar els elements de tasques pendents. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
-"There was an error loading modules." = "S'ha produït un error en carregar els mòduls.";
+"There was an error loading modules." = "S'ha produït un error en carregar els continguts.";
 
 /* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "S'ha produït un error en carregar les pàgines. Estireu per actualitzar per tornar-ho a provar.";
@@ -2093,7 +2093,7 @@
 "There was an error loading people. Pull to refresh to try again." = "S'ha produït un error en carregar les persones. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "S'ha produït un error en carregar els qüestionaris. Estireu per actualitzar per tornar-ho a provar.";
+"There was an error loading quizzes. Pull to refresh to try again." = "S'ha produït un error en carregar les proves. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "There was an error while communicating with the server" = "S'ha produït un error en comunicar-se amb el servidor";
@@ -2102,19 +2102,19 @@
 "There was an error with Act as User. Please try again later." = "S'ha produït un error amb \"Actua com a usuari\". Torneu a provar-ho més endavant.";
 
 /* No comment provided by engineer. */
-"There was an unexpected error. Please try again." = "S'ha produït un error inesperat. Torneu a provar-ho.";
+"There was an unexpected error. Please try again." = "S'ha produït un error inesperat. Torneu-ho a provar.";
 
 /* No comment provided by engineer. */
 "there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
-"This assignment is due by %@" = "Aquesta tasca venç el %@";
+"This assignment is due by %@" = "Aquesta activitat venç el %@";
 
 /* No comment provided by engineer. */
-"This assignment was due by %@" = "Aquesta tasca ha vençut el %@";
+"This assignment was due by %@" = "Aquesta activitat ha vençut el %@";
 
 /* No comment provided by engineer. */
-"This course does not have any sections." = "Aquest curs no té cap secció.";
+"This course does not have any sections." = "Aquesta assignatura no té cap secció.";
 
 /* No comment provided by engineer. */
 "This folder is empty." = "Aquesta carpeta està buida.";
@@ -2123,16 +2123,16 @@
 "This is a media comment" = "Això és un comentari sobre un element multimèdia";
 
 /* No comment provided by engineer. */
-"This is your personal color setting. Only you will see this color for the course." = "Aquesta és la configuració del vostre color personal. Cap altre usuari no veurà aquest color per al curs.";
+"This is your personal color setting. Only you will see this color for the course." = "Aquesta és la configuració del vostre color personal. Cap altre usuari no veurà aquest color per a l'assignatura.";
 
 /* No comment provided by engineer. */
-"This module is empty." = "Aquest mòdul està buit.";
+"This module is empty." = "Aquest contingut està buit.";
 
 /* No comment provided by engineer. */
-"This page has been disabled for this course." = "Aquesta pàgina s'ha inhabilitat per a aquest curs.";
+"This page has been disabled for this course." = "Aquesta pàgina s'ha inhabilitat per a aquesta assignatura.";
 
 /* No comment provided by engineer. */
-"This will remove the due date and all of the associated assignees." = "Amb aquesta acció s'eliminaran la data de venciment i tots els beneficiaris associats.";
+"This will remove the due date and all of the associated assignees." = "Amb aquesta acció s'eliminaran la data de lliurament i tots els beneficiaris associats.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Temps transcorregut";
@@ -2144,13 +2144,13 @@
 "Title..." = "Títol...";
 
 /* No comment provided by engineer. */
-"To" = "Per a";
+"To" = "Fins al";
 
 /* No comment provided by engineer. */
 "to %@" = "per a %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per crear un compte, feu que l'estudiant us creï un codi d'emparellament des de la secció Configuració de l'aplicació Canvas Student, com es mostra a continuació, i després escanegeu el codi des d'aquí.\nSi l'estudiant no veu l'opció per crear un codi d'emparellament, poseu-vos en contacte amb l'escola perquè creïn el vostre compte.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per crear un usuari, feu que l'estudiant us creï un codi d'emparellament des de la secció Configuració de l'aplicació Canvas Student, com es mostra a continuació, i després escanegeu el codi des d'aquí.\nSi l'estudiant no veu l'opció per crear un codi d'emparellament, poseu-vos en contacte amb l'escola perquè creïn el vostre usuari.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasques pendents";
@@ -2162,7 +2162,7 @@
 "Tomorrow" = "Demà";
 
 /* No comment provided by engineer. */
-"Total Grade" = "Qualificació total";
+"Total Grade" = "Nota total";
 
 /* No comment provided by engineer. */
 "Total time" = "Temps en total";
@@ -2240,13 +2240,13 @@
 "Use this code to pair with me in Canvas Parent: %@" = "Utilitza aquest codi per emparellar amb mi al Canvas Parent: %@";
 
 /* No comment provided by engineer. */
-"User ID" = "ID d'usuari";
+"User ID" = "ID d’usuari";
 
 /* Name and pronouns - John (He/Him) */
 "User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
-"Username" = "Nom d'usuari";
+"Username" = "Nom d’usuari";
 
 /* No comment provided by engineer. */
 "Users must post before seeing replies" = "Els usuaris han de publicar per poder veure les respostes";
@@ -2264,7 +2264,7 @@
 "View Less" = "Visualitza'n menys";
 
 /* No comment provided by engineer. */
-"View Modules" = "Mostra els mòduls";
+"View Modules" = "Mostra els continguts";
 
 /* No comment provided by engineer. */
 "View More" = "Visualitza'n més";
@@ -2279,7 +2279,7 @@
 "Viewed" = "Vist";
 
 /* No comment provided by engineer. */
-"We couldn't find any courses like that." = "No hem trobat cap curs així.";
+"We couldn't find any courses like that." = "No hem trobat cap assignatura així.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "No hem trobat cap fitxer així.";
@@ -2318,7 +2318,7 @@
 "Whoops!" = "Ui!";
 
 /* No comment provided by engineer. */
-"Will unlock %@" = "Es desbloquejarà %@";
+"Will unlock %@" = "Es desbloquejarà el %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Solució alternativa";
@@ -2348,22 +2348,22 @@
 "You must enable Microphone permissions in Settings." = "Heu d'activar els permisos per al micròfon a Configuració.";
 
 /* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Deixareu de fer de %@ i tornareu al vostre compte.";
+"You will stop acting as %@ and return to your account." = "Deixareu de fer de %@ i tornareu al vostre usuari.";
 
 /* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Deixareu de fer d'aquest usuari i tornareu al vostre compte.";
+"You will stop acting as this user and return to your account." = "Deixareu de fer d'aquest usuari i tornareu al vostre usuari.";
 
 /* No comment provided by engineer. */
 "You've marked it as done." = "L’heu marcat com a fet.";
 
 /* No comment provided by engineer. */
-"Your child's courses might not be published yet." = "És possible que encara no s'hagin publicat els cursos del vostre fill.";
+"Your child's courses might not be published yet." = "És possible que encara no s'hagin publicat les assignatures del vostre fill.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "El dispositiu s'ha quedat sense espai d'emmagatzematge. Allibereu espai i torneu a provar-ho.";
 
 /* No comment provided by engineer. */
-"Your Email" = "El vostre correu electrònic";
+"Your Email" = "La vostra adreça electrònica";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "La llista de tasques pendents està buida. És l'hora de recarregar.";

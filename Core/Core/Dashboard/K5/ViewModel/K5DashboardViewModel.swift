@@ -20,23 +20,32 @@ import Combine
 import SwiftUI
 
 public class K5DashboardViewModel: ObservableObject {
-    @Published private(set) var topBarViewModel = TopBarViewModel(items: [
-        TopBarItemViewModel(icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
-        TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
-        TopBarItemViewModel(icon: .k5grades, label: Text("Grades", bundle: .core)),
-        TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core)),
-    ])
+    @Published private(set) var topBarViewModel: TopBarViewModel
 
     let viewModels = (
         homeroom: K5HomeroomViewModel(),
         schedule: K5ScheduleViewModel(),
         grades: K5GradesViewModel(),
-        resources: K5ResourcesViewModel()
+        resources: K5ResourcesViewModel(),
+        importantDates: K5ImportantDatesViewModel()
     )
 
     private var topBarChangeListener: AnyCancellable?
 
     init() {
+        var topBarModelItems = [
+            TopBarItemViewModel(icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
+            TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
+            TopBarItemViewModel(icon: .k5grades, label: Text("Grades", bundle: .core)),
+            TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core)),
+        ]
+
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            topBarModelItems.append(TopBarItemViewModel(icon: .k5importantDates, label: Text("Important Dates", bundle: .core)))
+        }
+
+        topBarViewModel = TopBarViewModel(items: topBarModelItems)
+
         // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
         topBarChangeListener = topBarViewModel.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
