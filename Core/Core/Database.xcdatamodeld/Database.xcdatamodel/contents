@@ -58,6 +58,7 @@
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
         <attribute name="moderatedGrading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="needsGradingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="published" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
@@ -365,6 +366,7 @@
         <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="observerEnrollments" inverseEntity="User"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="enrollments" inverseEntity="Submission"/>
     </entity>
+    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -943,7 +945,7 @@
         <element name="AccountNotification" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="779"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="824"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="AssignmentOverride" positionX="-540" positionY="-18" width="128" height="193"/>
@@ -1011,5 +1013,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="28"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="Entity" positionX="-549" positionY="-18" width="128" height="29"/>
     </elements>
 </model>

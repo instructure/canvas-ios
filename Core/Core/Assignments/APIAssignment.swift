@@ -45,6 +45,7 @@ public struct APIAssignment: Codable, Equatable {
     let lock_explanation: String?
     let moderated_grading: Bool?
     let name: String
+    let needs_grading_count: Int?
     let overrides: [APIAssignmentOverride]?
     let planner_override: APIPlannerOverride?
     let points_possible: Double?
@@ -127,6 +128,7 @@ extension APIAssignment {
         lock_explanation: String? = nil,
         moderated_grading: Bool? = nil,
         name: String = "some assignment",
+        needs_grading_count: Int = 1,
         overrides: [APIAssignmentOverride]? = nil,
         planner_override: APIPlannerOverride? = nil,
         points_possible: Double? = 10,
@@ -178,6 +180,7 @@ extension APIAssignment {
             lock_explanation: lock_explanation,
             moderated_grading: moderated_grading,
             name: name,
+            needs_grading_count: needs_grading_count,
             overrides: overrides,
             planner_override: planner_override,
             points_possible: points_possible,
