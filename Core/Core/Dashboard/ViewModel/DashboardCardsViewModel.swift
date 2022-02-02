@@ -41,9 +41,7 @@ class DashboardCardsViewModel: ObservableObject {
     private let showOnlyTeacherEnrollment: Bool
     private var needsRefresh = false
     private var subscriptions = Set<AnyCancellable>()
-    private var enrollmentsRequest: APITask?
-    /** This dictionary contains the user's section IDs within courses referenced by their IDs. */
-    private var sectionIDsByCourseIDs: [String: String] = [:]
+    private let courseSectionStatus = CourseSectionStatus()
 
     public init(showOnlyTeacherEnrollment: Bool) {
         self.showOnlyTeacherEnrollment = showOnlyTeacherEnrollment
@@ -63,28 +61,8 @@ class DashboardCardsViewModel: ObservableObject {
             if self.needsRefresh { self.refresh() }
         }
 
-        refreshEnrollments()
-    }
-
-    private func refreshEnrollments() {
-        guard enrollmentsRequest == nil else { return }
-
-        let request = GetEnrollmentsRequest(context: .currentUser, types: [Role.student.rawValue], states: [.active])
-        enrollmentsRequest = env.api.makeRequest(request) { [weak self] enrollments, _, _ in
-            performUIUpdate {
-                self?.enrollmentsRequest = nil
-                self?.extractSectionInfo(from: enrollments ?? [])
-                self?.update()
-            }
-        }
-    }
-
-    private func extractSectionInfo(from enrollments: [APIEnrollment]) {
-        sectionIDsByCourseIDs = enrollments.reduce(into: [:]) { dictionary, enrollment in
-            guard let courseId = enrollment.course_id?.value, let sectionId = enrollment.course_section_id?.value else {
-                return
-            }
-            dictionary[courseId] = sectionId
+        courseSectionStatus.refresh { [weak self] in
+            self?.update()
         }
     }
 
@@ -97,7 +75,7 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     private func update() {
-        guard cards.requested, !cards.pending, enrollmentsRequest == nil else { return }
+        guard cards.requested, !cards.pending, !courseSectionStatus.isUpdatePending else { return }
 
         guard cards.state != .error else {
             state = .error(cards.error?.localizedDescription ?? "")
@@ -109,24 +87,12 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     private func filteredCards() -> [DashboardCard] {
-        var filteredCards = cards.all.filter { $0.shouldShow && isSectionActive(for: $0) }
+        var filteredCards = cards.all.filter { $0.shouldShow && courseSectionStatus.isSectionExpired(for: $0, in: courses.all) }
 
         if showOnlyTeacherEnrollment {
             filteredCards = filteredCards.filter { $0.isTeacherEnrollment }
         }
 
         return filteredCards
-    }
-
-    private func isSectionActive(for card: DashboardCard) -> Bool {
-        let courseId = card.id
-
-        guard let sectionId = sectionIDsByCourseIDs[courseId],
-              let course = courses.all.first(where: { $0.id == courseId }),
-              let section = course.sections.first(where: { $0.id == sectionId }),
-              let sectionEndDate = section.endAt
-        else { return true }
-
-        return Clock.now < sectionEndDate
     }
 }

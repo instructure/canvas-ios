@@ -953,6 +953,7 @@
 		CFFE285927AA9D380029A408 /* CourseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE285727AA9D380029A408 /* CourseListView.swift */; };
 		CFFE285A27AA9D380029A408 /* CourseListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE285827AA9D380029A408 /* CourseListCellView.swift */; };
 		CFFE285C27AA9D410029A408 /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE285B27AA9D410029A408 /* CourseListViewModel.swift */; };
+		CFFE285E27AABCC20029A408 /* CourseSectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE285D27AABCC20029A408 /* CourseSectionStatus.swift */; };
 		D9436D1725A4BAD200DD3873 /* GetCourseSingleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */; };
 		D9436D1D25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */; };
 		D94FA2A826CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */; };
@@ -2210,6 +2211,7 @@
 		CFFE285727AA9D380029A408 /* CourseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListView.swift; sourceTree = "<group>"; };
 		CFFE285827AA9D380029A408 /* CourseListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListCellView.swift; sourceTree = "<group>"; };
 		CFFE285B27AA9D410029A408 /* CourseListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
+		CFFE285D27AABCC20029A408 /* CourseSectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionStatus.swift; sourceTree = "<group>"; };
 		D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUser.swift; sourceTree = "<group>"; };
 		D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUserTests.swift; sourceTree = "<group>"; };
 		D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -4226,6 +4228,7 @@
 				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
 				7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */,
+				CFFE285D27AABCC20029A408 /* CourseSectionStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5882,6 +5885,7 @@
 				7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */,
 				CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */,
 				7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */,
+				CFFE285E27AABCC20029A408 /* CourseSectionStatus.swift in Sources */,
 				7DA2601F23F7227A005D2121 /* URLResponseExtensions.swift in Sources */,
 				7DA2602423F722B3005D2121 /* LogEventListViewController.swift in Sources */,
 				7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */,
