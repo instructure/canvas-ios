@@ -33,6 +33,7 @@ struct SubmissionCommentList: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
     @ObservedObject var comments: Store<GetSubmissionComments>
+    @ObservedObject var commentLibrary = SubmissionCommentLibraryViewModel()
 
     @State var error: Text?
     @State var showMediaOptions = false
