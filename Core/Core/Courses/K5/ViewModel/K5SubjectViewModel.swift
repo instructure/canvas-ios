@@ -30,6 +30,7 @@ public class K5SubjectViewModel: ObservableObject {
     public var reloadWebView: AnyPublisher<Void, Never> {
         NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted, object: nil)
             .map { _ in () } // map received notification to Void
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
