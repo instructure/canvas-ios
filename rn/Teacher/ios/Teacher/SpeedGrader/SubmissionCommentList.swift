@@ -37,6 +37,7 @@ struct SubmissionCommentList: View {
 
     @State var error: Text?
     @State var showMediaOptions = false
+    @State var showCommentLibrary = false
 
     init(
         assignment: Assignment,
@@ -102,6 +103,8 @@ struct SubmissionCommentList: View {
                     toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity)
                 }
+            }.sheet(isPresented: $showCommentLibrary) {
+                commentLibrarySheet
             }
         }
     }
@@ -124,6 +127,37 @@ struct SubmissionCommentList: View {
         }
     }
 
+    @ViewBuilder
+    var commentLibrarySheet: some View {
+
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Text("Comment Library", bundle: .core).font(.bold24).foregroundColor(.textDarkest)
+                Spacer()
+                Button(action: {
+                    self.showCommentLibrary = false
+                }, label: {
+                    Image.xLine.foregroundColor(.textDark)
+                })
+            }.padding()
+            Divider()
+            List(commentLibrary.comments, id: \.id) { libraryComment in
+                Button(action: {
+                    comment = libraryComment.text
+                    self.showCommentLibrary = false
+                }, label: {
+                    HStack {
+                        Text(libraryComment.text).font(.regular17).foregroundColor(.textDarkest).multilineTextAlignment(.leading)
+                        Spacer()
+                    }
+                })
+            }.listStyle(.plain)
+            toolbar(containerHeight: 225.0)
+                .transition(.opacity)
+        }
+
+    }
+
     func toolbar(containerHeight: CGFloat) -> some View {
         HStack(spacing: 0) {
             Button(action: { showMediaOptions = true }, label: {
@@ -142,7 +176,9 @@ struct SubmissionCommentList: View {
                     ])
                 }
             CommentEditor(text: $comment, action: sendComment, containerHeight: containerHeight)
-                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
+                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16)).onTapGesture {
+                    showCommentLibrary = true
+                }
         }
             .background(Color.backgroundLight)
     }

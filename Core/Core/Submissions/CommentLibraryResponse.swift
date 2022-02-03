@@ -38,5 +38,5 @@ public struct CommentLibraryResponse: Codable, Equatable {
 
     let data: Self.Data
 
-    public var comments: [String] { data.user.commentBankItems.nodes.map { $0.comment } }
+    public var comments: [(id: String, comment: String)] { data.user.commentBankItems.nodes.map { ($0.id, $0.comment) } }
 }

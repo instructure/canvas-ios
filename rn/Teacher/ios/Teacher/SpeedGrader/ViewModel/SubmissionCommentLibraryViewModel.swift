@@ -22,13 +22,33 @@ import SwiftUI
 class SubmissionCommentLibraryViewModel: ObservableObject {
 
     @Environment(\.appEnvironment) var env
-    @Published var commentLibraryItems: [String]?
+    @Published var comments: [LibraryComment] = []
 
     init() {
         let userId = env.currentSession?.userID ?? ""
         let requestable = CommentLibraryRequest(userId: userId)
         env.api.makeRequest(requestable, refreshToken: true) { response, _, _  in
-            self.commentLibraryItems = response?.comments
+            guard let response = response else { return }
+            self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
         }
+    }
+}
+
+class LibraryComment: Identifiable, Hashable {
+
+    let id: String
+    let text: String
+
+    internal init(id: String, text: String) {
+        self.id = id
+        self.text = text
+    }
+
+    static func == (lhs: LibraryComment, rhs: LibraryComment) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
