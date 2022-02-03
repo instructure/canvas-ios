@@ -27,7 +27,7 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     init() {
         let userId = env.currentSession?.userID ?? ""
         let requestable = CommentLibraryRequest(userId: userId)
-        env.api.makeRequest(requestable, refreshToken: true) { response,_,_  in
+        env.api.makeRequest(requestable, refreshToken: true) { response, _, _  in
             self.commentLibraryItems = response?.comments
         }
     }

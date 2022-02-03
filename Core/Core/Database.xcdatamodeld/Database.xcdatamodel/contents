@@ -936,6 +936,7 @@
     </entity>
     <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
         <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="commentLibrarySuggestionsEnabled" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>

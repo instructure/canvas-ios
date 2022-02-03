@@ -115,6 +115,7 @@ public struct APIUserSettings: Codable, Equatable {
     let manual_mark_as_read: Bool
     let collapse_global_nav: Bool
     let hide_dashcard_color_overlays: Bool
+    let comment_library_suggestions_enabled: Bool
 }
 
 // https://canvas.instructure.com/doc/api/users.html#Profile
@@ -199,12 +200,14 @@ extension APIUserSettings {
     public static func make(
         manual_mark_as_read: Bool = false,
         collapse_global_nav: Bool = false,
-        hide_dashcard_color_overlays: Bool = false
+        hide_dashcard_color_overlays: Bool = false,
+        comment_library_suggestions_enabled: Bool = false
     ) -> APIUserSettings {
         return APIUserSettings(
             manual_mark_as_read: manual_mark_as_read,
             collapse_global_nav: collapse_global_nav,
-            hide_dashcard_color_overlays: hide_dashcard_color_overlays
+            hide_dashcard_color_overlays: hide_dashcard_color_overlays,
+            comment_library_suggestions_enabled: comment_library_suggestions_enabled
         )
     }
 }
@@ -378,17 +381,19 @@ public struct PutUserSettingsRequest: APIRequestable {
         let manual_mark_as_read: Bool?
         let collapse_global_nav: Bool?
         let hide_dashcard_color_overlays: Bool?
+        let comment_library_suggestions_enabled: Bool?
     }
 
     public let method = APIMethod.put
     public let path = "users/self/settings"
     public let body: Body?
 
-    init(manual_mark_as_read: Bool? = nil, collapse_global_nav: Bool? = nil, hide_dashcard_color_overlays: Bool? = nil) {
+    init(manual_mark_as_read: Bool? = nil, collapse_global_nav: Bool? = nil, hide_dashcard_color_overlays: Bool? = nil, comment_library_suggestions_enabled: Bool? = nil) {
         body = Body(
             manual_mark_as_read: manual_mark_as_read,
             collapse_global_nav: collapse_global_nav,
-            hide_dashcard_color_overlays: hide_dashcard_color_overlays
+            hide_dashcard_color_overlays: hide_dashcard_color_overlays,
+            comment_library_suggestions_enabled: comment_library_suggestions_enabled
         )
     }
 }
