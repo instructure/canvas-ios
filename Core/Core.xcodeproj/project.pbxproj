@@ -899,10 +899,10 @@
 		CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */; };
 		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
 		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
-		CF911BA627A29B1800E1EECB /* iOS15Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */; };
-		CF911BAB27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */; };
 		CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */; };
 		CF911BA4279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */; };
+		CF911BA627A29B1800E1EECB /* iOS15Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */; };
+		CF911BAB27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */; };
 		CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */; };
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
@@ -958,6 +958,8 @@
 		CFFE285C27AA9D410029A408 /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE285B27AA9D410029A408 /* CourseListViewModel.swift */; };
 		CFFE285E27AABCC20029A408 /* CourseSectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE285D27AABCC20029A408 /* CourseSectionStatus.swift */; };
 		CFFE286027AAD4DB0029A408 /* CourseSectionStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE285F27AAD4DB0029A408 /* CourseSectionStatusTests.swift */; };
+		CFFE286227ABA4DF0029A408 /* DashboardCardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE286127ABA4DF0029A408 /* DashboardCardsViewModelTests.swift */; };
+		CFFE286627ABC8900029A408 /* CourseListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE286527ABC8900029A408 /* CourseListViewModelTests.swift */; };
 		D91BC851276B7B2D008371B0 /* AssignmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BC84F276B7B2D008371B0 /* AssignmentListView.swift */; };
 		D91BC852276B7B2D008371B0 /* AssignmentGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BC850276B7B2D008371B0 /* AssignmentGroupView.swift */; };
 		D91BC855276B7B3C008371B0 /* AssignmentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BC853276B7B3B008371B0 /* AssignmentListViewModel.swift */; };
@@ -2168,10 +2170,10 @@
 		CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
 		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
-		CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Refreshable.swift; sourceTree = "<group>"; };
-		CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCellViewModelTests.swift; sourceTree = "<group>"; };
 		CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSession.swift; sourceTree = "<group>"; };
 		CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSessionTests.swift; sourceTree = "<group>"; };
+		CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Refreshable.swift; sourceTree = "<group>"; };
+		CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCellViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
@@ -2227,6 +2229,8 @@
 		CFFE285B27AA9D410029A408 /* CourseListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
 		CFFE285D27AABCC20029A408 /* CourseSectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionStatus.swift; sourceTree = "<group>"; };
 		CFFE285F27AAD4DB0029A408 /* CourseSectionStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionStatusTests.swift; sourceTree = "<group>"; };
+		CFFE286127ABA4DF0029A408 /* DashboardCardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModelTests.swift; sourceTree = "<group>"; };
+		CFFE286527ABC8900029A408 /* CourseListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModelTests.swift; sourceTree = "<group>"; };
 		D91BC84F276B7B2D008371B0 /* AssignmentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListView.swift; sourceTree = "<group>"; };
 		D91BC850276B7B2D008371B0 /* AssignmentGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupView.swift; sourceTree = "<group>"; };
 		D91BC853276B7B3B008371B0 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
@@ -3400,6 +3404,7 @@
 		7D724263242A5616007ED42F /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				CFFE286327ABC8680029A408 /* CourseList */,
 				CF911BA1279EEDB400E1EECB /* K5 */,
 				7D64A97623676025004EAEDF /* APICourseSectionTests.swift */,
 				7D80AC1C212B6B6200C40ECE /* APICourseTests.swift */,
@@ -4558,6 +4563,7 @@
 		CF748D1F274D52AA000EA34E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CFFE286127ABA4DF0029A408 /* DashboardCardsViewModelTests.swift */,
 				CF748D20274D52C6000EA34E /* DashboardConferencesViewModelTests.swift */,
 				CF88FCE027562DB1004F2202 /* DashboardInvitationsViewModelTests.swift */,
 			);
@@ -4631,6 +4637,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CF911BA1279EEDB400E1EECB /* K5 */ = {
+			isa = PBXGroup;
+			children = (
+				CF911BA2279EEDBB00E1EECB /* ViewModel */,
+			);
+			path = K5;
+			sourceTree = "<group>";
+		};
+		CF911BA2279EEDBB00E1EECB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */,
+				EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CF911BA727A2FCD500E1EECB /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -4654,23 +4677,6 @@
 			children = (
 				CF911BAA27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift */,
 				CF565FB227A427400044DB3C /* AssignmentListViewModelTests.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		CF911BA1279EEDB400E1EECB /* K5 */ = {
-			isa = PBXGroup;
-			children = (
-				CF911BA2279EEDBB00E1EECB /* ViewModel */,
-			);
-			path = K5;
-			sourceTree = "<group>";
-		};
-		CF911BA2279EEDBB00E1EECB /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */,
-				EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4909,6 +4915,22 @@
 			isa = PBXGroup;
 			children = (
 				CFFE285B27AA9D410029A408 /* CourseListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CFFE286327ABC8680029A408 /* CourseList */ = {
+			isa = PBXGroup;
+			children = (
+				CFFE286427ABC86F0029A408 /* ViewModel */,
+			);
+			path = CourseList;
+			sourceTree = "<group>";
+		};
+		CFFE286427ABC86F0029A408 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFFE286527ABC8900029A408 /* CourseListViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5717,6 +5739,7 @@
 				7D8E20CC2450A41C000F826B /* TabBarBadgeCountsTests.swift in Sources */,
 				B1BF4AB223A17BD800F61ACD /* APIConversationTests.swift in Sources */,
 				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
+				CFFE286627ABC8900029A408 /* CourseListViewModelTests.swift in Sources */,
 				7DA2610C23FCD8E6005D2121 /* CircleRefreshControlTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
 				3B6043A5232AB00700757B93 /* AssignmentGroupTests.swift in Sources */,
@@ -5896,6 +5919,7 @@
 				7D54D6B32464705100409520 /* DiscussionDetailsViewControllerTests.swift in Sources */,
 				7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */,
 				7D2DC2F42199EC93008FE29A /* SecretTests.swift in Sources */,
+				CFFE286227ABA4DF0029A408 /* DashboardCardsViewModelTests.swift in Sources */,
 				B1E789B521B1AD890087FE4A /* LoggerTests.swift in Sources */,
 				7DCB2E9E247DA0380071F172 /* GetSubmissionCommentsTests.swift in Sources */,
 				3B383045237F178800B3DF05 /* APIActivityTests.swift in Sources */,
