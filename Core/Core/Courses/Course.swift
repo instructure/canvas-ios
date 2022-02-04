@@ -129,6 +129,10 @@ final public class Course: NSManagedObject, WriteableModel {
             model.sections = Set(sections.map { CourseSection.save($0, courseID: model.id, in: context) })
         }
 
+        if let dashboardCard: DashboardCard = context.fetch(scope: .where(#keyPath(DashboardCard.id), equals: model.id)).first {
+            dashboardCard.course = model
+        }
+
         return model
     }
 }
