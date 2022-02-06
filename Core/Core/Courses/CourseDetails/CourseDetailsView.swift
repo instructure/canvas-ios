@@ -73,11 +73,11 @@ public struct CourseDetailsView: View {
             }
         }, label: {
             HStack(spacing: 13) {
-              /*  Image(tab.icon)
+                Image(uiImage:tab.icon)
                     .frame(width: 20, height: 20)
-                    //.foregroundColor(Color(viewModel.courseColor ?? .ash))
+                    .foregroundColor(Color(viewModel.courseColor ?? .ash))
                     .padding(.top, 2)
-                    .frame(maxHeight: .infinity, alignment: .top)*/
+                    .frame(maxHeight: .infinity, alignment: .top)
                 Text(tab.label)
                 Spacer()
                 InstDisclosureIndicator()

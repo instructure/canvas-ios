@@ -40,7 +40,10 @@ public class CourseDetailsViewModel: ObservableObject {
         colors.refresh()
         tabs.exhaust()
     }
+    public var courseColor: UIColor? {
+        course.first?.color
+    }
 }
-/*
+
 extension Tab: TabViewable {}
-*/
+
