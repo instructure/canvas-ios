@@ -973,6 +973,8 @@
 		D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020BC257FB554002B7B73 /* ContextCardView.swift */; };
 		D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */; };
 		D9BFFC7325921C04001B5E7B /* ContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */; };
+		D9D7EBD127AD7A8D00544339 /* CourseDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7EBCF27AD7A8D00544339 /* CourseDetailsView.swift */; };
+		D9D7EBD227AD7A8D00544339 /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7EBD027AD7A8D00544339 /* CourseDetailsViewModel.swift */; };
 		D9D9F0F4276CC69D008846AE /* AccessIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9F0F3276CC69D008846AE /* AccessIcon.swift */; };
 		D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */; };
 		D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */; };
@@ -2244,6 +2246,8 @@
 		D97020BC257FB554002B7B73 /* ContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardView.swift; sourceTree = "<group>"; };
 		D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardHeaderView.swift; sourceTree = "<group>"; };
 		D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardTests.swift; sourceTree = "<group>"; };
+		D9D7EBCF27AD7A8D00544339 /* CourseDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsView.swift; sourceTree = "<group>"; };
+		D9D7EBD027AD7A8D00544339 /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
 		D9D9F0F3276CC69D008846AE /* AccessIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIcon.swift; sourceTree = "<group>"; };
 		D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorView.swift; sourceTree = "<group>"; };
 		D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorViewTests.swift; sourceTree = "<group>"; };
@@ -3329,6 +3333,7 @@
 		7D5F10352429722300803324 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				D9D7EBCE27AD7A3A00544339 /* CourseDetails */,
 				CFFE285427AA9CD50029A408 /* CourseList */,
 				EBEDDFBE27392B4000CD49AF /* K5 */,
 				7D8262EE212B228F00BD268D /* APICourse.swift */,
@@ -4963,6 +4968,15 @@
 			path = ContextCard;
 			sourceTree = "<group>";
 		};
+		D9D7EBCE27AD7A3A00544339 /* CourseDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D9D7EBCF27AD7A8D00544339 /* CourseDetailsView.swift */,
+				D9D7EBD027AD7A8D00544339 /* CourseDetailsViewModel.swift */,
+			);
+			path = CourseDetails;
+			sourceTree = "<group>";
+		};
 		DFE1FF26212F69B3003F27AA /* CoreTester */ = {
 			isa = PBXGroup;
 			children = (
@@ -6108,6 +6122,7 @@
 				CF6C100326C5235B002E7FE6 /* PlannerOverrideUpdater.swift in Sources */,
 				EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
+				D9D7EBD127AD7A8D00544339 /* CourseDetailsView.swift in Sources */,
 				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
 				CF575E3F26667AB700F8515F /* GetLatestAnnouncements.swift in Sources */,
@@ -6326,6 +6341,7 @@
 				7DA2600023F7226E005D2121 /* PSPDFAnnotationExtension.swift in Sources */,
 				CF53F745266FBE4F00FA58D7 /* GetMissingSubmissionsRequest.swift in Sources */,
 				EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */,
+				D9D7EBD227AD7A8D00544339 /* CourseDetailsViewModel.swift in Sources */,
 				7DA2608423F72303005D2121 /* User.swift in Sources */,
 				CF6A07C126FDDBCE0056EEC1 /* AttachmentPreviewView.swift in Sources */,
 				7DA260E623F72359005D2121 /* RightDetailTableViewCell.swift in Sources */,
