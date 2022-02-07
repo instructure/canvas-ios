@@ -180,4 +180,11 @@ class CourseTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
         XCTAssertEqual(card.course, course)
     }
+
+    func testUpdatesRelatedGroupRelationship() {
+        let group = Group.save(.make(course_id: "course_1"), in: databaseClient)
+        XCTAssertNil(group.course)
+        let course = Course.save(.make(id: "course_1"), in: databaseClient)
+        XCTAssertEqual(group.course, course)
+    }
 }
