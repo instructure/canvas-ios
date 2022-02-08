@@ -18,6 +18,7 @@
 
 import Foundation
 import XCTest
+import SwiftUI
 
 public extension XCUIElement {
     func find(label: String, type: XCUIElement.ElementType = .any) -> Element {
@@ -42,5 +43,9 @@ public extension XCUIElement {
 
     func find(type: XCUIElement.ElementType, index: Int = 0) -> Element {
         return XCUIElementQueryWrapper(descendants(matching: type), index: index)
+    }
+
+    func find(id: String, label: String, type: XCUIElement.ElementType = .any) -> Element {
+        return descendants(matching: type).matching(id: id).matching(label: label).firstElement
     }
 }
