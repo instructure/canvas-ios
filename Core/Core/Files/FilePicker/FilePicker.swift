@@ -18,6 +18,7 @@
 
 import Foundation
 import UIKit
+import UniformTypeIdentifiers
 
 public protocol FilePickerDelegate: ErrorViewController {
     func filePicker(didPick url: URL)
@@ -56,7 +57,14 @@ public class FilePicker: NSObject {
         }
 
         sheet.addAction(image: .paperclipLine, title: NSLocalizedString("Upload File", bundle: .core, comment: "")) { [weak self] in
-            let controller = UIDocumentPickerViewController(documentTypes: [UTI.any.rawValue], in: .import)
+            let controller: UIDocumentPickerViewController
+
+            if #available(iOS 14, *) {
+                controller = UIDocumentPickerViewController(forOpeningContentTypes: [.item], asCopy: true)
+            } else {
+                controller = UIDocumentPickerViewController(documentTypes: [UTI.any.rawValue], in: .import)
+            }
+
             controller.delegate = self
             self?.env.router.show(controller, from: from, options: .modal())
         }

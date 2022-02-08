@@ -18,6 +18,7 @@
 
 import Foundation
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 public struct UTI: Equatable, Hashable {
     static let pagesBundleIdentifier = "com.apple.iwork.pages.pages"
@@ -52,6 +53,9 @@ public struct UTI: Equatable, Hashable {
 
         self.rawValue = value
     }
+
+    @available(iOSApplicationExtension 14.0, *)
+    public var uttype: UTType? { UTType(rawValue) }
 
     private init(rawValue: String) {
         self.rawValue = rawValue
