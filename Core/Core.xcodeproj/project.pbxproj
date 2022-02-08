@@ -2845,7 +2845,6 @@
 			children = (
 				CF575E46266792B600F8515F /* K5 */,
 				CF4BDB552645314A00A91952 /* Model */,
-				CF4BDB562645315700A91952 /* View */,
 				CF748D1F274D52AA000EA34E /* ViewModel */,
 			);
 			path = Dashboard;
@@ -4282,17 +4281,10 @@
 			children = (
 				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
 				7D80AC1A212B6A7700C40ECE /* APIFavoriteTests.swift */,
+				7D288B0E25758F630013FF65 /* DashboardCardTests.swift */,
 				CFFE285F27AAD4DB0029A408 /* CourseSectionStatusTests.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		CF4BDB562645315700A91952 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				7D288B0E25758F630013FF65 /* DashboardCardTests.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CF4BDB582645393A00A91952 /* K5 */ = {

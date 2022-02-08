@@ -166,7 +166,7 @@ public struct DashboardCardView: View {
                 }
                     .padding(.top, 16).padding(.bottom, 8)) {
                 ForEach(filteredGroups, id: \.id) { group in
-                    GroupCard(group: group, course: group.getCourse())
+                    GroupCard(group: group, course: group.course)
                         // outside the GroupCard, because that isn't observing colors
                         .accentColor(Color(group.color.ensureContrast(against: .white)))
                         .padding(.bottom, 16)
