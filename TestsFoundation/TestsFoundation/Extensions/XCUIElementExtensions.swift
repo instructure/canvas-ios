@@ -18,7 +18,6 @@
 
 import Foundation
 import XCTest
-import SwiftUI
 
 public extension XCUIElement {
     func find(label: String, type: XCUIElement.ElementType = .any) -> Element {
