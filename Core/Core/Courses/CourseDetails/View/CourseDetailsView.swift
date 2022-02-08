@@ -31,12 +31,18 @@ public struct CourseDetailsView: View {
     public var body: some View {
         VStack(spacing: 0) {
             header
-            homeButton
-            tabList
+            switch viewModel.state {
+            case .empty:
+                errorView
+            case .loading:
+                loadingView
+            case .data(let tabViewModels):
+                tabList(tabViewModels)
+            }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        //.navigationBarStyle(.color(viewModel.colors))
-        //.navigationTitle(NSLocalizedString("Placeholder", comment: ""), subtitle: viewModel.courseName)
+        .navigationBarStyle(.color(viewModel.courseColor))
+        .navigationTitle(viewModel.courseName ?? "", subtitle: nil)
         .navigationBarGenericBackButton()
         .onAppear {
             viewModel.viewDidAppear()
@@ -44,54 +50,36 @@ public struct CourseDetailsView: View {
     }
 
     @ViewBuilder
+    private var errorView: some View {
+        // TODO
+        Text("Something went wrong")
+    }
+
+    @ViewBuilder
+    private var loadingView: some View {
+        Divider()
+        Spacer()
+        CircleProgress()
+        Spacer()
+    }
+
+    @ViewBuilder
     private var header: some View {
+        // TODO
         Text("Course name, term")
     }
 
-    @ViewBuilder
-    private var homeButton: some View {
-        Button(action: {}, label: {Text("Home")})
-    }
-
-    @ViewBuilder
-    private var tabList: some View {
+    private func tabList(_ tabViewModels: [CourseDetailsCellViewModel]) -> some View {
         List {
-            ForEach(viewModel.tabs.all, id: \.id) { tab in
-                courseDetailCellView(tab)
+            ForEach(tabViewModels, id: \.id) { tabViewModel in
+                CourseDetailsCellView(viewModel: tabViewModel)
             }
         }
         .listStyle(.plain)
-       /* .iOS15Refreshable { completion in
+        .iOS15Refreshable { completion in
             viewModel.refresh(completion: completion)
-        }*/
+        }
     }
-
-    private func courseDetailCellView(_ tab: Tab) -> some View {
-        Button(action: {
-            if let url = tab.htmlURL {
-                env.router.route(to: url, from: controller)
-            }
-        }, label: {
-            HStack(spacing: 13) {
-                Image(uiImage:tab.icon)
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(Color(viewModel.courseColor ?? .ash))
-                    .padding(.top, 2)
-                    .frame(maxHeight: .infinity, alignment: .top)
-                Text(tab.label)
-                Spacer()
-                InstDisclosureIndicator()
-            }
-            .padding(.vertical, 13)
-            .padding(.horizontal, 16)
-            .fixedSize(horizontal: false, vertical: true)
-            .contentShape(Rectangle())
-        })
-            .buttonStyle(PlainButtonStyle())
-            .accessibility(identifier: "assignment-list.assignment-list-row.cell-\(tab.id)")
-    }
-
-
 }
 
 #if DEBUG
@@ -104,4 +92,3 @@ struct CourseDetailsView_Previews: PreviewProvider {
 }
 */
 #endif
-

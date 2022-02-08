@@ -18,32 +18,38 @@
 
 import SwiftUI
 
-public class CourseDetailsViewModel: ObservableObject {
-    @ObservedObject var colors: Store<GetCustomColors>
-    @ObservedObject var course: Store<GetCourse>
-    @ObservedObject var tabs: Store<GetContextTabs>
+extension Tab: TabViewable {}
 
-    @Environment(\.appEnvironment) private var env
+public class CourseDetailsCellViewModel: ObservableObject {
 
-    private let context: Context
+    private let tab: Tab
+    public private(set) var courseColor: UIColor?
 
-    public init(context: Context) {
-        self.context = context
-        let env = AppEnvironment.shared
-        colors = env.subscribe(GetCustomColors())
-        course = env.subscribe(GetCourse(courseID: context.id))
-        tabs = env.subscribe(GetContextTabs(context: context))
+    public init(tab: Tab, courseColor: UIColor?) {
+        self.tab = tab
+        self.courseColor = courseColor
     }
 
-    public func viewDidAppear() {
-        course.refresh()
-        colors.refresh()
-        tabs.exhaust()
+    public var route: URL? {
+        tab.htmlURL
     }
-    public var courseColor: UIColor? {
-        course.first?.color
+
+    public var iconImage: UIImage {
+        tab.icon
+    }
+
+    public var label: String {
+        tab.label
+    }
+
+    public var id: String {
+        tab.id
     }
 }
 
-extension Tab: TabViewable {}
+extension CourseDetailsCellViewModel: Equatable {
 
+    public static func == (lhs: CourseDetailsCellViewModel, rhs: CourseDetailsCellViewModel) -> Bool {
+        lhs.tab.id == rhs.tab.id
+    }
+}
