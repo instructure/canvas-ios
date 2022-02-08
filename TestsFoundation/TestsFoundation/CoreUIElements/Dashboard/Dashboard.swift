@@ -68,4 +68,8 @@ public struct DashboardEdit {
     public static func courseFavorite(id: String, favorited: Bool) -> Element {
         app.find(id: "edit-favorites.course-favorite.\(id)-\(favorited ? "" : "not-")favorited")
     }
+
+    public static func toggleFavorite(id: String) {
+        app.find(id: "DashboardCourseCell.\(id)", label: "favorite").tap()
+    }
 }
