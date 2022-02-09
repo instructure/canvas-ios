@@ -134,14 +134,16 @@ class CourseListCell: UITableViewCell {
         var grade = enrollment.computedCurrentGrade
         var score = enrollment.computedCurrentScore
 
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.currentGradingPeriodID != nil {
-            grade = enrollment.currentPeriodComputedCurrentGrade
-            score = enrollment.currentPeriodComputedCurrentScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
-            grade = enrollment.computedFinalGrade
-            score = enrollment.computedFinalScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return NSLocalizedString("N/A", comment: "")
+        if enrollment.multipleGradingPeriodsEnabled {
+            if enrollment.currentGradingPeriodID != nil {
+                grade = enrollment.currentPeriodComputedCurrentGrade
+                score = enrollment.currentPeriodComputedCurrentScore
+            } else if enrollment.totalsForAllGradingPeriodsOption {
+                grade = enrollment.computedFinalGrade
+                score = enrollment.computedFinalScore
+            } else if enrollment.totalsForAllGradingPeriodsOption == false {
+                return NSLocalizedString("N/A", comment: "")
+            }
         }
 
         guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {
