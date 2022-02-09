@@ -128,6 +128,7 @@ class CourseListCell: UITableViewCell {
         }
 
         if course.hideTotalGrade {
+            // this condition also triggers when multipleGradingPeriodsEnabled is true, currentGradingPeriodID is nil and totalsForAllGradingPeriodsOption is false
             return course.hideFinalGrades ? "" : NSLocalizedString("N/A", comment: "")
         }
 
@@ -141,8 +142,6 @@ class CourseListCell: UITableViewCell {
             } else if enrollment.totalsForAllGradingPeriodsOption {
                 grade = enrollment.computedFinalGrade
                 score = enrollment.computedFinalScore
-            } else if enrollment.totalsForAllGradingPeriodsOption == false {
-                return NSLocalizedString("N/A", comment: "")
             }
         }
 
