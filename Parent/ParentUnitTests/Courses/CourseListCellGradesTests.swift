@@ -100,8 +100,8 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoActiveGradingPeriodWithTotalsForAllGradingPeriodsOptionScoreWithGrade() {
         let course = Course.make(from: .make(enrollments: [.make(
-            computed_final_score: 40,
-            computed_final_grade: "C",
+            computed_current_score: 40,
+            computed_current_grade: "C",
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: true,
             current_grading_period_id: nil),

@@ -140,8 +140,8 @@ class CourseListCell: UITableViewCell {
                 grade = enrollment.currentPeriodComputedCurrentGrade
                 score = enrollment.currentPeriodComputedCurrentScore
             } else if enrollment.totalsForAllGradingPeriodsOption {
-                grade = enrollment.computedFinalGrade
-                score = enrollment.computedFinalScore
+                grade = enrollment.computedCurrentGrade
+                score = enrollment.computedCurrentScore
             }
         }
 
