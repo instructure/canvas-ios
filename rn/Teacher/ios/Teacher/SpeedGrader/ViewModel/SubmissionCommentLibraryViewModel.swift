@@ -27,28 +27,30 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     init() {
         let userId = env.currentSession?.userID ?? ""
         let requestable = CommentLibraryRequest(userId: userId)
-        env.api.makeRequest(requestable, refreshToken: true) { response, _, _  in
+        env.api.makeRequest(requestable, refreshToken: true) { response, _, _  in performUIUpdate {
             guard let response = response else { return }
             self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+        }
         }
     }
 }
 
 class LibraryComment: Identifiable, Hashable {
 
-    let id: String
+    let id: ID
     let text: String
 
     internal init(id: String, text: String) {
-        self.id = id
+        self.id = ID(id)
         self.text = text
     }
 
     static func == (lhs: LibraryComment, rhs: LibraryComment) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.text == rhs.text
     }
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+        hasher.combine(text)
     }
 }

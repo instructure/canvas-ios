@@ -134,6 +134,7 @@
 		EB3ECFC62636F63500289506 /* SideMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECFC52636F63500289506 /* SideMenuUITests.swift */; };
 		EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A24D261206CA0003241C /* GradeSliderTests.swift */; };
 		EBAF32F627AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */; };
+		EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -573,6 +574,7 @@
 		EB3ECFC52636F63500289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
 		EB71A24D261206CA0003241C /* GradeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderTests.swift; sourceTree = "<group>"; };
 		EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentLibraryViewModel.swift; sourceTree = "<group>"; };
+		EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibrarySheet.swift; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -731,6 +733,7 @@
 				7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */,
 				7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */,
 				7D7126C325374457000DEDE4 /* SubmissionCommentList.swift */,
+				EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */,
 				7D4B2747253F2D1600A98DE3 /* SubmissionCommentListCell.swift */,
 				7D7126C625374469000DEDE4 /* SubmissionFileList.swift */,
 				7D7D6D5125102052002B1485 /* SubmissionGrader.swift */,
@@ -1690,6 +1693,7 @@
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
+				EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */,
 				7D7D6D5225102052002B1485 /* SubmissionGrader.swift in Sources */,
 			);

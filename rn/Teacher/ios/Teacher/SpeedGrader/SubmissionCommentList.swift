@@ -33,7 +33,7 @@ struct SubmissionCommentList: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
     @ObservedObject var comments: Store<GetSubmissionComments>
-    @ObservedObject var commentLibrary = SubmissionCommentLibraryViewModel()
+    @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @State var error: Text?
     @State var showMediaOptions = false
@@ -46,7 +46,8 @@ struct SubmissionCommentList: View {
         attempt: Binding<Int?>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
-        enteredComment: Binding<String>
+        enteredComment: Binding<String>,
+        commentLibrary: SubmissionCommentLibraryViewModel
     ) {
         self.assignment = assignment
         self.submission = submission
@@ -55,6 +56,7 @@ struct SubmissionCommentList: View {
         self._showRecorder = showRecorder
         self._comment = enteredComment
         self.attempts = attempts
+        self.commentLibrary = commentLibrary
         comments = AppEnvironment.shared.subscribe(GetSubmissionComments(
             context: .course(assignment.courseID),
             assignmentID: assignment.id,
@@ -101,10 +103,14 @@ struct SubmissionCommentList: View {
                         .transition(.move(edge: .bottom))
                 case nil:
                     toolbar(containerHeight: geometry.size.height)
-                        .transition(.opacity)
+                        .transition(.opacity).onTapGesture {
+                            showCommentLibrary = true
+                        }
                 }
             }.sheet(isPresented: $showCommentLibrary) {
-                commentLibrarySheet
+                CommentLibrarySheet(library: commentLibrary, comment: $comment) {
+                    sendComment()
+                }
             }
         }
     }
@@ -127,37 +133,6 @@ struct SubmissionCommentList: View {
         }
     }
 
-    @ViewBuilder
-    var commentLibrarySheet: some View {
-
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text("Comment Library", bundle: .core).font(.bold24).foregroundColor(.textDarkest)
-                Spacer()
-                Button(action: {
-                    self.showCommentLibrary = false
-                }, label: {
-                    Image.xLine.foregroundColor(.textDark)
-                })
-            }.padding()
-            Divider()
-            List(commentLibrary.comments, id: \.id) { libraryComment in
-                Button(action: {
-                    comment = libraryComment.text
-                    self.showCommentLibrary = false
-                }, label: {
-                    HStack {
-                        Text(libraryComment.text).font(.regular17).foregroundColor(.textDarkest).multilineTextAlignment(.leading)
-                        Spacer()
-                    }
-                })
-            }.listStyle(.plain)
-            toolbar(containerHeight: 225.0)
-                .transition(.opacity)
-        }
-
-    }
-
     func toolbar(containerHeight: CGFloat) -> some View {
         HStack(spacing: 0) {
             Button(action: { showMediaOptions = true }, label: {
@@ -176,9 +151,7 @@ struct SubmissionCommentList: View {
                     ])
                 }
             CommentEditor(text: $comment, action: sendComment, containerHeight: containerHeight)
-                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16)).onTapGesture {
-                    showCommentLibrary = true
-                }
+                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
         }
             .background(Color.backgroundLight)
     }
