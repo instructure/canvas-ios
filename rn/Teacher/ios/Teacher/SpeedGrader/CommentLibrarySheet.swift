@@ -20,7 +20,7 @@ import SwiftUI
 
 struct CommentLibrarySheet: View {
 
-    @ObservedObject var library: SubmissionCommentLibraryViewModel
+    @ObservedObject var viewModel: SubmissionCommentLibraryViewModel
     @Environment(\.presentationMode) var presentationMode
     @Binding var comment: String
     let sendAction: () -> Void
@@ -38,7 +38,38 @@ struct CommentLibrarySheet: View {
                     })
                 }.padding()
                 Divider()
-                List(library.comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) } , id: \.id) { libraryComment in
+                CommentList(comment: $comment, comments: viewModel.comments) {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                CommentEditor(text: $comment, action: editorAction, containerHeight: geometry.size.height)
+                    .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                    .background(Color.backgroundLight)
+            }.onAppear {
+                viewModel.viewDidAppear()
+            }
+        }
+    }
+
+    struct CommentList: View {
+
+        @Binding var comment: String
+        let comments: [LibraryComment]
+        let dismissed: () -> Void
+
+        var body: some View {
+
+            let filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
+            if filteredComments.isEmpty {
+                VStack() {
+                    Spacer()
+                    Text("No suggestions available", bundle: .core)
+                        .font(.regular17)
+                        .foregroundColor(.textDarkest)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    Spacer()
+                }
+            } else {
+                List(filteredComments , id: \.id) { libraryComment in
                     Button(action: {
                         select(comment: libraryComment.text)
                     }, label: {
@@ -49,24 +80,26 @@ struct CommentLibrarySheet: View {
                                     if let range = $0.range(of: comment, options: .caseInsensitive) {
                                         $0[range].font = .bold17
                                     }
-                                }.font(.regular17).foregroundColor(.textDarkest).multilineTextAlignment(.leading)
+                                }.font(.regular17)
+                                    .foregroundColor(.textDarkest)
+                                    .multilineTextAlignment(.leading)
                             } else {
-                                Text(libraryComment.text).font(.regular17).foregroundColor(.textDarkest).multilineTextAlignment(.leading)
+                                Text(libraryComment.text)
+                                    .font(.regular17)
+                                    .foregroundColor(.textDarkest)
+                                    .multilineTextAlignment(.leading)
                             }
                             Spacer()
                         }
                     })
                 }.listStyle(.plain).animation(.default)
-                CommentEditor(text: $comment, action: editorAction, containerHeight: geometry.size.height)
-                    .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-                    .background(Color.backgroundLight)
             }
         }
-    }
 
-    func select(comment: String) {
-        self.comment = comment
-        presentationMode.wrappedValue.dismiss()
+        func select(comment: String) {
+            self.comment = comment
+            dismissed()
+        }
     }
 
     func editorAction() {
@@ -79,6 +112,6 @@ struct CommentLibrarySheet: View {
 struct CommentLibrarySheet_Previews: PreviewProvider {
 
     static var previews: some View {
-        CommentLibrarySheet(library: SubmissionCommentLibraryViewModel(), comment: .constant("comment")) { }
+        CommentLibrarySheet(viewModel: SubmissionCommentLibraryViewModel(), comment: .constant("comment")) { }
     }
 }

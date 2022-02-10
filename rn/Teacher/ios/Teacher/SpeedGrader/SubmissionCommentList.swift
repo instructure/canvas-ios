@@ -33,6 +33,7 @@ struct SubmissionCommentList: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
     @ObservedObject var comments: Store<GetSubmissionComments>
+    @ObservedObject var settings: Store<GetUserSettings>
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @State var error: Text?
@@ -47,7 +48,8 @@ struct SubmissionCommentList: View {
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
         enteredComment: Binding<String>,
-        commentLibrary: SubmissionCommentLibraryViewModel
+        commentLibrary: SubmissionCommentLibraryViewModel,
+        settings: Store<GetUserSettings>
     ) {
         self.assignment = assignment
         self.submission = submission
@@ -62,6 +64,7 @@ struct SubmissionCommentList: View {
             assignmentID: assignment.id,
             userID: submission.userID
         ))
+        self.settings = settings
     }
 
     var body: some View {
@@ -104,11 +107,11 @@ struct SubmissionCommentList: View {
                 case nil:
                     toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity).onTapGesture {
-                            showCommentLibrary = true
+                            showCommentLibrary = settings.first?.commentLibrarySuggestionsEnabled ?? false
                         }
                 }
             }.sheet(isPresented: $showCommentLibrary) {
-                CommentLibrarySheet(library: commentLibrary, comment: $comment) {
+                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment) {
                     sendComment()
                 }
             }

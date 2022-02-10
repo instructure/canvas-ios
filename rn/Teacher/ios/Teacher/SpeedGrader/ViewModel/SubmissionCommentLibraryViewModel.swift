@@ -24,13 +24,18 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     @Environment(\.appEnvironment) var env
     @Published var comments: [LibraryComment] = []
 
-    init() {
+    public func viewDidAppear() {
+        fetchComments()
+    }
+
+    private func fetchComments() {
         let userId = env.currentSession?.userID ?? ""
         let requestable = CommentLibraryRequest(userId: userId)
-        env.api.makeRequest(requestable, refreshToken: true) { response, _, _  in performUIUpdate {
-            guard let response = response else { return }
-            self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-        }
+        env.api.makeRequest(requestable, refreshToken: true) { response, _, _  in
+            performUIUpdate {
+                guard let response = response else { return }
+                self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+            }
         }
     }
 }
