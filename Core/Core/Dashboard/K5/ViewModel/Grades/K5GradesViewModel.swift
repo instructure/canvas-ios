@@ -42,10 +42,12 @@ public class K5GradesViewModel: ObservableObject {
     private func coursesUpdated() {
         gradingPeriods = [defaultCurrentGradingPeriod]
         grades = courses.filter({ !$0.isHomeroomCourse }).map {
+            let enrollment = $0.enrollments?.first
+            let isMultiGradingPeriod = enrollment?.multipleGradingPeriodsEnabled ?? false
             return K5GradeCellViewModel(title: $0.name,
                                         imageURL: $0.imageDownloadURL,
-                                        grade: $0.enrollments?.first?.computedCurrentGrade,
-                                        score: $0.enrollments?.first?.computedCurrentScore,
+                                        grade: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentGrade : enrollment?.computedCurrentGrade,
+                                        score: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentScore : enrollment?.computedCurrentScore,
                                         color: $0.color,
                                         courseID: $0.id)
         }
