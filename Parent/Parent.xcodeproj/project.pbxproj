@@ -82,6 +82,7 @@
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */; };
 		B1BAD29523FEEB40004ED99E /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAD29423FEEB40004ED99E /* InboxTests.swift */; };
+		CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */; };
 		DEC576CA6283206E676C040D /* Pods_needs_pspdfkit_ParentE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ADE1FABAE4719F27DCCF9A /* Pods_needs_pspdfkit_ParentE2ETests.framework */; };
 		E80763E223E08F420085DAFB /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80763E123E08F420085DAFB /* InboxTests.swift */; };
 		E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B573823E1EEC5002A0C38 /* GradeListTests.swift */; };
@@ -348,6 +349,7 @@
 		B2A6FB5031C4EDFB6D02D05E /* Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentE2ETests/Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig"; sourceTree = "<group>"; };
 		B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59561D7E9F8B8ACA930A4E9 /* Pods-needs-pspdfkit-ParentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCellGradesTests.swift; sourceTree = "<group>"; };
 		DD1A7D1C6D890685D283049D /* Pods-defaults-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.debug.xcconfig"; sourceTree = "<group>"; };
 		E03AFC6A296E0CCA5F13C25A /* Pods-parent_defaults-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent_defaults-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-parent_defaults-Parent/Pods-parent_defaults-Parent.debug.xcconfig"; sourceTree = "<group>"; };
 		E403D6B1080D654745FB1A78 /* Pods-parent_defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent_defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-parent_defaults-Parent/Pods-parent_defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */,
+				CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */,
 				7DB92CB724C64D35004A6C16 /* CourseListViewControllerTests.swift */,
 			);
 			path = Courses;
@@ -1249,6 +1252,7 @@
 				7DB92CB824C64D35004A6C16 /* CourseListViewControllerTests.swift in Sources */,
 				7DB92CAF24C61575004A6C16 /* AccountNotificationDetailsViewControllerTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
+				CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,

@@ -55,8 +55,8 @@ class CourseListViewControllerTests: ParentTestCase {
                     .make(
                         id: "3",
                         course_id: "3",
-                        computed_final_score: 85,
-                        computed_final_grade: nil,
+                        computed_current_score: 85,
+                        computed_current_grade: nil,
                         multiple_grading_periods_enabled: true,
                         totals_for_all_grading_periods_option: true,
                         current_grading_period_id: nil
@@ -69,8 +69,8 @@ class CourseListViewControllerTests: ParentTestCase {
                     .make(
                         id: "4",
                         course_id: "4",
-                        computed_final_score: nil,
-                        computed_final_grade: "C",
+                        computed_current_score: nil,
+                        computed_current_grade: "C",
                         multiple_grading_periods_enabled: true,
                         totals_for_all_grading_periods_option: true,
                         current_grading_period_id: nil
