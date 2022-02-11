@@ -110,6 +110,9 @@
 "Location" = "Wāhi";
 
 /* No comment provided by engineer. */
+"Locked" = "Kua rakaina";
+
+/* No comment provided by engineer. */
 "Login required" = "E hiahiatia ana te takiuru";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Kaore i te wātea te tuemi honotia.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Ko te ākonga e ngana ana koe ki te tāpiri kei tētahi Canvas wharenohonga rerekē.\nWaitohu are hanga rānei he pūkete me te wharenohonga ki te tāpiri ki tēnei ākonga.";
