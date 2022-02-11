@@ -170,10 +170,10 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
             var finalGrade: String?
             if gradingPeriodID != nil, gradeEnrollment?.currentScore(gradingPeriodID: gradingPeriodID) != nil {
                 totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                finalGrade = gradeEnrollment?.computedFinalGrade
+                finalGrade = gradeEnrollment?.computedCurrentGrade
             } else {
                 totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                finalGrade = courseEnrollment?.computedFinalGrade
+                finalGrade = courseEnrollment?.computedCurrentGrade
             }
             if let gradeText = totalGradeLabel.text, let finalGrade = finalGrade {
                 totalGradeLabel.text = gradeText + " (\(finalGrade))"
