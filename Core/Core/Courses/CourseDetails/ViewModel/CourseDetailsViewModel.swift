@@ -28,6 +28,9 @@ public class CourseDetailsViewModel: ObservableObject {
     @Published public private(set) var state: ViewModelState<[CourseDetailsCellViewModel]> = .loading
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
+    @Published public private(set) var homeLabel: String?
+    @Published public private(set) var homeSubLabel: String?
+    @Published public private(set) var homeRoute: URL?
 
     @Environment(\.appEnvironment) private var env
 
@@ -52,14 +55,44 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     private func courseDidUpdate() {
-        courseColor = course.first?.color
-        courseName = course.first?.name
+        guard let course = course.first else { return }
+        courseColor = course.color
+        courseName = course.name
+        setupHome(course: course)
+    }
+
+    private func setupHome(course: Course) {
+        guard let defaultView = course.defaultView else { return }
+        homeRoute = URL(string: "courses/\(course.id)/\(defaultView.rawValue)")
+
+        switch course.defaultView {
+        case .assignments:
+            homeSubLabel = NSLocalizedString("Assignments", comment: "")
+        case .feed:
+            homeSubLabel = NSLocalizedString("Recent Activity", comment: "")
+            homeRoute = URL(string: "courses/\(course.id)/activity_stream")
+        case .modules:
+            homeSubLabel = NSLocalizedString("Course Modules", comment: "")
+        case .syllabus:
+            homeSubLabel = NSLocalizedString("Syllabus", comment: "")
+        case .wiki:
+            homeSubLabel = NSLocalizedString("Front Page", comment: "")
+            homeRoute = URL(string: "courses/\(course.id)/pages/front_page")
+        case .none:
+            return
+        }
     }
 
     private func tabsDidUpdate() {
         if tabs.requested, tabs.pending, tabs.hasNextPage { return }
+        var tabs = tabs.all
 
-        let cellViewModels = tabs.all.map { CourseDetailsCellViewModel(tab: $0, courseColor: courseColor) }
+
+        if let index = tabs.firstIndex(where: { $0.id == "home" }) {
+            let homeTab = tabs.remove(at: index)
+            homeLabel = homeTab.label
+        }
+        let cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, courseColor: courseColor) }
         state = (cellViewModels.isEmpty ? .empty : .data(cellViewModels))
     }
 }
@@ -67,6 +100,7 @@ public class CourseDetailsViewModel: ObservableObject {
 extension CourseDetailsViewModel: Refreshable {
 
     public func refresh(completion: @escaping () -> Void) {
+        course.refresh(force: true)
         tabs.exhaust(force: true) { [weak self] _ in
             if self?.tabs.hasNextPage == false {
                 completion()

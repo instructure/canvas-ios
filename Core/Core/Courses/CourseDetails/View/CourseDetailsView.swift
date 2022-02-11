@@ -50,6 +50,30 @@ public struct CourseDetailsView: View {
     }
 
     @ViewBuilder
+    private var homeView: some View {
+        Button(action: {
+            if let url = viewModel.homeRoute {
+                    env.router.route(to: url, from: controller)
+            }
+        }, label: {
+            HStack(spacing: 13) {
+                VStack {
+                    Text(viewModel.homeLabel ?? "")
+                    Text(viewModel.homeSubLabel ?? "")
+                }
+                Spacer()
+                InstDisclosureIndicator()
+            }
+            .padding(.vertical, 13)
+            .padding(.horizontal, 16)
+            .fixedSize(horizontal: false, vertical: true)
+            .contentShape(Rectangle())
+        })
+        .clipShape(Capsule())
+        .padding()
+    }
+
+    @ViewBuilder
     private var errorView: some View {
         // TODO
         Text("Something went wrong")
@@ -66,17 +90,14 @@ public struct CourseDetailsView: View {
     @ViewBuilder
     private var header: some View {
         // TODO
-        Text("Course name, term")
+        Text(viewModel.courseName ?? "")
     }
 
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel]) -> some View {
         List {
+            homeView
             ForEach(tabViewModels, id: \.id) { tabViewModel in
-                if tabViewModel.isHome {
-                    CourseDetailsHomeView(viewModel: tabViewModel)
-                } else {
-                    CourseDetailsCellView(viewModel: tabViewModel)
-                }
+                CourseDetailsCellView(viewModel: tabViewModel)
             }
         }
         .listStyle(.plain)
