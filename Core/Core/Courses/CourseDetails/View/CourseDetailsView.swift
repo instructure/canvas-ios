@@ -72,7 +72,11 @@ public struct CourseDetailsView: View {
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel]) -> some View {
         List {
             ForEach(tabViewModels, id: \.id) { tabViewModel in
-                CourseDetailsCellView(viewModel: tabViewModel)
+                if tabViewModel.isHome {
+                    CourseDetailsHomeView(viewModel: tabViewModel)
+                } else {
+                    CourseDetailsCellView(viewModel: tabViewModel)
+                }
             }
         }
         .listStyle(.plain)

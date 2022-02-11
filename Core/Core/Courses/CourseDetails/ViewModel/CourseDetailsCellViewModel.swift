@@ -45,6 +45,10 @@ public class CourseDetailsCellViewModel: ObservableObject {
     public var id: String {
         tab.id
     }
+
+    public var isHome: Bool {
+        tab.label == "Home"
+    }
 }
 
 extension CourseDetailsCellViewModel: Equatable {
