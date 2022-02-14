@@ -38,6 +38,7 @@ struct ContextCardSubmissionRow: View {
                     Text(assignment.name)
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                     Text(submission.status.text)
                         .font(.regular14).foregroundColor(Color(submission.status.color))
                     if submission.needsGrading {
