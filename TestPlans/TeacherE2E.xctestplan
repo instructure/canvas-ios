@@ -27,6 +27,7 @@
   "testTargets" : [
     {
       "skippedTests" : [
+        "DSPagesTests\/testDeletePage()",
         "DashboardE2ETests\/testDashboardE2E()"
       ],
       "target" : {
