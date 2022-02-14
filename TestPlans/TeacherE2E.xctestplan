@@ -26,6 +26,9 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "DashboardE2ETests\/testDashboardE2E()"
+      ],
       "target" : {
         "containerPath" : "container:Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",

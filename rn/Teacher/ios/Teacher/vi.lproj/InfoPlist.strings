@@ -1,0 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Giáo Viên";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Đính kèm ảnh và video vào bình luận bài nộp.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Đính kèm bản ghi âm vào bình luận bài nộp.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Đính kèm ảnh và video vào bình luận bài nộp.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Tải lên nội dung cho khóa học.";
+

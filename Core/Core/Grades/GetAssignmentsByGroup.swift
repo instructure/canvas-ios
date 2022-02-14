@@ -26,7 +26,7 @@ public class GetAssignmentsByGroup: APIUseCase {
     let gradingPeriodID: String?
     let gradedOnly: Bool
 
-    private let include: [GetAssignmentGroupsRequest.Include] = [ .assignments, .observed_users, .submission, .score_statistics ]
+    private let include: [GetAssignmentGroupsRequest.Include] = [ .assignments, .observed_users, .submission, .score_statistics, .discussion_topic, .all_dates ]
 
     public init(courseID: String, gradingPeriodID: String? = nil, gradedOnly: Bool = false) {
         self.courseID = courseID

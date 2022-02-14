@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Đính kèm ảnh và video vào tin nhắn và bài đăng thảo luận để biến các nội dung này thành mục nộp bài tập.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Đính kèm bản ghi âm vào tin nhắn và bài đăng thảo luận để biến các nội dung này thành mục nộp bài tập.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Đính kèm ảnh và video vào tin nhắn và bài đăng thảo luận để biến các nội dung này thành mục nộp bài tập.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Đính kèm ảnh và video vào tin nhắn và bài đăng thảo luận để biến các nội dung này thành mục nộp bài tập.";
+

@@ -167,16 +167,16 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         if courses.first?.hideFinalGrades == true {
             totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
         } else {
-            var finalGrade: String?
+            var letterGrade: String?
             if gradingPeriodID != nil, gradeEnrollment?.currentScore(gradingPeriodID: gradingPeriodID) != nil {
                 totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                finalGrade = gradeEnrollment?.computedFinalGrade
+                letterGrade = gradeEnrollment?.computedCurrentGrade
             } else {
                 totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                finalGrade = courseEnrollment?.computedFinalGrade
+                letterGrade = courseEnrollment?.computedCurrentGrade
             }
-            if let gradeText = totalGradeLabel.text, let finalGrade = finalGrade {
-                totalGradeLabel.text = gradeText + " (\(finalGrade))"
+            if let scoreText = totalGradeLabel.text, let finalGrade = letterGrade {
+                totalGradeLabel.text = scoreText + " (\(finalGrade))"
             }
         }
 
