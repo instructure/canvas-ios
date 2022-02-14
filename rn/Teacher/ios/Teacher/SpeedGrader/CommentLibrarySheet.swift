@@ -60,7 +60,7 @@ struct CommentLibrarySheet: View {
 
             let filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
             if filteredComments.isEmpty {
-                VStack() {
+                VStack {
                     Spacer()
                     Text("No suggestions available", bundle: .core)
                         .font(.regular17)
@@ -69,13 +69,12 @@ struct CommentLibrarySheet: View {
                     Spacer()
                 }
             } else {
-                List(filteredComments , id: \.id) { libraryComment in
+                List(filteredComments, id: \.id) { libraryComment in
                     Button(action: {
                         select(comment: libraryComment.text)
                     }, label: {
                         HStack {
                             if #available(iOS 15, *) {
-                                //let attributedString = boldAttributed(text: libraryComment.text, query: comment)
                                 Text(libraryComment.text) {
                                     if let range = $0.range(of: comment, options: .caseInsensitive) {
                                         $0[range].font = .bold17
@@ -105,13 +104,5 @@ struct CommentLibrarySheet: View {
     func editorAction() {
         sendAction()
         presentationMode.wrappedValue.dismiss()
-    }
-}
-
-
-struct CommentLibrarySheet_Previews: PreviewProvider {
-
-    static var previews: some View {
-        CommentLibrarySheet(viewModel: SubmissionCommentLibraryViewModel(), comment: .constant("comment")) { }
     }
 }
