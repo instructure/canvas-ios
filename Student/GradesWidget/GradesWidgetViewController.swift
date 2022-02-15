@@ -98,12 +98,8 @@ class GradesWidgetViewController: UIViewController {
     }
     var submissions: [Submission] { submissionList.first?.submissions ?? [] }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        print("Grades WIDGET MEMORY WARNING")
-    }
-
     override func viewDidLoad() {
+        UITableView.setupDefaultSectionHeaderTopPadding()
         view.backgroundColor = UIColor.clear
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
