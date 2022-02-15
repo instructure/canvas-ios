@@ -44,8 +44,25 @@ public class CourseDetailsViewModel: ObservableObject {
         self?.tabsDidUpdate()
     }
 
+    public var showHome: Bool {
+        !isTeacher
+    }
+
+    public var showSettings: Bool {
+        isTeacher
+    }
+
+    public var showStudentView: Bool {
+        isTeacher
+    }
+
     public init(context: Context) {
         self.context = context
+    }
+
+    public var settingsRoute: URL? {
+        guard let course = course.first else { return nil }
+        return URL(string: "courses/\(course.id)/settings")
     }
 
     public func viewDidAppear() {
@@ -87,13 +104,16 @@ public class CourseDetailsViewModel: ObservableObject {
         if tabs.requested, tabs.pending, tabs.hasNextPage { return }
         var tabs = tabs.all
 
-
         if let index = tabs.firstIndex(where: { $0.id == "home" }) {
             let homeTab = tabs.remove(at: index)
             homeLabel = homeTab.label
         }
         let cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, courseColor: courseColor) }
         state = (cellViewModels.isEmpty ? .empty : .data(cellViewModels))
+    }
+
+    private var isTeacher: Bool {
+        env.app == .teacher
     }
 }
 

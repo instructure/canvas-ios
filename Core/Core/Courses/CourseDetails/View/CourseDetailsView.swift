@@ -44,16 +44,28 @@ public struct CourseDetailsView: View {
         .navigationBarStyle(.color(viewModel.courseColor))
         .navigationTitle(viewModel.courseName ?? "", subtitle: nil)
         .navigationBarGenericBackButton()
+        .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
         .onAppear {
             viewModel.viewDidAppear()
         }
+    }
+
+    @ViewBuilder var settingsButton: some View {
+        Button(action: {
+            if let url = viewModel.settingsRoute {
+                env.router.route(to: url, from: controller, options: .modal(isDismissable: false, embedInNav: true))
+            }
+        }, label: {
+            Image.settingsLine.foregroundColor(.textLightest)
+        })
+        .accessibility(label: Text("Edit Course settings", bundle: .core))
     }
 
     @ViewBuilder
     private var homeView: some View {
         Button(action: {
             if let url = viewModel.homeRoute {
-                    env.router.route(to: url, from: controller)
+                env.router.route(to: url, from: controller)
             }
         }, label: {
             HStack(spacing: 13) {
@@ -95,7 +107,9 @@ public struct CourseDetailsView: View {
 
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel]) -> some View {
         List {
-            homeView
+            if viewModel.showHome {
+                homeView
+            }
             ForEach(tabViewModels, id: \.id) { tabViewModel in
                 CourseDetailsCellView(viewModel: tabViewModel)
             }
