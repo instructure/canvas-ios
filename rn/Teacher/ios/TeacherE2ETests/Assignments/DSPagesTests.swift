@@ -31,6 +31,7 @@ class DSPagesTests: E2ETestCase {
 
         // Check for empty PageList
         logInDSUser(teacher)
+        pullToRefresh()
         Dashboard.courseCard(id: course.id).waitToExist()
         Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.pages.tap()
@@ -54,6 +55,7 @@ class DSPagesTests: E2ETestCase {
         XCTAssertTrue(PageList.frontPageHeading.exists())
         PageList.frontPageHeading.tap()
         XCTAssertTrue(PageDetails.options.exists())
+        pullToRefresh()
         XCTAssertTrue(app.find(id: "\(seededPublishedFrontPage.title), \(course.name)").exists())
         XCTAssertTrue(app.find(labelContaining: seededPublishedFrontPage.body).exists())
     }
