@@ -27,7 +27,9 @@
   "testTargets" : [
     {
       "skippedTests" : [
-        "DashboardE2ETests\/testDashboardE2E()"
+        "DSPagesTests\/testDeletePage()",
+        "DashboardE2ETests\/testDashboardE2E()",
+        "PagesE2ETests\/testCreateAndDeletePage()"
       ],
       "target" : {
         "containerPath" : "container:Teacher.xcodeproj",

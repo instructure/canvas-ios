@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum PageList: String, RawRepresentable, ElementWrapper {
-    case frontPage, frontPageHeading, frontPageTitle, add
+extension DataSeeder {
 
-    public static func page(index: Int) -> Element {
-        app.find(id: "PageList.\(index)")
-    }
-
-    public static func emptyPageList() -> Element {
-        app.find(label: "No Pages")
+    public func createPage(courseId: String, requestBody: CreateDSPageRequest.RequestDSPage) -> DSPage {
+        let requestedBody = CreateDSPageRequest.Body(wiki_page: requestBody)
+        let request = CreateDSPageRequest(body: requestedBody, courseId: courseId)
+        return try! makeRequest(request)
     }
 }

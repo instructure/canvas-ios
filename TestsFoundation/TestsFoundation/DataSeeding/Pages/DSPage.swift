@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum PageList: String, RawRepresentable, ElementWrapper {
-    case frontPage, frontPageHeading, frontPageTitle, add
-
-    public static func page(index: Int) -> Element {
-        app.find(id: "PageList.\(index)")
-    }
-
-    public static func emptyPageList() -> Element {
-        app.find(label: "No Pages")
-    }
+public struct DSPage: Codable {
+    public let title: String
+    public let body: String
+    public let editing_roles: String
+    public let published: Bool
+    public let front_page: Bool
 }
