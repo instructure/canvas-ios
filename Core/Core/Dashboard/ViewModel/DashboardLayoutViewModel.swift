@@ -54,7 +54,7 @@ class DashboardLayoutViewModel: ObservableObject {
         let cardWidth: CGFloat = (width - ((columns - 1) * Self.Spacing)) / columns
         return (columns: Int(columns), cardWidth: cardWidth, spacing: Self.Spacing)
     }
-    
+
     private func updateButtonImage() {
         buttonImage = (isDashboardLayoutGrid ? .dashboardLayoutList : .dashboardLayoutGrid)
     }

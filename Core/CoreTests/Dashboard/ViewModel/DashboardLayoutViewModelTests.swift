@@ -89,7 +89,7 @@ class DashboardLayoutViewModelTests: CoreTestCase {
 
     func testAnalyticsReportforGridLayout() {
         environment.userDefaults?.isDashboardLayoutGrid = true
-        let _ = DashboardLayoutViewModel()
+        _ = DashboardLayoutViewModel()
 
         guard
               analytics.events.count == 1,
@@ -106,7 +106,7 @@ class DashboardLayoutViewModelTests: CoreTestCase {
 
     func testAnalyticsReportforListLayout() {
         environment.userDefaults?.isDashboardLayoutGrid = false
-        let _ = DashboardLayoutViewModel()
+        _ = DashboardLayoutViewModel()
 
         guard
               analytics.events.count == 1,
