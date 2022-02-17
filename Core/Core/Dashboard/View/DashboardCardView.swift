@@ -75,7 +75,6 @@ public struct DashboardCardView: View {
                     layoutViewModel.buttonImage
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
                 })
-                    .identifier("Dashboard.editButton")
             )
 
             .onAppear { refresh(force: false) }
@@ -121,7 +120,7 @@ public struct DashboardCardView: View {
                     Button(action: showAllCourses, label: {
                         Text("Edit Dashboard", bundle: .core)
                             .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    }).accessibility(identifier: "dashboard.courses.see-all-btn")
+                    }).identifier("Dashboard.editButton")
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
