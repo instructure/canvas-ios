@@ -56,7 +56,7 @@ public struct SessionDefaults {
     }
 
     public var isDashboardLayoutGrid: Bool {
-        get { (self["isDashboardLayoutGrid"] as? Bool) ?? true }
+        get { (self["isDashboardLayoutGrid"] as? Bool) ?? false }
         set { self["isDashboardLayoutGrid"] = newValue }
     }
 

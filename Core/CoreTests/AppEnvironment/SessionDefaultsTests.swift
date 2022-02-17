@@ -49,6 +49,6 @@ class SessionDefaultsTests: XCTestCase {
 
     func testDashboardLayoutDefaultValue() {
         defaults.reset()
-        XCTAssertTrue(defaults.isDashboardLayoutGrid)
+        XCTAssertFalse(defaults.isDashboardLayoutGrid)
     }
 }
