@@ -19,11 +19,43 @@
 import SwiftUI
 
 public class CourseSettingsViewModel: ObservableObject {
+    public enum ViewModelState: Equatable {
+        case loading
+        case saving
+        case ready
+    }
+
+    @Published public private(set) var state: ViewModelState = .loading
+    @Published public private(set) var courseColor: UIColor?
+    @Published public private(set) var courseName: String?
+    @Published public private(set) var defaultView: CourseDefaultView?
+
+    @Environment(\.appEnvironment) private var env
 
     private var context: Context
-    @Published public private(set) var courseName: String?
+    private lazy var colors = env.subscribe(GetCustomColors())
+    private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
+        self?.courseDidUpdate()
+    }
 
     public init(context: Context) {
         self.context = context
+    }
+
+    public func viewDidAppear() {
+        course.refresh()
+        colors.refresh()
+    }
+
+    private func courseDidUpdate() {
+        guard let course = course.first else { return }
+        courseColor = course.color
+        courseName = course.name
+        getCourseImage(course: course)
+    }
+
+    private func getCourseImage(course: Course) {
+        let hideColorOverlay = 
+
     }
 }
