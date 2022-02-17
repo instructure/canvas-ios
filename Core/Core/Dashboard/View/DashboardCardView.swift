@@ -26,6 +26,7 @@ public struct DashboardCardView: View {
     @ObservedObject var settings: Store<GetUserSettings>
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
+    @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -54,6 +55,7 @@ public struct DashboardCardView: View {
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
                     .padding(.horizontal, 16)
+                    .animation(.default)
             }
         }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -69,10 +71,8 @@ public struct DashboardCardView: View {
                     .identifier("Dashboard.profileButton")
                     .accessibility(label: Text("Profile Menu", bundle: .core)),
 
-                trailing: Button(action: {
-                    env.router.route(to: "/courses", from: controller)
-                }, label: {
-                    Text("Edit", bundle: .core).fontWeight(.regular)
+                trailing: Button(action: layoutViewModel.toggle, label: {
+                    layoutViewModel.buttonImage
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
                 })
                     .identifier("Dashboard.editButton")
@@ -119,24 +119,21 @@ public struct DashboardCardView: View {
                         .accessibility(addTraits: .isHeader)
                     Spacer()
                     Button(action: showAllCourses, label: {
-                        Text("All Courses", bundle: .core)
+                        Text("Edit Dashboard", bundle: .core)
                             .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
                     }).accessibility(identifier: "dashboard.courses.see-all-btn")
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
-                let spacing: CGFloat = 16
                 let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
-                // This allows 2 columns on iPhone SE landscape
-                let columns: CGFloat = (size.width >= 635 ? 2 : 1)
-                let cardWidth: CGFloat = (size.width - ((columns - 1) * spacing)) / columns
-                DashboardGrid(itemCount: cards.count, itemWidth: cardWidth, spacing: spacing, columnCount: Int(columns)) { cardIndex in
+                let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
+                DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
                     let card = cards[cardIndex]
-                    CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: cardWidth)
+                    CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth)
                         // outside the CourseCard, because that isn't observing colors
                         .accentColor(Color(card.color.ensureContrast(against: .white)))
                         .frame(minHeight: 160)
-                }
+                }.frame(maxWidth: .infinity, alignment: .leading)
             }
         case .empty:
             EmptyPanda(.Teacher,
