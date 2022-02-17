@@ -21,20 +21,78 @@ import SwiftUI
 
 class SubmissionCommentLibraryViewModel: ObservableObject {
 
-    @Environment(\.appEnvironment) var env
-    @Published var comments: [LibraryComment] = []
-
-    public func viewDidAppear() {
-        fetchComments()
+    public enum ViewModelState<T: Equatable>: Equatable {
+        case loading
+        case empty
+        case data(T)
     }
 
-    private func fetchComments() {
+    @Environment(\.appEnvironment) var env
+    @Published public private(set) var state: ViewModelState<[LibraryComment]> = .loading
+    private var settings: Store<GetUserSettings>
+    public var shouldShowCommentLibrary: Bool {
+        settings.first?.commentLibrarySuggestionsEnabled ?? false
+    }
+    public var comment: String = "" {
+        didSet {
+            filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
+        }
+    }
+    private var filteredComments: [LibraryComment] = [] {
+        didSet {
+            if filteredComments.isEmpty {
+                state = .empty
+            } else {
+                state = .data(filteredComments)
+            }
+        }
+    }
+    private var comments: [LibraryComment] = [] {
+        didSet {
+            filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
+        }
+    }
+
+    init() {
+        self.settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
+    }
+
+    public func viewDidAppear() {
+        fetchSettings() {
+            if self.shouldShowCommentLibrary {
+                self.refresh()
+            }
+        }
+    }
+
+    func fetchSettings(_ completion: @escaping () -> Void) {
+        self.settings.refresh(force: true) {_ in
+            completion()
+        }
+    }
+
+    func text(with string: String, boldRange: Binding<String>) -> Text {
+        if #available(iOS 15, *) {
+            return Text(string) {
+                if let range = $0.range(of: boldRange.wrappedValue, options: .caseInsensitive) {
+                    $0[range].font = .bold17
+                }
+            }
+        }
+        return Text(string)
+    }
+}
+
+extension SubmissionCommentLibraryViewModel: Refreshable {
+    public func refresh(completion: @escaping () -> Void) {
+        state = .loading
         let userId = env.currentSession?.userID ?? ""
         let requestable = CommentLibraryRequest(userId: userId)
-        env.api.makeRequest(requestable, refreshToken: true) { response, _, _  in
+        env.api.makeRequest(requestable, refreshToken: false) { response, _, _  in
             performUIUpdate {
                 guard let response = response else { return }
                 self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+                completion()
             }
         }
     }

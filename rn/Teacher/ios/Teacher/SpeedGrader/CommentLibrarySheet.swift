@@ -27,77 +27,50 @@ struct CommentLibrarySheet: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text("Comment Library", bundle: .core).font(.bold24).foregroundColor(.textDarkest)
-                    Spacer()
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image.xLine.foregroundColor(.textDark)
-                    })
-                }.padding()
-                Divider()
-                CommentList(comment: $comment, comments: viewModel.comments) {
+            VStack(spacing: 0) {
+                headerView
+                CommentLibraryList(viewModel: viewModel, comment: $comment) {
                     presentationMode.wrappedValue.dismiss()
                 }
                 CommentEditor(text: $comment, action: editorAction, containerHeight: geometry.size.height)
                     .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-                    .background(Color.backgroundLight)
+                    .background(Color.backgroundLight).onDataChange(of: comment) { text in
+                        viewModel.comment = text
+                    }
             }.onAppear {
                 viewModel.viewDidAppear()
             }
         }
     }
 
-    struct CommentList: View {
-
-        @Binding var comment: String
-        let comments: [LibraryComment]
-        let dismissed: () -> Void
-
-        var body: some View {
-
-            let filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
-            if filteredComments.isEmpty {
-                VStack {
+    @ViewBuilder
+    var headerView: some View {
+        VStack(spacing: 0) {
+            ZStack {
+                HStack {
                     Spacer()
-                    Text("No suggestions available", bundle: .core)
-                        .font(.regular17)
-                        .foregroundColor(.textDarkest)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                    Text("Comment Library", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
                     Spacer()
                 }
-            } else {
-                List(filteredComments, id: \.id) { libraryComment in
+                HStack {
+                    Spacer()
                     Button(action: {
-                        select(comment: libraryComment.text)
+                        presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        HStack {
-                            if #available(iOS 15, *) {
-                                Text(libraryComment.text) {
-                                    if let range = $0.range(of: comment, options: .caseInsensitive) {
-                                        $0[range].font = .bold17
-                                    }
-                                }.font(.regular17)
-                                    .foregroundColor(.textDarkest)
-                                    .multilineTextAlignment(.leading)
-                            } else {
-                                Text(libraryComment.text)
-                                    .font(.regular17)
-                                    .foregroundColor(.textDarkest)
-                                    .multilineTextAlignment(.leading)
-                            }
-                            Spacer()
-                        }
+                        dismissView
                     })
-                }.listStyle(.plain).animation(.default)
+                }
             }
+            .padding()
+            Divider()
         }
+    }
 
-        func select(comment: String) {
-            self.comment = comment
-            dismissed()
+    @ViewBuilder
+    var dismissView: some View {
+        ZStack {
+            Circle().foregroundColor(.tiara).frame(width: 30, height: 30).opacity(0.3)
+            Image.xLine.foregroundColor(.licorice).frame(width: 12.5, height: 12.5)
         }
     }
 

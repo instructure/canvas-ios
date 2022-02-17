@@ -33,7 +33,6 @@ struct SubmissionGrader: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
     @ObservedObject var commentLibrary = SubmissionCommentLibraryViewModel()
-    @ObservedObject var settings: Store<GetUserSettings>
 
     @State var attempt: Int? {
         willSet {
@@ -81,7 +80,6 @@ struct SubmissionGrader: View {
         ))
         self.handleRefresh = handleRefresh
         self.studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
-        self.settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
     }
 
     var body: some View {
@@ -279,8 +277,7 @@ struct SubmissionGrader: View {
                         fileID: drawerFileID,
                         showRecorder: $showRecorder,
                         enteredComment: $enteredComment,
-                        commentLibrary: commentLibrary,
-                        settings: settings
+                        commentLibrary: commentLibrary
                     )
                         .clipped()
                     if showRecorder != .video || drawerState == .min {
