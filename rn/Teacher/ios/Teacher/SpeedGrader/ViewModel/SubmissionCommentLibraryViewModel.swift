@@ -58,7 +58,7 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     }
 
     public func viewDidAppear() {
-        fetchSettings() {
+        fetchSettings {
             if self.shouldShowCommentLibrary {
                 self.refresh()
             }
