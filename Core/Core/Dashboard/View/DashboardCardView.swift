@@ -55,7 +55,6 @@ public struct DashboardCardView: View {
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
                     .padding(.horizontal, 16)
-                    .animation(.default)
             }
         }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))

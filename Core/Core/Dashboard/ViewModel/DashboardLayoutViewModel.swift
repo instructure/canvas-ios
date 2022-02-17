@@ -52,13 +52,18 @@ class DashboardLayoutViewModel: ObservableObject {
                 return 1
             }
         }()
-        let cardWidth: CGFloat = (width - ((columns - 1) * Self.Spacing)) / columns
+        var cardWidth: CGFloat = (width - ((columns - 1) * Self.Spacing)) / columns
+        // When split view transforms from single screen to split the reported width is 0 which causes card
+        // widths to be negative and raises SwiftUI warnings. We make sure the width is something valid.
+        cardWidth = max(cardWidth, 50)
         return (columns: Int(columns), cardWidth: cardWidth, spacing: Self.Spacing)
     }
 
     private func updateButton() {
-        buttonImage = (isDashboardLayoutGrid ? .dashboardLayoutList : .dashboardLayoutGrid)
-        buttonA11yLabel = isDashboardLayoutGrid ? NSLocalizedString("Change dashboard layout to list", comment: "") : NSLocalizedString("Change dashboard layout to grid", comment: "")
+        withAnimation {
+            buttonImage = (isDashboardLayoutGrid ? .dashboardLayoutList : .dashboardLayoutGrid)
+            buttonA11yLabel = isDashboardLayoutGrid ? NSLocalizedString("Change dashboard layout to list", comment: "") : NSLocalizedString("Change dashboard layout to grid", comment: "")
+        }
     }
 
     private func saveStateToUserdefaults() {
