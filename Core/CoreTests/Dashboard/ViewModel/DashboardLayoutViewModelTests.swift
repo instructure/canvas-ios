@@ -86,4 +86,38 @@ class DashboardLayoutViewModelTests: CoreTestCase {
         let largeLayout = testee.layoutInfo(for: 650)
         XCTAssertEqual(largeLayout.columns, 1)
     }
+
+    func testAnalyticsReportforGridLayout() {
+        environment.userDefaults?.isDashboardLayoutGrid = true
+        let _ = DashboardLayoutViewModel()
+
+        guard
+              analytics.events.count == 1,
+              let eventName = analytics.events.last?.name,
+              let params = analytics.events.last?.parameters
+        else {
+            XCTFail("Unexpected event or parameter count")
+            return
+        }
+
+        XCTAssertEqual(eventName, "dashboard_layout")
+        XCTAssertEqual(params as? [String: String], ["type": "grid"])
+    }
+
+    func testAnalyticsReportforListLayout() {
+        environment.userDefaults?.isDashboardLayoutGrid = false
+        let _ = DashboardLayoutViewModel()
+
+        guard
+              analytics.events.count == 1,
+              let eventName = analytics.events.last?.name,
+              let params = analytics.events.last?.parameters
+        else {
+            XCTFail("Unexpected event or parameter count")
+            return
+        }
+
+        XCTAssertEqual(eventName, "dashboard_layout")
+        XCTAssertEqual(params as? [String: String], ["type": "list"])
+    }
 }

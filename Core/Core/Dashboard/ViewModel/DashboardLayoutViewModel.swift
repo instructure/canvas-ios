@@ -35,6 +35,7 @@ class DashboardLayoutViewModel: ObservableObject {
     public init() {
         isDashboardLayoutGrid = env.userDefaults?.isDashboardLayoutGrid ?? true
         updateButtonImage()
+        logAnalytics()
     }
 
     public func toggle() {
@@ -60,5 +61,10 @@ class DashboardLayoutViewModel: ObservableObject {
 
     private func saveStateToUserdefaults() {
         env.userDefaults?.isDashboardLayoutGrid = isDashboardLayoutGrid
+    }
+
+    private func logAnalytics() {
+        let type = isDashboardLayoutGrid ? "grid" : "list"
+        Analytics.shared.logEvent("dashboard_layout", parameters: ["type": type])
     }
 }
