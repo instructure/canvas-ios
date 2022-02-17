@@ -21,12 +21,11 @@ import SwiftUI
 
 class DashboardLayoutViewModel: ObservableObject {
     public typealias LayoutInfo = (columns: Int, cardWidth: CGFloat, spacing: CGFloat)
-
-    private static let DefaultSpacing: CGFloat = 16
+    public static let Spacing: CGFloat = 16
 
     @Published public private(set) var buttonImage: Image = .dashboardLayoutGrid
-
-    private var dashboardLayoutIsGrid: Bool = false {
+    @Environment(\.appEnvironment) private var env
+    private var isDashboardLayoutGrid: Bool = false {
         didSet {
             updateButtonImage()
             saveStateToUserdefaults()
@@ -34,31 +33,32 @@ class DashboardLayoutViewModel: ObservableObject {
     }
 
     public init() {
+        isDashboardLayoutGrid = env.userDefaults?.isDashboardLayoutGrid ?? true
         updateButtonImage()
     }
 
     public func toggle() {
-        dashboardLayoutIsGrid.toggle()
+        isDashboardLayoutGrid.toggle()
     }
 
     public func layoutInfo(for width: CGFloat) -> LayoutInfo {
         let isWideLayout = (width >= 635)
         let columns: CGFloat = {
-            if dashboardLayoutIsGrid {
+            if isDashboardLayoutGrid {
                 return isWideLayout ? 4 : 2
             } else {
                 return isWideLayout ? 2 : 1
             }
         }()
-        let cardWidth: CGFloat = (width - ((columns - 1) * Self.DefaultSpacing)) / columns
-        return (columns: Int(columns), cardWidth: cardWidth, spacing: Self.DefaultSpacing)
+        let cardWidth: CGFloat = (width - ((columns - 1) * Self.Spacing)) / columns
+        return (columns: Int(columns), cardWidth: cardWidth, spacing: Self.Spacing)
     }
     
     private func updateButtonImage() {
-        buttonImage = (dashboardLayoutIsGrid ? .dashboardLayoutList : .dashboardLayoutGrid)
+        buttonImage = (isDashboardLayoutGrid ? .dashboardLayoutList : .dashboardLayoutGrid)
     }
 
     private func saveStateToUserdefaults() {
-
+        env.userDefaults?.isDashboardLayoutGrid = isDashboardLayoutGrid
     }
 }
