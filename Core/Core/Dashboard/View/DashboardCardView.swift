@@ -71,10 +71,11 @@ public struct DashboardCardView: View {
                     .identifier("Dashboard.profileButton")
                     .accessibility(label: Text("Profile Menu", bundle: .core)),
 
-                trailing: Button(action: layoutViewModel.toggle, label: {
+                trailing: Button(action: layoutViewModel.toggle) {
                     layoutViewModel.buttonImage
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                })
+                        .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
+                }
             )
 
             .onAppear { refresh(force: false) }
@@ -117,10 +118,10 @@ public struct DashboardCardView: View {
                         .accessibility(identifier: "dashboard.courses.heading-lbl")
                         .accessibility(addTraits: .isHeader)
                     Spacer()
-                    Button(action: showAllCourses, label: {
+                    Button(action: showAllCourses) {
                         Text("Edit Dashboard", bundle: .core)
                             .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    }).identifier("Dashboard.editButton")
+                    }.identifier("Dashboard.editButton")
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {

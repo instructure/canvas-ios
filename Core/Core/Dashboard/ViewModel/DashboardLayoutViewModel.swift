@@ -24,17 +24,18 @@ class DashboardLayoutViewModel: ObservableObject {
     public static let Spacing: CGFloat = 16
 
     @Published public private(set) var buttonImage: Image = .dashboardLayoutGrid
+    @Published public private(set) var buttonA11yLabel: String = ""
     @Environment(\.appEnvironment) private var env
     private var isDashboardLayoutGrid: Bool = false {
         didSet {
-            updateButtonImage()
+            updateButton()
             saveStateToUserdefaults()
         }
     }
 
     public init() {
         isDashboardLayoutGrid = env.userDefaults?.isDashboardLayoutGrid ?? true
-        updateButtonImage()
+        updateButton()
         logAnalytics()
     }
 
@@ -55,8 +56,9 @@ class DashboardLayoutViewModel: ObservableObject {
         return (columns: Int(columns), cardWidth: cardWidth, spacing: Self.Spacing)
     }
 
-    private func updateButtonImage() {
+    private func updateButton() {
         buttonImage = (isDashboardLayoutGrid ? .dashboardLayoutList : .dashboardLayoutGrid)
+        buttonA11yLabel = isDashboardLayoutGrid ? NSLocalizedString("Change dashboard layout to list", comment: "") : NSLocalizedString("Change dashboard layout to grid", comment: "")
     }
 
     private func saveStateToUserdefaults() {

@@ -25,12 +25,14 @@ class DashboardLayoutViewModelTests: CoreTestCase {
         environment.userDefaults?.isDashboardLayoutGrid = true
         let testee = DashboardLayoutViewModel()
         XCTAssertEqual(testee.buttonImage, .dashboardLayoutList)
+        XCTAssertEqual(testee.buttonA11yLabel, NSLocalizedString("Change dashboard layout to list", comment: ""))
     }
 
     func testInitialButtonStateForListLayout() {
         environment.userDefaults?.isDashboardLayoutGrid = false
         let testee = DashboardLayoutViewModel()
         XCTAssertEqual(testee.buttonImage, .dashboardLayoutGrid)
+        XCTAssertEqual(testee.buttonA11yLabel, NSLocalizedString("Change dashboard layout to grid", comment: ""))
     }
 
     func testToggleChangesButtonImage() {
