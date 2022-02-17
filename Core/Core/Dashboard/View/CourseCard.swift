@@ -51,8 +51,10 @@ struct CourseCard: View {
                         Text(card.shortName)
                             .font(.semibold18).foregroundColor(.accentColor)
                             .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(2)
                         Text(card.courseCode)
                             .font(.semibold12).foregroundColor(.textDark)
+                            .lineLimit(2)
                         Spacer()
                     }
                         .padding(.horizontal, 10).padding(.top, 8)

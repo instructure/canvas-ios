@@ -47,7 +47,7 @@ class DashboardLayoutViewModel: ObservableObject {
             if isDashboardLayoutGrid {
                 return isWideLayout ? 4 : 2
             } else {
-                return isWideLayout ? 2 : 1
+                return 1
             }
         }()
         let cardWidth: CGFloat = (width - ((columns - 1) * Self.Spacing)) / columns
