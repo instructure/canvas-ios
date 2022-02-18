@@ -29,57 +29,57 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
 
     @Environment(\.appEnvironment) var env
     @Published public private(set) var state: ViewModelState<[LibraryComment]> = .loading
-    private var settings: Store<GetUserSettings>
-    public var shouldShowCommentLibrary: Bool {
+    private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
+    public var shouldShow: Bool {
         settings.first?.commentLibrarySuggestionsEnabled ?? false
     }
     public var comment: String = "" {
         didSet {
-            filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
+            updateFilteredComments()
         }
     }
     private var filteredComments: [LibraryComment] = [] {
         didSet {
-            if filteredComments.isEmpty {
-                state = .empty
-            } else {
-                state = .data(filteredComments)
+            withAnimation {
+                if filteredComments.isEmpty {
+                    state = .empty
+                } else {
+                    state = .data(filteredComments)
+                }
             }
         }
     }
     private var comments: [LibraryComment] = [] {
         didSet {
-            filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
+            updateFilteredComments()
         }
     }
 
-    init() {
-        self.settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
-    }
-
-    public func viewDidAppear() {
+    func viewDidAppear() {
         fetchSettings {
-            if self.shouldShowCommentLibrary {
+            if self.shouldShow {
                 self.refresh()
             }
         }
     }
 
-    func fetchSettings(_ completion: @escaping () -> Void) {
-        self.settings.refresh(force: true) {_ in
+    @available(iOS 15, *)
+    func attributedText(with string: String, rangeString: Binding<String>, attributes: AttributeContainer) -> Text {
+        Text(string) {
+            if let range = $0.range(of: rangeString.wrappedValue, options: .caseInsensitive) {
+                $0[range].setAttributes(attributes)
+            }
+        }
+    }
+
+    private func fetchSettings(_ completion: @escaping () -> Void) {
+        settings.refresh(force: true) { _ in
             completion()
         }
     }
 
-    func text(with string: String, boldRange: Binding<String>) -> Text {
-        if #available(iOS 15, *) {
-            return Text(string) {
-                if let range = $0.range(of: boldRange.wrappedValue, options: .caseInsensitive) {
-                    $0[range].font = .bold17
-                }
-            }
-        }
-        return Text(string)
+    private func updateFilteredComments() {
+        filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
     }
 }
 
@@ -103,7 +103,7 @@ class LibraryComment: Identifiable, Hashable {
     let id: ID
     let text: String
 
-    internal init(id: String, text: String) {
+    init(id: String, text: String) {
         self.id = ID(id)
         self.text = text
     }

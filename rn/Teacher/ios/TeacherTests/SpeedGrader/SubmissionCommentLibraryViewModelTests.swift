@@ -33,9 +33,15 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
     func testFechComments() {
         let testee = SubmissionCommentLibraryViewModel()
         testee.viewDidAppear()
-        XCTAssertEqual(testee.comments[0].id, "1")
-        XCTAssertEqual(testee.comments[0].text, "First comment")
-        XCTAssertEqual(testee.comments[1].id, "2")
-        XCTAssertEqual(testee.comments[1].text, "Second comment")
+        switch testee.state {
+        case .data(let comments):
+            XCTAssertEqual(comments[0].id, "1")
+            XCTAssertEqual(comments[0].text, "First comment")
+            XCTAssertEqual(comments[1].id, "2")
+            XCTAssertEqual(comments[1].text, "Second comment")
+        case .loading, .empty:
+            break
+        }
+
     }
 }

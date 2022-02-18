@@ -45,25 +45,16 @@ struct CommentLibrarySheet: View {
 
     @ViewBuilder
     var headerView: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                HStack {
-                    Spacer()
-                    Text("Comment Library", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
-                    Spacer()
-                }
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        dismissView
-                    })
-                }
-            }
-            .padding()
-            Divider()
+        ZStack {
+            Text("Comment Library", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }, label: {
+                dismissView
+            }).frame(maxWidth: .infinity, alignment: .trailing)
         }
+        .padding()
+        Divider()
     }
 
     @ViewBuilder

@@ -104,7 +104,7 @@ struct SubmissionCommentList: View {
                 case nil:
                     toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity).onTapGesture {
-                            showCommentLibrary = commentLibrary.shouldShowCommentLibrary
+                            showCommentLibrary = commentLibrary.shouldShow
                         }
                 }
             }.sheet(isPresented: $showCommentLibrary) {
@@ -161,6 +161,7 @@ struct SubmissionCommentList: View {
         guard !text.isEmpty else { return }
         error = nil
         comment = ""
+        // The viewModel binding won't update for some reason, hence this manual update.
         commentLibrary.comment = ""
         CreateTextComment(
             courseID: assignment.courseID,

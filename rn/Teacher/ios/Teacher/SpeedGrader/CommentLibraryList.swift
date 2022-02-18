@@ -28,7 +28,7 @@ struct CommentLibraryList: View {
     var body: some View {
         switch viewModel.state {
         case .loading:
-            loadingView
+            CircleProgress().frame(maxHeight: .infinity)
         case .empty:
             emptyView
         case .data(let comments):
@@ -36,16 +36,6 @@ struct CommentLibraryList: View {
         }
     }
 
-    @ViewBuilder
-    private var loadingView: some View {
-        VStack {
-            Spacer()
-            CircleProgress()
-            Spacer()
-        }
-    }
-
-    @ViewBuilder
     private var emptyView: some View {
         VStack {
             Spacer()
@@ -63,7 +53,7 @@ struct CommentLibraryList: View {
             List(comments) { libraryComment in
                 commentView(libraryComment)
             }
-            .listStyle(.plain).animation(.default)
+            .listStyle(.plain)
             .iOS15Refreshable { completion in
                 viewModel.refresh(completion: completion)
             }
@@ -77,19 +67,28 @@ struct CommentLibraryList: View {
         }
     }
 
-    @ViewBuilder
     private func commentView(_ libraryComment: LibraryComment) -> some View {
         Button(action: {
             select(comment: libraryComment.text)
         }, label: {
             HStack {
-                viewModel.text(with: libraryComment.text, boldRange: $comment)
+                commentText(libraryComment: libraryComment)
                     .font(.regular15)
                     .foregroundColor(.textDarkest)
                     .multilineTextAlignment(.leading)
                 Spacer()
             }
         })
+    }
+
+    @ViewBuilder
+    private func commentText(libraryComment: LibraryComment) -> some View {
+        if #available(iOS 15, *) {
+            let attributes = AttributeContainer([.font: UIFont.scaledNamedFont(.bold15)])
+            viewModel.attributedText(with: libraryComment.text, rangeString: $comment, attributes: attributes)
+        } else {
+            Text(libraryComment.text)
+        }
     }
 
     func select(comment: String) {
