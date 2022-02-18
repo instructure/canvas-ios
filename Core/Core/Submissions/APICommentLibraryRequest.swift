@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct CommentLibraryRequest: APIGraphQLRequestable {
-    public typealias Response = CommentLibraryResponse
+public struct APICommentLibraryRequest: APIGraphQLRequestable {
+    public typealias Response = APICommentLibraryResponse
 
     static let operationName = "CommentLibraryQuery"
     static let query = """

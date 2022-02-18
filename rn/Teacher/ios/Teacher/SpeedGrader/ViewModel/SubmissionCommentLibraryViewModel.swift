@@ -87,8 +87,8 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
     public func refresh(completion: @escaping () -> Void) {
         state = .loading
         let userId = env.currentSession?.userID ?? ""
-        let requestable = CommentLibraryRequest(userId: userId)
-        env.api.makeRequest(requestable, refreshToken: false) { response, _, _  in
+        let requestable = APICommentLibraryRequest(userId: userId)
+        env.api.makeRequest(requestable) { response, _, _  in
             performUIUpdate {
                 guard let response = response else { return }
                 self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}

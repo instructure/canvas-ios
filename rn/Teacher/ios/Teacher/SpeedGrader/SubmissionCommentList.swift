@@ -161,8 +161,6 @@ struct SubmissionCommentList: View {
         guard !text.isEmpty else { return }
         error = nil
         comment = ""
-        // The viewModel binding won't update for some reason, hence this manual update.
-        commentLibrary.comment = ""
         CreateTextComment(
             courseID: assignment.courseID,
             assignmentID: assignment.id,

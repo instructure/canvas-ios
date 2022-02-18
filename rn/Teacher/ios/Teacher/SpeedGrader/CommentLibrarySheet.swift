@@ -38,6 +38,7 @@ struct CommentLibrarySheet: View {
                         viewModel.comment = text
                     }
             }.onAppear {
+                viewModel.comment = comment
                 viewModel.viewDidAppear()
             }
         }

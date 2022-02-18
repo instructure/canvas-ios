@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct CommentLibraryResponse: Codable, Equatable {
+public struct APICommentLibraryResponse: Codable, Equatable {
 
     struct Data: Codable, Equatable {
         let user: User
