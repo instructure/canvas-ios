@@ -52,7 +52,11 @@ struct CommentLibrarySheet: View {
                 presentationMode.wrappedValue.dismiss()
             }, label: {
                 dismissView
-            }).frame(maxWidth: .infinity, alignment: .trailing)
+            })
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .accessibilityElement(children: .ignore)
+                .accessibility(label: Text("Close", bundle: .core))
+
         }
         .padding()
         Divider()
