@@ -132,7 +132,9 @@ public struct DashboardCardView: View {
                     // outside the CourseCard, because that isn't observing colors
                     .accentColor(Color(card.color.ensureContrast(against: .white)))
                     .frame(minHeight: 160)
-            }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 2)
         case .empty:
             EmptyPanda(.Teacher,
                 title: Text("No Courses", bundle: .core),
