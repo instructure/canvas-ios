@@ -27,7 +27,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     @Published public private(set) var state: ViewModelState<[CourseDetailsCellViewModel]> = .loading
     @Published public private(set) var courseColor: UIColor?
-    @Published public private(set) var courseName: String?
+    @Published public private(set) var hideColorOverlay: Bool?
     @Published public private(set) var homeLabel: String?
     @Published public private(set) var homeSubLabel: String?
     @Published public private(set) var homeRoute: URL?
@@ -44,6 +44,10 @@ public class CourseDetailsViewModel: ObservableObject {
         self?.tabsDidUpdate()
     }
 
+    private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
+        self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
+    }
+
     public var showHome: Bool {
         !isTeacher
     }
@@ -56,6 +60,18 @@ public class CourseDetailsViewModel: ObservableObject {
         isTeacher
     }
 
+    public var courseName: String {
+        course.first?.name ?? ""
+    }
+
+    public var imageURL: URL? {
+        course.first?.imageDownloadURL
+    }
+
+    public var termName: String {
+        course.first?.termName ?? ""
+    }
+
     public init(context: Context) {
         self.context = context
     }
@@ -66,6 +82,7 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     public func viewDidAppear() {
+        settings.refresh()
         course.refresh()
         colors.refresh()
         tabs.exhaust()
@@ -74,7 +91,6 @@ public class CourseDetailsViewModel: ObservableObject {
     private func courseDidUpdate() {
         guard let course = course.first else { return }
         courseColor = course.color
-        courseName = course.name
         setupHome(course: course)
     }
 
@@ -103,6 +119,13 @@ public class CourseDetailsViewModel: ObservableObject {
     private func tabsDidUpdate() {
         if tabs.requested, tabs.pending, tabs.hasNextPage { return }
         var tabs = tabs.all
+
+        let mobileSupportedTabs = [ "assignments", "quizzes", "discussions", "announcements", "people", "pages", "files", "modules", "syllabus" ]
+        tabs = tabs.filter {
+            //AttendanceTab
+            //external tool
+            return mobileSupportedTabs.contains($0.id)
+        }.sorted(by: {$0.position < $1.position })
 
         if let index = tabs.firstIndex(where: { $0.id == "home" }) {
             let homeTab = tabs.remove(at: index)

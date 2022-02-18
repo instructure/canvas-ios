@@ -29,24 +29,26 @@ public struct CourseDetailsView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
-            header
-            switch viewModel.state {
-            case .empty:
-                errorView
-            case .loading:
-                loadingView
-            case .data(let tabViewModels):
-                tabList(tabViewModels)
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                headerImage(width: geometry.size.width)
+                switch viewModel.state {
+                case .empty:
+                    errorView
+                case .loading:
+                    loadingView
+                case .data(let tabViewModels):
+                    tabList(tabViewModels)
+                }
             }
-        }
-        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .navigationBarStyle(.color(viewModel.courseColor))
-        .navigationTitle(viewModel.courseName ?? "", subtitle: nil)
-        .navigationBarGenericBackButton()
-        .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
-        .onAppear {
-            viewModel.viewDidAppear()
+            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+            .navigationBarStyle(.color(viewModel.courseColor))
+            .navigationTitle(viewModel.courseName, subtitle: nil)
+            .navigationBarGenericBackButton()
+            .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
+            .onAppear {
+                viewModel.viewDidAppear()
+            }
         }
     }
 
@@ -100,10 +102,21 @@ public struct CourseDetailsView: View {
         Spacer()
     }
 
-    @ViewBuilder
-    private var header: some View {
-        // TODO
-        Text(viewModel.courseName ?? "")
+    private func headerImage(width: CGFloat) -> some View {
+        let height:CGFloat = 235
+        return ZStack {
+            Color(viewModel.courseColor ?? .ash).frame(width: width, height: height)
+            if let url = viewModel.imageURL {
+                RemoteImage(url, width: width, height: height)
+                    .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)
+            }
+            VStack {
+                Text(viewModel.courseName)
+                Text(viewModel.termName)
+            }
+        }
+        .frame(height: height)
+        .clipped()
     }
 
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel]) -> some View {
