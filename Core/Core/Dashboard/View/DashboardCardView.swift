@@ -110,30 +110,29 @@ public struct DashboardCardView: View {
             ZStack { CircleProgress() }
                 .frame(minWidth: size.width, minHeight: size.height)
         case .data(let cards):
-            Section(
-                header: HStack(alignment: .lastTextBaseline) {
-                    Text("Courses", bundle: .core)
-                        .font(.heavy24).foregroundColor(.textDarkest)
-                        .accessibility(identifier: "dashboard.courses.heading-lbl")
-                        .accessibility(addTraits: .isHeader)
-                    Spacer()
-                    Button(action: showAllCourses) {
-                        Text("Edit Dashboard", bundle: .core)
-                            .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    }.identifier("Dashboard.editButton")
-                }
-                    .padding(.top, 16).padding(.bottom, 8)
-            ) {
-                let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
-                let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
-                DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
-                    let card = cards[cardIndex]
-                    CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth)
-                        // outside the CourseCard, because that isn't observing colors
-                        .accentColor(Color(card.color.ensureContrast(against: .white)))
-                        .frame(minHeight: 160)
-                }.frame(maxWidth: .infinity, alignment: .leading)
+            HStack(alignment: .lastTextBaseline) {
+                Text("Courses", bundle: .core)
+                    .font(.heavy24).foregroundColor(.textDarkest)
+                    .accessibility(identifier: "dashboard.courses.heading-lbl")
+                    .accessibility(addTraits: .isHeader)
+                Spacer()
+                Button(action: showAllCourses) {
+                    Text("Edit Dashboard", bundle: .core)
+                        .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
+                }.identifier("Dashboard.editButton")
             }
+            .frame(width: size.width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
+            .padding(.top, 16).padding(.bottom, 8)
+
+            let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
+            let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
+            DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
+                let card = cards[cardIndex]
+                CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth)
+                    // outside the CourseCard, because that isn't observing colors
+                    .accentColor(Color(card.color.ensureContrast(against: .white)))
+                    .frame(minHeight: 160)
+            }.frame(maxWidth: .infinity, alignment: .leading)
         case .empty:
             EmptyPanda(.Teacher,
                 title: Text("No Courses", bundle: .core),
