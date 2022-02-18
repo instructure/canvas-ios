@@ -21,84 +21,86 @@ import SwiftUI
 public struct CourseSettingsView: View {
 
     @ObservedObject private var viewModel: CourseSettingsViewModel
-    let hideColorOverlay: Bool
-    let imageDownloadURL: URL?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @State var color: UIColor
-    @State var isSaving = false
     @State var name: String
-    @State var defaultView: CourseDefaultView = .wiki
+    @State var defaultView: CourseDefaultView
 
     public init(viewModel: CourseSettingsViewModel) {
         self.viewModel = viewModel
 
-        //TODO move to viewmodel
-        self.hideColorOverlay = false
-        imageDownloadURL = nil
-        _color = State(initialValue: .red)
-        _name = State(initialValue: "coursename")
+        // TODO move to viewmodel?
+        _name = State(initialValue: (viewModel.courseName ?? ""))
+        _defaultView = State(initialValue: viewModel.defaultView ?? .wiki)
     }
 
     public var body: some View { GeometryReader { geometry in
         let width = geometry.size.width
-        EditorForm(isSpinning: isSaving) {
+        EditorForm(isSpinning: viewModel.isSaving) {
             let height: CGFloat = 235
             ZStack {
-                Color(color).frame(width: width, height: height)
-                if let url = imageDownloadURL {
+                Color(viewModel.courseColor ?? .ash).frame(width: width, height: height)
+                if let url = viewModel.imageURL {
                     RemoteImage(url, width: width, height: height)
-                        .opacity(hideColorOverlay ? 1 : 0.4)
+                        .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)
                 }
             }
                 .frame(height: height)
                 .clipped()
-            TextFieldRow(
-                label: Text("Name", bundle: .core),
-                placeholder: NSLocalizedString("Add Course Name", comment: ""),
-                text: $name
-            )
+            nameRow
             Divider()
-            ButtonRow(action: {
-                let options = CourseDefaultView.allCases
-                self.env.router.show(ItemPickerViewController.create(
-                    title: NSLocalizedString("Set \"Home\" to...", comment: ""),
-                    sections: [ ItemPickerSection(items: options.map {
-                        ItemPickerItem(title: $0.string)
-                    }), ],
-                    selected: options.firstIndex(of: defaultView).flatMap {
-                        IndexPath(row: $0, section: 0)
-                    },
-                    didSelect: { defaultView = options[$0.row] }
-                ), from: controller)
-            }, content: {
-                Text("Set \"Home\" to...", bundle: .core)
-                Spacer()
-                Text("placeholder")
-                    .font(.medium16).foregroundColor(.textDark)
-                Spacer().frame(width: 16)
-                DisclosureIndicator()
-            })
-                .identifier("AssignmentEditor.gradingTypeButton")
+            defaultViewButtonRow
             Divider()
         }
-            .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: name)
-            .navigationBarItems(
-                leading: Button(action: cancel, label: {
-                    Text("Cancel", bundle: .core).fontWeight(.regular)
-                }),
-                trailing: Button(action: save, label: {
-                    Text("Done", bundle: .core).bold()
-                })
-            )
+        .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: viewModel.courseName)
+        .navigationBarItems(
+            leading: Button(action: cancelTapped, label: {
+                Text("Cancel", bundle: .core).fontWeight(.regular)
+            }),
+            trailing: Button(action: doneTapped, label: {
+                Text("Done", bundle: .core).bold()
+            })
+        )
+        .onAppear {
+            viewModel.viewDidAppear()
+        }
+        .alert(isPresented: $viewModel.showError) {
+            Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
+        }
     } }
 
-    private func save() {
+    @ViewBuilder
+    private var nameRow: some View {
+        TextFieldRow(
+            label: Text("Name", bundle: .core),
+            placeholder: NSLocalizedString("Add Course Name", comment: ""),
+            text: $name
+        )
     }
 
-    func cancel() {
+    @ViewBuilder
+    private var defaultViewButtonRow: some View {
+        ButtonRow(action: {
+            viewModel.defaultViewSelectorTapped(router: env.router, viewController: controller, defaultViewState: defaultView)
+        }, content: {
+            Text("Set \"Home\" to...", bundle: .core)
+            Spacer()
+            Text(viewModel.defaultView?.string ?? "")
+                .font(.medium16).foregroundColor(.textDark)
+            Spacer().frame(width: 16)
+            DisclosureIndicator()
+        })
+        .identifier("TODO")
+    }
+
+    private func doneTapped() {
+        controller.view.endEditing(true) // dismiss keyboard
+        viewModel.doneTapped(router: env.router, viewController: controller, name: name, defaultView: defaultView)
+    }
+
+    func cancelTapped() {
         controller.view.endEditing(true) // dismiss keyboard
         env.router.dismiss(controller)
     }

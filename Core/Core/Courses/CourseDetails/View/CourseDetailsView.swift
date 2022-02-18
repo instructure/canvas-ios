@@ -50,7 +50,8 @@ public struct CourseDetailsView: View {
         }
     }
 
-    @ViewBuilder var settingsButton: some View {
+    @ViewBuilder
+    private var settingsButton: some View {
         Button(action: {
             if let url = viewModel.settingsRoute {
                 env.router.route(to: url, from: controller, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
