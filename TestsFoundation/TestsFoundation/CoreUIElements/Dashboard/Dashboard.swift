@@ -33,18 +33,10 @@ public enum CourseInvitation {
 }
 
 public enum Dashboard: String, ElementWrapper {
-    case addCoursesButton, emptyBodyLabel, emptyTitleLabel, profileButton
+    case addCoursesButton, emptyBodyLabel, emptyTitleLabel, profileButton, editButton
 
     public static var coursesLabel: Element {
         app.find(id: "dashboard.courses.heading-lbl")
-    }
-
-    public static var seeAllButton: Element {
-        app.find(id: "dashboard.courses.see-all-btn")
-    }
-
-    public static var editButton: Element {
-        app.find(id: "Dashboard.editFavoritesButton")
     }
 
     public static func courseCard(id: String) -> Element {

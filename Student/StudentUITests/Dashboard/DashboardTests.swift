@@ -83,7 +83,7 @@ class DashboardTests: MiniCanvasUITestCase {
         NavBar.dismissButton.tap()
         checkDashboard()
 
-        Dashboard.seeAllButton.tap()
+        Dashboard.editButton.tap()
         checkDashboard(seeAll: true)
     }
 }

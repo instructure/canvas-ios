@@ -60,7 +60,7 @@ class DashboardE2ETests: CoreUITestCase {
 
     func testSeeAllButtonDisplaysCorrectCourses() throws {
         try XCTSkipIf(true, "passes locally but fails on bitrise")
-        Dashboard.seeAllButton.tap()
+        Dashboard.editButton.tap()
 
         // expired course and others should be listed
         Dashboard.courseCard(id: "303").waitToExist()

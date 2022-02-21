@@ -31,6 +31,7 @@ struct NotificationCard: View {
             VStack {
                 icon.foregroundColor(.white)
                     .padding(.horizontal, 8).padding(.top, 10)
+                    .accessibility(hidden: true)
                 Spacer()
             }
                 .background(backgroundColor)

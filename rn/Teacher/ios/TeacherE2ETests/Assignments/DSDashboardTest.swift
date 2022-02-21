@@ -44,7 +44,7 @@ class DSDashboardTest: E2ETestCase {
         XCTAssertTrue(Dashboard.courseCard(id: course3.id).exists())
 
         // Check if only favorited card is shown
-        Dashboard.seeAllButton.tap()
+        Dashboard.editButton.tap()
         DashboardEdit.toggleFavorite(id: course1.id)
         NavBar.backButton.tap()
         pullToRefresh()
