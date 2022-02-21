@@ -878,6 +878,9 @@
 "Filter" = "Filter";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtriraj glede na";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtriraj glede na:";
 
 /* No comment provided by engineer. */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Raven vpliva";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Pomembni datumi";
 
 /* No comment provided by engineer. */
 "Important Info" = "Pomembne informacije";
@@ -2045,6 +2051,9 @@
 "There are no active assignments in this course." = "Pri tem predmetu ni aktivnih nalog.";
 
 /* No comment provided by engineer. */
+"There are no assignments to display." = "Ni nobenih nalog za prikaz.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Zaenkrat ni nobenih konferenc za prikaz.";
 
 /* No comment provided by engineer. */
@@ -2277,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Ogledano";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Čakam, da se zgodi kaj pomembnega.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Podobnih predmetov ni bilo mogoče najti.";

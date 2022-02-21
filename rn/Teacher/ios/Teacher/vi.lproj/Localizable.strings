@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Khởi chạy công cụ LTI điểm danh thất bại.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Tải dữ liệu nộp không thành công!";
+
+/* No comment provided by engineer. */
 "Files" = "Các Tập Tin";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Đặt lại";
 
 /* No comment provided by engineer. */
+"Retry" = "Thử Lại";
+
+/* No comment provided by engineer. */
 "Rubric" = "Bảng Đánh Giá Theo Tiêu Chí";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Việc Cần Làm";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Lỗi Không Xác Định";
 
 /* No comment provided by engineer. */
 "Unmark" = "Bỏ Đánh Dấu";

@@ -1253,6 +1253,9 @@
 "Student" = "Sinh Viên";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Chú Thích Sinh Viên";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "Không xác định";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Lỗi Không Xác Định";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Không Giới Hạn";

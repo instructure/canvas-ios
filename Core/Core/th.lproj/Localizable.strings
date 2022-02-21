@@ -878,6 +878,9 @@
 "Filter" = "ตัวกรอง";
 
 /* No comment provided by engineer. */
+"Filter by" = "กรองจาก";
+
+/* No comment provided by engineer. */
 "Filter by:" = "กรองจาก:";
 
 /* No comment provided by engineer. */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "ระดับผลกระทบ";
+
+/* No comment provided by engineer. */
+"Important Dates" = "วันที่ที่สำคัญ";
 
 /* No comment provided by engineer. */
 "Important Info" = "ข้อมูลสำคัญ";
@@ -2045,6 +2051,9 @@
 "There are no active assignments in this course." = "ไม่มีภารกิจที่เปิดใช้อยู่ในบทเรียนนี้";
 
 /* No comment provided by engineer. */
+"There are no assignments to display." = "ไม่มีภารกิจที่จะแสดง";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "ไม่มีการประชุมสำหรับจัดแสดงในตอนนี้";
 
 /* No comment provided by engineer. */
@@ -2277,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "ที่ดู";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "กำลังรอเหตุการณ์สำคัญ";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "เราไม่พบบทเรียนลักษณะนี้";

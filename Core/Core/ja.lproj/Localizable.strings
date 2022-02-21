@@ -878,6 +878,9 @@
 "Filter" = "フィルター";
 
 /* No comment provided by engineer. */
+"Filter by" = "フィルタ条件";
+
+/* No comment provided by engineer. */
 "Filter by:" = "フィルター要素：";
 
 /* No comment provided by engineer. */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影響のレベル";
+
+/* No comment provided by engineer. */
+"Important Dates" = "重要な日付";
 
 /* No comment provided by engineer. */
 "Important Info" = "重要な情報";
@@ -2045,6 +2051,9 @@
 "There are no active assignments in this course." = "このグループには、アクティブな課題はありません。";
 
 /* No comment provided by engineer. */
+"There are no assignments to display." = "表示する課題はありません。";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "表示する会議はまだありません。";
 
 /* No comment provided by engineer. */
@@ -2277,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "表示しました";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "重要な事柄が起こるのを待つ。";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "そのようなコースは見つかりませんでした。";

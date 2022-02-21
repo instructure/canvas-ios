@@ -878,6 +878,9 @@
 "Filter" = "Filtè";
 
 /* No comment provided by engineer. */
+"Filter by" = "Klase pa";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtre pa:";
 
 /* No comment provided by engineer. */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Nivo Enpak:";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Dat Enpòtan";
 
 /* No comment provided by engineer. */
 "Important Info" = "Enfo Enpòtan";
@@ -2045,6 +2051,9 @@
 "There are no active assignments in this course." = "Pa gen devwa aktif nan kou sa a.";
 
 /* No comment provided by engineer. */
+"There are no assignments to display." = "Pa gen sesyon pou afiche.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Poko gen konferans pou afiche.";
 
 /* No comment provided by engineer. */
@@ -2277,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Afiche";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Atann gen bagay serye ki pral fèt.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Nou pa jwenn okenn kou konsa.";
