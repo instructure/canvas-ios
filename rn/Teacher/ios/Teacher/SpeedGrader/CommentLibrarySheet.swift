@@ -54,9 +54,7 @@ struct CommentLibrarySheet: View {
                 dismissView
             })
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                .accessibilityElement(children: .ignore)
                 .accessibility(label: Text("Close", bundle: .core))
-
         }
         .padding()
         Divider()
