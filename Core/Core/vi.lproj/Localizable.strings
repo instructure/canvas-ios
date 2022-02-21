@@ -116,6 +116,9 @@
 "Add Attachments" = "Thêm Tập Tin Đính Kèm";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Thêm bình luận (không bắt buộc)";
+
+/* No comment provided by engineer. */
 "Add content" = "Thêm nội dung";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "Lọc";
 
 /* No comment provided by engineer. */
+"Filter by" = "Lọc theo";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Lọc theo:";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Quên %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Định dạng không được hỗ trợ";
 
 /* No comment provided by engineer. */
 "Front Page" = "Trang Đầu";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Mức Tác Động";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Những Ngày Quan Trọng";
 
 /* No comment provided by engineer. */
 "Important Info" = "Thông Tin Quan Trọng";
@@ -1397,6 +1409,9 @@
 "No Pages" = "Không Có Trangg";
 
 /* No comment provided by engineer. */
+"No preview available" = "Không có bản xem trước nào";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Không Có Các Câu Hỏi Kiểm Tra";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Không Có Mục Nộp";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Không có tập tin được hỗ trợ nào để nộp";
 
 /* No comment provided by engineer. */
 "None" = "Không Có";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Vui lòng tạo Mã QR khác rồi thử lại.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Vui lòng đăng nhập thông qua ứng dụng";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vui lòng chờ, quá trình này có thể mất một phút.";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Chọn Đường Dẫn";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Chọn bài tập";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Chọn Bài Tập";
+
+/* No comment provided by engineer. */
+"Select course" = "Chọn khóa học";
 
 /* No comment provided by engineer. */
 "Select Course" = "Chọn Khóa Học";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Ứng dụng cần được khởi động lại để sử dụng cài đặt ngôn ngữ mới. Vui lòng khởi chạy lại ứng dụng.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Không có bài tập đang hoạt động nào trong khóa học này.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Không có bài tập để hiển thị.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Chưa có hội nghị để hiển thị.";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Đã Xem";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Đang chờ những hoạt động quan trọng diễn ra.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Chúng tôi không tìm được bất kỳ khóa học nào như vậy.";
