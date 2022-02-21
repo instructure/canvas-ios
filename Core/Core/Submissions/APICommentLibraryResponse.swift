@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+public struct APICommentLibraryResponse: Codable, Equatable {
 
-public extension Text {
-    init(_ value: Double, number: NumberFormatter.Style = .decimal) {
-        self.init(NumberFormatter.localizedString(from: NSNumber(value: value), number: number))
+    struct Data: Codable, Equatable {
+        let user: User
     }
-}
 
-@available(iOS 15, *)
-public extension Text {
-    init(_ string: String, configure: ((inout AttributedString) -> Void)) {
-        var attributedString = AttributedString(string)
-        configure(&attributedString)
-        self.init(attributedString)
+    struct User: Codable, Equatable {
+        let id: String
+        let commentBankItems: CommentBankConnection
     }
-}
 
-public extension Image {
-    func size(_ size: CGFloat?) -> some View {
-        resizable().scaledToFill().frame(width: size, height: size)
+    struct CommentBankConnection: Codable, Equatable {
+        let nodes: [CommentBankItem]
     }
+
+    struct CommentBankItem: Codable, Equatable {
+        let id: String
+        let comment: String
+    }
+
+    let data: Self.Data
+
+    public var comments: [(id: String, comment: String)] { data.user.commentBankItems.nodes.map { ($0.id, $0.comment) } }
 }

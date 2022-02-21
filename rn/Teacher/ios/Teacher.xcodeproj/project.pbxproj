@@ -133,8 +133,12 @@
 		E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */; };
 		E8F4B66624EECA10003FBAFD /* ContextCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66524EECA10003FBAFD /* ContextCard.swift */; };
 		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
+		EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */; };
+		EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB368AB127BBD4DE00A9F1C1 /* CommentLibraryList.swift */; };
 		EB3ECFC62636F63500289506 /* SideMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECFC52636F63500289506 /* SideMenuUITests.swift */; };
 		EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A24D261206CA0003241C /* GradeSliderTests.swift */; };
+		EBAF32F627AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */; };
+		EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -578,8 +582,12 @@
 		E8F4B66524EECA10003FBAFD /* ContextCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCard.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
+		EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentLibraryViewModelTests.swift; sourceTree = "<group>"; };
+		EB368AB127BBD4DE00A9F1C1 /* CommentLibraryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryList.swift; sourceTree = "<group>"; };
 		EB3ECFC52636F63500289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
 		EB71A24D261206CA0003241C /* GradeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderTests.swift; sourceTree = "<group>"; };
+		EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentLibraryViewModel.swift; sourceTree = "<group>"; };
+		EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibrarySheet.swift; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -730,6 +738,7 @@
 		7D0A28E0251A8104004FB3B6 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
+				EBAF32F727AAD073000ACD32 /* ViewModel */,
 				7D742F442556566F00FD6CF1 /* CommentEditor.swift */,
 				7D7126B02534B980000DEDE4 /* Drawer.swift */,
 				EB12071E2601F2C50038E875 /* GradeSlider.swift */,
@@ -737,6 +746,8 @@
 				7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */,
 				7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */,
 				7D7126C325374457000DEDE4 /* SubmissionCommentList.swift */,
+				EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */,
+				EB368AB127BBD4DE00A9F1C1 /* CommentLibraryList.swift */,
 				7D4B2747253F2D1600A98DE3 /* SubmissionCommentListCell.swift */,
 				7D7126C625374469000DEDE4 /* SubmissionFileList.swift */,
 				7D7D6D5125102052002B1485 /* SubmissionGrader.swift */,
@@ -756,6 +767,7 @@
 				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
 				CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */,
 				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
+				EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -1007,6 +1019,14 @@
 				EB3ECFC52636F63500289506 /* SideMenuUITests.swift */,
 			);
 			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		EBAF32F727AAD073000ACD32 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1671,6 +1691,7 @@
 				7D0A28E2251A8284004FB3B6 /* SubmissionHeader.swift in Sources */,
 				7DCA321A25423CDF00458651 /* SpeedGraderViewController.swift in Sources */,
 				7D742F452556566F00FD6CF1 /* CommentEditor.swift in Sources */,
+				EBAF32F627AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift in Sources */,
 				CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
 				7D4B2748253F2D1600A98DE3 /* SubmissionCommentListCell.swift in Sources */,
@@ -1686,10 +1707,12 @@
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
+				EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */,
 				7D7126C725374469000DEDE4 /* SubmissionFileList.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
+				EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */,
 				7D7D6D5225102052002B1485 /* SubmissionGrader.swift in Sources */,
 			);
@@ -1716,6 +1739,7 @@
 				CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
 				D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */,
+				EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
