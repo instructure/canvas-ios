@@ -49,6 +49,15 @@ class RouterTests: CoreTestCase {
             return mockCollapsed ?? super.isCollapsed
         }
     }
+    class MockAnalyticsHandler: AnalyticsHandler {
+        var loggedEvent: String?
+        var loggedParameters: [String: Any]?
+
+        func handleEvent(_ name: String, parameters: [String: Any]?) {
+            loggedEvent = name
+            loggedParameters = parameters
+        }
+    }
 
     func testRouter() {
         let router = Router(routes: [
@@ -414,5 +423,26 @@ class RouterTests: CoreTestCase {
             Router.open(url: .parse("\(proto)://canvas.instructure.com/"))
             XCTAssertEqual(login.externalURL?.absoluteURL, url)
         }
+    }
+
+    func testAnalyticsReport() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _, _ in }
+        AppEnvironment.shared.app = .teacher
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
+
+        XCTAssertEqual(analyticsHandler.loggedEvent, "screen_view")
+        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], [
+            "application": "teacher",
+            "screen_name": "/courses/:courseId/assignments",
+            "screen_class": "UIViewController",
+        ])
     }
 }

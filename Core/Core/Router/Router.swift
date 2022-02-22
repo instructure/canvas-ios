@@ -140,15 +140,21 @@ open class Router {
     }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
+
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
-        Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
+
         for route in handlers {
             if let params = route.match(url) {
+                var analyticsViewController: UIViewController?
+
                 if let view = route.factory(url, params, userInfo) {
+                    analyticsViewController = view
                     show(view, from: from, options: options)
                 }
+
+                Analytics.shared.logScreenView(route: route.template, viewController: analyticsViewController)
                 return // don't fall back if a matched route returns no view
             }
         }
