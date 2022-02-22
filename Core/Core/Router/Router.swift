@@ -97,6 +97,8 @@ open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
     public static let DefaultRouteOptions: RouteOptions = .push
 
+    public var count: Int { handlers.count }
+
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
 
@@ -105,16 +107,7 @@ open class Router {
         self.fallback = fallback
     }
 
-    public var count: Int {
-        return handlers.count
-    }
-
-    private func cleanURL(_ url: URLComponents) -> URLComponents {
-        // URLComponents does all the encoding we care about except we often have + meaning space in query
-        var url = url
-        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
-        return url
-    }
+    // MARK: - Route Matching
 
     public func match(_ url: URL, userInfo: [String: Any]? = nil) -> UIViewController? {
         return match(.parse(url), userInfo: userInfo)
@@ -131,6 +124,8 @@ open class Router {
         }
         return nil
     }
+
+    // MARK: - Routing
 
     public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
@@ -160,6 +155,8 @@ open class Router {
         }
         fallback(url, userInfo, from, options)
     }
+
+    // MARK: - View Controller Presentation
 
     open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
@@ -221,7 +218,11 @@ open class Router {
         }
     }
 
+    // MARK: - External URL
+
     public static func open(url: URLComponents) {
+        Analytics.shared.logScreenView(route: "/external_url")
+
         var components = url
         // Canonicalize relative & schemes we know about.
         switch components.scheme {
@@ -247,5 +248,14 @@ open class Router {
                 AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
             }
         }
+    }
+
+    // MARK: - Private Methods
+
+    private func cleanURL(_ url: URLComponents) -> URLComponents {
+        // URLComponents does all the encoding we care about except we often have + meaning space in query
+        var url = url
+        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
+        return url
     }
 }
