@@ -158,8 +158,10 @@ open class Router {
 
     // MARK: - View Controller Presentation
 
-    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, completion: (() -> Void)? = nil) {
+    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, analyticsRoute: String = "/unknown", completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
+
+        Analytics.shared.logScreenView(route: analyticsRoute, viewController: view)
 
         if let displayModeButton = from.splitDisplayModeButtonItem,
             from.splitViewController?.isCollapsed == false,

@@ -288,11 +288,6 @@ class RouterTests: CoreTestCase {
         let url = URL(string: "https://canvas.instructure.com/somewhere#fragment?query=yo")!
         router.route(to: url, from: mockView)
         XCTAssertNotNil(mockView.shown)
-        XCTAssertEqual(analytics.events[0].name, "route")
-        XCTAssertEqual(
-            analytics.events[0].parameters!["url"] as! String,
-            "https://canvas.instructure.com/somewhere#fragment?query=yo"
-        )
     }
 
     func testRouteApiV1() {
@@ -425,7 +420,7 @@ class RouterTests: CoreTestCase {
         }
     }
 
-    func testAnalyticsReport() {
+    func testAnalyticsReportOnRoute() {
         let mockView = MockViewController()
         let router = Router(routes: [
             RouteHandler("/courses/:courseId/assignments") { _, _, _ in
@@ -443,6 +438,23 @@ class RouterTests: CoreTestCase {
             "application": "teacher",
             "screen_name": "/courses/:courseId/assignments",
             "screen_class": "UIViewController",
+        ])
+    }
+
+    func testAnalyticsReportOnShow() {
+        let mockView = MockViewController()
+        let router = Router(routes: []) { _, _, _, _ in }
+        AppEnvironment.shared.app = .parent
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
+
+        XCTAssertEqual(analyticsHandler.loggedEvent, "screen_view")
+        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], [
+            "application": "parent",
+            "screen_name": "/courses/:courseId/assignments",
+            "screen_class": "MockViewController",
         ])
     }
 }
