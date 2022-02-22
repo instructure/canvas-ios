@@ -32,6 +32,14 @@ public class Analytics: NSObject {
         handler?.handleEvent(name, parameters: parameters)
     }
 
+    public func logScreenView(route: String, viewController: UIViewController? = nil) {
+        handler?.handleEvent("screen_view", parameters: [
+            "application": Self.analyticsAppName,
+            "screen_name": route,
+            "screen_class" : Self.analyticsClassName(for: viewController),
+        ])
+    }
+
     public func logSession(_ session: LoginSession) {
         var defaults = SessionDefaults(sessionID: session.uniqueID)
         let tokenExpires = session.expiresAt != nil
@@ -39,5 +47,27 @@ public class Analytics: NSObject {
             tokenExpires ? logEvent("auth_expiring_token") : logEvent("auth_forever_token")
             defaults.tokenExpires = tokenExpires
         }
+    }
+
+    public static var analyticsAppName: String {
+        guard let app = AppEnvironment.shared.app else {
+            return "unknown"
+        }
+        return app.rawValue
+    }
+
+    public static func analyticsClassName(for viewController: UIViewController?) -> String {
+        guard let viewController = viewController else {
+            return "unknown"
+        }
+
+        var name = String(describing: type(of: viewController))
+
+        // Extracts "Type" from a pattern of CoreHostingController<Type>
+        if let genericsStart = name.firstIndex(of: "<") {
+            name = name.suffix(from: name.index(after: genericsStart)).replacingOccurrences(of: ">", with: "")
+        }
+
+        return name
     }
 }

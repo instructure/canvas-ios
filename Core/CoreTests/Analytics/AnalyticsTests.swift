@@ -57,6 +57,37 @@ class AnalyticsTests: XCTestCase {
 
         defaults.reset()
     }
+
+    func testScreenView() {
+        AppEnvironment.shared.app = .student
+        Analytics.shared.logScreenView(route: "/testRoute", viewController: ProfileSettingsViewController())
+        XCTAssertEqual(loggedEvent, "screen_view")
+        XCTAssertEqual(loggedParameters as? [String : String], [
+            "application": "student",
+            "screen_name": "/testRoute",
+            "screen_class": "ProfileSettingsViewController",
+        ])
+    }
+
+    func testAnalyticsClassName() {
+        XCTAssertEqual(Analytics.analyticsClassName(for: nil), "unknown")
+        XCTAssertEqual(Analytics.analyticsClassName(for: ProfileSettingsViewController()), "ProfileSettingsViewController")
+        XCTAssertEqual(Analytics.analyticsClassName(for: CoreHostingController(CourseListView())), "CourseListView")
+    }
+
+    func testAnalyticsAppName() {
+        AppEnvironment.shared.app = nil
+        XCTAssertEqual(Analytics.analyticsAppName, "unknown")
+
+        AppEnvironment.shared.app = .parent
+        XCTAssertEqual(Analytics.analyticsAppName, "parent")
+
+        AppEnvironment.shared.app = .student
+        XCTAssertEqual(Analytics.analyticsAppName, "student")
+
+        AppEnvironment.shared.app = .teacher
+        XCTAssertEqual(Analytics.analyticsAppName, "teacher")
+    }
 }
 
 extension AnalyticsTests: AnalyticsHandler {
