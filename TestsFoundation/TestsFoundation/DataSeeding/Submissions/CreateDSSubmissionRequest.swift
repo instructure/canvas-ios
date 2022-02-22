@@ -18,36 +18,34 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.create
-public struct CreateDSAssignmentRequest: APIRequestable {
-    public typealias Response = DSAssignment
+//https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
+public struct CreateDSSubmissionRequest: APIRequestable {
+    public typealias Response = DSSubmission
 
     public let method = APIMethod.post
-    public let path: String
+    public var path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String) {
+    public init(body: Body, courseId: String, assignmentId: String) {
         self.body = body
-        self.path = "/api/v1/courses/\(courseId)/assignments"
+        self.path = "/api/v1/courses/\(courseId)/assignments/\(assignmentId)/submissions"
     }
 }
 
-extension CreateDSAssignmentRequest {
-    public struct RequestDSAssignment: Encodable {
-        let name: String
-        let description: String?
-        let published: Bool
-        let submission_types: [String]
+extension CreateDSSubmissionRequest {
+    public struct RequestDSSubmission: Encodable {
+        let submission_type: String
+        let body: String
+        let user_id: String
 
-        public init(name: String = "Assignment Name", description: String? = nil, published: Bool = true, submission_types: [String] = ["online_text_entry"]) {
-            self.name = name
-            self.description = description
-            self.published = published
-            self.submission_types = submission_types
+        public init(submission_type: String, body: String, user_id: String) {
+            self.submission_type = submission_type
+            self.body = body
+            self.user_id = user_id
         }
     }
 
     public struct Body: Encodable {
-        let assignment: RequestDSAssignment
+        let submission: RequestDSSubmission
     }
 }

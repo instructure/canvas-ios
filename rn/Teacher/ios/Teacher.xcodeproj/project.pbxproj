@@ -93,6 +93,7 @@
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
 		C909F7C327B25AC500CB89DE /* DSDashboardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7C227B25AC500CB89DE /* DSDashboardTest.swift */; };
 		C909F7C527BA7E4A00CB89DE /* DSPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7C427BA7E4A00CB89DE /* DSPagesTests.swift */; };
+		C909F7D527C383D800CB89DE /* DSSubmissionsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */; };
 		C914BC0F26AFE0BC009A5607 /* QuizzesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */; };
 		C91B216B26CA4E28006EE156 /* MessagesE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */; };
 		C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */; };
@@ -537,6 +538,7 @@
 		B1FF02D1240435B0004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		C909F7C227B25AC500CB89DE /* DSDashboardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDashboardTest.swift; sourceTree = "<group>"; };
 		C909F7C427BA7E4A00CB89DE /* DSPagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSPagesTests.swift; sourceTree = "<group>"; };
+		C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmissionsE2ETests.swift; sourceTree = "<group>"; };
 		C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
 		C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesE2ETest.swift; sourceTree = "<group>"; };
 		C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsE2ETests.swift; sourceTree = "<group>"; };
@@ -882,6 +884,7 @@
 				C9A23D2427A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift */,
 				C909F7C227B25AC500CB89DE /* DSDashboardTest.swift */,
 				C909F7C427BA7E4A00CB89DE /* DSPagesTests.swift */,
+				C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -1770,6 +1773,7 @@
 				C9A3C02F268C4CBB00DAE8E1 /* GradesE2ETests.swift in Sources */,
 				C9A3C03C2694198A00DAE8E1 /* SubmissionsE2ETests.swift in Sources */,
 				C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */,
+				C909F7D527C383D800CB89DE /* DSSubmissionsE2ETests.swift in Sources */,
 				C927971326830DA700582AC5 /* DiscussionsE2ETests.swift in Sources */,
 				C935D42626DE073B00C940F7 /* NewQuizzesE2ETests.swift in Sources */,
 				C9A3C0412698391000DAE8E1 /* FilesE2ETests.swift in Sources */,
