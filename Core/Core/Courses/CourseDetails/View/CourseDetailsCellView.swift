@@ -31,9 +31,7 @@ public struct CourseDetailsCellView: View {
 
     public var body: some View {
         Button(action: {
-            if let url = viewModel.route {
-                    env.router.route(to: url, from: controller)
-                }
+            viewModel.selected(router: env.router, viewController: controller)
         }, label: {
             HStack(spacing: 13) {
                 Image(uiImage: viewModel.iconImage)

@@ -30,6 +30,15 @@ public class CourseDetailsCellViewModel: ObservableObject {
         self.courseColor = courseColor
     }
 
+    public func selected(router: Router, viewController: WeakViewController) {
+        // TODO
+        if tab.type == .external, let url = tab.url {
+            launchLTITool(url: url, viewController: viewController)
+        } else if let url = tab.htmlURL {
+            router.route(to: url, from: viewController)
+        }
+    }
+
     public var route: URL? {
         tab.htmlURL
     }
@@ -48,6 +57,17 @@ public class CourseDetailsCellViewModel: ObservableObject {
 
     public var isHome: Bool {
         tab.label == "Home"
+    }
+
+    private func launchLTITool(url: URL, viewController: WeakViewController) {
+        LTITools.launch(
+            context: nil,
+            id: nil,
+            url: url,
+            launchType: nil,
+            assignmentID: nil,
+            from: viewController.value
+        )
     }
 }
 

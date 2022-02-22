@@ -122,8 +122,11 @@ public class CourseDetailsViewModel: ObservableObject {
 
         let mobileSupportedTabs = [ "assignments", "quizzes", "discussions", "announcements", "people", "pages", "files", "modules", "syllabus" ]
         tabs = tabs.filter {
+            if (!isTeacher || $0.id.contains("external_tool")) {
+                return $0.hidden != true
+            }
             //AttendanceTab
-            //external tool
+            //if (tab.id === attendanceTabID && tab.hidden) return false
             return mobileSupportedTabs.contains($0.id)
         }.sorted(by: {$0.position < $1.position })
 
