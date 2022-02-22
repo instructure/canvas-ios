@@ -34,9 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters;
 + (void)logEvent:(NSString *)name;
++ (void)logScreenView:(NSString *)route;
 
 // Instance version needed for React Native
 - (void)logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters;
+- (void)logScreenView:(NSString *)route;
 
 @end
 
@@ -54,9 +56,18 @@ RCT_EXPORT_MODULE();
     [Analytics.shared logEvent: name parameters: parameters];
 }
 
++ (void)logScreenView:(NSString *)route {
+    [Analytics.shared logScreenView: route viewController: nil];
+}
+
 RCT_EXPORT_METHOD(logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters)
 {
     [Analytics.shared logEvent: name parameters: parameters];
+}
+
+RCT_EXPORT_METHOD(logScreenView:(NSString *)route)
+{
+    [Analytics.shared logScreenView: route viewController: nil];
 }
 
 @end
