@@ -51,6 +51,10 @@ public class Tab: NSManagedObject {
         set { visibilityRaw = newValue.rawValue }
     }
 
+    public var name: TabName {
+        TabName(rawValue: id) ?? .custom
+    }
+
     func save(_ item: APITab, in client: NSManagedObjectContext, context: Context) {
         id = item.id.value
         htmlURL = item.html_url

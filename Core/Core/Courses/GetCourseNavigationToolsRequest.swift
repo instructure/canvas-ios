@@ -42,4 +42,5 @@ public struct CourseNavigationTool: Codable {
     public let context_id: String?
     public let course_navigation: CourseNavigation?
     public let name: String?
+    public let url: URL?
 }

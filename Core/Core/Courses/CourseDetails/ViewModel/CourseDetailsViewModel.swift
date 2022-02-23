@@ -35,13 +35,14 @@ public class CourseDetailsViewModel: ObservableObject {
     @Environment(\.appEnvironment) private var env
 
     private let context: Context
+    private var attendanceToolID: String?
 
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.courseDidUpdate()
     }
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
-        self?.tabsDidUpdate()
+        self?.filterTabs()
     }
 
     private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
@@ -82,16 +83,17 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     public func viewDidAppear() {
+        requestApplications()
         settings.refresh()
         course.refresh()
         colors.refresh()
-        tabs.exhaust()
     }
 
     private func courseDidUpdate() {
         guard let course = course.first else { return }
         courseColor = course.color
         setupHome(course: course)
+        tabs.exhaust()
     }
 
     private func setupHome(course: Course) {
@@ -116,30 +118,56 @@ public class CourseDetailsViewModel: ObservableObject {
         }
     }
 
-    private func tabsDidUpdate() {
-        if tabs.requested, tabs.pending, tabs.hasNextPage { return }
+    private func filterTabs() {
+        guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, applicationsRequest == nil else { return }
         var tabs = tabs.all
 
-        let mobileSupportedTabs = [ "assignments", "quizzes", "discussions", "announcements", "people", "pages", "files", "modules", "syllabus" ]
         tabs = tabs.filter {
-            if (!isTeacher || $0.id.contains("external_tool")) {
+            if !isTeacher || $0.id.contains("external_tool")
+            {
                 return $0.hidden != true
             }
-            //AttendanceTab
-            //if (tab.id === attendanceTabID && tab.hidden) return false
-            return mobileSupportedTabs.contains($0.id)
+            // Only show tabs supported on mobile
+            return $0.name != .custom
         }.sorted(by: {$0.position < $1.position })
 
         if let index = tabs.firstIndex(where: { $0.id == "home" }) {
             let homeTab = tabs.remove(at: index)
             homeLabel = homeTab.label
         }
-        let cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, courseColor: courseColor) }
+        let cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID) }
         state = (cellViewModels.isEmpty ? .empty : .data(cellViewModels))
     }
 
     private var isTeacher: Bool {
         env.app == .teacher
+    }
+
+    // MARK: - Applications
+
+    private var applicationsRequest: APITask?
+
+    private func requestApplications() {
+        guard applicationsRequest == nil else { return }
+        let request = GetCourseNavigationToolsRequest(courseContextsCodes: [context.canvasContextID])
+        applicationsRequest = AppEnvironment.shared.api.makeRequest(request) { [weak self] tools, _, _ in
+            self?.handleApplicationsResponse(tools ?? [])
+        }
+    }
+
+    private func handleApplicationsResponse(_ tools: [CourseNavigationTool]) {
+        applicationsRequest = nil
+        let attendanceTool = tools.first {
+            let attendancePatterns = ["rollcall.instructure.com", "rollcall.beta.instructure.com"]
+            if let urlString = $0.url?.absoluteString {
+                return attendancePatterns.contains(where: urlString.contains)
+            }
+            return false
+        }
+        attendanceToolID =  attendanceTool?.id
+        performUIUpdate {
+            self.filterTabs()
+        }
     }
 }
 

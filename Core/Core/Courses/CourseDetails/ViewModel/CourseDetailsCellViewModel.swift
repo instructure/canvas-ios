@@ -23,19 +23,28 @@ extension Tab: TabViewable {}
 public class CourseDetailsCellViewModel: ObservableObject {
 
     private let tab: Tab
+    private let course: Course
+    private let attendanceToolID: String?
     public private(set) var courseColor: UIColor?
 
-    public init(tab: Tab, courseColor: UIColor?) {
+    public init(tab: Tab, course: Course, attendanceToolID: String?) {
         self.tab = tab
-        self.courseColor = courseColor
+        self.course = course
+        self.courseColor = course.color
+        self.attendanceToolID = attendanceToolID
     }
 
     public func selected(router: Router, viewController: WeakViewController) {
-        // TODO
-        if tab.type == .external, let url = tab.url {
-            launchLTITool(url: url, viewController: viewController)
-        } else if let url = tab.htmlURL {
-            router.route(to: url, from: viewController)
+        if let attendanceToolID = attendanceToolID, isAttendanceTool {
+            router.route(to: "/courses/\(course.id)/attendance/" + attendanceToolID, from: viewController)
+        } else {
+            if tab.type == .external, let url = tab.url {
+                launchLTITool(url: url, viewController: viewController)
+            } else {
+                if let url = tab.htmlURL {
+                    router.route(to: url, from: viewController)
+                }
+            }
         }
     }
 
@@ -44,7 +53,10 @@ public class CourseDetailsCellViewModel: ObservableObject {
     }
 
     public var iconImage: UIImage {
-        tab.icon
+        if isAttendanceTool {
+            return .attendance
+        }
+        return tab.icon
     }
 
     public var label: String {
@@ -57,6 +69,10 @@ public class CourseDetailsCellViewModel: ObservableObject {
 
     public var isHome: Bool {
         tab.label == "Home"
+    }
+
+    private var isAttendanceTool: Bool {
+        tab.id == "context_external_tool_" + (attendanceToolID ?? "")
     }
 
     private func launchLTITool(url: URL, viewController: WeakViewController) {
