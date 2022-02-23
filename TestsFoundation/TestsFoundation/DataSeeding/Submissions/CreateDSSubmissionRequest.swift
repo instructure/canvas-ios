@@ -28,7 +28,7 @@ public struct CreateDSSubmissionRequest: APIRequestable {
 
     public init(body: Body, courseId: String, assignmentId: String) {
         self.body = body
-        self.path = "/api/v1/courses/\(courseId)/assignments/\(assignmentId)/submissions"
+        self.path = "courses/\(courseId)/assignments/\(assignmentId)/submissions"
     }
 }
 
