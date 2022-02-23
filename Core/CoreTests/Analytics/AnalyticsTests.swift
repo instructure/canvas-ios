@@ -62,7 +62,7 @@ class AnalyticsTests: XCTestCase {
         AppEnvironment.shared.app = .student
         Analytics.shared.logScreenView(route: "/testRoute", viewController: ProfileSettingsViewController())
         XCTAssertEqual(loggedEvent, "screen_view")
-        XCTAssertEqual(loggedParameters as? [String : String], [
+        XCTAssertEqual(loggedParameters as? [String: String], [
             "application": "student",
             "screen_name": "/testRoute",
             "screen_class": "ProfileSettingsViewController",

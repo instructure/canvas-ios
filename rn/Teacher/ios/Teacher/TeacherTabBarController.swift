@@ -22,8 +22,11 @@ import Core
 import UserNotifications
 
 class TeacherTabBarController: UITabBarController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        delegate = self
 
         viewControllers = [coursesTab(), toDoTab(), inboxTab()]
         let paths = [ "/", "/to-do", "/conversations" ]
@@ -31,6 +34,8 @@ class TeacherTabBarController: UITabBarController {
             paths.firstIndex(of: $0)
         } ?? 0
         tabBar.useGlobalNavStyle()
+
+        reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
     }
 
     func coursesTab() -> UIViewController {
@@ -89,5 +94,22 @@ class TeacherTabBarController: UITabBarController {
         TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
 
         return inboxSplit
+    }
+
+    private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
+        let map = ["dashboard", "todo", "conversations"]
+        let event = map[tabIndex]
+        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
+}
+
+extension TeacherTabBarController: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let index = viewControllers?.firstIndex(of: viewController), selectedViewController != viewController {
+            reportScreenView(for: index, viewController: viewController)
+        }
+
+        return true
     }
 }

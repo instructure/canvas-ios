@@ -37,7 +37,7 @@ public class Analytics: NSObject {
         handler?.handleEvent("screen_view", parameters: [
             "application": Self.analyticsAppName,
             "screen_name": route,
-            "screen_class" : Self.analyticsClassName(for: viewController),
+            "screen_class": Self.analyticsClassName(for: viewController),
         ])
     }
 
