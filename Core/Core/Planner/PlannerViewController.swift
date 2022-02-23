@@ -104,7 +104,7 @@ public class PlannerViewController: UIViewController {
     }
 
     @objc func addNote() {
-        env.router.show(CreateTodoViewController.create(), from: self, options: .modal(embedInNav: true))
+        env.router.show(CreateTodoViewController.create(), from: self, options: .modal(embedInNav: true), analyticsRoute: "/calendar/new")
     }
 
     @objc func selectToday() {
@@ -160,7 +160,7 @@ extension PlannerViewController: CalendarViewControllerDelegate {
 
     func calendarWillFilter() {
         let filter = PlannerFilterViewController.create(studentID: studentID)
-        env.router.show(filter, from: self, options: .modal(embedInNav: true, addDoneButton: true))
+        env.router.show(filter, from: self, options: .modal(embedInNav: true, addDoneButton: true), analyticsRoute: "/calendar/filter")
     }
 
     func numberOfCalendars() -> Int? {

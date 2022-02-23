@@ -83,7 +83,8 @@ struct CourseCard: View {
             env.router.show(
                 CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
                 from: controller,
-                options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+                options: .modal(.formSheet, isDismissable: false, embedInNav: true),
+                analyticsRoute: "/dashboard/customize_course"
             )
         }, label: {
             Image.moreSolid.foregroundColor(.white)
