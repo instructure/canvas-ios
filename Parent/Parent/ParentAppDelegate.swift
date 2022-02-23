@@ -55,6 +55,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             userDidLogin(session: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .parent)
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
         window?.makeKeyAndVisible()
         return true
@@ -153,6 +154,7 @@ extension ParentAppDelegate: LoginDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
+            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 
