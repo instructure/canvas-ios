@@ -16,19 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+extension DataSeeder {
 
-public struct DSAssignment: Codable {
-    public let name: String
-    public let id: String
-    public let position: Int
-    public let submission_types: [SubmissionType]
-    public let points_possible: Int?
-    public let grading_type: String?
-    public let description: String?
-    // due_at accepts times in ISO 8601 format, e.g. 2014-10-21T18:48:00Z.
-    public let due_at: Date?
-    public let published: Bool?
-    public let allowed_attemps: Int?
-    public let anonymous_grading: Bool?
+    public func createSubmission(courseId: String, assignmentId: String, requestBody: CreateDSSubmissionRequest.RequestDSSubmission) -> DSSubmission {
+        let requestedBody = CreateDSSubmissionRequest.Body(submission: requestBody)
+        let request = CreateDSSubmissionRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId)
+        return try! makeRequest(request)
+    }
 }

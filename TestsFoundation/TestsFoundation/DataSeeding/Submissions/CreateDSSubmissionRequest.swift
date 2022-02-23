@@ -18,36 +18,34 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
-public struct CreateDSPageRequest: APIRequestable {
-    public typealias Response = DSPage
+//https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
+public struct CreateDSSubmissionRequest: APIRequestable {
+    public typealias Response = DSSubmission
 
     public let method = APIMethod.post
     public var path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String) {
+    public init(body: Body, courseId: String, assignmentId: String) {
         self.body = body
-        self.path = "courses/\(courseId)/pages"
+        self.path = "courses/\(courseId)/assignments/\(assignmentId)/submissions"
     }
 }
 
-extension CreateDSPageRequest {
-    public struct RequestDSPage: Encodable {
-        let title: String
-        let body: String?
-        let published: Bool
-        let front_page: Bool
+extension CreateDSSubmissionRequest {
+    public struct RequestDSSubmission: Encodable {
+        let submission_type: SubmissionType
+        let body: String
+        let user_id: String
 
-        public init(title: String = "Page Title", body: String? = nil, front_page: Bool = false, published: Bool = false) {
-            self.title = title
+        public init(submission_type: SubmissionType, body: String, user_id: String) {
+            self.submission_type = submission_type
             self.body = body
-            self.published = published
-            self.front_page = front_page
+            self.user_id = user_id
         }
     }
 
     public struct Body: Encodable {
-        let wiki_page: RequestDSPage
+        let submission: RequestDSSubmission
     }
 }
