@@ -50,12 +50,14 @@ class RouterTests: CoreTestCase {
         }
     }
     class MockAnalyticsHandler: AnalyticsHandler {
+        var loggedEventCount = 0
         var loggedEvent: String?
         var loggedParameters: [String: Any]?
 
         func handleEvent(_ name: String, parameters: [String: Any]?) {
             loggedEvent = name
             loggedParameters = parameters
+            loggedEventCount += 1
         }
     }
 
@@ -450,6 +452,7 @@ class RouterTests: CoreTestCase {
 
         router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
 
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
         XCTAssertEqual(analyticsHandler.loggedEvent, "screen_view")
         XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], [
             "application": "parent",
