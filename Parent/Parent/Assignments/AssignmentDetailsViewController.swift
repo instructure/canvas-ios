@@ -232,6 +232,6 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             subject: subject,
             hiddenMessage: hiddenMessage
         )
-        env.router.show(compose, from: self, options: .modal(embedInNav: true))
+        env.router.show(compose, from: self, options: .modal(embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 }

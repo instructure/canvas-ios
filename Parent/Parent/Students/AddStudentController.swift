@@ -47,7 +47,7 @@ class AddStudentController {
         ) { [weak self] in
             self?.useInput()
         }
-        env.router.show(picker, from: presenting, options: .modal())
+        env.router.show(picker, from: presenting, options: .modal(), analyticsRoute: "/profile/observees/new")
     }
 
     func useInput() {
@@ -63,7 +63,7 @@ class AddStudentController {
             self?.pair(with: code)
         }))
         guard let vc = presentingViewController else { return }
-        env.router.show(alert, from: vc, options: .modal())
+        env.router.show(alert, from: vc, options: .modal(), analyticsRoute: "/profile/observees/new/manualcode")
     }
 
     func pair(with code: String) {
@@ -85,7 +85,7 @@ class AddStudentController {
         guard let presenting = presentingViewController else { return }
         let scanner = ScannerViewController()
         scanner.delegate = self
-        self.env.router.show(scanner, from: presenting, options: .modal(.fullScreen))
+        self.env.router.show(scanner, from: presenting, options: .modal(.fullScreen), analyticsRoute: "/profile/observees/new/scanqr")
     }
 }
 

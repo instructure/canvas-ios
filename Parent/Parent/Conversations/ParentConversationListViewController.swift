@@ -104,7 +104,7 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
                 user.name
             )
         )
-        env.router.show(compose, from: self, options: .modal(embedInNav: true))
+        env.router.show(compose, from: self, options: .modal(embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 }
 
