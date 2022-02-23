@@ -18,6 +18,7 @@
 
 import Foundation
 import TestsFoundation
+import Core
 
 class DSSubmissionsE2ETests: E2ETestCase {
     func testSubmission() {
@@ -36,7 +37,7 @@ class DSSubmissionsE2ETests: E2ETestCase {
         logInDSUser(teacher)
 
         let submission = seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: "online_text_entry", body: "This is a submission body", user_id: student.id))
+            .init(submission_type: SubmissionType.online_text_entry, body: "This is a submission body", user_id: student.id))
 
         Dashboard.courseCard(id: course.id).waitToExist()
         Dashboard.courseCard(id: course.id).tap()

@@ -37,9 +37,9 @@ extension CreateDSAssignmentRequest {
         let name: String
         let description: String?
         let published: Bool
-        let submission_types: [String]
+        let submission_types: [SubmissionType]
 
-        public init(name: String = "Assignment Name", description: String? = nil, published: Bool = true, submission_types: [String] = ["online_text_entry"]) {
+        public init(name: String = "Assignment Name", description: String? = nil, published: Bool = true, submission_types: [SubmissionType] = [SubmissionType.online_text_entry]) {
             self.name = name
             self.description = description
             self.published = published

@@ -16,11 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
 public enum SubmissionsListPage: ElementWrapper {
 
     public static func cell(userID: String) -> Element {
-        return app.find(id: "SubmissionListCell.\(userID)")
+        app.find(id: "SubmissionListCell.\(userID)")
     }
 }

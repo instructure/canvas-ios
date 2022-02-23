@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 public struct DSSubmission: Codable {
     public let assignment_id: String
     public let id: String
@@ -23,7 +25,7 @@ public struct DSSubmission: Codable {
     public let body: String
     public let grade: String?
     public let score: Float?
-    public let submission_type: String
+    public let submission_type: SubmissionType
     public let late: Bool
     public let excused: Bool?
     public let missing: Bool

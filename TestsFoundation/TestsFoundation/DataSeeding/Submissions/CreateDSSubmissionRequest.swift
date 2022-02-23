@@ -34,11 +34,11 @@ public struct CreateDSSubmissionRequest: APIRequestable {
 
 extension CreateDSSubmissionRequest {
     public struct RequestDSSubmission: Encodable {
-        let submission_type: String
+        let submission_type: SubmissionType
         let body: String
         let user_id: String
 
-        public init(submission_type: String, body: String, user_id: String) {
+        public init(submission_type: SubmissionType, body: String, user_id: String) {
             self.submission_type = submission_type
             self.body = body
             self.user_id = user_id
