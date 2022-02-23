@@ -70,9 +70,16 @@ class AnalyticsTests: XCTestCase {
     }
 
     func testAnalyticsClassName() {
+        let courseListView = CoreHostingController(CourseListView())
+
         XCTAssertEqual(Analytics.analyticsClassName(for: nil), "unknown")
         XCTAssertEqual(Analytics.analyticsClassName(for: ProfileSettingsViewController()), "ProfileSettingsViewController")
-        XCTAssertEqual(Analytics.analyticsClassName(for: CoreHostingController(CourseListView())), "CourseListView")
+        XCTAssertEqual(Analytics.analyticsClassName(for: courseListView), "CourseListView")
+        XCTAssertEqual(Analytics.analyticsClassName(for: UINavigationController(rootViewController: courseListView)), "CourseListView")
+
+        let splitView = UISplitViewController()
+        splitView.viewControllers = [UINavigationController(rootViewController: courseListView)]
+        XCTAssertEqual(Analytics.analyticsClassName(for: splitView), "CourseListView")
     }
 
     func testAnalyticsAppName() {

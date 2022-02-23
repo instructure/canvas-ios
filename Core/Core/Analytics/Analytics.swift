@@ -62,7 +62,22 @@ public class Analytics: NSObject {
             return "unknown"
         }
 
-        var name = String(describing: type(of: viewController))
+        let splitViewContent: UIViewController = {
+            if let split = viewController as? UISplitViewController {
+                return split.viewControllers.first ?? split
+            } else {
+                return viewController
+            }
+        }()
+        let navViewContent: UIViewController = {
+            if let nav = splitViewContent as? UINavigationController {
+                return nav.topViewController ?? nav
+            } else {
+                return viewController
+            }
+        }()
+
+        var name = String(describing: type(of: navViewContent))
 
         // Extracts "Type" from a pattern of CoreHostingController<Type>
         if let genericsStart = name.firstIndex(of: "<") {
