@@ -206,7 +206,7 @@ export function mapStateToProps ({ inbox, entities }: AppState) {
       const course = entities.courses[id].course
 
       if (course == null || course.name == null) {
-        return
+        return acc
       }
 
       acc.push(course)
