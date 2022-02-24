@@ -30,29 +30,38 @@ public class K5DashboardViewModel: ObservableObject {
         importantDates: K5ImportantDatesViewModel()
     )
 
-    private var topBarChangeListener: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     init() {
         var topBarModelItems = [
-            TopBarItemViewModel(icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
-            TopBarItemViewModel(icon: .k5schedule, label: Text("Schedule", bundle: .core)),
-            TopBarItemViewModel(icon: .k5grades, label: Text("Grades", bundle: .core)),
-            TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core)),
+            TopBarItemViewModel(id: "", icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
+            TopBarItemViewModel(id: "/schedule", icon: .k5schedule, label: Text("Schedule", bundle: .core)),
+            TopBarItemViewModel(id: "/grades", icon: .k5grades, label: Text("Grades", bundle: .core)),
+            TopBarItemViewModel(id: "/resources", icon: .k5resources, label: Text("Resources", bundle: .core)),
         ]
 
         if UIDevice.current.userInterfaceIdiom != .pad {
-            topBarModelItems.append(TopBarItemViewModel(icon: .k5importantDates, label: Text("Important Dates", bundle: .core)))
+            topBarModelItems.append(TopBarItemViewModel(id: "/important_dates", icon: .k5importantDates, label: Text("Important Dates", bundle: .core)))
         }
 
         topBarViewModel = TopBarViewModel(items: topBarModelItems)
+        setupScreenViewLogging()
 
         // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
-        topBarChangeListener = topBarViewModel.objectWillChange.sink { [weak self] _ in
-            self?.objectWillChange.send()
-        }
+        topBarViewModel
+            .objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &subscriptions)
     }
 
     func profileButtonPressed(router: Router, viewController: WeakViewController) {
         router.route(to: "/profile", from: viewController, options: .modal())
+    }
+
+    private func setupScreenViewLogging() {
+        topBarViewModel.selectedItemIndexPublisher
+            .removeDuplicates()
+            .compactMap { [weak self] index in self?.topBarViewModel.items[index].id }
+            .sink { Analytics.shared.logScreenView(route: "/homeroom\($0)") }
+            .store(in: &subscriptions)
     }
 }

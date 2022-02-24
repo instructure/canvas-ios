@@ -24,7 +24,8 @@ public class TopBarItemViewModel: ObservableObject {
     public var id: String?
     @Published public var isSelected = false
 
-    public init(icon: Image, label: Text) {
+    public init(id: String? = nil, icon: Image, label: Text) {
+        self.id = id
         self.icon = icon
         self.label = label
     }
