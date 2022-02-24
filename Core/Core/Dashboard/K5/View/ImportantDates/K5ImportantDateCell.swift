@@ -52,7 +52,12 @@ struct K5ImportantDateCell: View {
     @ViewBuilder
     var subjectView: some View {
         HStack {
-            Text(item.subject.uppercased()).font(.regular10).foregroundColor(item.color).padding(.top, 7)
+            Text(item.subject.uppercased())
+                .font(.regular10)
+                .foregroundColor(item.color)
+                .padding(.top, 7)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
             Spacer()
         }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 0))
     }

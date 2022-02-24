@@ -74,17 +74,18 @@ public class K5ImportantDatesViewModel: ObservableObject {
     }
 
     func addImportantDate(from event: CalendarEvent) {
-        guard let course = courses.filter({ $0.id == event.context.id }).first else { return }
+        guard let startDate = event.startAt, startDate >= Clock.now.startOfDay(), let course = courses.filter({ $0.id == event.context.id }).first else { return }
         let courseColor = Color(course.color)
-        if let existingDate = importantDates.first(where: { $0.date?.dateOnlyString == event.startAt?.dateOnlyString }) {
+        if let existingDate = importantDates.first(where: { $0.date.dateOnlyString == startDate.dateOnlyString }) {
             existingDate.addEvent(event, color: courseColor)
         } else {
-            importantDates.append(K5ImportantDate(with: event, color: courseColor))
+            guard let importantDate = K5ImportantDate(with: event, color: courseColor) else { return }
+            importantDates.append(importantDate)
         }
     }
 
     private func finishRefresh() {
-        importantDates = importantDates.sorted(by: {$0.date! < $1.date!})
+        importantDates = importantDates.sorted(by: { $0.date < $1.date })
         forceRefresh = false
         performUIUpdate {
             self.refreshCompletion?()
