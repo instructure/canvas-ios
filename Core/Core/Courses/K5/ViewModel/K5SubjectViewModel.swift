@@ -68,8 +68,7 @@ public class K5SubjectViewModel: ObservableObject {
             tabItems.append(TopBarItemViewModel(tab: tab, iconImage: tabIconImage(for: tab.id)))
         }
         if !tabs.filter({$0.id.contains("context_external_tool_") && !($0.hidden ?? false) }).isEmpty {
-            let resurceTabItem = TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core))
-            resurceTabItem.id = "resources"
+            let resurceTabItem = TopBarItemViewModel(id: "resources", icon: .k5resources, label: Text("Resources", bundle: .core))
             tabItems.append(resurceTabItem)
         }
         topBarViewModel = TopBarViewModel(items: tabItems)
@@ -80,6 +79,9 @@ public class K5SubjectViewModel: ObservableObject {
         if let selectedTabId = selectedTabId, let selectedTabIndex = tabItems.firstIndex(where: { $0.id == selectedTabId }) {
             topBarViewModel?.selectedItemIndex = selectedTabIndex
         }
+
+        // After setting up the default tab so we won't report home view all the time
+        setupScreenViewLogging()
     }
 
     private func tabChanged() {
@@ -106,6 +108,15 @@ public class K5SubjectViewModel: ObservableObject {
         urlComposition?.queryItems = [URLQueryItem(name: "embed", value: "true")]
         urlComposition?.fragment = itemId
         return urlComposition?.url
+    }
+
+    private func setupScreenViewLogging() {
+        guard let topBarViewModel = topBarViewModel else { return }
+        topBarViewModel.selectedItemIndexPublisher
+            .removeDuplicates()
+            .compactMap { topBarViewModel.items[$0].id }
+            .sink { Analytics.shared.logScreenView(route: "/homeroom/subject/\($0)") }
+            .store(in: &subscriptions)
     }
 }
 
