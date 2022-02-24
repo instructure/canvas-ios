@@ -24,6 +24,8 @@ class K5SImportantDatesViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
 
+        Clock.mockNow(Date(fromISOString: "2022-01-03T10:00:00Z")!)
+
         let enrollments = [APIEnrollment.make(user_id: "1")]
 
         let apiCourses = [
@@ -41,6 +43,15 @@ class K5SImportantDatesViewModelTests: CoreTestCase {
         ]
 
         let assignments = [
+            APICalendarEvent.make(
+                id: "0",
+                html_url: URL(string: "https://canvas.instructure.com/assignments/12")!,
+                title: "Important past assignment title",
+                start_at: Date(fromISOString: "2022-01-02T08:00:00Z"),
+                type: .assignment,
+                context_code: "course_1",
+                context_name: "Math"
+            ),
             APICalendarEvent.make(
                 id: "1",
                 html_url: URL(string: "https://canvas.instructure.com/assignments/1")!,
