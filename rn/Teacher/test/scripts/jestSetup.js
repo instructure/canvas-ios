@@ -184,6 +184,7 @@ NativeModules.AppStoreReview = {
 
 NativeModules.CanvasAnalytics = {
   logEvent: jest.fn(),
+  logScreenView: jest.fn(),
 }
 
 NativeModules.LTITools = {
