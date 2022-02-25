@@ -88,7 +88,7 @@ struct SideMenuBottomSection: View {
                 let stopText = Text("Stop Act as User", bundle: .core)
                 let logoutTitleText = isFakeStudent ? leaveText : stopText
                 SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: logoutTitleText, badgeValue: 0).onTapGesture {
-                    handleLogout()
+                    stopActing()
                 }
             } else {
                 SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core), badgeValue: 0).onTapGesture {
@@ -128,6 +128,12 @@ struct SideMenuBottomSection: View {
                     logoutBlock()
                 }
             }
+        }
+    }
+
+    func stopActing() {
+        if let loginDelegate = env.loginDelegate, let session = AppEnvironment.shared.currentSession {
+            loginDelegate.stopActing(as: session)
         }
     }
 
