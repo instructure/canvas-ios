@@ -78,7 +78,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .borderMedium
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
             self.tableView.contentOffset.y = self.searchBar.frame.height
         }
 

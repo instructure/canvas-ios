@@ -39,6 +39,7 @@ public struct GroupContextCardView: View {
         if model.shouldShowMessageButton {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 Image.emailLine
+                    .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
             })
             .accessibility(label: Text("Send message", bundle: .core))
             .identifier("ContextCard.emailContact")
