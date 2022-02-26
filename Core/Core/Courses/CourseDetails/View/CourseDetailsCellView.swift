@@ -41,7 +41,15 @@ public struct CourseDetailsCellView: View {
                     .frame(maxHeight: .infinity, alignment: .top)
                 Text(viewModel.label)
                 Spacer()
-                InstDisclosureIndicator()
+                if let specialIndicator = viewModel.specialIndicatorIcon {
+                    Image(uiImage: specialIndicator)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.ash)
+                } else {
+                    InstDisclosureIndicator()
+                }
             }
             .padding(.vertical, 13)
             .padding(.horizontal, 16)
@@ -49,8 +57,6 @@ public struct CourseDetailsCellView: View {
             .contentShape(Rectangle())
         })
         .buttonStyle(PlainButtonStyle())
-        // TODO
-        .accessibility(identifier: "assignment-list.assignment-list-row.cell-\(viewModel.id)")
     }
 }
 

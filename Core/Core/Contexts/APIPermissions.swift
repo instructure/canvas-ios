@@ -86,6 +86,7 @@ public struct APIPermissions: Codable, Equatable {
     let select_final_grade: Bool?
     let send_messages: Bool?
     let send_messages_all: Bool?
+    let use_student_view: Bool?
     let view_all_grades: Bool?
     let view_audit_trail: Bool?
     let view_group_pages: Bool?
@@ -159,6 +160,7 @@ extension APIPermissions {
         select_final_grade: Bool? = nil,
         send_messages: Bool? = nil,
         send_messages_all: Bool? = nil,
+        use_student_view: Bool? = nil,
         view_all_grades: Bool? = nil,
         view_audit_trail: Bool? = nil,
         view_group_pages: Bool? = nil,
@@ -229,6 +231,7 @@ extension APIPermissions {
             select_final_grade: select_final_grade,
             send_messages: send_messages,
             send_messages_all: send_messages_all,
+            use_student_view: use_student_view,
             view_all_grades: view_all_grades,
             view_audit_trail: view_audit_trail,
             view_group_pages: view_group_pages,

@@ -42,13 +42,16 @@ public class CourseDetailsViewModel: ObservableObject {
         self?.courseDidUpdate()
     }
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
-        self?.filterTabs()
+        self?.updateTabs()
     }
 
     private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
 
+    lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [.useStudentView])) { [weak self] in
+        self?.updateTabs()
+    }
     public var showHome: Bool {
         !isTeacher
     }
@@ -84,6 +87,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     public func viewDidAppear() {
         requestApplications()
+        permissions.refresh()
         settings.refresh()
         course.refresh()
         colors.refresh()
@@ -118,10 +122,9 @@ public class CourseDetailsViewModel: ObservableObject {
         }
     }
 
-    private func filterTabs() {
-        guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, applicationsRequest == nil else { return }
+    private func updateTabs() {
+        guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, permissions.requested, !permissions.pending, applicationsRequest == nil else { return }
         var tabs = tabs.all
-
         tabs = tabs.filter {
             if !isTeacher || $0.id.contains("external_tool")
             {
@@ -135,7 +138,11 @@ public class CourseDetailsViewModel: ObservableObject {
             let homeTab = tabs.remove(at: index)
             homeLabel = homeTab.label
         }
-        let cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID) }
+        var cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID) }
+        if permissions.first?.useStudentView == true {
+            let studentViewCellModel = CourseDetailsCellViewModel(course: course)
+            cellViewModels.append(studentViewCellModel)
+        }
         state = (cellViewModels.isEmpty ? .empty : .data(cellViewModels))
     }
 
@@ -166,7 +173,7 @@ public class CourseDetailsViewModel: ObservableObject {
         }
         attendanceToolID =  attendanceTool?.id
         performUIUpdate {
-            self.filterTabs()
+            self.updateTabs()
         }
     }
 }

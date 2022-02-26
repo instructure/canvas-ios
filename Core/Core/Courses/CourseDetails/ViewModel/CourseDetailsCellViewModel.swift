@@ -22,57 +22,62 @@ extension Tab: TabViewable {}
 
 public class CourseDetailsCellViewModel: ObservableObject {
 
-    private let tab: Tab
+    private let studentViewID = "student_view"
+    private let tab: Tab?
+    private let tabID: String
+    private let type: TabType
     private let course: Course
     private let attendanceToolID: String?
+    private let isAttendanceTool: Bool
     public private(set) var courseColor: UIColor?
+    public private(set) var iconImage: UIImage
+    public private(set) var label: String
+    public private(set) var subtitle: String?
+    public private(set) var specialIndicatorIcon: UIImage?
 
     public init(tab: Tab, course: Course, attendanceToolID: String?) {
         self.tab = tab
+        self.tabID = tab.id
+        self.type = tab.type
         self.course = course
-        self.courseColor = course.color
+        self.isAttendanceTool = tab.id == "context_external_tool_" + (attendanceToolID ?? "")
         self.attendanceToolID = attendanceToolID
+        self.courseColor = course.color
+        self.iconImage = isAttendanceTool ? .attendance : tab.icon
+        self.label = tab.label
+        self.subtitle = nil
+        self.specialIndicatorIcon = nil
+    }
+
+    //init for studentView
+    public init(course: Course) {
+        self.tab = nil
+        self.tabID = studentViewID
+        self.type = .internal
+        self.course = course
+        self.isAttendanceTool = false
+        self.attendanceToolID = nil
+        self.courseColor = course.color
+        self.iconImage = .userLine
+        self.label = NSLocalizedString("Student View", comment: "")
+        self.subtitle = NSLocalizedString("Opens in Canvas Student", comment: "")
+        self.specialIndicatorIcon = .externalLinkLine
     }
 
     public func selected(router: Router, viewController: WeakViewController) {
-        if let attendanceToolID = attendanceToolID, isAttendanceTool {
+        if isAttendanceTool, let attendanceToolID = attendanceToolID {
             router.route(to: "/courses/\(course.id)/attendance/" + attendanceToolID, from: viewController)
+        } else if tabID == studentViewID {
+            launchStudentView()
         } else {
-            if tab.type == .external, let url = tab.url {
+            if type == .external, let url = tab?.url {
                 launchLTITool(url: url, viewController: viewController)
             } else {
-                if let url = tab.htmlURL {
+                if let url = tab?.htmlURL {
                     router.route(to: url, from: viewController)
                 }
             }
         }
-    }
-
-    public var route: URL? {
-        tab.htmlURL
-    }
-
-    public var iconImage: UIImage {
-        if isAttendanceTool {
-            return .attendance
-        }
-        return tab.icon
-    }
-
-    public var label: String {
-        tab.label
-    }
-
-    public var id: String {
-        tab.id
-    }
-
-    public var isHome: Bool {
-        tab.label == "Home"
-    }
-
-    private var isAttendanceTool: Bool {
-        tab.id == "context_external_tool_" + (attendanceToolID ?? "")
     }
 
     private func launchLTITool(url: URL, viewController: WeakViewController) {
@@ -85,11 +90,15 @@ public class CourseDetailsCellViewModel: ObservableObject {
             from: viewController.value
         )
     }
+
+    private func launchStudentView() {
+
+    }
 }
 
-extension CourseDetailsCellViewModel: Equatable {
+extension CourseDetailsCellViewModel: Equatable, Identifiable {
 
     public static func == (lhs: CourseDetailsCellViewModel, rhs: CourseDetailsCellViewModel) -> Bool {
-        lhs.tab.id == rhs.tab.id
+        lhs.tabID == rhs.tabID
     }
 }

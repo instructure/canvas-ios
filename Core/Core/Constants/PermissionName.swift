@@ -87,6 +87,7 @@ public enum PermissionName: String {
     case selectFinalGrade = "select_final_grade"
     case sendMessages = "send_messages"
     case sendMessagesAll = "send_messages_all"
+    case useStudentView = "use_student_view"
     case viewAllGrades = "view_all_grades"
     case viewAuditTrail = "view_audit_trail"
     case viewGroupPages = "view_group_pages"
