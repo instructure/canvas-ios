@@ -36,6 +36,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     private let context: Context
     private var attendanceToolID: String?
+    private var applicationsRequest: APITask?
 
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
@@ -126,8 +127,7 @@ public class CourseDetailsViewModel: ObservableObject {
         guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, permissions.requested, !permissions.pending, applicationsRequest == nil else { return }
         var tabs = tabs.all
         tabs = tabs.filter {
-            if !isTeacher || $0.id.contains("external_tool")
-            {
+            if !isTeacher || $0.id.contains("external_tool") {
                 return $0.hidden != true
             }
             // Only show tabs supported on mobile
@@ -151,8 +151,6 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     // MARK: - Applications
-
-    private var applicationsRequest: APITask?
 
     private func requestApplications() {
         guard applicationsRequest == nil else { return }

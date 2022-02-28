@@ -29,11 +29,14 @@ public class CourseDetailsCellViewModel: ObservableObject {
     private let course: Course
     private let attendanceToolID: String?
     private let isAttendanceTool: Bool
+    private var studentViewStudentRequest: APITask?
     public private(set) var courseColor: UIColor?
     public private(set) var iconImage: UIImage
     public private(set) var label: String
     public private(set) var subtitle: String?
     public private(set) var specialIndicatorIcon: UIImage?
+
+    @Environment(\.appEnvironment) private var env
 
     public init(tab: Tab, course: Course, attendanceToolID: String?) {
         self.tab = tab
@@ -92,7 +95,25 @@ public class CourseDetailsCellViewModel: ObservableObject {
     }
 
     private func launchStudentView() {
+        guard studentViewStudentRequest == nil else { return }
+        let request = GetStudentViewStudent(courseID: course.id)
+        studentViewStudentRequest = AppEnvironment.shared.api.makeRequest(request) { [weak self] user, _, _ in
+            self?.handleStudentViewStudentResponse(user)
+        }
+    }
 
+    private func handleStudentViewStudentResponse(_ user: APIUser?) {
+        studentViewStudentRequest = nil
+        guard let user = user else {
+            // TODO Show error
+            return
+        }
+        let studentID = user.id.rawValue
+        performUIUpdate { [weak self] in
+            if let loginDelegate = self?.env.loginDelegate {
+                loginDelegate.actAsStudentViewStudent(studentViewStudentID: studentID)
+            }
+        }
     }
 }
 
