@@ -37,6 +37,7 @@ public class CourseDetailsViewModel: ObservableObject {
     private let context: Context
     private var attendanceToolID: String?
     private var applicationsRequest: APITask?
+    private let mobileSupportedTabs: [TabName] = [.assignments, .quizzes, .discussions, .announcements, .people, .pages, .files, .modules, .syllabus]
 
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
@@ -131,7 +132,7 @@ public class CourseDetailsViewModel: ObservableObject {
                 return $0.hidden != true
             }
             // Only show tabs supported on mobile
-            return $0.name != .custom
+            return mobileSupportedTabs.contains($0.name)
         }.sorted(by: {$0.position < $1.position })
 
         if let index = tabs.firstIndex(where: { $0.id == "home" }) {

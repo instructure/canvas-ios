@@ -70,15 +70,24 @@ public class CourseDetailsCellViewModel: ObservableObject {
     public func selected(router: Router, viewController: WeakViewController) {
         if isAttendanceTool, let attendanceToolID = attendanceToolID {
             router.route(to: "/courses/\(course.id)/attendance/" + attendanceToolID, from: viewController)
+        } else if type == .external, let url = tab?.url {
+            launchLTITool(url: url, viewController: viewController)
         } else if tabID == studentViewID {
             launchStudentView()
         } else {
-            if type == .external, let url = tab?.url {
-                launchLTITool(url: url, viewController: viewController)
-            } else {
-                if let url = tab?.htmlURL {
-                    router.route(to: url, from: viewController)
-                }
+            var route: URL?
+            switch tab?.name {
+            case .pages:
+                route = URL(string: "/courses/\(course.id)/pages")
+            case .collaborations, .conferences, .outcomes:
+                route = tab?.fullURL
+            case .syllabus:
+                route = URL(string: "/courses/\(course.id)/syllabus")
+            default:
+                route = tab?.htmlURL
+            }
+            if let url = route {
+                router.route(to: url, from: viewController)
             }
         }
     }

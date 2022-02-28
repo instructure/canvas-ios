@@ -29,5 +29,8 @@ public enum TabName: String, Codable {
     case files
     case modules
     case syllabus
+    case collaborations
+    case conferences
+    case outcomes
     case custom
 }

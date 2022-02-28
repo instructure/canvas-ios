@@ -39,7 +39,12 @@ public struct CourseDetailsCellView: View {
                     .foregroundColor(Color(viewModel.courseColor ?? .ash))
                     .padding(.top, 2)
                     .frame(maxHeight: .infinity, alignment: .top)
-                Text(viewModel.label)
+                VStack(alignment: .leading) {
+                    Text(viewModel.label)
+                    if let subTitle = viewModel.subtitle {
+                        Text(subTitle)
+                    }
+                }
                 Spacer()
                 if let specialIndicator = viewModel.specialIndicatorIcon {
                     Image(uiImage: specialIndicator)
