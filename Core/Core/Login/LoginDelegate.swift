@@ -66,6 +66,6 @@ public extension LoginDelegate {
             userDidLogout(session: session)
         }
     }
-    
+
     func actAsStudentViewStudent(studentViewStudentID: String) {}
 }

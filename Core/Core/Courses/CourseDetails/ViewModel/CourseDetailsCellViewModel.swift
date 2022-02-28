@@ -52,8 +52,12 @@ public class CourseDetailsCellViewModel: ObservableObject {
         self.specialIndicatorIcon = nil
     }
 
-    //init for studentView
-    public init(course: Course) {
+    public static func studentView(course: Course) -> CourseDetailsCellViewModel {
+        return CourseDetailsCellViewModel(course: course)
+    }
+
+    // Init for studentView
+    private init(course: Course) {
         self.tab = nil
         self.tabID = studentViewID
         self.type = .internal

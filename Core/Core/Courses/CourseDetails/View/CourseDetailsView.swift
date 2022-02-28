@@ -103,7 +103,7 @@ public struct CourseDetailsView: View {
     }
 
     private func headerImage(width: CGFloat) -> some View {
-        let height:CGFloat = 235
+        let height: CGFloat = 235
         return ZStack {
             Color(viewModel.courseColor ?? .ash).frame(width: width, height: height)
             if let url = viewModel.imageURL {

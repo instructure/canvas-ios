@@ -141,7 +141,7 @@ public class CourseDetailsViewModel: ObservableObject {
         }
         var cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID) }
         if permissions.first?.useStudentView == true {
-            let studentViewCellModel = CourseDetailsCellViewModel(course: course)
+            let studentViewCellModel = CourseDetailsCellViewModel.studentView(course: course)
             cellViewModels.append(studentViewCellModel)
         }
         state = (cellViewModels.isEmpty ? .empty : .data(cellViewModels))
