@@ -20,8 +20,36 @@ import SwiftUI
 
 public struct GradesPanda: PandaScene {
     public var name: String { "grades" }
-    public var offset: (background: CGSize, foreground: CGSize) {
-        (background: CGSize(width: 0, height: -50),
-         foreground: CGSize(width: -25, height: 50))
+    public var offset: (background: CGSize, foreground: CGSize) {(
+        background: CGSize(width: 0, height: -50),
+        foreground: CGSize(width: -25, height: 50)
+    )}
+    public var background: AnyView { AnyView(Board(imageName: backgroundFileName)) }
+}
+
+private struct Board: View {
+    @State private var rotation: Double = 0
+    private let image: Image
+    private let feedback = UIImpactFeedbackGenerator(style: .heavy)
+
+    public init(imageName: String) {
+        self.image = Image(imageName, bundle: .core)
+    }
+
+    @ViewBuilder
+    public var body: some View {
+        image
+            .rotationEffect(Angle(degrees: rotation))
+            .onTapGesture {
+                feedback.impactOccurred()
+                let range: ClosedRange<Double> = (rotation > 0 ? -10...0 : 0...10)
+                rotation = Double.random(in: range)
+            }
+    }
+}
+
+struct Board_Previews: PreviewProvider {
+    static var previews: some View {
+        Board(imageName: GradesPanda().backgroundFileName)
     }
 }

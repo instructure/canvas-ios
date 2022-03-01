@@ -29,7 +29,7 @@ public struct InteractivePanda: View {
     public var body: some View {
         MotionScene { detector in
             let offset = scene.offset
-            Image(scene.backgroundFileName, bundle: .core)
+            scene.background
                 .motion(detector, horizontalMultiplier: -40, verticalMultiplier: -10)
                 .offset(offset.background)
             scene.foreground
