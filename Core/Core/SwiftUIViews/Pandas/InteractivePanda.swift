@@ -32,13 +32,8 @@ public enum PandaScene: String, CaseIterable {
     }
 }
 
-
 public struct InteractivePanda: View {
-    @State private var scale = 1.0
-    @State private var dragOffset: CGSize = .zero
-    @State private var shouldTriggerDragStartFeedback = true
     private let scene: PandaScene
-    private let feedback = UIImpactFeedbackGenerator(style: .light)
 
     public init(scene: PandaScene) {
         self.scene = scene
@@ -51,52 +46,10 @@ public struct InteractivePanda: View {
             Image(scene.backgroundFileName, bundle: .core)
                 .motion(detector, horizontalMultiplier: -40, verticalMultiplier: -10)
                 .offset(offset.background)
-            Image(scene.foregroundFileName, bundle: .core)
+            GenericForeground(scene: scene)
                 .motion(detector, horizontalMultiplier: 40, verticalMultiplier: 10)
-                .scaleEffect(x: scale, y: scale)
-                .gesture(pushGesture.simultaneously(with: dragGesture))
                 .offset(offset.foreground)
-                .offset(dragOffset)
         }
-    }
-
-    private var pushGesture: some Gesture {
-        DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onChanged { _ in
-                withAnimation {
-                    scale = 0.90
-                }
-            }
-            .onEnded { _ in
-                feedback.impactOccurred()
-                let animation = Animation.interpolatingSpring(stiffness: 1000, damping: 10, initialVelocity: 1)
-                withAnimation(animation) {
-                    scale = 1.0
-                }
-            }
-    }
-
-    private var dragGesture: some Gesture {
-        DragGesture(minimumDistance: 30, coordinateSpace: .global)
-            .onChanged { value in
-                var t = value.translation
-                t.width *= 0.5
-                t.height *= 0.5
-                dragOffset = t
-
-                if shouldTriggerDragStartFeedback {
-                    shouldTriggerDragStartFeedback = false
-                    feedback.impactOccurred()
-                }
-            }
-            .onEnded { _ in
-                shouldTriggerDragStartFeedback = true
-                feedback.impactOccurred()
-                let animation = Animation.interpolatingSpring(stiffness: 1000, damping: 10, initialVelocity: 1)
-                withAnimation(animation) {
-                    dragOffset = .zero
-                }
-            }
     }
 }
 
