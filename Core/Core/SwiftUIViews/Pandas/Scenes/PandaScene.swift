@@ -18,9 +18,17 @@
 
 import SwiftUI
 
-public struct PandaBrowser: View {
+public protocol PandaScene {
+    var name: String { get }
+    /** The offset of the background and foreground views from the center of the view. */
+    var offset: (background: CGSize, foreground: CGSize) { get }
+    var background: AnyView { get }
+    var foreground: AnyView { get }
+}
 
-    public var body: some View {
-        InteractivePanda(scene: GradesPanda())
-    }
+extension PandaScene {
+    public var backgroundFileName: String { "panda-\(name)-background" }
+    public var foregroundFileName: String { "panda-\(name)-foreground" }
+    public var foreground: AnyView { AnyView(GenericForeground(scene: self)) }
+    public var background: AnyView { AnyView(GenericBackground(scene: self)) }
 }

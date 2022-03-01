@@ -18,20 +18,6 @@
 
 import SwiftUI
 
-public enum PandaScene: String, CaseIterable {
-    case grades
-
-    public var backgroundFileName: String { "panda-\(rawValue)-background" }
-    public var foregroundFileName: String { "panda-\(rawValue)-foreground" }
-    public var offset: (background: CGSize, foreground: CGSize) {
-        switch(self) {
-        case .grades:
-            return (background: CGSize(width: 0, height: -50),
-                    foreground: CGSize(width: -25, height: 50))
-        }
-    }
-}
-
 public struct InteractivePanda: View {
     private let scene: PandaScene
 
@@ -46,7 +32,7 @@ public struct InteractivePanda: View {
             Image(scene.backgroundFileName, bundle: .core)
                 .motion(detector, horizontalMultiplier: -40, verticalMultiplier: -10)
                 .offset(offset.background)
-            GenericForeground(scene: scene)
+            scene.foreground
                 .motion(detector, horizontalMultiplier: 40, verticalMultiplier: 10)
                 .offset(offset.foreground)
         }
@@ -55,6 +41,6 @@ public struct InteractivePanda: View {
 
 struct InteractivePanda_Previews: PreviewProvider {
     static var previews: some View {
-        InteractivePanda(scene: .grades)
+        InteractivePanda(scene: GradesPanda())
     }
 }

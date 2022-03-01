@@ -18,9 +18,15 @@
 
 import SwiftUI
 
-public struct PandaBrowser: View {
+struct GenericBackground: View {
+    private let fileName: String
 
+    public init(scene: PandaScene) {
+        self.fileName = scene.backgroundFileName
+    }
+
+    @ViewBuilder
     public var body: some View {
-        InteractivePanda(scene: GradesPanda())
+        Image(fileName, bundle: .core)
     }
 }

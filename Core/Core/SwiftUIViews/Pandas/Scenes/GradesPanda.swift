@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct PandaBrowser: View {
-
-    public var body: some View {
-        InteractivePanda(scene: GradesPanda())
+public struct GradesPanda: PandaScene {
+    public var name: String { "grades" }
+    public var offset: (background: CGSize, foreground: CGSize) {
+        (background: CGSize(width: 0, height: -50),
+         foreground: CGSize(width: -25, height: 50))
     }
 }

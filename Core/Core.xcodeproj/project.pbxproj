@@ -937,7 +937,10 @@
 		CFC2C281273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C280273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift */; };
 		CFC2C28327358796006CA3E0 /* AttachmentSubmissionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */; };
 		CFC2C2852735961E006CA3E0 /* AttachmentCopyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C2842735961E006CA3E0 /* AttachmentCopyServiceTests.swift */; };
-		CFCB0F5E27CE712E008DDEA4 /* GenericBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F5D27CE712E008DDEA4 /* GenericBackground.swift */; };
+		CFCB0F5E27CE712E008DDEA4 /* GenericForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F5D27CE712E008DDEA4 /* GenericForeground.swift */; };
+		CFCB0F6127CE7B21008DDEA4 /* GradesPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */; };
+		CFCB0F6327CE7B58008DDEA4 /* PandaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */; };
+		CFCB0F6627CE7E57008DDEA4 /* GenericBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */; };
 		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
 		CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */; };
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
@@ -2225,7 +2228,10 @@
 		CFC2C280273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentExtensionViewModelTests.swift; sourceTree = "<group>"; };
 		CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionServiceTests.swift; sourceTree = "<group>"; };
 		CFC2C2842735961E006CA3E0 /* AttachmentCopyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCopyServiceTests.swift; sourceTree = "<group>"; };
-		CFCB0F5D27CE712E008DDEA4 /* GenericBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericBackground.swift; sourceTree = "<group>"; };
+		CFCB0F5D27CE712E008DDEA4 /* GenericForeground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericForeground.swift; sourceTree = "<group>"; };
+		CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesPanda.swift; sourceTree = "<group>"; };
+		CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaScene.swift; sourceTree = "<group>"; };
+		CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericBackground.swift; sourceTree = "<group>"; };
 		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
@@ -4288,9 +4294,9 @@
 		CF43DE8027CCD6A800015B6F /* Pandas */ = {
 			isa = PBXGroup;
 			children = (
+				CFCB0F5F27CE7B0E008DDEA4 /* Scenes */,
 				CF43DE8827CD036D00015B6F /* InteractivePanda.swift */,
 				CF43DE8A27CD0B6500015B6F /* PandaBrowser.swift */,
-				CFCB0F5D27CE712E008DDEA4 /* GenericBackground.swift */,
 			);
 			path = Pandas;
 			sourceTree = "<group>";
@@ -4871,6 +4877,25 @@
 				CFC2C280273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CFCB0F5F27CE7B0E008DDEA4 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CFCB0F6427CE7DF6008DDEA4 /* SharedLayers */,
+				CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */,
+				CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		CFCB0F6427CE7DF6008DDEA4 /* SharedLayers */ = {
+			isa = PBXGroup;
+			children = (
+				CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */,
+				CFCB0F5D27CE712E008DDEA4 /* GenericForeground.swift */,
+			);
+			path = SharedLayers;
 			sourceTree = "<group>";
 		};
 		CFCE214A2656894100E3B32A /* ViewPreferences */ = {
@@ -6003,7 +6028,7 @@
 				7DA260E123F72359005D2121 /* ItemPickerViewController.swift in Sources */,
 				7DA260B123F72352005D2121 /* GetCustomColors.swift in Sources */,
 				CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */,
-				CFCB0F5E27CE712E008DDEA4 /* GenericBackground.swift in Sources */,
+				CFCB0F5E27CE712E008DDEA4 /* GenericForeground.swift in Sources */,
 				7DA260F423F72397005D2121 /* FilePickerCell.swift in Sources */,
 				7DA25FDD23F72148005D2121 /* Secret.swift in Sources */,
 				7DA25F9623F7212E005D2121 /* Analytics.swift in Sources */,
@@ -6104,6 +6129,7 @@
 				7DA260DE23F72359005D2121 /* HorizontalMenuViewController.swift in Sources */,
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
+				CFCB0F6627CE7E57008DDEA4 /* GenericBackground.swift in Sources */,
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
 				CF748D1D274D43B9000EA34E /* DashboardConferencesViewModel.swift in Sources */,
 				CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */,
@@ -6211,6 +6237,7 @@
 				7DA2609523F72327005D2121 /* RichContentToolbarView.swift in Sources */,
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,
+				CFCB0F6327CE7B58008DDEA4 /* PandaScene.swift in Sources */,
 				7D531D48254C606800CBFCA6 /* AssignmentAssigneeList.swift in Sources */,
 				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
 				3BC84268247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */,
@@ -6484,6 +6511,7 @@
 				7DA2608F23F72315005D2121 /* HelpLink.swift in Sources */,
 				7DA260ED23F7235F005D2121 /* WrongAppViewController.swift in Sources */,
 				7DA260D923F72359005D2121 /* FilterHeaderView.swift in Sources */,
+				CFCB0F6127CE7B21008DDEA4 /* GradesPanda.swift in Sources */,
 				7DA2608123F72303005D2121 /* APIUser.swift in Sources */,
 				7DA260EF23F72391005D2121 /* File.swift in Sources */,
 				7DA2605C23F722D9005D2121 /* QuizSubmission.swift in Sources */,
