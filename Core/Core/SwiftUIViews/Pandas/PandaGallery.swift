@@ -30,6 +30,7 @@ public struct PandaGallery: View {
         case modules
         case quizzes
         case conferences
+        case pages
     }
     @State private var selectedPanda: PandaType = PandaType.allCases.last!
 
@@ -69,6 +70,8 @@ public struct PandaGallery: View {
             InteractivePanda(scene: QuizzesPanda())
         case .conferences:
             InteractivePanda(scene: ConferencesPanda())
+        case .pages:
+            InteractivePanda(scene: PagesPanda())
         }
     }
 }
