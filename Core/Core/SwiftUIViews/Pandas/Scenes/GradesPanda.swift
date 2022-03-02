@@ -22,8 +22,8 @@ public struct GradesPanda: PandaScene {
     public var name: String { "grades" }
     public var offset: (background: CGSize, foreground: CGSize) {(
         background: CGSize(width: 0, height: -50),
-        foreground: CGSize(width: -25, height: 50)
-    )}
+        foreground: CGSize(width: -25, height: 50))
+    }
     public var background: AnyView { AnyView(Board(imageName: backgroundFileName)) }
 }
 
@@ -48,8 +48,8 @@ private struct Board: View {
     }
 }
 
-struct Board_Previews: PreviewProvider {
+struct GradesPanda_Previews: PreviewProvider {
     static var previews: some View {
-        Board(imageName: GradesPanda().backgroundFileName)
+        InteractivePanda(scene: GradesPanda())
     }
 }

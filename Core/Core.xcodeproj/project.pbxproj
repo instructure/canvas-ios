@@ -941,6 +941,7 @@
 		CFCB0F6127CE7B21008DDEA4 /* GradesPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */; };
 		CFCB0F6327CE7B58008DDEA4 /* PandaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */; };
 		CFCB0F6627CE7E57008DDEA4 /* GenericBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */; };
+		CFCB0F6827CF85EB008DDEA4 /* SpacePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6727CF85EB008DDEA4 /* SpacePanda.swift */; };
 		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
 		CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */; };
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
@@ -2232,6 +2233,7 @@
 		CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesPanda.swift; sourceTree = "<group>"; };
 		CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaScene.swift; sourceTree = "<group>"; };
 		CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericBackground.swift; sourceTree = "<group>"; };
+		CFCB0F6727CF85EB008DDEA4 /* SpacePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePanda.swift; sourceTree = "<group>"; };
 		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
@@ -4885,6 +4887,7 @@
 				CFCB0F6427CE7DF6008DDEA4 /* SharedLayers */,
 				CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */,
 				CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */,
+				CFCB0F6727CF85EB008DDEA4 /* SpacePanda.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -6300,6 +6303,7 @@
 				7DA2609323F72315005D2121 /* UserProfile.swift in Sources */,
 				7DA260FE23F773D9005D2121 /* PlannerListViewController.swift in Sources */,
 				7DA2605023F722D9005D2121 /* LogEvent.swift in Sources */,
+				CFCB0F6827CF85EB008DDEA4 /* SpacePanda.swift in Sources */,
 				7D1E85662567294A00D093C5 /* ScaleButtonStyle.swift in Sources */,
 				7DA260B923F72352005D2121 /* GetQuizSubmission.swift in Sources */,
 				7DA260F023F72391005D2121 /* FileUploadContext.swift in Sources */,

@@ -18,9 +18,16 @@
 
 import SwiftUI
 
-public struct PandaBrowser: View {
+public struct SpacePanda: PandaScene {
+    public var name: String { "space" }
+    public var offset: (background: CGSize, foreground: CGSize) {(
+        background: CGSize(width: 0, height: 0),
+        foreground: CGSize(width: -56, height: 5))
+    }
+}
 
-    public var body: some View {
+struct SpacePanda_Previews: PreviewProvider {
+    static var previews: some View {
         InteractivePanda(scene: SpacePanda())
     }
 }
