@@ -1253,6 +1253,9 @@
 "Student" = "Nemandi";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Athugasemd nemanda";
+
+/* No comment provided by engineer. */
 "Studio" = "Stúdíó";
 
 /* No comment provided by engineer. */
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "Óþekkt";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Óþekkt villa";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ótakmarkað";

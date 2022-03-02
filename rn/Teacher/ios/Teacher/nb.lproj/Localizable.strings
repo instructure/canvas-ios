@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"%g out of %g" = "%1$g ut av %2$g";
+"%g out of %g" = "%1$g av %2$g";
 
 /* No comment provided by engineer. */
 "%g pts" = "%g poeng";
@@ -14,10 +14,10 @@
 "Add Comment" = "Legg til kommentar";
 
 /* No comment provided by engineer. */
-"All grades are currently hidden." = "Alle karakterer er nå skjult.";
+"All grades are currently hidden." = "Alle vurderinger er nå skjult.";
 
 /* No comment provided by engineer. */
-"All grades are currently posted." = "Alle karakterer er nå publisert.";
+"All grades are currently posted." = "Alle vurderinger er nå publisert.";
 
 /* No comment provided by engineer. */
 "All Hidden" = "Alle skjult";
@@ -32,7 +32,7 @@
 "Attendance" = "Oppmøte";
 
 /* No comment provided by engineer. */
-"Attendance Error" = "Oppmøte avvik";
+"Attendance Error" = "Oppmøte feil";
 
 /* No comment provided by engineer. */
 "Back" = "Tilbake";
@@ -68,16 +68,16 @@
 "Could not save the comment." = "Kunne ikke lagre kommentaren.";
 
 /* No comment provided by engineer. */
-"Courses" = "Emne";
+"Courses" = "Emner";
 
 /* No comment provided by engineer. */
-"Customize Grade" = "Tilpass karakter";
+"Customize Grade" = "Tilpass vurdering";
 
 /* No comment provided by engineer. */
 "Date picker" = "Dato velger";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Avvise";
+"Dismiss" = "Avvis";
 
 /* No comment provided by engineer. */
 "Done" = "Ferdig";
@@ -86,10 +86,10 @@
 "Edit" = "Rediger";
 
 /* No comment provided by engineer. */
-"Error" = "Avvik";
+"Error" = "Feil";
 
 /* rollcall status error */
-"Error: No data returned from the rollcall api." = "Avvik: Ingen data returnert fra opprop api.";
+"Error: No data returned from the rollcall api." = "Feil: Ingen data returnert fra opprop api.";
 
 /* No comment provided by engineer. */
 "Everyone" = "Alle";
@@ -102,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Lykkes ikke å opprette LTI-verktøyet opprop.";
+
+/* No comment provided by engineer. */
+"Failed to load submission data!" = "Kunne ikke laste inn innleveringsdata!";
 
 /* No comment provided by engineer. */
 "Files" = "Filer";
@@ -119,31 +122,31 @@
 "Filter by" = "Filtrer etter";
 
 /* No comment provided by engineer. */
-"Final Grade" = "Slutt karakter";
+"Final Grade" = "Slutt vurdering";
 
 /* No comment provided by engineer. */
 "GPA" = "GPA";
 
 /* No comment provided by engineer. */
-"Grade" = "Karakter";
+"Grade" = "Vurdering";
 
 /* No comment provided by engineer. */
-"Grade post policy" = "Retningslinjer for karakterpostering";
+"Grade post policy" = "Retningslinjer for vurderingspostering";
 
 /* No comment provided by engineer. */
-"Grade Slider" = "Karakterglidebryter";
+"Grade Slider" = "Vurderingsglidebryter";
 
 /* No comment provided by engineer. */
-"Graded" = "Karaktersatt";
+"Graded" = "Vurdert";
 
 /* No comment provided by engineer. */
-"Grades" = "Karakterer";
+"Grades" = "Vurderinger";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "Karakterer vil gjøres synlig for alle studenter";
+"Grades will be made visible to all students" = "Vurderinger vil gjøres synlig for alle studenter";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Karakterer vil gjøres synlig for studenter med vurderte innleveringer";
+"Grades will be made visible to students with graded submissions" = "Vurderinger vil gjøres synlig for studenter med vurderte innleveringer";
 
 /* number of grades hidden */
 "grades_currently_hidden" = "grades_currently_hidden";
@@ -170,7 +173,7 @@
 "Late" = "Sent";
 
 /* No comment provided by engineer. */
-"Letter grade" = "Bokstavkarakter";
+"Letter grade" = "Bokstavvurdering";
 
 /* No comment provided by engineer. */
 "Loading" = "Laster";
@@ -182,19 +185,19 @@
 "Mark Remaining as Present" = "Marker gjenværende som nåværende";
 
 /* No comment provided by engineer. */
-"Moderated Grading Unsupported" = "Moderert karaktersetting ikke støttet";
+"Moderated Grading Unsupported" = "Samordnet sensur ikke støttet";
 
 /* No comment provided by engineer. */
-"Needs Grading" = "Trenger karakter";
+"Needs Grading" = "Trenger vurdering";
 
 /* No comment provided by engineer. */
-"No Grade" = "Ingen karakter";
+"No Grade" = "Ingen vurdering";
 
 /* No comment provided by engineer. */
 "No Submissions" = "Ingen innleveringer";
 
 /* No comment provided by engineer. */
-"Not Graded" = "Ikke karaktersatt";
+"Not Graded" = "Ikke vurdert";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -209,7 +212,7 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
-"Pending" = "Avventende";
+"Pending" = "Venter";
 
 /* No comment provided by engineer. */
 "Percent (%)" = "Prosent (%)";
@@ -218,7 +221,7 @@
 "Points" = "Poeng";
 
 /* No comment provided by engineer. */
-"Post Grades" = "Publisert karakterer";
+"Post Grades" = "Publisert vurderinger";
 
 /* No comment provided by engineer. */
 "Post settings" = "Publiseringsinnstillinger";
@@ -236,7 +239,7 @@
 "Preview Unavailable" = "Forhåndsvisning ikke tilgjengelig";
 
 /* No comment provided by engineer. */
-"Prompts for an updated grade" = "Ber om en oppgradert karakter";
+"Prompts for an updated grade" = "Ber om en oppgradert vurdering";
 
 /* No comment provided by engineer. */
 "Record Audio" = "Lydopptak";
@@ -248,7 +251,10 @@
 "Reset" = "Tilbakestill";
 
 /* No comment provided by engineer. */
-"Rubric" = "Rubrikk";
+"Retry" = "Prøv igjen";
+
+/* No comment provided by engineer. */
+"Rubric" = "Vurderingsveiledning";
 
 /* No comment provided by engineer. */
 "Scored above..." = "Fikk mer enn…";
@@ -278,7 +284,7 @@
 "Submissions" = "Innleveringer";
 
 /* No comment provided by engineer. */
-"Test Student" = "Test Student";
+"Test Student" = "Quiz Student";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Det er ingen meldinger ennå.";
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Gjøremål";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Ukjent feil";
 
 /* No comment provided by engineer. */
 "Unmark" = "Fjern merking";

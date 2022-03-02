@@ -26,16 +26,18 @@ struct SubmissionCommentList: View {
     @Binding var attempt: Int?
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
+    @Binding var comment: String
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
     @ObservedObject var comments: Store<GetSubmissionComments>
+    @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
-    @State var comment: String = ""
     @State var error: Text?
     @State var showMediaOptions = false
+    @State var showCommentLibrary = false
 
     init(
         assignment: Assignment,
@@ -43,14 +45,18 @@ struct SubmissionCommentList: View {
         attempts: Store<LocalUseCase<Submission>>,
         attempt: Binding<Int?>,
         fileID: Binding<String?>,
-        showRecorder: Binding<MediaCommentType?>
+        showRecorder: Binding<MediaCommentType?>,
+        enteredComment: Binding<String>,
+        commentLibrary: SubmissionCommentLibraryViewModel
     ) {
         self.assignment = assignment
         self.submission = submission
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
+        self._comment = enteredComment
         self.attempts = attempts
+        self.commentLibrary = commentLibrary
         comments = AppEnvironment.shared.subscribe(GetSubmissionComments(
             context: .course(assignment.courseID),
             assignmentID: assignment.id,
@@ -98,6 +104,20 @@ struct SubmissionCommentList: View {
                 case nil:
                     toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity)
+                        .onTapGesture {
+                            showCommentLibrary = commentLibrary.shouldShow
+                        }
+                        .accessibilityAction(named: Text("Open comment library", bundle: .core)) {
+                            if commentLibrary.shouldShow {
+                                showCommentLibrary = true
+                            } else {
+                                UIAccessibility.post(notification: .screenChanged, argument: NSLocalizedString("Comment library is not available", bundle: .teacher, comment: ""))
+                            }
+                        }
+                }
+            }.sheet(isPresented: $showCommentLibrary) {
+                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment) {
+                    sendComment()
                 }
             }
         }

@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Pour créer un compte, demandez à l'élève de créer un code de jumelage pour vous depuis la section Paramètres de l’application Canvas Student, comme présenté ci-dessous. Puis, scannez le code à partir d’ici.\n        Si l’élève ne voit pas l'option de création d'un code de jumelage, vous devrez contacter l’école pour créer votre compte.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Ajouter des pièces jointes";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Ajouter un commentaire (facultatif)";
 
 /* No comment provided by engineer. */
 "Add content" = "Ajouter du contenu";
@@ -878,6 +878,9 @@
 "Filter" = "Filtre";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrer par";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrer par :";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Oublier %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Format non pris en charge";
 
 /* No comment provided by engineer. */
 "Front Page" = "Première page";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Niveau d'impact";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Dates importantes";
 
 /* No comment provided by engineer. */
 "Important Info" = "Informations importantes";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Marquer comme terminé";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Indiquer l’élément comme terminé";
+
+/* No comment provided by engineer. */
 "Marked done" = "Marqué 'terminé'";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Suivant";
 
 /* No comment provided by engineer. */
+"Next Week" = "Semaine prochaine";
+
+/* No comment provided by engineer. */
 "Nickname" = "Pseudonyme :";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Aucune page";
 
 /* No comment provided by engineer. */
+"No preview available" = "Aucun aperçu disponible";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Aucun questionnaire";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Aucune soumission";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Aucun fichier pris en charge à soumettre";
 
 /* No comment provided by engineer. */
 "None" = "Aucun";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Ouvrir l’application";
+
+/* No comment provided by engineer. */
+"Open course details" = "Ouvrir les détails du cours";
+
+/* No comment provided by engineer. */
+"Open item details" = "Ouvrir les détails de l’élément";
 
 /* No comment provided by engineer. */
 "Options" = "Options";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Veuillez générer un autre code QR, puis réessayez.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Veuillez vous connecter via l’application.";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Veuillez patienter, cela peut prendre une minute.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Identifiants précédents";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Semaine précédente";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Politique de confidentialité";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Sélectionner un chemin";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Sélectionner un travail :";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Sélectionner des travaux";
+
+/* No comment provided by engineer. */
+"Select course" = "Sélectionner un cours";
 
 /* No comment provided by engineer. */
 "Select Course" = "Sélectionner un cours";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "L'application doit être redémarrée pour utiliser les nouveaux paramètres de langue. Veuillez relancer l’application.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Il n'y a pas de travaux actifs dans ce groupe.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Aucun devoir à afficher.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Il n’y a aucune conférence à afficher pour le moment.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "à %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pour créer un compte, demandez à l'élève de créer un code de jumelage pour vous depuis la section Paramètres de l’application Canvas Student, comme présenté ci-dessous. Puis, scannez le code à partir d’ici.\nSi l’élève ne voit pas l'option de création d'un code de jumelage, vous devrez contacter l’école pour créer votre compte.";
 
 /* No comment provided by engineer. */
 "To Do" = "À faire";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Vu(e)(s)";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "En attente que des choses importantes aient lieu.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Impossible de trouver des cours semblables à celui-ci.";

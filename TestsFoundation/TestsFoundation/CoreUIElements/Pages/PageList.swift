@@ -22,4 +22,8 @@ public enum PageList: String, RawRepresentable, ElementWrapper {
     public static func page(index: Int) -> Element {
         app.find(id: "PageList.\(index)")
     }
+
+    public static func emptyPageList() -> Element {
+        app.find(label: "No Pages")
+    }
 }

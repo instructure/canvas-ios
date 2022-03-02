@@ -40,9 +40,11 @@ class PlannerTests: CoreUITestCase {
         while calendar.compare(shown, to: reference, toGranularity: .month) != .orderedSame {
             let isPast = calendar.compare(shown, to: reference, toGranularity: .month) == .orderedAscending
             if isPast {
-                PlannerCalendar.dayButton(for: shown).swipeLeft()
+                PlannerCalendar.dayButton(for: shown).waitToExist()
+                app.swipeLeft()
             } else {
-                PlannerCalendar.dayButton(for: shown).swipeRight()
+                PlannerCalendar.dayButton(for: shown).waitToExist()
+                app.swipeRight()
             }
             shown = shown.addMonths(isPast ? 1 : -1)
         }
@@ -135,7 +137,8 @@ class PlannerTests: CoreUITestCase {
 
         let assignments = { PlannerFilter.cell(section: 0, row: 1) }
         XCTAssertEqual(assignments().label(), "Assignments")
-        XCTAssertEqual(assignments().isSelected, true)
+        // Selected state loads async
+        waitUntil { assignments().isSelected }
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, false)
         NavBar.backButton(label: "Done").tap()
@@ -143,6 +146,10 @@ class PlannerTests: CoreUITestCase {
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
 
         PlannerCalendar.filterButton.tap()
+        // At this point each filter's selected state is being loaded. The UI starts with empty selectors so we don't
+        // know if they empty because they're not selected or empty because we've not finished loading their state.
+        // Let's wait...
+        RunLoop.main.run(until: Date() + 3)
         XCTAssertEqual(assignments().isSelected, false)
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, true)

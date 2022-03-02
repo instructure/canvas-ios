@@ -27,3 +27,14 @@ public struct DisclosureIndicator: View {
             .foregroundColor(.borderMedium)
     }
 }
+
+public struct InstDisclosureIndicator: View {
+
+    public var body: some View {
+        Image.arrowOpenRightSolid
+            .resizable()
+            .scaledToFit()
+            .frame(width: 16, height: 16)
+            .foregroundColor(.ash)
+    }
+}

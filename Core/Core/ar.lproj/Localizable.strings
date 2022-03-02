@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        لإنشاء حساب، اجعل طالبك ينشئ رمز إقران لك من قسم الإعدادات بتطبيق Canvas Student كما يظهر أدناه، ثم امسح الرمز من هنا.\n        إذا لم ير الطالب خيار إنشاء رمز إقران، فستحتاج إلى الوصول إلى مدرستك لإنشاء حسابك.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "إضافة مرفقات";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "إضافة تعليق (اختياري)";
 
 /* No comment provided by engineer. */
 "Add content" = "إضافة محتوى";
@@ -878,6 +878,9 @@
 "Filter" = "عامل تصفية";
 
 /* No comment provided by engineer. */
+"Filter by" = "التصفية حسب";
+
+/* No comment provided by engineer. */
 "Filter by:" = "التصفية حسب:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "نسيت %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "التنسيق غير مدعوم";
 
 /* No comment provided by engineer. */
 "Front Page" = "الصفحة الأمامية";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "مستوى التأثير";
+
+/* No comment provided by engineer. */
+"Important Dates" = "التواريخ الهامة";
 
 /* No comment provided by engineer. */
 "Important Info" = "المعلومات الهامة";
@@ -1259,6 +1268,9 @@
 "Mark done" = "وضع علامة \"تم\"";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "وضع علامة تم للعنصر";
+
+/* No comment provided by engineer. */
 "Marked done" = "يحمل علامة \"تم\"";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "التالي";
 
 /* No comment provided by engineer. */
+"Next Week" = "الأسبوع القادم";
+
+/* No comment provided by engineer. */
 "Nickname" = "اللقب";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "لا توجد صفحات";
 
 /* No comment provided by engineer. */
+"No preview available" = "لا توجد معاينة متاحة";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "لا توجد اختبارات موجزة";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "لا يوجد إرسال";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "لا توجد ملفات مدعومة للإرسال";
 
 /* No comment provided by engineer. */
 "None" = "بلا";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "فتح تطبيق";
+
+/* No comment provided by engineer. */
+"Open course details" = "فتح تفاصيل المساق";
+
+/* No comment provided by engineer. */
+"Open item details" = "فتح تفاصيل العنصر";
 
 /* No comment provided by engineer. */
 "Options" = "الخيارات";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "يرجى إنشاء رمز QR آخر وأعد المحاولة.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "يُرجى تسجيل الدخول عبر التطبيق";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "يرجى الانتظار، قد تستغرق هذا الأمر دقيقة.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "عمليات تسجيل الدخول السابقة";
+
+/* No comment provided by engineer. */
+"Previous Week" = "الأسبوع السابق";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "سياسة الخصوصية";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "حدد مساراً";
+
+/* No comment provided by engineer. */
+"Select assignment" = "حدد مهمة";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "حدد مهمة";
+
+/* No comment provided by engineer. */
+"Select course" = "حدد مساقًا";
 
 /* No comment provided by engineer. */
 "Select Course" = "تحديد مساق";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "لا توجد أي مهام نشطة في هذا المساق.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "لا توجد أي مهام للعرض.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "لا توجد أي مؤتمرات للعرض حتى الآن.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "إلى %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "لإنشاء حساب، اجعل طالبك ينشئ رمز إقران لك من قسم الإعدادات بتطبيق Canvas Student كما يظهر أدناه، ثم امسح الرمز من هنا.\nإذا لم ير الطالب خيار إنشاء رمز إقران، فستحتاج إلى الوصول إلى مدرستك لإنشاء حسابك.";
 
 /* No comment provided by engineer. */
 "To Do" = "قائمة المهام";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "تمت لمشاهدة";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "بانتظار حدوث أشياء هامة.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "لم نتمكن من العثور على أي مساقات مثل هذا.";

@@ -76,7 +76,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
             top?.navigationItem.leftItemsSupplementBackButton = true
             if top?.isKind(of: EmptyViewController.self) == false {
                 top?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode)
-                NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: self)
             }
         }
     }
@@ -108,14 +108,17 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
            ["/courses/:courseID", "/courses/:courseID/assignments"].contains(moduleName)
         {
             // If all the above conditions pass the current controller can act as primary so we put an empty view as secondary.
-            return HelmNavigationController(rootViewController: EmptyViewController())
+            let empty = EmptyViewController()
+
+            if let color = nav.navigationBar.barTintColor {
+                empty.navBarStyle = .color(color)
+            }
+
+            return HelmNavigationController(rootViewController: empty)
         }
 
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
-            // If there's a presented controller it will cause glitches so it's better to remove it.
-            // Presenting it again on the details view controller or self doesn't work at this point.
-            newDeets.dismissModal(animated: false)
             nav.popViewController(animated: true)
 
             if let helmVC = newDeets as? HelmViewController {

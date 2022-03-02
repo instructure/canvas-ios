@@ -56,15 +56,16 @@ class CourseListViewController: UIViewController {
         refreshControl.color = nil
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
-
-        courses.exhaust()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
+
+        courses.exhaust()
     }
 
     func update() {
@@ -122,21 +123,26 @@ class CourseListCell: UITableViewCell {
     }
 
     func displayGrade(_ course: Course?, studentID: String) -> String {
-        guard let enrollment = course?.enrollments?.first(where: { $0.userID == studentID && $0.isStudent }) else {
+        guard let course = course, let enrollment = course.enrollments?.first(where: { $0.userID == studentID && $0.isStudent }) else {
             return ""
+        }
+
+        if course.hideTotalGrade {
+            // this condition also triggers when multipleGradingPeriodsEnabled is true, currentGradingPeriodID is nil and totalsForAllGradingPeriodsOption is false
+            return course.hideFinalGrades ? "" : NSLocalizedString("N/A", comment: "")
         }
 
         var grade = enrollment.computedCurrentGrade
         var score = enrollment.computedCurrentScore
 
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.currentGradingPeriodID != nil {
-            grade = enrollment.currentPeriodComputedCurrentGrade
-            score = enrollment.currentPeriodComputedCurrentScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
-            grade = enrollment.computedFinalGrade
-            score = enrollment.computedFinalScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return NSLocalizedString("N/A", comment: "")
+        if enrollment.multipleGradingPeriodsEnabled {
+            if enrollment.currentGradingPeriodID != nil {
+                grade = enrollment.currentPeriodComputedCurrentGrade
+                score = enrollment.currentPeriodComputedCurrentScore
+            } else if enrollment.totalsForAllGradingPeriodsOption {
+                grade = enrollment.computedCurrentGrade
+                score = enrollment.computedCurrentScore
+            }
         }
 
         guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {

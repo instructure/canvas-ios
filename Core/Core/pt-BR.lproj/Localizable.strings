@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Para criar uma conta, peça ao aluno que crie um código de emparelhamento para você na seção Configurações do aplicativo Canvas Student, como mostrado abaixo, e depois faça a leitura desse código aqui.\n        Se o aluno não encontrar a opção de criar um código de emparelhamento, entre em contato com sua escola para criar sua conta.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -119,6 +116,9 @@
 "Add Attachments" = "Adicionar anexos";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Adicionar comentário (opcional)";
+
+/* No comment provided by engineer. */
 "Add content" = "Adicionar conteúdo";
 
 /* No comment provided by engineer. */
@@ -161,7 +161,7 @@
 "All" = "Todos";
 
 /* No comment provided by engineer. */
-"All annotations saved." = "Todas as anotações salvas.";
+"All annotations saved." = "Todas as observações salvas.";
 
 /* No comment provided by engineer. */
 "All courses" = "Todos os cursos";
@@ -236,7 +236,7 @@
 "Are you sure you would like to delete this comment?" = "Tem certeza de que deseja excluir este comentário?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this discussion?" = "Tem certeza de que deseja excluir esta discussão?";
+"Are you sure you would like to delete this discussion?" = "Tem certeza de que deseja excluir este fórum?";
 
 /* No comment provided by engineer. */
 "Assign" = "Atribuir";
@@ -686,10 +686,10 @@
 "Developer menu" = "Menu do desenvolvedor";
 
 /* No comment provided by engineer. */
-"discussion" = "discussão";
+"discussion" = "fórum";
 
 /* No comment provided by engineer. */
-"Discussion" = "Discussão";
+"Discussion" = "Fórum";
 
 /* No comment provided by engineer. */
 "Discussion Comment" = "Comentário do fórum";
@@ -698,13 +698,13 @@
 "Discussion Details" = "Detalhes do fórum";
 
 /* No comment provided by engineer. */
-"Discussion Post" = "Postagem da discussão";
+"Discussion Post" = "Postagem do fórum";
 
 /* No comment provided by engineer. */
-"Discussion Replies" = "Respostas da discussão";
+"Discussion Replies" = "Respostas do fórum";
 
 /* No comment provided by engineer. */
-"Discussions" = "Discussões";
+"Discussions" = "Fóruns";
 
 /* No comment provided by engineer. */
 "Disk Error" = "Erro do disco";
@@ -878,6 +878,9 @@
 "Filter" = "Filtrar";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrar por";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrar por:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Esquecer %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Formato não suportado";
 
 /* No comment provided by engineer. */
 "Front Page" = "Primeira página";
@@ -1043,6 +1049,9 @@
 "Impact Level" = "Nível de impacto";
 
 /* No comment provided by engineer. */
+"Important Dates" = "Datas importantes";
+
+/* No comment provided by engineer. */
 "Important Info" = "Informações importantes";
 
 /* No comment provided by engineer. */
@@ -1097,7 +1106,7 @@
 "It looks like assignments haven’t been created in this space yet." = "Parece que tarefas ainda não foram criadas nesse espaço.";
 
 /* No comment provided by engineer. */
-"It looks like discussions haven’t been created in this space yet." = "Parece que as discussões ainda não foram criadas neste espaço.";
+"It looks like discussions haven’t been created in this space yet." = "Parece que os fóruns ainda não foram criados neste espaço.";
 
 /* No comment provided by engineer. */
 "It looks like quizzes haven’t been created in this space yet." = "Parece que questionários ainda não foram criados neste espaço.";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Marcar como concluído";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Marcar item como pronto";
+
+/* No comment provided by engineer. */
 "Marked done" = "Marcado como concluído";
 
 /* No comment provided by engineer. */
@@ -1322,7 +1334,7 @@
 "New Conferences" = "Novas Conferências";
 
 /* No comment provided by engineer. */
-"New Discussion" = "Nova fórum";
+"New Discussion" = "Novo fórum";
 
 /* No comment provided by engineer. */
 "New Message" = "Nova mensagem";
@@ -1338,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Next" = "Próximo";
+
+/* No comment provided by engineer. */
+"Next Week" = "Próxima Semana";
 
 /* No comment provided by engineer. */
 "Nickname" = "Apelido";
@@ -1394,6 +1409,9 @@
 "No Pages" = "Sem páginas";
 
 /* No comment provided by engineer. */
+"No preview available" = "Nenhuma prévia disponível";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Sem testes";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Sem envio";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Nenhum arquivo suportado para enviar";
 
 /* No comment provided by engineer. */
 "None" = "Nenhum";
@@ -1487,6 +1508,12 @@
 "Open application" = "Abrir formulário";
 
 /* No comment provided by engineer. */
+"Open course details" = "Abrir detalhes do curso";
+
+/* No comment provided by engineer. */
+"Open item details" = "Abrir detalhes do item";
+
+/* No comment provided by engineer. */
 "Options" = "Opções";
 
 /* No comment provided by engineer. */
@@ -1559,13 +1586,16 @@
 "Pink" = "Rosa";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Fóruns fixadas";
+"Pinned Discussions" = "Fóruns fixados";
 
 /* No comment provided by engineer. */
 "Play" = "Reproduzir";
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Gere outro código QR e tente novamente.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Por favor, faça o login através do aplicativo";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Aguarde, isso pode levar um minuto.";
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Logins prévios";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Semana anterior";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Política de privacidade";
@@ -1697,10 +1730,10 @@
 "Reply sent" = "Resposta enviada";
 
 /* No comment provided by engineer. */
-"Reply to main discussion" = "Responder à discussão principal";
+"Reply to main discussion" = "Responder ao fórum principal";
 
 /* No comment provided by engineer. */
-"Reply to the annotation or previous comments" = "Responder a anotação ou comentários anteriores";
+"Reply to the annotation or previous comments" = "Responder a observação ou comentários anteriores";
 
 /* No comment provided by engineer. */
 "Reply to thread" = "Responder ao tópico";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Selecionar um caminho";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Selecionar tarefa";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Selecionar tarefa";
+
+/* No comment provided by engineer. */
+"Select course" = "Selecionar curso";
 
 /* No comment provided by engineer. */
 "Select Course" = "Selecionar curso";
@@ -1892,7 +1934,7 @@
 "Student" = "Aluno";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Anotação do aluno";
+"Student Annotation" = "Observação do aluno";
 
 /* No comment provided by engineer. */
 "Student Applications" = "Inscrições de alunos";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "O aplicativo precisa ser reiniciado para usar as novas configurações de idioma. Reinicie o aplicativo.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Não há tarefas ativas neste curso.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Não há tarefas para mostrar.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Ainda não há conferências para mostrar.";
 
 /* No comment provided by engineer. */
@@ -2030,7 +2078,7 @@
 "There was an error loading courses. Pull to refresh to try again." = "Houve um erro ao carregar cursos. Puxe para atualizar para tentar novamente.";
 
 /* No comment provided by engineer. */
-"There was an error loading discussions. Pull to refresh to try again." = "Ocorreu um erro ao carregar as discussões. Puxe para atualizar para tentar novamente.";
+"There was an error loading discussions. Pull to refresh to try again." = "Ocorreu um erro ao carregar os fóruns. Puxe para atualizar para tentar novamente.";
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Houve um erro ao carregar eventos. Puxe para atualizar para tentar novamente.";
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "a %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Para criar uma conta, peça ao aluno que crie um código de emparelhamento para você na seção Configurações do aplicativo Canvas Student, como mostrado abaixo, e depois faça a leitura desse código aqui.\nSe o aluno não encontrar a opção de criar um código de emparelhamento, entre em contato com sua escola para criar sua conta.";
 
 /* No comment provided by engineer. */
 "To Do" = "Lista de Tarefas";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Visualizado";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Esperando que coisas importantes aconteçam.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Não foi possível encontrar nenhum curso como esse.";

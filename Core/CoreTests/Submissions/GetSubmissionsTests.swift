@@ -226,6 +226,10 @@ class GetSubmissionsTests: CoreTestCase {
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
                 NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
+                NSCompoundPredicate(andPredicateWithSubpredicates: [
+                    NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
+                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
+                ]),
             ]),
         ]))
 
@@ -235,6 +239,10 @@ class GetSubmissionsTests: CoreTestCase {
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
                 NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
+                NSCompoundPredicate(andPredicateWithSubpredicates: [
+                    NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
+                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
+                ]),
             ]),
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSCompoundPredicate(andPredicateWithSubpredicates: []),
@@ -248,6 +256,10 @@ class GetSubmissionsTests: CoreTestCase {
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
                 NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
+                NSCompoundPredicate(andPredicateWithSubpredicates: [
+                    NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
+                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
+                ]),
             ]),
             NSPredicate(key: #keyPath(Submission.late), equals: true),
         ]))

@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.\n        Jos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Lisää liite";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Lisää kommentti (valinnainen)";
 
 /* No comment provided by engineer. */
 "Add content" = "Lisää sisältö";
@@ -878,6 +878,9 @@
 "Filter" = "Suodatin";
 
 /* No comment provided by engineer. */
+"Filter by" = "Suodatusperuste";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Suodatustapa:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Unohda %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Muotoa ei tueta";
 
 /* No comment provided by engineer. */
 "Front Page" = "Etusivu";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Vaikutustaso";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Tärkeitä päivämääriä";
 
 /* No comment provided by engineer. */
 "Important Info" = "Tärkeitä tietoja";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Merkitse valmiiksi";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Merkitse kohteet tehdyiksi";
+
+/* No comment provided by engineer. */
 "Marked done" = "Merkitse valmiiksi";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Seuraava";
 
 /* No comment provided by engineer. */
+"Next Week" = "Ensi viikolla";
+
+/* No comment provided by engineer. */
 "Nickname" = "Lempinimi";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Ei sivuja";
 
 /* No comment provided by engineer. */
+"No preview available" = "Ei esikatselua saatavilla";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Ei tietovisoja";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ei lähetystä";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Ei lähetettäviä tuettuja tiedostoja";
 
 /* No comment provided by engineer. */
 "None" = "Ei mitään";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Avaa sovellus";
+
+/* No comment provided by engineer. */
+"Open course details" = "Avaa kurssitiedot";
+
+/* No comment provided by engineer. */
+"Open item details" = "Avaa kohteen tiedot";
 
 /* No comment provided by engineer. */
 "Options" = "Asetukset";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Luo toinen viivakoodi ja yritä uudelleen.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Kirjaudu sisään sovelluksen kautta";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Odota, tämä voi kestää hetken.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Edelliset kirjautumiset";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Edellinen viikko";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Tietosuojakäytäntö";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Valitse polku";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Valitse tehtävä";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Valitse tehtävä";
+
+/* No comment provided by engineer. */
+"Select course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
 "Select Course" = "Valitse kurssi";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Tällä kurssilla ei ole aktiivisia tehtäviä.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Näytettäviä tehtäviä ei ole.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Näytettäviä konferensseja ei vielä ole.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "- %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.\nJos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Tarkasteltu";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Odotetaan tärkeiden asioiden tapahtumista.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Emme löytäneet mitään sellaisia kursseja.";

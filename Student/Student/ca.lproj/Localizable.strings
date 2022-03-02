@@ -1,5 +1,5 @@
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "En aquest moment, '%@' està a punt per entregar a les tasques";
+"'%@' is now ready to submit to assignments" = "En aquest moment, '%@' està a punt per entregar a les activitats";
 
 /* explanation for locked module item */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; està bloquejat com a part de &quot;%2$@&quot;";
@@ -17,16 +17,16 @@
 "%@ is not a valid URL" = "%@ no és un URL vàlid";
 
 /* Message for unsupported tab */
-"%@ is not currently supported." = "%@ en aquest moment, no s'admet.";
+"%@ is not currently supported." = "%@ no s'admet actualment.";
 
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ entrades de m'agrada";
 
 /* Label indicating multiple submissions need grading */
-"%@ need grading" = "%@ s'han de qualificar";
+"%@ need grading" = "S'han de qualificar %@";
 
 /* Word and ellipses */
-"%@..." = "%@…";
+"%@..." = "%@...";
 
 /* Gigabytes */
 "%0.2f GB" = "%0,2f GB";
@@ -44,7 +44,7 @@
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g de %3$@)";
 
 /* something at something */
-"%1$@ at %2$@" = "%1$@ a %2$@";
+"%1$@ at %2$@" = "%1$@ a les %2$@";
 
 /* local notification countdown alert */
 "%1$@ is due in %2$@" = "%1$@ venç en %2$@";
@@ -68,25 +68,25 @@
 "%1$g out of %2$@" = "%1$g de %2$@";
 
 /* time since creation (2 or more days) */
-"%d days ago" = "%d dies enrere";
+"%d days ago" = "fa %d dies";
 
 /* time since creation (2 or more hours) */
-"%d hours ago" = "%d hores enrere";
+"%d hours ago" = "fa %d hores";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d elements";
 
 /* time since creation (2 or more minutes) */
-"%d minutes ago" = "%d minuts enrere";
+"%d minutes ago" = "fa %d minuts";
 
 /* time since creation (2 or more months) */
 "%d months ago" = "%d mesos enrere";
 
 /* In the context 'Joe, Fred, ((25 more))' */
-"%d more" = "%d més";
+"%d more" = "%d més";
 
 /* Something like '5 replies' */
-"%d replies" = "%d respostes";
+"%d replies" = "%d respostes";
 
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d sense llegir";
@@ -116,25 +116,25 @@
 "%tu minutes" = "%tu minuts";
 
 /* No comment provided by engineer. */
-"%u Attachments" = "%u Fitxers adjunts";
+"%u Attachments" = "%u fitxers adjunts";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u fitxers";
 
 /* No comment provided by engineer. */
-"1 Attachment" = "1 fitxer adjunt";
+"1 Attachment" = "1 fitxer adjunt";
 
 /* one day */
 "1 day" = "1 dia";
 
 /* time since creation */
-"1 day ago" = "Fa 1 dia";
+"1 day ago" = "fa 1 dia";
 
 /* one hour */
 "1 hour" = "1 hora";
 
 /* time since creation */
-"1 hour ago" = "Fa 1 hora";
+"1 hour ago" = "fa una hora";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 element";
@@ -143,7 +143,7 @@
 "1 like" = "1 M'agrada";
 
 /* time since creation */
-"1 minute ago" = "Fa 1 minut";
+"1 minute ago" = "fa un minut";
 
 /* time since creation */
 "1 month ago" = "Fa 1 mes";
@@ -239,22 +239,22 @@
 "Are you ready to logout?" = "Esteu a punt per tancar la sessió?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to leave this quiz?" = "Segur que voleu marxar d'aquest qüestionari?";
+"Are you sure you want to leave this quiz?" = "Segur que voleu marxar d'aquesta prova?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Pregunta'm més endavant";
 
 /* Label for an assignment */
-"Assignment" = "Tasca";
+"Assignment" = "Activitat";
 
 /* No comment provided by engineer. */
-"Assignment Details" = "Detalls de la tasca";
+"Assignment Details" = "Detalls de l'activitat";
 
 /* No comment provided by engineer. */
-"Assignment Locked" = "Tasca bloquejada";
+"Assignment Locked" = "Activitat bloquejada";
 
 /* Title for Assignments view controller */
-"Assignments" = "Tasques";
+"Assignments" = "Activitats";
 
 /* An item for attaching to a discussion */
 "Attachment" = "Fitxer adjunt";
@@ -332,7 +332,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas no ha pogut trobar destinataris per a la cerca actual. Torneu a provar-ho més endavant.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Als qüestionaris de Canvas s'admeten diversos estils d'avaluació. La majoria d'aquests estils s'admeten als dispositius mòbils, tot i que alguns no. Si intenteu realitzar un d'aquests qüestionaris no admesos al telèfon, és possible que no pugueu completar-lo tot, la qual cosa pot suposar un desavantatge.\n\nEls tipus de preguntes no admesos inclouen preguntes que contenen contingut en Adobe Flash™, penjades de fitxers i altres elements.\n\nSi creieu que un qüestionari inclou contingut no admès, realitzeu-lo en un ordinador o un portàtil. Si sabeu que el qüestionari inclou únicament contingut admès, podeu realitzar-lo al dispositiu mòbil sense cap mena de problema.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "A les proves de Canvas s'admeten diversos estils d'avaluació. La majoria d'aquests estils s'admeten als dispositius mòbils, tot i que alguns no. Si intenteu realitzar un d'aquestes proves no admeses al telèfon, és possible que no pugueu completar-la tota, la qual cosa pot suposar un desavantatge.\n\nEls tipus de preguntes no admesos inclouen preguntes que contenen contingut en Adobe Flash™, penjades de fitxers i altres elements.\n\nSi creieu que una prova inclou contingut no admès, realitzeu-la en un ordinador o un portàtil. Si sabeu que la prova inclou únicament contingut admès, podeu realitzar-la al dispositiu mòbil sense cap mena de problema.";
 
 /* No comment provided by engineer. */
 "Change User" = "Canvia l'usuari";
@@ -423,10 +423,10 @@
 "Couldn't Load Submission" = "No s'ha pogut carregar l'entrega";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Temari del curs";
+"Course Syllabus" = "Temari de l'assignatura";
 
 /* Courses page title */
-"Courses" = "Cursos";
+"Courses" = "Assignatures";
 
 /* cancel folder creation */
 "Create Folder" = "Crea una carpeta";
@@ -435,16 +435,16 @@
 "Current Submission" = "Entrega actual";
 
 /* Message telling users that quiz support on mobile is limited */
-"Currently there is limited quiz support on mobile" = "En aquest moment, el suport per al qüestionari al dispositiu mòbil és limitat";
+"Currently there is limited quiz support on mobile" = "En aquest moment, el suport per a la prova al dispositiu mòbil és limitat";
 
 /* A custom grade not specified by the rubric. */
-"Custom Grade" = "Qualificació personalitzada";
+"Custom Grade" = "Nota personalitzada";
 
 /* label for customizing a course */
 "Customize" = "Personalitza";
 
 /* dashboard page title */
-"Dashboard" = "Tauler de control";
+"Dashboard" = "Panell de control";
 
 /* Button to confirm deleting folders
    Button to delete a discussion entry
@@ -476,17 +476,17 @@
 "Discard this entry?" = "Voleu rebutjar aquesta entrada?";
 
 /* Title of the new discussion view */
-"Discussion" = "Debat";
+"Discussion" = "Fòrum";
 
 /* Title for discussion entry submission */
-"Discussion Entry" = "Entrada de debat";
+"Discussion Entry" = "Entrada de fòrum";
 
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "Temes de debat";
 
 /* Discussions title
    Title for Discussions view controller */
-"Discussions" = "Debats";
+"Discussions" = "Fòrums";
 
 /* Dismiss an error button
    dismiss button
@@ -526,23 +526,23 @@
 "Drawer partially opened" = "Calaix parcialment obert";
 
 /* No comment provided by engineer. */
-"Due" = "Venciment";
+"Due" = "Data de lliurament";
 
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "venç el %1$@ a les %2$@";
 
 /* This string is prepended to the due date for an assignment */
-"Due:" = "Venciment:";
+"Due:" = "Data de lliurament:";
 
 /* Due date label for to do items, first placeholder is date, second is time */
-"Due: %1$@ at %2$@" = "Venciment: %1$@ a %2$@";
+"Due: %1$@ at %2$@" = "Data de lliurament: %1$@ a les %2$@";
 
 /* Button to edit a discussion entry */
 "Edit" = "Edita";
 
 /* Edit course list title
    Edit the items in the course list */
-"Edit Course List" = "Edita la llista de cursos";
+"Edit Course List" = "Edita la llista d'assignatures";
 
 /* Edit group list title
    Edit the items in the group list */
@@ -600,7 +600,7 @@
 "External Tool" = "Eina externa";
 
 /* No comment provided by engineer. */
-"External URL" = "URL extern";
+"External URL" = "URL externa";
 
 /* No comment provided by engineer. */
 "File" = "Fitxer";
@@ -609,7 +609,7 @@
 "File extension not allowed: %@" = "Extensió de fitxer no permesa: %@";
 
 /* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment:" = "Extensions de fitxer permeses per a aquesta tasca:";
+"File extension(s) permitted for this assignment:" = "Extensions de fitxer permeses per a aquesta activitat:";
 
 /* No comment provided by engineer. */
 "File received" = "Fitxer rebut";
@@ -657,40 +657,40 @@
 "Go to App Store" = "Ves a App Store";
 
 /* No comment provided by engineer. */
-"Go to discussion" = "Ves al debat";
+"Go to discussion" = "Ves al fòrum";
 
 /* title for discussion assignment submission button */
-"Go To Discussion" = "Ves al debat";
+"Go To Discussion" = "Ves al fòrum";
 
 /* text for the \"go to quiz\" button */
-"Go to Quiz" = "Ves al qüestionari";
+"Go to Quiz" = "Ves a la prova";
 
 /* No comment provided by engineer. */
-"Grade" = "Qualificació";
+"Grade" = "Nota";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "Qualificació %@";
+"Grade %@" = "Nota %@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "Qualificació en SpeedGrader";
+"Grade in SpeedGrader" = "Nota en SpeedGrader";
 
 /* No comment provided by engineer. */
-"Grade: %@" = "Qualificació: %@";
+"Grade: %@" = "Nota: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Qualificació: %1$i / %2$g";
+"Grade: %1$i / %2$g" = "Nota: %1$i / %2$g";
 
 /* Label for a discussion */
-"Graded Discussion" = "Debat qualificat";
+"Graded Discussion" = "Fòrum amb nota";
 
 /* Lets user know discussion is graded */
-"Graded discussion." = "Debat qualificat.";
+"Graded discussion." = "Fòrum amb nota.";
 
 /* Graded discussion. 25 points possible */
-"Graded discussion. %g points possible." = "Debat qualificat. %g punts possibles.";
+"Graded discussion. %g points possible." = "Fòrum amb nota. %g punts possibles.";
 
 /* Title for Grades view controller */
-"Grades" = "Qualificacions";
+"Grades" = "Notes";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Conversa de grup";
@@ -699,13 +699,13 @@
 "Groups" = "Grups";
 
 /* No comment provided by engineer. */
-"Have questions about your assignment?\nMessage your instructor." = "Teniu preguntes sobre la tasca?\nEnvieu un missatge a l'instructor.";
+"Have questions about your assignment?\nMessage your instructor." = "Teniu preguntes sobre l'activitat?\nEnvieu un missatge a l'instructor.";
 
 /* help button */
 "Help" = "Ajuda";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "Amaga les qualificacions";
+"Hide Grades" = "Amaga les notes";
 
 /* Homeroom tab title */
 "Homeroom" = "Tutoria";
@@ -742,7 +742,7 @@
 "Invalid url" = "URL no vàlid";
 
 /* No comment provided by engineer. */
-"Invalid URL" = "URL no vàlid";
+"Invalid URL" = "URL no vàlida";
 
 /* No comment provided by engineer. */
 "It has problems" = "Té problemes";
@@ -788,7 +788,7 @@
 "Locked" = "Bloquejat";
 
 /* No comment provided by engineer. */
-"Locked until %@" = "Bloquejat fins %@";
+"Locked until %@" = "Bloquejat fins a %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "ID d'inici de sessió";
@@ -817,10 +817,10 @@
 "Media comment" = "Comentari sobre l'element multimèdia";
 
 /* No comment provided by engineer. */
-"Media Comment" = "Comentari sobre l'element multimèdia";
+"Media Comment" = "Comentari multimèdia";
 
 /* Media recording submission type */
-"Media recording" = "Enregistrament de l'element multimèdia";
+"Media recording" = "Enregistrament multimèdia";
 
 /* Title for a media submission */
 "Media Submission" = "Entrega de l'element multimèdia";
@@ -843,10 +843,10 @@
 "Messages" = "Missatges";
 
 /* Warnging for taking quizzes on a mobile device */
-"Mobile Quiz Warning" = "Advertiment sobre el qüestionari als dispositius mòbils";
+"Mobile Quiz Warning" = "Advertiment sobre la prova als dispositius mòbils";
 
 /* title for the modules tab */
-"Modules" = "Mòduls";
+"Modules" = "Continguts";
 
 /* time since creation (less than 1 minute) */
 "moments ago" = "moments enrere";
@@ -855,16 +855,16 @@
 "More Info" = "Més informació";
 
 /* Title of a link to show additional due dates customized for sections or groups. */
-"Multiple Due Dates" = "Dates de venciment múltiples";
+"Multiple Due Dates" = "Dates de lliurament múltiples";
 
 /* user must contribute to complete requirement */
 "Must contribute" = "Heu de contribuir";
 
 /* user must mark item as done to complete requirement */
-"Must mark as done" = "S'ha de marcar com a fet";
+"Must mark as done" = "És obligatori marcar-la com a feta";
 
 /* format string saying what the minimum score must be */
-"Must score %@ or higher" = "S'ha d'obtenir una puntuació de %@ o superior";
+"Must score %@ or higher" = "Ha d'obtenir una puntuació de %@ o superior";
 
 /* user must submit something to complete requirement */
 "Must submit" = "S'ha d'entregar";
@@ -906,16 +906,16 @@
 "No audio was recorded." = "No s'ha enregistrat cap so.";
 
 /* No comment provided by engineer. */
-"No Content" = "Sense cap contingut";
+"No Content" = "Sense contingut";
 
 /* No comment provided by engineer. */
 "No Date" = "Sense data";
 
 /* String for when assignment has no due date */
-"No due date" = "Sense data de venciment";
+"No due date" = "Sense data de lliurament";
 
 /* Label shown for a to do that doesn't have a due date */
-"No Due Date" = "Sense data de venciment";
+"No Due Date" = "Sense data de lliurament";
 
 /* Error message */
 "No installed apps support opening this file" = "No hi ha cap aplicació instal·lada que es pugui utilitzar per obrir aquest fitxer";
@@ -933,7 +933,7 @@
 "No results found" = "No s'ha trobat cap resultat";
 
 /* No Submission groupong */
-"No Submission" = "No hi ha cap entrega";
+"No Submission" = "Cap entrega";
 
 /* No comment provided by engineer. */
 "No Submission Date" = "No hi ha cap data d'entrega";
@@ -945,7 +945,7 @@
 "Not Authorized" = "Sense autorització";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
-"Not available" = "No està disponible";
+"Not available" = "No disponible";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "No està complet";
@@ -1047,7 +1047,7 @@
 "photo" = "fotografia";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Debats ancorats";
+"Pinned Discussions" = "Fòrums ancorats";
 
 /* A button that plays */
 "Play" = "Reprodueix";
@@ -1084,28 +1084,28 @@
 
 /* Label for a quiz
    Title for a quiz submission cell */
-"Quiz" = "Qüestionari";
+"Quiz" = "Prova";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "Avís sobre el qüestionari";
+"Quiz Alert" = "Avís sobre la prova";
 
 /* No comment provided by engineer. */
-"Quiz Details" = "Informació del qüestionari";
+"Quiz Details" = "Informació de la prova";
 
 /* No comment provided by engineer. */
-"Quiz Locked" = "Qüestionari bloquejat";
+"Quiz Locked" = "Prova bloquejada";
 
 /* The title for the list of quizzes for a course */
-"Quizzes" = "Qüestionaris";
+"Quizzes" = "Proves";
 
 /* No comment provided by engineer. */
 "Rate on App Store" = "Puntuació a App Store";
 
 /* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Qualificació per a %1$@, puntuació: %2$g";
+"Rating for %1$@, Score: %2$g" = "Nota per a %1$@, puntuació: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "Torna a enviar la tasca";
+"Re-submit Assignment" = "Torna a entregar l'activitat";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Destinataris";
@@ -1138,7 +1138,7 @@
 "Refreshing Calendar Events" = "S'estan actualitzant els esdeveniments del calendari";
 
 /* Confirmation for removing a file */
-"Remove" = "Elimina";
+"Remove" = "Suprimeix";
 
 /* Button title for confirming a file deletion */
 "Remove this file?" = "Voleu eliminar aquest fitxer?";
@@ -1153,16 +1153,16 @@
 "Resubmission Failed" = "Error en la nova entrega";
 
 /* No comment provided by engineer. */
-"Resubmit Assignment" = "Torneu a enviar la tasca";
+"Resubmit Assignment" = "Torna a entregar 'activitat";
 
 /* No comment provided by engineer. */
-"Resume Quiz" = "Reprèn el qüestionari";
+"Resume Quiz" = "Reprèn la prova";
 
 /* No comment provided by engineer. */
-"Retake Quiz" = "Torna a realitzar el qüestionari";
+"Retake Quiz" = "Torna a realitzar la prova";
 
 /* No comment provided by engineer. */
-"Retry" = "Torna a provar-ho";
+"Retry" = "Torna-ho a provar";
 
 /* View grading rubric */
 "Rubric" = "Rúbrica";
@@ -1208,10 +1208,10 @@
 "Show file" = "Mostra el fitxer";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "Mostra les qualificacions";
+"Show Grades" = "Mostra les notes";
 
 /* title for quiz assignment submission button */
-"Show Quiz" = "Mostra el qüestionari";
+"Show Quiz" = "Mostra la prova";
 
 /* VoiceOver text for a button that lets you show recipients */
 "Show recipients" = "Mostra els destinataris";
@@ -1223,7 +1223,7 @@
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Algunes carpetes seleccionades no estan buides. Segur que voleu suprimir-les?";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "No s'ha pogut trobar la tasca. És possible que s'hagi suprimit aquesta tasca.";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "No s'ha pogut trobar l'activitat. És possible que s'hagi suprimit aquesta activitat.";
 
 /* Hint about the play button */
 "Starts playing your recording" = "Comença a reproduir l'enregistrament";
@@ -1253,6 +1253,9 @@
 "Student" = "Estudiant";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Anotació de l'estudiant";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1271,7 +1274,7 @@
 "Submission Error" = "Error en l'entrega";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "S'ha produït un error en la entrega";
+"Submission Failed" = "L'entrega ha fallat";
 
 /* No comment provided by engineer. */
 "Submission In Progress..." = "Entrega en curs…";
@@ -1289,19 +1292,19 @@
 "Submit" = "Entrega";
 
 /* No comment provided by engineer. */
-"Submit Assignment" = "Entrega la tasca";
+"Submit Assignment" = "Entrega l'activitat";
 
 /* Submitted grouping */
 "Submitted" = "Entregat";
 
 /* Submitted date */
-"Submitted %@" = "Entregat %@";
+"Submitted %@" = "Entregat el %@";
 
 /* No comment provided by engineer. */
-"Submitting..." = "S'està entregant…";
+"Submitting..." = "Entregant...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
-"Subscribe to calendar feed" = "Subscriu-te al canal de continguts del calendari";
+"Subscribe to calendar feed" = "Subscriu-te a Exporta el calendari";
 
 /* Masquerade success title */
 "Success!" = "Operació correcta!";
@@ -1326,7 +1329,7 @@
 "Syllabus" = "Temari";
 
 /* Short name for TA enrollment */
-"TA" = "TA";
+"TA" = "Auxiliar de professor";
 
 /* Take a picture to use in a comment. */
 "Take a Photo..." = "Fes una fotografia…";
@@ -1341,7 +1344,7 @@
 "Take Photo or Video..." = "Fes una fotografia o un vídeo…";
 
 /* No comment provided by engineer. */
-"Take Quiz" = "Realitza el qüestionari";
+"Take Quiz" = "Realitza la prova";
 
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Toqueu per tornar a provar-ho";
@@ -1353,7 +1356,7 @@
 "Tap to view progress" = "Toqueu per veure'n el progrés";
 
 /* No comment provided by engineer. */
-"TAs" = "TA";
+"TAs" = "Auxiliars de professors";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Professor";
@@ -1380,7 +1383,7 @@
 "Text Submission" = "Entrega de text";
 
 /* Text explaining the error */
-"The recipients could not be added. Please try again. (%@)" = "No s'han pogut afegir els destinataris. Torneu a provar-ho. (%@)";
+"The recipients could not be added. Please try again. (%@)" = "No s'han pogut afegir els destinataris. Torneu-ho a provar. (%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "No s'ha pogut accedir al servidor";
@@ -1395,13 +1398,13 @@
 "There are no actions for this item" = "No hi ha cap acció per a aquest element";
 
 /* No comment provided by engineer. */
-"There are no files for this assignment." = "No hi ha cap fitxer per a aquesta tasca.";
+"There are no files for this assignment." = "No hi ha cap fitxer per a aquesta activitat.";
 
 /* No comment provided by engineer. */
 "There are no items to display" = "No hi ha cap element que es pugui mostrar";
 
 /* No comment provided by engineer. */
-"There is no rubric for this assignment" = "No hi ha cap rúbrica per a aquesta tasca";
+"There is no rubric for this assignment" = "No hi ha cap rúbrica per a aquesta activitat";
 
 /* message for media comment upload failure */
 "There was a network error posting your comment." = "S'ha produït un error de xarxa en publicar el comentari.";
@@ -1428,16 +1431,16 @@
 "This app is not authorized for use." = "Aquesta aplicació no té autorització perquè s'utilitzi.";
 
 /* Invalid LTI tool error message */
-"This assignment doesn't appear to be a valid external tool or is misconfigured." = "No sembla que aquesta tasca sigui una eina externa vàlida, o bé està mal configurada.";
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "No sembla que aquesta activitat sigui una eina externa vàlida, o bé està mal configurada.";
 
 /* message displayed in the details section if there is no comment. */
-"This assignment has no details." = "No hi ha detalls en aquesta tasca.";
+"This assignment has no details." = "No hi ha detalls en aquesta activitat.";
 
 /* No comment provided by engineer. */
-"This assignment is locked until %@" = "Aquesta tasca està bloquejada fins al %@";
+"This assignment is locked until %@" = "Aquesta activitat està bloquejada fins al %@";
 
 /* No comment provided by engineer. */
-"This assignment was locked %@" = "Aquesta tasca es va bloquejar %@";
+"This assignment was locked %@" = "Aquesta activitat es va bloquejar %@";
 
 /* No comment provided by engineer. */
 "This entry has been deleted" = "S'ha suprimit aquesta entrada";
@@ -1504,13 +1507,16 @@
 "Unavailable" = "No està disponible";
 
 /* Title for grade button when no grade is present */
-"Ungraded" = "Sense qualificació";
+"Ungraded" = "No qualificat";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "desconegut";
 
 /* Unknown file type */
 "Unknown" = "Desconegut";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Error desconegut";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Il·limitat";
@@ -1522,7 +1528,7 @@
 "Unsaved Reply" = "No s'ha desat la resposta";
 
 /* when locked item will become unlocked */
-"until %@" = "fins a  %@";
+"until %@" = "fins a les %@";
 
 /* Button title for uploading a file */
 "Upload" = "Penja";
@@ -1540,7 +1546,7 @@
 "Upload file" = "Penja el fitxer";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "No s'ha pogut penjar a la tasca &quot;%@&quot;";
+"Upload to assignment &quot;%@&quot; failed" = "No s'ha pogut penjar a l'activitat &quot;%@&quot;";
 
 /* Error message */
 "Upload to folder &quot;%@&quot; failed" = "No s'ha pogut penjar a la carpeta &quot;%@&quot;";
@@ -1552,7 +1558,7 @@
 "Use" = "Utilitza";
 
 /* No comment provided by engineer. */
-"User ID" = "ID d'usuari";
+"User ID" = "ID d’usuari";
 
 /* Title for User Info section on the about page */
 "User Info" = "Informació de l'usuari";
@@ -1567,7 +1573,7 @@
 "View" = "Mostra";
 
 /* No comment provided by engineer. */
-"View Discussion" = "Mostra el debat";
+"View Discussion" = "Mostra el fòrum";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Mostra el fitxer %1$@ %2$@";
@@ -1612,13 +1618,13 @@
 "Yes" = "Sí";
 
 /* Masquerade title telling who you are masquerading as */
-"You are now masquerading as %@" = "En aquest moment, esteu emmascarat com a %@";
+"You are now masquerading as %@" = "En aquest moment, esteu emmascarat com a %@.";
 
 /* Masquerade success message */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "En aquest moment, esteu emmascarat com a %@. Per deixar d'estar emmascarat, aneu al Perfil.";
 
 /* Error message for an unauthorized course or group. */
-"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "No teniu accés a aquest contingut. Pot ser que el curs o el grup encara no hagin començat, o bé que ja hagin finalitzat.";
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "No teniu accés a aquest contingut. Pot ser que l'assignatura o el grup encara no hagin començat, o bé que ja hagin finalitzat.";
 
 /* Error message */
 "You do not have permission to delete this reply" = "No teniu permís per suprimir aquesta resposta";
@@ -1645,8 +1651,8 @@
 "Your files could not be found" = "No s'han pogut trobar els fitxers";
 
 /* Media submission type selected with no Kaltura set up */
-"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuració de l'escola no permet el tipus d'entrega seleccionat per a aquesta tasca";
+"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuració de l'escola no permet el tipus d'entrega seleccionat per a aquesta activitat";
 
 /* No comment provided by engineer. */
-"Your submission is now waiting to be graded." = "En aquest moment, l'entrega està en espera de rebre una qualificació.";
+"Your submission is now waiting to be graded." = "En aquest moment, l'entrega està en espera de rebre una nota.";
 

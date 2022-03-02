@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Failed to launch rollcall LTI tool.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Failed to load submission data!";
+
+/* No comment provided by engineer. */
 "Files" = "Files";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Reset";
 
 /* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubric";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "To do";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Unknown Error";
 
 /* No comment provided by engineer. */
 "Unmark" = "Unmark";

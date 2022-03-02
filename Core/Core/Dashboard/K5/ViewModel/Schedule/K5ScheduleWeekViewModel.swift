@@ -34,7 +34,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
     private var plannables: [APIPlannable] = []
     private var missingSubmissions: [APIAssignment] = []
-    private var courseInfoByCourseIDs: [String: (color: Color, image: URL?)] = [:]
+    private var courseInfoByCourseIDs: [String: (color: Color, image: URL?, isHomeroom: Bool)] = [:]
 
     public init(weekRange: Range<Date>, isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
         self.weekRange = weekRange
@@ -73,7 +73,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
     private func downloadMissingAssignments() {
         if isTodayButtonAvailable {
             let missingSubmissionsRequest = GetMissingSubmissionsRequest(includes: [.course, .planner_overrides])
-            AppEnvironment.shared.api.makeRequest(missingSubmissionsRequest) { [weak self] missingSubmissions, _, _ in
+            AppEnvironment.shared.api.exhaust(missingSubmissionsRequest) { [weak self] missingSubmissions, _, _ in
                 self?.missingSubmissions = missingSubmissions ?? []
                 self?.downloadCourses()
             }
@@ -125,7 +125,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
     private func setupCourseColors(_ courses: [Course]) {
         let coursesByIDs = Dictionary(grouping: courses) { $0.id }
-        let courseInfoByCourseIDs = coursesByIDs.mapValues { (Color($0[0].color), $0[0].imageDownloadURL) }
+        let courseInfoByCourseIDs = coursesByIDs.mapValues { (Color($0[0].color), $0[0].imageDownloadURL, isHomeroom: $0[0].isHomeroomCourse) }
         self.courseInfoByCourseIDs = courseInfoByCourseIDs
     }
 

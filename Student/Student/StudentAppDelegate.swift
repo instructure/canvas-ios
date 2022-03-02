@@ -37,6 +37,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         return env
     }()
 
+    private var shouldSetK5StudentView = false
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
         Core.Analytics.shared.handler = self
@@ -53,12 +55,14 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         TabBarBadgeCounts.application = UIApplication.shared
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        UITableView.setupDefaultSectionHeaderTopPadding()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
-            let url = launchOptions?[.url] as? URL,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-            components.path == "student_view",
-            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+           let url = launchOptions?[.url] as? URL,
+           let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+           components.path.contains("student_view"),
+           let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+            shouldSetK5StudentView = components.path.contains("k5")
             LoginSession.add(fakeStudent)
         }
 
@@ -78,6 +82,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
+        environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
@@ -89,7 +94,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.subscribeToPushChannel()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
-            self.environment.k5.userDidLogin(profile: apiProfile)
+            let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
+            if isK5StudentView {
+                ExperimentalFeature.K5Dashboard.isEnabled = true
+                self.environment.userDefaults?.isElementaryViewEnabled = true
+            }
+            self.environment.k5.userDidLogin(profile: apiProfile, isK5StudentView: isK5StudentView)
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
@@ -103,11 +113,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        if
-            options[.sourceApplication] as? String == Bundle.teacherBundleID,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-            components.path == "student_view",
-            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+        if options[.sourceApplication] as? String == Bundle.teacherBundleID,
+           let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+           components.path.contains("student_view"),
+           let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+            shouldSetK5StudentView = components.path.contains("k5")
             if environment.currentSession != nil {
                 NativeLoginManager.shared().logout() // Cleanup old to prevent token errors
             }
@@ -323,6 +333,7 @@ extension StudentAppDelegate {
 
 extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
+        shouldSetK5StudentView = false
         environment.k5.userDidLogout()
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
@@ -365,6 +376,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        shouldSetK5StudentView = false
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)

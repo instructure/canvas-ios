@@ -28,6 +28,8 @@ public extension UIImage {
     static var addressBookSolid: UIImage { UIImage(named: "addressBookSolid", in: .core, compatibleWith: nil)! }
     static var alertsLine: UIImage { UIImage(named: "alertsLine", in: .core, compatibleWith: nil)! }
     static var alertsSolid: UIImage { UIImage(named: "alertsSolid", in: .core, compatibleWith: nil)! }
+    static var annotateLine: UIImage { UIImage(named: "annotateLine", in: .core, compatibleWith: nil)! }
+    static var annotateSolid: UIImage { UIImage(named: "annotateSolid", in: .core, compatibleWith: nil)! }
     static var announcementLine: UIImage { UIImage(named: "announcementLine", in: .core, compatibleWith: nil)! }
     static var announcementSolid: UIImage { UIImage(named: "announcementSolid", in: .core, compatibleWith: nil)! }
     static var arrowOpenDownLine: UIImage { UIImage(named: "arrowOpenDownLine", in: .core, compatibleWith: nil)! }
@@ -215,6 +217,8 @@ public extension UIImage {
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }
     static var coursesTabActive: UIImage { UIImage(named: "coursesTabActive", in: .core, compatibleWith: nil)! }
+    static var dashboardLayoutGrid: UIImage { UIImage(named: "dashboardLayoutGrid", in: .core, compatibleWith: nil)! }
+    static var dashboardLayoutList: UIImage { UIImage(named: "dashboardLayoutList", in: .core, compatibleWith: nil)! }
     static var dashboardTab: UIImage { UIImage(named: "dashboardTab", in: .core, compatibleWith: nil)! }
     static var dashboardTabActive: UIImage { UIImage(named: "dashboardTabActive", in: .core, compatibleWith: nil)! }
     static var dropdown: UIImage { UIImage(named: "dropdown", in: .core, compatibleWith: nil)! }
@@ -226,6 +230,7 @@ public extension UIImage {
     static var k5dueToday: UIImage { UIImage(named: "k5dueToday", in: .core, compatibleWith: nil)! }
     static var k5grades: UIImage { UIImage(named: "k5grades", in: .core, compatibleWith: nil)! }
     static var k5homeroom: UIImage { UIImage(named: "k5homeroom", in: .core, compatibleWith: nil)! }
+    static var k5importantDates: UIImage { UIImage(named: "k5importantDates", in: .core, compatibleWith: nil)! }
     static var k5resources: UIImage { UIImage(named: "k5resources", in: .core, compatibleWith: nil)! }
     static var k5schedule: UIImage { UIImage(named: "k5schedule", in: .core, compatibleWith: nil)! }
     static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
@@ -241,6 +246,8 @@ public extension Image {
     static var addressBookSolid: Image { Image("addressBookSolid", bundle: .core) }
     static var alertsLine: Image { Image("alertsLine", bundle: .core) }
     static var alertsSolid: Image { Image("alertsSolid", bundle: .core) }
+    static var annotateLine: Image { Image("annotateLine", bundle: .core) }
+    static var annotateSolid: Image { Image("annotateSolid", bundle: .core) }
     static var announcementLine: Image { Image("announcementLine", bundle: .core) }
     static var announcementSolid: Image { Image("announcementSolid", bundle: .core) }
     static var arrowOpenDownLine: Image { Image("arrowOpenDownLine", bundle: .core) }
@@ -428,6 +435,8 @@ public extension Image {
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
     static var coursesTabActive: Image { Image("coursesTabActive", bundle: .core) }
+    static var dashboardLayoutGrid: Image { Image("dashboardLayoutGrid", bundle: .core) }
+    static var dashboardLayoutList: Image { Image("dashboardLayoutList", bundle: .core) }
     static var dashboardTab: Image { Image("dashboardTab", bundle: .core) }
     static var dashboardTabActive: Image { Image("dashboardTabActive", bundle: .core) }
     static var dropdown: Image { Image("dropdown", bundle: .core) }
@@ -439,6 +448,7 @@ public extension Image {
     static var k5dueToday: Image { Image("k5dueToday", bundle: .core) }
     static var k5grades: Image { Image("k5grades", bundle: .core) }
     static var k5homeroom: Image { Image("k5homeroom", bundle: .core) }
+    static var k5importantDates: Image { Image("k5importantDates", bundle: .core) }
     static var k5resources: Image { Image("k5resources", bundle: .core) }
     static var k5schedule: Image { Image("k5schedule", bundle: .core) }
     static var logout: Image { Image("logout", bundle: .core) }

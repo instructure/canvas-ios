@@ -53,7 +53,7 @@ public class GetAccountHelpLinks: CollectionUseCase {
 
         var position = 0
         for link in links.custom_help_links.isEmpty ? links.default_help_links : links.custom_help_links {
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(HelpLink.id), link.id)
+            let predicate = NSPredicate(format: "%K == %@", #keyPath(HelpLink.id), link.id ?? "")
             let model: HelpLink = client.fetch(predicate).first ?? client.insert()
             model.availableTo = link.available_to
             model.id = link.id

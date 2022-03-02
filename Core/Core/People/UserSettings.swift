@@ -25,12 +25,14 @@ public final class UserSettings: NSManagedObject, WriteableModel {
     @NSManaged public var manualMarkAsRead: Bool
     @NSManaged public var collapseGlobalNav: Bool
     @NSManaged public var hideDashcardColorOverlays: Bool
+    @NSManaged public var commentLibrarySuggestionsEnabled: Bool
 
     public static func save(_ item: APIUserSettings, in context: NSManagedObjectContext) -> UserSettings {
         let model: UserSettings = context.fetch(nil).first ?? context.insert()
         model.manualMarkAsRead = item.manual_mark_as_read
         model.collapseGlobalNav = item.collapse_global_nav
         model.hideDashcardColorOverlays = item.hide_dashcard_color_overlays
+        model.commentLibrarySuggestionsEnabled = item.comment_library_suggestions_enabled
         return model
     }
 }

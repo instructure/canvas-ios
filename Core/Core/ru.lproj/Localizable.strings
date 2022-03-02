@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Canvas Student, как показано ниже, а затем — отсканированный данный код отсюда.\n        Если ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Добавить вложения";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Добавить комментарий (опционально)";
 
 /* No comment provided by engineer. */
 "Add content" = "Добавить содержание";
@@ -878,6 +878,9 @@
 "Filter" = "Фильтровать";
 
 /* No comment provided by engineer. */
+"Filter by" = "Фильтровать по";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Фильтровать по:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Исключить %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Формат не поддерживается";
 
 /* No comment provided by engineer. */
 "Front Page" = "Первая страница";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Уровень воздействия";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Важные даты";
 
 /* No comment provided by engineer. */
 "Important Info" = "Важная информация";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Отметить как выполненное";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Пометить элемент как выполненный";
+
+/* No comment provided by engineer. */
 "Marked done" = "Отмечено как выполненное";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Далее";
 
 /* No comment provided by engineer. */
+"Next Week" = "На следующей неделе";
+
+/* No comment provided by engineer. */
 "Nickname" = "Ник";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Страницы отсутствуют";
 
 /* No comment provided by engineer. */
+"No preview available" = "Нет доступного предпросмотра";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Нет тестов";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Нет отправки";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Нет поддерживаемых файлов для отправки";
 
 /* No comment provided by engineer. */
 "None" = "Нет";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Открыть приложение";
+
+/* No comment provided by engineer. */
+"Open course details" = "Открыть подробную информацию о курсе";
+
+/* No comment provided by engineer. */
+"Open item details" = "Открыть подробную информацию об элементе";
 
 /* No comment provided by engineer. */
 "Options" = "Опции";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Создайте другой код QR и повторите попытку.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Войдите в систему через приложение";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Подождите несколько минут.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Предыдущие идентификаторы";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Предыдущая неделя";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Политика конфиденциальности";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Выбрать путь";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Выбрать задание";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Выбрать задание";
+
+/* No comment provided by engineer. */
+"Select course" = "Выбрать курс";
 
 /* No comment provided by engineer. */
 "Select Course" = "Выбрать курс";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "В этом курсе нет активных заданий.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Нет доступных для отображения заданий.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Пока нет отображаемых веб-конференций";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "к %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Canvas Student, как показано ниже, а затем — отсканированный данный код отсюда.\nЕсли ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.";
 
 /* No comment provided by engineer. */
 "To Do" = "Задачи";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Просмотрено";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Ожидание того, что произойдут важные события.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Мы не смогли найти ни одного похожего на этот курса.";

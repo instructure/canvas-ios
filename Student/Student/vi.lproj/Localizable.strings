@@ -1,0 +1,1658 @@
+/* %@ will be replaced by the filename */
+"'%@' is now ready to submit to assignments" = "\"%@\" hiện đã sẵn sàng nộp bài tập";
+
+/* explanation for locked module item */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; bị khóa trong khuôn khổ &quot;%2$@&quot;";
+
+/* Message for unsupported tab coming soon */
+"%@ is coming soon!" = "%@ sắp ra mắt!";
+
+/* explanation for locked item */
+"%@ is locked" = "%@ bị khóa";
+
+/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+"%@ is not a valid host" = "%@ không phải máy chủ lưu trữ hợp lệ.";
+
+/* No comment provided by engineer. */
+"%@ is not a valid URL" = "%@ không phải URL hợp lệ";
+
+/* Message for unsupported tab */
+"%@ is not currently supported." = "%@ hiện không được hỗ trợ.";
+
+/* Description for how many times a specific discussion has been liked by other users */
+"%@ likes" = "%@ lượt thích";
+
+/* Label indicating multiple submissions need grading */
+"%@ need grading" = "%@ cần chấm điểm";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* Button to submit files to an assignment */
+"%1$@ (%2$d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g trên tổng số %3$@)";
+
+/* something at something */
+"%1$@ at %2$@" = "%1$@ vào %2$@";
+
+/* local notification countdown alert */
+"%1$@ is due in %2$@" = "%1$@ đến hạn vào %2$@";
+
+/* 88 out of 100 points */
+"%1$@ out of %2$@" = "%1$@ trên tổng số %2$@";
+
+/* String to be read for the blind users. Name of item in module, then type of thing. */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Loại: %3$@.";
+
+/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Loại: %3$@. Trạng Thái: %4$@";
+
+/* 83% (83 out of 100 points */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g trên tổng số %3$@)";
+
+/* A number and a collective noun, like '5 pigs' */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* 88 out of 100 points */
+"%1$g out of %2$@" = "%1$g trên tổng số %2$@";
+
+/* time since creation (2 or more days) */
+"%d days ago" = "%d ngày trước";
+
+/* time since creation (2 or more hours) */
+"%d hours ago" = "%d giờ trước";
+
+/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+"%d items" = "%d mục";
+
+/* time since creation (2 or more minutes) */
+"%d minutes ago" = "%d phút trước";
+
+/* time since creation (2 or more months) */
+"%d months ago" = "%d phút trước";
+
+/* In the context 'Joe, Fred, ((25 more))' */
+"%d more" = "Thêm %d";
+
+/* Something like '5 replies' */
+"%d replies" = "%d câu trả lời";
+
+/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+"%d unread" = "%d chưa đọc";
+
+/* time since creation (2 or more years) */
+"%d years ago" = "%d năm trước";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu byte";
+
+/* offset for one day */
+"%tu day" = "%tu ngày";
+
+/* offset for number of days */
+"%tu days" = "%tu ngày";
+
+/* offset for an hour */
+"%tu hour" = "%tu giờ";
+
+/* offset for number of hours */
+"%tu hours" = "%tu giờ";
+
+/* offset for less than one minute */
+"%tu minute" = "%tu phút";
+
+/* offset for under an hour */
+"%tu minutes" = "%tu phút";
+
+/* No comment provided by engineer. */
+"%u Attachments" = "%u Tập Tin Đính Kèm";
+
+/* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
+"%u files" = "%u tập tin";
+
+/* No comment provided by engineer. */
+"1 Attachment" = "1 Tập Tin Đính Kèm";
+
+/* one day */
+"1 day" = "1 ngày";
+
+/* time since creation */
+"1 day ago" = "1 ngày trước";
+
+/* one hour */
+"1 hour" = "1 giờ";
+
+/* time since creation */
+"1 hour ago" = "1 giờ trước";
+
+/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+"1 item" = "1 mục";
+
+/* Description for a post that has been liked once */
+"1 like" = "1 lượt thích";
+
+/* time since creation */
+"1 minute ago" = "1 phút trước";
+
+/* time since creation */
+"1 month ago" = "1 tháng trước";
+
+/* Label indicating a submission need grading */
+"1 needs grading" = "1 cần chấm điểm";
+
+/* time since creation */
+"1 year ago" = "1 năm trước";
+
+/* three days */
+"3 days" = "3 ngày";
+
+/* five minutes */
+"5 minutes" = "5 phút";
+
+/* Name of a tab displaying Canvas Info including legal info */
+"About" = "Giới Thiệu";
+
+/* Access Denied from the server */
+"Access Denied" = "Truy Cập Bị Từ Chối";
+
+/* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
+"Access denied. Please check your permissions for the action you're trying to complete." = "Truy cập bị từ chối. Vui lòng kiểm tra quyền của bạn cho thao tác bạn đang cố hoàn thành.";
+
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "Thêm bình luận hoặc trả lời bình luận trước";
+
+/* No comment provided by engineer. */
+"Add a folder" = "Thêm thư mục";
+
+/* Title for attachment action sheet from rich text view */
+"Add attachment" = "Thêm tập tin đính kèm";
+
+/* title for Messages attachment action sheet */
+"Add Attachment" = "Thêm Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Add comment" = "Thêm bình luận";
+
+/* add comment button */
+"Add Comment" = "Thêm Bình Luận";
+
+/* No comment provided by engineer. */
+"Add Cover Photo" = "Thêm Ảnh Bìa";
+
+/* Button title for adding a folder to a folder */
+"Add folder" = "Thêm thư mục";
+
+/* Title for the add-inline-media sheet
+   Title on the add-inline-media sheet */
+"Add inline media" = "Thêm nội dung phương tiện trong dòng";
+
+/* No comment provided by engineer. */
+"Add media attachment" = "Thêm tập tin đính kèm nội dung phương tiện";
+
+/* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
+"Add recipients" = "Thêm người nhận";
+
+/* No comment provided by engineer. */
+"All" = "Tất Cả";
+
+/* Button to select all members of a group */
+"All members" = "Tất cả thành viên";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Lần Làm Được Phép:";
+
+/* Error message text */
+"An unknown error occurred" = "Đã xảy ra lỗi không xác định";
+
+/* Title of the new announcement view */
+"Announcement" = "Thông Báo";
+
+/* Announcements title
+   Title for the announcements view controller */
+"Announcements" = "Thông Báo Chung";
+
+/* Archive selected messages button
+   mark a message as archived */
+"Archive" = "Lưu Trữ";
+
+/* hint to archive selected messages */
+"Archive all selected messages" = "Lưu trữ tất cả tin nhắn được chọn";
+
+/* archive selected messages */
+"Archive Selected Messages Button" = "Nút Lưu Trữ Tin Nhắn Được Chọn";
+
+/* No comment provided by engineer. */
+"Archived" = "Được Lưu Trữ";
+
+/* Action sheet title verifying that a user wants to logout. */
+"Are you ready to logout?" = "Bạn có sẵn sàng đăng xuất không?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Bạn có chắc chắn muốn rời khỏi bài kiểm tra này không?";
+
+/* No comment provided by engineer. */
+"Ask me later" = "Hỏi tôi sau";
+
+/* Label for an assignment */
+"Assignment" = "Bài Tập";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Chi Tiết Bài Tập";
+
+/* No comment provided by engineer. */
+"Assignment Locked" = "Bài Tập Bị Khóa";
+
+/* Title for Assignments view controller */
+"Assignments" = "Bài Tập";
+
+/* An item for attaching to a discussion */
+"Attachment" = "Tập Tin Đính Kèm";
+
+/* label for an attachment */
+"Attachment %d" = "Tập Tin Đính Kèm %d";
+
+/* An item for attaching to a conversation */
+"Attachment %i" = "Tập Tin Đính Kèm %i";
+
+/* Table View Controller for Attachments */
+"Attachments" = "Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Attempts" = "Lần Làm";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Lần Làm Được Phép:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Lần Làm Đã Sử Dụng:";
+
+/* Label for a discussion */
+"Attendance" = "Chuyên Cần";
+
+/* Media type is audio */
+"Audio" = "Âm Thanh";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "Phần cứng đầu vào âm thanh không khả dụng";
+
+/* Title of alert box */
+"Authentication error" = "Lỗi xác thực";
+
+/* Link to building panda avatar */
+"Build Avatar" = "Xây Dựng Hình Đại Diện";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Đã xóa bộ nhớ đệm cache";
+
+/* Calendar page title */
+"Calendar" = "Lịch";
+
+/* Invalid LTI tool error title */
+"Can't load tool" = "Không thể tải công cụ";
+
+/* Setup only allows media but no Kaltura instance error title */
+"Can't submit media" = "Không thể nộp nội dung phương tiện";
+
+/* Button title for canceling download of a file
+   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
+   Cancel
+   cancel add file/folder
+   Cancel add option
+   Cancel button for removing a file
+   Cancel deletion of discussion entry
+   cancel folder creation
+   Cancel folder name change
+   cancel masquerade
+   cancel message creation
+   cancel reminder notification
+   cancel view help options */
+"Cancel" = "Hủy";
+
+/* Cancel adding a comment button */
+"Cancel Message" = "Hủy Tin Nhắn";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Hủy Nộp";
+
+/* No comment provided by engineer. */
+"Canvas appears to be unavailable. Please try again later." = "Có vẻ Canvas đang không khả dụng. Vui lòng thử lại sau.";
+
+/* detail text for recipient fetch error message */
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas tìm tìm được người nhận cho mục tìm kiếm hiện tại của bạn. Vui lòng thử lại sau.";
+
+/* mobile quze warning info */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Các bài kiểm tra của Canvas hỗ trợ nhiều kiểu đánh giá đa dạng. Hầu hết các kiểu này được hỗ trợ trên thiết bị di động; tuy nhiên, một số không được hỗ trợ. Nếu bạn cố thực hiện một trong các bài kiểm tra không được hỗ trợ này trên điện thoại của bạn thì bạn có thể sẽ không thể hoàn thành toàn bộ bài kiểm tra, khiến bạn gặp bất lợi.\n\nLoại câu hỏi không được hỗ trợ bao gồm câu hỏi chứa nội dung Adobe Flash™, mục tải lên tập tin và các mục khác.\n\nNếu bạn tin rằng bài kiểm tra có nội dung không được hỗ trợ, vui lòng thực hiện trên máy tính bàn hoặc máy tính xách tay. Nếu bạn biết bài kiểm tra chỉ có nội dung được hỗ trợ, cứ thoải mái thực hiện trên thiết bị di động của bạn.";
+
+/* No comment provided by engineer. */
+"Change User" = "Thay Đổi Người Dùng";
+
+/* No comment provided by engineer. */
+"Choose a name for the new folder" = "Chọn tên cho thư mục mới";
+
+/* Content of an alert popup */
+"Choose a name for the new folder." = "Chọn tên cho thư mục mới.";
+
+/* No comment provided by engineer. */
+"Choose a submission type" = "Chọn loại nộp";
+
+/* No comment provided by engineer. */
+"Choose File" = "Chọn Tập Tin";
+
+/* Choose an existing picture or video to use in a comment. */
+"Choose from Library..." = "Chọn Từ Thư Viện...";
+
+/* Button label for choosing a photo */
+"Choose Photo" = "Chọn Ảnh";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Chọn Hình Ảnh Hồ Sơ";
+
+/* action sheet text for picking video from library */
+"Choose video" = "Chọn video";
+
+/* Choose a video to send as a comment */
+"Choose Video" = "Chọn Video";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Bỏ bộ lọc";
+
+/* No comment provided by engineer. */
+"Close" = "Đóng";
+
+/* No comment provided by engineer. */
+"Closed for Comments" = "Đóng Bình Luận";
+
+/* Title for Collaborations tab */
+"Collaborations" = "Cộng Tác";
+
+/* Add message button for teacher or ta */
+"Comment" = "Bình Luận";
+
+/* title for media comment upload failure */
+"Comment Error" = "Lỗi Bình Luận";
+
+/* View comments */
+"Comments" = "Bình Luận";
+
+/* No comment provided by engineer. */
+"Comments are disabled" = "Bình luận bị tắt";
+
+/* Assignment grade: Complete
+   Pass/fail assignment is complete */
+"Complete" = "Hoàn thành";
+
+/* No comment provided by engineer. */
+"Completed" = "Đã Hoàn Thành";
+
+/* hint for button to compose a message */
+"Compose a message" = "Soạn thảo tin nhắn";
+
+/* button to compose a message */
+"Compose Message Button" = "Nút Soạn Thảo Tin Nhắn";
+
+/* Title for Conferences tab */
+"Conferences" = "Hội Nghị";
+
+/* Alert title */
+"Confirm deletion" = "Xác nhận xóa";
+
+/* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
+"Continue" = "Tiếp tục";
+
+/* No comment provided by engineer. */
+"Could not authenticate with server" = "Không thể xác thực với máy chủ";
+
+/* No comment provided by engineer. */
+"Could not save the comment" = "Không thể lưu bình luận";
+
+/* title for alert displayed when iCanvas can't fetch recipients */
+"Couldn't find recipients" = "Không tìm thấy người nhận";
+
+/* error title for failure to load a file submission */
+"Couldn't Load Submission" = "Không Thể Tải Bài Nộp";
+
+/* Title for Course Syllabus view controller */
+"Course Syllabus" = "Chương Trình Học Của Khóa Học";
+
+/* Courses page title */
+"Courses" = "Khóa Học";
+
+/* cancel folder creation */
+"Create Folder" = "Tạo Thư Mục";
+
+/* Header for a section showing submitted filenames */
+"Current Submission" = "Bài Nộp Hiện Tại";
+
+/* Message telling users that quiz support on mobile is limited */
+"Currently there is limited quiz support on mobile" = "Hiện tại, bài kiểm tra trên di động chỉ được hỗ trợ hạn chế";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Điểm Tự Nhập";
+
+/* label for customizing a course */
+"Customize" = "Tùy Chỉnh";
+
+/* dashboard page title */
+"Dashboard" = "Bảng Điều Khiển";
+
+/* Button to confirm deleting folders
+   Button to delete a discussion entry
+   Confirm deletion of discussion entry */
+"Delete" = "Xóa";
+
+/* Button for deleting files or folders. %d will be the number of selected items */
+"Delete (%d)" = "Xóa (%d)";
+
+/* Alert message */
+"Delete this reply?" = "Xóa câu trả lời này?";
+
+/* delete file confirmation alert */
+"Deleted file: &quot;%@&quot;" = "Xóa tập tin: &quot;%@&quot;";
+
+/* No comment provided by engineer. */
+"Description" = "Mô Tả";
+
+/* No comment provided by engineer. */
+"Detail" = "Chi Tiết";
+
+/* Placeholder text for discussion details field */
+"Details" = "Chi Tiết";
+
+/* No comment provided by engineer. */
+"Discard" = "Hủy Bỏ";
+
+/* No comment provided by engineer. */
+"Discard this entry?" = "Hủy bỏ mục nhập này?";
+
+/* Title of the new discussion view */
+"Discussion" = "Thảo Luận";
+
+/* Title for discussion entry submission */
+"Discussion Entry" = "Mục Nhập Thảo Luận";
+
+/* Title for Discussion Topics view controller */
+"Discussion Topics" = "Đề Tài Thảo Luận";
+
+/* Discussions title
+   Title for Discussions view controller */
+"Discussions" = "Thảo Luận";
+
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
+"Dismiss" = "Hủy Bỏ";
+
+/* Alert title asking if you want to masquerade */
+"Do you want to masquerade as this user?" = "Bạn có muốn hóa trang thành người dùng này không?";
+
+/* The domain for the institution/school that the user is currently using */
+"Domain" = "Tên Miền";
+
+/* No comment provided by engineer. */
+"Don't ask me again" = "Không hỏi tôi lại";
+
+/* Button to cancel deleting folders */
+"Don't delete" = "Không xóa";
+
+/* No comment provided by engineer. */
+"Done" = "Đã xong";
+
+/* Shown when we cancel a file download */
+"Download Canceled" = "Đã Hủy Tải Xuống";
+
+/* Shown while downloading a file */
+"Downloading..." = "Đang tải xuống...";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Đã đóng ngăn kéo";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Ngăn kéo mở hoàn toàn";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Ngăn kéo mở một phần";
+
+/* No comment provided by engineer. */
+"Due" = "Hạn";
+
+/* Assignment is due on a date at a time */
+"due on %1$@ at %2$@" = "đến hạn %1$@ vào %2$@";
+
+/* This string is prepended to the due date for an assignment */
+"Due:" = "Hạn:";
+
+/* Due date label for to do items, first placeholder is date, second is time */
+"Due: %1$@ at %2$@" = "Hạn: %1$@ vào %2$@";
+
+/* Button to edit a discussion entry */
+"Edit" = "Chỉnh Sửa";
+
+/* Edit course list title
+   Edit the items in the course list */
+"Edit Course List" = "Chỉnh Sửa Danh Sách Khóa Học";
+
+/* Edit group list title
+   Edit the items in the group list */
+"Edit Group List" = "Chỉnh Sửa Danh Sách Nhóm";
+
+/* Button title for deleting items in a folder */
+"Edit items" = "Chỉnh sửa mục";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %1$@, %2$@" = "Chỉnh sửa câu trả lời của %1$@, %2$@";
+
+/* the users email */
+"Email" = "Email";
+
+/* Prompt asking user to enable push notifications */
+"Enable Push Notifications" = "Bật Thông Báo Đẩy";
+
+/* Submission input view placeholder text */
+"Enter submission" = "Vào mục nộp";
+
+/* masquerade prompt */
+"Enter User ID and Domain." = "Nhập ID Người Dùng và Tên Miền.";
+
+/* Confirmation message after posting a discussion entry */
+"Entry posted" = "Đã Đăng Mục Nhập";
+
+/* Title of alert box */
+"Error" = "Lỗi";
+
+/* Title of an alert popup */
+"Error adding recipeints" = "Lỗi thêm người nhận";
+
+/* Error deleting file alert view title */
+"Error deleting file &quot;%@&quot;" = "Lỗi xóa tập tin &quot;%@&quot;";
+
+/* Error deleting folder alert view title */
+"Error deleting folder" = "Lỗi xóa thư mục";
+
+/* Link to the End User License Agreement document */
+"EULA" = "EULA";
+
+/* Label for a calendar event */
+"Event" = "Sự Kiện";
+
+/* No comment provided by engineer. */
+"Event Details" = "Chi Tiết Sự Kiện";
+
+/* No comment provided by engineer. */
+"Existing Attachments..." = "Tập Tin Đính Kèm Tồn Tại...";
+
+/* Exit button to leave the quiz */
+"Exit" = "Thoát";
+
+/* Title for an external tool submission */
+"External Tool" = "Công Cụ Ngoài";
+
+/* No comment provided by engineer. */
+"External URL" = "URL Bên Ngoài";
+
+/* No comment provided by engineer. */
+"File" = "Tập Tin";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "Phần mở rộng tập tin không được phép: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment:" = "Phần mở rộng tập tin được phép đối với bài tập này:";
+
+/* No comment provided by engineer. */
+"File received" = "Đã nhập tập tin";
+
+/* No comment provided by engineer. */
+"File Types" = "Loại Tập Tin";
+
+/* Title for an alert popup */
+"File unavailable" = "Tập tin không khả dụng";
+
+/* File upload submission type */
+"File upload" = "Tải lên tập tin";
+
+/* File upload failed. */
+"File upload failed." = "Tải lên tập tin thất bại.";
+
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
+"Files" = "Các Tập Tin";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Các Tập Tin (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Lọc";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Lọc theo:";
+
+/* Shown when we finish downloading a file */
+"Finished downloading" = "Đã hoàn thành tải xuống";
+
+/* badge indicating front page */
+"Front Page" = "Trang Đầu";
+
+/* No comment provided by engineer. */
+"Future" = "Tương Lai";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* Action on an alert */
+"Go to App Store" = "Đi đến App Store";
+
+/* No comment provided by engineer. */
+"Go to discussion" = "Đi đến thảo luận";
+
+/* title for discussion assignment submission button */
+"Go To Discussion" = "Đi Đến Thảo Luận";
+
+/* text for the \"go to quiz\" button */
+"Go to Quiz" = "Đi Đến Bài Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Grade" = "Lớp";
+
+/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+"Grade %@" = "Lớp %@";
+
+/* Launch the SpeedGrader app */
+"Grade in SpeedGrader" = "Lớp trong SpeedGrader";
+
+/* No comment provided by engineer. */
+"Grade: %@" = "Lớp: %@";
+
+/* No comment provided by engineer. */
+"Grade: %1$i / %2$g" = "Lớp: %1$i / %2$g";
+
+/* Label for a discussion */
+"Graded Discussion" = "Thảo Luận Có Chấm Điểm";
+
+/* Lets user know discussion is graded */
+"Graded discussion." = "Thảo luận có chấm điểm.";
+
+/* Graded discussion. 25 points possible */
+"Graded discussion. %g points possible." = "Thảo luận có chấm điểm. %g điểm có thể đạt.";
+
+/* Title for Grades view controller */
+"Grades" = "Điểm";
+
+/* Button title for starting a group conversation */
+"Group conversation" = "Cuộc trò chuyện nhóm";
+
+/* Groups page title */
+"Groups" = "Nhóm";
+
+/* No comment provided by engineer. */
+"Have questions about your assignment?\nMessage your instructor." = "Bạn có thắc mắc về bài tập của bạn?\nHãy nhắn tin cho người hướng dẫn của bạn.";
+
+/* help button */
+"Help" = "Trợ Giúp";
+
+/* Accessibility label for toggling grades to hidden */
+"Hide Grades" = "Ẩn Điểm";
+
+/* Homeroom tab title */
+"Homeroom" = "Phòng Chính";
+
+/* No comment provided by engineer. */
+"How do you like Canvas?" = "Bạn thích Canvas đến mức nào?";
+
+/* I give you back your time, use it wisely. */
+"I give you back your time, use it wisely." = "Tôi sẽ trả lại thời gian của bạn, hãy sử dụng sao cho khôn ngoan.";
+
+/* Image file type */
+"Image" = "Hình Ảnh";
+
+/* No comment provided by engineer. */
+"Import from camera" = "Nhập từ camera";
+
+/* No comment provided by engineer. */
+"Import from Dropbox" = "Nhập từ Dropbox";
+
+/* Inbox tab title */
+"Inbox" = "Hộp Thư Đến";
+
+/* Assignment grade: Incomplete
+   Pass/fail assignment is incomplete */
+"Incomplete" = "Chưa hoàn thành";
+
+/* Button title for sending a direct message; a private conversation */
+"Individual messages" = "Tin nhắn riêng";
+
+/* No comment provided by engineer. */
+"Instructions" = "Chỉ Dẫn";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Url không hợp lệ";
+
+/* No comment provided by engineer. */
+"Invalid URL" = "URL không hợp lệ";
+
+/* No comment provided by engineer. */
+"It has problems" = "Có vấn đề";
+
+/* It’s empty, what are you still doing here. */
+"It’s empty, what are you still doing here." = "Nội dung trống, bạn vẫn đang làm gì ở đây vậy.";
+
+/* No comment provided by engineer. */
+"Item %1$d of %2$d" = "Mục %1$d / %2$d";
+
+/* No comment provided by engineer. */
+"Jumps to current day on calendar" = "Chuyển đến ngày hiện tại trên lịch";
+
+/* No comment provided by engineer. */
+"Keep" = "Giữ";
+
+/* Settings entry title for Choosing a Landing Page */
+"Landing Page" = "Trang Đích";
+
+/* Title for an alert popup */
+"Large file" = "Tập tin lớn hơn";
+
+/* Button in an alert */
+"Later" = "Để sau";
+
+/* title for submission button */
+"Launch External Tool" = "Khởi Chạy Công Cụ Ngoài";
+
+/* Leave the quiz */
+"Leave" = "Rời";
+
+/* Title for legal section on the about page */
+"Legal" = "Pháp Lý";
+
+/* Generic loading title with ellipses
+   Generic loading title with ellipsis */
+"Loading..." = "Đang tải...";
+
+/* No comment provided by engineer. */
+"Location" = "Địa Điểm:";
+
+/* No comment provided by engineer. */
+"Locked" = "Bị Khóa";
+
+/* No comment provided by engineer. */
+"Locked until %@" = "Bị khóa đến %@";
+
+/* Typically the email address correlated to the user */
+"Login ID" = "ID Đăng Nhập";
+
+/* Error message title */
+"Login Problem" = "Vấn Đề Đăng Nhập";
+
+/* logout action sheet logout button title
+   logout button */
+"Logout" = "Đăng Xuất";
+
+/* No comment provided by engineer. */
+"Love it!" = "Tôi thích lắm!";
+
+/* Button title for mark as done */
+"Mark as Done" = "Đánh Dấu Là Đã Xong";
+
+/* Button title for beginning masquerading
+   try masquerading */
+"Masquerade" = "Hóa Trang";
+
+/* No comment provided by engineer. */
+"Me" = "Tôi";
+
+/* The name for a video or audio response to something */
+"Media comment" = "Bình Luận Nội Dung Phương Tiện";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Bình Luận Nội Dung Phương Tiện";
+
+/* Media recording submission type */
+"Media recording" = "Ghi nội dung phương tiện";
+
+/* Title for a media submission */
+"Media Submission" = "Nộp Nội Dung Phương Tiện";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "Bộ chọn loại nội dung phương tiện. %@";
+
+/* No comment provided by engineer. */
+"Message everyone separately, or add everyone to a group conversation?" = "Nhắn tin riêng cho mọi người hay thêm mọi người vào một cuộc trò chuyện nhóm?";
+
+/* Add message button */
+"Message Instructor" = "Nhắn Tin Người Hướng Dẫn";
+
+/* notification that a message has been sent succesfully */
+"Message Sent." = "Đã Gửi Tin Nhắn.";
+
+/* Messages tab title
+   messages title
+   The name of the messages tab */
+"Messages" = "Tin Nhắn";
+
+/* Warnging for taking quizzes on a mobile device */
+"Mobile Quiz Warning" = "Cảnh Báo Bài Kiểm Tra Di Động";
+
+/* title for the modules tab */
+"Modules" = "Học Phần";
+
+/* time since creation (less than 1 minute) */
+"moments ago" = "vừa xong";
+
+/* Button title for selecting to view more info about the limitations of mobile quizzes */
+"More Info" = "Thêm Thông Tin";
+
+/* Title of a link to show additional due dates customized for sections or groups. */
+"Multiple Due Dates" = "Nhiều Ngày Đến Hạn";
+
+/* user must contribute to complete requirement */
+"Must contribute" = "Phải đóng góp";
+
+/* user must mark item as done to complete requirement */
+"Must mark as done" = "Phải đánh dấu là đã xong";
+
+/* format string saying what the minimum score must be */
+"Must score %@ or higher" = "Phải đạt %@ điểm trở lên";
+
+/* user must submit something to complete requirement */
+"Must submit" = "Phải nộp";
+
+/* user must view item to complete requirement */
+"Must view" = "Phải xem";
+
+/* files button */
+"My Files" = "Tập Tin Của Tôi";
+
+/* the users name */
+"Name" = "Tên";
+
+/* Title notifying user that SpeedGrader is available for iPad */
+"Need SpeedGrader for iPad" = "Cần SpeedGrader cho iPad";
+
+/* Network error title */
+"Network Error" = "Lỗi Mạng";
+
+/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+"New Folder" = "Thư Mục Mới";
+
+/* No comment provided by engineer. */
+"New Message" = "Tin Nhắn Mới";
+
+/* No comment provided by engineer. */
+"Next 7 Days" = "7 Ngày Tiếp Theo";
+
+/* No comment provided by engineer. */
+"Next item" = "Mục tiếp theo";
+
+/* No comment provided by engineer. */
+"No" = "Không";
+
+/* Text of alert when attempting to select a file that can't be printed or passed to any other app */
+"No actions available for this file" = "Không có thao tác khả dụng cho tập tin này";
+
+/* Message for attempting submission without a comment */
+"No audio was recorded." = "Không có bản ghi âm nào được ghi âm lại.";
+
+/* No comment provided by engineer. */
+"No Content" = "Không Có Nội Dung";
+
+/* No comment provided by engineer. */
+"No Date" = "Không Có Ngày";
+
+/* String for when assignment has no due date */
+"No due date" = "Không có ngày đến hạn";
+
+/* Label shown for a to do that doesn't have a due date */
+"No Due Date" = "Không Có Ngày Đến Hạn";
+
+/* Error message */
+"No installed apps support opening this file" = "Không có ứng dụng được cài đặt hỗ trợ mở tập tin này";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Không Có Thông Báo";
+
+/* No comment provided by engineer. */
+"No recipients" = "Không có người nhận";
+
+/* Title for attempting submission without a comment */
+"No Recorded Audio" = "Không Có Bản Đã Ghi Âm";
+
+/* Indicates a search found no results */
+"No results found" = "Không tìm thấy kết quả";
+
+/* No Submission groupong */
+"No Submission" = "Không Có Mục Nộp";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Không Có Ngày Nộp";
+
+/* No comment provided by engineer. */
+"No Thanks" = "Không, Cảm Ơn";
+
+/* error message for a 401 response. */
+"Not Authorized" = "Không Được Phép";
+
+/* Accessibility label for points out of points possible label when points are not availiable. */
+"Not available" = "Không khả dụng";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Chưa Hoàn Thành";
+
+/* not graded string. */
+"Not graded" = "Chưa chấm điểm";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "Chưa chấm điểm (0 trên tổng số %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Chưa Nộp";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Lưu ý: Tập tin nội dung phương tiện không thể phát lại ngay trong khi đang được xử lý trên máy chủ.";
+
+/* Nothing to do, go play outside! */
+"Nothing to do, go play outside!" = "Không có gì cần làm, hãy ra ngoài chơi!";
+
+/* Nothing to see here. */
+"Nothing to see here." = "Không có gì để xem ở đây.";
+
+/* No comment provided by engineer. */
+"Notification" = "Thông Báo";
+
+/* Settings entry title for Notification Preferences */
+"Notification Preferences" = "Cài Đặt Ưu Tiên Thông Báo";
+
+/* Notifications tab title */
+"Notifications" = "Thông Báo";
+
+/* Short name for observer enrollment */
+"Observer" = "Người Quan Sát";
+
+/* No comment provided by engineer. */
+"Ok" = "Ok";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "Vào %1$@ %2$@ đã bình luận \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "Vào %1$@ %2$@ đã để lại bình luận video";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "Vào %1$@ %2$@ đã để lại bình luận âm thanh";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "Vào %1$@ %2$@ đã nộp mục sau";
+
+/* Online URL submission type */
+"Online URL" = "URL Trực Tuyến";
+
+/* Error message title
+   Error title
+   Masquerade error title */
+"Oops!" = "Rất tiếc!";
+
+/* Open a document in the application Safari */
+"Open in Safari" = "Mở Trong Safari";
+
+/* Link to open assignment in SpeedGrader */
+"Open in SpeedGrader" = "Mở Trong SpeedGrader";
+
+/* Open file in another application */
+"Open in..." = "Mở trong...";
+
+/* No comment provided by engineer. */
+"Other" = "Khác";
+
+/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+"Other replies hidden until you reply" = "Các câu trả lời khác bị ẩn cho đến khi bạn trả lời";
+
+/* Accessibility label for out or grading style */
+"out of" = "trên tổng số";
+
+/* The assignment is out of 100 points */
+"out of %@" = "trên tổng số %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "trên tổng số %@ điểm thành phần";
+
+/* Title for Outcomes tab */
+"Outcomes" = "Kết Quả";
+
+/* No comment provided by engineer. */
+"Page" = "Trang";
+
+/* No comment provided by engineer. */
+"Past" = "Trước Đây";
+
+/* People list title
+   Title for People view controller */
+"People" = "Mọi Người";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "ảnh";
+
+/* No comment provided by engineer. */
+"Pinned Discussions" = "Cuộc Thảo Luận Đã Ghim";
+
+/* A button that plays */
+"Play" = "Phát";
+
+/* Network error message */
+"Please check your network connection and try again." = "Vui lòng kiểm tra kết nối mạng của bạn rồi thử lại.";
+
+/* Button to post new discussion topic */
+"Post" = "Đăng";
+
+/* No comment provided by engineer. */
+"Post comment" = "Đăng bình luận";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Đăng Bình Luận";
+
+/* Message shown while posting a discussion entry */
+"Posting…" = "Đang đăng...";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Đăng bình luận của bạn";
+
+/* No comment provided by engineer. */
+"Previous item" = "Mục trước";
+
+/* Link to the privacy policy */
+"Privacy Policy" = "Chính Sách Quyền Riêng Tư";
+
+/* Title for profile screen */
+"Profile" = "Hồ Sơ";
+
+/* No comment provided by engineer. */
+"Questions:" = "Câu Hỏi:";
+
+/* Label for a quiz
+   Title for a quiz submission cell */
+"Quiz" = "Kiểm Tra";
+
+/* Title for alert notifying users that support for quizzes on mobile is limited. */
+"Quiz Alert" = "Cảnh Báo Bài Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Thông Tin Chi Tiết Bài Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Quiz Locked" = "Bài Kiểm Tra Bị Khóa";
+
+/* The title for the list of quizzes for a course */
+"Quizzes" = "Các Câu Hỏi Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Rate on App Store" = "Đánh giá trên App Store";
+
+/* Description for rubric criterion rating object */
+"Rating for %1$@, Score: %2$g" = "Đánh giá %1$@, Điểm: %2$g";
+
+/* Title for a button allowing user to re-submit files for an assignment */
+"Re-submit Assignment" = "Nộp Lại Bài Tập";
+
+/* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
+"Recipients" = "Người Nhận";
+
+/* A button that records */
+"Record" = "Ghi";
+
+/* No comment provided by engineer. */
+"Record audio" = "Ghi âm";
+
+/* Record audio submission comment */
+"Record Audio" = "Ghi Âm";
+
+/* Record audio to use in a comment. */
+"Record Audio..." = "Ghi Âm...";
+
+/* No comment provided by engineer. */
+"Record video" = "Quay video";
+
+/* Record video submission comment option */
+"Record Video" = "Quay Video";
+
+/* No comment provided by engineer. */
+"Refresh Button" = "Nút Làm Mới";
+
+/* No comment provided by engineer. */
+"Refreshes the calendar content" = "Làm mới nội dung lịch";
+
+/* Refreshing Calendar Events */
+"Refreshing Calendar Events" = "Đang Làm Mới Sự Kiện Lịch";
+
+/* Confirmation for removing a file */
+"Remove" = "Gỡ";
+
+/* Button title for confirming a file deletion */
+"Remove this file?" = "Gỡ tập tin này?";
+
+/* option to report a problem */
+"Report a problem" = "Báo cáo vấn đề";
+
+/* option to request a feature */
+"Request a feature" = "Yêu cầu đặc tính";
+
+/* No comment provided by engineer. */
+"Resubmission Failed" = "Nộp Lại Thất Bại";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Nộp Lại Bài Tập";
+
+/* No comment provided by engineer. */
+"Resume Quiz" = "Tiếp Tục Bài Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Retake Quiz" = "Làm Lại Bài Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Retry" = "Thử Lại";
+
+/* View grading rubric */
+"Rubric" = "Bảng Đánh Giá Theo Tiêu Chí";
+
+/* No comment provided by engineer. */
+"Save" = "Lưu";
+
+/* Title for Assignment Notifications Sheet */
+"Schedule Notification" = "Thông Báo Lịch Trình";
+
+/* Placeholder text in a search bar used to find conversation recipients */
+"Search for recipients" = "Tìm kiếm người nhận";
+
+/* Title for a file picker window */
+"Select file(s)" = "Gửi tập tin";
+
+/* No comment provided by engineer. */
+"Select or deselect" = "Chọn hoặc bỏ chọn";
+
+/* No comment provided by engineer. */
+"Selected" = "Đã Chọn";
+
+/* No comment provided by engineer. */
+"Send" = "Gửi";
+
+/* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
+"Send %@ a message" = "Gửi %@ tin nhắn";
+
+/* No comment provided by engineer. */
+"Send comment" = "Gửi bình luận";
+
+/* No comment provided by engineer. */
+"Send Message" = "Gửi Tin Nhắn";
+
+/* No comment provided by engineer. */
+"Sent" = "Đã Gửi";
+
+/* settings button
+   Title for Settings tab */
+"Settings" = "Cài Đặt";
+
+/* Title for button confirming showing a file */
+"Show file" = "Hiển thị tập tin";
+
+/* Accessibility label for toggling grades to visible */
+"Show Grades" = "Hiển Thị Điểm";
+
+/* title for quiz assignment submission button */
+"Show Quiz" = "Hiển Thị Bài Kiểm Tra";
+
+/* VoiceOver text for a button that lets you show recipients */
+"Show recipients" = "Hiển thị người nhận";
+
+/* Message for an error popup */
+"Some items could not be deleted" = "Không thể xóa một số mục";
+
+/* Message for a warning popup */
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Một thư mục đã chọn không trống. Bạn có chắc chắn muốn xóa không?";
+
+/* 404 Error for missing assignment */
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Rất tiếc, chúng tôi không tìm thấy bài tập. Bài tập này có thể đã bị xóa.";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Bắt đầu phát bản ghi của bạn";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Bắt đầu ghi bình luận nội dung phương tiện";
+
+/* Stay on the quiz view */
+"Stay" = "Duy Trì";
+
+/* button title for cancelling a logout. */
+"Stay Logged In" = "Duy Trì Đăng Nhập";
+
+/* A button that stops */
+"Stop" = "Dừng";
+
+/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+"Stop Masquerading" = "Dừng Hóa Trang";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Dừng phát bản ghi của bạn";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Dừng ghi bình luận nội dung phương tiện";
+
+/* Short name for student enrollment */
+"Student" = "Sinh Viên";
+
+/* No comment provided by engineer. */
+"Student Annotation" = "Chú Thích Sinh Viên";
+
+/* No comment provided by engineer. */
+"Studio" = "Studio";
+
+/* No comment provided by engineer. */
+"Sub Header" = "Đầu Đề Phụ";
+
+/* View previously submitted assignment */
+"Submission" = "Nộp";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Bài Nộp Và Bảng Đánh Giá Theo Tiêu Chí";
+
+/* No comment provided by engineer. */
+"Submission complete" = "Nộp hoàn thành";
+
+/* Title for file submission error */
+"Submission Error" = "Lỗi Nộp";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Nộp Thất Bại";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Đang Nộp...";
+
+/* Text submission editor accessibility label */
+"Submission text" = "Văn bản nộp";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Loại Nộp";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Đang Tải Lên Bài Nộp...";
+
+/* Submit an assignment */
+"Submit" = "Nộp";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Nộp Bài tập";
+
+/* Submitted grouping */
+"Submitted" = "Đã nộp";
+
+/* Submitted date */
+"Submitted %@" = "Đã Nộp %@";
+
+/* No comment provided by engineer. */
+"Submitting..." = "Đang nộp...";
+
+/* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
+"Subscribe to calendar feed" = "Đăng ký nguồn cấp dữ liệu lịch";
+
+/* Masquerade success title */
+"Success!" = "Thành công!";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Đã nộp thành công!";
+
+/* No comment provided by engineer. */
+"Sure!" = "Chắc rồi!";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Chuyển đầu vào nội dung phương tiện giữa âm thanh và video. Hiện đang cài đặt thành %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Chuyển sang chế độ bình luận nội dung phương tiện";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Chuyển sang chế độ bình luận văn bản";
+
+/* Syllabus screen name
+   Title for Syllabus view controller */
+"Syllabus" = "Chương Trình Học";
+
+/* Short name for TA enrollment */
+"TA" = "Trợ Giảng";
+
+/* Take a picture to use in a comment. */
+"Take a Photo..." = "Chụp Ảnh...";
+
+/* Take a video to use in a comment. */
+"Take a Video..." = "Quay Video...";
+
+/* Button label for taking a photo */
+"Take Photo" = "Chụp Ảnh";
+
+/* Take a picture or video to use in a comment. */
+"Take Photo or Video..." = "Chụp Ảnh Hoặc Quay Video...";
+
+/* No comment provided by engineer. */
+"Take Quiz" = "Thực Hiện Bài Kiểm Tra";
+
+/* Displayed in a row when an error occurs loading more items */
+"Tap to try again" = "Nhấn để thử lại";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Nhấn vào để xem thông tin chi tiết";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Nhấn vào để xem tiến trình";
+
+/* No comment provided by engineer. */
+"TAs" = "Trợ Giảng";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Giáo Viên";
+
+/* No comment provided by engineer. */
+"Teachers" = "Giáo Viên";
+
+/* No comment provided by engineer. */
+"Tell us what's wrong" = "Cho chúng tôi biết vấn đề gì đã xảy ra";
+
+/* Link to the Terms of Use */
+"Terms of Use" = "Điều Khoản Sử Dụng";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Bình Luận Văn Bản";
+
+/* Text entry submission type */
+"Text entry" = "Mục nhập văn bản";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Mục Nhập Văn Bản";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Nộp Văn Bản";
+
+/* Text explaining the error */
+"The recipients could not be added. Please try again. (%@)" = "Không thể thêm người nhận. Vui lòng thử lại. (%@)";
+
+/* Explanation for while a file is unavailable */
+"The server could not be reached" = "Không thể kết nối đến máy chủ";
+
+/* No comment provided by engineer. */
+"The server you entered is not authorized for this app." = "Máy chủ bạn đã nhập chưa được cấp phép sử dụng cho ứng dụng này";
+
+/* No comment provided by engineer. */
+"The user agent for this app is unauthorized." = "Tác tử người dùng cho ứng dụng này chưa được cấp phép";
+
+/* Error message */
+"There are no actions for this item" = "Không có thao tác nào cho mục này";
+
+/* No comment provided by engineer. */
+"There are no files for this assignment." = "Không có tập tin nào cho bài tập này.";
+
+/* No comment provided by engineer. */
+"There are no items to display" = "Không có mục nào để hiển thị";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Không có bảng đánh giá theo tiêu chí cho bài tập này";
+
+/* message for media comment upload failure */
+"There was a network error posting your comment." = "Đã xảy ra lỗi mạng khi đăng bình luận của bạn.";
+
+/* message for failed submission upload */
+"There was a network problem while attempting to upload your submission" = "Đã xảy ra vấn đề mạng khi thử tải lên bài nộp của bạn";
+
+/* Error message when fetching a file fails */
+"There was a problem accessing the requested file.\n\nError: %@" = "Đã xảy ra vấn đề khi truy cập tập tin được yêu cầu\n\nLỗi: %@";
+
+/* No comment provided by engineer. */
+"There was a problem launching Safari" = "Đã xảy ra vấn đề khi khởi chạy Safari";
+
+/* Web browser error handling message */
+"There was an error loading the document." = "Đã xảy ra lỗi khi tải tài liệu.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Đã xảy ra lỗi khi tải nội dung của bạn. Nếu tập tin âm thanh hoặc video đang được tải lên thì có thể vẫn đang được xử lý.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Chưa có gì để được thông báo.";
+
+/* No comment provided by engineer. */
+"This app is not authorized for use." = "Ứng dụng này chưa được cấp phép sử dụng.";
+
+/* Invalid LTI tool error message */
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Bài tập này có vẻ không phải là công cụ ngoài hợp lệ hoặc bị cấu hình sai.";
+
+/* message displayed in the details section if there is no comment. */
+"This assignment has no details." = "Bài tập này không có thông tin chi tiết.";
+
+/* No comment provided by engineer. */
+"This assignment is locked until %@" = "Bài tập này bị khóa đến %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Bài tập này bị khóa %@";
+
+/* No comment provided by engineer. */
+"This entry has been deleted" = "Mục nhập này đã bị xóa";
+
+/* Text indicating a file cannot be previewed */
+"This file cannot be displayed on this device." = "Không thể hiển thị tập tin này trên thiết bị này.";
+
+/* Text indicating that a file cannot be opened */
+"This file is locked" = "Tập tin này bị khóa";
+
+/* Text indicating that a folder cannot be opened */
+"This folder is locked" = "Thư mục này bị khóa";
+
+/* No comment provided by engineer. */
+"This is a media message." = "Đây là tin nhắn nội dung phương tiện.";
+
+/* This would be a great time to do some extra credit. */
+"This would be a great time to do some extra credit." = "Đây sẽ là thời điểm tuyệt vời để kiếm điểm cộng.";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Giới Hạn Thời Gian:";
+
+/* Title of to do screen
+   To Do page title */
+"To Do" = "Việc Cần Làm";
+
+/* No comment provided by engineer. */
+"To:" = "Đến:";
+
+/* No comment provided by engineer. */
+"Today" = "Hôm Nay";
+
+/* No comment provided by engineer. */
+"Today Button" = "Nút Hôm Nay";
+
+/* No comment provided by engineer. */
+"Toggles selection of current item" = "Chuyển đổi lựa chọn mục hiện tại";
+
+/* No comment provided by engineer. */
+"Toggles selection of item" = "Chuyển đổi lựa chọn mục";
+
+/* title for assignment submission button */
+"Turn In" = "Nộp";
+
+/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+"Turn in %@" = "Nộp %@";
+
+/* title for re-submitting an assignment */
+"Turn In Again" = "Nộp Lại";
+
+/* Notification over status bar that displays when not connected to the internet. */
+"Uh-oh! No Internet Connection" = "Rất tiếc! Không Có Kết Nối Internet";
+
+/* Error title */
+"Unable to load" = "Không thể tải";
+
+/* Error message */
+"Unable to post. Please try again later" = "Không thể đăng. Vui lòng thử lại sau";
+
+/* message saying that avatar couldn't be loaded to server */
+"Unable to upload to server" = "Không thể tải lên máy chủ";
+
+/* Grade unavailable */
+"Unavailable" = "Không Khả Dụng";
+
+/* Title for grade button when no grade is present */
+"Ungraded" = "Chưa Chấm Điểm";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "không xác định";
+
+/* Unknown file type */
+"Unknown" = "Không xác định";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Lỗi Không Xác Định";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Không Giới Hạn";
+
+/* No comment provided by engineer. */
+"Unread" = "Chưa đọc";
+
+/* No comment provided by engineer. */
+"Unsaved Reply" = "Câu Trả Lời Chưa Lưu";
+
+/* when locked item will become unlocked */
+"until %@" = "đến %@";
+
+/* Button title for uploading a file */
+"Upload" = "Tải lên";
+
+/* No comment provided by engineer. */
+"Upload a file" = "Tải lên tập tin";
+
+/* title for upload error alert */
+"Upload Error" = "Lỗi Tải Lên";
+
+/* explanation of upload failure */
+"Upload failed. Reason: (%@)" = "Tải lên thất bại. Lý do: (%@)";
+
+/* Button title for adding a file to a folder */
+"Upload file" = "Tải lên tập tin";
+
+/* Error message */
+"Upload to assignment &quot;%@&quot; failed" = "Tải lên bài tập &quot;%@&quot; thất bại";
+
+/* Error message */
+"Upload to folder &quot;%@&quot; failed" = "Tải lên thư mục &quot;%@&quot; thất bại";
+
+/* No comment provided by engineer. */
+"Uploading" = "Đang Tải Lên";
+
+/* button for using the recorded audio */
+"Use" = "Sử Dụng";
+
+/* No comment provided by engineer. */
+"User ID" = "ID Người Dùng";
+
+/* Title for User Info section on the about page */
+"User Info" = "Thông Tin Người Dùng";
+
+/* Media type is video */
+"Video" = "Video";
+
+/* No comment provided by engineer. */
+"Video error" = "Lỗi video";
+
+/* No comment provided by engineer. */
+"View" = "Xem";
+
+/* No comment provided by engineer. */
+"View Discussion" = "Xem Thảo Luận";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Xem tập tin %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Xem Kết Quả";
+
+/* No comment provided by engineer. */
+"View submission attempt %d. %@" = "Xem lần làm bài nộp %1$d. %2$@";
+
+/* No comment provided by engineer. */
+"Warning" = "Cảnh báo";
+
+/* error message for failure to load a file submission */
+"We had a problem loading the submission. Please try again later." = "Chúng tôi đã gặp vấn đề khi tải bài nộp. Vui lòng thử lại sau.";
+
+/* No comment provided by engineer. */
+"We were unable to verify the server for use with this app." = "Chúng tôi không thể xác minh máy chủ để sử dụng với ứng dụng này.";
+
+/* No comment provided by engineer. */
+"Website Address" = "Địa Chỉ Trang Web";
+
+/* Error Title */
+"Whoops!" = "Rất tiếc!";
+
+/* unlock date for discussion/announcement */
+"Will unlock %@." = "Sẽ mở khóa %@.";
+
+/* Title for action sheet giving the user an option to create a new message for a user. */
+"Would you like to create a new message?" = "Bạn có muốn tạo tin nhắn mới không?";
+
+/* No comment provided by engineer. */
+"Would you mind giving us a rating on the app store?" = "Bạn có phiền cho chúng tôi đánh giá trên App Store không?";
+
+/* No comment provided by engineer. */
+"Would you mind letting us know the problems you have been having with the app?" = "Bạn có phiền cho chúng tôi biết vấn đề bạn đang gặp phải với ứng dụng không?";
+
+/* Text submission editor placeholder */
+"Write..." = "Ghi...";
+
+/* No comment provided by engineer. */
+"Yes" = "Có";
+
+/* Masquerade title telling who you are masquerading as */
+"You are now masquerading as %@" = "Bạn hiện đang hóa trang thành %@";
+
+/* Masquerade success message */
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Bạn hiện đang hóa trang thành %@ Để Dừng Hóa Trang, hãy đi đến Hồ Sơ của bạn.";
+
+/* Error message for an unauthorized course or group. */
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Bạn không có quyền truy cập nội dung này. Khóa Học hoặc Nhóm có thể chưa bắt đầu hoặc đã kết thúc.";
+
+/* Error message */
+"You do not have permission to delete this reply" = "Bạn không có quyền xóa câu trả lời này";
+
+/* Message in an alert */
+"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Bạn không có SpeedGrader cho iPad. Bạn có thể tải xuống miễn phí từ App Store.";
+
+/* Masquerade error message */
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Bạn không có quyền hóa trang thành người dùng này hoặc không có người dùng nào có ID đó";
+
+/* No comment provided by engineer. */
+"You have an unsaved reply. Would you like to discard that reply?" = "Bạn có câu trả lời chưa lưu. Bạn có muốn bỏ câu trả lời đó không?";
+
+/* prerequisites for unlocking item */
+"You must first complete:" = "Bạn phải hoàn thành trước:";
+
+/* Error message */
+"You need a title and a description to post" = "Bạn cần tiêu đề và mô tả thì mới có thể đăng";
+
+/* You should go rate Canvas on the App Store! */
+"You should go rate Canvas on the App Store!" = "Bạn nên đi đánh giá Canvas trên App Store!";
+
+/* Error content */
+"Your files could not be found" = "Không tìm thấy tập tin của bạn";
+
+/* Media submission type selected with no Kaltura set up */
+"Your school's configuration does not allow the type of submission selected for this assignment" = "Cấu hình của trường của bạn không cho phép loại bài nộp đã chọn cho bài tập này";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded." = "Bài nộp của bạn hiện đang chờ chấm điểm.";
+

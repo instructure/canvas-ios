@@ -21,31 +21,20 @@ import SwiftUI
 public struct TopBarView: View {
     @ObservedObject private var viewModel: TopBarViewModel
     private let selectionIndicatorHeight: CGFloat = 3
-    private let leftInset: CGFloat
+    private let horizontalInset: CGFloat
     private let itemSpacing: CGFloat
 
-    public init(viewModel: TopBarViewModel, leftInset: CGFloat, itemSpacing: CGFloat) {
+    public init(viewModel: TopBarViewModel, horizontalInset: CGFloat, itemSpacing: CGFloat) {
         self.viewModel = viewModel
-        self.leftInset = leftInset
+        self.horizontalInset = horizontalInset
         self.itemSpacing = itemSpacing
     }
 
     public var body: some View {
         ScrollViewWithReader(.horizontal, showsIndicators: false) { scrollViewProxy in
-            HStack(spacing: itemSpacing) {
-                if leftInset > 0 {
-                    Color.clear.frame(width: abs(itemSpacing - leftInset), height: 0)
-                }
-
+            HStack(spacing: 0) {
                 ForEach(0..<viewModel.items.count) { index in
-                    TopBarItemView(viewModel: viewModel.items[index]) {
-                        viewModel.selectedItemIndex = index
-                        withAnimation {
-                            scrollViewProxy.scrollTo(index, anchor: nil)
-                        }
-                    }
-                    .anchorPreference(key: ViewBoundsPreferenceKey.self, value: .bounds, transform: { [ViewBoundsPreferenceData(viewId: index, bounds: $0)] })
-                    .id(index)
+                    itemForModel(at: index, scrollViewProxy: scrollViewProxy)
                 }
             }
             .overlayPreferenceValue(ViewBoundsPreferenceKey.self) { boundsPreferences in
@@ -53,7 +42,26 @@ public struct TopBarView: View {
                     selectionIndicator(selectedItemBounds: boundsForSelectedItem(in: geometry, using: boundsPreferences))
                 }
             }
+            .onReceive(viewModel.$selectedItemIndex) { selectedItemIndex in
+                withAnimation {
+                    scrollViewProxy.scrollTo(selectedItemIndex, anchor: nil)
+                }
+            }
         }
+    }
+
+    private func itemForModel(at index: Int, scrollViewProxy: CompatibleScrollViewProxy) -> some View {
+        let isFirstItem = (index == 0)
+        let isLastItem = (index == viewModel.items.count - 1)
+        let item = TopBarItemView(viewModel: viewModel.items[index]) {
+            viewModel.selectedItemIndex = index
+        }
+        .anchorPreference(key: ViewBoundsPreferenceKey.self, value: .bounds, transform: { [ViewBoundsPreferenceData(viewId: index, bounds: $0)] })
+        .padding(.leading, isFirstItem ? horizontalInset : (itemSpacing / 2))
+        .padding(.trailing, isLastItem ? horizontalInset : (itemSpacing / 2))
+        .id(index)
+
+        return item
     }
 
     private func selectionIndicator(selectedItemBounds: CGRect) -> some View {
@@ -76,19 +84,19 @@ public struct TopBarView: View {
 
 struct TopBarView_Previews: PreviewProvider {
     static var previews: some View {
-        let properties: [(leftInset: CGFloat, itemSpaing: CGFloat)] = [
+        let properties: [(horizontalInset: CGFloat, itemSpacing: CGFloat)] = [
             (16, 16),
             (0, 16),
             (32, 16),
         ]
 
-        ForEach(0..<properties.count) {
+        ForEach(0..<3) {
             TopBarView(viewModel: TopBarViewModel(items: [
                 TopBarItemViewModel(icon: .addLine, label: Text(verbatim: "Add")),
                 TopBarItemViewModel(icon: .audioLine, label: Text(verbatim: "Audio")),
                 TopBarItemViewModel(icon: .noteLine, label: Text(verbatim: "Note")),
                 TopBarItemViewModel(icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite")),
-            ]), leftInset: properties[$0].leftInset, itemSpacing: properties[$0].itemSpaing)
+            ]), horizontalInset: properties[$0].horizontalInset, itemSpacing: properties[$0].itemSpacing)
                 .previewLayout(.sizeThatFits)
         }
     }

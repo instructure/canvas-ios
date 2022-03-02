@@ -250,7 +250,9 @@ public struct GetNextRequest<T: Codable>: APIRequestable {
     public let path: String
 }
 
-public struct APINoContent: Codable {}
+public struct APINoContent: Codable {
+    public init() {}
+}
 
 extension URLRequest: APIRequestable {
     public typealias Response = Data

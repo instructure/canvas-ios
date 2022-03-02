@@ -526,16 +526,16 @@
 "Drawer partially opened" = "Gaveta parcialmente aberta";
 
 /* No comment provided by engineer. */
-"Due" = "Vencimento";
+"Due" = "Limite";
 
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "devido em %1$@ às %2$@";
 
 /* This string is prepended to the due date for an assignment */
-"Due:" = "Vencimento:";
+"Due:" = "Limite:";
 
 /* Due date label for to do items, first placeholder is date, second is time */
-"Due: %1$@ at %2$@" = "Vencimento: %1$@ em %2$@";
+"Due: %1$@ at %2$@" = "Limite: %1$@ em %2$@";
 
 /* Button to edit a discussion entry */
 "Edit" = "Editar";
@@ -855,7 +855,7 @@
 "More Info" = "Mais Info";
 
 /* Title of a link to show additional due dates customized for sections or groups. */
-"Multiple Due Dates" = "Datas de entrega múltiplas";
+"Multiple Due Dates" = "Datas limite múltiplas";
 
 /* user must contribute to complete requirement */
 "Must contribute" = "Tem de contribuir";
@@ -912,10 +912,10 @@
 "No Date" = "Sem data";
 
 /* String for when assignment has no due date */
-"No due date" = "Sem data de vencimento";
+"No due date" = "Sem data limite";
 
 /* Label shown for a to do that doesn't have a due date */
-"No Due Date" = "Sem data de vencimento";
+"No Due Date" = "Sem data limite";
 
 /* Error message */
 "No installed apps support opening this file" = "Sem apps instaladas que suportem este ficheiro";
@@ -1253,6 +1253,9 @@
 "Student" = "Aluno";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Anotação de aluno";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1401,7 +1404,7 @@
 "There are no items to display" = "Não existem itens para apresentar";
 
 /* No comment provided by engineer. */
-"There is no rubric for this assignment" = "Não existe rubrica para esta atribuição";
+"There is no rubric for this assignment" = "Não existe rubrica para esta tarefa";
 
 /* message for media comment upload failure */
 "There was a network error posting your comment." = "Ocorreu um erro de rede ao publicar o seu comentário.";
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "Desconhecido";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erro Desconhecido";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ilimitado";

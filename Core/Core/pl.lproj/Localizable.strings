@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Aby utworzyć konto, poproś uczestnika o utworzenie kodu parowania w sekcji Ustawienia aplikacji Canvas Student, jak pokazano poniżej, a następnie zeskanuj udostępniony kod.\n        Jeśli uczestnik nie widzi opcji tworzenia kodu parowania, należy skontaktować się ze szkoła w celu utworzenia konta.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Dodaj załączniki";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Dodaj komentarz (opcjonalnie)";
 
 /* No comment provided by engineer. */
 "Add content" = "Dodaj zawartość";
@@ -878,6 +878,9 @@
 "Filter" = "Filtruj";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtruj wg";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtruj wg:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Zapomnij %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Format nie obsługiwany";
 
 /* No comment provided by engineer. */
 "Front Page" = "Pierwsza strona";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Poziom istotności";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Ważne daty";
 
 /* No comment provided by engineer. */
 "Important Info" = "Ważne informacje";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Oznacz jako gotowe";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Oznacz jako gotowy";
+
+/* No comment provided by engineer. */
 "Marked done" = "Oznaczone jako gotowe";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Następny";
 
 /* No comment provided by engineer. */
+"Next Week" = "Następny tydzień";
+
+/* No comment provided by engineer. */
 "Nickname" = "Przydomek";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Brak stron";
 
 /* No comment provided by engineer. */
+"No preview available" = "Podgląd niedostępny";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Brak testów";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Brak przesłanych zadań";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Brak obsługiwanych plików do przesłania";
 
 /* No comment provided by engineer. */
 "None" = "Brak";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Otwórz aplikację";
+
+/* No comment provided by engineer. */
+"Open course details" = "Otwórz szczegóły kursu";
+
+/* No comment provided by engineer. */
+"Open item details" = "Otwórz szczegóły elementu";
 
 /* No comment provided by engineer. */
 "Options" = "Opcje";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Wygeneruj nowy kod QR i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Zaloguj się za pomocą aplikacji";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Proszę czekać, to może potrwać chwilę.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Poprzednie logowania";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Poprzedni tydzień";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Polityka prywatności";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Wybierz ścieżkę";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Wybierz zadanie";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Wybierz zadanie";
+
+/* No comment provided by engineer. */
+"Select course" = "Wybierz kurs";
 
 /* No comment provided by engineer. */
 "Select Course" = "Wybierz kurs";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Obecnie nie ma aktywnych zadań w tym kursie.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Brak zadań do wyświetlenia.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Brak konferencji do wyświetlenia.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "do %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Aby utworzyć konto, poproś uczestnika o utworzenie kodu parowania w sekcji Ustawienia aplikacji Canvas Student, jak pokazano poniżej, a następnie zeskanuj udostępniony kod.\nJeśli uczestnik nie widzi opcji tworzenia kodu parowania, należy skontaktować się ze szkoła w celu utworzenia konta.";
 
 /* No comment provided by engineer. */
 "To Do" = "Lista zadań";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Przejrzane";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Oczekiwanie na ważne wydarzenia.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Nie udało się odnaleźć takich kursów.";

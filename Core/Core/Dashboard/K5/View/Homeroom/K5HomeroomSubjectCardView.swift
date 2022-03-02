@@ -80,7 +80,7 @@ public struct K5HomeroomSubjectCardView: View {
     private var infoLines: some View {
         VStack(alignment: .leading, spacing: 5) {
             let infoLines = viewModel.infoLines
-            ForEach(0..<infoLines.count) { index in
+            ForEach(0..<infoLines.count, id: \.self) { index in
                 infoLine(from: infoLines[index])
 
                 if index != infoLines.count - 1 {
@@ -134,7 +134,7 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
             ]),
         ]
 
-        ForEach(0..<models.count) { index in
+        ForEach(0..<2) { index in
             K5HomeroomSubjectCardView(viewModel: models[index], width: 193).previewLayout(.sizeThatFits)
             K5HomeroomSubjectCardView(viewModel: models[index], width: 400).previewLayout(.sizeThatFits)
         }

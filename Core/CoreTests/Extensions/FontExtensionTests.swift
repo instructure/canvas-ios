@@ -46,6 +46,7 @@ class FontExtensionTests: XCTestCase {
         XCTAssertEqual(Font.semibold12, Font(UIFont.scaledNamedFont(.semibold12)))
         XCTAssertEqual(Font.semibold14, Font(UIFont.scaledNamedFont(.semibold14)))
         XCTAssertEqual(Font.semibold16, Font(UIFont.scaledNamedFont(.semibold16)))
+        XCTAssertEqual(Font.semibold17, Font(UIFont.scaledNamedFont(.semibold17)))
         XCTAssertEqual(Font.semibold16Italic, Font(UIFont.scaledNamedFont(.semibold16Italic)))
         XCTAssertEqual(Font.semibold18, Font(UIFont.scaledNamedFont(.semibold18)))
         XCTAssertEqual(Font.semibold20, Font(UIFont.scaledNamedFont(.semibold20)))

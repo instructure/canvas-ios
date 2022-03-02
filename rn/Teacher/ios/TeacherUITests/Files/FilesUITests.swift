@@ -28,7 +28,7 @@ class FilesUITests: MiniCanvasUITestCase {
     }
 
     func testUploadAudioFile() throws {
-        try XCTSkipIf(true, "Swifter can't seem to parse our form data")
+        // Disabled test, Swifter can't seem to parse our form data. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
 
@@ -51,7 +51,7 @@ class FilesUITests: MiniCanvasUITestCase {
     }
 
     func testAddFileFromLibrary() throws {
-        try XCTSkipIf(true, "Swifter can't seem to parse our form data")
+        // Disabled test, Swifter can't seem to parse our form data. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
 

@@ -82,7 +82,7 @@ struct K5ScheduleView_Previews: PreviewProvider {
         K5ScheduleView(viewModel: K5Preview.Data.Schedule.rootModel)
             .previewDevice(PreviewDevice(stringLiteral: "iPhone 12"))
         K5ScheduleView(viewModel: K5Preview.Data.Schedule.rootModel)
-            .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
+            .previewDevice(PreviewDevice(stringLiteral: "iPad (9th generation)"))
     }
 }
 

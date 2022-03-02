@@ -13,11 +13,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d qualificació amagada actualment</string>
+			<string>%d nota amagada actualment</string>
 			<key>other</key>
-			<string>%d qualificacions amagades actualment</string>
+			<string>%d notes amagades actualment</string>
 			<key>zero</key>
-			<string>%d qualificacions amagades actualment</string>
+			<string>%d notes amagades actualment</string>
 		</dict>
 	</dict>
 	<key>grades_currently_posted</key>
@@ -31,11 +31,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d qualificació publicada actualment</string>
+			<string>%d nota publicada actualment</string>
 			<key>other</key>
-			<string>%d qualificacions publicades actualment</string>
+			<string>%d notes publicades actualment</string>
 			<key>zero</key>
-			<string>%d qualificacions publicades actualment</string>
+			<string>%d notes publicades actualment</string>
 		</dict>
 	</dict>
 </dict>

@@ -91,6 +91,9 @@
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
+		C909F7C327B25AC500CB89DE /* DSDashboardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7C227B25AC500CB89DE /* DSDashboardTest.swift */; };
+		C909F7C527BA7E4A00CB89DE /* DSPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7C427BA7E4A00CB89DE /* DSPagesTests.swift */; };
+		C909F7D527C383D800CB89DE /* DSSubmissionsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */; };
 		C914BC0F26AFE0BC009A5607 /* QuizzesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */; };
 		C91B216B26CA4E28006EE156 /* MessagesE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */; };
 		C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */; };
@@ -102,11 +105,14 @@
 		C956719D266E033B001FEA9B /* ModulesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C956719C266E033B001FEA9B /* ModulesE2ETests.swift */; };
 		C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990D8192668ADBF00034C90 /* TodosE2ETests.swift */; };
 		C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1834A265CEBC800B35D52 /* PagesE2ETest.swift */; };
+		C9A23D2527A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D2427A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift */; };
 		C9A3C02F268C4CBB00DAE8E1 /* GradesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C02E268C4CBB00DAE8E1 /* GradesE2ETests.swift */; };
 		C9A3C03C2694198A00DAE8E1 /* SubmissionsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C03B2694198A00DAE8E1 /* SubmissionsE2ETests.swift */; };
 		C9A3C0412698391000DAE8E1 /* FilesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C0402698391000DAE8E1 /* FilesE2ETests.swift */; };
 		C9FDE91E26BBBE5500DF0106 /* AnnouncementsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDE91D26BBBE5500DF0106 /* AnnouncementsE2ETests.swift */; };
 		CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */; };
+		CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */; };
+		CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */; };
 		D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
@@ -128,8 +134,12 @@
 		E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */; };
 		E8F4B66624EECA10003FBAFD /* ContextCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66524EECA10003FBAFD /* ContextCard.swift */; };
 		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
+		EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */; };
+		EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB368AB127BBD4DE00A9F1C1 /* CommentLibraryList.swift */; };
 		EB3ECFC62636F63500289506 /* SideMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECFC52636F63500289506 /* SideMenuUITests.swift */; };
 		EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A24D261206CA0003241C /* GradeSliderTests.swift */; };
+		EBAF32F627AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */; };
+		EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -329,17 +339,30 @@
 		5B2C672D24308583001B37CE /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-HK"; path = "zh-HK.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		5B2D24D224CD62F900958682 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B2D24D324CD62F900958682 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B2F6D5E272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B2F6D5F272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B2F6D60272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "es-ES"; path = "es-ES.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5B2F6D61272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B2F6D62272FC9A500BEF272 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B32899E2430858500CC2D57 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = zh; path = zh.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5B32BDD024CD62FB000E56D9 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B32BDD124CD62FB000E56D9 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B33012F20317A18003153A3 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B372FCB24CD62FD00F26DB9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B372FCC24CD62FD00F26DB9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B3BD224271D5421002AE2A9 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5B3BD225271D5421002AE2A9 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B3BD226271D5421002AE2A9 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B3C377020317A1F001CA776 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B3C8B0624CD62FE001B6ADC /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B3C8B0724CD62FE001B6ADC /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B41135C24CD6300003021AC /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B41135D24CD6300003021AC /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B4428C327B0FD05001BAA79 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B4428C427B0FD05001BAA79 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B4428C527B0FD05001BAA79 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5B4428C627B0FD05001BAA79 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B4428C727B0FD05001BAA79 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B45978920317A2600E50AAA /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B464C0824CD6301005C0BFB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B464C0924CD6301005C0BFB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -397,7 +420,17 @@
 		5BAE6B8C20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5BAE6B8D20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BAE6B8E20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BB1D928271D543E006DDCB6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5BB1D929271D543E006DDCB6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5BB1D92A271D543E006DDCB6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5BB1D92B271D543E006DDCB6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5BB1D92C271D543E006DDCB6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BB367B82430854C00C000E6 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB"; path = "en-GB.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5BB644AD271D543F008A900D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5BB644AE271D543F008A900D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5BB644AF271D543F008A900D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5BB644B0271D543F008A900D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5BB644B1271D543F008A900D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BB9A8812430854E00F5DE4B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5BC07E9124308551006A4AFE /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fi; path = fi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5BC69D592430855400D0A590 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "fr-CA"; path = "fr-CA.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -507,6 +540,9 @@
 		B17E1DB4238DA8550022EE0E /* SpeedGraderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderUITests.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1FF02D1240435B0004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		C909F7C227B25AC500CB89DE /* DSDashboardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDashboardTest.swift; sourceTree = "<group>"; };
+		C909F7C427BA7E4A00CB89DE /* DSPagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSPagesTests.swift; sourceTree = "<group>"; };
+		C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmissionsE2ETests.swift; sourceTree = "<group>"; };
 		C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
 		C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesE2ETest.swift; sourceTree = "<group>"; };
 		C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsE2ETests.swift; sourceTree = "<group>"; };
@@ -518,11 +554,14 @@
 		C956719C266E033B001FEA9B /* ModulesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesE2ETests.swift; sourceTree = "<group>"; };
 		C990D8192668ADBF00034C90 /* TodosE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosE2ETests.swift; sourceTree = "<group>"; };
 		C9A1834A265CEBC800B35D52 /* PagesE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesE2ETest.swift; sourceTree = "<group>"; };
+		C9A23D2427A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAssignmentsE2ETests.swift; sourceTree = "<group>"; };
 		C9A3C02E268C4CBB00DAE8E1 /* GradesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesE2ETests.swift; sourceTree = "<group>"; };
 		C9A3C03B2694198A00DAE8E1 /* SubmissionsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsE2ETests.swift; sourceTree = "<group>"; };
 		C9A3C0402698391000DAE8E1 /* FilesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesE2ETests.swift; sourceTree = "<group>"; };
 		C9FDE91D26BBBE5500DF0106 /* AnnouncementsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsE2ETests.swift; sourceTree = "<group>"; };
 		CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderTests.swift; sourceTree = "<group>"; };
+		CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModel.swift; sourceTree = "<group>"; };
+		CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModelTests.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D082A88269C8C11CA67734AC /* Pods-needs-pspdfkit-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
@@ -545,8 +584,12 @@
 		E8F4B66524EECA10003FBAFD /* ContextCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCard.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
+		EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentLibraryViewModelTests.swift; sourceTree = "<group>"; };
+		EB368AB127BBD4DE00A9F1C1 /* CommentLibraryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryList.swift; sourceTree = "<group>"; };
 		EB3ECFC52636F63500289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
 		EB71A24D261206CA0003241C /* GradeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderTests.swift; sourceTree = "<group>"; };
+		EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentLibraryViewModel.swift; sourceTree = "<group>"; };
+		EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibrarySheet.swift; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -697,6 +740,7 @@
 		7D0A28E0251A8104004FB3B6 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
+				EBAF32F727AAD073000ACD32 /* ViewModel */,
 				7D742F442556566F00FD6CF1 /* CommentEditor.swift */,
 				7D7126B02534B980000DEDE4 /* Drawer.swift */,
 				EB12071E2601F2C50038E875 /* GradeSlider.swift */,
@@ -704,12 +748,15 @@
 				7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */,
 				7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */,
 				7D7126C325374457000DEDE4 /* SubmissionCommentList.swift */,
+				EBE802AE27B41C5F0003A663 /* CommentLibrarySheet.swift */,
+				EB368AB127BBD4DE00A9F1C1 /* CommentLibraryList.swift */,
 				7D4B2747253F2D1600A98DE3 /* SubmissionCommentListCell.swift */,
 				7D7126C625374469000DEDE4 /* SubmissionFileList.swift */,
 				7D7D6D5125102052002B1485 /* SubmissionGrader.swift */,
 				7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */,
 				7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */,
 				7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */,
+				CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */,
 				7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */,
 			);
 			path = SpeedGrader;
@@ -718,9 +765,11 @@
 		7D3DC0C4252432B000B0EBC1 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
-				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
-				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
 				EB71A24D261206CA0003241C /* GradeSliderTests.swift */,
+				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
+				CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */,
+				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
+				EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -841,6 +890,17 @@
 			path = SpeedGrader;
 			sourceTree = "<group>";
 		};
+		C9A23D2327A3D8A600A1EE3B /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				C9A23D2427A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift */,
+				C909F7C227B25AC500CB89DE /* DSDashboardTest.swift */,
+				C909F7C427BA7E4A00CB89DE /* DSPagesTests.swift */,
+				C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */,
+			);
+			path = Assignments;
+			sourceTree = "<group>";
+		};
 		D9DE56C82550309600CF8B22 /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +968,7 @@
 		E841D8A123D6472200685A63 /* TeacherE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				C9A23D2327A3D8A600A1EE3B /* Assignments */,
 				E841D8BA23D6472F00685A63 /* Info.plist */,
 				E814FC0424993ED900CD208A /* DiscussionEditorE2ETests.swift */,
 				E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */,
@@ -961,6 +1022,14 @@
 				EB3ECFC52636F63500289506 /* SideMenuUITests.swift */,
 			);
 			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		EBAF32F727AAD073000ACD32 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EBAF32F527AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1161,6 +1230,10 @@
 				ca,
 				it,
 				th,
+				"zh-Hans",
+				"zh-Hant",
+				"es-ES",
+				vi,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1235,8 +1308,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1350,8 +1423,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-TeacherE2ETests/Pods-needs-pspdfkit-TeacherE2ETests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1405,11 +1478,18 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-segmented-control/react_native_segmented_control.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1448,6 +1528,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_segmented_control.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1519,11 +1606,18 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-segmented-control/react_native_segmented_control.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKit.framework/PSPDFKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/Core/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1562,6 +1656,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_segmented_control.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1593,6 +1694,8 @@
 				7D0A28E2251A8284004FB3B6 /* SubmissionHeader.swift in Sources */,
 				7DCA321A25423CDF00458651 /* SpeedGraderViewController.swift in Sources */,
 				7D742F452556566F00FD6CF1 /* CommentEditor.swift in Sources */,
+				EBAF32F627AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift in Sources */,
+				CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
 				7D4B2748253F2D1600A98DE3 /* SubmissionCommentListCell.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
@@ -1607,10 +1710,12 @@
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
+				EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */,
 				7D7126C725374469000DEDE4 /* SubmissionFileList.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
+				EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */,
 				7D7D6D5225102052002B1485 /* SubmissionGrader.swift in Sources */,
 			);
@@ -1637,9 +1742,11 @@
 				CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
 				D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */,
+				EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
+				CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */,
 				7DE062A625126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift in Sources */,
 				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
@@ -1678,6 +1785,7 @@
 				C946A8C026661C2E004BCA4D /* DashboardE2ETests.swift in Sources */,
 				E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */,
 				C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */,
+				C909F7C327B25AC500CB89DE /* DSDashboardTest.swift in Sources */,
 				C92796F126772C5B00582AC5 /* SyllabusE2ETests.swift in Sources */,
 				C91B216B26CA4E28006EE156 /* MessagesE2ETest.swift in Sources */,
 				E8F4B66624EECA10003FBAFD /* ContextCard.swift in Sources */,
@@ -1689,10 +1797,13 @@
 				C9A3C02F268C4CBB00DAE8E1 /* GradesE2ETests.swift in Sources */,
 				C9A3C03C2694198A00DAE8E1 /* SubmissionsE2ETests.swift in Sources */,
 				C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */,
+				C909F7D527C383D800CB89DE /* DSSubmissionsE2ETests.swift in Sources */,
 				C927971326830DA700582AC5 /* DiscussionsE2ETests.swift in Sources */,
 				C935D42626DE073B00C940F7 /* NewQuizzesE2ETests.swift in Sources */,
 				C9A3C0412698391000DAE8E1 /* FilesE2ETests.swift in Sources */,
+				C9A23D2527A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift in Sources */,
 				C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */,
+				C909F7C527BA7E4A00CB89DE /* DSPagesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1754,6 +1865,10 @@
 				5BA7690A2430854600A6F9D2 /* en-CA */,
 				5BDE09B22430855E007EA704 /* it */,
 				5BD3D0852689AC98003D70B4 /* th */,
+				5BB1D928271D543E006DDCB6 /* zh-Hans */,
+				5BB644AD271D543F008A900D /* zh-Hant */,
+				5B2F6D5E272FC9A500BEF272 /* es-ES */,
+				5B4428C327B0FD05001BAA79 /* vi */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1829,6 +1944,10 @@
 				5B7D063F2430853300E655CE /* ca */,
 				5BDE09B42430855E007EA704 /* it */,
 				5BD3D0882689AC98003D70B4 /* th */,
+				5BB1D929271D543E006DDCB6 /* zh-Hans */,
+				5BB644AE271D543F008A900D /* zh-Hant */,
+				5B2F6D5F272FC9A500BEF272 /* es-ES */,
+				5B4428C427B0FD05001BAA79 /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1869,6 +1988,11 @@
 				5B8798F124CD631600D95768 /* zh-HK */,
 				5B8CB22924CD6318001095A0 /* zh */,
 				5BD3D0842689AC98003D70B4 /* th */,
+				5B3BD225271D5421002AE2A9 /* en-GB-instukhe */,
+				5BB1D92B271D543E006DDCB6 /* zh-Hans */,
+				5BB644B0271D543F008A900D /* zh-Hant */,
+				5B2F6D61272FC9A500BEF272 /* es-ES */,
+				5B4428C627B0FD05001BAA79 /* vi */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1909,6 +2033,11 @@
 				5B8798F224CD631700D95768 /* zh-HK */,
 				5B8CB22824CD6318001095A0 /* zh */,
 				5BD3D0872689AC98003D70B4 /* th */,
+				5B3BD226271D5421002AE2A9 /* en-GB-instukhe */,
+				5BB1D92C271D543E006DDCB6 /* zh-Hans */,
+				5BB644B1271D543F008A900D /* zh-Hant */,
+				5B2F6D62272FC9A500BEF272 /* es-ES */,
+				5B4428C727B0FD05001BAA79 /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1950,6 +2079,11 @@
 				5B32899E2430858500CC2D57 /* zh */,
 				5B64B98C244C341D006D035F /* ca */,
 				5BD3D0862689AC98003D70B4 /* th */,
+				5B3BD224271D5421002AE2A9 /* en-GB-instukhe */,
+				5BB1D92A271D543E006DDCB6 /* zh-Hans */,
+				5BB644AF271D543F008A900D /* zh-Hant */,
+				5B2F6D60272FC9A500BEF272 /* es-ES */,
+				5B4428C527B0FD05001BAA79 /* vi */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";

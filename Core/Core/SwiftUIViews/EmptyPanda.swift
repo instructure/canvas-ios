@@ -20,7 +20,7 @@ import SwiftUI
 
 public enum Panda: String, CaseIterable {
     case AtLaptop, Blindfold, Blocks, Book, FilePicker, Grades, InboxZero, Locked
-    case NoAlerts, NoComments, NoDiscussions, NoEvents, NoResults, NoRubric
+    case NoAlerts, NoComments, NoDiscussions, NoEvents, NoImportantDates, NoResults, NoRubric
     case Papers, Sleeping, Space, Teacher, Welcome, Unsupported
 
     public var name: String { "Panda\(rawValue)" }
@@ -38,7 +38,7 @@ public struct EmptyPanda: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Spacer()
             Image(panda.name, bundle: .core)
             title?

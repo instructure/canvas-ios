@@ -1,0 +1,56 @@
+{
+  "configurations" : [
+    {
+      "id" : "AC1978BE-F5ED-4DAC-9B02-4473B0C00427",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
+          "identifier" : "13B07F861A680F5B00A75B9A",
+          "name" : "Teacher"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Teacher.xcodeproj",
+      "identifier" : "13B07F861A680F5B00A75B9A",
+      "name" : "Teacher"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "DSPagesTests\/testDeletePage()",
+        "DashboardE2ETests\/testDashboardE2E()",
+        "PagesE2ETests\/testCreateAndDeletePage()"
+      ],
+      "target" : {
+        "containerPath" : "container:Teacher.xcodeproj",
+        "identifier" : "E841D8A223D6472F00685A63",
+        "name" : "TeacherE2ETests"
+      }
+    },
+    {
+      "skippedTests" : [
+        "DiscussionsUITests\/testCloseDiscussion()",
+        "FilesUITests\/testAddFileFromLibrary()",
+        "FilesUITests\/testUploadAudioFile()",
+        "IPadSpeedGraderTests\/testSpeedGrader()",
+        "SpeedGraderCommentUITests\/testNewAudioComment()"
+      ],
+      "target" : {
+        "containerPath" : "container:Teacher.xcodeproj",
+        "identifier" : "E8315D3522FC9E60003CD27C",
+        "name" : "TeacherUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

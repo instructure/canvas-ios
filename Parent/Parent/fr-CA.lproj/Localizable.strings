@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    L'étudiant que vous tentez d'ajouter se trouve dans un autre établissement Canvas.\n                    Connectez-vous ou créez un compte avec cet établissement pour ajouter cet étudiant.\n                    ";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ dû à %2$@";
 
 /* No comment provided by engineer. */
@@ -113,6 +110,9 @@
 "Location" = "Emplacement";
 
 /* No comment provided by engineer. */
+"Locked" = "Verrouillé";
+
+/* No comment provided by engineer. */
 "Login required" = "Connexion requise";
 
 /* No comment provided by engineer. */
@@ -179,6 +179,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Programme";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "L’élément lié n’est plus disponible.";
+
+/* No comment provided by engineer. */
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "L’étudiant que vous tentez d’ajouter se trouve dans une autre institution Canvas.\nConnectez-vous ou créez un compte avec cette institution pour ajouter cet étudiant.";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "La valeur doit être un nombre compris entre 0 et 100";

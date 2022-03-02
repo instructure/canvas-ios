@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn.\n        Os nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Ychwanegu Atodiadau";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Ychwanegu sylw (dewisol)";
 
 /* No comment provided by engineer. */
 "Add content" = "Ychwanegu cynnwys";
@@ -878,6 +878,9 @@
 "Filter" = "Hidlo";
 
 /* No comment provided by engineer. */
+"Filter by" = "Hidlo yn ôl";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Hidlo yn ôl:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Anghofio %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Does dim modd delio â'r fformat";
 
 /* No comment provided by engineer. */
 "Front Page" = "Tudalen Flaen";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Lefel yr Effaith";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Dyddiadau Pwysig";
 
 /* No comment provided by engineer. */
 "Important Info" = "Gwybodaeth bwysig";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Marcio eu bod wedi’u gwneud";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Marcio eitem fel wedi ei wneud";
+
+/* No comment provided by engineer. */
 "Marked done" = "Wedi'u marcio eu bod wedi’u gwneud";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Nesaf";
 
 /* No comment provided by engineer. */
+"Next Week" = "Wythnos Nesaf";
+
+/* No comment provided by engineer. */
 "Nickname" = "Llysenw";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Dim Tudalennau";
 
 /* No comment provided by engineer. */
+"No preview available" = "Dim rhagolwg ar gael";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Dim Cwisiau";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Dim cyflwyniad";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Dim ffeiliau y mae modd delio â nhw i’w cyflwyno";
 
 /* No comment provided by engineer. */
 "None" = "Dim";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Agor rhaglen";
+
+/* No comment provided by engineer. */
+"Open course details" = "Agor manylion cwrs";
+
+/* No comment provided by engineer. */
+"Open item details" = "Agor manylion eitem";
 
 /* No comment provided by engineer. */
 "Options" = "Opsiynau";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Crëwch God QR arall a rhoi cynnig arall arni";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Mewngofnodwch gan ddefnyddio’r rhaglen";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Arhoswch funud, gall hyn gymryd ychydig funudau.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Manylion Mewngofnodi Blaenorol";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Wythnos Flaenorol";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Polisi Preifatrwydd";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Dewis Llwybr";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Dewis aseiniad";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Dewis Aseiniad";
+
+/* No comment provided by engineer. */
+"Select course" = "Dewiswch gwrs";
 
 /* No comment provided by engineer. */
 "Select Course" = "Dewis Cwrs";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Does dim aseiniadau gweithredol yn y cwrs hwn.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Does dim aseiniadau i’w dangos.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Does dim cynadleddau i’w dangos eto.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "i %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn.\nOs nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Wedi gweld";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Yn aros i bethau pwysig ddigwydd.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Doedd dim modd dod o hyd i unrhyw gyrsiau fel yna.";

@@ -31,12 +31,13 @@ class AssignmentTests: CoreTestCase {
     func testUpdateFromAPIItemWithAPISubmission() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", submission: nil))
-        let api = APIAssignment.make(name: "api_a", submission: .make())
+        let api = APIAssignment.make(annotatable_attachment_id: "Test Annotatable Attachment ID", name: "api_a", submission: .make())
 
         XCTAssertNil(a.submission)
 
         a.update(fromApiModel: api, in: client, updateSubmission: true, updateScoreStatistics: false)
 
+        XCTAssertEqual(a.annotatableAttachmentID, "Test Annotatable Attachment ID")
         XCTAssertEqual(a.id, api.id.value)
         XCTAssertEqual(a.name, api.name)
         XCTAssertEqual(a.courseID, api.course_id.value)
@@ -143,6 +144,18 @@ class AssignmentTests: CoreTestCase {
         let result = list.first
         XCTAssertNotNil(result)
         XCTAssertNil(result?.scoreStatistics)
+    }
+
+    func testUpdateFromAPIItemWithNilPosition() {
+        let api = APIAssignment.make(position: nil)
+        let savedAssignment = Assignment.save(api, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        XCTAssertEqual(savedAssignment.position, Int.max)
+    }
+
+    func testUpdateFromAPIItemWithNeedsGradingCount() {
+        let api = APIAssignment.make(needs_grading_count: 5)
+        let savedAssignment = Assignment.save(api, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        XCTAssertEqual(savedAssignment.needsGradingCount, 5)
     }
 
     func testCanMakeSubmissions() {
@@ -355,5 +368,19 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.usedAttempts, 1)
         a.submission = Submission.make(from: .make(attempt: nil))
         XCTAssertEqual(a.usedAttempts, 0)
+    }
+
+    func testHasMultipleDueDates() {
+        let a = Assignment.make(from: .make(all_dates: [
+            .make(
+                id: 1,
+                due_at: DateComponents(calendar: .current, year: 2020, month: 6, day: 1).date
+            ),
+            .make(
+                id: 2,
+                due_at: DateComponents(calendar: .current, year: 2020, month: 6, day: 2).date
+            ),
+        ]))
+        XCTAssertTrue(a.hasMultipleDueDates)
     }
 }

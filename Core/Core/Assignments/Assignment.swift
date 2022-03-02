@@ -23,6 +23,10 @@ public class Assignment: NSManagedObject {
     @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
     @NSManaged public var allowedExtensionsRaw: String
+    /**
+     The ID of the file to be annotated by students in case of a student_annotation type assignment, nil otherwise.
+     */
+    @NSManaged public var annotatableAttachmentID: String?
     @NSManaged public var anonymizeStudents: Bool
     @NSManaged public var anonymousSubmissions: Bool
     @NSManaged public var assignmentGroup: AssignmentGroup?
@@ -52,6 +56,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
     @NSManaged public var moderatedGrading: Bool
     @NSManaged public var name: String
+    @NSManaged public var needsGradingCount: Int
     @NSManaged public var overrides: Set<AssignmentOverride>
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var position: Int
@@ -122,6 +127,10 @@ public class Assignment: NSManagedObject {
         set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 
+    public var hasMultipleDueDates: Bool {
+        allDates.count > 1
+    }
+
     @objc public var assignmentGroupSectionName: String? {
         guard let assignmentGroup = assignmentGroup else { return nil }
         return assignmentGroup.name
@@ -141,6 +150,7 @@ extension Assignment {
     func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) {
         allowedAttempts = item.allowed_attempts ?? 0
         allowedExtensions = item.allowed_extensions ?? []
+        annotatableAttachmentID = item.annotatable_attachment_id
         anonymizeStudents = item.anonymize_students == true
         anonymousSubmissions = item.anonymous_submissions == true
         assignmentGroupID = item.assignment_group_id?.value
@@ -163,8 +173,9 @@ extension Assignment {
         lockExplanation = item.lock_explanation
         moderatedGrading = item.moderated_grading == true
         name = item.name
+        needsGradingCount = item.needs_grading_count ?? 0
         pointsPossible = item.points_possible
-        position = item.position
+        position = item.position ?? Int.max
         published = item.published != false
         quizID = item.quiz_id?.value
         submissionTypes = item.submission_types

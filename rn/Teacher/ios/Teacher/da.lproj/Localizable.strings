@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Kunne ikke starte navneopkald-LTI-værktøj.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Kunne ikke indlæse afleveringsdata!";
+
+/* No comment provided by engineer. */
 "Files" = "Filer";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Nulstil";
 
 /* No comment provided by engineer. */
+"Retry" = "Prøv igen";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubrik";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "To Do";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Ukendt fejl";
 
 /* No comment provided by engineer. */
 "Unmark" = "Fjern markering";

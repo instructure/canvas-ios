@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        จัดทำบัญชีผู้ใช้โดยให้ผู้เรียนจัดทำรหัสเข้าคู่สำหรับคุณจากหัวข้อ ค่าปรับตั้ง ของแอพ Canvas Student ตามที่แสดงด้านล่าง จากนั้นสแกนรหัสจากที่นี่\n        หากผู้เรียนไม่พบตัวเลือกดังกล่าวในการจัดทำรหัสเข้าคู่ คุณจะต้องติดต่อกับสถานศึกษาของคุณเพื่อจัดทำบัญชีผู้ใช้ของคุณ\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "เพิ่มเอกสารแนบ";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "เพิ่มความเห็น (เผื่อเลือก)";
 
 /* No comment provided by engineer. */
 "Add content" = "เพิ่มเนื้อหา";
@@ -878,6 +878,9 @@
 "Filter" = "ตัวกรอง";
 
 /* No comment provided by engineer. */
+"Filter by" = "กรองจาก";
+
+/* No comment provided by engineer. */
 "Filter by:" = "กรองจาก:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "ลืม %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "ฟอร์แมตไม่รองรับ";
 
 /* No comment provided by engineer. */
 "Front Page" = "หน้าแรก";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "ระดับผลกระทบ";
+
+/* No comment provided by engineer. */
+"Important Dates" = "วันที่ที่สำคัญ";
 
 /* No comment provided by engineer. */
 "Important Info" = "ข้อมูลสำคัญ";
@@ -1259,6 +1268,9 @@
 "Mark done" = "กำกับว่าเสร็จสิ้น";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "กำกับรายการว่าเสร็จสิ้น";
+
+/* No comment provided by engineer. */
 "Marked done" = "กำกับว่าเสร็จสิ้นแล้ว";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "ถัดไป";
 
 /* No comment provided by engineer. */
+"Next Week" = "สัปดาห์ถัดไป";
+
+/* No comment provided by engineer. */
 "Nickname" = "ชื่อเล่น";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "ไม่มีหน้าเพจ";
 
 /* No comment provided by engineer. */
+"No preview available" = "ไม่มีตัวอย่าง";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "ไม่มีแบบทดสอบ";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "ไม่มีผลงานจัดส่ง";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "ไม่มีไฟล์ที่รองรับสำหรับส่ง";
 
 /* No comment provided by engineer. */
 "None" = "ไม่มี";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "เปิดแอพพลิเคชั่น ";
+
+/* No comment provided by engineer. */
+"Open course details" = "เปิดรายละเอียดบทเรียน";
+
+/* No comment provided by engineer. */
+"Open item details" = "เปิดรายละเอียดรายการ";
 
 /* No comment provided by engineer. */
 "Options" = "ตัวเลือก";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "กรุณาจัดทำรหัส QR อื่นแล้วลองใหม่อีกครั้ง";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "กรุณาล็อกอินผ่านแอพพลิเคชั่น";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "กรุณารอสักครู่ อาจต้องใช้เวลาครู่หนึ่ง";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "การล็อกอินก่อนหน้า";
+
+/* No comment provided by engineer. */
+"Previous Week" = "สัปดาห์ก่อนหน้า";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "นโยบายความเป็นส่วนตัว";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "เลือกเส้นทาง";
+
+/* No comment provided by engineer. */
+"Select assignment" = "เลือกภารกิจ";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "เลือกภารกิจ";
+
+/* No comment provided by engineer. */
+"Select course" = "เลือกบทเรียน";
 
 /* No comment provided by engineer. */
 "Select Course" = "เลือกบทเรียน";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "แอพจะต้องรีสตาร์ทเพื่อใช้ค่าภาษาใหม่ กรุณาเปิดแอพขึ้นใหม่";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "ไม่มีภารกิจที่เปิดใช้อยู่ในบทเรียนนี้";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "ไม่มีภารกิจที่จะแสดง";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "ไม่มีการประชุมสำหรับจัดแสดงในตอนนี้";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "ถึง %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "จัดทำบัญชีผู้ใช้โดยให้ผู้เรียนจัดทำรหัสเข้าคู่สำหรับคุณจากหัวข้อ ค่าปรับตั้ง ของแอพ Canvas Student ตามที่แสดงด้านล่าง จากนั้นสแกนรหัสจากที่นี่\nหากผู้เรียนไม่พบตัวเลือกดังกล่าวในการจัดทำรหัสเข้าคู่ คุณจะต้องติดต่อกับสถานศึกษาของคุณเพื่อจัดทำบัญชีผู้ใช้ของคุณ";
 
 /* No comment provided by engineer. */
 "To Do" = "สิ่งที่ต้องดำเนินการ";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "ที่ดู";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "กำลังรอเหตุการณ์สำคัญ";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "เราไม่พบบทเรียนลักษณะนี้";

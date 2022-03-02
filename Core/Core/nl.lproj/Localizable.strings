@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Canvas Student-app zoals hieronder aangegeven en daarna scan je die code hier.\n        Als je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Bijlagen toevoegen";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Opmerking toevoegen (optioneel)";
 
 /* No comment provided by engineer. */
 "Add content" = "Inhoud toevoegen";
@@ -878,6 +878,9 @@
 "Filter" = "Filter";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filteren op";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filteren op:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Vergeten %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Indeling niet ondersteund";
 
 /* No comment provided by engineer. */
 "Front Page" = "Voorpagina";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Impactniveau";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Belangrijke datums";
 
 /* No comment provided by engineer. */
 "Important Info" = "Belangrijke informatie";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Gereed markeren";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Item markeren als klaar";
+
+/* No comment provided by engineer. */
 "Marked done" = "Gereed gemarkeerd";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Volgende";
 
 /* No comment provided by engineer. */
+"Next Week" = "Volgende week";
+
+/* No comment provided by engineer. */
 "Nickname" = "Bijnaam";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Geen pagina's";
 
 /* No comment provided by engineer. */
+"No preview available" = "Geen voorbeeld beschikbaar";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Geen toetsen";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Geen inzending";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Geen ondersteunde bestanden om in te leveren";
 
 /* No comment provided by engineer. */
 "None" = "Geen";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Applicatie openen";
+
+/* No comment provided by engineer. */
+"Open course details" = "Cursusdetails openen";
+
+/* No comment provided by engineer. */
+"Open item details" = "Itemdetails openen";
 
 /* No comment provided by engineer. */
 "Options" = "Opties";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Genereer een andere QR-code en probeer het opnieuw.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Log in via de applicatie";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Een ogenblik geduld...";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Eerdere aanmeldingen";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Vorige week";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Privacybeleid";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Een pad selecteren";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Opdracht selecteren";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Opdracht selecteren";
+
+/* No comment provided by engineer. */
+"Select course" = "Cursus selecteren";
 
 /* No comment provided by engineer. */
 "Select Course" = "Cursus selecteren";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "De app moet opnieuw worden gestart om de nieuwe taalinstellingen te activeren. Start de app opnieuw.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Er zijn geen actieve opdrachten in deze cursus.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Er zijn geen opdrachten om weer te geven.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Er zijn nog geen vergaderingen om weer te geven.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "tot %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Canvas Student-app zoals hieronder aangegeven en daarna scan je die code hier.\nAls je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.";
 
 /* No comment provided by engineer. */
 "To Do" = "Opdrachtenlijst";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Bekeken";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Wachten op belangrijke dingen die kunnen gebeuren.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "We konden geen cursussen zoals die vinden.";

@@ -26,6 +26,18 @@ private var annotationHasRepliesKey: UInt8 = 0
 private var fontSizeTransform: CGFloat = 0.85
 
 extension Annotation {
+    /** Returns true if the annotation is loaded from the pdf file. */
+    var isFileAnnotation: Bool {
+        let annotationProvider: DocViewerAnnotationProvider? = {
+            let result = documentProvider?.annotationManager.annotationProviders.first { $0 is DocViewerAnnotationProvider }
+            return result as? DocViewerAnnotationProvider
+        }()
+
+        guard let annotationProvider = annotationProvider else { return false }
+
+        return annotationProvider.isFileAnnotation(self)
+    }
+
     var userName: String? {
         get { return objc_getAssociatedObject(self, &annotationUserNameKey) as? String }
         set { objc_setAssociatedObject(self, &annotationUserNameKey, newValue, .OBJC_ASSOCIATION_COPY) }

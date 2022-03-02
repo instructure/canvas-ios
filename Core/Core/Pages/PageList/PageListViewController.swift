@@ -182,7 +182,6 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
         if pages.hasNextPage, indexPath.row == pages.count {
-            pages.getNextPage()
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell: PageListCell = tableView.dequeue(for: indexPath)
@@ -194,6 +193,23 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
         let page = (indexPath.section == 0 && !frontPage.isEmpty) ? frontPage.first : pages[indexPath.row]
         guard let url = page?.htmlURL else { return }
         env.router.route(to: url, from: self, options: .detail)
+    }
+
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if cell is LoadingCell {
+            pages.getNextPage()
+        }
+    }
+
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && !frontPage.isEmpty {
+            return UITableView.automaticDimension
+        } else if indexPath.row == pages.count {
+            // Loading cell height
+            return 73
+        } else {
+            return UITableView.automaticDimension
+        }
     }
 }
 

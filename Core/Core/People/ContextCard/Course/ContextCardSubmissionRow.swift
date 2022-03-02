@@ -31,13 +31,14 @@ struct ContextCardSubmissionRow: View {
     private let a11ySubmissionStatus: String
 
     var body: some View {
-        Button(action: navigateToSpeedGrader, label: {
+        Button(action: navigateToAssignment) {
             HStack(alignment: .top, spacing: 0) {
                 icon.padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 12))
                 VStack(alignment: .leading, spacing: 8) {
                     Text(assignment.name)
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                     Text(submission.status.text)
                         .font(.regular14).foregroundColor(Color(submission.status.color))
                     if submission.needsGrading {
@@ -47,7 +48,7 @@ struct ContextCardSubmissionRow: View {
                     }
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
-        })
+        }
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
         .accessibility(label: Text("Submission \(assignment.name), \(submission.status.text), \(a11ySubmissionStatus)"))
         .identifier("ContextCard.submissionCell(\(assignment.id))")
@@ -111,9 +112,11 @@ struct ContextCardSubmissionRow: View {
         }
     }
 
-    private func navigateToSpeedGrader() {
+    private func navigateToAssignment() {
         guard let urlString = assignment.htmlURL?.absoluteString else { return }
-        env.router.route(to: "\(urlString)/submissions/\(submission.userID)", from: controller, options: .modal(.fullScreen))
+        let route = "\(urlString)/submissions/\(submission.userID)"
+        let options: RouteOptions = (env.app == .teacher) ? .modal(.fullScreen) : .modal(embedInNav: true, addDoneButton: true)
+        env.router.route(to: route, from: controller, options: options)
     }
 }
 

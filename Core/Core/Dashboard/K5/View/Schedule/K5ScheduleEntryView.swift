@@ -101,14 +101,11 @@ public struct K5ScheduleEntryView: View {
         Text(viewModel.title)
             .foregroundColor(.textDarkest)
             .font(.regular17)
+            .multilineTextAlignment(.leading)
     }
 
     private var disclosureIndicator: some View {
-        Image.arrowOpenRightSolid
-            .resizable()
-            .scaledToFit()
-            .frame(width: 16, height: 16)
-            .foregroundColor(.ash)
+        InstDisclosureIndicator()
             .padding(.leading, 10)
             .hidden(!viewModel.isTappable)
     }
@@ -176,6 +173,7 @@ public struct K5ScheduleEntryView: View {
             .foregroundColor(model.color)
             .font(model.font)
             .padding(.top, 4)
+            .multilineTextAlignment(.leading)
     }
 }
 

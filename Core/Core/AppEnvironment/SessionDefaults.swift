@@ -30,11 +30,13 @@ public struct SessionDefaults {
 
     public let sessionID: String
 
+    /** This property is used by the file share extension to automatically select the course of the last viewed file in the app. The use-case is that the user views the assignment's file in the app, saves it to iOS Photos app, annotates it there and shares it back to the assignment. */
     public var submitAssignmentCourseID: String? {
         get { return self["submitAssignmentCourseID"] as? String }
         set { self["submitAssignmentCourseID"] = newValue }
     }
 
+    /** This property is used by the file share extension to automatically select the assignment of the last viewed file in the app. The use-case is that the user views the assignment's file in the app, saves it to iOS Photos app, annotates it there and shares it back to the assignment. */
     public var submitAssignmentID: String? {
         get { return self["submitAssignmentID"] as? String }
         set { self["submitAssignmentID"] = newValue }
@@ -53,6 +55,11 @@ public struct SessionDefaults {
         }
     }
 
+    public var isDashboardLayoutGrid: Bool {
+        get { (self["isDashboardLayoutGrid"] as? Bool) ?? false }
+        set { self["isDashboardLayoutGrid"] = newValue }
+    }
+
     public var isMissingItemsSectionOpenOnK5Schedule: Bool? {
         get { return self["isMissingItemsSectionOpenOnK5Schedule"] as? Bool }
         set { self["isMissingItemsSectionOpenOnK5Schedule"] = newValue }
@@ -61,6 +68,11 @@ public struct SessionDefaults {
     public var isElementaryViewEnabled: Bool {
         get { (self["isElementaryViewEnabled"] as? Bool) ?? true }
         set { self["isElementaryViewEnabled"] = newValue }
+    }
+
+    public var isK5StudentView: Bool {
+        get { (self["isK5StudentView"] as? Bool) ?? false }
+        set { self["isK5StudentView"] = newValue }
     }
 
     public var landingPath: String? {

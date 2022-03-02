@@ -50,6 +50,8 @@ class StudentTabBarController: UITabBarController {
 
         if AppEnvironment.shared.k5.isK5Enabled {
             let primary = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
+            // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in HelmNavigationController.
+            primary.interactivePopGestureRecognizer?.isEnabled = false
             let secondary = HelmNavigationController(rootViewController: EmptyViewController())
             split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
             tabBarTitle = NSLocalizedString("Homeroom", comment: "Homeroom tab title")
@@ -78,8 +80,8 @@ class StudentTabBarController: UITabBarController {
     func calendarTab() -> UIViewController {
         let split = HelmSplitViewController()
         split.viewControllers = [
-            UINavigationController(rootViewController: PlannerViewController.create()),
-            UINavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: PlannerViewController.create()),
+            HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         split.view.tintColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
         split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
@@ -93,8 +95,8 @@ class StudentTabBarController: UITabBarController {
         let todo = HelmSplitViewController()
         let todoController = TodoListViewController.create()
         todo.viewControllers = [
-            UINavigationController(rootViewController: todoController),
-            UINavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: todoController),
+            HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         todo.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
         todo.tabBarItem.image = .todoTab
@@ -108,8 +110,8 @@ class StudentTabBarController: UITabBarController {
     func notificationsTab() -> UIViewController {
         let split = HelmSplitViewController()
         split.viewControllers = [
-            UINavigationController(rootViewController: ActivityStreamViewController.create()),
-            UINavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: ActivityStreamViewController.create()),
+            HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         split.tabBarItem.title = NSLocalizedString("Notifications", comment: "Notifications tab title")
         split.tabBarItem.image = .alertsTab

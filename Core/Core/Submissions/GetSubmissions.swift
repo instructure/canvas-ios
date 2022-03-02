@@ -55,13 +55,15 @@ public class CreateSubmission: APIUseCase {
         url: URL? = nil,
         fileIDs: [String]? = nil,
         mediaCommentID: String? = nil,
-        mediaCommentType: MediaCommentType? = nil
+        mediaCommentType: MediaCommentType? = nil,
+        annotatableAttachmentID: String? = nil
     ) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
 
         let submission = CreateSubmissionRequest.Body.Submission(
+            annotatable_attachment_id: annotatableAttachmentID,
             text_comment: textComment,
             submission_type: submissionType,
             body: body,
@@ -169,7 +171,6 @@ public class GetSubmissionsForStudent: CollectionUseCase {
         scope = Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.userID), equals: studentID),
-                NSPredicate(format: "%K != %@", #keyPath(Submission.workflowStateRaw), SubmissionWorkflowState.unsubmitted.rawValue),
                 NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
             ]),
             order: [
@@ -206,6 +207,10 @@ public class GetSubmissions: CollectionUseCase {
         NSCompoundPredicate(orPredicateWithSubpredicates: [
             NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
             NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
+            NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
+                NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
+            ]),
         ]),
     ]}
 

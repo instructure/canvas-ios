@@ -45,7 +45,7 @@ public struct K5ResourcesApplicationView: View {
                     .font(.regular17)
                     .padding(.leading, 8)
                 Spacer()
-                disclosureIndicator
+                InstDisclosureIndicator().padding(.leading, 10)
             }
             .padding(.leading, 13)
             .padding(.trailing, 18)
@@ -59,15 +59,6 @@ public struct K5ResourcesApplicationView: View {
         .actionSheet(isPresented: $isShowingSubjectPicker) {
             ActionSheet(title: Text("Choose a subject", bundle: .core), buttons: subjectPickerButtons)
         }
-    }
-
-    private var disclosureIndicator: some View {
-        Image.arrowOpenRightSolid
-            .resizable()
-            .scaledToFit()
-            .frame(width: 16, height: 16)
-            .foregroundColor(.ash)
-            .padding(.leading, 10)
     }
 
     private var subjectPickerButtons: [ActionSheet.Button] {

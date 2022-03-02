@@ -148,8 +148,8 @@ class InboxTests: CoreUITestCase {
         NewMessage.cancelButton.tap().waitToVanish()
     }
 
-    func testCanMessageAttachment() throws {
-        try XCTSkipIf(true, "Works on device but fails in simulator")
+    func testCanMessageAttachment() {
+        // Disabled test, works on device but fails on bitrise simulator. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [.make()])
         mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true))

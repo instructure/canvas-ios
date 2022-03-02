@@ -28,10 +28,18 @@ public enum K5Grades: ElementWrapper {
 public enum K5CourseGrades: ElementWrapper {
 
     public static var emptyGradesForCourse: Element {
-        app.find(label: "No Assignments")
+        app.find(label: "You don't have any grades yet.")
     }
 
     public static func gradedPointsOutOf(actual: String, outOf: String) -> Element {
         app.find(label: "Grade, \(actual) out of \(outOf)")
+    }
+
+    public static func gradedPointsMax(maxPoints: String) -> Element {
+        app.find(label: "Out of \(maxPoints) pts")
+    }
+
+    public static func gradedPointsActual(actualPoints: String) -> Element {
+        app.find(label: "\(actualPoints) pts")
     }
 }

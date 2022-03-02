@@ -203,7 +203,13 @@ export function mapStateToProps ({ inbox, entities }: AppState) {
   const conversations = scopeData.refs.map((id) => inbox.conversations[id] && inbox.conversations[id].data).filter(Boolean)
   const courses = Object.keys(entities.courses)
     .reduce((acc, id) => {
-      acc.push(entities.courses[id].course)
+      const course = entities.courses[id].course
+
+      if (course == null || course.name == null) {
+        return acc
+      }
+
+      acc.push(course)
       return acc
     }, [])
     .filter(App.current().filterCourse)

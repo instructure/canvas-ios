@@ -49,7 +49,7 @@ public struct APISubmission: Codable, Equatable {
     let submission_type: SubmissionType?
     let submitted_at: Date?
     let turnitin_data: APITurnItInData?
-    let url: URL?
+    @SafeURL private(set) var url: URL?
     var user: APIUser? // include[]=user
     let user_id: ID
     let workflow_state: SubmissionWorkflowState
@@ -76,7 +76,7 @@ public struct APISubmissionComment: Codable, Equatable {
 public struct APISubmissionCommentAuthor: Codable, Equatable {
     let id: ID?
     let display_name: String?
-    let avatar_image_url: URL?
+    let avatar_image_url: APIURL?
     let html_url: URL?
     let pronouns: String?
 }
@@ -240,7 +240,7 @@ extension APISubmissionCommentAuthor {
     public static func make(
         id: ID? = "1",
         display_name: String? = "Steve",
-        avatar_image_url: URL? = nil,
+        avatar_image_url: APIURL? = nil,
         html_url: URL? = URL(string: "/users/1"),
         pronouns: String? = nil
     ) -> APISubmissionCommentAuthor {
@@ -257,7 +257,7 @@ extension APISubmissionCommentAuthor {
         APISubmissionCommentAuthor(
             id: user.id,
             display_name: user.name,
-            avatar_image_url: user.avatar_url?.rawValue,
+            avatar_image_url: user.avatar_url,
             html_url: URL(string: "/users/\(user.id)"),
             pronouns: user.pronouns
         )
@@ -398,6 +398,7 @@ public struct CreateSubmissionRequest: APIRequestable {
     public typealias Response = APISubmission
     public struct Body: Codable, Equatable {
         struct Submission: Codable, Equatable {
+            let annotatable_attachment_id: String? // Required if submission_type is student_annotation
             let text_comment: String?
             let submission_type: SubmissionType
             let body: String? // Requires submission_type of online_text_entry
@@ -407,6 +408,7 @@ public struct CreateSubmissionRequest: APIRequestable {
             let media_comment_type: MediaCommentType? // Requires submission_type of media_recording
 
             init(
+                annotatable_attachment_id: String? = nil,
                 text_comment: String? = nil,
                 submission_type: SubmissionType,
                 body: String? = nil,
@@ -415,6 +417,7 @@ public struct CreateSubmissionRequest: APIRequestable {
                 media_comment_id: String? = nil,
                 media_comment_type: MediaCommentType? = nil
             ) {
+                self.annotatable_attachment_id = annotatable_attachment_id
                 self.text_comment = text_comment
                 self.submission_type = submission_type
                 self.body = body

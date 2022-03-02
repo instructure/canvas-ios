@@ -429,8 +429,9 @@ public struct PostFileUploadRequest: APIRequestable {
         var form: APIFormData = target.upload_params.map { (key, value) in
             (key: key, value: .string(value ?? ""))
         }
+        let filename = target.upload_params["filename"] ?? target.upload_params["Filename"]
         form.append((key: "file", value: .file(
-            filename: (target.upload_params["filename"] ?? target.upload_params["Filename"]) as? String ?? "",
+            filename: filename as? String ?? "",
             type: target.upload_params["content_type"] as? String ?? "application/octet-stream",
             at: fileURL
         )))

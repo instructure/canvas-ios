@@ -21,6 +21,7 @@ import CoreData
 final class DashboardCard: NSManagedObject {
     typealias JSON = APIDashboardCard
 
+    @NSManaged var course: Course?
     @NSManaged var contextColor: ContextColor?
     @NSManaged var courseCode: String
     @NSManaged var enrollmentType: String
@@ -44,7 +45,12 @@ final class DashboardCard: NSManagedObject {
         return teacherRoles.contains(where: enrollmentType.lowercased().contains)
     }
 
-    var course: Course? { managedObjectContext?.first(where: #keyPath(Course.id), equals: id) }
+    var shouldShow: Bool {
+        guard let enrollments = course?.enrollments else { return false }
+        return enrollments.contains { enrollment in
+            enrollment.state == .active
+        }
+    }
 
     @discardableResult
     static func save(_ item: APIDashboardCard, position: Int, in context: NSManagedObjectContext) -> Self {
@@ -65,6 +71,10 @@ final class DashboardCard: NSManagedObject {
 
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: "course_\(model.id)")).first {
             model.contextColor = contextColor
+        }
+
+        if let course: Course = context.fetch(scope: .where(#keyPath(Course.id), equals: model.id)).first {
+            model.course = course
         }
 
         return model

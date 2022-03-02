@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        For at oprette en konto skal din elev oprette en parringskode til dig fra sektionen Indstillinger i Canvas-appen for elev, som vist nedenfor, og derefter skal du scanne den kode herfra.\n        Hvis din elev ikke kan se muligheden for at oprette en parringskode, skal du kontakte din skole for at oprette din konto.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Tilføj vedhæftede filer";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Tilføj kommentar (valgfrit)";
 
 /* No comment provided by engineer. */
 "Add content" = "Tilføj indhold";
@@ -878,6 +878,9 @@
 "Filter" = "Filter";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrere efter";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrer efter:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Glem %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Format understøttes ikke";
 
 /* No comment provided by engineer. */
 "Front Page" = "Forside";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Betydningsniveau";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Vigtige datoer";
 
 /* No comment provided by engineer. */
 "Important Info" = "Vigtig info";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Marker som færdig";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Markér elementet som udført";
+
+/* No comment provided by engineer. */
 "Marked done" = "Markeret som færdig";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Næste";
 
 /* No comment provided by engineer. */
+"Next Week" = "Næste uge";
+
+/* No comment provided by engineer. */
 "Nickname" = "Alias";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Ingen sier";
 
 /* No comment provided by engineer. */
+"No preview available" = "Ingen forhåndsvisning til rådighed";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Ingen quiz";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen aflevering";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Ingen understøttede filer at indsende";
 
 /* No comment provided by engineer. */
 "None" = "Ingen";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Åbn applikation";
+
+/* No comment provided by engineer. */
+"Open course details" = "Åbn fagoplysninger";
+
+/* No comment provided by engineer. */
+"Open item details" = "Åbn elementoplysninger";
 
 /* No comment provided by engineer. */
 "Options" = "Muligheder";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Generer en anden QR-kode, og prøv igen.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Log ind via applikationen";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vent venligst, dette kan tage et minut.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Tidligere logins";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Forrige uge";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Datapolitik";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Vælg en sti";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Vælg opgave";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Vælg opgave";
+
+/* No comment provided by engineer. */
+"Select course" = "Vælg fag";
 
 /* No comment provided by engineer. */
 "Select Course" = "Vælg fag";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart venligst appen.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Der er ingen aktive opgaver for dette fag";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Der er ikke nogen opgaver at vise.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Der er ikke nogen konferencer at vise endnu.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "til %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "For at oprette en konto skal din elev oprette en parringskode til dig fra sektionen Indstillinger i Canvas-appen for elev, som vist nedenfor, og derefter skal du scanne den kode herfra.\nHvis din elev ikke kan se muligheden for at oprette en parringskode, skal du kontakte din skole for at oprette din konto.";
 
 /* No comment provided by engineer. */
 "To Do" = "Opgaveliste";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Vist";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Venter på, at der sker vigtige ting.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Vi kunne ikke finde nogen lignende fag.";

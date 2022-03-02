@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        För att skapa ett konto ska du be din student att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-studentappen som visas nedan. Skanna sedan koden därifrån.\n        Om din student inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.\n        ";
-
-/* No comment provided by engineer. */
 "-" = "-";
 
 /* placeholder for the score of an ungraded submission */
@@ -117,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Add Attachments" = "Lägg till bilagor";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Lägg till kommentar (valfri)";
 
 /* No comment provided by engineer. */
 "Add content" = "Lägg till innehåll";
@@ -878,6 +878,9 @@
 "Filter" = "Filtrera";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrera efter";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrerat efter:";
 
 /* No comment provided by engineer. */
@@ -918,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Glöm %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Formatet stöds inte";
 
 /* No comment provided by engineer. */
 "Front Page" = "Framsida";
@@ -1041,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Inverkansnivå";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Viktiga datum";
 
 /* No comment provided by engineer. */
 "Important Info" = "Viktig information";
@@ -1259,6 +1268,9 @@
 "Mark done" = "Markera som klar";
 
 /* No comment provided by engineer. */
+"Mark item as done" = "Markera objektet som färdigt";
+
+/* No comment provided by engineer. */
 "Marked done" = "Markering är färdig";
 
 /* No comment provided by engineer. */
@@ -1340,6 +1352,9 @@
 "Next" = "Nästa";
 
 /* No comment provided by engineer. */
+"Next Week" = "Nästa vecka";
+
+/* No comment provided by engineer. */
 "Nickname" = "Smeknamn";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1409,9 @@
 "No Pages" = "Inga sidor";
 
 /* No comment provided by engineer. */
+"No preview available" = "Förhandsgranskning är inte tillgängligt";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Inga quiz";
 
 /* No comment provided by engineer. */
@@ -1407,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen inlämning";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Det finns inga filer som stöds att lämna in";
 
 /* No comment provided by engineer. */
 "None" = "Inga";
@@ -1485,6 +1506,12 @@
 
 /* No comment provided by engineer. */
 "Open application" = "Öppna programmet";
+
+/* No comment provided by engineer. */
+"Open course details" = "Öppna kursinformation";
+
+/* No comment provided by engineer. */
+"Open item details" = "Öppna objektinformation";
 
 /* No comment provided by engineer. */
 "Options" = "Alternativ";
@@ -1568,6 +1595,9 @@
 "Please generate another QR Code and try again." = "Generera en annan QR-kod och försök igen.";
 
 /* No comment provided by engineer. */
+"Please log in via the application" = "Logga in via programmet";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vänta, detta kan ta en minut.";
 
 /* No comment provided by engineer. */
@@ -1590,6 +1620,9 @@
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Tidigare inloggningar";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Föregående vecka";
 
 /* No comment provided by engineer. */
 "Privacy Policy" = "Integritetspolicy";
@@ -1782,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Välj en sökväg";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Välj uppgift";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Välj uppgift";
+
+/* No comment provided by engineer. */
+"Select course" = "Välj kurs";
 
 /* No comment provided by engineer. */
 "Select Course" = "Välj kurs";
@@ -2006,6 +2048,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Du måste starta om appen för att använda de nya språkinställningarna. Starta om appen.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Det finns inga aktiva uppgifter i den här kursen.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Det finns inga uppgifter att visa.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Det finns inga konferenser att visa än.";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2157,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "till %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "För att skapa ett konto ska du be din student att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-studentappen som visas nedan. Skanna sedan koden därifrån.\nOm din student inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";
@@ -2235,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Visad";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Väntar på att viktiga saker ska hända.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Vi hittade inte några sådana kurser.";

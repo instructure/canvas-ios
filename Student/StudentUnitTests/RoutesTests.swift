@@ -55,8 +55,6 @@ class RoutesTests: XCTestCase {
 
         XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
 
-        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
-
         XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
         XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
@@ -67,7 +65,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
 
-        XCTAssert(router.match("/courses/1/assignments") is HelmViewController)
+        XCTAssert(router.match("/courses/1/assignments") is CoreHostingController<AssignmentListView>)
         XCTAssert(router.match("/courses/2/assignments/3") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions/2") is SubmissionDetailsViewController)
 
@@ -87,6 +85,18 @@ class RoutesTests: XCTestCase {
 
         XCTAssert(router.match("/users/1/files/2") is FileDetailsViewController)
         XCTAssert(router.match("/users/1/files/2?origin=globalAnnouncement") is FileDetailsViewController)
+    }
+
+    func testRoutesWithK5Alternative() {
+        ExperimentalFeature.K5Dashboard.isEnabled = true
+        let env = AppEnvironment.shared
+        guard let session = env.currentSession else { XCTFail(); return }
+        env.userDidLogin(session: session)
+        env.k5.userDidLogin(isK5Account: true)
+        env.userDefaults?.isElementaryViewEnabled = true
+        XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
+        env.k5.userDidLogin(isK5Account: false)
+        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
     }
 
     func testModuleItems() {

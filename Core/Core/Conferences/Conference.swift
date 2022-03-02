@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-final class Conference: NSManagedObject {
+public final class Conference: NSManagedObject {
     @NSManaged var canvasContextID: String
     @NSManaged var conferenceKey: String?
     @NSManaged var conferenceType: String
