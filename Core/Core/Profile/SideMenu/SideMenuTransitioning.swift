@@ -148,12 +148,6 @@ public class SideMenuPresentationController: UIPresentationController {
         presentedViewController.view.frame = frameOfPresentedViewInContainerView
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let backGroundColor: UIColor = traitCollection.userInterfaceStyle == .dark ? .backgroundLightest : .backgroundDarkest
-        dimmer.backgroundColor = backGroundColor.withAlphaComponent(0.9)
-    }
-
     @objc func tapped(gesture: UITapGestureRecognizer) {
         self.presentingViewController.dismiss(animated: true)
     }

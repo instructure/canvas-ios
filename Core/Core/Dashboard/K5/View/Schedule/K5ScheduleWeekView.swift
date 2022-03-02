@@ -116,7 +116,7 @@ public struct K5ScheduleWeekView: View {
         .padding(.leading, horizontalPadding)
 
         let background = Rectangle()
-            .background(Color(.systemBackground))
+            .fill(Color.white)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .frame(minHeight: 93)
         let header = background
