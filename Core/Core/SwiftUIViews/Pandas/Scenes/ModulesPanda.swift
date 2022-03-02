@@ -22,7 +22,7 @@ public struct ModulesPanda: PandaScene {
     public var name: String { "modules" }
     public var offset: (background: CGSize, foreground: CGSize) {(
         background: CGSize(width: 0, height: 0),
-        foreground: CGSize(width: 40, height: 57))
+        foreground: CGSize(width: 50, height: 65))
     }
     public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
 }
