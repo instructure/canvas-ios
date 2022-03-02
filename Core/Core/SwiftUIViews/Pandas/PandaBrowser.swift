@@ -28,6 +28,7 @@ public struct PandaBrowser: View {
         case space = "Space"
         case people = "People"
         case modules = "Modules"
+        case quizzes = "Quizzes"
     }
     @State private var selectedPanda: PandaType = PandaType.allCases.last!
 
@@ -60,6 +61,8 @@ public struct PandaBrowser: View {
             InteractivePanda(scene: PeoplePanda())
         case .modules:
             InteractivePanda(scene: ModulesPanda())
+        case .quizzes:
+            InteractivePanda(scene: QuizzesPanda())
         }
     }
 }
