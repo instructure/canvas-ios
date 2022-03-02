@@ -168,6 +168,10 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/route-history')
   }
 
+  viewPandaGallery = () => {
+    this.props.navigator.show('/dev-menu/pandas')
+  }
+
   manageRatingRequest = () => {
     this.props.navigator.show('/rating-request')
   }
@@ -223,6 +227,8 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
           <View style={{ flex: 1, flexDirection: 'column' }}>
             <RowSeparator />
             <Row title='View Experimental Features' disclosureIndicator onPress={this.viewExperimentalFeatures} />
+            <RowSeparator />
+            <Row title='Panda Gallery' disclosureIndicator onPress={this.viewPandaGallery} />
             <RowSeparator />
             <Row title='View Push Notifications' disclosureIndicator onPress={this.viewPushNotifications} />
             <RowSeparator />

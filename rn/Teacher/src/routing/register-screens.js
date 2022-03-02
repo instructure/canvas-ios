@@ -114,6 +114,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/push-notifications', PushNotifications, store)
   registerScreen('/page-view-events', PageViewEvents, store)
   registerScreen('/dev-menu/experimental-features', null, store)
+  registerScreen('/dev-menu/pandas', null, store)
   registerScreen('/rating-request', RatingRequest, store)
   registerScreen('/logs')
   registerScreen('/act-as-user')

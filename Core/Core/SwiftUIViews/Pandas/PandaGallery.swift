@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct PandaBrowser: View {
+public struct PandaGallery: View {
     private enum PandaType: String, CaseIterable, Identifiable {
         var id: Self { self }
 
@@ -32,6 +32,9 @@ public struct PandaBrowser: View {
         case conferences
     }
     @State private var selectedPanda: PandaType = PandaType.allCases.last!
+
+    public init() {
+    }
 
     public var body: some View {
         VStack {
@@ -70,8 +73,8 @@ public struct PandaBrowser: View {
     }
 }
 
-struct PandaBrowser_Previews: PreviewProvider {
+struct PandaGallery_Previews: PreviewProvider {
     static var previews: some View {
-        PandaBrowser()
+        PandaGallery()
     }
 }

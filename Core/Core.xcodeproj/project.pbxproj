@@ -832,7 +832,7 @@
 		CF43DE8527CCDBCB00015B6F /* MotionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8427CCDBCB00015B6F /* MotionDetector.swift */; };
 		CF43DE8727CCDDC000015B6F /* MotionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8627CCDDC000015B6F /* MotionModifier.swift */; };
 		CF43DE8927CD036D00015B6F /* InteractivePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8827CD036D00015B6F /* InteractivePanda.swift */; };
-		CF43DE8B27CD0B6500015B6F /* PandaBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8A27CD0B6500015B6F /* PandaBrowser.swift */; };
+		CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2130,7 +2130,7 @@
 		CF43DE8427CCDBCB00015B6F /* MotionDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDetector.swift; sourceTree = "<group>"; };
 		CF43DE8627CCDDC000015B6F /* MotionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModifier.swift; sourceTree = "<group>"; };
 		CF43DE8827CD036D00015B6F /* InteractivePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePanda.swift; sourceTree = "<group>"; };
-		CF43DE8A27CD0B6500015B6F /* PandaBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaBrowser.swift; sourceTree = "<group>"; };
+		CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaGallery.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -4310,7 +4310,7 @@
 			children = (
 				CFCB0F5F27CE7B0E008DDEA4 /* Scenes */,
 				CF43DE8827CD036D00015B6F /* InteractivePanda.swift */,
-				CF43DE8A27CD0B6500015B6F /* PandaBrowser.swift */,
+				CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */,
 			);
 			path = Pandas;
 			sourceTree = "<group>";
@@ -6399,7 +6399,7 @@
 				7D531D44254B105700CBFCA6 /* AssignmentAssigneePicker.swift in Sources */,
 				CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */,
 				7DA260BD23F72352005D2121 /* GetSubmissions.swift in Sources */,
-				CF43DE8B27CD0B6500015B6F /* PandaBrowser.swift in Sources */,
+				CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */,
 				B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */,
 				CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
