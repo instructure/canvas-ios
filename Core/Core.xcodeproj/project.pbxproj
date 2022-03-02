@@ -937,13 +937,14 @@
 		CFC2C281273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C280273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift */; };
 		CFC2C28327358796006CA3E0 /* AttachmentSubmissionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */; };
 		CFC2C2852735961E006CA3E0 /* AttachmentCopyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C2842735961E006CA3E0 /* AttachmentCopyServiceTests.swift */; };
-		CFCB0F5E27CE712E008DDEA4 /* GenericForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F5D27CE712E008DDEA4 /* GenericForeground.swift */; };
+		CFCB0F5E27CE712E008DDEA4 /* BouncyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F5D27CE712E008DDEA4 /* BouncyImage.swift */; };
 		CFCB0F6127CE7B21008DDEA4 /* GradesPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */; };
 		CFCB0F6327CE7B58008DDEA4 /* PandaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */; };
-		CFCB0F6627CE7E57008DDEA4 /* GenericBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */; };
+		CFCB0F6627CE7E57008DDEA4 /* ImageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6527CE7E57008DDEA4 /* ImageBackground.swift */; };
 		CFCB0F6827CF85EB008DDEA4 /* SpacePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6727CF85EB008DDEA4 /* SpacePanda.swift */; };
 		CFCB0F6A27CF8CED008DDEA4 /* DiscussionsPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6927CF8CED008DDEA4 /* DiscussionsPanda.swift */; };
 		CFCB0F6C27CF9003008DDEA4 /* FilesPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6B27CF9003008DDEA4 /* FilesPanda.swift */; };
+		CFCB0F6E27CFB738008DDEA4 /* PeoplePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6D27CFB738008DDEA4 /* PeoplePanda.swift */; };
 		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
 		CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */; };
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
@@ -2231,13 +2232,14 @@
 		CFC2C280273549D3006CA3E0 /* SubmitAssignmentExtensionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentExtensionViewModelTests.swift; sourceTree = "<group>"; };
 		CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionServiceTests.swift; sourceTree = "<group>"; };
 		CFC2C2842735961E006CA3E0 /* AttachmentCopyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCopyServiceTests.swift; sourceTree = "<group>"; };
-		CFCB0F5D27CE712E008DDEA4 /* GenericForeground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericForeground.swift; sourceTree = "<group>"; };
+		CFCB0F5D27CE712E008DDEA4 /* BouncyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyImage.swift; sourceTree = "<group>"; };
 		CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesPanda.swift; sourceTree = "<group>"; };
 		CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaScene.swift; sourceTree = "<group>"; };
-		CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericBackground.swift; sourceTree = "<group>"; };
+		CFCB0F6527CE7E57008DDEA4 /* ImageBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackground.swift; sourceTree = "<group>"; };
 		CFCB0F6727CF85EB008DDEA4 /* SpacePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePanda.swift; sourceTree = "<group>"; };
 		CFCB0F6927CF8CED008DDEA4 /* DiscussionsPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsPanda.swift; sourceTree = "<group>"; };
 		CFCB0F6B27CF9003008DDEA4 /* FilesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesPanda.swift; sourceTree = "<group>"; };
+		CFCB0F6D27CFB738008DDEA4 /* PeoplePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplePanda.swift; sourceTree = "<group>"; };
 		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
@@ -4893,6 +4895,7 @@
 				CFCB0F6927CF8CED008DDEA4 /* DiscussionsPanda.swift */,
 				CFCB0F6B27CF9003008DDEA4 /* FilesPanda.swift */,
 				CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */,
+				CFCB0F6D27CFB738008DDEA4 /* PeoplePanda.swift */,
 				CFCB0F6727CF85EB008DDEA4 /* SpacePanda.swift */,
 			);
 			path = Scenes;
@@ -4901,8 +4904,8 @@
 		CFCB0F6427CE7DF6008DDEA4 /* SharedLayers */ = {
 			isa = PBXGroup;
 			children = (
-				CFCB0F6527CE7E57008DDEA4 /* GenericBackground.swift */,
-				CFCB0F5D27CE712E008DDEA4 /* GenericForeground.swift */,
+				CFCB0F6527CE7E57008DDEA4 /* ImageBackground.swift */,
+				CFCB0F5D27CE712E008DDEA4 /* BouncyImage.swift */,
 			);
 			path = SharedLayers;
 			sourceTree = "<group>";
@@ -6037,7 +6040,7 @@
 				7DA260E123F72359005D2121 /* ItemPickerViewController.swift in Sources */,
 				7DA260B123F72352005D2121 /* GetCustomColors.swift in Sources */,
 				CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */,
-				CFCB0F5E27CE712E008DDEA4 /* GenericForeground.swift in Sources */,
+				CFCB0F5E27CE712E008DDEA4 /* BouncyImage.swift in Sources */,
 				7DA260F423F72397005D2121 /* FilePickerCell.swift in Sources */,
 				7DA25FDD23F72148005D2121 /* Secret.swift in Sources */,
 				7DA25F9623F7212E005D2121 /* Analytics.swift in Sources */,
@@ -6060,6 +6063,7 @@
 				7DA2607C23F722FA005D2121 /* PageViewEventRequestManager.swift in Sources */,
 				CF60CC5C26496ECF00C1C173 /* K5HomeroomViewModel.swift in Sources */,
 				7DA2607723F722F6005D2121 /* PageListViewController.swift in Sources */,
+				CFCB0F6E27CFB738008DDEA4 /* PeoplePanda.swift in Sources */,
 				7D8E20CA2450A372000F826B /* TabBarBadgeCounts.swift in Sources */,
 				7DA260DF23F72359005D2121 /* HorizontalScrollingStackview.swift in Sources */,
 				7DA2607D23F722FA005D2121 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
@@ -6138,7 +6142,7 @@
 				7DA260DE23F72359005D2121 /* HorizontalMenuViewController.swift in Sources */,
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
-				CFCB0F6627CE7E57008DDEA4 /* GenericBackground.swift in Sources */,
+				CFCB0F6627CE7E57008DDEA4 /* ImageBackground.swift in Sources */,
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
 				CF748D1D274D43B9000EA34E /* DashboardConferencesViewModel.swift in Sources */,
 				CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */,

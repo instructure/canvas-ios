@@ -18,20 +18,20 @@
 
 import SwiftUI
 
-struct GenericForeground: View {
+struct BouncyImage: View {
     @State private var scale = 1.0
     @State private var dragOffset: CGSize = .zero
     @State private var shouldTriggerDragStartFeedback = true
-    private let scene: PandaScene
+    private let imageFileName: String
     private let feedback = UIImpactFeedbackGenerator(style: .light)
 
-    public init(scene: PandaScene) {
-        self.scene = scene
+    public init(imageFileName: String) {
+        self.imageFileName = imageFileName
     }
 
     @ViewBuilder
     public var body: some View {
-        Image(scene.foregroundFileName, bundle: .core)
+        Image(imageFileName, bundle: .core)
             .scaleEffect(x: scale, y: scale)
             .gesture(pushGesture.simultaneously(with: dragGesture))
             .offset(dragOffset)

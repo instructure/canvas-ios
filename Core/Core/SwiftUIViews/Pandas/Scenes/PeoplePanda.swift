@@ -18,15 +18,17 @@
 
 import SwiftUI
 
-struct GenericBackground: View {
-    private let fileName: String
-
-    public init(scene: PandaScene) {
-        self.fileName = scene.backgroundFileName
+public struct PeoplePanda: PandaScene {
+    public var name: String { "people" }
+    public var offset: (background: CGSize, foreground: CGSize) {(
+        background: CGSize(width: 60, height: 0),
+        foreground: CGSize(width: -60, height: 30))
     }
+    public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
+}
 
-    @ViewBuilder
-    public var body: some View {
-        Image(fileName, bundle: .core)
+struct PeoplePanda_Previews: PreviewProvider {
+    static var previews: some View {
+        InteractivePanda(scene: PeoplePanda())
     }
 }

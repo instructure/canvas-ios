@@ -18,17 +18,15 @@
 
 import SwiftUI
 
-public protocol PandaScene {
-    var name: String { get }
-    /** The offset of the background and foreground views from the center of the view. */
-    var offset: (background: CGSize, foreground: CGSize) { get }
-    var background: AnyView { get }
-    var foreground: AnyView { get }
-}
+struct ImageBackground: View {
+    private let fileName: String
 
-extension PandaScene {
-    public var backgroundFileName: String { "panda-\(name)-background" }
-    public var foregroundFileName: String { "panda-\(name)-foreground" }
-    public var foreground: AnyView { AnyView(BouncyImage(imageFileName: foregroundFileName)) }
-    public var background: AnyView { AnyView(ImageBackground(scene: self)) }
+    public init(scene: PandaScene) {
+        self.fileName = scene.backgroundFileName
+    }
+
+    @ViewBuilder
+    public var body: some View {
+        Image(fileName, bundle: .core)
+    }
 }

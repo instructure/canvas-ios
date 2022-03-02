@@ -21,8 +21,8 @@ import SwiftUI
 public struct FilesPanda: PandaScene {
     public var name: String { "files" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 0, height: -5),
-        foreground: CGSize(width: -50, height: 5))
+        background: CGSize(width: 25, height: -5),
+        foreground: CGSize(width: -25, height: 5))
     }
 }
 
