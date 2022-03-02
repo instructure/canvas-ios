@@ -107,6 +107,7 @@ open class CoreWebView: WKWebView {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
         uiDelegate = self
+        overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.darkMode == true ? .dark : .light
 
         addScript(js)
         handle("resize") { [weak self] message in
@@ -182,11 +183,14 @@ open class CoreWebView: WKWebView {
             fontCSS = Self.BalsamiqRegularCSSFontFace
         }
 
+        let backgroundColor: UIColor = traitCollection.userInterfaceStyle == .dark ? .black : .white
+        let foregroundColor: UIColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
+
         return """
             \(fontCSS)
             html {
-                background: \(UIColor.backgroundLightest.hexString);
-                color: \(UIColor.textDarkest.hexString);
+                background: \(backgroundColor.hexString);
+                color: \(foregroundColor.hexString);
                 font-family: \(font);
                 font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
                 -webkit-tap-highlight-color: transparent;
