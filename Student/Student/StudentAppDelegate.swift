@@ -83,6 +83,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
+        window?.overrideUserInterfaceStyle = environment.userDefaults?.darkMode == true ? .dark : .light
+
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"

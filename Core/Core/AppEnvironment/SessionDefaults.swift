@@ -60,6 +60,11 @@ public struct SessionDefaults {
         set { self["isDashboardLayoutGrid"] = newValue }
     }
 
+    public var darkMode: Bool {
+        get { return self["darkMode"] as? Bool ?? false }
+        set { self["darkMode"] = newValue }
+    }
+
     public var isMissingItemsSectionOpenOnK5Schedule: Bool? {
         get { return self["isMissingItemsSectionOpenOnK5Schedule"] as? Bool }
         set { self["isMissingItemsSectionOpenOnK5Schedule"] = newValue }
