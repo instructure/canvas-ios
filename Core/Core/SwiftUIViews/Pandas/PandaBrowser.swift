@@ -19,8 +19,47 @@
 import SwiftUI
 
 public struct PandaBrowser: View {
+    private enum PandaType: String, CaseIterable, Identifiable {
+        var id: Self { self }
+
+        case discussions = "Discussions"
+        case files = "Files"
+        case grades = "Grades"
+        case space = "Space"
+    }
+    @State private var selectedPanda: PandaType = PandaType.allCases.last!
 
     public var body: some View {
-        InteractivePanda(scene: SpacePanda())
+        VStack {
+            Spacer()
+            panda
+            Spacer()
+            Picker("", selection: $selectedPanda) {
+                ForEach(PandaType.allCases) { panda in
+                    Text(panda.rawValue)
+                }
+            }
+                .padding()
+        }
+    }
+
+    @ViewBuilder
+    private var panda: some View {
+        switch selectedPanda {
+        case .discussions:
+            InteractivePanda(scene: DiscussionsPanda())
+        case .files:
+            InteractivePanda(scene: FilesPanda())
+        case .grades:
+            InteractivePanda(scene: GradesPanda())
+        case .space:
+            InteractivePanda(scene: SpacePanda())
+        }
+    }
+}
+
+struct PandaBrowser_Previews: PreviewProvider {
+    static var previews: some View {
+        PandaBrowser()
     }
 }
