@@ -22,13 +22,14 @@ public struct PandaBrowser: View {
     private enum PandaType: String, CaseIterable, Identifiable {
         var id: Self { self }
 
-        case discussions = "Discussions"
-        case files = "Files"
-        case grades = "Grades"
-        case space = "Space"
-        case people = "People"
-        case modules = "Modules"
-        case quizzes = "Quizzes"
+        case discussions
+        case files
+        case grades
+        case space
+        case people
+        case modules
+        case quizzes
+        case conferences
     }
     @State private var selectedPanda: PandaType = PandaType.allCases.last!
 
@@ -39,7 +40,7 @@ public struct PandaBrowser: View {
             Spacer()
             Picker("", selection: $selectedPanda) {
                 ForEach(PandaType.allCases) { panda in
-                    Text(panda.rawValue)
+                    Text(panda.rawValue.capitalized)
                 }
             }
                 .padding()
@@ -63,6 +64,8 @@ public struct PandaBrowser: View {
             InteractivePanda(scene: ModulesPanda())
         case .quizzes:
             InteractivePanda(scene: QuizzesPanda())
+        case .conferences:
+            InteractivePanda(scene: ConferencesPanda())
         }
     }
 }

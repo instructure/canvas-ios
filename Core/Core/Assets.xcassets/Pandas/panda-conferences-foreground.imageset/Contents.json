@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "panda-conferences-foreground.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
