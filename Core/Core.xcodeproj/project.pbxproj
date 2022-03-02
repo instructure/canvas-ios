@@ -945,6 +945,7 @@
 		CFCB0F6A27CF8CED008DDEA4 /* DiscussionsPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6927CF8CED008DDEA4 /* DiscussionsPanda.swift */; };
 		CFCB0F6C27CF9003008DDEA4 /* FilesPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6B27CF9003008DDEA4 /* FilesPanda.swift */; };
 		CFCB0F6E27CFB738008DDEA4 /* PeoplePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6D27CFB738008DDEA4 /* PeoplePanda.swift */; };
+		CFCB0F7027CFC02A008DDEA4 /* ModulesPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB0F6F27CFC02A008DDEA4 /* ModulesPanda.swift */; };
 		CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */; };
 		CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */; };
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
@@ -2240,6 +2241,7 @@
 		CFCB0F6927CF8CED008DDEA4 /* DiscussionsPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsPanda.swift; sourceTree = "<group>"; };
 		CFCB0F6B27CF9003008DDEA4 /* FilesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesPanda.swift; sourceTree = "<group>"; };
 		CFCB0F6D27CFB738008DDEA4 /* PeoplePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplePanda.swift; sourceTree = "<group>"; };
+		CFCB0F6F27CFC02A008DDEA4 /* ModulesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesPanda.swift; sourceTree = "<group>"; };
 		CFCBB88526692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB890266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
@@ -4895,6 +4897,7 @@
 				CFCB0F6927CF8CED008DDEA4 /* DiscussionsPanda.swift */,
 				CFCB0F6B27CF9003008DDEA4 /* FilesPanda.swift */,
 				CFCB0F6027CE7B21008DDEA4 /* GradesPanda.swift */,
+				CFCB0F6F27CFC02A008DDEA4 /* ModulesPanda.swift */,
 				CFCB0F6D27CFB738008DDEA4 /* PeoplePanda.swift */,
 				CFCB0F6727CF85EB008DDEA4 /* SpacePanda.swift */,
 			);
@@ -6323,6 +6326,7 @@
 				7D2E812925631BEC008C568F /* AssignmentDateSection.swift in Sources */,
 				EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */,
 				7DA25FAD23F72136005D2121 /* APIEnrollment.swift in Sources */,
+				CFCB0F7027CFC02A008DDEA4 /* ModulesPanda.swift in Sources */,
 				7DFD5F7B23FF158700D988E0 /* CalendarDaysViewController.swift in Sources */,
 				7DA2604E23F722D9005D2121 /* LatePolicyInterval.swift in Sources */,
 				7DA2600423F7227A005D2121 /* DateExtensions.swift in Sources */,
