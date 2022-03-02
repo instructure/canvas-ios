@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,4 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#import "JSTileMap.h"
+import SwiftUI
+
+public struct PandaLandView: View {
+
+    public init() {
+    }
+
+    public var body: some View {
+        GeometryReader { geometry in
+            PandaLandSceneView().frame(width: geometry.size.width, height: geometry.size.height)
+        }
+    }
+}
+
+struct PandaLandView_Previews: PreviewProvider {
+    static var previews: some View {
+        PandaLandView()
+    }
+}

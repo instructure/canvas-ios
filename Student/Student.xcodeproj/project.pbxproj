@@ -224,6 +224,14 @@
 		E8DB184F24C7883B0042D6D7 /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB184E24C7883B0042D6D7 /* DashboardE2ETests.swift */; };
 		E8EA860B2304974C00E4FD76 /* NotificationsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA860A2304974C00E4FD76 /* NotificationsListTests.swift */; };
 		EB3ECFCA26375AF100289506 /* SideMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECFC926375AF100289506 /* SideMenuUITests.swift */; };
+		EBEBFDEA27CFBFC100E24154 /* PandaLandScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDE927CFBFC100E24154 /* PandaLandScene.swift */; };
+		EBEBFDEC27CFBFCA00E24154 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDEB27CFBFCA00E24154 /* Utility.swift */; };
+		EBEBFDEE27CFBFDC00E24154 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDED27CFBFDC00E24154 /* Player.swift */; };
+		EBEBFDF327CFC00E00E24154 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDF027CFC00D00E24154 /* JSTileMap.m */; };
+		EBEBFDF427CFC00E00E24154 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDF227CFC00E00E24154 /* LFCGzipUtility.m */; };
+		EBEBFDF927CFC08500E24154 /* tiles_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFDF827CFC08500E24154 /* tiles_spritesheet.png */; };
+		EBEBFDFB27CFC09400E24154 /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFDFA27CFC09400E24154 /* map.tmx */; };
+		EBEBFDFF27CFC0F300E24154 /* PandaLandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDFE27CFC0F300E24154 /* PandaLandView.swift */; };
 		F1FDF738C22DCB5A94323B15 /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CB0F553F9954BEE58A730D /* Pods_defaults_Student.framework */; };
 /* End PBXBuildFile section */
 
@@ -898,6 +906,16 @@
 		E8EA860D230497AC00E4FD76 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
 		E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
 		EB3ECFC926375AF100289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
+		EBEBFDE927CFBFC100E24154 /* PandaLandScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandaLandScene.swift; sourceTree = "<group>"; };
+		EBEBFDEB27CFBFCA00E24154 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		EBEBFDED27CFBFDC00E24154 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		EBEBFDEF27CFC00D00E24154 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
+		EBEBFDF027CFC00D00E24154 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTileMap.m; sourceTree = "<group>"; };
+		EBEBFDF127CFC00E00E24154 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
+		EBEBFDF227CFC00E00E24154 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
+		EBEBFDF827CFC08500E24154 /* tiles_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles_spritesheet.png; sourceTree = "<group>"; };
+		EBEBFDFA27CFC09400E24154 /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.tmx; sourceTree = "<group>"; };
+		EBEBFDFE27CFC0F300E24154 /* PandaLandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandaLandView.swift; sourceTree = "<group>"; };
 		EC9D739AAC5FF4C6AAF4F8A7 /* Pods_needs_pspdfkit_StudentE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_StudentE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1049,6 +1067,7 @@
 		492704751CF4AF7100C631C6 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				EBEBFDE727CFBF8F00E24154 /* PandaLand */,
 				49F9FA4A1CF7B73100654758 /* Assets.xcassets */,
 				7DCF0E9D22F89FB0000AACCE /* Assignments */,
 				7DCF0EB122F89FC2000AACCE /* Courses */,
@@ -2125,6 +2144,39 @@
 			path = SideMenu;
 			sourceTree = "<group>";
 		};
+		EBEBFDE727CFBF8F00E24154 /* PandaLand */ = {
+			isa = PBXGroup;
+			children = (
+				EBEBFDFA27CFC09400E24154 /* map.tmx */,
+				EBEBFDF727CFC07700E24154 /* Tiles */,
+				EBEBFDEB27CFBFCA00E24154 /* Utility.swift */,
+				EBEBFDED27CFBFDC00E24154 /* Player.swift */,
+				EBEBFDE927CFBFC100E24154 /* PandaLandScene.swift */,
+				EBEBFDFE27CFC0F300E24154 /* PandaLandView.swift */,
+				EBEBFDE827CFBFA200E24154 /* JSTileMap */,
+			);
+			path = PandaLand;
+			sourceTree = "<group>";
+		};
+		EBEBFDE827CFBFA200E24154 /* JSTileMap */ = {
+			isa = PBXGroup;
+			children = (
+				EBEBFDEF27CFC00D00E24154 /* JSTileMap.h */,
+				EBEBFDF027CFC00D00E24154 /* JSTileMap.m */,
+				EBEBFDF127CFC00E00E24154 /* LFCGzipUtility.h */,
+				EBEBFDF227CFC00E00E24154 /* LFCGzipUtility.m */,
+			);
+			path = JSTileMap;
+			sourceTree = "<group>";
+		};
+		EBEBFDF727CFC07700E24154 /* Tiles */ = {
+			isa = PBXGroup;
+			children = (
+				EBEBFDF827CFC08500E24154 /* tiles_spritesheet.png */,
+			);
+			path = Tiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2447,6 +2499,7 @@
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
 				3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */,
+				EBEBFDF927CFC08500E24154 /* tiles_spritesheet.png in Resources */,
 				9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */,
 				7DCF0FBD22F8A8D7000AACCE /* Drawer.xib in Resources */,
 				7DCF0FC122F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.xib in Resources */,
@@ -2465,6 +2518,7 @@
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
 				7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */,
+				EBEBFDFB27CFC09400E24154 /* map.tmx in Resources */,
 				7D1D5BE2249184B4009EA317 /* confetti.json in Resources */,
 				7DCF0FBF22F8A8D7000AACCE /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DCF0FCD22F8A8D7000AACCE /* TextSubmissionViewController.storyboard in Resources */,
@@ -2913,6 +2967,8 @@
 				49A04E571CF64C7F0051E1E7 /* StudentTabBarController.swift in Sources */,
 				7D38A7D324CF5FEF00A4373E /* QuizWebViewController.swift in Sources */,
 				7DCF0FB222F8A8D7000AACCE /* SubmissionCommentAttemptCell.swift in Sources */,
+				EBEBFDEC27CFBFCA00E24154 /* Utility.swift in Sources */,
+				EBEBFDF327CFC00E00E24154 /* JSTileMap.m in Sources */,
 				7DCF0FD122F8A8D7000AACCE /* UrlSubmissionPresenter.swift in Sources */,
 				7DB3C83F24AA613B00B85D35 /* CalendarEventDetailsViewController.swift in Sources */,
 				7DCF0F8522F8A831000AACCE /* AssignmentDetailsViewController.swift in Sources */,
@@ -2926,8 +2982,10 @@
 				7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */,
 				7DCF0FB322F8A8D7000AACCE /* SubmissionCommentAudioCell.swift in Sources */,
 				7DCF0FC222F8A8D7000AACCE /* SubmissionDetailsPresenter.swift in Sources */,
+				EBEBFDEA27CFBFC100E24154 /* PandaLandScene.swift in Sources */,
 				7DCF0F9022F8A84D000AACCE /* CourseNavigationPresenter.swift in Sources */,
 				7DCF0FB622F8A8D7000AACCE /* SubmissionCommentHeaderCell.swift in Sources */,
+				EBEBFDEE27CFBFDC00E24154 /* Player.swift in Sources */,
 				7DCF0FAA22F8A8D7000AACCE /* SubmissionButtonAlertView.swift in Sources */,
 				9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */,
 				7DCF0FB722F8A8D7000AACCE /* SubmissionCommentsPresenter.swift in Sources */,
@@ -2943,6 +3001,7 @@
 				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				CFC7AE3927157DC50077F9D5 /* StudentAnnotationSubmissionView.swift in Sources */,
+				EBEBFDF427CFC00E00E24154 /* LFCGzipUtility.m in Sources */,
 				3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */,
 				7DA4DA2E2440EF70009CA964 /* IBDesignables.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,
@@ -2950,6 +3009,7 @@
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,
 				7DCF0FB422F8A8D7000AACCE /* SubmissionCommentFileView.swift in Sources */,
 				7DCF0FAB22F8A8D7000AACCE /* SubmissionButtonPresenter.swift in Sources */,
+				EBEBFDFF27CFC0F300E24154 /* PandaLandView.swift in Sources */,
 				7DCF0FBA22F8A8D7000AACCE /* SubmissionCommentTextCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3721,6 +3781,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Student/PandaLand/JSTileMap",
+				);
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3750,6 +3814,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Student/PandaLand/JSTileMap",
 				);
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;

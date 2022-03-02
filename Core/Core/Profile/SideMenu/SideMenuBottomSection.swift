@@ -100,6 +100,11 @@ struct SideMenuBottomSection: View {
                 SideMenuItem(id: "developerMenu", image: .settingsLine, title: Text("Developer menu", bundle: .core)).onTapGesture {
                     route(to: "/dev-menu", options: .modal(embedInNav: true))
                 }
+                if env.app == .student {
+                    SideMenuItem(id: "pandaLand", image: .starLine, title: Text(verbatim: "PandaLand")).onTapGesture {
+                        route(to: "/pandaLand", options: .modal(.fullScreen, isDismissable: false, embedInNav: false, addDoneButton: true))
+                    }
+                }
             }
         }
         .onAppear {

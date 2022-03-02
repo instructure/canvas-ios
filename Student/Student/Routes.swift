@@ -350,6 +350,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/user_preferences": nil,
 
+    "/pandaLand": { _, _, _ in
+        CoreHostingController(PandaLandView())
+    },
+
     "/dev-menu": nil,
 
     "/dev-menu/experimental-features": { _, _, _ in
