@@ -21,8 +21,36 @@ import SwiftUI
 public struct FilesPanda: PandaScene {
     public var name: String { "files" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 25, height: -5),
-        foreground: CGSize(width: -25, height: 5))
+        background: CGSize(width: 30, height: -5),
+        foreground: CGSize(width: -30, height: 5))
+    }
+    public var background: AnyView { AnyView(Drawer(self)) }
+}
+
+private struct Drawer: View {
+    @State private var isClosed = true
+    private let feedback = UIImpactFeedbackGenerator(style: .heavy)
+    private let closedImage: Image
+    private let openedImage: Image
+
+    public init(_ scene: FilesPanda) {
+        self.openedImage = Image(scene.backgroundFileName, bundle: .core)
+        self.closedImage = Image("\(scene.backgroundFileName)-closed", bundle: .core)
+    }
+
+    public var body: some View {
+        let tapAction = {
+            withAnimation(.default.speed(2)) {
+                isClosed.toggle()
+            }
+
+            feedback.impactOccurred()
+        }
+        closedImage
+            .onTapGesture(perform: tapAction)
+        openedImage
+            .opacity(isClosed ? 0 : 1)
+            .onTapGesture(perform: tapAction)
     }
 }
 
