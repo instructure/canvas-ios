@@ -51,7 +51,7 @@ public struct K5ResourcesApplicationView: View {
             .padding(.trailing, 18)
             .frame(height: 51)
             .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
-            .background(Color.white)
+            .background(Color(.systemBackground))
             .cornerRadius(4)
             .shadow(color: Color.black.opacity(0.15), radius: 1, x: 0, y: 2)
         })

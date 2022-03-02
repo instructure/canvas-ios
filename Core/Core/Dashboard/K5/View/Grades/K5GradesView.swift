@@ -38,7 +38,7 @@ struct K5GradesView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Select", bundle: .core)
                             .font(.regular13)
-                            .background(Color.white)
+                            .background(Color(.systemBackground))
                             .foregroundColor(.ash)
                             .padding(.top, 15)
                         HStack(spacing: 7) {
@@ -58,18 +58,22 @@ struct K5GradesView: View {
                     }
                 })
                 .zIndex(1)
-                .background(Color.white)
+                .background(Color(.systemBackground))
                 .padding(.top, 0)
 
                 if gradeSelectorOpen {
                     VStack(alignment: .leading) {
                         ForEach(viewModel.gradingPeriods, id: \.self) { gradingPeriod in
-                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white).contentShape(Rectangle()).onTapGesture {
-                                viewModel.didSelect(gradingPeriod: gradingPeriod)
-                                withAnimation {
-                                    gradeSelectorOpen = false
+                            Text(gradingPeriod.title ?? "")
+                                .font(.bold20)
+                                .background(Color(.systemBackground))
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    viewModel.didSelect(gradingPeriod: gradingPeriod)
+                                    withAnimation {
+                                        gradeSelectorOpen = false
+                                    }
                                 }
-                            }
                             Divider()
                         }
                     }.transition(.move(edge: .top))

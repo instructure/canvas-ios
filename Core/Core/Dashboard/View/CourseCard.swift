@@ -26,7 +26,6 @@ struct CourseCard: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-    @Environment(\.colorScheme) var colorScheme
 
     var a11yGrade: String {
         guard let course = card.course, showGrade else { return "" }
@@ -61,7 +60,7 @@ struct CourseCard: View {
                         .padding(.horizontal, 10).padding(.top, 8)
                 }
                     .background(RoundedRectangle(cornerRadius: 4).stroke(Color(white: 0.89), lineWidth: 1 / UIScreen.main.scale))
-                    .background(colorScheme == .light ? Color.white : Color.black)
+                    .background(Color(.systemBackground))
                     .cornerRadius(4)
                     .shadow(color: Color.black.opacity(0.2), radius: 1, x: 0, y: 1)
             })

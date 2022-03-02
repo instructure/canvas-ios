@@ -23,17 +23,17 @@ public class HelmNavigationController: UINavigationController {
     public init() {
         let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
         super.init(rootViewController: emptyViewController)
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     public override func viewDidLoad() {
