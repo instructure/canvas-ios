@@ -65,6 +65,12 @@ struct SideMenuMainSection: View {
                 SideMenuItem(id: "files", image: .folderLine, title: Text("Files", bundle: .core)).onTapGesture {
                     route(to: "/users/self/files")
                 }
+                
+                if enrollment == .student {
+                    SideMenuItem(id: "bookmarks", image: .bookmarkLine, title: Text("Bookmarks", bundle: .core)).onTapGesture {
+                        route(to: "/bookmarks")
+                     }
+                }
 
                 ForEach(Array(tools), id: \.self) { tool in
                     SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)", image: imageForDomain(tool.domain),

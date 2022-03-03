@@ -384,6 +384,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/native-route/*route": nativeFactory,
     "/native-route-master/*route": nativeFactory,
+    
+    "/bookmarks": { _, _, _ in
+        return CoreHostingController(BookmarksView(viewModel: BookmarksViewModel()))
+    },
 ]))
 
 private func nativeFactory(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
