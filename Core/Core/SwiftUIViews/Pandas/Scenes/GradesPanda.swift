@@ -24,6 +24,7 @@ public struct GradesPanda: PandaScene {
         background: CGSize(width: 0, height: -50),
         foreground: CGSize(width: -25, height: 50))
     }
+    public var height: CGFloat { 230 }
     public var background: AnyView { AnyView(Board(imageName: backgroundFileName)) }
 }
 

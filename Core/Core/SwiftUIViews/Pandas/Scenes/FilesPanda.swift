@@ -21,9 +21,10 @@ import SwiftUI
 public struct FilesPanda: PandaScene {
     public var name: String { "files" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 30, height: -5),
-        foreground: CGSize(width: -30, height: 5))
+        background: CGSize(width: 30, height: -8),
+        foreground: CGSize(width: -30, height: 2))
     }
+    public var height: CGFloat { 130 }
     public var background: AnyView { AnyView(Drawer(self)) }
 }
 

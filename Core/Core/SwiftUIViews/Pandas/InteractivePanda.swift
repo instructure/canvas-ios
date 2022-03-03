@@ -27,14 +27,27 @@ public struct InteractivePanda: View {
 
     @ViewBuilder
     public var body: some View {
-        MotionScene { detector in
-            let offset = scene.offset
-            scene.background
-                .motion(detector, horizontalMultiplier: -40, verticalMultiplier: -10)
-                .offset(offset.background)
-            scene.foreground
-                .motion(detector, horizontalMultiplier: 40, verticalMultiplier: 10)
-                .offset(offset.foreground)
+        VStack(spacing: 0) {
+            MotionScene { detector in
+                let offset = scene.offset
+                scene.background
+                    .motion(detector, horizontalMultiplier: -40, verticalMultiplier: -10)
+                    .offset(offset.background)
+                scene.foreground
+                    .motion(detector, horizontalMultiplier: 40, verticalMultiplier: 10)
+                    .offset(offset.foreground)
+            }
+            .frame(height: scene.height)
+            .padding(.bottom, 25)
+            Text("Title g")
+                .font(.bold24)
+                .foregroundColor(.licorice)
+                .padding(.bottom, 8)
+            Text("A very long subtitle to test how layout behaves in case the line doesn't fit in one line")
+                .font(.regular16)
+                .foregroundColor(.licorice)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 16)
         }
     }
 }

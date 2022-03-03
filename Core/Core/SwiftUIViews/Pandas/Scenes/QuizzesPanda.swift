@@ -24,6 +24,7 @@ public struct QuizzesPanda: PandaScene {
         background: CGSize(width: 30, height: 0),
         foreground: CGSize(width: -30, height: 0))
     }
+    public var height: CGFloat { 160 }
     public var foreground: AnyView { AnyView(Image(foregroundFileName, bundle: .core)) }
     public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
 }

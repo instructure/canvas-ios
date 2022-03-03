@@ -22,6 +22,8 @@ public protocol PandaScene {
     var name: String { get }
     /** The offset of the background and foreground views from the center of the view. */
     var offset: (background: CGSize, foreground: CGSize) { get }
+    /** The total height of the scene. */
+    var height: CGFloat { get }
     var background: AnyView { get }
     var foreground: AnyView { get }
 }

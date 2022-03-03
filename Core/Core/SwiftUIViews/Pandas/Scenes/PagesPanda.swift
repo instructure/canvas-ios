@@ -21,9 +21,10 @@ import SwiftUI
 public struct PagesPanda: PandaScene {
     public var name: String { "pages" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 0, height: 0),
-        foreground: CGSize(width: 0, height: 0))
+        background: CGSize(width: 0, height: -2),
+        foreground: CGSize(width: 0, height: -2))
     }
+    public var height: CGFloat { 154 }
     public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
 }
 

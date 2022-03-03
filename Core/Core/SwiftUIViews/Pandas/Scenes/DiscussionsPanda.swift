@@ -21,9 +21,10 @@ import SwiftUI
 public struct DiscussionsPanda: PandaScene {
     public var name: String { "discussions" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 0, height: -32),
-        foreground: CGSize(width: -55, height: 32))
+        background: CGSize(width: 0, height: -8),
+        foreground: CGSize(width: -55, height: 56))
     }
+    public var height: CGFloat { 246 }
 }
 
 struct DiscussionsPanda_Previews: PreviewProvider {

@@ -24,6 +24,7 @@ public struct SpacePanda: PandaScene {
         background: CGSize(width: 0, height: 0),
         foreground: CGSize(width: -56, height: 5))
     }
+    public var height: CGFloat { 180 }
 }
 
 struct SpacePanda_Previews: PreviewProvider {

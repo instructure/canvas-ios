@@ -21,9 +21,10 @@ import SwiftUI
 public struct ModulesPanda: PandaScene {
     public var name: String { "modules" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 0, height: 0),
-        foreground: CGSize(width: 50, height: 65))
+        background: CGSize(width: 0, height: -10),
+        foreground: CGSize(width: 50, height: 55))
     }
+    public var height: CGFloat { 180 }
     public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
 }
 

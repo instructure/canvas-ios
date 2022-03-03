@@ -21,9 +21,10 @@ import SwiftUI
 public struct PeoplePanda: PandaScene {
     public var name: String { "people" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 60, height: 0),
-        foreground: CGSize(width: -60, height: 30))
+        background: CGSize(width: 60, height: -10),
+        foreground: CGSize(width: -60, height: 20))
     }
+    public var height: CGFloat { 180 }
     public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
 }
 
