@@ -29,6 +29,7 @@ public struct GradesPanda: PandaScene {
 
 private struct Board: View {
     @State private var rotation: Double = 0
+    @State private var timer: Timer?
     private let image: Image
     private let feedback = UIImpactFeedbackGenerator(style: .heavy)
 
@@ -41,10 +42,33 @@ private struct Board: View {
         image
             .rotationEffect(Angle(degrees: rotation))
             .onTapGesture {
+                startBoardResetTimer()
                 feedback.impactOccurred()
                 let range: ClosedRange<Double> = (rotation > 0 ? -10...0 : 0...10)
-                rotation = Double.random(in: range)
+                let animation = Animation.interpolatingSpring(stiffness: 1000, damping: 25, initialVelocity: 1)
+                withAnimation(animation) {
+                    rotation = Double.random(in: range)
+                }
             }
+    }
+
+    private func startBoardResetTimer() {
+        resetTimer()
+        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+            resetTimer()
+            resetBoardRotation()
+        }
+    }
+
+    private func resetTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    private func resetBoardRotation() {
+        withAnimation {
+            rotation = 0
+        }
     }
 }
 
