@@ -20,9 +20,13 @@ import SwiftUI
 
 public struct InteractivePanda: View {
     private let scene: PandaScene
+    private let title: String?
+    private let subtitle: String?
 
-    public init(scene: PandaScene) {
+    public init(scene: PandaScene, title: String? = nil, subtitle: String? = nil) {
         self.scene = scene
+        self.title = title
+        self.subtitle = subtitle
     }
 
     @ViewBuilder
@@ -39,15 +43,21 @@ public struct InteractivePanda: View {
             }
             .frame(height: scene.height)
             .padding(.bottom, 25)
-            Text("Title g")
-                .font(.bold24)
-                .foregroundColor(.licorice)
-                .padding(.bottom, 8)
-            Text("A very long subtitle to test how layout behaves in case the line doesn't fit in one line")
-                .font(.regular16)
-                .foregroundColor(.licorice)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 16)
+
+            if let title = title {
+                Text(title)
+                    .font(.bold24)
+                    .foregroundColor(.licorice)
+                    .padding(.bottom, 8)
+            }
+
+            if let subtitle = subtitle {
+                Text(subtitle)
+                    .font(.regular16)
+                    .foregroundColor(.licorice)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 16)
+            }
         }
     }
 }

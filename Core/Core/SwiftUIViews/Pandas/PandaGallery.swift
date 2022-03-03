@@ -51,28 +51,31 @@ public struct PandaGallery: View {
         }
     }
 
-    @ViewBuilder
     private var panda: some View {
+        let scene: PandaScene
+
         switch selectedPanda {
         case .discussions:
-            InteractivePanda(scene: DiscussionsPanda())
+            scene = DiscussionsPanda()
         case .files:
-            InteractivePanda(scene: FilesPanda())
+            scene = FilesPanda()
         case .grades:
-            InteractivePanda(scene: GradesPanda())
+            scene = GradesPanda()
         case .space:
-            InteractivePanda(scene: SpacePanda())
+            scene = SpacePanda()
         case .people:
-            InteractivePanda(scene: PeoplePanda())
+            scene = PeoplePanda()
         case .modules:
-            InteractivePanda(scene: ModulesPanda())
+            scene = ModulesPanda()
         case .quizzes:
-            InteractivePanda(scene: QuizzesPanda())
+            scene = QuizzesPanda()
         case .conferences:
-            InteractivePanda(scene: ConferencesPanda())
+            scene = ConferencesPanda()
         case .pages:
-            InteractivePanda(scene: PagesPanda())
+            scene = PagesPanda()
         }
+
+        return InteractivePanda(scene: scene, title: "Title Text", subtitle: "Optional subtitle text here")
     }
 }
 
