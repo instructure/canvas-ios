@@ -25,7 +25,8 @@ public struct PagesPanda: PandaScene {
         foreground: CGSize(width: 0, height: -2))
     }
     public var height: CGFloat { 154 }
-    public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
+    public var background: AnyView { AnyView(BouncyImage(imageFileName: backgroundFileName)) }
+    public var foreground: AnyView { AnyView(Image(foregroundFileName, bundle: .core).allowsHitTesting(false)) }
 }
 
 struct PagesPanda_Previews: PreviewProvider {

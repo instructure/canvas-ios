@@ -43,6 +43,7 @@ public struct InteractivePanda: View {
             }
             .frame(height: scene.height)
             .padding(.bottom, 25)
+            .zIndex(1)
 
             if let title = title {
                 Text(title)
