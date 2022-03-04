@@ -55,4 +55,3 @@ struct DiscussionsPanda_Previews: PreviewProvider {
         InteractivePanda(scene: DiscussionsPanda())
     }
 }
-
