@@ -21,10 +21,10 @@ import SwiftUI
 public struct ConferencesPanda: PandaScene {
     public var name: String { "conferences" }
     public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 40, height: -7),
-        foreground: CGSize(width: -40, height: 27))
+        background: CGSize(width: 40, height: -17),
+        foreground: CGSize(width: -40, height: 37))
     }
-    public var height: CGFloat { 190 }
+    public var height: CGFloat { 210 }
 }
 
 struct ConferencesPanda_Previews: PreviewProvider {

@@ -25,6 +25,59 @@ public struct SpacePanda: PandaScene {
         foreground: CGSize(width: -56, height: 5))
     }
     public var height: CGFloat { 180 }
+    public var foreground: AnyView { AnyView(AstronautPanda(imageName: foregroundFileName)) }
+    public var background: AnyView { AnyView(Stars(imageName: backgroundFileName)) }
+}
+
+private struct Stars: View {
+    @State private var isDragging = false
+    @State private var rotation: Double = 0
+    @State private var initialRotation: Double = 0
+    private let image: Image
+
+    public init(imageName: String) {
+        self.image = Image(imageName, bundle: .core)
+    }
+
+    @ViewBuilder
+    public var body: some View {
+        let gesture = DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onChanged { value in
+                if !isDragging {
+                    initialRotation = rotation
+                    isDragging = true
+                }
+                rotation = initialRotation + value.translation.height
+            }
+            .onEnded { _ in
+                isDragging = false
+            }
+        image
+            .rotationEffect(.degrees(rotation))
+            .gesture(gesture)
+    }
+}
+
+private struct AstronautPanda: View {
+    @State private var rotation: Double = 0
+    private let imageName: String
+
+    public init(imageName: String) {
+        self.imageName = imageName
+    }
+
+    @ViewBuilder
+    public var body: some View {
+        Image(imageName, bundle: .core)
+            .offset(x: 30, y: 0)
+            .rotationEffect(.degrees(rotation))
+            .allowsHitTesting(false)
+            .onAppear {
+                withAnimation(.easeOut(duration: 360)) {
+                    rotation = 3600
+                }
+            }
+    }
 }
 
 struct SpacePanda_Previews: PreviewProvider {
