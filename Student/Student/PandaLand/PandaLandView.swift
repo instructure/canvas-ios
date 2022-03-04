@@ -17,15 +17,20 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 public struct PandaLandView: View {
 
+    let pandaLandSceneView = PandaLandSceneView()
+    let scene: PandaLandScene!
+
     public init() {
+        scene = pandaLandSceneView.scene
     }
 
     public var body: some View {
         GeometryReader { geometry in
-            PandaLandSceneView().frame(width: geometry.size.width, height: geometry.size.height)
+            pandaLandSceneView.frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
 }

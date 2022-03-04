@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="10" tilewidth="128" tileheight="128" infinite="0" nextlayerid="3" nextobjectid="1">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="10" tilewidth="128" tileheight="128" infinite="0" nextlayerid="4" nextobjectid="1">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="128" tileheight="128" tilecount="35" columns="5">
   <image source="tiles_spritesheet.png" width="640" height="896"/>
  </tileset>
+ <layer id="3" name="gems" width="100" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6AlsX9Mj4XwEBKQAADUXAcA4LEF8ZAAHw==
+  </data>
+ </layer>
  <layer id="1" name="background" width="100" height="10">
   <data encoding="base64" compression="zlib">
    eJztzrEJACAUA9G/hCIq6P5TGiwsxD4g9+CaVIkAAAA/SSq7T+CoqqnuPoJtqHltxfADAF4W4/QA1A==
@@ -10,7 +15,7 @@
  </layer>
  <layer id="2" name="walls" width="100" height="10">
   <data encoding="base64" compression="zlib">
-   eJztzjsKACAMBFErv516/7OaMoVCAoIW82CahUBCAAAAwG+6NKT5+hHgsiglQ/lws9v1Bp8iVUPtcLPb9QafBdiRAWw=
+   eJztzjsKACAMBFErtRL8NN7/oqZMoZCAoMU8mGYhkBAAAADwmyZ1abx+BLgsSslQPtzsdr3Bp0rF0Dzc7Ha9wWcBdpgB3g==
   </data>
  </layer>
 </map>

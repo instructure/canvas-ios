@@ -23,29 +23,23 @@ import GameplayKit
 class PandaLandScene: SKScene {
 
     var map : JSTileMap = JSTileMap(named: "map.tmx")
-    var player = Player()
+    var player = PandaLandPlayer()
     var previousUpdate : CFTimeInterval = 0
     let initialPosition = CGPoint(x: 100, y: 400)
-    //let cameraNode = SKCameraNode()
+    let cameraNode = SKCameraNode()
 
     override func didMove(to view: SKView) {
-        //scene?.addChild(cameraNode)
-        //scene?.camera = cameraNode
-        //cameraNode.setScale(2)
-        self.scene?.setScale(2)
-        self.backgroundColor = .skyBlueColor()
-        self.addChild(map)
-        self.player.position = self.initialPosition
-        self.map.addChild(self.player)
-    }
-
-    override func update(_ currentTime: CFTimeInterval) {
-        let delta = clamp(lower:0.0, upper:0.2, currentTime - self.previousUpdate)
-        self.previousUpdate = currentTime
-
-        self.player.update(delta)
-        self.handleCollisions(player, layer: self.map.layerNamed("walls"))
-        self.setViewpointCenter(self.player.position)
+        addChild(cameraNode)
+        camera = cameraNode
+        cameraNode.setScale(1.5)
+        backgroundColor = .skyBlueColor()
+        addChild(map)
+        player.position = initialPosition
+        map.addChild(player)
+        let controls = PandaLandControls(with: self.size)
+        controls.zPosition = 9000
+        cameraNode.addChild(controls)
+        view.isMultipleTouchEnabled = true
     }
 
     enum Direction : Int {
@@ -74,8 +68,86 @@ class PandaLandScene: SKScene {
         static let All : [Direction] = [.above,.below,.left,.right,.upperLeft,.upperRight,.lowerLeft,.lowerRight]
     }
 
-    func handleCollisions(_ player : Player, layer : TMXLayer) {
-        self.player.onGround = false
+    func onPlayerDied() {
+        delay(500, closure: DispatchWorkItem {
+            self.player.run(.move(to: self.initialPosition, duration: 1))
+            //self.player.position =  self.initialPosition
+            self.player.velocity = CGPoint.zero
+        })
+    }
+
+    enum KeyCode : Int {
+        case jump = 32
+        case forward = 100
+        case backward = 97
+    }
+
+    func playerAction(_ keyCode : KeyCode, activate : Bool) {
+        switch keyCode {
+        case .jump:      player.shouldJump = activate
+        case .forward:   player.forward = activate
+        case .backward:  player.backward = activate
+        }
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        handle(touches: touches, activate: true)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        handle(touches: touches, activate: false)
+    }
+
+    func handle(touches: Set<UITouch>, activate: Bool) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            switch touchedNode.name {
+            case "leftButton":
+                playerAction(.backward, activate: activate)
+            case "rightButton":
+                playerAction(.forward, activate: activate)
+            case "upButton":
+                playerAction(.jump, activate: activate)
+            default:
+                break
+            }
+        }
+    }
+
+    override func update(_ currentTime: CFTimeInterval) {
+        let delta = clamp(lower:0.0, upper:0.2, currentTime - previousUpdate)
+        previousUpdate = currentTime
+        player.update(delta)
+        let cameraPosition = CGPoint(x: player.position.x + player.xScale * 100, y: player.position.y)
+        let moveCamera = SKAction.move(to: cameraPosition, duration: 0.25)
+        cameraNode.run(moveCamera)
+        cameraNode.position = cameraPosition
+        handleCollisions(player, layer: map.layerNamed("walls"))
+    }
+}
+
+struct PandaLandSceneView: View {
+
+    var scene: PandaLandScene {
+        let scene = PandaLandScene()
+        scene.size = CGSize(width: 320, height: 586)
+        scene.scaleMode = .aspectFill
+        return scene
+    }
+
+    var body: some View {
+        if #available(iOS 14.0, *) {
+            SpriteView(scene: scene)
+                .ignoresSafeArea()
+        }
+    }
+}
+
+
+extension PandaLandScene {
+    func handleCollisions(_ player : PandaLandPlayer, layer : TMXLayer) {
+        player.onGround = false
 
         var adjustment = CGPoint.zero
         var velocityFactor = CGPoint(x:1,y:1)
@@ -83,16 +155,16 @@ class PandaLandScene: SKScene {
         for direction in Direction.All {
             let playerCoord = layer.coord(for: player.desiredPosition)
 
-            if playerCoord.y > self.map.mapSize.height {
-                self.onPlayerDied()
+            if playerCoord.y > map.mapSize.height {
+                onPlayerDied()
                 return
             }
 
             let offset = direction.offset()
             let tileCoord = playerCoord + offset;
 
-            if self.tileGID(tileCoord, forLayer:layer) != 0 {
-                let tileRect = self.tileRect(tileCoord)
+            if tileGID(tileCoord, forLayer:layer) != 0 {
+                let tileRect = tileRect(tileCoord)
 
                 if player.frame.intersects(tileRect) {
 
@@ -117,7 +189,7 @@ class PandaLandScene: SKScene {
 
                     default:
 
-                        if intersection.size.width > intersection.size.height { //tile is diagonal, but resolving collision vertically
+                        if intersection.size.width > intersection.size.height {
 
                             velocityFactor *= CGPoint(x:1,y:0)
                             if direction.offset().y == 1 {
@@ -137,13 +209,6 @@ class PandaLandScene: SKScene {
         player.position = player.desiredPosition + adjustment
     }
 
-    func onPlayerDied() {
-        delay(1000, closure: DispatchWorkItem {
-            self.player.position =  self.initialPosition
-            self.player.velocity = CGPoint.zero
-        })
-    }
-
     func tileGID(_ tileCoords:CGPoint, forLayer layer:TMXLayer) -> Int32 {
         let size = layer.layerInfo.layerGridSize
 
@@ -154,87 +219,15 @@ class PandaLandScene: SKScene {
     }
 
     func tileRect(_ tileCoords : CGPoint) -> CGRect {
-        let levelHeightInPixels = self.mapPixelSize.height
-        let origin = CGPoint(x:tileCoords.x * self.map.tileSize.width,
-            y:levelHeightInPixels - ((tileCoords.y + 1) * self.map.tileSize.height));
-        return CGRect(x: origin.x, y: origin.y, width: self.map.tileSize.width, height: self.map.tileSize.height);
+        let levelHeightInPixels = mapPixelSize.height
+        let origin = CGPoint(x:tileCoords.x * map.tileSize.width,
+            y:levelHeightInPixels - ((tileCoords.y + 1) * map.tileSize.height));
+        return CGRect(x: origin.x, y: origin.y, width: map.tileSize.width, height: map.tileSize.height);
     }
 
-    // full size of the map in pixels
     var mapPixelSize : CGSize {
-        get { return CGSize(width: self.map.mapSize.width  * self.map.tileSize.width,
-            height: self.map.mapSize.height * self.map.tileSize.height )
-        }
-    }
-
-    enum KeyCode : Int {
-        case jump = 32
-        case forward = 100
-        case backward = 97
-    }
-
-    func playerAction(_ keyCode : KeyCode, activate : Bool) {
-        switch keyCode {
-        case .jump:      self.player.shouldJump = activate
-        case .forward:   self.player.forward = activate
-        case .backward:  self.player.backward = activate
-        }
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handle(touches: touches, activate: true)
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handle(touches: touches, activate: false)
-    }
-
-    func handle(touches: Set<UITouch>, activate: Bool) {
-        for touch in touches {
-            let location = touch.location(in: self.view)
-            if location.y > self.view?.frame.size.height ?? 0 / 2 {
-                playerAction(.jump, activate: activate)
-            } else {
-                if location.x > self.view?.frame.size.width ?? 0 / 2 {
-                    playerAction(.forward, activate: activate)
-                } else {
-                    playerAction(.backward, activate: activate)
-                }
-            }
-        }
-    }
-
-    // half of the scene view size
-    var halfViewPoint : CGPoint {
-        get { return CGPoint(x:self.size.width * 0.5, y:self.size.height * 0.5) }
-    }
-
-    // full size of the map in pixels
-    var mapMaxPoint : CGPoint {
-        get { return CGPoint(x: self.map.mapSize.width  * self.map.tileSize.width,
-            y: self.map.mapSize.height * self.map.tileSize.height )
-        }
-    }
-
-    func setViewpointCenter(_ pos : CGPoint) {
-        let actualPosition = clamp(lower: self.halfViewPoint, upper: self.mapMaxPoint - self.halfViewPoint, pos)
-        self.map.position = (self.halfViewPoint - actualPosition)
-        //cameraNode.position = actualPosition
-    }
-}
-
-struct PandaLandSceneView: View {
-    var scene: SKScene {
-        let scene = PandaLandScene()
-        scene.size = CGSize(width: 320, height: 586)
-        scene.scaleMode = .aspectFill
-        return scene
-    }
-
-    var body: some View {
-        if #available(iOS 14.0, *) {
-            SpriteView(scene: scene)
-                .ignoresSafeArea()
+        get { return CGSize(width: map.mapSize.width  * map.tileSize.width,
+            height: map.mapSize.height * map.tileSize.height )
         }
     }
 }
