@@ -17,16 +17,30 @@
 //
 
 import Foundation
+import CoreData
 
-public class Bookmark: Equatable {
-    public static func == (lhs: Bookmark, rhs: Bookmark) -> Bool {
-        lhs.url == rhs.url && lhs.name == rhs.name
+public struct GetBookmarks: CollectionUseCase {
+    public typealias Model = BookmarkModel
+
+    public init () {}
+
+    public var cacheKey: String? {
+        return "get-user-self-bookmarks"
+    }
+
+    public var request: GetBookmarksRequest {
+        return GetBookmarksRequest()
+    }
+
+    public var scope: Scope {
+        return Scope(predicate: .all, order: [NSSortDescriptor(key: #keyPath(BookmarkModel.position), ascending: true)])
     }
     
-    let name: String
-    let url: String
-    
-    init(name: String, url: String) {
-        self.name = name
-        self.url = url
-    }}
+    public func write(response: [APIBookmark]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let bookmarks = response else { return }
+
+        for item in bookmarks {
+            BookmarkModel.save(item, in: client)
+        }
+    }
+}

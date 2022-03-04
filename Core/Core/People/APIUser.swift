@@ -134,6 +134,14 @@ public struct APIProfile: Codable, Equatable {
     public let k5_user: Bool?
 }
 
+// https://canvas.instructure.com/doc/api/bookmarks.html#method.bookmarks/bookmarks.index
+public struct APIBookmark: Codable, Equatable {
+    let id: ID
+    let name: String?
+    let url: String?
+    let position: Int?
+}
+
 #if DEBUG
 extension APIUser {
     public static func make(
@@ -440,6 +448,16 @@ public struct PostObserveesRequest: APIRequestable {
         }
         return query
     }
+}
+
+public struct GetBookmarksRequest: APIRequestable {
+    public typealias Response = [APIBookmark]
+
+    public let path: String = "users/self/bookmarks"
+    
+    public let query: [APIQueryItem] = [
+        .perPage(100),
+    ]
 }
 
 // https://canvas.instructure.com/doc/api/user_observees.html#method.user_observees.index

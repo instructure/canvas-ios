@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
 public class BookmarksViewModel: ObservableObject {
     public enum ViewModelState<T: Equatable>: Equatable {
@@ -25,31 +25,35 @@ public class BookmarksViewModel: ObservableObject {
         case data(T)
     }
     
-    public init() {
-        
+    @Published public private(set) var state: ViewModelState<[BookmarkCellViewModel]> = .loading
+    
+    public lazy private (set) var bookmarks = env.subscribe(GetBookmarks()) { [weak self] in
+        self?.bookmarksDidUpdate()
     }
     
-    @Published public private(set) var state: ViewModelState<[Bookmark]> = .loading
+    @Environment(\.appEnvironment) private var env
+    
+    public init() {}
     
     public func viewDidAppear() {
-        state = .data(createFakeBookmarks())
+        state = .loading
+        bookmarks.exhaust()
     }
     
-    func createFakeBookmarks() -> [Bookmark] {
-        return [
-            Bookmark(name: "1.2",url: "https://tamaskozmer.instructure.com/api/v1/courses/20781/pages/1-dot-2-|-your-canvas-dashboard?module_item_id=158421"),
-            Bookmark(name: "1.5",url: "https://tamaskozmer.instructure.com/courses/20781/assignments/63418"),
-            Bookmark(name: "Assignment",url: "https://tamaskozmer.instructure.com/courses/20781/assignments/87794"),
-            Bookmark(name: "Profile",url: "https://tamaskozmer.instructure.com/api/v1/courses/20781/pages/1-dot-3-|-your-profile-and-settings?module_item_id=158422"),
-            Bookmark(name: "Grades",url: "https://tamaskozmer.instructure.com/courses/20781/grades"),
-            Bookmark(name: "Modules",url: "https://tamaskozmer.instructure.com/courses/20781/modules"),
-            Bookmark(name: "Discussion",url: "https://tamaskozmer.instructure.com/courses/20781/assignments/63415")
-        ]
+    private func bookmarksDidUpdate() {
+        let bookmarkCells = bookmarks.all.map { bookmarkModel in
+            BookmarkCellViewModel(name: bookmarkModel.name!, url: bookmarkModel.url!)
+        }
+        if bookmarkCells.isEmpty {
+            state = .empty
+        } else {
+            state = .data(bookmarkCells)
+        }
     }
     
 #if DEBUG
 
-    init(state: ViewModelState<[Bookmark]>) {
+    init(state: ViewModelState<[BookmarkCellViewModel]>) {
         self.state = state
     }
 

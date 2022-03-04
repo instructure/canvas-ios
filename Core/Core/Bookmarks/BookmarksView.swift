@@ -62,7 +62,7 @@ public struct BookmarksView: View {
         Spacer()
     }
     
-    private func bookmarkList(_ bookmarks: [Bookmark]) -> some View {
+    private func bookmarkList(_ bookmarks: [BookmarkCellViewModel]) -> some View {
         List {
             ForEach(bookmarks, id: \.url) { bookmark in
                 BookmarkCellView(bookmark: bookmark)

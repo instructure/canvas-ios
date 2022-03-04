@@ -23,9 +23,9 @@ struct BookmarkCellView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     
-    private var bookmark: Bookmark
+    private var bookmark: BookmarkCellViewModel
     
-    init(bookmark: Bookmark) {
+    init(bookmark: BookmarkCellViewModel) {
         self.bookmark = bookmark
     }
     
@@ -47,6 +47,6 @@ struct BookmarkCellView: View {
 
 struct BookmarkCellView_Previews: PreviewProvider {
     static var previews: some View {
-        BookmarkCellView(bookmark: Bookmark(name: "Test", url: "url"))
+        BookmarkCellView(bookmark: BookmarkCellViewModel(name: "Test", url: "url"))
     }
 }
