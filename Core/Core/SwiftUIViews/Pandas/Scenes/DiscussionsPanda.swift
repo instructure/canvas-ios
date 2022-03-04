@@ -25,6 +25,29 @@ public struct DiscussionsPanda: PandaScene {
         foreground: CGSize(width: -55, height: 56))
     }
     public var height: CGFloat { 246 }
+    public var background: AnyView { AnyView(Phone(imageName: backgroundFileName)) }
+}
+
+private struct Phone: View {
+    @State private var isGrayscale = false
+    private let image: Image
+    private let feedback = UIImpactFeedbackGenerator(style: .heavy)
+
+    public init(imageName: String) {
+        self.image = Image(imageName, bundle: .core)
+    }
+
+    @ViewBuilder
+    public var body: some View {
+        image
+            .grayscale(isGrayscale ? 1.0 : 0.0)
+            .onTapGesture {
+                feedback.impactOccurred()
+                withAnimation(.easeInOut(duration: 0.15)) {
+                    isGrayscale.toggle()
+                }
+            }
+    }
 }
 
 struct DiscussionsPanda_Previews: PreviewProvider {
