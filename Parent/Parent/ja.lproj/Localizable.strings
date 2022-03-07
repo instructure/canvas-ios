@@ -110,6 +110,9 @@
 "Location" = "場所";
 
 /* No comment provided by engineer. */
+"Locked" = "ロックされています";
+
+/* No comment provided by engineer. */
 "Login required" = "ログインが必要です";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "シラバス";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "リンクされている項目は利用できなくなりました。";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "追加しようとしている受講生は、別のCanvas教育機関に所属しています。\nこの受講生を追加するには、その機関でサインインまたはアカウントを作成してください。";

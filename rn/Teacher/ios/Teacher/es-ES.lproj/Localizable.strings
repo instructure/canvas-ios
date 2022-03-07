@@ -68,7 +68,7 @@
 "Could not save the comment." = "No se ha podido guardar el comentario";
 
 /* No comment provided by engineer. */
-"Courses" = "Cursos";
+"Courses" = "Asignaturas";
 
 /* No comment provided by engineer. */
 "Customize Grade" = "Personalizar nota";
@@ -102,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Error al iniciar la herramienta LTI de la lista de asistencia.";
+
+/* No comment provided by engineer. */
+"Failed to load submission data!" = "¡No se han podido entregar los datos!";
 
 /* No comment provided by engineer. */
 "Files" = "Archivos";
@@ -248,6 +251,9 @@
 "Reset" = "Restablecer";
 
 /* No comment provided by engineer. */
+"Retry" = "Reintentar";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rúbrica";
 
 /* No comment provided by engineer. */
@@ -311,7 +317,10 @@
 "This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Esta entrega es una URL hacia una página externa. Hemos incluido una captura de pantalla del aspecto de la página cuando se entregó.";
 
 /* No comment provided by engineer. */
-"To Do" = "Pendiente";
+"To Do" = "Tareas pendientes";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Error desconocido";
 
 /* No comment provided by engineer. */
 "Unmark" = "Desmarcar";

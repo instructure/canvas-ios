@@ -110,6 +110,9 @@
 "Location" = "Staðsetning";
 
 /* No comment provided by engineer. */
+"Locked" = "Læst";
+
+/* No comment provided by engineer. */
 "Login required" = "Þörf er á innskráningu";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Kennsluáætlun";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Tengd atriði eru ekki lengur í boði.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Nemandinn þú ert að reyna að bæta við er í annarri Canvas stofnun.\nSkráðu þig inn eða stofnaðu reikning hjá þeirri stofnun til að bæta við þessum nemanda.";

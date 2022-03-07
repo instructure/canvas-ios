@@ -228,7 +228,6 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if users.hasNextPage && indexPath.row == users.count {
-            users.getNextPage()
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
@@ -239,6 +238,16 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = users[indexPath.row] else { return }
         env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail)
+    }
+
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if users.hasNextPage && indexPath.row == users.count {
+            // In case of a fast network the table view blinks once with the scroll indicator jumping and it's not clear what happened,
+            // so we delay the next page load thus the loading indicator can appear and users know what's happening.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.users.getNextPage()
+            }
+        }
     }
 }
 

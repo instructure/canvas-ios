@@ -259,52 +259,6 @@ describe('AssignmentList', () => {
     expect(tree.find('Heading1').props().children).toEqual('All')
   })
 
-  it('selects first item on regular horizontal trait collection', () => {
-    let traits = { window: { horizontal: 'regular' } }
-    defaultProps.navigator.traitCollection = jest.fn(fn => fn(traits))
-    defaultProps.assignmentGroups = [templates.assignmentGroup({
-      assignments: [templates.assignment({ html_url: '/courses/1/assignments/2' })],
-    })]
-    let screen = shallow(
-      <AssignmentList {...defaultProps} />
-    )
-    screen.props().onTraitCollectionChange()
-    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/2')
-  })
-
-  it('does not select first item on regular horizontal trait collection when is modal', () => {
-    defaultProps.navigator.isModal = true
-    let traits = { window: { horizontal: 'regular' } }
-    defaultProps.navigator.traitCollection = jest.fn(fn => fn(traits))
-    let tree = shallow(
-      <AssignmentList {...defaultProps} />
-    )
-    tree.props().onTraitCollectionChange()
-    expect(defaultProps.navigator.show).not.toHaveBeenCalled()
-  })
-
-  it('does not select first item on empty data', () => {
-    defaultProps.assignmentGroups = [templates.assignmentGroup({ assignments: [] })]
-    let traits = { window: { horizontal: 'regular' } }
-    defaultProps.navigator.traitCollection = jest.fn(fn => fn(traits))
-    let tree = shallow(
-      <AssignmentList {...defaultProps} />
-    )
-    tree.props().onTraitCollectionChange()
-    expect(defaultProps.navigator.show).not.toHaveBeenCalled()
-  })
-
-  it('does not select first item when doNotSelectFirstItem is set to  true', () => {
-    defaultProps.doNotSelectFirstItem = true
-    let traits = { window: { horizontal: 'regular' } }
-    defaultProps.navigator.traitCollection = jest.fn(fn => fn(traits))
-    let tree = shallow(
-      <AssignmentList {...defaultProps} />
-    )
-    tree.props().onTraitCollectionChange()
-    expect(defaultProps.navigator.show).not.toHaveBeenCalled()
-  })
-
   it('renders the total grade when provided', () => {
     let tree = shallow(
       <AssignmentList {...defaultProps} currentScore={99} showTotalScore />

@@ -32,6 +32,7 @@ struct SubmissionGrader: View {
     @Environment(\.viewController) var controller
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
+    @ObservedObject var commentLibrary = SubmissionCommentLibraryViewModel()
 
     @State var attempt: Int? {
         willSet {
@@ -275,7 +276,8 @@ struct SubmissionGrader: View {
                         attempt: drawerAttempt,
                         fileID: drawerFileID,
                         showRecorder: $showRecorder,
-                        enteredComment: $enteredComment
+                        enteredComment: $enteredComment,
+                        commentLibrary: commentLibrary
                     )
                         .clipped()
                     if showRecorder != .video || drawerState == .min {

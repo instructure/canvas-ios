@@ -24,7 +24,8 @@ class UserSettingsTests: CoreTestCase {
         let apiSettings = APIUserSettings.make(
             manual_mark_as_read: true,
             collapse_global_nav: true,
-            hide_dashcard_color_overlays: true
+            hide_dashcard_color_overlays: true,
+            comment_library_suggestions_enabled: true
         )
 
         XCTAssertNoThrow( UserSettings.save(apiSettings, in: databaseClient) )
@@ -33,5 +34,6 @@ class UserSettingsTests: CoreTestCase {
         XCTAssertTrue(settings.manualMarkAsRead)
         XCTAssertTrue(settings.collapseGlobalNav)
         XCTAssertTrue(settings.hideDashcardColorOverlays)
+        XCTAssertTrue(settings.commentLibrarySuggestionsEnabled)
     }
 }

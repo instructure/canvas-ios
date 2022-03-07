@@ -116,6 +116,9 @@
 "Add Attachments" = "Dodaj priloge";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Dodajanje komentarja (izbirno)";
+
+/* No comment provided by engineer. */
 "Add content" = "Dodaj vsebino";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "Filter";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtriraj glede na";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtriraj glede na:";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Pozabi %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Oblika zapisa ni podprta";
 
 /* No comment provided by engineer. */
 "Front Page" = "Prva stran";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Raven vpliva";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Pomembni datumi";
 
 /* No comment provided by engineer. */
 "Important Info" = "Pomembne informacije";
@@ -1397,6 +1409,9 @@
 "No Pages" = "Ni strani.";
 
 /* No comment provided by engineer. */
+"No preview available" = "Predogled ni na voljo";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Ni kvizov.";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ni oddaj.";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Ni podprtih datotek za oddajo";
 
 /* No comment provided by engineer. */
 "None" = "Brez";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Ustvarite drugo kodo QR in poskusite znova.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Prijavite se prek aplikacije";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Počakajte, to lahko traja kakšno minuto.";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Izberite pot";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Izberite nalogo";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Izberi nalogo";
+
+/* No comment provided by engineer. */
+"Select course" = "Izberi predmet";
 
 /* No comment provided by engineer. */
 "Select Course" = "Izberi predmet";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Pri tem predmetu ni aktivnih nalog.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Ni nobenih nalog za prikaz.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Zaenkrat ni nobenih konferenc za prikaz.";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Ogledano";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Čakam, da se zgodi kaj pomembnega.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Podobnih predmetov ni bilo mogoče najti.";

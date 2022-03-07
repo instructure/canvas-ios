@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "تعذر إطلاق أداة LTI للتحقق من الحضور.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "فشل تحميل بيانات الإرسال!";
+
+/* No comment provided by engineer. */
 "Files" = "الملفات";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "إعادة التعيين";
 
 /* No comment provided by engineer. */
+"Retry" = "إعادة المحاولة";
+
+/* No comment provided by engineer. */
 "Rubric" = "تقييم روبرك";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "ما يجب القيام به";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "خطأ غير معروف";
 
 /* No comment provided by engineer. */
 "Unmark" = "إلغاء العلامة";

@@ -208,8 +208,8 @@ public struct GetWebSessionRequest: APIRequestable {
     }
 
     public let to: URL?
+    public let path: String
 
-    public let path = "/login/session_token"
     public var query: [APIQueryItem] {
         // Inline data content URLs need no extra query params
         if let to = to, to.scheme == "data" {
@@ -222,7 +222,8 @@ public struct GetWebSessionRequest: APIRequestable {
         return []
     }
 
-    public init(to: URL?) {
+    public init(to: URL?, path: String = "/login/session_token") {
         self.to = to
+        self.path = path
     }
 }

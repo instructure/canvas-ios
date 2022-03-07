@@ -69,6 +69,18 @@ struct GlobalNavigationBarModifier: ViewModifier {
     }
 }
 
+struct NavBarBackButtonModifier: ViewModifier {
+    @Environment(\.viewController) private var controller
+
+    func body(content: Content) -> some View {
+        if #available(iOS 14.0, *) {
+            controller.value.navigationItem.backButtonDisplayMode = .generic
+            controller.value.navigationItem.backButtonTitle = NSLocalizedString("Back", bundle: .core, comment: "")
+        }
+        return content.overlay(Color?.none) // needs something modified to actually run
+    }
+}
+
 extension View {
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
@@ -80,5 +92,10 @@ extension View {
 
     public func navigationBarGlobal() -> some View {
         modifier(GlobalNavigationBarModifier())
+    }
+
+    /** Make the next view controller in the navigation stack to display a standard < Back button. */
+    public func navigationBarGenericBackButton() -> some View {
+        modifier(NavBarBackButtonModifier())
     }
 }

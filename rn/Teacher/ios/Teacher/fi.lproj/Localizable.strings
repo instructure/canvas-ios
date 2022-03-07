@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Roll LTI -työkalun lanseeraaminen epäonnistui.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Lähetystietojen lataus epäonnistui!";
+
+/* No comment provided by engineer. */
 "Files" = "Tiedostot";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Nollaa";
 
 /* No comment provided by engineer. */
+"Retry" = "Yritä uudelleen";
+
+/* No comment provided by engineer. */
 "Rubric" = "Arviointitaulukko";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Tuntematon virhe";
 
 /* No comment provided by engineer. */
 "Unmark" = "Poista merkintä";

@@ -1253,6 +1253,9 @@
 "Student" = "受講者";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "受講生の注釈";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "不明";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知のエラー";
 
 /* No comment provided by engineer. */
 "Unlimited" = "無制限";

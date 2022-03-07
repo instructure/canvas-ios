@@ -11,7 +11,7 @@
 "Announcements" = "Anuncios";
 
 /* No comment provided by engineer. */
-"Assignment Grades" = "Notas de asignaciones";
+"Assignment Grades" = "Notas de actividades";
 
 /* Example course name */
 "Biology 201" = "Biología 201";
@@ -20,7 +20,7 @@
 "Biology Exam 2" = "Examen 2 de biología";
 
 /* No comment provided by engineer. */
-"Course Grades" = "Notas del curso";
+"Course Grades" = "Notas de la asignatura";
 
 /* Example exam name */
 "Essay #1: The Rocky Planets" = "Ensayo n.º 1: los planetas rocosos";
@@ -56,10 +56,10 @@
 "Thomas McKempis" = "Thomas McKempis";
 
 /* Description of the announcements widget */
-"View the latest announcements from your courses." = "Vea los últimos anuncios de sus cursos.";
+"View the latest announcements from your courses." = "Vea los últimos anuncios de sus asignaturas.";
 
 /* Description of the grades widget */
-"View the latest grades from assignments and your favorite courses." = "Vea las últimas notas de asignaciones y sus cursos favoritos.";
+"View the latest grades from assignments and your favorite courses." = "Vea las últimas notas de actividades y sus asignaturas favoritos.";
 
 /* Example announcement title */
 "Zoo Field Trip!" = "¡Excursión al zoológico!";

@@ -27,7 +27,12 @@ class AssignmentsE2ETests: CoreUITestCase {
         AssignmentsList.assignment(id: "1831").tap()
         AssignmentDetails.description("This is assignment one.").waitToExist()
         NavBar.backButton.tap()
-        AssignmentsList.assignment(id: "261986").tap()
+
+        // AssignmentsList.assignment(id: "261986").tap() doesn't work so we scroll to the cell
+        // and tap on the screen with absolute screen coordinates.
+        app.swipeUp()
+        app.windows.firstElement.tapAt(CGPoint(x: 10, y: 580))
+
         app.find(labelContaining: "10 pts").waitToExist()
         app.find(labelContaining: "Needs Grading").waitToExist()
         NavBar.backButton.tap()

@@ -19,7 +19,7 @@
 			<key>one</key>
 			<string>%d Svar</string>
 			<key>other</key>
-			<string>%d Svar</string>
+			<string>%d Nye svar</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -65,7 +65,7 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d klasse</string>
+			<string>%d seksjon</string>
 			<key>other</key>
 			<string>%d seksjoner</string>
 			<key>two</key>
@@ -115,7 +115,7 @@
 			<key>one</key>
 			<string>%g poeng</string>
 			<key>other</key>
-			<string>%g Poeng</string>
+			<string>%g poeng</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -137,7 +137,7 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d annen</string>
+			<string>%d annet</string>
 			<key>other</key>
 			<string>%d andre</string>
 			<key>two</key>
@@ -235,7 +235,7 @@
 			<key>one</key>
 			<string>%d liker</string>
 			<key>other</key>
-			<string>%d liker</string>
+			<string>%d likerklikk</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -257,7 +257,7 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d må vurderes</string>
+			<string>%d trenger vurdering</string>
 			<key>other</key>
 			<string>%d trenger vurdering</string>
 			<key>two</key>
@@ -281,9 +281,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d Valg</string>
+			<string>%d valg</string>
 			<key>other</key>
-			<string>%d Valg</string>
+			<string>Alternativer for %d</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -365,7 +365,7 @@
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Sluttvurdering: %#@points@</string>
+		<string>Avsluttende vurdering: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -379,7 +379,7 @@
 			<key>one</key>
 			<string>%g poeng</string>
 			<key>other</key>
-			<string>%g Poeng</string>
+			<string>%g poeng</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -401,7 +401,7 @@
 			<key>many</key>
 			<string>%g points</string>
 			<key>one</key>
-			<string>%g peke</string>
+			<string>%g poeng</string>
 			<key>other</key>
 			<string>%g poeng</string>
 			<key>two</key>
@@ -425,7 +425,7 @@
 			<key>many</key>
 			<string>%g points</string>
 			<key>one</key>
-			<string>%g peke</string>
+			<string>%g poeng</string>
 			<key>other</key>
 			<string>%g poeng</string>
 			<key>two</key>
@@ -451,7 +451,7 @@
 			<key>one</key>
 			<string>%g poeng</string>
 			<key>other</key>
-			<string>%g Poeng</string>
+			<string>%g poeng</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -485,7 +485,7 @@
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Sen straff (%#@points@)</string>
+		<string>Forsinkelsesstraff (%#@points@)</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -499,7 +499,7 @@
 			<key>one</key>
 			<string>%g poeng</string>
 			<key>other</key>
-			<string>%g Poeng</string>
+			<string>%g poeng</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -509,7 +509,7 @@
 	<key>out_of_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Ut av %#@points@</string>
+		<string>Av %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -523,7 +523,7 @@
 			<key>one</key>
 			<string>%g poeng</string>
 			<key>other</key>
-			<string>%g Poeng</string>
+			<string>%g poeng</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

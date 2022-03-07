@@ -1253,6 +1253,9 @@
 "Student" = "Elèv";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "Nòt Elèv";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "Enkoni";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erè Enkoni";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ilimite";

@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Impossibile avviare strumento LTI di votazione.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Caricamento consegna dati non riuscito!";
+
+/* No comment provided by engineer. */
 "Files" = "File";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Reimposta";
 
 /* No comment provided by engineer. */
+"Retry" = "Riprova";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubrica";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Elenco attività";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Errore sconosciuto";
 
 /* No comment provided by engineer. */
 "Unmark" = "Rimuovi contrassegno";

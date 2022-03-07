@@ -40,8 +40,20 @@ class GetAnnouncements: CollectionUseCase {
     ) }
 
     func write(response: [APIDiscussionTopic]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        let pageOffset: Int = {
+            guard
+                let url = urlResponse?.url,
+                let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+                let pageSize = components.pageSize
+            else {
+                return 0
+            }
+
+            return (components.page - 1) * pageSize
+        }()
+
         response?.enumerated().forEach {
-            Model.save($0.element, apiPosition: $0.offset, in: client)
+            Model.save($0.element, apiPosition: pageOffset + $0.offset, in: client)
         }
     }
 }

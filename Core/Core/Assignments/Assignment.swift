@@ -56,6 +56,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
     @NSManaged public var moderatedGrading: Bool
     @NSManaged public var name: String
+    @NSManaged public var needsGradingCount: Int
     @NSManaged public var overrides: Set<AssignmentOverride>
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var position: Int
@@ -126,6 +127,10 @@ public class Assignment: NSManagedObject {
         set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 
+    public var hasMultipleDueDates: Bool {
+        allDates.count > 1
+    }
+
     @objc public var assignmentGroupSectionName: String? {
         guard let assignmentGroup = assignmentGroup else { return nil }
         return assignmentGroup.name
@@ -168,6 +173,7 @@ extension Assignment {
         lockExplanation = item.lock_explanation
         moderatedGrading = item.moderated_grading == true
         name = item.name
+        needsGradingCount = item.needs_grading_count ?? 0
         pointsPossible = item.points_possible
         position = item.position ?? Int.max
         published = item.published != false

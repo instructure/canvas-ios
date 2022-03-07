@@ -73,6 +73,30 @@ class K5GradesViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.grades.first?.grade, "C")
     }
 
+    func testMultiGradingPeriodCurrentGrade() {
+        api.mock(GetUserCourses(userID: "1"), value: [
+            .make(
+                id: "1",
+                name: "Math",
+                course_code: "CRS-1",
+                enrollments: [
+                    .make(
+                        id: "1",
+                        course_id: "1",
+                        user_id: "1",
+                        multiple_grading_periods_enabled: true,
+                        current_period_computed_current_score: 6,
+                        current_period_computed_current_grade: "Hat"
+                    ),
+                ]
+            ),
+        ])
+
+        let testee = K5GradesViewModel()
+        XCTAssertEqual(testee.grades.first?.grade, "Hat")
+        XCTAssertEqual(testee.grades.first?.score, 6)
+    }
+
     // MARK: - Private Helpers
 
     private func mockCourses() {

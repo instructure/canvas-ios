@@ -31,6 +31,7 @@ public struct APIObserverAlert: Codable {
     let title: String
     let user_id: ID
     let workflow_state: ObserverAlertWorkflowState
+    let locked_for_user: Bool?
 }
 
 #if DEBUG
@@ -46,7 +47,8 @@ extension APIObserverAlert {
         observer_alert_threshold_id: String = "1",
         title: String = "Announcement",
         user_id: String = "2",
-        workflow_state: ObserverAlertWorkflowState = .unread
+        workflow_state: ObserverAlertWorkflowState = .unread,
+        locked_for_user: Bool? = false
     ) -> APIObserverAlert {
         return APIObserverAlert(
             action_date: action_date,
@@ -59,7 +61,8 @@ extension APIObserverAlert {
             observer_alert_threshold_id: ID(observer_alert_threshold_id),
             title: title,
             user_id: ID(user_id),
-            workflow_state: workflow_state
+            workflow_state: workflow_state,
+            locked_for_user: locked_for_user
         )
     }
 }

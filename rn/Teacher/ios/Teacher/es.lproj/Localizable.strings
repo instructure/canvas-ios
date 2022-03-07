@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Error al iniciar la herramienta LTI de la lista de asistencia.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Se produjo un error al cargar los datos de la entrega.";
+
+/* No comment provided by engineer. */
 "Files" = "Archivos";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Restablecer";
 
 /* No comment provided by engineer. */
+"Retry" = "Reintentar";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rúbrica";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Por hacer";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Error desconocido";
 
 /* No comment provided by engineer. */
 "Unmark" = "Desmarcar";

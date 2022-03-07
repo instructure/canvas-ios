@@ -28,6 +28,7 @@ class SubmissionsE2ETests: CoreUITestCase {
         AssignmentDetails.description("This is assignment one.").waitToExist()
 
         AssignmentDetails.viewAllSubmissionsButton.tap()
+        pullToRefresh()
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Graded").tap()
         app.find(label: "Done").tap()
@@ -41,6 +42,7 @@ class SubmissionsE2ETests: CoreUITestCase {
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Not Submitted").tap()
         app.find(label: "Done").tap()
+        pullToRefresh()
         app.find(labelContaining: "Test Student").waitToExist()
         app.find(labelContaining: "Student Two").waitToExist()
         app.find(labelContaining: "Student One").waitToVanish()
@@ -65,6 +67,7 @@ class SubmissionsE2ETests: CoreUITestCase {
         app.find(labelContaining: "Filter").tap()
         app.find(labelContaining: "Not Submitted").tap()
         app.find(label: "Done").tap()
+        pullToRefresh()
         app.find(labelContaining: "Test Student").waitToExist()
         app.find(labelContaining: "Student Two").waitToExist()
         app.find(labelContaining: "Student One").waitToExist()

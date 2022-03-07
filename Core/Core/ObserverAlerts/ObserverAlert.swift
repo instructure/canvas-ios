@@ -35,6 +35,7 @@ public final class ObserverAlert: NSManagedObject {
     @NSManaged public var title: String
     @NSManaged public var userID: String
     @NSManaged public var workflowStateRaw: String
+    @NSManaged public var lockedForUser: Bool
 
     public var alertType: AlertThresholdType {
         get { AlertThresholdType(rawValue: alertTypeRaw) ?? .institutionAnnouncement }
@@ -62,6 +63,7 @@ extension ObserverAlert: WriteableModel {
         model.title = item.title
         model.userID = item.user_id.value
         model.workflowState = item.workflow_state
+        model.lockedForUser = (item.locked_for_user == true)
         return model
     }
 }

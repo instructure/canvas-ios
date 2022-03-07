@@ -20,7 +20,6 @@
 import CourseNavigation from '../modules/courses/CourseNavigation'
 import CourseSettings from '../modules/courses/settings/CourseSettings'
 import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePreferences'
-import AssignmentList from '../modules/assignments/AssignmentList'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import Inbox from '../modules/inbox/Inbox'
 import Compose from '../modules/inbox/Compose'
@@ -54,7 +53,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/tabs', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/settings', CourseSettings, store)
   registerScreen('/courses/:courseID/user_preferences', UserCoursePreferences, store)
-  registerScreen('/courses/:courseID/assignments', AssignmentList, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/assignments', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/courses/:courseID/lti_collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/:context/:contextID/discussions', null, store, { canBecomeMaster: true, deepLink: true })

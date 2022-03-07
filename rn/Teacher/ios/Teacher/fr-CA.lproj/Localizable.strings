@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Impossible de lancer l'outil LTI d’appel nominal.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Échec lors du chargement des données d’envoi!";
+
+/* No comment provided by engineer. */
 "Files" = "Fichiers";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Réinitialiser";
 
 /* No comment provided by engineer. */
+"Retry" = "Réessayer";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubrique";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "À faire";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erreur inconnue";
 
 /* No comment provided by engineer. */
 "Unmark" = "Décocher";

@@ -116,6 +116,9 @@
 "Add Attachments" = "เพิ่มเอกสารแนบ";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "เพิ่มความเห็น (เผื่อเลือก)";
+
+/* No comment provided by engineer. */
 "Add content" = "เพิ่มเนื้อหา";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "ตัวกรอง";
 
 /* No comment provided by engineer. */
+"Filter by" = "กรองจาก";
+
+/* No comment provided by engineer. */
 "Filter by:" = "กรองจาก:";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "ลืม %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "ฟอร์แมตไม่รองรับ";
 
 /* No comment provided by engineer. */
 "Front Page" = "หน้าแรก";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "ระดับผลกระทบ";
+
+/* No comment provided by engineer. */
+"Important Dates" = "วันที่ที่สำคัญ";
 
 /* No comment provided by engineer. */
 "Important Info" = "ข้อมูลสำคัญ";
@@ -1397,6 +1409,9 @@
 "No Pages" = "ไม่มีหน้าเพจ";
 
 /* No comment provided by engineer. */
+"No preview available" = "ไม่มีตัวอย่าง";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "ไม่มีแบบทดสอบ";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "ไม่มีผลงานจัดส่ง";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "ไม่มีไฟล์ที่รองรับสำหรับส่ง";
 
 /* No comment provided by engineer. */
 "None" = "ไม่มี";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "กรุณาจัดทำรหัส QR อื่นแล้วลองใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "กรุณาล็อกอินผ่านแอพพลิเคชั่น";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "กรุณารอสักครู่ อาจต้องใช้เวลาครู่หนึ่ง";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "เลือกเส้นทาง";
+
+/* No comment provided by engineer. */
+"Select assignment" = "เลือกภารกิจ";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "เลือกภารกิจ";
+
+/* No comment provided by engineer. */
+"Select course" = "เลือกบทเรียน";
 
 /* No comment provided by engineer. */
 "Select Course" = "เลือกบทเรียน";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "แอพจะต้องรีสตาร์ทเพื่อใช้ค่าภาษาใหม่ กรุณาเปิดแอพขึ้นใหม่";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "ไม่มีภารกิจที่เปิดใช้อยู่ในบทเรียนนี้";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "ไม่มีภารกิจที่จะแสดง";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "ไม่มีการประชุมสำหรับจัดแสดงในตอนนี้";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "ที่ดู";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "กำลังรอเหตุการณ์สำคัญ";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "เราไม่พบบทเรียนลักษณะนี้";

@@ -116,6 +116,9 @@
 "Add Attachments" = "Ajoute Atachman";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Ajoute kòmantè (si w vle)";
+
+/* No comment provided by engineer. */
 "Add content" = "Ajoute kontni";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "Filtè";
 
 /* No comment provided by engineer. */
+"Filter by" = "Klase pa";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtre pa:";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Bliye %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Fòma pa sipòte";
 
 /* No comment provided by engineer. */
 "Front Page" = "Premye Paj";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Nivo Enpak:";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Dat Enpòtan";
 
 /* No comment provided by engineer. */
 "Important Info" = "Enfo Enpòtan";
@@ -1397,6 +1409,9 @@
 "No Pages" = "Okenn Paj";
 
 /* No comment provided by engineer. */
+"No preview available" = "Pa gen apèsi disponib";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Okenn Quiz";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Pa gen Soumisyon";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Pa gen fichye yo sipòte pou soumèt";
 
 /* No comment provided by engineer. */
 "None" = "Okenn";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Tanpri jenere yon lòt Kòd QR epi eseye ankò.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Tanpri konekte atravè aplikasyon an";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Tann, Sa kapab pran yon ti tan.";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Seleksyone yon Wout";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Seleksyone devwa";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Seleksyone Devwa";
+
+/* No comment provided by engineer. */
+"Select course" = "Seleksyone kou";
 
 /* No comment provided by engineer. */
 "Select Course" = "Seleksyone Kou";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikasyon an dwe redemare pou l ka itilize nouvo paramèt lang lan. Re lanse aplikasyon an.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Pa gen devwa aktif nan kou sa a.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Pa gen sesyon pou afiche.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Poko gen konferans pou afiche.";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Afiche";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Atann gen bagay serye ki pral fèt.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Nou pa jwenn okenn kou konsa.";

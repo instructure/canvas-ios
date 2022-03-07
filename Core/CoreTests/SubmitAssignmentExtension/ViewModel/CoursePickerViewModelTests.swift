@@ -60,7 +60,8 @@ class CoursePickerViewModelTests: CoreTestCase {
             .init(id: "testCourse1_ID", name: "testCourse1"),
             .init(id: "testCourse2_ID", name: "testCourse2"),
         ]))
-        XCTAssertNil(environment.userDefaults?.submitAssignmentCourseID)
+        // Keep the course ID so if the user submits another attempt without starting the app we'll pre-select
+        XCTAssertNotNil(environment.userDefaults?.submitAssignmentCourseID)
     }
 
     func testPreviewInitializer() {

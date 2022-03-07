@@ -16,37 +16,41 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
+import WebKit
 
 public struct WebView: UIViewRepresentable {
-    enum Source: Equatable {
-        case html(String)
-        case url(URL)
-    }
+    private var handleLink: ((URL) -> Bool)?
+    private var handleSize: ((CGFloat) -> Void)?
+    private var handleNavigationFinished: (() -> Void)?
+    private let source: Source?
+    private var customUserAgentName: String?
+    private var disableZoom: Bool = false
+    private var reloadTrigger: AnyPublisher<Void, Never>?
+    private var configuration: WKWebViewConfiguration?
 
-    var handleLink: ((URL) -> Bool)?
-    var handleSize: ((CGFloat) -> Void)?
-    var handleNavigationFinished: (() -> Void)?
-    let source: Source?
-    var customUserAgentName: String?
-    var disableZoom: Bool = false
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
 
-    @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
+    // MARK: - Initializers
 
     public init(url: URL?) {
         source = url.map { .url($0) }
     }
 
-    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false) {
+    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
         self.init(url: url)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
+        self.configuration = configuration
     }
 
     public init(html: String?) {
         source = html.map { .html($0) }
     }
+
+    // MARK: - View Modifiers
 
     public func onLink(_ handleLink: @escaping (URL) -> Bool) -> Self {
         var modified = self
@@ -70,25 +74,28 @@ public struct WebView: UIViewRepresentable {
         FrameToFit(view: self)
     }
 
-    struct FrameToFit: View {
-        let view: WebView
+    // MARK: - Event Listening
 
-        @State var height: CGFloat = 0
-
-        var body: some View {
-            view
-                .onChangeSize { height = $0 }
-                .frame(height: height)
-        }
+    /**
+     This modifier makes the underlying CoreWebView to call its reload() method when the given publisher is signaled.
+     */
+    public func reload(on trigger: AnyPublisher<Void, Never>) -> Self {
+        var modified = self
+        modified.reloadTrigger = trigger
+        return modified
     }
 
+    // MARK: - UIViewRepresentable Protocol
+
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom)
+        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration)
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
         uiView.linkDelegate = context.coordinator
         uiView.sizeDelegate = context.coordinator
+        context.coordinator.reload(webView: uiView, on: reloadTrigger)
+
         if context.coordinator.loaded != source {
             context.coordinator.loaded = source
             switch source {
@@ -102,9 +109,35 @@ public struct WebView: UIViewRepresentable {
         }
     }
 
+    public func makeCoordinator() -> Coordinator {
+        Coordinator(view: self)
+    }
+}
+
+// MARK: - Inner Types
+
+extension WebView {
+    enum Source: Equatable {
+        case html(String)
+        case url(URL)
+    }
+
+    private struct FrameToFit: View {
+        let view: WebView
+
+        @State var height: CGFloat = 0
+
+        var body: some View {
+            view
+                .onChangeSize { height = $0 }
+                .frame(height: height)
+        }
+    }
+
     public class Coordinator: CoreWebViewLinkDelegate, CoreWebViewSizeDelegate {
         var loaded: Source?
-        let view: WebView
+        private let view: WebView
+        private var reloadObserver: AnyCancellable?
 
         init(view: WebView) {
             self.view = view
@@ -127,9 +160,12 @@ public struct WebView: UIViewRepresentable {
         public func finishedNavigation() {
             view.handleNavigationFinished?()
         }
-    }
 
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(view: self)
+        public func reload(webView: CoreWebView, on trigger: AnyPublisher<Void, Never>?) {
+            reloadObserver?.cancel()
+            reloadObserver = trigger?.sink {
+                webView.reload()
+            }
+        }
     }
 }

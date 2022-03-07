@@ -56,7 +56,7 @@
 "Could not parse QR code, QR code invalid" = "Error al analizar el código QR. Código QR inválido";
 
 /* Courses Tab */
-"Courses" = "Cursos";
+"Courses" = "Asignaturas";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Alumno actual: %@. Pulsar para cambiar alumnos";
@@ -110,6 +110,9 @@
 "Location" = "Ubicación";
 
 /* No comment provided by engineer. */
+"Locked" = "Bloqueado";
+
+/* No comment provided by engineer. */
 "Login required" = "Inicio de sesión obligatorio";
 
 /* No comment provided by engineer. */
@@ -125,7 +128,7 @@
 "No Alerts" = "No hay alertas";
 
 /* No comment provided by engineer. */
-"No Courses" = "No hay cursos";
+"No Courses" = "No hay asignaturas";
 
 /* No comment provided by engineer. */
 "No Due Date" = "No hay fecha de entrega";
@@ -175,7 +178,10 @@
 "Summary" = "Resumen";
 
 /* No comment provided by engineer. */
-"Syllabus" = "Programa del curso";
+"Syllabus" = "Programa de la asignatura";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "El ítem enlazado ya no está disponible.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "El alumno que intenta añadir se encuentra en una institución diferente de Canvas.\nInicie sesión o cree una cuenta con esa institución para añadir a este alumno.";
@@ -187,7 +193,7 @@
 "There was an error loading alerts. Pull to refresh to try again." = "Ha habido un error al cargar las alertas. Pulse actualizar para volver a intentarlo.";
 
 /* No comment provided by engineer. */
-"There was an error loading courses. Pull to refresh to try again." = "Ha habido un error al cargar los cursos. Pulse actualizar para volver a intentarlo.";
+"There was an error loading courses. Pull to refresh to try again." = "Ha habido un error al cargar las asignaturas. Pulse actualizar para volver a intentarlo.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Ha habido un error al cargar los alumnos. Pulse actualizar para volver a intentarlo.";
@@ -214,5 +220,5 @@
 "You’re all caught up" = "¡Ya está al día!";
 
 /* No comment provided by engineer. */
-"Your child’s courses might not be published yet." = "Es posible que los cursos de su hijo aún no estén publicados.";
+"Your child’s courses might not be published yet." = "Es posible que las asignaturas de su hijo aún no estén publicados.";
 

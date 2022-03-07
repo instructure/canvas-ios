@@ -18,29 +18,37 @@
 
 import Combine
 import SwiftUI
+import WebKit
 
 public class K5SubjectViewModel: ObservableObject {
 
+    @Published public private(set) var topBarViewModel: TopBarViewModel?
+    @Published public private(set) var courseTitle: String?
+    @Published public private(set) var courseColor: UIColor?
+    @Published public private(set) var currentPageURL: URL?
+    @Published public private(set) var courseImageUrl: URL?
+    public var reloadWebView: AnyPublisher<Void, Never> {
+        NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted, object: nil)
+            .map { _ in () } // map received notification to Void
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
+    public var config: WKWebViewConfiguration? { masqueradedSession.config }
+
     @Environment(\.appEnvironment) private var env
-
-    @Published private(set) var topBarViewModel: TopBarViewModel?
-    @Published private(set) var courseTitle: String?
-    @Published private(set) var courseColor: UIColor?
-    @Published private(set) var currentPageURL: URL?
-    @Published private(set) var courseImageUrl: URL?
-
     private let context: Context
     private let selectedTabId: String?
-
-    private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
-        self?.tabsUpdated()
-    }
-
-    private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
-        self?.courseUpdated()
-    }
-
-    private var topBarChangeListener: AnyCancellable?
+    private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in self?.tabsUpdated() }
+    private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in self?.courseUpdated() }
+    private var subscriptions = Set<AnyCancellable>()
+    private lazy var masqueradedSession: K5SubjectViewMasqueradedSession = {
+        let session = K5SubjectViewMasqueradedSession(env: env)
+        session.sessionURL
+            .sink { [weak self] in self?.currentPageURL = $0 }
+            .store(in: &subscriptions)
+        return session
+    }()
 
     /**
      - parameters:
@@ -65,13 +73,23 @@ public class K5SubjectViewModel: ObservableObject {
             tabItems.append(resurceTabItem)
         }
         topBarViewModel = TopBarViewModel(items: tabItems)
-        // Propagate changes of the underlying view model to this observable class because there's no native support for nested ObservableObjects
-        topBarChangeListener = topBarViewModel?.objectWillChange.sink { [weak self] _ in
-            self?.objectWillChange.send()
-        }
+        topBarViewModel!.selectedItemIndexPublisher
+            .sink { [weak self] _ in self?.tabChanged() }
+            .store(in: &subscriptions)
 
         if let selectedTabId = selectedTabId, let selectedTabIndex = tabItems.firstIndex(where: { $0.id == selectedTabId }) {
             topBarViewModel?.selectedItemIndex = selectedTabIndex
+        }
+    }
+
+    private func tabChanged() {
+        guard let topBarViewModel = topBarViewModel else { return }
+        let url = pageUrl(for: topBarViewModel.selectedItemId)
+
+        if masqueradedSession.handlesTabChangeEvents, let url = url {
+            masqueradedSession.tabChanged(toIndex: topBarViewModel.selectedItemIndex, toURL: url)
+        } else {
+            currentPageURL = url
         }
     }
 
@@ -81,17 +99,17 @@ public class K5SubjectViewModel: ObservableObject {
         courseColor = course.color
         courseImageUrl = course.imageDownloadURL
     }
-}
 
-extension K5SubjectViewModel {
-
-    func pageUrl(for itemId: String?) -> URL? {
+    private func pageUrl(for itemId: String?) -> URL? {
         let path = context.pathComponent
         var urlComposition = URLComponents(string: env.api.baseURL.absoluteString + "/\(path)")
         urlComposition?.queryItems = [URLQueryItem(name: "embed", value: "true")]
         urlComposition?.fragment = itemId
         return urlComposition?.url
     }
+}
+
+extension K5SubjectViewModel {
 
     func tabIconImage(for tabId: String) -> Image? {
         switch tabId {

@@ -116,6 +116,9 @@
 "Add Attachments" = "添付を追加";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "コメントを追加（オプション）";
+
+/* No comment provided by engineer. */
 "Add content" = "コンテンツを追加";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "フィルター";
 
 /* No comment provided by engineer. */
+"Filter by" = "フィルタ条件";
+
+/* No comment provided by engineer. */
 "Filter by:" = "フィルター要素：";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "忘れた%@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "サポートされていないフォーマット";
 
 /* No comment provided by engineer. */
 "Front Page" = "フロントページ";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影響のレベル";
+
+/* No comment provided by engineer. */
+"Important Dates" = "重要な日付";
 
 /* No comment provided by engineer. */
 "Important Info" = "重要な情報";
@@ -1397,6 +1409,9 @@
 "No Pages" = "ページなし";
 
 /* No comment provided by engineer. */
+"No preview available" = "プレビューできません";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "クイズなし";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "提出なし";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "サポートされているファイルはありません";
 
 /* No comment provided by engineer. */
 "None" = "なし";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "別の QR コードを生成して、再試行してください。";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "アプリケーションからログインしてください";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "お待ちください。これには少し時間がかかる場合があります。";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "パスを選択する";
+
+/* No comment provided by engineer. */
+"Select assignment" = "課題を選択する";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "課題を選択する";
+
+/* No comment provided by engineer. */
+"Select course" = "コースの選択";
 
 /* No comment provided by engineer. */
 "Select Course" = "コースの選択";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "このグループには、アクティブな課題はありません。";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "表示する課題はありません。";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "表示する会議はまだありません。";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "表示しました";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "重要な事柄が起こるのを待つ。";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "そのようなコースは見つかりませんでした。";

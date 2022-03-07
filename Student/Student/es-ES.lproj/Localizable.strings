@@ -83,7 +83,7 @@
 "%d months ago" = "hace %d meses";
 
 /* In the context 'Joe, Fred, ((25 more))' */
-"%d more" = "%d más";
+"%d more" = "%d más";
 
 /* Something like '5 replies' */
 "%d replies" = "%d respuestas";
@@ -239,7 +239,7 @@
 "Are you ready to logout?" = "¿Está listo para cerrar sesión?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to leave this quiz?" = "¿Está seguro de que desea abandonar este examen?";
+"Are you sure you want to leave this quiz?" = "¿Está seguro de que desea abandonar esta prueba?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Preguntarme más tarde";
@@ -332,7 +332,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas no ha logrado encontrar destinatarios para su búsqueda actual. Inténtelo de nuevo más tarde.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Las evaluaciones de Canvas admiten diversos estilos de evaluación. La mayoría de estos estilos son compatibles con dispositivos móviles; sin embargo, algunos no lo son. Si intenta realizar uno de estos cuestionarios no compatibles en su teléfono, es posible que no pueda completar el cuestionario, lo que le dejaría en desventaja.\n\nEntre los tipos de preguntas no compatibles se encuentran aquellas con contenido de Adobe Flash™, cargas de archivos y otros.\n\nSi cree que un examen incluye contenido no compatible, realice el examen en su ordenador de sobremesa o portátil. Si sabe que el examen contiene solo contenido compatible, no dude en hacerlo en su dispositivo móvil.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Las pruebas de Canvas admiten diversos estilos de prueba. La mayoría de estos estilos son compatibles con dispositivos móviles; sin embargo, algunos no lo son. Si intenta realizar uno de estos cuestionarios no compatibles en su teléfono, es posible que no pueda completar el cuestionario, lo que le dejaría en desventaja.\n\nEntre los tipos de preguntas no compatibles se encuentran aquellas con contenido de Adobe Flash™, cargas de archivos y otros.\n\nSi cree que una prueba incluye contenido no compatible, realice la prueba en su ordenador de sobremesa o portátil. Si sabe que la prueba contiene solo contenido compatible, no dude en hacerlo en su dispositivo móvil.";
 
 /* No comment provided by engineer. */
 "Change User" = "Cambiar usuario";
@@ -423,10 +423,10 @@
 "Couldn't Load Submission" = "No se ha podido cargar el envío";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Programa del curso";
+"Course Syllabus" = "Programa de la asignatura";
 
 /* Courses page title */
-"Courses" = "Cursos";
+"Courses" = "Asignaturas";
 
 /* cancel folder creation */
 "Create Folder" = "Crear carpeta";
@@ -435,16 +435,16 @@
 "Current Submission" = "Entrega actual";
 
 /* Message telling users that quiz support on mobile is limited */
-"Currently there is limited quiz support on mobile" = "Actualmente la compatibilidad de los exámenes con teléfono móvil es limitada";
+"Currently there is limited quiz support on mobile" = "Actualmente la compatibilidad de las pruebas con teléfono móvil es limitada";
 
 /* A custom grade not specified by the rubric. */
-"Custom Grade" = "Evaluación personalizada";
+"Custom Grade" = "Nota personalizada";
 
 /* label for customizing a course */
 "Customize" = "Personalizar";
 
 /* dashboard page title */
-"Dashboard" = "Cuadro de mando";
+"Dashboard" = "Panel de control";
 
 /* Button to confirm deleting folders
    Button to delete a discussion entry
@@ -486,7 +486,7 @@
 
 /* Discussions title
    Title for Discussions view controller */
-"Discussions" = "Foros de discusión";
+"Discussions" = "Foros";
 
 /* Dismiss an error button
    dismiss button
@@ -542,7 +542,7 @@
 
 /* Edit course list title
    Edit the items in the course list */
-"Edit Course List" = "Editar la lista del curso";
+"Edit Course List" = "Editar la lista de la asignatura";
 
 /* Edit group list title
    Edit the items in the group list */
@@ -663,7 +663,7 @@
 "Go To Discussion" = "Ir al foro de discusión";
 
 /* text for the \"go to quiz\" button */
-"Go to Quiz" = "Ir al examen";
+"Go to Quiz" = "Ir a la prueba";
 
 /* No comment provided by engineer. */
 "Grade" = "Nota";
@@ -843,10 +843,10 @@
 "Messages" = "Mensajes";
 
 /* Warnging for taking quizzes on a mobile device */
-"Mobile Quiz Warning" = "Advertencia móvil del examen";
+"Mobile Quiz Warning" = "Advertencia móvil de la prueba";
 
 /* title for the modules tab */
-"Modules" = "Módulos";
+"Modules" = "Contenidos";
 
 /* time since creation (less than 1 minute) */
 "moments ago" = "hace unos momentos";
@@ -1047,7 +1047,7 @@
 "photo" = "foto";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Foros de discusión fijados";
+"Pinned Discussions" = "Foros fijados";
 
 /* A button that plays */
 "Play" = "Reproducir";
@@ -1084,19 +1084,19 @@
 
 /* Label for a quiz
    Title for a quiz submission cell */
-"Quiz" = "Examen";
+"Quiz" = "Prueba";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "Alerta del examen";
+"Quiz Alert" = "Alerta de la prueba";
 
 /* No comment provided by engineer. */
-"Quiz Details" = "Detalles del examen";
+"Quiz Details" = "Detalles de la prueba";
 
 /* No comment provided by engineer. */
-"Quiz Locked" = "Examen bloqueado";
+"Quiz Locked" = "Prueba bloqueado";
 
 /* The title for the list of quizzes for a course */
-"Quizzes" = "Evaluaciones";
+"Quizzes" = "Pruebas";
 
 /* No comment provided by engineer. */
 "Rate on App Store" = "Calificar en la App Store";
@@ -1156,10 +1156,10 @@
 "Resubmit Assignment" = "Volver a entregar la actividad";
 
 /* No comment provided by engineer. */
-"Resume Quiz" = "Reanudar el examen";
+"Resume Quiz" = "Reanudar la prueba";
 
 /* No comment provided by engineer. */
-"Retake Quiz" = "Volver a realizar el examen";
+"Retake Quiz" = "Volver a realizar la prueba";
 
 /* No comment provided by engineer. */
 "Retry" = "Reintentar";
@@ -1211,7 +1211,7 @@
 "Show Grades" = "Mostrar notas";
 
 /* title for quiz assignment submission button */
-"Show Quiz" = "Mostrar el examen";
+"Show Quiz" = "Mostrar el prueba";
 
 /* VoiceOver text for a button that lets you show recipients */
 "Show recipients" = "Mostrar destinatarios";
@@ -1251,6 +1251,9 @@
 
 /* Short name for student enrollment */
 "Student" = "Alumno";
+
+/* No comment provided by engineer. */
+"Student Annotation" = "Anotación del alumno";
 
 /* No comment provided by engineer. */
 "Studio" = "Studio";
@@ -1323,7 +1326,7 @@
 
 /* Syllabus screen name
    Title for Syllabus view controller */
-"Syllabus" = "Programa del curso";
+"Syllabus" = "Programa de la asignatura";
 
 /* Short name for TA enrollment */
 "TA" = "Profesor auxiliar";
@@ -1341,7 +1344,7 @@
 "Take Photo or Video..." = "Realizar foto o video...";
 
 /* No comment provided by engineer. */
-"Take Quiz" = "Realizar el examen";
+"Take Quiz" = "Realizar la prueba";
 
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Toque para volver a intentarlo";
@@ -1462,7 +1465,7 @@
 
 /* Title of to do screen
    To Do page title */
-"To Do" = "Pendiente";
+"To Do" = "Tareas pendientes";
 
 /* No comment provided by engineer. */
 "To:" = "Para:";
@@ -1513,6 +1516,9 @@
 "Unknown" = "Desconocido";
 
 /* No comment provided by engineer. */
+"Unknown Error" = "Error desconocido";
+
+/* No comment provided by engineer. */
 "Unlimited" = "Ilimitado";
 
 /* No comment provided by engineer. */
@@ -1534,7 +1540,7 @@
 "Upload Error" = "Error al cargar";
 
 /* explanation of upload failure */
-"Upload failed. Reason: (%@)" = "Ha fallado la carga. Motivo: (%@)";
+"Upload failed. Reason: (%@)" = "No se ha podido realizar la carga. Motivo: (%@)";
 
 /* Button title for adding a file to a folder */
 "Upload file" = "Cargar archivo";
@@ -1558,7 +1564,7 @@
 "User Info" = "Información del usuario";
 
 /* Media type is video */
-"Video" = "Video";
+"Video" = "Vídeo";
 
 /* No comment provided by engineer. */
 "Video error" = "Error de video";
@@ -1618,7 +1624,7 @@
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Ahora está actuando como %@. Para dejar de actuar como otra persona, vaya a su perfil.";
 
 /* Error message for an unauthorized course or group. */
-"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "No tiene acceso a este contenido. El curso o grupo pueden no haber comenzado, o pueden haber finalizado.";
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "No tiene acceso a este contenido. La asignatura o grupo pueden no haber comenzado, o pueden haber finalizado.";
 
 /* Error message */
 "You do not have permission to delete this reply" = "No tiene permiso para eliminar esta respuesta";

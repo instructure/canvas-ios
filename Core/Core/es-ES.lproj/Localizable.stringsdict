@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d respuesta</string>
+			<string>%d Respuesta</string>
 			<key>other</key>
 			<string>%d respuestas</string>
 		</dict>
@@ -317,9 +317,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Ocultar %d ítem faltante</string>
+			<string>Ocultar %d ítem no presentado</string>
 			<key>other</key>
-			<string>Ocultar %d ítems faltantes</string>
+			<string>Ocultar %d ítems no presentados</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -381,9 +381,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Mostrar %d ítem faltante</string>
+			<string>Mostrar %d ítem no presentado</string>
 			<key>other</key>
-			<string>Mostrar %d ítems faltantes</string>
+			<string>Mostrar %d ítems no presentdos</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>

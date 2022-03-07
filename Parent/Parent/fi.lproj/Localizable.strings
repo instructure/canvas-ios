@@ -110,6 +110,9 @@
 "Location" = "Sijainti";
 
 /* No comment provided by engineer. */
+"Locked" = "Lukittu";
+
+/* No comment provided by engineer. */
 "Login required" = "Kirjautumistunnus on pakollinen";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Opinto-ohjelma";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Linkitetty kohde ei ole enää saatavissa.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Opiskelija, jota yrität lisätä, on eri Canvas-laitoksessa.\nKirjaudu sisään tai luo tili kyseisen laitoksen kanssa lisätäksesi tämä opiskelija.";

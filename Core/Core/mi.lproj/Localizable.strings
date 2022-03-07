@@ -116,6 +116,9 @@
 "Add Attachments" = "Tāpiri ngā Apititanga";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Tāpiri kōrero (kei ia koe te tikanga)";
+
+/* No comment provided by engineer. */
 "Add content" = "Tāpiri Ihirangi";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "Tātari";
 
 /* No comment provided by engineer. */
+"Filter by" = "Tātari mā";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Tātari ī";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Wareware %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Hōputu kaore e tautokotia";
 
 /* No comment provided by engineer. */
 "Front Page" = "Whārangi mua";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Pae o te Pānga";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Ngā rā nui";
 
 /* No comment provided by engineer. */
 "Important Info" = "He mea nui pūrongo";
@@ -1397,6 +1409,9 @@
 "No Pages" = "Kaore ngā Whārangi";
 
 /* No comment provided by engineer. */
+"No preview available" = "Kāore he arokite wātea";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Kaore nga Quizzes";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Kāore he Tukunga";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Kaore he kōnae tautoko hei tuku";
 
 /* No comment provided by engineer. */
 "None" = "Kaore";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Tēnā koa whakamahia anō he QR Waehere  me te ngana anō.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Tēnā koa takiuru mā te puka tono";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Tēnā koa, tatari ka roa pea he meneti.";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Tīpako he Huarahi";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Tīpako whakataunga";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Tīpako Whakataunga";
+
+/* No comment provided by engineer. */
+"Select course" = "Tīpako akoranga";
 
 /* No comment provided by engineer. */
 "Select Course" = "Tīpako akoranga";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Karekau he whakataunga e ora ana i roto i tēnei akoranga.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Kaore ngā whakataunga hei whakātu.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Kaore rāno he hui hei whakātu.";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Kua Tirohia";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "E tatari ana mo ngā mahi nui kei te mahi.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Kaore i kitea he akoranga pēna.";

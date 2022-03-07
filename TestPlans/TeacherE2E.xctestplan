@@ -26,6 +26,11 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "DSPagesTests\/testDeletePage()",
+        "DashboardE2ETests\/testDashboardE2E()",
+        "PagesE2ETests\/testCreateAndDeletePage()"
+      ],
       "target" : {
         "containerPath" : "container:Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",

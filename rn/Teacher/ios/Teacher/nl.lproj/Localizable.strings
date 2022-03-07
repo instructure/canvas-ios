@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Roll Call LTI Tool kan niet worden gestart.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Kan inleveringsgegevens niet laden!";
+
+/* No comment provided by engineer. */
 "Files" = "Bestanden";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Opnieuw instellen";
 
 /* No comment provided by engineer. */
+"Retry" = "Opnieuw proberen";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubriek";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Te doen";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Onbekende fout";
 
 /* No comment provided by engineer. */
 "Unmark" = "Markering ongedaan maken";

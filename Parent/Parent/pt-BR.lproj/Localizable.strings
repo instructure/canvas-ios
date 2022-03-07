@@ -110,6 +110,9 @@
 "Location" = "Localização";
 
 /* No comment provided by engineer. */
+"Locked" = "Bloqueado(a)";
+
+/* No comment provided by engineer. */
 "Login required" = "Entrar é obrigatório";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Programa";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "O item vinculado não está mais disponível.";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "O aluno que você está tentando adicionar está em uma instituição do Canvas diferente.\nFaça login ou crie uma conta nessa instituição para adicionar este aluno.";

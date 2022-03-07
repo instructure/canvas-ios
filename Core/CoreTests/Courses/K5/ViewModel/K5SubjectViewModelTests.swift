@@ -40,11 +40,14 @@ class K5SubjectViewModelTests: CoreTestCase {
     }
 
     func testPageUrl() {
-        let pageId = "schedule"
-        let url = K5SubjectViewModel(context: context).pageUrl(for: pageId)
+        Tab.make(from: .make(id: "grades", type: .internal, position: 0), context: context)
+        let testee = K5SubjectViewModel(context: context)
+
+        let url = testee.currentPageURL
+
         XCTAssertEqual(url?.path, "/courses/" + courseId)
         XCTAssertEqual(url?.query, "embed=true")
-        XCTAssertEqual(url?.fragment, "\(pageId)")
+        XCTAssertEqual(url?.fragment, "grades")
     }
 
     func testInitiallySelectedTab() {
@@ -54,5 +57,19 @@ class K5SubjectViewModelTests: CoreTestCase {
         let testee = K5SubjectViewModel(context: context, selectedTabId: "grades")
 
         XCTAssertEqual(testee.topBarViewModel?.selectedItemIndex, 1)
+    }
+
+    func testReloadsOnModuleRequirementCompletedNotification() {
+        let testee = K5SubjectViewModel(context: context, selectedTabId: "grades")
+        let expectation = self.expectation(description: "WebView reload trigger received")
+        expectation.expectedFulfillmentCount = 1
+
+        let reloadListener = testee.reloadWebView.sink {
+            expectation.fulfill()
+        }
+        NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+
+        wait(for: [expectation], timeout: 0.1)
+        reloadListener.cancel()
     }
 }

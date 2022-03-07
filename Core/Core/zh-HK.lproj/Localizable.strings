@@ -116,6 +116,9 @@
 "Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "添加評論（可選）";
+
+/* No comment provided by engineer. */
 "Add content" = "添加內容";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "篩選器";
 
 /* No comment provided by engineer. */
+"Filter by" = "篩選條件";
+
+/* No comment provided by engineer. */
 "Filter by:" = "篩選條件為：";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "忘記%@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "不支援的格式";
 
 /* No comment provided by engineer. */
 "Front Page" = "首頁";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影響程度";
+
+/* No comment provided by engineer. */
+"Important Dates" = "重要日期";
 
 /* No comment provided by engineer. */
 "Important Info" = "重要資訊";
@@ -1397,6 +1409,9 @@
 "No Pages" = "無頁面";
 
 /* No comment provided by engineer. */
+"No preview available" = "無可用預覽";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "無測驗";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "無提交項目";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "沒有要提交的支援檔案";
 
 /* No comment provided by engineer. */
 "None" = "無";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "請產生另一個 QR 碼然後重試。";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "請透過應用程式登入";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "請稍候，需時約一分鐘。";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "選取一個路徑";
+
+/* No comment provided by engineer. */
+"Select assignment" = "選擇作業";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "選擇作業";
+
+/* No comment provided by engineer. */
+"Select course" = "選擇課程";
 
 /* No comment provided by engineer. */
 "Select Course" = "選擇課程";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "此課程中沒有啟用的作業列表。";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "沒有可顯示的作業。";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "尚未有可顯示的會議。";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "已檢視";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "正在等待重要事情發生。";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "我們找不到像那樣的課程。";

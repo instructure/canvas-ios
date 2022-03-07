@@ -14,5 +14,5 @@
 "NSPhotoLibraryAddUsageDescription" = "Adjuntar fotografías y videos a comentarios sobre entregas.";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "Cargar contenido a los cursos.";
+"NSPhotoLibraryUsageDescription" = "Cargar contenido a las asignaturas.";
 

@@ -116,6 +116,9 @@
 "Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "添加评论（可选）";
+
+/* No comment provided by engineer. */
 "Add content" = "添加内容";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "筛选器";
 
 /* No comment provided by engineer. */
+"Filter by" = "筛选条件";
+
+/* No comment provided by engineer. */
 "Filter by:" = "筛选条件：";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "忘记%@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "格式不支持";
 
 /* No comment provided by engineer. */
 "Front Page" = "首页";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影响级别";
+
+/* No comment provided by engineer. */
+"Important Dates" = "重要日期";
 
 /* No comment provided by engineer. */
 "Important Info" = "重要信息";
@@ -1397,6 +1409,9 @@
 "No Pages" = "无页面";
 
 /* No comment provided by engineer. */
+"No preview available" = "预览不可用";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "无测验";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "无提交项";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "要提交的文件不受支持";
 
 /* No comment provided by engineer. */
 "None" = "无";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "请生成新的二维码，然后再试一次。";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "请通过应用程序登录";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "请稍等，这可能需要一分钟。";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "选择路径";
+
+/* No comment provided by engineer. */
+"Select assignment" = "选择作业";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "选择作业";
+
+/* No comment provided by engineer. */
+"Select course" = "选择课程";
 
 /* No comment provided by engineer. */
 "Select Course" = "选择课程";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "需重启应用程序才能使用新语言设置。请重启该应用程序。";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "此课程中没有有效的作业。";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "没有要显示的作业。";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "暂时没有会议可以显示。";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "已查看";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "等待重要事情发生。";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "找不到任何类似的课程。";

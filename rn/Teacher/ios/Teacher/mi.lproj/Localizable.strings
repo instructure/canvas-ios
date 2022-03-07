@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "I hapa te tuku rollcall LTI taputapu.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "I hapa te uta ngā tāpaetanga raraunga!";
+
+/* No comment provided by engineer. */
 "Files" = "Ngā Kōnae";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Tautuhi anō";
 
 /* No comment provided by engineer. */
+"Retry" = "Ngana anō";
+
+/* No comment provided by engineer. */
 "Rubric" = "Rubric";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Hei mahi";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Kaore I Mōhiotia Te Hapa";
 
 /* No comment provided by engineer. */
 "Unmark" = "Kaore i mākāhia";

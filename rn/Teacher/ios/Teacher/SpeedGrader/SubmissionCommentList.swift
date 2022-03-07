@@ -33,9 +33,11 @@ struct SubmissionCommentList: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
     @ObservedObject var comments: Store<GetSubmissionComments>
+    @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @State var error: Text?
     @State var showMediaOptions = false
+    @State var showCommentLibrary = false
 
     init(
         assignment: Assignment,
@@ -44,7 +46,8 @@ struct SubmissionCommentList: View {
         attempt: Binding<Int?>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
-        enteredComment: Binding<String>
+        enteredComment: Binding<String>,
+        commentLibrary: SubmissionCommentLibraryViewModel
     ) {
         self.assignment = assignment
         self.submission = submission
@@ -53,6 +56,7 @@ struct SubmissionCommentList: View {
         self._showRecorder = showRecorder
         self._comment = enteredComment
         self.attempts = attempts
+        self.commentLibrary = commentLibrary
         comments = AppEnvironment.shared.subscribe(GetSubmissionComments(
             context: .course(assignment.courseID),
             assignmentID: assignment.id,
@@ -100,6 +104,20 @@ struct SubmissionCommentList: View {
                 case nil:
                     toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity)
+                        .onTapGesture {
+                            showCommentLibrary = commentLibrary.shouldShow
+                        }
+                        .accessibilityAction(named: Text("Open comment library", bundle: .core)) {
+                            if commentLibrary.shouldShow {
+                                showCommentLibrary = true
+                            } else {
+                                UIAccessibility.post(notification: .screenChanged, argument: NSLocalizedString("Comment library is not available", bundle: .teacher, comment: ""))
+                            }
+                        }
+                }
+            }.sheet(isPresented: $showCommentLibrary) {
+                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment) {
+                    sendComment()
                 }
             }
         }

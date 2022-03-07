@@ -101,7 +101,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return DiscussionDetailsViewController.create(context: context, topicID: announcementID, isAnnouncement: true)
     },
 
-    "/courses/:courseID/assignments": nil,
+    "/courses/:courseID/assignments": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        let viewModel = AssignmentListViewModel(context: context)
+        return CoreHostingController(AssignmentListView(viewModel: viewModel))
+    },
 
     "/courses/:courseID/syllabus": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
@@ -449,7 +453,8 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
 private func contextCard(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
     let currentUserID = AppEnvironment.shared.currentSession?.userID ?? ""
-    let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: false, isLastActivityVisible: false)
+    let showSubmissions = (currentUserID == userID)
+    let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: showSubmissions, isLastActivityVisible: false)
     return CoreHostingController(ContextCardView(model: viewModel))
 }
 

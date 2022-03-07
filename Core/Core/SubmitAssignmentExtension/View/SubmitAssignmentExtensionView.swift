@@ -125,8 +125,9 @@ public struct SubmitAssignmentExtensionView: View {
                 viewModel.selectCourseButtonTitle
                     .foregroundColor(viewModel.coursePickerViewModel.selectedCourse == nil ? .textDark : .textDarkest)
                     .font(.regular16)
+                    .multilineTextAlignment(.leading)
                 Spacer()
-                disclosureIndicator
+                InstDisclosureIndicator().padding(.leading, 10)
             }
         }
         .frame(height: 54)
@@ -146,23 +147,15 @@ public struct SubmitAssignmentExtensionView: View {
                         viewModel.selectAssignmentButtonTitle
                             .foregroundColor(viewModel.assignmentPickerViewModel.selectedAssignment == nil ? .textDark : .textDarkest)
                             .font(.regular16)
+                            .multilineTextAlignment(.leading)
                         Spacer()
-                        disclosureIndicator
+                        InstDisclosureIndicator().padding(.leading, 10)
                     }
                         .frame(height: 54)
                     divider
                 }
             }
         }
-    }
-
-    private var disclosureIndicator: some View {
-        Image.arrowOpenRightSolid
-            .resizable()
-            .scaledToFit()
-            .frame(width: 16, height: 16)
-            .foregroundColor(.ash)
-            .padding(.leading, 10)
     }
 
     private var cancelButton: some View {

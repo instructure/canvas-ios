@@ -19,28 +19,26 @@
 import SwiftUI
 
 public struct DashboardCardView: View {
-    @ObservedObject var cards: Store<GetDashboardCards>
+    @ObservedObject var cards: DashboardCardsViewModel
     @ObservedObject var colors: Store<GetCustomColors>
     @ObservedObject var groups: Store<GetDashboardGroups>
     @ObservedObject var notifications: Store<GetAccountNotifications>
     @ObservedObject var settings: Store<GetUserSettings>
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
+    @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @State var needsRefresh = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
     private let shouldShowGroupList: Bool
-    private let showOnlyTeacherEnrollment: Bool
 
     public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
+        self.cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
-        self.showOnlyTeacherEnrollment = showOnlyTeacherEnrollment
         let env = AppEnvironment.shared
-        cards = env.subscribe(GetDashboardCards())
         colors = env.subscribe(GetCustomColors())
         groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
@@ -72,23 +70,14 @@ public struct DashboardCardView: View {
                     .identifier("Dashboard.profileButton")
                     .accessibility(label: Text("Profile Menu", bundle: .core)),
 
-                trailing: Button(action: {
-                    env.router.route(to: "/courses", from: controller)
-                }, label: {
-                    Text("Edit", bundle: .core).fontWeight(.regular)
+                trailing: Button(action: layoutViewModel.toggle) {
+                    layoutViewModel.buttonImage
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                })
-                    .identifier("Dashboard.editButton")
+                        .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
+                }
             )
 
             .onAppear { refresh(force: false) }
-            .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange).receive(on: DispatchQueue.main)) { _ in
-                if cards.pending {
-                    needsRefresh = true
-                } else {
-                    refreshCards()
-                }
-            }
             .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
                 showGrade = env.userDefaults?.showGradesOnDashboard == true
             }
@@ -120,49 +109,41 @@ public struct DashboardCardView: View {
         case .loading:
             ZStack { CircleProgress() }
                 .frame(minWidth: size.width, minHeight: size.height)
-        case .data:
-            Section(
-                header: HStack(alignment: .lastTextBaseline) {
-                    Text("Courses", bundle: .core)
-                        .font(.heavy24).foregroundColor(.textDarkest)
-                        .accessibility(identifier: "dashboard.courses.heading-lbl")
-                        .accessibility(addTraits: .isHeader)
-                    Spacer()
-                    Button(action: showAllCourses, label: {
-                        Text("All Courses", bundle: .core)
-                            .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    }).accessibility(identifier: "dashboard.courses.see-all-btn")
-                }
-                    .padding(.top, 16).padding(.bottom, 8)
-            ) {
-                let minCardWidth: CGFloat = 150
-                let spacing: CGFloat = 16
-                let columns = max(2, floor(size.width / minCardWidth))
-                let cardSize = CGSize(width: (size.width - ((columns-1) * spacing)) / columns, height: 160)
-                let filteredCards = showOnlyTeacherEnrollment ?
-                    cards.all.filter { $0.isTeacherEnrollment } :
-                    cards.all
-                JustifiedGrid(itemCount: filteredCards.count, itemSize: cardSize, spacing: spacing, width: size.width) { cardIndex in
-                    let card = filteredCards[cardIndex]
-                    CourseCard(
-                        card: card,
-                        hideColorOverlay: settings.first?.hideDashcardColorOverlays == true,
-                        showGrade: showGrade,
-                        width: cardSize.width
-                    )
-                        // outside the CourseCard, because that isn't observing colors
-                        .accentColor(Color(card.color.ensureContrast(against: .white)))
-                }
+        case .data(let cards):
+            HStack(alignment: .lastTextBaseline) {
+                Text("Courses", bundle: .core)
+                    .font(.heavy24).foregroundColor(.textDarkest)
+                    .accessibility(identifier: "dashboard.courses.heading-lbl")
+                    .accessibility(addTraits: .isHeader)
+                Spacer()
+                Button(action: showAllCourses) {
+                    Text("Edit Dashboard", bundle: .core)
+                        .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
+                }.identifier("Dashboard.editButton")
             }
+            .frame(width: size.width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
+            .padding(.top, 16).padding(.bottom, 8)
+
+            let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
+            let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
+            DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
+                let card = cards[cardIndex]
+                CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth)
+                    // outside the CourseCard, because that isn't observing colors
+                    .accentColor(Color(card.color.ensureContrast(against: .white)))
+                    .frame(minHeight: 160)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 2)
         case .empty:
             EmptyPanda(.Teacher,
                 title: Text("No Courses", bundle: .core),
                 message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core)
             )
                 .frame(minWidth: size.width, minHeight: size.height)
-        case .error:
+        case .error(let message):
             ZStack {
-                Text(cards.error?.localizedDescription ?? "")
+                Text(message)
                     .font(.regular16).foregroundColor(.textDanger)
                     .multilineTextAlignment(.center)
             }
@@ -182,7 +163,7 @@ public struct DashboardCardView: View {
                 }
                     .padding(.top, 16).padding(.bottom, 8)) {
                 ForEach(filteredGroups, id: \.id) { group in
-                    GroupCard(group: group, course: group.getCourse())
+                    GroupCard(group: group, course: group.course)
                         // outside the GroupCard, because that isn't observing colors
                         .accentColor(Color(group.color.ensureContrast(against: .white)))
                         .padding(.bottom, 16)
@@ -192,21 +173,13 @@ public struct DashboardCardView: View {
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
-        refreshCards(onComplete: onComplete)
+        invitationsViewModel.refresh(force: force)
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
-        invitationsViewModel.refresh(force: force)
         groups.exhaust(force: force)
         notifications.exhaust(force: force)
         settings.refresh(force: force)
-    }
-
-    func refreshCards(onComplete: (() -> Void)? = nil) {
-        needsRefresh = false
-        cards.refresh(force: true) { _ in
-            onComplete?()
-            if needsRefresh { refreshCards() }
-        }
+        cards.refresh(onComplete: onComplete)
     }
 
     func showAllCourses() {

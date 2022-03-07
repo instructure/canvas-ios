@@ -50,9 +50,11 @@ struct CourseCard: View {
                         HStack { Spacer() }
                         Text(card.shortName)
                             .font(.semibold18).foregroundColor(.accentColor)
-                            .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(2)
                         Text(card.courseCode)
                             .font(.semibold12).foregroundColor(.textDark)
+                            .lineLimit(2)
                         Spacer()
                     }
                         .padding(.horizontal, 10).padding(.top, 8)

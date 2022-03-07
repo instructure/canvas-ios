@@ -116,6 +116,9 @@
 "Add Attachments" = "Добавить вложения";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Добавить комментарий (опционально)";
+
+/* No comment provided by engineer. */
 "Add content" = "Добавить содержание";
 
 /* No comment provided by engineer. */
@@ -875,6 +878,9 @@
 "Filter" = "Фильтровать";
 
 /* No comment provided by engineer. */
+"Filter by" = "Фильтровать по";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Фильтровать по:";
 
 /* No comment provided by engineer. */
@@ -915,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Forget %@" = "Исключить %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Формат не поддерживается";
 
 /* No comment provided by engineer. */
 "Front Page" = "Первая страница";
@@ -1038,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Уровень воздействия";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Важные даты";
 
 /* No comment provided by engineer. */
 "Important Info" = "Важная информация";
@@ -1397,6 +1409,9 @@
 "No Pages" = "Страницы отсутствуют";
 
 /* No comment provided by engineer. */
+"No preview available" = "Нет доступного предпросмотра";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Нет тестов";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Нет отправки";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Нет поддерживаемых файлов для отправки";
 
 /* No comment provided by engineer. */
 "None" = "Нет";
@@ -1575,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Please generate another QR Code and try again." = "Создайте другой код QR и повторите попытку.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Войдите в систему через приложение";
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Подождите несколько минут.";
@@ -1794,6 +1815,15 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Выбрать путь";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Выбрать задание";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Выбрать задание";
+
+/* No comment provided by engineer. */
+"Select course" = "Выбрать курс";
 
 /* No comment provided by engineer. */
 "Select Course" = "Выбрать курс";
@@ -2016,6 +2046,12 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "В этом курсе нет активных заданий.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Нет доступных для отображения заданий.";
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Пока нет отображаемых веб-конференций";
@@ -2250,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Просмотрено";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Ожидание того, что произойдут важные события.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Мы не смогли найти ни одного похожего на этот курса.";

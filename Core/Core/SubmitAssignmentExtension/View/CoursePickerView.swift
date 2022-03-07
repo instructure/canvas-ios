@@ -64,6 +64,7 @@ public struct CoursePickerView: View {
                                 .font(.regular16)
                                 .foregroundColor(.textDarkest)
                                 .frame(height: 50)
+                                .multilineTextAlignment(.leading)
                             Spacer()
 
                             if viewModel.selectedCourse == course {

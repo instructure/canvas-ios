@@ -2,7 +2,7 @@
 "%@ is due at %@" = "%1$@ har frist %2$@";
 
 /* No comment provided by engineer. */
-"%@ will begin at %@" = "%1$@ Vil begynne %2$@";
+"%@ will begin at %@" = "%1$@ vil begynne %2$@";
 
 /* No comment provided by engineer. */
 "Add" = "Legg til";
@@ -11,7 +11,7 @@
 "Add Student" = "Legg til elev";
 
 /* No comment provided by engineer. */
-"Add students at the top or visit the global menu to masquerade as a student." = "Legg til elever på øverst eller besøk den globale menyen for å maskere deg som student.";
+"Add students at the top or visit the global menu to masquerade as a student." = "Legg til elever på øverst eller besøk den globale menyen for opptre som elev.";
 
 /* No comment provided by engineer. */
 "Add students at the top." = "Legg til elever på toppen.";
@@ -23,7 +23,7 @@
 "Alerts" = "Varsler";
 
 /* No comment provided by engineer. */
-"Announcement" = "Kunngjøring";
+"Announcement" = "Beskjed";
 
 /* No comment provided by engineer. */
 "Assignment Details" = "Oppgavedetaljer";
@@ -41,7 +41,7 @@
 "Cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
-"Compose Message" = "Skriv melding";
+"Compose Message" = "Forfatte melding";
 
 /* No comment provided by engineer. */
 "Compose message to teachers" = "Skriv melding til lærere";
@@ -68,7 +68,7 @@
 "Description" = "Beskrivelse";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Avvise";
+"Dismiss" = "Avvis";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Domenefeil";
@@ -108,6 +108,9 @@
 
 /* No comment provided by engineer. */
 "Location" = "Sted";
+
+/* No comment provided by engineer. */
+"Locked" = "Låst";
 
 /* No comment provided by engineer. */
 "Login required" = "Innlogging kreves";
@@ -160,7 +163,7 @@
 "Remind Me" = "Påminnelse";
 
 /* No comment provided by engineer. */
-"Retry" = "Forsøk igjen";
+"Retry" = "Prøv igjen";
 
 /* No comment provided by engineer. */
 "Set a date and time to be notified of this event." = "Angi tid og dato for påminnelse om denne oppgaven.";
@@ -178,6 +181,9 @@
 "Syllabus" = "Fagoversikt";
 
 /* No comment provided by engineer. */
+"The linked item is no longer available." = "Det koblede elementet er ikke lenger tilgjengelig.";
+
+/* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Eleven du forsøker å legge til, er på en annen Canvas-institusjon.\nLogg inn eller opprett en konto hos den institusjonen for å legge til denne eleven.";
 
 /* No comment provided by engineer. */
@@ -187,7 +193,7 @@
 "There was an error loading alerts. Pull to refresh to try again." = "Det oppsto en feil under lasting av varsler. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
-"There was an error loading courses. Pull to refresh to try again." = "Det oppstod en feil under lasting av fag. Dra for å oppdatere og prøve på nytt.";
+"There was an error loading courses. Pull to refresh to try again." = "Det oppsto en feil under lasting av fag. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Det oppsto en feil under lasting av elever. Dra for å oppdatere og prøve på nytt.";
@@ -214,5 +220,5 @@
 "You’re all caught up" = "Du er oppdatert";
 
 /* No comment provided by engineer. */
-"Your child’s courses might not be published yet." = "Dine underordnede fag er kanskje ikke publisert enda.";
+"Your child’s courses might not be published yet." = "Fagne til barnet ditt er kanskje upublisert ennå.";
 

@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Echèk lansman zouti apèl nominal LTI.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Echèk chajman done soumisyon!";
+
+/* No comment provided by engineer. */
 "Files" = "Fichye";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Reinisyalize";
 
 /* No comment provided by engineer. */
+"Retry" = "Re eseye";
+
+/* No comment provided by engineer. */
 "Rubric" = "Ribrik";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erè Enkoni";
 
 /* No comment provided by engineer. */
 "Unmark" = "San make";

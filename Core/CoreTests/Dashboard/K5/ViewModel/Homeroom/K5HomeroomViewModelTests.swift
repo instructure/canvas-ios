@@ -82,9 +82,21 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(announcement.htmlContent, "message 2")
     }
 
+    // MARK: - Account Announcement Tests
+
+    func testLoadsAccountAnnouncements() {
+        api.mock(GetAccountNotificationsRequest(), value: [.make()])
+
+        let testee = K5HomeroomViewModel()
+
+        XCTAssertEqual(testee.accountAnnouncements.count, 1)
+        XCTAssertEqual(testee.accountAnnouncements.first?.message, "The financial aid office is closed on Tuesdays.")
+    }
+
     // MARK: - Subject Card Tests
 
     func testLoadsNonHomeroomCourses() {
+        mockCourses()
         mockDashboardCards()
         mockAnnouncements(nonHomeroomTitle: "Non homeroom announcement")
         mockDueItems()
@@ -105,6 +117,23 @@ class K5HomeroomViewModelTests: CoreTestCase {
     }
 
     // MARK: - Private Helpers
+
+    private func mockCourses() {
+        let course = APICourse.make(id: "1",
+                                    name: "Homeroom",
+                                    course_code: "course_1",
+                                    enrollments: [
+                                        .make(
+                                            id: "1",
+                                            course_id: "1",
+                                            user_id: "1"
+                                        ),
+                                    ],
+                                    homeroom_course: false
+        )
+        let getCourses = GetCourses()
+        getCourses.write(response: [course], urlResponse: nil, to: databaseClient)
+    }
 
     private func mockUserProfile(name: String) {
         let mockRequest = GetUserProfileRequest(userID: "self")

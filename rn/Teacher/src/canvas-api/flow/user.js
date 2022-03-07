@@ -73,4 +73,5 @@ export type UserSettings = {
   manual_mark_as_read: boolean,
   collapse_global_nav: boolean,
   hide_dashcard_color_overlays: boolean,
+  comment_library_suggestions_enabled: boolean,
 }

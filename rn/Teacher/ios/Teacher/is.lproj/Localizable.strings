@@ -104,6 +104,9 @@
 "Failed to launch rollcall LTI tool." = "Ekki tókst að ræsa nafnakalls LTI verkfæri.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Ekki tókst að hlaða skilagögnum!";
+
+/* No comment provided by engineer. */
 "Files" = "Skrár";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Reset" = "Endurstilla";
 
 /* No comment provided by engineer. */
+"Retry" = "Reyna aftur";
+
+/* No comment provided by engineer. */
 "Rubric" = "Matskvarði";
 
 /* No comment provided by engineer. */
@@ -312,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Verkefni";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Óþekkt villa";
 
 /* No comment provided by engineer. */
 "Unmark" = "Afmerkja";
