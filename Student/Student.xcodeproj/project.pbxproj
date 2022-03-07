@@ -36,41 +36,6 @@
 		5B57D3A322ED802B00DEA620 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B57D3A122ED802B00DEA620 /* InfoPlist.strings */; };
 		5B57D3A622ED802B00DEA620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B57D3A422ED802B00DEA620 /* Localizable.strings */; };
 		61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F438E21DD4E60B00552D14 /* AVFoundation.framework */; };
-		6A57F1CD2705FDF500B3FFE1 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AA2705FDF200B3FFE1 /* it.lproj */; };
-		6A57F1CE2705FDF500B3FFE1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AB2705FDF200B3FFE1 /* en.lproj */; };
-		6A57F1CF2705FDF500B3FFE1 /* en-GB-instukhe.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AC2705FDF200B3FFE1 /* en-GB-instukhe.lproj */; };
-		6A57F1D02705FDF500B3FFE1 /* sl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AD2705FDF200B3FFE1 /* sl.lproj */; };
-		6A57F1D12705FDF500B3FFE1 /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AE2705FDF300B3FFE1 /* pl.lproj */; };
-		6A57F1D22705FDF500B3FFE1 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1AF2705FDF300B3FFE1 /* ar.lproj */; };
-		6A57F1D32705FDF500B3FFE1 /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B02705FDF300B3FFE1 /* sv.lproj */; };
-		6A57F1D42705FDF500B3FFE1 /* en-CY.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B12705FDF300B3FFE1 /* en-CY.lproj */; };
-		6A57F1D52705FDF500B3FFE1 /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B22705FDF300B3FFE1 /* fi.lproj */; };
-		6A57F1D62705FDF500B3FFE1 /* zh.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B32705FDF300B3FFE1 /* zh.lproj */; };
-		6A57F1D72705FDF500B3FFE1 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B42705FDF300B3FFE1 /* Base.lproj */; };
-		6A57F1D82705FDF500B3FFE1 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B52705FDF300B3FFE1 /* ru.lproj */; };
-		6A57F1D92705FDF500B3FFE1 /* cy.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B62705FDF300B3FFE1 /* cy.lproj */; };
-		6A57F1DA2705FDF500B3FFE1 /* en-CA.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B72705FDF300B3FFE1 /* en-CA.lproj */; };
-		6A57F1DB2705FDF500B3FFE1 /* da-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B82705FDF300B3FFE1 /* da-instk12.lproj */; };
-		6A57F1DC2705FDF500B3FFE1 /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1B92705FDF400B3FFE1 /* ca.lproj */; };
-		6A57F1DD2705FDF500B3FFE1 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BA2705FDF400B3FFE1 /* da.lproj */; };
-		6A57F1DE2705FDF500B3FFE1 /* en-AU-unimelb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BB2705FDF400B3FFE1 /* en-AU-unimelb.lproj */; };
-		6A57F1DF2705FDF500B3FFE1 /* en-AU.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BC2705FDF400B3FFE1 /* en-AU.lproj */; };
-		6A57F1E02705FDF500B3FFE1 /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BD2705FDF400B3FFE1 /* th.lproj */; };
-		6A57F1E12705FDF500B3FFE1 /* zh-HK.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BE2705FDF400B3FFE1 /* zh-HK.lproj */; };
-		6A57F1E22705FDF500B3FFE1 /* is.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1BF2705FDF400B3FFE1 /* is.lproj */; };
-		6A57F1E32705FDF500B3FFE1 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C02705FDF400B3FFE1 /* nb.lproj */; };
-		6A57F1E42705FDF500B3FFE1 /* fr-CA.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C12705FDF400B3FFE1 /* fr-CA.lproj */; };
-		6A57F1E52705FDF500B3FFE1 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C22705FDF400B3FFE1 /* nl.lproj */; };
-		6A57F1E62705FDF500B3FFE1 /* nb-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C32705FDF400B3FFE1 /* nb-instk12.lproj */; };
-		6A57F1E72705FDF500B3FFE1 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C42705FDF400B3FFE1 /* ja.lproj */; };
-		6A57F1E82705FDF500B3FFE1 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C52705FDF500B3FFE1 /* pt.lproj */; };
-		6A57F1E92705FDF500B3FFE1 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C62705FDF500B3FFE1 /* de.lproj */; };
-		6A57F1EA2705FDF500B3FFE1 /* ht.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C72705FDF500B3FFE1 /* ht.lproj */; };
-		6A57F1EB2705FDF500B3FFE1 /* mi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C82705FDF500B3FFE1 /* mi.lproj */; };
-		6A57F1EC2705FDF500B3FFE1 /* sv-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1C92705FDF500B3FFE1 /* sv-instk12.lproj */; };
-		6A57F1ED2705FDF500B3FFE1 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1CA2705FDF500B3FFE1 /* es.lproj */; };
-		6A57F1EE2705FDF500B3FFE1 /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1CB2705FDF500B3FFE1 /* pt-BR.lproj */; };
-		6A57F1EF2705FDF500B3FFE1 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1CC2705FDF500B3FFE1 /* fr.lproj */; };
 		6A58276026FBBAD30081C713 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A58275F26FBBAD30081C713 /* Intents.framework */; };
 		6A58276326FBBAD30081C713 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A58276226FBBAD30081C713 /* IntentHandler.swift */; };
 		6A58277826FBBAD30081C713 /* StudentSiriExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6A58275E26FBBAD30081C713 /* StudentSiriExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -628,41 +593,6 @@
 		6784CACE8F4CE3D651D62113 /* Pods_defaults_PreSubmissionAnnotations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_PreSubmissionAnnotations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
-		6A57F1AA2705FDF200B3FFE1 /* it.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = it.lproj; path = ../../../Core/Core/CustomIntents/it.lproj; sourceTree = "<group>"; };
-		6A57F1AB2705FDF200B3FFE1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = ../../../Core/Core/CustomIntents/en.lproj; sourceTree = "<group>"; };
-		6A57F1AC2705FDF200B3FFE1 /* en-GB-instukhe.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-GB-instukhe.lproj"; path = "../../../Core/Core/CustomIntents/en-GB-instukhe.lproj"; sourceTree = "<group>"; };
-		6A57F1AD2705FDF200B3FFE1 /* sl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sl.lproj; path = ../../../Core/Core/CustomIntents/sl.lproj; sourceTree = "<group>"; };
-		6A57F1AE2705FDF300B3FFE1 /* pl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pl.lproj; path = ../../../Core/Core/CustomIntents/pl.lproj; sourceTree = "<group>"; };
-		6A57F1AF2705FDF300B3FFE1 /* ar.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ar.lproj; path = ../../../Core/Core/CustomIntents/ar.lproj; sourceTree = "<group>"; };
-		6A57F1B02705FDF300B3FFE1 /* sv.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sv.lproj; path = ../../../Core/Core/CustomIntents/sv.lproj; sourceTree = "<group>"; };
-		6A57F1B12705FDF300B3FFE1 /* en-CY.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-CY.lproj"; path = "../../../Core/Core/CustomIntents/en-CY.lproj"; sourceTree = "<group>"; };
-		6A57F1B22705FDF300B3FFE1 /* fi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fi.lproj; path = ../../../Core/Core/CustomIntents/fi.lproj; sourceTree = "<group>"; };
-		6A57F1B32705FDF300B3FFE1 /* zh.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = zh.lproj; path = ../../../Core/Core/CustomIntents/zh.lproj; sourceTree = "<group>"; };
-		6A57F1B42705FDF300B3FFE1 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = ../../../Core/Core/CustomIntents/Base.lproj; sourceTree = "<group>"; };
-		6A57F1B52705FDF300B3FFE1 /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ru.lproj; path = ../../../Core/Core/CustomIntents/ru.lproj; sourceTree = "<group>"; };
-		6A57F1B62705FDF300B3FFE1 /* cy.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cy.lproj; path = ../../../Core/Core/CustomIntents/cy.lproj; sourceTree = "<group>"; };
-		6A57F1B72705FDF300B3FFE1 /* en-CA.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-CA.lproj"; path = "../../../Core/Core/CustomIntents/en-CA.lproj"; sourceTree = "<group>"; };
-		6A57F1B82705FDF300B3FFE1 /* da-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "da-instk12.lproj"; path = "../../../Core/Core/CustomIntents/da-instk12.lproj"; sourceTree = "<group>"; };
-		6A57F1B92705FDF400B3FFE1 /* ca.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ca.lproj; path = ../../../Core/Core/CustomIntents/ca.lproj; sourceTree = "<group>"; };
-		6A57F1BA2705FDF400B3FFE1 /* da.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = da.lproj; path = ../../../Core/Core/CustomIntents/da.lproj; sourceTree = "<group>"; };
-		6A57F1BB2705FDF400B3FFE1 /* en-AU-unimelb.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-AU-unimelb.lproj"; path = "../../../Core/Core/CustomIntents/en-AU-unimelb.lproj"; sourceTree = "<group>"; };
-		6A57F1BC2705FDF400B3FFE1 /* en-AU.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-AU.lproj"; path = "../../../Core/Core/CustomIntents/en-AU.lproj"; sourceTree = "<group>"; };
-		6A57F1BD2705FDF400B3FFE1 /* th.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = th.lproj; path = ../../../Core/Core/CustomIntents/th.lproj; sourceTree = "<group>"; };
-		6A57F1BE2705FDF400B3FFE1 /* zh-HK.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-HK.lproj"; path = "../../../Core/Core/CustomIntents/zh-HK.lproj"; sourceTree = "<group>"; };
-		6A57F1BF2705FDF400B3FFE1 /* is.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = is.lproj; path = ../../../Core/Core/CustomIntents/is.lproj; sourceTree = "<group>"; };
-		6A57F1C02705FDF400B3FFE1 /* nb.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nb.lproj; path = ../../../Core/Core/CustomIntents/nb.lproj; sourceTree = "<group>"; };
-		6A57F1C12705FDF400B3FFE1 /* fr-CA.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "fr-CA.lproj"; path = "../../../Core/Core/CustomIntents/fr-CA.lproj"; sourceTree = "<group>"; };
-		6A57F1C22705FDF400B3FFE1 /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nl.lproj; path = ../../../Core/Core/CustomIntents/nl.lproj; sourceTree = "<group>"; };
-		6A57F1C32705FDF400B3FFE1 /* nb-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "nb-instk12.lproj"; path = "../../../Core/Core/CustomIntents/nb-instk12.lproj"; sourceTree = "<group>"; };
-		6A57F1C42705FDF400B3FFE1 /* ja.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ja.lproj; path = ../../../Core/Core/CustomIntents/ja.lproj; sourceTree = "<group>"; };
-		6A57F1C52705FDF500B3FFE1 /* pt.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pt.lproj; path = ../../../Core/Core/CustomIntents/pt.lproj; sourceTree = "<group>"; };
-		6A57F1C62705FDF500B3FFE1 /* de.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = de.lproj; path = ../../../Core/Core/CustomIntents/de.lproj; sourceTree = "<group>"; };
-		6A57F1C72705FDF500B3FFE1 /* ht.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ht.lproj; path = ../../../Core/Core/CustomIntents/ht.lproj; sourceTree = "<group>"; };
-		6A57F1C82705FDF500B3FFE1 /* mi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mi.lproj; path = ../../../Core/Core/CustomIntents/mi.lproj; sourceTree = "<group>"; };
-		6A57F1C92705FDF500B3FFE1 /* sv-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "sv-instk12.lproj"; path = "../../../Core/Core/CustomIntents/sv-instk12.lproj"; sourceTree = "<group>"; };
-		6A57F1CA2705FDF500B3FFE1 /* es.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = es.lproj; path = ../../../Core/Core/CustomIntents/es.lproj; sourceTree = "<group>"; };
-		6A57F1CB2705FDF500B3FFE1 /* pt-BR.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "pt-BR.lproj"; path = "../../../Core/Core/CustomIntents/pt-BR.lproj"; sourceTree = "<group>"; };
-		6A57F1CC2705FDF500B3FFE1 /* fr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fr.lproj; path = ../../../Core/Core/CustomIntents/fr.lproj; sourceTree = "<group>"; };
 		6A58275E26FBBAD30081C713 /* StudentSiriExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudentSiriExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A58275F26FBBAD30081C713 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		6A58276226FBBAD30081C713 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -1164,7 +1094,6 @@
 		492704751CF4AF7100C631C6 /* Student */ = {
 			isa = PBXGroup;
 			children = (
-				6AA07F1D2703C29A00A2D646 /* CustomIntents */,
 				49F9FA4A1CF7B73100654758 /* Assets.xcassets */,
 				7DCF0E9D22F89FB0000AACCE /* Assignments */,
 				7DCF0EB122F89FC2000AACCE /* Courses */,
@@ -1250,48 +1179,6 @@
 				6A58276426FBBAD30081C713 /* Info.plist */,
 			);
 			path = StudentSiriExtension;
-			sourceTree = "<group>";
-		};
-		6AA07F1D2703C29A00A2D646 /* CustomIntents */ = {
-			isa = PBXGroup;
-			children = (
-				6A57F1AF2705FDF300B3FFE1 /* ar.lproj */,
-				6A57F1B42705FDF300B3FFE1 /* Base.lproj */,
-				6A57F1B92705FDF400B3FFE1 /* ca.lproj */,
-				6A57F1B62705FDF300B3FFE1 /* cy.lproj */,
-				6A57F1B82705FDF300B3FFE1 /* da-instk12.lproj */,
-				6A57F1BA2705FDF400B3FFE1 /* da.lproj */,
-				6A57F1C62705FDF500B3FFE1 /* de.lproj */,
-				6A57F1BB2705FDF400B3FFE1 /* en-AU-unimelb.lproj */,
-				6A57F1BC2705FDF400B3FFE1 /* en-AU.lproj */,
-				6A57F1B72705FDF300B3FFE1 /* en-CA.lproj */,
-				6A57F1B12705FDF300B3FFE1 /* en-CY.lproj */,
-				6A57F1AC2705FDF200B3FFE1 /* en-GB-instukhe.lproj */,
-				6A57F1AB2705FDF200B3FFE1 /* en.lproj */,
-				6A57F1CA2705FDF500B3FFE1 /* es.lproj */,
-				6A57F1B22705FDF300B3FFE1 /* fi.lproj */,
-				6A57F1C12705FDF400B3FFE1 /* fr-CA.lproj */,
-				6A57F1CC2705FDF500B3FFE1 /* fr.lproj */,
-				6A57F1C72705FDF500B3FFE1 /* ht.lproj */,
-				6A57F1BF2705FDF400B3FFE1 /* is.lproj */,
-				6A57F1AA2705FDF200B3FFE1 /* it.lproj */,
-				6A57F1C42705FDF400B3FFE1 /* ja.lproj */,
-				6A57F1C82705FDF500B3FFE1 /* mi.lproj */,
-				6A57F1C32705FDF400B3FFE1 /* nb-instk12.lproj */,
-				6A57F1C02705FDF400B3FFE1 /* nb.lproj */,
-				6A57F1C22705FDF400B3FFE1 /* nl.lproj */,
-				6A57F1AE2705FDF300B3FFE1 /* pl.lproj */,
-				6A57F1CB2705FDF500B3FFE1 /* pt-BR.lproj */,
-				6A57F1C52705FDF500B3FFE1 /* pt.lproj */,
-				6A57F1B52705FDF300B3FFE1 /* ru.lproj */,
-				6A57F1AD2705FDF200B3FFE1 /* sl.lproj */,
-				6A57F1C92705FDF500B3FFE1 /* sv-instk12.lproj */,
-				6A57F1B02705FDF300B3FFE1 /* sv.lproj */,
-				6A57F1BD2705FDF400B3FFE1 /* th.lproj */,
-				6A57F1BE2705FDF400B3FFE1 /* zh-HK.lproj */,
-				6A57F1B32705FDF300B3FFE1 /* zh.lproj */,
-			);
-			path = CustomIntents;
 			sourceTree = "<group>";
 		};
 		7D148652230F0E7F003944A2 /* SubmissionButton */ = {
@@ -2639,66 +2526,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A57F1CE2705FDF500B3FFE1 /* en.lproj in Resources */,
 				7DCF0FCA22F8A8D7000AACCE /* SubmissionFilesViewController.storyboard in Resources */,
-				6A57F1DF2705FDF500B3FFE1 /* en-AU.lproj in Resources */,
-				6A57F1E32705FDF500B3FFE1 /* nb.lproj in Resources */,
 				2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */,
-				6A57F1DE2705FDF500B3FFE1 /* en-AU-unimelb.lproj in Resources */,
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
-				6A57F1EC2705FDF500B3FFE1 /* sv-instk12.lproj in Resources */,
-				6A57F1E12705FDF500B3FFE1 /* zh-HK.lproj in Resources */,
-				6A57F1E92705FDF500B3FFE1 /* de.lproj in Resources */,
-				6A57F1EF2705FDF500B3FFE1 /* fr.lproj in Resources */,
-				6A57F1ED2705FDF500B3FFE1 /* es.lproj in Resources */,
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
 				3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */,
 				9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */,
-				6A57F1D62705FDF500B3FFE1 /* zh.lproj in Resources */,
-				6A57F1D12705FDF500B3FFE1 /* pl.lproj in Resources */,
-				6A57F1D42705FDF500B3FFE1 /* en-CY.lproj in Resources */,
-				6A57F1D92705FDF500B3FFE1 /* cy.lproj in Resources */,
 				7DCF0FBD22F8A8D7000AACCE /* Drawer.xib in Resources */,
-				6A57F1DA2705FDF500B3FFE1 /* en-CA.lproj in Resources */,
 				7DCF0FC122F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.xib in Resources */,
 				495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */,
-				6A57F1D72705FDF500B3FFE1 /* Base.lproj in Resources */,
 				7D38A7D724CF610E00A4373E /* QuizDetailsViewController.storyboard in Resources */,
 				2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */,
-				6A57F1E62705FDF500B3FFE1 /* nb-instk12.lproj in Resources */,
 				7DCF0FAE22F8A8D7000AACCE /* RubricCollectionViewCell.xib in Resources */,
-				6A57F1E02705FDF500B3FFE1 /* th.lproj in Resources */,
-				6A57F1E82705FDF500B3FFE1 /* pt.lproj in Resources */,
-				6A57F1CF2705FDF500B3FFE1 /* en-GB-instukhe.lproj in Resources */,
-				6A57F1E72705FDF500B3FFE1 /* ja.lproj in Resources */,
 				7DCF0FC322F8A8D7000AACCE /* SubmissionDetailsViewController.storyboard in Resources */,
-				6A57F1E22705FDF500B3FFE1 /* is.lproj in Resources */,
-				6A57F1DB2705FDF500B3FFE1 /* da-instk12.lproj in Resources */,
-				6A57F1D22705FDF500B3FFE1 /* ar.lproj in Resources */,
-				6A57F1E42705FDF500B3FFE1 /* fr-CA.lproj in Resources */,
 				7DCF0FD022F8A8D7000AACCE /* UrlSubmissionViewController.storyboard in Resources */,
-				6A57F1EE2705FDF500B3FFE1 /* pt-BR.lproj in Resources */,
 				2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */,
-				6A57F1D32705FDF500B3FFE1 /* sv.lproj in Resources */,
 				7DCF0FB522F8A8D7000AACCE /* SubmissionCommentFileView.xib in Resources */,
 				7DCF0FAF22F8A8D7000AACCE /* RubricViewController.storyboard in Resources */,
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				7DB3C84024AA613B00B85D35 /* CalendarEventDetailsViewController.storyboard in Resources */,
 				7DCF0FB822F8A8D7000AACCE /* SubmissionCommentsViewController.storyboard in Resources */,
-				6A57F1DC2705FDF500B3FFE1 /* ca.lproj in Resources */,
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
-				6A57F1D82705FDF500B3FFE1 /* ru.lproj in Resources */,
-				6A57F1D52705FDF500B3FFE1 /* fi.lproj in Resources */,
-				6A57F1E52705FDF500B3FFE1 /* nl.lproj in Resources */,
 				7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */,
-				6A57F1EB2705FDF500B3FFE1 /* mi.lproj in Resources */,
-				6A57F1EA2705FDF500B3FFE1 /* ht.lproj in Resources */,
 				7D1D5BE2249184B4009EA317 /* confetti.json in Resources */,
-				6A57F1DD2705FDF500B3FFE1 /* da.lproj in Resources */,
 				7DCF0FBF22F8A8D7000AACCE /* SubmissionDetailsEmptyView.xib in Resources */,
-				6A57F1CD2705FDF500B3FFE1 /* it.lproj in Resources */,
-				6A57F1D02705FDF500B3FFE1 /* sl.lproj in Resources */,
 				7DCF0FCD22F8A8D7000AACCE /* TextSubmissionViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

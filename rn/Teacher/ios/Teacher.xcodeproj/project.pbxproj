@@ -38,41 +38,6 @@
 		5BEC981724CD62E40065D741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BEC981524CD62E40065D741 /* InfoPlist.strings */; };
 		5BEC981A24CD62E40065D741 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BEC981824CD62E40065D741 /* Localizable.strings */; };
 		61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */; };
-		6A57F213270604B900B3FFE1 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F0270604B700B3FFE1 /* it.lproj */; };
-		6A57F214270604B900B3FFE1 /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F1270604B700B3FFE1 /* pl.lproj */; };
-		6A57F215270604B900B3FFE1 /* nb-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F2270604B700B3FFE1 /* nb-instk12.lproj */; };
-		6A57F216270604B900B3FFE1 /* cy.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F3270604B700B3FFE1 /* cy.lproj */; };
-		6A57F217270604B900B3FFE1 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F4270604B700B3FFE1 /* Base.lproj */; };
-		6A57F218270604B900B3FFE1 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F5270604B700B3FFE1 /* nb.lproj */; };
-		6A57F219270604B900B3FFE1 /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F6270604B700B3FFE1 /* pt-BR.lproj */; };
-		6A57F21A270604B900B3FFE1 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F7270604B700B3FFE1 /* pt.lproj */; };
-		6A57F21B270604B900B3FFE1 /* mi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F8270604B700B3FFE1 /* mi.lproj */; };
-		6A57F21C270604B900B3FFE1 /* en-CA.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1F9270604B700B3FFE1 /* en-CA.lproj */; };
-		6A57F21D270604B900B3FFE1 /* en-CY.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1FA270604B700B3FFE1 /* en-CY.lproj */; };
-		6A57F21E270604B900B3FFE1 /* sv-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1FB270604B700B3FFE1 /* sv-instk12.lproj */; };
-		6A57F21F270604B900B3FFE1 /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1FC270604B700B3FFE1 /* ca.lproj */; };
-		6A57F220270604B900B3FFE1 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1FD270604B700B3FFE1 /* nl.lproj */; };
-		6A57F221270604B900B3FFE1 /* ht.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1FE270604B700B3FFE1 /* ht.lproj */; };
-		6A57F222270604B900B3FFE1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F1FF270604B700B3FFE1 /* en.lproj */; };
-		6A57F223270604B900B3FFE1 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F200270604B800B3FFE1 /* ar.lproj */; };
-		6A57F224270604B900B3FFE1 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F201270604B800B3FFE1 /* fr.lproj */; };
-		6A57F225270604B900B3FFE1 /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F202270604B800B3FFE1 /* th.lproj */; };
-		6A57F226270604B900B3FFE1 /* zh.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F203270604B800B3FFE1 /* zh.lproj */; };
-		6A57F227270604B900B3FFE1 /* fr-CA.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F204270604B800B3FFE1 /* fr-CA.lproj */; };
-		6A57F228270604B900B3FFE1 /* sl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F205270604B800B3FFE1 /* sl.lproj */; };
-		6A57F229270604B900B3FFE1 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F206270604B800B3FFE1 /* es.lproj */; };
-		6A57F22A270604B900B3FFE1 /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F207270604B800B3FFE1 /* sv.lproj */; };
-		6A57F22B270604B900B3FFE1 /* en-AU-unimelb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F208270604B800B3FFE1 /* en-AU-unimelb.lproj */; };
-		6A57F22C270604B900B3FFE1 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F209270604B800B3FFE1 /* ja.lproj */; };
-		6A57F22D270604B900B3FFE1 /* zh-HK.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F20A270604B800B3FFE1 /* zh-HK.lproj */; };
-		6A57F22E270604B900B3FFE1 /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F20B270604B800B3FFE1 /* fi.lproj */; };
-		6A57F22F270604B900B3FFE1 /* en-GB-instukhe.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F20C270604B800B3FFE1 /* en-GB-instukhe.lproj */; };
-		6A57F230270604B900B3FFE1 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F20D270604B800B3FFE1 /* de.lproj */; };
-		6A57F231270604B900B3FFE1 /* is.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F20E270604B800B3FFE1 /* is.lproj */; };
-		6A57F232270604B900B3FFE1 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F20F270604B900B3FFE1 /* da.lproj */; };
-		6A57F233270604B900B3FFE1 /* da-instk12.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F210270604B900B3FFE1 /* da-instk12.lproj */; };
-		6A57F234270604B900B3FFE1 /* en-AU.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F211270604B900B3FFE1 /* en-AU.lproj */; };
-		6A57F235270604B900B3FFE1 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6A57F212270604B900B3FFE1 /* ru.lproj */; };
 		6A8DDFF72703B6EB00CA6F71 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8DDFF62703B6EB00CA6F71 /* Intents.framework */; };
 		6A8DDFFA2703B6EB00CA6F71 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DDFF92703B6EB00CA6F71 /* IntentHandler.swift */; };
 		6A8DDFFE2703B6EB00CA6F71 /* TeacherSiriExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6A8DDFF52703B6EB00CA6F71 /* TeacherSiriExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -514,41 +479,6 @@
 		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAppDelegate.swift; sourceTree = "<group>"; };
 		62B3FB9CC060B4EB8A6FE5E8 /* Pods_needs_pspdfkit_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A57F1F0270604B700B3FFE1 /* it.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = it.lproj; path = ../../../../../Core/Core/CustomIntents/it.lproj; sourceTree = "<group>"; };
-		6A57F1F1270604B700B3FFE1 /* pl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pl.lproj; path = ../../../../../Core/Core/CustomIntents/pl.lproj; sourceTree = "<group>"; };
-		6A57F1F2270604B700B3FFE1 /* nb-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "nb-instk12.lproj"; path = "../../../../../Core/Core/CustomIntents/nb-instk12.lproj"; sourceTree = "<group>"; };
-		6A57F1F3270604B700B3FFE1 /* cy.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cy.lproj; path = ../../../../../Core/Core/CustomIntents/cy.lproj; sourceTree = "<group>"; };
-		6A57F1F4270604B700B3FFE1 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = ../../../../../Core/Core/CustomIntents/Base.lproj; sourceTree = "<group>"; };
-		6A57F1F5270604B700B3FFE1 /* nb.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nb.lproj; path = ../../../../../Core/Core/CustomIntents/nb.lproj; sourceTree = "<group>"; };
-		6A57F1F6270604B700B3FFE1 /* pt-BR.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "pt-BR.lproj"; path = "../../../../../Core/Core/CustomIntents/pt-BR.lproj"; sourceTree = "<group>"; };
-		6A57F1F7270604B700B3FFE1 /* pt.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pt.lproj; path = ../../../../../Core/Core/CustomIntents/pt.lproj; sourceTree = "<group>"; };
-		6A57F1F8270604B700B3FFE1 /* mi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mi.lproj; path = ../../../../../Core/Core/CustomIntents/mi.lproj; sourceTree = "<group>"; };
-		6A57F1F9270604B700B3FFE1 /* en-CA.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-CA.lproj"; path = "../../../../../Core/Core/CustomIntents/en-CA.lproj"; sourceTree = "<group>"; };
-		6A57F1FA270604B700B3FFE1 /* en-CY.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-CY.lproj"; path = "../../../../../Core/Core/CustomIntents/en-CY.lproj"; sourceTree = "<group>"; };
-		6A57F1FB270604B700B3FFE1 /* sv-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "sv-instk12.lproj"; path = "../../../../../Core/Core/CustomIntents/sv-instk12.lproj"; sourceTree = "<group>"; };
-		6A57F1FC270604B700B3FFE1 /* ca.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ca.lproj; path = ../../../../../Core/Core/CustomIntents/ca.lproj; sourceTree = "<group>"; };
-		6A57F1FD270604B700B3FFE1 /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nl.lproj; path = ../../../../../Core/Core/CustomIntents/nl.lproj; sourceTree = "<group>"; };
-		6A57F1FE270604B700B3FFE1 /* ht.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ht.lproj; path = ../../../../../Core/Core/CustomIntents/ht.lproj; sourceTree = "<group>"; };
-		6A57F1FF270604B700B3FFE1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = ../../../../../Core/Core/CustomIntents/en.lproj; sourceTree = "<group>"; };
-		6A57F200270604B800B3FFE1 /* ar.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ar.lproj; path = ../../../../../Core/Core/CustomIntents/ar.lproj; sourceTree = "<group>"; };
-		6A57F201270604B800B3FFE1 /* fr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fr.lproj; path = ../../../../../Core/Core/CustomIntents/fr.lproj; sourceTree = "<group>"; };
-		6A57F202270604B800B3FFE1 /* th.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = th.lproj; path = ../../../../../Core/Core/CustomIntents/th.lproj; sourceTree = "<group>"; };
-		6A57F203270604B800B3FFE1 /* zh.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = zh.lproj; path = ../../../../../Core/Core/CustomIntents/zh.lproj; sourceTree = "<group>"; };
-		6A57F204270604B800B3FFE1 /* fr-CA.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "fr-CA.lproj"; path = "../../../../../Core/Core/CustomIntents/fr-CA.lproj"; sourceTree = "<group>"; };
-		6A57F205270604B800B3FFE1 /* sl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sl.lproj; path = ../../../../../Core/Core/CustomIntents/sl.lproj; sourceTree = "<group>"; };
-		6A57F206270604B800B3FFE1 /* es.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = es.lproj; path = ../../../../../Core/Core/CustomIntents/es.lproj; sourceTree = "<group>"; };
-		6A57F207270604B800B3FFE1 /* sv.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sv.lproj; path = ../../../../../Core/Core/CustomIntents/sv.lproj; sourceTree = "<group>"; };
-		6A57F208270604B800B3FFE1 /* en-AU-unimelb.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-AU-unimelb.lproj"; path = "../../../../../Core/Core/CustomIntents/en-AU-unimelb.lproj"; sourceTree = "<group>"; };
-		6A57F209270604B800B3FFE1 /* ja.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ja.lproj; path = ../../../../../Core/Core/CustomIntents/ja.lproj; sourceTree = "<group>"; };
-		6A57F20A270604B800B3FFE1 /* zh-HK.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-HK.lproj"; path = "../../../../../Core/Core/CustomIntents/zh-HK.lproj"; sourceTree = "<group>"; };
-		6A57F20B270604B800B3FFE1 /* fi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fi.lproj; path = ../../../../../Core/Core/CustomIntents/fi.lproj; sourceTree = "<group>"; };
-		6A57F20C270604B800B3FFE1 /* en-GB-instukhe.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-GB-instukhe.lproj"; path = "../../../../../Core/Core/CustomIntents/en-GB-instukhe.lproj"; sourceTree = "<group>"; };
-		6A57F20D270604B800B3FFE1 /* de.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = de.lproj; path = ../../../../../Core/Core/CustomIntents/de.lproj; sourceTree = "<group>"; };
-		6A57F20E270604B800B3FFE1 /* is.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = is.lproj; path = ../../../../../Core/Core/CustomIntents/is.lproj; sourceTree = "<group>"; };
-		6A57F20F270604B900B3FFE1 /* da.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = da.lproj; path = ../../../../../Core/Core/CustomIntents/da.lproj; sourceTree = "<group>"; };
-		6A57F210270604B900B3FFE1 /* da-instk12.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "da-instk12.lproj"; path = "../../../../../Core/Core/CustomIntents/da-instk12.lproj"; sourceTree = "<group>"; };
-		6A57F211270604B900B3FFE1 /* en-AU.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "en-AU.lproj"; path = "../../../../../Core/Core/CustomIntents/en-AU.lproj"; sourceTree = "<group>"; };
-		6A57F212270604B900B3FFE1 /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ru.lproj; path = ../../../../../Core/Core/CustomIntents/ru.lproj; sourceTree = "<group>"; };
 		6A8DDFF52703B6EB00CA6F71 /* TeacherSiriExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TeacherSiriExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A8DDFF62703B6EB00CA6F71 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		6A8DDFF92703B6EB00CA6F71 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -747,7 +677,6 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
-				6AA07F2827042E5D00A2D646 /* CustomIntents */,
 				13B07FB51A68108700A75B9A /* Assets.xcassets */,
 				7D64A95B2362092B004EAEDF /* Attendance */,
 				B15CA241221DC4DA0014FB02 /* Extensions */,
@@ -841,48 +770,6 @@
 				6A8DDFFB2703B6EB00CA6F71 /* Info.plist */,
 			);
 			path = TeacherSiriExtension;
-			sourceTree = "<group>";
-		};
-		6AA07F2827042E5D00A2D646 /* CustomIntents */ = {
-			isa = PBXGroup;
-			children = (
-				6A57F200270604B800B3FFE1 /* ar.lproj */,
-				6A57F1F4270604B700B3FFE1 /* Base.lproj */,
-				6A57F1FC270604B700B3FFE1 /* ca.lproj */,
-				6A57F1F3270604B700B3FFE1 /* cy.lproj */,
-				6A57F210270604B900B3FFE1 /* da-instk12.lproj */,
-				6A57F20F270604B900B3FFE1 /* da.lproj */,
-				6A57F20D270604B800B3FFE1 /* de.lproj */,
-				6A57F208270604B800B3FFE1 /* en-AU-unimelb.lproj */,
-				6A57F211270604B900B3FFE1 /* en-AU.lproj */,
-				6A57F1F9270604B700B3FFE1 /* en-CA.lproj */,
-				6A57F1FA270604B700B3FFE1 /* en-CY.lproj */,
-				6A57F20C270604B800B3FFE1 /* en-GB-instukhe.lproj */,
-				6A57F1FF270604B700B3FFE1 /* en.lproj */,
-				6A57F206270604B800B3FFE1 /* es.lproj */,
-				6A57F20B270604B800B3FFE1 /* fi.lproj */,
-				6A57F204270604B800B3FFE1 /* fr-CA.lproj */,
-				6A57F201270604B800B3FFE1 /* fr.lproj */,
-				6A57F1FE270604B700B3FFE1 /* ht.lproj */,
-				6A57F20E270604B800B3FFE1 /* is.lproj */,
-				6A57F1F0270604B700B3FFE1 /* it.lproj */,
-				6A57F209270604B800B3FFE1 /* ja.lproj */,
-				6A57F1F8270604B700B3FFE1 /* mi.lproj */,
-				6A57F1F2270604B700B3FFE1 /* nb-instk12.lproj */,
-				6A57F1F5270604B700B3FFE1 /* nb.lproj */,
-				6A57F1FD270604B700B3FFE1 /* nl.lproj */,
-				6A57F1F1270604B700B3FFE1 /* pl.lproj */,
-				6A57F1F6270604B700B3FFE1 /* pt-BR.lproj */,
-				6A57F1F7270604B700B3FFE1 /* pt.lproj */,
-				6A57F212270604B900B3FFE1 /* ru.lproj */,
-				6A57F205270604B800B3FFE1 /* sl.lproj */,
-				6A57F1FB270604B700B3FFE1 /* sv-instk12.lproj */,
-				6A57F207270604B800B3FFE1 /* sv.lproj */,
-				6A57F202270604B800B3FFE1 /* th.lproj */,
-				6A57F20A270604B800B3FFE1 /* zh-HK.lproj */,
-				6A57F203270604B800B3FFE1 /* zh.lproj */,
-			);
-			path = CustomIntents;
 			sourceTree = "<group>";
 		};
 		7D0A28E0251A8104004FB3B6 /* SpeedGrader */ = {
@@ -1429,49 +1316,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CA347401F2147290000BB79 /* Localizable.strings in Resources */,
-				6A57F214270604B900B3FFE1 /* pl.lproj in Resources */,
-				6A57F234270604B900B3FFE1 /* en-AU.lproj in Resources */,
-				6A57F213270604B900B3FFE1 /* it.lproj in Resources */,
-				6A57F22D270604B900B3FFE1 /* zh-HK.lproj in Resources */,
 				3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */,
-				6A57F21F270604B900B3FFE1 /* ca.lproj in Resources */,
-				6A57F227270604B900B3FFE1 /* fr-CA.lproj in Resources */,
-				6A57F225270604B900B3FFE1 /* th.lproj in Resources */,
-				6A57F219270604B900B3FFE1 /* pt-BR.lproj in Resources */,
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
-				6A57F220270604B900B3FFE1 /* nl.lproj in Resources */,
 				13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */,
-				6A57F21A270604B900B3FFE1 /* pt.lproj in Resources */,
-				6A57F22A270604B900B3FFE1 /* sv.lproj in Resources */,
 				3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */,
-				6A57F21E270604B900B3FFE1 /* sv-instk12.lproj in Resources */,
-				6A57F226270604B900B3FFE1 /* zh.lproj in Resources */,
-				6A57F22C270604B900B3FFE1 /* ja.lproj in Resources */,
-				6A57F222270604B900B3FFE1 /* en.lproj in Resources */,
-				6A57F217270604B900B3FFE1 /* Base.lproj in Resources */,
-				6A57F21D270604B900B3FFE1 /* en-CY.lproj in Resources */,
-				6A57F231270604B900B3FFE1 /* is.lproj in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
-				6A57F21B270604B900B3FFE1 /* mi.lproj in Resources */,
-				6A57F22F270604B900B3FFE1 /* en-GB-instukhe.lproj in Resources */,
-				6A57F21C270604B900B3FFE1 /* en-CA.lproj in Resources */,
 				7D344E1B241160D100C052E6 /* Localizable.stringsdict in Resources */,
-				6A57F229270604B900B3FFE1 /* es.lproj in Resources */,
-				6A57F216270604B900B3FFE1 /* cy.lproj in Resources */,
-				6A57F215270604B900B3FFE1 /* nb-instk12.lproj in Resources */,
 				7D0D7B36251EA41B00550AEC /* SubmissionListViewController.storyboard in Resources */,
-				6A57F218270604B900B3FFE1 /* nb.lproj in Resources */,
-				6A57F22E270604B900B3FFE1 /* fi.lproj in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
-				6A57F232270604B900B3FFE1 /* da.lproj in Resources */,
-				6A57F22B270604B900B3FFE1 /* en-AU-unimelb.lproj in Resources */,
-				6A57F233270604B900B3FFE1 /* da-instk12.lproj in Resources */,
-				6A57F221270604B900B3FFE1 /* ht.lproj in Resources */,
-				6A57F228270604B900B3FFE1 /* sl.lproj in Resources */,
-				6A57F224270604B900B3FFE1 /* fr.lproj in Resources */,
-				6A57F223270604B900B3FFE1 /* ar.lproj in Resources */,
-				6A57F230270604B900B3FFE1 /* de.lproj in Resources */,
-				6A57F235270604B900B3FFE1 /* ru.lproj in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
