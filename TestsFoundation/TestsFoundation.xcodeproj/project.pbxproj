@@ -82,6 +82,7 @@
 		C935D43726E0EB9700C940F7 /* K5Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43626E0EB9700C940F7 /* K5Schedule.swift */; };
 		C935D43A26E5F59700C940F7 /* K5Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43926E5F59700C940F7 /* K5Grades.swift */; };
 		C95E966D27C3DB4E00DAAB4A /* SubmissionsListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E966C27C3DB4E00DAAB4A /* SubmissionsListPage.swift */; };
+		C95E967427C630E000DAAB4A /* EmptyPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E967327C630E000DAAB4A /* EmptyPanda.swift */; };
 		C9A23D1C27A2950D00A1EE3B /* DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1B27A2950D00A1EE3B /* DSAssignment.swift */; };
 		C9A23D1E27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1D27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift */; };
 		C9A23D2027A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1F27A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift */; };
@@ -233,6 +234,7 @@
 		C935D43626E0EB9700C940F7 /* K5Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Schedule.swift; sourceTree = "<group>"; };
 		C935D43926E5F59700C940F7 /* K5Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Grades.swift; sourceTree = "<group>"; };
 		C95E966C27C3DB4E00DAAB4A /* SubmissionsListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsListPage.swift; sourceTree = "<group>"; };
+		C95E967327C630E000DAAB4A /* EmptyPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPanda.swift; sourceTree = "<group>"; };
 		C9A23D1B27A2950D00A1EE3B /* DSAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAssignment.swift; sourceTree = "<group>"; };
 		C9A23D1D27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAssignmentRequest.swift; sourceTree = "<group>"; };
 		C9A23D1F27A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSAssignment.swift"; sourceTree = "<group>"; };
@@ -566,6 +568,14 @@
 			path = Submissions;
 			sourceTree = "<group>";
 		};
+		C95E967227C630CD00DAAB4A /* EmptyPanda */ = {
+			isa = PBXGroup;
+			children = (
+				C95E967327C630E000DAAB4A /* EmptyPanda.swift */,
+			);
+			path = EmptyPanda;
+			sourceTree = "<group>";
+		};
 		C9A23D1A27A294C900A1EE3B /* Assignment */ = {
 			isa = PBXGroup;
 			children = (
@@ -828,6 +838,7 @@
 		E809369724C21DFE00D15E9A /* CoreUIElements */ = {
 			isa = PBXGroup;
 			children = (
+				C95E967227C630CD00DAAB4A /* EmptyPanda */,
 				C9FDE92026BBCBD600DF0106 /* Announcements */,
 				C9A3C08E26A804F600DAE8E1 /* K5 */,
 				E8F4B66724EED071003FBAFD /* SpeedGrader */,
@@ -1024,6 +1035,7 @@
 				E80936DD24C2480B00D15E9A /* SpringBoard.swift in Sources */,
 				E80936C424C2480B00D15E9A /* Attachments.swift in Sources */,
 				7D903C1922C1513D009D9E9E /* NavBar.swift in Sources */,
+				C95E967427C630E000DAAB4A /* EmptyPanda.swift in Sources */,
 				9F5C92FE237302CA005105BB /* TestEnvironment.swift in Sources */,
 				9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */,
 				CFA078C82799B0B70078B27B /* DataSeeder+Enrollment.swift in Sources */,
