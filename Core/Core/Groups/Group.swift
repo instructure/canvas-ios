@@ -47,7 +47,12 @@ public final class Group: NSManagedObject, WriteableModel {
     public var color: UIColor { contextColor?.color ?? .ash }
 
     public var isActive: Bool {
-        courseID == nil || course?.enrollments?.contains(where: {$0.state == .active}) == true
+        if courseID == nil { return true }
+        guard let course = course, let enrollments = course.enrollments else {
+            return false
+        }
+
+        return enrollments.contains(where: {$0.state == .active}) && !course.isPastEnrollment
     }
 
     @discardableResult
