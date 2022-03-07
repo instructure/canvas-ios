@@ -24,6 +24,7 @@ struct BouncyImage: View {
     @State private var shouldTriggerDragStartFeedback = true
     private let imageFileName: String
     private let feedback = UIImpactFeedbackGenerator(style: .light)
+    private let springAnimation = Animation.interpolatingSpring(stiffness: 1000, damping: 10, initialVelocity: 1)
 
     public init(imageFileName: String) {
         self.imageFileName = imageFileName
@@ -46,8 +47,7 @@ struct BouncyImage: View {
             }
             .onEnded { _ in
                 feedback.impactOccurred()
-                let animation = Animation.interpolatingSpring(stiffness: 1000, damping: 10, initialVelocity: 1)
-                withAnimation(animation) {
+                withAnimation(springAnimation) {
                     scale = 1.0
                 }
             }
@@ -69,8 +69,7 @@ struct BouncyImage: View {
             .onEnded { _ in
                 shouldTriggerDragStartFeedback = true
                 feedback.impactOccurred()
-                let animation = Animation.interpolatingSpring(stiffness: 1000, damping: 10, initialVelocity: 1)
-                withAnimation(animation) {
+                withAnimation(springAnimation) {
                     dragOffset = .zero
                 }
             }
