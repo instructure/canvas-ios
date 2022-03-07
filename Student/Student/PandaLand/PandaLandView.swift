@@ -22,7 +22,7 @@ import SpriteKit
 public struct PandaLandView: View {
 
     let pandaLandSceneView = PandaLandSceneView()
-    let scene: PandaLandScene!
+    let scene: PandaLandGameScene!
 
     public init() {
         scene = pandaLandSceneView.scene

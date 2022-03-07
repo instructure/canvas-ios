@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "pandalandlogo.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

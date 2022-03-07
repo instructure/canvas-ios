@@ -35,6 +35,9 @@ class PandaLandControls: SKNode {
         leftButton.position = CGPoint(x: -sceneSize.width / 2 + buttonSize / 2 , y: yPosition)
         rightButton.position = CGPoint(x: leftButton.position.x + buttonSize, y: yPosition)
         upButton.position = CGPoint(x: sceneSize.width / 2 - buttonSize / 2, y: yPosition)
+        leftButton.color = .lightGray
+        rightButton.color = .lightGray
+        upButton.color = .lightGray
         addChild(leftButton)
         addChild(rightButton)
         addChild(upButton)

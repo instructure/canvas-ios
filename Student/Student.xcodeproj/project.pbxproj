@@ -224,7 +224,7 @@
 		E8DB184F24C7883B0042D6D7 /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB184E24C7883B0042D6D7 /* DashboardE2ETests.swift */; };
 		E8EA860B2304974C00E4FD76 /* NotificationsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA860A2304974C00E4FD76 /* NotificationsListTests.swift */; };
 		EB3ECFCA26375AF100289506 /* SideMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECFC926375AF100289506 /* SideMenuUITests.swift */; };
-		EBEBFDEA27CFBFC100E24154 /* PandaLandScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDE927CFBFC100E24154 /* PandaLandScene.swift */; };
+		EBEBFDEA27CFBFC100E24154 /* PandaLandGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDE927CFBFC100E24154 /* PandaLandGameScene.swift */; };
 		EBEBFDEC27CFBFCA00E24154 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDEB27CFBFCA00E24154 /* Utility.swift */; };
 		EBEBFDEE27CFBFDC00E24154 /* PandaLandPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDED27CFBFDC00E24154 /* PandaLandPlayer.swift */; };
 		EBEBFDF327CFC00E00E24154 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDF027CFC00D00E24154 /* JSTileMap.m */; };
@@ -233,6 +233,13 @@
 		EBEBFDFB27CFC09400E24154 /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFDFA27CFC09400E24154 /* map.tmx */; };
 		EBEBFDFF27CFC0F300E24154 /* PandaLandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFDFE27CFC0F300E24154 /* PandaLandView.swift */; };
 		EBEBFE0127D0B69800E24154 /* PandaLandControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFE0027D0B69800E24154 /* PandaLandControls.swift */; };
+		EBEBFE0727D2492C00E24154 /* PandaLandPlayer.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFE0627D2492C00E24154 /* PandaLandPlayer.atlas */; };
+		EBEBFE0B27D5F64200E24154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFE0927D5F64100E24154 /* Assets.xcassets */; };
+		EBEBFE0D27D5F6E100E24154 /* PandaParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFE0C27D5F6E100E24154 /* PandaParticle.sks */; };
+		EBEBFE1027D617B100E24154 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFE0F27D617B100E24154 /* coin.wav */; };
+		EBEBFE1227D61C2D00E24154 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFE1127D61C2D00E24154 /* bgMusic.mp3 */; };
+		EBEBFE1827D62F4A00E24154 /* PandaLandMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBFE1727D62F4A00E24154 /* PandaLandMenuScene.swift */; };
+		EBEBFE1D27D6496800E24154 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBEBFE1C27D6496800E24154 /* jump.wav */; };
 		F1FDF738C22DCB5A94323B15 /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CB0F553F9954BEE58A730D /* Pods_defaults_Student.framework */; };
 /* End PBXBuildFile section */
 
@@ -907,7 +914,7 @@
 		E8EA860D230497AC00E4FD76 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
 		E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
 		EB3ECFC926375AF100289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
-		EBEBFDE927CFBFC100E24154 /* PandaLandScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandaLandScene.swift; sourceTree = "<group>"; };
+		EBEBFDE927CFBFC100E24154 /* PandaLandGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandaLandGameScene.swift; sourceTree = "<group>"; };
 		EBEBFDEB27CFBFCA00E24154 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		EBEBFDED27CFBFDC00E24154 /* PandaLandPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandaLandPlayer.swift; sourceTree = "<group>"; };
 		EBEBFDEF27CFC00D00E24154 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
@@ -918,6 +925,13 @@
 		EBEBFDFA27CFC09400E24154 /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.tmx; sourceTree = "<group>"; };
 		EBEBFDFE27CFC0F300E24154 /* PandaLandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandaLandView.swift; sourceTree = "<group>"; };
 		EBEBFE0027D0B69800E24154 /* PandaLandControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaLandControls.swift; sourceTree = "<group>"; };
+		EBEBFE0627D2492C00E24154 /* PandaLandPlayer.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = PandaLandPlayer.atlas; sourceTree = "<group>"; };
+		EBEBFE0927D5F64100E24154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EBEBFE0C27D5F6E100E24154 /* PandaParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PandaParticle.sks; sourceTree = "<group>"; };
+		EBEBFE0F27D617B100E24154 /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
+		EBEBFE1127D61C2D00E24154 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic.mp3; sourceTree = "<group>"; };
+		EBEBFE1727D62F4A00E24154 /* PandaLandMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaLandMenuScene.swift; sourceTree = "<group>"; };
+		EBEBFE1C27D6496800E24154 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		EC9D739AAC5FF4C6AAF4F8A7 /* Pods_needs_pspdfkit_StudentE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_StudentE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2149,14 +2163,19 @@
 		EBEBFDE727CFBF8F00E24154 /* PandaLand */ = {
 			isa = PBXGroup;
 			children = (
+				EBEBFE0E27D616C900E24154 /* Sounds */,
+				EBEBFE0627D2492C00E24154 /* PandaLandPlayer.atlas */,
 				EBEBFDFA27CFC09400E24154 /* map.tmx */,
 				EBEBFDF827CFC08500E24154 /* tiles_spritesheet.png */,
 				EBEBFDEB27CFBFCA00E24154 /* Utility.swift */,
 				EBEBFDED27CFBFDC00E24154 /* PandaLandPlayer.swift */,
 				EBEBFE0027D0B69800E24154 /* PandaLandControls.swift */,
-				EBEBFDE927CFBFC100E24154 /* PandaLandScene.swift */,
+				EBEBFDE927CFBFC100E24154 /* PandaLandGameScene.swift */,
+				EBEBFE0927D5F64100E24154 /* Assets.xcassets */,
 				EBEBFDFE27CFC0F300E24154 /* PandaLandView.swift */,
 				EBEBFDE827CFBFA200E24154 /* JSTileMap */,
+				EBEBFE0C27D5F6E100E24154 /* PandaParticle.sks */,
+				EBEBFE1727D62F4A00E24154 /* PandaLandMenuScene.swift */,
 			);
 			path = PandaLand;
 			sourceTree = "<group>";
@@ -2170,6 +2189,16 @@
 				EBEBFDF227CFC00E00E24154 /* LFCGzipUtility.m */,
 			);
 			path = JSTileMap;
+			sourceTree = "<group>";
+		};
+		EBEBFE0E27D616C900E24154 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				EBEBFE1127D61C2D00E24154 /* bgMusic.mp3 */,
+				EBEBFE0F27D617B100E24154 /* coin.wav */,
+				EBEBFE1C27D6496800E24154 /* jump.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2495,6 +2524,7 @@
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
 				3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */,
 				EBEBFDF927CFC08500E24154 /* tiles_spritesheet.png in Resources */,
+				EBEBFE1D27D6496800E24154 /* jump.wav in Resources */,
 				9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */,
 				7DCF0FBD22F8A8D7000AACCE /* Drawer.xib in Resources */,
 				7DCF0FC122F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.xib in Resources */,
@@ -2502,6 +2532,8 @@
 				7D38A7D724CF610E00A4373E /* QuizDetailsViewController.storyboard in Resources */,
 				2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */,
 				7DCF0FAE22F8A8D7000AACCE /* RubricCollectionViewCell.xib in Resources */,
+				EBEBFE1027D617B100E24154 /* coin.wav in Resources */,
+				EBEBFE1227D61C2D00E24154 /* bgMusic.mp3 in Resources */,
 				7DCF0FC322F8A8D7000AACCE /* SubmissionDetailsViewController.storyboard in Resources */,
 				7DCF0FD022F8A8D7000AACCE /* UrlSubmissionViewController.storyboard in Resources */,
 				2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */,
@@ -2510,7 +2542,10 @@
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				7DB3C84024AA613B00B85D35 /* CalendarEventDetailsViewController.storyboard in Resources */,
 				7DCF0FB822F8A8D7000AACCE /* SubmissionCommentsViewController.storyboard in Resources */,
+				EBEBFE0727D2492C00E24154 /* PandaLandPlayer.atlas in Resources */,
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
+				EBEBFE0D27D5F6E100E24154 /* PandaParticle.sks in Resources */,
+				EBEBFE0B27D5F64200E24154 /* Assets.xcassets in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
 				7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */,
 				EBEBFDFB27CFC09400E24154 /* map.tmx in Resources */,
@@ -2977,7 +3012,7 @@
 				7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */,
 				7DCF0FB322F8A8D7000AACCE /* SubmissionCommentAudioCell.swift in Sources */,
 				7DCF0FC222F8A8D7000AACCE /* SubmissionDetailsPresenter.swift in Sources */,
-				EBEBFDEA27CFBFC100E24154 /* PandaLandScene.swift in Sources */,
+				EBEBFDEA27CFBFC100E24154 /* PandaLandGameScene.swift in Sources */,
 				7DCF0F9022F8A84D000AACCE /* CourseNavigationPresenter.swift in Sources */,
 				7DCF0FB622F8A8D7000AACCE /* SubmissionCommentHeaderCell.swift in Sources */,
 				EBEBFDEE27CFBFDC00E24154 /* PandaLandPlayer.swift in Sources */,
@@ -2985,6 +3020,7 @@
 				9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */,
 				7DCF0FB722F8A8D7000AACCE /* SubmissionCommentsPresenter.swift in Sources */,
 				9F61B52C205985A5009C0B13 /* StudentAppDelegate+Helm.swift in Sources */,
+				EBEBFE1827D62F4A00E24154 /* PandaLandMenuScene.swift in Sources */,
 				7DCF0FB122F8A8D7000AACCE /* RubricLongDescriptionViewController.swift in Sources */,
 				7DCF0F9922F8A868000AACCE /* GroupNavigationViewController.swift in Sources */,
 				7DCF0F7822F8A0CC000AACCE /* Routes.swift in Sources */,

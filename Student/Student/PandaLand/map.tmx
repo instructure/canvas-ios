@@ -5,17 +5,17 @@
  </tileset>
  <layer id="3" name="gems" width="100" height="10">
   <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6AlsX9Mj4XwEBKQAADUXAcA4LEF8ZAAHw==
+   eJzt1dEJACAMQ0En6f5jukALAa1ifAfinxINdAy8IorVdZczt3xVN7KcbtlVq7lPvduN//m1E8gpfeicPyrmn8YtD/pEse86F4BmAjZlA4U=
   </data>
  </layer>
  <layer id="1" name="background" width="100" height="10">
   <data encoding="base64" compression="zlib">
-   eJztzrEJACAUA9G/hCIq6P5TGiwsxD4g9+CaVIkAAAA/SSq7T+CoqqnuPoJtqHltxfADAF4W4/QA1A==
+   eJxjYBgFo2BkAtaBdsAoGAWDCDANtANGAVWBKBCLDbQjqACGkj/wuVUKiKWBWIZ+zqEJGEr+wOVWRSCWB2IFNHEJHOYwEmEXLr3EAJj54njU4CqfYf5QRBJjIdMd6HYQ429iACxsYG6VpZK5o2AUDGcAABKdAwI=
   </data>
  </layer>
  <layer id="2" name="walls" width="100" height="10">
   <data encoding="base64" compression="zlib">
-   eJztzjsKACAMBFErtRL8NN7/oqZMoZCAoMU8mGYhkBAAAADwmyZ1abx+BLgsSslQPtzsdr3Bp0rF0Dzc7Ha9wWcBdpgB3g==
+   eJztlt0KgCAMRr0qIwi0bnz/F02hQqTNmYm6OvBBivtVQyHaZbCStZP4uZis5tpJNIK2WgFthWKFfrnsB1Rfbygrc3xD58OvMVzTe/0p5O45Zq8z/KbEKQWX+/DmPnwZynnw/yW1el7q3HK5Dyfc6snBvfFHgiRgA81Dtk/ywWJQ4mPrY2OqrxSwPrk3zEKQ8fwpwjxkG+POBxaDEh9bHxtTfaWA9WkH7gcKZg==
   </data>
  </layer>
 </map>
