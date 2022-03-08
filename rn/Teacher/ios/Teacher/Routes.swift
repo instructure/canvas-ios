@@ -273,6 +273,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return vc
     },
 
+    "/dev-menu/pandas": { _, _, _ in
+        CoreHostingController(PandaGallery())
+    },
+
     "/profile": { _, _, _ in
         return CoreHostingController(SideMenuView(.teacher), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },
