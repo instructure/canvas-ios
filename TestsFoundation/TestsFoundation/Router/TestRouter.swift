@@ -59,7 +59,7 @@ public class TestRouter: Router {
     }
 
     public var showExpectation = XCTestExpectation(description: "show")
-    public override func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)? = nil) {
+    public override func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, analyticsRoute: String? = "/unknown", completion: (() -> Void)? = nil) {
         var options = options
         if view is UIAlertController { options = .modal() }
         viewControllerCalls.append((view, from, options))

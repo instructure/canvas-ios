@@ -97,6 +97,8 @@ open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
     public static let DefaultRouteOptions: RouteOptions = .push
 
+    public var count: Int { handlers.count }
+
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
 
@@ -105,16 +107,7 @@ open class Router {
         self.fallback = fallback
     }
 
-    public var count: Int {
-        return handlers.count
-    }
-
-    private func cleanURL(_ url: URLComponents) -> URLComponents {
-        // URLComponents does all the encoding we care about except we often have + meaning space in query
-        var url = url
-        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
-        return url
-    }
+    // MARK: - Route Matching
 
     public func match(_ url: URL, userInfo: [String: Any]? = nil) -> UIViewController? {
         return match(.parse(url), userInfo: userInfo)
@@ -132,6 +125,8 @@ open class Router {
         return nil
     }
 
+    // MARK: - Routing
+
     public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
     }
@@ -140,23 +135,39 @@ open class Router {
     }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
+
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
-        Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
+
         for route in handlers {
             if let params = route.match(url) {
+                var analyticsViewController: UIViewController?
+
                 if let view = route.factory(url, params, userInfo) {
-                    show(view, from: from, options: options)
+                    analyticsViewController = view
+                    show(view, from: from, options: options, analyticsRoute: nil)
                 }
+
+                Analytics.shared.logScreenView(route: route.template, viewController: analyticsViewController)
                 return // don't fall back if a matched route returns no view
             }
         }
         fallback(url, userInfo, from, options)
     }
 
-    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, completion: (() -> Void)? = nil) {
+    // MARK: - View Controller Presentation
+
+    /**
+     - parameters:
+        - analyticsRoute: The route to be reported as screen\_view analytics event. If nil, no route is reported but this is only for internal usage to avoid both the `route` and `show` functions reporting the same event.
+     */
+    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, analyticsRoute: String? = "/unknown", completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
+
+        if let analyticsRoute = analyticsRoute {
+            Analytics.shared.logScreenView(route: analyticsRoute, viewController: view)
+        }
 
         if let displayModeButton = from.splitDisplayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
@@ -215,7 +226,11 @@ open class Router {
         }
     }
 
+    // MARK: - External URL
+
     public static func open(url: URLComponents) {
+        Analytics.shared.logScreenView(route: "/external_url")
+
         var components = url
         // Canonicalize relative & schemes we know about.
         switch components.scheme {
@@ -241,5 +256,14 @@ open class Router {
                 AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
             }
         }
+    }
+
+    // MARK: - Private Methods
+
+    private func cleanURL(_ url: URLComponents) -> URLComponents {
+        // URLComponents does all the encoding we care about except we often have + meaning space in query
+        var url = url
+        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
+        return url
     }
 }

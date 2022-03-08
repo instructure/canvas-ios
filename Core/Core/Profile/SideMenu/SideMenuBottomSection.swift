@@ -166,7 +166,7 @@ struct SideMenuBottomSection: View {
         })
         let helpViewController = CoreHostingController(helpView)
         helpViewController.title = root.text
-        env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+        env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true), analyticsRoute: "/profile/help")
     }
 
     private static func readDevMenuVisibilityFromUserDefaults() -> Bool {

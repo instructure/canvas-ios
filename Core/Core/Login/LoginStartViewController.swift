@@ -194,6 +194,8 @@ class LoginStartViewController: UIViewController {
 
     @IBAction func findTapped(_ sender: UIButton) {
         var controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
+        var analyticsRoute = "/login/find"
+
         if let host = MDMManager.shared.host {
             let provider = MDMManager.shared.authenticationProvider
             if method == .manualOAuthLogin {
@@ -202,6 +204,7 @@ class LoginStartViewController: UIViewController {
                     host: host,
                     loginDelegate: loginDelegate
                 )
+                analyticsRoute = "/login/manualoauth"
             } else {
                 controller = LoginWebViewController.create(
                     authenticationProvider: provider,
@@ -209,9 +212,11 @@ class LoginStartViewController: UIViewController {
                     loginDelegate: loginDelegate,
                     method: method
                 )
+                analyticsRoute = "/login/weblogin"
             }
         }
-        env.router.show(controller, from: self)
+
+        env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {
@@ -272,13 +277,13 @@ class LoginStartViewController: UIViewController {
         Analytics.shared.logEvent("qr_code_login_clicked")
         let tutorial = LoginQRCodeTutorialViewController.create()
         tutorial.delegate = self
-        env.router.show(tutorial, from: self, options: .modal(embedInNav: true))
+        env.router.show(tutorial, from: self, options: .modal(embedInNav: true), analyticsRoute: "/login/qr/tutorial")
     }
 
     func launchQRScanner() {
         let scanner = ScannerViewController()
         scanner.delegate = self
-        self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
+        self.env.router.show(scanner, from: self, options: .modal(.fullScreen), analyticsRoute: "/login/qr")
     }
 
     func logIn(withCode code: String) {
