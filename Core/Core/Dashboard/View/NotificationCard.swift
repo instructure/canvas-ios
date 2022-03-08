@@ -31,6 +31,7 @@ struct NotificationCard: View {
             VStack {
                 icon.foregroundColor(.white)
                     .padding(.horizontal, 8).padding(.top, 10)
+                    .accessibility(hidden: true)
                 Spacer()
             }
                 .background(backgroundColor)
@@ -40,7 +41,7 @@ struct NotificationCard: View {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack { Spacer() }
                         Text(notification.subject)
-                            .font(.semibold16).foregroundColor(.textDarkest)
+                            .font(.semibold16).foregroundColor(.textDarkest).multilineTextAlignment(.leading)
                         if !isExpanded {
                             Text("Tap to view announcement", bundle: .core)
                                 .font(.regular14).foregroundColor(.textDark)

@@ -98,12 +98,8 @@ class GradesWidgetViewController: UIViewController {
     }
     var submissions: [Submission] { submissionList.first?.submissions ?? [] }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        print("Grades WIDGET MEMORY WARNING")
-    }
-
     override func viewDidLoad() {
+        UITableView.setupDefaultSectionHeaderTopPadding()
         view.backgroundColor = UIColor.clear
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
@@ -186,9 +182,10 @@ extension GradesWidgetViewController: UITableViewDataSource {
         view.backgroundColor = .clear
 
         let sectionFont = UIFont.scaledNamedFont(.bold20)
-        let title = UILabel(frame: CGRect(x: 16, y: 16, width: tableView.frame.size.width, height: sectionFont.lineHeight))
+        let title = UILabel(frame: CGRect(x: 16, y: 16, width: tableView.frame.size.width - 32, height: sectionFont.lineHeight))
         title.font = sectionFont
         title.textColor = UIColor.textDarkest
+        title.allowsDefaultTighteningForTruncation = true
         title.text = section == 0
             ? NSLocalizedString("Recently Graded Assignments", comment: "")
             : NSLocalizedString("Course Grades", comment: "")

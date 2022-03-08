@@ -16,11 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 public struct DSAssignment: Codable {
     public let name: String
     public let id: String
     public let position: Int
-    public let submission_types: [String]?
+    public let submission_types: [SubmissionType]
     public let points_possible: Int?
     public let grading_type: String?
     public let description: String?

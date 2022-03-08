@@ -26,6 +26,7 @@ public struct DashboardCardView: View {
     @ObservedObject var settings: Store<GetUserSettings>
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
+    @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -69,13 +70,11 @@ public struct DashboardCardView: View {
                     .identifier("Dashboard.profileButton")
                     .accessibility(label: Text("Profile Menu", bundle: .core)),
 
-                trailing: Button(action: {
-                    env.router.route(to: "/courses", from: controller)
-                }, label: {
-                    Text("Edit", bundle: .core).fontWeight(.regular)
+                trailing: Button(action: layoutViewModel.toggle) {
+                    layoutViewModel.buttonImage
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                })
-                    .identifier("Dashboard.editButton")
+                        .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
+                }
             )
 
             .onAppear { refresh(force: false) }
@@ -111,33 +110,31 @@ public struct DashboardCardView: View {
             ZStack { CircleProgress() }
                 .frame(minWidth: size.width, minHeight: size.height)
         case .data(let cards):
-            Section(
-                header: HStack(alignment: .lastTextBaseline) {
-                    Text("Courses", bundle: .core)
-                        .font(.heavy24).foregroundColor(.textDarkest)
-                        .accessibility(identifier: "dashboard.courses.heading-lbl")
-                        .accessibility(addTraits: .isHeader)
-                    Spacer()
-                    Button(action: showAllCourses, label: {
-                        Text("All Courses", bundle: .core)
-                            .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    }).accessibility(identifier: "dashboard.courses.see-all-btn")
-                }
-                    .padding(.top, 16).padding(.bottom, 8)
-            ) {
-                let spacing: CGFloat = 16
-                let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
-                // This allows 2 columns on iPhone SE landscape
-                let columns: CGFloat = (size.width >= 635 ? 2 : 1)
-                let cardWidth: CGFloat = (size.width - ((columns - 1) * spacing)) / columns
-                DashboardGrid(itemCount: cards.count, itemWidth: cardWidth, spacing: spacing, columnCount: Int(columns)) { cardIndex in
-                    let card = cards[cardIndex]
-                    CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: cardWidth)
-                        // outside the CourseCard, because that isn't observing colors
-                        .accentColor(Color(card.color.ensureContrast(against: .white)))
-                        .frame(minHeight: 160)
-                }
+            HStack(alignment: .lastTextBaseline) {
+                Text("Courses", bundle: .core)
+                    .font(.heavy24).foregroundColor(.textDarkest)
+                    .accessibility(identifier: "dashboard.courses.heading-lbl")
+                    .accessibility(addTraits: .isHeader)
+                Spacer()
+                Button(action: showAllCourses) {
+                    Text("Edit Dashboard", bundle: .core)
+                        .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
+                }.identifier("Dashboard.editButton")
             }
+            .frame(width: size.width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
+            .padding(.top, 16).padding(.bottom, 8)
+
+            let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
+            let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
+            DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
+                let card = cards[cardIndex]
+                CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth)
+                    // outside the CourseCard, because that isn't observing colors
+                    .accentColor(Color(card.color.ensureContrast(against: .white)))
+                    .frame(minHeight: 160)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 2)
         case .empty:
             EmptyPanda(.Teacher,
                 title: Text("No Courses", bundle: .core),
@@ -166,7 +163,7 @@ public struct DashboardCardView: View {
                 }
                     .padding(.top, 16).padding(.bottom, 8)) {
                 ForEach(filteredGroups, id: \.id) { group in
-                    GroupCard(group: group, course: group.getCourse())
+                    GroupCard(group: group, course: group.course)
                         // outside the GroupCard, because that isn't observing colors
                         .accentColor(Color(group.color.ensureContrast(against: .white)))
                         .padding(.bottom, 16)

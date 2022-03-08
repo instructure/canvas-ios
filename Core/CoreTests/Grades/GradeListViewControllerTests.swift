@@ -210,7 +210,7 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
     }
 
-    func testShowFinalGradeLetter() {
+    func testShowGradeLetter() {
         api.mock(controller.courses, value: .make(enrollments: [ .make(
             id: nil,
             course_id: "1",
@@ -230,7 +230,7 @@ class GradeListViewControllerTests: CoreTestCase {
             enrollment_state: .active,
             type: "StudentEnrollment",
             user_id: self.currentSession.userID,
-            computed_final_grade: "C",
+            computed_current_grade: "C",
             current_period_computed_current_score: 42
         ), ])
         controller.view.layoutIfNeeded()

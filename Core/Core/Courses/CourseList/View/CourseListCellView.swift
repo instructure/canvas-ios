@@ -46,6 +46,7 @@ struct CourseListCell: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                     HStack(spacing: 8) {
                         let role = course.enrollments?.first { $0.state != .deleted }?.formattedRole
                         course.termName.map { Text($0) }

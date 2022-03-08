@@ -1,0 +1,12 @@
+/* (No Comment) */
+"Enabled" = "Đã bật";
+
+/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
+"Group" = "Nhóm";
+
+/* (No Comment) */
+"Name" = "Tên";
+
+/* (No Comment) */
+"none given" = "chưa có gì được cung cấp";
+

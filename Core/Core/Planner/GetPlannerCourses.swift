@@ -30,13 +30,18 @@ class GetPlannerCourses: APIUseCase {
     }
 
     var scope: Scope {
-        .where(
-            #keyPath(Course.planner.studentID),
-            equals: studentID,
-            orderBy: #keyPath(Course.name),
-            ascending: true,
-            naturally: true
-        )
+        let studentIdPredicate: NSPredicate
+
+        if let studentID = studentID {
+            studentIdPredicate = NSPredicate(format: "%K == %@", #keyPath(Course.planner.studentID), studentID)
+        } else {
+            studentIdPredicate = NSPredicate(format: "%K == NIL", #keyPath(Course.planner.studentID))
+        }
+        let enrollmentPredicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.active.rawValue)
+        return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [studentIdPredicate, enrollmentPredicate]),
+                     orderBy: #keyPath(Course.name),
+                     ascending: true,
+                     naturally: true)
     }
 
     init(studentID: String?) {

@@ -137,6 +137,15 @@ class PageListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell.titleLabel.text, "z next page")
     }
 
+    func testFrontPageCellHeightWithFrontPageButNoOtherPages() {
+        api.mock(controller.pages, value: [])
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(controller.tableView(controller.tableView, heightForRowAt: IndexPath(row: 0, section: 0)), UITableView.automaticDimension)
+    }
+
     func apiPageToDictionary(page: APIPage) -> [String: Any] {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601

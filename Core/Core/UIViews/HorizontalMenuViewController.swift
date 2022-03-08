@@ -52,7 +52,7 @@ open class HorizontalMenuViewController: UIViewController {
         view.backgroundColor = UIColor.backgroundLightest
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(splitViewControllerWillChangeDisplayModes),
+            selector: #selector(splitViewControllerWillChangeDisplayModes(_:)),
             name: .SplitViewControllerWillChangeDisplayModeNotification,
             object: nil
         )
@@ -263,11 +263,17 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
     func refreshOnLayoutTransitions() {
         layoutViewControllers()
         reload()
+
+        guard menu?.numberOfItems(inSection: 0) != 0 else { return }
         menu?.scrollToItem(at: selectedIndexPath, at: .left, animated: false)
         pages?.scrollToItem(at: selectedIndexPath, at: .left, animated: false)
     }
 
-    @objc public func splitViewControllerWillChangeDisplayModes() {
+    @objc public func splitViewControllerWillChangeDisplayModes(_ notification: NSNotification) {
+        guard let changedSplitView = notification.object as? UISplitViewController, splitViewController == changedSplitView else {
+            return
+        }
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.04) { [weak self] in
             UIView.animate(withDuration: 0.1) {
                 self?.refreshOnLayoutTransitions()

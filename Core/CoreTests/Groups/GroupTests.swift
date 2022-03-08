@@ -48,7 +48,17 @@ class GroupTests: CoreTestCase {
         XCTAssertTrue(group.isActive)
 
         Course.make()
-        group = Group.make(from: .make(course_id: "1"))
+        group = Group.save(.make(course_id: "1"), in: databaseClient)
         XCTAssertTrue(group.isActive)
+
+        Course.make(from: .make(end_at: Date.distantPast), in: databaseClient)
+        group = Group.save(.make(course_id: "1"), in: databaseClient)
+        XCTAssertFalse(group.isActive)
+    }
+
+    func testCourseRelationship() {
+        let course = Course.save(.make(id: "course_1"), in: databaseClient)
+        let testee = Group.save(.make(course_id: "course_1"), in: databaseClient)
+        XCTAssertEqual(testee.course, course)
     }
 }

@@ -55,6 +55,11 @@ public struct SessionDefaults {
         }
     }
 
+    public var isDashboardLayoutGrid: Bool {
+        get { (self["isDashboardLayoutGrid"] as? Bool) ?? false }
+        set { self["isDashboardLayoutGrid"] = newValue }
+    }
+
     public var isMissingItemsSectionOpenOnK5Schedule: Bool? {
         get { return self["isMissingItemsSectionOpenOnK5Schedule"] as? Bool }
         set { self["isMissingItemsSectionOpenOnK5Schedule"] = newValue }

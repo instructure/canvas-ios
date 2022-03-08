@@ -878,6 +878,9 @@
 "Filter" = "Filter";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrer etter";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrer etter:";
 
 /* No comment provided by engineer. */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Innvirkningsnivå";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Viktige datoer";
 
 /* No comment provided by engineer. */
 "Important Info" = "Viktig info";
@@ -2045,6 +2051,9 @@
 "There are no active assignments in this course." = "Det er ingen aktive oppgaver i dette emnet.";
 
 /* No comment provided by engineer. */
+"There are no assignments to display." = "Det er ingen oppgaver å vise.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Det er ennå ingen videomøter å vise.";
 
 /* No comment provided by engineer. */
@@ -2277,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Vist";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Venter på at det skal skje noe viktig.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Vi kunne ikke finne noen slike emner.";

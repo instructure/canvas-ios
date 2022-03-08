@@ -20,36 +20,31 @@ import SwiftUI
 
 public class K5ImportantDate {
     public var title: String {
-        if let date = date {
-            return date.weekdayName + ", " + date.dayInMonth
-        }
-        return ""
+        return date.weekdayName + ", " + date.dayInMonth
     }
-    public let date: Date?
+    public let date: Date
     public var events: [K5ImportantDateItem] {
-        return Array(uniqueEvents).filter({$0.date != nil}).sorted(by: {$0.date!.timeIntervalSince1970 < $1.date!.timeIntervalSince1970})
+        return Array(uniqueEvents).sorted(by: { ($0.date, $0.subject, $0.title) < ($1.date, $1.subject, $1.title) })
     }
     private var uniqueEvents: Set<K5ImportantDateItem>
 
-    init(with event: CalendarEvent, color: Color) {
-        self.date = event.startAt
-        let dateEvent = K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
+    init?(with event: CalendarEvent, color: Color) {
+        guard let startDate = event.startAt else { return nil }
+        self.date = startDate
+        let dateEvent = K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: startDate, route: event.htmlURL, type: event.type)
         uniqueEvents = [dateEvent]
     }
 
 #if DEBUG
-    init(with date: Date?, events: Set<K5ImportantDateItem>) {
+    init(with date: Date, events: Set<K5ImportantDateItem>) {
         self.date = date
         self.uniqueEvents = events
     }
 #endif
 
     public func addEvent(_ event: CalendarEvent, color: Color) {
-        uniqueEvents.insert(importantDateItem(from: event, color: color))
-    }
-
-    private func importantDateItem(from event: CalendarEvent, color: Color) -> K5ImportantDateItem {
-        return K5ImportantDateItem(subject: event.contextName, title: event.title, color: color, date: event.startAt, route: event.htmlURL, type: event.type)
+        guard let importantDateItem = K5ImportantDateItem(with: event, color: color) else { return }
+        uniqueEvents.insert(importantDateItem)
     }
 }
 
@@ -68,7 +63,7 @@ public struct K5ImportantDateItem {
     public let subject: String
     public let title: String
     public let color: Color
-    public let date: Date?
+    public let date: Date
     public let route: URL?
     public let type: CalendarEventType
     public var iconImage: Image {
@@ -80,13 +75,18 @@ public struct K5ImportantDateItem {
         }
     }
 
-    init(subject: String?, title: String, color: Color, date: Date?, route: URL?, type: CalendarEventType) {
+    init(subject: String?, title: String, color: Color, date: Date, route: URL?, type: CalendarEventType) {
         self.subject = subject ?? ""
         self.title = title
         self.color = color
         self.date = date
         self.route = route
         self.type = type
+    }
+
+    init?(with event: CalendarEvent, color: Color) {
+        guard let startDate = event.startAt else { return nil }
+        self.init(subject: event.contextName, title: event.title, color: color, date: startDate, route: event.htmlURL, type: event.type)
     }
 }
 

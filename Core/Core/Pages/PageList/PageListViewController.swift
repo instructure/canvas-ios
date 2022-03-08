@@ -202,7 +202,9 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == pages.count {
+        if indexPath.section == 0 && !frontPage.isEmpty {
+            return UITableView.automaticDimension
+        } else if indexPath.row == pages.count {
             // Loading cell height
             return 73
         } else {

@@ -82,7 +82,7 @@ public class CourseListViewModel: ObservableObject {
         guard allCourses.requested, !allCourses.pending, !courseSectionStatus.isUpdatePending else { return }
 
         guard allCourses.state != .error else {
-            state = .error(allCourses.error?.localizedDescription ?? "")
+            state = .error(NSLocalizedString("Something went wrong", comment: ""))
             return
         }
 

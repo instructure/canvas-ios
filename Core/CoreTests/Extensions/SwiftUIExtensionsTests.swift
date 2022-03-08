@@ -24,4 +24,16 @@ class SwiftUIExtensionsTests: XCTestCase {
     func testFormattedNumberTextInitializer() {
         XCTAssertEqual(Text(0.12, number: .percent), Text(verbatim: "12%"))
     }
+
+    @available(iOS 15, *)
+    func testAttributedtext() {
+        let testColor = Color.red
+        let testText = "test text"
+        let attribute = AttributeContainer([.foregroundColor: testColor])
+        let testee = Text(testText) {
+            $0.setAttributes(attribute)
+        }
+        let attributedString = AttributedString(testText, attributes: attribute)
+        XCTAssertEqual(testee, Text(attributedString))
+    }
 }

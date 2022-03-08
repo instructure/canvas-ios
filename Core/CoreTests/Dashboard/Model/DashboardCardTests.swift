@@ -55,4 +55,10 @@ class DashboardCardTests: CoreTestCase {
         XCTAssertTrue(teacherCard?.isTeacherEnrollment == true)
         XCTAssertTrue(taCard?.isTeacherEnrollment == true)
     }
+
+    func testUpdatesCourseRelationship() {
+        let course = Course.save(.make(), in: databaseClient)
+        let card = DashboardCard.save(.make(), position: 0, in: databaseClient)
+        XCTAssertEqual(card.course, course)
+    }
 }

@@ -76,7 +76,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
             top?.navigationItem.leftItemsSupplementBackButton = true
             if top?.isKind(of: EmptyViewController.self) == false {
                 top?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode)
-                NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: self)
             }
         }
     }

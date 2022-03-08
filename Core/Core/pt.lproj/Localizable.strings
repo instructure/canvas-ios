@@ -878,6 +878,9 @@
 "Filter" = "Filtro";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrar por";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrar por:";
 
 /* No comment provided by engineer. */
@@ -1044,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Nível de Impacto";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Datas importantes";
 
 /* No comment provided by engineer. */
 "Important Info" = "Informação importante";
@@ -2045,6 +2051,9 @@
 "There are no active assignments in this course." = "Não há tarefas ativas nesta disciplina.";
 
 /* No comment provided by engineer. */
+"There are no assignments to display." = "Não há tarefas a serem exibidas.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Ainda não há conferências para exibir.";
 
 /* No comment provided by engineer. */
@@ -2277,6 +2286,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Exibida";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "À espera que coisas importantes aconteçam.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Não conseguimos encontrar nenhuma disciplina assim.";

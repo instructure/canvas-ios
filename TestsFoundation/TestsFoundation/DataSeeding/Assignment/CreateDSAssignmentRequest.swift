@@ -28,7 +28,7 @@ public struct CreateDSAssignmentRequest: APIRequestable {
 
     public init(body: Body, courseId: String) {
         self.body = body
-        self.path = "/api/v1/courses/\(courseId)/assignments"
+        self.path = "courses/\(courseId)/assignments"
     }
 }
 
@@ -37,11 +37,13 @@ extension CreateDSAssignmentRequest {
         let name: String
         let description: String?
         let published: Bool
+        let submission_types: [SubmissionType]
 
-        public init(name: String = "Assignment Name", description: String? = nil, published: Bool = true) {
+        public init(name: String = "Assignment Name", description: String? = nil, published: Bool = true, submission_types: [SubmissionType] = [SubmissionType.online_text_entry]) {
             self.name = name
             self.description = description
             self.published = published
+            self.submission_types = submission_types
         }
     }
 

@@ -173,4 +173,18 @@ class CourseTests: CoreTestCase {
         XCTAssertFalse(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment")])).hasTeacherEnrollment)
         XCTAssertTrue(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment"), .make(type: "TeacherEnrollment")])).hasTeacherEnrollment)
     }
+
+    func testUpdatesRelatedDashboardCardRelationship() {
+        let card = DashboardCard.save(.make(), position: 0, in: databaseClient)
+        XCTAssertNil(card.course)
+        let course = Course.save(.make(), in: databaseClient)
+        XCTAssertEqual(card.course, course)
+    }
+
+    func testUpdatesRelatedGroupRelationship() {
+        let group = Group.save(.make(course_id: "course_1"), in: databaseClient)
+        XCTAssertNil(group.course)
+        let course = Course.save(.make(id: "course_1"), in: databaseClient)
+        XCTAssertEqual(group.course, course)
+    }
 }

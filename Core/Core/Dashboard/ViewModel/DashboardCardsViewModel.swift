@@ -78,7 +78,7 @@ class DashboardCardsViewModel: ObservableObject {
         guard cards.requested, !cards.pending, !courseSectionStatus.isUpdatePending else { return }
 
         guard cards.state != .error else {
-            state = .error(cards.error?.localizedDescription ?? "")
+            state = .error(NSLocalizedString("Something went wrong", comment: ""))
             return
         }
 
