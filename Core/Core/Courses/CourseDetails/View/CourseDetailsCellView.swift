@@ -65,12 +65,16 @@ public struct CourseDetailsCellView: View {
     }
 }
 
-#if DEBUG
-/*
 struct CourseDetailsCellView_Previews: PreviewProvider {
+    private static let env = AppEnvironment.shared
+    private static let context = env.globalDatabase.viewContext
+
     static var previews: some View {
-        CourseDetailsCellView()
+        let course = Course.save(.make(), in: context)
+        let tab: Tab = Tab(context: context)
+        tab.save(.make(), in: context, context: .course("1"))
+        let viewModel = CourseDetailsCellViewModel(tab: tab, course: course, attendanceToolID: "123")
+        return CourseDetailsCellView(viewModel: viewModel)
+            .previewLayout(.sizeThatFits)
     }
 }
-*/
-#endif

@@ -25,9 +25,9 @@ public class CourseSettingsViewModel: ObservableObject {
         case ready
     }
 
+    @Published public var showError: Bool = false
     @Published public private(set) var state: ViewModelState = .loading
     @Published public private(set) var isSaving: Bool = false
-    @Published public var showError: Bool = false
     @Published public private(set) var errorText: String?
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
@@ -36,7 +36,6 @@ public class CourseSettingsViewModel: ObservableObject {
     @Published public private(set) var defaultView: CourseDefaultView?
 
     @Environment(\.appEnvironment) private var env
-
     private var courseNameFromAPI: String?
     private var defaultViewFromAPI: CourseDefaultView?
     private var context: Context
@@ -44,7 +43,6 @@ public class CourseSettingsViewModel: ObservableObject {
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.courseDidUpdate()
     }
-
     private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }

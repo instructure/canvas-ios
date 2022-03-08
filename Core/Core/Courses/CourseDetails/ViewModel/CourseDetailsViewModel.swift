@@ -32,13 +32,24 @@ public class CourseDetailsViewModel: ObservableObject {
     @Published public private(set) var homeSubLabel: String?
     @Published public private(set) var homeRoute: URL?
 
+    public var showHome: Bool { !isTeacher }
+    public var showSettings: Bool { isTeacher }
+    public var showStudentView: Bool { isTeacher }
+    public var courseName: String { course.first?.name ?? "" }
+    public var imageURL: URL? { course.first?.imageDownloadURL }
+    public var termName: String { course.first?.termName ?? "" }
+    public var settingsRoute: URL? {
+        guard let course = course.first else { return nil }
+        return URL(string: "courses/\(course.id)/settings")
+    }
+
     @Environment(\.appEnvironment) private var env
 
+    private var isTeacher: Bool { env.app == .teacher }
     private let context: Context
     private var attendanceToolID: String?
     private var applicationsRequest: APITask?
     private let mobileSupportedTabs: [TabName] = [.assignments, .quizzes, .discussions, .announcements, .people, .pages, .files, .modules, .syllabus]
-
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.courseDidUpdate()
@@ -46,46 +57,29 @@ public class CourseDetailsViewModel: ObservableObject {
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
         self?.updateTabs()
     }
-
     private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
-
-    lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [.useStudentView])) { [weak self] in
+    private lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [.useStudentView])) { [weak self] in
         self?.updateTabs()
-    }
-    public var showHome: Bool {
-        !isTeacher
-    }
-
-    public var showSettings: Bool {
-        isTeacher
-    }
-
-    public var showStudentView: Bool {
-        isTeacher
-    }
-
-    public var courseName: String {
-        course.first?.name ?? ""
-    }
-
-    public var imageURL: URL? {
-        course.first?.imageDownloadURL
-    }
-
-    public var termName: String {
-        course.first?.termName ?? ""
     }
 
     public init(context: Context) {
         self.context = context
     }
 
-    public var settingsRoute: URL? {
-        guard let course = course.first else { return nil }
-        return URL(string: "courses/\(course.id)/settings")
+    // MARK: - Preview Support
+
+#if DEBUG
+
+    init(state: ViewModelState<[CourseDetailsCellViewModel]>) {
+        self.state = state
+        self.context = .course("1")
     }
+
+#endif
+
+    // MARK: Preview Support -
 
     public func viewDidAppear() {
         requestApplications()
@@ -94,6 +88,8 @@ public class CourseDetailsViewModel: ObservableObject {
         course.refresh()
         colors.refresh()
     }
+
+    // MARK: - Private Methods
 
     private func courseDidUpdate() {
         guard let course = course.first else { return }
@@ -147,11 +143,7 @@ public class CourseDetailsViewModel: ObservableObject {
         state = (cellViewModels.isEmpty ? .empty : .data(cellViewModels))
     }
 
-    private var isTeacher: Bool {
-        env.app == .teacher
-    }
-
-    // MARK: - Applications
+    // MARK: Applications
 
     private func requestApplications() {
         guard applicationsRequest == nil else { return }

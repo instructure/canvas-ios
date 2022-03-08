@@ -69,7 +69,8 @@ public struct CourseSettingsView: View {
         .alert(isPresented: $viewModel.showError) {
             Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
         }
-    } }
+    }
+    }
 
     @ViewBuilder
     private var nameRow: some View {
@@ -106,12 +107,8 @@ public struct CourseSettingsView: View {
     }
 }
 
-#if DEBUG
-/*
 struct CourseSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSettingsView()
+        CourseSettingsView(viewModel: CourseSettingsViewModel(context: .course("1")))
     }
 }
-*/
-#endif

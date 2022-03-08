@@ -22,6 +22,13 @@ extension Tab: TabViewable {}
 
 public class CourseDetailsCellViewModel: ObservableObject {
 
+    public private(set) var courseColor: UIColor?
+    public private(set) var iconImage: UIImage
+    public private(set) var label: String
+    public private(set) var subtitle: String?
+    public private(set) var specialIndicatorIcon: UIImage?
+
+    @Environment(\.appEnvironment) private var env
     private let studentViewID = "student_view"
     private let tab: Tab?
     private let tabID: String
@@ -30,13 +37,6 @@ public class CourseDetailsCellViewModel: ObservableObject {
     private let attendanceToolID: String?
     private let isAttendanceTool: Bool
     private var studentViewStudentRequest: APITask?
-    public private(set) var courseColor: UIColor?
-    public private(set) var iconImage: UIImage
-    public private(set) var label: String
-    public private(set) var subtitle: String?
-    public private(set) var specialIndicatorIcon: UIImage?
-
-    @Environment(\.appEnvironment) private var env
 
     public init(tab: Tab, course: Course, attendanceToolID: String?) {
         self.tab = tab

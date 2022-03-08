@@ -120,28 +120,41 @@ public struct CourseDetailsView: View {
     }
 
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel]) -> some View {
-        List {
-            if viewModel.showHome {
-                homeView
-            }
-            ForEach(tabViewModels, id: \.id) { tabViewModel in
-                CourseDetailsCellView(viewModel: tabViewModel)
+        ScrollView {
+            VStack {
+                if viewModel.showHome {
+                    homeView
+                        .iOS15ListRowSeparator(.hidden)
+                }
+                ForEach(tabViewModels, id: \.id) { tabViewModel in
+                    CourseDetailsCellView(viewModel: tabViewModel)
+                        .iOS15ListRowSeparator(.hidden)
+                    Divider()
+                }
             }
         }
-        .listStyle(.plain)
         .iOS15Refreshable { completion in
             viewModel.refresh(completion: completion)
         }
     }
 }
 
-#if DEBUG
-/*
 struct CourseDetailsView_Previews: PreviewProvider {
+    private static let env = AppEnvironment.shared
+    private static let context = env.globalDatabase.viewContext
+
     static var previews: some View {
-        let viewModel = CourseDetailsViewModel()
-        CourseDetailsView(viewModel: viewModel)
+        let course = Course.save(.make(default_view: .assignments, term: .init(id: "1", name: "Default Term", start_at: nil, end_at: nil)), in: context)
+        let tab1: Tab = Tab(context: context)
+        tab1.save(.make(), in: context, context: .course("1"))
+        let tab2: Tab = Tab(context: context)
+        tab2.save(.make(id: "2", label: "Assignments"), in: context, context: .course("1"))
+
+        let viewModel = CourseDetailsViewModel(state: .data([
+            CourseDetailsCellViewModel(tab: tab1, course: course, attendanceToolID: "1"),
+            CourseDetailsCellViewModel(tab: tab2, course: course, attendanceToolID: "2"),
+        ]))
+        return CourseDetailsView(viewModel: viewModel)
+            .previewLayout(.sizeThatFits)
     }
 }
-*/
-#endif
