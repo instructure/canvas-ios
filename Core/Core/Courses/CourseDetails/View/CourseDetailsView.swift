@@ -76,11 +76,11 @@ public struct CourseDetailsView: View {
             HStack(spacing: 13) {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(viewModel.homeLabel ?? "")
-                        .font(.regular23)
+                        .font(.semibold23)
 
                     if let subTitle = viewModel.homeSubLabel {
                         Text(subTitle)
-                            .font(.regular14)
+                            .font(.semibold14)
                     }
                 }
                 .foregroundColor(.licorice)

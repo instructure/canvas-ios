@@ -23,7 +23,7 @@ public extension UIFont {
     enum Name: String, CaseIterable {
         case regular10, regular11Monodigit, regular12, regular13, regular14, regular14Italic, regular15, regular16, regular17, regular20, regular23, regular24, regular20Monodigit, regular30
         case medium10, medium12, medium14, medium16, medium20
-        case semibold11, semibold12, semibold14, semibold16, semibold17, semibold16Italic, semibold18, semibold20
+        case semibold11, semibold12, semibold14, semibold16, semibold17, semibold16Italic, semibold18, semibold20, semibold23
         case bold10, bold11, bold13, bold15, bold17, bold20, bold22, bold24, bold34
         case heavy24
     }
@@ -89,6 +89,8 @@ public extension UIFont {
             return scaledFont(.title2, for: applicationFont(ofSize: 18, weight: .semibold))
         case .semibold20:
             return scaledFont(.title3, for: applicationFont(ofSize: 20, weight: .semibold))
+        case .semibold23:
+            return scaledFont(.title3, for: applicationFont(ofSize: 23, weight: .semibold))
 
         case .bold10:
             return scaledFont(.body, for: applicationFont(ofSize: 10, weight: .bold))
