@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Frameworks/Core.framework/balsamiq_regular.ttf</string>
-		<string>Frameworks/Core.framework/balsamiq_bold.ttf</string>
-	</array>
-	<key>NSCrossWebsiteTrackingUsageDescription</key>
-	<string>Canvas uses cookies to load media embedded in rich content.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -26,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
+	<string>6.15.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSpokenName</key>
@@ -63,7 +54,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>15630</string>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<true/>
 	<key>ITSEncryptionExportComplianceCode</key>
@@ -90,6 +83,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
+	<key>NSCrossWebsiteTrackingUsageDescription</key>
+	<string>Canvas uses cookies to load media embedded in rich content.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Help us find schools near you.</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -102,6 +97,11 @@
 	<array>
 		<string>com.instructure.icanvas.watchApp</string>
 		<string>com.instructure.siri.shortcut.getgrades</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Frameworks/Core.framework/balsamiq_regular.ttf</string>
+		<string>Frameworks/Core.framework/balsamiq_bold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
