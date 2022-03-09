@@ -65,6 +65,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .teacher)
             window?.makeKeyAndVisible()
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
         handleLaunchOptionsNotifications(launchOptions)
@@ -219,6 +220,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .teacher)
+            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 
@@ -335,6 +337,7 @@ extension TeacherAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .teacher)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/to-do"], ["/conversations", "/inbox"]]

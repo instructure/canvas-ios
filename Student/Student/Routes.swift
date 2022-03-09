@@ -354,6 +354,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return vc
     },
 
+    "/dev-menu/pandas": { _, _, _ in
+        CoreHostingController(PandaGallery())
+    },
+
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
     },

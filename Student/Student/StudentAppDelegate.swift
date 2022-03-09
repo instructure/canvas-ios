@@ -73,6 +73,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
         handleLaunchOptionsNotifications(launchOptions)
@@ -299,6 +300,7 @@ extension StudentAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
@@ -338,6 +340,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
+            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 
