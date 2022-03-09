@@ -23,6 +23,7 @@ public struct CourseDetailsView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CourseDetailsViewModel
+    private let headerHeight: CGFloat = 235
 
     public init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
@@ -31,14 +32,15 @@ public struct CourseDetailsView: View {
     public var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                headerImage(width: geometry.size.width)
                 switch viewModel.state {
                 case .empty:
+                    headerImage(width: geometry.size.width)
                     errorView
                 case .loading:
+                    headerImage(width: geometry.size.width)
                     loadingView
                 case .data(let tabViewModels):
-                    tabList(tabViewModels)
+                    tabList(tabViewModels, width: geometry.size.width)
                 }
             }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -72,20 +74,24 @@ public struct CourseDetailsView: View {
             }
         }, label: {
             HStack(spacing: 13) {
-                VStack {
+                VStack(alignment: .leading, spacing: 3) {
                     Text(viewModel.homeLabel ?? "")
-                    Text(viewModel.homeSubLabel ?? "")
+                        .font(.regular23)
+
+                    if let subTitle = viewModel.homeSubLabel {
+                        Text(subTitle)
+                            .font(.regular14)
+                    }
                 }
+                .foregroundColor(.licorice)
                 Spacer()
                 InstDisclosureIndicator()
             }
-            .padding(.vertical, 13)
+            .frame(height: 76)
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         })
-        .clipShape(Capsule())
-        .padding()
     }
 
     @ViewBuilder
@@ -103,38 +109,46 @@ public struct CourseDetailsView: View {
     }
 
     private func headerImage(width: CGFloat) -> some View {
-        let height: CGFloat = 235
-        return ZStack {
-            Color(viewModel.courseColor ?? .ash).frame(width: width, height: height)
+        ZStack {
+            Color(viewModel.courseColor ?? .ash).frame(width: width, height: headerHeight)
             if let url = viewModel.imageURL {
-                RemoteImage(url, width: width, height: height)
+                RemoteImage(url, width: width, height: headerHeight)
                     .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)
             }
-            VStack {
+            VStack(spacing: 3) {
                 Text(viewModel.courseName)
+                    .font(.regular24)
+                    .accessibility(identifier: "course-details.title-lbl")
                 Text(viewModel.termName)
+                    .font(.regular14)
+                    .accessibility(identifier: "course-details.subtitle-lbl")
             }
+            .foregroundColor(.textLightest)
         }
-        .frame(height: height)
+        .frame(height: headerHeight)
         .clipped()
     }
 
-    private func tabList(_ tabViewModels: [CourseDetailsCellViewModel]) -> some View {
-        ScrollView {
-            VStack {
-                if viewModel.showHome {
-                    homeView
-                        .iOS15ListRowSeparator(.hidden)
+    private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], width: CGFloat) -> some View {
+        ZStack(alignment: .top) {
+            headerImage(width: width)
+            ScrollView {
+                VStack(spacing: 0) {
+                    if viewModel.showHome {
+                        homeView
+                        Divider()
+                    }
+                    ForEach(tabViewModels, id: \.id) { tabViewModel in
+                        CourseDetailsCellView(viewModel: tabViewModel)
+                        Divider()
+                    }
                 }
-                ForEach(tabViewModels, id: \.id) { tabViewModel in
-                    CourseDetailsCellView(viewModel: tabViewModel)
-                        .iOS15ListRowSeparator(.hidden)
-                    Divider()
-                }
+                .background(Color.backgroundLightest)
+                .padding(.top, headerHeight)
             }
-        }
-        .iOS15Refreshable { completion in
-            viewModel.refresh(completion: completion)
+            .iOS15Refreshable { completion in
+                viewModel.refresh(completion: completion)
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ import SwiftUI
 
 public extension UIFont {
     enum Name: String, CaseIterable {
-        case regular10, regular11Monodigit, regular12, regular13, regular14, regular14Italic, regular15, regular16, regular17, regular20, regular24, regular20Monodigit, regular30
+        case regular10, regular11Monodigit, regular12, regular13, regular14, regular14Italic, regular15, regular16, regular17, regular20, regular23, regular24, regular20Monodigit, regular30
         case medium10, medium12, medium14, medium16, medium20
         case semibold11, semibold12, semibold14, semibold16, semibold17, semibold16Italic, semibold18, semibold20
         case bold10, bold11, bold13, bold15, bold17, bold20, bold22, bold24, bold34
@@ -55,6 +55,8 @@ public extension UIFont {
             return scaledFont(.callout, for: applicationFont(ofSize: 20, weight: .regular))
         case .regular20Monodigit:
             return scaledFont(.title3, for: .monospacedApplicationFont(ofSize: 20, weight: .regular))
+        case .regular23:
+            return scaledFont(.body, for: applicationFont(ofSize: 23, weight: .regular))
         case .regular24:
             return scaledFont(.body, for: applicationFont(ofSize: 24, weight: .regular))
         case .regular30:

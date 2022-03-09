@@ -29,6 +29,7 @@ public extension Font {
     static var regular16: Font { Font(UIFont.scaledNamedFont(.regular16)) }
     static var regular17: Font { Font(UIFont.scaledNamedFont(.regular17)) }
     static var regular20: Font { Font(UIFont.scaledNamedFont(.regular20)) }
+    static var regular23: Font { Font(UIFont.scaledNamedFont(.regular23)) }
     static var regular24: Font { Font(UIFont.scaledNamedFont(.regular24)) }
     static var regular20Monodigit: Font { Font(UIFont.scaledNamedFont(.regular20Monodigit)) }
     static var regular30: Font { Font(UIFont.scaledNamedFont(.regular30)) }

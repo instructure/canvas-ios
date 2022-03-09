@@ -33,16 +33,20 @@ public struct CourseDetailsCellView: View {
         Button(action: {
             viewModel.selected(router: env.router, viewController: controller)
         }, label: {
-            HStack(spacing: 13) {
+            HStack(spacing: 12) {
                 Image(uiImage: viewModel.iconImage)
                     .frame(width: 20, height: 20)
                     .foregroundColor(Color(viewModel.courseColor ?? .ash))
-                    .padding(.top, 2)
                     .frame(maxHeight: .infinity, alignment: .top)
                 VStack(alignment: .leading) {
                     Text(viewModel.label)
+                        .font(.semibold16)
+                        .foregroundColor(.textDarkest)
+
                     if let subTitle = viewModel.subtitle {
                         Text(subTitle)
+                            .font(.regular14)
+                            .foregroundColor(.textDark)
                     }
                 }
                 Spacer()
@@ -60,8 +64,10 @@ public struct CourseDetailsCellView: View {
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
+            .frame(height: 54)
         })
         .buttonStyle(PlainButtonStyle())
+        .accessibility(identifier: viewModel.a11yIdentifier)
     }
 }
 

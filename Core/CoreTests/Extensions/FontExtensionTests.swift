@@ -32,6 +32,7 @@ class FontExtensionTests: XCTestCase {
         XCTAssertEqual(Font.regular16, Font(UIFont.scaledNamedFont(.regular16)))
         XCTAssertEqual(Font.regular17, Font(UIFont.scaledNamedFont(.regular17)))
         XCTAssertEqual(Font.regular20, Font(UIFont.scaledNamedFont(.regular20)))
+        XCTAssertEqual(Font.regular23, Font(UIFont.scaledNamedFont(.regular23)))
         XCTAssertEqual(Font.regular24, Font(UIFont.scaledNamedFont(.regular24)))
         XCTAssertEqual(Font.regular20Monodigit, Font(UIFont.scaledNamedFont(.regular20Monodigit)))
         XCTAssertEqual(Font.regular30, Font(UIFont.scaledNamedFont(.regular30)))

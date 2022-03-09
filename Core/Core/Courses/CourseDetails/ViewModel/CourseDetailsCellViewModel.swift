@@ -22,6 +22,7 @@ extension Tab: TabViewable {}
 
 public class CourseDetailsCellViewModel: ObservableObject {
 
+    public let a11yIdentifier: String
     public private(set) var courseColor: UIColor?
     public private(set) var iconImage: UIImage
     public private(set) var label: String
@@ -50,6 +51,7 @@ public class CourseDetailsCellViewModel: ObservableObject {
         self.label = tab.label
         self.subtitle = nil
         self.specialIndicatorIcon = nil
+        self.a11yIdentifier = "courses-details.\(tab.id)-cell"
     }
 
     public static func studentView(course: Course) -> CourseDetailsCellViewModel {
@@ -69,6 +71,7 @@ public class CourseDetailsCellViewModel: ObservableObject {
         self.label = NSLocalizedString("Student View", comment: "")
         self.subtitle = NSLocalizedString("Opens in Canvas Student", comment: "")
         self.specialIndicatorIcon = .externalLinkLine
+        self.a11yIdentifier = "courses-details.\(studentViewID)-cell"
     }
 
     public func selected(router: Router, viewController: WeakViewController) {
