@@ -115,6 +115,9 @@ public struct CourseDetailsView: View {
         ZStack(alignment: .top) {
             CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
             ScrollView {
+                CircleRefresh { completion in
+                    viewModel.refresh(completion: completion)
+                }
                 VStack(spacing: 0) {
                     if viewModel.showHome {
                         homeView
@@ -126,14 +129,11 @@ public struct CourseDetailsView: View {
                     }
                 }
                 .background(Color.backgroundLightest)
-                .padding(.top, headerViewModel.height)
+                .padding(.top, headerViewModel.height - 8) // -8 to offset CircleRefresh's placeholder glitch
                 // Save the frame of the content so we can inspect its y position and move course image based on that
                 .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
                     preferences = [.init(viewId: 0, bounds: geometry[bounds])]
                 }
-            }
-            .iOS15Refreshable { completion in
-                viewModel.refresh(completion: completion)
             }
         }
     }
