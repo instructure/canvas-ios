@@ -27,7 +27,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     @Published public private(set) var state: ViewModelState<[CourseDetailsCellViewModel]> = .loading
     @Published public private(set) var courseColor: UIColor?
-    @Published public private(set) var hideColorOverlay: Bool?
+    @Published public private(set) var hideColorOverlay: Bool = false
     @Published public private(set) var homeLabel: String?
     @Published public private(set) var homeSubLabel: String?
     @Published public private(set) var homeRoute: URL?

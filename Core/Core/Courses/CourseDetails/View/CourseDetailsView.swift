@@ -23,6 +23,7 @@ public struct CourseDetailsView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CourseDetailsViewModel
+    @State private var headerImageVerticalOffset: CGFloat = 0
     private let headerHeight: CGFloat = 235
 
     public init(viewModel: CourseDetailsViewModel) {
@@ -40,7 +41,7 @@ public struct CourseDetailsView: View {
                     headerImage(width: geometry.size.width)
                     loadingView
                 case .data(let tabViewModels):
-                    tabList(tabViewModels, width: geometry.size.width)
+                    tabList(tabViewModels, geometry: geometry)
                 }
             }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -52,6 +53,10 @@ public struct CourseDetailsView: View {
                 viewModel.viewDidAppear()
             }
         }
+        .onPreferenceChange(ViewBoundsKey.self, perform: { value in
+            guard let frame = value.first?.bounds else { return }
+            headerImageVerticalOffset = min(0, frame.minY / 2)
+        })
     }
 
     @ViewBuilder
@@ -109,11 +114,15 @@ public struct CourseDetailsView: View {
     }
 
     private func headerImage(width: CGFloat) -> some View {
-        ZStack {
+        // Starts from 0 and reaches 1 when the image is fully pushed out of screen
+        let offsetRatio = abs(headerImageVerticalOffset) / (headerHeight / 2)
+        let imageOpacity = viewModel.hideColorOverlay ? 1 : (1 - offsetRatio) * 0.4
+
+        return ZStack {
             Color(viewModel.courseColor ?? .ash).frame(width: width, height: headerHeight)
             if let url = viewModel.imageURL {
                 RemoteImage(url, width: width, height: headerHeight)
-                    .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)
+                    .opacity(imageOpacity)
             }
             VStack(spacing: 3) {
                 Text(viewModel.courseName)
@@ -123,15 +132,19 @@ public struct CourseDetailsView: View {
                     .font(.regular14)
                     .accessibility(identifier: "course-details.subtitle-lbl")
             }
+            .padding()
+            .multilineTextAlignment(.center)
             .foregroundColor(.textLightest)
+            .opacity(1 - offsetRatio)
         }
         .frame(height: headerHeight)
         .clipped()
+        .offset(x: 0, y: headerImageVerticalOffset)
     }
 
-    private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], width: CGFloat) -> some View {
+    private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
         ZStack(alignment: .top) {
-            headerImage(width: width)
+            headerImage(width: geometry.size.width)
             ScrollView {
                 VStack(spacing: 0) {
                     if viewModel.showHome {
@@ -145,6 +158,10 @@ public struct CourseDetailsView: View {
                 }
                 .background(Color.backgroundLightest)
                 .padding(.top, headerHeight)
+                // Save the frame of the content so we can inspect its y position and move course image based on that
+                .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
+                    preferences = [.init(viewId: 0, bounds: geometry[bounds])]
+                }
             }
             .iOS15Refreshable { completion in
                 viewModel.refresh(completion: completion)
