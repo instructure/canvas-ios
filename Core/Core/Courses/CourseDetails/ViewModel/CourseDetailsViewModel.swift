@@ -168,6 +168,9 @@ public class CourseDetailsViewModel: ObservableObject {
 extension CourseDetailsViewModel: Refreshable {
 
     public func refresh(completion: @escaping () -> Void) {
+        requestApplications()
+        permissions.refresh(force: true)
+        colors.refresh(force: true)
         course.refresh(force: true)
         tabs.exhaust(force: true) { [weak self] _ in
             if self?.tabs.hasNextPage == false {
