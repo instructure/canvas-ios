@@ -94,6 +94,7 @@ public struct CourseDetailsView: View {
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         }
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
     }
 
     @ViewBuilder

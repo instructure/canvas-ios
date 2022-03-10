@@ -36,7 +36,7 @@ public struct CourseDetailsCellView: View {
             HStack(spacing: 12) {
                 Image(uiImage: viewModel.iconImage)
                     .frame(width: 20, height: 20)
-                    .foregroundColor(Color(viewModel.courseColor ?? .ash))
+                    .foregroundColor(Color(viewModel.courseColor))
                     .frame(maxHeight: .infinity, alignment: .top)
                 VStack(alignment: .leading) {
                     Text(viewModel.label)
@@ -66,7 +66,7 @@ public struct CourseDetailsCellView: View {
             .contentShape(Rectangle())
             .frame(height: 54)
         })
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
         .accessibility(identifier: viewModel.a11yIdentifier)
     }
 }

@@ -23,7 +23,7 @@ extension Tab: TabViewable {}
 public class CourseDetailsCellViewModel: ObservableObject {
 
     public let a11yIdentifier: String
-    public private(set) var courseColor: UIColor?
+    public private(set) var courseColor: UIColor
     public private(set) var iconImage: UIImage
     public private(set) var label: String
     public private(set) var subtitle: String?
