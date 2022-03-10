@@ -49,15 +49,21 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
 
     public func scrollPositionChanged(_ bounds: ViewBoundsKey.Value) {
         guard let frame = bounds.first?.bounds else { return }
-        scrollPositionYChanged(to: frame.minY - 8) // -8 to offset CircleRefresh's placeholder glitch
+        scrollPositionYChanged(to: frame.minY)
     }
     
     private func scrollPositionYChanged(to value: CGFloat) {
-        verticalOffset = min(0, value / 2)
+        if value <= 0 { // scrolling down to content
+            verticalOffset = min(0, value / 2)
 
-        // Starts from 0 and reaches 1 when the image is fully pushed out of screen
-        let offsetRatio = abs(verticalOffset) / (height / 2)
-        imageOpacity = hideColorOverlay ? 1 : (1 - offsetRatio) * 0.4
-        titleOpacity = 1 - offsetRatio
+            // Starts from 0 and reaches 1 when the image is fully pushed out of screen
+            let offsetRatio = abs(verticalOffset) / (height / 2)
+            imageOpacity = hideColorOverlay ? 1 : (1 - offsetRatio) * 0.4
+            titleOpacity = 1 - offsetRatio
+        } else { // pull to refresh gesture, we allow the image to move along with the content
+            verticalOffset = value
+            imageOpacity = hideColorOverlay ? 1 : 0.4
+            titleOpacity = 1
+        }
     }
 }

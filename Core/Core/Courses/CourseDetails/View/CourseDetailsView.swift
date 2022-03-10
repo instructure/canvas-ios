@@ -49,9 +49,7 @@ public struct CourseDetailsView: View {
             .navigationTitle(viewModel.courseName, subtitle: nil)
             .navigationBarGenericBackButton()
             .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
-            .onAppear {
-                viewModel.viewDidAppear()
-            }
+            .onAppear(perform: viewModel.viewDidAppear)
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
     }
@@ -114,10 +112,7 @@ public struct CourseDetailsView: View {
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
         ZStack(alignment: .top) {
             CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
-            ScrollView {
-                CircleRefresh { completion in
-                    viewModel.refresh(completion: completion)
-                }
+            List {
                 VStack(spacing: 0) {
                     if viewModel.showHome {
                         homeView
@@ -128,12 +123,19 @@ public struct CourseDetailsView: View {
                         Divider()
                     }
                 }
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+                .iOS15ListRowSeparator(.hidden)
                 .background(Color.backgroundLightest)
-                .padding(.top, headerViewModel.height - 8) // -8 to offset CircleRefresh's placeholder glitch
+                .padding(.top, headerViewModel.height)
                 // Save the frame of the content so we can inspect its y position and move course image based on that
                 .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
                     preferences = [.init(viewId: 0, bounds: geometry[bounds])]
                 }
+            }
+            .listStyle(.plain)
+            .iOS15Refreshable { completion in
+                viewModel.refresh(completion: completion)
             }
         }
     }
