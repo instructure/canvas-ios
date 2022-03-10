@@ -72,7 +72,6 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
         searchBar.backgroundColor = .backgroundLightest
-
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
@@ -100,7 +99,6 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hideSearchBar()
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
@@ -109,15 +107,16 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         env.pageViewLogger.startTrackingTimeOnViewController()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.contentOffset.y = self.searchBar.frame.height
+        }
+    }
+
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/users", attributes: [:])
-    }
-
-    private func hideSearchBar() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
-            self.tableView.contentOffset.y = self.searchBar.frame.height
-        }
     }
 
     func updateNavBar() {
