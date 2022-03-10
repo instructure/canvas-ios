@@ -47,7 +47,12 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         courseColor = course.color
     }
 
-    public func scrollPositionYChanged(to value: CGFloat) {
+    public func scrollPositionChanged(_ bounds: ViewBoundsKey.Value) {
+        guard let frame = bounds.first?.bounds else { return }
+        scrollPositionYChanged(to: frame.minY)
+    }
+    
+    private func scrollPositionYChanged(to value: CGFloat) {
         // Starts from 0 and reaches 1 when the image is fully pushed out of screen
         let offsetRatio = abs(verticalOffset) / (height / 2)
 

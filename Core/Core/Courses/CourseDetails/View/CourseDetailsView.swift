@@ -53,10 +53,7 @@ public struct CourseDetailsView: View {
                 viewModel.viewDidAppear()
             }
         }
-        .onPreferenceChange(ViewBoundsKey.self, perform: { value in
-            guard let frame = value.first?.bounds else { return }
-            headerViewModel.scrollPositionYChanged(to: frame.minY)
-        })
+        .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
     }
 
     @ViewBuilder
@@ -77,7 +74,7 @@ public struct CourseDetailsView: View {
             if let url = viewModel.homeRoute {
                 env.router.route(to: url, from: controller)
             }
-        }, label: {
+        }) {
             HStack(spacing: 13) {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(viewModel.homeLabel ?? "")
@@ -96,7 +93,7 @@ public struct CourseDetailsView: View {
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
-        })
+        }
     }
 
     @ViewBuilder
