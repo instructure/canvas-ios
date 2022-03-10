@@ -23,11 +23,11 @@ public struct CourseDetailsView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CourseDetailsViewModel
-    @State private var headerImageVerticalOffset: CGFloat = 0
-    private let headerHeight: CGFloat = 235
+    @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
 
     public init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
+        self.headerViewModel = viewModel.headerViewModel
     }
 
     public var body: some View {
@@ -35,10 +35,10 @@ public struct CourseDetailsView: View {
             VStack(spacing: 0) {
                 switch viewModel.state {
                 case .empty:
-                    headerImage(width: geometry.size.width)
+                    CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
                     errorView
                 case .loading:
-                    headerImage(width: geometry.size.width)
+                    CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
                     loadingView
                 case .data(let tabViewModels):
                     tabList(tabViewModels, geometry: geometry)
@@ -55,7 +55,7 @@ public struct CourseDetailsView: View {
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: { value in
             guard let frame = value.first?.bounds else { return }
-            headerImageVerticalOffset = min(0, frame.minY / 2)
+            headerViewModel.scrollPositionYChanged(to: frame.minY)
         })
     }
 
@@ -65,9 +65,9 @@ public struct CourseDetailsView: View {
             if let url = viewModel.settingsRoute {
                 env.router.route(to: url, from: controller, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             }
-        }, label: {
+        }) {
             Image.settingsLine.foregroundColor(.textLightest)
-        })
+        }
         .accessibility(label: Text("Edit Course settings", bundle: .core))
     }
 
@@ -113,38 +113,9 @@ public struct CourseDetailsView: View {
         Spacer()
     }
 
-    private func headerImage(width: CGFloat) -> some View {
-        // Starts from 0 and reaches 1 when the image is fully pushed out of screen
-        let offsetRatio = abs(headerImageVerticalOffset) / (headerHeight / 2)
-        let imageOpacity = viewModel.hideColorOverlay ? 1 : (1 - offsetRatio) * 0.4
-
-        return ZStack {
-            Color(viewModel.courseColor ?? .ash).frame(width: width, height: headerHeight)
-            if let url = viewModel.imageURL {
-                RemoteImage(url, width: width, height: headerHeight)
-                    .opacity(imageOpacity)
-            }
-            VStack(spacing: 3) {
-                Text(viewModel.courseName)
-                    .font(.regular24)
-                    .accessibility(identifier: "course-details.title-lbl")
-                Text(viewModel.termName)
-                    .font(.regular14)
-                    .accessibility(identifier: "course-details.subtitle-lbl")
-            }
-            .padding()
-            .multilineTextAlignment(.center)
-            .foregroundColor(.textLightest)
-            .opacity(1 - offsetRatio)
-        }
-        .frame(height: headerHeight)
-        .clipped()
-        .offset(x: 0, y: headerImageVerticalOffset)
-    }
-
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
         ZStack(alignment: .top) {
-            headerImage(width: geometry.size.width)
+            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
             ScrollView {
                 VStack(spacing: 0) {
                     if viewModel.showHome {
@@ -157,7 +128,7 @@ public struct CourseDetailsView: View {
                     }
                 }
                 .background(Color.backgroundLightest)
-                .padding(.top, headerHeight)
+                .padding(.top, headerViewModel.height)
                 // Save the frame of the content so we can inspect its y position and move course image based on that
                 .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
                     preferences = [.init(viewId: 0, bounds: geometry[bounds])]

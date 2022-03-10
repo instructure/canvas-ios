@@ -25,9 +25,9 @@ public class CourseDetailsViewModel: ObservableObject {
         case data(T)
     }
 
+    public let headerViewModel = CourseDetailsHeaderViewModel()
     @Published public private(set) var state: ViewModelState<[CourseDetailsCellViewModel]> = .loading
-    @Published public private(set) var courseColor: UIColor?
-    @Published public private(set) var hideColorOverlay: Bool = false
+    @Published public private(set) var courseColor: UIColor = .clear
     @Published public private(set) var homeLabel: String?
     @Published public private(set) var homeSubLabel: String?
     @Published public private(set) var homeRoute: URL?
@@ -36,8 +36,6 @@ public class CourseDetailsViewModel: ObservableObject {
     public var showSettings: Bool { isTeacher }
     public var showStudentView: Bool { isTeacher }
     public var courseName: String { course.first?.name ?? "" }
-    public var imageURL: URL? { course.first?.imageDownloadURL }
-    public var termName: String { course.first?.termName ?? "" }
     public var settingsRoute: URL? {
         guard let course = course.first else { return nil }
         return URL(string: "courses/\(course.id)/settings")
@@ -56,9 +54,6 @@ public class CourseDetailsViewModel: ObservableObject {
     }
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
         self?.updateTabs()
-    }
-    private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
-        self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
     private lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [.useStudentView])) { [weak self] in
         self?.updateTabs()
@@ -82,9 +77,9 @@ public class CourseDetailsViewModel: ObservableObject {
     // MARK: Preview Support -
 
     public func viewDidAppear() {
+        headerViewModel.viewDidAppear()
         requestApplications()
         permissions.refresh()
-        settings.refresh()
         course.refresh()
         colors.refresh()
     }
@@ -93,6 +88,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     private func courseDidUpdate() {
         guard let course = course.first else { return }
+        headerViewModel.courseUpdated(course)
         courseColor = course.color
         setupHome(course: course)
         tabs.exhaust()
