@@ -79,7 +79,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/assignments/:assignmentID": { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        return CoreHostingController(AssignmentDetailsView(courseID: courseID, assignmentID: assignmentID))
+        let viewModel = AssignmentDetailsViewModel(courseID: courseID, assignmentID: assignmentID)
+        return CoreHostingController(AssignmentDetailsView(viewModel: viewModel))
     },
     "/courses/:courseID/assignments/:assignmentID/edit": { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
@@ -247,7 +248,12 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return QuizListViewController.create(courseID: courseID)
     },
 
-    "/courses/:courseID/quizzes/:quizID": nil,
+    "/courses/:courseID/quizzes/:quizID": { url, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        // TODO inherit quiz viewmodel
+        let viewModel = AssignmentDetailsViewModel(courseID: courseID, assignmentID: quizID)
+        return CoreHostingController(AssignmentDetailsView(viewModel: viewModel))
+    },
     "/courses/:courseID/quizzes/:quizID/preview": nil,
     "/courses/:courseID/quizzes/:quizID/edit": nil,
     "/courses/:courseID/quizzes/:quizID/submissions": nil,

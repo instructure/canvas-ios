@@ -20,49 +20,39 @@ import SwiftUI
 
 /// Currently only suitable for Teacher app
 public struct AssignmentDetailsView: View {
-    let assignmentID: String
-    let courseID: String
-
-    @ObservedObject var assignment: Store<GetAssignment>
-    @ObservedObject var course: Store<GetCourse>
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    public init(courseID: String, assignmentID: String) {
-        self.assignmentID = assignmentID
-        self.courseID = courseID
+    @ObservedObject private var viewModel: AssignmentDetailsViewModel
 
-        assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
-        course = AppEnvironment.shared.subscribe(GetCourse(courseID: courseID))
+    public init(viewModel: AssignmentDetailsViewModel) {
+        self.viewModel = viewModel
     }
 
     public var body: some View {
         states
-            .navigationBarStyle(.color(course.first?.color))
-            .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
+            .navigationBarStyle(.color(viewModel.courseColor))
+            .navigationTitle(viewModel.title, subtitle: viewModel.subtitle)
             .compatibleNavBarItems(trailing: {
-                Button(action: { env.router.route(
-                    to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                    from: controller,
-                    options: .modal(.formSheet, isDismissable: false, embedInNav: true)
-                ) }, label: {
+                Button(action: {
+                    viewModel.editTapped(router: env.router, viewController: controller)
+                }, label: {
                     Text("Edit", bundle: .core)
                         .fontWeight(.regular)
                         .foregroundColor(.textLightest)
                 })
             })
             .onAppear {
-                assignment.refresh()
-                course.refresh()
+                viewModel.viewDidAppear()
             }
     }
 
     @ViewBuilder var states: some View {
-        if let assignment = assignment.first {
+        if let assignment = viewModel.assignment.first {
             ScrollView { VStack(alignment: .leading, spacing: 0) {
                 CircleRefresh { endRefreshing in
-                    self.assignment.refresh(force: true) { _ in
+                    self.viewModel.assignment.refresh(force: true) { _ in
                         endRefreshing()
                     }
                 }
@@ -70,7 +60,7 @@ public struct AssignmentDetailsView: View {
                 details(assignment: assignment)
                     .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
             } }
-        } else if assignment.state == .loading {
+        } else if viewModel.assignment.state == .loading {
             ZStack { CircleProgress() }
         } else /* Assignment not found, perhaps recently deleted */ {
             Spacer().onAppear { env.router.dismiss(controller) }
@@ -127,8 +117,8 @@ public struct AssignmentDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        if course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true {
-            SubmissionBreakdown(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+        if viewModel.showSubmissions {
+            SubmissionBreakdown(courseID: viewModel.courseID, assignmentID: viewModel.assignmentID, submissionTypes: assignment.submissionTypes)
 
             Divider().padding(.horizontal, 16)
         }
@@ -196,13 +186,6 @@ public struct AssignmentDetailsView: View {
     }
 
     func launchLTITool() {
-        LTITools.launch(
-            context: "course_\(courseID)",
-            id: assignment.first?.externalToolContentID,
-            url: nil,
-            launchType: "assessment",
-            assignmentID: assignmentID,
-            from: controller.value
-        )
+        viewModel.launchLTITool(router: env.router, viewController: controller)
     }
 }
