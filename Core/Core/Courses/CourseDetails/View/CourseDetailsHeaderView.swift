@@ -36,10 +36,10 @@ struct CourseDetailsHeaderView: View {
             }
             VStack(spacing: 3) {
                 Text(viewModel.courseName)
-                    .font(.regular24)
+                    .font(.semibold23)
                     .accessibility(identifier: "course-details.title-lbl")
                 Text(viewModel.termName)
-                    .font(.regular14)
+                    .font(.semibold14)
                     .accessibility(identifier: "course-details.subtitle-lbl")
             }
             .padding()
@@ -50,5 +50,17 @@ struct CourseDetailsHeaderView: View {
         .frame(height: viewModel.height)
         .clipped()
         .offset(x: 0, y: viewModel.verticalOffset)
+    }
+}
+
+struct CourseDetailsHeaderView_Previews: PreviewProvider {
+    private static let env = AppEnvironment.shared
+    private static let context = env.globalDatabase.viewContext
+
+    static var previews: some View {
+        let course = Course.save(.make(term: .make()), in: context)
+        let viewModel = CourseDetailsHeaderViewModel()
+        viewModel.courseUpdated(course)
+        return CourseDetailsHeaderView(viewModel: viewModel, width: 400)
     }
 }

@@ -23,7 +23,7 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
     @Published public private(set) var hideColorOverlay: Bool = false
     @Published public private(set) var verticalOffset: CGFloat = 0
     @Published public private(set) var imageOpacity: CGFloat = 0
-    @Published public private(set) var titleOpacity: CGFloat = 0
+    @Published public private(set) var titleOpacity: CGFloat = 1
     @Published public private(set) var courseName = ""
     @Published public private(set) var courseColor: UIColor = .clear
     @Published public private(set) var termName = ""
