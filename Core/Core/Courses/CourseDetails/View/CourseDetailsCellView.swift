@@ -59,6 +59,9 @@ public struct CourseDetailsCellView: View {
         })
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
         .accessibility(identifier: viewModel.a11yIdentifier)
+        .alert(isPresented: $viewModel.showGenericError) {
+            Alert(title: Text("Something went wrong", bundle: .core), message: Text("There was an error while communicating with the server", bundle: .core))
+        }
     }
 
     @ViewBuilder
@@ -72,6 +75,8 @@ public struct CourseDetailsCellView: View {
                 .scaledToFit()
                 .frame(width: 20, height: 20)
                 .foregroundColor(.textDarkest)
+        case .loading:
+            CircleProgress(size: 20, thickness: 2)
         }
     }
 }
@@ -91,6 +96,14 @@ struct CourseDetailsCellView_Previews: PreviewProvider {
         tab.save(.make(id: "attendance"), in: context, context: .course("2"))
         return AttendanceCellViewModel(tab: tab, course: course, attendanceToolID: "123")
     }
+    private static var loadingButtonViewModel: CourseDetailsCellViewModel {
+        let course = Course.save(.make(id: "3"), in: context)
+        let tab: Tab = Tab(context: context)
+        tab.save(.make(id: "3"), in: context, context: .course("3"))
+        let viewModel = GenericCellViewModel(tab: tab, course: course)
+        viewModel.accessoryIconType = .loading
+        return viewModel
+    }
 
     static var previews: some View {
         CourseDetailsCellView(viewModel: StudentViewCellViewModel(course: Course.save(.make(), in: context)))
@@ -98,6 +111,8 @@ struct CourseDetailsCellView_Previews: PreviewProvider {
         CourseDetailsCellView(viewModel: defaultButtonViewModel)
             .previewLayout(.sizeThatFits)
         CourseDetailsCellView(viewModel: attendanceButtonViewModel)
+            .previewLayout(.sizeThatFits)
+        CourseDetailsCellView(viewModel: loadingButtonViewModel)
             .previewLayout(.sizeThatFits)
     }
 }

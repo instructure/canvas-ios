@@ -34,6 +34,7 @@ class StudentViewCellViewModel: CourseDetailsCellViewModel {
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {
+        accessoryIconType = .loading
         launchStudentView()
     }
 
@@ -47,14 +48,16 @@ class StudentViewCellViewModel: CourseDetailsCellViewModel {
 
     private func handleStudentViewStudentResponse(_ user: APIUser?) {
         studentViewStudentRequest = nil
-        guard let user = user else {
-            // TODO Show error
-            return
-        }
-        let studentID = user.id.rawValue
         performUIUpdate { [weak self] in
+            self?.accessoryIconType = .externalLink
+
+            guard let user = user else {
+                self?.showGenericError = true
+                return
+            }
+
             if let loginDelegate = self?.env.loginDelegate {
-                loginDelegate.actAsStudentViewStudent(studentViewStudentID: studentID)
+                loginDelegate.actAsStudentViewStudent(studentViewStudentID: user.id.rawValue)
             }
         }
     }

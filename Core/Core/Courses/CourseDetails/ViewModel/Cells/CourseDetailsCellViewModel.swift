@@ -20,14 +20,16 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
     public enum AccessoryType {
         case disclosure
         case externalLink
+        case loading
     }
 
+    @Published public var showGenericError: Bool = false
+    @Published public internal(set) var accessoryIconType: AccessoryType
     public let a11yIdentifier: String
     public let courseColor: UIColor
     public let iconImage: UIImage
     public let label: String
     public let subtitle: String?
-    public let accessoryIconType: AccessoryType
     public let tabID: String
 
     public init(courseColor: UIColor,
