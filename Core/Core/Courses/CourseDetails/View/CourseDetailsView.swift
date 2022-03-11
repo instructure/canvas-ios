@@ -34,9 +34,9 @@ public struct CourseDetailsView: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 switch viewModel.state {
-                case .empty:
+                case .empty(let title, let message):
                     CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
-                    errorView
+                    errorView(title: title, message: message)
                 case .loading:
                     CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
                     loadingView
@@ -96,14 +96,28 @@ public struct CourseDetailsView: View {
     }
 
     @ViewBuilder
-    private var errorView: some View {
-        // TODO
-        Text("Something went wrong")
+    private func errorView(title: String, message: String) -> some View {
+        Spacer()
+        SwiftUI.Group {
+            Text(title)
+                .font(.bold20)
+            Text(message)
+                .font(.regular16)
+        }
+        .multilineTextAlignment(.center)
+        .foregroundColor(.licorice)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 5)
+        Button(action: viewModel.retryAfterError) {
+            Text("Retry", bundle: .core)
+                .padding(.top, 15)
+                .foregroundColor(Color(Brand.shared.linkColor))
+        }
+        Spacer()
     }
 
     @ViewBuilder
     private var loadingView: some View {
-        Divider()
         Spacer()
         CircleProgress()
         Spacer()
@@ -144,19 +158,25 @@ public struct CourseDetailsView: View {
 struct CourseDetailsView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext
-
-    static var previews: some View {
+    private static var contentViewModel: CourseDetailsViewModel {
         let course = Course.save(.make(default_view: .assignments, term: .init(id: "1", name: "Default Term", start_at: nil, end_at: nil)), in: context)
         let tab1: Tab = Tab(context: context)
         tab1.save(.make(), in: context, context: .course("1"))
         let tab2: Tab = Tab(context: context)
         tab2.save(.make(id: "2", label: "Assignments"), in: context, context: .course("1"))
 
-        let viewModel = CourseDetailsViewModel(state: .data([
+        return CourseDetailsViewModel(state: .data([
             CourseDetailsCellViewModel(tab: tab1, course: course, attendanceToolID: "1"),
             CourseDetailsCellViewModel(tab: tab2, course: course, attendanceToolID: "2"),
         ]))
-        return CourseDetailsView(viewModel: viewModel)
+    }
+
+    static var previews: some View {
+        CourseDetailsView(viewModel: contentViewModel)
+            .previewLayout(.sizeThatFits)
+        CourseDetailsView(viewModel: CourseDetailsViewModel(state: .loading))
+            .previewLayout(.sizeThatFits)
+        CourseDetailsView(viewModel: CourseDetailsViewModel(state: .empty(title: "Something went wrong", message: "There was an unexpected error. Please try again.")))
             .previewLayout(.sizeThatFits)
     }
 }

@@ -21,7 +21,7 @@ import SwiftUI
 public class CourseDetailsViewModel: ObservableObject {
     public enum ViewModelState<T: Equatable>: Equatable {
         case loading
-        case empty
+        case empty(title: String, message: String)
         case data(T)
     }
 
@@ -84,6 +84,11 @@ public class CourseDetailsViewModel: ObservableObject {
         colors.refresh()
     }
 
+    public func retryAfterError() {
+        state = .loading
+        refresh()
+    }
+
     // MARK: - Private Methods
 
     private func courseDidUpdate() {
@@ -118,6 +123,11 @@ public class CourseDetailsViewModel: ObservableObject {
 
     private func updateTabs() {
         guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, permissions.requested, !permissions.pending, applicationsRequest == nil else { return }
+
+        if tabs.error != nil {
+            state = .empty(title: NSLocalizedString("Something went wrong", comment: ""), message: NSLocalizedString("There was an unexpected error. Please try again.", comment: ""))
+            return
+        }
         var tabs = tabs.all
         tabs = tabs.filter {
             if !isTeacher || $0.id.contains("external_tool") {
@@ -131,12 +141,15 @@ public class CourseDetailsViewModel: ObservableObject {
             let homeTab = tabs.remove(at: index)
             homeLabel = homeTab.label
         }
+
         var cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID) }
+
         if permissions.first?.useStudentView == true {
             let studentViewCellModel = CourseDetailsCellViewModel.studentView(course: course)
             cellViewModels.append(studentViewCellModel)
         }
-        state = (cellViewModels.isEmpty ? .empty : .data(cellViewModels))
+
+        state = .data(cellViewModels)
     }
 
     // MARK: Applications
