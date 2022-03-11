@@ -73,7 +73,7 @@ class K5ResourcesViewModelTests: CoreTestCase {
                                          label: "Google Drive 2 Label",
                                          icon_url: URL(string: "https://instructure.com/icon2.png")!),
                 name: "Google Apps 2",
-                url: nil)
+                url: nil),
         ])
 
         let testee = K5ResourcesViewModel()

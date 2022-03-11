@@ -46,7 +46,7 @@ public class CourseDetailsViewModel: ObservableObject {
     private var isTeacher: Bool { env.app == .teacher }
     private let context: Context
     private var attendanceToolID: String?
-    private var applicationsRequest: APITask?
+    private var attendanceToolRequest: APITask?
     private let mobileSupportedTabs: [TabName] = [.assignments, .quizzes, .discussions, .announcements, .people, .pages, .files, .modules, .syllabus]
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
@@ -78,7 +78,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     public func viewDidAppear() {
         headerViewModel.viewDidAppear()
-        requestApplications()
+        requestAttendanceTool()
         permissions.refresh()
         course.refresh()
         colors.refresh()
@@ -122,12 +122,13 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     private func updateTabs() {
-        guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, permissions.requested, !permissions.pending, applicationsRequest == nil else { return }
+        guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, permissions.requested, !permissions.pending, attendanceToolRequest == nil else { return }
 
         if tabs.error != nil {
             state = .empty(title: NSLocalizedString("Something went wrong", comment: ""), message: NSLocalizedString("There was an unexpected error. Please try again.", comment: ""))
             return
         }
+
         var tabs = tabs.all
         tabs = tabs.filter {
             if !isTeacher || $0.id.contains("external_tool") {
@@ -135,35 +136,43 @@ public class CourseDetailsViewModel: ObservableObject {
             }
             // Only show tabs supported on mobile
             return mobileSupportedTabs.contains($0.name)
-        }.sorted(by: {$0.position < $1.position })
+        }.sorted(by: { $0.position < $1.position })
 
         if let index = tabs.firstIndex(where: { $0.id == "home" }) {
             let homeTab = tabs.remove(at: index)
             homeLabel = homeTab.label
         }
 
-        var cellViewModels = tabs.map { CourseDetailsCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID) }
+        var cellViewModels: [CourseDetailsCellViewModel] = tabs.map {
+            if let attendanceToolID = attendanceToolID, $0.id == "context_external_tool_" + attendanceToolID {
+                return AttendanceCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID)
+            } else if $0.type == .external, let url = $0.url {
+                return LTICellViewModel(tab: $0, course: course, url: url)
+            } else {
+                return GenericCellViewModel(tab: $0, course: course)
+            }
+        }
 
         if permissions.first?.useStudentView == true {
-            let studentViewCellModel = CourseDetailsCellViewModel.studentView(course: course)
+            let studentViewCellModel = StudentViewCellViewModel(course: course)
             cellViewModels.append(studentViewCellModel)
         }
 
         state = .data(cellViewModels)
     }
 
-    // MARK: Applications
+    // MARK: Attendance Tool
 
-    private func requestApplications() {
-        guard applicationsRequest == nil else { return }
+    private func requestAttendanceTool() {
+        guard attendanceToolRequest == nil else { return }
         let request = GetCourseNavigationToolsRequest(courseContextsCodes: [context.canvasContextID])
-        applicationsRequest = AppEnvironment.shared.api.makeRequest(request) { [weak self] tools, _, _ in
-            self?.handleApplicationsResponse(tools ?? [])
+        attendanceToolRequest = AppEnvironment.shared.api.makeRequest(request) { [weak self] tools, _, _ in
+            self?.handleAttendanceToolResponse(tools ?? [])
         }
     }
 
-    private func handleApplicationsResponse(_ tools: [CourseNavigationTool]) {
-        applicationsRequest = nil
+    private func handleAttendanceToolResponse(_ tools: [CourseNavigationTool]) {
+        attendanceToolRequest = nil
         let attendanceTool = tools.first {
             let attendancePatterns = ["rollcall.instructure.com", "rollcall.beta.instructure.com"]
             if let urlString = $0.url?.absoluteString {
@@ -181,7 +190,7 @@ public class CourseDetailsViewModel: ObservableObject {
 extension CourseDetailsViewModel: Refreshable {
 
     public func refresh(completion: @escaping () -> Void) {
-        requestApplications()
+        requestAttendanceTool()
         permissions.refresh(force: true)
         colors.refresh(force: true)
         course.refresh(force: true)

@@ -37,7 +37,6 @@ public struct CourseDetailsCellView: View {
                 Image(uiImage: viewModel.iconImage)
                     .frame(width: 20, height: 20)
                     .foregroundColor(Color(viewModel.courseColor))
-                    .frame(maxHeight: .infinity, alignment: .top)
                 VStack(alignment: .leading) {
                     Text(viewModel.label)
                         .font(.semibold16)
@@ -50,15 +49,7 @@ public struct CourseDetailsCellView: View {
                     }
                 }
                 Spacer()
-                if let specialIndicator = viewModel.specialIndicatorIcon {
-                    Image(uiImage: specialIndicator)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.ash)
-                } else {
-                    InstDisclosureIndicator()
-                }
+                accessoryIcon
             }
             .padding(.vertical, 13)
             .padding(.horizontal, 16)
@@ -69,18 +60,44 @@ public struct CourseDetailsCellView: View {
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
         .accessibility(identifier: viewModel.a11yIdentifier)
     }
+
+    @ViewBuilder
+    private var accessoryIcon: some View {
+        switch viewModel.accessoryIconType {
+        case .disclosure:
+            InstDisclosureIndicator()
+        case .externalLink:
+            Image.externalLinkLine
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
+                .foregroundColor(.textDarkest)
+        }
+    }
 }
 
 struct CourseDetailsCellView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext
-
-    static var previews: some View {
+    private static var defaultButtonViewModel: CourseDetailsCellViewModel {
         let course = Course.save(.make(), in: context)
         let tab: Tab = Tab(context: context)
         tab.save(.make(), in: context, context: .course("1"))
-        let viewModel = CourseDetailsCellViewModel(tab: tab, course: course, attendanceToolID: "123")
-        return CourseDetailsCellView(viewModel: viewModel)
+        return GenericCellViewModel(tab: tab, course: course)
+    }
+    private static var attendanceButtonViewModel: CourseDetailsCellViewModel {
+        let course = Course.save(.make(id: "2"), in: context)
+        let tab: Tab = Tab(context: context)
+        tab.save(.make(id: "attendance"), in: context, context: .course("2"))
+        return AttendanceCellViewModel(tab: tab, course: course, attendanceToolID: "123")
+    }
+
+    static var previews: some View {
+        CourseDetailsCellView(viewModel: StudentViewCellViewModel(course: Course.save(.make(), in: context)))
+            .previewLayout(.sizeThatFits)
+        CourseDetailsCellView(viewModel: defaultButtonViewModel)
+            .previewLayout(.sizeThatFits)
+        CourseDetailsCellView(viewModel: attendanceButtonViewModel)
             .previewLayout(.sizeThatFits)
     }
 }

@@ -166,8 +166,8 @@ struct CourseDetailsView_Previews: PreviewProvider {
         tab2.save(.make(id: "2", label: "Assignments"), in: context, context: .course("1"))
 
         return CourseDetailsViewModel(state: .data([
-            CourseDetailsCellViewModel(tab: tab1, course: course, attendanceToolID: "1"),
-            CourseDetailsCellViewModel(tab: tab2, course: course, attendanceToolID: "2"),
+            GenericCellViewModel(tab: tab1, course: course),
+            GenericCellViewModel(tab: tab2, course: course),
         ]))
     }
 

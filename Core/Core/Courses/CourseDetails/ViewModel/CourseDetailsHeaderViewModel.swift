@@ -27,7 +27,7 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
     @Published public private(set) var courseName = ""
     @Published public private(set) var courseColor: UIColor = .clear
     @Published public private(set) var termName = ""
-    @Published public private(set) var imageURL: URL? = nil
+    @Published public private(set) var imageURL: URL?
 
     public let height: CGFloat = 235
 
@@ -51,7 +51,7 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         guard let frame = bounds.first?.bounds else { return }
         scrollPositionYChanged(to: frame.minY)
     }
-    
+
     private func scrollPositionYChanged(to value: CGFloat) {
         if value <= 0 { // scrolling down to content
             verticalOffset = min(0, value / 2)
