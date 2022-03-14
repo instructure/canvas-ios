@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "مجرد سؤال عابر أو اقتراح";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "تغيير تخطيط لوحة المعلومات إلى شبكة";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "تغيير تخطيط لوحة المعلومات إلى قائمة";
+
+/* No comment provided by engineer. */
 "Change User" = "تغيير المستخدم";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "تحرير المرفق (بلا)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "تحرير لوحة المعلومات";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "تحرير النقاش";

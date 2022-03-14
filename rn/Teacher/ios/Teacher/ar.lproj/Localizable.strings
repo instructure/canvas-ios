@@ -53,10 +53,19 @@
 "Choose Files" = "اختر الملفات";
 
 /* No comment provided by engineer. */
+"Close" = "إغلاق";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "أغلق الدرج";
 
 /* No comment provided by engineer. */
 "Comment" = "تعليق";
+
+/* No comment provided by engineer. */
+"Comment Library" = "مكتبة التعليقات";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "مكتبة التعليقات غير متاحة";
 
 /* No comment provided by engineer. */
 "Comments" = "التعليقات";
@@ -197,10 +206,16 @@
 "No Submissions" = "لا توجد إرسالات";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "لا توجد مقترحات متاحة";
+
+/* No comment provided by engineer. */
 "Not Graded" = "لم يتم التقييم";
 
 /* No comment provided by engineer. */
 "OK" = "موافق";
+
+/* No comment provided by engineer. */
+"Open comment library" = "فتح مكتبة التعليقات";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "فتح الدرج في ملء الشاشة";

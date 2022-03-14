@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Pregunta o suggeriment informals";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Canvia el disseny del panell de control a quadrícula";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Canvia el disseny del panell de control a llista";
+
+/* No comment provided by engineer. */
 "Change User" = "Canvia l'usuari";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edita el fitxer adjunt (cap)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Edita el panell de control";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edita el fòrum";

@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Informell fråga eller förslag";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Ändra layouten för översikten till rutnät";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Ändra layouten för översikten till lista";
+
+/* No comment provided by engineer. */
 "Change User" = "Byt användare";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Redigera bilaga (ingen)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Redigera översikt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Redigera diskussion";
