@@ -101,7 +101,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     private func setupHome(course: Course) {
         guard let defaultView = course.defaultView else { return }
-        homeRoute = URL(string: "courses/\(course.id)/\(defaultView.rawValue)")
+        var homeRoute = URL(string: "courses/\(course.id)/\(defaultView.rawValue)")
 
         switch course.defaultView {
         case .assignments:
@@ -117,7 +117,11 @@ public class CourseDetailsViewModel: ObservableObject {
             homeSubLabel = NSLocalizedString("Front Page", comment: "")
             homeRoute = URL(string: "courses/\(course.id)/pages/front_page")
         case .none:
-            return
+            break
+        }
+
+        if self.homeRoute != homeRoute {
+            self.homeRoute = homeRoute
         }
     }
 

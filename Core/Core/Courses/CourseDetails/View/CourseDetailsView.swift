@@ -52,6 +52,11 @@ public struct CourseDetailsView: View {
             .onAppear(perform: viewModel.viewDidAppear)
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
+        .onReceive(viewModel.$homeRoute) { homeURL in
+            if let defaultViewProvider = controller.value as? DefaultViewProvider {
+                defaultViewProvider.defaultViewRoute = homeURL?.absoluteString
+            }
+        }
     }
 
     @ViewBuilder

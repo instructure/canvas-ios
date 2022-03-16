@@ -976,6 +976,7 @@
 		CFF64FE527DB5A8700653573 /* StudentViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FE427DB5A8700653573 /* StudentViewCellViewModel.swift */; };
 		CFF64FE727DB64BB00653573 /* AttendanceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FE627DB64BB00653573 /* AttendanceCellViewModel.swift */; };
 		CFF64FE927DB849600653573 /* LTICellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FE827DB849600653573 /* LTICellViewModel.swift */; };
+		CFF64FEC27DCF8A400653573 /* DefaultViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FEB27DCF8A400653573 /* DefaultViewProvider.swift */; };
 		CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */; };
 		CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */; };
 		CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */; };
@@ -2289,6 +2290,7 @@
 		CFF64FE427DB5A8700653573 /* StudentViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewCellViewModel.swift; sourceTree = "<group>"; };
 		CFF64FE627DB64BB00653573 /* AttendanceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCellViewModel.swift; sourceTree = "<group>"; };
 		CFF64FE827DB849600653573 /* LTICellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTICellViewModel.swift; sourceTree = "<group>"; };
+		CFF64FEB27DCF8A400653573 /* DefaultViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewProvider.swift; sourceTree = "<group>"; };
 		CFFA6CEA26554FBC00B47380 /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
 		CFFA6CEF2655628100B47380 /* TopBarItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemViewModel.swift; sourceTree = "<group>"; };
 		CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModel.swift; sourceTree = "<group>"; };
@@ -2583,6 +2585,7 @@
 		2C964858211E3049002C3255 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				CFF64FEB27DCF8A400653573 /* DefaultViewProvider.swift */,
 				7D7110BE213890AD0085C2E5 /* RouteHandler.swift */,
 				2C964856211E303E002C3255 /* Router.swift */,
 			);
@@ -6392,6 +6395,7 @@
 				7DA25FDB23F72148005D2121 /* LocalizationManager.swift in Sources */,
 				7DA260F323F72397005D2121 /* FilePicker.swift in Sources */,
 				7DCA32122541DB8B00458651 /* WebSession.swift in Sources */,
+				CFF64FEC27DCF8A400653573 /* DefaultViewProvider.swift in Sources */,
 				7DA2607A23F722FA005D2121 /* PageViewEvent.swift in Sources */,
 				7DA260E323F72359005D2121 /* ListFormatter.swift in Sources */,
 				D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */,
