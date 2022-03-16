@@ -160,6 +160,9 @@ class GetDiscussionView: CollectionUseCase {
     func write(response: APIDiscussionView?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let view = response else { return }
         for participant in view.participants {
+            guard let participant = participant else {
+                return
+            }
             DiscussionParticipant.save(participant, in: client)
         }
         let unreadIDs = Set(view.unread_entries.map { $0.value })

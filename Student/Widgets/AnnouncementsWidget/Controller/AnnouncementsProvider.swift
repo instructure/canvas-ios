@@ -50,7 +50,7 @@ class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
 
             let announcementItems: [AnnouncementItem] = announcements.compactMap { announcement in
                 guard let course = (self.courses?.first { $0.canvasContextID == announcement.context_code }) else { return nil }
-                let image = self.getImage(url: announcement.author.avatar_image_url?.rawValue)
+                let image = self.getImage(url: announcement.author?.avatar_image_url?.rawValue)
                 return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
             }
 

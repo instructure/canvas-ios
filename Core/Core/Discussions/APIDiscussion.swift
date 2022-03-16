@@ -24,7 +24,7 @@ public struct APIDiscussionTopic: Codable, Equatable {
     public let assignment: APIList<APIAssignment>?
     public let assignment_id: ID?
     public let attachments: [APIFile]?
-    public let author: APIDiscussionParticipant
+    public let author: APIDiscussionParticipant?
     public let can_unpublish: Bool?
     public let created_at: Date?
     public let context_code: String? // Only populated while using https://canvas.instructure.com/doc/api/announcements.html#method.announcements_api.index
@@ -93,7 +93,7 @@ public struct APIDiscussionPermissions: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.view
 public struct APIDiscussionView: Codable, Equatable {
-    let participants: [APIDiscussionParticipant]
+    let participants: [APIDiscussionParticipant?]
     let unread_entries: [ID]
     var entry_ratings: [String: Int]
     let forced_entries: [ID]

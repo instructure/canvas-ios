@@ -95,7 +95,9 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         }
         model.assignmentID = item.assignment_id?.value
         model.attachments = Set(item.attachments?.map { File.save($0, in: context) } ?? [])
-        model.author = item.author.id.map { _ in DiscussionParticipant.save(item.author, in: context) }
+        if let author = item.author {
+            model.author = author.id.map { _ in DiscussionParticipant.save(author, in: context) }
+        }
         if let permissions = item.permissions {
             model.canAttach = permissions.attach == true
             model.canDelete = permissions.delete == true
