@@ -52,6 +52,10 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         scrollPositionYChanged(to: frame.minY)
     }
 
+    public func shouldShowHeader(for height: CGFloat) -> Bool {
+        self.height < height / 2
+    }
+
     private func scrollPositionYChanged(to value: CGFloat) {
         if value <= 0 { // scrolling down to content
             verticalOffset = min(0, value / 2)

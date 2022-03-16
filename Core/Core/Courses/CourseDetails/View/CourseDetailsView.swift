@@ -35,10 +35,10 @@ public struct CourseDetailsView: View {
             VStack(spacing: 0) {
                 switch viewModel.state {
                 case .empty(let title, let message):
-                    CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+                    imageHeader(geometry: geometry)
                     errorView(title: title, message: message)
                 case .loading:
-                    CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+                    imageHeader(geometry: geometry)
                     loadingView
                 case .data(let tabViewModels):
                     tabList(tabViewModels, geometry: geometry)
@@ -130,7 +130,7 @@ public struct CourseDetailsView: View {
 
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
         ZStack(alignment: .top) {
-            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+            imageHeader(geometry: geometry)
             List {
                 VStack(spacing: 0) {
                     if viewModel.showHome {
@@ -146,7 +146,7 @@ public struct CourseDetailsView: View {
                 .listRowBackground(Color.clear)
                 .iOS15ListRowSeparator(.hidden)
                 .background(Color.backgroundLightest)
-                .padding(.top, headerViewModel.height)
+                .padding(.top, headerViewModel.shouldShowHeader(for: geometry.size.height) ? headerViewModel.height : 0)
                 // Save the frame of the content so we can inspect its y position and move course image based on that
                 .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
                     preferences = [.init(viewId: 0, bounds: geometry[bounds])]
@@ -156,6 +156,13 @@ public struct CourseDetailsView: View {
             .iOS15Refreshable { completion in
                 viewModel.refresh(completion: completion)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func imageHeader(geometry: GeometryProxy) -> some View {
+        if headerViewModel.shouldShowHeader(for: geometry.size.height) {
+            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
         }
     }
 }
