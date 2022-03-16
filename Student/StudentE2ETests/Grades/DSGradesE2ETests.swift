@@ -24,8 +24,8 @@ class DSGradesE2ETests: E2ETestCase {
         // Seed the usual stuff with 2 assignments
         let users = seeder.createUsers(2)
         let course = seeder.createCourse()
-        let student = users[1]
-        let teacher = users[0]
+        let student = users[0]
+        let teacher = users[1]
         seeder.enrollTeacher(teacher, in: course)
         seeder.enrollStudent(student, in: course)
 
@@ -41,10 +41,10 @@ class DSGradesE2ETests: E2ETestCase {
 
         // Create submissions for both
         let submission = seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: SubmissionType.online_text_entry, body: "This is a submission body", user_id: student.id))
+            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
         let submission1 = seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
-            .init(submission_type: SubmissionType.online_text_entry, body: "This is a submission body", user_id: student.id))
+            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
         // Navigate to an assignment detail and check if grade updates
         Dashboard.courseCard(id: course.id).waitToExist()

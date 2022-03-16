@@ -43,7 +43,7 @@ extension CreateDSAssignmentRequest {
         public init(name: String = "Assignment Name",
                     description: String? = nil,
                     published: Bool = true,
-                    submission_types: [SubmissionType] = [SubmissionType.online_text_entry],
+                    submission_types: [SubmissionType] = [.online_text_entry],
                     points_possible: Float? = nil) {
             self.name = name
             self.description = description
