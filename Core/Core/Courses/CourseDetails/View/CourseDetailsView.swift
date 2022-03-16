@@ -52,11 +52,7 @@ public struct CourseDetailsView: View {
             .onAppear(perform: viewModel.viewDidAppear)
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
-        .onReceive(viewModel.$homeRoute) { homeURL in
-            if let defaultViewProvider = controller.value as? DefaultViewProvider {
-                defaultViewProvider.defaultViewRoute = homeURL?.absoluteString
-            }
-        }
+        .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
     }
 
     @ViewBuilder
@@ -163,6 +159,12 @@ public struct CourseDetailsView: View {
     private func imageHeader(geometry: GeometryProxy) -> some View {
         if headerViewModel.shouldShowHeader(for: geometry.size.height) {
             CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+        }
+    }
+
+    private func setupDefaultSplitDetailView(_ url: URL?) {
+        if let defaultViewProvider = controller.value as? DefaultViewProvider {
+            defaultViewProvider.defaultViewRoute = url?.absoluteString
         }
     }
 }

@@ -24,14 +24,20 @@ import SwiftUI
 public struct ContextButton: ButtonStyle {
     private let selectionBackgroundColor: UIColor = .porcelain
     private let contextColor: UIColor
+    private let forceHighlight: Bool
 
-    public init(contextColor: UIColor?) {
+    /**
+     - parameters:
+        - isHighlighted: If this parameter is true, then the button will show its highlighted state even if it isn't pressed down. Useful to indicate selected state.
+     */
+    public init(contextColor: UIColor?, isHighlighted: Bool = false) {
         self.contextColor = contextColor ?? selectionBackgroundColor
+        self.forceHighlight = isHighlighted
     }
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .background(selectionIndicator(configuration.isPressed))
+            .background(selectionIndicator(configuration.isPressed || forceHighlight))
     }
 
     private func selectionIndicator(_ isSelected: Bool) -> some View {
