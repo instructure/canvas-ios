@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "気軽なご質問または提案";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "ダッシュボードレイアウトをグリッドに変更する";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "ダッシュボードレイアウトをリストに変更する";
+
+/* No comment provided by engineer. */
 "Change User" = "ユーザーを変更する";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "添付 (なし) を編集する";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "ダッシュボードを編集する";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "ディスカッションを編集";

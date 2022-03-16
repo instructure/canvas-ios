@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "隨意的問題或建議";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "切換控制面板版面為網格";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "切換控制面板版面為清單";
+
+/* No comment provided by engineer. */
 "Change User" = "變更使用者";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "編輯附件 (無)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "編輯控制面板";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "編輯討論區";

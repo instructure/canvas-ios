@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Uformelt spørgsmål eller forslag";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Skift oversigtslayout til gitter";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Skift oversigtslayout til liste";
+
+/* No comment provided by engineer. */
 "Change User" = "Skift bruger";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Rediger vedhæftet fil (ingen)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Rediger oversigt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Rediger diskussion";

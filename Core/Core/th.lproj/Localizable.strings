@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "คำถามหรือข้อเสนอแนะทั่วไป";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "แก้ไขเค้าโครงแผงข้อมูลเป็นตาราง";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "แก้ไขเค้าโครงแผงข้อมูลเป็นรายการ";
+
+/* No comment provided by engineer. */
 "Change User" = "เปลี่ยนผู้ใช้";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "แก้ไขเอกสารแนบ (ไม่มี)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "แก้ไขแผงข้อมูล";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "แก้ไขการพูดคุย";
