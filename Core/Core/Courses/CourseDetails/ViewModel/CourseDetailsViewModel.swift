@@ -25,6 +25,7 @@ public class CourseDetailsViewModel: ObservableObject {
         case data(T)
     }
 
+    public let selectionViewModel = CourseDetailsSelectionViewModel()
     public let headerViewModel = CourseDetailsHeaderViewModel()
     @Published public private(set) var state: ViewModelState<[CourseDetailsCellViewModel]> = .loading
     @Published public private(set) var courseColor: UIColor = .clear

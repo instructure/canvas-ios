@@ -24,10 +24,12 @@ public struct CourseDetailsView: View {
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
+    @ObservedObject private var selectionViewModel: CourseDetailsSelectionViewModel
 
     public init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
         self.headerViewModel = viewModel.headerViewModel
+        self.selectionViewModel = viewModel.selectionViewModel
     }
 
     public var body: some View {
@@ -49,7 +51,10 @@ public struct CourseDetailsView: View {
             .navigationTitle(viewModel.courseName, subtitle: nil)
             .navigationBarGenericBackButton()
             .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
-            .onAppear(perform: viewModel.viewDidAppear)
+            .onAppear {
+                viewModel.viewDidAppear()
+                viewModel.selectionViewModel.splitViewController = controller.value.splitViewController
+            }
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
         .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
@@ -93,7 +98,7 @@ public struct CourseDetailsView: View {
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         }
-        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.isHomeButtonHighlighted))
     }
 
     @ViewBuilder
