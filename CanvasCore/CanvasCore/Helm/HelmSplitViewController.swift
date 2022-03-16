@@ -99,6 +99,8 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
     }
     
     public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+
+        // Setup default detail view provided by the master view controller
         if let nav = primaryViewController as? UINavigationController,
            nav.viewControllers.count > 1,
            let defaultViewProvider = nav.viewControllers.last as? DefaultViewProvider,
@@ -108,9 +110,14 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
             let detailNavController = HelmNavigationController(rootViewController: defaultViewController)
             detailNavController.syncStyles(from: nav, to: detailNavController)
 
+            if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute) {
+                Analytics.shared.logScreenView(route: routeTemplate, viewController: defaultViewController)
+            }
+
             return detailNavController
         }
 
+        // Default behaviour of putting the current top viewcontroller into a nav controller and moving it to the detail view
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)

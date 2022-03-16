@@ -460,4 +460,14 @@ class RouterTests: CoreTestCase {
             "screen_class": "MockViewController",
         ])
     }
+
+    func testRouteTemplate() {
+        let testee = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+        ])
+
+        XCTAssertEqual(testee.template(for: "/courses/1234/assignments"), "/courses/:courseId/assignments")
+        XCTAssertEqual(testee.template(for: URLComponents(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
+        XCTAssertEqual(testee.template(for: URL(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
+    }
 }

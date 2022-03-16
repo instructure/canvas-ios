@@ -125,6 +125,16 @@ open class Router {
         return nil
     }
 
+    public func template(for url: URL) -> String? {
+        template(for: .parse(url))
+    }
+    public func template(for url: String) -> String? {
+        template(for: .parse(url))
+    }
+    public func template(for url: URLComponents) -> String? {
+        handler(for: url)?.template
+    }
+
     // MARK: - Routing
 
     public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
@@ -265,5 +275,10 @@ open class Router {
         var url = url
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
         return url
+    }
+
+    private func handler(for url: URLComponents) -> RouteHandler? {
+        let url = cleanURL(url)
+        return handlers.first { $0.match(url) != nil }
     }
 }
