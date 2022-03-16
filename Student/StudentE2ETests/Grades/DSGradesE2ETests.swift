@@ -22,10 +22,9 @@ import TestsFoundation
 class DSGradesE2ETests: E2ETestCase {
     func testGradesE2E() {
         // Seed the usual stuff with 2 assignments
-        let users = seeder.createUsers(2)
+        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        let student = users[0]
-        let teacher = users[1]
         seeder.enrollTeacher(teacher, in: course)
         seeder.enrollStudent(student, in: course)
 
