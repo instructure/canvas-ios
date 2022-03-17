@@ -16,22 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension Tab: TabViewable {}
-
-class GenericCellViewModel: CourseDetailsCellViewModel {
+class SyllabusCellViewModel: CourseDetailsCellViewModel {
     private let route: URL?
 
     public init(tab: Tab, course: Course) {
-        self.route = {
-            switch tab.name {
-            case .pages:
-                return URL(string: "/courses/\(course.id)/pages")
-            case .collaborations, .conferences, .outcomes:
-                return tab.fullURL
-            default:
-                return tab.htmlURL
-            }
-        }()
+        self.route = URL(string: "/courses/\(course.id)/syllabus")
 
         super.init(courseColor: course.color,
                    iconImage: tab.icon,
@@ -43,7 +32,7 @@ class GenericCellViewModel: CourseDetailsCellViewModel {
 
     public override func selected(router: Router, viewController: WeakViewController) {
         if let url = route {
-            router.route(to: url, from: viewController)
+            router.route(to: url, from: viewController, options: .detail)
         }
     }
 }

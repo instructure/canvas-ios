@@ -160,6 +160,8 @@ public class CourseDetailsViewModel: ObservableObject {
                 return AttendanceCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID)
             } else if $0.type == .external, let url = $0.url {
                 return LTICellViewModel(tab: $0, course: course, url: url)
+            } else if $0.name == .syllabus {
+                return SyllabusCellViewModel(tab: $0, course: course)
             } else {
                 return GenericCellViewModel(tab: $0, course: course)
             }
