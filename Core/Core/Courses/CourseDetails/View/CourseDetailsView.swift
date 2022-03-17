@@ -69,7 +69,7 @@ public struct CourseDetailsView: View {
         }) {
             Image.settingsLine.foregroundColor(.textLightest)
         }
-        .accessibility(label: Text("Edit Course settings", bundle: .core))
+        .accessibility(label: Text("Edit course settings", bundle: .core))
     }
 
     @ViewBuilder

@@ -25,19 +25,18 @@ public class CourseSettingsViewModel: ObservableObject {
         case ready
     }
 
+    @Published public var newName: String = ""
+    @Published public var newDefaultView: CourseDefaultView = .wiki
     @Published public var showError: Bool = false
     @Published public private(set) var state: ViewModelState = .loading
-    @Published public private(set) var isSaving: Bool = false
     @Published public private(set) var errorText: String?
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var imageURL: URL?
     @Published public private(set) var hideColorOverlay: Bool?
-    @Published public private(set) var defaultView: CourseDefaultView?
 
     @Environment(\.appEnvironment) private var env
-    private var courseNameFromAPI: String?
-    private var defaultViewFromAPI: CourseDefaultView?
+    private var isFirstAppearance = true
     private var context: Context
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
@@ -52,45 +51,50 @@ public class CourseSettingsViewModel: ObservableObject {
     }
 
     public func viewDidAppear() {
+        guard isFirstAppearance else { return }
+        isFirstAppearance = false
         settings.refresh()
         course.refresh()
         colors.refresh()
     }
 
-    public func defaultViewSelectorTapped(router: Router, viewController: WeakViewController, defaultViewState: CourseDefaultView) {
+    public func defaultViewSelectorTapped(router: Router, viewController: WeakViewController) {
         let options = CourseDefaultView.allCases
-        let sections = [ ItemPickerSection(items: options.map {
-            ItemPickerItem(title: $0.string)
-        }), ]
+        let sections = [
+            ItemPickerSection(items: options.map { ItemPickerItem(title: $0.string) }),
+        ]
 
-        var selected: IndexPath?
-        if let defaultView = defaultView {
-            selected = options.firstIndex(of: defaultView).flatMap {
-                IndexPath(row: $0, section: 0)
-            }
-        }
-
+        let selected: IndexPath? = options.firstIndex(of: newDefaultView).flatMap { IndexPath(row: $0, section: 0) }
         let itemPicker = ItemPickerViewController.create(
             title: NSLocalizedString("Set \"Home\" to...", comment: ""),
             sections: sections,
             selected: selected,
-            didSelect: { self.defaultView = options[$0.row] /*FIXME*/ }
+            didSelect: {
+                self.newDefaultView = options[$0.row]
+            }
         )
         router.show(itemPicker, from: viewController)
     }
 
-    public func doneTapped(router: Router, viewController: WeakViewController, name: String, defaultView: CourseDefaultView) {
-        isSaving = true
-        guard name != courseName || defaultView != self.defaultView else { return }
+    public func doneTapped(router: Router, viewController: WeakViewController) {
+        guard newName != courseName || newDefaultView != course.first?.defaultView else {
+            router.dismiss(viewController)
+            return
+        }
+
+        state = .saving
         UpdateCourse(courseID: context.id,
-                     name: name,
-                     defaultView: defaultView
+                     name: newName,
+                     defaultView: newDefaultView
         ).fetch { [weak self] result, _, error in performUIUpdate {
             guard let self = self else { return }
+            self.state = .ready
 
-            self.showError = true
-            self.errorText = error?.localizedDescription
-            self.isSaving = false
+            if error != nil {
+                self.errorText = error?.localizedDescription
+                self.showError = true
+            }
+
             if result != nil {
                 router.dismiss(viewController)
             }
@@ -98,10 +102,12 @@ public class CourseSettingsViewModel: ObservableObject {
     }
 
     private func courseDidUpdate() {
-        guard let course = course.first else { return }
+        guard course.requested, !course.pending, let course = course.first else { return }
         courseColor = course.color
         courseName = course.name
+        newName = courseName ?? ""
         imageURL = course.imageDownloadURL
-        defaultView = course.defaultView
+        newDefaultView = course.defaultView ?? .wiki
+        state = .ready
     }
 }

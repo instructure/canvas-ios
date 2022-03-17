@@ -19,26 +19,47 @@
 import SwiftUI
 
 public struct CourseSettingsView: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel: CourseSettingsViewModel
 
-    @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
-
-    @State var name: String
-    @State var defaultView: CourseDefaultView
-
     public init(viewModel: CourseSettingsViewModel) {
         self.viewModel = viewModel
-
-        // TODO move to viewmodel?
-        _name = State(initialValue: (viewModel.courseName ?? ""))
-        _defaultView = State(initialValue: viewModel.defaultView ?? .wiki)
     }
 
-    public var body: some View { GeometryReader { geometry in
-        let width = geometry.size.width
-        EditorForm(isSpinning: viewModel.isSaving) {
+    public var body: some View {
+        GeometryReader { geometry in
+            switch viewModel.state {
+            case .loading:
+                CircleProgress()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            case .ready, .saving:
+                editor(width: geometry.size.width)
+            }
+        }
+        .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: viewModel.courseName)
+        .compatibleNavBarItems(
+            leading: {
+                Button(action: cancelTapped) {
+                    Text("Cancel", bundle: .core).fontWeight(.regular)
+                }
+            },
+            trailing: {
+                Button(action: doneTapped) {
+                    Text("Done", bundle: .core).bold()
+                }
+                .disabled(viewModel.state != .ready)
+            }
+        )
+        .onAppear(perform: viewModel.viewDidAppear)
+        .alert(isPresented: $viewModel.showError) {
+            Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
+        }
+    }
+
+    private func editor(width: CGFloat) -> some View {
+        EditorForm(isSpinning: viewModel.state == .saving) {
             let height: CGFloat = 235
             ZStack {
                 Color(viewModel.courseColor ?? .ash).frame(width: width, height: height)
@@ -54,51 +75,32 @@ public struct CourseSettingsView: View {
             defaultViewButtonRow
             Divider()
         }
-        .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: viewModel.courseName)
-        .navigationBarItems(
-            leading: Button(action: cancelTapped, label: {
-                Text("Cancel", bundle: .core).fontWeight(.regular)
-            }),
-            trailing: Button(action: doneTapped, label: {
-                Text("Done", bundle: .core).bold()
-            })
-        )
-        .onAppear {
-            viewModel.viewDidAppear()
-        }
-        .alert(isPresented: $viewModel.showError) {
-            Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
-        }
-    }
     }
 
-    @ViewBuilder
     private var nameRow: some View {
         TextFieldRow(
             label: Text("Name", bundle: .core),
             placeholder: NSLocalizedString("Add Course Name", comment: ""),
-            text: $name
+            text: $viewModel.newName
         )
     }
 
-    @ViewBuilder
     private var defaultViewButtonRow: some View {
         ButtonRow(action: {
-            viewModel.defaultViewSelectorTapped(router: env.router, viewController: controller, defaultViewState: defaultView)
-        }, content: {
+            viewModel.defaultViewSelectorTapped(router: env.router, viewController: controller)
+        }) {
             Text("Set \"Home\" to...", bundle: .core)
             Spacer()
-            Text(viewModel.defaultView?.string ?? "")
+            Text(viewModel.newDefaultView.string)
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
             DisclosureIndicator()
-        })
-        .identifier("TODO")
+        }
     }
 
     private func doneTapped() {
         controller.view.endEditing(true) // dismiss keyboard
-        viewModel.doneTapped(router: env.router, viewController: controller, name: name, defaultView: defaultView)
+        viewModel.doneTapped(router: env.router, viewController: controller)
     }
 
     func cancelTapped() {
