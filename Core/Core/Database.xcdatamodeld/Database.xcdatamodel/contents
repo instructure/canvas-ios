@@ -302,6 +302,7 @@
     </entity>
     <entity name="DiscussionTopic" representedClassName="Core.DiscussionTopic" syncable="YES">
         <attribute name="allowRating" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="anonymousState" optional="YES" attributeType="String"/>
         <attribute name="assignmentID" optional="YES" attributeType="String"/>
         <attribute name="canAttach" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

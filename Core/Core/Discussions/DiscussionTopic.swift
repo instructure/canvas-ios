@@ -23,6 +23,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     public typealias JSON = APIDiscussionTopic
 
     @NSManaged public var allowRating: Bool
+    @NSManaged public var anonymousState: String?
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String?
     @NSManaged public var courseID: String?
@@ -87,6 +88,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(DiscussionTopic.id), item.id.value)
         let model: DiscussionTopic = context.fetch(predicate).first ?? context.insert()
         model.allowRating = item.allow_rating
+        model.anonymousState = item.anonymous_state
         if let assignment = item.assignment?.values.first {
             model.assignment = nil // sever relationship first so assignment doesn't delete me
             model.assignment = Assignment.save(assignment, in: context, updateSubmission: false, updateScoreStatistics: false)

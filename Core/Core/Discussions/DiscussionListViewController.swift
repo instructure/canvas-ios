@@ -201,7 +201,24 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
-        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true)
+        let topic = topics[indexPath]
+        cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true)
+        if topic?.anonymousState != nil {
+            cell.selectionStyle = .none
+            cell.contentView.alpha = 0.5
+            cell.statusLabel.text = "Not supported"
+            cell.statusLabel.isHidden = false
+            cell.statusDot.isHidden = true
+            cell.repliesLabel.isHidden = true
+            cell.repliesDot.isHidden = true
+            cell.unreadLabel.isHidden = true
+            cell.unreadDot.isHidden = true
+            cell.pointsLabel.isHidden = true
+            cell.pointsDot.isHidden = true
+            cell.dateLabel.isHidden = true
+            cell.isUserInteractionEnabled = false
+        }
+
         return cell
     }
 
@@ -246,6 +263,7 @@ class DiscussionListCell: UITableViewCell {
     @IBOutlet weak var pointsDot: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var repliesLabel: UILabel!
+    @IBOutlet weak var repliesDot: UILabel!
     @IBOutlet weak var statusDot: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -289,5 +307,15 @@ class DiscussionListCell: UITableViewCell {
 
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
         accessibilityLabel = [titleLabel.text, statusLabel.text, dateLabel.text, pointsLabel.text, repliesLabel.text, unreadLabel.text].compactMap { $0 }.joined(separator: " ")
+    }
+
+    override func prepareForReuse() {
+        contentView.alpha = 1.0
+        repliesLabel.isHidden = false
+        repliesDot.isHidden = false
+        unreadLabel.isHidden = false
+        unreadDot.isHidden = false
+        dateLabel.isHidden = false
+        isUserInteractionEnabled = true
     }
 }
