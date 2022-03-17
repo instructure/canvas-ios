@@ -93,10 +93,16 @@ public class GetAllCourses: CollectionUseCase {
         return GetCoursesRequest(enrollmentState: nil, state: [ .current_and_concluded ], perPage: 100)
     }
 
-    private var scopePredicate: NSPredicate { return NSCompoundPredicate(andPredicateWithSubpredicates: [
-                                                                            NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw), [EnrollmentState.invited.rawValue]),
-                                                                            NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.deleted.rawValue),
-                                                                            NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false), ])
+    private var scopePredicate: NSPredicate {
+        var predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw), [EnrollmentState.invited.rawValue]),
+            NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.deleted.rawValue),
+            NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false), ])
+        if AppEnvironment.shared.app == .student && AppEnvironment.shared.currentSession?.isFakeStudent == false {
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
+                                                                            NSPredicate(format: "%K == YES", #keyPath(Course.isPublished)), ])
+        }
+        return predicate
     }
 
     public var scope: Scope {
