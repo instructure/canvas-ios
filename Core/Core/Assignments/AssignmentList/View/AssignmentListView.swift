@@ -19,6 +19,7 @@
 import SwiftUI
 
 public struct AssignmentListView: View {
+    @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: AssignmentListViewModel
     @State private var isShowingGradingPeriodPicker = false
 
@@ -52,6 +53,7 @@ public struct AssignmentListView: View {
         .navigationBarGenericBackButton()
         .onAppear {
             viewModel.viewDidAppear()
+            setupDefaultSplitDetailView()
         }
     }
 
@@ -133,6 +135,12 @@ public struct AssignmentListView: View {
         .listStyle(.plain)
         .iOS15Refreshable { completion in
             viewModel.refresh(completion: completion)
+        }
+    }
+
+    private func setupDefaultSplitDetailView() {
+        if let defaultViewProvider = controller.value as? DefaultViewProvider, defaultViewProvider.defaultViewRoute == nil {
+            defaultViewProvider.defaultViewRoute = "/empty"
         }
     }
 }

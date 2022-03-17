@@ -173,7 +173,7 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         }
     }
 
-    override public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count == 1 {
             state = .fullScreen
         }

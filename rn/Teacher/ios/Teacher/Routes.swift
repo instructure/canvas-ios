@@ -303,6 +303,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)
     },
+
+    "/empty": { _, _, _ in
+        EmptyViewController()
+    },
 ]))
 
 private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

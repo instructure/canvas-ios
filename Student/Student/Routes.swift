@@ -380,6 +380,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ErrorReportViewController.create(type: .feature)
     },
 
+    "/empty": { _, _, _ in
+        EmptyViewController()
+    },
+
     "/native-route/*route": nativeFactory,
     "/native-route-master/*route": nativeFactory,
 ]))

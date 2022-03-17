@@ -101,6 +101,12 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     private func setupHome(course: Course) {
+        // Even if there's no home view for the course we still want to reset the split detail view when moving back/to the course details
+        if !showHome {
+            homeRoute = URL(string: "/empty")
+            return
+        }
+
         guard let defaultView = course.defaultView else { return }
         var homeRoute = URL(string: "courses/\(course.id)/\(defaultView.rawValue)")
 
