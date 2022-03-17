@@ -51,10 +51,8 @@ public struct AssignmentListView: View {
         .navigationBarStyle(.color(viewModel.courseColor))
         .navigationTitle(NSLocalizedString("Assignments", comment: ""), subtitle: viewModel.courseName)
         .navigationBarGenericBackButton()
-        .onAppear {
-            viewModel.viewDidAppear()
-            setupDefaultSplitDetailView()
-        }
+        .onAppear(perform: viewModel.viewDidAppear)
+        .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
     }
 
     private var gradingPeriodTitle: some View {
@@ -138,10 +136,9 @@ public struct AssignmentListView: View {
         }
     }
 
-    private func setupDefaultSplitDetailView() {
-        if let defaultViewProvider = controller.value as? DefaultViewProvider, defaultViewProvider.defaultViewRoute == nil {
-            defaultViewProvider.defaultViewRoute = "/empty"
-        }
+    private func setupDefaultSplitDetailView(_ route: String) {
+        guard let defaultViewProvider = controller.value as? DefaultViewProvider, defaultViewProvider.defaultViewRoute != route else { return }
+        defaultViewProvider.defaultViewRoute = route
     }
 }
 

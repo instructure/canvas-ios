@@ -29,6 +29,7 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var shouldShowFilterButton = false
+    @Published public private(set) var defaultDetailViewRoute = "/empty"
     public var selectedGradingPeriod: GradingPeriod?
     public lazy private (set) var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         self?.gradingPeriodsDidUpdate()
@@ -98,6 +99,16 @@ public class AssignmentListViewModel: ObservableObject {
     private func courseDidUpdate() {
         courseColor = course.first?.color
         courseName = course.first?.name
+
+        defaultDetailViewRoute = {
+            var result = "/empty"
+
+            if let color = courseColor {
+                result.append("?contextColor=\(color.hexString.dropFirst())")
+            }
+
+            return result
+        }()
     }
 
     private func gradingPeriodsDidUpdate() {

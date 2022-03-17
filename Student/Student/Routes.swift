@@ -380,8 +380,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ErrorReportViewController.create(type: .feature)
     },
 
-    "/empty": { _, _, _ in
-        EmptyViewController()
+    "/empty": { url, _, _ in
+        let emptyViewController = EmptyViewController()
+
+        if let contextColor = url.contextColor {
+            emptyViewController.navBarStyle = .color(contextColor)
+        }
+
+        return emptyViewController
     },
 
     "/native-route/*route": nativeFactory,

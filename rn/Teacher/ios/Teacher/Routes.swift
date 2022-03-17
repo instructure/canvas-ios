@@ -304,8 +304,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
-    "/empty": { _, _, _ in
-        EmptyViewController()
+    "/empty": { url, _, _ in
+        let emptyViewController = EmptyViewController()
+
+        if let contextColor = url.contextColor {
+            emptyViewController.navBarStyle = .color(contextColor)
+        }
+
+        return emptyViewController
     },
 ]))
 
