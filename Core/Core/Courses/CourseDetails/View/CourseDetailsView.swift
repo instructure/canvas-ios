@@ -99,6 +99,7 @@ public struct CourseDetailsView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.isHomeButtonHighlighted))
+        .disabled(selectionViewModel.isHomeButtonHighlighted)
     }
 
     @ViewBuilder
