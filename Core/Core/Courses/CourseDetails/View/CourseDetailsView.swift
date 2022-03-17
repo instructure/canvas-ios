@@ -76,7 +76,7 @@ public struct CourseDetailsView: View {
     private var homeView: some View {
         Button(action: {
             if let url = viewModel.homeRoute {
-                env.router.route(to: url, from: controller)
+                env.router.route(to: url, from: controller, options: .detail)
             }
         }) {
             HStack(spacing: 13) {
@@ -99,7 +99,6 @@ public struct CourseDetailsView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.isHomeButtonHighlighted))
-        .disabled(selectionViewModel.isHomeButtonHighlighted)
     }
 
     @ViewBuilder
