@@ -32,7 +32,8 @@ extension UIViewController {
      If yes and it's in a split view controller in split mode then shows its default view in the split view controller's detail area.
      */
     public func showDefaultDetailView() {
-        guard let defaultViewProvider = self as? DefaultViewProvider,
+        guard !isInSplitViewDetail,
+              let defaultViewProvider = self as? DefaultViewProvider,
               let defaultRoute = defaultViewProvider.defaultViewRoute,
               let splitViewController = splitViewController,
               !splitViewController.isCollapsed
