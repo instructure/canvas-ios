@@ -206,7 +206,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
         if topic?.anonymousState != nil {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.5
-            cell.statusLabel.text = "Not supported"
+            cell.statusLabel.text = NSLocalizedString("Not supported", bundle: .core, comment: "")
             cell.statusLabel.isHidden = false
             cell.statusDot.isHidden = true
             cell.repliesLabel.isHidden = true
