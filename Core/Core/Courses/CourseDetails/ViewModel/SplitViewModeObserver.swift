@@ -16,47 +16,37 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Combine
+import UIKit
 
-public class CourseDetailsSelectionViewModel: ObservableObject {
+public class SplitViewModeObserver {
+    public var isCollapsed: AnyPublisher<Bool, Never> { isCollapsedStateChange.removeDuplicates().eraseToAnyPublisher() }
     public weak var splitViewController: UISplitViewController? {
         didSet { splitViewChanged() }
     }
-    @Published public private(set) var isHomeButtonHighlighted: Bool = false
-    private var splitLayoutChangeListener: NSObjectProtocol?
+    private let isCollapsedStateChange = CurrentValueSubject<Bool, Never>(true)
+    private var subscriptions = Set<AnyCancellable>()
 
-    init() {
+    public init() {
     }
 
     private func splitViewChanged() {
+        subscriptions.removeAll()
+
         guard let splitViewController = splitViewController else {
-            splitLayoutChangeListener = nil
+            isCollapsedStateChange.send(true)
             return
         }
 
         subscribeToSplitViewChanges(splitViewController)
-        update(isCollapsed: splitViewController.isCollapsed)
+        isCollapsedStateChange.send(splitViewController.isCollapsed)
     }
 
     private func subscribeToSplitViewChanges(_ splitViewController: UISplitViewController) {
-        splitLayoutChangeListener = NotificationCenter.default.addObserver(forName: UIViewController.showDetailTargetDidChangeNotification,
-                                                                           object: splitViewController,
-                                                                           queue: .main) { [weak self] in
-            self?.splitViewLayoutNotificationReceived($0)
-        }
-    }
-
-    private func splitViewLayoutNotificationReceived(_ notification: Notification) {
-        guard let splitViewController = notification.object as? UISplitViewController else {
-            return
-        }
-
-        update(isCollapsed: splitViewController.isCollapsed)
-    }
-
-    private func update(isCollapsed: Bool) {
-        let isSplitMode = !isCollapsed
-
-        isHomeButtonHighlighted = isSplitMode
+        NotificationCenter.default.publisher(for: UIViewController.showDetailTargetDidChangeNotification, object: splitViewController)
+            .compactMap { $0.object as? UISplitViewController }
+            .map { $0.isCollapsed }
+            .subscribe(isCollapsedStateChange)
+            .store(in: &subscriptions)
     }
 }

@@ -29,7 +29,8 @@ class LTICellViewModel: CourseDetailsCellViewModel {
                    label: tab.label,
                    subtitle: nil,
                    accessoryIconType: .externalLink,
-                   tabID: tab.id)
+                   tabID: tab.id,
+                   selectedCallback: nil)
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {

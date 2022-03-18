@@ -19,9 +19,10 @@
 extension Tab: TabViewable {}
 
 class GenericCellViewModel: CourseDetailsCellViewModel {
+    private let isInternalURL: Bool
     private let route: URL?
 
-    public init(tab: Tab, course: Course) {
+    public init(tab: Tab, course: Course, selectedCallback: @escaping () -> Void) {
         let route: URL? = {
             switch tab.name {
             case .pages:
@@ -32,25 +33,31 @@ class GenericCellViewModel: CourseDetailsCellViewModel {
                 return tab.htmlURL
             }
         }()
-
-        let icon: AccessoryType = {
+        let isInternalURL: Bool = {
             guard let route = route else {
-                return .disclosure
+                return true
             }
 
-            return AppEnvironment.shared.router.isRegisteredRoute(route) ? .disclosure : .externalLink
+            return AppEnvironment.shared.router.isRegisteredRoute(route)
         }()
 
+        self.isInternalURL = isInternalURL
         self.route = route
         super.init(courseColor: course.color,
                    iconImage: tab.icon,
                    label: tab.label,
                    subtitle: nil,
-                   accessoryIconType: icon,
-                   tabID: tab.id)
+                   accessoryIconType: isInternalURL ? .disclosure : .externalLink,
+                   tabID: tab.id,
+                   selectedCallback: selectedCallback)
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {
+        if isInternalURL {
+            // We don't want cells opening safari to get a permanent highlight so we report selection on in-app cells
+            super.selected(router: router, viewController: viewController)
+        }
+
         if let url = route {
             router.route(to: url, from: viewController)
         }

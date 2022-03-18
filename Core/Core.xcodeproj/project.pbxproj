@@ -916,8 +916,11 @@
 		CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */; };
 		CF941B19267B433700700DE9 /* K5ResourcesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */; };
 		CF941B1E267B439600700DE9 /* K5ScheduleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */; };
-		CF9A0EDE27E2497E00762228 /* CourseDetailsSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDD27E2497E00762228 /* CourseDetailsSelectionViewModel.swift */; };
+		CF9A0EDE27E2497E00762228 /* ListSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */; };
 		CF9A0EE027E38CFC00762228 /* SyllabusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */; };
+		CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */; };
+		CF9A0EE627E4B8EC00762228 /* SplitViewModeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE527E4B8EC00762228 /* SplitViewModeObserver.swift */; };
+		CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */; };
@@ -2232,8 +2235,11 @@
 		CF941B13267B427300700DE9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B18267B433700700DE9 /* K5ResourcesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesViewModelTests.swift; sourceTree = "<group>"; };
 		CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleViewModelTests.swift; sourceTree = "<group>"; };
-		CF9A0EDD27E2497E00762228 /* CourseDetailsSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsSelectionViewModel.swift; sourceTree = "<group>"; };
+		CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusCellViewModel.swift; sourceTree = "<group>"; };
+		CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModelTests.swift; sourceTree = "<group>"; };
+		CF9A0EE527E4B8EC00762228 /* SplitViewModeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewModeObserver.swift; sourceTree = "<group>"; };
+		CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewModeObserverTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModelTests.swift; sourceTree = "<group>"; };
@@ -3492,6 +3498,7 @@
 		7D724263242A5616007ED42F /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				CF9A0EE127E4948000762228 /* CourseDetails */,
 				CFFE286327ABC8680029A408 /* CourseList */,
 				CF911BA1279EEDB400E1EECB /* K5 */,
 				7D64A97623676025004EAEDF /* APICourseSectionTests.swift */,
@@ -4819,6 +4826,23 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		CF9A0EE127E4948000762228 /* CourseDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CF9A0EE227E4948E00762228 /* ViewModel */,
+			);
+			path = CourseDetails;
+			sourceTree = "<group>";
+		};
+		CF9A0EE227E4948E00762228 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */,
+				CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CFA078AD2791D3390078B27B /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -5145,9 +5169,10 @@
 			children = (
 				CFF64FE127DB5A0000653573 /* Cells */,
 				CFF64FDB27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift */,
-				CF9A0EDD27E2497E00762228 /* CourseDetailsSelectionViewModel.swift */,
+				CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */,
 				D9D7EBD027AD7A8D00544339 /* CourseDetailsViewModel.swift */,
 				D9D7EBE327BC0A3000544339 /* CourseSettingsViewModel.swift */,
+				CF9A0EE527E4B8EC00762228 /* SplitViewModeObserver.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5874,6 +5899,7 @@
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
 				7D6E580E255207100068D3C3 /* DiscussionListViewControllerTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
+				CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */,
 				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
 				B1487F99243E43C400013404 /* GetModuleItemTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
@@ -6021,6 +6047,7 @@
 				7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */,
 				CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */,
 				EBEA637727A17DB900EA0B2D /* K5ImportantDateItemTests.swift in Sources */,
+				CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,
 				9F900E7923217CC000BB44B4 /* APISearchRecipientsTests.swift in Sources */,
 				CF911BAB27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift in Sources */,
@@ -6260,7 +6287,7 @@
 				CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */,
 				7DA260FA23F724D7005D2121 /* Database.xcdatamodeld in Sources */,
 				CFCB0F6C27CF9003008DDEA4 /* FilesPanda.swift in Sources */,
-				CF9A0EDE27E2497E00762228 /* CourseDetailsSelectionViewModel.swift in Sources */,
+				CF9A0EDE27E2497E00762228 /* ListSelectionViewModel.swift in Sources */,
 				7DA25FA923F72136005D2121 /* APIDiscussion.swift in Sources */,
 				7DA25FDC23F72148005D2121 /* MDMManager.swift in Sources */,
 				7DA260B323F72352005D2121 /* GetFrontPage.swift in Sources */,
@@ -6398,6 +6425,7 @@
 				7D264DBD253767C9007CDD90 /* TransactionExtensions.swift in Sources */,
 				7DA260A923F72352005D2121 /* GetAssignments.swift in Sources */,
 				B11AEBB524070F9400B736D6 /* PlannerFilterViewController.swift in Sources */,
+				CF9A0EE627E4B8EC00762228 /* SplitViewModeObserver.swift in Sources */,
 				7DA2602323F722AF005D2121 /* Logger.swift in Sources */,
 				7DA25FDB23F72148005D2121 /* LocalizationManager.swift in Sources */,
 				7DA260F323F72397005D2121 /* FilePicker.swift in Sources */,

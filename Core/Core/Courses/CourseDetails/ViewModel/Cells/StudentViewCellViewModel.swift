@@ -30,7 +30,8 @@ class StudentViewCellViewModel: CourseDetailsCellViewModel {
                    label: NSLocalizedString("Student View", comment: ""),
                    subtitle: NSLocalizedString("Opens in Canvas Student", comment: ""),
                    accessoryIconType: .externalLink,
-                   tabID: "student_view")
+                   tabID: "student_view",
+                   selectedCallback: nil)
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {

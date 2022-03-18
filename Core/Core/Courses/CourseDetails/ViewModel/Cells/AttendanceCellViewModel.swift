@@ -19,7 +19,7 @@
 class AttendanceCellViewModel: CourseDetailsCellViewModel {
     private let route: String
 
-    public init(tab: Tab, course: Course, attendanceToolID: String) {
+    public init(tab: Tab, course: Course, attendanceToolID: String, selectedCallback: @escaping () -> Void) {
         self.route = "/courses/\(course.id)/attendance/" + attendanceToolID
 
         super.init(courseColor: course.color,
@@ -27,10 +27,12 @@ class AttendanceCellViewModel: CourseDetailsCellViewModel {
                    label: tab.label,
                    subtitle: nil,
                    accessoryIconType: .disclosure,
-                   tabID: tab.id)
+                   tabID: tab.id,
+                   selectedCallback: selectedCallback)
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {
+        super.selected(router: router, viewController: viewController)
         router.route(to: route, from: viewController)
     }
 }

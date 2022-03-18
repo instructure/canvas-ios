@@ -24,7 +24,7 @@ public struct CourseDetailsView: View {
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
-    @ObservedObject private var selectionViewModel: CourseDetailsSelectionViewModel
+    @ObservedObject private var selectionViewModel: ListSelectionViewModel
 
     public init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
@@ -53,7 +53,7 @@ public struct CourseDetailsView: View {
             .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
             .onAppear {
                 viewModel.viewDidAppear()
-                viewModel.selectionViewModel.splitViewController = controller.value.splitViewController
+                viewModel.splitModeObserver.splitViewController = controller.value.splitViewController
             }
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
@@ -76,6 +76,7 @@ public struct CourseDetailsView: View {
     private var homeView: some View {
         Button(action: {
             if let url = viewModel.homeRoute {
+                selectionViewModel.cellTapped(at: 0)
                 env.router.route(to: url, from: controller, options: .detail)
             }
         }) {
@@ -98,7 +99,7 @@ public struct CourseDetailsView: View {
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         }
-        .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.isHomeButtonHighlighted))
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.selectedIndex == 0))
     }
 
     @ViewBuilder
@@ -185,8 +186,8 @@ struct CourseDetailsView_Previews: PreviewProvider {
         tab2.save(.make(id: "2", label: "Assignments"), in: context, context: .course("1"))
 
         return CourseDetailsViewModel(state: .data([
-            GenericCellViewModel(tab: tab1, course: course),
-            GenericCellViewModel(tab: tab2, course: course),
+            GenericCellViewModel(tab: tab1, course: course, selectedCallback: {}),
+            GenericCellViewModel(tab: tab2, course: course, selectedCallback: {}),
         ]))
     }
 

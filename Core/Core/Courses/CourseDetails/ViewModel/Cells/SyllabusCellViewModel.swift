@@ -19,7 +19,7 @@
 class SyllabusCellViewModel: CourseDetailsCellViewModel {
     private let route: URL?
 
-    public init(tab: Tab, course: Course) {
+    public init(tab: Tab, course: Course, selectedCallback: @escaping () -> Void) {
         self.route = URL(string: "/courses/\(course.id)/syllabus")
 
         super.init(courseColor: course.color,
@@ -27,10 +27,13 @@ class SyllabusCellViewModel: CourseDetailsCellViewModel {
                    label: tab.label,
                    subtitle: nil,
                    accessoryIconType: .disclosure,
-                   tabID: tab.id)
+                   tabID: tab.id,
+                   selectedCallback: selectedCallback)
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {
+        super.selected(router: router, viewController: viewController)
+
         if let url = route {
             router.route(to: url, from: viewController, options: .detail)
         }

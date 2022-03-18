@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class CourseDetailsViewModel: ObservableObject {
@@ -25,7 +26,8 @@ public class CourseDetailsViewModel: ObservableObject {
         case data(T)
     }
 
-    public let selectionViewModel = CourseDetailsSelectionViewModel()
+    public lazy var selectionViewModel = ListSelectionViewModel(defaultSelection: (showHome ? 0 : nil))
+    public let splitModeObserver = SplitViewModeObserver()
     public let headerViewModel = CourseDetailsHeaderViewModel()
     @Published public private(set) var state: ViewModelState<[CourseDetailsCellViewModel]> = .loading
     @Published public private(set) var courseColor: UIColor = .clear
@@ -60,8 +62,12 @@ public class CourseDetailsViewModel: ObservableObject {
         self?.updateTabs()
     }
 
+    private var subscriptions = Set<AnyCancellable>()
+
     public init(context: Context) {
         self.context = context
+        bindSplitViewModeObserverToSelectionManager()
+        bindCellSelectionStateToCellViewModels()
     }
 
     // MARK: - Preview Support
@@ -78,6 +84,7 @@ public class CourseDetailsViewModel: ObservableObject {
     // MARK: Preview Support -
 
     public func viewDidAppear() {
+        selectionViewModel.viewDidAppear()
         headerViewModel.viewDidAppear()
         requestAttendanceTool()
         permissions.refresh()
@@ -91,6 +98,29 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     // MARK: - Private Methods
+
+    private func bindCellSelectionStateToCellViewModels() {
+        selectionViewModel.selectedIndexPublisher
+            .sink { [weak self] selectedIndex in
+                guard let self = self, case .data(let cellViewModels) = self.state else { return }
+                self.updateCellSelectionStates(on: cellViewModels, selectedIndex: selectedIndex)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func bindSplitViewModeObserverToSelectionManager() {
+        splitModeObserver.isCollapsed
+            .subscribe(selectionViewModel.isSplitViewCollapsed)
+            .store(in: &subscriptions)
+    }
+
+    private func updateCellSelectionStates(on cells: [CourseDetailsCellViewModel], selectedIndex: Int?) {
+        for (index, cell) in cells.enumerated() {
+            // if home cell is shown we increase the cell index since the home cell is managed outside of this array
+            let cellIndex = index + (showHome ? 1 : 0)
+            cell.isHighlighted = (selectionViewModel.selectedIndex == cellIndex)
+        }
+    }
 
     private func courseDidUpdate() {
         guard let course = course.first else { return }
@@ -155,15 +185,21 @@ public class CourseDetailsViewModel: ObservableObject {
             homeLabel = homeTab.label
         }
 
-        var cellViewModels: [CourseDetailsCellViewModel] = tabs.map {
-            if let attendanceToolID = attendanceToolID, $0.id == "context_external_tool_" + attendanceToolID {
-                return AttendanceCellViewModel(tab: $0, course: course, attendanceToolID: attendanceToolID)
-            } else if $0.type == .external, let url = $0.url {
-                return LTICellViewModel(tab: $0, course: course, url: url)
-            } else if $0.name == .syllabus {
-                return SyllabusCellViewModel(tab: $0, course: course)
+        var cellViewModels: [CourseDetailsCellViewModel] = tabs.enumerated().map { index, tab in
+            let selectionCallback: () -> Void = { [weak self] in
+                guard let self = self else { return }
+                // if home cell is shown we increase the cell index since the home cell is managed outside of this array
+                self.selectionViewModel.cellTapped(at: index + (self.showHome ? 1 : 0))
+            }
+
+            if let attendanceToolID = attendanceToolID, tab.id == "context_external_tool_" + attendanceToolID {
+                return AttendanceCellViewModel(tab: tab, course: course, attendanceToolID: attendanceToolID, selectedCallback: selectionCallback)
+            } else if tab.type == .external, let url = tab.url {
+                return LTICellViewModel(tab: tab, course: course, url: url)
+            } else if tab.name == .syllabus {
+                return SyllabusCellViewModel(tab: tab, course: course, selectedCallback: selectionCallback)
             } else {
-                return GenericCellViewModel(tab: $0, course: course)
+                return GenericCellViewModel(tab: tab, course: course, selectedCallback: selectionCallback)
             }
         }
 
@@ -172,6 +208,7 @@ public class CourseDetailsViewModel: ObservableObject {
             cellViewModels.append(studentViewCellModel)
         }
 
+        updateCellSelectionStates(on: cellViewModels, selectedIndex: selectionViewModel.selectedIndex)
         state = .data(cellViewModels)
     }
 

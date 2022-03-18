@@ -57,7 +57,7 @@ public struct CourseDetailsCellView: View {
             .contentShape(Rectangle())
             .frame(height: 54)
         })
-        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: viewModel.isHighlighted))
         .accessibility(identifier: viewModel.a11yIdentifier)
         .alert(isPresented: $viewModel.showGenericError) {
             Alert(title: Text("Something went wrong", bundle: .core), message: Text("There was an error while communicating with the server", bundle: .core))
@@ -88,19 +88,19 @@ struct CourseDetailsCellView_Previews: PreviewProvider {
         let course = Course.save(.make(), in: context)
         let tab: Tab = Tab(context: context)
         tab.save(.make(), in: context, context: .course("1"))
-        return GenericCellViewModel(tab: tab, course: course)
+        return GenericCellViewModel(tab: tab, course: course, selectedCallback: {})
     }
     private static var attendanceButtonViewModel: CourseDetailsCellViewModel {
         let course = Course.save(.make(id: "2"), in: context)
         let tab: Tab = Tab(context: context)
         tab.save(.make(id: "attendance"), in: context, context: .course("2"))
-        return AttendanceCellViewModel(tab: tab, course: course, attendanceToolID: "123")
+        return AttendanceCellViewModel(tab: tab, course: course, attendanceToolID: "123", selectedCallback: {})
     }
     private static var loadingButtonViewModel: CourseDetailsCellViewModel {
         let course = Course.save(.make(id: "3"), in: context)
         let tab: Tab = Tab(context: context)
         tab.save(.make(id: "3"), in: context, context: .course("3"))
-        let viewModel = GenericCellViewModel(tab: tab, course: course)
+        let viewModel = GenericCellViewModel(tab: tab, course: course, selectedCallback: {})
         viewModel.accessoryIconType = .loading
         return viewModel
     }

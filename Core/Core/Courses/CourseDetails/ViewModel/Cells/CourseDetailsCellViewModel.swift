@@ -25,19 +25,22 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
 
     @Published public var showGenericError: Bool = false
     @Published public internal(set) var accessoryIconType: AccessoryType
+    @Published public var isHighlighted = false
     public let a11yIdentifier: String
     public let courseColor: UIColor
     public let iconImage: UIImage
     public let label: String
     public let subtitle: String?
     public let tabID: String
+    public let selectedCallback: (() -> Void)?
 
     public init(courseColor: UIColor,
                 iconImage: UIImage,
                 label: String,
                 subtitle: String?,
                 accessoryIconType: AccessoryType,
-                tabID: String) {
+                tabID: String,
+                selectedCallback: (() -> Void)?) {
         self.a11yIdentifier = "courses-details.\(tabID)-cell"
         self.courseColor = courseColor
         self.iconImage = iconImage
@@ -45,9 +48,12 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
         self.subtitle = subtitle
         self.accessoryIconType = accessoryIconType
         self.tabID = tabID
+        self.selectedCallback = selectedCallback
     }
 
-    open func selected(router: Router, viewController: WeakViewController) {}
+    open func selected(router: Router, viewController: WeakViewController) {
+        selectedCallback?()
+    }
 }
 
 extension CourseDetailsCellViewModel {
