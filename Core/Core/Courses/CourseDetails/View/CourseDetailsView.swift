@@ -175,6 +175,8 @@ public struct CourseDetailsView: View {
     }
 }
 
+#if DEBUG
+
 struct CourseDetailsView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext
@@ -200,3 +202,5 @@ struct CourseDetailsView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
+
+#endif

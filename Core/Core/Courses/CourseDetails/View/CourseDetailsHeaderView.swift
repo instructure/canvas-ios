@@ -53,6 +53,8 @@ struct CourseDetailsHeaderView: View {
     }
 }
 
+#if DEBUG
+
 struct CourseDetailsHeaderView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext
@@ -64,3 +66,5 @@ struct CourseDetailsHeaderView_Previews: PreviewProvider {
         return CourseDetailsHeaderView(viewModel: viewModel, width: 400)
     }
 }
+
+#endif
