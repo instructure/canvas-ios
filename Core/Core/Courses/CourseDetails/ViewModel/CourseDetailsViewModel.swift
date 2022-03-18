@@ -118,7 +118,7 @@ public class CourseDetailsViewModel: ObservableObject {
         for (index, cell) in cells.enumerated() {
             // if home cell is shown we increase the cell index since the home cell is managed outside of this array
             let cellIndex = index + (showHome ? 1 : 0)
-            cell.isHighlighted = (selectionViewModel.selectedIndex == cellIndex)
+            cell.isHighlighted = (selectedIndex == cellIndex)
         }
     }
 

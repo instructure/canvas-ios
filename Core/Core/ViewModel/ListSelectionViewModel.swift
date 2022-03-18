@@ -19,6 +19,10 @@
 import Combine
 import SwiftUI
 
+/**
+ This class can be used to keep track of a list's selected cell which we want to get a selection indicator even after the user released its finger.
+ When the view appears the selection is set back to the default selection if the split view in in split mode.
+ */
 public class ListSelectionViewModel: ObservableObject {
     @Published public private(set) var selectedIndex: Int?
     public var selectedIndexPublisher: AnyPublisher<Int?, Never> { selectedCellIndexChanged.removeDuplicates().eraseToAnyPublisher() }

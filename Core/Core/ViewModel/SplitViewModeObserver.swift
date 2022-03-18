@@ -19,8 +19,12 @@
 import Combine
 import UIKit
 
+/**
+ This class keeps track of a UISplitViewController's isCollapsed state. Useful when you have different logic inside a view depending on if it's in a split view environment or not.
+ */
 public class SplitViewModeObserver {
     public var isCollapsed: AnyPublisher<Bool, Never> { isCollapsedStateChange.removeDuplicates().eraseToAnyPublisher() }
+    /** The external split viewcontroller to observe. */
     public weak var splitViewController: UISplitViewController? {
         didSet { splitViewChanged() }
     }
