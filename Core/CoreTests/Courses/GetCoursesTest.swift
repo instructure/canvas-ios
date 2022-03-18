@@ -159,12 +159,31 @@ class GetCoursesTest: CoreTestCase {
 
     func testAllCoursesScopeHidesDeleted() {
         Course.make(from: .make(id: "1", name: "a", workflow_state: .deleted))
-        let b = Course.make(from: .make(id: "2", name: "b"))
+        let b = Course.make(from: .make(id: "2", name: "b", workflow_state: .available))
         let enrollement = APIEnrollment.make(enrollment_state: .deleted)
         Course.make(from: .make(id: "3", name: "c", enrollments: [enrollement]))
         let useCase = GetAllCourses()
         let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
         XCTAssertEqual(courses.count, 1)
         XCTAssertEqual(courses.first, b)
+    }
+
+    func testAllCoursesScopeHidesUnpublishedForStudent() {
+        environment.app = .student
+        Course.make(from: .make(id: "1", name: "a"))
+        let b = Course.make(from: .make(id: "2", name: "b", workflow_state: .available))
+        let useCase = GetAllCourses()
+        let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        XCTAssertEqual(courses.count, 1)
+        XCTAssertEqual(courses.first, b)
+    }
+
+    func testAllCoursesScopeShowsUnpublishedForTeacher() {
+        environment.app = .teacher
+        Course.make(from: .make(id: "1", name: "a"))
+        Course.make(from: .make(id: "2", name: "b", workflow_state: .available))
+        let useCase = GetAllCourses()
+        let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        XCTAssertEqual(courses.count, 2)
     }
 }

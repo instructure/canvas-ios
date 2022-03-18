@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Almenn spurning eða uppástunga";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Breyta skipulagi skjáborðs í net";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Breyta skipulagi skjáborðs í lista";
+
+/* No comment provided by engineer. */
 "Change User" = "Breyta notanda";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Breyta viðhengi (ekkert)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Breyta skjáborði";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Breyta umræðu";

@@ -90,6 +90,8 @@
 		C9A3C046269D7D3100DAE8E1 /* K5UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */; };
 		C9A3C049269D8A2700DAE8E1 /* K5NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C048269D8A2700DAE8E1 /* K5NavigationBar.swift */; };
 		C9A3C09026A8050A00DAE8E1 /* K5CourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */; };
+		C9BCCA0B27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */; };
+		C9BCCA0D27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */; };
 		C9E9C2F727609B8E00FC60CB /* K5CourseBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */; };
 		C9FDE92226BBCBE600DF0106 /* Announcements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDE92126BBCBE600DF0106 /* Announcements.swift */; };
 		CFA078B527981BAF0078B27B /* DataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B427981BAF0078B27B /* DataSeeder.swift */; };
@@ -242,6 +244,8 @@
 		C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5UITestCase.swift; sourceTree = "<group>"; };
 		C9A3C048269D8A2700DAE8E1 /* K5NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5NavigationBar.swift; sourceTree = "<group>"; };
 		C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseCard.swift; sourceTree = "<group>"; };
+		C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSGradesRequest.swift; sourceTree = "<group>"; };
+		C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSGrades.swift"; sourceTree = "<group>"; };
 		C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseBrowser.swift; sourceTree = "<group>"; };
 		C9FDE92126BBCBE600DF0106 /* Announcements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcements.swift; sourceTree = "<group>"; };
 		CFA078B427981BAF0078B27B /* DataSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSeeder.swift; sourceTree = "<group>"; };
@@ -561,6 +565,7 @@
 		C909F7CD27C37C2A00CB89DE /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				C9BCCA0727D5F06A003E9CB0 /* Grades */,
 				C909F7CE27C37CE500CB89DE /* DSSubmission.swift */,
 				C909F7D027C37DA200CB89DE /* CreateDSSubmissionRequest.swift */,
 				C909F7D227C3831F00CB89DE /* DataSeeder+DSSubmission.swift */,
@@ -594,6 +599,15 @@
 				C935D43926E5F59700C940F7 /* K5Grades.swift */,
 			);
 			path = K5;
+			sourceTree = "<group>";
+		};
+		C9BCCA0727D5F06A003E9CB0 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */,
+				C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */,
+			);
+			path = Grades;
 			sourceTree = "<group>";
 		};
 		C9FDE92026BBCBD600DF0106 /* Announcements */ = {
@@ -1088,6 +1102,7 @@
 				C9A3C049269D8A2700DAE8E1 /* K5NavigationBar.swift in Sources */,
 				7D70DEA0233EACF200F5C3D4 /* CommunicationChannelFixture.swift in Sources */,
 				E871745423BEC1B500525E67 /* SubmissionListFixture.swift in Sources */,
+				C9BCCA0B27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift in Sources */,
 				C9FDE92226BBCBE600DF0106 /* Announcements.swift in Sources */,
 				B19792F521767B830000369C /* ContextColorFixture.swift in Sources */,
 				E80936C124C247F100D15E9A /* AccountNotifications.swift in Sources */,
@@ -1124,6 +1139,7 @@
 				B16F0375215C2B340011E952 /* AssignmentFixture.swift in Sources */,
 				C9A3C046269D7D3100DAE8E1 /* K5UITestCase.swift in Sources */,
 				E80936D124C2480B00D15E9A /* Inbox.swift in Sources */,
+				C9BCCA0D27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift in Sources */,
 				C9A23D2227A3D6E400A1EE3B /* E2ETestCase.swift in Sources */,
 				E80936DB24C2480B00D15E9A /* RichContentToolbar.swift in Sources */,
 				B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */,

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,13 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import TestsFoundation
-@testable import Core
+extension DataSeeder {
 
-class PreviewStoreTests: CoreTestCase {
-    func testPreviewStore() {
-        let store = PreviewStore(useCase: GetAllCourses(), contents: [APICourse.make(workflow_state: .available)])
-        drainMainQueue()
-        XCTAssertEqual(store.all.count, 1)
+    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestDSGrades) {
+        let requestedBody = CreateDSGradesRequest.Body(submission: requestBody)
+        let request = CreateDSGradesRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId, userId: userId)
+        try! makeRequest(request)
     }
 }

@@ -67,14 +67,15 @@ public struct DashboardCardView: View {
                     Image.hamburgerSolid
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
                 })
+                    .frame(width: 44, height: 44).padding(.leading, -6)
                     .identifier("Dashboard.profileButton")
                     .accessibility(label: Text("Profile Menu", bundle: .core)),
-
                 trailing: Button(action: layoutViewModel.toggle) {
                     layoutViewModel.buttonImage
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
                         .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
                 }
+                    .frame(width: 44, height: 44).padding(.trailing, -6)
             )
 
             .onAppear { refresh(force: false) }

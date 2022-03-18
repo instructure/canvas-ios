@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Huoleton kysymys tai ehdotus";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Muuta koontinäytön asettelu ristikoksi";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Muuta koontinäytön asettelu luetteloksi";
+
+/* No comment provided by engineer. */
 "Change User" = "Vaihda käyttäjää";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Muokkaa liitettä (ei mitään)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Muokkaa koontinäyttöä";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Muokkaa keskustelu";

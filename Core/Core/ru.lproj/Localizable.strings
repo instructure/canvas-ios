@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Обычный вопрос или предложение";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Изменить формат панели управления на сетку";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Изменить формат панели управления на список";
+
+/* No comment provided by engineer. */
 "Change User" = "Сменить пользователя";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Редактировать вложение (нет)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Редактировать информационную панель";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Редактировать дискуссию";

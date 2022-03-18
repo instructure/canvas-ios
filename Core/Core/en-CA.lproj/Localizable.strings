@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Casual question or suggestion";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Change dashboard layout to grid";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Change dashboard layout to list";
+
+/* No comment provided by engineer. */
 "Change User" = "Change User";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edit attachment (none)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Edit Dashboard";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edit Discussion";
