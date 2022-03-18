@@ -135,6 +135,16 @@ open class Router {
         handler(for: url)?.template
     }
 
+    public func isRegisteredRoute(_ url: URL) -> Bool {
+        isRegisteredRoute(.parse(url))
+    }
+    public func isRegisteredRoute(_ url: String) -> Bool {
+        isRegisteredRoute(.parse(url))
+    }
+    public func isRegisteredRoute(_ url: URLComponents) -> Bool {
+        handler(for: url) != nil
+    }
+
     // MARK: - Routing
 
     public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {

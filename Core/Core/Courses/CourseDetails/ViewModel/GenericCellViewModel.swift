@@ -22,7 +22,7 @@ class GenericCellViewModel: CourseDetailsCellViewModel {
     private let route: URL?
 
     public init(tab: Tab, course: Course) {
-        self.route = {
+        let route: URL? = {
             switch tab.name {
             case .pages:
                 return URL(string: "/courses/\(course.id)/pages")
@@ -33,11 +33,20 @@ class GenericCellViewModel: CourseDetailsCellViewModel {
             }
         }()
 
+        let icon: AccessoryType = {
+            guard let route = route else {
+                return .disclosure
+            }
+
+            return AppEnvironment.shared.router.isRegisteredRoute(route) ? .disclosure : .externalLink
+        }()
+
+        self.route = route
         super.init(courseColor: course.color,
                    iconImage: tab.icon,
                    label: tab.label,
                    subtitle: nil,
-                   accessoryIconType: .disclosure,
+                   accessoryIconType: icon,
                    tabID: tab.id)
     }
 

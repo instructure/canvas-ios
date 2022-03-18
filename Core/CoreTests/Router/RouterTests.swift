@@ -470,4 +470,17 @@ class RouterTests: CoreTestCase {
         XCTAssertEqual(testee.template(for: URLComponents(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
         XCTAssertEqual(testee.template(for: URL(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
     }
+
+    func testIsRegisteredRoute() {
+        let testee = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+        ])
+
+        XCTAssertEqual(testee.isRegisteredRoute("/courses/1234/assignments"), true)
+        XCTAssertEqual(testee.isRegisteredRoute("/courses/1234/assignments/4321"), false)
+        XCTAssertEqual(testee.isRegisteredRoute(URLComponents(string: "/courses/1234/assignments")!), true)
+        XCTAssertEqual(testee.isRegisteredRoute(URLComponents(string: "/courses/1234/assignments/4321")!), false)
+        XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments")!), true)
+        XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments/4321")!), false)
+    }
 }
