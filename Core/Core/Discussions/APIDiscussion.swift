@@ -94,7 +94,7 @@ public struct APIDiscussionPermissions: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.view
 public struct APIDiscussionView: Codable, Equatable {
-    let participants: [APIDiscussionParticipant?]
+    let participants: [APIDiscussionParticipant]
     let unread_entries: [ID]
     var entry_ratings: [String: Int]
     let forced_entries: [ID]
