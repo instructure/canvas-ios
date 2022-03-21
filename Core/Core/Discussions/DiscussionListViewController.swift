@@ -120,9 +120,15 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         errorView.isHidden = topics.state != .error
         tableView.reloadData()
 
-        if !selectedFirstTopic, topics.state != .loading, let url = topics.first?.htmlURL {
+        if !selectedFirstTopic, topics.state != .loading, let firstTopic = topics.first, let url = firstTopic.htmlURL {
+
             selectedFirstTopic = true
             if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
+                if firstTopic.anonymousState != nil {
+                    let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
+                    env.router.show(emptyViewController, from: self, options: .detail)
+                    return
+                }
                 env.router.route(to: url, from: self, options: .detail)
             }
         }
@@ -217,6 +223,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
             cell.pointsDot.isHidden = true
             cell.dateLabel.isHidden = true
             cell.isUserInteractionEnabled = false
+            cell.accessoryType = .none
         }
 
         return cell
@@ -317,5 +324,6 @@ class DiscussionListCell: UITableViewCell {
         unreadDot.isHidden = false
         dateLabel.isHidden = false
         isUserInteractionEnabled = true
+        accessoryType = .disclosureIndicator
     }
 }
