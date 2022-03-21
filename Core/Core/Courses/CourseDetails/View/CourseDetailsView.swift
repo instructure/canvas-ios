@@ -48,7 +48,7 @@ public struct CourseDetailsView: View {
             }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
             .navigationBarStyle(.color(viewModel.courseColor))
-            .navigationTitle(viewModel.courseName, subtitle: nil)
+            .navigationTitle(viewModel.navigationBarTitle, subtitle: nil)
             .navigationBarGenericBackButton()
             .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
             .onAppear {

@@ -39,6 +39,7 @@ public class CourseDetailsViewModel: ObservableObject {
     public var showSettings: Bool { isTeacher }
     public var showStudentView: Bool { isTeacher }
     public var courseName: String { course.first?.name ?? "" }
+    public var navigationBarTitle: String { course.first?.courseCode ?? "" }
     public var settingsRoute: URL? {
         guard let course = course.first else { return nil }
         return URL(string: "courses/\(course.id)/settings")
