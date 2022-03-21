@@ -348,7 +348,13 @@ private func syllabus(url: URLComponents, params: [String: String], userInfo: [S
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let context = Context(path: url.path) else { return nil }
     let viewModel = CourseDetailsViewModel(context: context)
-    return CoreHostingController(CourseDetailsView(viewModel: viewModel))
+    let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
+
+    if let contextColor = url.contextColor {
+        viewController.navigationBarStyle = .color(contextColor)
+    }
+
+    return viewController
 }
 
 // MARK: - HelmModules

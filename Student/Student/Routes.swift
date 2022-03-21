@@ -479,7 +479,12 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
         return CoreHostingController(K5SubjectView(context: context, selectedTabId: url.fragment))
     } else {
         let viewModel = CourseDetailsViewModel(context: context)
-        return CoreHostingController(CourseDetailsView(viewModel: viewModel))
+        let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
 
+        if let contextColor = url.contextColor {
+            viewController.navigationBarStyle = .color(contextColor)
+        }
+
+        return viewController
     }
 }
