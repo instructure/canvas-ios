@@ -923,6 +923,11 @@
 		CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */; };
 		CF9A0F3227E8AD8900762228 /* CourseSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3127E8AD8800762228 /* CourseSettingsViewModelTests.swift */; };
 		CF9A0F3427E9D6B800762228 /* CourseDetailsHeaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3327E9D6B800762228 /* CourseDetailsHeaderViewModelTests.swift */; };
+		CF9A0F3627E9E82400762228 /* CourseDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3527E9E82400762228 /* CourseDetailsViewModelTests.swift */; };
+		CF9A0F3927EA100400762228 /* TabFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3827EA100300762228 /* TabFilter.swift */; };
+		CF9A0F3B27EA190200762228 /* CourseHomeProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3A27EA190200762228 /* CourseHomeProperties.swift */; };
+		CF9A0F3E27EA1B4F00762228 /* CourseHomePropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3D27EA1B4F00762228 /* CourseHomePropertiesTests.swift */; };
+		CF9A0F4027EA1CA700762228 /* TabFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3F27EA1CA700762228 /* TabFilterTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */; };
@@ -2244,6 +2249,11 @@
 		CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewModeObserverTests.swift; sourceTree = "<group>"; };
 		CF9A0F3127E8AD8800762228 /* CourseSettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsViewModelTests.swift; sourceTree = "<group>"; };
 		CF9A0F3327E9D6B800762228 /* CourseDetailsHeaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsHeaderViewModelTests.swift; sourceTree = "<group>"; };
+		CF9A0F3527E9E82400762228 /* CourseDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		CF9A0F3827EA100300762228 /* TabFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFilter.swift; sourceTree = "<group>"; };
+		CF9A0F3A27EA190200762228 /* CourseHomeProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHomeProperties.swift; sourceTree = "<group>"; };
+		CF9A0F3D27EA1B4F00762228 /* CourseHomePropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHomePropertiesTests.swift; sourceTree = "<group>"; };
+		CF9A0F3F27EA1CA700762228 /* TabFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFilterTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModelTests.swift; sourceTree = "<group>"; };
@@ -4835,6 +4845,7 @@
 		CF9A0EE127E4948000762228 /* CourseDetails */ = {
 			isa = PBXGroup;
 			children = (
+				CF9A0F3C27EA1B3500762228 /* Model */,
 				CF9A0EE227E4948E00762228 /* ViewModel */,
 			);
 			path = CourseDetails;
@@ -4844,6 +4855,7 @@
 			isa = PBXGroup;
 			children = (
 				CF9A0F3327E9D6B800762228 /* CourseDetailsHeaderViewModelTests.swift */,
+				CF9A0F3527E9E82400762228 /* CourseDetailsViewModelTests.swift */,
 				CF9A0F3127E8AD8800762228 /* CourseSettingsViewModelTests.swift */,
 			);
 			path = ViewModel;
@@ -4865,6 +4877,24 @@
 				CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF9A0F3727EA0FF500762228 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF9A0F3827EA100300762228 /* TabFilter.swift */,
+				CF9A0F3A27EA190200762228 /* CourseHomeProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF9A0F3C27EA1B3500762228 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF9A0F3D27EA1B4F00762228 /* CourseHomePropertiesTests.swift */,
+				CF9A0F3F27EA1CA700762228 /* TabFilterTests.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CFA078AD2791D3390078B27B /* TopBar */ = {
@@ -5171,6 +5201,7 @@
 		D9D7EBCE27AD7A3A00544339 /* CourseDetails */ = {
 			isa = PBXGroup;
 			children = (
+				CF9A0F3727EA0FF500762228 /* Model */,
 				D9D7EBD527B2B09000544339 /* View */,
 				D9D7EBD827B2B0B900544339 /* ViewModel */,
 			);
@@ -5971,6 +6002,7 @@
 				3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */,
 				7DA20E932168128400F5FD19 /* InstIconExtensionsTests.swift in Sources */,
 				7D63F788215D44A600151E49 /* APIBrandVariablesTests.swift in Sources */,
+				CF9A0F3627E9E82400762228 /* CourseDetailsViewModelTests.swift in Sources */,
 				9F62EDD02326C23C00EA9F79 /* SearchRecipientTests.swift in Sources */,
 				CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */,
@@ -5986,6 +6018,8 @@
 				3B6043A5232AB00700757B93 /* AssignmentGroupTests.swift in Sources */,
 				3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */,
 				7D80AC17212B689E00C40ECE /* APITabTests.swift in Sources */,
+				CF9A0F3E27EA1B4F00762228 /* CourseHomePropertiesTests.swift in Sources */,
+				CF9A0F4027EA1CA700762228 /* TabFilterTests.swift in Sources */,
 				CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */,
 				7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
@@ -6260,6 +6294,7 @@
 				7D531D4C254C664900CBFCA6 /* ListSectionHeader.swift in Sources */,
 				CF5123DB26BA922E00C1EB27 /* HorizontalPager.swift in Sources */,
 				7DA25F9823F72136005D2121 /* API.swift in Sources */,
+				CF9A0F3B27EA190200762228 /* CourseHomeProperties.swift in Sources */,
 				7DA260AD23F72352005D2121 /* GetContextTabs.swift in Sources */,
 				7DA25FA823F72136005D2121 /* APIDashboard.swift in Sources */,
 				CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */,
@@ -6290,6 +6325,7 @@
 				7D89A2C92509326B009D0FD2 /* DisclosureIndicator.swift in Sources */,
 				CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */,
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
+				CF9A0F3927EA100400762228 /* TabFilter.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
 				CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */,

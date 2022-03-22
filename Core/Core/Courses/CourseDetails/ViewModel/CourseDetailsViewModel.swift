@@ -51,7 +51,6 @@ public class CourseDetailsViewModel: ObservableObject {
     private let context: Context
     private var attendanceToolID: String?
     private var attendanceToolRequest: APITask?
-    private let mobileSupportedTabs: [TabName] = [.assignments, .quizzes, .discussions, .announcements, .people, .pages, .files, .modules, .syllabus]
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.courseDidUpdate()
@@ -134,30 +133,15 @@ public class CourseDetailsViewModel: ObservableObject {
     private func setupHome(course: Course) {
         // Even if there's no home view for the course we still want to reset the split detail view when moving back/to the course details
         if !showHome {
-            // We need to drop the # from color otherwise it will be threated as the fragment of the url and not the value of contextColor
+            // We need to drop the # from color otherwise it will be treated as the fragment of the url and not the value of contextColor
             homeRoute = URL(string: "/empty?contextColor=\(courseColor.hexString.dropFirst())")
             return
         }
 
         guard let defaultView = course.defaultView else { return }
-        var homeRoute = URL(string: "courses/\(course.id)/\(defaultView.rawValue)")
 
-        switch course.defaultView {
-        case .assignments:
-            homeSubLabel = NSLocalizedString("Assignments", comment: "")
-        case .feed:
-            homeSubLabel = NSLocalizedString("Recent Activity", comment: "")
-            homeRoute = URL(string: "courses/\(course.id)/activity_stream")
-        case .modules:
-            homeSubLabel = NSLocalizedString("Course Modules", comment: "")
-        case .syllabus:
-            homeSubLabel = NSLocalizedString("Syllabus", comment: "")
-        case .wiki:
-            homeSubLabel = NSLocalizedString("Front Page", comment: "")
-            homeRoute = URL(string: "courses/\(course.id)/pages/front_page")
-        case .none:
-            break
-        }
+        homeSubLabel = defaultView.homeSubLabel
+        let homeRoute = defaultView.homeRoute(courseID: course.id)
 
         if self.homeRoute != homeRoute {
             self.homeRoute = homeRoute
@@ -172,14 +156,7 @@ public class CourseDetailsViewModel: ObservableObject {
             return
         }
 
-        var tabs = tabs.all
-        tabs = tabs.filter {
-            if !isTeacher || $0.id.contains("external_tool") {
-                return $0.hidden != true
-            }
-            // Only show tabs supported on mobile
-            return mobileSupportedTabs.contains($0.name)
-        }.sorted(by: { $0.position < $1.position })
+        var tabs = tabs.all.filteredTabsForCourseHome(isStudent: !isTeacher)
 
         if let index = tabs.firstIndex(where: { $0.id == "home" }) {
             let homeTab = tabs.remove(at: index)
