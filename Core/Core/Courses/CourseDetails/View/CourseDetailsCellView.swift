@@ -59,6 +59,7 @@ public struct CourseDetailsCellView: View {
         })
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: viewModel.isHighlighted))
         .accessibility(identifier: viewModel.a11yIdentifier)
+        .accessibility(addTraits: viewModel.isHighlighted ? .isSelected : [])
         .alert(isPresented: $viewModel.showGenericError) {
             Alert(title: Text("Something went wrong", bundle: .core), message: Text("There was an error while communicating with the server", bundle: .core))
         }

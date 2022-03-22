@@ -100,6 +100,7 @@ public struct CourseDetailsView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.selectedIndex == 0))
+        .accessibility(addTraits: selectionViewModel.selectedIndex == 0 ? .isSelected : [])
     }
 
     @ViewBuilder

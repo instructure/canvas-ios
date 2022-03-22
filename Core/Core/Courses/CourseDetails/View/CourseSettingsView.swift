@@ -66,6 +66,7 @@ public struct CourseSettingsView: View {
                 if let url = viewModel.imageURL {
                     RemoteImage(url, width: width, height: height)
                         .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)
+                        .accessibility(hidden: true)
                 }
             }
                 .frame(height: height)

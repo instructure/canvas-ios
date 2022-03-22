@@ -33,6 +33,7 @@ struct CourseDetailsHeaderView: View {
             if let url = viewModel.imageURL {
                 RemoteImage(url, width: width, height: viewModel.height)
                     .opacity(viewModel.imageOpacity)
+                    .accessibility(hidden: true)
             }
             VStack(spacing: 3) {
                 Text(viewModel.courseName)
