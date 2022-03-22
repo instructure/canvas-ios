@@ -921,6 +921,7 @@
 		CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */; };
 		CF9A0EE627E4B8EC00762228 /* SplitViewModeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE527E4B8EC00762228 /* SplitViewModeObserver.swift */; };
 		CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */; };
+		CF9A0F3227E8AD8900762228 /* CourseSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3127E8AD8800762228 /* CourseSettingsViewModelTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */; };
@@ -2240,6 +2241,7 @@
 		CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModelTests.swift; sourceTree = "<group>"; };
 		CF9A0EE527E4B8EC00762228 /* SplitViewModeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewModeObserver.swift; sourceTree = "<group>"; };
 		CF9A0EE727E4BDBD00762228 /* SplitViewModeObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewModeObserverTests.swift; sourceTree = "<group>"; };
+		CF9A0F3127E8AD8800762228 /* CourseSettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsViewModelTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModelTests.swift; sourceTree = "<group>"; };
@@ -4839,6 +4841,7 @@
 		CF9A0EE227E4948E00762228 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF9A0F3127E8AD8800762228 /* CourseSettingsViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6005,6 +6008,7 @@
 				9F1CEA5F22400DC0000BB98F /* PermissionsTests.swift in Sources */,
 				7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */,
 				B1F2F8A723F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift in Sources */,
+				CF9A0F3227E8AD8900762228 /* CourseSettingsViewModelTests.swift in Sources */,
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
 				E887275F24E1F85B00798DCA /* SequenceExtensionsTests.swift in Sources */,
 				3B1988B524256CE7004ADCC6 /* PairWithObserverViewControllerTests.swift in Sources */,
