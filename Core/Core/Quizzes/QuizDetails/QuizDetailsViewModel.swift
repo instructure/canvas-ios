@@ -18,17 +18,21 @@
 
 import SwiftUI
 
-public class AssignmentDetailsViewModel: ObservableObject {
+public class QuizDetailsViewModel: ObservableObject {
 
+    public enum ViewModelState<T: Equatable>: Equatable {
+        case loading
+        case error
+        case data(T)
+    }
     @Environment(\.appEnvironment) private var env
-
-    public let assignmentID: String
+    public let quizID: String
     public let courseID: String
 
-    public var assignment: Store<GetAssignment>
-
+    @Published public private(set) var state: ViewModelState<Quiz> = .loading
     @Published public private(set) var courseColor: UIColor?
-    public var title: String { NSLocalizedString("Assignment Details", comment: "") }
+
+    public var title: String { NSLocalizedString("Quiz Details", comment: "") }
     public var subtitle: String { course.first?.name ?? "" }
     public var showSubmissions: Bool { course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
 
@@ -36,39 +40,50 @@ public class AssignmentDetailsViewModel: ObservableObject {
         self?.courseDidUpdate()
     }
 
-    public init(courseID: String, assignmentID: String) {
-        self.assignmentID = assignmentID
-        self.courseID = courseID
+    private lazy var quiz = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
+        self?.quizDidUpdate()
+    }
 
-        assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
+    public init(courseID: String, quizID: String) {
+        self.quizID = quizID
+        self.courseID = courseID
     }
 
     public func viewDidAppear() {
-        assignment.refresh()
+        quiz.refresh()
         course.refresh()
     }
 
     public func editTapped(router: Router, viewController: WeakViewController) {
         env.router.route(
-            to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+            to: "courses/\(courseID)/assignments/\(quizID)/edit",
             from: viewController,
             options: .modal(.formSheet, isDismissable: false, embedInNav: true)
         )
     }
 
     func launchLTITool(router: Router, viewController: WeakViewController) {
-        LTITools.launch(
-            context: "course_\(courseID)",
-            id: assignment.first?.externalToolContentID,
-            url: nil,
-            launchType: "assessment",
-            assignmentID: assignmentID,
-            from: viewController.value
-        )
     }
 
     private func courseDidUpdate() {
         courseColor = course.first?.color
     }
+
+    private func quizDidUpdate() {
+        if quiz.requested, quiz.pending { return }
+        if let quiz = quiz.first {
+            state = .data(quiz)
+        } else {
+            state = .error
+        }
+    }
 }
 
+extension QuizDetailsViewModel: Refreshable {
+
+    public func refresh(completion: @escaping () -> Void) {
+        quiz.refresh(force: true) { [weak self] _ in
+            completion()
+        }
+    }
+}

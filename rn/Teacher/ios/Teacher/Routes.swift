@@ -250,9 +250,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/quizzes/:quizID": { url, params, _ in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        // TODO inherit quiz viewmodel
-        let viewModel = AssignmentDetailsViewModel(courseID: courseID, assignmentID: quizID)
-        return CoreHostingController(AssignmentDetailsView(viewModel: viewModel))
+        let viewModel = QuizDetailsViewModel(courseID: courseID, quizID: quizID)
+        return CoreHostingController(QuizDetailsView(viewModel: viewModel))
     },
     "/courses/:courseID/quizzes/:quizID/preview": nil,
     "/courses/:courseID/quizzes/:quizID/edit": nil,

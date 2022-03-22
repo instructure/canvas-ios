@@ -1002,6 +1002,8 @@
 		D9E1BABA25811BD70034C01E /* ContextCardBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */; };
 		D9E1BABD258163DC0034C01E /* ContextCardSubmissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */; };
 		D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */; };
+		D9E49ACB27EA243400959260 /* QuizDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E49ACA27EA243400959260 /* QuizDetailsView.swift */; };
+		D9E49ACD27EA244100959260 /* QuizDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E49ACC27EA244100959260 /* QuizDetailsViewModel.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
 		D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */; };
 		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
@@ -2302,6 +2304,8 @@
 		D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardBoxView.swift; sourceTree = "<group>"; };
 		D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardSubmissionsView.swift; sourceTree = "<group>"; };
 		D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardSubmissionRow.swift; sourceTree = "<group>"; };
+		D9E49ACA27EA243400959260 /* QuizDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsView.swift; sourceTree = "<group>"; };
+		D9E49ACC27EA244100959260 /* QuizDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModel.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewControllerTests.swift; sourceTree = "<group>"; };
 		DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.release.xcconfig"; sourceTree = "<group>"; };
@@ -3069,6 +3073,7 @@
 		7D1D5BE62492AB96009EA317 /* Quizzes */ = {
 			isa = PBXGroup;
 			children = (
+				D9E49AC927EA240600959260 /* QuizDetails */,
 				7DCF2033216D5458003AF358 /* APIQuiz.swift */,
 				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
 				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */,
@@ -5064,6 +5069,15 @@
 			path = ContextCard;
 			sourceTree = "<group>";
 		};
+		D9E49AC927EA240600959260 /* QuizDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D9E49ACA27EA243400959260 /* QuizDetailsView.swift */,
+				D9E49ACC27EA244100959260 /* QuizDetailsViewModel.swift */,
+			);
+			path = QuizDetails;
+			sourceTree = "<group>";
+		};
 		DFE1FF26212F69B3003F27AA /* CoreTester */ = {
 			isa = PBXGroup;
 			children = (
@@ -6548,6 +6562,7 @@
 				7DA260D923F72359005D2121 /* FilterHeaderView.swift in Sources */,
 				CFCB0F6127CE7B21008DDEA4 /* GradesPanda.swift in Sources */,
 				7DA2608123F72303005D2121 /* APIUser.swift in Sources */,
+				D9E49ACB27EA243400959260 /* QuizDetailsView.swift in Sources */,
 				7DA260EF23F72391005D2121 /* File.swift in Sources */,
 				7DA2605C23F722D9005D2121 /* QuizSubmission.swift in Sources */,
 				7DA2609C23F72341005D2121 /* TermsOfServiceViewController.swift in Sources */,
@@ -6619,6 +6634,7 @@
 				CFFE285927AA9D380029A408 /* CourseListView.swift in Sources */,
 				7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */,
 				CFD6F6C526C13E3C00F5C445 /* K5ScheduleSubject.swift in Sources */,
+				D9E49ACD27EA244100959260 /* QuizDetailsViewModel.swift in Sources */,
 				3B4D892C2450A8E9004ED120 /* AttachmentCardsViewController.swift in Sources */,
 				7DA2603C23F722D9005D2121 /* Context.swift in Sources */,
 				7DA25FB923F72136005D2121 /* APILatePolicy.swift in Sources */,
