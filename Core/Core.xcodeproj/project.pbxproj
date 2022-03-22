@@ -928,6 +928,9 @@
 		CF9A0F3B27EA190200762228 /* CourseHomeProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3A27EA190200762228 /* CourseHomeProperties.swift */; };
 		CF9A0F3E27EA1B4F00762228 /* CourseHomePropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3D27EA1B4F00762228 /* CourseHomePropertiesTests.swift */; };
 		CF9A0F4027EA1CA700762228 /* TabFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F3F27EA1CA700762228 /* TabFilterTests.swift */; };
+		CF9A0F4327EA2A3300762228 /* SyllabusCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4227EA2A3300762228 /* SyllabusCellViewModelTests.swift */; };
+		CF9A0F4527EA2E0100762228 /* StudentViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4427EA2E0100762228 /* StudentViewCellViewModelTests.swift */; };
+		CF9A0F4727EA2FFC00762228 /* LTICellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */; };
@@ -2254,6 +2257,9 @@
 		CF9A0F3A27EA190200762228 /* CourseHomeProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHomeProperties.swift; sourceTree = "<group>"; };
 		CF9A0F3D27EA1B4F00762228 /* CourseHomePropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHomePropertiesTests.swift; sourceTree = "<group>"; };
 		CF9A0F3F27EA1CA700762228 /* TabFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFilterTests.swift; sourceTree = "<group>"; };
+		CF9A0F4227EA2A3300762228 /* SyllabusCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusCellViewModelTests.swift; sourceTree = "<group>"; };
+		CF9A0F4427EA2E0100762228 /* StudentViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTICellViewModelTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModelTests.swift; sourceTree = "<group>"; };
@@ -4854,6 +4860,7 @@
 		CF9A0EE227E4948E00762228 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF9A0F4127EA2A2300762228 /* Cells */,
 				CF9A0F3327E9D6B800762228 /* CourseDetailsHeaderViewModelTests.swift */,
 				CF9A0F3527E9E82400762228 /* CourseDetailsViewModelTests.swift */,
 				CF9A0F3127E8AD8800762228 /* CourseSettingsViewModelTests.swift */,
@@ -4895,6 +4902,16 @@
 				CF9A0F3F27EA1CA700762228 /* TabFilterTests.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CF9A0F4127EA2A2300762228 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */,
+				CF9A0F4427EA2E0100762228 /* StudentViewCellViewModelTests.swift */,
+				CF9A0F4227EA2A3300762228 /* SyllabusCellViewModelTests.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		CFA078AD2791D3390078B27B /* TopBar */ = {
@@ -5884,6 +5901,7 @@
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
 				B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */,
+				CF9A0F4727EA2FFC00762228 /* LTICellViewModelTests.swift in Sources */,
 				CF7C3699267A3E3400ACAC79 /* TypeSafeCodableTests.swift in Sources */,
 				B1CA3348233948870015CBB4 /* UserTests.swift in Sources */,
 				D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */,
@@ -5911,6 +5929,7 @@
 				EB368AB427BFD0B500A9F1C1 /* APICommentLibraryTests.swift in Sources */,
 				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
 				7DCF1ED4216C05A0003AF358 /* DueViewableTests.swift in Sources */,
+				CF9A0F4527EA2E0100762228 /* StudentViewCellViewModelTests.swift in Sources */,
 				7DD6947B21949DC900BA4984 /* IconViewTests.swift in Sources */,
 				7D80AC15212B67E100C40ECE /* APIUserRequestableTests.swift in Sources */,
 				9F4D65B22396A3D600660038 /* ProfileSettingsViewControllerTests.swift in Sources */,
@@ -5992,6 +6011,7 @@
 				9FE84DDC214FE5C500B95A68 /* GetGroupsTests.swift in Sources */,
 				CFC2C27D273534B1006CA3E0 /* AssignmentPickerViewModelTests.swift in Sources */,
 				7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */,
+				CF9A0F4327EA2A3300762228 /* SyllabusCellViewModelTests.swift in Sources */,
 				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,
 				CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */,
 				B1A32BE22159A3100071B41E /* APIAssignmentTests.swift in Sources */,
