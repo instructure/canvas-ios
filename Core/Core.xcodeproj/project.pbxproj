@@ -932,6 +932,7 @@
 		CF9A0F4527EA2E0100762228 /* StudentViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4427EA2E0100762228 /* StudentViewCellViewModelTests.swift */; };
 		CF9A0F4727EA2FFC00762228 /* LTICellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */; };
 		CF9A0F4B27ECA3CF00762228 /* DefaultViewProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4A27ECA3CE00762228 /* DefaultViewProviderTests.swift */; };
+		CF9A0F4D27ECAA5900762228 /* GenericCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4C27ECAA5900762228 /* GenericCellViewModelTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */; };
@@ -2262,6 +2263,7 @@
 		CF9A0F4427EA2E0100762228 /* StudentViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewCellViewModelTests.swift; sourceTree = "<group>"; };
 		CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTICellViewModelTests.swift; sourceTree = "<group>"; };
 		CF9A0F4A27ECA3CE00762228 /* DefaultViewProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewProviderTests.swift; sourceTree = "<group>"; };
+		CF9A0F4C27ECAA5900762228 /* GenericCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellViewModelTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModelTests.swift; sourceTree = "<group>"; };
@@ -4910,6 +4912,7 @@
 		CF9A0F4127EA2A2300762228 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CF9A0F4C27ECAA5900762228 /* GenericCellViewModelTests.swift */,
 				CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */,
 				CF9A0F4427EA2E0100762228 /* StudentViewCellViewModelTests.swift */,
 				CF9A0F4227EA2A3300762228 /* SyllabusCellViewModelTests.swift */,
@@ -6112,6 +6115,7 @@
 				7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */,
 				CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */,
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
+				CF9A0F4D27ECAA5900762228 /* GenericCellViewModelTests.swift in Sources */,
 				3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */,
 				3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */,
 				97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */,
