@@ -358,8 +358,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     quizID,
     assignmentGroup,
     assignment,
-//    Assignment details no longer fetches courses so we'll show submission summary for designers until quiz details is re-implemented in native
-//    showSubmissionSummary: enrollment && enrollment.type !== 'designer',
+    // Assignment details no longer fetches courses so we'll show submission summary for designers until quiz details is re-implemented in native
+    // showSubmissionSummary: enrollment && enrollment.type !== 'designer',
     showSubmissionSummary: true,
   }
 }
