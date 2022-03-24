@@ -96,7 +96,7 @@ class RoutesTests: XCTestCase {
         env.userDefaults?.isElementaryViewEnabled = true
         XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
         env.k5.userDidLogin(isK5Account: false)
-        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
+        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
     }
 
     func testModuleItems() {
