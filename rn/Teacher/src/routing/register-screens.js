@@ -17,8 +17,6 @@
 //
 
 // @flow
-import CourseNavigation from '../modules/courses/CourseNavigation'
-import CourseSettings from '../modules/courses/settings/CourseSettings'
 import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePreferences'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import Inbox from '../modules/inbox/Inbox'
