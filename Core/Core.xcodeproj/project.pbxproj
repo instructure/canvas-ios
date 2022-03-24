@@ -975,6 +975,7 @@
 		CFD6F6C026C12AEC00F5C445 /* K5ScheduleDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6F6BF26C12AEC00F5C445 /* K5ScheduleDayView.swift */; };
 		CFD6F6C526C13E3C00F5C445 /* K5ScheduleSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6F6C426C13E3C00F5C445 /* K5ScheduleSubject.swift */; };
 		CFD6F6C926C15C5500F5C445 /* K5ScheduleItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6F6C826C15C5500F5C445 /* K5ScheduleItemInfo.swift */; };
+		CFD9B43F27ECBDCA0099F173 /* AttendanceCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B43E27ECBDCA0099F173 /* AttendanceCellViewModelTests.swift */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */; };
 		CFE7B42326B19F3F0092593D /* K5ScheduleSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */; };
@@ -2306,6 +2307,7 @@
 		CFD6F6BF26C12AEC00F5C445 /* K5ScheduleDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleDayView.swift; sourceTree = "<group>"; };
 		CFD6F6C426C13E3C00F5C445 /* K5ScheduleSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubject.swift; sourceTree = "<group>"; };
 		CFD6F6C826C15C5500F5C445 /* K5ScheduleItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleItemInfo.swift; sourceTree = "<group>"; };
+		CFD9B43E27ECBDCA0099F173 /* AttendanceCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCellViewModelTests.swift; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModelTests.swift; sourceTree = "<group>"; };
 		CFE7B42226B19F3F0092593D /* K5ScheduleSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleSubjectView.swift; sourceTree = "<group>"; };
@@ -4912,6 +4914,7 @@
 		CF9A0F4127EA2A2300762228 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CFD9B43E27ECBDCA0099F173 /* AttendanceCellViewModelTests.swift */,
 				CF9A0F4C27ECAA5900762228 /* GenericCellViewModelTests.swift */,
 				CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */,
 				CF9A0F4427EA2E0100762228 /* StudentViewCellViewModelTests.swift */,
@@ -6074,6 +6077,7 @@
 				B1F2F8A723F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift in Sources */,
 				CF9A0F3227E8AD8900762228 /* CourseSettingsViewModelTests.swift in Sources */,
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
+				CFD9B43F27ECBDCA0099F173 /* AttendanceCellViewModelTests.swift in Sources */,
 				E887275F24E1F85B00798DCA /* SequenceExtensionsTests.swift in Sources */,
 				3B1988B524256CE7004ADCC6 /* PairWithObserverViewControllerTests.swift in Sources */,
 				3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */,
