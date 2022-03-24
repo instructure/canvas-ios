@@ -348,9 +348,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     }
   }
 
-  let course = entities.courses[courseID].course
-  let enrollment = course && course.enrollments[0]
-
   return {
     quiz,
     pending,
@@ -361,7 +358,9 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     quizID,
     assignmentGroup,
     assignment,
-    showSubmissionSummary: enrollment && enrollment.type !== 'designer',
+//    Assignment details no longer fetches courses so we'll show submission summary for designers until quiz details is re-implemented in native
+//    showSubmissionSummary: enrollment && enrollment.type !== 'designer',
+    showSubmissionSummary: true,
   }
 }
 
