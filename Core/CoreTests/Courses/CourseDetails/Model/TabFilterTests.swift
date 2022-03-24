@@ -122,8 +122,10 @@ class TabFilterTests: CoreTestCase {
         customTab.hidden = true
         customTab.id = TabName.custom.rawValue
 
-        let allTabs: [Tab] = [assignmentsTab, quizzesTab, discussionsTab, announcementsTab, peopleTab, pagesTab, filesTab, modulesTab, syllabusTab,
-                              collaborationsTab, conferencesTab, outcomesTab, customTab]
+        let allTabs: [Tab] = [
+            assignmentsTab, quizzesTab, discussionsTab, announcementsTab, peopleTab, pagesTab, filesTab, modulesTab, syllabusTab,
+            collaborationsTab, conferencesTab, outcomesTab, customTab,
+        ]
         XCTAssertEqual(allTabs.filteredTabsForCourseHome(isStudent: false), [assignmentsTab, quizzesTab, discussionsTab, announcementsTab, peopleTab, pagesTab, filesTab, syllabusTab, modulesTab])
     }
 }
