@@ -134,7 +134,7 @@ public struct CourseDetailsView: View {
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
         ZStack(alignment: .top) {
             imageHeader(geometry: geometry)
-            List {
+            ListWithoutVerticalScrollIndicator {
                 VStack(spacing: 0) {
                     if viewModel.showHome {
                         homeView
