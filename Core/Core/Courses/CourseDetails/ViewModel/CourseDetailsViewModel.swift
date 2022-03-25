@@ -169,16 +169,7 @@ public class CourseDetailsViewModel: ObservableObject {
                 // if home cell is shown we increase the cell index since the home cell is managed outside of this array
                 self.selectionViewModel.cellTapped(at: index + (self.showHome ? 1 : 0))
             }
-
-            if let attendanceToolID = attendanceToolID, tab.id == "context_external_tool_" + attendanceToolID {
-                return AttendanceCellViewModel(tab: tab, course: course, attendanceToolID: attendanceToolID, selectedCallback: selectionCallback)
-            } else if tab.type == .external, let url = tab.url {
-                return LTICellViewModel(tab: tab, course: course, url: url)
-            } else if tab.name == .syllabus {
-                return SyllabusCellViewModel(tab: tab, course: course, selectedCallback: selectionCallback)
-            } else {
-                return GenericCellViewModel(tab: tab, course: course, selectedCallback: selectionCallback)
-            }
+            return tab.toCellViewModel(attendanceToolID: attendanceToolID, course: course, cellSelectionAction: selectionCallback)
         }
 
         if permissions.first?.useStudentView == true {

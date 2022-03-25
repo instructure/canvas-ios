@@ -71,5 +71,4 @@ class CourseDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.navigationBarTitle, "C1")
         XCTAssertEqual(testee.settingsRoute, URL(string: "courses/1/settings")!)
     }
-
 }
