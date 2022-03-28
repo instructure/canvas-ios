@@ -262,6 +262,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="imageURL" optional="YES" attributeType="URI"/>
         <attribute name="isHomeroom" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isK5Subject" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="k5Color" optional="YES" attributeType="String"/>
         <attribute name="longName" attributeType="String"/>
         <attribute name="originalName" attributeType="String"/>

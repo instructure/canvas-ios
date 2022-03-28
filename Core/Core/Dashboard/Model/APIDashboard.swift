@@ -37,6 +37,7 @@ struct APIDashboardCard: Codable, Equatable {
     let id: ID
     let image: String?
     let isHomeroom: Bool?
+    let isK5Subject: Bool?
     let links: [APIDashboardCardLink]
     let longName: String
     let originalName: String
@@ -57,6 +58,7 @@ extension APIDashboardCard {
         id: ID = 1,
         image: String? = nil,
         isHomeroom: Bool? = false,
+        isK5Subject: Bool? = false,
         links: [APIDashboardCardLink] = [],
         longName: String = "Course 1",
         originalName: String = "Course 1",
@@ -74,6 +76,7 @@ extension APIDashboardCard {
             id: id,
             image: image,
             isHomeroom: isHomeroom,
+            isK5Subject: isK5Subject,
             links: links,
             longName: longName,
             originalName: originalName,
