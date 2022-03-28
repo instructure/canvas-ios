@@ -30,6 +30,7 @@ public struct CourseDetailsView: View {
         self.viewModel = viewModel
         self.headerViewModel = viewModel.headerViewModel
         self.selectionViewModel = viewModel.selectionViewModel
+        UITableView.setupiOS14BackgroundColor(.clear)
     }
 
     public var body: some View {
