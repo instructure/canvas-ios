@@ -170,13 +170,13 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
             var letterGrade: String?
             if gradingPeriodID != nil {
                 totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                letterGrade = gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.computedCurrentGrade
+                letterGrade = gradeEnrollment?.computedCurrentGrade ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
             } else {
                 totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
                 if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
                     letterGrade = nil
                 } else {
-                    letterGrade = courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentGrade
+                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade
                 }
             }
             if let scoreText = totalGradeLabel.text, let finalGrade = letterGrade {
