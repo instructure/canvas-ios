@@ -87,17 +87,58 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/users/1/files/2?origin=globalAnnouncement") is FileDetailsViewController)
     }
 
-    func testRoutesWithK5Alternative() {
+    // MARK: - K5 / non-K5 course detail route logic tests
+
+    func testK5SubjectViewRoute() {
+        // User and accounts are in K5 mode
         ExperimentalFeature.K5Dashboard.isEnabled = true
         let env = AppEnvironment.shared
         guard let session = env.currentSession else { XCTFail(); return }
         env.userDidLogin(session: session)
         env.k5.userDidLogin(isK5Account: true)
         env.userDefaults?.isElementaryViewEnabled = true
+
+        // Opened course is a K5 one
+        DashboardCard.save(.make(isK5Subject: true), position: 0, in: env.database.viewContext)
+
         XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
+
+        // Non-K5 account login
         env.k5.userDidLogin(isK5Account: false)
         XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
     }
+
+    func testRegularCourseDetailsInK5Mode() {
+        // User and accounts are in K5 mode
+        ExperimentalFeature.K5Dashboard.isEnabled = true
+        let env = AppEnvironment.shared
+        guard let session = env.currentSession else { XCTFail(); return }
+        env.userDidLogin(session: session)
+        env.k5.userDidLogin(isK5Account: true)
+        env.userDefaults?.isElementaryViewEnabled = true
+
+        // Opened course is a non-K5 one
+        DashboardCard.save(.make(isK5Subject: false), position: 0, in: env.database.viewContext)
+
+        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
+    }
+
+    func testMissingDashboardCardInfoWhenOpeningK5SubjectRoute() {
+        // User and accounts are in K5 mode
+        ExperimentalFeature.K5Dashboard.isEnabled = true
+        let env = AppEnvironment.shared
+        guard let session = env.currentSession else { XCTFail(); return }
+        env.userDidLogin(session: session)
+        env.k5.userDidLogin(isK5Account: true)
+        env.userDefaults?.isElementaryViewEnabled = true
+
+        // No cached data in CoreData
+        XCTAssertTrue(env.database.viewContext.registeredObjects.isEmpty)
+
+        XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
+    }
+
+    // MARK: -
 
     func testModuleItems() {
         XCTAssert(router.match("/courses/1/assignments/syllabus") is SyllabusTabViewController)
