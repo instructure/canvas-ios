@@ -20,16 +20,16 @@ import SwiftUI
 
 public class QuizDetailsViewModel: ObservableObject {
 
-    public enum ViewModelState<T: Equatable>: Equatable {
+    public enum ViewModelState<T: Equatable, U: Equatable>: Equatable {
         case loading
         case error
-        case data(T)
+        case data(T, U)
     }
     @Environment(\.appEnvironment) private var env
     public let quizID: String
     public let courseID: String
 
-    @Published public private(set) var state: ViewModelState<Quiz> = .loading
+    @Published public private(set) var state: ViewModelState<Quiz, Assignment> = .loading
     @Published public private(set) var courseColor: UIColor?
 
     public var title: String { NSLocalizedString("Quiz Details", comment: "") }
@@ -43,6 +43,8 @@ public class QuizDetailsViewModel: ObservableObject {
     private lazy var quiz = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
         self?.quizDidUpdate()
     }
+
+    private var assignment: Store<GetAssignment>?
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -71,8 +73,20 @@ public class QuizDetailsViewModel: ObservableObject {
 
     private func quizDidUpdate() {
         if quiz.requested, quiz.pending { return }
-        if let quiz = quiz.first {
-            state = .data(quiz)
+        if let quiz = quiz.first, let assignmentID = quiz.assignmentID {
+            assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))  { [weak self] in
+                self?.assignmentDidUpdate()
+            }
+            assignment?.refresh()
+        } else {
+            state = .error
+        }
+    }
+
+    private func assignmentDidUpdate() {
+        if assignment?.requested == true, assignment?.pending != false { return }
+        if let quiz = quiz.first, let assignment = assignment?.first {
+            state = .data(quiz, assignment)
         } else {
             state = .error
         }

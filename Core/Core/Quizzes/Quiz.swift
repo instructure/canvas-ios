@@ -183,6 +183,15 @@ public enum QuizQuestionType: String, Codable, CaseIterable {
 
 public enum QuizHideResults: String, Codable, CaseIterable {
     case always, until_after_last_attempt
+
+    public var text: String {
+        switch self {
+        case .always:
+            return NSLocalizedString("No", bundle: .core, comment: "")
+        case .until_after_last_attempt:
+            return NSLocalizedString("After Last Attempt", bundle: .core, comment: "")
+        }
+    }
 }
 
 public enum QuizType: String, Codable, CaseIterable {

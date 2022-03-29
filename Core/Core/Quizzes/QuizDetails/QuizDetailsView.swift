@@ -54,20 +54,20 @@ public struct QuizDetailsView: View {
         case .error:
             // Quiz not found, perhaps recently deleted
             Spacer().onAppear { env.router.dismiss(controller) }
-        case .data(let quiz):
+        case .data(let quiz, let assignment):
             ScrollView { VStack(alignment: .leading, spacing: 0) {
                 /*CircleRefresh { endRefreshing in
                     self.viewModel.refresh { _ in
                         endRefreshing()
                     }
                 }*/
-                details(quiz: quiz)
+                details(quiz: quiz, assignment: assignment)
                     .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
             } }
         }
     }
 
-    @ViewBuilder func details(quiz: Quiz) -> some View {
+    @ViewBuilder func details(quiz: Quiz, assignment: Assignment) -> some View {
         Section {
             Text(quiz.title)
                 .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "QuizDetails.name")
@@ -93,17 +93,16 @@ public struct QuizDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        //TODO
-        //AssignmentDateSection(assignment: assignment)
+        AssignmentDateSection(assignment: assignment)
 
         Divider().padding(.horizontal, 16)
-/*
+
         if viewModel.showSubmissions {
-            SubmissionBreakdown(courseID: viewModel.courseID, assignmentID: viewModel.assignmentID, submissionTypes: assignment.submissionTypes)
+            SubmissionBreakdown(courseID: viewModel.courseID, assignmentID: assignment.id, submissionTypes: assignment.submissionTypes)
 
             Divider().padding(.horizontal, 16)
         }
-*/
+
         if let html = quiz.details, !html.isEmpty {
             Text("Description", bundle: .core)
                 .font(.medium16).foregroundColor(.textDark)
@@ -125,6 +124,36 @@ public struct QuizDetailsView: View {
             }
         }
 
+        Divider().padding(.horizontal, 16)
+
+        VStack(alignment: .leading, spacing: 4) {
+            Line(Text("Quiz Type:", bundle: .core), Text(quiz.quizType.sectionTitle))
+            if let assignmentGroup = assignment.assignmentGroup?.name {
+                Line(Text("Assignment Group:", bundle: .core), Text(assignmentGroup))
+            }
+            let shuffleAnswers = quiz.shuffleAnswers ? Text("Yes") : Text("No")
+            Line(Text("Shuffle Answers:", bundle: .core), shuffleAnswers)
+            //Line(Text("Time Limit:", bundle: .core), Text(quiz.timeLimit ?? "No time Limit"))
+            Line(Text("Allowed Attempts:", bundle: .core), Text(quiz.allowedAttemptsText))
+            if let hideResults = quiz.hideResults {
+                Line(Text("View Responses:", bundle: .core), Text(hideResults.text))
+            }
+            //Line(Text("Show Correct Answers:", bundle: .core), Text(quiz.???))
+
+            let oneQuestionAtATime = quiz.oneQuestionAtATime ? Text("Yes") : Text("No")
+            Line(Text("One Question at a Time:", bundle: .core), oneQuestionAtATime)
+            let lockQuestionsAfterAnswering = quiz.oneQuestionAtATime == true && quiz.cantGoBack ? Text("Yes") : Text("No")
+            Line(Text("Lock Questions After Answering:", bundle: .core), lockQuestionsAfterAnswering)
+            //Line(Text("Score to Keep:", bundle: .core), Text(quiz.sco))
+            if let accessCode = quiz.accessCode {
+                Line(Text("Access Code:", bundle: .core), Text(accessCode))
+            }
+        }
+        .font(.regular16).foregroundColor(.textDarkest)
+        .padding(16)
+
+        Spacer()
+        
         //fix button
             Button(action: launchLTITool, label: {
                 HStack {
@@ -162,6 +191,14 @@ public struct QuizDetailsView: View {
                 content
             }
                 .padding(16)
+        }
+    }
+
+    @ViewBuilder
+    func Line(_ title: Text, _ value: Text) -> some View {
+        HStack(spacing: 4) {
+            title.font(.semibold16)
+            value
         }
     }
 
