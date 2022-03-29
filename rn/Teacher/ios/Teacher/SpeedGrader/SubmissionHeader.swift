@@ -97,7 +97,7 @@ struct SubmissionHeader: View {
         guard !assignment.anonymizeStudents, let routeToSubmitter = routeToSubmitter else { return }
         env.router.route(
             to: routeToSubmitter,
-            userInfo: [ "courseID": assignment.courseID ],
+            userInfo: [ "courseID": assignment.courseID, "navigatorOptions": ["modal": true] ],
             from: controller,
             options: .modal(embedInNav: true, addDoneButton: true)
         )
