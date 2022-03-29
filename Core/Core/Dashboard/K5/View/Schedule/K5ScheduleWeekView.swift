@@ -35,7 +35,7 @@ public struct K5ScheduleWeekView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            CompatibleScrollViewReader { scrollProxy in
+            ScrollViewReader { scrollProxy in
                 List {
                     let dayModels = viewModel.days
                     ForEach(dayModels) { dayModel in
@@ -81,7 +81,7 @@ public struct K5ScheduleWeekView: View {
         return section
     }
 
-    private func todayButton(scrollProxy: CompatibleScrollViewProxy) -> some View {
+    private func todayButton(scrollProxy: ScrollViewProxy) -> some View {
         Button(action: {
             withAnimation {
                 scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)

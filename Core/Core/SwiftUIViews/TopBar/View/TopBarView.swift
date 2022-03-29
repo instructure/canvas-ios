@@ -50,7 +50,7 @@ public struct TopBarView: View {
         }
     }
 
-    private func itemForModel(at index: Int, scrollViewProxy: CompatibleScrollViewProxy) -> some View {
+    private func itemForModel(at index: Int, scrollViewProxy: ScrollViewProxy) -> some View {
         let isFirstItem = (index == 0)
         let isLastItem = (index == viewModel.items.count - 1)
         let item = TopBarItemView(viewModel: viewModel.items[index]) {

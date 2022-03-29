@@ -845,7 +845,6 @@
 		CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F73E266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift */; };
 		CF53F745266FBE4F00FA58D7 /* GetMissingSubmissionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F744266FBE4F00FA58D7 /* GetMissingSubmissionsRequest.swift */; };
 		CF565FB327A427400044DB3C /* AssignmentListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF565FB227A427400044DB3C /* AssignmentListViewModelTests.swift */; };
-		CF575E1A265E920D00F8515F /* CompatibleScrollViewReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */; };
 		CF575E20265E9D5200F8515F /* ScrollViewWithReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */; };
 		CF575E2C265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */; };
 		CF575E3F26667AB700F8515F /* GetLatestAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E3E26667AB700F8515F /* GetLatestAnnouncements.swift */; };
@@ -2144,7 +2143,6 @@
 		CF53F73E266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomMissingSubmissionsCount.swift; sourceTree = "<group>"; };
 		CF53F744266FBE4F00FA58D7 /* GetMissingSubmissionsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMissingSubmissionsRequest.swift; sourceTree = "<group>"; };
 		CF565FB227A427400044DB3C /* AssignmentListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModelTests.swift; sourceTree = "<group>"; };
-		CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleScrollViewReader.swift; sourceTree = "<group>"; };
 		CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithReader.swift; sourceTree = "<group>"; };
 		CF575E2B265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModel.swift; sourceTree = "<group>"; };
 		CF575E3E26667AB700F8515F /* GetLatestAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestAnnouncements.swift; sourceTree = "<group>"; };
@@ -5105,7 +5103,6 @@
 				CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
-				CF575E19265E920D00F8515F /* CompatibleScrollViewReader.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */,
@@ -6212,7 +6209,6 @@
 				7DA260A323F7234C005D2121 /* IPC.swift in Sources */,
 				CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */,
 				CF43DE8527CCDBCB00015B6F /* MotionDetector.swift in Sources */,
-				CF575E1A265E920D00F8515F /* CompatibleScrollViewReader.swift in Sources */,
 				7D06A2B32469B7D100D76267 /* DiscussionReplyViewController.swift in Sources */,
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
