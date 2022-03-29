@@ -30,6 +30,13 @@ public class Grade: NSManagedObject {
         set { currentScoreRaw = NSNumber(value: newValue) }
     }
 
+    @NSManaged public var finalGrade: String?
+    @NSManaged var finalScoreRaw: NSNumber?
+    public var finalScore: Double? {
+        get { finalScoreRaw?.doubleValue }
+        set { finalScoreRaw = NSNumber(value: newValue) }
+    }
+
     @NSManaged public var overrideGrade: String?
     @NSManaged var overrideScoreRaw: NSNumber?
     public var overrideScore: Double? {

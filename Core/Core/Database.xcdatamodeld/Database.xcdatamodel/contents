@@ -463,6 +463,8 @@
     <entity name="Grade" representedClassName="Core.Grade" syncable="YES">
         <attribute name="currentGrade" optional="YES" attributeType="String"/>
         <attribute name="currentScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="finalGrade" optional="YES" attributeType="String"/>
+        <attribute name="finalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="overrideGrade" optional="YES" attributeType="String"/>
         <attribute name="overrideScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
