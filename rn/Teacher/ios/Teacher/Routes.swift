@@ -257,9 +257,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PeopleListViewController.create(context: .course(courseID))
     },
 
-    "/courses/:courseID/users/:userID": { _, params, _ in
+    "/courses/:courseID/users/:userID": { _, params, userInfo in
         guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
-        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "")
+        let isModal = isModalPresentation(userInfo)
+        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "", isModal: isModal)
         return CoreHostingController(ContextCardView(model: viewModel))
     },
 
@@ -327,6 +328,13 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
 private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
     return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+}
+
+// MARK: - Helpers
+
+private func isModalPresentation(_ userInfo: [String: Any]?) -> Bool {
+    let navigatorOptions = userInfo?["navigatorOptions"] as? [String: Any]
+    return navigatorOptions?["modal"] as? Bool ?? false
 }
 
 // MARK: - HelmModules
