@@ -27,7 +27,7 @@ struct APIDashboardCardLink: Codable, Equatable {
     let path: String
 }
 
-struct APIDashboardCard: Codable, Equatable {
+public struct APIDashboardCard: Codable, Equatable {
     let assetString: String
     let courseCode: String
     /** Teacher assigned hex color for K5 courses */
@@ -89,7 +89,7 @@ extension APIDashboardCard {
 }
 #endif
 
-struct GetDashboardCardsRequest: APIRequestable {
-    typealias Response = [APIDashboardCard]
-    var path: String { "dashboard/dashboard_cards" }
+public struct GetDashboardCardsRequest: APIRequestable {
+    public typealias Response = [APIDashboardCard]
+    public var path: String { "dashboard/dashboard_cards" }
 }
