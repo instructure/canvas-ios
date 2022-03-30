@@ -120,7 +120,7 @@ class RoutesTests: XCTestCase {
         // Opened course is a non-K5 one
         DashboardCard.save(.make(isK5Subject: false), position: 0, in: env.database.viewContext)
 
-        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
+        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
     }
 
     func testMissingDashboardCardInfoWhenOpeningK5SubjectRoute() {
