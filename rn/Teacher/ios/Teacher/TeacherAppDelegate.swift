@@ -296,6 +296,14 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
             UIApplication.shared.open(url)
         }
     }
+
+    func actAsStudentViewStudent(studentViewStudentID: String) {
+        if let url = URL(string: "canvas-student://"), UIApplication.shared.canOpenURL(url) {
+            actAsFakeStudent(withID: studentViewStudentID)
+        } else if let url = URL(string: "https://itunes.apple.com/us/app/canvas-student/id480883488?ls=1&mt=8") {
+            openExternalURL(url)
+        }
+    }
 }
 
 // MARK: Error Handling

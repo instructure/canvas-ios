@@ -102,8 +102,23 @@ public struct APICourseSettings: Codable {
     let syllabus_course_summary: Bool
 }
 
-public enum CourseDefaultView: String, Codable {
+public enum CourseDefaultView: String, Codable, CaseIterable {
     case assignments, feed, modules, syllabus, wiki
+
+    var string: String {
+        switch self {
+        case .assignments:
+            return NSLocalizedString("Assignments List", comment: "")
+        case .feed:
+            return NSLocalizedString("Course Activity Stream", comment: "")
+        case .modules:
+            return NSLocalizedString("Course Modules", comment: "")
+        case .syllabus:
+            return NSLocalizedString("Syllabus", comment: "")
+        case .wiki:
+            return NSLocalizedString("Pages Front Page", comment: "")
+        }
+    }
 }
 
 public enum CourseWorkflowState: String, Codable {
@@ -152,7 +167,8 @@ extension APICourse {
             end_at: end_at,
             locale: locale,
             enrollments: enrollments,
-            grading_periods: grading_periods, default_view: default_view,
+            grading_periods: grading_periods,
+            default_view: default_view,
             syllabus_body: syllabus_body,
             term: term,
             permissions: permissions,

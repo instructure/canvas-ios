@@ -23,6 +23,7 @@ struct CourseCard: View {
     let hideColorOverlay: Bool
     let showGrade: Bool
     let width: CGFloat
+    let contextColor: UIColor
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -35,7 +36,7 @@ struct CourseCard: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Button(action: {
-                env.router.route(to: "/courses/\(card.id)", from: controller)
+                env.router.route(to: "/courses/\(card.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
             }, label: {
                 VStack(alignment: .leading, spacing: 0) {
                     ZStack {
