@@ -129,8 +129,10 @@ extension WebView {
 
         var body: some View {
             view
-                .onChangeSize { height = $0 }
-                .frame(height: height)
+                .onChangeSize { height in
+                    withAnimation { self.height = height }
+                }
+                .frame(height: height, alignment: .top)
         }
     }
 
