@@ -106,4 +106,9 @@ class URLComponentsExtensionsTests: XCTestCase {
         testee = URLComponents.parse("/courses/165/assignments/900")
         XCTAssertNil(testee.pageSize)
     }
+
+    func testContextColor() {
+        let testee = URLComponents.parse("/empty?contextColor=001122")
+        XCTAssertEqual(testee.contextColor, UIColor(hexString: "#001122"))
+    }
 }

@@ -39,9 +39,15 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses": { _, _, _ in CoreHostingController(CourseListView()) },
 
-    "/courses/:courseID": nil,
-    "/courses/:courseID/tabs": nil,
-    "/courses/:courseID/settings": nil,
+    "/courses/:courseID": courseDetails,
+    "/courses/:courseID/tabs": courseDetails,
+
+    "/courses/:courseID/settings": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        let viewModel = CourseSettingsViewModel(context: context)
+        return CoreHostingController(CourseSettingsView(viewModel: viewModel))
+    },
+
     "/courses/:courseID/user_preferences": nil,
 
     "/:context/:contextID/announcements": { url, _, _ in
@@ -298,6 +304,16 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)
     },
+
+    "/empty": { url, _, _ in
+        let emptyViewController = EmptyViewController()
+
+        if let contextColor = url.contextColor {
+            emptyViewController.navBarStyle = .color(contextColor)
+        }
+
+        return emptyViewController
+    },
 ]))
 
 private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
@@ -328,6 +344,18 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
 private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
     return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+}
+
+private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let context = Context(path: url.path) else { return nil }
+    let viewModel = CourseDetailsViewModel(context: context)
+    let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
+
+    if let contextColor = url.contextColor {
+        viewController.navigationBarStyle = .color(contextColor)
+    }
+
+    return viewController
 }
 
 // MARK: - Helpers
