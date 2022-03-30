@@ -18,34 +18,35 @@
 
 import CoreData
 
-final class DashboardCard: NSManagedObject {
+public final class DashboardCard: NSManagedObject {
     typealias JSON = APIDashboardCard
 
-    @NSManaged var course: Course?
-    @NSManaged var contextColor: ContextColor?
-    @NSManaged var courseCode: String
-    @NSManaged var enrollmentType: String
-    @NSManaged var href: URL?
-    @NSManaged var id: String
-    @NSManaged var imageURL: URL?
-    @NSManaged var isHomeroom: Bool
+    @NSManaged public var course: Course?
+    @NSManaged public var contextColor: ContextColor?
+    @NSManaged public var courseCode: String
+    @NSManaged public var enrollmentType: String
+    @NSManaged public var href: URL?
+    @NSManaged public var id: String
+    @NSManaged public var imageURL: URL?
+    @NSManaged public var isHomeroom: Bool
+    @NSManaged public var isK5Subject: Bool
     /** Teacher assigned hex color for K5 courses */
-    @NSManaged var k5Color: String?
-    @NSManaged var longName: String
-    @NSManaged var originalName: String
-    @NSManaged var position: Int
-    @NSManaged var shortName: String
-    @NSManaged var subtitle: String
-    @NSManaged var term: String?
+    @NSManaged public var k5Color: String?
+    @NSManaged public var longName: String
+    @NSManaged public var originalName: String
+    @NSManaged public var position: Int
+    @NSManaged public var shortName: String
+    @NSManaged public var subtitle: String
+    @NSManaged public var term: String?
 
-    var color: UIColor { contextColor?.color ?? .ash }
+    public var color: UIColor { contextColor?.color ?? .ash }
 
-    var isTeacherEnrollment: Bool {
+    public var isTeacherEnrollment: Bool {
         let teacherRoles = ["teacher", "ta"]
         return teacherRoles.contains(where: enrollmentType.lowercased().contains)
     }
 
-    var shouldShow: Bool {
+    public var shouldShow: Bool {
         guard let enrollments = course?.enrollments else { return false }
         return enrollments.contains { enrollment in
             enrollment.state == .active
@@ -53,7 +54,7 @@ final class DashboardCard: NSManagedObject {
     }
 
     @discardableResult
-    static func save(_ item: APIDashboardCard, position: Int, in context: NSManagedObjectContext) -> Self {
+    public static func save(_ item: APIDashboardCard, position: Int, in context: NSManagedObjectContext) -> Self {
         let model: Self = context.first(where: #keyPath(DashboardCard.id), equals: item.id.value) ?? context.insert()
         model.courseCode = item.courseCode
         model.enrollmentType = item.enrollmentType
@@ -61,6 +62,7 @@ final class DashboardCard: NSManagedObject {
         model.id = item.id.value
         model.imageURL = item.image.flatMap { URL(string: $0) }
         model.isHomeroom = item.isHomeroom ?? false
+        model.isK5Subject = item.isK5Subject ?? false
         model.k5Color = item.color
         model.longName = item.longName
         model.originalName = item.originalName
@@ -81,14 +83,17 @@ final class DashboardCard: NSManagedObject {
     }
 }
 
-class GetDashboardCards: CollectionUseCase {
-    typealias Model = DashboardCard
+public class GetDashboardCards: CollectionUseCase {
+    public typealias Model = DashboardCard
 
-    var cacheKey: String? { "dashboard/dashboard_cards" }
-    var request: GetDashboardCardsRequest { GetDashboardCardsRequest() }
-    var scope: Scope { .all(orderBy: #keyPath(DashboardCard.position)) }
+    public var cacheKey: String? { "dashboard/dashboard_cards" }
+    public var request: GetDashboardCardsRequest { GetDashboardCardsRequest() }
+    public var scope: Scope { .all(orderBy: #keyPath(DashboardCard.position)) }
 
-    func write(response: [APIDashboardCard]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public init() {
+    }
+
+    public func write(response: [APIDashboardCard]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         response?.enumerated().forEach {
             Model.save($0.element, position: $0.offset, in: client)
         }

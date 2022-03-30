@@ -475,9 +475,8 @@ private func groupContextCard(url: URLComponents, params: [String: String], user
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let context = Context(path: url.path) else { return nil }
-    if AppEnvironment.shared.k5.isK5Enabled == true {
-        return CoreHostingController(K5SubjectView(context: context, selectedTabId: url.fragment))
-    } else {
+
+    let regularCourseDetails: () -> UIViewController = {
         let viewModel = CourseDetailsViewModel(context: context)
         let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
 
@@ -487,4 +486,19 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
 
         return viewController
     }
+    let k5SubjectView = {
+        CoreHostingController(K5SubjectView(context: context, selectedTabId: url.fragment))
+    }
+
+    guard AppEnvironment.shared.k5.isK5Enabled == true else {
+        return regularCourseDetails()
+    }
+
+    guard let courseID = params["courseID"],
+          let card = AppEnvironment.shared.subscribe(GetDashboardCards()).all.first(where: { $0.id == courseID })
+    else {
+        return k5SubjectView()
+    }
+
+    return card.isK5Subject ? k5SubjectView() : regularCourseDetails()
 }

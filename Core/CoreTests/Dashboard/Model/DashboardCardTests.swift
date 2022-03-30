@@ -28,6 +28,7 @@ class DashboardCardTests: CoreTestCase {
             assetString: "course_1",
             courseCode: "CRS1",
             id: "1",
+            isK5Subject: true,
             shortName: "Course One"
         ), ])
         useCase.fetch()
@@ -35,6 +36,7 @@ class DashboardCardTests: CoreTestCase {
         XCTAssertEqual(card?.color, .red)
         XCTAssertEqual(card?.course?.id, "1")
         XCTAssertEqual(card?.shortName, "Course One")
+        XCTAssertEqual(card?.isK5Subject, true)
     }
 
     func testTeacherEnrollment() {
