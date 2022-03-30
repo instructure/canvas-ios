@@ -34,6 +34,7 @@ public class ContextCardViewModel: ObservableObject {
     public let context: Context
     public let isSubmissionRowsVisible: Bool
     public let isLastActivityVisible: Bool
+    public let isModal: Bool
     public var enrollment: Enrollment?
 
     @Environment(\.appEnvironment) private var env
@@ -44,13 +45,14 @@ public class ContextCardViewModel: ObservableObject {
     private var enrollmentsAPICallResponsePending = true
     private var currentGradingPeriodID: String?
 
-    public init(courseID: String, userID: String, currentUserID: String, isSubmissionRowsVisible: Bool = true, isLastActivityVisible: Bool = true) {
+    public init(courseID: String, userID: String, currentUserID: String, isSubmissionRowsVisible: Bool = true, isLastActivityVisible: Bool = true, isModal: Bool = false) {
         self.courseID = courseID
         self.userID = userID
         self.context = Context.course(courseID)
         self.isViewingAnotherUser = (userID != currentUserID)
         self.isSubmissionRowsVisible = isSubmissionRowsVisible
         self.isLastActivityVisible = isLastActivityVisible
+        self.isModal = isModal
     }
 
     public func viewAppeared() {
