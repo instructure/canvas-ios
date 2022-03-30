@@ -40,7 +40,7 @@ class PageListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         let split = UISplitViewController()
         split.viewControllers = [ nav ]
-        split.preferredDisplayMode = .allVisible
+        split.preferredDisplayMode = .oneBesideSecondary
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
