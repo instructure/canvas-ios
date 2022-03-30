@@ -22,7 +22,7 @@ import Core
 public class HelmSplitViewController: UISplitViewController {
     public override func viewDidLoad() {
         delegate = self
-        preferredDisplayMode = .allVisible
+        preferredDisplayMode = .oneBesideSecondary
     }
 
     public override var prefersStatusBarHidden: Bool {
@@ -59,7 +59,7 @@ public class HelmSplitViewController: UISplitViewController {
 
     public func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
         let defaultButton = self.displayModeButtonItem
-        let collapse = displayMode == .primaryOverlay || displayMode == .primaryHidden
+        let collapse = displayMode == .oneOverSecondary || displayMode == .secondaryOnly
         let icon: UIImage = collapse ? .exitFullScreenLine : .fullScreenLine
         let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
         prettyButton.accessibilityLabel = collapse ?
