@@ -19,7 +19,7 @@
 import SwiftUI
 
 // Meant to be a fill-in for the SwiftUI.TextEditor available in iOS 14. This component implements a custom height sizing behavior, make sure when you update to iOS 14 to keep the UX consistent.
-@available(iOS, obsoleted: 14)
+@available(iOS, deprecated: 14)
 public struct TextEditor: View {
     @Binding var text: String
     @State var height: CGFloat?
