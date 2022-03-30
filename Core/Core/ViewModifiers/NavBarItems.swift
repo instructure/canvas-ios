@@ -20,17 +20,13 @@ import SwiftUI
 
 extension View {
 
-    @available(iOS, deprecated: 14)
-    @ViewBuilder
-    public func compatibleNavBarItems<T>(trailing: () -> T) -> some View where T: View {
+    public func navBarItems<T>(trailing: () -> T) -> some View where T: View {
         self.toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: trailing)
         }
     }
 
-    @available(iOS, deprecated: 14)
-    @ViewBuilder
-    public func compatibleNavBarItems<L, T>(leading: () -> L, trailing: () -> T) -> some View where L: View, T: View {
+    public func navBarItems<L, T>(leading: () -> L, trailing: () -> T) -> some View where L: View, T: View {
         self.toolbar {
             ToolbarItem(placement: .navigationBarLeading, content: leading)
             ToolbarItem(placement: .navigationBarTrailing, content: trailing)

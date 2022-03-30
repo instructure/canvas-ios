@@ -816,7 +816,7 @@
 		CF11565026FB56E900DE25B6 /* AttachmentCopyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */; };
 		CF11565226FB5C4C00DE25B6 /* AttachmentSubmissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */; };
 		CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */; };
-		CF12DFC826D63937000BE452 /* CompatibleNavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */; };
+		CF12DFC826D63937000BE452 /* NavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFC726D63937000BE452 /* NavBarItems.swift */; };
 		CF2091A6275A5B37003E8EA6 /* AssignmentPickerListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A5275A5B37003E8EA6 /* AssignmentPickerListRequest.swift */; };
 		CF2091A8275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A7275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift */; };
 		CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */; };
@@ -889,7 +889,6 @@
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
 		CF7C6DAD25E56A0000363203 /* GroupContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */; };
-		CF7CEAEC26035BE500967EA0 /* ChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */; };
 		CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */; };
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */; };
@@ -2150,7 +2149,7 @@
 		CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCopyService.swift; sourceTree = "<group>"; };
 		CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionService.swift; sourceTree = "<group>"; };
 		CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleMissingItemsView.swift; sourceTree = "<group>"; };
-		CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleNavBarItems.swift; sourceTree = "<group>"; };
+		CF12DFC726D63937000BE452 /* NavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarItems.swift; sourceTree = "<group>"; };
 		CF2091A5275A5B37003E8EA6 /* AssignmentPickerListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListRequest.swift; sourceTree = "<group>"; };
 		CF2091A7275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListResponse.swift; sourceTree = "<group>"; };
 		CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGrid.swift; sourceTree = "<group>"; };
@@ -2223,7 +2222,6 @@
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
 		CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardTests.swift; sourceTree = "<group>"; };
-		CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeObserver.swift; sourceTree = "<group>"; };
 		CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensionsTests.swift; sourceTree = "<group>"; };
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15ListRowSeparator.swift; sourceTree = "<group>"; };
@@ -5304,7 +5302,6 @@
 				CFCE214A2656894100E3B32A /* ViewPreferences */,
 				D9D9F0F3276CC69D008846AE /* AccessIcon.swift */,
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
-				CF7CEAEB26035BE500967EA0 /* ChangeObserver.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
@@ -5345,7 +5342,7 @@
 				7DBD150525477CEB00750F52 /* Badge.swift */,
 				CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */,
 				CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */,
-				CF12DFC726D63937000BE452 /* CompatibleNavBarItems.swift */,
+				CF12DFC726D63937000BE452 /* NavBarItems.swift */,
 				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
 				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
 			);
@@ -6760,7 +6757,6 @@
 				7DA2606C23F722D9005D2121 /* Activity.swift in Sources */,
 				3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */,
 				7DA260F123F72391005D2121 /* FileUploadTarget.swift in Sources */,
-				CF7CEAEC26035BE500967EA0 /* ChangeObserver.swift in Sources */,
 				CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */,
 				7DA25F9D23F72136005D2121 /* APIAssignmentGroup.swift in Sources */,
 				7DA2602E23F722C2005D2121 /* LoginStartViewController.swift in Sources */,
@@ -6820,7 +6816,7 @@
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,
 				7D81F3F724F0112700C482D2 /* APIAccountTermsOfService.swift in Sources */,
-				CF12DFC826D63937000BE452 /* CompatibleNavBarItems.swift in Sources */,
+				CF12DFC826D63937000BE452 /* NavBarItems.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
 				7DA25FBD23F72136005D2121 /* APIMediaComment.swift in Sources */,
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,

@@ -39,7 +39,7 @@ public struct CourseSettingsView: View {
             }
         }
         .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: viewModel.courseName)
-        .compatibleNavBarItems(
+        .navBarItems(
             leading: {
                 Button(action: cancelTapped) {
                     Text("Cancel", bundle: .core).fontWeight(.regular)

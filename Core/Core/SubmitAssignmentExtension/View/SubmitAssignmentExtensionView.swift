@@ -42,7 +42,7 @@ public struct SubmitAssignmentExtensionView: View {
             .font(.regular16)
             .navigationBarGlobal()
             .navigationBarTitleView(titleView, displayMode: .inline)
-            .compatibleNavBarItems(trailing: { cancelButton })
+            .navBarItems(trailing: cancelButton)
     }
 
     private var contentView: some View {
@@ -60,10 +60,7 @@ public struct SubmitAssignmentExtensionView: View {
         }
         .navigationBarGlobal()
         .navigationBarTitleView(titleView, displayMode: .inline)
-        .compatibleNavBarItems(
-            leading: { cancelButton },
-            trailing: { submitButton }
-        )
+        .navBarItems(leading: cancelButton, trailing: submitButton)
     }
 
     private var titleView: some View {
