@@ -105,7 +105,7 @@ class RoutesTests: XCTestCase {
 
         // Non-K5 account login
         env.k5.userDidLogin(isK5Account: false)
-        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
+        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
     }
 
     func testRegularCourseDetailsInK5Mode() {

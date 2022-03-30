@@ -28,7 +28,7 @@ public struct ItemPickerSection {
     }
 }
 
-public struct ItemPickerItem {
+public struct ItemPickerItem: Equatable {
     let image: UIImage?
     let title: String
     let subtitle: String?

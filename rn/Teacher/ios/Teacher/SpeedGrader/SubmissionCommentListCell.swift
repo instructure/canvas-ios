@@ -116,7 +116,7 @@ struct SubmissionCommentListCell: View {
                     to: "/courses/\(assignment.courseID)/users/\(id)",
                     userInfo: ["navigatorOptions": ["modal": true]], // fix nav style
                     from: controller,
-                    options: .modal(embedInNav: true)
+                    options: .modal(embedInNav: true, addDoneButton: true)
                 )
             }, label: {
                 Avatar(name: comment.authorName, url: comment.authorAvatarURL)

@@ -207,7 +207,7 @@ struct UpdateCourse: APIUseCase {
     }
 
     func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard response != nil else { return }
+        guard let response = response else { return }
 
         let course: Course? = client.first(where: #keyPath(Course.id), equals: courseId)
         if let syllabusBody = request.body?.course.syllabus_body {
@@ -218,5 +218,8 @@ struct UpdateCourse: APIUseCase {
         if let syllabusSummary = request.body?.course.syllabus_course_summary {
             settings?.syllabusCourseSummary = syllabusSummary
         }
+
+        course?.name = response.name
+        course?.defaultView = response.default_view
     }
 }

@@ -129,7 +129,7 @@ public struct DashboardCardView: View {
             let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
             DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
                 let card = cards[cardIndex]
-                CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth)
+                CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth, contextColor: card.color)
                     // outside the CourseCard, because that isn't observing colors
                     .accentColor(Color(card.color.ensureContrast(against: .white)))
                     .frame(minHeight: 160)

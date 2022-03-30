@@ -120,6 +120,14 @@ public extension URLComponents {
         return Int(pageSizeQueryValue)
     }
 
+    var contextColor: UIColor? {
+        guard let hexColor = queryValue(for: "contextColor"), let color = UIColor(hexString: "#\(hexColor)") else {
+            return nil
+        }
+
+        return color
+    }
+
     func queryValue(for queryName: String) -> String? {
         queryItems?.first(where: { $0.name == queryName })?.value
     }

@@ -29,6 +29,7 @@ public extension Font {
     static var regular16: Font { Font(UIFont.scaledNamedFont(.regular16)) }
     static var regular17: Font { Font(UIFont.scaledNamedFont(.regular17)) }
     static var regular20: Font { Font(UIFont.scaledNamedFont(.regular20)) }
+    static var regular23: Font { Font(UIFont.scaledNamedFont(.regular23)) }
     static var regular24: Font { Font(UIFont.scaledNamedFont(.regular24)) }
     static var regular20Monodigit: Font { Font(UIFont.scaledNamedFont(.regular20Monodigit)) }
     static var regular30: Font { Font(UIFont.scaledNamedFont(.regular30)) }
@@ -47,6 +48,7 @@ public extension Font {
     static var semibold16Italic: Font { Font(UIFont.scaledNamedFont(.semibold16Italic)) }
     static var semibold18: Font { Font(UIFont.scaledNamedFont(.semibold18)) }
     static var semibold20: Font { Font(UIFont.scaledNamedFont(.semibold20)) }
+    static var semibold23: Font { Font(UIFont.scaledNamedFont(.semibold23)) }
 
     static var bold10: Font { Font(UIFont.scaledNamedFont(.bold10)) }
     static var bold11: Font { Font(UIFont.scaledNamedFont(.bold11)) }
