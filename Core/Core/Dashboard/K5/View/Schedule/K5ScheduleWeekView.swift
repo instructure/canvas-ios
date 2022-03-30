@@ -100,16 +100,8 @@ public struct K5ScheduleWeekView: View {
     @ViewBuilder
     private func header(for model: K5ScheduleDayViewModel, isToday: Bool, geometry: GeometryProxy) -> some View {
         let content = VStack(alignment: .leading) {
-            let weekday = Text(model.weekday).font(.bold24)
-            let date = Text(model.date).font(.bold17)
-
-            if #available(iOS 14, *) {
-                weekday.textCase(nil)
-                date.textCase(nil)
-            } else {
-                weekday
-                date
-            }
+            Text(model.weekday).font(.bold24).textCase(nil)
+            Text(model.date).font(.bold17).textCase(nil)
         }
         .foregroundColor(.licorice)
         .padding(.top, 26)

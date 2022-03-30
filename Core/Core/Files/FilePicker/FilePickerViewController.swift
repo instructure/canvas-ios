@@ -274,16 +274,8 @@ extension FilePickerViewController: UITabBarDelegate {
             libraryController.mediaTypes = mediaTypes
             env.router.show(libraryController, from: self, options: .modal())
         case .files:
-            let documentPicker: UIDocumentPickerViewController
-
-            if #available(iOS 14, *) {
-                let documentTypes = utis.compactMap { $0.uttype }
-                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: documentTypes, asCopy: true)
-            } else {
-                let documentTypes = utis.map { $0.rawValue }
-                documentPicker = UIDocumentPickerViewController(documentTypes: documentTypes, in: .import)
-            }
-
+            let documentTypes = utis.compactMap { $0.uttype }
+            let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: documentTypes, asCopy: true)
             documentPicker.delegate = self
             env.router.show(documentPicker, from: self, options: .modal())
         case .audio:

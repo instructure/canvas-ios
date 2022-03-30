@@ -117,8 +117,6 @@ open class AppEnvironment {
     }
 
     public func refreshWidgets() {
-        if #available(iOS 14, *) {
-            WidgetCenter.shared.reloadAllTimelines()
-        }
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
