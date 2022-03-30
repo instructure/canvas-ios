@@ -75,7 +75,7 @@ class StudentTabBarController: UITabBarController {
         split.tabBarItem.image = tabBarImage
         split.tabBarItem.selectedImage = tabBarImageSelected
         split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        split.preferredDisplayMode = .allVisible
+        split.preferredDisplayMode = .oneBesideSecondary
         return split
     }
 
