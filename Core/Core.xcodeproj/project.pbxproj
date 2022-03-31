@@ -139,7 +139,6 @@
 		7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */; };
 		7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */; };
 		7D4B2740253CEE6800A98DE3 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B273F253CEE6800A98DE3 /* AudioPlayer.swift */; };
-		7D4B2745253E3A5700A98DE3 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B2744253E3A5700A98DE3 /* TextEditor.swift */; };
 		7D4B274F253F47EC00A98DE3 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */; };
 		7D4B2753253F65C600A98DE3 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */; };
 		7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3A762236FFD2007D6792 /* FileTests.swift */; };
@@ -1569,7 +1568,6 @@
 		7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D4B273F253CEE6800A98DE3 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		7D4B2744253E3A5700A98DE3 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
 		7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecorder.swift; sourceTree = "<group>"; };
 		7D4C3A762236FFD2007D6792 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
@@ -5317,7 +5315,6 @@
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
 				CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBar.swift */,
-				7D4B2744253E3A5700A98DE3 /* TextEditor.swift */,
 				7DCA32112541DB8B00458651 /* WebSession.swift */,
 				7DCA31F72540835300458651 /* WebView.swift */,
 			);
@@ -6786,7 +6783,6 @@
 				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,
 				7DA2601C23F7227A005D2121 /* UIViewExtensions.swift in Sources */,
 				CF43DE7D27BE3C8200015B6F /* DashboardLayoutViewModel.swift in Sources */,
-				7D4B2745253E3A5700A98DE3 /* TextEditor.swift in Sources */,
 				7DA25FA123F72136005D2121 /* APIBrandVariables.swift in Sources */,
 				7DA2603223F722C9005D2121 /* LTIViewController.swift in Sources */,
 				7DB3A9E624119C0800274EB8 /* PagesViewController.swift in Sources */,

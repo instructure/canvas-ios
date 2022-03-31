@@ -69,7 +69,7 @@ public struct SubmitAssignmentExtensionView: View {
 
     @ViewBuilder
     private var commentBox: some View {
-        let editor = SwiftUI.TextEditor(text: $viewModel.comment)
+        let editor = TextEditor(text: $viewModel.comment)
             .foregroundColor(.textDarkest)
             .font(.regular16)
             .frame(height: 100)

@@ -50,7 +50,7 @@ public struct DynamicHeightTextEditor: View {
 
     public var body: some View {
         GeometryReader { geometry in // Just to measure the available width
-            SwiftUI.TextEditor(text: $text)
+            TextEditor(text: $text)
                 .font(Font(font))
                 .foregroundColor(.textDarkest)
                 .frame(height: height)
