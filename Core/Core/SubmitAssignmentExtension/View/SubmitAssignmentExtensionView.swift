@@ -69,49 +69,45 @@ public struct SubmitAssignmentExtensionView: View {
 
     @ViewBuilder
     private var commentBox: some View {
-        let placeholder = Text("Add comment (optional)", comment: "")
-                              .foregroundColor(.textDark)
-                              .font(.regular16)
+        let editor = SwiftUI.TextEditor(text: $viewModel.comment)
+            .foregroundColor(.textDarkest)
+            .font(.regular16)
+            .frame(height: 100)
+            .padding(.vertical, 13) // TextEditor has a default 7 point padding so 20 - 7
+            .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar
+            .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
+            .overlay(placeholder, alignment: .topLeading)
 
-        if #available(iOSApplicationExtension 15.0, *) {
-            SwiftUI.TextEditor(text: $viewModel.comment)
-                .foregroundColor(.textDarkest)
-                .font(.regular16)
-                .frame(height: 100)
-                .padding(.vertical, 13) // TextEditor has a default 7 point padding so 20 - 7
-                .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar
-                .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
-                .overlay(alignment: .topLeading) {
-                    if viewModel.comment.isEmpty {
-                        placeholder
-                            .padding(.top, 21)
-                            .allowsHitTesting(false)
-                    }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                viewController.view.endEditing(true)
-                            }) {
-                                Text("Done", bundle: .core)
-                                    .font(.bold17)
-                            }
-                        }
-                    }
-                }
+        if #available(iOS 15, *) {
+            editor.toolbar { hideKeyboardButton }
         } else {
-            ZStack(alignment: .topLeading) {
-                if viewModel.comment.isEmpty {
-                    placeholder
-                        .padding(.top, 20)
-                }
+            editor
+        }
+    }
 
-                TextEditor(text: $viewModel.comment, maxHeight: 200)
-                    .foregroundColor(.textDarkest)
-                    .font(.regular16)
-                    .padding(.vertical, 20)
+    @ViewBuilder
+    private var placeholder: some View {
+        if viewModel.comment.isEmpty {
+            Text("Add comment (optional)", comment: "")
+                .foregroundColor(.textDark)
+                .font(.regular16)
+                .padding(.top, 21)
+                .allowsHitTesting(false)
+        }
+    }
+
+
+    @available(iOS 15.0, *)
+    private var hideKeyboardButton: some ToolbarContent {
+        ToolbarItem(placement: .keyboard) {
+            HStack {
+                Spacer()
+                Button(action: {
+                    viewController.view.endEditing(true)
+                }) {
+                    Text("Done", bundle: .core)
+                        .font(.bold17)
+                }
             }
         }
     }
