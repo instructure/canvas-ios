@@ -54,34 +54,40 @@ public struct DashboardCardView: View {
                     }
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
-                    .padding(.horizontal, 16)
+                .padding(.horizontal, 16)
             }
         }
-            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .navigationBarGlobal()
+        .navigationBarItems(leading: menuButton, trailing: layoutToggleButton)
+        .onAppear { refresh(force: false) }
+        .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
+            showGrade = env.userDefaults?.showGradesOnDashboard == true
+        }
+    }
 
-            .navigationBarGlobal()
-            .navigationBarItems(
-                leading: Button(action: {
-                    env.router.route(to: "/profile", from: controller, options: .modal())
-                }, label: {
-                    Image.hamburgerSolid
-                        .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                })
-                    .frame(width: 44, height: 44).padding(.leading, -6)
-                    .identifier("Dashboard.profileButton")
-                    .accessibility(label: Text("Profile Menu", bundle: .core)),
-                trailing: Button(action: layoutViewModel.toggle) {
-                    layoutViewModel.buttonImage
-                        .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                        .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
-                }
-                    .frame(width: 44, height: 44).padding(.trailing, -6)
-            )
+    private var menuButton: some View {
+        Button(action: {
+            env.router.route(to: "/profile", from: controller, options: .modal())
+        }) {
+            Image.hamburgerSolid
+                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+        }
+        .frame(width: 44, height: 44).padding(.leading, -6)
+        .identifier("Dashboard.profileButton")
+        .accessibility(label: Text("Profile Menu", bundle: .core))
+    }
 
-            .onAppear { refresh(force: false) }
-            .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
-                showGrade = env.userDefaults?.showGradesOnDashboard == true
+    @ViewBuilder
+    private var layoutToggleButton: some View {
+        if cards.shouldShowLayoutToggleButton {
+            Button(action: layoutViewModel.toggle) {
+                layoutViewModel.buttonImage
+                    .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                    .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
             }
+            .frame(width: 44, height: 44).padding(.trailing, -6)
+        }
     }
 
     @ViewBuilder func list(_ size: CGSize) -> some View {

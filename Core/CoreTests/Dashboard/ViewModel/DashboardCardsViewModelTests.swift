@@ -51,4 +51,31 @@ class DashboardCardsViewModelTests: CoreTestCase {
 
         subscription.cancel()
     }
+
+    func testLayoutSelectionFlagOnEmptyCourses() {
+        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+
+        testee.refresh()
+        drainMainQueue()
+
+        guard case .empty = testee.state else { XCTFail("View model should be empty"); return }
+
+        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+    }
+
+    func testLayoutSelectionFlagWhenCoursesAvailable() {
+        Course.make(from: .make(id: 1))
+        api.mock(GetDashboardCards(), value: [.make(id: 1, shortName: "card 1")])
+
+        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+
+        testee.refresh()
+        drainMainQueue()
+
+        guard case .data = testee.state else { XCTFail("No data in view model"); return }
+
+        XCTAssertTrue(testee.shouldShowLayoutToggleButton)
+    }
 }
