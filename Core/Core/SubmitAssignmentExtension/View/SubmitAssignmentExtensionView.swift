@@ -96,7 +96,6 @@ public struct SubmitAssignmentExtensionView: View {
         }
     }
 
-
     @available(iOS 15.0, *)
     private var hideKeyboardButton: some ToolbarContent {
         ToolbarItem(placement: .keyboard) {
