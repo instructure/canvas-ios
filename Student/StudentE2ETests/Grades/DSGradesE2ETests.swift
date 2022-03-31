@@ -39,10 +39,10 @@ class DSGradesE2ETests: E2ETestCase {
         logInDSUser(student)
 
         // Create submissions for both
-        let submission = seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
+        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
-        let submission1 = seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
+        seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
         // Navigate to an assignment detail and check if grade updates
