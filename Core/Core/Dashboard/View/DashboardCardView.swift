@@ -135,7 +135,7 @@ public struct DashboardCardView: View {
             .padding(.bottom, 2)
         case .empty:
             coursesHeader(width: size.width)
-            InteractivePanda(scene: GradesPanda(), title: Text("No Courses", bundle: .core), subtitle: Text("It looks like you aren't enrolled in any courses.", bundle: .core))
+            InteractivePanda(scene: ConferencesPanda(), title: Text("No Courses", bundle: .core), subtitle: Text("It looks like you aren't enrolled in any courses.", bundle: .core))
                 .padding(.top, 50)
                 .padding(.bottom, 50 - verticalSpacing) // group header already has a top padding
         case .error(let message):
