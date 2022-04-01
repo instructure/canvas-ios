@@ -33,10 +33,7 @@ class DashboardCardsViewModel: ObservableObject {
     private lazy var cards: Store<GetDashboardCards> = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.update()
     }
-    /**
-     We need to observe courses because those contain the enrollment state of the dashboard card. Since courses get refreshed from
-     ``DashboardInvitationsViewModel`` in ``DashboardCardView`` we just subscribe to the changes but don't request them here from the API. */
-    private lazy var courses: Store<LocalUseCase<Course>> = env.subscribe(scope: .all(orderBy: #keyPath(Course.id))) { [weak self] in
+    private lazy var courses = env.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
         self?.update()
     }
     private let showOnlyTeacherEnrollment: Bool
@@ -46,7 +43,6 @@ class DashboardCardsViewModel: ObservableObject {
 
     public init(showOnlyTeacherEnrollment: Bool) {
         self.showOnlyTeacherEnrollment = showOnlyTeacherEnrollment
-        courses.refresh() // we just refresh to create the lazy variable
         NotificationCenter.default.publisher(for: .favoritesDidChange)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.favoritesDidChange() }
@@ -55,6 +51,7 @@ class DashboardCardsViewModel: ObservableObject {
 
     public func refresh(onComplete: (() -> Void)? = nil) {
         needsRefresh = false
+        courses.exhaust(force: true)
         cards.refresh(force: true) { [weak self] _ in
             onComplete?()
 
@@ -76,7 +73,7 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     private func update() {
-        guard cards.requested, !cards.pending, !courseSectionStatus.isUpdatePending else { return }
+        guard cards.requested, !cards.pending, !courseSectionStatus.isUpdatePending, courses.requested, !courses.pending else { return }
 
         guard cards.state != .error else {
             state = .error(NSLocalizedString("Something went wrong", comment: ""))
