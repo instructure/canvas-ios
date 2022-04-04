@@ -58,7 +58,7 @@ extension UIViewController {
     public var splitDisplayModeButtonItem: UIBarButtonItem? {
         guard let splitView = splitViewController else { return nil }
         let defaultButton = splitView.displayModeButtonItem
-        let isExpanded = splitView.displayMode == .primaryOverlay || splitView.displayMode == .primaryHidden
+        let isExpanded = splitView.displayMode == .oneOverSecondary || splitView.displayMode == .secondaryOnly
         let icon: UIImage = isExpanded ? .exitFullScreenLine : .fullScreenLine
         let buttonItem = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
         buttonItem.accessibilityLabel = splitView.isCollapsed ? NSLocalizedString("Collapse", bundle: .core, comment: "") : NSLocalizedString("Expand", bundle: .core, comment: "")

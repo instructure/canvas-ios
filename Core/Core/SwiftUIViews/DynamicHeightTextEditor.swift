@@ -21,7 +21,6 @@ import SwiftUI
 /**
  This text editor starts as a one line height component, then as text is entered it grows until its maximum height is reached.
  */
-@available(iOS 14, *)
 public struct DynamicHeightTextEditor: View {
     @Binding private var text: String
     /** The height of the TextEditor. Calculated by manually measuring the text's rendered size and adding paddings.*/
@@ -50,7 +49,7 @@ public struct DynamicHeightTextEditor: View {
 
     public var body: some View {
         GeometryReader { geometry in // Just to measure the available width
-            SwiftUI.TextEditor(text: $text)
+            TextEditor(text: $text)
                 .font(Font(font))
                 .foregroundColor(.textDarkest)
                 .frame(height: height)
@@ -92,7 +91,6 @@ public struct DynamicHeightTextEditor: View {
 
 #if DEBUG
 
-@available(iOSApplicationExtension 14, *)
 struct DynamicHeightTextEditor_Previews: PreviewProvider {
     static var previews: some View {
         DynamicHeightTextEditor(text: .constant(""), maxLines: 3, font: .scaledNamedFont(.regular14), placeholder: "Placeholder")

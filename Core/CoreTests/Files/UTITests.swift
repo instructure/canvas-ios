@@ -83,7 +83,6 @@ class UTITests: XCTestCase {
         XCTAssert(result.contains(.numbersSingleFile))
     }
 
-    @available(iOS 14.0, *)
     func testUTTypeConversion() {
         XCTAssertEqual(UTI.any.uttype, UTType.item)
         XCTAssertEqual(UTI.video.uttype, UTType.movie)

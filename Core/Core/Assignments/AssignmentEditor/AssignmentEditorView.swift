@@ -50,7 +50,7 @@ public struct AssignmentEditorView: View {
     public var body: some View {
         form
             .navigationBarTitle(Text("Edit Assignment", bundle: .core), displayMode: .inline)
-            .compatibleNavBarItems(leading: {
+            .navBarItems(leading: {
                 Button(action: {
                     env.router.dismiss(controller)
                 }, label: {

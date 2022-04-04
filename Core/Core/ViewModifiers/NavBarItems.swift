@@ -18,22 +18,26 @@
 
 import SwiftUI
 
-public struct ScrollViewWithReader<Content>: View where Content: View {
-    private let contentBuilder: (ScrollViewProxy) -> Content
-    private let axes: Axis.Set
-    private let showsIndicators: Bool
+extension View {
 
-    public var body: some View {
-        ScrollViewReader { proxy in
-            ScrollView(axes, showsIndicators: showsIndicators) {
-                contentBuilder(proxy)
-            }
+    public func navBarItems<T>(trailing: T) -> some View where T: View {
+        navBarItems(trailing: { trailing })
+    }
+
+    public func navBarItems<T>(trailing: () -> T) -> some View where T: View {
+        self.toolbar {
+            ToolbarItem(placement: .navigationBarTrailing, content: trailing)
         }
     }
 
-    public init(_ axes: Axis.Set = .vertical, showsIndicators: Bool = true, @ViewBuilder contentBuilder: @escaping (ScrollViewProxy) -> Content) {
-        self.axes = axes
-        self.showsIndicators = showsIndicators
-        self.contentBuilder = contentBuilder
+    public func navBarItems<L, T>(leading: L, trailing: T) -> some View where L: View, T: View {
+        navBarItems(leading: { leading }, trailing: { trailing })
+    }
+
+    public func navBarItems<L, T>(leading: () -> L, trailing: () -> T) -> some View where L: View, T: View {
+        self.toolbar {
+            ToolbarItem(placement: .navigationBarLeading, content: leading)
+            ToolbarItem(placement: .navigationBarTrailing, content: trailing)
+        }
     }
 }

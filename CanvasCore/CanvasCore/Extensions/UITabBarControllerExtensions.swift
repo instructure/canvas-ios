@@ -30,13 +30,13 @@ extension UITabBarController {
         } else if let splitViewController = viewController as? UISplitViewController,
                   let masterNav = splitViewController.masterNavigationController {
             masterNav.dismiss(animated: false, completion: nil)
-            if (splitViewController.displayMode == .allVisible) {
+            if (splitViewController.displayMode == .oneBesideSecondary) {
                 masterNav.popToRootViewController(animated: true)
             } else {
                 // I was unable to get this to animate nicely, there were some weird side effects.
                 // Seemed resonable to punt on animations and just make it work
                 masterNav.popToRootViewController(animated: false)
-                splitViewController.preferredDisplayMode = .allVisible
+                splitViewController.preferredDisplayMode = .oneBesideSecondary
             }
         }
     }
