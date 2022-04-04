@@ -41,13 +41,13 @@ class DSContextCardE2ETests: E2ETestCase {
         let assignment3 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName3, description: assignmentDescription3, published: true, points_possible: 5))
 
         // Seed submissions
-        let submission = seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
+        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
-        let submission2 = seeder.createSubmission(courseId: course.id, assignmentId: assignment2.id, requestBody:
+        seeder.createSubmission(courseId: course.id, assignmentId: assignment2.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
-        let submission3 = seeder.createSubmission(courseId: course.id, assignmentId: assignment3.id, requestBody:
+        seeder.createSubmission(courseId: course.id, assignmentId: assignment3.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
         // Grade 2 of the submissions
