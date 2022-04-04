@@ -5497,9 +5497,9 @@
 			buildConfigurationList = 2C964842211E2F1A002C3255 /* Build configuration list for PBXNativeTarget "Core" */;
 			buildPhases = (
 				D99BB92EECB794224AAACF8B /* [CP] Check Pods Manifest.lock */,
+				2C96482B211E2F1A002C3255 /* Headers */,
 				7DA25F8923F720C7005D2121 /* Sources */,
 				2C96482A211E2F1A002C3255 /* Frameworks */,
-				2C96482B211E2F1A002C3255 /* Headers */,
 				2C96482C211E2F1A002C3255 /* Resources */,
 			);
 			buildRules = (
