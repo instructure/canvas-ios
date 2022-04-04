@@ -53,10 +53,19 @@
 "Choose Files" = "Kōwhiri ngā kōnae";
 
 /* No comment provided by engineer. */
+"Close" = "Katia";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Katia te pouaka";
 
 /* No comment provided by engineer. */
 "Comment" = "Kōrero";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Tākupu Whare Pukapuka";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Kōrero whare pukapuka ko kāore i te wātea";
 
 /* No comment provided by engineer. */
 "Comments" = "Ngā kōrero";
@@ -197,10 +206,16 @@
 "No Submissions" = "Kahore ngā tāpaetanga";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Kaore he whakaaro kei te wātea";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Kāore i kōekehia";
 
 /* No comment provided by engineer. */
 "OK" = "Ae";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Tuwhera korero whare pukapuka";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Huaki Pouaka Mata Nui";
