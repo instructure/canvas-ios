@@ -33,7 +33,7 @@ class DSTodosE2ETests: E2ETestCase {
 
         logInDSUser(teacher)
 
-        let submission = seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
+        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
         pullToRefresh()
@@ -59,6 +59,5 @@ class DSTodosE2ETests: E2ETestCase {
         pullToRefresh()
         XCTAssertNotEqual(TabBar.todoTab.value(), todoBadgeValue)
         XCTAssertFalse(app.find(label: oneNeedsGradingLabel).exists())
-
     }
 }
