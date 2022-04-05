@@ -66,14 +66,10 @@ extension View {
      */
     @ViewBuilder
     public func avoidKeyboardArea(force: Bool = false) -> some View {
-        if #available(iOS 14, *) {
-            if #available(iOS 14.3, *), force {
-                AvoidKeyboardArea(content: self)
-            } else {
-                self
-            }
-        } else {
+        if #available(iOS 14.3, *), force {
             AvoidKeyboardArea(content: self)
+        } else {
+            self
         }
     }
 }

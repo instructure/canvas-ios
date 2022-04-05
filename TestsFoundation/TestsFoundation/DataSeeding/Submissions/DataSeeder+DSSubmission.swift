@@ -18,6 +18,7 @@
 
 extension DataSeeder {
 
+    @discardableResult
     public func createSubmission(courseId: String, assignmentId: String, requestBody: CreateDSSubmissionRequest.RequestDSSubmission) -> DSSubmission {
         let requestedBody = CreateDSSubmissionRequest.Body(submission: requestBody)
         let request = CreateDSSubmissionRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId)

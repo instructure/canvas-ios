@@ -35,7 +35,6 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
     private weak var fullscreenPrimaryController: UINavigationController?
     // This view won't be visible because our primary overlay viewcontroller will fully cover it. We use this to set the width of the primary overlay controller when not in full screen mode.
     private weak var primaryPlaceHolder: UINavigationController?
-    private var primaryNavItemChangeObserver: NSKeyValueObservation?
     private var state: State = .fullScreen {
         didSet {
             UIView.animate(withDuration: 0.3) { [weak self] in
@@ -54,15 +53,6 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         viewControllers = [primaryPlaceHolder, secondary]
         embed(primary, in: view) { _, _ in }
         fullscreenPrimaryController = primary
-    }
-
-
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if primaryNavItemChangeObserver == nil {
-            subscribeMenuButtonDisappearanceWorkaround()
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -108,26 +98,6 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         placeholderNavBar.isTranslucent = detailNavBar.isTranslucent
         placeholderNavBar.barStyle = detailNavBar.barStyle
         placeholderNavBar.titleTextAttributes = detailNavBar.titleTextAttributes
-    }
-
-    /**
-     Rotating of phones with notch removes the menu button in the nav bar. This method subscribes to navigationItem changes and re-adds the menu item in case it would get removed. When updating to iOS 14 check if this is still needed when using `.toolBar()` instead of `.navigationBarItems()` SwiftUI modifiers in `K5DashboardView`.
-     */
-    @available(iOS, obsoleted: 14)
-    private func subscribeMenuButtonDisappearanceWorkaround() {
-        primaryNavItemChangeObserver = fullscreenPrimaryController?.children.first?.navigationItem.observe(\.leftBarButtonItems, options: [.old, .new]) { navigationItem, change in
-            guard
-                let wrappedOldValue = change.oldValue,
-                let oldValue = wrappedOldValue,
-                let wrappedNewValue = change.newValue,
-                let newValue = wrappedNewValue,
-                !oldValue.isEmpty, newValue.isEmpty
-            else {
-                return
-            }
-
-            navigationItem.leftBarButtonItems = oldValue
-        }
     }
 
     // MARK: - UISplitViewControllerDelegate

@@ -40,27 +40,17 @@ public struct CourseListView: View {
                 ZStack { CircleProgress() }
                     .frame(minWidth: width, minHeight: height)
             case .data(let sections):
-                if #available(iOS 14, *) {
-                    ScrollViewReader { scrollView in
-                        LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                            SearchBar(
-                                text: $viewModel.filter.animation(.default),
-                                placeholder: NSLocalizedString("Search", comment: ""),
-                                onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .top) } }
-                            )
-                            Divider().id(0) // target to scroll passed search
-                            list(height, sections: sections)
-                        }
-                            .onAppear { scrollView.scrollTo(0, anchor: .top) }
-                    }
-                } else {
-                    VStack(spacing: 0) {
+                ScrollViewReader { scrollView in
+                    LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                         SearchBar(
                             text: $viewModel.filter.animation(.default),
-                            placeholder: NSLocalizedString("Search", comment: "")
+                            placeholder: NSLocalizedString("Search", comment: ""),
+                            onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .top) } }
                         )
+                        Divider().id(0) // target to scroll passed search
                         list(height, sections: sections)
                     }
+                        .onAppear { scrollView.scrollTo(0, anchor: .top) }
                 }
             case .empty:
                 EmptyPanda(.Teacher,

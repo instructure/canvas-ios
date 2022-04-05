@@ -45,11 +45,7 @@ public struct K5ScheduleEntryView: View {
                         }
 
                         if !viewModel.labels.isEmpty {
-                            if #available(iOS 14, *) {
-                                labels.textCase(.uppercase)
-                            } else {
-                                labels
-                            }
+                            labels.textCase(.uppercase)
                         }
                     }
                     .padding(.leading, 12)
