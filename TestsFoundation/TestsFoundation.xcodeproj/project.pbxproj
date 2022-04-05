@@ -960,9 +960,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B032D0F215037AA00B570F7 /* Build configuration list for PBXNativeTarget "TestsFoundation" */;
 			buildPhases = (
+				3B032CF8215037AA00B570F7 /* Headers */,
 				3B032CF6215037AA00B570F7 /* Sources */,
 				3B032CF7215037AA00B570F7 /* Frameworks */,
-				3B032CF8215037AA00B570F7 /* Headers */,
 				3B032CF9215037AA00B570F7 /* Resources */,
 			);
 			buildRules = (

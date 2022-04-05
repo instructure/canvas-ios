@@ -331,9 +331,9 @@
 			buildConfigurationList = 2CAF1B281F72AEDB007225DF /* Build configuration list for PBXNativeTarget "CanvasCore" */;
 			buildPhases = (
 				270E0B49471036954CD69F92 /* [CP] Check Pods Manifest.lock */,
+				2CAF1B111F72AEDB007225DF /* Headers */,
 				2CAF1B0F1F72AEDB007225DF /* Sources */,
 				2CAF1B101F72AEDB007225DF /* Frameworks */,
-				2CAF1B111F72AEDB007225DF /* Headers */,
 				2CAF1B121F72AEDB007225DF /* Resources */,
 			);
 			buildRules = (
