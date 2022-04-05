@@ -53,7 +53,6 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.canCancelContentTouches = true
 
-        currentWidth = scrollView.frame.inset(by: scrollView.adjustedContentInset).width
         embedPage(currentPage, at: 0)
     }
 
