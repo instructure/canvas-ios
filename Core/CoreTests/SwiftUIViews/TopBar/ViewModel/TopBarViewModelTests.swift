@@ -22,9 +22,9 @@ import XCTest
 
 class TopBarViewModelTests: XCTestCase {
     private var testee = TopBarViewModel(items: [
-        TopBarItemViewModel(icon: .addAudioLine, label: Text(verbatim: "1")),
-        TopBarItemViewModel(icon: .addAudioLine, label: Text(verbatim: "2")),
-        TopBarItemViewModel(icon: .addAudioLine, label: Text(verbatim: "3")),
+        TopBarItemViewModel(id: "1", icon: .addAudioLine, label: Text(verbatim: "1")),
+        TopBarItemViewModel(id: "2", icon: .addAudioLine, label: Text(verbatim: "2")),
+        TopBarItemViewModel(id: "3", icon: .addAudioLine, label: Text(verbatim: "3")),
     ])
 
     func testSwiftUIUpdateTrigger() {
@@ -62,10 +62,26 @@ class TopBarViewModelTests: XCTestCase {
     }
 
     func testSelectedItemId() {
-        testee.items[1].id = "test"
-        XCTAssertNil(testee.selectedItemId)
+        XCTAssertEqual(testee.selectedItemId, "1")
 
         testee.selectedItemIndex = 1
-        XCTAssertEqual(testee.selectedItemId, "test")
+        XCTAssertEqual(testee.selectedItemId, "2")
+    }
+
+    func testItemInfo() {
+        let firstInfo = testee.itemInfo(for: testee.items[0])!
+        XCTAssertTrue(firstInfo.isFirst)
+        XCTAssertFalse(firstInfo.isLast)
+        XCTAssertEqual(firstInfo.index, 0)
+
+        let middleInfo = testee.itemInfo(for: testee.items[1])!
+        XCTAssertFalse(middleInfo.isFirst)
+        XCTAssertFalse(middleInfo.isLast)
+        XCTAssertEqual(middleInfo.index, 1)
+
+        let lastInfo = testee.itemInfo(for: testee.items[2])!
+        XCTAssertFalse(lastInfo.isFirst)
+        XCTAssertTrue(lastInfo.isLast)
+        XCTAssertEqual(lastInfo.index, 2)
     }
 }

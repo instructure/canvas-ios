@@ -33,8 +33,10 @@ public struct TopBarView: View {
     public var body: some View {
         ScrollViewWithReader(.horizontal, showsIndicators: false) { scrollViewProxy in
             HStack(spacing: 0) {
-                ForEach(0..<viewModel.items.count) { index in
-                    itemForModel(at: index, scrollViewProxy: scrollViewProxy)
+                ForEach(viewModel.items) { model in
+                    if let itemInfo = viewModel.itemInfo(for: model) {
+                        itemForModel(model, info: itemInfo, scrollViewProxy: scrollViewProxy)
+                    }
                 }
             }
             .overlayPreferenceValue(ViewBoundsPreferenceKey.self) { boundsPreferences in
@@ -50,16 +52,14 @@ public struct TopBarView: View {
         }
     }
 
-    private func itemForModel(at index: Int, scrollViewProxy: ScrollViewProxy) -> some View {
-        let isFirstItem = (index == 0)
-        let isLastItem = (index == viewModel.items.count - 1)
-        let item = TopBarItemView(viewModel: viewModel.items[index]) {
-            viewModel.selectedItemIndex = index
+    private func itemForModel(_ model: TopBarItemViewModel, info: (index: Int, isFirst: Bool, isLast: Bool), scrollViewProxy: ScrollViewProxy) -> some View {
+        let item = TopBarItemView(viewModel: model) {
+            viewModel.selectedItemIndex = info.index
         }
-        .anchorPreference(key: ViewBoundsPreferenceKey.self, value: .bounds, transform: { [ViewBoundsPreferenceData(viewId: index, bounds: $0)] })
-        .padding(.leading, isFirstItem ? horizontalInset : (itemSpacing / 2))
-        .padding(.trailing, isLastItem ? horizontalInset : (itemSpacing / 2))
-        .id(index)
+        .anchorPreference(key: ViewBoundsPreferenceKey.self, value: .bounds, transform: { [ViewBoundsPreferenceData(viewId: info.index, bounds: $0)] })
+        .padding(.leading, info.isFirst ? horizontalInset : (itemSpacing / 2))
+        .padding(.trailing, info.isLast ? horizontalInset : (itemSpacing / 2))
+        .id(info.index)
 
         return item
     }
@@ -92,10 +92,10 @@ struct TopBarView_Previews: PreviewProvider {
 
         ForEach(0..<3) {
             TopBarView(viewModel: TopBarViewModel(items: [
-                TopBarItemViewModel(icon: .addLine, label: Text(verbatim: "Add")),
-                TopBarItemViewModel(icon: .audioLine, label: Text(verbatim: "Audio")),
-                TopBarItemViewModel(icon: .noteLine, label: Text(verbatim: "Note")),
-                TopBarItemViewModel(icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite")),
+                TopBarItemViewModel(id: "1", icon: .addLine, label: Text(verbatim: "Add")),
+                TopBarItemViewModel(id: "2", icon: .audioLine, label: Text(verbatim: "Audio")),
+                TopBarItemViewModel(id: "3", icon: .noteLine, label: Text(verbatim: "Note")),
+                TopBarItemViewModel(id: "4", icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite")),
             ]), horizontalInset: properties[$0].horizontalInset, itemSpacing: properties[$0].itemSpacing)
                 .previewLayout(.sizeThatFits)
         }

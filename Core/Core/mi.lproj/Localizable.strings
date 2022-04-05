@@ -398,6 +398,12 @@
 "Casual question or suggestion" = "Pātai tūao whakāro puaki rānei";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Hurihia te tahora papatohu ki te matiti";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Hurihia te tahora papatohu ki te raarangi";
+
+/* No comment provided by engineer. */
 "Change User" = "Huri Kaiwhakamahi";
 
 /* Description for Chat communication channel */
@@ -762,6 +768,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Whakatika tāpiritanga(kore)";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Whakatika Papatohu";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Whakatika kōrerorero";
