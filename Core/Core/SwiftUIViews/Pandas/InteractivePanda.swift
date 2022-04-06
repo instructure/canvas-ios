@@ -20,10 +20,10 @@ import SwiftUI
 
 public struct InteractivePanda: View {
     private let scene: PandaScene
-    private let title: String?
-    private let subtitle: String?
+    private let title: Text?
+    private let subtitle: Text?
 
-    public init(scene: PandaScene, title: String? = nil, subtitle: String? = nil) {
+    public init(scene: PandaScene, title: Text? = nil, subtitle: Text? = nil) {
         self.scene = scene
         self.title = title
         self.subtitle = subtitle
@@ -46,14 +46,14 @@ public struct InteractivePanda: View {
             .zIndex(1)
 
             if let title = title {
-                Text(title)
+                title
                     .font(.bold24)
                     .foregroundColor(.licorice)
                     .padding(.bottom, 8)
             }
 
             if let subtitle = subtitle {
-                Text(subtitle)
+                subtitle
                     .font(.regular16)
                     .foregroundColor(.licorice)
                     .multilineTextAlignment(.center)

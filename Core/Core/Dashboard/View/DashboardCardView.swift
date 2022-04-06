@@ -33,7 +33,10 @@ public struct DashboardCardView: View {
 
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
+    private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
+    private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
     private let shouldShowGroupList: Bool
+    private let verticalSpacing: CGFloat = 16
 
     public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
         self.cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
@@ -54,50 +57,56 @@ public struct DashboardCardView: View {
                     }
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
-                    .padding(.horizontal, 16)
+                .padding(.horizontal, verticalSpacing)
             }
         }
-            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .navigationBarGlobal()
+        .navigationBarItems(leading: menuButton, trailing: layoutToggleButton)
+        .onAppear { refresh(force: false) }
+        .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
+            showGrade = env.userDefaults?.showGradesOnDashboard == true
+        }
+    }
 
-            .navigationBarGlobal()
-            .navigationBarItems(
-                leading: Button(action: {
-                    env.router.route(to: "/profile", from: controller, options: .modal())
-                }, label: {
-                    Image.hamburgerSolid
-                        .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                })
-                    .frame(width: 44, height: 44).padding(.leading, -6)
-                    .identifier("Dashboard.profileButton")
-                    .accessibility(label: Text("Profile Menu", bundle: .core)),
-                trailing: Button(action: layoutViewModel.toggle) {
-                    layoutViewModel.buttonImage
-                        .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                        .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
-                }
-                    .frame(width: 44, height: 44).padding(.trailing, -6)
-            )
+    private var menuButton: some View {
+        Button(action: {
+            env.router.route(to: "/profile", from: controller, options: .modal())
+        }) {
+            Image.hamburgerSolid
+                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+        }
+        .frame(width: 44, height: 44).padding(.leading, -6)
+        .identifier("Dashboard.profileButton")
+        .accessibility(label: Text("Profile Menu", bundle: .core))
+    }
 
-            .onAppear { refresh(force: false) }
-            .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
-                showGrade = env.userDefaults?.showGradesOnDashboard == true
+    @ViewBuilder
+    private var layoutToggleButton: some View {
+        if cards.shouldShowLayoutToggleButton {
+            Button(action: layoutViewModel.toggle) {
+                layoutViewModel.buttonImage
+                    .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                    .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
             }
+            .frame(width: 44, height: 44).padding(.trailing, -6)
+        }
     }
 
     @ViewBuilder func list(_ size: CGSize) -> some View {
         ForEach(conferencesViewModel.conferences, id: \.entity.id) { conference in
             ConferenceCard(conference: conference.entity, contextName: conference.contextName)
-                .padding(.top, 16)
+                .padding(.top, verticalSpacing)
         }
 
         ForEach(invitationsViewModel.invitations, id: \.id) { (id, course, enrollment) in
             CourseInvitationCard(course: course, enrollment: enrollment, id: id)
-                .padding(.top, 16)
+                .padding(.top, verticalSpacing)
         }
 
         ForEach(notifications.all, id: \.id) { notification in
             NotificationCard(notification: notification)
-                .padding(.top, 16)
+                .padding(.top, verticalSpacing)
         }
 
         courseCards(size)
@@ -111,19 +120,7 @@ public struct DashboardCardView: View {
             ZStack { CircleProgress() }
                 .frame(minWidth: size.width, minHeight: size.height)
         case .data(let cards):
-            HStack(alignment: .lastTextBaseline) {
-                Text("Courses", bundle: .core)
-                    .font(.heavy24).foregroundColor(.textDarkest)
-                    .accessibility(identifier: "dashboard.courses.heading-lbl")
-                    .accessibility(addTraits: .isHeader)
-                Spacer()
-                Button(action: showAllCourses) {
-                    Text("Edit Dashboard", bundle: .core)
-                        .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                }.identifier("Dashboard.editButton")
-            }
-            .frame(width: size.width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
-            .padding(.top, 16).padding(.bottom, 8)
+            coursesHeader(width: size.width)
 
             let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
             let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
@@ -137,24 +134,38 @@ public struct DashboardCardView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
         case .empty:
-            EmptyPanda(.Teacher,
-                title: Text("No Courses", bundle: .core),
-                message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core)
-            )
-                .frame(minWidth: size.width, minHeight: size.height)
+            coursesHeader(width: size.width)
+            InteractivePanda(scene: ConferencesPanda(), title: Text("No Courses", bundle: .core), subtitle: Text("It looks like you aren't enrolled in any courses.", bundle: .core))
+                .padding(.top, 50)
+                .padding(.bottom, 50 - verticalSpacing) // group header already has a top padding
         case .error(let message):
             ZStack {
                 Text(message)
                     .font(.regular16).foregroundColor(.textDanger)
                     .multilineTextAlignment(.center)
             }
-                .frame(minWidth: size.width, minHeight: size.height)
+            .frame(minWidth: size.width, minHeight: size.height)
         }
     }
 
+    private func coursesHeader(width: CGFloat) -> some View {
+        HStack(alignment: .lastTextBaseline) {
+            Text("Courses", bundle: .core)
+                .font(.heavy24).foregroundColor(.textDarkest)
+                .accessibility(identifier: "dashboard.courses.heading-lbl")
+                .accessibility(addTraits: .isHeader)
+            Spacer()
+            Button(action: showAllCourses) {
+                Text("Edit Dashboard", bundle: .core)
+                    .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
+            }.identifier("Dashboard.editButton")
+        }
+        .frame(width: width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
+        .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)
+    }
+
     @ViewBuilder var groupCards: some View {
-        let filteredGroups = groups.all.filter { $0.isActive }
-        if !filteredGroups.isEmpty && shouldShowGroupList {
+        if isGroupSectionActive {
             Section(
                 header: HStack(alignment: .lastTextBaseline) {
                     Text("Groups", bundle: .core)
@@ -162,12 +173,13 @@ public struct DashboardCardView: View {
                         .accessibility(addTraits: .isHeader)
                     Spacer()
                 }
-                    .padding(.top, 16).padding(.bottom, 8)) {
+                .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)) {
+                let filteredGroups = activeGroups
                 ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.course)
                         // outside the GroupCard, because that isn't observing colors
                         .accentColor(Color(group.color.ensureContrast(against: .white)))
-                        .padding(.bottom, 16)
+                        .padding(.bottom, verticalSpacing)
                 }
             }
         }

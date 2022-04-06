@@ -20,8 +20,8 @@ import SwiftUI
 
 struct BouncyImage: View {
     @State private var scale = 1.0
-    @State private var dragOffset: CGSize = .zero
     @State private var shouldTriggerDragStartFeedback = true
+    @GestureState private var dragOffset = CGSize.zero
     private let imageFileName: String
     private let feedback = UIImpactFeedbackGenerator(style: .light)
     private let springAnimation = Animation.interpolatingSpring(stiffness: 1000, damping: 10, initialVelocity: 1)
@@ -36,6 +36,17 @@ struct BouncyImage: View {
             .scaleEffect(x: scale, y: scale)
             .gesture(pushGesture.simultaneously(with: dragGesture))
             .offset(dragOffset)
+            .animation(springAnimation, value: dragOffset)
+            .onChange(of: dragOffset) { dragOffset in
+                if shouldTriggerDragStartFeedback {
+                    shouldTriggerDragStartFeedback = false
+                    feedback.impactOccurred()
+                }
+
+                if dragOffset == .zero {
+                    shouldTriggerDragStartFeedback = true
+                }
+            }
     }
 
     private var pushGesture: some Gesture {
@@ -55,23 +66,11 @@ struct BouncyImage: View {
 
     private var dragGesture: some Gesture {
         DragGesture(minimumDistance: 30, coordinateSpace: .global)
-            .onChanged { value in
+            .updating($dragOffset) { value, state, _ in
                 var t = value.translation
                 t.width *= 0.5
                 t.height *= 0.5
-                dragOffset = t
-
-                if shouldTriggerDragStartFeedback {
-                    shouldTriggerDragStartFeedback = false
-                    feedback.impactOccurred()
-                }
-            }
-            .onEnded { _ in
-                shouldTriggerDragStartFeedback = true
-                feedback.impactOccurred()
-                withAnimation(springAnimation) {
-                    dragOffset = .zero
-                }
+                state = t
             }
     }
 }
