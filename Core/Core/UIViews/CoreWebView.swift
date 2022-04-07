@@ -60,6 +60,11 @@ open class CoreWebView: WKWebView {
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
+    private static var LatoRegularCSSFontFace: String = {
+        let url = Bundle.core.url(forResource: "font_lato_regular", withExtension: "css")!
+        // swiftlint:disable:next force_try
+        return try! String(contentsOf: url)
+    }()
 
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
@@ -174,12 +179,15 @@ open class CoreWebView: WKWebView {
         let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
         let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
-        var font = "system-ui"
-        var fontCSS = ""
+        let font: String
+        let fontCSS: String
 
         if AppEnvironment.shared.k5.isK5Enabled {
             font = "BalsamiqSans-Regular"
             fontCSS = Self.BalsamiqRegularCSSFontFace
+        } else {
+            font = "Lato-Regular"
+            fontCSS = Self.LatoRegularCSSFontFace
         }
 
         return """

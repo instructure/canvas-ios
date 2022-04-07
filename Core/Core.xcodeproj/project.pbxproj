@@ -907,6 +907,7 @@
 		CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */; };
 		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
 		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
+		CF8D534527FF34B70038B0B2 /* font_lato_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF8D534427FF34B70038B0B2 /* font_lato_regular.css */; };
 		CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */; };
 		CF911BA4279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */; };
 		CF911BA627A29B1800E1EECB /* iOS15Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */; };
@@ -2245,6 +2246,7 @@
 		CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
 		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
+		CF8D534427FF34B70038B0B2 /* font_lato_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_lato_regular.css; sourceTree = "<group>"; };
 		CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSession.swift; sourceTree = "<group>"; };
 		CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSessionTests.swift; sourceTree = "<group>"; };
 		CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Refreshable.swift; sourceTree = "<group>"; };
@@ -4739,6 +4741,7 @@
 			isa = PBXGroup;
 			children = (
 				CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */,
+				CF8D534427FF34B70038B0B2 /* font_lato_regular.css */,
 				CF7C36832678AE7000ACAC79 /* balsamiq_regular.ttf */,
 				CF7C36842678AE7000ACAC79 /* balsamiq_bold.ttf */,
 				CFA20BD627FC805B009A6DDA /* lato_bolditalic.ttf */,
@@ -5700,6 +5703,7 @@
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
 				CFA20BD827FC805B009A6DDA /* lato_bolditalic.ttf in Resources */,
+				CF8D534527FF34B70038B0B2 /* font_lato_regular.css in Resources */,
 				CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */,
 				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,
 				7D159CEF242E559600A77A15 /* ModuleSectionHeaderView.xib in Resources */,
