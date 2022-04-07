@@ -20,7 +20,26 @@ import XCTest
 @testable import Core
 
 class UIFontExtensionsTests: XCTestCase {
+
+    override func tearDown() {
+        super.tearDown()
+
+        AppEnvironment.shared.k5.userDidLogout()
+    }
+
     func testScaledNamedFont() {
+        for name in UIFont.Name.allCases {
+            XCTAssertNotNil(UIFont.scaledNamedFont(name))
+        }
+    }
+
+    func testScaledK5Font() {
+        ExperimentalFeature.K5Dashboard.isEnabled = true
+        let environment = AppEnvironment.shared
+        environment.userDefaults = SessionDefaults(sessionID: "123")
+        environment.userDefaults?.isElementaryViewEnabled = true
+        environment.k5.userDidLogin(isK5Account: true)
+
         for name in UIFont.Name.allCases {
             XCTAssertNotNil(UIFont.scaledNamedFont(name))
         }
