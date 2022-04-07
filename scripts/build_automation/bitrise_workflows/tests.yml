@@ -286,7 +286,7 @@ workflows:
 
             ./scripts/run-swift run-ui-tests --build \
                 --scheme IPadTests \
-                --device-name 'iPad Air (3rd generation)'
+                --device-name 'iPad Air (5th generation)'
     - script:
         title: Prepare cache
         inputs:
@@ -420,7 +420,7 @@ workflows:
 
                 ./scripts/run-swift run-ui-tests --build \
                     --scheme IPadTests \
-                    --device-name 'iPad (8th generation)' \
+                    --device-name 'iPad (9th generation)' \
                     --all-tests || ret=$?
                 ./scripts/run-swift run-ui-tests --build --append-results $group_A_targets || ret=$?
 
