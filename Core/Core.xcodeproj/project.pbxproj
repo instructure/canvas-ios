@@ -823,6 +823,7 @@
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
 		CF25022127FC26C9005D187C /* lato_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF25022027FC26C9005D187C /* lato_regular.ttf */; };
 		CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */; };
+		CF2F7E7A27FF211500942241 /* FontPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F7E7927FF211500942241 /* FontPreview.swift */; };
 		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
 		CF43DE7927B5611400015B6F /* SafeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7827B5611400015B6F /* SafeURL.swift */; };
 		CF43DE7B27B5667100015B6F /* SafeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7A27B5667100015B6F /* SafeURLTests.swift */; };
@@ -2160,6 +2161,7 @@
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
 		CF25022027FC26C9005D187C /* lato_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_regular.ttf; sourceTree = "<group>"; };
 		CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
+		CF2F7E7927FF211500942241 /* FontPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreview.swift; sourceTree = "<group>"; };
 		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CF43DE7827B5611400015B6F /* SafeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURL.swift; sourceTree = "<group>"; };
 		CF43DE7A27B5667100015B6F /* SafeURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURLTests.swift; sourceTree = "<group>"; };
@@ -2530,6 +2532,7 @@
 				7DAFBE6E2318567300E9A37D /* ErrorReports */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
 				7D08B1D02371E9C70075623A /* Files */,
+				CF2F7E7827FF20D600942241 /* Fonts */,
 				3B4D86112329521F005126A5 /* Grades */,
 				7D1D5BE32492A5FA009EA317 /* Groups */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
@@ -3612,7 +3615,6 @@
 				CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */,
 				B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */,
 				B1A464BA225669140052F8DF /* DispatchExtensions.swift */,
-				7D7BA23C24DC58E800B1A68B /* FontExtensions.swift */,
 				7DF2F5FA2347DAE900C1802C /* InstColorExtensions.swift */,
 				7DA20E8E21680DBF00F5FD19 /* InstIconExtensions.swift */,
 				3B69253F21A12E020023ED75 /* Int64Extensions.swift */,
@@ -3632,7 +3634,6 @@
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
 				789C9BC02138516300B37AC4 /* UIColorExtensions.swift */,
-				7DD7F88F215ADFA5006E1715 /* UIFontExtensions.swift */,
 				7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */,
 				7D4D5EB1213F2A200080AC14 /* UIImageViewExtensions.swift */,
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
@@ -4388,6 +4389,16 @@
 				CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */,
 			);
 			path = Accessibility;
+			sourceTree = "<group>";
+		};
+		CF2F7E7827FF20D600942241 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7D7BA23C24DC58E800B1A68B /* FontExtensions.swift */,
+				7DD7F88F215ADFA5006E1715 /* UIFontExtensions.swift */,
+				CF2F7E7927FF211500942241 /* FontPreview.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CF43DE8027CCD6A800015B6F /* Pandas */ = {
@@ -6547,6 +6558,7 @@
 				7DA2607A23F722FA005D2121 /* PageViewEvent.swift in Sources */,
 				7DA260E323F72359005D2121 /* ListFormatter.swift in Sources */,
 				D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */,
+				CF2F7E7A27FF211500942241 /* FontPreview.swift in Sources */,
 				3BA649CD2423E0080047D8DC /* APIPairingCode.swift in Sources */,
 				7DA2603F23F722D9005D2121 /* Course.swift in Sources */,
 				7DA25FB423F72136005D2121 /* APIFeatureFlags.swift in Sources */,
