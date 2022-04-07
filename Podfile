@@ -132,6 +132,7 @@ post_install do |installer|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
       config.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
       config.build_settings.delete('ONLY_ACTIVE_ARCH')
+      config.build_settings['OTHER_LDFLAGS'] = '$(inherited) -Xlinker -no_fixup_chains'
     end
     usesNonAppExAPI = %w[
       react-native-camera
