@@ -15,7 +15,6 @@
     "\/SwiftUIViews\/",
     "\/ViewModifiers\/",
     "Student\/Canvas\/",
-    "Student\/GradesWidget\/",
     "UITestHelpers\/",
     "\/Teacher\/SpeedGrader\/",
     "SubmissionButtonPresenter.swift",
