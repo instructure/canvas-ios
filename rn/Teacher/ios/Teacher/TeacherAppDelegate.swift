@@ -55,6 +55,9 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
+        UITabBar.updateFontAppearance()
+        UIBarButtonItem.updateFontAppearance()
+        UISegmentedControl.updateFontAppearance()
 
         TabBarBadgeCounts.application = UIApplication.shared
 
