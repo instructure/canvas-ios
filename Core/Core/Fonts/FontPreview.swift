@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import SwiftUI
 
 private func fontPreview() -> some View {
@@ -49,3 +51,5 @@ struct LatoFont_Previews: PreviewProvider {
         fontPreview()
     }
 }
+
+#endif
