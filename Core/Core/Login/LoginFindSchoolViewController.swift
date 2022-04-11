@@ -70,7 +70,6 @@ class LoginFindSchoolViewController: UIViewController {
         logoView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         navigationItem.titleView = logoView
         navigationItem.title = NSLocalizedString("Find School", bundle: .core, comment: "")
-        navigationItem.rightBarButtonItem = nextButton
 
         promptLabel.text = NSLocalizedString("What’s your school’s name?", bundle: .core, comment: "")
         searchField.attributedPlaceholder = NSAttributedString(
@@ -149,10 +148,20 @@ class LoginFindSchoolViewController: UIViewController {
         searchField.resignFirstResponder()
         showLoginForHost(host)
     }
+    
+    private func toggleNextButtonVisibility() {
+        if let host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty {
+            navigationItem.rightBarButtonItem = nextButton
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
 }
 
 extension LoginFindSchoolViewController: UITextFieldDelegate {
     @IBAction func textFieldDidChange(_ textField: UITextField) {
+        toggleNextButtonVisibility()
+        
         guard let query = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         search(query: query)
     }
