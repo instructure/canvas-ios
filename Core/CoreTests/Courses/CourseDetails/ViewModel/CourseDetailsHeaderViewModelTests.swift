@@ -33,7 +33,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
 
         XCTAssertTrue(testee.hideColorOverlay)
         XCTAssertEqual(testee.verticalOffset, 0)
-        XCTAssertEqual(testee.imageOpacity, 0)
+        XCTAssertEqual(testee.imageOpacity, 0.4)
         XCTAssertEqual(testee.titleOpacity, 1)
         XCTAssertEqual(testee.courseName, "Course One")
         XCTAssertEqual(testee.courseColor, UIColor(hexString: "#FF0000"))
