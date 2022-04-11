@@ -122,6 +122,9 @@
 "Add content" = "Tāpiri Ihirangi";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Tāpiri Wānanga Ingoa";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Tāpiri akoranga ingoa";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Ngā Whakataunga";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Rārangi Ngā Whakataunga";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Tāpiritia ngā kōnae ma te patopato kōwhiringa i raro.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Mahi akoranga";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Akoranga Mahi Wahanga";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Akoranga Pānuitanga";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kōeke Akoranga Raro  %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Ngā Kōwae Akoranga";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Ngā Wāhanga akoranga";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Whakatika tāpiritanga(kore)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Whakatika akoranga tautuhinga";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Whakatika Papatohu";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "E Kore E Tukua";
 
 /* No comment provided by engineer. */
+"Not supported" = "Kaore tautokona";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Kaore i te Whakahihiri";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Huaki ngā taipitopito tūemi";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Huaki ai i roto i Canvas Ākonga";
+
+/* No comment provided by engineer. */
 "Options" = "Ngā kōwhiringa";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Ngā whārangi";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Ngā Whārangi Whārangi O Mua";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Hono ki te Kaitirotiro";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Ngā Quizzes";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Mahi Tata";
 
 /* No comment provided by engineer. */
 "Recipients" = "Ngā Kaiwhiwhi";
@@ -1868,6 +1895,9 @@
 "Sent" = "Kua tukuna";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Whakatau “Kainga” kī ...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Whakatau hei Whārangi o mua";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Haina runga Ākonga Wāhui";
+
+/* No comment provided by engineer. */
+"Student View" = "Tirohanga Ākonga";
 
 /* No comment provided by engineer. */
 "Students" = "Ngā ākonga";

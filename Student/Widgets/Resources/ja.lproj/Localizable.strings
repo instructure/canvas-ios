@@ -11,7 +11,7 @@
 "Announcements" = "発表";
 
 /* No comment provided by engineer. */
-"Assignment Grades" = "課題の成績";
+"Assignment Grades" = "課題の評定";
 
 /* Example course name */
 "Biology 201" = "生物学 201";
@@ -20,7 +20,7 @@
 "Biology Exam 2" = "生物学の試験 2";
 
 /* No comment provided by engineer. */
-"Course Grades" = "コース成績";
+"Course Grades" = "コース評定";
 
 /* Example exam name */
 "Essay #1: The Rocky Planets" = "小論文 #1:『The Rocky Planets』";
@@ -29,7 +29,7 @@
 "Finals are moving to next week." = "期末試験来週に移動します。";
 
 /* Name of the grades widget */
-"Grades" = "成績";
+"Grades" = "評定";
 
 /* Example course name */
 "Introduction to the Solar System" = "太陽系の紹介";
@@ -41,7 +41,7 @@
 "No Announcements" = "アナウンスメントなし";
 
 /* No comment provided by engineer. */
-"No Grades To Display" = "表示する成績なし";
+"No Grades To Display" = "表示する評定なし";
 
 /* No comment provided by engineer. */
 "Please log in via the application" = "アプリケーションからログインしてください";
@@ -59,7 +59,7 @@
 "View the latest announcements from your courses." = "コースの最新のアナウンスを表示します。";
 
 /* Description of the grades widget */
-"View the latest grades from assignments and your favorite courses." = "課題やお気に入りのコースの最新の成績を表示します。";
+"View the latest grades from assignments and your favorite courses." = "課題やお気に入りのコースの最新の評定を表示します。";
 
 /* Example announcement title */
 "Zoo Field Trip!" = "動物園へ遠足！";

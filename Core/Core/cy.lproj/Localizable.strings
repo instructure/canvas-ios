@@ -122,6 +122,9 @@
 "Add content" = "Ychwanegu cynnwys";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Ychwanegu Enw Cwrs";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Ychwanegu Llysenw Cwrs";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Aseiniadau";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Rhestr Aseiniadau";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Atodwch ffeiliau trwy dapio opsiwn isod.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Gweithgareddau Cwrs";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Ffrwd Gweithgarwch Cwrs";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Cyhoeddiad Cwrs";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Gradd y Cwrs yn Is na %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Modiwlau Cwrs";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Adrannau Cwrs";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Golygu atodiad (dim)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Golygu gosodiadau’r cwrs";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Golygu’r Dangosfwrdd";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Heb Gyflwyno";
 
 /* No comment provided by engineer. */
+"Not supported" = "Does dim modd delio â hwn";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Dim Brys";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Agor manylion eitem";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Yn agor yn Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Opsiynau";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Tudalennau";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Tudalen Flaen ar gyfer Tudalennau";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Paru ag Arsyllwr";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Cwisiau";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Gweithgarwch diweddar";
 
 /* No comment provided by engineer. */
 "Recipients" = "Derbynwyr";
@@ -1868,6 +1895,9 @@
 "Sent" = "Wedi anfon";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Pennu \"Hafan” i...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Gosod fel Tudalen Flaen";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Archebu Apwyntiadau gan Fyfyrwyr";
+
+/* No comment provided by engineer. */
+"Student View" = "Gwedd Myfyriwr";
 
 /* No comment provided by engineer. */
 "Students" = "Myfyrwyr";

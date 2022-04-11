@@ -122,6 +122,9 @@
 "Add content" = "Add content";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Add Course Name";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Add Course Nickname";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Assignments";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Assignments list";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Attach files by tapping an option below.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Course activities";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Course activity stream";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Course announcement";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Course Grade Below %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Course modules";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Course sections";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edit attachment (none)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Edit course settings";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Edit Dashboard";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Not submitted";
 
 /* No comment provided by engineer. */
+"Not supported" = "Not supported";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Not Urgent";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Open item details";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Opens in Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Options";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Pages";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Pages front page";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Pair with observer";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quizzes";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Recent activity";
 
 /* No comment provided by engineer. */
 "Recipients" = "Recipients";
@@ -1868,6 +1895,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Set \"Home\" to...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Set as front page";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Student appointment signups";
+
+/* No comment provided by engineer. */
+"Student View" = "Student view";
 
 /* No comment provided by engineer. */
 "Students" = "Students";

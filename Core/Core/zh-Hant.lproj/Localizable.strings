@@ -122,6 +122,9 @@
 "Add content" = "添加內容";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "添加課程名稱";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "添加課程暱稱";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "作業列表";
+
+/* No comment provided by engineer. */
+"Assignments List" = "作業列表";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "輕點以下的一個選項以加入附件檔案。";
@@ -545,6 +551,9 @@
 "Course Activities" = "課程活動";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "課程活動流";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "課程通告";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "課程評分低於 %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "課程單元";
 
 /* No comment provided by engineer. */
 "Course Sections" = "課程分班";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "編輯附件 (無)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "編輯課程設定";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "編輯控制面板";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "未提交";
 
 /* No comment provided by engineer. */
+"Not supported" = "不支援";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "非緊急";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "開啟項目詳細資料";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "在 Canvas Student 中開啟";
+
+/* No comment provided by engineer. */
 "Options" = "選項";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "頁面";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "網頁標題版";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "與觀察者配對";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "測驗";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "最近的活動";
 
 /* No comment provided by engineer. */
 "Recipients" = "收件人";
@@ -1868,6 +1895,9 @@
 "Sent" = "已發送";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "將「首頁」設為...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "設定為標題頁";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "學生登記預約";
+
+/* No comment provided by engineer. */
+"Student View" = "學生視圖";
 
 /* No comment provided by engineer. */
 "Students" = "學生";

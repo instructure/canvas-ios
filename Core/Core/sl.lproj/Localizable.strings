@@ -122,6 +122,9 @@
 "Add content" = "Dodaj vsebino";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Dodaj ime predmeta";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Dodaj vzdevek predmeta";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Naloge";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Seznam nalog";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Datoteke priložite, tako da se dotaknete možnosti spodaj.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Aktivnosti pri predmetu";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Aktivnosti predmeta";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Obvestilo o predmetu";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Ocena pri predmetu, nižja od  %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Moduli predmeta";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Sekcije predmeta";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Uredi prilogo (brez)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Uredi nastavitve predmeta";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Uredi preglednico";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Ni oddano.";
 
 /* No comment provided by engineer. */
+"Not supported" = "Ni podprto";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Ni nujno";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Odpri podrobnosti o elementu";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Odpiranje v Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Možnosti";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Strani";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Prva stran pri straneh";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Poveži s skritim bralcem";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Kvizi";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Nedavna aktivnost";
 
 /* No comment provided by engineer. */
 "Recipients" = "Prejemniki";
@@ -1868,6 +1895,9 @@
 "Sent" = "Poslano";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "»Domačo stran« nastavi na ...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Nastavi kot prvo stran";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Prijave študentov na sestanke";
+
+/* No comment provided by engineer. */
+"Student View" = "Pogled študenta";
 
 /* No comment provided by engineer. */
 "Students" = "Študenti";

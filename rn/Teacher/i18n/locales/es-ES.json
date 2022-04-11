@@ -180,7 +180,7 @@
     "message": "No se ha podido iniciar la grabación"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,\n     =0 {0 alumnos}\n    one {# alumno}\n  other {# alumnos}\n}"
+    "message": "{ count, plural,\n     =0 {0 estudiantes}\n    one {# estudiante}\n  other {# estudiantes}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {necesita nota}\n  other {necesitan nota}\n}"
@@ -189,7 +189,7 @@
     "message": "{ count, plural,\n    one {# necesita nota}\n  other {# necesitan nota}\n}"
   },
   "count_students_4ae780ca": {
-    "message": "{ count } alumnos"
+    "message": "{ count } estudiantes"
   },
   "course_activity_stream_40091c17": {
     "message": "Flujo de actividad de la asignatura"
@@ -366,7 +366,7 @@
     "message": "Ayuda"
   },
   "help_your_students_with_this_assignment_by_adding__5d22ea1a": {
-    "message": "Ayude a sus alumnos a realizar esta actividad añadiendo instrucciones."
+    "message": "Ayude a sus estudiantes a realizar esta actividad añadiendo instrucciones."
   },
   "hidden_14a032a7": {
     "message": "Oculto"
@@ -405,10 +405,10 @@
     "message": "Duración en minutos"
   },
   "let_students_see_the_correct_answer_a4da886e": {
-    "message": "Permitir que los alumnos vean la respuesta correcta"
+    "message": "Permitir que los estudiantes vean la respuesta correcta"
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
-    "message": "Permitir que los alumnos vean sus respuestas en los pruebas"
+    "message": "Permitir que los estudiantes vean sus respuestas en los pruebas"
   },
   "light_blue_5374f600": {
     "message": "Azul claro"
@@ -438,7 +438,7 @@
     "message": "Mensaje enviado"
   },
   "message_students_who_778ce759": {
-    "message": "Enviar mensaje a alumnos que"
+    "message": "Enviar mensaje a estudiantes que"
   },
   "minutes_4aee5a41": {
     "message": "Minutos"
@@ -774,13 +774,13 @@
     "message": "Detener la grabación"
   },
   "student_5da6bfd1": {
-    "message": "Alumno"
+    "message": "Estudiante"
   },
   "student_view_ac9b672f": {
-    "message": "Vista del alumno"
+    "message": "Vista del estudiante"
   },
   "students_1b8cd07b": {
-    "message": "Alumnos"
+    "message": "Estudiantes"
   },
   "subject_114b2e98": {
     "message": "Tema"

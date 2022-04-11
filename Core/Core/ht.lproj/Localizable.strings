@@ -122,6 +122,9 @@
 "Add content" = "Ajoute kontni";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Ajoute Non Kou";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Ajoute ti Non Kou";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Sesyon";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Lis Sesyon";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Tape yonn nan opsyon pi ba yo pou ka atache fichye.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Aktivite Kou";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Flux Aktivite Kou";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Anons Kou";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kou Klas Pi Ba a %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Modil Kou";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Seksyon Kou";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Chanje pyès jwent (okenn)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Modifye paramèt kou";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Modifye Tablo";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Pa Soumèt";
 
 /* No comment provided by engineer. */
+"Not supported" = "Pa konpatib";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Pa Ijan";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Ouvri detay eleman";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Ouvri nan Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Opsyon";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Paj";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Paj Paj Prensipal";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Asosye avèk Obsèvatè";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quiz";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Aktivite Resan";
 
 /* No comment provided by engineer. */
 "Recipients" = "Destinatè";
@@ -1868,6 +1895,9 @@
 "Sent" = "Voye";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Defini \"Akèy\" pou...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Defini kòm Paj Dakèy";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Elèv Randevou Enskripsyon";
+
+/* No comment provided by engineer. */
+"Student View" = "Afichaj Elèv";
 
 /* No comment provided by engineer. */
 "Students" = "Elèv";

@@ -122,6 +122,9 @@
 "Add content" = "Добавить содержание";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Добавить название курса";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Добавить краткое имя курса";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Задания";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Список заданий";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Прикрепите файлы, щелкнув по расположенной ниже опции.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Активность в рамках курса";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Лента активности курса";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Объявление о курсе";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Оценка за курс ниже %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Модули курса";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Разделы курса";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Редактировать вложение (нет)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Редактировать настройки курса";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Редактировать информационную панель";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Не отправлено";
 
 /* No comment provided by engineer. */
+"Not supported" = "Не поддерживается";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Не срочно";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Открыть подробную информацию об элементе";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Открыть в Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Опции";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Страницы";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Страницы титульной страницы";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Объединение с наблюдателем";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Тесты";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Недавно выполненные действия";
 
 /* No comment provided by engineer. */
 "Recipients" = "Получатели";
@@ -1868,6 +1895,9 @@
 "Sent" = "Отправлено";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Установить «Домой» на...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Установить в качестве титульной страницы";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Заявления о регистрации студентов";
+
+/* No comment provided by engineer. */
+"Student View" = "Просмотр для студентов";
 
 /* No comment provided by engineer. */
 "Students" = "Студенты";

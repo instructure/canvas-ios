@@ -122,6 +122,9 @@
 "Add content" = "Lisää sisältö";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Lisää kurssin nimi";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Lisää kurssin lempinimi";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Tehtävät";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Tehtäväluettelo";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Liitä tiedostoja kommenttiisi napauttamalla alla olevaa vaihtoehtoa.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Kurssiaktiviteetit";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Kurssin viimeaikaiset tapahtumat";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Kurssin ilmoitus";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kurssin arvosana alla  %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Kurssin moduulit";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Kurssin osiot";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Muokkaa liitettä (ei mitään)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Muokkaa kurssin asetuksia";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Muokkaa koontinäyttöä";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Ei lähetetty";
 
 /* No comment provided by engineer. */
+"Not supported" = "Ei tuettu";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Ei kiireellinen";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Avaa kohteen tiedot";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Avautuu Canvas Studentissa";
+
+/* No comment provided by engineer. */
 "Options" = "Asetukset";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sivut";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Sivujen etusivu";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Yhdistä havaitsijan kanssa";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Testit";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Viimeaikainen aktiviteetti";
 
 /* No comment provided by engineer. */
 "Recipients" = "Vastaanottajat";
@@ -1868,6 +1895,9 @@
 "Sent" = "Lähetetty";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Määritä ”Etusivu” arvoon…";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Määritä etusivuksi";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Opiskelijatapaamisen rekisteröitymiset";
+
+/* No comment provided by engineer. */
+"Student View" = "Opiskelijanäkymä";
 
 /* No comment provided by engineer. */
 "Students" = "Opiskelijat";
