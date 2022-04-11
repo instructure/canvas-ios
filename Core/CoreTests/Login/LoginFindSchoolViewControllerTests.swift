@@ -67,12 +67,12 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         let shown = router.viewControllerCalls.first?.0 as? LoginManualOAuthViewController
         XCTAssertEqual(shown?.host, "test.instructure.com")
     }
-    
+
     func testNextButtonHiddenByDefault() {
         controller.view.layoutIfNeeded()
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
     }
-    
+
     func testNextButtonAppearsOnSearchFieldType() {
         controller.view.layoutIfNeeded()
         controller.searchField.text = "asd"
@@ -84,19 +84,16 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.searchField.text = "asd"
         controller.searchField.sendActions(for: .editingChanged)
-        
         controller.searchField.text = ""
         controller.searchField.sendActions(for: .editingChanged)
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
     }
-    
+
     func testNextButtonShowsLoginScreen() {
         controller.view.layoutIfNeeded()
         controller.searchField.text = "asd"
         controller.searchField.sendActions(for: .editingChanged)
-        
         controller.perform(controller.navigationItem.rightBarButtonItem!.action)
-        
         let shown = router.viewControllerCalls.first?.0 as? LoginWebViewController
         XCTAssertEqual(shown?.host, "asd.instructure.com")
     }

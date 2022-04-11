@@ -96,7 +96,7 @@ class LoginFindSchoolViewController: UIViewController {
     private func nextPressed() {
         parseInputAndShowLoginScreen()
     }
-    
+
     func search(query: String) {
         guard !query.isEmpty else {
             accounts = []
@@ -138,7 +138,7 @@ class LoginFindSchoolViewController: UIViewController {
 
         env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
     }
-    
+
     private func parseInputAndShowLoginScreen() {
         guard var host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return }
         host = host.lowercased()
@@ -148,7 +148,7 @@ class LoginFindSchoolViewController: UIViewController {
         searchField.resignFirstResponder()
         showLoginForHost(host)
     }
-    
+
     private func toggleNextButtonVisibility() {
         if let host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty {
             navigationItem.rightBarButtonItem = nextButton
@@ -161,7 +161,6 @@ class LoginFindSchoolViewController: UIViewController {
 extension LoginFindSchoolViewController: UITextFieldDelegate {
     @IBAction func textFieldDidChange(_ textField: UITextField) {
         toggleNextButtonVisibility()
-        
         guard let query = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         search(query: query)
     }
