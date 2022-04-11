@@ -26,7 +26,7 @@ class DSDashboardE2ETests: E2ETestCase {
 
         // Check for empty dashboard
         logInDSUser(student)
-        EmptyPandaPage.emptyPandaTitle(title: "No Courses").waitToExist()
+        app.find(label:"No Courses").waitToExist()
 
         // Check for course1
         seeder.enrollStudent(student, in: course1)
