@@ -122,6 +122,9 @@
 "Add content" = "Inhalte hinzufügen";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Kursnamen hinzufügen";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Kurzname des Kurses hinzufügen";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Aufgaben";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Aufgabenliste";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Hängen Sie Dateien an, indem Sie unten auf eine der Optionen tippen.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Kursaktivitäten";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Kursaktivitätenliste";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Kursankündigung";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kursnote unter %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Kursmodule";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Kursabschnitte";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Anhang bearbeiten (0)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Kurseinstellungen ändern";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Dashboard bearbeiten";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Nicht abgegeben";
 
 /* No comment provided by engineer. */
+"Not supported" = "Nicht unterstützt";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Nicht dringend";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Objektdetails öffnen";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Öffnet in Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Optionen";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Seiten";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Seiten – Startseite";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Pairing mit Beobachter";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quizze";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Aktuelle Aktivität";
 
 /* No comment provided by engineer. */
 "Recipients" = "Empfänger";
@@ -1868,6 +1895,9 @@
 "Sent" = "Gesendet";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "„Home“ setzen auf ...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Als Frontseite einstellen";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Terminanmeldungen von Studenten";
+
+/* No comment provided by engineer. */
+"Student View" = "Studentenansicht";
 
 /* No comment provided by engineer. */
 "Students" = "Studenten";

@@ -122,6 +122,9 @@
 "Add content" = "เพิ่มเนื้อหา";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "เพิ่มชื่อบทเรียน";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "เพิ่มชื่อเล่นบทเรียน";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "ภารกิจ";
+
+/* No comment provided by engineer. */
+"Assignments List" = "รายการภารกิจ";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "แนบไฟล์โดยกดเลือกตัวเลือกด้านล่าง";
@@ -545,6 +551,9 @@
 "Course Activities" = "กิจกรรมในบทเรียน";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "สตรีมกิจกรรมสำหรับบทเรียน";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "ประกาศแจ้งสำหรับบทเรียน";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "บทเรียน เกรดน้อยกว่า %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "โมดูลบทเรียน";
 
 /* No comment provided by engineer. */
 "Course Sections" = "กลุ่มย่อยบทเรียน";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "แก้ไขเอกสารแนบ (ไม่มี)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "แก้ไขค่าปรับตั้งบทเรียน";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "แก้ไขแผงข้อมูล";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "ไม่ได้จัดส่ง";
 
 /* No comment provided by engineer. */
+"Not supported" = "ไม่รองรับ";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "ไม่ด่วน";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "เปิดรายละเอียดรายการ";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "เปิดในผู้เรียนของ Canvas";
+
+/* No comment provided by engineer. */
 "Options" = "ตัวเลือก";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "เพจ";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "หน้าเพจ หน้าแรก";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "เข้าคู่กับผู้สังเกตการณ์";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "คำถาม";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "กิจกรรมล่าสุด";
 
 /* No comment provided by engineer. */
 "Recipients" = "ผู้รับ";
@@ -1868,6 +1895,9 @@
 "Sent" = "ส่งแล้ว";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "ตั้งค่า “โฮม” (Home) เป็น..";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "กำหนดเป็นหน้าแรก";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "การรับนัดหมายของผู้เรียน";
+
+/* No comment provided by engineer. */
+"Student View" = "มุมมองผู้เรียน";
 
 /* No comment provided by engineer. */
 "Students" = "ผู้เรียน";

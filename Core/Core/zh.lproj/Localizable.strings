@@ -122,6 +122,9 @@
 "Add content" = "添加内容";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "添加课程名称";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "添加课程别称";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "作业";
+
+/* No comment provided by engineer. */
+"Assignments List" = "作业列表";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "通过单击下面的选项附加文件。";
@@ -545,6 +551,9 @@
 "Course Activities" = "课程活动";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "课程活动流";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "课程公告";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "课程评分低于%d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "课程单元";
 
 /* No comment provided by engineer. */
 "Course Sections" = "课程班级";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "编辑附件（无）";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "编辑课程设置";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "编辑控制面板";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "未提交";
 
 /* No comment provided by engineer. */
+"Not supported" = "不受支持";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "不紧急";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "打开项目详情";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "在 Canvas 学生版中打开";
+
+/* No comment provided by engineer. */
 "Options" = "选项";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "页面";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "页面首页";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "与旁听者配对";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "测验";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "最近活动";
 
 /* No comment provided by engineer. */
 "Recipients" = "收件人";
@@ -1868,6 +1895,9 @@
 "Sent" = "已发送";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "设置“首页”为...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "设置为首页";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "学生预约注册";
+
+/* No comment provided by engineer. */
+"Student View" = "学生视图";
 
 /* No comment provided by engineer. */
 "Students" = "学生";

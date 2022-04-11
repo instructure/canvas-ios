@@ -122,6 +122,9 @@
 "Add content" = "إضافة محتوى";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "إضافة ملف المساق";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "اسم شهرة المساق";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "المهام";
+
+/* No comment provided by engineer. */
+"Assignments List" = "قائمة المهام";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "أرفق ملفات بالضغط على إحدى الخيارات أدناه.";
@@ -545,6 +551,9 @@
 "Course Activities" = "أنشطة المساق";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "تدفق نشاط المساق";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "إعلان المساق";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "تقدير المساق أدناه  %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "وحدات المساق النمطية";
 
 /* No comment provided by engineer. */
 "Course Sections" = "أقسام المساق";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "تحرير المرفق (بلا)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "تحرير إعدادات المساق";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "تحرير لوحة المعلومات";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "لم يتم الإرسال";
 
 /* No comment provided by engineer. */
+"Not supported" = "غير مدعوم";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "ليس عاجلاً";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "فتح تفاصيل العنصر";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "يفتح في Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "الخيارات";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "الصفحات";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "الصفحة الأمامية للصفحات";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "الإقران بالمراقب";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "الاختبارات الموجزة";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "النشاط الأخير";
 
 /* No comment provided by engineer. */
 "Recipients" = "المتلقون";
@@ -1868,6 +1895,9 @@
 "Sent" = "مرسَل";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "تعيين \"الصفحة الرئيسية\" لـ...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "تعيين كصفحة أمامية";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "مواعيد التسجيل للطالب";
+
+/* No comment provided by engineer. */
+"Student View" = "طريقة عرض الطالب";
 
 /* No comment provided by engineer. */
 "Students" = "الطلاب";

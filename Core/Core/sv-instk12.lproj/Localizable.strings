@@ -122,6 +122,9 @@
 "Add content" = "Lägg till innehåll";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Lägg till kursnamn";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Lägg till smeknamn för kursen";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Uppgifter";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Uppgiftslista";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Bifoga filer genom att trycka på ett alternativ nedan.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Kursaktiviteter";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Aktivitetsflöde för kurs";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Kursmeddelande";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kursbedömning Under %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Kursmoduler";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Kurssektioner";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Redigera bilaga (ingen)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Redigera kursinställningar";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Redigera översikt";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Inte inskickade";
 
 /* No comment provided by engineer. */
+"Not supported" = "Stöds inte";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Öppna objektinformation";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Öppnas i Canvas Elev";
+
+/* No comment provided by engineer. */
 "Options" = "Alternativ";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sidor";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Sidornas framsida";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Koppla med observatör";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quiz";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Senaste aktivitet";
 
 /* No comment provided by engineer. */
 "Recipients" = "Mottagare";
@@ -1868,6 +1895,9 @@
 "Sent" = "Skickade";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Ange ”Hem” som …";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Ställ in som framsida";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Ny bokning för mötestillfälle";
+
+/* No comment provided by engineer. */
+"Student View" = "Elevens vy";
 
 /* No comment provided by engineer. */
 "Students" = "Elever";

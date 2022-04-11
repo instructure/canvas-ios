@@ -122,6 +122,9 @@
 "Add content" = "Afegeix el contingut";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Afegeix el nom de l'assignatura";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Afegeix un àlies de l'assignatura";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Activitats";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Llista d'activitats";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Toqueu una de les opcions següents per adjuntar fitxers.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Activitats de l'assignatura";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Seqüència d'activitats de l'assignatura";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Anunci de l'assignatura";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Nota de l'assignatura per sota de %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Continguts de l'assignatura";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Seccions de l'assignatura";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edita el fitxer adjunt (cap)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Edita la configuració de l'assignatura";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Edita el panell de control";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "No entregat";
 
 /* No comment provided by engineer. */
+"Not supported" = "No és compatible";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "No és urgent";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Obre els detalls de l'element";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "S'obre al Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Opcions";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Pàgines";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Pàgines pàgina frontal";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Emparella amb l'observador";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Proves";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Activitat recent";
 
 /* No comment provided by engineer. */
 "Recipients" = "Destinataris";
@@ -1868,6 +1895,9 @@
 "Sent" = "Enviat";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Estableix «Inici» en…";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Estableix com a pàgina frontal";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Registres de cites d'estudiants";
+
+/* No comment provided by engineer. */
+"Student View" = "Vista d'estudiant";
 
 /* No comment provided by engineer. */
 "Students" = "Estudiants";

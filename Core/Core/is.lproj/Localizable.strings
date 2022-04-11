@@ -122,6 +122,9 @@
 "Add content" = "Bæta við efni";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Bæta við heiti námskeiðs";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Bæta við stuttu heiti fyrir námskeið";
 
 /* No comment provided by engineer. */
@@ -270,6 +273,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Verkefni";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Verkefnalisti";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Settu skrár í viðhengi með því að pikka á valkost fyrir neðan.";
@@ -545,6 +551,9 @@
 "Course Activities" = "Virkni námskeiðs";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Virknistreymi námskeiðs";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Tilkynning námskeiðs";
 
 /* No comment provided by engineer. */
@@ -564,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Námskeiðaeinkunn að neðan %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Námsefni námskeiðs";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Hlutar námskeiðs";
@@ -768,6 +780,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Breyta viðhengi (ekkert)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Breyta námskeiðsstillingum";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "Breyta skjáborði";
@@ -1457,6 +1472,9 @@
 "Not Submitted" = "Ekki lagt fram";
 
 /* No comment provided by engineer. */
+"Not supported" = "Ekki stutt";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Ekki áríðandi";
 
 /* No due assignments for today */
@@ -1523,6 +1541,9 @@
 "Open item details" = "Opnið upplýsingar um atriði";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Opnast í Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Valkostir";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Síður";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Forsíða síðna";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Para við áhorfanda";
@@ -1677,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Próf";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Nýleg virkni";
 
 /* No comment provided by engineer. */
 "Recipients" = "Viðtakendur";
@@ -1868,6 +1895,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Stilla „Heima“ á...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Setja sem forsíðu";
 
 /* No comment provided by engineer. */
@@ -1950,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Fundaskráningar nemanda";
+
+/* No comment provided by engineer. */
+"Student View" = "Nemandasýn";
 
 /* No comment provided by engineer. */
 "Students" = "Nemendur";
