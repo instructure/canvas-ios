@@ -42,6 +42,14 @@ public class TopBarViewModel: ObservableObject {
         updateSelectedItemState()
     }
 
+    public func itemInfo(for model: TopBarItemViewModel) -> (index: Int, isFirst: Bool, isLast: Bool)? {
+        guard let index = items.firstIndex(of: model) else { return nil }
+
+        let isFirst = (index == 0)
+        let isLast = (index == items.count - 1)
+        return (index: index, isFirst: isFirst, isLast: isLast)
+    }
+
     private func updateSelectedItemState() {
         for (index, item) in items.enumerated() {
             item.isSelected = (index == selectedItemIndex)

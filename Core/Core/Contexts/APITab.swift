@@ -23,6 +23,7 @@ public struct APITab: Codable, Equatable {
     let id: ID
     let html_url: URL
     let full_url: URL?
+    let url: URL?
     let label: String
     let type: TabType
     let hidden: Bool?
@@ -36,6 +37,7 @@ extension APITab {
         id: ID = "home",
         html_url: URL = URL(string: "/groups/16")!,
         full_url: URL? = nil,
+        url: URL? = nil,
         label: String = "Home",
         type: TabType = .internal,
         hidden: Bool? = nil,
@@ -46,6 +48,7 @@ extension APITab {
             id: id,
             html_url: html_url,
             full_url: full_url,
+            url: url,
             label: label,
             type: type,
             hidden: hidden,

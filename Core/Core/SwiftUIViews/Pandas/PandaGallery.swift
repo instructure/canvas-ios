@@ -75,7 +75,7 @@ public struct PandaGallery: View {
             scene = PagesPanda()
         }
 
-        return InteractivePanda(scene: scene, title: "Title Text", subtitle: "Optional subtitle text here")
+        return InteractivePanda(scene: scene, title: Text(verbatim: "Title Text"), subtitle: Text(verbatim: "Optional subtitle text here"))
     }
 }
 

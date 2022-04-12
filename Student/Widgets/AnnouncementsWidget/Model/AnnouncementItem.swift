@@ -35,7 +35,7 @@ struct AnnouncementItem: Identifiable, Equatable {
         guard
             let title = discussionTopic.title,
             let date = discussionTopic.posted_at,
-            let authorName = discussionTopic.author.display_name,
+            let authorName = discussionTopic.author?.display_name,
             let courseName = course.name,
             let url = discussionTopic.html_url
         else { return nil }

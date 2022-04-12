@@ -274,7 +274,7 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 }
 

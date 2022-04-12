@@ -53,10 +53,19 @@
 "Choose Files" = "Выберите файлы";
 
 /* No comment provided by engineer. */
+"Close" = "Закрыть";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Закрыть панель";
 
 /* No comment provided by engineer. */
 "Comment" = "Комментарий";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Библиотека комментариев";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Библиотека комментариев недоступна";
 
 /* No comment provided by engineer. */
 "Comments" = "Комментарии";
@@ -197,10 +206,16 @@
 "No Submissions" = "Нет отправок";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "нет доступных предложений";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Оценка не выставлена";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Открыть библиотеку комментариев";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Полноэкранный режим «Открыть панель»";

@@ -122,6 +122,9 @@
 "Add content" = "Inhoud toevoegen";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Cursusnaam toevoegen";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Bijnaam voor cursus toevoegen";
 
 /* No comment provided by engineer. */
@@ -272,6 +275,9 @@
 "Assignments" = "Opdrachten";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Opdrachtenlijst";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Koppel bestanden door op een optie hieronder te tikken.";
 
 /* No comment provided by engineer. */
@@ -396,6 +402,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Informele vraag of suggestie";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Lay-out van dashboard veranderen naar rooster";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Lay-out van dashboard veranderen naar lijst";
 
 /* No comment provided by engineer. */
 "Change User" = "Gebruiker wijzigen";
@@ -539,6 +551,9 @@
 "Course Activities" = "Cursusactiviteiten";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Activiteitenstroom van cursus";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Cursusaankondiging";
 
 /* No comment provided by engineer. */
@@ -558,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Cursuscijfer lager dan %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Cursusmodules";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Cursussecties";
@@ -762,6 +780,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Bijlage bewerken (geen)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Cursusinstellingen bewerken";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Dashboard bewerken";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Discussie bewerken";
@@ -1448,6 +1472,9 @@
 "Not Submitted" = "Niet ingediend";
 
 /* No comment provided by engineer. */
+"Not supported" = "Niet ondersteund";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Niet urgent";
 
 /* No due assignments for today */
@@ -1514,6 +1541,9 @@
 "Open item details" = "Itemdetails openen";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Opent in Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Opties";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Pagina's";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Voorpagina van pagina\\'s";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Koppelen met waarnemer";
@@ -1670,6 +1703,9 @@
 "Quizzes" = "Toetsen";
 
 /* No comment provided by engineer. */
+"Recent Activity" = "Recente activiteit";
+
+/* No comment provided by engineer. */
 "Recipients" = "Geadresseerden";
 
 /* No comment provided by engineer. */
@@ -1721,7 +1757,7 @@
 "Replies" = "Antwoorden";
 
 /* No comment provided by engineer. */
-"Reply" = "Beantwoorden";
+"Reply" = "Reageren";
 
 /* No comment provided by engineer. */
 "Reply All" = "Allen beantwoorden";
@@ -1859,6 +1895,9 @@
 "Sent" = "Verzonden";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "\"Home\" instellen naar...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Instellen als voorpagina";
 
 /* No comment provided by engineer. */
@@ -1941,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Aanmeldingen voor afspraak van cursist";
+
+/* No comment provided by engineer. */
+"Student View" = "Cursistweergave";
 
 /* No comment provided by engineer. */
 "Students" = "Cursisten";

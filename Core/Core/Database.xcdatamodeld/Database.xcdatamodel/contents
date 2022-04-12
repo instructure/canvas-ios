@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -262,6 +262,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="imageURL" optional="YES" attributeType="URI"/>
         <attribute name="isHomeroom" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isK5Subject" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="k5Color" optional="YES" attributeType="String"/>
         <attribute name="longName" attributeType="String"/>
         <attribute name="originalName" attributeType="String"/>
@@ -302,6 +303,7 @@
     </entity>
     <entity name="DiscussionTopic" representedClassName="Core.DiscussionTopic" syncable="YES">
         <attribute name="allowRating" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="anonymousState" optional="YES" attributeType="String"/>
         <attribute name="assignmentID" optional="YES" attributeType="String"/>
         <attribute name="canAttach" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -462,6 +464,8 @@
     <entity name="Grade" representedClassName="Core.Grade" syncable="YES">
         <attribute name="currentGrade" optional="YES" attributeType="String"/>
         <attribute name="currentScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="finalGrade" optional="YES" attributeType="String"/>
+        <attribute name="finalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="overrideGrade" optional="YES" attributeType="String"/>
         <attribute name="overrideScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -692,6 +696,7 @@
         <attribute name="sendMessagesAll" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="siteAdmin" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="undeleteCourses" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="useStudentView" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="viewAllGrades" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="viewAuditTrail" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="viewCourseChanges" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -885,12 +890,14 @@
     </entity>
     <entity name="Tab" representedClassName="Core.Tab" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
+        <attribute name="fullURL" optional="YES" attributeType="URI"/>
         <attribute name="hiddenRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="label" attributeType="String"/>
         <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="typeRaw" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="visibilityRaw" attributeType="String"/>
     </entity>
     <entity name="Todo" representedClassName="Core.Todo" syncable="YES">
@@ -995,7 +1002,7 @@
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="ObserverAlert" positionX="-540" positionY="-18" width="128" height="209"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
-        <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
+        <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1079"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="508"/>
@@ -1010,7 +1017,7 @@
         <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
-        <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
+        <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="179"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="164"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>

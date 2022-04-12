@@ -53,10 +53,19 @@
 "Choose Files" = "Seleccione los archivos";
 
 /* No comment provided by engineer. */
+"Close" = "Cerrar";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Cerrar menú lateral";
 
 /* No comment provided by engineer. */
 "Comment" = "Comentario";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Biblioteca de comentarios";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "La biblioteca de comentarios no está disponible";
 
 /* No comment provided by engineer. */
 "Comments" = "Comentarios";
@@ -95,7 +104,7 @@
 "Everyone" = "Todos";
 
 /* No comment provided by engineer. */
-"Excuse Student" = "Justificar al alumno";
+"Excuse Student" = "Justificar al estudiante";
 
 /* No comment provided by engineer. */
 "Excused" = "Justificado";
@@ -143,10 +152,10 @@
 "Grades" = "Notas";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "Todos los alumnos podrán ver las notas";
+"Grades will be made visible to all students" = "Todos los estudiantes podrán ver las notas";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Todos los alumnos que tengan entregas con nota podrán ver las notas.";
+"Grades will be made visible to students with graded submissions" = "Todos los estudiantes que tengan entregas con nota podrán ver las notas.";
 
 /* number of grades hidden */
 "grades_currently_hidden" = "grades_currently_hidden";
@@ -197,10 +206,16 @@
 "No Submissions" = "No hay entregas";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "No hay sugerencias disponibles";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Sin evaluar";
 
 /* No comment provided by engineer. */
 "OK" = "Aceptar";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Abrir biblioteca de comentarios";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Abrir menú lateral en pantalla completa";
@@ -278,13 +293,13 @@
 "Specific Sections" = "Secciones específicas";
 
 /* No comment provided by engineer. */
-"Student" = "Alumno";
+"Student" = "Estudiante";
 
 /* No comment provided by engineer. */
 "Submissions" = "Entregas";
 
 /* No comment provided by engineer. */
-"Test Student" = "Alumno de prueba";
+"Test Student" = "Estudiante de prueba";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Todavía no hay mensajes.";
@@ -305,10 +320,10 @@
 "This group does not have a submission for this assignment." = "Este grupo no ha realizado ninguna entrega para esta actividad.";
 
 /* No comment provided by engineer. */
-"This student does not have a submission for this assignment." = "Este alumno no tiene ninguna entrega para esta actividad.";
+"This student does not have a submission for this assignment." = "Este estudiante no tiene ninguna entrega para esta actividad.";
 
 /* No comment provided by engineer. */
-"This student's responses are hidden because this assignment is anonymous." = "Las respuestas de los alumnos están ocultas porque esta actividad es anónima.";
+"This student's responses are hidden because this assignment is anonymous." = "Las respuestas de los estudiantes están ocultas porque esta actividad es anónima.";
 
 /* No comment provided by engineer. */
 "This submission has no files." = "Esta entrega no tiene archivos.";

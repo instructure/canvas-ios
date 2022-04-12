@@ -122,6 +122,9 @@
 "Add content" = "Legg til innhold";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Legg til fagnavn";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Legge til kallenavn for fag";
 
 /* No comment provided by engineer. */
@@ -272,6 +275,9 @@
 "Assignments" = "Oppgaver";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Oppgaveliste";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Legg ved filer ved å trykke på alternativet nedenfor.";
 
 /* No comment provided by engineer. */
@@ -396,6 +402,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Tilfeldig spørsmål eller forslag";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Endre oversikt layout til rutenett";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Endre oversikt layout til liste";
 
 /* No comment provided by engineer. */
 "Change User" = "Endre bruker";
@@ -539,6 +551,9 @@
 "Course Activities" = "Aktiviteter for fag";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Aktivitetsstrøm for fag";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Fag-beskjed";
 
 /* No comment provided by engineer. */
@@ -558,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Fagvurdering under %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Moduler for fag";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Fagseksjoner";
@@ -762,6 +780,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Legg til vedlegg (ingen)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Rediger fag-innstillinger";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Rediger oversikt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Rediger diskusjon";
@@ -1448,6 +1472,9 @@
 "Not Submitted" = "Ikke levert";
 
 /* No comment provided by engineer. */
+"Not supported" = "Støttes ikke";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Haster ikke";
 
 /* No due assignments for today */
@@ -1514,6 +1541,9 @@
 "Open item details" = "Åpne elementdetaljer";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Åpnes i Canvas Elev";
+
+/* No comment provided by engineer. */
 "Options" = "Valg";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sider";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Sider forside";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Par med observatør";
@@ -1668,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quizer";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Siste aktiviteter";
 
 /* No comment provided by engineer. */
 "Recipients" = "Mottakere";
@@ -1859,6 +1895,9 @@
 "Sent" = "Sendt";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Sett «Hjem» til …";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Sett som forside";
 
 /* No comment provided by engineer. */
@@ -1941,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Påmeldinger til elevavtaler";
+
+/* No comment provided by engineer. */
+"Student View" = "Vis som elev";
 
 /* No comment provided by engineer. */
 "Students" = "Elever";

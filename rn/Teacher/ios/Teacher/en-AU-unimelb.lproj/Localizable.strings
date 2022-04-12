@@ -53,10 +53,19 @@
 "Choose Files" = "Choose Files";
 
 /* No comment provided by engineer. */
+"Close" = "Close";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Close Drawer";
 
 /* No comment provided by engineer. */
 "Comment" = "Comment";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Comment Library";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Comment library is not available";
 
 /* No comment provided by engineer. */
 "Comments" = "Comments";
@@ -197,10 +206,16 @@
 "No Submissions" = "No Submissions";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "No suggestions available";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Not Graded";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Open comment library";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Open Drawer full screen";

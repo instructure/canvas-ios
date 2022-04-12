@@ -68,7 +68,7 @@
 "%d Replies" = "%d respuestas";
 
 /* No comment provided by engineer. */
-"%d students" = "%d alumnos";
+"%d students" = "%d estudiantes";
 
 /* No comment provided by engineer. */
 "%d Unread" = "%d no leídos";
@@ -89,7 +89,7 @@
 "a parent" = "un padre";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a student" = "un alumno";
+"a student" = "un estudiante";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a teacher" = "un profesor";
@@ -120,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Añadir contenido";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Añadir nombre de la asignatura";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Añadir apodo de la asignatura";
@@ -272,6 +275,9 @@
 "Assignments" = "Actividades";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Lista de actividades";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Adjunte archivos pulsando una opción a continuación.";
 
 /* No comment provided by engineer. */
@@ -396,6 +402,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Pregunta casual o sugerencia";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Cambiar el diseño del panel de control a cuadrícula";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Cambiar el diseño del panel de control a lista";
 
 /* No comment provided by engineer. */
 "Change User" = "Cambiar usuario";
@@ -539,6 +551,9 @@
 "Course Activities" = "Actividades de la asignatura";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Flujo de actividad de la asignatura";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Anuncio de la asignatura";
 
 /* No comment provided by engineer. */
@@ -558,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Nota de la asignatura inferior a %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Contenidos de la asignatura";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Secciones de la asignatura";
@@ -762,6 +780,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Editar adjunto (ninguno)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Editar configuraciones de la asignatura";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Editar panel de control";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Editar foro de discusión";
@@ -998,7 +1022,7 @@
 "Help" = "Ayuda";
 
 /* No comment provided by engineer. */
-"Help your students with this assignment by adding instructions." = "Ayude a sus alumnos a realizar esta actividad añadiendo instrucciones.";
+"Help your students with this assignment by adding instructions." = "Ayude a sus estudiantes a realizar esta actividad añadiendo instrucciones.";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Ocultar contenido para %@";
@@ -1145,7 +1169,7 @@
 "Launch External Tool" = "Iniciar la herramienta externa";
 
 /* No comment provided by engineer. */
-"Leave Student View" = "Abandonar la vista de alumno";
+"Leave Student View" = "Abandonar la vista de estudiante";
 
 /* No comment provided by engineer. */
 "Legal" = "Legal";
@@ -1241,7 +1265,7 @@
 "Make sure you enable camera permissions in Settings" = "Asegúrese de habilitar los permisos de cámara en las configuraciones";
 
 /* No comment provided by engineer. */
-"Manage Students" = "Administrar alumnos";
+"Manage Students" = "Administrar estudiantes";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Inicio manual de sesión en OAuth";
@@ -1448,6 +1472,9 @@
 "Not Submitted" = "No entregado";
 
 /* No comment provided by engineer. */
+"Not supported" = "No compatible";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "No es urgente";
 
 /* No due assignments for today */
@@ -1487,7 +1514,7 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Una de sus entregas aún se está cargando. Si cierra sesión, es posible que se interrumpa el proceso.\n¿Está seguro de que desea salir?";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Disponible solo para alumnos con enlace";
+"Only available to students with link" = "Disponible solo para estudiantes con enlace";
 
 /* No comment provided by engineer. */
 "Only graders can like" = "Solo los evaluadores pueden darle a Me gusta";
@@ -1512,6 +1539,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Abrir detalles del ítem";
+
+/* No comment provided by engineer. */
+"Opens in Canvas Student" = "Se abre en Canvas Student";
 
 /* No comment provided by engineer. */
 "Options" = "Opciones";
@@ -1548,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Páginas";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Página principal de las páginas";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Emparejar con un observador";
@@ -1670,6 +1703,9 @@
 "Quizzes" = "Pruebas";
 
 /* No comment provided by engineer. */
+"Recent Activity" = "Actividad reciente";
+
+/* No comment provided by engineer. */
 "Recipients" = "Destinatarios";
 
 /* No comment provided by engineer. */
@@ -1772,7 +1808,7 @@
 "Schedule" = "Planificar";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Programar la disponibilidad de los alumnos";
+"Schedule student availability" = "Programar la disponibilidad de los estudiantes";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planificación";
@@ -1859,6 +1895,9 @@
 "Sent" = "Enviado";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Establecer \"Inicio\" para...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Establecer como página de inicio";
 
 /* No comment provided by engineer. */
@@ -1931,19 +1970,22 @@
 "Stop recording" = "Detener la grabación";
 
 /* No comment provided by engineer. */
-"Student" = "Alumno";
+"Student" = "Estudiante";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Anotación del alumno";
+"Student Annotation" = "Anotación del estudiante";
 
 /* No comment provided by engineer. */
-"Student Applications" = "Solicitudes del alumno";
+"Student Applications" = "Solicitudes del estudiante";
 
 /* No comment provided by engineer. */
-"Student Appointment Signups" = "Registros de citas para alumnos";
+"Student Appointment Signups" = "Registros de citas para estudiantes";
 
 /* No comment provided by engineer. */
-"Students" = "Alumnos";
+"Student View" = "Vista del estudiante";
+
+/* No comment provided by engineer. */
+"Students" = "Estudiantes";
 
 /* No comment provided by engineer. */
 "Style" = "Estilo";
@@ -2021,7 +2063,7 @@
 "Teachers" = "Profesores";
 
 /* No comment provided by engineer. */
-"Teachers and students" = "Profesores y alumnos";
+"Teachers and students" = "Profesores y estudiantes";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Profesores auxiliares";
@@ -2159,7 +2201,7 @@
 "to %@" = "a %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Para crear una cuenta, pídale a su alumno que le cree un código de emparejamiento desde la sección Configuraciones de la aplicación Canvas Student como se muestra a continuación y, a luego, escanee ese código desde aquí.\nSi su alumno no ve la opción de crear un código de emparejamiento, usted deberá ponerse en contacto con la escuela para crear una cuenta.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Para crear una cuenta, pídale a su estudiante que le cree un código de emparejamiento desde la sección Configuraciones de la aplicación Canvas Student como se muestra a continuación y, a luego, escanee ese código desde aquí.\nSi su estudiante no ve la opción de crear un código de emparejamiento, usted deberá ponerse en contacto con la escuela para crear una cuenta.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tareas pendientes";

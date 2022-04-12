@@ -52,7 +52,7 @@ class TeacherTabBarController: UITabBarController {
         split.tabBarItem.image = .coursesTab
         split.tabBarItem.selectedImage = .coursesTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        split.preferredDisplayMode = .allVisible
+        split.preferredDisplayMode = .oneBesideSecondary
         return split
     }
 

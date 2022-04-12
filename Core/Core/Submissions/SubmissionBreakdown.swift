@@ -131,22 +131,13 @@ struct SubmissionBreakdown: View {
         var body: some View {
             Button(action: action, label: {
                 VStack(spacing: 8) {
-                    let circle = CircleProgress(
+                    CircleProgress(
                         progress: total == 0 ? 0 : CGFloat(count) / CGFloat(total),
                         size: 70,
                         thickness: 7
                     )
-                    if #available(iOS 14, *) {
-                        circle
-                            .modifier(Counter(count: Double(count)))
-                            .padding(.horizontal, 10).padding(.top, 4)
-                    } else {
-                        circle
-                            .overlay(Text(Double(count))
-                                .font(.medium16).foregroundColor(.textDarkest)
-                            )
-                            .padding(.horizontal, 10).padding(.top, 4)
-                    }
+                        .modifier(Counter(count: Double(count)))
+                        .padding(.horizontal, 10).padding(.top, 4)
                     label
                         .font(.medium12).foregroundColor(.textDarkest)
                 }

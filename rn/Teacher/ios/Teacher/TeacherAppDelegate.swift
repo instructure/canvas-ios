@@ -131,7 +131,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 
     func userNotificationCenter(
@@ -294,6 +294,14 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         }
         if let url = URL(string: deepLink) {
             UIApplication.shared.open(url)
+        }
+    }
+
+    func actAsStudentViewStudent(studentViewStudentID: String) {
+        if let url = URL(string: "canvas-student://"), UIApplication.shared.canOpenURL(url) {
+            actAsFakeStudent(withID: studentViewStudentID)
+        } else if let url = URL(string: "https://itunes.apple.com/us/app/canvas-student/id480883488?ls=1&mt=8") {
+            openExternalURL(url)
         }
     }
 }

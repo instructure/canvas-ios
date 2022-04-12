@@ -41,7 +41,7 @@ public struct AssignmentDetailsView: View {
         states
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
-            .compatibleNavBarItems(trailing: {
+            .navBarItems(trailing: {
                 Button(action: { env.router.route(
                     to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
                     from: controller,

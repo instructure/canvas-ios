@@ -53,10 +53,19 @@
 "Choose Files" = "選擇檔案";
 
 /* No comment provided by engineer. */
+"Close" = "關閉";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "關閉檔案夾";
 
 /* No comment provided by engineer. */
 "Comment" = "評論";
+
+/* No comment provided by engineer. */
+"Comment Library" = "評論檔案庫";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "評論檔案庫無法使用";
 
 /* No comment provided by engineer. */
 "Comments" = "評論";
@@ -197,10 +206,16 @@
 "No Submissions" = "沒有提交項目";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "沒有提供建議";
+
+/* No comment provided by engineer. */
 "Not Graded" = "未評分";
 
 /* No comment provided by engineer. */
 "OK" = "確定";
+
+/* No comment provided by engineer. */
+"Open comment library" = "開啟評論檔案庫";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "在全螢幕模式開啟檔案夾";

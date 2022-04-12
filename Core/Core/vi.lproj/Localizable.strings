@@ -122,6 +122,9 @@
 "Add content" = "Thêm nội dung";
 
 /* No comment provided by engineer. */
+"Add Course Name" = "Thêm Tên Khóa Học";
+
+/* No comment provided by engineer. */
 "Add Course Nickname" = "Thêm Biệt Danh Khóa Học";
 
 /* No comment provided by engineer. */
@@ -272,6 +275,9 @@
 "Assignments" = "Bài Tập";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Danh Sách Bài Tập";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Đính kèm tập tin bằng cách nhấn vào tùy chọn bên dưới.";
 
 /* No comment provided by engineer. */
@@ -396,6 +402,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Câu hỏi hoặc đề xuất bình thường";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Thay đổi bố cục bảng điều khiển thành dạng lưới";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Thay đổi bố cục bảng điều khiển thành dạng danh sách";
 
 /* No comment provided by engineer. */
 "Change User" = "Thay Đổi Người Dùng";
@@ -539,6 +551,9 @@
 "Course Activities" = "Hoạt Động Khóa Học";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Luồng Hoạt Động Khóa Học";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Thông Báo Khóa Học";
 
 /* No comment provided by engineer. */
@@ -558,6 +573,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Điểm Khóa Học Dưới %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Học Phần Khóa Học";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Phần Khóa Học";
@@ -762,6 +780,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Chỉnh sửa tập tin đính kèm (không có)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Chỉnh sửa cài đặt khóa học";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Chỉnh Sửa Bảng Điều Khiển";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Chỉnh Sửa Thảo Luận";
@@ -1448,6 +1472,9 @@
 "Not Submitted" = "Chưa Nộp";
 
 /* No comment provided by engineer. */
+"Not supported" = "Không được hỗ trợ";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Không Gấp";
 
 /* No due assignments for today */
@@ -1514,6 +1541,9 @@
 "Open item details" = "Mở thông tin chi tiết mục";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Mở Trong Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Tùy Chọn";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Trang";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Các Trang Trang Đầu";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Ghép Cặp Với Người Quan Sát";
@@ -1668,6 +1701,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Các Câu Hỏi Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Hoạt Động Gần Đây";
 
 /* No comment provided by engineer. */
 "Recipients" = "Người Nhận";
@@ -1859,6 +1895,9 @@
 "Sent" = "Đã Gửi";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Đặt \"Trang Chủ\" thành...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Cài Đặt Làm Trang Đầu";
 
 /* No comment provided by engineer. */
@@ -1941,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Mục Đăng Ký Cuộc Họp Theo Lịch Sinh Viên";
+
+/* No comment provided by engineer. */
+"Student View" = "Góc Nhìn Của Sinh Viên";
 
 /* No comment provided by engineer. */
 "Students" = "Sinh Viên";

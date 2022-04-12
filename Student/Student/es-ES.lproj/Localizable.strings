@@ -1250,10 +1250,10 @@
 "Stops recording a media comment" = "Detiene la grabación de un comentario multimedia";
 
 /* Short name for student enrollment */
-"Student" = "Alumno";
+"Student" = "Estudiante";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Anotación del alumno";
+"Student Annotation" = "Anotación del estudiante";
 
 /* No comment provided by engineer. */
 "Studio" = "Studio";

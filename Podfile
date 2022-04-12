@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
-platform :ios, '13.0'
+platform :ios, '14.0'
 require_relative './rn/Teacher/node_modules/react-native/scripts/react_native_pods'
 # require_relative './rn/Teacher/node_modules/@react-native-community/cli-platform-ios/native_modules'
 
@@ -132,6 +132,8 @@ post_install do |installer|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
       config.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
       config.build_settings.delete('ONLY_ACTIVE_ARCH')
+      # This was added to work around an Xcode 13.3 bug when deploying to iOS 14 devices. https://developer.apple.com/forums/thread/702028?answerId=708408022
+      config.build_settings['OTHER_LDFLAGS'] = '$(inherited) -Xlinker -no_fixup_chains'
     end
     usesNonAppExAPI = %w[
       react-native-camera

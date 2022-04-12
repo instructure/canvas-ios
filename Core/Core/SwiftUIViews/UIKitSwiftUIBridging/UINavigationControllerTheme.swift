@@ -29,11 +29,7 @@ struct NavigationBarStyleModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         (controller.value as? NavigationBarStyled)?.navigationBarStyle = style
-        if #available(iOS 14, *) {
-            controller.value.navigationController?.navigationBar.useStyle(style)
-        } else { DispatchQueue.main.async {
-            controller.value.navigationController?.navigationBar.useStyle(style)
-        } }
+        controller.value.navigationController?.navigationBar.useStyle(style)
         return content.overlay(Color?.none) // needs something modified to actually run
     }
 }
@@ -73,10 +69,8 @@ struct NavBarBackButtonModifier: ViewModifier {
     @Environment(\.viewController) private var controller
 
     func body(content: Content) -> some View {
-        if #available(iOS 14.0, *) {
-            controller.value.navigationItem.backButtonDisplayMode = .generic
-            controller.value.navigationItem.backButtonTitle = NSLocalizedString("Back", bundle: .core, comment: "")
-        }
+        controller.value.navigationItem.backButtonDisplayMode = .generic
+        controller.value.navigationItem.backButtonTitle = NSLocalizedString("Back", bundle: .core, comment: "")
         return content.overlay(Color?.none) // needs something modified to actually run
     }
 }

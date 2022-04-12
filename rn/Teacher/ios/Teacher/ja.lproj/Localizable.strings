@@ -14,10 +14,10 @@
 "Add Comment" = "コメントを追加";
 
 /* No comment provided by engineer. */
-"All grades are currently hidden." = "すべての成績は今、非表示になっています。";
+"All grades are currently hidden." = "すべての評定は今、非表示になっています。";
 
 /* No comment provided by engineer. */
-"All grades are currently posted." = "すべての成績は今、掲示されています。";
+"All grades are currently posted." = "すべての評定は今、掲示されています。";
 
 /* No comment provided by engineer. */
 "All Hidden" = "すべて非表示";
@@ -53,10 +53,19 @@
 "Choose Files" = "ファイルの選択";
 
 /* No comment provided by engineer. */
+"Close" = "閉じる";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "引き出しを閉じる";
 
 /* No comment provided by engineer. */
 "Comment" = "コメント";
+
+/* No comment provided by engineer. */
+"Comment Library" = "コメントライブラリ";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "コメントライブラリは利用できません";
 
 /* No comment provided by engineer. */
 "Comments" = "コメント";
@@ -122,31 +131,31 @@
 "Filter by" = "フィルタ条件";
 
 /* No comment provided by engineer. */
-"Final Grade" = "最終的な成績";
+"Final Grade" = "最終的な評定";
 
 /* No comment provided by engineer. */
 "GPA" = "GPA";
 
 /* No comment provided by engineer. */
-"Grade" = "成績";
+"Grade" = "評定";
 
 /* No comment provided by engineer. */
-"Grade post policy" = "成績掲示規約";
+"Grade post policy" = "評定掲示規約";
 
 /* No comment provided by engineer. */
-"Grade Slider" = "成績スライダー";
+"Grade Slider" = "評定スライダー";
 
 /* No comment provided by engineer. */
 "Graded" = "採点済み";
 
 /* No comment provided by engineer. */
-"Grades" = "成績";
+"Grades" = "評定";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "成績はすべての受講生に表示されます";
+"Grades will be made visible to all students" = "評定はすべての受講者に表示されます";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "成績は、提出物が採点された受講生が閲覧できるよう表示されます。";
+"Grades will be made visible to students with graded submissions" = "評定は、提出物が採点された受講者が閲覧できるよう表示されます。";
 
 /* number of grades hidden */
 "grades_currently_hidden" = "grades_currently_hidden";
@@ -158,7 +167,7 @@
 "Group" = "グループ";
 
 /* No comment provided by engineer. */
-"Hide Grades" = "成績を非表示にする";
+"Hide Grades" = "評定を非表示にする";
 
 /* Inbox tab title */
 "Inbox" = "受信トレイ";
@@ -191,16 +200,22 @@
 "Needs Grading" = "採点が必要です";
 
 /* No comment provided by engineer. */
-"No Grade" = "成績はありません";
+"No Grade" = "評定はありません";
 
 /* No comment provided by engineer. */
 "No Submissions" = "提出物なし";
+
+/* No comment provided by engineer. */
+"No suggestions available" = "示唆されている利用可能なものなし";
 
 /* No comment provided by engineer. */
 "Not Graded" = "未採点";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "コメントライブラリを開く";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "引き出しを全画面で開く";
@@ -221,7 +236,7 @@
 "Points" = "ポイント";
 
 /* No comment provided by engineer. */
-"Post Grades" = "成績表の掲示";
+"Post Grades" = "評定表の掲示";
 
 /* No comment provided by engineer. */
 "Post settings" = "掲載の設定";
@@ -239,7 +254,7 @@
 "Preview Unavailable" = "プレビューできません";
 
 /* No comment provided by engineer. */
-"Prompts for an updated grade" = "更新された成績のプロンプト";
+"Prompts for an updated grade" = "更新された評定のプロンプト";
 
 /* No comment provided by engineer. */
 "Record Audio" = "オーディオを録音する";
@@ -284,7 +299,7 @@
 "Submissions" = "提出物";
 
 /* No comment provided by engineer. */
-"Test Student" = "受講生をテストする";
+"Test Student" = "受講者をテストする";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "メッセージはまだありません。";
@@ -305,10 +320,10 @@
 "This group does not have a submission for this assignment." = "このグループには、この課題の提出はありません。";
 
 /* No comment provided by engineer. */
-"This student does not have a submission for this assignment." = "この受講生には、この課題の提出はありません。";
+"This student does not have a submission for this assignment." = "この受講者には、この課題の提出はありません。";
 
 /* No comment provided by engineer. */
-"This student's responses are hidden because this assignment is anonymous." = "この課題は匿名なので、この受講生の応答は表示されません。";
+"This student's responses are hidden because this assignment is anonymous." = "この課題は匿名なので、この受講者の応答は表示されません。";
 
 /* No comment provided by engineer. */
 "This submission has no files." = "この提出には、ファイルがありません。";

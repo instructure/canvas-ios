@@ -69,7 +69,7 @@ class CourseListViewModelTests: CoreTestCase {
 
     private func setupMocks() {
         let currentCourses: [APICourse] = [
-            .make(id: "1", name: "Fall 2020", term: .make(name: "Fall 2020"), is_favorite: true),
+            .make(id: "1", name: "Fall 2020", workflow_state: .available, term: .make(name: "Fall 2020"), is_favorite: true),
             .make(id: "2", workflow_state: .available),
         ]
         let pastCourse: APICourse = .make(
@@ -86,7 +86,7 @@ class CourseListViewModelTests: CoreTestCase {
                 role: "TeacherEnrollment"
             ), ]
         )
-        let futureCourse: APICourse = .make(id: "4", start_at: .distantFuture, end_at: .distantFuture)
+        let futureCourse: APICourse = .make(id: "4", workflow_state: .available, start_at: .distantFuture, end_at: .distantFuture)
         api.mock(GetAllCourses(), value: [futureCourse, pastCourse] + currentCourses)
     }
 }

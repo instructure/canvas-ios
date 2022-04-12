@@ -21,7 +21,7 @@ import TestsFoundation
 
 class PreviewStoreTests: CoreTestCase {
     func testPreviewStore() {
-        let store = PreviewStore(useCase: GetAllCourses(), contents: [APICourse.make()])
+        let store = PreviewStore(useCase: GetAllCourses(), contents: [APICourse.make(workflow_state: .available)])
         drainMainQueue()
         XCTAssertEqual(store.all.count, 1)
     }

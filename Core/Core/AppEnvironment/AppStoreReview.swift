@@ -39,12 +39,8 @@ public class AppStoreReview: NSObject {
         } else {
             #if RELEASE
 
-            if #available(iOS 14, *) {
-                if let windowScene = AppEnvironment.shared.window?.windowScene {
-                    SKStoreReviewController.requestReview(in: windowScene)
-                }
-            } else {
-                SKStoreReviewController.requestReview()
+            if let windowScene = AppEnvironment.shared.window?.windowScene {
+                SKStoreReviewController.requestReview(in: windowScene)
             }
 
             #endif
