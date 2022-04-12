@@ -30,7 +30,6 @@ public struct CourseDetailsView: View {
         self.viewModel = viewModel
         self.headerViewModel = viewModel.headerViewModel
         self.selectionViewModel = viewModel.selectionViewModel
-        UITableView.setupiOS14BackgroundColor(.clear)
     }
 
     public var body: some View {
@@ -44,7 +43,11 @@ public struct CourseDetailsView: View {
                     imageHeader(geometry: geometry)
                     loadingView
                 case .data(let tabViewModels):
-                    tabList(tabViewModels, geometry: geometry)
+                    if #available(iOS 15.0, *) {
+                        tabList(tabViewModels, geometry: geometry)
+                    } else {
+                        legacyTabList(tabViewModels, geometry: geometry)
+                    }
                 }
             }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -161,6 +164,27 @@ public struct CourseDetailsView: View {
                 viewModel.refresh(completion: completion)
             }
         }
+    }
+
+    @available(iOS, obsoleted: 15)
+    private func legacyTabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
+        ListWithoutVerticalScrollIndicator {
+            VStack(spacing: 0) {
+                imageHeader(geometry: geometry)
+                if viewModel.showHome {
+                    homeView
+                    Divider()
+                }
+                ForEach(tabViewModels, id: \.id) { tabViewModel in
+                    CourseDetailsCellView(viewModel: tabViewModel)
+                    Divider()
+                }
+            }
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
+            .background(Color.backgroundLightest)
+        }
+        .listStyle(.plain)
     }
 
     @ViewBuilder
