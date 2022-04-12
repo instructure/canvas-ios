@@ -135,7 +135,7 @@ extension Enrollment {
 
         self.course = course
 
-        if let apiGrades = item.grades {
+        if let apiGrades = item.grades, let gradingPeriodID = gradingPeriodID {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
             grade.currentGrade = apiGrades.current_grade
             grade.currentScore = apiGrades.current_score
