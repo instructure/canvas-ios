@@ -88,9 +88,7 @@ extension UINavigationBar {
         scrollEdgeAppearance = standardAppearance
     }
 
-    public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.k5.isK5Enabled) {
-        if useK5Fonts {
-            titleTextAttributes?[NSAttributedString.Key.font] = UIFont.scaledNamedFont(.bold17)
-        }
+    public func updateFontAppearance() {
+        titleTextAttributes?[NSAttributedString.Key.font] = UIFont.scaledNamedFont(.bold17)
     }
 }
