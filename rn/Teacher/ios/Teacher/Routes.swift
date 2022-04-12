@@ -79,8 +79,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/assignments/:assignmentID": { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        let viewModel = AssignmentDetailsViewModel(courseID: courseID, assignmentID: assignmentID)
-        return CoreHostingController(AssignmentDetailsView(viewModel: viewModel))
+        return CoreHostingController(AssignmentDetailsView(courseID: courseID, assignmentID: assignmentID))
     },
     "/courses/:courseID/assignments/:assignmentID/edit": { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }

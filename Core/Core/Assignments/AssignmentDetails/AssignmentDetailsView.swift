@@ -20,39 +20,49 @@ import SwiftUI
 
 /// Currently only suitable for Teacher app
 public struct AssignmentDetailsView: View {
+    let assignmentID: String
+    let courseID: String
+
+    @ObservedObject var assignment: Store<GetAssignment>
+    @ObservedObject var course: Store<GetCourse>
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @ObservedObject private var viewModel: AssignmentDetailsViewModel
+    public init(courseID: String, assignmentID: String) {
+        self.assignmentID = assignmentID
+        self.courseID = courseID
 
-    public init(viewModel: AssignmentDetailsViewModel) {
-        self.viewModel = viewModel
+        assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
+        course = AppEnvironment.shared.subscribe(GetCourse(courseID: courseID))
     }
 
     public var body: some View {
         states
-            .navigationBarStyle(.color(viewModel.courseColor))
-            .navigationTitle(viewModel.title, subtitle: viewModel.subtitle)
+            .navigationBarStyle(.color(course.first?.color))
+            .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
             .compatibleNavBarItems(trailing: {
-                Button(action: {
-                    viewModel.editTapped(router: env.router, viewController: controller)
-                }, label: {
+                Button(action: { env.router.route(
+                    to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                    from: controller,
+                    options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+                ) }, label: {
                     Text("Edit", bundle: .core)
                         .fontWeight(.regular)
                         .foregroundColor(.textLightest)
                 })
             })
             .onAppear {
-                viewModel.viewDidAppear()
+                assignment.refresh()
+                course.refresh()
             }
     }
 
     @ViewBuilder var states: some View {
-        if let assignment = viewModel.assignment.first {
+        if let assignment = assignment.first {
             ScrollView { VStack(alignment: .leading, spacing: 0) {
                 CircleRefresh { endRefreshing in
-                    self.viewModel.assignment.refresh(force: true) { _ in
+                    self.assignment.refresh(force: true) { _ in
                         endRefreshing()
                     }
                 }
@@ -60,7 +70,7 @@ public struct AssignmentDetailsView: View {
                 details(assignment: assignment)
                     .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
             } }
-        } else if viewModel.assignment.state == .loading {
+        } else if assignment.state == .loading {
             ZStack { CircleProgress() }
         } else /* Assignment not found, perhaps recently deleted */ {
             Spacer().onAppear { env.router.dismiss(controller) }
@@ -117,8 +127,8 @@ public struct AssignmentDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        if viewModel.showSubmissions {
-            SubmissionBreakdown(courseID: viewModel.courseID, assignmentID: viewModel.assignmentID, submissionTypes: assignment.submissionTypes)
+        if course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true {
+            SubmissionBreakdown(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
 
             Divider().padding(.horizontal, 16)
         }
@@ -186,6 +196,13 @@ public struct AssignmentDetailsView: View {
     }
 
     func launchLTITool() {
-        viewModel.launchLTITool(router: env.router, viewController: controller)
+        LTITools.launch(
+            context: "course_\(courseID)",
+            id: assignment.first?.externalToolContentID,
+            url: nil,
+            launchType: "assessment",
+            assignmentID: assignmentID,
+            from: controller.value
+        )
     }
 }
