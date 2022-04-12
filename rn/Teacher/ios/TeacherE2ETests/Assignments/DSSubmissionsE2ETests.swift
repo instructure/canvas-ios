@@ -36,6 +36,9 @@ class DSSubmissionsE2ETests: E2ETestCase {
 
         logInDSUser(teacher)
 
+        // Need to sleep here because the backend needs some time to handle the assignment creation
+        sleep(5)
+
         let submission = seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
             .init(submission_type: SubmissionType.online_text_entry, body: "This is a submission body", user_id: student.id))
 
