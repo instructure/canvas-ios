@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.1</string>
+	<string>6.15.3</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>15835</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -34,10 +34,10 @@
 				<integer>10</integer>
 			</dict>
 		</dict>
-		<key>NSExtensionPrincipalClass</key>
-		<string>SubmitAssignmentViewController</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>SubmitAssignmentViewController</string>
 	</dict>
 </dict>
 </plist>
