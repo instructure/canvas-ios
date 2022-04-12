@@ -56,6 +56,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
+        FontAppearance.update()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,

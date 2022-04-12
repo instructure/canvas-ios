@@ -908,6 +908,8 @@
 		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
 		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
 		CF8D534527FF34B70038B0B2 /* font_lato_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF8D534427FF34B70038B0B2 /* font_lato_regular.css */; };
+		CF8D53492805A5850038B0B2 /* FontAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D53482805A5850038B0B2 /* FontAppearance.swift */; };
+		CF8D534C2805A68C0038B0B2 /* FontAppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D534B2805A68C0038B0B2 /* FontAppearanceTests.swift */; };
 		CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */; };
 		CF911BA4279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */; };
 		CF911BA627A29B1800E1EECB /* iOS15Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */; };
@@ -2247,6 +2249,8 @@
 		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
 		CF8D534427FF34B70038B0B2 /* font_lato_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_lato_regular.css; sourceTree = "<group>"; };
+		CF8D53482805A5850038B0B2 /* FontAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAppearance.swift; sourceTree = "<group>"; };
+		CF8D534B2805A68C0038B0B2 /* FontAppearanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAppearanceTests.swift; sourceTree = "<group>"; };
 		CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSession.swift; sourceTree = "<group>"; };
 		CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSessionTests.swift; sourceTree = "<group>"; };
 		CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Refreshable.swift; sourceTree = "<group>"; };
@@ -2598,6 +2602,7 @@
 				7DE6A7072319B03600A5B796 /* ErrorReports */,
 				7D80AC59212DB09300C40ECE /* Extensions */,
 				7D08B1D5237205C00075623A /* Files */,
+				CF8D534A2805A67A0038B0B2 /* Fonts */,
 				3B6043A6232AB80500757B93 /* Grades */,
 				7D1D5BE42492A6B2009EA317 /* Groups */,
 				3B34675F2130554C00F9BC2E /* Helpers */,
@@ -4396,6 +4401,7 @@
 		CF2F7E7827FF20D600942241 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CF8D53482805A5850038B0B2 /* FontAppearance.swift */,
 				7D7BA23C24DC58E800B1A68B /* FontExtensions.swift */,
 				7DD7F88F215ADFA5006E1715 /* UIFontExtensions.swift */,
 				CF2F7E7927FF211500942241 /* FontPreview.swift */,
@@ -4808,6 +4814,14 @@
 				CF8CB52626CBEE0C008361E2 /* StaffContactInfoService.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		CF8D534A2805A67A0038B0B2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D534B2805A68C0038B0B2 /* FontAppearanceTests.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CF911BA1279EEDB400E1EECB /* K5 */ = {
@@ -6173,6 +6187,7 @@
 				CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */,
 				EBEA637727A17DB900EA0B2D /* K5ImportantDateItemTests.swift in Sources */,
 				CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */,
+				CF8D534C2805A68C0038B0B2 /* FontAppearanceTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,
 				9F900E7923217CC000BB44B4 /* APISearchRecipientsTests.swift in Sources */,
 				CF911BAB27A2FD7A00E1EECB /* AssignmentCellViewModelTests.swift in Sources */,
@@ -6879,6 +6894,7 @@
 				7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */,
 				CFD6F6C526C13E3C00F5C445 /* K5ScheduleSubject.swift in Sources */,
 				3B4D892C2450A8E9004ED120 /* AttachmentCardsViewController.swift in Sources */,
+				CF8D53492805A5850038B0B2 /* FontAppearance.swift in Sources */,
 				7DA2603C23F722D9005D2121 /* Context.swift in Sources */,
 				7DA25FB923F72136005D2121 /* APILatePolicy.swift in Sources */,
 				D9D9F0F4276CC69D008846AE /* AccessIcon.swift in Sources */,
