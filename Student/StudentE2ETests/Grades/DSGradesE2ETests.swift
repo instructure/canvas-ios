@@ -37,8 +37,6 @@ class DSGradesE2ETests: E2ETestCase {
         let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignment1Name, description: assignment1Description, published: true, points_possible: 100))
 
         logInDSUser(student)
-        // Need to sleep here because the backend needs some time to handle the assignment creation
-        sleep(5)
 
         // Create submissions for both
         seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
