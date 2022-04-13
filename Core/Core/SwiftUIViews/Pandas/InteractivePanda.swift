@@ -60,6 +60,7 @@ public struct InteractivePanda: View {
                     .padding(.horizontal, 16)
             }
         }
+        .accessibilityElement(children: .combine)
     }
 }
 
