@@ -26,12 +26,15 @@ public struct WebSitePreviewView: View {
     }
 
     public var body: some View {
-        EditorForm(isSpinning: false) {
+        EditorForm(isSpinning: viewModel.isLoading) {
             locationSection
             headersSection
             launchButton
         }
         .navigationTitle("WebSite Preview")
+        .onAppear {
+            viewModel.viewController = controller
+        }
     }
 
     private var locationSection: some View {

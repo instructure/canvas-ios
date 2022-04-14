@@ -19,9 +19,16 @@ import SwiftUI
 
 class WebSitePreviewViewModel: ObservableObject {
     @Published public var path: String = ""
-    @Published public private(set) var baseURL: String
     @Published public private(set) var headers: [String: String] = [:]
+    @Published public private(set) var isLoading = false
+    public let baseURL: String
     public var headerKeys: [String] { Array(headers.keys).sorted() }
+    public var viewController: WeakViewController?
+
+    private var sessionURL: URL? {
+        guard let baseURL = URL(string: "https://\(baseURL)/\(path)") else { return nil }
+        return baseURL
+    }
 
     public init(env: AppEnvironment = AppEnvironment.shared) {
         baseURL = env.currentSession?.baseURL.host ?? ""
@@ -36,6 +43,32 @@ class WebSitePreviewViewModel: ObservableObject {
     }
 
     public func launchSessionTapped() {
-        
+        guard let sessionURL = sessionURL else {
+            return
+        }
+
+        isLoading = true
+
+        AppEnvironment.shared.api.makeRequest(GetWebSessionRequest(to: sessionURL)) { [weak self] response, _, _ in
+            performUIUpdate {
+                self?.handleSessionResponse(sessionURL: response?.session_url)
+            }
+        }
+    }
+
+    private func handleSessionResponse(sessionURL: URL?) {
+        isLoading = false
+
+        guard let url = sessionURL, let viewController = viewController else {
+            return
+        }
+
+        var request = URLRequest(url: url)
+
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key)
+        }
+
+        AppEnvironment.shared.router.show(CoreHostingController(WebView(request: request).navigationTitle("WebSite Preview")), from: viewController)
     }
 }
