@@ -18,22 +18,21 @@
 import SwiftUI
 
 class WebSitePreviewViewModel: ObservableObject {
-    public let texts = (
-        locationSectionTitle: "Website Location",
-        url: "Base URL",
-        path: "Path",
-        headerSectionTitle: "Header Fields",
-        addHeaderButton: "Add new header",
-        launchButton: "Launch Session"
-    )
-    @Published public var baseURL: String
+    @Published public var path: String = ""
+    @Published public private(set) var baseURL: String
+    @Published public private(set) var headers: [String: String] = [:]
+    public var headerKeys: [String] { Array(headers.keys).sorted() }
 
     public init(env: AppEnvironment = AppEnvironment.shared) {
-        baseURL = env.currentSession?.baseURL.absoluteString ?? ""
+        baseURL = env.currentSession?.baseURL.host ?? ""
     }
 
-    public func addNewHeaderTapped() {
-        
+    public func setHeader(key: String, value: String) {
+        headers[key] = value
+    }
+
+    public func deleteKey(_ key: String) {
+        headers.removeValue(forKey: key)
     }
 
     public func launchSessionTapped() {

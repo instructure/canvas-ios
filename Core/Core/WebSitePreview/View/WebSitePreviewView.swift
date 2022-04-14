@@ -19,7 +19,11 @@
 import SwiftUI
 
 public struct WebSitePreviewView: View {
+    @Environment(\.viewController) var controller
     @StateObject private var viewModel = WebSitePreviewViewModel()
+
+    public init() {
+    }
 
     public var body: some View {
         EditorForm(isSpinning: false) {
@@ -30,20 +34,34 @@ public struct WebSitePreviewView: View {
     }
 
     private var locationSection: some View {
-        EditorSection(label: Text(viewModel.texts.locationSectionTitle)) {
-            TextFieldRow(label: Text(viewModel.texts.url), placeholder: "", text: .constant(viewModel.baseURL))
+        EditorSection(label: Text(verbatim: "Website Location")) {
+            TextFieldRow(label: Text(verbatim: "Base URL"),
+                         placeholder: "",
+                         text: .constant(viewModel.baseURL))
+                .disabled(true)
             Divider()
-            TextFieldRow(label: Text(viewModel.texts.path), placeholder: "", text: .constant(viewModel.baseURL))
+            TextFieldRow(label: Text(verbatim: "Path"),
+                         placeholder: "Enter Path",
+                         text: $viewModel.path)
         }
     }
 
     private var headersSection: some View {
-        EditorSection(label: Text(verbatim: viewModel.texts.headerSectionTitle)) {
-            ButtonRow(action: viewModel.addNewHeaderTapped) {
+        EditorSection(label: Text(verbatim: "Header Fields")) {
+            ForEach(viewModel.headerKeys, id: \.self) { key in
+                let value = viewModel.headers[key]!
+                ButtonRow(action: { showEditHeaderAlert(key: key, value: value) }) {
+                    Text("\(key): \(viewModel.headers[key]!)")
+                        .foregroundColor(Color(Brand.shared.linkColor))
+                    Spacer()
+                }
+                Divider()
+            }
+            ButtonRow(action: showAddHeaderAlert) {
                 Image.addSolid.size(18)
                     .padding(.trailing, 12)
                     .foregroundColor(Color(Brand.shared.linkColor))
-                Text(viewModel.texts.addHeaderButton)
+                Text(verbatim: "Add New Header")
                     .foregroundColor(Color(Brand.shared.linkColor))
                 Spacer()
             }
@@ -53,16 +71,60 @@ public struct WebSitePreviewView: View {
     private var launchButton: some View {
         EditorSection {
             ButtonRow(action: viewModel.launchSessionTapped) {
-                Text(viewModel.texts.launchButton)
+                Text(verbatim: "Launch Session")
                     .foregroundColor(Color(Brand.shared.linkColor))
                 Spacer()
+                InstDisclosureIndicator()
             }
         }
+    }
+
+    private func showAddHeaderAlert() {
+        let alert = UIAlertController(title: "Add New Header Field", message: "", preferredStyle: .alert)
+        alert.addTextField() { textField in
+            textField.placeholder = "Key"
+        }
+        alert.addTextField() { textField in
+            textField.placeholder = "Value"
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            let enteredKey = alert.textFields?[0].text ?? ""
+            let enteredValue = alert.textFields?[1].text ?? ""
+
+            if !enteredKey.isEmpty {
+                viewModel.setHeader(key: enteredKey, value: enteredValue)
+            }
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        controller.value.present(alert, animated: true)
+    }
+
+    private func showEditHeaderAlert(key: String, value: String) {
+        let alert = UIAlertController(title: "Edit \(key) Header Field", message: "", preferredStyle: .alert)
+
+        alert.addTextField() { textField in
+            textField.placeholder = "Value"
+            textField.text = value
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            let enteredValue = alert.textFields?[0].text ?? ""
+            viewModel.setHeader(key: key, value: enteredValue)
+        })
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+            viewModel.deleteKey(key)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        controller.value.present(alert, animated: true)
     }
 }
 
 struct WebSitePreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        WebSitePreviewView()
+        setupPreview()
+        return WebSitePreviewView()
+    }
+
+    private static func setupPreview() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://websitepreview.instructure.com")!, userID: "", userName: "")
     }
 }
