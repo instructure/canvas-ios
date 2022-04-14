@@ -85,10 +85,10 @@ public struct WebSitePreviewView: View {
 
     private func showAddHeaderAlert() {
         let alert = UIAlertController(title: "Add New Header Field", message: "", preferredStyle: .alert)
-        alert.addTextField() { textField in
+        alert.addTextField { textField in
             textField.placeholder = "Key"
         }
-        alert.addTextField() { textField in
+        alert.addTextField { textField in
             textField.placeholder = "Value"
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
@@ -108,7 +108,7 @@ public struct WebSitePreviewView: View {
     private func showEditHeaderAlert(key: String, value: String) {
         let alert = UIAlertController(title: "Edit \(key)", message: "", preferredStyle: .alert)
 
-        alert.addTextField() { textField in
+        alert.addTextField { textField in
             textField.placeholder = "Value"
             textField.text = value
         }
