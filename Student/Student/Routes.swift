@@ -358,6 +358,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(PandaGallery())
     },
 
+    "/dev-menu/website-preview": { _, _, _ in
+        CoreHostingController(WebSitePreviewView())
+    },
+
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
     },

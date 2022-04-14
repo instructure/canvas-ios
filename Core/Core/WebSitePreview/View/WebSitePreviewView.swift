@@ -31,6 +31,7 @@ public struct WebSitePreviewView: View {
             headersSection
             launchButton
         }
+        .navigationTitle("WebSite Preview")
     }
 
     private var locationSection: some View {
@@ -92,7 +93,9 @@ public struct WebSitePreviewView: View {
             let enteredValue = alert.textFields?[1].text ?? ""
 
             if !enteredKey.isEmpty {
-                viewModel.setHeader(key: enteredKey, value: enteredValue)
+                withAnimation {
+                    viewModel.setHeader(key: enteredKey, value: enteredValue)
+                }
             }
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -100,7 +103,7 @@ public struct WebSitePreviewView: View {
     }
 
     private func showEditHeaderAlert(key: String, value: String) {
-        let alert = UIAlertController(title: "Edit \(key) Header Field", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Edit \(key)", message: "", preferredStyle: .alert)
 
         alert.addTextField() { textField in
             textField.placeholder = "Value"
@@ -108,10 +111,14 @@ public struct WebSitePreviewView: View {
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
             let enteredValue = alert.textFields?[0].text ?? ""
-            viewModel.setHeader(key: key, value: enteredValue)
+            withAnimation {
+                viewModel.setHeader(key: key, value: enteredValue)
+            }
         })
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
-            viewModel.deleteKey(key)
+            withAnimation {
+                viewModel.deleteKey(key)
+            }
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         controller.value.present(alert, animated: true)

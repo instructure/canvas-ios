@@ -284,6 +284,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(PandaGallery())
     },
 
+    "/dev-menu/website-preview": { _, _, _ in
+        CoreHostingController(WebSitePreviewView())
+    },
+
     "/profile": { _, _, _ in
         return CoreHostingController(SideMenuView(.teacher), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },
