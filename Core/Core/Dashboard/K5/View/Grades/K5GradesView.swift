@@ -29,53 +29,9 @@ struct K5GradesView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            VStack(alignment: .leading) {
-                Button(action: {
-                    withAnimation {
-                        gradeSelectorOpen.toggle()
-                    }
-                }, label: {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("Select", bundle: .core)
-                            .font(.regular13)
-                            .background(Color.white)
-                            .foregroundColor(.ash)
-                            .padding(.top, 15)
-                        HStack(spacing: 7) {
-                            Text(viewModel.currentGradingPeriod.title ?? "")
-                                .font(.bold24)
-                                .foregroundColor(.licorice)
-                            Image.arrowOpenDownLine
-                                .resizable()
-                                .frame(width: 12, height: 12)
-                                .foregroundColor(.licorice)
-                                .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
-                                .animation(.easeOut)
-                            Spacer()
-                        }
-                        .padding(.bottom, 13)
-                        Divider()
-                    }
-                })
-                .zIndex(1)
-                .background(Color.white)
-                .padding(.top, 0)
 
-                if gradeSelectorOpen {
-                    VStack(alignment: .leading) {
-                        ForEach(viewModel.gradingPeriods, id: \.self) { gradingPeriod in
-                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white).contentShape(Rectangle()).onTapGesture {
-                                viewModel.didSelect(gradingPeriod: gradingPeriod)
-                                withAnimation {
-                                    gradeSelectorOpen = false
-                                }
-                            }
-                            Divider()
-                        }
-                    }.transition(.move(edge: .top))
-                }
-            }
-            .clipped()
+            gradingPeriodSelector
+
             Spacer()
             ScrollView(showsIndicators: false) {
                 CircleRefresh { endRefreshing in
@@ -94,6 +50,58 @@ struct K5GradesView: View {
                 gradeSelectorOpen = false
             }
         }
+    }
+
+    private var gradingPeriodSelector: some View {
+        VStack(alignment: .leading) {
+            Button(action: {
+                withAnimation {
+                    gradeSelectorOpen.toggle()
+                }
+            }, label: {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("Select", bundle: .core)
+                        .font(.regular13)
+                        .background(Color.white)
+                        .foregroundColor(.ash)
+                        .padding(.top, 15)
+                    HStack(spacing: 7) {
+                        Text(viewModel.currentGradingPeriod.title ?? "")
+                            .font(.bold24)
+                            .foregroundColor(.licorice)
+                        Image.arrowOpenDownLine
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(.licorice)
+                            .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
+                            .animation(.easeOut)
+                        Spacer()
+                    }
+                    .padding(.bottom, 13)
+                    Divider()
+                }
+            })
+            .zIndex(1)
+            .background(Color.white)
+            .padding(.top, 0)
+
+            if gradeSelectorOpen {
+                VStack(alignment: .leading) {
+                    ForEach(viewModel.gradingPeriods, id: \.self) { gradingPeriod in
+                        Button {
+                            viewModel.didSelect(gradingPeriod: gradingPeriod)
+                            withAnimation {
+                                gradeSelectorOpen = false
+                            }
+                        } label: {
+                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white).foregroundColor(.licorice)
+                        }.padding(.bottom, 1)
+                        Divider()
+                    }
+                }.transition(.move(edge: .top))
+            }
+        }
+        .clipped()
     }
 }
 
