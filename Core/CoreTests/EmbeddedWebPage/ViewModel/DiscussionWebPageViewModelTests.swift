@@ -62,4 +62,31 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.subTitle, "Test Group Name")
         XCTAssertEqual(testee.contextColor, UIColor(hexString: "#BEEF00"))
     }
+
+    func testEnabledRedesignFeatureFlag() {
+        let flag = FeatureFlag(context: databaseClient)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("1")
+
+        XCTAssertTrue(DiscussionWebPageViewModel.isRedesignEnabled(in: .course("1")))
+    }
+
+    func testDisabledRedesignFeatureFlag() {
+        let flag = FeatureFlag(context: databaseClient)
+        flag.name = "react_discussions_post"
+        flag.enabled = false
+        flag.context = .course("1")
+
+        XCTAssertFalse(DiscussionWebPageViewModel.isRedesignEnabled(in: .course("1")))
+    }
+
+    func testMissingRedesignFeatureFlag() {
+        let flag = FeatureFlag(context: databaseClient)
+        flag.name = "react_discussions_post_2"
+        flag.enabled = true
+        flag.context = .course("1")
+
+        XCTAssertFalse(DiscussionWebPageViewModel.isRedesignEnabled(in: .course("1")))
+    }
 }

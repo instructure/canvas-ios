@@ -19,6 +19,9 @@
 import Foundation
 
 public class DiscussionWebPageViewModel: EmbeddedWebPageViewModel {
+    public static func isRedesignEnabled(in context: Context) -> Bool {
+        AppEnvironment.shared.subscribe(GetEnabledFeatureFlags(context: context)).first { $0.isDiscussionAndAnnouncementRedesign }?.enabled ?? false
+    }
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
     public let navTitle = NSLocalizedString("Discussion Details", comment: "")
