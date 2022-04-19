@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import CoreData
+import Core
+import XCTest
 
-public class FeatureFlag: NSManagedObject {
-    @NSManaged public private(set) var canvasContextID: String?
-    @NSManaged public var name: String
-    @NSManaged public var enabled: Bool
+class FeatureFlagTests: CoreTestCase {
 
-    public var context: Context? {
-        get { return canvasContextID.flatMap { Context(canvasContextID: $0) } }
-        set { canvasContextID = newValue?.canvasContextID }
-    }
-
-    public var isDiscussionAndAnnouncementRedesign: Bool {
-        name == "react_discussions_post"
+    func testIsDiscussionAndAnnouncementRedesignFlag() {
+        let flag = FeatureFlag(context: databaseClient)
+        flag.name = "react_discussions_post"
+        XCTAssertTrue(flag.isDiscussionAndAnnouncementRedesign)
     }
 }

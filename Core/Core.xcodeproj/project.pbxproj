@@ -911,6 +911,7 @@
 		CF8D535A280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */; };
 		CF8D535C280869820038B0B2 /* DiscussionWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */; };
 		CF8D536028086C110038B0B2 /* DiscussionWebPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D535F28086C110038B0B2 /* DiscussionWebPageViewModelTests.swift */; };
+		CF8D5362280EC41B0038B0B2 /* FeatureFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */; };
 		CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */; };
 		CF911BA4279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */; };
 		CF911BA627A29B1800E1EECB /* iOS15Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */; };
@@ -2249,6 +2250,7 @@
 		CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedWebPageViewModel.swift; sourceTree = "<group>"; };
 		CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionWebPageViewModel.swift; sourceTree = "<group>"; };
 		CF8D535F28086C110038B0B2 /* DiscussionWebPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionWebPageViewModelTests.swift; sourceTree = "<group>"; };
+		CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagTests.swift; sourceTree = "<group>"; };
 		CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSession.swift; sourceTree = "<group>"; };
 		CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSessionTests.swift; sourceTree = "<group>"; };
 		CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Refreshable.swift; sourceTree = "<group>"; };
@@ -3183,6 +3185,7 @@
 			isa = PBXGroup;
 			children = (
 				B1571E68230756D2009CAA58 /* APIFeatureFlagTests.swift */,
+				CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */,
 				B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */,
 			);
 			path = FeatureFlags;
@@ -6112,6 +6115,7 @@
 				CF9A0F4B27ECA3CF00762228 /* DefaultViewProviderTests.swift in Sources */,
 				E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */,
 				3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */,
+				CF8D5362280EC41B0038B0B2 /* FeatureFlagTests.swift in Sources */,
 				7DA20E932168128400F5FD19 /* InstIconExtensionsTests.swift in Sources */,
 				7D63F788215D44A600151E49 /* APIBrandVariablesTests.swift in Sources */,
 				CF9A0F3627E9E82400762228 /* CourseDetailsViewModelTests.swift in Sources */,
