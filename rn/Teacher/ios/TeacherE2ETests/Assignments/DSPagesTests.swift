@@ -32,9 +32,10 @@ class DSPagesTests: E2ETestCase {
         // Check for empty PageList
         logInDSUser(teacher)
         pullToRefresh()
-        Dashboard.courseCard(id: course.id).waitToExist()
+        Dashboard.courseCard(id: course.id).waitToExist(15)
         Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.pages.tap()
+        pullToRefresh()
         XCTAssertTrue(PageList.emptyPageList().exists())
         XCTAssertFalse(PageList.page(index: 0).exists())
 

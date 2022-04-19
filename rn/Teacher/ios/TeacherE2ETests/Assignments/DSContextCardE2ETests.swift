@@ -40,6 +40,8 @@ class DSContextCardE2ETests: E2ETestCase {
         let assignmentDescription3 = "Assignment 3 Description"
         let assignment3 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName3, description: assignmentDescription3, published: true, points_possible: 5))
 
+        logInDSUser(teacher)
+
         // Seed submissions
         seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
@@ -50,20 +52,19 @@ class DSContextCardE2ETests: E2ETestCase {
         seeder.createSubmission(courseId: course.id, assignmentId: assignment3.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
+        Dashboard.courseCard(id: course.id).waitToExist()
+        Dashboard.courseCard(id: course.id).tap()
+
         // Grade 2 of the submissions
         seeder.postGrade(courseId: course.id, assignmentId: assignment2.id, userId: student.id, requestBody: .init(posted_grade: "7"))
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment3.id, userId: student.id, requestBody: .init(posted_grade: "5"))
 
-        logInDSUser(teacher)
-
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
-
         // Check the students context cards via People
         CourseNavigation.people.tap()
+        pullToRefresh()
         app.find(label: student.name).tap()
-        ContextCard.userNameLabel.waitToExist()
+        ContextCard.userNameLabel.waitToExist(15)
         XCTAssertEqual(ContextCard.userNameLabel.label(), student.name)
         XCTAssertEqual(ContextCard.courseLabel.label(), course.name)
         XCTAssertEqual(ContextCard.sectionLabel.label(), "Section: \(course.name)")

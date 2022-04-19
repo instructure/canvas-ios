@@ -58,6 +58,6 @@ class DSTodosE2ETests: E2ETestCase {
         pullToRefresh()
         pullToRefresh()
         XCTAssertNotEqual(TabBar.todoTab.value(), todoBadgeValue)
-        XCTAssertFalse(app.find(label: oneNeedsGradingLabel).exists())
+        XCTAssertFalse(app.find(label: oneNeedsGradingLabel).isVisible)
     }
 }
