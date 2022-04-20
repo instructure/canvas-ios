@@ -20,6 +20,8 @@
 import XCTest
 
 class DiscussionWebPageViewModelTests: CoreTestCase {
+    let timezoneName = TimeZone.current.identifier
+    let locale = Locale.current.identifier.replacingOccurrences(of: "_", with: "-")
 
     func testURLWithoutSession() {
         AppEnvironment.shared.currentSession = nil
@@ -30,13 +32,13 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
     func testCourseURL() {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
         let testee = DiscussionWebPageViewModel(context: .course("1"), topicID: "123")
-        XCTAssertEqual(testee.url, URL(string: "https://instructure.com/courses/1/discussion_topics/123?embed=true")!)
+        XCTAssertEqual(testee.url, URL(string: "https://instructure.com/courses/1/discussion_topics/123?embed=true&session_timezone=\(timezoneName)&session_locale=\(locale)")!)
     }
 
     func testGroupURL() {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
         let testee = DiscussionWebPageViewModel(context: .group("1"), topicID: "123")
-        XCTAssertEqual(testee.url, URL(string: "https://instructure.com/groups/1/discussion_topics/123?embed=true")!)
+        XCTAssertEqual(testee.url, URL(string: "https://instructure.com/groups/1/discussion_topics/123?embed=true&session_timezone=\(timezoneName)&session_locale=\(locale)")!)
     }
 
     func testCourseProperties() {

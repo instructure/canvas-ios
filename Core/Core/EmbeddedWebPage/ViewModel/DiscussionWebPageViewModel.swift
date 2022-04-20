@@ -47,7 +47,12 @@ public class DiscussionWebPageViewModel: EmbeddedWebPageViewModel {
 
             baseURL.appendPathComponent(context.pathComponent)
             baseURL.appendPathComponent("discussion_topics/\(topicID)")
-            baseURL = baseURL.appendingQueryItems(URLQueryItem(name: "embed", value: "true"))
+            baseURL = baseURL.appendingQueryItems(
+                URLQueryItem(name: "embed", value: "true"),
+                URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
+                URLQueryItem(name: "session_locale", value: Locale.current.identifier.replacingOccurrences(of: "_", with: "-"))
+            )
+
             return baseURL
         }()
         self.context = context
