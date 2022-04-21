@@ -173,8 +173,8 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
   }
 
   viewWebSitePreview = async () => {
-      await this.props.navigator.dismiss()
-      this.props.navigator.show('/dev-menu/website-preview', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
+    await this.props.navigator.dismiss()
+    this.props.navigator.show('/dev-menu/website-preview', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
   }
 
   manageRatingRequest = () => {
