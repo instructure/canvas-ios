@@ -139,6 +139,7 @@ exports[`Compose renders 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
                 "height": 54,
                 "lineHeight": 19,
@@ -177,6 +178,7 @@ exports[`Compose renders 1`] = `
         style={
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
             "lineHeight": 19,
             "paddingBottom": 8,
@@ -414,6 +416,7 @@ exports[`Compose renders after picking a course 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
                 "height": 54,
                 "lineHeight": 19,
@@ -452,6 +455,7 @@ exports[`Compose renders after picking a course 1`] = `
         style={
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
             "lineHeight": 19,
             "paddingBottom": 8,
@@ -687,6 +691,7 @@ exports[`Compose renders reply 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
                 "height": 54,
                 "lineHeight": 19,
@@ -725,6 +730,7 @@ exports[`Compose renders reply 1`] = `
         style={
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
             "lineHeight": 19,
             "paddingBottom": 8,
@@ -880,6 +886,7 @@ exports[`Compose renders with passed in recipients 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
                 "height": 54,
                 "lineHeight": 19,
@@ -918,6 +925,7 @@ exports[`Compose renders with passed in recipients 1`] = `
         style={
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
             "lineHeight": 19,
             "paddingBottom": 8,
