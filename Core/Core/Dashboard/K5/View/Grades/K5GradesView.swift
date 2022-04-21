@@ -29,9 +29,7 @@ struct K5GradesView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-
             gradingPeriodSelector
-
             Spacer()
             ScrollView(showsIndicators: false) {
                 CircleRefresh { endRefreshing in
@@ -54,33 +52,34 @@ struct K5GradesView: View {
 
     private var gradingPeriodSelector: some View {
         VStack(alignment: .leading) {
-            Button(action: {
-                withAnimation {
-                    gradeSelectorOpen.toggle()
-                }
-            }, label: {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Select", bundle: .core)
-                        .font(.regular13)
-                        .background(Color.white)
-                        .foregroundColor(.ash)
-                        .padding(.top, 15)
-                    HStack(spacing: 7) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Select", bundle: .core)
+                    .font(.regular13)
+                    .background(Color.white)
+                    .foregroundColor(.ash)
+                    .padding(.top, 15)
+                HStack(spacing: 7) {
+                    Button(action: {
+                        withAnimation {
+                            gradeSelectorOpen.toggle()
+                        }
+                    }, label: {
                         Text(viewModel.currentGradingPeriod.title ?? "")
                             .font(.bold24)
                             .foregroundColor(.licorice)
-                        Image.arrowOpenDownLine
-                            .resizable()
-                            .frame(width: 12, height: 12)
-                            .foregroundColor(.licorice)
-                            .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
-                            .animation(.easeOut)
-                        Spacer()
-                    }
-                    .padding(.bottom, 13)
-                    Divider()
+                    })
+
+                    Image.arrowOpenDownLine
+                        .resizable()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(.licorice)
+                        .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
+                        .animation(.easeOut)
+                    Spacer()
                 }
-            })
+                .padding(.bottom, 13)
+                Divider()
+            }
             .zIndex(1)
             .background(Color.white)
             .padding(.top, 0)
