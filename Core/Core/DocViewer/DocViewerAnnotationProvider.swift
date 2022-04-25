@@ -28,7 +28,6 @@ protocol DocViewerAnnotationProviderDelegate: AnyObject {
 class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     public weak var docViewerDelegate: DocViewerAnnotationProviderDelegate?
 
-    var apiAnnotations: [String: APIDocViewerAnnotation] = [:]
     var requestsInFlight = 0 {
         didSet {
             // If we have a failed upload don't communicate success even if subsequent upload succeed.
@@ -60,7 +59,6 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         guard let annotationsMetadata = metadata.annotations, annotationsMetadata.enabled else { return }
         var hasReplies: Set<String> = []
         let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
-            apiAnnotations[apiAnnotation.id] = apiAnnotation
             if let id = apiAnnotation.inreplyto { hasReplies.insert(id) }
 
             let pspdfAnnotation = Annotation.from(apiAnnotation, metadata: annotationsMetadata)
@@ -119,7 +117,6 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         for annotation in annotations {
             guard let apiAnnotation = annotation.apiAnnotation() else { continue }
             added.append(annotation)
-            apiAnnotations[apiAnnotation.id] = apiAnnotation
             if annotation.isEmpty {
                 continue // don't save to network if empty comment reply or free text
             }
@@ -132,7 +129,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         super.remove(annotations, options: options)
         var removed: [Annotation] = []
         for annotation in annotations {
-            guard let id = annotation.name, apiAnnotations.removeValue(forKey: id) != nil else { continue }
+            guard let id = annotation.name else { continue }
             removed.append(annotation)
             delete(id)
         }
@@ -155,9 +152,12 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         requestsInFlight += 1
         api.makeRequest(PutDocViewerAnnotationRequest(body: body, sessionID: sessionID)) { [weak self] updated, _, error in performUIUpdate {
             self?.requestsInFlight -= 1
-            if let updated = updated {
-                self?.apiAnnotations[updated.id] = updated
-            } else if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
+
+            if updated != nil {
+                return
+            }
+
+            if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
                 self?.docViewerDelegate?.annotationDidExceedLimit(annotation: body)
             } else {
                 self?.uploadDidFail = true
@@ -197,8 +197,6 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             docViewerDelegate?.annotationDidExceedLimit(annotation: apiAnnotation)
             return
         }
-
-        apiAnnotations[apiAnnotation.id] = apiAnnotation // update internal list with changes
 
         if annotation.isEmpty {
             return // don't save to network if empty comment reply or free text
