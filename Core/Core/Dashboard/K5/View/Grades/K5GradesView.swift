@@ -70,8 +70,8 @@ struct K5GradesView: View {
                             .font(.bold24)
                             .foregroundColor(.licorice)
                     })
-                    .accessibility(label: Text("Select grading period, ", bundle: .core) + selectorStateText)
-                    .accessibility(hint: Text(", \(viewModel.currentGradingPeriod.title ?? ""), ") + Text("Selected", bundle: .core))
+                    .accessibility(label: Text("Select grading period", bundle: .core) + Text(verbatim: ", ") + selectorStateText)
+                    .accessibility(hint: Text(verbatim: ", \(viewModel.currentGradingPeriod.title ?? "") ,") + Text("Selected", bundle: .core))
 
                     Image.arrowOpenDownLine
                         .resizable()
