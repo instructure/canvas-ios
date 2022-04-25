@@ -65,15 +65,6 @@
 "%d missing" = "%d e ngaro ana";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Ngā whakautu";
-
-/* No comment provided by engineer. */
-"%d students" = "%d ngā ākonga";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Kia pānuitia";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -524,9 +515,6 @@
 "Conversation Message" = "Karere Kōrerorero";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "kōrerorero";
 
 /* No comment provided by engineer. */
@@ -617,21 +605,6 @@
 "Cyan" = "Kawariki";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Ia rā";
 
 /* No comment provided by engineer. */
@@ -639,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Rā";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Te paheketanga";
@@ -914,13 +884,7 @@
 "Filter Inbox" = "Tātari pouaka roto";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Kōeke whakamutunga: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Kimihia he waehere hei ";
@@ -954,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Whakaurunga e heke mai nei";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Haere ki te rā";
@@ -1026,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Hunga ihirangi mō %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Tiketike: %@";
@@ -1139,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Ko te āhua nei kaore ngā akoranga e pā ana ki tēnei pūkete. Haere ki te paetukutuku ki te hanga he akoranga i tēnei rā.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Te ahua nei kaore koe i uru ki etahi akoranga.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ko te titiro kaore koe i whakaurutis ki rot o ngā akoranga hei %@. Ko tētahi o a mātau taupānga he pai ake pea.n Pāt tētahi ki te haere ki te Toa Taupānga.";
 
 /* No comment provided by engineer. */
@@ -1161,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "kōeke tūreiti";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Neke Taputapu Waho";
@@ -1562,9 +1514,6 @@
 "out of" = "i waho i te";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "Whārangi";
 
 /* No comment provided by engineer. */
@@ -1632,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Tēnā koa, tatari ka roa pea he meneti.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Ngā Koinga";
@@ -1919,9 +1865,6 @@
 "Show more options" = "Whakātu  kōwhiringa nui atu";
 
 /* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
-
-/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Mai te mea he kōrero rōpū tēnei, kei ia rōpū ngā kōrerorero mō tēnei kaupapa. Anei ngā kōrero hei whakauru atu mau.";
 
 /* No comment provided by engineer. */
@@ -2154,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "He hapa ohorere i puta Tēnā tarai anō.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ko tenei whakatuanga e tika ana %@";

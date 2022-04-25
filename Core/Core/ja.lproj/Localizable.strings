@@ -65,15 +65,6 @@
 "%d missing" = "%d 欠如";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d返信";
-
-/* No comment provided by engineer. */
-"%d students" = "%d受講者";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d未読";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -524,9 +515,6 @@
 "Conversation Message" = "会話メッセージ";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "会話";
 
 /* No comment provided by engineer. */
@@ -617,21 +605,6 @@
 "Cyan" = "シアン";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "毎日";
 
 /* No comment provided by engineer. */
@@ -639,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "日付";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "辞退する";
@@ -914,13 +884,7 @@
 "Filter Inbox" = "受信トレイをフィルタリングする";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な評定：%@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "スキャンするコードを探す";
@@ -954,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "将来の登録";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "今日に進む";
@@ -1026,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "（）にコンテンツを非表示にする%@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
@@ -1139,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "このアカウントに関連付けられているコースはないようです。今日コースを作成するには、ウェブをご覧ください。";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "あなたはどのコースにも登録されていないようです。";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
 
 /* No comment provided by engineer. */
@@ -1161,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "遅れた採点";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "外部ツールを起動する";
@@ -1562,9 +1514,6 @@
 "out of" = "中";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "ページ";
 
 /* No comment provided by engineer. */
@@ -1632,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "お待ちください。これには少し時間がかかる場合があります。";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "ポイント";
@@ -1919,9 +1865,6 @@
 "Show more options" = "オプションを多く表示する";
 
 /* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
-
-/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "これはグループディスカッションのため、各グループはこのトピックについてそれぞれの会話を行います。利用するディスカッションは以下のとおりです。";
 
 /* No comment provided by engineer. */
@@ -2154,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "予期しないエラーが発生しました。もう一度やり直してください。";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "この課題の提出期限は%@";
