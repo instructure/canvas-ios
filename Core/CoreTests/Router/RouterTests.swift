@@ -49,6 +49,17 @@ class RouterTests: CoreTestCase {
             return mockCollapsed ?? super.isCollapsed
         }
     }
+    class MockAnalyticsHandler: AnalyticsHandler {
+        var loggedEventCount = 0
+        var loggedEvent: String?
+        var loggedParameters: [String: Any]?
+
+        func handleEvent(_ name: String, parameters: [String: Any]?) {
+            loggedEvent = name
+            loggedParameters = parameters
+            loggedEventCount += 1
+        }
+    }
 
     func testRouter() {
         let router = Router(routes: [
@@ -279,11 +290,6 @@ class RouterTests: CoreTestCase {
         let url = URL(string: "https://canvas.instructure.com/somewhere#fragment?query=yo")!
         router.route(to: url, from: mockView)
         XCTAssertNotNil(mockView.shown)
-        XCTAssertEqual(analytics.events[0].name, "route")
-        XCTAssertEqual(
-            analytics.events[0].parameters!["url"] as! String,
-            "https://canvas.instructure.com/somewhere#fragment?query=yo"
-        )
     }
 
     func testRouteApiV1() {
@@ -414,5 +420,67 @@ class RouterTests: CoreTestCase {
             Router.open(url: .parse("\(proto)://canvas.instructure.com/"))
             XCTAssertEqual(login.externalURL?.absoluteURL, url)
         }
+    }
+
+    func testAnalyticsReportOnRoute() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _, _ in }
+        AppEnvironment.shared.app = .teacher
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
+
+        XCTAssertEqual(analyticsHandler.loggedEvent, "screen_view")
+        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], [
+            "application": "teacher",
+            "screen_name": "/courses/:courseId/assignments",
+            "screen_class": "UIViewController",
+        ])
+    }
+
+    func testAnalyticsReportOnShow() {
+        let mockView = MockViewController()
+        let router = Router(routes: []) { _, _, _, _ in }
+        AppEnvironment.shared.app = .parent
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.loggedEvent, "screen_view")
+        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], [
+            "application": "parent",
+            "screen_name": "/courses/:courseId/assignments",
+            "screen_class": "MockViewController",
+        ])
+    }
+
+    func testRouteTemplate() {
+        let testee = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+        ])
+
+        XCTAssertEqual(testee.template(for: "/courses/1234/assignments"), "/courses/:courseId/assignments")
+        XCTAssertEqual(testee.template(for: URLComponents(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
+        XCTAssertEqual(testee.template(for: URL(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
+    }
+
+    func testIsRegisteredRoute() {
+        let testee = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+        ])
+
+        XCTAssertEqual(testee.isRegisteredRoute("/courses/1234/assignments"), true)
+        XCTAssertEqual(testee.isRegisteredRoute("/courses/1234/assignments/4321"), false)
+        XCTAssertEqual(testee.isRegisteredRoute(URLComponents(string: "/courses/1234/assignments")!), true)
+        XCTAssertEqual(testee.isRegisteredRoute(URLComponents(string: "/courses/1234/assignments/4321")!), false)
+        XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments")!), true)
+        XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments/4321")!), false)
     }
 }

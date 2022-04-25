@@ -72,16 +72,11 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
         searchBar.backgroundColor = .backgroundLightest
-
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .borderMedium
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-            self.tableView.contentOffset.y = self.searchBar.frame.height
-        }
-
         colors.refresh()
         if context.contextType == .course {
             course.refresh()
@@ -110,6 +105,13 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         }
         navigationController?.navigationBar.useContextColor(color)
         env.pageViewLogger.startTrackingTimeOnViewController()
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.contentOffset.y = self.searchBar.frame.height
+        }
     }
 
     public override func viewWillDisappear(_ animated: Bool) {

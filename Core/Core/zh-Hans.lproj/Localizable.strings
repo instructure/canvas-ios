@@ -65,15 +65,6 @@
 "%d missing" = "%d个缺失";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d回复";
-
-/* No comment provided by engineer. */
-"%d students" = "%d学生";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d未读";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "添加内容";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "添加课程名称";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "添加课程别称";
@@ -272,6 +266,9 @@
 "Assignments" = "作业";
 
 /* No comment provided by engineer. */
+"Assignments List" = "作业列表";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "通过单击下面的选项附加文件。";
 
 /* No comment provided by engineer. */
@@ -398,6 +395,12 @@
 "Casual question or suggestion" = "简单问题或建议";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "将控制面板布局更改为网格";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "将控制面板布局更改为列表";
+
+/* No comment provided by engineer. */
 "Change User" = "更改用户";
 
 /* Description for Chat communication channel */
@@ -512,9 +515,6 @@
 "Conversation Message" = "会话消息";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "会话";
 
 /* No comment provided by engineer. */
@@ -539,6 +539,9 @@
 "Course Activities" = "课程活动";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "课程活动流";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "课程公告";
 
 /* No comment provided by engineer. */
@@ -558,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "课程评分低于%d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "课程单元";
 
 /* No comment provided by engineer. */
 "Course Sections" = "课程班级";
@@ -599,21 +605,6 @@
 "Cyan" = "青色";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "每天";
 
 /* No comment provided by engineer. */
@@ -621,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "日期";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "拒绝";
@@ -764,6 +752,12 @@
 "Edit attachment (none)" = "编辑附件（无）";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "编辑课程设置";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "编辑控制面板";
+
+/* No comment provided by engineer. */
 "Edit Discussion" = "编辑讨论";
 
 /* No comment provided by engineer. */
@@ -890,13 +884,7 @@
 "Filter Inbox" = "筛选收件箱";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "最终评分：%@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "查找要扫描的代码";
@@ -930,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "未来的注册情况";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "转至今天";
@@ -1002,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "隐藏...的内容%@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
@@ -1115,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "似乎没有任何与此账户关联的课程。 立即访问网页以创建课程。";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "您似乎未注册任何课程。";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您似乎没有以%@身份注册任何课程。我们的其他应用程序可能更合适。单击任一应用程序可访问应用商店。";
 
 /* No comment provided by engineer. */
@@ -1137,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "最近评分";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "启动外部工具";
@@ -1448,6 +1424,9 @@
 "Not Submitted" = "未提交";
 
 /* No comment provided by engineer. */
+"Not supported" = "不受支持";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "不紧急";
 
 /* No due assignments for today */
@@ -1514,6 +1493,9 @@
 "Open item details" = "打开项目详情";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "在 Canvas 学生版中打开";
+
+/* No comment provided by engineer. */
 "Options" = "选项";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1514,6 @@
 "out of" = "共";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "页面";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "页面";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "页面首页";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "与旁听者配对";
@@ -1599,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "请稍等，这可能需要一分钟。";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "得分";
@@ -1668,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "测验";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "最近活动";
 
 /* No comment provided by engineer. */
 "Recipients" = "收件人";
@@ -1859,6 +1841,9 @@
 "Sent" = "已发送";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "设置“首页”为...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "设置为首页";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "显示更多的选项";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "这是一项小组讨论，每个小组都有关于这个主题的会话。这些是您可以参与的讨论。";
@@ -1941,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "学生预约注册";
+
+/* No comment provided by engineer. */
+"Student View" = "学生视图";
 
 /* No comment provided by engineer. */
 "Students" = "学生";
@@ -2112,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "出现意外错误。请重试。";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "此作业的截止日期为%@";

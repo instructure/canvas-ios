@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 現在非表示の成績</string>
+			<string>%d 現在非表示の評定</string>
 			<key>zero</key>
-			<string>%d 現在非表示の成績</string>
+			<string>%d 現在非表示の評定</string>
 		</dict>
 	</dict>
 	<key>grades_currently_posted</key>
@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 現在掲示されている成績</string>
+			<string>%d 現在掲示されている評定</string>
 			<key>zero</key>
-			<string>%d 現在掲示されている成績</string>
+			<string>%d 現在掲示されている評定</string>
 		</dict>
 	</dict>
 </dict>

@@ -65,15 +65,6 @@
 "%d missing" = "%d puuttuu";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Vastausta";
-
-/* No comment provided by engineer. */
-"%d students" = "%d opiskelijaa";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Lukematon";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Lisää sisältö";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Lisää kurssin nimi";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Lisää kurssin lempinimi";
@@ -272,6 +266,9 @@
 "Assignments" = "Tehtävät";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Tehtäväluettelo";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Liitä tiedostoja kommenttiisi napauttamalla alla olevaa vaihtoehtoa.";
 
 /* No comment provided by engineer. */
@@ -398,6 +395,12 @@
 "Casual question or suggestion" = "Huoleton kysymys tai ehdotus";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Muuta koontinäytön asettelu ristikoksi";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Muuta koontinäytön asettelu luetteloksi";
+
+/* No comment provided by engineer. */
 "Change User" = "Vaihda käyttäjää";
 
 /* Description for Chat communication channel */
@@ -512,9 +515,6 @@
 "Conversation Message" = "Keskustelun viesti";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Viestit";
 
 /* No comment provided by engineer. */
@@ -539,6 +539,9 @@
 "Course Activities" = "Kurssiaktiviteetit";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Kurssin viimeaikaiset tapahtumat";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Kurssin ilmoitus";
 
 /* No comment provided by engineer. */
@@ -558,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kurssin arvosana alla  %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Kurssin moduulit";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Kurssin osiot";
@@ -599,21 +605,6 @@
 "Cyan" = "Syaani";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Päivittäin";
 
 /* No comment provided by engineer. */
@@ -621,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Päivämäärä";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Hylkää";
@@ -764,6 +752,12 @@
 "Edit attachment (none)" = "Muokkaa liitettä (ei mitään)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "Muokkaa kurssin asetuksia";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Muokkaa koontinäyttöä";
+
+/* No comment provided by engineer. */
 "Edit Discussion" = "Muokkaa keskustelu";
 
 /* No comment provided by engineer. */
@@ -890,13 +884,7 @@
 "Filter Inbox" = "Suodata saapuneet";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Lopullinen arvosana: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Etsi skannattava koodi";
@@ -930,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Tulevat ilmoittautumiset";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Siirry tähän päivään";
@@ -1002,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Piilota sisältö kohteesta  %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Korkea: %@";
@@ -1115,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Näyttää siltä kuin tähän tiliin ei ole liitetty yhtään kurssia. Käy verkossa luodaksesi kurssi tänään";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
 
 /* No comment provided by engineer. */
@@ -1137,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Myöhäinen arvosanojen anto";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Käynnistä ulkoinen työkalu";
@@ -1448,6 +1424,9 @@
 "Not Submitted" = "Ei lähetetty";
 
 /* No comment provided by engineer. */
+"Not supported" = "Ei tuettu";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Ei kiireellinen";
 
 /* No due assignments for today */
@@ -1514,6 +1493,9 @@
 "Open item details" = "Avaa kohteen tiedot";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Avautuu Canvas Studentissa";
+
+/* No comment provided by engineer. */
 "Options" = "Asetukset";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1514,6 @@
 "out of" = "/";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "sivu";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sivut";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Sivujen etusivu";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Yhdistä havaitsijan kanssa";
@@ -1599,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Odota, tämä voi kestää hetken.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Pisteet";
@@ -1668,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Testit";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Viimeaikainen aktiviteetti";
 
 /* No comment provided by engineer. */
 "Recipients" = "Vastaanottajat";
@@ -1859,6 +1841,9 @@
 "Sent" = "Lähetetty";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Määritä ”Etusivu” arvoon…";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Määritä etusivuksi";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Näytä lisäasetukset";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Koska tämä on ryhmäkeskustelu, jokaisella ryhmällä on oma keskustelu tällä aiheelle. Täällä on ne keskustelut, joihin sinulla on käyttöoikeus:";
@@ -1941,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Opiskelijatapaamisen rekisteröitymiset";
+
+/* No comment provided by engineer. */
+"Student View" = "Opiskelijanäkymä";
 
 /* No comment provided by engineer. */
 "Students" = "Opiskelijat";
@@ -2112,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Ilmeni odottamaton virhe. Yritä uudelleen.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Tämän tehtävän määräpäivä %@";

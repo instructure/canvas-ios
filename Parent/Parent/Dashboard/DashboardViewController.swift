@@ -88,6 +88,7 @@ class DashboardViewController: UIViewController, ErrorViewController {
 
         tabsController.tabBar.useGlobalNavStyle()
         tabsController.tabBar.isTranslucent = false
+        tabsController.delegate = self
         embed(tabsController, in: tabsContainer)
 
         permissions.refresh(force: true)
@@ -97,6 +98,8 @@ class DashboardViewController: UIViewController, ErrorViewController {
             self?.update()
             return true
         }
+
+        reportScreenView(for: 0, viewController: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -259,6 +262,23 @@ class DashboardViewController: UIViewController, ErrorViewController {
         alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
+    }
+
+    private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
+        let map = ["courses", "calendar", "alerts"]
+        let event = map[tabIndex]
+        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
+}
+
+extension DashboardViewController: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let index = tabBarController.viewControllers?.firstIndex(of: viewController), tabBarController.selectedViewController != viewController {
+            reportScreenView(for: index, viewController: viewController)
+        }
+
+        return true
     }
 }
 

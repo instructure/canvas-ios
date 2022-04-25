@@ -53,10 +53,19 @@
 "Choose Files" = "เลือกไฟล์";
 
 /* No comment provided by engineer. */
+"Close" = "ปิด";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "ปิดแผงรายการ";
 
 /* No comment provided by engineer. */
 "Comment" = "ความเห็น";
+
+/* No comment provided by engineer. */
+"Comment Library" = "ไลบรารี่ความเห็น";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "ไลบรารี่ความเห็นไม่มีใช้งาน";
 
 /* No comment provided by engineer. */
 "Comments" = "ความเห็น";
@@ -148,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "เกรดจะแสดงให้แก่ผู้เรียนที่มีผลงานจัดส่งแบบให้เกรด";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "กลุ่ม";
 
@@ -197,10 +200,16 @@
 "No Submissions" = "ไม่มีผลงานจัดส่ง";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "ไม่มีข้อเสนอแนะ";
+
+/* No comment provided by engineer. */
 "Not Graded" = "ไม่ได้ลงเกรด";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "เปิดไลบรารี่ความเห็น";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "เปิดแถบรายการเต็มหน้าจอ";

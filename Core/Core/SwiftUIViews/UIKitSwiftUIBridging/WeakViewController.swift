@@ -43,8 +43,8 @@ public extension Router {
         route(to: url, userInfo: userInfo, from: from.value, options: options)
     }
 
-    func show(_ view: UIViewController, from: WeakViewController, options: RouteOptions = DefaultRouteOptions, completion: (() -> Void)? = nil) {
-        show(view, from: from.value, options: options, completion: completion)
+    func show(_ view: UIViewController, from: WeakViewController, options: RouteOptions = DefaultRouteOptions, analyticsRoute: String = "/unknown", completion: (() -> Void)? = nil) {
+        show(view, from: from.value, options: options, analyticsRoute: analyticsRoute, completion: completion)
     }
 
     func pop(from: WeakViewController) {

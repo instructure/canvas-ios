@@ -17,8 +17,6 @@
 //
 
 // @flow
-import CourseNavigation from '../modules/courses/CourseNavigation'
-import CourseSettings from '../modules/courses/settings/CourseSettings'
 import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePreferences'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import Inbox from '../modules/inbox/Inbox'
@@ -49,9 +47,9 @@ import { isTeacher, isStudent } from '../modules/app'
 
 export function registerScreens (store: Store): void {
   registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID/tabs', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID/settings', CourseSettings, store)
+  registerScreen('/courses/:courseID', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/tabs', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/settings', null, store)
   registerScreen('/courses/:courseID/user_preferences', UserCoursePreferences, store)
   registerScreen('/courses/:courseID/assignments', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/collaborations', null, store, { showInWebView: true, deepLink: true })
@@ -114,6 +112,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/push-notifications', PushNotifications, store)
   registerScreen('/page-view-events', PageViewEvents, store)
   registerScreen('/dev-menu/experimental-features', null, store)
+  registerScreen('/dev-menu/pandas', null, store)
+  registerScreen('/dev-menu/website-preview', null, store)
   registerScreen('/rating-request', RatingRequest, store)
   registerScreen('/logs')
   registerScreen('/act-as-user')

@@ -31,6 +31,7 @@ public protocol LoginDelegate: AnyObject {
     func userDidStopActing(as session: LoginSession)
     func userDidLogout(session: LoginSession)
     func changeUser()
+    func actAsStudentViewStudent(studentViewStudentID: String)
 }
 
 public extension LoginDelegate {
@@ -65,4 +66,6 @@ public extension LoginDelegate {
             userDidLogout(session: session)
         }
     }
+
+    func actAsStudentViewStudent(studentViewStudentID: String) {}
 }

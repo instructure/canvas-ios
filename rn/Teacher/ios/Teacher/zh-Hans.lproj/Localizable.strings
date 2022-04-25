@@ -53,10 +53,19 @@
 "Choose Files" = "选择文件";
 
 /* No comment provided by engineer. */
+"Close" = "关闭";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "关闭抽屉";
 
 /* No comment provided by engineer. */
 "Comment" = "评论";
+
+/* No comment provided by engineer. */
+"Comment Library" = "评论库";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "评论库不可用";
 
 /* No comment provided by engineer. */
 "Comments" = "评论";
@@ -148,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "评分将对所有具备评分提交项的学生显示";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "小组";
 
@@ -197,10 +200,16 @@
 "No Submissions" = "无提交项";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "未提供建议";
+
+/* No comment provided by engineer. */
 "Not Graded" = "未评分";
 
 /* No comment provided by engineer. */
 "OK" = "确定";
+
+/* No comment provided by engineer. */
+"Open comment library" = "打开评论库";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "打开全屏抽屉";

@@ -73,9 +73,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
-
-        handleLaunchOptionsNotifications(launchOptions)
 
         return true
     }
@@ -195,7 +194,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 
     func userNotificationCenter(
@@ -211,20 +210,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
             ])
         }
         completionHandler()
-    }
-
-    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if
-            let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            let aps = notification["aps"] as? [String: AnyObject] {
-            PushNotifications.recordUserInfo(notification)
-            if let url = NotificationManager.routeURL(from: notification) {
-                openURL(url, userInfo: [
-                    "forceRefresh": true,
-                    "pushNotification": aps,
-                ])
-            }
-        }
     }
 }
 
@@ -301,6 +286,7 @@ extension StudentAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
@@ -340,6 +326,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
+            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 

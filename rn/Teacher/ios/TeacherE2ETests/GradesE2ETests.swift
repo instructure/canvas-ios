@@ -35,8 +35,8 @@ class GradesE2ETests: CoreUITestCase {
         app.find(label: "Student Two").tap()
         XCTAssertEqual(ContextCard.courseLabel.label(), "Assignments")
         XCTAssertEqual(ContextCard.currentGradeLabel.label(), "Current Grade 0.0%")
-        XCTAssertEqual(ContextCard.submissionsMissingLabel.label(), "1 missing")
+        XCTAssertEqual(ContextCard.submissionsMissingLabel.label(), "2 missing")
         XCTAssertEqual(ContextCard.submissionsTotalLabel.label(), "0 submitted")
-        XCTAssertEqual(ContextCard.submissionCell("5431").label(), "Submission New Grade Book Quiz, Missing, grade 0 / 1")
+        XCTAssertEqual(ContextCard.submissionCell("5431").label(), "Submission New Grade Book Quiz, Not Submitted, grade 0 / 1")
     }
 }

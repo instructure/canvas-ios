@@ -31,7 +31,7 @@ public struct StudentAnnotationSubmissionView: View {
         DocViewer(filename: "", previewURL: viewModel.documentURL, fallbackURL: viewModel.documentURL)
             .navigationBarStyle(.color(viewModel.navBar.color))
             .navigationTitle(viewModel.navBar.title, subtitle: viewModel.navBar.subtitle)
-            .compatibleNavBarItems(leading: { closeButton }, trailing: { doneButton })
+            .navBarItems(leading: closeButton, trailing: doneButton)
             .onReceive(viewModel.dismissView) {
                 viewcontroller.value.dismiss(animated: true)
             }

@@ -208,6 +208,7 @@ public struct GetWebSessionRequest: APIRequestable {
     }
 
     public let to: URL?
+    /** Required by `APIRequestable` protocol. */
     public let path: String
 
     public var query: [APIQueryItem] {

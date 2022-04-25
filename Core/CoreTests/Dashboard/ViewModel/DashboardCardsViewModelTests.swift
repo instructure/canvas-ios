@@ -23,8 +23,10 @@ import TestsFoundation
 class DashboardCardsViewModelTests: CoreTestCase {
 
     func testFetchesDashboardCards() {
-        Course.make(from: .make(id: 1))
-        Course.make(from: .make(id: 2))
+        api.mock(GetCourses(enrollmentState: nil), value: [
+            .make(id: 1),
+            .make(id: 2),
+        ])
         api.mock(GetDashboardCards(), value: [
             .make(id: 1, shortName: "card 1"),
             .make(id: 2, shortName: "card 2"),
@@ -50,5 +52,32 @@ class DashboardCardsViewModelTests: CoreTestCase {
         XCTAssertEqual(cards[1].shortName, "card 2")
 
         subscription.cancel()
+    }
+
+    func testLayoutSelectionFlagOnEmptyCourses() {
+        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+
+        testee.refresh()
+        drainMainQueue()
+
+        guard case .empty = testee.state else { XCTFail("View model should be empty"); return }
+
+        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+    }
+
+    func testLayoutSelectionFlagWhenCoursesAvailable() {
+        api.mock(GetCourses(enrollmentState: nil), value: [.make(id: 1)])
+        api.mock(GetDashboardCards(), value: [.make(id: 1, shortName: "card 1")])
+
+        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+
+        testee.refresh()
+        drainMainQueue()
+
+        guard case .data = testee.state else { XCTFail("No data in view model"); return }
+
+        XCTAssertTrue(testee.shouldShowLayoutToggleButton)
     }
 }

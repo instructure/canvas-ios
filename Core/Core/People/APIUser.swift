@@ -442,6 +442,17 @@ public struct PostObserveesRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/courses.html#method.courses.student_view_student
+public struct GetStudentViewStudent: APIRequestable {
+    public typealias Response = APIUser
+
+    public let courseID: String
+
+    public var path: String {
+        "courses/\(courseID)/student_view_student"
+    }
+}
+
 // https://canvas.instructure.com/doc/api/user_observees.html#method.user_observees.index
 /* Does not return manually linked observees
 public struct GetObserveesRequest: APIRequestable {

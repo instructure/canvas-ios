@@ -57,7 +57,7 @@ struct RubricAssessor: View {
         }
             .multilineTextAlignment(.leading)
             .padding(.horizontal, 16)
-            .onDataChange(of: assessments) { _ in
+            .onChange(of: assessments) { _ in
                 rubricAssessmentDidChange()
             }
     }

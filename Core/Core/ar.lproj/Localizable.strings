@@ -65,15 +65,6 @@
 "%d missing" = "%d مفقود";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d ردود";
-
-/* No comment provided by engineer. */
-"%d students" = "%d طلاب";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d غير مقروء";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "إضافة محتوى";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "إضافة ملف المساق";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "اسم شهرة المساق";
@@ -272,6 +266,9 @@
 "Assignments" = "المهام";
 
 /* No comment provided by engineer. */
+"Assignments List" = "قائمة المهام";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "أرفق ملفات بالضغط على إحدى الخيارات أدناه.";
 
 /* No comment provided by engineer. */
@@ -398,6 +395,12 @@
 "Casual question or suggestion" = "مجرد سؤال عابر أو اقتراح";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "تغيير تخطيط لوحة المعلومات إلى شبكة";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "تغيير تخطيط لوحة المعلومات إلى قائمة";
+
+/* No comment provided by engineer. */
 "Change User" = "تغيير المستخدم";
 
 /* Description for Chat communication channel */
@@ -512,9 +515,6 @@
 "Conversation Message" = "رسالة المحادثة";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "المحادثات";
 
 /* No comment provided by engineer. */
@@ -539,6 +539,9 @@
 "Course Activities" = "أنشطة المساق";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "تدفق نشاط المساق";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "إعلان المساق";
 
 /* No comment provided by engineer. */
@@ -558,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "تقدير المساق أدناه  %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "وحدات المساق النمطية";
 
 /* No comment provided by engineer. */
 "Course Sections" = "أقسام المساق";
@@ -599,21 +605,6 @@
 "Cyan" = "سماوي";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "يوميًا";
 
 /* No comment provided by engineer. */
@@ -621,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "التاريخ";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "رفض";
@@ -764,6 +752,12 @@
 "Edit attachment (none)" = "تحرير المرفق (بلا)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "تحرير إعدادات المساق";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "تحرير لوحة المعلومات";
+
+/* No comment provided by engineer. */
 "Edit Discussion" = "تحرير النقاش";
 
 /* No comment provided by engineer. */
@@ -890,13 +884,7 @@
 "Filter Inbox" = "تصفية علبة الوارد";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "ابحث عن رمز للمسح الضوئي";
@@ -930,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "عمليات الالتحاق المستقبلية";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "الذهاب إلى اليوم";
@@ -1002,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "إخفاء محتوى لـ %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "المرتفع: %@";
@@ -1115,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "يبدو أنه لا توجد أي مساقات مقترنة بهذا الحساب. قم بزيارة الويب لإنشاء مساق اليوم.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "يبدو أنك غير مسجل في أي مساق.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "يبدو أنك غير مسجل في أي مساقات بصفة %@. قد يكون أحد تطبيقاتنا الأخرى ملائمة لك بشكل أكبر. اضغط على أحد التطبيقات لزيارة App Store.";
 
 /* No comment provided by engineer. */
@@ -1137,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "تقييم متأخر";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "تشغيل الأداة الخارجية";
@@ -1448,6 +1424,9 @@
 "Not Submitted" = "لم يتم الإرسال";
 
 /* No comment provided by engineer. */
+"Not supported" = "غير مدعوم";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "ليس عاجلاً";
 
 /* No due assignments for today */
@@ -1514,6 +1493,9 @@
 "Open item details" = "فتح تفاصيل العنصر";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "يفتح في Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "الخيارات";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1514,6 @@
 "out of" = "من إجمالي";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "صفحة";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "الصفحات";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "الصفحة الأمامية للصفحات";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "الإقران بالمراقب";
@@ -1599,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "يرجى الانتظار، قد تستغرق هذا الأمر دقيقة.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "نقاط";
@@ -1668,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "الاختبارات الموجزة";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "النشاط الأخير";
 
 /* No comment provided by engineer. */
 "Recipients" = "المتلقون";
@@ -1859,6 +1841,9 @@
 "Sent" = "مرسَل";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "تعيين \"الصفحة الرئيسية\" لـ...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "تعيين كصفحة أمامية";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "إظهار خيارات أكثر";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "بما أنها مناقشة لمجموعات، فإن لكل مجموعة محادثة خاصة لهذا الموضوع. فيما يلي النقاشات التي يمكنك الوصول إليها:";
@@ -1941,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "مواعيد التسجيل للطالب";
+
+/* No comment provided by engineer. */
+"Student View" = "طريقة عرض الطالب";
 
 /* No comment provided by engineer. */
 "Students" = "الطلاب";
@@ -2112,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "هذه المهمة مستحقة بتاريخ %@";

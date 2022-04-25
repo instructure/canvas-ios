@@ -60,26 +60,34 @@ struct SideMenuBottomSection: View {
 
     var body: some View {
         VStack(spacing: 0) {
-
             if let root = helpLinks.first, helpLinks.count > 1 {
-                SideMenuItem(id: "help", image: .questionLine, title: Text("\(root.text ?? "")", bundle: .core), badgeValue: 0).onTapGesture {
+                Button {
                     showHelpMenu()
+                } label: {
+                    SideMenuItem(id: "help", image: .questionLine, title: Text("\(root.text ?? "")", bundle: .core), badgeValue: 0)
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
 
             if canActAsUser {
-                SideMenuItem(id: "actAsUser", image: .userLine, title: Text("Act as User", bundle: .core), badgeValue: 0).onTapGesture {
+                Button {
                     self.route(to: "/act-as-user", options: .modal(embedInNav: true))
+                } label: {
+                    SideMenuItem(id: "actAsUser", image: .userLine, title: Text("Act as User", bundle: .core), badgeValue: 0)
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
 
             if env.currentSession?.isFakeStudent != true {
-                SideMenuItem(id: "changeUser", image: .userLine, title: Text("Change User", bundle: .core), badgeValue: 0).onTapGesture {
+                Button {
                     guard let delegate = self.env.loginDelegate else { return }
                     env.router.dismiss(controller) {
                         delegate.changeUser()
                     }
+                } label: {
+                    SideMenuItem(id: "changeUser", image: .userLine, title: Text("Change User", bundle: .core), badgeValue: 0)
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
 
             if env.currentSession?.actAsUserID != nil {
@@ -87,19 +95,28 @@ struct SideMenuBottomSection: View {
                 let leaveText = Text("Leave Student View", bundle: .core)
                 let stopText = Text("Stop Act as User", bundle: .core)
                 let logoutTitleText = isFakeStudent ? leaveText : stopText
-                SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: logoutTitleText, badgeValue: 0).onTapGesture {
-                    handleLogout()
+                Button {
+                    stopActing()
+                } label: {
+                    SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: logoutTitleText, badgeValue: 0)
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             } else {
-                SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core), badgeValue: 0).onTapGesture {
+                Button {
                     handleLogout()
+                } label: {
+                    SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core), badgeValue: 0)
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
 
             if showDevMenu {
-                SideMenuItem(id: "developerMenu", image: .settingsLine, title: Text("Developer menu", bundle: .core)).onTapGesture {
+                Button {
                     route(to: "/dev-menu", options: .modal(embedInNav: true))
+                } label: {
+                    SideMenuItem(id: "developerMenu", image: .settingsLine, title: Text("Developer menu", bundle: .core))
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
         }
         .onAppear {
@@ -128,6 +145,12 @@ struct SideMenuBottomSection: View {
                     logoutBlock()
                 }
             }
+        }
+    }
+
+    func stopActing() {
+        if let loginDelegate = env.loginDelegate, let session = AppEnvironment.shared.currentSession {
+            loginDelegate.stopActing(as: session)
         }
     }
 
@@ -160,7 +183,7 @@ struct SideMenuBottomSection: View {
         })
         let helpViewController = CoreHostingController(helpView)
         helpViewController.title = root.text
-        env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+        env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true), analyticsRoute: "/profile/help")
     }
 
     private static func readDevMenuVisibilityFromUserDefaults() -> Bool {

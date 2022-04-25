@@ -53,10 +53,19 @@
 "Choose Files" = "Scegli file";
 
 /* No comment provided by engineer. */
+"Close" = "Chiudi";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Chiudi riquadro";
 
 /* No comment provided by engineer. */
 "Comment" = "Commento";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Libreria commenti";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Libreria commenti non disponibile";
 
 /* No comment provided by engineer. */
 "Comments" = "Commenti";
@@ -148,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "I voti saranno resi visibili agli studenti con compiti con voti";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "Gruppo";
 
@@ -197,10 +200,16 @@
 "No Submissions" = "Nessuna consegna";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Nessun suggerimento disponibile";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Non valutato";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Apri libreria commenti";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Apri riquadro a tutto schermo";
