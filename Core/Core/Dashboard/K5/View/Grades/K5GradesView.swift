@@ -60,6 +60,7 @@ struct K5GradesView: View {
                     .padding(.top, 15)
                     .accessibility(hidden: true)
                 HStack(spacing: 7) {
+                    let selectorStateText = gradeSelectorOpen ? Text("Open", bundle: .core) : Text("Closed", bundle: .core)
                     Button(action: {
                         withAnimation {
                             gradeSelectorOpen.toggle()
@@ -69,9 +70,8 @@ struct K5GradesView: View {
                             .font(.bold24)
                             .foregroundColor(.licorice)
                     })
-                    .accessibility(label: Text("Select grading period", bundle: .core))
-                    .accessibility(hint: Text(gradeSelectorOpen ? "Open": "Closed", bundle: .core) +
-                                   Text(", \(viewModel.currentGradingPeriod.title ?? "")"))
+                    .accessibility(label: Text("Select grading period, ", bundle: .core) + selectorStateText)
+                    .accessibility(hint: Text(", \(viewModel.currentGradingPeriod.title ?? ""), ") + Text("Selected", bundle: .core))
 
                     Image.arrowOpenDownLine
                         .resizable()
