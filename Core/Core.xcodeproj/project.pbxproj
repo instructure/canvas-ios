@@ -905,6 +905,13 @@
 		CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */; };
 		CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */; };
 		CF8CB55026CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
+		CF8D53512806E1160038B0B2 /* WebSitePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D53502806E1160038B0B2 /* WebSitePreviewView.swift */; };
+		CF8D53532806FB490038B0B2 /* WebSitePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D53522806FB490038B0B2 /* WebSitePreviewViewModel.swift */; };
+		CF8D5356280851A70038B0B2 /* EmbeddedWebPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5355280851A70038B0B2 /* EmbeddedWebPageView.swift */; };
+		CF8D535A280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */; };
+		CF8D535C280869820038B0B2 /* DiscussionWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */; };
+		CF8D536028086C110038B0B2 /* DiscussionWebPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D535F28086C110038B0B2 /* DiscussionWebPageViewModelTests.swift */; };
+		CF8D5362280EC41B0038B0B2 /* FeatureFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */; };
 		CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */; };
 		CF911BA4279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */; };
 		CF911BA627A29B1800E1EECB /* iOS15Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */; };
@@ -2237,6 +2244,13 @@
 		CF8CB54526CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
 		CF8CB54B26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		CF8CB54F26CD2B27008361E2 /* K5ResourcesHomeroomInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModelTests.swift; sourceTree = "<group>"; };
+		CF8D53502806E1160038B0B2 /* WebSitePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSitePreviewView.swift; sourceTree = "<group>"; };
+		CF8D53522806FB490038B0B2 /* WebSitePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSitePreviewViewModel.swift; sourceTree = "<group>"; };
+		CF8D5355280851A70038B0B2 /* EmbeddedWebPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedWebPageView.swift; sourceTree = "<group>"; };
+		CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedWebPageViewModel.swift; sourceTree = "<group>"; };
+		CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionWebPageViewModel.swift; sourceTree = "<group>"; };
+		CF8D535F28086C110038B0B2 /* DiscussionWebPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionWebPageViewModelTests.swift; sourceTree = "<group>"; };
+		CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagTests.swift; sourceTree = "<group>"; };
 		CF911B9F279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSession.swift; sourceTree = "<group>"; };
 		CF911BA3279EEDCE00E1EECB /* K5SubjectViewMasqueradedSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewMasqueradedSessionTests.swift; sourceTree = "<group>"; };
 		CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Refreshable.swift; sourceTree = "<group>"; };
@@ -2516,6 +2530,7 @@
 				9FBE5354223AD16F001EC40C /* DeveloperMenu */,
 				7D627167245B341800FC1798 /* Discussions */,
 				7D29D2F5218A29B10036437C /* DocViewer */,
+				CF8D53542808518B0038B0B2 /* EmbeddedWebPage */,
 				7D76C336243CF0F300F481BF /* Enrollments */,
 				7DAFBE6E2318567300E9A37D /* ErrorReports */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
@@ -2555,6 +2570,7 @@
 				7D1758B12159894C00F88613 /* UIViews */,
 				CF9A0EEA27E4EC2600762228 /* ViewModel */,
 				E8D7E6E824D9D0B400D6CCD0 /* ViewModifiers */,
+				CF8D534D2806DFF30038B0B2 /* WebSitePreview */,
 				9FBFE6DD22428966002B3796 /* WrongApp */,
 			);
 			path = Core;
@@ -2579,6 +2595,7 @@
 				7D148642230B48E7003944A2 /* Dashboard */,
 				7D627168245B347A00FC1798 /* Discussions */,
 				7D7472D7218CD73D00CE1430 /* DocViewer */,
+				CF8D535D28086BFA0038B0B2 /* EmbeddedWebPage */,
 				7D76C337243CF33D00F481BF /* Enrollments */,
 				7DE6A7072319B03600A5B796 /* ErrorReports */,
 				7D80AC59212DB09300C40ECE /* Extensions */,
@@ -3168,6 +3185,7 @@
 			isa = PBXGroup;
 			children = (
 				B1571E68230756D2009CAA58 /* APIFeatureFlagTests.swift */,
+				CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */,
 				B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */,
 			);
 			path = FeatureFlags;
@@ -4781,6 +4799,73 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CF8D534D2806DFF30038B0B2 /* WebSitePreview */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D534E2806E0E50038B0B2 /* View */,
+				CF8D534F2806E0E90038B0B2 /* ViewModel */,
+			);
+			path = WebSitePreview;
+			sourceTree = "<group>";
+		};
+		CF8D534E2806E0E50038B0B2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D53502806E1160038B0B2 /* WebSitePreviewView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF8D534F2806E0E90038B0B2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D53522806FB490038B0B2 /* WebSitePreviewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF8D53542808518B0038B0B2 /* EmbeddedWebPage */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D5357280866A30038B0B2 /* View */,
+				CF8D5358280866AC0038B0B2 /* ViewModel */,
+			);
+			path = EmbeddedWebPage;
+			sourceTree = "<group>";
+		};
+		CF8D5357280866A30038B0B2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D5355280851A70038B0B2 /* EmbeddedWebPageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF8D5358280866AC0038B0B2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */,
+				CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF8D535D28086BFA0038B0B2 /* EmbeddedWebPage */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D535E28086C050038B0B2 /* ViewModel */,
+			);
+			path = EmbeddedWebPage;
+			sourceTree = "<group>";
+		};
+		CF8D535E28086C050038B0B2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF8D535F28086C110038B0B2 /* DiscussionWebPageViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CF911BA1279EEDB400E1EECB /* K5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6030,6 +6115,7 @@
 				CF9A0F4B27ECA3CF00762228 /* DefaultViewProviderTests.swift in Sources */,
 				E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */,
 				3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */,
+				CF8D5362280EC41B0038B0B2 /* FeatureFlagTests.swift in Sources */,
 				7DA20E932168128400F5FD19 /* InstIconExtensionsTests.swift in Sources */,
 				7D63F788215D44A600151E49 /* APIBrandVariablesTests.swift in Sources */,
 				CF9A0F3627E9E82400762228 /* CourseDetailsViewModelTests.swift in Sources */,
@@ -6164,6 +6250,7 @@
 				B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */,
 				7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */,
 				7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */,
+				CF8D536028086C110038B0B2 /* DiscussionWebPageViewModelTests.swift in Sources */,
 				CFFE286027AAD4DB0029A408 /* CourseSectionStatusTests.swift in Sources */,
 				CFC2C28327358796006CA3E0 /* AttachmentSubmissionServiceTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
@@ -6411,6 +6498,7 @@
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
 				CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */,
+				CF8D535C280869820038B0B2 /* DiscussionWebPageViewModel.swift in Sources */,
 				3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */,
 				CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,
@@ -6558,6 +6646,7 @@
 				CFEC7F3B26B409D1008B9F77 /* K5ScheduleWeekView.swift in Sources */,
 				7D2E812925631BEC008C568F /* AssignmentDateSection.swift in Sources */,
 				EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */,
+				CF8D53532806FB490038B0B2 /* WebSitePreviewViewModel.swift in Sources */,
 				7DA25FAD23F72136005D2121 /* APIEnrollment.swift in Sources */,
 				CFCB0F7027CFC02A008DDEA4 /* ModulesPanda.swift in Sources */,
 				7DFD5F7B23FF158700D988E0 /* CalendarDaysViewController.swift in Sources */,
@@ -6614,6 +6703,7 @@
 				7DA2603923F722D9005D2121 /* AssignmentGroup.swift in Sources */,
 				D91BC858276B9679008371B0 /* AssignmentCellView.swift in Sources */,
 				7DD6FB3625081CD900DB5286 /* OptionalDatePicker.swift in Sources */,
+				CF8D53512806E1160038B0B2 /* WebSitePreviewView.swift in Sources */,
 				7DA2601423F7227A005D2121 /* InstIconExtensions.swift in Sources */,
 				CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */,
 				CFFE285C27AA9D410029A408 /* CourseListViewModel.swift in Sources */,
@@ -6814,6 +6904,7 @@
 				7D81F3F724F0112700C482D2 /* APIAccountTermsOfService.swift in Sources */,
 				CF12DFC826D63937000BE452 /* NavBarItems.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
+				CF8D535A280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift in Sources */,
 				7DA25FBD23F72136005D2121 /* APIMediaComment.swift in Sources */,
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,
 				CF11565026FB56E900DE25B6 /* AttachmentCopyService.swift in Sources */,
@@ -6823,6 +6914,7 @@
 				CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */,
 				D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */,
 				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
+				CF8D5356280851A70038B0B2 /* EmbeddedWebPageView.swift in Sources */,
 				CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */,
 				7DA2603723F722D9005D2121 /* TabViewable.swift in Sources */,
 				7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */,

@@ -119,4 +119,15 @@ class URLExtensionsTests: XCTestCase {
         try fs.removeItem(at: source)
         try fs.removeItem(at: destination)
     }
+
+    func testContainsQueryItem() {
+        var testee = URL(string: "/path/to/resource")!
+        XCTAssertFalse(testee.containsQueryItem(named: "embed"))
+
+        testee = URL(string: "/path/to/resource?embed=true")!
+        XCTAssertTrue(testee.containsQueryItem(named: "embed"))
+
+        testee = URL(string: "/path/to/resource?param=value&embed=true")!
+        XCTAssertTrue(testee.containsQueryItem(named: "embed"))
+    }
 }

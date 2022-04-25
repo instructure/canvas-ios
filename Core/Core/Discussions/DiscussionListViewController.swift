@@ -46,6 +46,8 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
     lazy var topics = env.subscribe(GetDiscussionTopics(context: context)) { [weak self] in
         self?.update()
     }
+    /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
+    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context))
 
     public static func create(context: Context) -> DiscussionListViewController {
         let controller = loadFromStoryboard()
@@ -77,6 +79,7 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         course?.refresh(force: true)
         group?.refresh()
         topics.exhaust()
+        featureFlags.refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
