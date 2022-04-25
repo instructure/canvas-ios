@@ -33,7 +33,7 @@ public struct QuizDetailsView: View {
         states
             .navigationBarStyle(.color(viewModel.courseColor))
             .navigationTitle(viewModel.title, subtitle: viewModel.subtitle)
-            .compatibleNavBarItems(trailing: {
+            .navBarItems(trailing: {
                 Button(action: {
                     viewModel.editTapped(router: env.router, viewController: controller)
                 }, label: {
@@ -155,7 +155,7 @@ public struct QuizDetailsView: View {
         Spacer()
         
         //fix button
-            Button(action: launchLTITool, label: {
+            Button(action: previewQuiz, label: {
                 HStack {
                     Spacer()
                     Text("Preview Quiz", bundle: .core)
@@ -202,7 +202,7 @@ public struct QuizDetailsView: View {
         }
     }
 
-    func launchLTITool() {
-        viewModel.launchLTITool(router: env.router, viewController: controller)
+    func previewQuiz() {
+        viewModel.launchPreview(router: env.router, viewController: controller)
     }
 }

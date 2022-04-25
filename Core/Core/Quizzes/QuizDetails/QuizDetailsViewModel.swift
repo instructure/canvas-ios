@@ -64,7 +64,12 @@ public class QuizDetailsViewModel: ObservableObject {
         )
     }
 
-    func launchLTITool(router: Router, viewController: WeakViewController) {
+    func launchPreview(router: Router, viewController: WeakViewController) {
+        env.router.route(
+            to: "courses/\(courseID)/quizzes/\(quizID)/preview",
+            from: viewController,
+            options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
+        )
     }
 
     private func courseDidUpdate() {
