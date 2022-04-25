@@ -16,12 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct FontAppearance {
+import UIKit
 
-    public static func update() {
-        UITabBar.updateFontAppearance()
-        UIBarButtonItem.updateFontAppearance()
-        UISegmentedControl.updateFontAppearance()
-        UISearchTextField.updateFontAppearance()
+extension UISearchTextField {
+
+    public static func updateFontAppearance() {
+        let appearance = UISearchTextField.appearance()
+        appearance.font = .scaledNamedFont(.regular17)
     }
 }
