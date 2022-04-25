@@ -2,7 +2,7 @@
 "CFBundleDisplayName" = "Profesor";
 
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "Adjuntar fotografías y videos a comentarios sobre entregas.";
+"NSCameraUsageDescription" = "Adjuntar fotografías y vídeos a comentarios sobre entregas.";
 
 /* Privacy - Location When In Use Usage Description */
 "NSLocationWhenInUseUsageDescription" = "";
@@ -11,7 +11,7 @@
 "NSMicrophoneUsageDescription" = "Adjuntar grabaciones de audio a comentarios sobre entregas.";
 
 /* Privacy - Photo Library Additions Usage Description */
-"NSPhotoLibraryAddUsageDescription" = "Adjuntar fotografías y videos a comentarios sobre entregas.";
+"NSPhotoLibraryAddUsageDescription" = "Adjuntar fotografías y vídeos a comentarios sobre entregas.";
 
 /* Privacy - Photo Library Usage Description */
 "NSPhotoLibraryUsageDescription" = "Cargar contenido a las asignaturas.";
