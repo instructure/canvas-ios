@@ -147,6 +147,8 @@
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
+		C9299FE528102A62003A47C2 /* DSAnnouncementsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FE428102A62003A47C2 /* DSAnnouncementsE2ETests.swift */; };
+		C9299FEC2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FEB2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift */; };
 		C935D41E26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */; };
 		C935D43026E0EAE700C940F7 /* K5ScheduleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D42F26E0EAE700C940F7 /* K5ScheduleE2ETests.swift */; };
 		C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */; };
@@ -730,6 +732,8 @@
 		B5F122D01D8C4E050045063A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDDBB798D4D4EA95C1F9796 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C9299FE428102A62003A47C2 /* DSAnnouncementsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAnnouncementsE2ETests.swift; sourceTree = "<group>"; };
+		C9299FEB2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDiscussionsE2ETest.swift; sourceTree = "<group>"; };
 		C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizzesE2ETests.swift; sourceTree = "<group>"; };
 		C935D42F26E0EAE700C940F7 /* K5ScheduleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleE2ETests.swift; sourceTree = "<group>"; };
 		C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesE2ETests.swift; sourceTree = "<group>"; };
@@ -1830,6 +1834,7 @@
 			children = (
 				E809364D24C21CB600D15E9A /* DiscussionListE2ETests.swift */,
 				E809364E24C21CB600D15E9A /* DiscussionDetailsE2ETests.swift */,
+				C9299FEB2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift */,
 			);
 			path = Discussions;
 			sourceTree = "<group>";
@@ -1838,6 +1843,7 @@
 			isa = PBXGroup;
 			children = (
 				E809365024C21CB600D15E9A /* AnnouncementE2ETests.swift */,
+				C9299FE428102A62003A47C2 /* DSAnnouncementsE2ETests.swift */,
 			);
 			path = Announcements;
 			sourceTree = "<group>";
@@ -2931,6 +2937,8 @@
 				5859544C501D5668C211D44C /* ConferencesE2ETests.swift in Sources */,
 				C935D43026E0EAE700C940F7 /* K5ScheduleE2ETests.swift in Sources */,
 				E80936E824C24CDD00D15E9A /* InboxE2ETests.swift in Sources */,
+				C9299FEC2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift in Sources */,
+				C9299FE528102A62003A47C2 /* DSAnnouncementsE2ETests.swift in Sources */,
 				E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */,
 				E80936E324C24CDD00D15E9A /* CourseFileE2ETests.swift in Sources */,
 				E80936F024C2514600D15E9A /* DiscussionListE2ETests.swift in Sources */,
