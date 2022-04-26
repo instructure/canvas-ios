@@ -113,6 +113,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/page-view-events', PageViewEvents, store)
   registerScreen('/dev-menu/experimental-features', null, store)
   registerScreen('/dev-menu/pandas', null, store)
+  registerScreen('/dev-menu/website-preview', null, store)
   registerScreen('/rating-request', RatingRequest, store)
   registerScreen('/logs')
   registerScreen('/act-as-user')

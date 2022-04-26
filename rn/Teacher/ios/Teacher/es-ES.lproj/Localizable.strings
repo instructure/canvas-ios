@@ -44,13 +44,13 @@
 "Change Section" = "Cambiar sección";
 
 /* No comment provided by engineer. */
-"Choose a Section" = "Seleccione una sección";
+"Choose a Section" = "Seleccionar una sección";
 
 /* No comment provided by engineer. */
-"Choose Date" = "Seleccione la fecha";
+"Choose Date" = "Seleccionar la fecha";
 
 /* No comment provided by engineer. */
-"Choose Files" = "Seleccione los archivos";
+"Choose Files" = "Seleccionar los archivos";
 
 /* No comment provided by engineer. */
 "Close" = "Cerrar";
@@ -155,13 +155,7 @@
 "Grades will be made visible to all students" = "Todos los estudiantes podrán ver las notas";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Todos los estudiantes que tengan entregas con nota podrán ver las notas.";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
+"Grades will be made visible to students with graded submissions" = "Todos los estudiantes que tengan entregas con nota podrán ver las notas";
 
 /* No comment provided by engineer. */
 "Group" = "Grupo";
@@ -179,7 +173,7 @@
 "It seems there aren't any valid submissions to grade." = "No parece haber ninguna entrega válida para evaluar.";
 
 /* No comment provided by engineer. */
-"Late" = "Con atraso";
+"Late" = "Con retraso";
 
 /* No comment provided by engineer. */
 "Letter grade" = "Nota por letra";
@@ -260,7 +254,7 @@
 "Record Audio" = "Grabar audio";
 
 /* No comment provided by engineer. */
-"Record Video" = "Grabar video";
+"Record Video" = "Grabar vídeo";
 
 /* No comment provided by engineer. */
 "Reset" = "Restablecer";
@@ -278,7 +272,7 @@
 "Scored below..." = "Puntuación por debajo...";
 
 /* No comment provided by engineer. */
-"Select to change the roll call date" = "Seleccione para cambiar la fecha de la lista de asistencia";
+"Select to change the roll call date" = "Seleccionar para cambiar la fecha de la lista de asistencia";
 
 /* No comment provided by engineer. */
 "Send" = "Enviar";
@@ -305,7 +299,7 @@
 "There are no messages yet." = "Todavía no hay mensajes.";
 
 /* No comment provided by engineer. */
-"There was an error loading submissions. Pull to refresh to try again." = "Ha habido un error al cargar las entregas. Pulse actualizar para volver a intentarlo.";
+"There was an error loading submissions. Pull to refresh to try again." = "Ha habido un error al cargar las entregas. Pulsa actualizar para volver a intentarlo.";
 
 /* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Esta actividad no permite entregas.";

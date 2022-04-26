@@ -157,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Les notes seront rendues visibles par les étudiants avec des envois notés";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "Groupe";
 

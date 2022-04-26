@@ -2,17 +2,17 @@
 "CFBundleDisplayName" = "Estudiante";
 
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "Adjunte fotografías y vídeos a los mensajes y publicaciones de los foros de discusión o entréguelos como entregas de actividades.";
+"NSCameraUsageDescription" = "Adjunta fotografías y vídeos a los mensajes y publicaciones de los foros de discusión o entrégalos como entregas de actividades.";
 
 /* Privacy - Location When In Use Usage Description */
-"NSLocationWhenInUseUsageDescription" = "Ayúdenos a encontrar escuelas cercanas.";
+"NSLocationWhenInUseUsageDescription" = "Ayúdanos a encontrar escuelas cercanas.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "Adjunte grabaciones de audio a los mensajes y publicaciones de los foros de discusión o preséntelos en entregas de actividades.";
+"NSMicrophoneUsageDescription" = "Adjunta grabaciones de audio a los mensajes y publicaciones de los foros de discusión o preséntalos en entregas de actividades.";
 
 /* Privacy - Photo Library Additions Usage Description */
-"NSPhotoLibraryAddUsageDescription" = "Adjunte fotografías y vídeos a los mensajes y publicaciones de los foros de discusión o entréguelos como entregas de actividades.";
+"NSPhotoLibraryAddUsageDescription" = "Adjunta fotografías y vídeos a los mensajes y publicaciones de los foros de discusión o entrégalos como entregas de actividades.";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "Adjunte fotografías y vídeos a los mensajes y publicaciones de los foros de discusión o entréguelos como entregas de actividades.";
+"NSPhotoLibraryUsageDescription" = "Adjunta fotografías y vídeos a los mensajes y publicaciones de los foros de discusión o entrégalos como entregas de actividades.";
 

@@ -15,7 +15,7 @@
 			<key>one</key>
 			<string>%d Respuesta</string>
 			<key>other</key>
-			<string>%d respuestas</string>
+			<string>%d Respuestas</string>
 		</dict>
 	</dict>
 	<key>%d Unread</key>
@@ -261,7 +261,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Obtuvo una nota de %g de %#@points@ posibles</string>
+		<string>Obtuviste una nota de %g de %#@points@ posibles</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -383,7 +383,7 @@
 			<key>one</key>
 			<string>Mostrar %d ítem no presentado</string>
 			<key>other</key>
-			<string>Mostrar %d ítems no presentdos</string>
+			<string>Mostrar %d ítems no presentados</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>

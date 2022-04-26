@@ -65,15 +65,6 @@
 "%d missing" = "%d manke";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Repons";
-
-/* No comment provided by engineer. */
-"%d students" = "%d elèv";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Poko li";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -524,9 +515,6 @@
 "Conversation Message" = "Mesaj Konvèsasyon";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Konvèsasyon";
 
 /* No comment provided by engineer. */
@@ -617,21 +605,6 @@
 "Cyan" = "Blesyèl";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Chak jou";
 
 /* No comment provided by engineer. */
@@ -639,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Dat";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Refize";
@@ -914,13 +884,7 @@
 "Filter Inbox" = "Filtè Bwat resepsyon";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Nòt Final: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Jwenn yon kòd pou eskane";
@@ -954,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Pwochen Enskripsyon";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Ale nan jodi a";
@@ -1026,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Kache kontni pou %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Wo: %@";
@@ -1139,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Ta sanble pa gen okenn kou ki lye ak kont sa a. Vizite paj wèb la pou ka kreye yon kou jodi a.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Ta sanble w pa enskri nan okenn kou.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ta sanble w pa enskri nan okenn kou antan ke %@. Yonn nan lòt app nou yo kapab pi byen adapte. Tape sou yonn pou w ka vizite App Store la.";
 
 /* No comment provided by engineer. */
@@ -1161,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Klasman an Reta";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lanse Zouti Eksteryè";
@@ -1562,9 +1514,6 @@
 "out of" = "sou";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "paj";
 
 /* No comment provided by engineer. */
@@ -1632,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Tann, Sa kapab pran yon ti tan.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Pwen";
@@ -1919,9 +1865,6 @@
 "Show more options" = "Afiche plis opsyon";
 
 /* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
-
-/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Lefèt ke sa a se yon gwoup diskisyon, chak gwoup gen pwòp konvèsasyon pa li pou sijè sa a. Men a ki diskisyon ou gen aksè.";
 
 /* No comment provided by engineer. */
@@ -2154,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Yon erè fèt sanzatann. Tanpri eseye ankò.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Delè sesyon sa a se %@";

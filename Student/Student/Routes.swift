@@ -358,6 +358,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(PandaGallery())
     },
 
+    "/dev-menu/website-preview": { _, _, _ in
+        CoreHostingController(WebSitePreviewView())
+    },
+
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
     },
@@ -455,7 +459,13 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
             url: url
         )
     }
-    return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
+
+    if ExperimentalFeature.hybridDiscussionDetails.isEnabled, DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
+        let viewModel = DiscussionWebPageViewModel(context: context, topicID: discussionID)
+        return CoreHostingController(EmbeddedWebPageView(viewModel: viewModel))
+    } else {
+        return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
+    }
 }
 
 private func contextCard(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

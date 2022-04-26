@@ -65,15 +65,6 @@
 "%d missing" = "缺少 %d";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d回覆";
-
-/* No comment provided by engineer. */
-"%d students" = "%d學生";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d未讀";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -524,9 +515,6 @@
 "Conversation Message" = "交談訊息";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "交談";
 
 /* No comment provided by engineer. */
@@ -617,21 +605,6 @@
 "Cyan" = "青色";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "每天";
 
 /* No comment provided by engineer. */
@@ -639,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "日期";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "拒絕";
@@ -914,13 +884,7 @@
 "Filter Inbox" = "篩選器收件匣";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "尋找可掃描的條碼";
@@ -954,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "未來註冊";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "前往今天";
@@ -1026,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "隱藏此項目的內容：%@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
@@ -1139,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "看來沒有與您帳戶關聯的課程。現在就前往網站，創建課程。";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "看起來您未註冊任何課程。";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
 
 /* No comment provided by engineer. */
@@ -1161,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "逾期等級評分";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "啟動外部工具";
@@ -1562,9 +1514,6 @@
 "out of" = "滿分為";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "頁面";
 
 /* No comment provided by engineer. */
@@ -1632,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "請稍候，需時約一分鐘。";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "分數";
@@ -1919,9 +1865,6 @@
 "Show more options" = "顯示更多選項";
 
 /* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
-
-/* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "由於這是群組討論，每個群組都有其自己針對此主題的交談。以下是您可以訪問的討論區。";
 
 /* No comment provided by engineer. */
@@ -2154,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "有意外錯誤。請再試一次。";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "作業截止日期為%@";

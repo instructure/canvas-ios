@@ -76,8 +76,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
-        handleLaunchOptionsNotifications(launchOptions)
-
         return true
     }
 
@@ -210,20 +208,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
             ])
         }
         completionHandler()
-    }
-
-    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if
-            let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            let aps = notification["aps"] as? [String: AnyObject] {
-            PushNotifications.recordUserInfo(notification)
-            if let url = NotificationManager.routeURL(from: notification) {
-                openURL(url, userInfo: [
-                    "forceRefresh": true,
-                    "pushNotification": aps,
-                ])
-            }
-        }
     }
 }
 
