@@ -128,22 +128,31 @@ public struct QuizDetailsView: View {
 
         VStack(alignment: .leading, spacing: 4) {
             Line(Text("Quiz Type:", bundle: .core), Text(quiz.quizType.sectionTitle))
+            //TODO
+            Line(Text("Assignment Group:", bundle: .core), Text("TODO"))
             if let assignmentGroup = assignment.assignmentGroup?.name {
                 Line(Text("Assignment Group:", bundle: .core), Text(assignmentGroup))
             }
             let shuffleAnswers = quiz.shuffleAnswers ? Text("Yes") : Text("No")
             Line(Text("Shuffle Answers:", bundle: .core), shuffleAnswers)
-            //Line(Text("Time Limit:", bundle: .core), Text(quiz.timeLimit ?? "No time Limit"))
+
+            let timeLimitText = quiz.timeLimit != nil ? "\(Int(quiz.timeLimit!)) Minutes" : "No time Limit"
+            Line(Text("Time Limit:", bundle: .core), Text(timeLimitText))
+
             Line(Text("Allowed Attempts:", bundle: .core), Text(quiz.allowedAttemptsText))
+            //TODO
             if let hideResults = quiz.hideResults {
                 Line(Text("View Responses:", bundle: .core), Text(hideResults.text))
             }
+            //TODO
             //Line(Text("Show Correct Answers:", bundle: .core), Text(quiz.???))
 
             let oneQuestionAtATime = quiz.oneQuestionAtATime ? Text("Yes") : Text("No")
             Line(Text("One Question at a Time:", bundle: .core), oneQuestionAtATime)
             let lockQuestionsAfterAnswering = quiz.oneQuestionAtATime == true && quiz.cantGoBack ? Text("Yes") : Text("No")
+            //TODO cantgoBack
             Line(Text("Lock Questions After Answering:", bundle: .core), lockQuestionsAfterAnswering)
+            //TODO
             //Line(Text("Score to Keep:", bundle: .core), Text(quiz.sco))
             if let accessCode = quiz.accessCode {
                 Line(Text("Access Code:", bundle: .core), Text(accessCode))
