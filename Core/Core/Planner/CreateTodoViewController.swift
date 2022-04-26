@@ -59,11 +59,9 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         titleLabel.accessibilityLabel = NSLocalizedString("Title", bundle: .core, comment: "")
         dateTitleLabel.text = NSLocalizedString("Date", bundle: .core, comment: "")
         dateTitleLabel.accessibilityElementsHidden = true
-        if descTextView.responds(to: #selector(setter: UITextField.placeholder)) {  // without this check, it fails unit tests
-            descTextView.setValue(NSLocalizedString("Description", bundle: .core, comment: ""), forKey: "placeholder")
-        }
         descTextView.font = UIFont.scaledNamedFont(.regular16)
         descTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        descTextView.placeholder = NSLocalizedString("Description", bundle: .core, comment: "")
         descTextView.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
         dateTextField.text = formattedDate
         dateTextField.accessibilityElementsHidden = true
