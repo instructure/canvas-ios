@@ -172,6 +172,11 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/dev-menu/pandas')
   }
 
+  viewWebSitePreview = async () => {
+    await this.props.navigator.dismiss()
+    this.props.navigator.show('/dev-menu/website-preview', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
+  }
+
   manageRatingRequest = () => {
     this.props.navigator.show('/rating-request')
   }
@@ -227,6 +232,8 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
           <View style={{ flex: 1, flexDirection: 'column' }}>
             <RowSeparator />
             <Row title='View Experimental Features' disclosureIndicator onPress={this.viewExperimentalFeatures} />
+            <RowSeparator />
+            <Row title='WebSite Preview' disclosureIndicator onPress={this.viewWebSitePreview} />
             <RowSeparator />
             <Row title='Panda Gallery' disclosureIndicator onPress={this.viewPandaGallery} />
             <RowSeparator />

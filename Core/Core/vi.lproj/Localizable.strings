@@ -65,15 +65,6 @@
 "%d missing" = "%d bị thiếu";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Câu Trả Lời";
-
-/* No comment provided by engineer. */
-"%d students" = "%d sinh viên";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Chưa Đọc";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Thêm nội dung";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Thêm Tên Khóa Học";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Thêm Biệt Danh Khóa Học";
@@ -270,6 +264,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Bài Tập";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Danh Sách Bài Tập";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Đính kèm tập tin bằng cách nhấn vào tùy chọn bên dưới.";
@@ -518,9 +515,6 @@
 "Conversation Message" = "Tin Nhắn Cuộc Trò Chuyện";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Cuộc Trò Chuyện";
 
 /* No comment provided by engineer. */
@@ -545,6 +539,9 @@
 "Course Activities" = "Hoạt Động Khóa Học";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Luồng Hoạt Động Khóa Học";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Thông Báo Khóa Học";
 
 /* No comment provided by engineer. */
@@ -564,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Điểm Khóa Học Dưới %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Học Phần Khóa Học";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Phần Khóa Học";
@@ -605,21 +605,6 @@
 "Cyan" = "Xanh Lá Mạ";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Hằng Ngày";
 
 /* No comment provided by engineer. */
@@ -627,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Ngày";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Từ Chối";
@@ -770,6 +752,9 @@
 "Edit attachment (none)" = "Chỉnh sửa tập tin đính kèm (không có)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "Chỉnh sửa cài đặt khóa học";
+
+/* No comment provided by engineer. */
 "Edit Dashboard" = "Chỉnh Sửa Bảng Điều Khiển";
 
 /* No comment provided by engineer. */
@@ -899,13 +884,7 @@
 "Filter Inbox" = "Lọc Hộp Thư Đến";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Điểm Cuối Cùng: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Tìm mã để quét";
@@ -939,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Ghi Danh Tương Lai";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Đi đến hôm nay.";
@@ -1011,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Ẩn nội dung cho %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Cao: %@";
@@ -1124,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Có vẻ không có khóa học nào liên quan đến tài khoản này. Truy cập trang web để tạo khóa học hôm nay.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Có vẻ như bạn chưa ghi danh vào bất kỳ khóa học nào.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Có vẻ bạn chưa ghi danh bất kỳ khóa học nào với tư cách %@. Một trong các ứng dụng khác có thể thích hợp hơn. Nhấn vào một để truy cập App Store.";
 
 /* No comment provided by engineer. */
@@ -1146,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Chấm Điểm Trễ";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Khởi Chạy Công Cụ Ngoài";
@@ -1457,6 +1424,9 @@
 "Not Submitted" = "Chưa Nộp";
 
 /* No comment provided by engineer. */
+"Not supported" = "Không được hỗ trợ";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Không Gấp";
 
 /* No due assignments for today */
@@ -1523,6 +1493,9 @@
 "Open item details" = "Mở thông tin chi tiết mục";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Mở Trong Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Tùy Chọn";
 
 /* No comment provided by engineer. */
@@ -1541,9 +1514,6 @@
 "out of" = "trên tổng số";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "trang";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Trang";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Các Trang Trang Đầu";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Ghép Cặp Với Người Quan Sát";
@@ -1608,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vui lòng chờ, quá trình này có thể mất một phút.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Điểm";
@@ -1677,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Các Câu Hỏi Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Hoạt Động Gần Đây";
 
 /* No comment provided by engineer. */
 "Recipients" = "Người Nhận";
@@ -1868,6 +1841,9 @@
 "Sent" = "Đã Gửi";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Đặt \"Trang Chủ\" thành...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Cài Đặt Làm Trang Đầu";
 
 /* No comment provided by engineer. */
@@ -1887,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Hiển thị tùy chọn khác";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Do đây là cuộc thảo luận nhóm, mỗi nhóm có cuộc trò chuyện riêng cho đề tài này. Đây là các cuộc thảo luận bạn có quyền truy cập.";
@@ -1950,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Mục Đăng Ký Cuộc Họp Theo Lịch Sinh Viên";
+
+/* No comment provided by engineer. */
+"Student View" = "Góc Nhìn Của Sinh Viên";
 
 /* No comment provided by engineer. */
 "Students" = "Sinh Viên";
@@ -2121,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Đã xảy ra lỗi không lường trước. Vui lòng thử lại.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Bài tập này đến hạn vào %@";

@@ -20,6 +20,7 @@
     "SubmissionButtonPresenter.swift",
     "NSPersistentContainerExtensions.swift",
     "K5Preview.swift",
+    "Core\/WebSitePreview\/",
     "FontPreview.swift"
   ],
   "ignoreContent": [

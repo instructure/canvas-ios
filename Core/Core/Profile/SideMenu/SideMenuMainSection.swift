@@ -50,35 +50,50 @@ struct SideMenuMainSection: View {
     var body: some View {
         VStack(spacing: 0) {
             if enrollment == .observer {
-                SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: unreadCount).onAppear {
-                    env.api.makeRequest(GetConversationsUnreadCountRequest()) { (response, _, _) in
-                        self.unreadCount = response?.unread_count ?? 0
-                    }
-                }.onTapGesture {
+                Button {
                     route(to: "/conversations")
+                } label: {
+                    SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: unreadCount).onAppear {
+                        env.api.makeRequest(GetConversationsUnreadCountRequest()) { (response, _, _) in
+                            self.unreadCount = response?.unread_count ?? 0
+                        }
+                    }
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
-                SideMenuItem(id: "manageChildren", image: .groupLine, title: Text("Manage Students", bundle: .core)).onTapGesture {
+                Button {
                     route(to: "/profile/observees")
+                } label: {
+                    SideMenuItem(id: "manageChildren", image: .groupLine, title: Text("Manage Students", bundle: .core))
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             } else {
-                SideMenuItem(id: "files", image: .folderLine, title: Text("Files", bundle: .core)).onTapGesture {
+                Button {
                     route(to: "/users/self/files")
+                } label: {
+                    SideMenuItem(id: "files", image: .folderLine, title: Text("Files", bundle: .core))
                 }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
                 ForEach(Array(tools), id: \.self) { tool in
-                    SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)", image: imageForDomain(tool.domain),
-                             title: Text("\(tool.title)", bundle: .core)).onTapGesture {
-                                launchLTI(url: tool.url)
-                             }
+                    Button {
+                        launchLTI(url: tool.url)
+                    } label: {
+                        SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)", image: imageForDomain(tool.domain),
+                                     title: Text("\(tool.title)", bundle: .core))
+                    }
+                    .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
                 }
             }
 
             if enrollment == .student || enrollment == .teacher {
-                SideMenuItem(id: "settings", image: .settingsLine,
-                         title: Text("Settings", bundle: .core), badgeValue: 0).onTapGesture {
-                            self.route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
-                         }
+                Button {
+                    route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+                } label: {
+                        SideMenuItem(id: "settings", image: .settingsLine,
+                                 title: Text("Settings", bundle: .core), badgeValue: 0)
+                }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
         }
         .onAppear {

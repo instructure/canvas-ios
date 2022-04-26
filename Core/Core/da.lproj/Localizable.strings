@@ -65,15 +65,6 @@
 "%d missing" = "%d mangler";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Svar";
-
-/* No comment provided by engineer. */
-"%d students" = "%d studerende";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Ulæst";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Tilføj indhold";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Tilføj fagnavn";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Tilføj kaldenavn til fag";
@@ -270,6 +264,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Opgaver";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Opgaveliste";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Vedhæft filer ved at trykke på en indstilling nedenfor.";
@@ -518,9 +515,6 @@
 "Conversation Message" = "Diskussionsbesked";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Samtale";
 
 /* No comment provided by engineer. */
@@ -545,6 +539,9 @@
 "Course Activities" = "Fagets aktiviteter";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Fagets seneste aktiviteter";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Besked til faget";
 
 /* No comment provided by engineer. */
@@ -564,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Fagkarakter under %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Fagmoduler";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Fagsektioner";
@@ -605,21 +605,6 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Dagligt";
 
 /* No comment provided by engineer. */
@@ -627,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Dato";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Afvis";
@@ -770,6 +752,9 @@
 "Edit attachment (none)" = "Rediger vedhæftet fil (ingen)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "Rediger fagindstillinger";
+
+/* No comment provided by engineer. */
 "Edit Dashboard" = "Rediger oversigt";
 
 /* No comment provided by engineer. */
@@ -899,13 +884,7 @@
 "Filter Inbox" = "Filtrér indbakke";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Endelig karakter: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Find en kode, der skal scannes";
@@ -939,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Fremtidige tilmeldinger";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Gå til I dag";
@@ -1011,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Skjul indhold for  %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Høj: %@";
@@ -1124,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Det ser ud til, at der ikke er nogen fag, der er forbundet med denne konto. Gå på internettet for at oprette et fag i dag.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Det ser ud til, at du ikke er tilmeldt nogen fag.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det ser ud til, at du ikke er tilmeldt til nogen fag som %@. En af vores andre apps kan være bedre egnet. Tryk på en for at besøge App Store.";
 
 /* No comment provided by engineer. */
@@ -1146,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Sen karaktergivning";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Start eksternt værktøj";
@@ -1457,6 +1424,9 @@
 "Not Submitted" = "Ikke indsendt";
 
 /* No comment provided by engineer. */
+"Not supported" = "Ikke understøttet";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Haster ikke";
 
 /* No due assignments for today */
@@ -1523,6 +1493,9 @@
 "Open item details" = "Åbn elementoplysninger";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Åbner i Canvas for studerende";
+
+/* No comment provided by engineer. */
 "Options" = "Muligheder";
 
 /* No comment provided by engineer. */
@@ -1541,9 +1514,6 @@
 "out of" = "ud af";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "side";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sider";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Sider forside";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Par med observatør";
@@ -1608,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vent venligst, dette kan tage et minut.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Point";
@@ -1677,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Test";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Seneste aktivitet";
 
 /* No comment provided by engineer. */
 "Recipients" = "Modtagere";
@@ -1868,6 +1841,9 @@
 "Sent" = "Sendt";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Indstil ''Hjem'' til ...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Indstil som forside";
 
 /* No comment provided by engineer. */
@@ -1887,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Vis flere muligheder";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Da dette er en gruppediskussion, har hver gruppe sin egen Diskussion for dette emne. Her er de diskussioner, du har adgang til.";
@@ -1950,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Tilmeldinger til studieaftale";
+
+/* No comment provided by engineer. */
+"Student View" = "Visning for studerende";
 
 /* No comment provided by engineer. */
 "Students" = "Studerende";
@@ -2121,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Der opstod en uventet fejl. Prøv igen.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne opgave skal afleveres d. %@";

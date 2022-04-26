@@ -28,4 +28,8 @@ public class FeatureFlag: NSManagedObject {
         get { return canvasContextID.flatMap { Context(canvasContextID: $0) } }
         set { canvasContextID = newValue?.canvasContextID }
     }
+
+    public var isDiscussionAndAnnouncementRedesign: Bool {
+        name == "react_discussions_post"
+    }
 }

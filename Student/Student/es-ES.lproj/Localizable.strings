@@ -23,19 +23,19 @@
 "%@ likes" = "%@ Me gusta";
 
 /* Label indicating multiple submissions need grading */
-"%@ need grading" = "%@ necesitan evaluación";
+"%@ need grading" = "%@ necesita evaluación";
 
 /* Word and ellipses */
 "%@..." = "%@...";
 
 /* Gigabytes */
-"%0.2f GB" = "%0.2f GB";
+"%0.2f GB" = "%0,2f GB";
 
 /* Kilobytes */
-"%0.2f KB" = "%0.2f KB";
+"%0.2f KB" = "%0,2f KB";
 
 /* Megabytes */
-"%0.2f MB" = "%0.2f MB";
+"%0.2f MB" = "%0,2f MB";
 
 /* Button to submit files to an assignment */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
@@ -119,7 +119,7 @@
 "%u Attachments" = "%u archivos adjuntos";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
-"%u files" = "%u archivos";
+"%u files" = "%u archivos";
 
 /* No comment provided by engineer. */
 "1 Attachment" = "1 ítem adjunto";
@@ -167,10 +167,10 @@
 "Access Denied" = "Acceso denegado";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
-"Access denied. Please check your permissions for the action you're trying to complete." = "Acceso denegado. Compruebe sus permisos para la acción que esté intentando completar.";
+"Access denied. Please check your permissions for the action you're trying to complete." = "Acceso denegado. Comprueba tus permisos para la acción que estás intentando completar.";
 
 /* No comment provided by engineer. */
-"Add a comment or reply to previous comments" = "Añada un comentario o responda a los comentarios anteriores";
+"Add a comment or reply to previous comments" = "Añadir un comentario o responder a los comentarios anteriores";
 
 /* No comment provided by engineer. */
 "Add a folder" = "Añadir una carpeta";
@@ -195,7 +195,7 @@
 
 /* Title for the add-inline-media sheet
    Title on the add-inline-media sheet */
-"Add inline media" = "Añadir contenido multimedia en línea";
+"Add inline media" = "Añadir contenido multimedia online";
 
 /* No comment provided by engineer. */
 "Add media attachment" = "Añadir archivo adjunto multimedia";
@@ -236,10 +236,10 @@
 "Archived" = "Archivado";
 
 /* Action sheet title verifying that a user wants to logout. */
-"Are you ready to logout?" = "¿Está listo para cerrar sesión?";
+"Are you ready to logout?" = "¿Estás listo para cerrar sesión?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to leave this quiz?" = "¿Está seguro de que desea abandonar esta prueba?";
+"Are you sure you want to leave this quiz?" = "¿Estás seguro de que quieres abandonar esta prueba?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Preguntarme más tarde";
@@ -266,7 +266,7 @@
 "Attachment %i" = "Archivo adjunto %i";
 
 /* Table View Controller for Attachments */
-"Attachments" = "Archivos adjuntos";
+"Attachments" = "Adjuntos";
 
 /* No comment provided by engineer. */
 "Attempts" = "Intentos";
@@ -326,13 +326,13 @@
 "Cancel Submission" = "Cancelar entrega";
 
 /* No comment provided by engineer. */
-"Canvas appears to be unavailable. Please try again later." = "Parece que Canvas no está disponible. Inténtelo de nuevo más tarde.";
+"Canvas appears to be unavailable. Please try again later." = "Parece que Canvas no está disponible. Inténtalo de nuevo más tarde.";
 
 /* detail text for recipient fetch error message */
-"Canvas failed to find recipients for your current search. Please try again later." = "Canvas no ha logrado encontrar destinatarios para su búsqueda actual. Inténtelo de nuevo más tarde.";
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas no ha logrado encontrar destinatarios para tu búsqueda actual. Inténtalo de nuevo más tarde.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Las pruebas de Canvas admiten diversos estilos de prueba. La mayoría de estos estilos son compatibles con dispositivos móviles; sin embargo, algunos no lo son. Si intenta realizar uno de estos cuestionarios no compatibles en su teléfono, es posible que no pueda completar el cuestionario, lo que le dejaría en desventaja.\n\nEntre los tipos de preguntas no compatibles se encuentran aquellas con contenido de Adobe Flash™, cargas de archivos y otros.\n\nSi cree que una prueba incluye contenido no compatible, realice la prueba en su ordenador de sobremesa o portátil. Si sabe que la prueba contiene solo contenido compatible, no dude en hacerlo en su dispositivo móvil.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Las pruebas de Canvas admiten diversos estilos de prueba. La mayoría de estos estilos son compatibles con dispositivos móviles; sin embargo, algunos no lo son. Si intentas realizar uno de estos cuestionarios no compatibles en tu teléfono, es posible que no puedas completar el cuestionario, lo que te dejaría en desventaja.\n\nEntre los tipos de preguntas no compatibles se encuentran aquellas con contenido de Adobe Flash™, cargas de archivos y otros.\n\nSi crees que una prueba incluye contenido no compatible, realiza la prueba en tu ordenador de sobremesa o portátil. Si sabes que la prueba contiene solo contenido compatible, no dudes en hacerlo en tu dispositivo móvil.";
 
 /* No comment provided by engineer. */
 "Change User" = "Cambiar usuario";
@@ -344,10 +344,10 @@
 "Choose a name for the new folder." = "Elegir un nombre para la nueva carpeta.";
 
 /* No comment provided by engineer. */
-"Choose a submission type" = "Seleccione un tipo de entrega";
+"Choose a submission type" = "Seleccionar un tipo de entrega";
 
 /* No comment provided by engineer. */
-"Choose File" = "Seleccione el archivo";
+"Choose File" = "Seleccionar el archivo";
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Elegir desde la biblioteca...";
@@ -359,10 +359,10 @@
 "Choose Profile Picture" = "Elegir imagen de perfil";
 
 /* action sheet text for picking video from library */
-"Choose video" = "Elegir video";
+"Choose video" = "Elegir vídeo";
 
 /* Choose a video to send as a comment */
-"Choose Video" = "Elegir video";
+"Choose Video" = "Elegir vídeo";
 
 /* No comment provided by engineer. */
 "Clear filter" = "Borrar filtro";
@@ -444,7 +444,7 @@
 "Customize" = "Personalizar";
 
 /* dashboard page title */
-"Dashboard" = "Panel de control";
+"Dashboard" = "Cuadro de mando";
 
 /* Button to confirm deleting folders
    Button to delete a discussion entry
@@ -473,7 +473,7 @@
 "Discard" = "Descartar";
 
 /* No comment provided by engineer. */
-"Discard this entry?" = "¿Desea descartar esta entrada?";
+"Discard this entry?" = "¿Quieres descartar esta entrada?";
 
 /* Title of the new discussion view */
 "Discussion" = "Foro de discusión";
@@ -486,7 +486,7 @@
 
 /* Discussions title
    Title for Discussions view controller */
-"Discussions" = "Foros";
+"Discussions" = "Foros de discusión";
 
 /* Dismiss an error button
    dismiss button
@@ -496,7 +496,7 @@
 "Dismiss" = "Descartar";
 
 /* Alert title asking if you want to masquerade */
-"Do you want to masquerade as this user?" = "¿Desea actuar como este usuario?";
+"Do you want to masquerade as this user?" = "¿Quieres actuar como este usuario?";
 
 /* The domain for the institution/school that the user is currently using */
 "Domain" = "Dominio";
@@ -564,7 +564,7 @@
 "Enter submission" = "Introducir entrega";
 
 /* masquerade prompt */
-"Enter User ID and Domain." = "Introduzca la identificación de usuario y el dominio.";
+"Enter User ID and Domain." = "Introducir la identificación de usuario y el dominio.";
 
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Entrada publicada";
@@ -624,7 +624,7 @@
 "File upload" = "Carga del archivo";
 
 /* File upload failed. */
-"File upload failed." = "Ha fallado la carga del archivo.";
+"File upload failed." = "Ha habido un error al cargar el archivo.";
 
 /* Files view
    Name of a tab displaying files in a course
@@ -699,7 +699,7 @@
 "Groups" = "Grupos";
 
 /* No comment provided by engineer. */
-"Have questions about your assignment?\nMessage your instructor." = "¿Tiene consultas sobre su actividad?\nEnvíe un mensaje a su profesor.";
+"Have questions about your assignment?\nMessage your instructor." = "¿Tienes consultas sobre tu actividad?\nEnvía un mensaje a tu profesor.";
 
 /* help button */
 "Help" = "Ayuda";
@@ -711,10 +711,10 @@
 "Homeroom" = "Aula principal";
 
 /* No comment provided by engineer. */
-"How do you like Canvas?" = "¿Qué le parece Canvas?";
+"How do you like Canvas?" = "¿Qué te parece Canvas?";
 
 /* I give you back your time, use it wisely. */
-"I give you back your time, use it wisely." = "Le devuelvo su tiempo, úselo sabiamente.";
+"I give you back your time, use it wisely." = "Te devuelvo tu tiempo, úsalo sabiamente.";
 
 /* Image file type */
 "Image" = "Imagen";
@@ -739,10 +739,10 @@
 "Instructions" = "Instrucciones";
 
 /* No comment provided by engineer. */
-"Invalid url" = "URL inválida";
+"Invalid url" = "URL incorrecta";
 
 /* No comment provided by engineer. */
-"Invalid URL" = "URL inválida";
+"Invalid URL" = "URL incorrecta";
 
 /* No comment provided by engineer. */
 "It has problems" = "Tiene problemas";
@@ -832,7 +832,7 @@
 "Message everyone separately, or add everyone to a group conversation?" = "¿Enviar el mensaje a todos por separado o añadir a todos a una conversación de grupo?";
 
 /* Add message button */
-"Message Instructor" = "Enviar un mensaje al instructor";
+"Message Instructor" = "Enviar un mensaje al profesor";
 
 /* notification that a message has been sent succesfully */
 "Message Sent." = "Mensaje enviado.";
@@ -858,13 +858,13 @@
 "Multiple Due Dates" = "Varias fechas de entrega";
 
 /* user must contribute to complete requirement */
-"Must contribute" = "Debe contribuir";
+"Must contribute" = "Debes contribuir";
 
 /* user must mark item as done to complete requirement */
-"Must mark as done" = "Debe marcar como hecho";
+"Must mark as done" = "Debes marcar como hecho";
 
 /* format string saying what the minimum score must be */
-"Must score %@ or higher" = "Debe obtener una puntuación de %@ o mayor";
+"Must score %@ or higher" = "Debes obtener una puntuación de %@ o mayor";
 
 /* user must submit something to complete requirement */
 "Must submit" = "Entrega obligatoria";
@@ -879,7 +879,7 @@
 "Name" = "Nombre";
 
 /* Title notifying user that SpeedGrader is available for iPad */
-"Need SpeedGrader for iPad" = "Necesita SpeedGrader para iPad";
+"Need SpeedGrader for iPad" = "Se necesita SpeedGrader para iPad";
 
 /* Network error title */
 "Network Error" = "Error de red";
@@ -960,10 +960,10 @@
 "Not Submitted" = "No entregado";
 
 /* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Nota: Los archivos multimedia no están disponibles para su reproducción inmediata mientras se procesan en el servidor.";
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Nota: Los archivos multimedia no están disponibles para tu reproducción inmediata mientras se procesan en el servidor.";
 
 /* Nothing to do, go play outside! */
-"Nothing to do, go play outside!" = "No tiene nada que hacer, ¡salga y diviértase!";
+"Nothing to do, go play outside!" = "No tienes nada que hacer, ¡sal y diviértete!";
 
 /* Nothing to see here. */
 "Nothing to see here." = "No hay nada que ver aquí.";
@@ -990,7 +990,7 @@
 "On %@ %@ commented \"%@\"" = "El %1$@ %2$@ comentó “%3$@”";
 
 /* No comment provided by engineer. */
-"On %@ %@ left a video comment" = "El %1$@ %2$@ dejó un comentario de video";
+"On %@ %@ left a video comment" = "El %1$@ %2$@ dejó un comentario de vídeo";
 
 /* No comment provided by engineer. */
 "On %@ %@ left an audio comment" = "El %1$@ %2$@ dejó un comentario de audio";
@@ -999,7 +999,7 @@
 "On %@ %@ submitted the following" = "El %1$@ %2$@ envió lo siguiente";
 
 /* Online URL submission type */
-"Online URL" = "URL en línea";
+"Online URL" = "URL online";
 
 /* Error message title
    Error title
@@ -1019,7 +1019,7 @@
 "Other" = "Otro";
 
 /* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
-"Other replies hidden until you reply" = "Otras respuestas están ocultas hasta que usted responda";
+"Other replies hidden until you reply" = "Otras respuestas están ocultas hasta que tú respondas";
 
 /* Accessibility label for out or grading style */
 "out of" = "de";
@@ -1053,7 +1053,7 @@
 "Play" = "Reproducir";
 
 /* Network error message */
-"Please check your network connection and try again." = "Compruebe la conexión de la red y vuelva a intentarlo.";
+"Please check your network connection and try again." = "Comprueba la conexión de la red y vuelve a intentarlo.";
 
 /* Button to post new discussion topic */
 "Post" = "Publicar";
@@ -1068,7 +1068,7 @@
 "Posting…" = "Publicando...";
 
 /* No comment provided by engineer. */
-"Posts your comment" = "Publicar su comentario";
+"Posts your comment" = "Publicar tu comentario";
 
 /* No comment provided by engineer. */
 "Previous item" = "Ítem anterior";
@@ -1123,10 +1123,10 @@
 "Record Audio..." = "Grabar audio...";
 
 /* No comment provided by engineer. */
-"Record video" = "Grabar video";
+"Record video" = "Grabar vídeo";
 
 /* Record video submission comment option */
-"Record Video" = "Grabar video";
+"Record Video" = "Grabar vídeo";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Botón de actualizar";
@@ -1211,7 +1211,7 @@
 "Show Grades" = "Mostrar notas";
 
 /* title for quiz assignment submission button */
-"Show Quiz" = "Mostrar el prueba";
+"Show Quiz" = "Mostrar la prueba";
 
 /* VoiceOver text for a button that lets you show recipients */
 "Show recipients" = "Mostrar destinatarios";
@@ -1220,13 +1220,13 @@
 "Some items could not be deleted" = "No se han podido eliminar algunos ítems";
 
 /* Message for a warning popup */
-"Some selected folders are not empty. Are you sure you want to delete them?" = "Algunas carpetas seleccionadas no están vacías. ¿Está seguro de que desea eliminarlas?";
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Algunas carpetas seleccionadas no están vacías. ¿Estás seguro de que quieres eliminarlas?";
 
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Lo sentimos, no hemos podido encontrar la actividad. Es posible que esta actividad haya sido eliminada.";
 
 /* Hint about the play button */
-"Starts playing your recording" = "Inicia la reproducción de su grabación";
+"Starts playing your recording" = "Inicia la reproducción de tu grabación";
 
 /* Hint about the record button */
 "Starts recording a media comment" = "Empieza a grabar un comentario multimedia";
@@ -1244,16 +1244,16 @@
 "Stop Masquerading" = "Detener actuar como";
 
 /* Hint about the play button */
-"Stops playing your recording" = "Detiene la reproducción de su grabación";
+"Stops playing your recording" = "Detiene la reproducción de tu grabación";
 
 /* Hint about the record button */
 "Stops recording a media comment" = "Detiene la grabación de un comentario multimedia";
 
 /* Short name for student enrollment */
-"Student" = "Alumno";
+"Student" = "Estudiante";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Anotación del alumno";
+"Student Annotation" = "Anotación del estudiante";
 
 /* No comment provided by engineer. */
 "Studio" = "Studio";
@@ -1316,7 +1316,7 @@
 "Sure!" = "Por supuesto.";
 
 /* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Cambia la entrada multimedia entre audio y video. Actualmente configurado en %@";
+"Switches media input between audio and video. Currently set to %@" = "Cambia la entrada multimedia entre audio y vídeo. Actualmente configurado en %@";
 
 /* No comment provided by engineer. */
 "Switches to media comment mode" = "Cambia al modo de comentarios multimedia";
@@ -1335,25 +1335,25 @@
 "Take a Photo..." = "Realizar una foto...";
 
 /* Take a video to use in a comment. */
-"Take a Video..." = "Realizar un video...";
+"Take a Video..." = "Realizar un vídeo...";
 
 /* Button label for taking a photo */
 "Take Photo" = "Realizar foto";
 
 /* Take a picture or video to use in a comment. */
-"Take Photo or Video..." = "Realizar foto o video...";
+"Take Photo or Video..." = "Realizar foto o vídeo...";
 
 /* No comment provided by engineer. */
 "Take Quiz" = "Realizar la prueba";
 
 /* Displayed in a row when an error occurs loading more items */
-"Tap to try again" = "Toque para volver a intentarlo";
+"Tap to try again" = "Toca para volver a intentarlo";
 
 /* No comment provided by engineer. */
-"Tap to view details" = "Toque para ver los detalles";
+"Tap to view details" = "Toca para ver los detalles";
 
 /* No comment provided by engineer. */
-"Tap to view progress" = "Toque para ver el progreso";
+"Tap to view progress" = "Toca para ver el progreso";
 
 /* No comment provided by engineer. */
 "TAs" = "Profesores auxiliares";
@@ -1365,7 +1365,7 @@
 "Teachers" = "Profesores";
 
 /* No comment provided by engineer. */
-"Tell us what's wrong" = "Díganos qué es lo que falla";
+"Tell us what's wrong" = "Dinos qué es lo que falla";
 
 /* Link to the Terms of Use */
 "Terms of Use" = "Términos de uso";
@@ -1383,7 +1383,7 @@
 "Text Submission" = "Entrega de texto";
 
 /* Text explaining the error */
-"The recipients could not be added. Please try again. (%@)" = "Los destinatarios no han podido añadirse. Inténtelo de nuevo. (%@)";
+"The recipients could not be added. Please try again. (%@)" = "Los destinatarios no han podido añadirse. Inténtalo de nuevo. (%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "El servidor no ha podido ser localizado";
@@ -1407,10 +1407,10 @@
 "There is no rubric for this assignment" = "No hay ninguna rúbrica para esta actividad";
 
 /* message for media comment upload failure */
-"There was a network error posting your comment." = "Ha habido un error en la red al publicar su comentario.";
+"There was a network error posting your comment." = "Ha habido un error en la red al publicar tu comentario.";
 
 /* message for failed submission upload */
-"There was a network problem while attempting to upload your submission" = "Ha habido un problema en la red al intentar subir su entrega";
+"There was a network problem while attempting to upload your submission" = "Ha habido un problema en la red al intentar subir tu entrega";
 
 /* Error message when fetching a file fails */
 "There was a problem accessing the requested file.\n\nError: %@" = "Ha habido un problema al acceder al archivo solicitado.\n\nError: %@";
@@ -1422,7 +1422,7 @@
 "There was an error loading the document." = "Ha habido un error al cargar el documento.";
 
 /* No comment provided by engineer. */
-"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Ha habido un error al cargar su contenido. Si se trata de un proceso de carga de audio o video, puede que aún se esté procesando.";
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Ha habido un error al cargar tu contenido. Si se trata de un proceso de carga de audio o vídeo, puede que aún se esté procesando.";
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Aún no hay ninguna notificación.";
@@ -1498,7 +1498,7 @@
 "Unable to load" = "No se puede cargar";
 
 /* Error message */
-"Unable to post. Please try again later" = "No se puede publicar. Inténtelo de nuevo más tarde";
+"Unable to post. Please try again later" = "No se puede publicar. Inténtalo de nuevo más tarde";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "No se puede subir al servidor";
@@ -1567,7 +1567,7 @@
 "Video" = "Vídeo";
 
 /* No comment provided by engineer. */
-"Video error" = "Error de video";
+"Video error" = "Error de vídeo";
 
 /* No comment provided by engineer. */
 "View" = "Ver";
@@ -1588,7 +1588,7 @@
 "Warning" = "Advertencia";
 
 /* error message for failure to load a file submission */
-"We had a problem loading the submission. Please try again later." = "Hemos tenido un problema al cargar la entrega. Inténtelo de nuevo más tarde.";
+"We had a problem loading the submission. Please try again later." = "Hemos tenido un problema al cargar la entrega. Inténtalo de nuevo más tarde.";
 
 /* No comment provided by engineer. */
 "We were unable to verify the server for use with this app." = "No hemos podido verificar el servidor para su uso con esta aplicación.";
@@ -1603,13 +1603,13 @@
 "Will unlock %@." = "Se desbloqueará %@.";
 
 /* Title for action sheet giving the user an option to create a new message for a user. */
-"Would you like to create a new message?" = "¿Desea crear un nuevo mensaje?";
+"Would you like to create a new message?" = "¿Quieres crear un nuevo mensaje?";
 
 /* No comment provided by engineer. */
-"Would you mind giving us a rating on the app store?" = "Por favor, califique nuestra aplicación en la App Store?";
+"Would you mind giving us a rating on the app store?" = "Por favor, califica nuestra aplicación en la App Store.";
 
 /* No comment provided by engineer. */
-"Would you mind letting us know the problems you have been having with the app?" = "Por favor infórmenos sobre los problemas que ha tenido con la aplicación.";
+"Would you mind letting us know the problems you have been having with the app?" = "Por favor infórmanos sobre los problemas que has tenido con la aplicación.";
 
 /* Text submission editor placeholder */
 "Write..." = "Escribir…";
@@ -1618,41 +1618,41 @@
 "Yes" = "Sí";
 
 /* Masquerade title telling who you are masquerading as */
-"You are now masquerading as %@" = "Ahora está actuando como %@";
+"You are now masquerading as %@" = "Ahora estás actuando como %@";
 
 /* Masquerade success message */
-"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Ahora está actuando como %@. Para dejar de actuar como otra persona, vaya a su perfil.";
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Ahora estás actuando como %@. Para dejar de actuar como otra persona, ve a tu perfil.";
 
 /* Error message for an unauthorized course or group. */
-"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "No tiene acceso a este contenido. La asignatura o grupo pueden no haber comenzado, o pueden haber finalizado.";
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "No tienes acceso a este contenido. La asignatura o grupo pueden no haber comenzado, o pueden haber finalizado.";
 
 /* Error message */
-"You do not have permission to delete this reply" = "No tiene permiso para eliminar esta respuesta";
+"You do not have permission to delete this reply" = "No tienes permiso para eliminar esta respuesta";
 
 /* Message in an alert */
-"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "No tiene SpeedGrader para iPad. Puede descargarlo gratis desde la App Store.";
+"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "No tienes SpeedGrader para iPad. Puedes descargarlo gratis desde la App Store.";
 
 /* Masquerade error message */
-"You don't have permission to masquerade as this user or there is no user with that ID" = "No tiene permiso para actuar como este usuario o no hay ningún usuario con esa identificación";
+"You don't have permission to masquerade as this user or there is no user with that ID" = "No tienes permiso para actuar como este usuario o no hay ningún usuario con esa identificación";
 
 /* No comment provided by engineer. */
-"You have an unsaved reply. Would you like to discard that reply?" = "Tiene una respuesta no guardada. ¿Desea descartar esa respuesta?";
+"You have an unsaved reply. Would you like to discard that reply?" = "Tienes una respuesta no guardada. ¿Quieres descartar esa respuesta?";
 
 /* prerequisites for unlocking item */
-"You must first complete:" = "Primero debe completar lo siguiente:";
+"You must first complete:" = "Primero debes completar lo siguiente:";
 
 /* Error message */
-"You need a title and a description to post" = "Necesita un título y una descripción para publicar";
+"You need a title and a description to post" = "Necesitas un título y una descripción para publicar";
 
 /* You should go rate Canvas on the App Store! */
-"You should go rate Canvas on the App Store!" = "Califique a Canvas en la App Store.";
+"You should go rate Canvas on the App Store!" = "Califica a Canvas en la App Store.";
 
 /* Error content */
-"Your files could not be found" = "No se han podido encontrar sus archivos";
+"Your files could not be found" = "No se han podido encontrar tus archivos";
 
 /* Media submission type selected with no Kaltura set up */
-"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuración de su escuela no permite el tipo de entrega seleccionado para esta actividad";
+"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuración de tu escuela no permite el tipo de entrega seleccionado para esta actividad";
 
 /* No comment provided by engineer. */
-"Your submission is now waiting to be graded." = "Su entrega está ahora esperando para ser evaluada.";
+"Your submission is now waiting to be graded." = "Tu entrega está ahora esperando para ser evaluada.";
 

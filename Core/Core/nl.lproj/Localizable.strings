@@ -65,15 +65,6 @@
 "%d missing" = "%d ontbreekt";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Antwoorden";
-
-/* No comment provided by engineer. */
-"%d students" = "%d cursisten";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Ongelezen";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Inhoud toevoegen";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Cursusnaam toevoegen";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Bijnaam voor cursus toevoegen";
@@ -270,6 +264,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Opdrachten";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Opdrachtenlijst";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Koppel bestanden door op een optie hieronder te tikken.";
@@ -518,9 +515,6 @@
 "Conversation Message" = "Gespreksbericht";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Gesprekken";
 
 /* No comment provided by engineer. */
@@ -545,6 +539,9 @@
 "Course Activities" = "Cursusactiviteiten";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Activiteitenstroom van cursus";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Cursusaankondiging";
 
 /* No comment provided by engineer. */
@@ -564,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Cursuscijfer lager dan %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Cursusmodules";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Cursussecties";
@@ -605,21 +605,6 @@
 "Cyan" = "Cyaan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Dagelijks";
 
 /* No comment provided by engineer. */
@@ -627,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Datum";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Weigeren";
@@ -770,6 +752,9 @@
 "Edit attachment (none)" = "Bijlage bewerken (geen)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "Cursusinstellingen bewerken";
+
+/* No comment provided by engineer. */
 "Edit Dashboard" = "Dashboard bewerken";
 
 /* No comment provided by engineer. */
@@ -899,13 +884,7 @@
 "Filter Inbox" = "Inbox filteren";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Eindcijfer: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Zoek een code om te scannen";
@@ -939,15 +918,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Toekomstige inschrijvingen";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Ga naar vandaag";
@@ -1011,9 +981,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Inhoud verbergen voor  %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Hoog: %@";
@@ -1124,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Het lijkt erop dat er geen cursussen aan dit account zijn gekoppeld. Ga naar het web om vandaag nog een cursus te maken.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Het lijkt alsof je in geen enkele cursus bent ingeschreven.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Het lijkt erop dat je voor geen enkele cursus bent ingeschreven als %@. Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een ervan om naar de App Store te gaan.";
 
 /* No comment provided by engineer. */
@@ -1146,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Beoordeling te laat";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Extern hulpmiddel lanceren";
@@ -1457,6 +1424,9 @@
 "Not Submitted" = "Niet ingediend";
 
 /* No comment provided by engineer. */
+"Not supported" = "Niet ondersteund";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Niet urgent";
 
 /* No due assignments for today */
@@ -1523,6 +1493,9 @@
 "Open item details" = "Itemdetails openen";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Opent in Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Opties";
 
 /* No comment provided by engineer. */
@@ -1541,9 +1514,6 @@
 "out of" = "van de";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "pagina";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Pagina's";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Voorpagina van pagina\\'s";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Koppelen met waarnemer";
@@ -1608,9 +1581,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Een ogenblik geduld...";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Punten";
@@ -1677,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Toetsen";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Recente activiteit";
 
 /* No comment provided by engineer. */
 "Recipients" = "Geadresseerden";
@@ -1868,6 +1841,9 @@
 "Sent" = "Verzonden";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "\"Home\" instellen naar...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Instellen als voorpagina";
 
 /* No comment provided by engineer. */
@@ -1887,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Meer opties weergeven";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Aangezien dit een groepsdiscussie is, voert elke groep zijn eigen gesprek over dit onderwerp. Hier zijn de discussies waartoe je toegang tot hebt.";
@@ -1950,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Aanmeldingen voor afspraak van cursist";
+
+/* No comment provided by engineer. */
+"Student View" = "Cursistweergave";
 
 /* No comment provided by engineer. */
 "Students" = "Cursisten";
@@ -2121,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Er is een onverwachte fout opgetreden. Probeer het nog eens.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Deze opdracht moet uiterlijk worden ingeleverd op %@";

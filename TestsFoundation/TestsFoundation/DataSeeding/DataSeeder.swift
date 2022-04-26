@@ -19,6 +19,15 @@
 import Core
 
 public class DataSeeder {
+    public struct Retry {
+        public static let standard = Retry(count: 10, gracePeriod: 2)
+
+        /** The number of times the request to be retried in case of a failure. The total API call count will be 1 + `count`. */
+        public let count: Int
+        /** How many seconds should be waited before another retry occurs. */
+        public let gracePeriod: Int
+    }
+
     private let api: API
 
     public init() {
@@ -33,17 +42,34 @@ public class DataSeeder {
     }
 
     @discardableResult
-    public func makeRequest<Request: APIRequestable>(_ requestable: Request) throws -> Request.Response {
-        let result = request(requestable)
+    public func makeRequest<Request: APIRequestable>(_ requestable: Request, retry: Retry? = nil) throws -> Request.Response {
+        let requestCount: Int =  {
+            guard let retry = retry else {
+                return 1
+            }
+            return retry.count + 1
+        }()
+        let retrySleep = retry?.gracePeriod ?? 0
+        var result: (entity: Request.Response?, urlResponse: URLResponse?, error: Error?)?
 
-        if Request.Response.self is APINoContent.Type {
-            // swiftlint:disable:next force_cast
-            return APINoContent() as! Request.Response
+        for requestIndex in 0..<requestCount {
+            if requestIndex != 0 {
+                sleep(UInt32(retrySleep))
+            }
+
+            result = request(requestable)
+
+           if Request.Response.self is APINoContent.Type {
+               // swiftlint:disable:next force_cast
+               return APINoContent() as! Request.Response
+           }
+
+            if let resultEntity = result?.entity {
+                return resultEntity
+            }
         }
 
-        guard let dsUser = result.entity else { throw result.error ?? NSError.instructureError("API call failed") }
-
-        return dsUser
+        throw result?.error ?? NSError.instructureError("API call failed")
     }
 
     private func request<Request: APIRequestable>(_ requestable: Request) -> (entity: Request.Response?, urlResponse: URLResponse?, error: Error?) {

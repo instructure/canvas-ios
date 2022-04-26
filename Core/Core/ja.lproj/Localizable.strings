@@ -65,15 +65,6 @@
 "%d missing" = "%d 欠如";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d返信";
-
-/* No comment provided by engineer. */
-"%d students" = "%d受講生";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d未読";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +80,10 @@
 "a parent" = "親";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a student" = "受講生";
+"a student" = "受講者";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a teacher" = "講師";
+"a teacher" = "教員";
 
 /* No comment provided by engineer. */
 "Accept" = "受諾";
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "コンテンツを追加";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "コース名を追加";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "コースニックネームを追加";
@@ -212,7 +206,7 @@
 "Appointment Cancellations" = "予定の取り消し";
 
 /* No comment provided by engineer. */
-"Appointment Signups" = "受講生予約サインアップ";
+"Appointment Signups" = "受講者予約サインアップ";
 
 /* No comment provided by engineer. */
 "Archived" = "アーカイブ済み";
@@ -224,7 +218,7 @@
 "Are you sure you want to delete this page?" = "このページを削除してもよろしいですか？";
 
 /* No comment provided by engineer. */
-"Are you sure you want to exit Student View?" = "本当に 受講生ビューを終了しますか。";
+"Are you sure you want to exit Student View?" = "本当に 受講者ビューを終了しますか。";
 
 /* No comment provided by engineer. */
 "Are you sure you want to remove this file?" = "このファイルを削除してもよろしいですか?";
@@ -251,16 +245,16 @@
 "Assignment Details" = "課題の詳細";
 
 /* No comment provided by engineer. */
-"Assignment grade above" = "未満の課題成績";
+"Assignment grade above" = "未満の課題評定";
 
 /* No comment provided by engineer. */
-"Assignment Grade Above %d" = "以上の課題の成績 %d";
+"Assignment Grade Above %d" = "以上の課題の評定 %d";
 
 /* No comment provided by engineer. */
-"Assignment grade below" = "を超える課題成績";
+"Assignment grade below" = "を超える課題評定";
 
 /* No comment provided by engineer. */
-"Assignment Grade Below %d" = "以下の課題の成績 %d";
+"Assignment Grade Below %d" = "以下の課題の評定 %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "課題がありません";
@@ -270,6 +264,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "課題";
+
+/* No comment provided by engineer. */
+"Assignments List" = "課題リスト";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "下のオプションをタップして、ファイルを添付してください。";
@@ -353,13 +350,13 @@
 "Brick" = "ブロック";
 
 /* No comment provided by engineer. */
-"Calendar" = "予定表";
+"Calendar" = "カレンダー";
 
 /* No comment provided by engineer. */
-"Calendars" = "予定表";
+"Calendars" = "カレンダー";
 
 /* No comment provided by engineer. */
-"Calendars (%d)" = "予定表 (%d)";
+"Calendars (%d)" = "カレンダー (%d)";
 
 /* No comment provided by engineer. */
 "Camera" = "カメラ";
@@ -389,10 +386,10 @@
 "Canvas Parent" = "Canvas 親";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas 受講生";
+"Canvas Student" = "Canvas 受講者";
 
 /* No comment provided by engineer. */
-"Canvas Teacher" = "Canvas 講師";
+"Canvas Teacher" = "Canvas 教員";
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "気軽なご質問または提案";
@@ -518,9 +515,6 @@
 "Conversation Message" = "会話メッセージ";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "会話";
 
 /* No comment provided by engineer. */
@@ -545,6 +539,9 @@
 "Course Activities" = "コースアクティビティ";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "コースのアクティビティ ストリーム";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "コースのお知らせ";
 
 /* No comment provided by engineer. */
@@ -554,16 +551,19 @@
 "Course Content" = "コース内容";
 
 /* No comment provided by engineer. */
-"Course grade above" = "未満のコース成績";
+"Course grade above" = "未満のコース評定";
 
 /* No comment provided by engineer. */
-"Course Grade Above %d" = "以上のコース成績 %d";
+"Course Grade Above %d" = "以上のコース評定 %d";
 
 /* No comment provided by engineer. */
-"Course grade below" = "を超えるコース成績";
+"Course grade below" = "を超えるコース評定";
 
 /* No comment provided by engineer. */
-"Course Grade Below %d" = "以下のコース成績 %d";
+"Course Grade Below %d" = "以下のコース評定 %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "コース モジュール";
 
 /* No comment provided by engineer. */
 "Course Sections" = "コース セクション";
@@ -590,7 +590,7 @@
 "Current Enrollments" = "現在の登録";
 
 /* No comment provided by engineer. */
-"Current Grade" = "現在の成績";
+"Current Grade" = "現在の評定";
 
 /* No comment provided by engineer. */
 "Current Grading Period" = "現在の採点期間";
@@ -605,21 +605,6 @@
 "Cyan" = "シアン";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "毎日";
 
 /* No comment provided by engineer. */
@@ -627,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "日付";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "辞退する";
@@ -725,7 +707,7 @@
 "Dismiss invitation to %@" = "（）への招待を取り下げる%@";
 
 /* No comment provided by engineer. */
-"Display Grade as" = "成績の表示方法";
+"Display Grade as" = "評定の表示方法";
 
 /* No comment provided by engineer. */
 "Do not send me anything" = "何も送信しない";
@@ -768,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "添付 (なし) を編集する";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "コース設定を編集";
 
 /* No comment provided by engineer. */
 "Edit Dashboard" = "ダッシュボードを編集する";
@@ -899,13 +884,7 @@
 "Filter Inbox" = "受信トレイをフィルタリングする";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
-"Final Grade: %@" = "最終的な成績：%@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
+"Final Grade: %@" = "最終的な評定：%@";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "スキャンするコードを探す";
@@ -941,37 +920,28 @@
 "Future Enrollments" = "将来の登録";
 
 /* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
-
-/* No comment provided by engineer. */
 "Go to today" = "今日に進む";
 
 /* No comment provided by engineer. */
 "GPA Scale" = "GPAスケール";
 
 /* No comment provided by engineer. */
-"grade" = "成績評価";
+"grade" = "評定評価";
 
 /* No comment provided by engineer. */
-"Grade" = "成績";
+"Grade" = "評定";
 
 /* No comment provided by engineer. */
-"Grade after posting" = "投稿後の成績";
+"Grade after posting" = "投稿後の評定";
 
 /* No comment provided by engineer. */
-"Grade before posting" = "投稿前の成績";
+"Grade before posting" = "投稿前の評定";
 
 /* No comment provided by engineer. */
-"Grade override" = "成績上書き";
+"Grade override" = "評定上書き";
 
 /* No comment provided by engineer. */
-"Grade Override" = "成績上書き";
+"Grade Override" = "評定上書き";
 
 /* No comment provided by engineer. */
 "Graded" = "採点済み";
@@ -980,7 +950,7 @@
 "Graded Surveys" = "採点されたアンケート";
 
 /* No comment provided by engineer. */
-"Grades" = "成績";
+"Grades" = "評定";
 
 /* No comment provided by engineer. */
 "Grading" = "採点";
@@ -1007,13 +977,10 @@
 "Help" = "ヘルプ";
 
 /* No comment provided by engineer. */
-"Help your students with this assignment by adding instructions." = "指示を追加して、この課題を受講生に分かりやすくしてください。";
+"Help your students with this assignment by adding instructions." = "指示を追加して、この課題を受講者に分かりやすくしてください。";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "（）にコンテンツを非表示にする%@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
@@ -1118,10 +1085,13 @@
 "It looks like discussions haven’t been created in this space yet." = "このスペースにはまだ話し合いが作成されていないようです。";
 
 /* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "このスペースにはまだクイズが作成されていないようです。";
+"It looks like quizzes haven’t been created in this space yet." = "このスペースにはまだ小テストが作成されていないようです。";
 
 /* No comment provided by engineer. */
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "このアカウントに関連付けられているコースはないようです。今日コースを作成するには、ウェブをご覧ください。";
+
+/* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "あなたはどのコースにも登録されていないようです。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
@@ -1148,13 +1118,10 @@
 "Late Grading" = "遅れた採点";
 
 /* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
-
-/* No comment provided by engineer. */
 "Launch External Tool" = "外部ツールを起動する";
 
 /* No comment provided by engineer. */
-"Leave Student View" = "受講生ビューを閉じる";
+"Leave Student View" = "受講者ビューを閉じる";
 
 /* No comment provided by engineer. */
 "Legal" = "法務";
@@ -1250,7 +1217,7 @@
 "Make sure you enable camera permissions in Settings" = "設定でカメラ許可を有効にするようにしてください";
 
 /* No comment provided by engineer. */
-"Manage Students" = "受講生を管理";
+"Manage Students" = "受講者を管理";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 O承認ログイン";
@@ -1352,7 +1319,7 @@
 "New Page" = "新しいページ";
 
 /* No comment provided by engineer. */
-"New Quizzes" = "新クイズ";
+"New Quizzes" = "新小テスト";
 
 /* No comment provided by engineer. */
 "New To Do" = "新しい To Do";
@@ -1421,7 +1388,7 @@
 "No preview available" = "プレビューできません";
 
 /* No comment provided by engineer. */
-"No Quizzes" = "クイズなし";
+"No Quizzes" = "小テストなし";
 
 /* No comment provided by engineer. */
 "No Results" = "結果はありません";
@@ -1455,6 +1422,9 @@
 
 /* No comment provided by engineer. */
 "Not Submitted" = "未提出";
+
+/* No comment provided by engineer. */
+"Not supported" = "サポートされていません";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "緊急ではありません";
@@ -1496,7 +1466,7 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "提出物の1つがまだアップロード中です。ログアウトすると中断する場合があります。\nログアウトしてもよろしいですか？";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "リンク付きの受講生のみ利用可能です";
+"Only available to students with link" = "リンク付きの受講者のみ利用可能です";
 
 /* No comment provided by engineer. */
 "Only graders can like" = "採点者のみがいいねをつけられます";
@@ -1505,7 +1475,7 @@
 "Only members" = "メンバーのみ";
 
 /* No comment provided by engineer. */
-"Only teachers" = "講師のみ";
+"Only teachers" = "教員のみ";
 
 /* No comment provided by engineer. */
 "Open" = "開く";
@@ -1521,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "アイテム 詳細を開く";
+
+/* No comment provided by engineer. */
+"Opens in Canvas Student" = "Canvas受講者内で開く";
 
 /* No comment provided by engineer. */
 "Options" = "オプション";
@@ -1541,9 +1514,6 @@
 "out of" = "中";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "ページ";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "ページ";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "ページ/トップ ページ";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "オブザーバーとペアにする";
@@ -1610,16 +1583,13 @@
 "Please wait, this might take a minute." = "お待ちください。これには少し時間がかかる場合があります。";
 
 /* No comment provided by engineer. */
-"plural_points" = "plural_points";
-
-/* No comment provided by engineer. */
 "Points" = "ポイント";
 
 /* No comment provided by engineer. */
 "Post at" = "投稿先";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "練習クイズ";
+"Practice Quizzes" = "練習小テスト";
 
 /* No comment provided by engineer. */
 "Preferences" = "優先設定";
@@ -1667,16 +1637,19 @@
 "Push Notifications" = "プッシュ通知";
 
 /* No comment provided by engineer. */
-"quiz" = "クイズ";
+"quiz" = "小テスト";
 
 /* No comment provided by engineer. */
-"Quiz" = "クイズ";
+"Quiz" = "小テスト";
 
 /* No comment provided by engineer. */
-"Quiz Details" = "クイズの詳細情報";
+"Quiz Details" = "小テストの詳細情報";
 
 /* No comment provided by engineer. */
-"Quizzes" = "クイズ";
+"Quizzes" = "小テスト";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "最近のアクティビティ";
 
 /* No comment provided by engineer. */
 "Recipients" = "受信者";
@@ -1781,7 +1754,7 @@
 "Schedule" = "スケジュール";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "受講生の利用可能状況をスケジュール";
+"Schedule student availability" = "受講者の利用可能状況をスケジュール";
 
 /* No comment provided by engineer. */
 "Scheduling" = "スケジュール中";
@@ -1868,6 +1841,9 @@
 "Sent" = "送信済み";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "'ホーム'を...に設定する";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "フロントページとして設定";
 
 /* No comment provided by engineer. */
@@ -1883,13 +1859,10 @@
 "Show Course Summary" = "コースサマリーを表示";
 
 /* No comment provided by engineer. */
-"Show Grades" = "成績を表示";
+"Show Grades" = "評定を表示";
 
 /* No comment provided by engineer. */
 "Show more options" = "オプションを多く表示する";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "これはグループディスカッションのため、各グループはこのトピックについてそれぞれの会話を行います。利用するディスカッションは以下のとおりです。";
@@ -1943,16 +1916,19 @@
 "Student" = "受講者";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "受講生の注釈";
+"Student Annotation" = "受講者の注釈";
 
 /* No comment provided by engineer. */
 "Student Applications" = "生徒アプリケーション";
 
 /* No comment provided by engineer. */
-"Student Appointment Signups" = "受講生予約サインアップ";
+"Student Appointment Signups" = "受講者予約サインアップ";
 
 /* No comment provided by engineer. */
-"Students" = "受講生";
+"Student View" = "受講者ビュー";
+
+/* No comment provided by engineer. */
+"Students" = "受講者";
 
 /* No comment provided by engineer. */
 "Style" = "スタイル";
@@ -1976,10 +1952,10 @@
 "Submit" = "提出";
 
 /* No comment provided by engineer. */
-"Submitted" = "タスクの成績を送信";
+"Submitted" = "タスクの評定を送信";
 
 /* Submitted date */
-"Submitted %@" = "タスクの成績を送信%@";
+"Submitted %@" = "タスクの評定を送信%@";
 
 /* No comment provided by engineer. */
 "Subscribe" = "定期購読";
@@ -2012,7 +1988,7 @@
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
 
 /* No comment provided by engineer. */
-"Tap to select the courses you want to see on the calendar." = "タップして予定表に表示したいコースを選択してください。";
+"Tap to select the courses you want to see on the calendar." = "タップしてカレンダーに表示したいコースを選択してください。";
 
 /* No comment provided by engineer. */
 "Tap to view announcement" = "タップしてアナウンスメントを表示する。";
@@ -2021,16 +1997,16 @@
 "Tap to view submissions list." = "タップして提出リストを表示します。";
 
 /* No comment provided by engineer. */
-"Teacher" = "講師";
+"Teacher" = "教員";
 
 /* No comment provided by engineer. */
-"Teacher's Assistant" = "講師のアシスタント";
+"Teacher's Assistant" = "教員のアシスタント";
 
 /* No comment provided by engineer. */
-"Teachers" = "講師";
+"Teachers" = "教員";
 
 /* No comment provided by engineer. */
-"Teachers and students" = "講師と受講生";
+"Teachers and students" = "教員と受講者";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "授業助手";
@@ -2096,7 +2072,7 @@
 "There was an error loading files. Pull to refresh to try again." = "ファイルの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "成績の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+"There was an error loading grades. Pull to refresh to try again." = "評定の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There was an error loading items to do. Pull to refresh to try again." = "実行するアイテムの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
@@ -2111,7 +2087,7 @@
 "There was an error loading people. Pull to refresh to try again." = "ピープルのロード中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "クイズの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+"There was an error loading quizzes. Pull to refresh to try again." = "小テストの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There was an error while communicating with the server" = "サーバーとの通信中にエラーが発生しました";
@@ -2121,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "予期しないエラーが発生しました。もう一度やり直してください。";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "この課題の提出期限は%@";
@@ -2168,7 +2141,7 @@
 "to %@" = "～へ%@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "アカウントを作成するには、下に示すように受講生にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\nペアリングコードを作成するオプションが受講生に表示されない場合は、学校に連絡してアカウントを作成する必要があります。";
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "アカウントを作成するには、下に示すように受講者にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\nペアリングコードを作成するオプションが受講者に表示されない場合は、学校に連絡してアカウントを作成する必要があります。";
 
 /* No comment provided by engineer. */
 "To Do" = "タスク";
@@ -2180,7 +2153,7 @@
 "Tomorrow" = "明日";
 
 /* No comment provided by engineer. */
-"Total Grade" = "合計成績";
+"Total Grade" = "合計評定";
 
 /* No comment provided by engineer. */
 "Total time" = "合計時間:";

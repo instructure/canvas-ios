@@ -25,6 +25,8 @@ class LoginFindSchoolViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
 
+    private lazy var nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(nextPressed))
+
     var accounts = [APIAccountResult]()
     var api: API = API()
     let env = AppEnvironment.shared
@@ -90,6 +92,11 @@ class LoginFindSchoolViewController: UIViewController {
         }
     }
 
+    @objc
+    private func nextPressed() {
+        parseInputAndShowLoginScreen()
+    }
+
     func search(query: String) {
         guard !query.isEmpty else {
             accounts = []
@@ -131,22 +138,35 @@ class LoginFindSchoolViewController: UIViewController {
 
         env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
     }
+
+    private func parseInputAndShowLoginScreen() {
+        guard var host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return }
+        host = host.lowercased()
+        if !host.contains(".") {
+            host = "\(host).instructure.com"
+        }
+        searchField.resignFirstResponder()
+        showLoginForHost(host)
+    }
+
+    private func toggleNextButtonVisibility() {
+        if let host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty {
+            navigationItem.rightBarButtonItem = nextButton
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
 }
 
 extension LoginFindSchoolViewController: UITextFieldDelegate {
     @IBAction func textFieldDidChange(_ textField: UITextField) {
+        toggleNextButtonVisibility()
         guard let query = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         search(query: query)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard var host = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return false }
-        host = host.lowercased()
-        if !host.contains(".") {
-            host = "\(host).instructure.com"
-        }
-        textField.resignFirstResponder()
-        showLoginForHost(host)
+        parseInputAndShowLoginScreen()
         return false
     }
 }

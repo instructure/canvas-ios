@@ -157,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Vurderinger vil gjøres synlig for studenter med vurderte innleveringer";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "Gruppe";
 

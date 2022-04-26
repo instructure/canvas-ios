@@ -36,7 +36,7 @@ public struct WebView: UIViewRepresentable {
     // MARK: - Initializers
 
     public init(url: URL?) {
-        source = url.map { .url($0) }
+        source = url.map { .request(URLRequest(url: $0)) }
     }
 
     public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
@@ -48,6 +48,11 @@ public struct WebView: UIViewRepresentable {
 
     public init(html: String?) {
         source = html.map { .html($0) }
+    }
+
+    public init(request: URLRequest, disableZoom: Bool = false) {
+        self.source = .request(request)
+        self.disableZoom = disableZoom
     }
 
     // MARK: - View Modifiers
@@ -101,8 +106,8 @@ public struct WebView: UIViewRepresentable {
             switch source {
             case .html(let html):
                 uiView.loadHTMLString(html)
-            case .url(let url):
-                uiView.load(URLRequest(url: url))
+            case .request(let request):
+                uiView.load(request)
             case nil:
                 break
             }
@@ -119,7 +124,7 @@ public struct WebView: UIViewRepresentable {
 extension WebView {
     enum Source: Equatable {
         case html(String)
-        case url(URL)
+        case request(URLRequest)
     }
 
     private struct FrameToFit: View {

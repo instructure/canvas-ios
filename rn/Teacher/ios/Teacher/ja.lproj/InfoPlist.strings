@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "講師";
+"CFBundleDisplayName" = "教員";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "投稿のコメントに写真や動画を添付します。";
