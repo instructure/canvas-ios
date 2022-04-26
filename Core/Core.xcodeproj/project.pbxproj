@@ -3315,19 +3315,13 @@
 		7D29D2F5218A29B10036437C /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CFAD0D0D2817D91A0017D07B /* Model */,
 				7DFFAB18219DDAE1003E71F8 /* Comments */,
 				7D7472DA218CEE4100CE1430 /* Views */,
-				7D29D308218A5E810036437C /* APIDocViewer.swift */,
 				7DCA320225411E8200458651 /* DocViewer.swift */,
-				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
-				7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */,
 				7D29D2F8218A2BC60036437C /* DocViewerConstants.swift */,
-				7D29D300218A52F00036437C /* DocViewerPointAnnotation.swift */,
-				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
 				7DD694882195F7A200BA4984 /* DocViewerViewController.storyboard */,
 				7DD694862195F76C00BA4984 /* DocViewerViewController.swift */,
-				7D29D2FE218A4FEA0036437C /* PSPDFAnnotationExtension.swift */,
-				CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */,
 			);
 			path = DocViewer;
 			sourceTree = "<group>";
@@ -5023,6 +5017,28 @@
 				CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CFAD0D0D2817D91A0017D07B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD0D0E2817D9570017D07B /* AnnotationTypes */,
+				7D29D308218A5E810036437C /* APIDocViewer.swift */,
+				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
+				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
+				CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFAD0D0E2817D9570017D07B /* AnnotationTypes */ = {
+			isa = PBXGroup;
+			children = (
+				7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */,
+				7D29D300218A52F00036437C /* DocViewerPointAnnotation.swift */,
+				7D29D2FE218A4FEA0036437C /* PSPDFAnnotationExtension.swift */,
+			);
+			path = AnnotationTypes;
 			sourceTree = "<group>";
 		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
