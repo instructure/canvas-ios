@@ -48,7 +48,7 @@
     "prop-types": "^15.6.0",
     "react": "16.13.1",
     "react-apollo": "^2.0.4",
-    "react-native": "0.63.2",
+    "react-native": "0.64.1",
     "react-native-audio": "^3.5.1",
     "react-native-button": "^2.1.0",
     "react-native-camera": "^3.23.1",
