@@ -1,2 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="matrix(0.010416666666666666 0 0 0.010416666666666666 2 2)"><path d="M960 0C430.645 0 0 430.645 0 960s430.645 960 960 960 960-430.645 960-960S1489.355 0 960 0" stroke="none" stroke-width="1" fill-rule="evenodd"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path fill-rule="evenodd" stroke="none" stroke-width="1" d="M960 0C430.645 0 0 430.645 0 960s430.645 960 960 960 960-430.645 960-960S1489.355 0 960 0" transform="matrix(0.010416666666666666 0 0 0.010416666666666666 2 2)"/></g></svg>
