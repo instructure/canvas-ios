@@ -67,6 +67,5 @@ public class CoursePickerViewModel: ObservableObject {
         else { return }
 
         selectedCourse = defaultCourse
-        AppEnvironment.shared.userDefaults?.submitAssignmentCourseID = nil
     }
 }

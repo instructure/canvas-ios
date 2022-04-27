@@ -24,25 +24,22 @@ class K5StudentE2ETests: K5UITestCase {
 
     func testStudentK5() {
         setUpK5()
+
         K5CourseCard.courseCard(id: "21025").waitToExist()
+        K5Dashboard.accountNotificationString.waitToExist()
         K5CourseCard.courseCard(id: "21025").tap()
-        CourseNavigation.discussions.waitToExist()
-        CourseNavigation.grades.waitToExist()
-        CourseNavigation.people.waitToExist()
-        CourseNavigation.syllabus.waitToExist()
-        XCTAssertEqual(CourseNavigation.syllabus.label(), "Important Info")
 
-        CourseNavigation.discussions.tap()
-        app.find(labelContaining: "K5 disco").waitToExist()
-        NavBar.backButton.tap()
+        K5CourseNavigation.homeTab.waitToExist()
+        K5CourseNavigation.scheduleTab.waitToExist()
+        K5CourseNavigation.gradesTab.waitToExist()
+        K5CourseNavigation.modulesTab.waitToExist()
 
-        CourseNavigation.people.tap()
-        CoursePeople.person(name: "iOS Student K5").waitToExist()
+        K5CourseNavigation.gradesTab.tap()
+        K5CourseGrades.emptyGradesForCourse.waitToExist()
 
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        K5NavigationBar.homeroom.waitToExist()
-        app.find(labelContaining: "My Subjects").waitToExist()
+        K5CourseNavigation.modulesTab.tap()
+        K5CourseModulesPage.emptyPage.waitToExist()
+
     }
 
     func testK5Reset() {

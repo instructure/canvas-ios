@@ -26,6 +26,7 @@ public class K5HomeroomViewModel: ObservableObject {
     @Published public private(set) var subjectCards: [K5HomeroomSubjectCardViewModel] = []
     @Published public private(set) var conferencesViewModel = DashboardConferencesViewModel()
     @Published public private(set) var invitationsViewModel = DashboardInvitationsViewModel()
+    @Published public private(set) var accountAnnouncements: [AccountNotification] = []
 
     // MARK: - Private Variables -
     private let env = AppEnvironment.shared
@@ -36,6 +37,9 @@ public class K5HomeroomViewModel: ObservableObject {
     }
     private lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
         self?.profileUpdated()
+    }
+    private lazy var accountAnnouncementsStore = env.subscribe(GetAccountNotifications()) { [weak self] in
+        self?.accountAnnouncementsUpdated()
     }
     private var announcementsStore: Store<GetLatestAnnouncements>?
     private var dueItems: Store<GetK5HomeroomDueItemCount>?
@@ -54,6 +58,7 @@ public class K5HomeroomViewModel: ObservableObject {
 
         cards.refresh()
         profile.refresh()
+        accountAnnouncementsStore.exhaust()
         conferencesViewModel.refresh()
         invitationsViewModel.refresh()
     }
@@ -80,6 +85,11 @@ public class K5HomeroomViewModel: ObservableObject {
         requestItemsDueToday()
     }
 
+    private func accountAnnouncementsUpdated() {
+        guard accountAnnouncementsStore.requested, !accountAnnouncementsStore.pending else { return }
+        accountAnnouncements = accountAnnouncementsStore.all
+    }
+
     // MARK: Subject Cards
 
     private func requestItemsDueToday() {
@@ -103,12 +113,13 @@ public class K5HomeroomViewModel: ObservableObject {
             self.updateSubjectCardViewModels()
         }
 
-        missingSubmissions?.refresh(force: forceRefresh)
+        missingSubmissions?.exhaust(force: forceRefresh)
     }
 
     private func updateSubjectCardViewModels() {
         let nonHomeroomCards = cards.filter { $0.isHomeroom == false }
-        subjectCards = nonHomeroomCards.map { card in
+        subjectCards = nonHomeroomCards.compactMap { card in
+            guard card.shouldShow else { return nil }
             let announcement = announcementsStore?.first { $0.contextCode == Core.Context(.course, id: card.id).canvasContextID }
             var infoLines: [K5HomeroomSubjectCardViewModel.InfoLine] = [.make(dueToday: numberOfDueTodayItems(for: card.id), missing: numberOfMissingItems(for: card.id), courseId: card.id)]
 
@@ -190,6 +201,7 @@ extension K5HomeroomViewModel: Refreshable {
         dueItems = nil
         cards.refresh(force: true)
         profile.refresh(force: true)
+        accountAnnouncementsStore.exhaust(force: true)
         conferencesViewModel.refresh(force: true)
         invitationsViewModel.refresh(force: true)
     }

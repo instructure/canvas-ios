@@ -18,8 +18,7 @@
 
 import Foundation
 
-public enum K5NavigationBar: String, ElementWrapper {
-    case resources
+public enum K5NavigationBar: ElementWrapper {
 
     public static var homeroom: Element {
         app.find(label: "Homeroom")
@@ -31,5 +30,20 @@ public enum K5NavigationBar: String, ElementWrapper {
 
     public static var grades: Element {
         app.find(label: "Grades")
+    }
+
+    public static var resources: Element {
+        app.find(label: "Resources")
+    }
+}
+
+public enum K5Dashboard: ElementWrapper {
+
+    public static var accountNotification: Element {
+        app.find(id: "AccountNotification.2.toggleButton")
+    }
+
+    public static var accountNotificationString: Element {
+        app.find(label: "FYI, Tap to view announcement", type: XCUIElement.ElementType.button)
     }
 }

@@ -40,7 +40,7 @@ class PageListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         let split = UISplitViewController()
         split.viewControllers = [ nav ]
-        split.preferredDisplayMode = .allVisible
+        split.preferredDisplayMode = .oneBesideSecondary
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
@@ -135,6 +135,15 @@ class PageListViewControllerTests: CoreTestCase {
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
         let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PageListCell
         XCTAssertEqual(cell.titleLabel.text, "z next page")
+    }
+
+    func testFrontPageCellHeightWithFrontPageButNoOtherPages() {
+        api.mock(controller.pages, value: [])
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(controller.tableView(controller.tableView, heightForRowAt: IndexPath(row: 0, section: 0)), UITableView.automaticDimension)
     }
 
     func apiPageToDictionary(page: APIPage) -> [String: Any] {

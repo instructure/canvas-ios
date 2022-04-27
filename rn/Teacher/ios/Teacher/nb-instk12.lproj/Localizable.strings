@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"%g out of %g" = "%1$g ut av %2$g";
+"%g out of %g" = "%1$g av %2$g";
 
 /* No comment provided by engineer. */
-"%g pts" = "%g Poeng";
+"%g pts" = "%g poeng";
 
 /* No comment provided by engineer. */
 "Absent" = "Fraværende";
@@ -32,7 +32,7 @@
 "Attendance" = "Oppmøte";
 
 /* No comment provided by engineer. */
-"Attendance Error" = "Oppmøte avvik";
+"Attendance Error" = "Oppmøte feil";
 
 /* No comment provided by engineer. */
 "Back" = "Tilbake";
@@ -53,10 +53,19 @@
 "Choose Files" = "Velg filer";
 
 /* No comment provided by engineer. */
+"Close" = "Lukk";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Lukk skuff";
 
 /* No comment provided by engineer. */
-"Comment" = "Kommentere";
+"Comment" = "Kommentar";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Kommentarbibliotek";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Kommentarbibliotek er ikke tilgjengelig";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
@@ -77,7 +86,7 @@
 "Date picker" = "Dato velger";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Avvise";
+"Dismiss" = "Avvis";
 
 /* No comment provided by engineer. */
 "Done" = "Ferdig";
@@ -86,10 +95,10 @@
 "Edit" = "Rediger";
 
 /* No comment provided by engineer. */
-"Error" = "Avvik";
+"Error" = "Feil";
 
 /* rollcall status error */
-"Error: No data returned from the rollcall api." = "Avvik: Ingen data returnert fra opprop api.";
+"Error: No data returned from the rollcall api." = "Feil: Ingen data returnert fra opprop api.";
 
 /* No comment provided by engineer. */
 "Everyone" = "Alle";
@@ -102,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Lykkes ikke å opprette LTI-verktøyet opprop.";
+
+/* No comment provided by engineer. */
+"Failed to load submission data!" = "Kunne ikke laste inn innleveringsdata!";
 
 /* No comment provided by engineer. */
 "Files" = "Filer";
@@ -119,7 +131,7 @@
 "Filter by" = "Filtrer etter";
 
 /* No comment provided by engineer. */
-"Final Grade" = "Avsluttende vurdering";
+"Final Grade" = "Slutt vurdering";
 
 /* No comment provided by engineer. */
 "GPA" = "GPA";
@@ -143,13 +155,7 @@
 "Grades will be made visible to all students" = "Vurderinger vil gjøres synlig for alle elever";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Vurderinger vil gjøres synlig for elevene med vurderte innleveringer";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
+"Grades will be made visible to students with graded submissions" = "Vurderinger vil gjøres synlig for elever med vurderte innleveringer";
 
 /* No comment provided by engineer. */
 "Group" = "Gruppe";
@@ -182,7 +188,7 @@
 "Mark Remaining as Present" = "Marker gjenværende som nåværende";
 
 /* No comment provided by engineer. */
-"Moderated Grading Unsupported" = "Moderert vurdering ikke støttet";
+"Moderated Grading Unsupported" = "Samordnet sensur ikke støttet";
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Trenger vurdering";
@@ -194,10 +200,16 @@
 "No Submissions" = "Ingen innleveringer";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Ingen forslag tilgjengelige";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Ikke vurdert";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Åpne kommentarbibliotek";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Åpne skuff i fullskjerm";
@@ -209,7 +221,7 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
-"Pending" = "Avventer";
+"Pending" = "Venter";
 
 /* No comment provided by engineer. */
 "Percent (%)" = "Prosent (%)";
@@ -248,6 +260,9 @@
 "Reset" = "Tilbakestill";
 
 /* No comment provided by engineer. */
+"Retry" = "Forsøk igjen";
+
+/* No comment provided by engineer. */
 "Rubric" = "Vurderingskriterier";
 
 /* No comment provided by engineer. */
@@ -266,7 +281,7 @@
 "Send message to users" = "Send meldinger til brukere";
 
 /* No comment provided by engineer. */
-"Similarity Score" = "Likhetsresultat";
+"Similarity Score" = "Likhetsscore";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Utvalgte seksjoner";
@@ -278,7 +293,7 @@
 "Submissions" = "Innleveringer";
 
 /* No comment provided by engineer. */
-"Test Student" = "Test Elev";
+"Test Student" = "Quiz Elev";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Det er ingen meldinger ennå.";
@@ -308,10 +323,13 @@
 "This submission has no files." = "Denne innleveringen har ingen filer.";
 
 /* No comment provided by engineer. */
-"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Denne innleveringen er en URL-adresse til en ekstern side. Vi har tatt et skjermbilde av hvordan siden så ut da den ble sendt.";
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Denne innleveringen er en URL-adresse til en ekstern side. Vi har tatt et skjermbilde av hvordan siden så ut da den ble sendt inn.";
 
 /* No comment provided by engineer. */
-"To Do" = "Å gjøre";
+"To Do" = "Gjøremål";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Ukjent feil";
 
 /* No comment provided by engineer. */
 "Unmark" = "Fjern merking";

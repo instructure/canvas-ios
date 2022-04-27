@@ -1,0 +1,2364 @@
+/* No comment provided by engineer. */
+"-" = "-";
+
+/* placeholder for the score of an ungraded submission */
+"--" = "--";
+
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Đóng vai trò\" về cơ bản là đăng nhập dưới danh nghĩa người dùng này mà không sử dụng mật khẩu. Bạn sẽ có thể thực hiện mọi thao tác như thể bạn chính là người dùng này và từ góc nhìn của người dùng khác, như thể chính là người dùng này thực hiện các thao tác đó. Tuy nhiên, nhật ký đánh giá sẽ ghi nhận lại rằng bạn chính là người đã thực hiện thao tác thay mặt cho người dùng này.";
+
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
+/* No comment provided by engineer. */
+"(No subject)" = "(Không có tiêu đề)";
+
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "Thêm %1$@ + %2$@";
+
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"%@ late" = "%@ trễ";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ bị thiếu";
+
+/* No comment provided by engineer. */
+"%@ pts" = "%@ điểm thành phần";
+
+/* No comment provided by engineer. */
+"%@ sections" = "%@ phần";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ đã nộp";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, trong %2$@, tin nhắn gần nhất là vào %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, chưa đọc";
+
+/* score/points */
+"%@/%@" = "%1$@/%2$@";
+
+/* score/points possible (grade) */
+"%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
+
+/* Number of assignments due today */
+"%d due today" = "%d đến hạn hôm nay";
+
+/* No comment provided by engineer. */
+"%d items" = "%d mục";
+
+/* Number of missing submissions */
+"%d missing" = "%d bị thiếu";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
+
+/* No comment provided by engineer. */
+"A description is required" = "Bắt buộc phải có mô tả";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "phụ huynh";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "sinh viên";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "giáo viên";
+
+/* No comment provided by engineer. */
+"Accept" = "Chấp Nhận";
+
+/* No comment provided by engineer. */
+"Access" = "Truy Cập";
+
+/* No comment provided by engineer. */
+"Account Group" = "Nhóm Tài Khoản";
+
+/* No comment provided by engineer. */
+"Act as User" = "Đóng Vai Trò Người Dùng";
+
+/* No comment provided by engineer. */
+"Add Assignee" = "Thêm Người Được Giao Bài Tập";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Thêm Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Thêm Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Add comment (optional)" = "Thêm bình luận (không bắt buộc)";
+
+/* No comment provided by engineer. */
+"Add content" = "Thêm nội dung";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Thêm Tên Khóa Học";
+
+/* No comment provided by engineer. */
+"Add Course Nickname" = "Thêm Biệt Danh Khóa Học";
+
+/* No comment provided by engineer. */
+"Add description" = "Thêm mô tả";
+
+/* No comment provided by engineer. */
+"Add Due Date" = "Thêm Ngày Đến Hạn";
+
+/* No comment provided by engineer. */
+"Add File" = "Thêm Tập Tin";
+
+/* No comment provided by engineer. */
+"Add Folder" = "Thêm Thư Mục";
+
+/* No comment provided by engineer. */
+"Add Item" = "Thêm Mục";
+
+/* No comment provided by engineer. */
+"Add message" = "Thêm tin nhắn";
+
+/* No comment provided by engineer. */
+"Add Planner Note" = "Thêm Ghi Chú Trình Hoạch Định";
+
+/* No comment provided by engineer. */
+"Add Title" = "Thêm Tiêu Đề";
+
+/* No comment provided by engineer. */
+"Added To Conversation" = "Đã Thêm Vào Cuộc Trò Chuyện";
+
+/* No comment provided by engineer. */
+"Administrative Notifications" = "Thông Báo Quản Trị";
+
+/* No comment provided by engineer. */
+"Alerts" = "Cảnh Báo";
+
+/* No comment provided by engineer. */
+"All" = "Tất Cả";
+
+/* No comment provided by engineer. */
+"All annotations saved." = "Đã lưu tất cả chú thích.";
+
+/* No comment provided by engineer. */
+"All courses" = "Tất cả khóa học";
+
+/* No comment provided by engineer. */
+"All Courses" = "Tất Cả Khóa Học";
+
+/* No comment provided by engineer. */
+"All Day" = "Cả Ngày";
+
+/* No comment provided by engineer. */
+"All People" = "Tất Cả Mọi Người";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Tất Cả Mục Nộp";
+
+/* No comment provided by engineer. */
+"Allow liking" = "Cho phép thích";
+
+/* No comment provided by engineer. */
+"Allow threaded replies" = "Cho phép trả lời theo luồng";
+
+/* No comment provided by engineer. */
+"Allow users to comment" = "Cho phép người dùng bình luận";
+
+/* No comment provided by engineer. */
+"Announcement" = "Thông Báo";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Thông Báo Do Bạn Tạo";
+
+/* No comment provided by engineer. */
+"Announcement Details" = "Thông Tin Chi Tiết Thông Báo";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Trả Lời Thông Báo";
+
+/* No comment provided by engineer. */
+"Announcements" = "Thông Báo Chung";
+
+/* No comment provided by engineer. */
+"Anyone" = "Bất Kỳ Ai";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Độ Khả Dụng Cuộc Họp Theo Lịch";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Mục Hủy Cuộc Họp Theo Lịch";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Mục Đăng Ký Cuộc Họp Theo Lịch";
+
+/* No comment provided by engineer. */
+"Archived" = "Được Lưu Trữ";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete %@?" = "Bạn có chắc chắn muốn xóa %@ không?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete this page?" = "Bạn có chắc chắn muốn xóa trang này không?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "Bạn có chắc chắn muốn thoát Góc Nhìn Của Sinh Viên không?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Bạn có chắc chắn muốn gỡ tập tin này không?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this announcement?" = "Bạn có chắc chắn muốn xóa thông báo này không?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Bạn có chắc chắn muốn xóa bình luận này không?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this discussion?" = "Bạn có chắc chắn muốn xóa cuộc thảo luận này không?";
+
+/* No comment provided by engineer. */
+"Assign" = "Giao";
+
+/* No comment provided by engineer. */
+"Assign to" = "Giao cho";
+
+/* No comment provided by engineer. */
+"assignment" = "bài tập";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Chi Tiết Bài Tập";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "Điểm bài tập trên";
+
+/* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Điểm Bài Tập Trên %d";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "Điểm bài tập dưới";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Điểm Bài Tập Dưới %d";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "Bài tập bị thiếu";
+
+/* No comment provided by engineer. */
+"Assignment Missing" = "Bài Tập Bị Thiếu";
+
+/* No comment provided by engineer. */
+"Assignments" = "Bài Tập";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Danh Sách Bài Tập";
+
+/* No comment provided by engineer. */
+"Attach files by tapping an option below." = "Đính kèm tập tin bằng cách nhấn vào tùy chọn bên dưới.";
+
+/* No comment provided by engineer. */
+"Attach files to your submission by tapping an option below." = "Đính kèm tập tin vào bài nộp của bạn bằng cách nhấn vào tùy chọn bên dưới.";
+
+/* No comment provided by engineer. */
+"Attachments" = "Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Attempt %d" = "Lần Làm %d";
+
+/* No comment provided by engineer. */
+"Attribution" = "Thuộc Tính";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Thuộc Tính Không Phái Sinh";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Thuộc Tính Phi Thương Mại";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Thuộc Tính Phi Thương Mại Không Phái Sinh";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Thuộc Tính Phi Thương Mại Chia Sẻ Tương Tự";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Thuộc Tính Chia Sẻ Tương Tự";
+
+/* No comment provided by engineer. */
+"Audio" = "Âm Thanh";
+
+/* No comment provided by engineer. */
+"Augment Reality" = "Thực Tế Tăng Cường";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Xác thực thất bại. Nhiều khả năng người dùng đã từ chối yêu cầu truy cập.";
+
+/* No comment provided by engineer. */
+"Availability" = "Độ Khả Dụng";
+
+/* No comment provided by engineer. */
+"Availability:" = "Độ Khả Dụng:";
+
+/* No comment provided by engineer. */
+"Availability: Closed" = "Độ Khả Dụng: Đã Đóng";
+
+/* No comment provided by engineer. */
+"Available from" = "Khả dụng từ";
+
+/* No comment provided by engineer. */
+"Available From:" = "Khả Dụng Từ:";
+
+/* No comment provided by engineer. */
+"Available until" = "Khả dụng đến";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Khả Dụng Đến:";
+
+/* No comment provided by engineer. */
+"Back" = "Quay lại";
+
+/* No comment provided by engineer. */
+"black" = "đen";
+
+/* No comment provided by engineer. */
+"Blocking" = "Đang Chặn";
+
+/* No comment provided by engineer. */
+"blue" = "xanh dương";
+
+/* No comment provided by engineer. */
+"Blue" = "Xanh Dương";
+
+/* No comment provided by engineer. */
+"Bold" = "Đậm";
+
+/* No comment provided by engineer. */
+"Brick" = "Gạch";
+
+/* No comment provided by engineer. */
+"Calendar" = "Lịch";
+
+/* No comment provided by engineer. */
+"Calendars" = "Lịch";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Lịch (%d)";
+
+/* No comment provided by engineer. */
+"Camera" = "Camera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Có Quyền Chỉnh Sửa";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Không tìm được trường của bạn? Hãy thử nhập URL đầy đủ của trường";
+
+/* No comment provided by engineer. */
+"Cancel" = "Hủy";
+
+/* No comment provided by engineer. */
+"Canvas Guides" = "Canvas Guides";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Thông Tin Đăng Nhập Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Mạng Lưới Canvas";
+
+/* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas trên GitHub";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Parent";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Canvas Student";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Canvas Teacher";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Câu hỏi hoặc đề xuất bình thường";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Thay đổi bố cục bảng điều khiển thành dạng lưới";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Thay đổi bố cục bảng điều khiển thành dạng danh sách";
+
+/* No comment provided by engineer. */
+"Change User" = "Thay Đổi Người Dùng";
+
+/* Description for Chat communication channel */
+"Chat Notifications" = "Thông Báo Trò Chuyện";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Hãy kiểm tra mạng rồi thử lại!";
+
+/* No comment provided by engineer. */
+"Choose a course to message" = "Chọn khóa học để nhắn tin";
+
+/* No comment provided by engineer. */
+"Choose a File" = "Chọn Tập Tin";
+
+/* No comment provided by engineer. */
+"Choose a subject" = "Chọn chủ đề";
+
+/* No comment provided by engineer. */
+"Choose Photo" = "Chọn Ảnh";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Chọn Hình Ảnh Hồ Sơ";
+
+/* No comment provided by engineer. */
+"Clear Course" = "Xóa Khóa Học";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Bỏ bộ lọc";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "Bỏ Bộ Lọc";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Bỏ Bộ Lọc Hộp Thư Đến";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Xóa bản ghi";
+
+/* No comment provided by engineer. */
+"Close" = "Đóng";
+
+/* No comment provided by engineer. */
+"Close App" = "Đóng Ứng Dụng";
+
+/* No comment provided by engineer. */
+"Closed" = "Đã Đóng";
+
+/* No comment provided by engineer. */
+"Closed for Comments" = "Đóng Bình Luận";
+
+/* No comment provided by engineer. */
+"Collapse" = "Thu Gọn";
+
+/* No comment provided by engineer. */
+"collapsed" = "đã thu gọn";
+
+/* No comment provided by engineer. */
+"Color" = "Màu";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Lớp Phủ Màu";
+
+/* No comment provided by engineer. */
+"Comment" = "Bình Luận";
+
+/* No comment provided by engineer. */
+"Comments" = "Bình Luận";
+
+/* No comment provided by engineer. */
+"Complete" = "Hoàn thành";
+
+/* No comment provided by engineer. */
+"Complete/Incomplete" = "Hoàn Thành/Chưa Hoàn Thành";
+
+/* concluded datetime */
+"Concluded %@" = "%@ Đã Kết Thúc";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Hội Nghị Đã Kết Thúc";
+
+/* No comment provided by engineer. */
+"Conference %@ is in progress, tap to view details" = "Hội nghị %@ đang diễn ra, hãy nhấn vào để xem thông tin chi tiết";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Thông Tin Chi Tiết Hội Nghị";
+
+/* No comment provided by engineer. */
+"Conference in progress" = "Hội nghị đang diễn ra";
+
+/* No comment provided by engineer. */
+"Conferences" = "Hội Nghị";
+
+/* No comment provided by engineer. */
+"Contact your school to create an account." = "Hãy liên hệ trường của bạn để tạo tài khoản.";
+
+/* No comment provided by engineer. */
+"Content" = "Nội Dung";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Lỗi Liên Kết Nội Dung";
+
+/* No comment provided by engineer. */
+"Contribute" = "Đóng Góp";
+
+/* No comment provided by engineer. */
+"Contributed" = "Đã Đóng Góp";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Cuộc Trò Chuyện Do Tôi Tạo";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Tin Nhắn Cuộc Trò Chuyện";
+
+/* No comment provided by engineer. */
+"Conversations" = "Cuộc Trò Chuyện";
+
+/* No comment provided by engineer. */
+"Copied!" = "Đã sao chép!";
+
+/* No comment provided by engineer. */
+"Copy Link" = "Sao Chép Liên Kết";
+
+/* No comment provided by engineer. */
+"Copyright Holder" = "Bên Giữ Bản Quyền";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Không thể khởi chạy công cụ. Vui lòng thử lại.";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Không thể lưu cài đặt ưu tiên thông báo";
+
+/* No comment provided by engineer. */
+"Course (optional)" = "Khóa Học (không bắt buộc)";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Hoạt Động Khóa Học";
+
+/* No comment provided by engineer. */
+"Course Activity Stream" = "Luồng Hoạt Động Khóa Học";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Thông Báo Khóa Học";
+
+/* No comment provided by engineer. */
+"Course announcements" = "Thông báo chung khóa học";
+
+/* No comment provided by engineer. */
+"Course Content" = "Nội Dung Khóa Học";
+
+/* No comment provided by engineer. */
+"Course grade above" = "Điểm khóa học trên";
+
+/* No comment provided by engineer. */
+"Course Grade Above %d" = "Điểm Khóa Học Trên %d";
+
+/* No comment provided by engineer. */
+"Course grade below" = "Điểm khóa học dưới";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Điểm Khóa Học Dưới %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Học Phần Khóa Học";
+
+/* No comment provided by engineer. */
+"Course Sections" = "Phần Khóa Học";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Chương Trình Học Của Khóa Học";
+
+/* No comment provided by engineer. */
+"Courses" = "Khóa Học";
+
+/* No comment provided by engineer. */
+"Create Account" = "Tạo Tài Khoản";
+
+/* No comment provided by engineer. */
+"Create Announcement" = "Tạo Thông Báo";
+
+/* No comment provided by engineer. */
+"Create Discussion" = "Tạo Thảo Luận";
+
+/* No comment provided by engineer. */
+"Creative Commons License" = "Giấy Phép Creative Commons";
+
+/* No comment provided by engineer. */
+"Current Enrollments" = "Ghi Danh Hiện Tại";
+
+/* No comment provided by engineer. */
+"Current Grade" = "Điểm Hiện Tại";
+
+/* No comment provided by engineer. */
+"Current Grading Period" = "Thời Gian Phân Loại Điểm Hiện Tại";
+
+/* No comment provided by engineer. */
+"Current position" = "Vị trí hiện tại";
+
+/* No comment provided by engineer. */
+"Customize Course" = "Tùy Chỉnh Khóa Học";
+
+/* No comment provided by engineer. */
+"Cyan" = "Xanh Lá Mạ";
+
+/* No comment provided by engineer. */
+"Daily" = "Hằng Ngày";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Bảng Điều Khiển";
+
+/* No comment provided by engineer. */
+"Date" = "Ngày";
+
+/* No comment provided by engineer. */
+"Decline" = "Từ Chối";
+
+/* No comment provided by engineer. */
+"Deep Purple" = "Tía Đen";
+
+/* No comment provided by engineer. */
+"Delay posting" = "Trì hoãn đăng";
+
+/* No comment provided by engineer. */
+"Delayed until %@" = "Trì hoãn đến %@";
+
+/* No comment provided by engineer. */
+"Delete" = "Xóa";
+
+/* No comment provided by engineer. */
+"Delete Announcement" = "Xóa Thông Báo";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Xóa bình luận";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Xóa Bình Luận";
+
+/* No comment provided by engineer. */
+"Delete Discussion" = "Xóa Thảo Luận";
+
+/* No comment provided by engineer. */
+"Delete File" = "Xóa Tập Tin";
+
+/* No comment provided by engineer. */
+"Delete Folder" = "Xóa Thư Mục";
+
+/* No comment provided by engineer. */
+"Deleted this reply." = "Xóa câu trả lời này.";
+
+/* No comment provided by engineer. */
+"Deleting this folder will also delete all of the files inside the folder." = "Xóa thư mục này cũng sẽ xóa tất cả các tập tin bên trong thư mục.";
+
+/* No comment provided by engineer. */
+"Describe the feature" = "Mô tả đặc tính";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Mô tả vấn đề";
+
+/* No comment provided by engineer. */
+"Description" = "Mô Tả";
+
+/* No comment provided by engineer. */
+"Designer" = "Người Thiết Kế";
+
+/* No comment provided by engineer. */
+"Designers" = "Người Thiết Kế";
+
+/* No comment provided by engineer. */
+"Details" = "Chi Tiết";
+
+/* No comment provided by engineer. */
+"Developer menu" = "Menu nhà phát triển";
+
+/* No comment provided by engineer. */
+"discussion" = "thảo luận";
+
+/* No comment provided by engineer. */
+"Discussion" = "Thảo Luận";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Bình Luận Thảo Luận";
+
+/* No comment provided by engineer. */
+"Discussion Details" = "Thông Tin Chi Tiết Thảo Luận";
+
+/* No comment provided by engineer. */
+"Discussion Post" = "Bài Đăng Thảo Luận";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Trả Lời Thảo Luận";
+
+/* No comment provided by engineer. */
+"Discussions" = "Thảo Luận";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Lỗi Ổ Đĩa";
+
+/* Dismiss button for error messages */
+"Dismiss" = "Hủy Bỏ";
+
+/* No comment provided by engineer. */
+"Dismiss %@" = "Bỏ %@";
+
+/* No comment provided by engineer. */
+"Dismiss invitation to %@" = "Bỏ lời mời đến %@";
+
+/* No comment provided by engineer. */
+"Display Grade as" = "Hiển thị Điểm dưới dạng";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Không gửi cho tôi bất kỳ thứ gì";
+
+/* No comment provided by engineer. */
+"Domain" = "Tên Miền";
+
+/* No comment provided by engineer. */
+"Done" = "Đã xong";
+
+/* No comment provided by engineer. */
+"Due" = "Hạn";
+
+/* i.e. Due <Jan 10, 2020 at 9:00 PM> */
+"Due %@" = "Đến hạn vào %@";
+
+/* No comment provided by engineer. */
+"Due Date" = "Ngày Đến Hạn";
+
+/* No comment provided by engineer. */
+"Due Dates, Double tap for details." = "Ngày Đến Hạn, Nhấn đúp để biết chi tiết.";
+
+/* No comment provided by engineer. */
+"Due:" = "Hạn:";
+
+/* No comment provided by engineer. */
+"Due: %@" = "Hạn: %@";
+
+/* No comment provided by engineer. */
+"Edit" = "Chỉnh Sửa";
+
+/* No comment provided by engineer. */
+"Edit Announcement" = "Chỉnh Sửa Thông Báo";
+
+/* No comment provided by engineer. */
+"Edit Assignment" = "Chỉnh Sửa Bài Tập";
+
+/* No comment provided by engineer. */
+"Edit attachment (1)" = "Chỉnh sửa tập tin đính kèm (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Chỉnh sửa tập tin đính kèm (không có)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Chỉnh sửa cài đặt khóa học";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Chỉnh Sửa Bảng Điều Khiển";
+
+/* No comment provided by engineer. */
+"Edit Discussion" = "Chỉnh Sửa Thảo Luận";
+
+/* No comment provided by engineer. */
+"Edit File" = "Chỉnh Sửa Tập Tin";
+
+/* No comment provided by engineer. */
+"Edit Folder" = "Chỉnh Sửa Thư Mục";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Chỉnh Sửa Trang";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Chỉnh Sửa Người Nhận";
+
+/* No comment provided by engineer. */
+"Edit Syllabus" = "Chỉnh Sửa Chương Trình Học";
+
+/* No comment provided by engineer. */
+"Email address" = "Địa chỉ email";
+
+/* Description for email communication channel */
+"Email Notifications" = "Thông Báo Email";
+
+/* No comment provided by engineer. */
+"Emergency" = "Khẩn Cấp";
+
+/* No comment provided by engineer. */
+"Enable Push Notifications" = "Bật Thông Báo Đẩy";
+
+/* No comment provided by engineer. */
+"End Act as User" = "Kết Thúc Đóng Vai Trò Người Dùng";
+
+/* No comment provided by engineer. */
+"Error" = "Lỗi";
+
+/* No comment provided by engineer. */
+"Error Saving. Tap to retry." = "Lỗi Lưu. Hãy nhấn để thử lại.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Mọi Người";
+
+/* No comment provided by engineer. */
+"Everyone else" = "Mọi người khác";
+
+/* No comment provided by engineer. */
+"Excused" = "Đã Xin Phép";
+
+/* No comment provided by engineer. */
+"Expand" = "Mở Rộng";
+
+/* No comment provided by engineer. */
+"expanded" = "đã mở rộng";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Tính Năng Thử Nghiệm";
+
+/* No comment provided by engineer. */
+"external tool" = "công cụ ngoài";
+
+/* No comment provided by engineer. */
+"External Tool" = "Công Cụ Ngoài";
+
+/* No comment provided by engineer. */
+"external URL" = "URL bên ngoài";
+
+/* No comment provided by engineer. */
+"External URL" = "URL Bên Ngoài";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Trường hợp khẩn cấp cực kỳ quan trọng";
+
+/* No comment provided by engineer. */
+"Fail" = "Không đạt";
+
+/* No comment provided by engineer. */
+"Failed to save image" = "Lưu hình ảnh thất bại";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Tải lên thất bại";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Tải Lên Thất Bại";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "Thất bại Nhấn để xem tùy chọn";
+
+/* No comment provided by engineer. */
+"favorite" = "ưa thích";
+
+/* No comment provided by engineer. */
+"Feedback" = "Ý Kiến Phản Hồi";
+
+/* No comment provided by engineer. */
+"file" = "tập tin";
+
+/* No comment provided by engineer. */
+"File" = "Tập Tin";
+
+/* No comment provided by engineer. */
+"File Details" = "Thông Tin Chi Tiết Tập Tin";
+
+/* No comment provided by engineer. */
+"File Upload" = "Tải Lên Tập Tin";
+
+/* No comment provided by engineer. */
+"File upload failed. Please cancel your submission and try uploading again." = "Tải lên tập tin thất bại. Vui lòng hủy bài nộp của bạn rồi thử tải lên lại.";
+
+/* No comment provided by engineer. */
+"Files" = "Các Tập Tin";
+
+/* No comment provided by engineer. */
+"Filter" = "Lọc";
+
+/* No comment provided by engineer. */
+"Filter by" = "Lọc theo";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Lọc theo:";
+
+/* No comment provided by engineer. */
+"Filter events" = "Lọc sự kiện";
+
+/* No comment provided by engineer. */
+"Filter Inbox" = "Lọc Hộp Thư Đến";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Điểm Cuối Cùng: %@";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Tìm mã để quét";
+
+/* No comment provided by engineer. */
+"Find my school" = "Tìm trường của tôi";
+
+/* No comment provided by engineer. */
+"Find School" = "Tìm Trường";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Tìm trường hoặc khu của bạn";
+
+/* No comment provided by engineer. */
+"Folder Name" = "Tên Thư Mục";
+
+/* No comment provided by engineer. */
+"for %@" = "cho %@";
+
+/* No comment provided by engineer. */
+"For:" = "Cho:";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Quên %@";
+
+/* No comment provided by engineer. */
+"Format not supported" = "Định dạng không được hỗ trợ";
+
+/* No comment provided by engineer. */
+"Front Page" = "Trang Đầu";
+
+/* No comment provided by engineer. */
+"Future Enrollments" = "Ghi Danh Tương Lai";
+
+/* No comment provided by engineer. */
+"Go to today" = "Đi đến hôm nay.";
+
+/* No comment provided by engineer. */
+"GPA Scale" = "Thang GPA";
+
+/* No comment provided by engineer. */
+"grade" = "lớp";
+
+/* No comment provided by engineer. */
+"Grade" = "Lớp";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Điểm sau khi đăng";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Điểm trước khi đăng";
+
+/* No comment provided by engineer. */
+"Grade override" = "Ghi đè điểm";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Ghi Đè Điểm";
+
+/* No comment provided by engineer. */
+"Graded" = "Đã Chấm Điểm";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Khảo Sát Được Chấm Điểm";
+
+/* No comment provided by engineer. */
+"Grades" = "Điểm";
+
+/* No comment provided by engineer. */
+"Grading" = "Chấm Điểm";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Chính Sách Chấm Điểm";
+
+/* No comment provided by engineer. */
+"green" = "xanh lục";
+
+/* No comment provided by engineer. */
+"Green" = "Xanh Lục";
+
+/* No comment provided by engineer. */
+"grey" = "xám";
+
+/* No comment provided by engineer. */
+"Groups" = "Nhóm";
+
+/* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Hãy nhờ phụ huynh của bạn quét mã QR này từ ứng dụng Canvas Parent để ghép cặp với bạn.";
+
+/* No comment provided by engineer. */
+"Help" = "Trợ Giúp";
+
+/* No comment provided by engineer. */
+"Help your students with this assignment by adding instructions." = "Giúp sinh viên của bạn thực hiện bài tập này bằng cách thêm chỉ dẫn.";
+
+/* No comment provided by engineer. */
+"Hide content for %@" = "Ẩn nội dung cho %@";
+
+/* No comment provided by engineer. */
+"High: %@" = "Cao: %@";
+
+/* No comment provided by engineer. */
+"Homeroom" = "Phòng Chính";
+
+/* No comment provided by engineer. */
+"Homeroom View" = "Dạng Xem Phòng Chính";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Làm thế nào để tìm trường của tôi?";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Tôi không làm được gì cho đến khi được nghe phản hồi từ bạn.";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Tôi không có tài khoản Canvas";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Tôi có tài khoản Canvas";
+
+/* No comment provided by engineer. */
+"I hold the copyright" = "Tôi là bên giữ bản quyền";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Tôi cần trợ giúp nhưng không gấp.";
+
+/* No comment provided by engineer. */
+"I obtained permission" = "Tôi đã xin phép được";
+
+/* No comment provided by engineer. */
+"Image" = "Hình Ảnh";
+
+/* No comment provided by engineer. */
+"Immediately" = "Ngay Lập Tức";
+
+/* No comment provided by engineer. */
+"Impact" = "Tác Động";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Mức Tác Động";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Những Ngày Quan Trọng";
+
+/* No comment provided by engineer. */
+"Important Info" = "Thông Tin Quan Trọng";
+
+/* No comment provided by engineer. */
+"In Progress" = "Đang Diễn Ra";
+
+/* No comment provided by engineer. */
+"Inbox" = "Hộp Thư Đến";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Chưa hoàn thành";
+
+/* No comment provided by engineer. */
+"Indigo" = "Chàm";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Thông Báo Tổ Chức";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "Thông Báo Chung Tổ Chức";
+
+/* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Tương tác trên trang này bị giới hạn bởi tổ chức của bạn.";
+
+/* No comment provided by engineer. */
+"Invitation" = "Lời Mời";
+
+/* No comment provided by engineer. */
+"Invitation pending" = "Lời mời đang chờ";
+
+/* No comment provided by engineer. */
+"Invite accepted!" = "Lời mời đã được chấp nhận!";
+
+/* No comment provided by engineer. */
+"Invite declined!" = "Lời mời đã bị từ chối!";
+
+/* No comment provided by engineer. */
+"It is a fair use or similar exception" = "Đây là trường hợp ngoại lệ sử dụng công bằng hoặc tương tự";
+
+/* No comment provided by engineer. */
+"It is in the public domain" = "Đây là trường hợp thuộc phạm vi công cộng";
+
+/* No comment provided by engineer. */
+"It is licensed under Creative Commons" = "Đây là trường hợp được cấp phép theo Creative Commons";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Có vẻ là một ngày tuyệt vời để nghỉ ngơi, thư giãn và hồi sức.";
+
+/* No comment provided by engineer. */
+"It looks like announcements haven’t been created in this space yet." = "Có vẻ thông báo chung chưa được tạo trong không gian này.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Có vẻ bài tập chưa được tạo trong không gian này.";
+
+/* No comment provided by engineer. */
+"It looks like discussions haven’t been created in this space yet." = "Có vẻ cuộc thảo luận chưa được tạo trong không gian này.";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Có vẻ các câu hỏi kiểm tra chưa được tạo trong không gian này.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Có vẻ không có khóa học nào liên quan đến tài khoản này. Truy cập trang web để tạo khóa học hôm nay.";
+
+/* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Có vẻ như bạn chưa ghi danh vào bất kỳ khóa học nào.";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Có vẻ bạn chưa ghi danh bất kỳ khóa học nào với tư cách %@. Một trong các ứng dụng khác có thể thích hợp hơn. Nhấn vào một để truy cập App Store.";
+
+/* No comment provided by engineer. */
+"Italic" = "Nghiêng";
+
+/* No comment provided by engineer. */
+"Join" = "Tham Gia";
+
+/* No comment provided by engineer. */
+"Landing Page" = "Trang Đích";
+
+/* No comment provided by engineer. */
+"Last activity on %@" = "Hoạt động gần nhất vào %@";
+
+/* No comment provided by engineer. */
+"Last post %@" = "Bài đăng gần nhất %@";
+
+/* No comment provided by engineer. */
+"Late" = "Trễ";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Chấm Điểm Trễ";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Khởi Chạy Công Cụ Ngoài";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Rời Góc Nhìn Của Sinh Viên";
+
+/* No comment provided by engineer. */
+"Legal" = "Pháp Lý";
+
+/* No comment provided by engineer. */
+"Letter Grade" = "Điểm Bằng Chữ";
+
+/* No comment provided by engineer. */
+"Library" = "Thư Viện";
+
+/* No comment provided by engineer. */
+"Light Blue" = "Xanh Dương Nhạt";
+
+/* like action */
+"Like" = "Thích";
+
+/* No comment provided by engineer. */
+"Link" = "Liên Kết";
+
+/* No comment provided by engineer. */
+"Link to Website URL" = "Liên Kết Đến URL Trang Web";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, và %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ và %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, hoặc %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ hoặc %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Đang tải";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Đang tải thêm học phần...";
+
+/* No comment provided by engineer. */
+"Locate QR Code" = "Tìm Mã QR";
+
+/* No comment provided by engineer. */
+"locked" = "bị khóa";
+
+/* No comment provided by engineer. */
+"Locked" = "Bị Khóa";
+
+/* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "Bị khóa đến khi \"%@\" được chấm điểm";
+
+/* No comment provided by engineer. */
+"Log In" = "Đăng Nhập";
+
+/* No comment provided by engineer. */
+"Log In Again" = "Đăng Nhập Lại";
+
+/* No comment provided by engineer. */
+"Log Out" = "Đăng Xuất";
+
+/* No comment provided by engineer. */
+"Logging you in" = "Cho bạn đăng nhập";
+
+/* No comment provided by engineer. */
+"Login" = "Đăng nhập";
+
+/* No comment provided by engineer. */
+"Login Error" = "Lỗi Đăng Nhập";
+
+/* No comment provided by engineer. */
+"Low: %@" = "Thấp: %@";
+
+/* No comment provided by engineer. */
+"LTI Tool" = "Công Cụ LTI";
+
+/* No comment provided by engineer. */
+"Magenta" = "Hồng Sẫm";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Hãy bảo đảm bạn đã bật cho phép camera trong Cài Đặt";
+
+/* No comment provided by engineer. */
+"Manage Students" = "Quản Lý Sinh Viên";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Đăng Nhập OAuth Thủ Công";
+
+/* No comment provided by engineer. */
+"Mark All as Read" = "Đánh Dấu Tất Cả Là Đã Đọc";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Đánh Dấu Tất Cả Là Chưa Đọc";
+
+/* No comment provided by engineer. */
+"Mark as Done" = "Đánh Dấu Là Đã Xong";
+
+/* No comment provided by engineer. */
+"Mark as Read" = "Đánh Dấu Là Đã Dọc";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Đánh Dấu Là Chưa Xong";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Đánh Dấu Là Chưa Đọc";
+
+/* No comment provided by engineer. */
+"Mark done" = "Đánh dấu là đã xong";
+
+/* No comment provided by engineer. */
+"Mark item as done" = "Đánh dấu mục là đã xong";
+
+/* No comment provided by engineer. */
+"Marked done" = "Đã đánh dấu là đã xong";
+
+/* No comment provided by engineer. */
+"me" = "tôi";
+
+/* No comment provided by engineer. */
+"me & %@" = "tôi và %@";
+
+/* No comment provided by engineer. */
+"Mean: %@" = "Trung Bình: %@";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Ghi Nội Dung Phương Tiện";
+
+/* No comment provided by engineer. */
+"Membership Update" = "Cập Nhật Quyền Thành Viên";
+
+/* No comment provided by engineer. */
+"Message" = "Tin Nhắn";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Tin nhắn từ %1$@, %2$@, vào %3$@, %4$@";
+
+/* No comment provided by engineer. */
+"Missing" = "Bị Thiếu";
+
+/* No comment provided by engineer. */
+"Module Item" = "Mục Học Phần";
+
+/* No comment provided by engineer. */
+"Modules" = "Học Phần";
+
+/* No comment provided by engineer. */
+"Multiple Due Dates" = "Nhiều Ngày Đến Hạn";
+
+/* No comment provided by engineer. */
+"My Subjects" = "Môn Học Của Tôi";
+
+/* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Name" = "Tên";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Cần Chấm Điểm";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "CẦN CHẤM ĐIỂM";
+
+/* No comment provided by engineer. */
+"Network Error" = "Lỗi Mạng";
+
+/* No comment provided by engineer. */
+"Never" = "Không Bao Giờ";
+
+/* No comment provided by engineer. */
+"New Announcement" = "Thông Báo Mới";
+
+/* No comment provided by engineer. */
+"New Conferences" = "Hội Nghị Mới";
+
+/* No comment provided by engineer. */
+"New Discussion" = "Thảo Luận Mới";
+
+/* No comment provided by engineer. */
+"New Message" = "Tin Nhắn Mới";
+
+/* No comment provided by engineer. */
+"New Page" = "Trang Mới";
+
+/* No comment provided by engineer. */
+"New Quizzes" = "Các Câu Hỏi Kiểm Tra Mới";
+
+/* No comment provided by engineer. */
+"New To Do" = "Việc Cần Làm Mới";
+
+/* No comment provided by engineer. */
+"Next" = "Tiếp";
+
+/* No comment provided by engineer. */
+"Next Week" = "Tuần Tiếp Theo";
+
+/* No comment provided by engineer. */
+"Nickname" = "Biệt Danh";
+
+/* No comment provided by engineer. */
+"No Announcements" = "Không Có Thông Báo Chung";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Không Có Bài Tập";
+
+/* No comment provided by engineer. */
+"No available from date set." = "Không có cài đặt từ ngày khả dụng.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Không có cài đặt đến ngày khả dụng.";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Không Có Hội Nghị";
+
+/* No comment provided by engineer. */
+"No Content" = "Không Có Nội Dung";
+
+/* No comment provided by engineer. */
+"No Courses" = "Không Có Khóa Học";
+
+/* No comment provided by engineer. */
+"No date selected" = "Không có ngày được chọn";
+
+/* No comment provided by engineer. */
+"No description" = "Không có mô tả";
+
+/* No comment provided by engineer. */
+"No Discussions" = "Không Có Thảo Luận";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Không Có Ngày Đến Hạn";
+
+/* No comment provided by engineer. */
+"No due date set." = "Không có cài đặt ngày đến hạn/";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Không Có Sự Kiện Hôm Nay!";
+
+/* No comment provided by engineer. */
+"No Files" = "Không Có Tập Tin";
+
+/* No comment provided by engineer. */
+"No image found from image picker" = "Không tìm thấy hình ảnh từ bộ chọn hình ảnh";
+
+/* No comment provided by engineer. */
+"No Modules" = "Không Có Học Phần";
+
+/* No comment provided by engineer. */
+"No Pages" = "Không Có Trangg";
+
+/* No comment provided by engineer. */
+"No preview available" = "Không có bản xem trước nào";
+
+/* No comment provided by engineer. */
+"No Quizzes" = "Không Có Các Câu Hỏi Kiểm Tra";
+
+/* No comment provided by engineer. */
+"No Results" = "Không Có Kết Quả";
+
+/* No comment provided by engineer. */
+"No Sections" = "Không Có Phần";
+
+/* No comment provided by engineer. */
+"No Subject" = "Không Có Tiêu Đề";
+
+/* No comment provided by engineer. */
+"No Submission" = "Không Có Mục Nộp";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Không có tập tin được hỗ trợ nào để nộp";
+
+/* No comment provided by engineer. */
+"None" = "Không Có";
+
+/* No comment provided by engineer. */
+"Not enrolled" = "Chưa ";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Chưa Được Chấm Điểm";
+
+/* No comment provided by engineer. */
+"Not Published" = "Chưa Phát Hành";
+
+/* No comment provided by engineer. */
+"Not Started" = "Chưa Bắt Đầu";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Chưa Nộp";
+
+/* No comment provided by engineer. */
+"Not supported" = "Không được hỗ trợ";
+
+/* No comment provided by engineer. */
+"Not Urgent" = "Không Gấp";
+
+/* No due assignments for today */
+"Nothing Due Today" = "Không Có Gì Đến Hạn Hôm Nay";
+
+/* No comment provided by engineer. */
+"Nothing planned yet" = "Chưa có gì được hoạch định";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Lỗi Thông Báo";
+
+/* No comment provided by engineer. */
+"Notifications" = "Thông Báo";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Thông báo hiện đang bị tắt trong Cài Đặt. Hãy nhấn để bật lại.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Thông báo tôi ngay lập tức";
+
+/* No comment provided by engineer. */
+"Observer" = "Người Quan Sát";
+
+/* No comment provided by engineer. */
+"Observers" = "Người Quan Sát";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Olive" = "Ô liu";
+
+/* No comment provided by engineer. */
+"On Paper" = "Trên Giấy";
+
+/* No comment provided by engineer. */
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Một trong các bài nộp của bạn vẫn đang được tải lên. Đăng xuất có thể sẽ làm gián đoạn quá trình này.\nBạn có chắc chắn muốn đăng xuất không?";
+
+/* No comment provided by engineer. */
+"Only available to students with link" = "Chỉ khả dụng đối với sinh viên bằng liên kết";
+
+/* No comment provided by engineer. */
+"Only graders can like" = "Chỉ người chấm điểm có thể thích";
+
+/* No comment provided by engineer. */
+"Only members" = "Chỉ dành cho các thành viên";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Chỉ giáo viên";
+
+/* No comment provided by engineer. */
+"Open" = "Mở";
+
+/* No comment provided by engineer. */
+"Open %@ user preferences" = "Mở cài đặt ưu tiên người dùng %@";
+
+/* No comment provided by engineer. */
+"Open application" = "Mở ứng dụng";
+
+/* No comment provided by engineer. */
+"Open course details" = "Mở thông tin chi tiết khóa học";
+
+/* No comment provided by engineer. */
+"Open item details" = "Mở thông tin chi tiết mục";
+
+/* No comment provided by engineer. */
+"Opens in Canvas Student" = "Mở Trong Canvas Student";
+
+/* No comment provided by engineer. */
+"Options" = "Tùy Chọn";
+
+/* No comment provided by engineer. */
+"OPTIONS" = "TÙY CHỌN";
+
+/* No comment provided by engineer. */
+"orange" = "cam";
+
+/* No comment provided by engineer. */
+"Orange" = "Cam";
+
+/* No comment provided by engineer. */
+"Ordered List" = "Danh Sách Theo Thứ Tự";
+
+/* 5 out of 10 */
+"out of" = "trên tổng số";
+
+/* No comment provided by engineer. */
+"page" = "trang";
+
+/* No comment provided by engineer. */
+"Page" = "Trang";
+
+/* No comment provided by engineer. */
+"Page content" = "Nội dung trang";
+
+/* No comment provided by engineer. */
+"Page Details" = "Thông Tin Chi Tiết Trang";
+
+/* No comment provided by engineer. */
+"Pages" = "Trang";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Các Trang Trang Đầu";
+
+/* No comment provided by engineer. */
+"Pair with Observer" = "Ghép Cặp Với Người Quan Sát";
+
+/* No comment provided by engineer. */
+"Pairing Code: " = "Mã Ghép Cặp: ";
+
+/* No comment provided by engineer. */
+"Pass" = "Đạt";
+
+/* No comment provided by engineer. */
+"Password" = "Mật khẩu";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Ghi Danh Trước Đây";
+
+/* No comment provided by engineer. */
+"Pause" = "Tạm Dừng";
+
+/* No comment provided by engineer. */
+"People" = "Mọi Người";
+
+/* No comment provided by engineer. */
+"Percentage" = "Phần Trăm";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Cần Cho Phép";
+
+/* No comment provided by engineer. */
+"Photo Library" = "Thư Viện Ảnh";
+
+/* No comment provided by engineer. */
+"Pin" = "Ghim";
+
+/* No comment provided by engineer. */
+"Pink" = "Hồng";
+
+/* No comment provided by engineer. */
+"Pinned Discussions" = "Cuộc Thảo Luận Đã Ghim";
+
+/* No comment provided by engineer. */
+"Play" = "Phát";
+
+/* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Vui lòng tạo Mã QR khác rồi thử lại.";
+
+/* No comment provided by engineer. */
+"Please log in via the application" = "Vui lòng đăng nhập thông qua ứng dụng";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Vui lòng chờ, quá trình này có thể mất một phút.";
+
+/* No comment provided by engineer. */
+"Points" = "Điểm";
+
+/* No comment provided by engineer. */
+"Post at" = "Đăng vào";
+
+/* No comment provided by engineer. */
+"Practice Quizzes" = "Các Câu Hỏi Kiểm Tra Luyện Tập";
+
+/* No comment provided by engineer. */
+"Preferences" = "Cài Đặt Ưu Tiên";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Điều Kiện Tiên Quyết %@";
+
+/* No comment provided by engineer. */
+"Previous Logins" = "Lần Đăng Nhập Trước";
+
+/* No comment provided by engineer. */
+"Previous Week" = "Tuần Trước";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "Chính Sách Quyền Riêng Tư";
+
+/* No comment provided by engineer. */
+"Profile avatar" = "Hình đại diện hồ sơ";
+
+/* No comment provided by engineer. */
+"Profile avatar, double tap to change" = "Hình đại diện hồ sơ, nhấn đúp để thay đổi";
+
+/* No comment provided by engineer. */
+"Profile Menu" = "Menu Hồ Sơ";
+
+/* No comment provided by engineer. */
+"Publish" = "Phát Hành";
+
+/* No comment provided by engineer. */
+"published" = "đã công bố";
+
+/* No comment provided by engineer. */
+"Published" = "Đã Phát Hành";
+
+/* No comment provided by engineer. */
+"Pumpkin" = "Bí Ngô";
+
+/* No comment provided by engineer. */
+"purple" = "tía";
+
+/* No comment provided by engineer. */
+"Purple" = "Tía";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Thông Báo Đẩy";
+
+/* No comment provided by engineer. */
+"quiz" = "kiểm tra";
+
+/* No comment provided by engineer. */
+"Quiz" = "Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Thông Tin Chi Tiết Bài Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Các Câu Hỏi Kiểm Tra";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Hoạt Động Gần Đây";
+
+/* No comment provided by engineer. */
+"Recipients" = "Người Nhận";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Ghi Âm";
+
+/* No comment provided by engineer. */
+"Recordings" = "Bản Ghi";
+
+/* No comment provided by engineer. */
+"red" = "đ";
+
+/* No comment provided by engineer. */
+"Red" = "Đỏ";
+
+/* No comment provided by engineer. */
+"Redo" = "Làm lại";
+
+/* Downloading new content has started */
+"Refreshing" = "Đang Làm Mới";
+
+/* No comment provided by engineer. */
+"Remove" = "Gỡ";
+
+/* No comment provided by engineer. */
+"Remove %@" = "Gỡ %@";
+
+/* No comment provided by engineer. */
+"Remove Attachment" = "Gỡ Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Remove Attachment?" = "Gỡ Tập Tin Đính Kèm?";
+
+/* No comment provided by engineer. */
+"Remove date" = "Gỡ bỏ ngày";
+
+/* No comment provided by engineer. */
+"Remove Due Date?" = "Gỡ Bỏ Ngày Đến Hạn?";
+
+/* No comment provided by engineer. */
+"Remove File" = "Gỡ Tập Tin";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "%1$@ đã bị gỡ";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "%1$@ đã bị gỡ bởi %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Trả lời";
+
+/* No comment provided by engineer. */
+"Reply" = "Trả Lời";
+
+/* No comment provided by engineer. */
+"Reply All" = "Trả Lời Tất Cả";
+
+/* VoiceOver announcement after a reply was successfully posted. */
+"Reply sent" = "Đã gửi câu trả lời";
+
+/* No comment provided by engineer. */
+"Reply to main discussion" = "Trả lời vào cuộc thảo luận chính";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Trả lời vào chú thích hoặc bình luận trước";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Trả lời chuỗi hội thoại";
+
+/* Button to report an error */
+"Report" = "Báo Cáo";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Báo Cáo Vấn Đề";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Yêu Cầu Đặc Tính";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Yêu Cầu Thất Bại!";
+
+/* No comment provided by engineer. */
+"Resources" = "Tài Nguyên";
+
+/* No comment provided by engineer. */
+"Restricted" = "Bị Giới Hạn";
+
+/* No comment provided by engineer. */
+"Retry" = "Thử Lại";
+
+/* No comment provided by engineer. */
+"Saving..." = "Đang lưu...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Trình Quét";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Chức năng quét không được hỗ trợ";
+
+/* No comment provided by engineer. */
+"Schedule" = "Lịch Trình";
+
+/* No comment provided by engineer. */
+"Schedule student availability" = "Đặt lịch độ khả dụng cho sinh viên";
+
+/* No comment provided by engineer. */
+"Scheduling" = "Lập Lịch";
+
+/* No comment provided by engineer. */
+"School’s name" = "Tên trường";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Đạt điểm ít nhất %@";
+
+/* No comment provided by engineer. */
+"Scored above %g" = "Đạt điểm trên %g";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Đạt điểm ít nhất %@";
+
+/* No comment provided by engineer. */
+"Scored below %g" = "Đạt điểm dưới %g";
+
+/* No comment provided by engineer. */
+"Search" = "Tìm Kiếm";
+
+/* No comment provided by engineer. */
+"Section: %@" = "Phần: %@";
+
+/* No comment provided by engineer. */
+"Sections" = "Phần";
+
+/* No comment provided by engineer. */
+"Sections: %@" = "Phần: %@";
+
+/* No comment provided by engineer. */
+"See attached files." = "Xem tập tin đính kèm.";
+
+/* No comment provided by engineer. */
+"See what's new." = "Xem nội dung mới.";
+
+/* No comment provided by engineer. */
+"Select" = "Chọn";
+
+/* No comment provided by engineer. */
+"Select a Path" = "Chọn Đường Dẫn";
+
+/* No comment provided by engineer. */
+"Select assignment" = "Chọn bài tập";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Chọn Bài Tập";
+
+/* No comment provided by engineer. */
+"Select course" = "Chọn khóa học";
+
+/* No comment provided by engineer. */
+"Select Course" = "Chọn Khóa Học";
+
+/* No comment provided by engineer. */
+"Select Impact" = "Chọn Tác Động";
+
+/* No comment provided by engineer. */
+"Select One" = "Chọn Một";
+
+/* No comment provided by engineer. */
+"Selected!" = "Đã chọn!";
+
+/* No comment provided by engineer. */
+"Self Registration Not Allowed" = "Không Được Phép Tự Đăng Ký";
+
+/* No comment provided by engineer. */
+"Send" = "Gửi";
+
+/* No comment provided by engineer. */
+"Send comment" = "Gửi bình luận";
+
+/* No comment provided by engineer. */
+"Send daily summary" = "Gửi tổng kết hằng ngày";
+
+/* No comment provided by engineer. */
+"Send message" = "Gửi tin nhắn";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Gửi tổng kết hằng tuần";
+
+/* No comment provided by engineer. */
+"Sent" = "Đã Gửi";
+
+/* No comment provided by engineer. */
+"Set \"Home\" to..." = "Đặt \"Trang Chủ\" thành...";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "Cài Đặt Làm Trang Đầu";
+
+/* No comment provided by engineer. */
+"Set text color" = "Cài đặt màu văn bản";
+
+/* No comment provided by engineer. */
+"Settings" = "Cài Đặt";
+
+/* No comment provided by engineer. */
+"Show a month at a time" = "Hiển thị từng tháng một";
+
+/* No comment provided by engineer. */
+"Show Course Summary" = "Hiển Thị Tóm Tắt Khóa Học";
+
+/* No comment provided by engineer. */
+"Show Grades" = "Hiển Thị Điểm";
+
+/* No comment provided by engineer. */
+"Show more options" = "Hiển thị tùy chọn khác";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Do đây là cuộc thảo luận nhóm, mỗi nhóm có cuộc trò chuyện riêng cho đề tài này. Đây là các cuộc thảo luận bạn có quyền truy cập.";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Đăng Nhập Quản Trị Viên Trang";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Thông Báo Slack";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "Thông Báo SMS";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Đã có vấn đề xảy ra nhưng tôi không tìm được cách khắc phục tạm thời";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Có Thứ Gì Đó Bị Thiếu";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Có Thứ Gì Đó Bị Lỗi";
+
+/* No comment provided by engineer. */
+"Something went wrong" = "Đã xảy ra vấn đề";
+
+/* No comment provided by engineer. */
+"Sort by likes" = "Sắp xếp theo lượt thích";
+
+/* No comment provided by engineer. */
+"Staff Contact Info" = "Thông Tin Liên Hệ Nhân Viên";
+
+/* No comment provided by engineer. */
+"Starred" = "Đã Gắn Dấu Sao";
+
+/* No comment provided by engineer. */
+"Start recording" = "Bắt đầu ghi";
+
+/* started datetime */
+"Started %@" = "Đã Bắt Đầu %@";
+
+/* No comment provided by engineer. */
+"Stop Act as User" = "Dừng Đóng Vai Trò Người Dùng";
+
+/* No comment provided by engineer. */
+"Stop acting as..." = "Dừng đóng vai trò…";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Dừng ghi";
+
+/* No comment provided by engineer. */
+"Student" = "Sinh Viên";
+
+/* No comment provided by engineer. */
+"Student Annotation" = "Chú Thích Sinh Viên";
+
+/* No comment provided by engineer. */
+"Student Applications" = "Ứng Dụng Sinh Viên";
+
+/* No comment provided by engineer. */
+"Student Appointment Signups" = "Mục Đăng Ký Cuộc Họp Theo Lịch Sinh Viên";
+
+/* No comment provided by engineer. */
+"Student View" = "Góc Nhìn Của Sinh Viên";
+
+/* No comment provided by engineer. */
+"Students" = "Sinh Viên";
+
+/* No comment provided by engineer. */
+"Style" = "Kiểu";
+
+/* No comment provided by engineer. */
+"Subject" = "Tiêu Đề";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Nộp %1$@, %2$@, %3$@";
+
+/* No comment provided by engineer. */
+"Submission Comment" = "Bình Luận Bài Nộp";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Loại Nộp";
+
+/* No comment provided by engineer. */
+"Submissions" = "Nộp";
+
+/* No comment provided by engineer. */
+"Submit" = "Nộp";
+
+/* No comment provided by engineer. */
+"Submitted" = "Đã nộp";
+
+/* Submitted date */
+"Submitted %@" = "Đã Nộp %@";
+
+/* No comment provided by engineer. */
+"Subscribe" = "Đăng Ký";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "Đăng Ký Nguồn Cấp Dữ Liệu Lịch";
+
+/* No comment provided by engineer. */
+"Success!" = "Thành công!";
+
+/* No comment provided by engineer. */
+"Summary" = "Tóm Tắt";
+
+/* No comment provided by engineer. */
+"Surveys" = "Khảo Sát";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Chương Trình Học";
+
+/* No comment provided by engineer. */
+"Syllabus content" = "Nội dung chương trình học";
+
+/* Teacher's Assistant (abbreviated) */
+"TA" = "Trợ Giảng";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Chụp Ảnh";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Nhấn vào đây để được trợ giúp.";
+
+/* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Hãy nhấn vào để chọn khóa học bạn muốn thấy trên lịch.";
+
+/* No comment provided by engineer. */
+"Tap to view announcement" = "Nhấn để xem thông báo";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Nhấn để xem danh sách nộp.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Giáo Viên";
+
+/* No comment provided by engineer. */
+"Teacher's Assistant" = "Trợ Giảng";
+
+/* No comment provided by engineer. */
+"Teachers" = "Giáo Viên";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "Giáo Viên Và Sinh Viên";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Trợ Giảng";
+
+/* No comment provided by engineer. */
+"Teal" = "Xanh Mòng Két";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Điều Khoản Sử Dụng";
+
+/* No comment provided by engineer. */
+"Text" = "Văn Bản";
+
+/* No comment provided by engineer. */
+"Text Color" = "Màu Văn Bản";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Mục Nhập Văn Bản";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Cảm ơn, chúng tôi đã nhận được yêu cầu của bạn!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Ứng dụng cần được khởi động lại để sử dụng cài đặt ngôn ngữ mới. Vui lòng khởi chạy lại ứng dụng.";
+
+/* No comment provided by engineer. */
+"There are no active assignments in this course." = "Không có bài tập đang hoạt động nào trong khóa học này.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Không có bài tập để hiển thị.";
+
+/* No comment provided by engineer. */
+"There are no conferences to display yet." = "Chưa có hội nghị để hiển thị.";
+
+/* No comment provided by engineer. */
+"There are no modules to display yet." = "Chưa có học phần để hiển thị.";
+
+/* No comment provided by engineer. */
+"There are no pages to display yet." = "Chưa có trang để hiển thị.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Đã xảy ra vấn đề khi đăng ký thông báo đẩy cho thiết bị của bạn";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Đã xảy ra vấn đề khi truy xuất Điều Khoản Sử Dụng.";
+
+/* No comment provided by engineer. */
+"There was an error loading announcements. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải thông báo chung. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải hội nghị. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải khóa học. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading discussions. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải cuộc thảo luận. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải sự kiện. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading files. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải tập tin. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải điểm. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading items to do. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải mục việc cần làm. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules." = "Đã xảy ra lỗi khi tải học phần.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải trang. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải mọi người. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải các câu hỏi kiểm tra. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Đã xảy ra lỗi khi giao tiếp với máy chủ";
+
+/* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Đã xảy ra lỗi khi Đóng Vai Trò Người Dùng. Vui lòng thử lại sau.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Đã xảy ra lỗi không lường trước. Vui lòng thử lại.";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Bài tập này đến hạn vào %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Bài tập này đã đến hạn vào %@";
+
+/* No comment provided by engineer. */
+"This course does not have any sections." = "Khóa học này không có bất kỳ phần này.";
+
+/* No comment provided by engineer. */
+"This folder is empty." = "Thư mục này đang trống.";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "Đây là bình luận nội dung phương tiện";
+
+/* No comment provided by engineer. */
+"This is your personal color setting. Only you will see this color for the course." = "Đây là cài đặt màu cá nhân của bạn Chỉ có bạn mới thấy màu này cho khóa học.";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Học phần này đang trống.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Trang này đã bị vô hiệu hóa cho khóa học này.";
+
+/* No comment provided by engineer. */
+"This will remove the due date and all of the associated assignees." = "Thao tác này sẽ xóa ngày đến hạn và toàn bộ người được giao bài tập liên quan";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Thời gian đã qua";
+
+/* No comment provided by engineer. */
+"Title" = "Tiêu Đề";
+
+/* No comment provided by engineer. */
+"Title..." = "Tiêu Đề...";
+
+/* No comment provided by engineer. */
+"To" = "Đến";
+
+/* No comment provided by engineer. */
+"to %@" = "đến %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Để tạo tài khoản, hãy yêu cầu sinh viên của bạn tạo mã ghép cặp cho bạn từ phần Cài Đặt trong ứng dụng Canvas Student như minh họa bên dưới rồi quét mã này từ đó.\nNếu sinh viên của bạn không thấy tùy chọn tạo mã ghép cặp thì bạn sẽ cần liên hệ trường của bạn để tạo tài khoản cho bạn.";
+
+/* No comment provided by engineer. */
+"To Do" = "Việc Cần Làm";
+
+/* No comment provided by engineer. */
+"Today" = "Hôm Nay";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "Ngày mai";
+
+/* No comment provided by engineer. */
+"Total Grade" = "Tổng Điểm";
+
+/* No comment provided by engineer. */
+"Total time" = "Tổng thời gian";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Thông Báo Twitter";
+
+/* No comment provided by engineer. */
+"Undo" = "Hoàn tác";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Lỗi Không Xác Định";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Không Giới Hạn";
+
+/* No comment provided by engineer. */
+"Unordered List" = "Danh Sách Không Theo Thứ Tự";
+
+/* No comment provided by engineer. */
+"Unpin" = "Bỏ ghim";
+
+/* No comment provided by engineer. */
+"Unpublish" = "Chưa Phát Hành";
+
+/* No comment provided by engineer. */
+"unpublished" = "chưa phát hành";
+
+/* No comment provided by engineer. */
+"Unpublished" = "Chưa Phát Hành";
+
+/* No comment provided by engineer. */
+"Unread" = "Chưa đọc";
+
+/* No comment provided by engineer. */
+"Unsubscribe" = "Hủy Đăng Ký";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Mục Không Được Hỗ Trợ";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Cài Đặt Ngôn Ngữ Đã Cập Nhật";
+
+/* No comment provided by engineer. */
+"Updating" = "Đang Cập Nhật";
+
+/* No comment provided by engineer. */
+"Upload File" = "Tải Lên Tập Tin";
+
+/* No comment provided by engineer. */
+"Upload in progress" = "Đang tải lên";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@ đang tải lên là vào %2$@";
+
+/* Uploading X KB of Y MB */
+"Uploading %@ of %@" = "Đang tải lên %1$@ / %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Đang tải lên...";
+
+/* No comment provided by engineer. */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Quyền Sử Dụng";
+
+/* No comment provided by engineer. */
+"Usage Rights" = "Quyền Sử Dụng";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Sử Dụng Camera";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Sử dụng mã này để ghép cặp với tôi trong Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"User ID" = "ID Người Dùng";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Username" = "Tên người dùng";
+
+/* No comment provided by engineer. */
+"Users must post before seeing replies" = "Người dùng phải đăng rồi mới có thể xem câu trả lời";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
+
+/* No comment provided by engineer. */
+"View" = "Xem";
+
+/* No comment provided by engineer. */
+"View all submissions" = "Xem tất cả bài nộp";
+
+/* No comment provided by engineer. */
+"View Less" = "Xem Ít Hơn";
+
+/* No comment provided by engineer. */
+"View Modules" = "Xem Học Phần";
+
+/* No comment provided by engineer. */
+"View More" = "Xem Thêm";
+
+/* No comment provided by engineer. */
+"View more replies" = "Xem thêm câu trả lời";
+
+/* No comment provided by engineer. */
+"View Previous Announcements" = "Xem Thông Báo Chung Trước";
+
+/* No comment provided by engineer. */
+"Viewed" = "Đã Xem";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Đang chờ những hoạt động quan trọng diễn ra.";
+
+/* No comment provided by engineer. */
+"We couldn't find any courses like that." = "Chúng tôi không tìm được bất kỳ khóa học nào như vậy.";
+
+/* No comment provided by engineer. */
+"We couldn’t find any files like that." = "Chúng tôi không tìm được bất kỳ tập tin nào như vậy.";
+
+/* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Chúng tôi không tìm được người nào như vậy.";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "Chúng tôi đã thực hiện một số thay đổi.";
+
+/* No comment provided by engineer. */
+"Website URL" = "URL Trang Web";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Tuần %@";
+
+/* No comment provided by engineer. */
+"Weekly" = "Hằng Tuần";
+
+/* Welcome, username! */
+"Welcome, (userName)!" = "Chào mừng, (userName)!";
+
+/* No comment provided by engineer. */
+"Welcome!" = "Chào mừng!";
+
+/* No comment provided by engineer. */
+"Well Done!" = "Bạn làm tốt lắm!";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Trường của bạn tên là gì?";
+
+/* No comment provided by engineer. */
+"white" = "trắng";
+
+/* No comment provided by engineer. */
+"Whoops!" = "Rất tiếc!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Sẽ mở khóa %@";
+
+/* No comment provided by engineer. */
+"Workaround" = "Giải Pháp Khắc Phục Tạm Thời";
+
+/* No comment provided by engineer. */
+"yellow" = "vàng";
+
+/* No comment provided by engineer. */
+"Yes" = "Có";
+
+/* Description for Yo communication channel */
+"Yo Notifications" = "Thông Báo Yo";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "Bạn không được phép thực hiện thao tác này.";
+
+/* No comment provided by engineer. */
+"You have been invited" = "Bạn đã được mời";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Bạn phải cho phép thông báo trong Cài Đặt thì mới có thể cài đặt lời nhắc nhở.";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Bạn phải kích hoạt cho phép Camera trong Cài Đặt.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Bạn phải kích hoạt cho phép Microphone trong Cài Đặt.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Bạn sẽ dừng đóng vai trò %@ và trở về tài khoản của bạn.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Bạn sẽ dừng đóng vai trò người dùng này và trở về tài khoản của bạn.";
+
+/* No comment provided by engineer. */
+"You've marked it as done." = "Bạn đã đánh dấu là đã xong.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Khóa học của con em của bạn có thể chưa được công bố.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Thiết bị của bạn đã hết dung lượng lưu trữ trống. Vui lòng giải phóng dung lượng trống rồi thử lại.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Email Của Bạn";
+
+/* No comment provided by engineer. */
+"Your to do list is empty. Time to recharge." = "Danh sách việc cần làm của bạn đang trống. Đến lúc nạp năng lượng rồi.";
+

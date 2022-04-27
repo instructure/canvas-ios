@@ -42,6 +42,7 @@ class SpeedGraderQuizUITests: MiniCanvasUITestCase {
         app.find(id: "quizzes.details.viewAllSubmissionsRow").tap()
         app.find(id: "submission-\(student.id)").tap()
         SpeedGrader.Segment.grades.tap()
+        sleep(1)
         SpeedGrader.gradeButton.tap()
         app.textFields.firstElement.typeText("6")
 

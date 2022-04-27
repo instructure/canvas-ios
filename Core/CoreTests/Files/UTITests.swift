@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+import UniformTypeIdentifiers
 import XCTest
 
 class UTITests: XCTestCase {
@@ -80,5 +81,23 @@ class UTITests: XCTestCase {
         XCTAssert(result.contains(.keynoteSingleFile))
         XCTAssert(result.contains(.numbersBundle))
         XCTAssert(result.contains(.numbersSingleFile))
+    }
+
+    func testUTTypeConversion() {
+        XCTAssertEqual(UTI.any.uttype, UTType.item)
+        XCTAssertEqual(UTI.video.uttype, UTType.movie)
+        XCTAssertEqual(UTI.audio.uttype, UTType.audio)
+        XCTAssertEqual(UTI.image.uttype, UTType.image)
+        XCTAssertEqual(UTI.text.uttype, UTType.text)
+        XCTAssertEqual(UTI.url.uttype, UTType.url)
+        XCTAssertEqual(UTI.fileURL.uttype, UTType.fileURL)
+        XCTAssertEqual(UTI.folder.uttype, UTType.folder)
+
+        XCTAssertEqual(UTI.pagesBundle.uttype?.identifier, UTI.pagesBundleIdentifier)
+        XCTAssertEqual(UTI.pagesSingleFile.uttype?.identifier, UTI.pagesSingleFileIdentifier)
+        XCTAssertEqual(UTI.keynoteBundle.uttype?.identifier, UTI.keynoteBundleIdentifier)
+        XCTAssertEqual(UTI.keynoteSingleFile.uttype?.identifier, UTI.keynoteSingleFileIdentifier)
+        XCTAssertEqual(UTI.numbersBundle.uttype?.identifier, UTI.numbersBundleIdentifier)
+        XCTAssertEqual(UTI.numbersSingleFile.uttype?.identifier, UTI.numbersSingleFileIdentifier)
     }
 }

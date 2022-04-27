@@ -23,6 +23,7 @@ struct CourseCard: View {
     let hideColorOverlay: Bool
     let showGrade: Bool
     let width: CGFloat
+    let contextColor: UIColor
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -35,7 +36,7 @@ struct CourseCard: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Button(action: {
-                env.router.route(to: "/courses/\(card.id)", from: controller)
+                env.router.route(to: "/courses/\(card.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
             }, label: {
                 VStack(alignment: .leading, spacing: 0) {
                     ZStack {
@@ -50,9 +51,11 @@ struct CourseCard: View {
                         HStack { Spacer() }
                         Text(card.shortName)
                             .font(.semibold18).foregroundColor(.accentColor)
-                            .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(2)
                         Text(card.courseCode)
                             .font(.semibold12).foregroundColor(.textDark)
+                            .lineLimit(2)
                         Spacer()
                     }
                         .padding(.horizontal, 10).padding(.top, 8)
@@ -81,7 +84,8 @@ struct CourseCard: View {
             env.router.show(
                 CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
                 from: controller,
-                options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+                options: .modal(.formSheet, isDismissable: false, embedInNav: true),
+                analyticsRoute: "/dashboard/customize_course"
             )
         }, label: {
             Image.moreSolid.foregroundColor(.white)

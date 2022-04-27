@@ -22,8 +22,19 @@ protocol TestTreeHolder: AnyObject {
     var testTree: TestTree? { get set }
 }
 
-public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>, NavigationBarStyled, TestTreeHolder {
+public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>, NavigationBarStyled, TestTreeHolder, DefaultViewProvider {
+    public override var shouldAutorotate: Bool { shouldAutorotateValue ?? super.shouldAutorotate }
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask { supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations }
     public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
+    public var defaultViewRoute: String? {
+        didSet {
+            showDefaultDetailView()
+        }
+    }
+    /** The value to be returned by the `shouldAutorotate` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
+    public var shouldAutorotateValue: Bool?
+    /** The value to be returned by the `supportedInterfaceOrientations` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
+    public var supportedInterfaceOrientationsValue: UIInterfaceOrientationMask?
     var testTree: TestTree?
 
     public init(_ rootView: Content, customization: ((UIViewController) -> Void)? = nil) {

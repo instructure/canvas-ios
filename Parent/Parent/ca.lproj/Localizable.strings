@@ -26,10 +26,10 @@
 "Announcement" = "Anunci";
 
 /* No comment provided by engineer. */
-"Assignment Details" = "Detalls de la tasca";
+"Assignment Details" = "Detalls de l'activitat";
 
 /* No comment provided by engineer. */
-"Assignment reminder" = "Recordatori de tasca";
+"Assignment reminder" = "Recordatori de l'activitat";
 
 /* No comment provided by engineer. */
 "Back" = "Enrere";
@@ -56,7 +56,7 @@
 "Could not parse QR code, QR code invalid" = "No s'ha pogut analitzar el codi QR, codi QR no vàlid";
 
 /* Courses Tab */
-"Courses" = "Cursos";
+"Courses" = "Assignatures";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Estudiant actual: %@. Toqueu per canviar d'estudiants";
@@ -74,7 +74,7 @@
 "Domain mismatch" = "El domini no coincideix";
 
 /* No comment provided by engineer. */
-"Due" = "Venciment";
+"Due" = "Data de lliurament";
 
 /* No comment provided by engineer. */
 "Event Details" = "Detalls de l'esdeveniment";
@@ -89,7 +89,7 @@
 "Front Page" = "Pàgina frontal";
 
 /* No comment provided by engineer. */
-"Grades" = "Qualificacions";
+"Grades" = "Notes";
 
 /* No comment provided by engineer. */
 "Inbox" = "Safata d'entrada";
@@ -110,6 +110,9 @@
 "Location" = "Ubicació";
 
 /* No comment provided by engineer. */
+"Locked" = "Bloquejat";
+
+/* No comment provided by engineer. */
 "Login required" = "Cal iniciar la sessió";
 
 /* No comment provided by engineer. */
@@ -125,22 +128,22 @@
 "No Alerts" = "Cap avís";
 
 /* No comment provided by engineer. */
-"No Courses" = "No hi ha cap curs";
+"No Courses" = "No hi ha cap assignatura";
 
 /* No comment provided by engineer. */
-"No Due Date" = "Sense data de venciment";
+"No Due Date" = "Sense data de lliurament";
 
 /* No comment provided by engineer. */
-"No Grade" = "Sense qualificació";
+"No Grade" = "Sense nota";
 
 /* No comment provided by engineer. */
-"No Students" = "No hi ha cap estudiant";
+"No Students" = "Cap estudiant";
 
 /* No comment provided by engineer. */
 "OK" = "D'acord";
 
 /* No comment provided by engineer. */
-"Pairing Code" = "S'està aparellant el codi";
+"Pairing Code" = "Codi d'emparellament";
 
 /* No comment provided by engineer. */
 "QR Code" = "Codi QR";
@@ -154,13 +157,13 @@
 "Regarding: %@, %@" = "Sobre: %1$@, %2$@";
 
 /* Regarding <Name>, Assignment - <Assignment Name> */
-"Regarding: %@, Assignment - %@" = "Sobre: %1$@, Tasca - %2$@";
+"Regarding: %@, Assignment - %@" = "Sobre: %1$@, activitat - %2$@";
 
 /* No comment provided by engineer. */
 "Remind Me" = "Recorda-m'ho";
 
 /* No comment provided by engineer. */
-"Retry" = "Torna a provar-ho";
+"Retry" = "Torna-ho a provar";
 
 /* No comment provided by engineer. */
 "Set a date and time to be notified of this event." = "Establiu una data i hora per rebre una notificació sobre aquest esdeveniment.";
@@ -178,7 +181,10 @@
 "Syllabus" = "Temari";
 
 /* No comment provided by engineer. */
-"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "L'estudiant que esteu provant d'afegir és d'una altra institució del Canvas.\nInicieu la sessió o creeu un compte amb aquesta institució per afegir l'estudiant.";
+"The linked item is no longer available." = "L’element enllaçat ja no està disponible.";
+
+/* No comment provided by engineer. */
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "L'estudiant que esteu provant d'afegir és d'una altra institució del Canvas.\nInicieu la sessió o creeu un usuari amb aquesta institució per afegir l'estudiant.";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "El valor ha de ser un número entre 0 i 100";
@@ -187,7 +193,7 @@
 "There was an error loading alerts. Pull to refresh to try again." = "S'ha produït un error en carregar els avisos. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
-"There was an error loading courses. Pull to refresh to try again." = "S'ha produït un error en carregar els cursos. Estireu per actualitzar per tornar-ho a provar.";
+"There was an error loading courses. Pull to refresh to try again." = "S'ha produït un error en carregar les assignatures. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "S'ha produït un error en carregar els estudiants. Estireu per actualitzar per tornar-ho a provar.";
@@ -214,5 +220,5 @@
 "You’re all caught up" = "Esteu completament al dia";
 
 /* No comment provided by engineer. */
-"Your child’s courses might not be published yet." = "És possible que encara no s'hagin publicat els cursos del vostre fill.";
+"Your child’s courses might not be published yet." = "És possible que encara no s'hagin publicat les assignatures del vostre fill.";
 

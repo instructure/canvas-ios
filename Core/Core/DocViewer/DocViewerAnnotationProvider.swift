@@ -94,13 +94,16 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             }
     }
 
+    public func isFileAnnotation(_ annotation: Annotation) -> Bool {
+        fileAnnotationProvider.allAnnotations.contains(annotation)
+    }
+
     public override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
         // First, fetch the annotations from the file annotation provider.
         let fileAnnotations = fileAnnotationProvider.annotationsForPage(at: pageIndex) ?? []
         // Editing of annotations stored in the pdf file are always disabled
         fileAnnotations.forEach {
             $0.flags.update(with: .readOnly)
-            $0.isFileAnnotation = true
         }
         // Then ask `super` to retrieve the custom annotations from cache.
         let docViewerAnnotations = super.annotationsForPage(at: pageIndex) ?? []

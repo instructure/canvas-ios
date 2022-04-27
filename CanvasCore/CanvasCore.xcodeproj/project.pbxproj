@@ -98,6 +98,7 @@
 		5B2F8DFC240B9C90001087B2 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B32B5D0271D54AD00EE82D7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B40ED7A271D54AE0058D1F1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B419F6827B0FDB000A7603B /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B5262B522ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B85C9F520DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B85C9F720DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -330,9 +331,9 @@
 			buildConfigurationList = 2CAF1B281F72AEDB007225DF /* Build configuration list for PBXNativeTarget "CanvasCore" */;
 			buildPhases = (
 				270E0B49471036954CD69F92 /* [CP] Check Pods Manifest.lock */,
+				2CAF1B111F72AEDB007225DF /* Headers */,
 				2CAF1B0F1F72AEDB007225DF /* Sources */,
 				2CAF1B101F72AEDB007225DF /* Frameworks */,
-				2CAF1B111F72AEDB007225DF /* Headers */,
 				2CAF1B121F72AEDB007225DF /* Resources */,
 			);
 			buildRules = (
@@ -407,6 +408,7 @@
 				"zh-Hans",
 				"zh-Hant",
 				"es-ES",
+				vi,
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
 			packageReferences = (
@@ -577,6 +579,7 @@
 				5B32B5D0271D54AD00EE82D7 /* zh-Hans */,
 				5B40ED7A271D54AE0058D1F1 /* zh-Hant */,
 				5BFDE318272FCA570013C5E3 /* es-ES */,
+				5B419F6827B0FDB000A7603B /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -637,9 +640,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_fixup_chains",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -696,8 +703,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_fixup_chains",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";

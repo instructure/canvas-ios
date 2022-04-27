@@ -53,10 +53,19 @@
 "Choose Files" = "選擇檔案";
 
 /* No comment provided by engineer. */
+"Close" = "關閉";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "關閉檔案夾";
 
 /* No comment provided by engineer. */
 "Comment" = "評論";
+
+/* No comment provided by engineer. */
+"Comment Library" = "評論檔案庫";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "評論檔案庫無法使用";
 
 /* No comment provided by engineer. */
 "Comments" = "評論";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "啟動點名 LTI 工具失敗。";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "無法載入提交項目資料！";
+
+/* No comment provided by engineer. */
 "Files" = "檔案";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "有已評分的提交項目的學生將可看到成績";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "群組";
@@ -194,10 +200,16 @@
 "No Submissions" = "沒有提交項目";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "沒有提供建議";
+
+/* No comment provided by engineer. */
 "Not Graded" = "未評分";
 
 /* No comment provided by engineer. */
 "OK" = "確定";
+
+/* No comment provided by engineer. */
+"Open comment library" = "開啟評論檔案庫";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "在全螢幕模式開啟檔案夾";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "重設";
+
+/* No comment provided by engineer. */
+"Retry" = "重試";
 
 /* No comment provided by engineer. */
 "Rubric" = "評分標準";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "待辦";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知問題";
 
 /* No comment provided by engineer. */
 "Unmark" = "取消標記";

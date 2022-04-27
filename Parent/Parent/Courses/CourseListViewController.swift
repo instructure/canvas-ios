@@ -127,23 +127,22 @@ class CourseListCell: UITableViewCell {
             return ""
         }
 
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return NSLocalizedString("N/A", comment: "")
-        }
-
         if course.hideTotalGrade {
-            return ""
+            // this condition also triggers when multipleGradingPeriodsEnabled is true, currentGradingPeriodID is nil and totalsForAllGradingPeriodsOption is false
+            return course.hideFinalGrades ? "" : NSLocalizedString("N/A", comment: "")
         }
 
         var grade = enrollment.computedCurrentGrade
         var score = enrollment.computedCurrentScore
 
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.currentGradingPeriodID != nil {
-            grade = enrollment.currentPeriodComputedCurrentGrade
-            score = enrollment.currentPeriodComputedCurrentScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
-            grade = enrollment.computedFinalGrade
-            score = enrollment.computedFinalScore
+        if enrollment.multipleGradingPeriodsEnabled {
+            if enrollment.currentGradingPeriodID != nil {
+                grade = enrollment.currentPeriodComputedCurrentGrade
+                score = enrollment.currentPeriodComputedCurrentScore
+            } else if enrollment.totalsForAllGradingPeriodsOption {
+                grade = enrollment.computedCurrentGrade
+                score = enrollment.computedCurrentScore
+            }
         }
 
         guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {

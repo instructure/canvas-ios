@@ -65,15 +65,6 @@
 "%d missing" = "%d ausente";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Respostas";
-
-/* No comment provided by engineer. */
-"%d students" = "%d alunos";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Não lido";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -116,7 +107,13 @@
 "Add Attachments" = "Adicionar anexos";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Adicionar comentário (opcional)";
+
+/* No comment provided by engineer. */
 "Add content" = "Adicionar conteúdo";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Adicionar nome do curso";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Adicionar apelido do curso";
@@ -269,6 +266,9 @@
 "Assignments" = "Tarefas";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Lista de tarefas";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Anexe arquivos ao tocar em uma opção abaixo";
 
 /* No comment provided by engineer. */
@@ -395,6 +395,12 @@
 "Casual question or suggestion" = "Pergunta casual ou sugestão";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Alterar o layout do painel para grade";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Alterar o layout do painel para lista";
+
+/* No comment provided by engineer. */
 "Change User" = "Trocar Usuário";
 
 /* Description for Chat communication channel */
@@ -509,9 +515,6 @@
 "Conversation Message" = "Mensagem da conversa";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Conversas";
 
 /* No comment provided by engineer. */
@@ -536,6 +539,9 @@
 "Course Activities" = "Atividades do curso";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Fluxo de atividades do curso";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Aviso do curso";
 
 /* No comment provided by engineer. */
@@ -555,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Nota do curso abaixo %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Módulos do curso";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Turmas do curso";
@@ -596,21 +605,6 @@
 "Cyan" = "Ciano";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Diariamente";
 
 /* No comment provided by engineer. */
@@ -618,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Data";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Recusar";
@@ -761,6 +752,12 @@
 "Edit attachment (none)" = "Editar anexo (nenhum)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "Editar configurações do curso";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Editar painel";
+
+/* No comment provided by engineer. */
 "Edit Discussion" = "Editar fórum";
 
 /* No comment provided by engineer. */
@@ -875,6 +872,9 @@
 "Filter" = "Filtrar";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrar por";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrar por:";
 
 /* No comment provided by engineer. */
@@ -884,13 +884,7 @@
 "Filter Inbox" = "Caixa de entrada do filtro";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Nota final: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Encontrar um código para escanear";
@@ -917,19 +911,13 @@
 "Forget %@" = "Esquecer %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Formato não suportado";
+
+/* No comment provided by engineer. */
 "Front Page" = "Primeira página";
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Matrículas futuras";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Ir para hoje";
@@ -995,9 +983,6 @@
 "Hide content for %@" = "Ocultar conteúdo para %@";
 
 /* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
-
-/* No comment provided by engineer. */
 "High: %@" = "Alta: %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1023,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Nível de impacto";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Datas importantes";
 
 /* No comment provided by engineer. */
 "Important Info" = "Informações importantes";
@@ -1103,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Parece que não há quaisquer cursos associados a essa conta. Visite a web para criar um curso hoje.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Parece que você não está matriculado em nenhum curso.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Parece que você não está matriculado em quaisquer cursos como %@. Um dos nossos outros aplicativos pode ser uma escolha melhor. Toque em um para visitar o App Store.";
 
 /* No comment provided by engineer. */
@@ -1125,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Classificação atrasada";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Executar ferramenta externa";
@@ -1397,6 +1385,9 @@
 "No Pages" = "Sem páginas";
 
 /* No comment provided by engineer. */
+"No preview available" = "Nenhuma prévia disponível";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Sem testes";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1401,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Sem envio";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Nenhum arquivo suportado para enviar";
 
 /* No comment provided by engineer. */
 "None" = "Nenhum";
@@ -1428,6 +1422,9 @@
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Não Enviado";
+
+/* No comment provided by engineer. */
+"Not supported" = "Não suportado";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Não é urgente";
@@ -1496,6 +1493,9 @@
 "Open item details" = "Abrir detalhes do item";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Abrir no Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Opções";
 
 /* No comment provided by engineer. */
@@ -1514,9 +1514,6 @@
 "out of" = "de";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "página";
 
 /* No comment provided by engineer. */
@@ -1530,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Páginas";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Primeira página das páginas";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Emparelhar com observador";
@@ -1577,10 +1577,10 @@
 "Please generate another QR Code and try again." = "Gere outro código QR e tente novamente.";
 
 /* No comment provided by engineer. */
-"Please wait, this might take a minute." = "Aguarde, isso pode levar um minuto.";
+"Please log in via the application" = "Por favor, faça o login através do aplicativo";
 
 /* No comment provided by engineer. */
-"plural_points" = "plural_points";
+"Please wait, this might take a minute." = "Aguarde, isso pode levar um minuto.";
 
 /* No comment provided by engineer. */
 "Points" = "Pontos";
@@ -1647,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Testes";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Atividade recente";
 
 /* No comment provided by engineer. */
 "Recipients" = "Recipientes";
@@ -1796,6 +1799,15 @@
 "Select a Path" = "Selecionar um caminho";
 
 /* No comment provided by engineer. */
+"Select assignment" = "Selecionar tarefa";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Selecionar tarefa";
+
+/* No comment provided by engineer. */
+"Select course" = "Selecionar curso";
+
+/* No comment provided by engineer. */
 "Select Course" = "Selecionar curso";
 
 /* No comment provided by engineer. */
@@ -1829,6 +1841,9 @@
 "Sent" = "Enviado";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Definir \"Página Inicial\" para...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Definir como página inicial";
 
 /* No comment provided by engineer. */
@@ -1848,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Mostrar mais opções";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Como isso é um fórum de grupos, cada grupo tem sua própria conversa para esse assunto. Aqui estão os fóruns aos quais você tem acesso.";
@@ -1911,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Inscrições em compromissos do aluno";
+
+/* No comment provided by engineer. */
+"Student View" = "Visualização do aluno";
 
 /* No comment provided by engineer. */
 "Students" = "Alunos";
@@ -2018,6 +2033,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "O aplicativo precisa ser reiniciado para usar as novas configurações de idioma. Reinicie o aplicativo.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Não há tarefas ativas neste curso.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Não há tarefas para mostrar.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Ainda não há conferências para mostrar.";
 
 /* No comment provided by engineer. */
@@ -2076,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Houve um erro inesperado. Por favor, tente novamente.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Essa tarefa vence em %@";
@@ -2250,6 +2268,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Visualizado";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Esperando que coisas importantes aconteçam.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Não foi possível encontrar nenhum curso como esse.";

@@ -49,7 +49,7 @@ public struct APISubmission: Codable, Equatable {
     let submission_type: SubmissionType?
     let submitted_at: Date?
     let turnitin_data: APITurnItInData?
-    let url: URL?
+    @SafeURL private(set) var url: URL?
     var user: APIUser? // include[]=user
     let user_id: ID
     let workflow_state: SubmissionWorkflowState

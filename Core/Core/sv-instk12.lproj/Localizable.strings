@@ -65,15 +65,6 @@
 "%d missing" = "%d saknas";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Svar";
-
-/* No comment provided by engineer. */
-"%d students" = "%d elever";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Olästa";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -116,7 +107,13 @@
 "Add Attachments" = "Lägg till bilagor";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Lägg till kommentar (valfri)";
+
+/* No comment provided by engineer. */
 "Add content" = "Lägg till innehåll";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Lägg till kursnamn";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Lägg till smeknamn för kursen";
@@ -269,6 +266,9 @@
 "Assignments" = "Uppgifter";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Uppgiftslista";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Bifoga filer genom att trycka på ett alternativ nedan.";
 
 /* No comment provided by engineer. */
@@ -395,6 +395,12 @@
 "Casual question or suggestion" = "Informell fråga eller förslag";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Ändra layouten för översikten till rutnät";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Ändra layouten för översikten till lista";
+
+/* No comment provided by engineer. */
 "Change User" = "Byt användare";
 
 /* Description for Chat communication channel */
@@ -509,9 +515,6 @@
 "Conversation Message" = "Meddelande i Inkorgen";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Inkorgen";
 
 /* No comment provided by engineer. */
@@ -536,6 +539,9 @@
 "Course Activities" = "Kursaktiviteter";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Aktivitetsflöde för kurs";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Kursmeddelande";
 
 /* No comment provided by engineer. */
@@ -555,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kursbedömning Under %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Kursmoduler";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Kurssektioner";
@@ -596,21 +605,6 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Varje dag";
 
 /* No comment provided by engineer. */
@@ -618,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Datum";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Avböj";
@@ -761,6 +752,12 @@
 "Edit attachment (none)" = "Redigera bilaga (ingen)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "Redigera kursinställningar";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Redigera översikt";
+
+/* No comment provided by engineer. */
 "Edit Discussion" = "Redigera diskussion";
 
 /* No comment provided by engineer. */
@@ -875,6 +872,9 @@
 "Filter" = "Filtrera";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtrera efter";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtrerat efter:";
 
 /* No comment provided by engineer. */
@@ -884,13 +884,7 @@
 "Filter Inbox" = "Filtrera inkorg";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Totalt omdöme: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Sök efter en kod att skanna";
@@ -917,19 +911,13 @@
 "Forget %@" = "Glöm %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Formatet stöds inte";
+
+/* No comment provided by engineer. */
 "Front Page" = "Framsida";
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Framtida registreringar";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Gå till i dag";
@@ -995,9 +983,6 @@
 "Hide content for %@" = "Dölj innehåll för %@";
 
 /* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
-
-/* No comment provided by engineer. */
 "High: %@" = "Hög: %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1023,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Effektnivå";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Viktiga datum";
 
 /* No comment provided by engineer. */
 "Important Info" = "Viktig information";
@@ -1103,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Det verkar inte finnas några kurser kopplade till det här kontot. Besök webben för att skapa en kurs idag.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Det verkar som om du inte är registrerad i någon kurs.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du verkar inte vara registrerad för några kurser som %@. Någon av våra andra appar kan vara bättre lämpade. Tryck på en för att gå till App Store.";
 
 /* No comment provided by engineer. */
@@ -1125,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Försenad bedömning";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Starta externt verktyg";
@@ -1397,6 +1385,9 @@
 "No Pages" = "Inga sidor";
 
 /* No comment provided by engineer. */
+"No preview available" = "Förhandsgranskning är inte tillgängligt";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Inga quiz";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1401,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen inlämning";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Det finns inga filer som stöds att lämna in";
 
 /* No comment provided by engineer. */
 "None" = "Inga";
@@ -1428,6 +1422,9 @@
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Inte inskickade";
+
+/* No comment provided by engineer. */
+"Not supported" = "Stöds inte";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
@@ -1496,6 +1493,9 @@
 "Open item details" = "Öppna objektinformation";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Öppnas i Canvas Elev";
+
+/* No comment provided by engineer. */
 "Options" = "Alternativ";
 
 /* No comment provided by engineer. */
@@ -1514,9 +1514,6 @@
 "out of" = "av";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "sida";
 
 /* No comment provided by engineer. */
@@ -1530,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sidor";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Sidornas framsida";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Koppla med observatör";
@@ -1577,10 +1577,10 @@
 "Please generate another QR Code and try again." = "Generera en annan QR-kod och försök igen.";
 
 /* No comment provided by engineer. */
-"Please wait, this might take a minute." = "Vänta, detta kan ta en minut.";
+"Please log in via the application" = "Logga in via programmet";
 
 /* No comment provided by engineer. */
-"plural_points" = "plural_points";
+"Please wait, this might take a minute." = "Vänta, detta kan ta en minut.";
 
 /* No comment provided by engineer. */
 "Points" = "Poäng";
@@ -1647,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quiz";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Senaste aktivitet";
 
 /* No comment provided by engineer. */
 "Recipients" = "Mottagare";
@@ -1796,6 +1799,15 @@
 "Select a Path" = "Välj en sökväg";
 
 /* No comment provided by engineer. */
+"Select assignment" = "Välj uppgift";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Välj uppgift";
+
+/* No comment provided by engineer. */
+"Select course" = "Välj kurs";
+
+/* No comment provided by engineer. */
 "Select Course" = "Välj kurs";
 
 /* No comment provided by engineer. */
@@ -1829,6 +1841,9 @@
 "Sent" = "Skickade";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Ange ”Hem” som …";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Ställ in som framsida";
 
 /* No comment provided by engineer. */
@@ -1848,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Visa fler alternativ";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Eftersom det här är en gruppdiskussion, har varje grupp sin egen konversation för det här ämnet. Här är de diskussioner som du har åtkomst till.";
@@ -1911,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Ny bokning för mötestillfälle";
+
+/* No comment provided by engineer. */
+"Student View" = "Elevens vy";
 
 /* No comment provided by engineer. */
 "Students" = "Elever";
@@ -2018,6 +2033,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen måste startas om för att börja använda de nya språkinställningarna. Starta om appen.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Det finns inga aktiva uppgifter i den här kursen.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Det finns inga uppgifter att visa.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Det finns inga konferenser att visa än.";
 
 /* No comment provided by engineer. */
@@ -2076,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Ett oväntat fel uppstod. Försök igen.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Den här uppgiften ska lämnas in %@";
@@ -2250,6 +2268,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Visad";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Väntar på att viktiga saker ska hända.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Vi hittade inte några sådana kurser.";

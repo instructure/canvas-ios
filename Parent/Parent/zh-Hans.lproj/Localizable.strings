@@ -110,6 +110,9 @@
 "Location" = "位置";
 
 /* No comment provided by engineer. */
+"Locked" = "已锁定";
+
+/* No comment provided by engineer. */
 "Login required" = "要求登录";
 
 /* No comment provided by engineer. */
@@ -176,6 +179,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "关联的项目不再可用。";
 
 /* No comment provided by engineer. */
 "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "您尝试添加的学生位于不同的 Canvas 机构。\n请在该机构中注册会员或创建帐户以添加该学生。";

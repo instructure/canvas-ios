@@ -92,6 +92,7 @@ open class CoreUITestCase: XCTestCase {
     private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
 
     public static var needsLaunch = true
+    public var doLoginAfterSetup: Bool = true
     open override func setUp() {
         super.setUp()
         LoginSession.useTestKeychain()
@@ -113,7 +114,7 @@ open class CoreUITestCase: XCTestCase {
             // Clear old log
             try? FileManager.default.removeItem(atPath: logPath)
         }
-        if let user = user {
+        if let user = user, doLoginAfterSetup {
             logInUser(user)
         }
     }
@@ -305,7 +306,7 @@ open class CoreUITestCase: XCTestCase {
 
     open func pullToRefresh() {
         let window = app.find(type: .window)
-        window.relativeCoordinate(x: 0.5, y: 0.5)
+        window.relativeCoordinate(x: 0.5, y: 0.2)
             .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
     }
 

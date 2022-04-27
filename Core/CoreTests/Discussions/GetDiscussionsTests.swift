@@ -161,4 +161,15 @@ class GetDiscussionsTests: CoreTestCase {
         useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient)
         XCTAssertEqual(entry.isRemoved, true)
     }
+
+    func testPageIndexSaveOnGetAnnouncements() {
+        let testee = GetAnnouncements(context: .course("1"))
+        let requestedURL = URL(string: "/courses/1/announcements?page=2&per_page=100")!
+        let urlResponse = URLResponse(url: requestedURL, mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
+        let announcement = DiscussionTopic.make()
+
+        XCTAssertEqual(announcement.position, Int.max)
+        testee.write(response: [.make()], urlResponse: urlResponse, to: databaseClient)
+        XCTAssertEqual(announcement.position, 100)
+    }
 }

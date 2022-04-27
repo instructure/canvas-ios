@@ -65,15 +65,6 @@
 "%d missing" = "%d manjka";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Odgovori";
-
-/* No comment provided by engineer. */
-"%d students" = "%d študentov(-a/-i)";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Neprebrano";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -116,7 +107,13 @@
 "Add Attachments" = "Dodaj priloge";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "Dodajanje komentarja (izbirno)";
+
+/* No comment provided by engineer. */
 "Add content" = "Dodaj vsebino";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Dodaj ime predmeta";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Dodaj vzdevek predmeta";
@@ -269,6 +266,9 @@
 "Assignments" = "Naloge";
 
 /* No comment provided by engineer. */
+"Assignments List" = "Seznam nalog";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Datoteke priložite, tako da se dotaknete možnosti spodaj.";
 
 /* No comment provided by engineer. */
@@ -395,6 +395,12 @@
 "Casual question or suggestion" = "Naključno vprašanje ali predlog";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Spremeni postavitev nadzorne plošče v mrežo";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Spremeni postavitev nadzorne plošče v seznam";
+
+/* No comment provided by engineer. */
 "Change User" = "Spremeni uporabnika";
 
 /* Description for Chat communication channel */
@@ -509,9 +515,6 @@
 "Conversation Message" = "Sporočilo o pogovoru";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Pogovori";
 
 /* No comment provided by engineer. */
@@ -536,6 +539,9 @@
 "Course Activities" = "Aktivnosti pri predmetu";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Aktivnosti predmeta";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Obvestilo o predmetu";
 
 /* No comment provided by engineer. */
@@ -555,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Ocena pri predmetu, nižja od  %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Moduli predmeta";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Sekcije predmeta";
@@ -596,21 +605,6 @@
 "Cyan" = "Cijan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Dnevno";
 
 /* No comment provided by engineer. */
@@ -618,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "Datum";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Zavrni";
@@ -761,6 +752,12 @@
 "Edit attachment (none)" = "Uredi prilogo (brez)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "Uredi nastavitve predmeta";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Uredi preglednico";
+
+/* No comment provided by engineer. */
 "Edit Discussion" = "Uredi razpravo";
 
 /* No comment provided by engineer. */
@@ -875,6 +872,9 @@
 "Filter" = "Filter";
 
 /* No comment provided by engineer. */
+"Filter by" = "Filtriraj glede na";
+
+/* No comment provided by engineer. */
 "Filter by:" = "Filtriraj glede na:";
 
 /* No comment provided by engineer. */
@@ -884,13 +884,7 @@
 "Filter Inbox" = "Filtriraj pošto";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Končna ocena: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Poiščite kodo, ki jo želite prebrati";
@@ -917,19 +911,13 @@
 "Forget %@" = "Pozabi %@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "Oblika zapisa ni podprta";
+
+/* No comment provided by engineer. */
 "Front Page" = "Prva stran";
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Prihodnji vpisi";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Pojdi na danes";
@@ -995,9 +983,6 @@
 "Hide content for %@" = "Skrij vsebino za %@";
 
 /* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
-
-/* No comment provided by engineer. */
 "High: %@" = "Visoko: %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1023,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "Raven vpliva";
+
+/* No comment provided by engineer. */
+"Important Dates" = "Pomembni datumi";
 
 /* No comment provided by engineer. */
 "Important Info" = "Pomembne informacije";
@@ -1103,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Zdi se, da s tem računom ni povezan noben predmet. Da ustvarite predmet še danes, obiščite splet.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Videti je, da niste vpisani v noben predmet.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Videti je, da v noben predmet niste vpisani kot %@. Morda bo primernejša ena od naših drugih aplikacij. Tapnite za obisk trgovine App Store.";
 
 /* No comment provided by engineer. */
@@ -1125,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "Zamujen rok za ocenjevanje";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Zaženi zunanje orodje";
@@ -1397,6 +1385,9 @@
 "No Pages" = "Ni strani.";
 
 /* No comment provided by engineer. */
+"No preview available" = "Predogled ni na voljo";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "Ni kvizov.";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1401,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "Ni oddaj.";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "Ni podprtih datotek za oddajo";
 
 /* No comment provided by engineer. */
 "None" = "Brez";
@@ -1428,6 +1422,9 @@
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Ni oddano.";
+
+/* No comment provided by engineer. */
+"Not supported" = "Ni podprto";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ni nujno";
@@ -1496,6 +1493,9 @@
 "Open item details" = "Odpri podrobnosti o elementu";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Odpiranje v Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Možnosti";
 
 /* No comment provided by engineer. */
@@ -1514,9 +1514,6 @@
 "out of" = "od";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "stran";
 
 /* No comment provided by engineer. */
@@ -1530,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Strani";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Prva stran pri straneh";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Poveži s skritim bralcem";
@@ -1577,10 +1577,10 @@
 "Please generate another QR Code and try again." = "Ustvarite drugo kodo QR in poskusite znova.";
 
 /* No comment provided by engineer. */
-"Please wait, this might take a minute." = "Počakajte, to lahko traja kakšno minuto.";
+"Please log in via the application" = "Prijavite se prek aplikacije";
 
 /* No comment provided by engineer. */
-"plural_points" = "plural_points";
+"Please wait, this might take a minute." = "Počakajte, to lahko traja kakšno minuto.";
 
 /* No comment provided by engineer. */
 "Points" = "Točke";
@@ -1647,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Kvizi";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Nedavna aktivnost";
 
 /* No comment provided by engineer. */
 "Recipients" = "Prejemniki";
@@ -1796,6 +1799,15 @@
 "Select a Path" = "Izberite pot";
 
 /* No comment provided by engineer. */
+"Select assignment" = "Izberite nalogo";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Izberi nalogo";
+
+/* No comment provided by engineer. */
+"Select course" = "Izberi predmet";
+
+/* No comment provided by engineer. */
 "Select Course" = "Izberi predmet";
 
 /* No comment provided by engineer. */
@@ -1829,6 +1841,9 @@
 "Sent" = "Poslano";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "»Domačo stran« nastavi na ...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Nastavi kot prvo stran";
 
 /* No comment provided by engineer. */
@@ -1848,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Prikaži več možnosti";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Ker je to razprava skupine, ima za to temo vsaka skupina svoj pogovor. Tu so razprave, do katerih imate dostop.";
@@ -1911,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "Prijave študentov na sestanke";
+
+/* No comment provided by engineer. */
+"Student View" = "Pogled študenta";
 
 /* No comment provided by engineer. */
 "Students" = "Študenti";
@@ -2018,6 +2033,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "Pri tem predmetu ni aktivnih nalog.";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "Ni nobenih nalog za prikaz.";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "Zaenkrat ni nobenih konferenc za prikaz.";
 
 /* No comment provided by engineer. */
@@ -2076,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Prišlo je do nepričakovane napake. Poskusite znova pozneje.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ta naloga ima rok do %@";
@@ -2250,6 +2268,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Ogledano";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "Čakam, da se zgodi kaj pomembnega.";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Podobnih predmetov ni bilo mogoče najti.";

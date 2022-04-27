@@ -53,10 +53,19 @@
 "Choose Files" = "Dewis Ffeiliau";
 
 /* No comment provided by engineer. */
+"Close" = "Cau";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Cau Drôr";
 
 /* No comment provided by engineer. */
 "Comment" = "Sylw";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Llyfrgell Sylwadau";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Dydy'r llyfrgell sylwadau ddim ar gael";
 
 /* No comment provided by engineer. */
 "Comments" = "Sylwadau";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "Wedi methu llwytho adnodd galw cofrestr LTI.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Wedi methu llwytho data cyflwyno!";
+
+/* No comment provided by engineer. */
 "Files" = "Ffeiliau";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Bydd myfyrwyr â gwaith wedi’i raddio yn gallu gweld y graddau";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Grŵp";
@@ -194,10 +200,16 @@
 "No Submissions" = "Dim Cyflwyniadau";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Dim awgrymiadau ar gael";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Heb eu graddio";
 
 /* No comment provided by engineer. */
 "OK" = "Iawn";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Agor y llyfrgell sylwadau";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Agor Drôr sgrin lawn";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Ailosod";
+
+/* No comment provided by engineer. */
+"Retry" = "Ailgynnig";
 
 /* No comment provided by engineer. */
 "Rubric" = "Cyfarwyddyd sgorio";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Gwall Anhysbys";
 
 /* No comment provided by engineer. */
 "Unmark" = "Dad-farcio";

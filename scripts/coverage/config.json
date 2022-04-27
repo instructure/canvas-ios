@@ -15,12 +15,12 @@
     "\/SwiftUIViews\/",
     "\/ViewModifiers\/",
     "Student\/Canvas\/",
-    "Student\/GradesWidget\/",
     "UITestHelpers\/",
     "\/Teacher\/SpeedGrader\/",
     "SubmissionButtonPresenter.swift",
     "NSPersistentContainerExtensions.swift",
-    "K5Preview.swift"
+    "K5Preview.swift",
+    "Core\/WebSitePreview\/"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

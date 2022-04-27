@@ -119,7 +119,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         colors.refresh()
         courses.refresh()
         enrollments.refresh()
-        gradingPeriods.refresh()
+        gradingPeriods.refresh(force: true)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -166,10 +166,22 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
 
         if courses.first?.hideFinalGrades == true {
             totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
-        } else if gradingPeriodID != nil, gradeEnrollment?.currentScore(gradingPeriodID: gradingPeriodID) != nil {
-            totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
         } else {
-            totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+            var letterGrade: String?
+            if gradingPeriodID != nil {
+                totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                letterGrade = gradeEnrollment?.computedCurrentGrade ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
+            } else {
+                totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
+                    letterGrade = nil
+                } else {
+                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade
+                }
+            }
+            if let scoreText = totalGradeLabel.text, let finalGrade = letterGrade {
+                totalGradeLabel.text = scoreText + " (\(finalGrade))"
+            }
         }
 
         let isLoading = !assignments.requested || assignments.pending || !gradingPeriodLoaded
@@ -270,8 +282,10 @@ public class GradeListCell: UITableViewCell {
         }
         gradeLabel.accessibilityLabel = assignment.flatMap { GradeFormatter.a11yString(from: $0, userID: userID, style: .medium) }.flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 }
         dueLabel.text = assignment?.dueText
-        statusLabel.isHidden = assignment?.isOnline != true
         let status = submission?.status ?? .notSubmitted
+        if status != .missing, status != .late {
+            statusLabel.isHidden = assignment?.isOnline != true
+        }
         statusLabel.text = status.text
         statusLabel.textColor = status.color
     }

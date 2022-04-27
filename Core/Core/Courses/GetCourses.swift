@@ -93,10 +93,16 @@ public class GetAllCourses: CollectionUseCase {
         return GetCoursesRequest(enrollmentState: nil, state: [ .current_and_concluded ], perPage: 100)
     }
 
-    private var scopePredicate: NSPredicate { return NSCompoundPredicate(andPredicateWithSubpredicates: [
-                                                                            NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw), [EnrollmentState.invited.rawValue]),
-                                                                            NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.deleted.rawValue),
-                                                                            NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false), ])
+    private var scopePredicate: NSPredicate {
+        var predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw), [EnrollmentState.invited.rawValue]),
+            NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.deleted.rawValue),
+            NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false), ])
+        if AppEnvironment.shared.app == .student && AppEnvironment.shared.currentSession?.isFakeStudent == false {
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
+                                                                            NSPredicate(format: "%K == YES", #keyPath(Course.isPublished)), ])
+        }
+        return predicate
     }
 
     public var scope: Scope {
@@ -201,7 +207,7 @@ struct UpdateCourse: APIUseCase {
     }
 
     func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard response != nil else { return }
+        guard let response = response else { return }
 
         let course: Course? = client.first(where: #keyPath(Course.id), equals: courseId)
         if let syllabusBody = request.body?.course.syllabus_body {
@@ -212,5 +218,8 @@ struct UpdateCourse: APIUseCase {
         if let syllabusSummary = request.body?.course.syllabus_course_summary {
             settings?.syllabusCourseSummary = syllabusSummary
         }
+
+        course?.name = response.name
+        course?.defaultView = response.default_view
     }
 }

@@ -53,10 +53,19 @@
 "Choose Files" = "Valitse tiedostot";
 
 /* No comment provided by engineer. */
+"Close" = "Sulje";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Sulje vetolaatikko";
 
 /* No comment provided by engineer. */
 "Comment" = "Kommentti";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Kommenttikirjasto";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Kommenttikirjasto ei ole saatavissa";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentit";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "Roll LTI -työkalun lanseeraaminen epäonnistui.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Lähetystietojen lataus epäonnistui!";
+
+/* No comment provided by engineer. */
 "Files" = "Tiedostot";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Arvosanat tehdään näkyviksi opiskelijoille, joilla on arvosteltuja lähetyksiä.";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Ryhmä";
@@ -194,10 +200,16 @@
 "No Submissions" = "Ei lähetyksiä";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Ei ehdotuksia saatavissa";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Ei arvioida";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Avaa kommenttikirjasto";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Avaa vetolaatikko koko näyttö";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Nollaa";
+
+/* No comment provided by engineer. */
+"Retry" = "Yritä uudelleen";
 
 /* No comment provided by engineer. */
 "Rubric" = "Arviointitaulukko";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Tuntematon virhe";
 
 /* No comment provided by engineer. */
 "Unmark" = "Poista merkintä";

@@ -48,12 +48,14 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.shared.handler = self
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        UITableView.setupDefaultSectionHeaderTopPadding()
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
             userDidLogin(session: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .parent)
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
         window?.makeKeyAndVisible()
         return true
@@ -152,6 +154,7 @@ extension ParentAppDelegate: LoginDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
+            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 
@@ -271,7 +274,7 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 }
 

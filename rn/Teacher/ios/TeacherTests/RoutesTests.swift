@@ -62,9 +62,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussions") is DiscussionListViewController)
         XCTAssert(router.match("/courses/2/discussion_topics") is DiscussionListViewController)
-        XCTAssert(router.match("/courses/2/discussions/3") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<DiscussionEditorView>)
-        XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
@@ -99,5 +97,22 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match( "/courses/1/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match( "/courses/1/syllabus/edit") is CoreHostingController<SyllabusEditorView>)
+    }
+
+    func testNativeDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/courses/2/discussions/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
+    }
+
+    func testHybridDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
     }
 }

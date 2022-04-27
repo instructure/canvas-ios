@@ -46,15 +46,13 @@ public final class Group: NSManagedObject, WriteableModel {
 
     public var color: UIColor { contextColor?.color ?? .ash }
 
-    public func getCourse() -> Course? {
-        if let id = courseID, course == nil, let fetchedCourse: Course = managedObjectContext?.first(where: #keyPath(Course.id), equals: id) {
-            course = fetchedCourse
-        }
-        return course
-    }
-
     public var isActive: Bool {
-        courseID == nil || getCourse()?.enrollments?.contains(where: {$0.state == .active}) == true
+        if courseID == nil { return true }
+        guard let course = course, let enrollments = course.enrollments else {
+            return false
+        }
+
+        return enrollments.contains(where: {$0.state == .active}) && !course.isPastEnrollment
     }
 
     @discardableResult
@@ -78,6 +76,10 @@ public final class Group: NSManagedObject, WriteableModel {
         if let permissions = item.permissions {
             model.canCreateAnnouncement = permissions.create_announcement
             model.canCreateDiscussionTopic = permissions.create_discussion_topic
+        }
+
+        if let id = model.courseID, let course: Course = context.first(where: #keyPath(Course.id), equals: id) {
+            model.course = course
         }
 
         return model

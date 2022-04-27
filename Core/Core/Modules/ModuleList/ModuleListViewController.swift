@@ -19,12 +19,6 @@
 import Foundation
 import SafariServices
 
-private var collapsedIDs: [String: [String]] = AppEnvironment.shared.userDefaults?.collapsedModules ?? [:] {
-    didSet {
-        AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
-    }
-}
-
 public class ModuleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
@@ -55,6 +49,11 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
 
     var isPageDisabled: Bool {
         tabs.first { $0.id == "modules" } == nil && courses.first?.defaultView != .modules
+    }
+    private var collapsedIDs: [String: [String]] = AppEnvironment.shared.userDefaults?.collapsedModules ?? [:] {
+        didSet {
+            AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
+        }
     }
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {

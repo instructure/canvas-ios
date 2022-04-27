@@ -20,21 +20,32 @@ import Foundation
 
 public class GetCalendarEvents: CollectionUseCase {
     public typealias Model = CalendarEvent
-    public var cacheKey: String? { "\(context.pathComponent)/calendar-events/\(type.rawValue)" }
-    public let context: Context
+    public var cacheKey: String? {
+        let contextPathString = contexts.map({ $0.pathComponent }).joined(separator: "|")
+        return "(\(contextPathString))/calendar-events/\(type.rawValue)"
+    }
+    public let contexts: [Context]
     public let type: CalendarEventType
+    private let importantDates: Bool
 
-    public init(context: Context, type: CalendarEventType = .event) {
-        self.context = context
+    public init(context: Context, type: CalendarEventType = .event, importantDates: Bool = false) {
+        self.contexts = [context]
         self.type = type
+        self.importantDates = importantDates
+    }
+
+    public init(contexts: [Context], type: CalendarEventType = .event, importantDates: Bool = false) {
+        self.contexts = contexts
+        self.type = type
+        self.importantDates = importantDates
     }
 
     public var request: GetCalendarEventsRequest {
-        return GetCalendarEventsRequest(contexts: [context], type: type, allEvents: true)
+        return GetCalendarEventsRequest(contexts: contexts, type: type, allEvents: true, importantDates: importantDates)
     }
 
     public var scope: Scope {
-        let context = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let context = NSPredicate(format: "%K IN %@", #keyPath(CalendarEvent.contextRaw), self.contexts.map {$0.canvasContextID})
         let type = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.typeRaw), self.type.rawValue)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [context, type])
         let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)

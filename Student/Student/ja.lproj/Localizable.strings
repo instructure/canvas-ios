@@ -239,7 +239,7 @@
 "Are you ready to logout?" = "ログアウトしますか？";
 
 /* No comment provided by engineer. */
-"Are you sure you want to leave this quiz?" = "このクイズを止めますか？";
+"Are you sure you want to leave this quiz?" = "この小テストを止めますか？";
 
 /* No comment provided by engineer. */
 "Ask me later" = "後ほど聞いてください";
@@ -296,7 +296,7 @@
 "Cache cleared" = "キャッシュがクリアされました";
 
 /* Calendar page title */
-"Calendar" = "予定表";
+"Calendar" = "カレンダー";
 
 /* Invalid LTI tool error title */
 "Can't load tool" = "ツールの読み込みができません";
@@ -332,7 +332,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas が、現在の検索の受信者を見つけることができませんでした。後ほどもう一度やり直してください。";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas クイズは、各種の課題スタイルをサポートしています。これらスタイルのほとんどは、.モバイルデバイスサポートされていないものもあります。携帯電話でこれらのサポートされていないクイズに回答しようとすると、クイズ全体を完了できない場合があり、その際には不利な結果が出ます。\n\nサポートされていない質問タイプには、Adobe Flash™ コンテンツ、ファイルアップロードその他を含む質問が含まれます。\n\nサポートされていないコンテンツがクイズに含まれていると思われる場合には、デスクトップまたはラップトップコンピュータ上で回答してください。クイズにはサポートされているコンテンツしかないことが分かっている場合には、モバイルデバイスで回答してかまいません。";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 小テストは、各種の課題スタイルをサポートしています。これらスタイルのほとんどは、.モバイルデバイスサポートされていないものもあります。携帯電話でこれらのサポートされていない小テストに回答しようとすると、小テスト全体を完了できない場合があり、その際には不利な結果が出ます。\n\nサポートされていない質問タイプには、Adobe Flash™ コンテンツ、ファイルアップロードその他を含む質問が含まれます。\n\nサポートされていないコンテンツが小テストに含まれていると思われる場合には、デスクトップまたはラップトップコンピュータ上で回答してください。小テストにはサポートされているコンテンツしかないことが分かっている場合には、モバイルデバイスで回答してかまいません。";
 
 /* No comment provided by engineer. */
 "Change User" = "ユーザーを変更する";
@@ -435,10 +435,10 @@
 "Current Submission" = "現在の提出";
 
 /* Message telling users that quiz support on mobile is limited */
-"Currently there is limited quiz support on mobile" = "現在、携帯端末を使用してのクイズのサポートには制限があります";
+"Currently there is limited quiz support on mobile" = "現在、携帯端末を使用しての小テストのサポートには制限があります";
 
 /* A custom grade not specified by the rubric. */
-"Custom Grade" = "成績をカスタムする";
+"Custom Grade" = "評定をカスタムする";
 
 /* label for customizing a course */
 "Customize" = "カスタマイズ";
@@ -663,22 +663,22 @@
 "Go To Discussion" = "ディスカッションへ移動";
 
 /* text for the \"go to quiz\" button */
-"Go to Quiz" = "クイズへ移動";
+"Go to Quiz" = "小テストへ移動";
 
 /* No comment provided by engineer. */
-"Grade" = "成績";
+"Grade" = "評定";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "成績%@";
+"Grade %@" = "評定%@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "成績SpeedGrader";
+"Grade in SpeedGrader" = "評定SpeedGrader";
 
 /* No comment provided by engineer. */
-"Grade: %@" = "成績：%@";
+"Grade: %@" = "評定：%@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "成績：%1$i/%2$g";
+"Grade: %1$i / %2$g" = "評定：%1$i/%2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "採点されたディスカッション";
@@ -690,7 +690,7 @@
 "Graded discussion. %g points possible." = "採点されたディスカッション。%g可能なポイント。";
 
 /* Title for Grades view controller */
-"Grades" = "成績";
+"Grades" = "評定";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "グループでの会話";
@@ -705,7 +705,7 @@
 "Help" = "ヘルプ";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "成績を非表示にする";
+"Hide Grades" = "評定を非表示にする";
 
 /* Homeroom tab title */
 "Homeroom" = "ホームルーム";
@@ -843,7 +843,7 @@
 "Messages" = "メッセージ";
 
 /* Warnging for taking quizzes on a mobile device */
-"Mobile Quiz Warning" = "モバイルクイズの注意";
+"Mobile Quiz Warning" = "モバイル小テストの注意";
 
 /* title for the modules tab */
 "Modules" = "モジュール";
@@ -1031,7 +1031,7 @@
 "out of %@ points" = "点/ %@ 点";
 
 /* Title for Outcomes tab */
-"Outcomes" = "結果";
+"Outcomes" = "アウトカム";
 
 /* No comment provided by engineer. */
 "Page" = "ページ";
@@ -1084,19 +1084,19 @@
 
 /* Label for a quiz
    Title for a quiz submission cell */
-"Quiz" = "クイズ";
+"Quiz" = "小テスト";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "クイズのアラート";
+"Quiz Alert" = "小テストのアラート";
 
 /* No comment provided by engineer. */
-"Quiz Details" = "クイズの詳細情報";
+"Quiz Details" = "小テストの詳細情報";
 
 /* No comment provided by engineer. */
-"Quiz Locked" = "クイズはロックされています";
+"Quiz Locked" = "小テストはロックされています";
 
 /* The title for the list of quizzes for a course */
-"Quizzes" = "クイズ";
+"Quizzes" = "小テスト";
 
 /* No comment provided by engineer. */
 "Rate on App Store" = "アプリストアを評価する";
@@ -1156,10 +1156,10 @@
 "Resubmit Assignment" = "課題を再提出する";
 
 /* No comment provided by engineer. */
-"Resume Quiz" = "クイズを再開する";
+"Resume Quiz" = "小テストを再開する";
 
 /* No comment provided by engineer. */
-"Retake Quiz" = "クイズを受けなおす";
+"Retake Quiz" = "小テストを受けなおす";
 
 /* No comment provided by engineer. */
 "Retry" = "再試行";
@@ -1208,10 +1208,10 @@
 "Show file" = "ファイルを表示する";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "成績を表示";
+"Show Grades" = "評定を表示";
 
 /* title for quiz assignment submission button */
-"Show Quiz" = "クイズを表示する";
+"Show Quiz" = "小テストを表示する";
 
 /* VoiceOver text for a button that lets you show recipients */
 "Show recipients" = "受信者を表示する";
@@ -1253,6 +1253,9 @@
 "Student" = "受講者";
 
 /* No comment provided by engineer. */
+"Student Annotation" = "受講者の注釈";
+
+/* No comment provided by engineer. */
 "Studio" = "Studio";
 
 /* No comment provided by engineer. */
@@ -1292,7 +1295,7 @@
 "Submit Assignment" = "課題を提出する";
 
 /* Submitted grouping */
-"Submitted" = "タスクの成績を送信";
+"Submitted" = "タスクの評定を送信";
 
 /* Submitted date */
 "Submitted %@" = "提出済み %@";
@@ -1341,7 +1344,7 @@
 "Take Photo or Video..." = "写真または動画を撮影...";
 
 /* No comment provided by engineer. */
-"Take Quiz" = "クイズを受ける";
+"Take Quiz" = "小テストを受ける";
 
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "タップして、再度試してください";
@@ -1356,10 +1359,10 @@
 "TAs" = "TA";
 
 /* Short name for teacher enrollment */
-"Teacher" = "講師";
+"Teacher" = "教員";
 
 /* No comment provided by engineer. */
-"Teachers" = "講師";
+"Teachers" = "教員";
 
 /* No comment provided by engineer. */
 "Tell us what's wrong" = "何が問題なのかを教えてください";
@@ -1511,6 +1514,9 @@
 
 /* Unknown file type */
 "Unknown" = "不明";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知のエラー";
 
 /* No comment provided by engineer. */
 "Unlimited" = "無制限";

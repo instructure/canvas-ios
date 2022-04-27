@@ -38,7 +38,11 @@ public class AppStoreReview: NSObject {
             }
         } else {
             #if RELEASE
-            SKStoreReviewController.requestReview()
+
+            if let windowScene = AppEnvironment.shared.window?.windowScene {
+                SKStoreReviewController.requestReview(in: windowScene)
+            }
+
             #endif
         }
         UserDefaults.standard.set(Date(), forKey: lastRequestDateKey)

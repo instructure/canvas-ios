@@ -31,6 +31,7 @@ struct NotificationCard: View {
             VStack {
                 icon.foregroundColor(.white)
                     .padding(.horizontal, 8).padding(.top, 10)
+                    .accessibility(hidden: true)
                 Spacer()
             }
                 .background(backgroundColor)
@@ -40,7 +41,7 @@ struct NotificationCard: View {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack { Spacer() }
                         Text(notification.subject)
-                            .font(.semibold16).foregroundColor(.textDarkest)
+                            .font(.semibold16).foregroundColor(.textDarkest).multilineTextAlignment(.leading)
                         if !isExpanded {
                             Text("Tap to view announcement", bundle: .core)
                                 .font(.regular14).foregroundColor(.textDark)
@@ -57,17 +58,17 @@ struct NotificationCard: View {
                     button
                         .identifier("AccountNotification.\(notification.id).toggleButton")
                 }
-                WebView(html: notification.message)
-                    .onLink { url in
-                        env.router.route(to: url, from: controller, options: .detail)
-                        return true
-                    }
-                    .frameToFit()
-                    .accessibility(hidden: !isExpanded)
-                    .frame(maxHeight: isExpanded ? nil : 0, alignment: .top)
-                    .clipped()
-                    .padding(.trailing, 1)
                 if isExpanded {
+                    WebView(html: notification.message)
+                        .onLink { url in
+                            env.router.route(to: url, from: controller, options: .detail)
+                            return true
+                        }
+                        .frameToFit()
+                        .accessibility(hidden: !isExpanded)
+                        .frame(maxHeight: isExpanded ? nil : 0, alignment: .top)
+                        .clipped()
+                        .padding(.trailing, 1)
                     HStack {
                         Spacer()
                         Button(action: {
@@ -77,8 +78,8 @@ struct NotificationCard: View {
                                 .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
                                 .padding(.horizontal, 16).padding(.bottom, 12)
                         })
-                            .accessibility(label: Text("Dismiss \(notification.subject)", bundle: .core))
-                            .identifier("AccountNotification.\(notification.id).dismissButton")
+                        .accessibility(label: Text("Dismiss \(notification.subject)", bundle: .core))
+                        .identifier("AccountNotification.\(notification.id).dismissButton")
                     }
                 }
             }

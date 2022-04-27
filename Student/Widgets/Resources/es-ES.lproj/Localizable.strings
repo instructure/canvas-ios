@@ -11,7 +11,7 @@
 "Announcements" = "Anuncios";
 
 /* No comment provided by engineer. */
-"Assignment Grades" = "Notas de asignaciones";
+"Assignment Grades" = "Notas de actividades";
 
 /* Example course name */
 "Biology 201" = "Biología 201";
@@ -20,7 +20,7 @@
 "Biology Exam 2" = "Examen 2 de biología";
 
 /* No comment provided by engineer. */
-"Course Grades" = "Notas del curso";
+"Course Grades" = "Notas de la asignatura";
 
 /* Example exam name */
 "Essay #1: The Rocky Planets" = "Ensayo n.º 1: los planetas rocosos";
@@ -44,10 +44,10 @@
 "No Grades To Display" = "No hay notas para mostrar";
 
 /* No comment provided by engineer. */
-"Please log in via the application" = "Inicie sesión a través de la aplicación";
+"Please log in via the application" = "Inicia sesión a través de la aplicación";
 
 /* Example announcement title */
-"Read Moby Dick by end of week." = "Leer Moby Dick para el final de la semana.";
+"Read Moby Dick by end of week." = "Leer Moby Dick para finales de semana.";
 
 /* Example author name */
 "Susan Jorgenson" = "Susan Jorgenson";
@@ -56,10 +56,10 @@
 "Thomas McKempis" = "Thomas McKempis";
 
 /* Description of the announcements widget */
-"View the latest announcements from your courses." = "Vea los últimos anuncios de sus cursos.";
+"View the latest announcements from your courses." = "Ver los últimos anuncios de tus asignaturas.";
 
 /* Description of the grades widget */
-"View the latest grades from assignments and your favorite courses." = "Vea las últimas notas de asignaciones y sus cursos favoritos.";
+"View the latest grades from assignments and your favorite courses." = "Ver las últimas notas de actividades y tus asignaturas favoritas.";
 
 /* Example announcement title */
 "Zoo Field Trip!" = "¡Excursión al zoológico!";

@@ -21,6 +21,7 @@ import SwiftUI
 public struct K5DashboardView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     @ObservedObject private var viewModel = K5DashboardViewModel()
     private var padding: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
@@ -29,10 +30,15 @@ public struct K5DashboardView: View {
         VStack(spacing: 0) {
             TopBarView(viewModel: viewModel.topBarViewModel, horizontalInset: padding, itemSpacing: padding)
             Divider()
-            GeometryReader { geometry in
-                content
-                    .environment(\.containerSize, geometry.size)
-                    .environment(\.horizontalPadding, padding)
+            HStack(spacing: 0) {
+                GeometryReader { geometry in
+                    content
+                        .environment(\.containerSize, geometry.size)
+                        .environment(\.horizontalPadding, padding)
+                }
+                if UIDevice.current.userInterfaceIdiom == .pad && horizontalSizeClass == .regular {
+                    importantDatesSidebar
+                }
             }
         }
         .navigationBarGlobal()
@@ -59,10 +65,20 @@ public struct K5DashboardView: View {
                 K5GradesView(viewModel: viewModel.viewModels.grades)
             case 3:
                 K5ResourcesView(viewModel: viewModel.viewModels.resources)
+            case 4:
+                K5ImportantDatesView(viewModel: viewModel.viewModels.importantDates)
             default:
                 SwiftUI.EmptyView()
             }
         }
+    }
+
+    @ViewBuilder private var importantDatesSidebar: some View {
+        Divider()
+        K5ImportantDatesView(viewModel: viewModel.viewModels.importantDates)
+            .frame(width: 332)
+            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+            .background(Color.backgroundLight)
     }
 
     public init() {

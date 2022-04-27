@@ -21,10 +21,11 @@ import Foundation
 // https://canvas.instructure.com/doc/api/discussion_topics.html#DiscussionTopic
 public struct APIDiscussionTopic: Codable, Equatable {
     public let allow_rating: Bool
+    public let anonymous_state: String?
     public let assignment: APIList<APIAssignment>?
     public let assignment_id: ID?
     public let attachments: [APIFile]?
-    public let author: APIDiscussionParticipant
+    public let author: APIDiscussionParticipant?
     public let can_unpublish: Bool?
     public let created_at: Date?
     public let context_code: String? // Only populated while using https://canvas.instructure.com/doc/api/announcements.html#method.announcements_api.index
@@ -105,6 +106,7 @@ public struct APIDiscussionView: Codable, Equatable {
 extension APIDiscussionTopic {
     public static func make(
         allow_rating: Bool = false,
+        anonymous_state: String? = nil,
         assignment: APIAssignment? = nil,
         assignment_id: ID? = nil,
         attachments: [APIFile]? = nil,
@@ -141,6 +143,7 @@ extension APIDiscussionTopic {
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             allow_rating: allow_rating,
+            anonymous_state: anonymous_state,
             assignment: assignment.map { APIList($0) },
             assignment_id: assignment_id,
             attachments: attachments,
@@ -297,7 +300,7 @@ struct PostDiscussionTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
 
     enum DiscussionKey: String {
-        case attachment, allow_rating, delayed_post_at, discussion_type, id, is_announcement, locked, lock_at,
+        case attachment, allow_rating, anonymous_state, delayed_post_at, discussion_type, id, is_announcement, locked, lock_at,
             message, only_graders_can_rate, pinned, published, remove_attachment, require_initial_post,
             sort_by_rating, specific_sections, title
     }

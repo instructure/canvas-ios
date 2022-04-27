@@ -53,10 +53,19 @@
 "Choose Files" = "Bestanden kiezen";
 
 /* No comment provided by engineer. */
+"Close" = "Sluiten";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Lade sluiten";
 
 /* No comment provided by engineer. */
 "Comment" = "Opmerking";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Opmerkingenbibliotheek";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Opmerkingenbibliotheek is niet beschikbaar";
 
 /* No comment provided by engineer. */
 "Comments" = "Opmerkingen";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "Roll Call LTI Tool kan niet worden gestart.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Kan inleveringsgegevens niet laden!";
+
+/* No comment provided by engineer. */
 "Files" = "Bestanden";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Cijfers worden zichtbaar gemaakt voor cursisten met beoordeelde inleveringen";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Groep";
@@ -194,10 +200,16 @@
 "No Submissions" = "Geen inleveringen";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Geen suggesties beschikbaar";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Niet beoordeeld";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Opmerkingenbibliotheek openen";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Lade openen, volledig scherm";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Opnieuw instellen";
+
+/* No comment provided by engineer. */
+"Retry" = "Opnieuw proberen";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubriek";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Te doen";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Onbekende fout";
 
 /* No comment provided by engineer. */
 "Unmark" = "Markering ongedaan maken";

@@ -53,10 +53,19 @@
 "Choose Files" = "Välj filer";
 
 /* No comment provided by engineer. */
+"Close" = "Stäng";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Stäng lådan";
 
 /* No comment provided by engineer. */
 "Comment" = "Kommentar";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Kommentarbibliotek";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Kommentarsbiblioteket är inte tillgängligt";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "Det gick inte att starta LTI-verktyget för närvaro.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Det gick inte att läsa in inlämningsdata!";
+
+/* No comment provided by engineer. */
 "Files" = "Filer";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Omdömen kan ses av alla elever med bedömda inlämningar";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Gruppera";
@@ -194,10 +200,16 @@
 "No Submissions" = "Inga inlämningar";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Inga förslag finns tillgängliga";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Inte bedömd";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Öppna kommentarsbibliotek";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Öppna lådan i helskärm";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Återställ";
+
+/* No comment provided by engineer. */
+"Retry" = "Försök igen";
 
 /* No comment provided by engineer. */
 "Rubric" = "Matris";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Okänt fel";
 
 /* No comment provided by engineer. */
 "Unmark" = "Avmarkera";

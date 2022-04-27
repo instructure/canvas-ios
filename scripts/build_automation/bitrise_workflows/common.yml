@@ -226,9 +226,6 @@ workflows:
         - plist_path: Student/Student/Info.plist
     - set-xcode-build-number:
         inputs:
-        - plist_path: Student/GradesWidget/Info.plist
-    - set-xcode-build-number:
-        inputs:
         - plist_path: Student/SubmitAssignment/Info.plist
     - set-xcode-build-number:
         inputs:
@@ -300,7 +297,7 @@ workflows:
             envman add --key BITRISE_SCHEME --value Student
             envman add --key RELEASE_BRANCH --value release/student
             envman add --key APP_NAME --value Student
-            envman add --key INFO_PLISTS --value "Student/Student/Info.plist Student/GradesWidget/Info.plist Student/SubmitAssignment/Info.plist Student/Widgets/Resources/Info.plist"
+            envman add --key INFO_PLISTS --value "Student/Student/Info.plist Student/SubmitAssignment/Info.plist Student/Widgets/Resources/Info.plist"
 
             envman add --key BITRISE_EXPORT_METHOD --value app-store
 

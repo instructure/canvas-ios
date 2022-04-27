@@ -40,6 +40,8 @@ class StudentTabBarController: UITabBarController {
         selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
             .flatMap { paths.firstIndex(of: $0) } ?? 0
         tabBar.useGlobalNavStyle()
+
+        reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
     }
 
     func dashboardTab() -> UIViewController {
@@ -73,7 +75,7 @@ class StudentTabBarController: UITabBarController {
         split.tabBarItem.image = tabBarImage
         split.tabBarItem.selectedImage = tabBarImageSelected
         split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        split.preferredDisplayMode = .allVisible
+        split.preferredDisplayMode = .oneBesideSecondary
         return split
     }
 
@@ -148,17 +150,22 @@ class StudentTabBarController: UITabBarController {
 
         return inboxSplit
     }
+
+    private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
+        let map = [AppEnvironment.shared.k5.isK5Enabled ? "homeroom": "dashboard", "calendar", "todo", "notifications", "conversations"]
+        let event = map[tabIndex]
+        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
 }
 
 extension StudentTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         tabBarController.resetViewControllerIfSelected(viewController)
-        let map = ["dashboard_selected", "calendar_selected", "todo_list_selected", "notifications_selected", "inbox_selected"]
-        if let index = viewControllers?.firstIndex(of: viewController),
-            selectedViewController != viewController {
-            let event = map[index]
-            Analytics.shared.logEvent(event)
+
+        if let index = viewControllers?.firstIndex(of: viewController), selectedViewController != viewController {
+            reportScreenView(for: index, viewController: viewController)
         }
+
         return true
     }
 }

@@ -17,10 +17,7 @@
 //
 
 // @flow
-import CourseNavigation from '../modules/courses/CourseNavigation'
-import CourseSettings from '../modules/courses/settings/CourseSettings'
 import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePreferences'
-import AssignmentList from '../modules/assignments/AssignmentList'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import Inbox from '../modules/inbox/Inbox'
 import Compose from '../modules/inbox/Compose'
@@ -50,11 +47,11 @@ import { isTeacher, isStudent } from '../modules/app'
 
 export function registerScreens (store: Store): void {
   registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID/tabs', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID/settings', CourseSettings, store)
+  registerScreen('/courses/:courseID', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/tabs', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/settings', null, store)
   registerScreen('/courses/:courseID/user_preferences', UserCoursePreferences, store)
-  registerScreen('/courses/:courseID/assignments', AssignmentList, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/assignments', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/courses/:courseID/lti_collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/:context/:contextID/discussions', null, store, { canBecomeMaster: true, deepLink: true })
@@ -115,6 +112,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/push-notifications', PushNotifications, store)
   registerScreen('/page-view-events', PageViewEvents, store)
   registerScreen('/dev-menu/experimental-features', null, store)
+  registerScreen('/dev-menu/pandas', null, store)
+  registerScreen('/dev-menu/website-preview', null, store)
   registerScreen('/rating-request', RatingRequest, store)
   registerScreen('/logs')
   registerScreen('/act-as-user')

@@ -45,11 +45,7 @@ public struct K5ScheduleEntryView: View {
                         }
 
                         if !viewModel.labels.isEmpty {
-                            if #available(iOS 14, *) {
-                                labels.textCase(.uppercase)
-                            } else {
-                                labels
-                            }
+                            labels.textCase(.uppercase)
                         }
                     }
                     .padding(.leading, 12)
@@ -105,11 +101,7 @@ public struct K5ScheduleEntryView: View {
     }
 
     private var disclosureIndicator: some View {
-        Image.arrowOpenRightSolid
-            .resizable()
-            .scaledToFit()
-            .frame(width: 16, height: 16)
-            .foregroundColor(.ash)
+        InstDisclosureIndicator()
             .padding(.leading, 10)
             .hidden(!viewModel.isTappable)
     }

@@ -2,7 +2,7 @@
 "%g out of %g" = "%1$g de %2$g";
 
 /* No comment provided by engineer. */
-"%g pts" = "%g punts";
+"%g pts" = "%g punts";
 
 /* No comment provided by engineer. */
 "Absent" = "Absent";
@@ -14,10 +14,10 @@
 "Add Comment" = "Afegeix un comentari";
 
 /* No comment provided by engineer. */
-"All grades are currently hidden." = "Totes les qualificacions estan amagades en aquest moment.";
+"All grades are currently hidden." = "Totes les notes estan amagades en aquest moment.";
 
 /* No comment provided by engineer. */
-"All grades are currently posted." = "Totes les qualificacions estan publicades en aquest moment.";
+"All grades are currently posted." = "Totes les notes estan publicades en aquest moment.";
 
 /* No comment provided by engineer. */
 "All Hidden" = "Totes amagades";
@@ -53,10 +53,19 @@
 "Choose Files" = "Tria els fitxers";
 
 /* No comment provided by engineer. */
+"Close" = "Tanca";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Tanca el calaix";
 
 /* No comment provided by engineer. */
 "Comment" = "Comentari";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Biblioteca de comentaris";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "La biblioteca de comentaris no està disponible";
 
 /* No comment provided by engineer. */
 "Comments" = "Comentaris";
@@ -68,10 +77,10 @@
 "Could not save the comment." = "No s'ha pogut desar el comentari.";
 
 /* No comment provided by engineer. */
-"Courses" = "Cursos";
+"Courses" = "Assignatures";
 
 /* No comment provided by engineer. */
-"Customize Grade" = "Personalitza la qualificació";
+"Customize Grade" = "Personalitza la nota";
 
 /* No comment provided by engineer. */
 "Date picker" = "Selector de dates";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "No s'ha pogut iniciar l'eina LTI de passar llista.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "No s'han pogut carregar les dades de l’entrega";
+
+/* No comment provided by engineer. */
 "Files" = "Fitxers";
 
 /* No comment provided by engineer. */
@@ -119,43 +131,37 @@
 "Filter by" = "Filtra per";
 
 /* No comment provided by engineer. */
-"Final Grade" = "Qualificació final";
+"Final Grade" = "Nota final";
 
 /* No comment provided by engineer. */
 "GPA" = "GPA";
 
 /* No comment provided by engineer. */
-"Grade" = "Qualificació";
+"Grade" = "Nota";
 
 /* No comment provided by engineer. */
-"Grade post policy" = "Política de publicació de qualificacions";
+"Grade post policy" = "Política de publicació de notes";
 
 /* No comment provided by engineer. */
-"Grade Slider" = "Control lliscant de qualificacions";
+"Grade Slider" = "Control lliscant de notes";
 
 /* No comment provided by engineer. */
 "Graded" = "Qualificat";
 
 /* No comment provided by engineer. */
-"Grades" = "Qualificacions";
+"Grades" = "Notes";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "Tots els estudiants podran veure les qualificacions";
+"Grades will be made visible to all students" = "Tots els estudiants podran veure les notes";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Tots els estudiants amb entregues qualificades podran veure les qualificacions";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
+"Grades will be made visible to students with graded submissions" = "Tots els estudiants amb entregues qualificades podran veure les notes";
 
 /* No comment provided by engineer. */
 "Group" = "Grup";
 
 /* No comment provided by engineer. */
-"Hide Grades" = "Amaga les qualificacions";
+"Hide Grades" = "Amaga les notes";
 
 /* Inbox tab title */
 "Inbox" = "Safata d'entrada";
@@ -170,7 +176,7 @@
 "Late" = "Tardà";
 
 /* No comment provided by engineer. */
-"Letter grade" = "Qualificació amb lletra";
+"Letter grade" = "Nota amb lletra";
 
 /* No comment provided by engineer. */
 "Loading" = "S'està carregant";
@@ -182,22 +188,28 @@
 "Mark Remaining as Present" = "Marca la resta com a Present";
 
 /* No comment provided by engineer. */
-"Moderated Grading Unsupported" = "No s'admet la qualificació moderada";
+"Moderated Grading Unsupported" = "No s'admet la nota moderada";
 
 /* No comment provided by engineer. */
 "Needs Grading" = "S'ha de qualificar";
 
 /* No comment provided by engineer. */
-"No Grade" = "Sense qualificació";
+"No Grade" = "Sense nota";
 
 /* No comment provided by engineer. */
 "No Submissions" = "Cap entrega";
 
 /* No comment provided by engineer. */
-"Not Graded" = "Sense qualificació";
+"No suggestions available" = "Sense suggeriments disponibles";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Sense nota";
 
 /* No comment provided by engineer. */
 "OK" = "D'acord";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Obre la biblioteca de comentaris";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Obre el calaix a pantalla completa";
@@ -218,7 +230,7 @@
 "Points" = "Punts";
 
 /* No comment provided by engineer. */
-"Post Grades" = "Publica les qualificacions";
+"Post Grades" = "Publica les notes";
 
 /* No comment provided by engineer. */
 "Post settings" = "Configuració de publicació";
@@ -236,7 +248,7 @@
 "Preview Unavailable" = "La visualització prèvia no està disponible";
 
 /* No comment provided by engineer. */
-"Prompts for an updated grade" = "Sol·licituds per a una qualificació actualitzada";
+"Prompts for an updated grade" = "Sol·licituds per a una nota actualitzada";
 
 /* No comment provided by engineer. */
 "Record Audio" = "Enregistra so";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Restableix";
+
+/* No comment provided by engineer. */
+"Retry" = "Torna-ho a provar";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rúbrica";
@@ -287,22 +302,22 @@
 "There was an error loading submissions. Pull to refresh to try again." = "S'ha produït un error en carregar les entregues. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
-"This assignment does not allow submissions." = "Amb aquesta tasca no es permet fer entregues.";
+"This assignment does not allow submissions." = "Amb aquesta activitat no es permet fer entregues.";
 
 /* No comment provided by engineer. */
-"This assignment only allows on-paper submissions." = "Amb aquesta tasca només es permet fer entregues en paper.";
+"This assignment only allows on-paper submissions." = "Amb aquesta activitat només es permet fer entregues en paper.";
 
 /* No comment provided by engineer. */
 "This criterion will not impact the score." = "Aquest criteri no influirà en la puntuació.";
 
 /* No comment provided by engineer. */
-"This group does not have a submission for this assignment." = "Aquest grup no té cap entrega per a aquesta tasca.";
+"This group does not have a submission for this assignment." = "Aquest grup no té cap entrega per a aquesta activitat.";
 
 /* No comment provided by engineer. */
-"This student does not have a submission for this assignment." = "Aquest estudiant no té cap entrega per a aquesta tasca.";
+"This student does not have a submission for this assignment." = "Aquest estudiant no té cap entrega per a aquesta activitat.";
 
 /* No comment provided by engineer. */
-"This student's responses are hidden because this assignment is anonymous." = "Les respostes d'aquest estudiant estan amagades perquè la tasca és anònima.";
+"This student's responses are hidden because this assignment is anonymous." = "Les respostes d'aquest estudiant estan amagades perquè l'activitat és anònima.";
 
 /* No comment provided by engineer. */
 "This submission has no files." = "Aquesta entrega no té cap fitxer.";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Tasques pendents";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Error desconegut";
 
 /* No comment provided by engineer. */
 "Unmark" = "Desmarca";

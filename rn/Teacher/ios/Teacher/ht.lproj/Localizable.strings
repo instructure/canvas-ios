@@ -53,10 +53,19 @@
 "Choose Files" = "Chwazi Fichye";
 
 /* No comment provided by engineer. */
+"Close" = "Fèmen";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Fèmen Tiwa a";
 
 /* No comment provided by engineer. */
 "Comment" = "Kòmantè";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Bibliyotèk Kòmantè";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Bibliyotèk kòmantè a pa disponib";
 
 /* No comment provided by engineer. */
 "Comments" = "Kòmantè";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "Echèk lansman zouti apèl nominal LTI.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Echèk chajman done soumisyon!";
+
+/* No comment provided by engineer. */
 "Files" = "Fichye";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Nòt yo ap vizib pou elèv ki gen soumisyon ki evalye.";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Gwoup";
@@ -194,10 +200,16 @@
 "No Submissions" = "Pa gen Soumisyon";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "pa gen sijesyon disponib";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Pa Klase";
 
 /* No comment provided by engineer. */
 "OK" = "DAKO";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Ouvri bibliyotèk kòmantè";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Ouvri Tiwa a plen ekran";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Reinisyalize";
+
+/* No comment provided by engineer. */
+"Retry" = "Re eseye";
 
 /* No comment provided by engineer. */
 "Rubric" = "Ribrik";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erè Enkoni";
 
 /* No comment provided by engineer. */
 "Unmark" = "San make";

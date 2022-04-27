@@ -37,11 +37,7 @@ struct DiscussionSectionsPicker: View {
             ScrollView {
                 switch sections.state {
                 case .data:
-                    if #available(iOS 14, *) {
-                        LazyVStack(alignment: .leading, spacing: 0) { list }
-                    } else {
-                        VStack(alignment: .leading, spacing: 0) { list }
-                    }
+                    LazyVStack(alignment: .leading, spacing: 0) { list }
                 case .loading:
                     ZStack { CircleProgress() }
                         .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)

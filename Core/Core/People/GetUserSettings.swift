@@ -47,11 +47,12 @@ public struct UpdateUserSettings: APIUseCase {
     public let request: PutUserSettingsRequest
     public let scope = Scope(predicate: .all, order: [])
 
-    public init(manual_mark_as_read: Bool? = nil, collapse_global_nav: Bool? = nil, hide_dashcard_color_overlays: Bool? = nil) {
+    public init(manual_mark_as_read: Bool? = nil, collapse_global_nav: Bool? = nil, hide_dashcard_color_overlays: Bool? = nil, comment_library_suggestions_enabled: Bool? = nil) {
         request = PutUserSettingsRequest(
             manual_mark_as_read: manual_mark_as_read,
             collapse_global_nav: collapse_global_nav,
-            hide_dashcard_color_overlays: hide_dashcard_color_overlays
+            hide_dashcard_color_overlays: hide_dashcard_color_overlays,
+            comment_library_suggestions_enabled: comment_library_suggestions_enabled
         )
     }
 }

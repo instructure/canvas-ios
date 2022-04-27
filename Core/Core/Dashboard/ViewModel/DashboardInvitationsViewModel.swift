@@ -28,18 +28,18 @@ public class DashboardInvitationsViewModel: ObservableObject {
     private lazy var invitationsStore = AppEnvironment.shared.subscribe(GetCourseInvitations()) { [weak self] in
         self?.update()
     }
-    private lazy var coursesStore = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+    /**
+     We need to observe courses because those contain the enrollment state of the dashboard card. Since courses get refreshed from
+     ``DashboardCardsViewModel`` in ``DashboardCardView`` we just subscribe to the changes but don't request them here from the API. */
+    private lazy var coursesStore: Store<LocalUseCase<Course>> = AppEnvironment.shared.subscribe(scope: .all(orderBy: #keyPath(Course.id))) { [weak self] in
         self?.update()
     }
-    private var isRefreshFinished: Bool {
-        invitationsStore.requested && !invitationsStore.pending &&
-        coursesStore.requested && !coursesStore.pending
-    }
+    private var isRefreshFinished: Bool { invitationsStore.requested && !invitationsStore.pending }
 
     // MARK: - Public Methods
 
     public func refresh(force: Bool = false) {
-        coursesStore.exhaust(force: force)
+        coursesStore.refresh() // since this is a local use-case we just create the lazy instance here
         invitationsStore.exhaust(force: force)
     }
 

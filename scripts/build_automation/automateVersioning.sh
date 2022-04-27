@@ -49,10 +49,6 @@ checkoutReleaseBranch() {
 }
 
 checkInReleaseBranchAndTag() {
-	#	Add the following to the scrip outside this file
-#	git add Canvas/Canvas/Info.plist
-#	git add Canvas/GradesWidget/Info.plist
-
 	git commit -m "Release $BITRISE_APP_TITLE $APP_RELEASE_VERSION"
 
 	TAG="$APP_NAME-$APP_RELEASE_VERSION"

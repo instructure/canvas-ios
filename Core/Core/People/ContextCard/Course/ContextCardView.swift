@@ -38,7 +38,8 @@ public struct ContextCardView: View {
     @ViewBuilder var emailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
-                Image.emailLine
+                let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText
+                Image.emailLine.foregroundColor(Color(color))
             })
             .accessibility(label: Text("Send message", bundle: .core))
             .identifier("ContextCard.emailContact")

@@ -53,10 +53,19 @@
 "Choose Files" = "Escolher Ficheiros";
 
 /* No comment provided by engineer. */
+"Close" = "Fechar";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Fechar gaveta";
 
 /* No comment provided by engineer. */
 "Comment" = "Comentário";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Biblioteca de Comentários";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "A biblioteca de comentários não está disponível";
 
 /* No comment provided by engineer. */
 "Comments" = "Comentários";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "Falha ao iniciar a ferramenta LTI rollcall.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Falha no carregamento dos dados de submissão";
+
+/* No comment provided by engineer. */
 "Files" = "Ficheiros";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "As classificações serão tornadas visíveis para os alunos com submissões graduadas";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Grupo";
@@ -194,10 +200,16 @@
 "No Submissions" = "Sem Submissões";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Não há sugestões disponíveis";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Sem classificação";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Biblioteca de comentários aberta";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Abrir gaveta em ecrã inteiro";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Redefinir";
+
+/* No comment provided by engineer. */
+"Retry" = "Tentar novamente";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubrica";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "A Fazer";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erro Desconhecido";
 
 /* No comment provided by engineer. */
 "Unmark" = "Desmarcar";

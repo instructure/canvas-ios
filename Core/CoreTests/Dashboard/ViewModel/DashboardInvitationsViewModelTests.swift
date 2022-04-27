@@ -23,7 +23,7 @@ import TestsFoundation
 class DashboardInvitationsViewModelTests: CoreTestCase {
 
     func testFetch() {
-        api.mock(GetCourses(enrollmentState: nil), value: [.make(id: "testCourseID", name: "testCourseName")])
+        Course.save(.make(id: "testCourseID", name: "testCourseName"), in: databaseClient)
         api.mock(GetCourseInvitations(), value: [.make(id: "testEnrollmentID", course_id: "testCourseID")])
 
         let testee = DashboardInvitationsViewModel()
@@ -43,6 +43,5 @@ class DashboardInvitationsViewModelTests: CoreTestCase {
         XCTAssertEqual(invitation.course.name, "testCourseName")
 
         updateSubscription.cancel()
-
     }
 }

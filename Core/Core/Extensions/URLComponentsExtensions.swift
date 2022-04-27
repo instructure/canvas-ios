@@ -103,6 +103,34 @@ public extension URLComponents {
     var skipModuleItemSequence: Bool {
         queryItems?.contains(URLQueryItem(name: "skipModuleItemSequence", value: "true")) == true
     }
+
+    var page: Int {
+        guard let pageIndexQueryValue = queryValue(for: "page"), let pageIndex = Int(pageIndexQueryValue) else {
+            return 1
+        }
+
+        return pageIndex
+    }
+
+    var pageSize: Int? {
+        guard let pageSizeQueryValue = queryValue(for: "per_page") else {
+            return nil
+        }
+
+        return Int(pageSizeQueryValue)
+    }
+
+    var contextColor: UIColor? {
+        guard let hexColor = queryValue(for: "contextColor"), let color = UIColor(hexString: "#\(hexColor)") else {
+            return nil
+        }
+
+        return color
+    }
+
+    func queryValue(for queryName: String) -> String? {
+        queryItems?.first(where: { $0.name == queryName })?.value
+    }
 }
 
 public extension CharacterSet {

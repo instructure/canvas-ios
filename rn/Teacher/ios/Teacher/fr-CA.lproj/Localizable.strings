@@ -53,10 +53,19 @@
 "Choose Files" = "Choisir des fichiers";
 
 /* No comment provided by engineer. */
+"Close" = "Fermer";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Fermer le tiroir";
 
 /* No comment provided by engineer. */
 "Comment" = "Commentaire";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Bibliothèque de commentaires";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "La bibliothèque de commentaires n'est pas disponible";
 
 /* No comment provided by engineer. */
 "Comments" = "Commentaires";
@@ -104,6 +113,9 @@
 "Failed to launch rollcall LTI tool." = "Impossible de lancer l'outil LTI d’appel nominal.";
 
 /* No comment provided by engineer. */
+"Failed to load submission data!" = "Échec lors du chargement des données d’envoi!";
+
+/* No comment provided by engineer. */
 "Files" = "Fichiers";
 
 /* No comment provided by engineer. */
@@ -144,12 +156,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Les notes seront rendues visibles par les étudiants avec des envois notés";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Groupe";
@@ -194,10 +200,16 @@
 "No Submissions" = "Aucun envoi";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Aucune suggestion n’est disponible";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Non noté";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Ouvrir la bibliothèque de commentaires";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Ouvrir le tiroir en plein écran";
@@ -246,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Reset" = "Réinitialiser";
+
+/* No comment provided by engineer. */
+"Retry" = "Réessayer";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubrique";
@@ -312,6 +327,9 @@
 
 /* No comment provided by engineer. */
 "To Do" = "À faire";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erreur inconnue";
 
 /* No comment provided by engineer. */
 "Unmark" = "Décocher";

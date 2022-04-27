@@ -171,7 +171,6 @@ public class GetSubmissionsForStudent: CollectionUseCase {
         scope = Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.userID), equals: studentID),
-                NSPredicate(format: "%K != %@", #keyPath(Submission.workflowStateRaw), SubmissionWorkflowState.unsubmitted.rawValue),
                 NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
             ]),
             order: [

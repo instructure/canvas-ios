@@ -65,15 +65,6 @@
 "%d missing" = "缺少 %d";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d回覆";
-
-/* No comment provided by engineer. */
-"%d students" = "%d學生";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d未讀";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -116,7 +107,13 @@
 "Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
+"Add comment (optional)" = "添加評論（可選）";
+
+/* No comment provided by engineer. */
 "Add content" = "添加內容";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "添加課程名稱";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "添加課程暱稱";
@@ -269,6 +266,9 @@
 "Assignments" = "作業列表";
 
 /* No comment provided by engineer. */
+"Assignments List" = "作業列表";
+
+/* No comment provided by engineer. */
 "Attach files by tapping an option below." = "輕點以下的一個選項以加入附件檔案。";
 
 /* No comment provided by engineer. */
@@ -395,6 +395,12 @@
 "Casual question or suggestion" = "隨意的問題或建議";
 
 /* No comment provided by engineer. */
+"Change dashboard layout to grid" = "切換控制面板版面為網格";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "切換控制面板版面為清單";
+
+/* No comment provided by engineer. */
 "Change User" = "變更使用者";
 
 /* Description for Chat communication channel */
@@ -509,9 +515,6 @@
 "Conversation Message" = "交談訊息";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "交談";
 
 /* No comment provided by engineer. */
@@ -536,6 +539,9 @@
 "Course Activities" = "課程活動";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "課程活動流";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "課程通告";
 
 /* No comment provided by engineer. */
@@ -555,6 +561,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "課程評分低於 %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "課程單元";
 
 /* No comment provided by engineer. */
 "Course Sections" = "課程分班";
@@ -596,21 +605,6 @@
 "Cyan" = "青色";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "每天";
 
 /* No comment provided by engineer. */
@@ -618,9 +612,6 @@
 
 /* No comment provided by engineer. */
 "Date" = "日期";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "拒絕";
@@ -761,6 +752,12 @@
 "Edit attachment (none)" = "編輯附件 (無)";
 
 /* No comment provided by engineer. */
+"Edit course settings" = "編輯課程設定";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "編輯控制面板";
+
+/* No comment provided by engineer. */
 "Edit Discussion" = "編輯討論區";
 
 /* No comment provided by engineer. */
@@ -875,6 +872,9 @@
 "Filter" = "篩選器";
 
 /* No comment provided by engineer. */
+"Filter by" = "篩選條件";
+
+/* No comment provided by engineer. */
 "Filter by:" = "篩選條件為：";
 
 /* No comment provided by engineer. */
@@ -884,13 +884,7 @@
 "Filter Inbox" = "篩選器收件匣";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "尋找可掃描的條碼";
@@ -917,19 +911,13 @@
 "Forget %@" = "忘記%@";
 
 /* No comment provided by engineer. */
+"Format not supported" = "不支援的格式";
+
+/* No comment provided by engineer. */
 "Front Page" = "首頁";
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "未來註冊";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "前往今天";
@@ -995,9 +983,6 @@
 "Hide content for %@" = "隱藏此項目的內容：%@";
 
 /* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
-
-/* No comment provided by engineer. */
 "High: %@" = "高：%@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1023,9 @@
 
 /* No comment provided by engineer. */
 "Impact Level" = "影響程度";
+
+/* No comment provided by engineer. */
+"Important Dates" = "重要日期";
 
 /* No comment provided by engineer. */
 "Important Info" = "重要資訊";
@@ -1103,6 +1091,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "看來沒有與您帳戶關聯的課程。現在就前往網站，創建課程。";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "看起來您未註冊任何課程。";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
 
 /* No comment provided by engineer. */
@@ -1125,9 +1116,6 @@
 
 /* No comment provided by engineer. */
 "Late Grading" = "逾期等級評分";
-
-/* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "啟動外部工具";
@@ -1397,6 +1385,9 @@
 "No Pages" = "無頁面";
 
 /* No comment provided by engineer. */
+"No preview available" = "無可用預覽";
+
+/* No comment provided by engineer. */
 "No Quizzes" = "無測驗";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1401,9 @@
 
 /* No comment provided by engineer. */
 "No Submission" = "無提交項目";
+
+/* No comment provided by engineer. */
+"No supported files to submit" = "沒有要提交的支援檔案";
 
 /* No comment provided by engineer. */
 "None" = "無";
@@ -1428,6 +1422,9 @@
 
 /* No comment provided by engineer. */
 "Not Submitted" = "未提交";
+
+/* No comment provided by engineer. */
+"Not supported" = "不支援";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "非緊急";
@@ -1496,6 +1493,9 @@
 "Open item details" = "開啟項目詳細資料";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "在 Canvas Student 中開啟";
+
+/* No comment provided by engineer. */
 "Options" = "選項";
 
 /* No comment provided by engineer. */
@@ -1514,9 +1514,6 @@
 "out of" = "滿分為";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "頁面";
 
 /* No comment provided by engineer. */
@@ -1530,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "頁面";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "網頁標題版";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "與觀察者配對";
@@ -1577,10 +1577,10 @@
 "Please generate another QR Code and try again." = "請產生另一個 QR 碼然後重試。";
 
 /* No comment provided by engineer. */
-"Please wait, this might take a minute." = "請稍候，需時約一分鐘。";
+"Please log in via the application" = "請透過應用程式登入";
 
 /* No comment provided by engineer. */
-"plural_points" = "plural_points";
+"Please wait, this might take a minute." = "請稍候，需時約一分鐘。";
 
 /* No comment provided by engineer. */
 "Points" = "分數";
@@ -1647,6 +1647,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "測驗";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "最近的活動";
 
 /* No comment provided by engineer. */
 "Recipients" = "收件人";
@@ -1796,6 +1799,15 @@
 "Select a Path" = "選取一個路徑";
 
 /* No comment provided by engineer. */
+"Select assignment" = "選擇作業";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "選擇作業";
+
+/* No comment provided by engineer. */
+"Select course" = "選擇課程";
+
+/* No comment provided by engineer. */
 "Select Course" = "選擇課程";
 
 /* No comment provided by engineer. */
@@ -1829,6 +1841,9 @@
 "Sent" = "已發送";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "將「首頁」設為...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "設定為標題頁";
 
 /* No comment provided by engineer. */
@@ -1848,9 +1863,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "顯示更多選項";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "由於這是群組討論，每個群組都有其自己針對此主題的交談。以下是您可以訪問的討論區。";
@@ -1911,6 +1923,9 @@
 
 /* No comment provided by engineer. */
 "Student Appointment Signups" = "學生登記預約";
+
+/* No comment provided by engineer. */
+"Student View" = "學生視圖";
 
 /* No comment provided by engineer. */
 "Students" = "學生";
@@ -2018,6 +2033,12 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
 
 /* No comment provided by engineer. */
+"There are no active assignments in this course." = "此課程中沒有啟用的作業列表。";
+
+/* No comment provided by engineer. */
+"There are no assignments to display." = "沒有可顯示的作業。";
+
+/* No comment provided by engineer. */
 "There are no conferences to display yet." = "尚未有可顯示的會議。";
 
 /* No comment provided by engineer. */
@@ -2076,9 +2097,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "有意外錯誤。請再試一次。";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "作業截止日期為%@";
@@ -2250,6 +2268,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "已檢視";
+
+/* No comment provided by engineer. */
+"Waiting for important things to happen." = "正在等待重要事情發生。";
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "我們找不到像那樣的課程。";

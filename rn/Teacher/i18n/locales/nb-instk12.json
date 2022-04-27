@@ -36,7 +36,7 @@
     "message": "Alle"
   },
   "all_courses_a7dbb853": {
-    "message": "Alle fag"
+    "message": "Alle åpne fag"
   },
   "all_in_e5ddaee0": {
     "message": "Alle i"
@@ -57,10 +57,10 @@
     "message": "Alltid"
   },
   "an_error_occured_while_fetching_this_conversation_453ca633": {
-    "message": "Det oppstod en feil under henting av denne samtalen."
+    "message": "Det oppsto en feil under henting av denne samtalen."
   },
   "an_error_occurred_a4e1cda4": {
-    "message": "Det oppstod en feil"
+    "message": "Det oppsto en feil"
   },
   "anonymous_grading_3083dc0": {
     "message": "Anonym vurdering"
@@ -69,7 +69,7 @@
     "message": "Arkivert"
   },
   "assign_to_95404a83": {
-    "message": "Tilordne til"
+    "message": "Tildele til"
   },
   "assignees_314d5e55": {
     "message": "Mottakere"
@@ -117,7 +117,7 @@
     "message": "Tilgjengelig til: { date }"
   },
   "available_until_f3b9c4ed": {
-    "message": "Tilgjengelig Frem til"
+    "message": "Tilgjengelig frem til"
   },
   "average_49c63f9b": {
     "message": "Gjennomsnittlig"
@@ -168,7 +168,7 @@
     "message": "Fullført"
   },
   "compose_message_8abd180a": {
-    "message": "Skriv melding"
+    "message": "Forfatte melding"
   },
   "conversation_options_8be926f3": {
     "message": "Alternativer for samtale"
@@ -195,10 +195,10 @@
     "message": "Aktivitetsstrøm for fag"
   },
   "course_modules_795cb95e": {
-    "message": "Fagmoduler"
+    "message": "Moduler for fag"
   },
   "course_sections_380358a5": {
-    "message": "Fagseksjon"
+    "message": "Fagseksjoner"
   },
   "course_settings_f6d0bbf8": {
     "message": "Innstillinger for fag"
@@ -213,10 +213,10 @@
     "message": "Cyan"
   },
   "date_date_medium_at_date_time_short_2b9ce48b": {
-    "message": "{ date, date, medium } i { date, time, short }"
+    "message": "{ date, date, medium } på { date, time, short }"
   },
   "date_date_mmm_d_at_date_time_short_61eeb79b": {
-    "message": "{ date, date, 'MMM d' } i { date, time, short }"
+    "message": "{ date, date, 'MMM d' } på { date, time, short }"
   },
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
@@ -237,7 +237,7 @@
     "message": "Diskusjonstema"
   },
   "dismiss_dacdb625": {
-    "message": "Avvise"
+    "message": "Avvis"
   },
   "done_54e3d4b6": {
     "message": "Ferdig"
@@ -246,7 +246,7 @@
     "message": "Frist:"
   },
   "due_a73610f6": {
-    "message": "Leveres innen"
+    "message": "Forfall"
   },
   "due_date_822625d8": {
     "message": "Forfallsdato"
@@ -258,7 +258,7 @@
     "message": "Forfallsdatoer, dobbeltklikk for detaljer."
   },
   "due_datestring_be4410c7": {
-    "message": "Forfall { dateString }"
+    "message": "Forfall: { dateString }"
   },
   "edit_attachments_count_5e9276ea": {
     "message": "Rediger vedlegg ({ count })"
@@ -270,13 +270,13 @@
     "message": "Rediger fag-innstillinger"
   },
   "edit_quiz_details_72cd055": {
-    "message": "Rediger testdetaljer"
+    "message": "Rediger quizdetaljer"
   },
   "enter_code_c7ab5104": {
     "message": "Angi kode"
   },
   "error_98e81528": {
-    "message": "Avvik"
+    "message": "Feil"
   },
   "everyone_854554dd": {
     "message": "Alle"
@@ -291,7 +291,7 @@
     "message": "Eksternt verktøy"
   },
   "fail_c2e91f54": {
-    "message": "Mislykket"
+    "message": "Ikke bestått"
   },
   "failed_to_upload_attachment_acb5c28f": {
     "message": "Kunne ikke laste opp vedlegget"
@@ -300,16 +300,16 @@
     "message": "Kunne ikke laste opp mediekommentar"
   },
   "favorited_courses_84f383f": {
-    "message": "Favoritt-fag"
+    "message": "Fagfavoritter"
   },
   "filter_by_2f4368a8": {
     "message": "Filtrer etter"
   },
   "filter_by_ffcbd05b": {
-    "message": "Filtrer ut fra:"
+    "message": "Filtrer etter:"
   },
   "filter_e3398407": {
-    "message": "Filtrer"
+    "message": "Filter"
   },
   "filter_inbox_dae0ff8f": {
     "message": "Filtrere innboksen"
@@ -324,7 +324,7 @@
     "message": "For"
   },
   "for_e3490d05": {
-    "message": "Til:"
+    "message": "For:"
   },
   "forward_d143f64": {
     "message": "Videresend"
@@ -342,7 +342,7 @@
     "message": "Vurdert"
   },
   "graded_quiz_7fabdf1f": {
-    "message": "Vurdert test"
+    "message": "Vurdert quiz"
   },
   "graded_survey_c0f0c395": {
     "message": "Vurdert undersøkelse"
@@ -399,7 +399,7 @@
     "message": "Sent"
   },
   "latest_f604a75": {
-    "message": "Senest"
+    "message": "Siste"
   },
   "length_in_minutes_eca69868": {
     "message": "Lengde i minutter"
@@ -408,7 +408,7 @@
     "message": "La elevene se det korrekte svaret"
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
-    "message": "La elevene se sine testsvar"
+    "message": "La elevene se sine quizsvar"
   },
   "light_blue_5374f600": {
     "message": "Lyseblå"
@@ -513,19 +513,19 @@
     "message": "Ingen stjernemerkede meldinger"
   },
   "no_subject_2e2a413c": {
-    "message": "(uten fag)"
+    "message": "(ingen tittel)"
   },
   "no_subject_58b7941c": {
-    "message": "Intet tittel"
+    "message": "Ingen tittel"
   },
   "no_time_limit_2147d9bf": {
-    "message": "Ingen tidsfrist"
+    "message": "Ingen tidsbegrensning"
   },
   "none_3b5e34d2": {
     "message": "Ingen"
   },
   "not_published_73f7079": {
-    "message": "Ikke publisert"
+    "message": "Upublisert"
   },
   "not_submitted_7d05fdb4": {
     "message": "Ikke levert"
@@ -552,7 +552,7 @@
     "message": "Ett spørsmål av gangen"
   },
   "online_quiz_5beb2ae5": {
-    "message": "Test på nettet"
+    "message": "Online quiz"
   },
   "online_text_entry_1d893ce": {
     "message": "Skriv inn tekst på nett"
@@ -579,7 +579,7 @@
     "message": "Sider forside"
   },
   "pass_8abee039": {
-    "message": "Pass"
+    "message": "Bestått"
   },
   "permission_needed_7e971495": {
     "message": "Tillatelse kreves"
@@ -588,16 +588,16 @@
     "message": "Rosa"
   },
   "please_try_again_5d872e78": {
-    "message": "Vennligst prøv igjen."
+    "message": "Prøv på nytt."
   },
   "practice_quiz_19a8505d": {
-    "message": "Test uten vurdering"
+    "message": "Øvelsesquiz"
   },
   "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
-    "message": "Øvelsestester og spørreundersøkelser har ikke detaljvisning."
+    "message": "Øvelsesquizer og spørreundersøkelser har ikke detaljvisning."
   },
   "preview_quiz_1ffbf684": {
-    "message": "Forhåndsvis test"
+    "message": "Forhåndsvis quiz"
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Forhåndsvisning av denne filtypen støttes ikke"
@@ -621,19 +621,19 @@
     "message": "Lilla"
   },
   "quiz_details_6c4473d3": {
-    "message": "Testdetaljer"
+    "message": "Quizdetaljer"
   },
   "quiz_preview_a7e75769": {
-    "message": "Forhåndsvisning av test"
+    "message": "Forhåndsvisning av quiz"
   },
   "quiz_score_to_keep_d1f7c4b1": {
-    "message": "Testresultat å beholde"
+    "message": "Quizpoengsum å beholde"
   },
   "quiz_type_be1633db": {
-    "message": "Test-type"
+    "message": "Quiz-type"
   },
   "recent_activity_51239235": {
-    "message": "Nylig aktivitet"
+    "message": "Siste aktiviteter"
   },
   "recipient_recipient_394cf528": {
     "message": "Mottaker: { recipient }"
@@ -672,7 +672,7 @@
     "message": "Rapporter et problem"
   },
   "require_an_access_code_46a02601": {
-    "message": "Krever en adgangskode"
+    "message": "Kreve en tilgangskode"
   },
   "reset_95a81614": {
     "message": "Tilbakestill"
@@ -681,7 +681,7 @@
     "message": "Begrenset"
   },
   "retry_ebd5f8ba": {
-    "message": "Forsøk igjen"
+    "message": "Prøv igjen"
   },
   "retry_upload_d854b33b": {
     "message": "Prøv på nytt"
@@ -696,16 +696,16 @@
     "message": "Resultat å beholde"
   },
   "scored_less_than_93cde0d2": {
-    "message": "Resultat mindre enn…"
+    "message": "Skåret mindre enn…"
   },
   "scored_less_than_promptvalue_7e5f2b5d": {
-    "message": "Fikk resultat lavere enn { promptValue }"
+    "message": "Dårligere vurdering enn { promptValue }"
   },
   "scored_more_than_2185a818": {
-    "message": "Resultat mer enn…"
+    "message": "Skåret mer enn…"
   },
   "scored_more_than_promptvalue_9097b1f7": {
-    "message": "Fikk resultat høyere enn { promptValue }"
+    "message": "Bedre vurdering enn { promptValue }"
   },
   "search_280d00bd": {
     "message": "Søk"
@@ -720,13 +720,13 @@
     "message": "Send"
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
-    "message": "Send personlig melding til hver mottaker"
+    "message": "Send individuell melding til hver mottaker"
   },
   "send_recording_82e5a550": {
     "message": "Send opptak"
   },
   "sending_bf324366": {
-    "message": "Sender..."
+    "message": "Sender…"
   },
   "sending_message_75923692": {
     "message": "Sender melding"
@@ -735,7 +735,7 @@
     "message": "Sendt"
   },
   "set_home_to_82ab5119": {
-    "message": "Sett “Hjem” til..."
+    "message": "Sett “Hjem” til…"
   },
   "settings_5aa0fd0c": {
     "message": "Innstillinger"
@@ -747,7 +747,7 @@
     "message": "Vis riktige svar"
   },
   "show_correct_answers_at_a5475aa3": {
-    "message": "Vis riktige svar på"
+    "message": "Vis riktige svar"
   },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Vis ett spørsmål om gangen"
@@ -783,10 +783,7 @@
     "message": "Elever"
   },
   "subject_114b2e98": {
-    "message": "Tittel"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Innleveringsinnstillinger"
+    "message": "Tema"
   },
   "submissions_11e96106": {
     "message": "Innleveringer"
@@ -816,34 +813,34 @@
     "message": "Det er ingen oppgaver å vise."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
-    "message": "Det oppstod et problem med lasting av oppgaveinnleveringer."
+    "message": "Det oppsto et problem med lasting av oppgaveinnleveringer."
   },
   "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
-    "message": "Det oppstod en feil under lasting av vurderingsperiode."
+    "message": "Det oppsto en feil under lasting av vurderingsperiode."
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
-    "message": "Det oppstod et problem under innlastingen av gruppene."
+    "message": "Det oppsto et problem under innlastingen av gruppene."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
-    "message": "Det oppstod et problem med lasting av testinnleveringer."
+    "message": "Det oppsto et problem med lasting av quizinnleveringer."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
-    "message": "Det oppstod et avvik under henting av vedlegget."
+    "message": "Det oppsto en feil under henting av vedlegget."
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "Det oppsto en feil under lastingen av påmeldingslisten"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
-    "message": "Det oppstod en feil under innlasting av forhåndsvisningen."
+    "message": "Det oppsto en feil under innlasting av forhåndsvisningen."
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
-    "message": "Det oppstod et avvik under henting av dette vedlegget."
+    "message": "Det oppsto en feil under henting av dette vedlegget."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
-    "message": "Det oppstod et problem under innlastingen av meldinger."
+    "message": "Det oppsto et problem under innlastingen av meldinger."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
-    "message": "Det oppstod en uventet feil. Vennligst prøv igjen."
+    "message": "Det oppsto en uventet feil. Prøv på nytt."
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Denne handlingen kan ikke endres tilbake."
@@ -882,7 +879,7 @@
     "message": "til { name }"
   },
   "total_grade_568e719f": {
-    "message": "Samlet vurdering:"
+    "message": "Total vurdering:"
   },
   "un_starred_8fef021f": {
     "message": "Stjernemerket fjernet"
@@ -897,13 +894,13 @@
     "message": "Ubegrenset"
   },
   "unpublished_8b6107d6": {
-    "message": "Ikke publisert"
+    "message": "Upublisert"
   },
   "unread_e9c1b19c": {
-    "message": "Uleste"
+    "message": "Ulest"
   },
   "unrecognized_file_format_def0881c": {
-    "message": "Ukjent fil-format"
+    "message": "Ukjent filformat"
   },
   "until_date_f3b9f367": {
     "message": "Til { date }"
@@ -948,13 +945,13 @@
     "message": "Ja"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
-    "message": "Du må aktivere kamera- og mikrofontillatelser i Innstillinger for å bruke kameraet."
+    "message": "Du må aktivere kamera- og mikrofonrettigheter i Innstillinger for å bruke kameraet."
   },
   "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
-    "message": "Du må aktivere mikrofontillatelser i Innstillinger for å gjøre opptak."
+    "message": "Du må aktivere mikrofonrettigheter i Innstillinger for å gjøre opptak."
   },
   "you_must_enable_photos_permissions_in_settings_26faf052": {
-    "message": "Du må aktivere bildetillatelser i Innstillinger."
+    "message": "Du må aktivere bilderettigheter i Innstillinger."
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Du må skrive inn en tilgangskode"

@@ -28,7 +28,7 @@ public class AssignmentPickerViewModel: ObservableObject {
         willSet { courseIdWillChange(to: newValue) }
     }
 
-    private var requestTask: APITask?
+    private var requestedCourseID: String?
 
     #if DEBUG
 
@@ -58,14 +58,19 @@ public class AssignmentPickerViewModel: ObservableObject {
     }
 
     private func fetchAssignments(for courseID: String) {
-        requestTask?.cancel()
+        requestedCourseID = courseID
+        let request = AssignmentPickerListRequest(courseID: courseID)
 
-        let request = GetAssignmentsRequest(courseID: courseID, perPage: 100)
-        requestTask = AppEnvironment.shared.api.makeRequest(request) { assignments, _, error in
+        AppEnvironment.shared.api.makeRequest(request) { response, _, error in
+            // If the finished request was for an older fetch we ignore its results
+            if self.requestedCourseID != courseID {
+                return
+            }
+
             let newState: ViewModelState<[Assignment]>
 
-            if let assignments = assignments {
-                newState = .data(Self.filterAssignments(assignments))
+            if let response = response {
+                newState = .data(Self.filterAssignments(response.assignments))
             } else {
                 let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
                 newState = .error(errorMessage)
@@ -78,10 +83,10 @@ public class AssignmentPickerViewModel: ObservableObject {
         }
     }
 
-    private static func filterAssignments(_ assignments: [APIAssignment]) -> [Assignment] {
+    private static func filterAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> [Assignment] {
         assignments.compactMap {
-            guard $0.isLockedForUser == false, $0.submission_types.contains(.online_upload) else { return nil }
-            return Assignment(id: $0.id.value, name: $0.name)
+            guard $0.isLocked == false, $0.submissionTypes.contains(.online_upload) else { return nil }
+            return Assignment(id: $0._id, name: $0.name)
         }
     }
 
@@ -93,6 +98,5 @@ public class AssignmentPickerViewModel: ObservableObject {
         else { return }
 
         selectedAssignment = defaultAssignment
-        AppEnvironment.shared.userDefaults?.submitAssignmentID = nil
     }
 }

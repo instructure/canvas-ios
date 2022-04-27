@@ -89,6 +89,26 @@ class URLComponentsExtensionsTests: XCTestCase {
 
         url = URLComponents.parse("/courses/165/assignments/900?origin=calendar&origin=module_item_details")
         XCTAssertTrue(url.originIsModuleItemDetails)
+    }
 
+    func testPageQueryValue() {
+        var testee = URLComponents.parse("/courses/165/assignments/900?page=3")
+        XCTAssertEqual(testee.page, 3)
+
+        testee = URLComponents.parse("/courses/165/assignments/900")
+        XCTAssertEqual(testee.page, 1)
+    }
+
+    func testPageSizeQueryValue() {
+        var testee = URLComponents.parse("/courses/165/assignments/900?per_page=100")
+        XCTAssertEqual(testee.pageSize, 100)
+
+        testee = URLComponents.parse("/courses/165/assignments/900")
+        XCTAssertNil(testee.pageSize)
+    }
+
+    func testContextColor() {
+        let testee = URLComponents.parse("/empty?contextColor=001122")
+        XCTAssertEqual(testee.contextColor, UIColor(hexString: "#001122"))
     }
 }

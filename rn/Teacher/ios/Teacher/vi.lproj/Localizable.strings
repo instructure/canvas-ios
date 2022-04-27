@@ -1,0 +1,348 @@
+/* No comment provided by engineer. */
+"%g out of %g" = "%1$g trên tổng số %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g điểm thành phần";
+
+/* No comment provided by engineer. */
+"Absent" = "Vắng";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Thêm Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Thêm Bình Luận";
+
+/* No comment provided by engineer. */
+"All grades are currently hidden." = "Tất cả điểm hiện đang bị ẩn.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Tất cả điểm hiện đã được đăng.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Tất Cả Ẩn";
+
+/* No comment provided by engineer. */
+"All Posted" = "Tất Cả Đã Đăng";
+
+/* No comment provided by engineer. */
+"All submissions" = "Tất cả mục nộp";
+
+/* No comment provided by engineer. */
+"Attendance" = "Chuyên Cần";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Lỗi Chuyên Cần";
+
+/* No comment provided by engineer. */
+"Back" = "Quay lại";
+
+/* No comment provided by engineer. */
+"Cancel" = "Hủy";
+
+/* No comment provided by engineer. */
+"Change Section" = "Thay Đổi Phần";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Chọn Phần";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Chọn Ngày";
+
+/* No comment provided by engineer. */
+"Choose Files" = "Chọn Tập Tin";
+
+/* No comment provided by engineer. */
+"Close" = "Đóng";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Đóng Ngăn Kéo";
+
+/* No comment provided by engineer. */
+"Comment" = "Bình Luận";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Thư Viện Bình Luận";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Thư viện bình luận không có sẵn";
+
+/* No comment provided by engineer. */
+"Comments" = "Bình Luận";
+
+/* No comment provided by engineer. */
+"Complete" = "Hoàn thành";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Không thể lưu bình luận.";
+
+/* No comment provided by engineer. */
+"Courses" = "Khóa Học";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Tùy Chỉnh Lớp";
+
+/* No comment provided by engineer. */
+"Date picker" = "Bộ chọn ngày";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Hủy Bỏ";
+
+/* No comment provided by engineer. */
+"Done" = "Đã xong";
+
+/* No comment provided by engineer. */
+"Edit" = "Chỉnh Sửa";
+
+/* No comment provided by engineer. */
+"Error" = "Lỗi";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Lỗi: Không có dữ liệu nào được trả về cho api điểm danh.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Mọi Người";
+
+/* No comment provided by engineer. */
+"Excuse Student" = "Cho Phép Sinh Viên";
+
+/* No comment provided by engineer. */
+"Excused" = "Đã Xin Phép";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Khởi chạy công cụ LTI điểm danh thất bại.";
+
+/* No comment provided by engineer. */
+"Failed to load submission data!" = "Tải dữ liệu nộp không thành công!";
+
+/* No comment provided by engineer. */
+"Files" = "Các Tập Tin";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Các Tập Tin (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Lọc";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Lọc (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Lọc theo";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Điểm Cuối Cùng";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
+
+/* No comment provided by engineer. */
+"Grade" = "Lớp";
+
+/* No comment provided by engineer. */
+"Grade post policy" = "Chính Sách Đăng Điểm";
+
+/* No comment provided by engineer. */
+"Grade Slider" = "Thanh Trượt Điểm";
+
+/* No comment provided by engineer. */
+"Graded" = "Đã Chấm Điểm";
+
+/* No comment provided by engineer. */
+"Grades" = "Điểm";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Điểm sẽ được hiển thị cho tất cả sinh viên";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Điểm sẽ được hiển thị cho sinh viên có bài nộp đã chấm điểm";
+
+/* No comment provided by engineer. */
+"Group" = "Nhóm";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Ẩn Điểm";
+
+/* Inbox tab title */
+"Inbox" = "Hộp Thư Đến";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Chưa hoàn thành";
+
+/* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Có vẻ chưa có bài nộp nào hợp lệ để chấm điểm.";
+
+/* No comment provided by engineer. */
+"Late" = "Trễ";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Điểm bằng chữ";
+
+/* No comment provided by engineer. */
+"Loading" = "Đang tải";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Đánh Dấu Tất Cả Là Có Mặt";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Đánh Dấu Phần Còn Lại Là Có Mặt";
+
+/* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Chấm Điểm Có Điều Tiết Không Được Hỗ Trợ";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Cần Chấm Điểm";
+
+/* No comment provided by engineer. */
+"No Grade" = "Không Có Lớp";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Không Có Mục Nộp";
+
+/* No comment provided by engineer. */
+"No suggestions available" = "Không có đề xuất nào";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Chưa Được Chấm Điểm";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Mở thư viện bình luận";
+
+/* No comment provided by engineer. */
+"Open Drawer full screen" = "Mở Ngăn Kéo toàn màn hình";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Mở Ngăn Kéo nửa màn hình";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pending" = "Đang Xử Lý";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Phần Trăm (%)";
+
+/* No comment provided by engineer. */
+"Points" = "Điểm";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Đăng Điểm Số";
+
+/* No comment provided by engineer. */
+"Post settings" = "Cài đặt đăng";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Cài Đặt Đăng";
+
+/* No comment provided by engineer. */
+"Post to..." = "Đăng lên...";
+
+/* No comment provided by engineer. */
+"Present" = "Có Mặt";
+
+/* No comment provided by engineer. */
+"Preview Unavailable" = "Không Thể Xem Trước";
+
+/* No comment provided by engineer. */
+"Prompts for an updated grade" = "Nhắc khi có cập nhật điểm";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Ghi Âm";
+
+/* No comment provided by engineer. */
+"Record Video" = "Quay Video";
+
+/* No comment provided by engineer. */
+"Reset" = "Đặt lại";
+
+/* No comment provided by engineer. */
+"Retry" = "Thử Lại";
+
+/* No comment provided by engineer. */
+"Rubric" = "Bảng Đánh Giá Theo Tiêu Chí";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Đã đạt điểm trên...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Đã đạt điểm dưới...";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Chọn để thay đổi ngày điểm danh";
+
+/* No comment provided by engineer. */
+"Send" = "Gửi";
+
+/* No comment provided by engineer. */
+"Send message to users" = "Gửi tin nhắn đến người dùng";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Điểm Tương Tự";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Phần Cụ Thể";
+
+/* No comment provided by engineer. */
+"Student" = "Sinh Viên";
+
+/* No comment provided by engineer. */
+"Submissions" = "Nộp";
+
+/* No comment provided by engineer. */
+"Test Student" = "Kiểm Tra Sinh Viên";
+
+/* No comment provided by engineer. */
+"There are no messages yet." = "Chưa có tin nhắn nào.";
+
+/* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải mục nộp. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Bài tập này không cho phép nộp.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Bài tập này chỉ cho phép nộp giấy.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Tiêu chí này không ảnh hưởng đến điểm.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Nhóm này không có bài nộp cho bài tập này.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Sinh viên này không có bài nộp cho bài tập này.";
+
+/* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Đáp án của sinh viên này bị ẩn vì bài tập này ẩn danh.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Mục nộp này không có tập tin.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Mục nộp này là URL đến trang bên ngoài. Chúng tôi đã đưa vào ảnh chụp nhanh để xem trang trông sẽ như thế nào khi được nộp.";
+
+/* No comment provided by engineer. */
+"To Do" = "Việc Cần Làm";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Lỗi Không Xác Định";
+
+/* No comment provided by engineer. */
+"Unmark" = "Bỏ Đánh Dấu";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "Hình Ảnh Xem Trước URL";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Xem tập tin %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Xem Mô Tả Dài";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Xem lần làm bài nộp %1$@. %2$@";
+
