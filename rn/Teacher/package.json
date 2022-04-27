@@ -43,7 +43,7 @@
     "graphql-tag": "^2.7.3",
     "hoist-non-react-statics": "^3.3.0",
     "knuth-shuffle-seeded": "^1.0.6",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.21",
     "md5": "^2.2.1",
     "prop-types": "^15.6.0",
     "react": "16.13.1",
