@@ -22,7 +22,7 @@ class DocViewerAnnotationUploader {
     private let api: API
     private let sessionID: String
     private let queue = DocViewerAnnotationUploaderQueue()
-    private let taskLock = NSLock()
+    private let taskLock = NSRecursiveLock()
     private var currentTask: DocViewerAnnotationUploaderQueue.Task?
     private var pausedOnError = false
 

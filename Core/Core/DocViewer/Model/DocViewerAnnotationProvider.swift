@@ -136,7 +136,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     }
 
     public override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {
-        guard let apiAnnotation = annotation.apiAnnotation() else { return }
+        guard !annotation.isEmpty, let apiAnnotation = annotation.apiAnnotation() else { return }
         uploader.save(apiAnnotation)
     }
 

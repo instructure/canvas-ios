@@ -174,17 +174,6 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         XCTAssertEqual(delegate.error as? APIDocViewerError, APIDocViewerError.noData)
     }
 
-    func testChangeTooBig() {
-        let provider = getProvider()
-        let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
-        let annotation = InkAnnotation(lines: (0...120).map {
-            return [ DrawingPoint(location: CGPoint(x: $0, y: $0), intensity: 1) ]
-        })
-        provider.didChange(annotation, keyPaths: [])
-        XCTAssertEqual(delegate.annotation, annotation.apiAnnotation())
-    }
-
     func testChangeEmpty() {
         let provider = getProvider()
         let delegate = MockDelegate()
@@ -213,30 +202,6 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         provider.didChange(annotation, keyPaths: [])
         XCTAssertEqual(delegate.callStack, [.saveStateChanged(isSaving: true), .saveStateChanged(isSaving: false)])
         XCTAssertNil(delegate.error)
-    }
-
-    func testSyncAllAnnotations() {
-        let provider = getProvider(annotations: [])
-        provider.requestsInFlight = 1234
-        provider.syncAllAnnotations()
-        XCTAssertEqual(provider.requestsInFlight, 0)
-    }
-
-    func testFirstSyncFailedSecondSucceeded() {
-        let delegate = MockDelegate()
-        let provider = getProvider(annotations: [])
-        provider.docViewerDelegate = delegate
-
-        let firstAnnotation = DocViewerPointAnnotation(title: "First")
-        // No mock so upload fails
-        provider.didChange(firstAnnotation, keyPaths: [])
-        XCTAssertNotNil(delegate.error)
-
-        let secondAnnotation = DocViewerPointAnnotation(image: nil)
-        api.mock(PutDocViewerAnnotationRequest(body: secondAnnotation.apiAnnotation(), sessionID: "a"), value: secondAnnotation.apiAnnotation())
-        provider.didChange(secondAnnotation, keyPaths: [])
-        // Despite that upload succeeded the error from the first upload shouldn't be cleared
-        XCTAssertNotNil(delegate.error)
     }
 
     func testUserAnnotationIsReadOnlyWhenAnnotationIsDisabled() {

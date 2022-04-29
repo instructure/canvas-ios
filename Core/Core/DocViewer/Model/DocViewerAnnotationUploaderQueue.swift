@@ -31,34 +31,25 @@ class DocViewerAnnotationUploaderQueue {
         }
     }
     public private(set) var queue: [Task] = []
-    private var queueLock = NSLock()
 
     public init() {
     }
 
     public func put(_ annotation: APIDocViewerAnnotation) {
-        queueLock.lock()
         removeTasks(with: annotation.id)
         queue.append(.put(annotation))
-        queueLock.unlock()
     }
 
     public func delete(_ annotationID: String) {
-        queueLock.lock()
         removeTasks(with: annotationID)
         queue.append(.delete(annotationID: annotationID))
-        queueLock.unlock()
     }
 
     public func insertTask(_ task: Task) {
-        queueLock.lock()
         queue.insert(task, at: 0)
-        queueLock.unlock()
     }
 
     public func requestTask() -> Task? {
-        queueLock.lock()
-        defer { queueLock.unlock() }
         return queue.isEmpty ? nil : queue.removeFirst()
     }
 
