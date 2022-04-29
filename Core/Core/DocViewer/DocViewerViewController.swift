@@ -274,7 +274,7 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
     }
 
     @IBAction func syncAnnotations() {
-        annotationProvider?.syncAllAnnotations()
+        annotationProvider?.retryFailedRequest()
     }
 
     func annotationDidFailToSave(error: Error) { performUIUpdate {

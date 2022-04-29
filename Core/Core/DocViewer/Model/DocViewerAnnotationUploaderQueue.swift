@@ -20,6 +20,15 @@ class DocViewerAnnotationUploaderQueue {
     public enum Task: Equatable {
         case put(APIDocViewerAnnotation)
         case delete(annotationID: String)
+
+        public var annotationId: String {
+            switch self {
+            case .put(let annotation):
+                return annotation.id
+            case .delete(let annotationID):
+                return annotationID
+            }
+        }
     }
     public private(set) var queue: [Task] = []
     private var queueLock = NSLock()
@@ -41,6 +50,12 @@ class DocViewerAnnotationUploaderQueue {
         queueLock.unlock()
     }
 
+    public func insertTask(_ task: Task) {
+        queueLock.lock()
+        queue.insert(task, at: 0)
+        queueLock.unlock()
+    }
+
     public func requestTask() -> Task? {
         queueLock.lock()
         defer { queueLock.unlock() }
@@ -48,13 +63,6 @@ class DocViewerAnnotationUploaderQueue {
     }
 
     private func removeTasks(with id: String) {
-        queue = queue.filter { task in
-            switch task {
-            case .put(let annotation):
-                return annotation.id != id
-            case .delete(let annotationID):
-                return annotationID != id
-            }
-        }
+        queue = queue.filter { $0.annotationId != id }
     }
 }

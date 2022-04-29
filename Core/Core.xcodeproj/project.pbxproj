@@ -944,6 +944,7 @@
 		CFABA2502742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */; };
 		CFAD0D102817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */; };
 		CFAD0D1328181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */; };
+		CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */; };
 		CFAD79D826AEC02A0000A90D /* K5ScheduleEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */; };
 		CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
@@ -2285,6 +2286,7 @@
 		CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationContextMenuModel.swift; sourceTree = "<group>"; };
 		CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderQueue.swift; sourceTree = "<group>"; };
 		CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderQueueTests.swift; sourceTree = "<group>"; };
+		CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploader.swift; sourceTree = "<group>"; };
 		CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModel.swift; sourceTree = "<group>"; };
 		CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryView.swift; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
@@ -5032,6 +5034,7 @@
 				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
 				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
 				CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */,
+				CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */,
 				CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */,
 			);
 			path = Model;
@@ -6520,6 +6523,7 @@
 				7DA260CD23F72359005D2121 /* BottomSheetTransitioning.swift in Sources */,
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
+				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
 				CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
