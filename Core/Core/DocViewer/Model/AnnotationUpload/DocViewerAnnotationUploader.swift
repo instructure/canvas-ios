@@ -70,43 +70,24 @@ class DocViewerAnnotationUploader {
 
         switch task {
         case .put(let annotation):
+            let request = PutDocViewerAnnotationRequest(body: annotation, sessionID: sessionID)
             let handler = DocViewerAnnotationPutResponseHandler(annotation: annotation, task: task, queue: queue, docViewerDelegate: docViewerDelegate)
-            performUpload(annotation: annotation, handler: handler)
+            performRequest(request, handler: handler)
         case .delete(let annotationID):
+            let request = DeleteDocViewerAnnotationRequest(annotationID: annotationID, sessionID: sessionID)
             let handler = DocViewerAnnotationDeleteResponseHandler(task: task, queue: queue, docViewerDelegate: docViewerDelegate)
-            performDelete(annotationID: annotationID, handler: handler)
+            performRequest(request, handler: handler)
         }
     }
 
-    private func performUpload(annotation: APIDocViewerAnnotation, handler: DocViewerAnnotationPutResponseHandler) {
-        api.makeRequest(PutDocViewerAnnotationRequest(body: annotation, sessionID: sessionID)) { [weak self] updated, _, error in
+    private func performRequest<Request: APIRequestable>(_ request: Request, handler: DocViewerAnnotationUploadResponseHandler) {
+        api.makeRequest(request) { [weak self] response, _, error in
             guard let self = self else { return }
 
             self.taskLock.lock()
             defer { self.taskLock.unlock() }
 
-            let outcome = handler.handleResponse(receivedAnnotation: updated, error: error)
-            self.currentTask = nil
-
-            switch outcome {
-            case .processNextTask:
-                self.processNextTask()
-            case .pausedOnError:
-                self.pausedOnError = true
-            case .finished:
-                break
-            }
-        }
-    }
-
-    private func performDelete(annotationID: String, handler: DocViewerAnnotationDeleteResponseHandler) {
-        api.makeRequest(DeleteDocViewerAnnotationRequest(annotationID: annotationID, sessionID: sessionID)) { [weak self] _, _, error in
-            guard let self = self else { return }
-
-            self.taskLock.lock()
-            defer { self.taskLock.unlock() }
-
-            let outcome = handler.handleResponse(error: error)
+            let outcome = handler.handleResponse(response, error: error)
             self.currentTask = nil
 
             switch outcome {

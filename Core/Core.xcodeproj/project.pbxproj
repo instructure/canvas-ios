@@ -958,6 +958,7 @@
 		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
 		CFBF1DFD281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */; };
 		CFBF1DFF281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */; };
+		CFBF1E012820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */; };
 		CFC2C27827344053006CA3E0 /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27727344053006CA3E0 /* ViewModelState.swift */; };
@@ -2305,6 +2306,7 @@
 		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
 		CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandlerTests.swift; sourceTree = "<group>"; };
+		CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploadResponseHandler.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableName.swift; sourceTree = "<group>"; };
 		CFC2C27727344053006CA3E0 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
@@ -5096,9 +5098,8 @@
 		CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */ = {
 			isa = PBXGroup;
 			children = (
+				CFBF1E022820152700DA99F7 /* ResponseHandling */,
 				CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */,
-				CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */,
-				CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */,
 				CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */,
 			);
 			path = AnnotationUpload;
@@ -5107,11 +5108,29 @@
 		CFBF1DF5281FDC0100DA99F7 /* AnnotationUpload */ = {
 			isa = PBXGroup;
 			children = (
+				CFBF1E032820154300DA99F7 /* ResponseHandling */,
 				CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */,
+			);
+			path = AnnotationUpload;
+			sourceTree = "<group>";
+		};
+		CFBF1E022820152700DA99F7 /* ResponseHandling */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */,
+				CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */,
+				CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */,
+			);
+			path = ResponseHandling;
+			sourceTree = "<group>";
+		};
+		CFBF1E032820154300DA99F7 /* ResponseHandling */ = {
+			isa = PBXGroup;
+			children = (
 				CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */,
 				CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */,
 			);
-			path = AnnotationUpload;
+			path = ResponseHandling;
 			sourceTree = "<group>";
 		};
 		CFBF709C2632FEB800539298 /* SideMenu */ = {
@@ -6751,6 +6770,7 @@
 				7DA25FBC23F72136005D2121 /* APILoginWeb.swift in Sources */,
 				CF575E2C265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift in Sources */,
 				7DA2608D23F72315005D2121 /* GetAccountHelpLinks.swift in Sources */,
+				CFBF1E012820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift in Sources */,
 				7D159CEA242E555A00A77A15 /* ModuleItemCell.swift in Sources */,
 				7DA25FE423F721DA005D2121 /* PermissionName.swift in Sources */,
 				7DA260A223F7234C005D2121 /* UITestHelpers.swift in Sources */,

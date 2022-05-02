@@ -19,39 +19,52 @@
 @testable import Core
 import XCTest
 
-class DocViewerAnnotationDeleteResponseHandlerTests: XCTestCase {
+class DocViewerAnnotationPutResponseHandlerTests: XCTestCase {
+    private let annotation: APIDocViewerAnnotation = .make(id: "testID")
     private let queue = DocViewerAnnotationUploaderQueue()
     private let mockDelegate = MockDocViewerAnnotationProviderDelegate()
-    private lazy var task: DocViewerAnnotationUploaderQueue.Task = .delete(annotationID: "deletedID")
-    private lazy var testee = DocViewerAnnotationDeleteResponseHandler(task: task, queue: queue, docViewerDelegate: mockDelegate)
+    private lazy var task: DocViewerAnnotationUploaderQueue.Task = .put(annotation)
+    private lazy var testee = DocViewerAnnotationPutResponseHandler(annotation: annotation, task: task, queue: queue, docViewerDelegate: mockDelegate)
 
     // MARK: - Success
 
     func testSuccessWithEmptyQueue() {
-        let outcome = testee.handleResponse(error: nil)
+        let outcome = testee.handleResponse(annotation, error: nil)
         XCTAssertEqual(outcome, .finished)
         XCTAssertEqual(mockDelegate.callStack, [.saveStateChanged(isSaving: false)])
     }
 
     func testSuccessWithUpcomingTasksInQueue() {
-        queue.put(.make(id: "deletedID2"))
-        let outcome = testee.handleResponse(error: nil)
+        queue.delete("deletedID")
+        let outcome = testee.handleResponse(annotation, error: nil)
         XCTAssertEqual(outcome, .processNextTask)
-        XCTAssertTrue(mockDelegate.callStack.isEmpty)
+        XCTAssertEqual(mockDelegate.callStack, [])
     }
 
     // MARK: - Failure
 
-    func testFailure() {
-        let outcome = testee.handleResponse(error: NSError.instructureError("delete error"))
+    func testFailureWithoutError() {
+        let outcome = testee.handleResponse(nil, error: nil)
         XCTAssertEqual(outcome, .pausedOnError)
         XCTAssertEqual(mockDelegate.callStack, [.failedToSave])
     }
 
-    func testUploadFailureWithTaskForTheSameAnnotationInTheQueue() {
-        queue.put(.make(id: "deletedID"))
-        let outcome = testee.handleResponse(error: NSError.instructureError("delete error"))
+    func testFailureWithCustomError() {
+        let outcome = testee.handleResponse(nil, error: NSError.instructureError("custom error"))
+        XCTAssertEqual(outcome, .pausedOnError)
+        XCTAssertEqual(mockDelegate.callStack, [.failedToSave])
+    }
+
+    func testFailureWithDocViewerTooBigError() {
+        let outcome = testee.handleResponse(nil, error: APIDocViewerError.tooBig)
+        XCTAssertEqual(outcome, .pausedOnError)
+        XCTAssertEqual(mockDelegate.callStack, [.exceededLimit(annotation)])
+    }
+
+    func testFailureWithTaskForTheSameAnnotationInTheQueue() {
+        queue.delete("testID")
+        let outcome = testee.handleResponse(nil, error: nil)
         XCTAssertEqual(outcome, .processNextTask)
-        XCTAssertTrue(mockDelegate.callStack.isEmpty)
+        XCTAssertEqual(mockDelegate.callStack, [])
     }
 }

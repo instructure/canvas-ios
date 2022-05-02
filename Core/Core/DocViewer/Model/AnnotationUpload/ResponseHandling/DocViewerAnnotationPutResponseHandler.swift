@@ -16,36 +16,37 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct DocViewerAnnotationDeleteResponseHandler {
-    public enum Outcome {
-        case processNextTask
-        case pausedOnError
-        case finished
-    }
+struct DocViewerAnnotationPutResponseHandler: DocViewerAnnotationUploadResponseHandler {
+    private let annotation: APIDocViewerAnnotation
     private let task: DocViewerAnnotationUploaderQueue.Task
     private let queue: DocViewerAnnotationUploaderQueue
     private weak var docViewerDelegate: DocViewerAnnotationProviderDelegate?
 
-    public init(task: DocViewerAnnotationUploaderQueue.Task, queue: DocViewerAnnotationUploaderQueue, docViewerDelegate: DocViewerAnnotationProviderDelegate?) {
+    public init(annotation: APIDocViewerAnnotation, task: DocViewerAnnotationUploaderQueue.Task, queue: DocViewerAnnotationUploaderQueue, docViewerDelegate: DocViewerAnnotationProviderDelegate?) {
+        self.annotation = annotation
         self.task = task
         self.queue = queue
         self.docViewerDelegate = docViewerDelegate
     }
 
-    public func handleResponse(error: Error?) -> Outcome {
-        if let error = error {
+    public func handleResponse(_ receivedAnnotation: Any?, error: Error?) -> Outcome {
+        if receivedAnnotation == nil {
             return handleFailure(error: error)
         } else {
             return handleSuccess()
         }
     }
 
-    private func handleFailure(error: Error) -> Outcome {
+    private func handleFailure(error: Error?) -> Outcome {
         let willRetryTask = queue.insertTaskIfNecessary(task)
 
         if willRetryTask {
             performUIUpdate {
-                self.docViewerDelegate?.annotationDidFailToSave(error: error)
+                if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
+                    self.docViewerDelegate?.annotationDidExceedLimit(annotation: annotation)
+                } else {
+                    self.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
+                }
             }
 
             return .pausedOnError

@@ -16,42 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct DocViewerAnnotationPutResponseHandler {
-    public enum Outcome {
-        case processNextTask
-        case pausedOnError
-        case finished
-    }
-    private let annotation: APIDocViewerAnnotation
+struct DocViewerAnnotationDeleteResponseHandler: DocViewerAnnotationUploadResponseHandler {
     private let task: DocViewerAnnotationUploaderQueue.Task
     private let queue: DocViewerAnnotationUploaderQueue
     private weak var docViewerDelegate: DocViewerAnnotationProviderDelegate?
 
-    public init(annotation: APIDocViewerAnnotation, task: DocViewerAnnotationUploaderQueue.Task, queue: DocViewerAnnotationUploaderQueue, docViewerDelegate: DocViewerAnnotationProviderDelegate?) {
-        self.annotation = annotation
+    public init(task: DocViewerAnnotationUploaderQueue.Task, queue: DocViewerAnnotationUploaderQueue, docViewerDelegate: DocViewerAnnotationProviderDelegate?) {
         self.task = task
         self.queue = queue
         self.docViewerDelegate = docViewerDelegate
     }
 
-    public func handleResponse(receivedAnnotation: APIDocViewerAnnotation?, error: Error?) -> Outcome {
-        if receivedAnnotation == nil {
+    public func handleResponse(_ response: Any?, error: Error?) -> Outcome {
+        if let error = error {
             return handleFailure(error: error)
         } else {
             return handleSuccess()
         }
     }
 
-    private func handleFailure(error: Error?) -> Outcome {
+    private func handleFailure(error: Error) -> Outcome {
         let willRetryTask = queue.insertTaskIfNecessary(task)
 
         if willRetryTask {
             performUIUpdate {
-                if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
-                    self.docViewerDelegate?.annotationDidExceedLimit(annotation: annotation)
-                } else {
-                    self.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
-                }
+                self.docViewerDelegate?.annotationDidFailToSave(error: error)
             }
 
             return .pausedOnError
