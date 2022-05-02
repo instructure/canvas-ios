@@ -32,6 +32,7 @@ class DocViewerAnnotationPutResponseHandlerTests: XCTestCase {
         let outcome = testee.handleResponse(annotation, error: nil)
         XCTAssertEqual(outcome, .finished)
         XCTAssertEqual(mockDelegate.callStack, [.saveStateChanged(isSaving: false)])
+        XCTAssertTrue(queue.tasks.isEmpty)
     }
 
     func testSuccessWithUpcomingTasksInQueue() {
@@ -39,6 +40,7 @@ class DocViewerAnnotationPutResponseHandlerTests: XCTestCase {
         let outcome = testee.handleResponse(annotation, error: nil)
         XCTAssertEqual(outcome, .processNextTask)
         XCTAssertEqual(mockDelegate.callStack, [])
+        XCTAssertEqual(queue.tasks, [.delete(annotationID: "deletedID")])
     }
 
     // MARK: - Failure
@@ -47,18 +49,21 @@ class DocViewerAnnotationPutResponseHandlerTests: XCTestCase {
         let outcome = testee.handleResponse(nil, error: nil)
         XCTAssertEqual(outcome, .pausedOnError)
         XCTAssertEqual(mockDelegate.callStack, [.failedToSave])
+        XCTAssertEqual(queue.tasks, [.put(annotation)])
     }
 
     func testFailureWithCustomError() {
         let outcome = testee.handleResponse(nil, error: NSError.instructureError("custom error"))
         XCTAssertEqual(outcome, .pausedOnError)
         XCTAssertEqual(mockDelegate.callStack, [.failedToSave])
+        XCTAssertEqual(queue.tasks, [.put(annotation)])
     }
 
     func testFailureWithDocViewerTooBigError() {
         let outcome = testee.handleResponse(nil, error: APIDocViewerError.tooBig)
         XCTAssertEqual(outcome, .pausedOnError)
         XCTAssertEqual(mockDelegate.callStack, [.exceededLimit(annotation)])
+        XCTAssertEqual(queue.tasks, [.put(annotation)])
     }
 
     func testFailureWithTaskForTheSameAnnotationInTheQueue() {
@@ -66,5 +71,6 @@ class DocViewerAnnotationPutResponseHandlerTests: XCTestCase {
         let outcome = testee.handleResponse(nil, error: nil)
         XCTAssertEqual(outcome, .processNextTask)
         XCTAssertEqual(mockDelegate.callStack, [])
+        XCTAssertEqual(queue.tasks, [.delete(annotationID: "testID")])
     }
 }
