@@ -85,7 +85,7 @@ class DocViewerAnnotationUploader {
             self.taskLock.lock()
             defer { self.taskLock.unlock() }
 
-            let outcome = handler.handleUploadResponse(receivedAnnotation: updated, error: error)
+            let outcome = handler.handleResponse(receivedAnnotation: updated, error: error)
             self.currentTask = nil
 
             switch outcome {

@@ -29,14 +29,14 @@ class DocViewerAnnotationPutResponseHandlerTests: XCTestCase {
     // MARK: - Success
 
     func testSuccessWithEmptyQueue() {
-        let outcome = testee.handleUploadResponse(receivedAnnotation: .make(id: "received"), error: nil)
+        let outcome = testee.handleResponse(receivedAnnotation: .make(id: "received"), error: nil)
         XCTAssertEqual(outcome, .finished)
         XCTAssertEqual(mockDelegate.callStack, [.saveStateChanged(isSaving: false)])
     }
 
     func testSuccessWithUpcomingTasksInQueue() {
         queue.delete("deletedID")
-        let outcome = testee.handleUploadResponse(receivedAnnotation: .make(id: "received"), error: nil)
+        let outcome = testee.handleResponse(receivedAnnotation: .make(id: "received"), error: nil)
         XCTAssertEqual(outcome, .processNextTask)
         XCTAssertEqual(mockDelegate.callStack, [])
     }
@@ -44,26 +44,26 @@ class DocViewerAnnotationPutResponseHandlerTests: XCTestCase {
     // MARK: - Failure
 
     func testFailureWithoutError() {
-        let outcome = testee.handleUploadResponse(receivedAnnotation: nil, error: nil)
+        let outcome = testee.handleResponse(receivedAnnotation: nil, error: nil)
         XCTAssertEqual(outcome, .pausedOnError)
         XCTAssertEqual(mockDelegate.callStack, [.failedToSave])
     }
 
     func testFailureWithCustomError() {
-        let outcome = testee.handleUploadResponse(receivedAnnotation: nil, error: NSError.instructureError("custom error"))
+        let outcome = testee.handleResponse(receivedAnnotation: nil, error: NSError.instructureError("custom error"))
         XCTAssertEqual(outcome, .pausedOnError)
         XCTAssertEqual(mockDelegate.callStack, [.failedToSave])
     }
 
     func testFailureWithDocViewerTooBigError() {
-        let outcome = testee.handleUploadResponse(receivedAnnotation: nil, error: APIDocViewerError.tooBig)
+        let outcome = testee.handleResponse(receivedAnnotation: nil, error: APIDocViewerError.tooBig)
         XCTAssertEqual(outcome, .pausedOnError)
         XCTAssertEqual(mockDelegate.callStack, [.exceededLimit(annotation)])
     }
 
     func testFailureWithTaskForTheSameAnnotationInTheQueue() {
         queue.delete("testID")
-        let outcome = testee.handleUploadResponse(receivedAnnotation: nil, error: nil)
+        let outcome = testee.handleResponse(receivedAnnotation: nil, error: nil)
         XCTAssertEqual(outcome, .processNextTask)
         XCTAssertEqual(mockDelegate.callStack, [])
     }

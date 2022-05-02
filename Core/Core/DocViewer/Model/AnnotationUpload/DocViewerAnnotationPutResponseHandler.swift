@@ -34,15 +34,15 @@ struct DocViewerAnnotationPutResponseHandler {
         self.docViewerDelegate = docViewerDelegate
     }
 
-    public func handleUploadResponse(receivedAnnotation: APIDocViewerAnnotation?, error: Error?) -> Outcome {
+    public func handleResponse(receivedAnnotation: APIDocViewerAnnotation?, error: Error?) -> Outcome {
         if receivedAnnotation == nil {
-            return handleUploadFailure(error: error)
+            return handleFailure(error: error)
         } else {
-            return handleUploadSuccess()
+            return handleSuccess()
         }
     }
 
-    private func handleUploadFailure(error: Error?) -> Outcome {
+    private func handleFailure(error: Error?) -> Outcome {
         let willRetryTask = queue.insertTaskIfNecessary(task)
 
         if willRetryTask {
@@ -60,7 +60,7 @@ struct DocViewerAnnotationPutResponseHandler {
         }
     }
 
-    private func handleUploadSuccess() -> Outcome {
+    private func handleSuccess() -> Outcome {
         if queue.queue.isEmpty {
             performUIUpdate {
                 self.docViewerDelegate?.annotationSaveStateChanges(saving: false)
