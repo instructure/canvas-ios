@@ -70,52 +70,30 @@ class DocViewerAnnotationUploader {
 
         switch task {
         case .put(let annotation):
-            performUpload(annotation: annotation)
+            let handler = DocViewerAnnotationPutResponseHandler(annotation: annotation, task: task, queue: queue, docViewerDelegate: docViewerDelegate)
+            performUpload(annotation: annotation, handler: handler)
         case .delete(let annotationID):
             performDelete(annotationID: annotationID)
         }
     }
 
-    private func performUpload(annotation: APIDocViewerAnnotation) {
+    private func performUpload(annotation: APIDocViewerAnnotation, handler: DocViewerAnnotationPutResponseHandler) {
         api.makeRequest(PutDocViewerAnnotationRequest(body: annotation, sessionID: sessionID)) { [weak self] updated, _, error in
-            self?.handleUploadResponse(annotation: annotation, receivedAnnotation: updated, error: error)
-        }
-    }
+            guard let self = self else { return }
 
-    private func handleUploadResponse(annotation: APIDocViewerAnnotation, receivedAnnotation: APIDocViewerAnnotation?, error: Error?) {
-        taskLock.lock()
-        defer { taskLock.unlock() }
+            self.taskLock.lock()
+            defer { self.taskLock.unlock() }
 
-        if receivedAnnotation == nil {
-            var willRetryTask = false
+            let outcome = handler.handleUploadResponse(receivedAnnotation: updated, error: error)
+            self.currentTask = nil
 
-            if let currentTask = currentTask {
-                willRetryTask = queue.insertTaskIfNecessary(currentTask)
-                self.currentTask = nil
-            }
-
-            if willRetryTask {
-                pausedOnError = true
-
-                performUIUpdate {
-                    if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
-                        self.docViewerDelegate?.annotationDidExceedLimit(annotation: annotation)
-                    } else {
-                        self.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
-                    }
-                }
-            } else {
-                processNextTask()
-            }
-        } else {
-            currentTask = nil
-
-            if queue.queue.isEmpty {
-                performUIUpdate {
-                    self.docViewerDelegate?.annotationSaveStateChanges(saving: false)
-                }
-            } else {
-                processNextTask()
+            switch outcome {
+            case .processNextTask:
+                self.processNextTask()
+            case .pausedOnError:
+                self.pausedOnError = true
+            case .finished:
+                break
             }
         }
     }
