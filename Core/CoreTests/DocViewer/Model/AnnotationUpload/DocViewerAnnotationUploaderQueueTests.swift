@@ -27,19 +27,19 @@ class DocViewerAnnotationUploaderQueueTests: XCTestCase {
         testee.put(.make())
         testee.delete("123")
 
-        XCTAssertEqual(testee.queue[0], .put(.make()))
-        XCTAssertEqual(testee.queue[1], .delete(annotationID: "123"))
+        XCTAssertEqual(testee.tasks[0], .put(.make()))
+        XCTAssertEqual(testee.tasks[1], .delete(annotationID: "123"))
     }
 
     func testRequestTask() {
         let testee = DocViewerAnnotationUploaderQueue()
         testee.put(.make())
-        XCTAssertEqual(testee.queue.count, 1)
+        XCTAssertEqual(testee.tasks.count, 1)
 
         let receivedTask = testee.requestTask()
 
         XCTAssertEqual(receivedTask, .put(.make()))
-        XCTAssertEqual(testee.queue.count, 0)
+        XCTAssertEqual(testee.tasks.count, 0)
     }
 
     func testPutRemovesOldTasksForTheSameAnnotationID() {
@@ -51,10 +51,10 @@ class DocViewerAnnotationUploaderQueueTests: XCTestCase {
 
         testee.put(.make(id: "1", coords: [[[1, 1]]]))
 
-        XCTAssertEqual(testee.queue.count, 3)
-        XCTAssertEqual(testee.queue[0], .put(.make(id: "2")))
-        XCTAssertEqual(testee.queue[1], .delete(annotationID: "3"))
-        XCTAssertEqual(testee.queue[2], .put(.make(id: "1", coords: [[[1, 1]]])))
+        XCTAssertEqual(testee.tasks.count, 3)
+        XCTAssertEqual(testee.tasks[0], .put(.make(id: "2")))
+        XCTAssertEqual(testee.tasks[1], .delete(annotationID: "3"))
+        XCTAssertEqual(testee.tasks[2], .put(.make(id: "1", coords: [[[1, 1]]])))
     }
 
     func testDeleteRemovesOldTasksForTheSameAnnotationID() {
@@ -66,10 +66,10 @@ class DocViewerAnnotationUploaderQueueTests: XCTestCase {
 
         testee.delete("1")
 
-        XCTAssertEqual(testee.queue.count, 3)
-        XCTAssertEqual(testee.queue[0], .delete(annotationID: "2"))
-        XCTAssertEqual(testee.queue[1], .put(.make(id: "3")))
-        XCTAssertEqual(testee.queue[2], .delete(annotationID: "1"))
+        XCTAssertEqual(testee.tasks.count, 3)
+        XCTAssertEqual(testee.tasks[0], .delete(annotationID: "2"))
+        XCTAssertEqual(testee.tasks[1], .put(.make(id: "3")))
+        XCTAssertEqual(testee.tasks[2], .delete(annotationID: "1"))
     }
 
     func testInsertTask() {
@@ -78,8 +78,8 @@ class DocViewerAnnotationUploaderQueueTests: XCTestCase {
 
         let isInserted = testee.insertTaskIfNecessary(.put(.make(id: "2")))
 
-        XCTAssertEqual(testee.queue.count, 2)
-        XCTAssertEqual(testee.queue, [.put(.make(id: "2")), .delete(annotationID: "1")])
+        XCTAssertEqual(testee.tasks.count, 2)
+        XCTAssertEqual(testee.tasks, [.put(.make(id: "2")), .delete(annotationID: "1")])
         XCTAssertTrue(isInserted)
     }
 
@@ -89,8 +89,8 @@ class DocViewerAnnotationUploaderQueueTests: XCTestCase {
 
         let isInserted = testee.insertTaskIfNecessary(.put(.make(id: "1")))
 
-        XCTAssertEqual(testee.queue.count, 1)
-        XCTAssertEqual(testee.queue, [.delete(annotationID: "1")])
+        XCTAssertEqual(testee.tasks.count, 1)
+        XCTAssertEqual(testee.tasks, [.delete(annotationID: "1")])
         XCTAssertFalse(isInserted)
     }
 }

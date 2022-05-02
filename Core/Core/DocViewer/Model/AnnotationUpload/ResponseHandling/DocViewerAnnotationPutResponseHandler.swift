@@ -56,7 +56,7 @@ struct DocViewerAnnotationPutResponseHandler: DocViewerAnnotationUploadResponseH
     }
 
     private func handleSuccess() -> Outcome {
-        if queue.queue.isEmpty {
+        if queue.tasks.isEmpty {
             performUIUpdate {
                 self.docViewerDelegate?.annotationSaveStateChanges(saving: false)
             }

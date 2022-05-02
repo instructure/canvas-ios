@@ -30,19 +30,19 @@ class DocViewerAnnotationUploaderQueue {
             }
         }
     }
-    public private(set) var queue: [Task] = []
+    public private(set) var tasks: [Task] = []
 
     public init() {
     }
 
     public func put(_ annotation: APIDocViewerAnnotation) {
         removeTasks(with: annotation.id)
-        queue.append(.put(annotation))
+        tasks.append(.put(annotation))
     }
 
     public func delete(_ annotationID: String) {
         removeTasks(with: annotationID)
-        queue.append(.delete(annotationID: annotationID))
+        tasks.append(.delete(annotationID: annotationID))
     }
 
     /**
@@ -51,21 +51,21 @@ class DocViewerAnnotationUploaderQueue {
      */
     @discardableResult
     public func insertTaskIfNecessary(_ task: Task) -> Bool {
-        let queueHasTaskForAnnotation = queue.contains { $0.annotationId == task.annotationId }
+        let queueHasTaskForAnnotation = tasks.contains { $0.annotationId == task.annotationId }
 
         if queueHasTaskForAnnotation {
             return false
         } else {
-            queue.insert(task, at: 0)
+            tasks.insert(task, at: 0)
             return true
         }
     }
 
     public func requestTask() -> Task? {
-        return queue.isEmpty ? nil : queue.removeFirst()
+        return tasks.isEmpty ? nil : tasks.removeFirst()
     }
 
     private func removeTasks(with id: String) {
-        queue = queue.filter { $0.annotationId != id }
+        tasks = tasks.filter { $0.annotationId != id }
     }
 }
