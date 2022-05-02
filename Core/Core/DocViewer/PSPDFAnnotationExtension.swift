@@ -176,7 +176,7 @@ extension Annotation {
             deleted_by_id: deletedByID,
             type: type,
             color: color?.hexString,
-            bgColor: fillColor?.hexString,
+            bgColor: fillColor?.hexString ?? "transparent",
             icon: type == .text ? "Comment" : nil,
             contents: contents,
             inreplyto: inreplyto,
