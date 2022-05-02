@@ -21,14 +21,15 @@ class DocViewerAnnotationUploader {
 
     private let api: API
     private let sessionID: String
-    private let queue = DocViewerAnnotationUploaderQueue()
+    private let queue: DocViewerAnnotationUploaderQueue
     private let taskLock = NSRecursiveLock()
     private var currentTask: DocViewerAnnotationUploaderQueue.Task?
     private var pausedOnError = false
 
-    public init(api: API, sessionID: String) {
+    public init(api: API, sessionID: String, queue: DocViewerAnnotationUploaderQueue = DocViewerAnnotationUploaderQueue()) {
         self.api = api
         self.sessionID = sessionID
+        self.queue = queue
     }
 
     public func save(_ annotation: APIDocViewerAnnotation) {

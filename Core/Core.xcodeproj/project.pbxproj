@@ -959,6 +959,7 @@
 		CFBF1DFD281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */; };
 		CFBF1DFF281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */; };
 		CFBF1E012820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */; };
+		CFBF1E0528201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1E0428201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */; };
 		CFC2C27827344053006CA3E0 /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27727344053006CA3E0 /* ViewModelState.swift */; };
@@ -2307,6 +2308,7 @@
 		CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploadResponseHandler.swift; sourceTree = "<group>"; };
+		CFBF1E0428201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableName.swift; sourceTree = "<group>"; };
 		CFC2C27727344053006CA3E0 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
@@ -5109,6 +5111,7 @@
 			isa = PBXGroup;
 			children = (
 				CFBF1E032820154300DA99F7 /* ResponseHandling */,
+				CFBF1E0428201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift */,
 				CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */,
 			);
 			path = AnnotationUpload;
@@ -6129,6 +6132,7 @@
 				7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */,
 				78151DCF21AE7E0500692862 /* APIDiscussionTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
+				CFBF1E0528201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift in Sources */,
 				7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */,
 				9F3107FA2371E02600502428 /* PageTests.swift in Sources */,
 				B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */,
