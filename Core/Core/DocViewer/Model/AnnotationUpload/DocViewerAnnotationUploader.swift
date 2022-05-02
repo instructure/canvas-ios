@@ -73,7 +73,8 @@ class DocViewerAnnotationUploader {
             let handler = DocViewerAnnotationPutResponseHandler(annotation: annotation, task: task, queue: queue, docViewerDelegate: docViewerDelegate)
             performUpload(annotation: annotation, handler: handler)
         case .delete(let annotationID):
-            performDelete(annotationID: annotationID)
+            let handler = DocViewerAnnotationDeleteResponseHandler(task: task, queue: queue, docViewerDelegate: docViewerDelegate)
+            performDelete(annotationID: annotationID, handler: handler)
         }
     }
 
@@ -98,41 +99,23 @@ class DocViewerAnnotationUploader {
         }
     }
 
-    private func performDelete(annotationID: String) {
+    private func performDelete(annotationID: String, handler: DocViewerAnnotationDeleteResponseHandler) {
         api.makeRequest(DeleteDocViewerAnnotationRequest(annotationID: annotationID, sessionID: sessionID)) { [weak self] _, _, error in
-            self?.handleDeleteResponse(error: error)
-        }
-    }
+            guard let self = self else { return }
 
-    private func handleDeleteResponse(error: Error?) {
-        taskLock.lock()
-        defer { taskLock.unlock() }
+            self.taskLock.lock()
+            defer { self.taskLock.unlock() }
 
-        if let error = error {
-            var willRetryTask = false
+            let outcome = handler.handleResponse(error: error)
+            self.currentTask = nil
 
-            if let currentTask = currentTask {
-                willRetryTask = queue.insertTaskIfNecessary(currentTask)
-                self.currentTask = nil
-            }
-
-            if willRetryTask {
-                pausedOnError = true
-                performUIUpdate {
-                    self.docViewerDelegate?.annotationDidFailToSave(error: error)
-                }
-            } else {
-                processNextTask()
-            }
-        } else {
-            currentTask = nil
-
-            if queue.queue.isEmpty {
-                performUIUpdate {
-                    self.docViewerDelegate?.annotationSaveStateChanges(saving: false)
-                }
-            } else {
-                processNextTask()
+            switch outcome {
+            case .processNextTask:
+                self.processNextTask()
+            case .pausedOnError:
+                self.pausedOnError = true
+            case .finished:
+                break
             }
         }
     }

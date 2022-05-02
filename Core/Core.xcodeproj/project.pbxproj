@@ -956,6 +956,8 @@
 		CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */; };
 		CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */; };
 		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
+		CFBF1DFD281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */; };
+		CFBF1DFF281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */; };
 		CFC2C27827344053006CA3E0 /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27727344053006CA3E0 /* ViewModelState.swift */; };
@@ -2301,6 +2303,8 @@
 		CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
+		CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandler.swift; sourceTree = "<group>"; };
+		CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableName.swift; sourceTree = "<group>"; };
 		CFC2C27727344053006CA3E0 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
@@ -5093,6 +5097,7 @@
 			isa = PBXGroup;
 			children = (
 				CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */,
+				CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */,
 				CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */,
 				CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */,
 			);
@@ -5103,6 +5108,7 @@
 			isa = PBXGroup;
 			children = (
 				CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */,
+				CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */,
 				CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */,
 			);
 			path = AnnotationUpload;
@@ -6314,6 +6320,7 @@
 				CFC2C28327358796006CA3E0 /* AttachmentSubmissionServiceTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
 				3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */,
+				CFBF1DFF281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift in Sources */,
 				7D288B0B25758B100013FF65 /* GradeSubmissionTests.swift in Sources */,
 				B15CA273221DE1FA0014FB02 /* GetModulesTests.swift in Sources */,
 				9FBE536B223C2B9F001EC40C /* APIPermissionsTests.swift in Sources */,
@@ -6785,6 +6792,7 @@
 				CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
 				CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */,
+				CFBF1DFD281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */,
 				7DA260E223F72359005D2121 /* KeyboardTransitioning.swift in Sources */,
 				7DA2600923F7227A005D2121 /* NSErrorExtensions.swift in Sources */,
 				CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */,
