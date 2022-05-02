@@ -71,4 +71,26 @@ class DocViewerAnnotationUploaderQueueTests: XCTestCase {
         XCTAssertEqual(testee.queue[1], .put(.make(id: "3")))
         XCTAssertEqual(testee.queue[2], .delete(annotationID: "1"))
     }
+
+    func testInsertTask() {
+        let testee = DocViewerAnnotationUploaderQueue()
+        testee.delete("1")
+
+        let isInserted = testee.insertTaskIfNecessary(.put(.make(id: "2")))
+
+        XCTAssertEqual(testee.queue.count, 2)
+        XCTAssertEqual(testee.queue, [.put(.make(id: "2")), .delete(annotationID: "1")])
+        XCTAssertTrue(isInserted)
+    }
+
+    func testDoesntInsertTaskIfThereIsAnotherForTheSameAnnotation() {
+        let testee = DocViewerAnnotationUploaderQueue()
+        testee.delete("1")
+
+        let isInserted = testee.insertTaskIfNecessary(.put(.make(id: "1")))
+
+        XCTAssertEqual(testee.queue.count, 1)
+        XCTAssertEqual(testee.queue, [.delete(annotationID: "1")])
+        XCTAssertFalse(isInserted)
+    }
 }

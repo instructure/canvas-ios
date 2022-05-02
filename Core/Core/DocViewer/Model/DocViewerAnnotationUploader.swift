@@ -87,20 +87,25 @@ class DocViewerAnnotationUploader {
         defer { taskLock.unlock() }
 
         if receivedAnnotation == nil {
-            pausedOnError = true
+            var willRetryTask = false
 
             if let currentTask = currentTask {
-                queue.insertTask(currentTask)
+                willRetryTask = queue.insertTaskIfNecessary(currentTask)
+                self.currentTask = nil
             }
 
-            currentTask = nil
+            if willRetryTask {
+                pausedOnError = true
 
-            performUIUpdate {
-                if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
-                    self.docViewerDelegate?.annotationDidExceedLimit(annotation: annotation)
-                } else {
-                    self.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
+                performUIUpdate {
+                    if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
+                        self.docViewerDelegate?.annotationDidExceedLimit(annotation: annotation)
+                    } else {
+                        self.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
+                    }
                 }
+            } else {
+                processNextTask()
             }
         } else {
             currentTask = nil
@@ -126,15 +131,20 @@ class DocViewerAnnotationUploader {
         defer { taskLock.unlock() }
 
         if let error = error {
-            pausedOnError = true
+            var willRetryTask = false
 
             if let currentTask = currentTask {
-                queue.insertTask(currentTask)
+                willRetryTask = queue.insertTaskIfNecessary(currentTask)
+                self.currentTask = nil
             }
-            currentTask = nil
 
-            performUIUpdate {
-                self.docViewerDelegate?.annotationDidFailToSave(error: error)
+            if willRetryTask {
+                pausedOnError = true
+                performUIUpdate {
+                    self.docViewerDelegate?.annotationDidFailToSave(error: error)
+                }
+            } else {
+                processNextTask()
             }
         } else {
             currentTask = nil

@@ -45,8 +45,20 @@ class DocViewerAnnotationUploaderQueue {
         queue.append(.delete(annotationID: annotationID))
     }
 
-    public func insertTask(_ task: Task) {
-        queue.insert(task, at: 0)
+    /**
+     Inserts the given task to the first place of the queue if there are no other tasks already in the queue for the same annotation ID.
+     - returns: True if the task was inserted, false if the queue was left intact.
+     */
+    @discardableResult
+    public func insertTaskIfNecessary(_ task: Task) -> Bool {
+        let queueHasTaskForAnnotation = queue.contains { $0.annotationId == task.annotationId }
+
+        if queueHasTaskForAnnotation {
+            return false
+        } else {
+            queue.insert(task, at: 0)
+            return true
+        }
     }
 
     public func requestTask() -> Task? {
