@@ -75,7 +75,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     }
 
     public func getReplies(to: Annotation) -> [DocViewerCommentReplyAnnotation] {
-        return allAnnotations
+        allAnnotations
             .compactMap { $0 as? DocViewerCommentReplyAnnotation }
             .filter { $0.inReplyToName == to.name }
             .sorted { a, b in
