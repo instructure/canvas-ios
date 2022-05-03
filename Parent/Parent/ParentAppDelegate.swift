@@ -101,7 +101,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                     self?.showRootView()
                 }}
             }
-        }
+        }}
     }
 
     func showRootView() {
