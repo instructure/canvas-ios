@@ -153,7 +153,7 @@ public struct K5ScheduleEntryView: View {
                 background.overlay(icon)
             }
         })
-        .accessibility(label: Text("Mark item as done", bundle: .core))
+        .accessibility(label: Text(viewModel.title) + Text(verbatim: ",") + Text("Mark item as done", bundle: .core))
 
         if isChecked {
             button = button.accessibility(addTraits: .isSelected)

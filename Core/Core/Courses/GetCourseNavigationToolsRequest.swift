@@ -34,7 +34,7 @@ public struct CourseNavigationTool: Codable {
         let text: String?
         let url: URL?
         let label: String?
-        let icon_url: URL?
+        @SafeURL private(set) var icon_url: URL?
     }
 
     public let id: String?
@@ -42,5 +42,5 @@ public struct CourseNavigationTool: Codable {
     public let context_id: String?
     public let course_navigation: CourseNavigation?
     public let name: String?
-    public let url: URL?
+    @SafeURL public private(set) var url: URL?
 }
