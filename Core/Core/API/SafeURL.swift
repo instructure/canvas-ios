@@ -19,6 +19,7 @@
 /**
  The purpose of this property wrapper is to allow decoding of URLs from Strings with non url safe characters.
  The non-safe characters are percent encoded before decoding.
+ This wrapper also threats empty string literal as nil instead of throwing an exception during parsing.
  */
 @propertyWrapper
 public struct SafeURL: Equatable {
