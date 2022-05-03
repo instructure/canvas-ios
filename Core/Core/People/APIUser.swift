@@ -39,13 +39,13 @@ public struct APIUser: Codable, Equatable {
     let avatar_url: APIURL?
     let enrollments: [APIEnrollment]?
     let email: String?
-    let locale: String?
     let effective_locale: String?
     // let last_login: Date?
     // let time_zone: TimeZone
     let bio: String?
     let pronouns: String?
 
+    public let locale: String?
     public let permissions: Permissions?
     public struct Permissions: Codable, Equatable {
         public let can_update_name: Bool?
@@ -127,6 +127,7 @@ public struct APIProfile: Codable, Equatable {
     public let id: ID
     public let name: String
     public let primary_email: String?
+    public let locale: String?
     public let login_id: String?
     public let avatar_url: APIURL?
     public let calendar: APICalendar?
@@ -217,6 +218,7 @@ extension APIProfile {
         id: ID = "1",
         name: String = "Bob",
         primary_email: String? = nil,
+        locale: String? = "en",
         login_id: String? = nil,
         avatar_url: URL? = nil,
         calendar: APIProfile.APICalendar? = .make(),
@@ -227,6 +229,7 @@ extension APIProfile {
             id: id,
             name: name,
             primary_email: primary_email,
+            locale: locale,
             login_id: login_id,
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             calendar: calendar,
