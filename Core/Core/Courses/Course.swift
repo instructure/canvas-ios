@@ -96,7 +96,8 @@ final public class Course: NSManagedObject, WriteableModel {
         model.isPastEnrollment = (
             item.workflow_state == .completed ||
             (item.end_at ?? .distantFuture) < Clock.now ||
-            (item.term?.end_at ?? .distantFuture) < Clock.now
+            (item.term?.end_at ?? .distantFuture) < Clock.now ||
+            item.sections?.first(where: { $0.end_at ?? .distantFuture < Clock.now }) != nil
         )
         model.isFutureEnrollment = !model.isPastEnrollment && (
             (item.start_at ?? .distantPast) > Clock.now ||
