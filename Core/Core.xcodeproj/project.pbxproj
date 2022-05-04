@@ -942,6 +942,9 @@
 		CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */; };
 		CFA078B22796C9870078B27B /* file_annotation_from_ios.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CFA078B12796C9870078B27B /* file_annotation_from_ios.pdf */; };
 		CFABA2502742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */; };
+		CFAD0D102817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */; };
+		CFAD0D1328181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */; };
+		CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */; };
 		CFAD79D826AEC02A0000A90D /* K5ScheduleEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */; };
 		CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
@@ -950,6 +953,13 @@
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
+		CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */; };
+		CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */; };
+		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
+		CFBF1DFD281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */; };
+		CFBF1DFF281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */; };
+		CFBF1E012820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */; };
+		CFBF1E0528201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1E0428201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */; };
 		CFC2C27827344053006CA3E0 /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C27727344053006CA3E0 /* ViewModelState.swift */; };
@@ -2281,6 +2291,9 @@
 		CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModelTests.swift; sourceTree = "<group>"; };
 		CFA078B12796C9870078B27B /* file_annotation_from_ios.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = file_annotation_from_ios.pdf; sourceTree = "<group>"; };
 		CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationContextMenuModel.swift; sourceTree = "<group>"; };
+		CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderQueue.swift; sourceTree = "<group>"; };
+		CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderQueueTests.swift; sourceTree = "<group>"; };
+		CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploader.swift; sourceTree = "<group>"; };
 		CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModel.swift; sourceTree = "<group>"; };
 		CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryView.swift; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
@@ -2289,6 +2302,13 @@
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
+		CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandler.swift; sourceTree = "<group>"; };
+		CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
+		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
+		CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandler.swift; sourceTree = "<group>"; };
+		CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationDeleteResponseHandlerTests.swift; sourceTree = "<group>"; };
+		CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploadResponseHandler.swift; sourceTree = "<group>"; };
+		CFBF1E0428201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableName.swift; sourceTree = "<group>"; };
 		CFC2C27727344053006CA3E0 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
@@ -3315,19 +3335,13 @@
 		7D29D2F5218A29B10036437C /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CFAD0D0D2817D91A0017D07B /* Model */,
 				7DFFAB18219DDAE1003E71F8 /* Comments */,
 				7D7472DA218CEE4100CE1430 /* Views */,
-				7D29D308218A5E810036437C /* APIDocViewer.swift */,
 				7DCA320225411E8200458651 /* DocViewer.swift */,
-				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
-				7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */,
 				7D29D2F8218A2BC60036437C /* DocViewerConstants.swift */,
-				7D29D300218A52F00036437C /* DocViewerPointAnnotation.swift */,
-				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
 				7DD694882195F7A200BA4984 /* DocViewerViewController.storyboard */,
 				7DD694862195F76C00BA4984 /* DocViewerViewController.swift */,
-				7D29D2FE218A4FEA0036437C /* PSPDFAnnotationExtension.swift */,
-				CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */,
 			);
 			path = DocViewer;
 			sourceTree = "<group>";
@@ -3561,6 +3575,7 @@
 		7D7472D7218CD73D00CE1430 /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CFAD0D1128181DF40017D07B /* Model */,
 				7D2DC2F92199FD47008FE29A /* Fixtures */,
 				7D7472D5218CC4B200CE1430 /* APIDocViewerTests.swift */,
 				7D2DC2F72199F774008FE29A /* DocViewerAnnotationProviderTests.swift */,
@@ -3569,6 +3584,7 @@
 				7D37BE9021C849D10063FAAC /* DocViewerViewControllerTests.swift */,
 				7D2DC31A219CE469008FE29A /* DocViewerSessionTests.swift */,
 				7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */,
+				CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */,
 			);
 			path = DocViewer;
 			sourceTree = "<group>";
@@ -5025,6 +5041,37 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		CFAD0D0D2817D91A0017D07B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */,
+				CFAD0D0E2817D9570017D07B /* AnnotationTypes */,
+				7D29D308218A5E810036437C /* APIDocViewer.swift */,
+				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
+				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
+				CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFAD0D0E2817D9570017D07B /* AnnotationTypes */ = {
+			isa = PBXGroup;
+			children = (
+				7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */,
+				7D29D300218A52F00036437C /* DocViewerPointAnnotation.swift */,
+				7D29D2FE218A4FEA0036437C /* PSPDFAnnotationExtension.swift */,
+			);
+			path = AnnotationTypes;
+			sourceTree = "<group>";
+		};
+		CFAD0D1128181DF40017D07B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF1DF5281FDC0100DA99F7 /* AnnotationUpload */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -5048,6 +5095,45 @@
 				CFB50C50256439D100E4AD72 /* HelpViewTests.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF1E022820152700DA99F7 /* ResponseHandling */,
+				CFAD0D14281839FC0017D07B /* DocViewerAnnotationUploader.swift */,
+				CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */,
+			);
+			path = AnnotationUpload;
+			sourceTree = "<group>";
+		};
+		CFBF1DF5281FDC0100DA99F7 /* AnnotationUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF1E032820154300DA99F7 /* ResponseHandling */,
+				CFBF1E0428201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift */,
+				CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */,
+			);
+			path = AnnotationUpload;
+			sourceTree = "<group>";
+		};
+		CFBF1E022820152700DA99F7 /* ResponseHandling */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF1E002820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift */,
+				CFBF1DFC281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift */,
+				CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */,
+			);
+			path = ResponseHandling;
+			sourceTree = "<group>";
+		};
+		CFBF1E032820154300DA99F7 /* ResponseHandling */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF1DFE281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift */,
+				CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */,
+			);
+			path = ResponseHandling;
 			sourceTree = "<group>";
 		};
 		CFBF709C2632FEB800539298 /* SideMenu */ = {
@@ -6046,6 +6132,7 @@
 				7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */,
 				78151DCF21AE7E0500692862 /* APIDiscussionTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
+				CFBF1E0528201D7500DA99F7 /* DocViewerAnnotationUploaderTests.swift in Sources */,
 				7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */,
 				9F3107FA2371E02600502428 /* PageTests.swift in Sources */,
 				B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */,
@@ -6136,6 +6223,7 @@
 				7D80AC17212B689E00C40ECE /* APITabTests.swift in Sources */,
 				CF9A0F3E27EA1B4F00762228 /* CourseHomePropertiesTests.swift in Sources */,
 				CF9A0F4027EA1CA700762228 /* TabFilterTests.swift in Sources */,
+				CFAD0D1328181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift in Sources */,
 				CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */,
 				7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
@@ -6255,6 +6343,7 @@
 				CFC2C28327358796006CA3E0 /* AttachmentSubmissionServiceTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
 				3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */,
+				CFBF1DFF281FFC7E00DA99F7 /* DocViewerAnnotationDeleteResponseHandlerTests.swift in Sources */,
 				7D288B0B25758B100013FF65 /* GradeSubmissionTests.swift in Sources */,
 				B15CA273221DE1FA0014FB02 /* GetModulesTests.swift in Sources */,
 				9FBE536B223C2B9F001EC40C /* APIPermissionsTests.swift in Sources */,
@@ -6271,6 +6360,7 @@
 				3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
 				9F5C93012375A613005105BB /* PageDetailsViewControllerTests.swift in Sources */,
+				CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */,
 				B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,
 				7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */,
@@ -6317,6 +6407,7 @@
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DD4763C23FF21B600AB045C /* CalendarDaysViewControllerTests.swift in Sources */,
 				7D54D6B32464705100409520 /* DiscussionDetailsViewControllerTests.swift in Sources */,
+				CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */,
 				7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */,
 				7D2DC2F42199EC93008FE29A /* SecretTests.swift in Sources */,
 				CFFE286227ABA4DF0029A408 /* DashboardCardsViewModelTests.swift in Sources */,
@@ -6442,6 +6533,7 @@
 				97DDE0DA24119D6800A05B55 /* CreateTodoViewController.swift in Sources */,
 				B14D993524BE65A9006DFF12 /* CommonCourse.swift in Sources */,
 				7DA260D123F72359005D2121 /* CoreWebView.swift in Sources */,
+				CFAD0D102817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift in Sources */,
 				7D89A2C92509326B009D0FD2 /* DisclosureIndicator.swift in Sources */,
 				CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */,
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
@@ -6488,6 +6580,7 @@
 				7DA260CD23F72359005D2121 /* BottomSheetTransitioning.swift in Sources */,
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
+				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
 				CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
@@ -6614,6 +6707,7 @@
 				CFF64FEC27DCF8A400653573 /* DefaultViewProvider.swift in Sources */,
 				7DA2607A23F722FA005D2121 /* PageViewEvent.swift in Sources */,
 				7DA260E323F72359005D2121 /* ListFormatter.swift in Sources */,
+				CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */,
 				D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */,
 				3BA649CD2423E0080047D8DC /* APIPairingCode.swift in Sources */,
 				7DA2603F23F722D9005D2121 /* Course.swift in Sources */,
@@ -6680,6 +6774,7 @@
 				7DA25FBC23F72136005D2121 /* APILoginWeb.swift in Sources */,
 				CF575E2C265FD23600F8515F /* K5HomeroomAnnouncementViewModel.swift in Sources */,
 				7DA2608D23F72315005D2121 /* GetAccountHelpLinks.swift in Sources */,
+				CFBF1E012820109A00DA99F7 /* DocViewerAnnotationUploadResponseHandler.swift in Sources */,
 				7D159CEA242E555A00A77A15 /* ModuleItemCell.swift in Sources */,
 				7DA25FE423F721DA005D2121 /* PermissionName.swift in Sources */,
 				7DA260A223F7234C005D2121 /* UITestHelpers.swift in Sources */,
@@ -6721,6 +6816,7 @@
 				CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
 				CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */,
+				CFBF1DFD281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */,
 				7DA260E223F72359005D2121 /* KeyboardTransitioning.swift in Sources */,
 				7DA2600923F7227A005D2121 /* NSErrorExtensions.swift in Sources */,
 				CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */,
