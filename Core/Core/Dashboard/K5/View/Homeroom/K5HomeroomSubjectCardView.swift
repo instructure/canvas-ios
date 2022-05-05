@@ -68,7 +68,7 @@ public struct K5HomeroomSubjectCardView: View {
             viewModel.imageURL.map { RemoteImage($0, width: imageSize.width, height: imageSize.height) }?
                 .opacity(0.4)
                 .clipped()
-            // Fix big course image consuming tap events.
+                // Fix big course image consuming tap events.
                 .contentShape(Path(CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)))
         }
         .frame(width: imageSize.width, height: imageSize.height)
@@ -102,8 +102,8 @@ public struct K5HomeroomSubjectCardView: View {
                     .scaledToFill()
                     .frame(width: 18, height: 18)
                 (Text(model.text)
-                 +
-                 Text(model.highlightedText)
+                +
+                Text(model.highlightedText)
                     .foregroundColor(Color(DocViewerAnnotationColor.red.color)))
                 .padding(.top, 1)
             }

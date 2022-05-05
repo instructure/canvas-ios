@@ -44,7 +44,7 @@ struct CourseCard: View {
                         card.imageURL.map { RemoteImage($0, width: width, height: 80) }?
                             .opacity(hideColorOverlay ? 1 : 0.4)
                             .clipped()
-                        // Fix big course image consuming tap events.
+                            // Fix big course image consuming tap events.
                             .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: 80)))
                     }
                     VStack(alignment: .leading, spacing: 2) {
