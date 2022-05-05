@@ -94,19 +94,27 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.subscribeToPushChannel()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
+            guard let apiProfile = apiProfile else {
+                if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
+                    DispatchQueue.main.async { self.userDidLogout(session: session) }
+                }
+                return
+            }
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
             if isK5StudentView {
                 ExperimentalFeature.K5Dashboard.isEnabled = true
                 self.environment.userDefaults?.isElementaryViewEnabled = true
             }
             self.environment.k5.userDidLogin(profile: apiProfile, isK5StudentView: isK5StudentView)
-            if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
-                DispatchQueue.main.async { self.userDidLogout(session: session) }
-            }
+
             PageViewEventController.instance.userDidChange()
-            DispatchQueue.main.async { self.refreshNotificationTab() }
-            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                DispatchQueue.main.async { NativeLoginManager.login(as: session) }
+            DispatchQueue.main.async {
+                self.refreshNotificationTab()
+                LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
+                    GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                        NativeLoginManager.login(as: session)
+                    }}
+                }
             }
         }
         Analytics.shared.logSession(session)
@@ -347,9 +355,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
-            setup(session: session)
-        }
+        setup(session: session)
     }
 
     func userDidStopActing(as session: LoginSession) {

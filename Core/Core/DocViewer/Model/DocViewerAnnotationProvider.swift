@@ -26,21 +26,14 @@ protocol DocViewerAnnotationProviderDelegate: AnyObject {
 }
 
 class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
-    public weak var docViewerDelegate: DocViewerAnnotationProviderDelegate?
-
-    var apiAnnotations: [String: APIDocViewerAnnotation] = [:]
-    var requestsInFlight = 0 {
+    public weak var docViewerDelegate: DocViewerAnnotationProviderDelegate? {
         didSet {
-            // If we have a failed upload don't communicate success even if subsequent upload succeed.
-            guard uploadDidFail == false else { return }
-            docViewerDelegate?.annotationSaveStateChanges(saving: requestsInFlight != 0)
+            uploader.docViewerDelegate = docViewerDelegate
         }
     }
 
-    private let api: API
-    private let sessionID: String
+    private let uploader: DocViewerAnnotationUploader
     private let fileAnnotationProvider: PDFFileAnnotationProvider
-    private var uploadDidFail = false
     private let isAnnotationEditingDisabled: Bool
 
     public init(documentProvider: PDFDocumentProvider!,
@@ -50,8 +43,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
                 api: API,
                 sessionID: String,
                 isAnnotationEditingDisabled: Bool) {
-        self.api = api
-        self.sessionID = sessionID
+        self.uploader = DocViewerAnnotationUploader(api: api, sessionID: sessionID)
         self.fileAnnotationProvider = fileAnnotationProvider
         self.isAnnotationEditingDisabled = isAnnotationEditingDisabled
 
@@ -60,7 +52,6 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         guard let annotationsMetadata = metadata.annotations, annotationsMetadata.enabled else { return }
         var hasReplies: Set<String> = []
         let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
-            apiAnnotations[apiAnnotation.id] = apiAnnotation
             if let id = apiAnnotation.inreplyto { hasReplies.insert(id) }
 
             let pspdfAnnotation = Annotation.from(apiAnnotation, metadata: annotationsMetadata)
@@ -83,8 +74,8 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         setAnnotations(allAnnotations, append: false)
     }
 
-    public func getReplies (to: Annotation) -> [DocViewerCommentReplyAnnotation] {
-        return allAnnotations
+    public func getReplies(to: Annotation) -> [DocViewerCommentReplyAnnotation] {
+        allAnnotations
             .compactMap { $0 as? DocViewerCommentReplyAnnotation }
             .filter { $0.inReplyToName == to.name }
             .sorted { a, b in
@@ -119,11 +110,10 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         for annotation in annotations {
             guard let apiAnnotation = annotation.apiAnnotation() else { continue }
             added.append(annotation)
-            apiAnnotations[apiAnnotation.id] = apiAnnotation
             if annotation.isEmpty {
                 continue // don't save to network if empty comment reply or free text
             }
-            put(apiAnnotation)
+            uploader.save(apiAnnotation)
         }
         return added
     }
@@ -132,9 +122,9 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         super.remove(annotations, options: options)
         var removed: [Annotation] = []
         for annotation in annotations {
-            guard let id = annotation.name, apiAnnotations.removeValue(forKey: id) != nil else { continue }
+            guard let id = annotation.name else { continue }
             removed.append(annotation)
-            delete(id)
+            uploader.delete(annotationID: id)
         }
         let hasReplies = Set(allAnnotations.compactMap {
             ($0 as? DocViewerCommentReplyAnnotation)?.inReplyToName
@@ -146,63 +136,13 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     }
 
     public override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {
-        syncAnnotation(annotation)
-    }
-
-    // MARK: - API Sync
-
-    private func put(_ body: APIDocViewerAnnotation) {
-        requestsInFlight += 1
-        api.makeRequest(PutDocViewerAnnotationRequest(body: body, sessionID: sessionID)) { [weak self] updated, _, error in performUIUpdate {
-            self?.requestsInFlight -= 1
-            if let updated = updated {
-                self?.apiAnnotations[updated.id] = updated
-            } else if let error = error as? APIDocViewerError, error == APIDocViewerError.tooBig {
-                self?.docViewerDelegate?.annotationDidExceedLimit(annotation: body)
-            } else {
-                self?.uploadDidFail = true
-                self?.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
-            }
-        } }
-    }
-
-    private func delete(_ id: String) {
-        requestsInFlight += 1
-        api.makeRequest(DeleteDocViewerAnnotationRequest(annotationID: id, sessionID: sessionID)) { [weak self] _, _, error in performUIUpdate {
-            self?.requestsInFlight -= 1
-            if let error = error {
-                self?.docViewerDelegate?.annotationDidFailToSave(error: error)
-            }
-        } }
+        guard !annotation.isEmpty, let apiAnnotation = annotation.apiAnnotation() else { return }
+        uploader.save(apiAnnotation)
     }
 
     // MARK: - User Triggered Events
 
-    public func syncAllAnnotations() {
-        uploadDidFail = false
-
-        if allAnnotations.count == 0 {
-            requestsInFlight = 0
-        }
-        allAnnotations.forEach(syncAnnotation)
-    }
-
-    // MARK: - Private Methods
-
-    private func syncAnnotation(_ annotation: Annotation) {
-        guard let apiAnnotation = annotation.apiAnnotation() else { return }
-
-        if let inkAnnotation = annotation as? InkAnnotation, (inkAnnotation.lines?.count ??  0) > 120 {
-            documentProvider?.document?.undoController.undoManager.undo()
-            docViewerDelegate?.annotationDidExceedLimit(annotation: apiAnnotation)
-            return
-        }
-
-        apiAnnotations[apiAnnotation.id] = apiAnnotation // update internal list with changes
-
-        if annotation.isEmpty {
-            return // don't save to network if empty comment reply or free text
-        }
-        put(apiAnnotation)
+    public func retryFailedRequest() {
+        uploader.retryFailedRequest()
     }
 }

@@ -22,25 +22,34 @@ import TestsFoundation
 @testable import Core
 
 class DocViewerAnnotationProviderTests: CoreTestCase {
-    class Delegate: DocViewerAnnotationProviderDelegate {
+    class MockDelegate: DocViewerAnnotationProviderDelegate {
+        enum Event: Equatable {
+            case exceededLimit
+            case failedToSave
+            case saveStateChanged(isSaving: Bool)
+        }
         var annotation: APIDocViewerAnnotation?
         var error: Error?
         var saving: Bool = false
+        var callStack: [Event] = []
 
         func annotationDidExceedLimit(annotation: APIDocViewerAnnotation) {
             self.annotation = annotation
             error = nil
             saving = false
+            callStack.append(.exceededLimit)
         }
         func annotationDidFailToSave(error: Error) {
             annotation = nil
             self.error = error
             saving = false
+            callStack.append(.failedToSave)
         }
         func annotationSaveStateChanges(saving: Bool) {
             annotation = nil
             error = nil
             self.saving = saving
+            callStack.append(.saveStateChanged(isSaving: saving))
         }
     }
 
@@ -88,7 +97,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
     func testAddNoData() {
         let provider = getProvider()
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), error: APIDocViewerError.noData)
@@ -98,7 +107,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
     func testAddTooBig() {
         let provider = getProvider()
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), error: APIDocViewerError.tooBig)
@@ -108,7 +117,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
     func testAddEmpty() {
         let provider = getProvider()
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerCommentReplyAnnotation(contents: "")
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
@@ -123,7 +132,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
     }
 
     func testAddSuccess() {
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         let provider = getProvider()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation(image: nil)
@@ -134,7 +143,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
     func testRemoveError() {
         let provider = getProvider()
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         provider.docViewerDelegate = delegate
         let annotation = try! DocViewerPointAnnotation(dictionary: [ "name": "1" ])
         api.mock(DeleteDocViewerAnnotationRequest(annotationID: "1", sessionID: "a"), error: APIDocViewerError.noData)
@@ -145,7 +154,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
     func testRemoveUnknown() {
         let provider = getProvider()
         let annotation = try! DocViewerPointAnnotation(dictionary: [ "name": "bogus" ])
-        XCTAssertEqual(provider.remove([ annotation ])?.count, 0)
+        XCTAssertEqual(provider.remove([ annotation ])?.count, 1)
     }
 
     func testRemoveSuccess() {
@@ -157,7 +166,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
     func testChangeNoData() {
         let provider = getProvider()
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
@@ -165,20 +174,9 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         XCTAssertEqual(delegate.error as? APIDocViewerError, APIDocViewerError.noData)
     }
 
-    func testChangeTooBig() {
-        let provider = getProvider()
-        let delegate = Delegate()
-        provider.docViewerDelegate = delegate
-        let annotation = InkAnnotation(lines: (0...120).map {
-            return [ DrawingPoint(location: CGPoint(x: $0, y: $0), intensity: 1) ]
-        })
-        provider.didChange(annotation, keyPaths: [])
-        XCTAssertEqual(delegate.annotation, annotation.apiAnnotation())
-    }
-
     func testChangeEmpty() {
         let provider = getProvider()
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerCommentReplyAnnotation(contents: "")
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
@@ -188,7 +186,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
     func testChangeUnsupported() {
         let provider = getProvider()
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         provider.docViewerDelegate = delegate
         let annotation = try! SoundAnnotation(dictionary: nil)
         provider.didChange(annotation, keyPaths: [])
@@ -196,38 +194,14 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
     }
 
     func testChangeSuccess() {
-        let delegate = Delegate()
+        let delegate = MockDelegate()
         let provider = getProvider()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation(image: nil)
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: annotation.apiAnnotation())
         provider.didChange(annotation, keyPaths: [])
-        XCTAssertEqual(provider.apiAnnotations.count, 2)
+        XCTAssertEqual(delegate.callStack, [.saveStateChanged(isSaving: true), .saveStateChanged(isSaving: false)])
         XCTAssertNil(delegate.error)
-    }
-
-    func testSyncAllAnnotations() {
-        let provider = getProvider(annotations: [])
-        provider.requestsInFlight = 1234
-        provider.syncAllAnnotations()
-        XCTAssertEqual(provider.requestsInFlight, 0)
-    }
-
-    func testFirstSyncFailedSecondSucceeded() {
-        let delegate = Delegate()
-        let provider = getProvider(annotations: [])
-        provider.docViewerDelegate = delegate
-
-        let firstAnnotation = DocViewerPointAnnotation(title: "First")
-        // No mock so upload fails
-        provider.didChange(firstAnnotation, keyPaths: [])
-        XCTAssertNotNil(delegate.error)
-
-        let secondAnnotation = DocViewerPointAnnotation(image: nil)
-        api.mock(PutDocViewerAnnotationRequest(body: secondAnnotation.apiAnnotation(), sessionID: "a"), value: secondAnnotation.apiAnnotation())
-        provider.didChange(secondAnnotation, keyPaths: [])
-        // Despite that upload succeeded the error from the first upload shouldn't be cleared
-        XCTAssertNotNil(delegate.error)
     }
 
     func testUserAnnotationIsReadOnlyWhenAnnotationIsDisabled() {
