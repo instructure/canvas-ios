@@ -49,6 +49,9 @@
 /* added to conversation label when unread */
 "%@, unread" = "%@, nieprzeczytane";
 
+/* No comment provided by engineer. */
+"%@: %@" = "%1$@: %2$@";
+
 /* score/points */
 "%@/%@" = "%1$@/%2$@";
 
@@ -1811,10 +1814,16 @@
 "Select Course" = "Wybierz kurs";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Wybierz okres oceniania";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Wybierz rodzaj wpływu";
 
 /* No comment provided by engineer. */
 "Select One" = "Wybierz jeden";
+
+/* No comment provided by engineer. */
+"Selected" = "Wybrano";
 
 /* No comment provided by engineer. */
 "Selected!" = "Wybrano!";
