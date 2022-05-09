@@ -185,6 +185,8 @@ open class CoreWebView: WKWebView {
         let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
         let font: String
         let fontCSS: String
+        let style = Typography.Style.body
+        let uiFont = style.uiFont
 
         if AppEnvironment.shared.k5.isK5Enabled {
             font = "BalsamiqSans-Regular"
@@ -200,21 +202,21 @@ open class CoreWebView: WKWebView {
                 background: \(UIColor.backgroundLightest.hexString);
                 color: \(UIColor.textDarkest.hexString);
                 font-family: \(font);
-                font-size: \(Typography.Style.body.uiFont.pointSize)px;
-                line-height: \(Typography.Style.body.lineHeight.rawValue);
+                font-size: \(uiFont.pointSize)px;
+                line-height: \(style.lineHeight.toPoints(for: uiFont))px;
                 -webkit-tap-highlight-color: transparent;
             }
             body {
                 margin: 16px;
             }
             p {
-                font-size: \(Typography.Style.body.uiFont.pointSize)px;
+                font-size: \(uiFont.pointSize)px;
             }
             div {
-                font-size: \(Typography.Style.body.uiFont.pointSize)px;
+                font-size: \(uiFont.pointSize)px;
             }
             span {
-                font-size: \(Typography.Style.body.uiFont.pointSize)px;
+                font-size: \(uiFont.pointSize)px;
             }
             a {
                 color: \(link.hexString);

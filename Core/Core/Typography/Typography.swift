@@ -45,6 +45,9 @@ public enum Typography {
             let fontLineHeight = font.lineHeight
             return (rawValue * fontLineHeight) - fontLineHeight
         }
+
+        /** Returns the modified line height for the given font in points. */
+        public func toPoints(for font: UIFont) -> CGFloat { rawValue * font.lineHeight }
     }
 
     public enum Style {
