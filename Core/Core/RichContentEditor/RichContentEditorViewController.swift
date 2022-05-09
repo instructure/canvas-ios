@@ -95,7 +95,7 @@ public class RichContentEditorViewController: UIViewController {
                 --color-textDark: \(UIColor.textDark.hexString);
                 --color-textDarkest: \(UIColor.textDarkest.hexString);
 
-                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
+                font-size: \(Typography.Style.body.uiFont.pointSize)px;
                 font-family: \(AppEnvironment.shared.k5.isK5Enabled ? "BalsamiqSans-Regular" : "Lato-Regular");
             }
             </style>

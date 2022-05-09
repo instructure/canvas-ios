@@ -21,7 +21,8 @@
     "NSPersistentContainerExtensions.swift",
     "K5Preview.swift",
     "Core\/WebSitePreview\/",
-    "FontPreview.swift"
+    "FontPreview.swift",
+    "Core\/Typography\/"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

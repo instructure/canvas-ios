@@ -175,6 +175,10 @@ open class CoreWebView: WKWebView {
         "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
     }
 
+    /**
+     This is used only if we load a html string locally but not for real URL loads.
+     The font-size property of the body tag is overriden by the OS so that's why we set p, div and span tags' font-size.
+     */
     var css: String {
         let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
@@ -196,11 +200,21 @@ open class CoreWebView: WKWebView {
                 background: \(UIColor.backgroundLightest.hexString);
                 color: \(UIColor.textDarkest.hexString);
                 font-family: \(font);
-                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
+                font-size: \(Typography.Style.body.uiFont.pointSize)px;
+                line-height: \(Typography.Style.body.lineHeight.rawValue);
                 -webkit-tap-highlight-color: transparent;
             }
             body {
                 margin: 16px;
+            }
+            p {
+                font-size: \(Typography.Style.body.uiFont.pointSize)px;
+            }
+            div {
+                font-size: \(Typography.Style.body.uiFont.pointSize)px;
+            }
+            span {
+                font-size: \(Typography.Style.body.uiFont.pointSize)px;
             }
             a {
                 color: \(link.hexString);
