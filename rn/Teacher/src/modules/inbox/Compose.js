@@ -385,7 +385,7 @@ const styles = createStyleSheet((colors, vars) => ({
   },
   body: {
     fontSize: 16,
-    lineHeight: 19,
+    lineHeight: vars.isK5Enabled ? 19 : 24, // 24 is a manually calculated 'condensed' height for 16 point font
     color: colors.textDarkest,
     paddingTop: 10,
     paddingBottom: vars.padding / 2,
