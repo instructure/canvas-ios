@@ -26,7 +26,7 @@ struct HelpView: View {
                     HelpItemView(model: $0, tapAction: tapAction)
                     Divider()
                 }
-            }.padding()
+            }.padding(.vertical)
         }
     }
 

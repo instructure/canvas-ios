@@ -38,9 +38,10 @@ struct HelpItemView: View {
                         .fixedSize(horizontal: false, vertical: true) // iOS 13.0 multi line support
                         .multilineTextAlignment(.leading)
                 }
-            }.frame(maxWidth: .infinity, alignment: .leading)
+            }.frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal)
         })
         .frame(maxWidth: .infinity)
+        .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
         .testID(.cell)
     }
     private let model: HelpLink
