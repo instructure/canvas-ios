@@ -853,7 +853,7 @@
 		CF575E49266792CA00F8515F /* LatestAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E48266792CA00F8515F /* LatestAnnouncementTests.swift */; };
 		CF575E4D2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF575E4C2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift */; };
 		CF598B302825290E0029BEBE /* TypographyTestViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF598B2F2825290E0029BEBE /* TypographyTestViews.swift */; };
-		CF598B32282552150029BEBE /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF598B31282552150029BEBE /* Text.swift */; };
+		CF598B32282552150029BEBE /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF598B31282552150029BEBE /* View.swift */; };
 		CF598B35282552F20029BEBE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF598B34282552F20029BEBE /* UILabel.swift */; };
 		CF598B37282566870029BEBE /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF598B36282566870029BEBE /* NSAttributedString.swift */; };
 		CF598B3928256B8D0029BEBE /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF598B3828256B8D0029BEBE /* UITextView.swift */; };
@@ -2218,7 +2218,7 @@
 		CF575E48266792CA00F8515F /* LatestAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestAnnouncementTests.swift; sourceTree = "<group>"; };
 		CF575E4C2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestAnnouncementsTests.swift; sourceTree = "<group>"; };
 		CF598B2F2825290E0029BEBE /* TypographyTestViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTestViews.swift; sourceTree = "<group>"; };
-		CF598B31282552150029BEBE /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		CF598B31282552150029BEBE /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		CF598B34282552F20029BEBE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		CF598B36282566870029BEBE /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		CF598B3828256B8D0029BEBE /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -4631,7 +4631,7 @@
 				CF598B36282566870029BEBE /* NSAttributedString.swift */,
 				CF598B34282552F20029BEBE /* UILabel.swift */,
 				CF598B3828256B8D0029BEBE /* UITextView.swift */,
-				CF598B31282552150029BEBE /* Text.swift */,
+				CF598B31282552150029BEBE /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6638,7 +6638,7 @@
 				D9D7EBD427B2B08700544339 /* GenericCellViewModel.swift in Sources */,
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
-				CF598B32282552150029BEBE /* Text.swift in Sources */,
+				CF598B32282552150029BEBE /* View.swift in Sources */,
 				CFCB0F6627CE7E57008DDEA4 /* ImageBackground.swift in Sources */,
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
 				CF748D1D274D43B9000EA34E /* DashboardConferencesViewModel.swift in Sources */,

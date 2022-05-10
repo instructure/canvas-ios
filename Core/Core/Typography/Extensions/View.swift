@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-extension Text {
+extension View {
 
     func style(_ style: Typography.Style) -> some View {
         self.font(style.fontName, lineHeight: style.lineHeight)
