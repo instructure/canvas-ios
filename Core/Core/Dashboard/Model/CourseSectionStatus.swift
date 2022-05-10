@@ -26,7 +26,7 @@ class CourseSectionStatus {
 
     private var enrollmentsRequest: APITask?
     /** This dictionary contains the user's section IDs within courses referenced by their IDs. */
-    private var sectionIDsByCourseIDs: [String: String] = [:]
+    private var sectionIDsByCourseIDs: [String: [String]] = [:]
     private var initialUpdatePending = true
 
     public func isSectionExpired(for card: DashboardCard, in courses: [Course]) -> Bool {
@@ -34,13 +34,22 @@ class CourseSectionStatus {
         return isSectionExpired(in: course)
     }
 
+    /**
+     - returns: False if there's a section whose end date is nil or not nil but doesn't elapsed. True if all sections the user is assigned to in this course having a non-nil end date are expired.
+     */
     public func isSectionExpired(in course: Course) -> Bool {
-        guard let sectionId = sectionIDsByCourseIDs[course.id],
-              let section = course.sections.first(where: { $0.id == sectionId }),
-              let sectionEndDate = section.endAt
-        else { return false }
+        guard let sectionIds = sectionIDsByCourseIDs[course.id] else { return false }
 
-        return Clock.now > sectionEndDate
+        let sections = course.sections.filter({ sectionIds.contains($0.id) })
+        let sectionEndDates = sections.map { $0.endAt }
+
+        // Check if there's an active section
+        if sectionEndDates.contains(where: { $0 == nil || ($0 != nil && Clock.now < $0!) }) {
+            return false
+        }
+
+        let validsectionEndDates = sectionEndDates.compactMap { $0 }
+        return validsectionEndDates.allSatisfy { Clock.now > $0 }
     }
 
     public func refresh(completion: @escaping () -> Void) {
@@ -62,7 +71,10 @@ class CourseSectionStatus {
             guard let courseId = enrollment.course_id?.value, let sectionId = enrollment.course_section_id?.value else {
                 return
             }
-            dictionary[courseId] = sectionId
+
+            var sectionIDs: [String] = dictionary[courseId] ?? []
+            sectionIDs.append(sectionId)
+            dictionary[courseId] = sectionIDs
         }
     }
 }
