@@ -44,6 +44,8 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     }
     private var termsOfServiceRequest: APITask?
 
+    private var channelTypeRows: [Row]?
+
     public static func create(onElementaryViewToggleChanged: (() -> Void)? = nil) -> ProfileSettingsViewController {
         let viewController = ProfileSettingsViewController()
         viewController.onElementaryViewToggleChanged = onElementaryViewToggleChanged
@@ -98,7 +100,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             channelTypes[channel.type]?.append(channel)
         }
 
-        let channelTypeRows = channelTypes.values.map({ channels -> Row in
+        channelTypeRows = channelTypes.values.map({ channels -> Row in
             Row(channels[0].type.name) { [weak self] in
                 guard let self = self else { return }
                 if channels.count == 1, let channel = channels.first {
@@ -116,30 +118,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         }).sorted(by: { $0.title < $1.title })
 
         sections = [
-            Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: [
-                Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name) { [weak self] in
-                    guard let self = self else { return }
-                    self.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Landing Page", bundle: .core, comment: ""),
-                        sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
-                            ItemPickerItem(title: page.name)
-                        }), ],
-                        selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
-                            IndexPath(row: $0, section: 0)
-                        },
-                        delegate: self
-                    ), sender: self)
-                },
-            ]
-            + k5DashboardSwitch
-            + channelTypeRows
-            + pairWithObserverButton
-            + [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
-                    guard let url = self?.profile.first?.calendarURL else { return }
-                    self?.env.loginDelegate?.openExternalURL(url)
-               },
-            ]),
-
+            preferencesSection,
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
@@ -161,7 +140,71 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         tableView.reloadData()
     }
 
-    private var pairWithObserverButton: [Any] {
+    private var preferencesSection: Section {
+        return Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: preferencesRows)
+    }
+
+    private var preferencesRows: [Any] {
+        var rows = [Any]()
+        rows.append(contentsOf: landingPageRow)
+        rows.append(contentsOf: darkModeSettings)
+        rows.append(contentsOf: k5DashboardSwitch)
+        rows.append(contentsOf: channelTypeRows ?? [])
+        rows.append(contentsOf: pairWithObserverButton)
+        rows.append(contentsOf: [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
+            guard let url = self?.profile.first?.calendarURL else { return }
+            self?.env.loginDelegate?.openExternalURL(url)
+       },
+    ])
+        return rows
+    }
+
+    private var darkModeSettings: [Row] {
+
+        let options = [ ItemPickerItem(title: NSLocalizedString("Light", bundle: .core, comment: "")),
+                        ItemPickerItem(title: NSLocalizedString("Dark", bundle: .core, comment: "")),
+                        ItemPickerItem(title: NSLocalizedString("System settings", bundle: .core, comment: "")), ]
+
+        return [
+            Row(NSLocalizedString("App apperance", bundle: .core, comment: "")) { [weak self] in
+                guard let self = self else { return }
+
+                let pickerVC = ItemPickerViewController.create(title: "App apperance", sections: [ ItemPickerSection(items: options) ], selected: IndexPath(row: self.env.userDefaults?.darkMode.rawValue ?? 0, section: 0)) { indexPath in
+                    if let window = self.env.window {
+                        if indexPath.row == 2 {
+                            window.overrideUserInterfaceStyle = UIScreen.main.traitCollection.userInterfaceStyle
+                            self.env.userDefaults?.darkMode = .system
+                        } else {
+                            window.overrideUserInterfaceStyle = indexPath.row == 0 ? .light : .dark
+                            self.env.userDefaults?.darkMode = indexPath.row == 0 ? .light : .dark
+                        }
+                    }
+                }
+
+                self.show(pickerVC, sender: self)
+            },
+        ]
+    }
+
+    private var landingPageRow: [Row] {
+        return [
+            Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name) { [weak self] in
+                guard let self = self else { return }
+                self.show(ItemPickerViewController.create(
+                    title: NSLocalizedString("Landing Page", bundle: .core, comment: ""),
+                    sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
+                        ItemPickerItem(title: page.name)
+                    }), ],
+                    selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
+                        IndexPath(row: $0, section: 0)
+                    },
+                    delegate: self
+                ), sender: self)
+            },
+        ]
+    }
+
+    private var pairWithObserverButton: [Row] {
         guard isPairingWithObserverAllowed else { return [] }
 
         return [

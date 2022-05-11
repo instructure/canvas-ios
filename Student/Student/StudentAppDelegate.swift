@@ -82,7 +82,17 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
-        window?.overrideUserInterfaceStyle = environment.userDefaults?.darkMode == true ? .dark : .light
+
+        switch AppEnvironment.shared.userDefaults?.darkMode {
+        case .light:
+            window?.overrideUserInterfaceStyle = .light
+        case .dark:
+            window?.overrideUserInterfaceStyle = .dark
+        case .system:
+            window?.overrideUserInterfaceStyle = UIScreen.main.traitCollection.userInterfaceStyle
+        default:
+            break
+        }
 
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {

@@ -107,7 +107,17 @@ open class CoreWebView: WKWebView {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
         uiDelegate = self
-        overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.darkMode == true ? .dark : .light
+        
+        switch AppEnvironment.shared.userDefaults?.darkMode {
+        case .light:
+            overrideUserInterfaceStyle = .light
+        case .dark:
+            overrideUserInterfaceStyle = .dark
+        case .system:
+            overrideUserInterfaceStyle = UIScreen.main.traitCollection.userInterfaceStyle
+        default:
+            break
+        }
 
         addScript(js)
         handle("resize") { [weak self] message in

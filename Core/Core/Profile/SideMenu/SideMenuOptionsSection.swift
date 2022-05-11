@@ -32,9 +32,6 @@ struct SideMenuOptionsSection: View {
                 SideMenuToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: $viewModel.showGrades).onTapGesture {
                     viewModel.showGrades.toggle()
                 }
-                SideMenuToggleItem(id: "darkMode", image: .imageSolid, title: Text("Dark Mode", bundle: .core), isOn: $viewModel.darkMode).onTapGesture {
-                    viewModel.darkMode.toggle()
-                }
             }
 
             if enrollment == .student || enrollment == .teacher {
@@ -59,17 +56,6 @@ extension SideMenuOptionsSection {
             }
         }
 
-        @Published var darkMode: Bool = false {
-            willSet {
-                if newValue != darkMode {
-                    if let window = env.window {
-                        window.overrideUserInterfaceStyle = newValue ? .dark : .light
-                    }
-                    env.userDefaults?.darkMode = newValue
-                }
-            }
-        }
-
         @Published var colorOverlay: Bool = false {
             willSet {
                 if newValue != colorOverlay {
@@ -85,7 +71,6 @@ extension SideMenuOptionsSection {
 
         init() {
             showGrades = env.userDefaults?.showGradesOnDashboard == true
-            darkMode = env.userDefaults?.darkMode == true
             colorOverlay = settings.first?.hideDashcardColorOverlays != true
         }
 

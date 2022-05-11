@@ -60,9 +60,15 @@ public struct SessionDefaults {
         set { self["isDashboardLayoutGrid"] = newValue }
     }
 
-    public var darkMode: Bool {
-        get { return self["darkMode"] as? Bool ?? false }
-        set { self["darkMode"] = newValue }
+    public enum AppTheme: Int {
+        case light
+        case dark
+        case system
+    }
+
+    public var darkMode: AppTheme {
+        get { return AppTheme(rawValue: self["darkMode"] as? Int ?? 0) ?? .light }
+        set { self["darkMode"] = newValue.rawValue }
     }
 
     public var isMissingItemsSectionOpenOnK5Schedule: Bool? {
