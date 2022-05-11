@@ -39,7 +39,7 @@ class CourseSectionStatusTests: CoreTestCase {
         let enrollments: [APIEnrollment] = [
             .make(id: "1", course_id: "course_1", course_section_id: "section_1"),
         ]
-        let request = GetEnrollmentsRequest(context: .currentUser, types: [Role.student.rawValue], states: [.active])
+        let request = GetEnrollmentsRequest(context: .currentUser, states: [.active])
         api.mock(request, value: enrollments)
 
         // Course mock
@@ -53,8 +53,8 @@ class CourseSectionStatusTests: CoreTestCase {
         testee.refresh { }
         drainMainQueue()
 
-        XCTAssertTrue(testee.isSectionExpired(in: course))
-        XCTAssertTrue(testee.isSectionExpired(for: dashboardCard, in: [course]))
+        XCTAssertTrue(testee.isAllSectionsExpired(in: course))
+        XCTAssertTrue(testee.isAllSectionsExpired(for: dashboardCard, in: [course]))
     }
 
     func testExpiredSectionAndActiveSectionWithoutEndDate() {
@@ -63,7 +63,7 @@ class CourseSectionStatusTests: CoreTestCase {
             .make(id: "1", course_id: "course_1", course_section_id: "activeSection"),
             .make(id: "2", course_id: "course_1", course_section_id: "expiredSection"),
         ]
-        let request = GetEnrollmentsRequest(context: .currentUser, types: [Role.student.rawValue], states: [.active])
+        let request = GetEnrollmentsRequest(context: .currentUser, states: [.active])
         api.mock(request, value: enrollments)
 
         // Course mock
@@ -78,8 +78,8 @@ class CourseSectionStatusTests: CoreTestCase {
         testee.refresh { }
         drainMainQueue()
 
-        XCTAssertFalse(testee.isSectionExpired(in: course))
-        XCTAssertFalse(testee.isSectionExpired(for: dashboardCard, in: [course]))
+        XCTAssertFalse(testee.isAllSectionsExpired(in: course))
+        XCTAssertFalse(testee.isAllSectionsExpired(for: dashboardCard, in: [course]))
     }
 
     func testExpiredSectionAndActiveSectionWithNonPastEndDate() {
@@ -88,7 +88,7 @@ class CourseSectionStatusTests: CoreTestCase {
             .make(id: "1", course_id: "course_1", course_section_id: "activeSection"),
             .make(id: "2", course_id: "course_1", course_section_id: "expiredSection"),
         ]
-        let request = GetEnrollmentsRequest(context: .currentUser, types: [Role.student.rawValue], states: [.active])
+        let request = GetEnrollmentsRequest(context: .currentUser, states: [.active])
         api.mock(request, value: enrollments)
 
         // Course mock
@@ -103,7 +103,29 @@ class CourseSectionStatusTests: CoreTestCase {
         testee.refresh { }
         drainMainQueue()
 
-        XCTAssertFalse(testee.isSectionExpired(in: course))
-        XCTAssertFalse(testee.isSectionExpired(for: dashboardCard, in: [course]))
+        XCTAssertFalse(testee.isAllSectionsExpired(in: course))
+        XCTAssertFalse(testee.isAllSectionsExpired(for: dashboardCard, in: [course]))
+    }
+
+    func testSectionWithConcludedEnrollment() {
+        // No active enrollments to be returned by mock
+        let enrollments: [APIEnrollment] = []
+        let request = GetEnrollmentsRequest(context: .currentUser, states: [.active])
+        api.mock(request, value: enrollments)
+
+        // Course mock
+        let section = APICourse.SectionRef(end_at: nil, enrollment_role: "", id: "", name: "", start_at: nil)
+        let course = Course.make(from: .make(id: "course_1", sections: [section]))
+
+        // DashboardCard mock
+        let dashboardCard = DashboardCard.save(.make(id: "course_1"), position: 0, in: databaseClient)
+
+        let testee = CourseSectionStatus()
+        testee.refresh { }
+        drainMainQueue()
+
+        XCTAssertFalse(testee.isAllSectionsExpired(in: course))
+        XCTAssertFalse(testee.isAllSectionsExpired(for: dashboardCard, in: [course]))
+        XCTAssertTrue(testee.isNoActiveEnrollments(in: course))
     }
 }
