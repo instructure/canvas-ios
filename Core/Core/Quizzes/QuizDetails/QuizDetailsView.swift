@@ -126,40 +126,7 @@ public struct QuizDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        VStack(alignment: .leading, spacing: 4) {
-            Line(Text("Quiz Type:", bundle: .core), Text(quiz.quizType.sectionTitle))
-            //TODO
-            Line(Text("Assignment Group:", bundle: .core), Text("TODO"))
-            if let assignmentGroup = assignment.assignmentGroup?.name {
-                Line(Text("Assignment Group:", bundle: .core), Text(assignmentGroup))
-            }
-            let shuffleAnswers = quiz.shuffleAnswers ? Text("Yes") : Text("No")
-            Line(Text("Shuffle Answers:", bundle: .core), shuffleAnswers)
-
-            let timeLimitText = quiz.timeLimit != nil ? "\(Int(quiz.timeLimit!)) Minutes" : "No time Limit"
-            Line(Text("Time Limit:", bundle: .core), Text(timeLimitText))
-
-            Line(Text("Allowed Attempts:", bundle: .core), Text(quiz.allowedAttemptsText))
-            //TODO
-            if let hideResults = quiz.hideResults {
-                Line(Text("View Responses:", bundle: .core), Text(hideResults.text))
-            }
-            //TODO
-            //Line(Text("Show Correct Answers:", bundle: .core), Text(quiz.???))
-
-            let oneQuestionAtATime = quiz.oneQuestionAtATime ? Text("Yes") : Text("No")
-            Line(Text("One Question at a Time:", bundle: .core), oneQuestionAtATime)
-            let lockQuestionsAfterAnswering = quiz.oneQuestionAtATime == true && quiz.cantGoBack ? Text("Yes") : Text("No")
-            //TODO cantgoBack
-            Line(Text("Lock Questions After Answering:", bundle: .core), lockQuestionsAfterAnswering)
-            //TODO
-            //Line(Text("Score to Keep:", bundle: .core), Text(quiz.sco))
-            if let accessCode = quiz.accessCode {
-                Line(Text("Access Code:", bundle: .core), Text(accessCode))
-            }
-        }
-        .font(.regular16).foregroundColor(.textDarkest)
-        .padding(16)
+        quizdetails(quiz: quiz, assignment: assignment)
 
         Spacer()
         
@@ -176,6 +143,46 @@ public struct QuizDetailsView: View {
                 .background(Color(Brand.shared.buttonPrimaryBackground))
                 .cornerRadius(4)
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
+    }
+
+    @ViewBuilder func quizdetails(quiz: Quiz, assignment: Assignment) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            SwiftUI.Group {
+                Line(Text("Quiz Type:", bundle: .core), Text(quiz.quizType.sectionTitle))
+                //TODO
+                Line(Text("Assignment Group:", bundle: .core), Text("TODO"))
+                if let assignmentGroup = assignment.assignmentGroup?.name {
+                    Line(Text("Assignment Group:", bundle: .core), Text(assignmentGroup))
+                }
+                let shuffleAnswers = quiz.shuffleAnswers ? Text("Yes") : Text("No")
+                Line(Text("Shuffle Answers:", bundle: .core), shuffleAnswers)
+
+                let timeLimitText = quiz.timeLimit != nil ? "\(Int(quiz.timeLimit!)) Minutes" : "No time Limit"
+                Line(Text("Time Limit:", bundle: .core), Text(timeLimitText))
+            }
+            Line(Text("Allowed Attempts:", bundle: .core), Text(quiz.allowedAttemptsText))
+
+            let hideResultsText = quiz.hideResults != nil ? quiz.hideResults!.text : "Always"
+            Line(Text("View Responses:", bundle: .core), Text(hideResultsText))
+
+            //TODO
+            //Line(Text("Show Correct Answers:", bundle: .core), Text(quiz.???))
+
+            let oneQuestionAtATime = quiz.oneQuestionAtATime ? Text("Yes") : Text("No")
+            Line(Text("One Question at a Time:", bundle: .core), oneQuestionAtATime)
+            let lockQuestionsAfterAnswering = quiz.oneQuestionAtATime == true && quiz.cantGoBack ? Text("Yes") : Text("No")
+
+            //TODO cantgoBack
+            Line(Text("Lock Questions After Answering:", bundle: .core), lockQuestionsAfterAnswering)
+            if let scoringPolicy = quiz.scoringPolicy {
+                Line(Text("Score to Keep:", bundle: .core), Text(scoringPolicy.text))
+            }
+            if let accessCode = quiz.accessCode {
+                Line(Text("Access Code:", bundle: .core), Text(accessCode))
+            }
+        }
+        .font(.regular16).foregroundColor(.textDarkest)
+        .padding(16)
     }
 
     struct Section<Label: View, Content: View>: View {

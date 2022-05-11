@@ -48,6 +48,7 @@ public struct APIQuiz: Codable, Equatable {
     let quiz_type: QuizType
     let require_lockdown_browser_for_results: Bool
     let require_lockdown_browser: Bool
+    let scoring_policy: ScoringPolicy?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let shuffle_answers: Bool?
     let time_limit: Double? // minutes
@@ -62,7 +63,6 @@ public struct APIQuiz: Codable, Equatable {
     // let permissions: APIQuizPermissions?
     // let preview_url: URL
     // let quiz_extensions_url: URL?
-    // let scoring_policy: ScoringPolicy?
     // let show_correct_answers_at: Date?
     // let show_correct_answers_last_attempt: Bool?
     // let show_correct_answers: Bool?
@@ -193,6 +193,7 @@ extension APIQuiz {
         quiz_type: QuizType = .survey,
         require_lockdown_browser_for_results: Bool = false,
         require_lockdown_browser: Bool = false,
+        scoring_policy: ScoringPolicy? = nil,
         shuffle_answers: Bool = false,
         time_limit: Double? = nil,
         title: String = "What kind of pokemon are you?",
@@ -222,6 +223,7 @@ extension APIQuiz {
             quiz_type: quiz_type,
             require_lockdown_browser_for_results: require_lockdown_browser_for_results,
             require_lockdown_browser: require_lockdown_browser,
+            scoring_policy: scoring_policy,
             shuffle_answers: shuffle_answers,
             time_limit: time_limit,
             title: title,

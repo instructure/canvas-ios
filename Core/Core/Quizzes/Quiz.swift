@@ -46,6 +46,7 @@ public class Quiz: NSManagedObject {
     @NSManaged var quizTypeRaw: String
     @NSManaged public var requireLockdownBrowser: Bool
     @NSManaged public var requireLockdownBrowserForResults: Bool
+    @NSManaged public var scoringPolicyRaw: String?
     @NSManaged public var shuffleAnswers: Bool
     @NSManaged public var submission: QuizSubmission?
     @NSManaged var timeLimitRaw: NSNumber? // minutes
@@ -70,6 +71,11 @@ public class Quiz: NSManagedObject {
     public var quizType: QuizType {
         get { return QuizType(rawValue: quizTypeRaw) ?? .assignment }
         set { quizTypeRaw = newValue.rawValue }
+    }
+
+    public var scoringPolicy: ScoringPolicy? {
+        get { return scoringPolicyRaw.flatMap { ScoringPolicy(rawValue: $0) } }
+        set { scoringPolicyRaw = newValue?.rawValue }
     }
 
     public var timeLimit: Double? {
@@ -165,6 +171,7 @@ extension Quiz {
         model.quizTypeOrder = QuizType.allCases.firstIndex(of: item.quiz_type) ?? QuizType.allCases.count
         model.requireLockdownBrowser = item.require_lockdown_browser
         model.requireLockdownBrowserForResults = item.require_lockdown_browser_for_results
+        model.scoringPolicy = item.scoring_policy
         model.shuffleAnswers = item.shuffle_answers ?? false
         model.timeLimit = item.time_limit
         model.title = item.title
@@ -212,3 +219,17 @@ public enum QuizType: String, Codable, CaseIterable {
         }
     }
 }
+
+public enum ScoringPolicy: String, Codable, CaseIterable {
+    case keep_latest, keep_highest
+
+    public var text: String {
+        switch self {
+        case .keep_latest:
+            return NSLocalizedString("Latest", bundle: .core, comment: "")
+        case .keep_highest:
+            return NSLocalizedString("Highest", bundle: .core, comment: "")
+        }
+    }
+}
+

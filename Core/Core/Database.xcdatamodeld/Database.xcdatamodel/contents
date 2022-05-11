@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -752,6 +752,7 @@
         <attribute name="quizTypeRaw" attributeType="String"/>
         <attribute name="requireLockdownBrowser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="requireLockdownBrowserForResults" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="scoringPolicyRaw" optional="YES" attributeType="String"/>
         <attribute name="shuffleAnswers" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="timeLimitRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
@@ -1005,7 +1006,7 @@
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1079"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
-        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="508"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="509"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="178"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
