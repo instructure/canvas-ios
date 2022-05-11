@@ -89,7 +89,7 @@ class CourseSectionStatus {
 
     private func saveActiveEnrollmentIDs(from enrollments: [APIEnrollment]) {
         activeEnrollmentCourseIDs.removeAll()
-        let enrollmentIDs = enrollments.compactMap { $0.course_id?.value }
-        activeEnrollmentCourseIDs.formUnion(enrollmentIDs)
+        let courseIDs = enrollments.compactMap { $0.course_id?.value }
+        activeEnrollmentCourseIDs.formUnion(courseIDs)
     }
 }
