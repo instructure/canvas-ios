@@ -42,7 +42,7 @@ class SubmissionCommentTextCell: UITableViewCell {
             comment.authorName,
             comment.comment
         )
-        commentLabel?.text = comment.comment
+        commentLabel?.setText(comment.comment, lineHeight: .body)
 
         attachmentsStackView?.arrangedSubviews.forEach { subview in
             attachmentsStackView?.removeArrangedSubview(subview)

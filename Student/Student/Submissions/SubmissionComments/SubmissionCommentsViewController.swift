@@ -64,7 +64,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         addCommentButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
         addCommentTextView.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
-        addCommentTextView.font = .scaledNamedFont(.regular14)
+        addCommentTextView.font(.scaledNamedFont(.regular14), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
         addCommentView.backgroundColor = .backgroundLight

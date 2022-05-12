@@ -77,7 +77,7 @@ extension Annotation {
         case .freetext:
             let freeText = DocViewerFreeTextAnnotation(contents: apiAnnotation.contents ?? "")
             let fontSizeStr = apiAnnotation.font?.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted) ?? ""
-            freeText.fontName = "Helvetica" // apiAnnotation.font?.split(separator: " ")?.last.flatMap { String($0) } ?? "Helvetica"
+            freeText.fontName = "Lato-Regular"
             freeText.fontSize = CGFloat(Float(fontSizeStr) ?? 14) * fontSizeTransform
             freeText.fillColor = apiAnnotation.bgColor == "transparent" ? .clear
                 : UIColor(hexString: apiAnnotation.bgColor) ?? .white

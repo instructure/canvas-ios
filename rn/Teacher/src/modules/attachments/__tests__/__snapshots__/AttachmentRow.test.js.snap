@@ -69,6 +69,7 @@ exports[`AttachmentRow renders 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Array [

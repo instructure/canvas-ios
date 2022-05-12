@@ -71,7 +71,7 @@ public struct SubmitAssignmentExtensionView: View {
     private var commentBox: some View {
         let editor = TextEditor(text: $viewModel.comment)
             .foregroundColor(.textDarkest)
-            .font(.regular16)
+            .style(.body)
             .frame(height: 100)
             .padding(.vertical, 13) // TextEditor has a default 7 point padding so 20 - 7
             .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar

@@ -86,6 +86,7 @@ exports[`Filter renders the filter options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -172,6 +173,7 @@ exports[`Filter renders the filter options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -258,6 +260,7 @@ exports[`Filter renders the filter options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -344,6 +347,7 @@ exports[`Filter renders the filter options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -430,6 +434,7 @@ exports[`Filter renders the filter options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -516,6 +521,7 @@ exports[`Filter renders the filter options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -602,6 +608,7 @@ exports[`Filter renders the filter options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -716,6 +723,7 @@ exports[`Filter renders with preselected options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -804,6 +812,7 @@ exports[`Filter renders with preselected options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -892,6 +901,7 @@ exports[`Filter renders with preselected options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -980,6 +990,7 @@ exports[`Filter renders with preselected options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1068,6 +1079,7 @@ exports[`Filter renders with preselected options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1187,6 +1199,7 @@ exports[`Filter renders with preselected options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1275,6 +1288,7 @@ exports[`Filter renders with preselected options 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1391,6 +1405,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1479,6 +1494,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1567,6 +1583,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1655,6 +1672,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1743,6 +1761,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1862,6 +1881,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1950,6 +1970,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [

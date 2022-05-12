@@ -284,6 +284,7 @@ const styles = createStyleSheet((colors, vars) => ({
   bodyText: {
     fontSize: 16,
     color: colors.textDarkest,
+    lineHeight: vars.isK5Enabled ? undefined : 24, // Manually calculated 'condensed' height for 16 point font
   },
   replyButton: {
     marginTop: vars.padding / 2,

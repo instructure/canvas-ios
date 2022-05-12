@@ -67,6 +67,7 @@ exports[`Render disabled row with switch 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Array [
@@ -183,6 +184,7 @@ exports[`Render row with switch 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Array [

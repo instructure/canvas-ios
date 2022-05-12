@@ -13,6 +13,7 @@ exports[`render with multiple due dates 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         undefined,
@@ -40,6 +41,7 @@ exports[`render with multiple due dates 2`] = `
         Array [
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
           },
           Object {
@@ -54,6 +56,7 @@ exports[`render with multiple due dates 2`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {
@@ -69,6 +72,7 @@ exports[`render with multiple due dates 2`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {},
@@ -84,6 +88,7 @@ exports[`render with multiple due dates 2`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Object {
@@ -98,6 +103,7 @@ exports[`render with multiple due dates 2`] = `
         Array [
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
           },
           Object {
@@ -113,6 +119,7 @@ exports[`render with multiple due dates 2`] = `
         Array [
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
           },
           Object {},
@@ -128,6 +135,7 @@ exports[`render with multiple due dates 2`] = `
         Array [
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
           },
           Object {
@@ -141,6 +149,7 @@ exports[`render with multiple due dates 2`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {
@@ -156,6 +165,7 @@ exports[`render with multiple due dates 2`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {},

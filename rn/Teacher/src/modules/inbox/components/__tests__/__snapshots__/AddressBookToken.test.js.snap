@@ -23,6 +23,7 @@ exports[`AddressBookToken renders 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Object {
@@ -122,6 +123,7 @@ exports[`AddressBookToken renders with avatar url 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Object {

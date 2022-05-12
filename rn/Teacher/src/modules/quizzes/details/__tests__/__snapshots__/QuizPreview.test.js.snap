@@ -194,6 +194,7 @@ exports[`QuizPreview renders error if needed 2`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             undefined,
@@ -237,6 +238,7 @@ exports[`QuizPreview renders on error 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             undefined,
@@ -335,6 +337,7 @@ exports[`QuizPreview renders on timeout 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             undefined,

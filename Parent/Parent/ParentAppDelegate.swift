@@ -49,6 +49,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
+        FontAppearance.update()
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()

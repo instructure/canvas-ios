@@ -182,11 +182,22 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
         return presenter?.pickerSubmissions.count ?? 0
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let submittedAt = presenter?.pickerSubmissions[row].submittedAt else {
-            return NSLocalizedString("No Submission Date", bundle: .student, comment: "")
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let text: String
+
+        if let submittedAt = presenter?.pickerSubmissions[row].submittedAt {
+            text = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
+        } else {
+            text = NSLocalizedString("No Submission Date", bundle: .student, comment: "")
         }
-        return DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
+
+        let label = UILabel()
+        label.textColor = .textDarkest
+        label.text = text
+        label.font = .scaledNamedFont(.regular23)
+        label.textAlignment = .center
+
+        return label
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

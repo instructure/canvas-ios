@@ -58,6 +58,7 @@ exports[`render 0 submissions 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -142,6 +143,7 @@ exports[`render 0 submissions 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -226,6 +228,7 @@ exports[`render 0 submissions 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -326,6 +329,7 @@ exports[`render 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -410,6 +414,7 @@ exports[`render 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -494,6 +499,7 @@ exports[`render 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -594,6 +600,7 @@ exports[`render 1 needs grading 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -678,6 +685,7 @@ exports[`render 1 needs grading 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -762,6 +770,7 @@ exports[`render 1 needs grading 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -862,6 +871,7 @@ exports[`render 2 need grading 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -946,6 +956,7 @@ exports[`render 2 need grading 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1030,6 +1041,7 @@ exports[`render 2 need grading 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1130,6 +1142,7 @@ exports[`render loading with pending set 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1209,6 +1222,7 @@ exports[`render loading with pending set 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1288,6 +1302,7 @@ exports[`render loading with pending set 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1383,6 +1398,7 @@ exports[`render no graded 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1467,6 +1483,7 @@ exports[`render no graded 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1551,6 +1568,7 @@ exports[`render no graded 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1651,6 +1669,7 @@ exports[`render with an assignment id 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1735,6 +1754,7 @@ exports[`render with an assignment id 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1819,6 +1839,7 @@ exports[`render with an assignment id 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
