@@ -168,6 +168,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if (!uiTesting) {
             AppStoreReview.handleLaunch()
         }
+        window?.updateInterfaceStyle(AppEnvironment.shared.userDefaults?.interfaceStyle)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
