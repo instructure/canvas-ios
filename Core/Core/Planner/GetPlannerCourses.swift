@@ -65,13 +65,6 @@ class GetPlannerCourses: APIUseCase {
         guard let courses = response else { return }
         let planner: Planner = client.first(scope: .all) ?? client.insert()
 
-        // These properties aren't optional in CoreData so we have to setup an initial
-        // value after the object's creation otherwise CoreData will throw an error
-        if planner.isInserted {
-            planner.hiddenCourseIDs = []
-            planner.availableCourseIDs = []
-        }
-
         for apiCourse in courses {
             let course = Course.save(apiCourse, in: client)
             planner.availableCourseIDs.append(course.id)

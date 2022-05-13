@@ -38,4 +38,13 @@ class Planner: NSManagedObject {
     var allSelected: Bool {
         availableCourseIDs.allSatisfy { selectedCourses.contains($0) }
     }
+
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+
+        // These properties aren't optional in CoreData so we have to setup an initial
+        // value after the object's creation otherwise CoreData will throw an error
+        hiddenCourseIDs = []
+        availableCourseIDs = []
+    }
 }
