@@ -109,7 +109,7 @@ open class CoreWebView: WKWebView {
         uiDelegate = self
 
         overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
-        
+
         addScript(js)
         handle("resize") { [weak self] message in
             guard let self = self, let body = message.body as? [String: CGFloat], let height = body["height"] else { return }

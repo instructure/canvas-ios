@@ -34,7 +34,7 @@ public struct SideMenuView: View {
                     Divider()
                     SideMenuMainSection(enrollment)
                     Divider()
-                    if enrollment != .observer, !environment.k5.isK5Enabled {
+                    if !environment.k5.isK5Enabled {
                         SideMenuOptionsSection(enrollment: enrollment)
                         Divider()
                     }

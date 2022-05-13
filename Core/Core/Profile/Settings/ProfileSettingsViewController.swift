@@ -171,12 +171,12 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             Row(NSLocalizedString("App apperance", bundle: .core, comment: "")) { [weak self] in
                 guard let self = self else { return }
 
-                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("App apperance", bundle: .core, comment: ""), sections: [ ItemPickerSection(items: options) ], selected: IndexPath(row: self.env.userDefaults?.interfaceStyle.rawValue ?? 0, section: 0)) { indexPath in
-                    if let window = self.env.window {
-                        self.env.userDefaults?.interfaceStyle = UIUserInterfaceStyle(rawValue: indexPath.row) ?? .unspecified
-                        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                            window.overrideUserInterfaceStyle = self.env.userDefaults?.interfaceStyle ?? .unspecified
-                        }, completion: nil)
+                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("App apperance", bundle: .core, comment: ""),
+                                                               sections: [ ItemPickerSection(items: options) ],
+                                                               selected: IndexPath(row: self.env.userDefaults?.interfaceStyle.rawValue ?? 0, section: 0)) { indexPath in
+                    if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
+                        window.updateInterfaceStyle(style)
+                        self.env.userDefaults?.interfaceStyle = style
                     }
                 }
 

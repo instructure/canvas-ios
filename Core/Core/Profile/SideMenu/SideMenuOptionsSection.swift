@@ -38,6 +38,10 @@ struct SideMenuOptionsSection: View {
                 SideMenuToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay).onTapGesture {
                     viewModel.colorOverlay.toggle()
                 }
+            } else {
+                SideMenuToggleItem(id: "darkMode", image: .imageSolid, title: Text("Dark Mode", bundle: .core), isOn: $viewModel.darkMode).onTapGesture {
+                    viewModel.darkMode.toggle()
+                }
             }
         }
         .onAppear {
@@ -64,6 +68,18 @@ extension SideMenuOptionsSection {
             }
         }
 
+        @Published var darkMode: Bool = false {
+            willSet {
+                if newValue != darkMode {
+                    let style: UIUserInterfaceStyle = newValue ? .dark : .light
+                    if let window = env.window {
+                        window.updateInterfaceStyle(style)
+                    }
+                    env.userDefaults?.interfaceStyle = style
+                }
+            }
+        }
+
         private let env = AppEnvironment.shared
         private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
             self?.colorOverlay = self?.settings.first?.hideDashcardColorOverlays != true
@@ -72,6 +88,7 @@ extension SideMenuOptionsSection {
         init() {
             showGrades = env.userDefaults?.showGradesOnDashboard == true
             colorOverlay = settings.first?.hideDashcardColorOverlays != true
+            darkMode = env.userDefaults?.interfaceStyle == .dark
         }
 
         func viewDidAppear() {
