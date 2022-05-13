@@ -107,18 +107,9 @@ open class CoreWebView: WKWebView {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
         uiDelegate = self
-        
-        switch AppEnvironment.shared.userDefaults?.darkMode {
-        case .light:
-            overrideUserInterfaceStyle = .light
-        case .dark:
-            overrideUserInterfaceStyle = .dark
-        case .system:
-            overrideUserInterfaceStyle = UIScreen.main.traitCollection.userInterfaceStyle
-        default:
-            break
-        }
 
+        overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interFaceStyle ?? .unspecified
+        
         addScript(js)
         handle("resize") { [weak self] message in
             guard let self = self, let body = message.body as? [String: CGFloat], let height = body["height"] else { return }

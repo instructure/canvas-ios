@@ -83,17 +83,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         environment.userDidLogin(session: session)
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
 
-        switch AppEnvironment.shared.userDefaults?.darkMode {
-        case .light:
-            window?.overrideUserInterfaceStyle = .light
-        case .dark:
-            window?.overrideUserInterfaceStyle = .dark
-        case .system:
-            window?.overrideUserInterfaceStyle = UIScreen.main.traitCollection.userInterfaceStyle
-        default:
-            break
-        }
-
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
@@ -141,6 +130,14 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.handleLaunch()
         CoreWebView.keepCookieAlive(for: environment)
+        updateTheme()
+    }
+
+    private func updateTheme() {
+        guard let window = window else { return }
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            window.overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interFaceStyle ?? .unspecified
+        }, completion: nil)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {

@@ -147,7 +147,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     private var preferencesRows: [Any] {
         var rows = [Any]()
         rows.append(contentsOf: landingPageRow)
-        rows.append(contentsOf: darkModeSettings)
+        rows.append(contentsOf: interfaceStyleSettings)
         rows.append(contentsOf: k5DashboardSwitch)
         rows.append(contentsOf: channelTypeRows ?? [])
         rows.append(contentsOf: pairWithObserverButton)
@@ -159,25 +159,24 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         return rows
     }
 
-    private var darkModeSettings: [Row] {
+    private var interfaceStyleSettings: [Row] {
 
-        let options = [ ItemPickerItem(title: NSLocalizedString("Light", bundle: .core, comment: "")),
-                        ItemPickerItem(title: NSLocalizedString("Dark", bundle: .core, comment: "")),
-                        ItemPickerItem(title: NSLocalizedString("System settings", bundle: .core, comment: "")), ]
+        let options = [
+            ItemPickerItem(title: NSLocalizedString("System settings", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Light", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Dark", bundle: .core, comment: "")),
+        ]
 
         return [
             Row(NSLocalizedString("App apperance", bundle: .core, comment: "")) { [weak self] in
                 guard let self = self else { return }
 
-                let pickerVC = ItemPickerViewController.create(title: "App apperance", sections: [ ItemPickerSection(items: options) ], selected: IndexPath(row: self.env.userDefaults?.darkMode.rawValue ?? 0, section: 0)) { indexPath in
+                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("App apperance", bundle: .core, comment: ""), sections: [ ItemPickerSection(items: options) ], selected: IndexPath(row: self.env.userDefaults?.interFaceStyle.rawValue ?? 0, section: 0)) { indexPath in
                     if let window = self.env.window {
-                        if indexPath.row == 2 {
-                            window.overrideUserInterfaceStyle = UIScreen.main.traitCollection.userInterfaceStyle
-                            self.env.userDefaults?.darkMode = .system
-                        } else {
-                            window.overrideUserInterfaceStyle = indexPath.row == 0 ? .light : .dark
-                            self.env.userDefaults?.darkMode = indexPath.row == 0 ? .light : .dark
-                        }
+                        self.env.userDefaults?.interFaceStyle = UIUserInterfaceStyle(rawValue: indexPath.row) ?? .unspecified
+                        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                            window.overrideUserInterfaceStyle = self.env.userDefaults?.interFaceStyle ?? .unspecified
+                        }, completion: nil)
                     }
                 }
 
