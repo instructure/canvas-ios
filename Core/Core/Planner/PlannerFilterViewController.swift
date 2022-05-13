@@ -31,7 +31,7 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
     let env = AppEnvironment.shared
     var studentID: String?
 
-    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
+    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .all) { [weak self] in
         self?.update()
     }
     var planner: Planner? { planners.first }
@@ -81,10 +81,10 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
     }
 
     func toggleCourse(_ course: Course) throws {
-        if planner?.selectedCourses.contains(course) == true {
-            planner?.selectedCourses.remove(course)
+        if planner?.selectedCourses.contains(course.id) == true {
+            planner?.selectedCourses.remove(course.id)
         } else {
-            planner?.selectedCourses.insert(course)
+            planner?.selectedCourses.insert(course.id)
         }
         try env.database.viewContext.save()
     }
@@ -113,7 +113,7 @@ extension PlannerFilterViewController: UITableViewDataSource {
         cell.accessibilityIdentifier = "PlannerFilter.section.\(indexPath.section).row.\(indexPath.row)"
         cell.accessibilityLabel = course?.name
         cell.courseNameLabel.text = course?.name
-        cell.isSelected = course.flatMap { planner?.selectedCourses.contains($0) } == true
+        cell.isSelected = course.flatMap { planner?.selectedCourses.contains($0.id) } == true
         return cell
     }
 

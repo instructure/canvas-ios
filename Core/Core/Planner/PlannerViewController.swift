@@ -34,7 +34,7 @@ public class PlannerViewController: UIViewController {
     public var selectedDate: Date = Clock.now
     var studentID: String?
 
-    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
+    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .all) { [weak self] in
         self?.plannerListWillRefresh()
     }
     var planner: Planner? { planners.first }
@@ -117,7 +117,7 @@ public class PlannerViewController: UIViewController {
         var contextCodes: [String]?
         if let planner = planner, !planner.allSelected {
             contextCodes = planner.selectedCourses.map {
-                Context(.course, id: $0.id).canvasContextID
+                Context(.course, id: $0).canvasContextID
             }
             if let studentID = studentID ?? env.currentSession?.userID {
                 contextCodes?.append(Context(.user, id: studentID).canvasContextID)

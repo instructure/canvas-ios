@@ -43,6 +43,18 @@ class NSManagedObjectContextExtensionsTests: CoreTestCase {
         XCTAssertFalse(result == no)
     }
 
+    func testFirstByScope() {
+        let firstCourse = Course.make(from: .make(id: "1"))
+        Course.make(from: .make(id: "2"))
+
+        guard let result: Course = databaseClient.first(scope: .all) else {
+            XCTFail()
+            return
+        }
+
+        XCTAssertEqual(result, firstCourse)
+    }
+
     func testIsObjectDeleted() throws {
         let object = Course.make()
         databaseClient.delete(object)

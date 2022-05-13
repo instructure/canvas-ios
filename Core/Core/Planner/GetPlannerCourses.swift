@@ -24,21 +24,11 @@ class GetPlannerCourses: APIUseCase {
 
     let studentID: String?
 
-    var cacheKey: String? {
-        let studentKey = studentID ?? "self"
-        return "planner/\(studentKey)/courses"
-    }
+    var cacheKey: String? { "planner/self/courses" }
 
     var scope: Scope {
-        let studentIdPredicate: NSPredicate
-
-        if let studentID = studentID {
-            studentIdPredicate = NSPredicate(format: "%K == %@", #keyPath(Course.planner.studentID), studentID)
-        } else {
-            studentIdPredicate = NSPredicate(format: "%K == NIL", #keyPath(Course.planner.studentID))
-        }
         let enrollmentPredicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.active.rawValue)
-        return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [studentIdPredicate, enrollmentPredicate]),
+        return Scope(predicate: enrollmentPredicate,
                      orderBy: #keyPath(Course.name),
                      ascending: true,
                      naturally: true)
@@ -49,8 +39,8 @@ class GetPlannerCourses: APIUseCase {
     }
 
     func reset(context: NSManagedObjectContext) {
-        if let planner: Planner = context.first(where: #keyPath(Planner.studentID), equals: studentID) {
-            planner.courses = []
+        if let planner: Planner = context.first(scope: .all) {
+            planner.availableCourseIDs = []
         }
     }
 
@@ -73,11 +63,18 @@ class GetPlannerCourses: APIUseCase {
 
     func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let courses = response else { return }
-        let planner: Planner = client.first(where: #keyPath(Planner.studentID), equals: studentID) ?? client.insert()
-        planner.studentID = studentID
+        let planner: Planner = client.first(scope: .all) ?? client.insert()
+
+        // These properties aren't optional in CoreData so we have to setup an initial
+        // value after the object's creation otherwise CoreData will throw an error
+        if planner.isInserted {
+            planner.hiddenCourseIDs = []
+            planner.availableCourseIDs = []
+        }
+
         for apiCourse in courses {
             let course = Course.save(apiCourse, in: client)
-            planner.courses.insert(course)
+            planner.availableCourseIDs.append(course.id)
         }
     }
 
