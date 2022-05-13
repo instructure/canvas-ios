@@ -136,7 +136,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private func updateTheme() {
         guard let window = window else { return }
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            window.overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interFaceStyle ?? .unspecified
+            window.overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
         }, completion: nil)
     }
 

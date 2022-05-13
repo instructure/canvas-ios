@@ -60,7 +60,7 @@ public struct SessionDefaults {
         set { self["isDashboardLayoutGrid"] = newValue }
     }
 
-    public var interFaceStyle: UIUserInterfaceStyle {
+    public var interfaceStyle: UIUserInterfaceStyle {
         get { return UIUserInterfaceStyle(rawValue: self["interfaceStyle"] as? Int ?? 1) ?? .light }
         set { self["interfaceStyle"] = newValue.rawValue }
     }

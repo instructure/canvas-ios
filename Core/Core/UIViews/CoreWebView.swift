@@ -108,7 +108,7 @@ open class CoreWebView: WKWebView {
         navigationDelegate = self
         uiDelegate = self
 
-        overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interFaceStyle ?? .unspecified
+        overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
         
         addScript(js)
         handle("resize") { [weak self] message in
