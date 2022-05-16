@@ -38,7 +38,7 @@ struct HelpItemView: View {
                         .fixedSize(horizontal: false, vertical: true) // iOS 13.0 multi line support
                         .multilineTextAlignment(.leading)
                 }
-            }.frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal)
+            }.frame(maxWidth: .infinity, alignment: .leading).padding(EdgeInsets(top: 15, leading: 16, bottom: 14, trailing: 16))
         })
         .frame(maxWidth: .infinity)
         .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
