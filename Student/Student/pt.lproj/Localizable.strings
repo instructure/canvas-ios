@@ -74,7 +74,7 @@
 "%d hours ago" = "%d horas";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
-"%d items" = "%d ítens";
+"%d items" = "%d itens";
 
 /* time since creation (2 or more minutes) */
 "%d minutes ago" = "%d minutos";

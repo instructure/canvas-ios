@@ -49,9 +49,6 @@
 /* added to conversation label when unread */
 "%@, unread" = "%@, não lida";
 
-/* No comment provided by engineer. */
-"%@: %@" = "%1$@: %2$@";
-
 /* score/points */
 "%@/%@" = "%1$@/%2$@";
 
@@ -2309,7 +2306,7 @@
 "Welcome!" = "Bem-vindo!";
 
 /* No comment provided by engineer. */
-"Well Done!" = "Bem feito!";
+"Well Done!" = "Parabéns!";
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Qual é o nome da sua escola?";
@@ -2369,5 +2366,5 @@
 "Your Email" = "Seu e-mail";
 
 /* No comment provided by engineer. */
-"Your to do list is empty. Time to recharge." = "Sua lista de tarefas está vazia. Hora de recarregar.";
+"Your to do list is empty. Time to recharge." = "A sua lista de tarefas está vazia. Hora de recarregar.";
 
