@@ -23,6 +23,7 @@ import CoreData
  This object stores the courses to be shown/hidden in the calendar's course filter menu. This is a single object in the DB.
  */
 class Planner: NSManagedObject {
+    @NSManaged var studentID: String?
     @NSManaged var availableCourseIDs: [String]
     @NSManaged var hiddenCourseIDs: [String]
 

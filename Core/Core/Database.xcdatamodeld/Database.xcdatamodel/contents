@@ -721,6 +721,7 @@
     <entity name="Planner" representedClassName="Core.Planner" syncable="YES">
         <attribute name="availableCourseIDs" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="hiddenCourseIDs" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="studentID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String"/>
@@ -1002,7 +1003,7 @@
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1079"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
-        <element name="Planner" positionX="-540" positionY="-18" width="128" height="59"/>
+        <element name="Planner" positionX="-540" positionY="-18" width="128" height="74"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="508"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="178"/>

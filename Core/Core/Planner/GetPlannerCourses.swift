@@ -19,12 +19,17 @@
 import Foundation
 import CoreData
 
+/**
+ This use case fetches and returns active courses for a given user. While saving this also updates the Planner entity for the given `studentID`
+ to make sure it contains an up-to-date list of available course IDs. Use courses from this UseCase along with the `Planner` entity to determine which
+ courses should show up in the calendar's course filter.
+ */
 class GetPlannerCourses: APIUseCase {
     typealias Model = Course
 
     let studentID: String?
 
-    var cacheKey: String? { "planner/self/courses" }
+    var cacheKey: String? { "planner/\(studentID ?? "self")/courses" }
 
     var scope: Scope {
         let enrollmentPredicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.active.rawValue)
@@ -39,7 +44,7 @@ class GetPlannerCourses: APIUseCase {
     }
 
     func reset(context: NSManagedObjectContext) {
-        if let planner: Planner = context.first(scope: .all) {
+        if let planner: Planner = context.first(where: #keyPath(Planner.studentID), equals: studentID) {
             planner.availableCourseIDs = []
         }
     }
@@ -63,7 +68,8 @@ class GetPlannerCourses: APIUseCase {
 
     func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let courses = response else { return }
-        let planner: Planner = client.first(scope: .all) ?? client.insert()
+        let planner: Planner = client.first(where: #keyPath(Planner.studentID), equals: studentID) ?? client.insert()
+        planner.studentID = studentID
 
         for apiCourse in courses {
             let course = Course.save(apiCourse, in: client)

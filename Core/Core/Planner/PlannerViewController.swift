@@ -34,7 +34,7 @@ public class PlannerViewController: UIViewController {
     public var selectedDate: Date = Clock.now
     var studentID: String?
 
-    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .all) { [weak self] in
+    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
         self?.plannerListWillRefresh()
     }
     var planner: Planner? { planners.first }
