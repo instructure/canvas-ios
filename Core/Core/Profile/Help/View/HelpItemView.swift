@@ -39,6 +39,7 @@ struct HelpItemView: View {
                         .multilineTextAlignment(.leading)
                 }
             }.frame(maxWidth: .infinity, alignment: .leading).padding(EdgeInsets(top: 15, leading: 16, bottom: 14, trailing: 16))
+                .contentShape(Rectangle())
         })
         .frame(maxWidth: .infinity)
         .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
