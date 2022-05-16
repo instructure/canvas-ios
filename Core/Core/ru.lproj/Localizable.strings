@@ -49,9 +49,6 @@
 /* added to conversation label when unread */
 "%@, unread" = "%@, не прочитано";
 
-/* No comment provided by engineer. */
-"%@: %@" = "%1$@: %2$@";
-
 /* score/points */
 "%@/%@" = "%1$@/%2$@";
 
