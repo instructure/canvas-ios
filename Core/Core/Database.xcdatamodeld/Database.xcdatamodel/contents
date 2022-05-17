@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -235,8 +235,6 @@
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
-        <relationship name="planner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="courses" inverseEntity="Planner"/>
-        <relationship name="plannerHidden" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="hiddenCourses" inverseEntity="Planner"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
     </entity>
@@ -721,9 +719,9 @@
         <attribute name="userID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Planner" representedClassName="Core.Planner" syncable="YES">
+        <attribute name="availableCourseIDs" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="hiddenCourseIDs" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="studentID" optional="YES" attributeType="String"/>
-        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="planner" inverseEntity="Course"/>
-        <relationship name="hiddenCourses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="plannerHidden" inverseEntity="Course"/>
     </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String"/>
@@ -969,7 +967,7 @@
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="464"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="434"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="254"/>
@@ -1005,7 +1003,7 @@
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1079"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
-        <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
+        <element name="Planner" positionX="-540" positionY="-18" width="128" height="74"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="508"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="178"/>

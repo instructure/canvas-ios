@@ -43,7 +43,6 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var name: String?
-    @NSManaged var planner: Planner?
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?

@@ -19,26 +19,21 @@
 import Foundation
 import CoreData
 
+/**
+ This use case fetches and returns active courses for a given user. While saving this also updates the Planner entity for the given `studentID`
+ to make sure it contains an up-to-date list of available course IDs. Use courses from this UseCase along with the `Planner` entity to determine which
+ courses should show up in the calendar's course filter.
+ */
 class GetPlannerCourses: APIUseCase {
     typealias Model = Course
 
     let studentID: String?
 
-    var cacheKey: String? {
-        let studentKey = studentID ?? "self"
-        return "planner/\(studentKey)/courses"
-    }
+    var cacheKey: String? { "planner/\(studentID ?? "self")/courses" }
 
     var scope: Scope {
-        let studentIdPredicate: NSPredicate
-
-        if let studentID = studentID {
-            studentIdPredicate = NSPredicate(format: "%K == %@", #keyPath(Course.planner.studentID), studentID)
-        } else {
-            studentIdPredicate = NSPredicate(format: "%K == NIL", #keyPath(Course.planner.studentID))
-        }
         let enrollmentPredicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.active.rawValue)
-        return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [studentIdPredicate, enrollmentPredicate]),
+        return Scope(predicate: enrollmentPredicate,
                      orderBy: #keyPath(Course.name),
                      ascending: true,
                      naturally: true)
@@ -50,7 +45,7 @@ class GetPlannerCourses: APIUseCase {
 
     func reset(context: NSManagedObjectContext) {
         if let planner: Planner = context.first(where: #keyPath(Planner.studentID), equals: studentID) {
-            planner.courses = []
+            planner.availableCourseIDs = []
         }
     }
 
@@ -75,9 +70,10 @@ class GetPlannerCourses: APIUseCase {
         guard let courses = response else { return }
         let planner: Planner = client.first(where: #keyPath(Planner.studentID), equals: studentID) ?? client.insert()
         planner.studentID = studentID
+
         for apiCourse in courses {
             let course = Course.save(apiCourse, in: client)
-            planner.courses.insert(course)
+            planner.availableCourseIDs.append(course.id)
         }
     }
 
