@@ -61,7 +61,7 @@ const light = {
 }
 const lightest = {
   light: white,
-  dark: { normal: '#000000', high: '#000000' },
+  dark: { normal: '#FFFFFF', high: '#FFFFFF' },
 }
 
 const colors = {
@@ -75,7 +75,7 @@ const colors = {
   oxford: { light: oxford, dark: oxford },
   ash: { light: ash, dark: ash },
   tiara: { light: tiara, dark: tiara },
-  porcelain: { light: porcelain, dark: porcelain },
+  porcelain: { light: porcelain, dark: ash },
   white: { light: white, dark: white },
 
   textDarkest: darkest,
@@ -94,13 +94,20 @@ const colors = {
   },
   backgroundGroupedCell: {
     light: white,
-    dark: { normal: '#1C1C1E', high: '#242426' },
+    dark: { normal: '#242426', high: '#242426' },
   },
   backgroundDarkest: darkest,
   backgroundDark: dark,
   backgroundMedium: medium,
   backgroundLight: light,
-  backgroundLightest: lightest,
+  backgroundLightest: {
+    light: white,
+    dark: { normal: '#000000', high: '#000000' },
+  },
+  backgroundElevated: {
+    light: white,
+    dark: { normal: '#232323', high: '#232323' },
+  },
   get backgroundAlert () { return colors.barney },
   get backgroundInfo () { return colors.electric },
   get backgroundSuccess () { return colors.shamrock },

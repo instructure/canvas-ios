@@ -27,6 +27,7 @@ public extension UIColor {
     static let backgroundDanger = UIColor(named: "backgroundDanger", in: .core, compatibleWith: nil)!
     static let backgroundDark = UIColor(named: "backgroundDark", in: .core, compatibleWith: nil)!
     static let backgroundDarkest = UIColor(named: "backgroundDarkest", in: .core, compatibleWith: nil)!
+    static let backgroundElevated = UIColor(named: "backgroundElevated", in: .core, compatibleWith: nil)!
     static let backgroundGrouped = UIColor(named: "backgroundGrouped", in: .core, compatibleWith: nil)!
     static let backgroundGroupedCell = UIColor(named: "backgroundGroupedCell", in: .core, compatibleWith: nil)!
     static let backgroundInfo = UIColor(named: "backgroundInfo", in: .core, compatibleWith: nil)!
@@ -71,6 +72,7 @@ public extension Color {
     static let backgroundDanger = Color("backgroundDanger", bundle: .core)
     static let backgroundDark = Color("backgroundDark", bundle: .core)
     static let backgroundDarkest = Color("backgroundDarkest", bundle: .core)
+    static let backgroundElevated = Color("backgroundElevated", bundle: .core)
     static let backgroundGrouped = Color("backgroundGrouped", bundle: .core)
     static let backgroundGroupedCell = Color("backgroundGroupedCell", bundle: .core)
     static let backgroundInfo = Color("backgroundInfo", bundle: .core)

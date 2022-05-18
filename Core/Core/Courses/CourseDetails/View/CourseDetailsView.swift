@@ -94,7 +94,7 @@ public struct CourseDetailsView: View {
                             .font(.semibold14)
                     }
                 }
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 Spacer()
                 InstDisclosureIndicator()
             }
