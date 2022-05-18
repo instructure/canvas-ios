@@ -85,7 +85,7 @@ struct NotificationCard: View {
             }
         }
             .background(RoundedRectangle(cornerRadius: 4).stroke(backgroundColor))
-            .background(Color(.systemBackground))
+            .background(Color(.backgroundLightest))
             .cornerRadius(4)
     }
 
