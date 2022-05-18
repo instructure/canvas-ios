@@ -60,6 +60,11 @@ open class CoreWebView: WKWebView {
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
+    private static var LatoRegularCSSFontFace: String = {
+        let url = Bundle.core.url(forResource: "font_lato_regular", withExtension: "css")!
+        // swiftlint:disable:next force_try
+        return try! String(contentsOf: url)
+    }()
 
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
@@ -172,16 +177,25 @@ open class CoreWebView: WKWebView {
         "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
     }
 
+    /**
+     This is used only if we load a html string locally but not for real URL loads.
+     The font-size property of the body tag is overriden by the OS so that's why we set the p tag's font-size.
+     */
     var css: String {
         let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
         let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
-        var font = "system-ui"
-        var fontCSS = ""
+        let font: String
+        let fontCSS: String
+        let style = Typography.Style.body
+        let uiFont = style.uiFont
 
         if AppEnvironment.shared.k5.isK5Enabled {
             font = "BalsamiqSans-Regular"
             fontCSS = Self.BalsamiqRegularCSSFontFace
+        } else {
+            font = "Lato-Regular"
+            fontCSS = Self.LatoRegularCSSFontFace
         }
 
         let backgroundColor: UIColor = traitCollection.userInterfaceStyle == .dark ? .black : .white
@@ -193,11 +207,15 @@ open class CoreWebView: WKWebView {
                 background: \(backgroundColor.hexString);
                 color: \(foregroundColor.hexString);
                 font-family: \(font);
-                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
+                font-size: \(uiFont.pointSize)px;
                 -webkit-tap-highlight-color: transparent;
             }
             body {
                 margin: 16px;
+            }
+            p {
+                font-size: \(uiFont.pointSize)px;
+                line-height: \(style.lineHeight.toPoints(for: uiFont))px;
             }
             a {
                 color: \(link.hexString);

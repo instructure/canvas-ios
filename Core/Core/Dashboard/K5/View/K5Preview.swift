@@ -53,6 +53,10 @@ struct K5Preview {
         ExperimentalFeature.K5Dashboard.isEnabled = true
     }
 
+    static func tearDownK5Mode() {
+        AppEnvironment.shared.userDefaults?.isElementaryViewEnabled = false
+    }
+
     struct Data {
         struct Schedule {
             static let entries = [

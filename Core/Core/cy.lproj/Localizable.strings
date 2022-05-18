@@ -1811,10 +1811,16 @@
 "Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Dewis cyfnod graddio";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Dewiswch Effaith";
 
 /* No comment provided by engineer. */
 "Select One" = "Dewiswch Un";
+
+/* No comment provided by engineer. */
+"Selected" = "Wedi dewis";
 
 /* No comment provided by engineer. */
 "Selected!" = "Wedi dewis!";

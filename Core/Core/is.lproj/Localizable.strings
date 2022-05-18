@@ -1811,10 +1811,16 @@
 "Select Course" = "Velja námskeið";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Velja einkunnatímabil";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Velja áhrif";
 
 /* No comment provided by engineer. */
 "Select One" = "Velja einn";
+
+/* No comment provided by engineer. */
+"Selected" = "Valið";
 
 /* No comment provided by engineer. */
 "Selected!" = "Valið!";

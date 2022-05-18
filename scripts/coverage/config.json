@@ -20,7 +20,9 @@
     "SubmissionButtonPresenter.swift",
     "NSPersistentContainerExtensions.swift",
     "K5Preview.swift",
-    "Core\/WebSitePreview\/"
+    "Core\/WebSitePreview\/",
+    "FontPreview.swift",
+    "Core\/Typography\/"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

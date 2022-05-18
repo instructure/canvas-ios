@@ -1811,10 +1811,16 @@
 "Select Course" = "Chọn Khóa Học";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Chọn thời gian phân loại điểm";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Chọn Tác Động";
 
 /* No comment provided by engineer. */
 "Select One" = "Chọn Một";
+
+/* No comment provided by engineer. */
+"Selected" = "Đã Chọn";
 
 /* No comment provided by engineer. */
 "Selected!" = "Đã chọn!";

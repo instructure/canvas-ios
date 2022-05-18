@@ -1811,10 +1811,16 @@
 "Select Course" = "Vælg fag";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Vælg karakterperiode";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Vælg virkning";
 
 /* No comment provided by engineer. */
 "Select One" = "Vælg en";
+
+/* No comment provided by engineer. */
+"Selected" = "Valgt";
 
 /* No comment provided by engineer. */
 "Selected!" = "Valgt!";

@@ -20,6 +20,7 @@ import SwiftUI
 
 struct CourseListCell: View {
     @ObservedObject var course: Course
+    let isFavoriteButtonHidden: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -37,6 +38,7 @@ struct CourseListCell: View {
                 .buttonStyle(PlainButtonStyle())
                 .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
                 .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
+                .hidden(isFavoriteButtonHidden)
 
             Button(action: {
                 env.router.route(to: "/courses/\(course.id)", from: controller)

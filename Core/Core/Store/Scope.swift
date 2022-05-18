@@ -58,10 +58,12 @@ public struct Scope: Equatable {
         return Scope(predicate: predicate, order: sortDescriptors)
     }
 
-    public static func all(orderBy order: String, ascending: Bool = true, naturally: Bool = false) -> Scope {
+    public static func all(orderBy order: String = "objectID", ascending: Bool = true, naturally: Bool = false) -> Scope {
         let sort = NSSortDescriptor(key: order, ascending: ascending, naturally: naturally)
         return Scope(predicate: .all, order: [sort])
     }
+
+    public static var all: Scope { all() }
 }
 
 extension NSSortDescriptor {

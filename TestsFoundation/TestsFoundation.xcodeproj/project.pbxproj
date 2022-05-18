@@ -79,6 +79,11 @@
 		C909F7CF27C37CE500CB89DE /* DSSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7CE27C37CE500CB89DE /* DSSubmission.swift */; };
 		C909F7D127C37DA200CB89DE /* CreateDSSubmissionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7D027C37DA200CB89DE /* CreateDSSubmissionRequest.swift */; };
 		C909F7D327C3831F00CB89DE /* DataSeeder+DSSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7D227C3831F00CB89DE /* DataSeeder+DSSubmission.swift */; };
+		C9299FDF281020BC003A47C2 /* DSDiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FDE281020BC003A47C2 /* DSDiscussionTopic.swift */; };
+		C9299FE128102238003A47C2 /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FE028102238003A47C2 /* CreateDSDiscussionRequest.swift */; };
+		C9299FE32810249D003A47C2 /* DataSeeder+Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FE22810249D003A47C2 /* DataSeeder+Discussion.swift */; };
+		C9299FE828166A51003A47C2 /* CreateDSTabsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FE728166A51003A47C2 /* CreateDSTabsRequest.swift */; };
+		C9299FEA2816B515003A47C2 /* DataSeeder+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FE92816B515003A47C2 /* DataSeeder+Tabs.swift */; };
 		C935D43726E0EB9700C940F7 /* K5Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43626E0EB9700C940F7 /* K5Schedule.swift */; };
 		C935D43A26E5F59700C940F7 /* K5Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43926E5F59700C940F7 /* K5Grades.swift */; };
 		C95E966D27C3DB4E00DAAB4A /* SubmissionsListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E966C27C3DB4E00DAAB4A /* SubmissionsListPage.swift */; };
@@ -233,6 +238,11 @@
 		C909F7CE27C37CE500CB89DE /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		C909F7D027C37DA200CB89DE /* CreateDSSubmissionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSSubmissionRequest.swift; sourceTree = "<group>"; };
 		C909F7D227C3831F00CB89DE /* DataSeeder+DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSSubmission.swift"; sourceTree = "<group>"; };
+		C9299FDE281020BC003A47C2 /* DSDiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDiscussionTopic.swift; sourceTree = "<group>"; };
+		C9299FE028102238003A47C2 /* CreateDSDiscussionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSDiscussionRequest.swift; sourceTree = "<group>"; };
+		C9299FE22810249D003A47C2 /* DataSeeder+Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Discussion.swift"; sourceTree = "<group>"; };
+		C9299FE728166A51003A47C2 /* CreateDSTabsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSTabsRequest.swift; sourceTree = "<group>"; };
+		C9299FE92816B515003A47C2 /* DataSeeder+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Tabs.swift"; sourceTree = "<group>"; };
 		C935D43626E0EB9700C940F7 /* K5Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Schedule.swift; sourceTree = "<group>"; };
 		C935D43926E5F59700C940F7 /* K5Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Grades.swift; sourceTree = "<group>"; };
 		C95E966C27C3DB4E00DAAB4A /* SubmissionsListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsListPage.swift; sourceTree = "<group>"; };
@@ -573,6 +583,25 @@
 			path = Submissions;
 			sourceTree = "<group>";
 		};
+		C9299FDD281020A9003A47C2 /* Discussions */ = {
+			isa = PBXGroup;
+			children = (
+				C9299FDE281020BC003A47C2 /* DSDiscussionTopic.swift */,
+				C9299FE028102238003A47C2 /* CreateDSDiscussionRequest.swift */,
+				C9299FE22810249D003A47C2 /* DataSeeder+Discussion.swift */,
+			);
+			path = Discussions;
+			sourceTree = "<group>";
+		};
+		C9299FE628166A2F003A47C2 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				C9299FE728166A51003A47C2 /* CreateDSTabsRequest.swift */,
+				C9299FE92816B515003A47C2 /* DataSeeder+Tabs.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
 		C95E967227C630CD00DAAB4A /* EmptyPanda */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +650,7 @@
 		CFA078B327981B790078B27B /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				C9299FDD281020A9003A47C2 /* Discussions */,
 				C909F7CD27C37C2A00CB89DE /* Submissions */,
 				C909F7C627BA7E8600CB89DE /* Pages */,
 				C9A23D1A27A294C900A1EE3B /* Assignment */,
@@ -645,6 +675,7 @@
 		CFA078BD2799A7740078B27B /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				C9299FE628166A2F003A47C2 /* Tabs */,
 				CFA078C02799A8280078B27B /* CreateDSCourseRequest.swift */,
 				CFA078BE2799A7800078B27B /* DSCourse.swift */,
 				CFA078C22799A9310078B27B /* DataSeeder+DSCourse.swift */,
@@ -1071,6 +1102,7 @@
 				3B519EFF2332D74D00C8DEB8 /* GradingPeriodFixture.swift in Sources */,
 				7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */,
 				E871978624E5963600D9B062 /* TestTreeExtensions.swift in Sources */,
+				C9299FE828166A51003A47C2 /* CreateDSTabsRequest.swift in Sources */,
 				3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */,
 				C9A23D1C27A2950D00A1EE3B /* DSAssignment.swift in Sources */,
 				E81B575B23E243CA002A0C38 /* ConversationList.swift in Sources */,
@@ -1089,6 +1121,7 @@
 				7DBED034233409D900392F3C /* TestLoginDelegate.swift in Sources */,
 				7DAC288022B1A3F900C0B692 /* XCUIElementExtensions.swift in Sources */,
 				E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */,
+				C9299FEA2816B515003A47C2 /* DataSeeder+Tabs.swift in Sources */,
 				E80936CD24C2480B00D15E9A /* ExternalURL.swift in Sources */,
 				E80936D024C2480B00D15E9A /* FileEditor.swift in Sources */,
 				C909F7CA27BA7F8D00CB89DE /* CreateDSPageRequest.swift in Sources */,
@@ -1118,6 +1151,7 @@
 				CFA078BC279868160078B27B /* DataSeeder+DSUser.swift in Sources */,
 				E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */,
 				B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */,
+				C9299FE32810249D003A47C2 /* DataSeeder+Discussion.swift in Sources */,
 				C95E966D27C3DB4E00DAAB4A /* SubmissionsListPage.swift in Sources */,
 				3B3FCA2F238027470011F11A /* ActivityFixture.swift in Sources */,
 				3B19D25D2265391F003A0565 /* RubricFixture.swift in Sources */,
@@ -1159,6 +1193,7 @@
 				C935D43726E0EB9700C940F7 /* K5Schedule.swift in Sources */,
 				E80936DF24C2480B00D15E9A /* SubmissionComments.swift in Sources */,
 				585951A0E753164D3759B783 /* MiniAssignment.swift in Sources */,
+				C9299FE128102238003A47C2 /* CreateDSDiscussionRequest.swift in Sources */,
 				E80936D224C2480B00D15E9A /* ItemPickerItem.swift in Sources */,
 				CFA078BF2799A7800078B27B /* DSCourse.swift in Sources */,
 				C909F7D327C3831F00CB89DE /* DataSeeder+DSSubmission.swift in Sources */,
@@ -1171,6 +1206,7 @@
 				E80936C924C2480B00D15E9A /* DiscussionEditor.swift in Sources */,
 				E80936C824C2480B00D15E9A /* DiscussionDetails.swift in Sources */,
 				58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */,
+				C9299FDF281020BC003A47C2 /* DSDiscussionTopic.swift in Sources */,
 				58595E42B4831A7E2BE0102B /* MiniQuiz.swift in Sources */,
 				58595A570E0930B6EE1E451A /* MiniSubmission.swift in Sources */,
 			);

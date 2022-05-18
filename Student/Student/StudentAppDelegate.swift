@@ -56,6 +56,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
+        FontAppearance.update()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,
@@ -100,13 +101,19 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 self.environment.userDefaults?.isElementaryViewEnabled = true
             }
             self.environment.k5.userDidLogin(profile: apiProfile, isK5StudentView: isK5StudentView)
+
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
+
             PageViewEventController.instance.userDidChange()
-            DispatchQueue.main.async { self.refreshNotificationTab() }
-            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                DispatchQueue.main.async { NativeLoginManager.login(as: session) }
+            DispatchQueue.main.async {
+                self.refreshNotificationTab()
+                LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile?.locale ?? session.locale) {
+                    GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                        NativeLoginManager.login(as: session)
+                    }}
+                }
             }
         }
         Analytics.shared.logSession(session)
@@ -348,9 +355,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
-            setup(session: session)
-        }
+        setup(session: session)
     }
 
     func userDidStopActing(as session: LoginSession) {

@@ -1811,10 +1811,16 @@
 "Select Course" = "Sélectionner un cours";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Sélectionner la période de notation";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Choisir l'impact";
 
 /* No comment provided by engineer. */
 "Select One" = "Sélectionner un élément";
+
+/* No comment provided by engineer. */
+"Selected" = "Sélectionné";
 
 /* No comment provided by engineer. */
 "Selected!" = "Sélectionné!";

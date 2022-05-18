@@ -69,9 +69,10 @@ class CourseListViewModelTests: CoreTestCase {
 
     private func setupMocks() {
         let currentCourses: [APICourse] = [
-            .make(id: "1", name: "Fall 2020", workflow_state: .available, term: .make(name: "Fall 2020"), is_favorite: true),
-            .make(id: "2", workflow_state: .available),
+            .make(id: "1", name: "Fall 2020", workflow_state: .available, enrollments: [.make(course_id: "1")], term: .make(name: "Fall 2020"), is_favorite: true),
+            .make(id: "2", workflow_state: .available, enrollments: [.make(course_id: "2")]),
         ]
+
         let pastCourse: APICourse = .make(
             id: "3",
             workflow_state: .completed,
@@ -86,7 +87,15 @@ class CourseListViewModelTests: CoreTestCase {
                 role: "TeacherEnrollment"
             ), ]
         )
-        let futureCourse: APICourse = .make(id: "4", workflow_state: .available, start_at: .distantFuture, end_at: .distantFuture)
+        let futureCourse: APICourse = .make(id: "4", workflow_state: .available, start_at: .distantFuture, end_at: .distantFuture, enrollments: [.make(course_id: "4")])
         api.mock(GetAllCourses(), value: [futureCourse, pastCourse] + currentCourses)
+
+        // Enrollments mock
+        let enrollments: [APIEnrollment] = [
+            currentCourses[0].enrollments![0],
+            currentCourses[1].enrollments![0],
+        ]
+        let request = GetEnrollmentsRequest(context: .currentUser, states: [.active])
+        api.mock(request, value: enrollments)
     }
 }

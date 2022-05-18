@@ -1811,10 +1811,16 @@
 "Select Course" = "Tīpako akoranga";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Tīpakohia māka rārangi kupu";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Tīpako Pānga";
 
 /* No comment provided by engineer. */
 "Select One" = "Tīpakohia";
+
+/* No comment provided by engineer. */
+"Selected" = "Kua tīpakohia";
 
 /* No comment provided by engineer. */
 "Selected!" = "Kua tīpakohia";

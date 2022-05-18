@@ -1811,10 +1811,16 @@
 "Select Course" = "تحديد مساق";
 
 /* No comment provided by engineer. */
+"Select grading period" = "حدد فترة التقييم";
+
+/* No comment provided by engineer. */
 "Select Impact" = "تحديد التأثير";
 
 /* No comment provided by engineer. */
 "Select One" = "حدد واحدًا";
+
+/* No comment provided by engineer. */
+"Selected" = "تم التحديد";
 
 /* No comment provided by engineer. */
 "Selected!" = "تم التحديد!";

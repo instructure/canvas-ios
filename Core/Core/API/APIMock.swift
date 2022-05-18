@@ -188,6 +188,9 @@ class APIMock {
         self.handler = handler
     }
 
+    /**
+     Suspends completing the API task until `resume()` is called. Good to test slow responses.
+     */
     func suspend() {
         isSuspended = true
     }

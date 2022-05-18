@@ -50,7 +50,7 @@ public struct AssignmentCellView: View {
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         })
-            .buttonStyle(PlainButtonStyle())
+            .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
             .accessibility(identifier: "assignment-list.assignment-list-row.cell-\(viewModel.assignment.id)")
     }
 

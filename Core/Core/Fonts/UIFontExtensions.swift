@@ -44,7 +44,7 @@ public extension UIFont {
         case .regular14:
             return scaledFont(.body, for: applicationFont(ofSize: 14, weight: .regular))
         case .regular14Italic:
-            return scaledFont(.body, for: applicationFont(ofSize: 14, weight: .regular), traits: .traitItalic)
+            return scaledFont(.body, for: applicationFont(ofSize: 14, weight: .regular, isItalic: true), traits: .traitItalic)
         case .regular15:
             return scaledFont(.body, for: applicationFont(ofSize: 15, weight: .regular))
         case .regular16:
@@ -82,7 +82,7 @@ public extension UIFont {
         case .semibold16:
             return scaledFont(.callout, for: applicationFont(ofSize: 16, weight: .semibold))
         case .semibold16Italic:
-            return scaledFont(.callout, for: applicationFont(ofSize: 16, weight: .semibold), traits: .traitItalic)
+            return scaledFont(.callout, for: applicationFont(ofSize: 16, weight: .semibold, isItalic: true), traits: .traitItalic)
         case .semibold17:
             return scaledFont(.callout, for: applicationFont(ofSize: 17, weight: .semibold))
         case .semibold18:
@@ -124,19 +124,36 @@ public extension UIFont {
         }
     }
 
-    static func applicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
-        if AppEnvironment.shared.k5.isK5Enabled {
-            let fontName: String
-            switch weight {
-            case .bold, .heavy:
-                fontName = "BalsamiqSans-Bold"
-            default:
-                fontName = "BalsamiqSans-Regular"
+    static func applicationFont(ofSize fontSize: CGFloat, weight: UIFont.Weight, isItalic: Bool = false) -> UIFont {
+        let fontName: String = {
+            let isK5Font = AppEnvironment.shared.k5.isK5Enabled
+            let font = isK5Font ? "BalsamiqSans" : "Lato"
+            var suffix = ""
+
+            if isK5Font {
+                switch weight {
+                case .black, .heavy:
+                    suffix = "Bold"
+                default:
+                    suffix = "Regular"
+                }
+            } else {
+                switch weight {
+                case .black, .heavy:
+                    suffix = "Black"
+                case .bold, .semibold, .medium:
+                    suffix = isItalic ? "BoldItalic" : "Bold"
+                case .regular, .light, .thin, .ultraLight:
+                    suffix = isItalic ? "Italic" : "Regular"
+                default:
+                    suffix = "Regular"
+                }
             }
-            return UIFont(name: fontName, size: fontSize)!
-        } else {
-            return .systemFont(ofSize: fontSize, weight: weight)
-        }
+
+            return "\(font)-\(suffix)"
+        }()
+
+        return UIFont(name: fontName, size: fontSize)!
     }
 
     private static func scaledFont(_ style: TextStyle, for font: UIFont, traits: UIFontDescriptor.SymbolicTraits? = nil) -> UIFont {

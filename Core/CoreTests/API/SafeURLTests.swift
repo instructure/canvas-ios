@@ -42,6 +42,16 @@ class SafeURLTests: XCTestCase {
         XCTAssertNil(decoded?.url)
     }
 
+    func testDecodesEmptyStringValue() {
+        let decoded = decode("""
+        {
+            "url": ""
+        }
+        """)
+        XCTAssertNotNil(decoded)
+        XCTAssertNil(decoded?.url)
+    }
+
     func testDecodesValidURL() {
         let decoded = decode("""
         {

@@ -1811,10 +1811,16 @@
 "Select Course" = "Selecciona l'assignatura";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Seleccioneu el període de qualificació";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Selecciona l’impacte";
 
 /* No comment provided by engineer. */
 "Select One" = "Selecciona'n un";
+
+/* No comment provided by engineer. */
+"Selected" = "Seleccionat";
 
 /* No comment provided by engineer. */
 "Selected!" = "Seleccionat!";
