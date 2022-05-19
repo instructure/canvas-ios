@@ -29,6 +29,7 @@ public struct APIQuiz: Codable, Equatable {
     let due_at: Date?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let has_access_code: Bool?
+    let hide_correct_answers_at: Date?
     let hide_results: QuizHideResults?
     let html_url: URL
     let id: ID
@@ -49,6 +50,9 @@ public struct APIQuiz: Codable, Equatable {
     let require_lockdown_browser_for_results: Bool
     let require_lockdown_browser: Bool
     let scoring_policy: ScoringPolicy?
+    let show_correct_answers: Bool?
+    let show_correct_answers_at: Date?
+    let show_correct_answers_last_attempt: Date?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let shuffle_answers: Bool?
     let time_limit: Double? // minutes
@@ -57,15 +61,11 @@ public struct APIQuiz: Codable, Equatable {
     // let all_dates: [Date]?
     // let anonymous_submissions: Bool?
     // let assignment_group_id: String?
-    // let hide_correct_answers_at: Date?
     // let lock_info: LockInfoModel?
     // let one_time_results: Bool
     // let permissions: APIQuizPermissions?
     // let preview_url: URL
     // let quiz_extensions_url: URL?
-    // let show_correct_answers_at: Date?
-    // let show_correct_answers_last_attempt: Bool?
-    // let show_correct_answers: Bool?
     // let speedgrader_url: URL?
     // let unpublishable: Bool
     // let version_number: Int
@@ -177,6 +177,7 @@ extension APIQuiz {
         description: String? = nil,
         due_at: Date? = nil,
         has_access_code: Bool = false,
+        hide_correct_answers_at: Date? = nil,
         hide_results: QuizHideResults? = nil,
         html_url: URL = URL(string: "/courses/1/quizzes/123")!,
         id: ID = "123",
@@ -194,6 +195,9 @@ extension APIQuiz {
         require_lockdown_browser_for_results: Bool = false,
         require_lockdown_browser: Bool = false,
         scoring_policy: ScoringPolicy? = nil,
+        show_correct_answers: Bool? = nil,
+        show_correct_answers_at: Date? = nil,
+        show_correct_answers_last_attempt: Date? = nil,
         shuffle_answers: Bool = false,
         time_limit: Double? = nil,
         title: String = "What kind of pokemon are you?",
@@ -207,6 +211,7 @@ extension APIQuiz {
             description: description,
             due_at: due_at,
             has_access_code: has_access_code,
+            hide_correct_answers_at: hide_correct_answers_at,
             hide_results: hide_results,
             html_url: html_url,
             id: id,
@@ -224,6 +229,9 @@ extension APIQuiz {
             require_lockdown_browser_for_results: require_lockdown_browser_for_results,
             require_lockdown_browser: require_lockdown_browser,
             scoring_policy: scoring_policy,
+            show_correct_answers: show_correct_answers,
+            show_correct_answers_at: show_correct_answers_at,
+            show_correct_answers_last_attempt: show_correct_answers_last_attempt,
             shuffle_answers: shuffle_answers,
             time_limit: time_limit,
             title: title,

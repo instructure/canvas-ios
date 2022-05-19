@@ -28,6 +28,7 @@ public class Quiz: NSManagedObject {
     @NSManaged public var details: String?
     @NSManaged public var dueAt: Date?
     @NSManaged public var hasAccessCode: Bool
+    @NSManaged var hideCorrectAnswersAt: Date?
     @NSManaged var hideResultsRaw: String?
     @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
@@ -47,6 +48,9 @@ public class Quiz: NSManagedObject {
     @NSManaged public var requireLockdownBrowser: Bool
     @NSManaged public var requireLockdownBrowserForResults: Bool
     @NSManaged public var scoringPolicyRaw: String?
+    @NSManaged public var showCorrectAnswers: Bool
+    @NSManaged public var showCorrectAnswersAt: Date?
+    @NSManaged public var showCorrectAnswersLastAttempt: Date?
     @NSManaged public var shuffleAnswers: Bool
     @NSManaged public var submission: QuizSubmission?
     @NSManaged var timeLimitRaw: NSNumber? // minutes
@@ -154,6 +158,7 @@ extension Quiz {
         model.details = item.description
         model.dueAt = item.due_at
         model.hasAccessCode = item.has_access_code ?? false
+        model.hideCorrectAnswersAt = item.hide_correct_answers_at
         model.hideResults = item.hide_results
         model.htmlURL = item.html_url
         model.id = item.id.value
@@ -172,6 +177,9 @@ extension Quiz {
         model.requireLockdownBrowser = item.require_lockdown_browser
         model.requireLockdownBrowserForResults = item.require_lockdown_browser_for_results
         model.scoringPolicy = item.scoring_policy
+        model.showCorrectAnswers = item.show_correct_answers == true
+        model.showCorrectAnswersAt = item.show_correct_answers_at
+        model.showCorrectAnswersLastAttempt = item.show_correct_answers_last_attempt
         model.shuffleAnswers = item.shuffle_answers ?? false
         model.timeLimit = item.time_limit
         model.title = item.title
