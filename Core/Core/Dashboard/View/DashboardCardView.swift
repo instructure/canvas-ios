@@ -67,6 +67,7 @@ public struct DashboardCardView: View {
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
             showGrade = env.userDefaults?.showGradesOnDashboard == true
         }
+        .onReceive(invitationsViewModel.coursesChanged) { _ in refresh(force: true) }
     }
 
     private var menuButton: some View {
@@ -99,8 +100,8 @@ public struct DashboardCardView: View {
                 .padding(.top, verticalSpacing)
         }
 
-        ForEach(invitationsViewModel.invitations, id: \.id) { (id, course, enrollment) in
-            CourseInvitationCard(course: course, enrollment: enrollment, id: id)
+        ForEach(invitationsViewModel.items) { invitation in
+            CourseInvitationCard(invitation: invitation)
                 .padding(.top, verticalSpacing)
         }
 
@@ -186,7 +187,7 @@ public struct DashboardCardView: View {
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
-        invitationsViewModel.refresh(force: force)
+        invitationsViewModel.refresh()
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
         groups.exhaust(force: force)
