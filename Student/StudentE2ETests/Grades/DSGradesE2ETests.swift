@@ -101,7 +101,7 @@ class DSGradesE2ETests: E2ETestCase {
         seeder.createSubmission(courseId: course.id, assignmentId: assignment2.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
-        Dashboard.courseCard(id: course.id).waitToExist()
+        Dashboard.courseCard(id: course.id).waitToExist(15)
         Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: assignment.id).waitToExist()
@@ -155,7 +155,7 @@ class DSGradesE2ETests: E2ETestCase {
         seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
-        Dashboard.courseCard(id: course.id).waitToExist()
+        Dashboard.courseCard(id: course.id).waitToExist(15)
         Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: assignment.id).waitToExist()
@@ -212,7 +212,7 @@ class DSGradesE2ETests: E2ETestCase {
         seeder.createSubmission(courseId: course.id, assignmentId: assignment3.id, requestBody:
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
-        Dashboard.courseCard(id: course.id).waitToExist()
+        Dashboard.courseCard(id: course.id).waitToExist(15)
         Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.assignments.waitToExist()
         CourseNavigation.assignments.tap()
