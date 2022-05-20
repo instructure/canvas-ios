@@ -28,7 +28,6 @@ public class QuizDetailsViewModel: ObservableObject {
     @Environment(\.appEnvironment) private var env
     public let quizID: String
     public let courseID: String
-
     @Published public private(set) var state: ViewModelState<Quiz, Assignment> = .loading
     @Published public private(set) var courseColor: UIColor?
 
@@ -41,10 +40,13 @@ public class QuizDetailsViewModel: ObservableObject {
     }
 
     private lazy var quiz = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
-        self?.quizDidUpdate()
+        self?.didUpdate()
     }
 
-    private var assignment: Store<GetAssignment>?
+    private lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
+        self?.didUpdate()
+    }
+    private var assignment: Assignment?
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -54,6 +56,7 @@ public class QuizDetailsViewModel: ObservableObject {
     public func viewDidAppear() {
         quiz.refresh()
         course.refresh()
+        assignments.refresh()
     }
 
     public func editTapped(router: Router, viewController: WeakViewController) {
@@ -95,11 +98,12 @@ public class QuizDetailsViewModel: ObservableObject {
             quizType
         ))
 
-        /*TODO
-        Line(Text("Assignment Group:", bundle: .core), Text("TODO"))
-        if let assignmentGroup = assignment.assignmentGroup?.name {
-            Line(Text("Assignment Group:", bundle: .core), Text(assignmentGroup))
-        }*/
+        if let assignmentGroupName = assignment?.assignmentGroup?.name {
+            attributes.append(QuizAttribute(
+                NSLocalizedString("Assignment Group:", bundle: .core, comment: ""),
+                assignmentGroupName
+            ))
+        }
 
         let shuffleAnswers = quiz.shuffleAnswers ?
             NSLocalizedString("Yes", bundle: .core, comment: "") :
@@ -202,21 +206,11 @@ public class QuizDetailsViewModel: ObservableObject {
         courseColor = course.first?.color
     }
 
-    private func quizDidUpdate() {
-        if quiz.requested, quiz.pending { return }
-        if let quiz = quiz.first, let assignmentID = quiz.assignmentID {
-            assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))  { [weak self] in
-                self?.assignmentDidUpdate()
-            }
-            assignment?.refresh()
-        } else {
-            state = .error
-        }
-    }
+    private func didUpdate() {
+        if quiz.requested, quiz.pending, assignments.requested, assignments.pending, assignments.hasNextPage { return }
 
-    private func assignmentDidUpdate() {
-        if assignment?.requested == true, assignment?.pending != false { return }
-        if let quiz = quiz.first, let assignment = assignment?.first {
+        if let quiz = quiz.first, let assignmentID = quiz.assignmentID, let assignment = assignments.first(where: { $0.id == assignmentID }) {
+            self.assignment = assignment
             state = .data(quiz, assignment)
         } else {
             state = .error
