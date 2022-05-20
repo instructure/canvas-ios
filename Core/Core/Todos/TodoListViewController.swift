@@ -204,6 +204,7 @@ class TodoListCell: UITableViewCell {
         } else {
             accessIconView.published = todo?.assignment.published == true
         }
+        backgroundColor = .backgroundGroupedCell
         titleLabel.text = todo?.assignment.name
         subtitleLabel.text = todo?.dueText
         tintColor = todo?.contextColor

@@ -102,11 +102,7 @@ const colors = {
   backgroundLight: light,
   backgroundLightest: {
     light: white,
-    dark: { normal: '#000000', high: '#000000' },
-  },
-  backgroundElevated: {
-    light: white,
-    dark: { normal: '#232323', high: '#232323' },
+    dark: { normal: '#121212', high: '#121212' },
   },
   get backgroundAlert () { return colors.barney },
   get backgroundInfo () { return colors.electric },
