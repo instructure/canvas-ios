@@ -52,7 +52,7 @@ public struct APIQuiz: Codable, Equatable {
     let scoring_policy: ScoringPolicy?
     let show_correct_answers: Bool?
     let show_correct_answers_at: Date?
-    let show_correct_answers_last_attempt: Date?
+    let show_correct_answers_last_attempt: Bool?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let shuffle_answers: Bool?
     let time_limit: Double? // minutes
@@ -197,7 +197,7 @@ extension APIQuiz {
         scoring_policy: ScoringPolicy? = nil,
         show_correct_answers: Bool? = nil,
         show_correct_answers_at: Date? = nil,
-        show_correct_answers_last_attempt: Date? = nil,
+        show_correct_answers_last_attempt: Bool? = nil,
         shuffle_answers: Bool = false,
         time_limit: Double? = nil,
         title: String = "What kind of pokemon are you?",

@@ -756,7 +756,7 @@
         <attribute name="scoringPolicyRaw" optional="YES" attributeType="String"/>
         <attribute name="showCorrectAnswers" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="showCorrectAnswersAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="showCorrectAnswersLastAttempt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="showCorrectAnswersLastAttempt" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="shuffleAnswers" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="timeLimitRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>

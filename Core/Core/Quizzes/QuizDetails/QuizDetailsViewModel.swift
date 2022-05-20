@@ -85,9 +85,14 @@ public class QuizDetailsViewModel: ObservableObject {
     public var attributes: [QuizAttribute] {
         guard let quiz = quiz.first else { return [] }
         var attributes = [QuizAttribute]()
+
+        var quizType = quiz.quizType.sectionTitle
+        if quiz.quizType == .assignment {
+            quizType = NSLocalizedString("Graded Quiz", bundle: .core, comment: "")
+        }
         attributes.append(QuizAttribute(
             NSLocalizedString("Quiz Type:", bundle: .core, comment: ""),
-            quiz.quizType.sectionTitle
+            quizType
         ))
 
         /*TODO
@@ -129,13 +134,12 @@ public class QuizDetailsViewModel: ObservableObject {
             hideResultsText
         ))
 
-        //TODO
-
-        let showCorrectAnswers = "TODO"
-        attributes.append(QuizAttribute(
-            NSLocalizedString("Show Correct Answers:", bundle: .core, comment: ""),
-            showCorrectAnswers
-        ))
+        if let showCorrectAnswers = showCorrectAnswers(quiz: quiz) {
+            attributes.append(QuizAttribute(
+                NSLocalizedString("Show Correct Answers:", bundle: .core, comment: ""),
+                showCorrectAnswers
+            ))
+        }
 
         let oneQuestionAtATime = quiz.oneQuestionAtATime ?
             NSLocalizedString("Yes", bundle: .core, comment: "") :
@@ -171,26 +175,23 @@ public class QuizDetailsViewModel: ObservableObject {
     }
 
     private func showCorrectAnswers(quiz: Quiz) -> String? {
-
-        if (quiz.showCorrectAnswers) {
+        if quiz.showCorrectAnswers {
             if let showCorrectAnswersAt = quiz.showCorrectAnswersAt, quiz.hideCorrectAnswersAt == nil {
-                let template = NSLocalizedString("After %@", bundle: .core, comment: "")
+                let template = NSLocalizedString("After %@", bundle: .core, comment: "e.g. After 01.02.2022")
                 return String.localizedStringWithFormat(template, showCorrectAnswersAt.relativeDateTimeString)
             }
-          /*
-          if (quiz.hide_correct_answers_at && !quiz.show_correct_answers_at) {
-            return i18n('Until {date}', { date: formattedDueDate(extractDateFromString(quiz.hide_correct_answers_at)) })
-          }
-          if (quiz.show_correct_answers_at && quiz.hide_correct_answers_at) {
-            return i18n('{show} to {hide}', {
-              show: formattedDueDate(extractDateFromString(quiz.show_correct_answers_at)),
-              hide: formattedDueDate(extractDateFromString(quiz.hide_correct_answers_at)),
-            })
-          }
-          if (quiz.show_correct_answers_last_attempt && quiz.allowed_attempts > 0) {
-            return i18n('After Last Attempt')
-          }
-           */
+            if let hideCorrectAnswersAt = quiz.hideCorrectAnswersAt, quiz.showCorrectAnswersAt == nil {
+                let template = NSLocalizedString("Until %@", bundle: .core, comment: "e.g. Until 01.02.2022")
+                return String.localizedStringWithFormat(template, hideCorrectAnswersAt.relativeDateTimeString)
+            }
+            if let showCorrectAnswersAt = quiz.showCorrectAnswersAt, let hideCorrectAnswersAt = quiz.hideCorrectAnswersAt {
+                let template = NSLocalizedString("%@ to %@", bundle: .core, comment: "e.g 01.02.2022 to 01.03.2022")
+                return String.localizedStringWithFormat(template, showCorrectAnswersAt.relativeDateTimeString, hideCorrectAnswersAt.relativeDateTimeString)
+            }
+            if quiz.showCorrectAnswersLastAttempt && quiz.allowedAttempts > 0 {
+                return NSLocalizedString("After Last Attempt", bundle: .core, comment: "")
+            }
+
           return quiz.hideResults != nil ? nil : NSLocalizedString("Always", bundle: .core, comment: "")
         }
 

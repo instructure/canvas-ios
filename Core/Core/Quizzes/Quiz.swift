@@ -50,7 +50,7 @@ public class Quiz: NSManagedObject {
     @NSManaged public var scoringPolicyRaw: String?
     @NSManaged public var showCorrectAnswers: Bool
     @NSManaged public var showCorrectAnswersAt: Date?
-    @NSManaged public var showCorrectAnswersLastAttempt: Date?
+    @NSManaged public var showCorrectAnswersLastAttempt: Bool
     @NSManaged public var shuffleAnswers: Bool
     @NSManaged public var submission: QuizSubmission?
     @NSManaged var timeLimitRaw: NSNumber? // minutes
@@ -179,7 +179,7 @@ extension Quiz {
         model.scoringPolicy = item.scoring_policy
         model.showCorrectAnswers = item.show_correct_answers == true
         model.showCorrectAnswersAt = item.show_correct_answers_at
-        model.showCorrectAnswersLastAttempt = item.show_correct_answers_last_attempt
+        model.showCorrectAnswersLastAttempt = item.show_correct_answers_last_attempt == true
         model.shuffleAnswers = item.shuffle_answers ?? false
         model.timeLimit = item.time_limit
         model.title = item.title
