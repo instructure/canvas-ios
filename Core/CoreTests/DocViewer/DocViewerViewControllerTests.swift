@@ -419,7 +419,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.pdfViewController(PDFViewController(), shouldShow: UIViewController(), animated: true))
     }
 
-    func testPerformTap() {
+    func testCreatePinCommentAnnotationGesture() {
         XCTAssertEqual(controller.gestureRecognizerShouldBegin(UITapGestureRecognizer()), false)
 
         let document = MockPDFDocument(url: url)
@@ -429,7 +429,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
         XCTAssertEqual(controller.gestureRecognizerShouldBegin(UITapGestureRecognizer()), true)
-        controller.performTap(pageView: PDFPageView(frame: .zero), at: .zero)
+        controller.createCommentPinAnnotation(pageView: PDFPageView(frame: .zero), at: .zero)
         XCTAssert(router.presented is CommentListViewController)
         XCTAssertEqual((controller.pdf.document as? MockPDFDocument)?.added?.count, 1)
     }
