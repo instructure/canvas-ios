@@ -58,6 +58,7 @@ public class DocViewerViewController: UIViewController {
         controller.previewURL = previewURL
         controller.fallbackURL = fallbackURL
         controller.parentNavigationItem = navigationItem
+        controller.view.backgroundColor = .backgroundMedium
         return controller
     }
 

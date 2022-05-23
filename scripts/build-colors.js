@@ -57,11 +57,11 @@ const medium = {
 }
 const light = {
   light: porcelain,
-  dark: oxford,
+  dark: { normal: '#242426', high: '#242426' },
 }
 const lightest = {
   light: white,
-  dark: { normal: '#FFFFFF', high: '#FFFFFF' },
+  dark: white,
 }
 
 const colors = {
@@ -96,9 +96,15 @@ const colors = {
     light: white,
     dark: { normal: '#242426', high: '#242426' },
   },
-  backgroundDarkest: darkest,
+  backgroundDarkest: {
+    light: licorice,
+    dark: { normal: '#242426', high: '#242426' },
+  },
   backgroundDark: dark,
-  backgroundMedium: medium,
+  backgroundMedium: {
+    light: tiara,
+    dark: { normal: '#242426', high: '#242426' },
+  },
   backgroundLight: light,
   backgroundLightest: {
     light: white,
