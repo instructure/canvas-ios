@@ -30,42 +30,24 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
     public override init(annotationStateManager: AnnotationStateManager) {
         super.init(annotationStateManager: annotationStateManager)
 
-        let commentGroupItem = AnnotationToolConfiguration.ToolItem(type: .stamp, variant: nil) { (_, _, _) in
-            return UIImage.markerSolid
-        }
-        let commentGroup = AnnotationToolConfiguration.ToolGroup(items: [commentGroupItem])
-
-        let highlightGroupItem = AnnotationToolConfiguration.ToolItem(type: .highlight, variant: nil, configurationBlock: { (_, _, _) in
-            return UIImage.highlighterSolid
-        })
-        let highlightGroup = AnnotationToolConfiguration.ToolGroup(items: [highlightGroupItem])
-
-        let freeTextGroupItem = AnnotationToolConfiguration.ToolItem(type: .freeText, variant: nil) { (_, _, _) in
-            return UIImage.textLine
-        }
-        let freeTextGroup = AnnotationToolConfiguration.ToolGroup(items: [freeTextGroupItem])
-
-        let strikeoutGroupItem = AnnotationToolConfiguration.ToolItem(type: .strikeOut, variant: nil, configurationBlock: { (_, _, _) in
-            return UIImage.strikethroughSolid
-        })
-        let strikeoutGroup = AnnotationToolConfiguration.ToolGroup(items: [strikeoutGroupItem])
-
-        let inkGroupItem = AnnotationToolConfiguration.ToolItem(type: .ink, variant: nil) { (_, _, _) in
-            return UIImage.paintSolid
-        }
-        let inkGroup = AnnotationToolConfiguration.ToolGroup(items: [inkGroupItem])
-
-        let boxGroupItem = AnnotationToolConfiguration.ToolItem(type: .square, variant: nil) { (_, _, _) in
-            return UIImage.boxSolid
-        }
-        let boxGroup = AnnotationToolConfiguration.ToolGroup(items: [boxGroupItem])
-
-        let eraserGroupItem = AnnotationToolConfiguration.ToolItem(type: .eraser, variant: nil)
-        let eraserGroup = AnnotationToolConfiguration.ToolGroup(items: [eraserGroupItem])
-
-        self.configurations = [AnnotationToolConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, boxGroup, inkGroup, eraserGroup])]
+        self.configurations = [Self.makeToolbarConfiguration()]
         self.supportedToolbarPositions = .inTopBar
         self.isDragEnabled = false
         self.showDoneButton = false
+    }
+
+    private static func makeToolbarConfiguration() -> AnnotationToolConfiguration {
+        typealias Item = AnnotationToolConfiguration.ToolItem
+        let items: [Item] = [
+            Item(type: .stamp, variant: nil) { _, _, _ in .markerSolid }, // comment pin
+            Item(type: .highlight, variant: nil) { _, _, _ in .highlighterSolid },
+            Item(type: .freeText, variant: nil) { _, _, _ in .textLine },
+            Item(type: .strikeOut, variant: nil) { _, _, _ in .strikethroughSolid },
+            Item(type: .ink, variant: nil) { _, _, _ in .paintSolid },
+            Item(type: .square, variant: nil) { _, _, _ in .boxSolid },
+            Item(type: .eraser, variant: nil),
+        ]
+        let groups = items.map { AnnotationToolConfiguration.ToolGroup(items: [$0]) }
+        return AnnotationToolConfiguration(annotationGroups: groups)
     }
 }
