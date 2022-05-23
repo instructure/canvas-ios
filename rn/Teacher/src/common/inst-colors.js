@@ -24,7 +24,7 @@ const instColors = {
   backgroundDanger: [ '#EE0612', '#D01A19', '#EE0612', '#D01A19' ],
   backgroundDark: [ '#556572', '#556572', '#C7CDD1', '#C7CDD1' ],
   backgroundDarkest: [ '#2D3B45', '#2D3B45', '#FFFFFF', '#FFFFFF' ],
-  backgroundGrouped: [ '#F5F5F5', '#556572', '#FFFFFF', '#FFFFFF' ],
+  backgroundGrouped: [ '#F5F5F5', '#556572', '#121212', '#121212' ],
   backgroundGroupedCell: [ '#FFFFFF', '#FFFFFF', '#242426', '#242426' ],
   backgroundInfo: [ '#008EE2', '#0770A3', '#008EE2', '#0770A3' ],
   backgroundLight: [ '#F5F5F5', '#FFFFFF', '#394B58', '#394B58' ],

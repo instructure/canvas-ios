@@ -90,7 +90,7 @@ const colors = {
 
   backgroundGrouped: {
     light: { normal: porcelain.normal, high: ash.normal },
-    dark: lightest.dark,
+    dark: { normal: '#121212', high: '#121212' },
   },
   backgroundGroupedCell: {
     light: white,
