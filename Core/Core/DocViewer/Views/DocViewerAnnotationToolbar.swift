@@ -64,5 +64,8 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
         let eraserGroup = AnnotationToolConfiguration.ToolGroup(items: [eraserGroupItem])
 
         self.configurations = [AnnotationToolConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, boxGroup, inkGroup, eraserGroup])]
+        self.supportedToolbarPositions = .inTopBar
+        self.isDragEnabled = false
+        self.showDoneButton = false
     }
 }

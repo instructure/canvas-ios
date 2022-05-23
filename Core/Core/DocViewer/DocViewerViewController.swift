@@ -151,9 +151,6 @@ public class DocViewerViewController: UIViewController {
 
             pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
-            annotationToolbar.supportedToolbarPositions = .inTopBar
-            annotationToolbar.isDragEnabled = false
-            annotationToolbar.showDoneButton = false
 
             contentView.addSubview(toolbarContainer)
             toolbarContainer.pin(inside: contentView)
