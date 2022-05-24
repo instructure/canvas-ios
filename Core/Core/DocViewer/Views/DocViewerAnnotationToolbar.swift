@@ -22,6 +22,8 @@ import PSPDFKitUI
 
 public class DocViewerAnnotationToolbar: AnnotationToolbar {
     public var showDoneButton: Bool = true
+    public var isDragButtonSelected: Bool { dragButtonStateUpdater?.isButtonSelected ?? false }
+    private var dragButtonStateUpdater: DragButtonStateUpdater?
 
     override public var doneButton: UIButton? {
         return showDoneButton ? super.doneButton : nil
@@ -30,7 +32,13 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
     public override init(annotationStateManager: AnnotationStateManager) {
         super.init(annotationStateManager: annotationStateManager)
 
+        let dragButton = ToolbarSelectableButton()
+        dragButton.image = .grab
+        dragButton.isCollapsible = false
+        dragButtonStateUpdater = DragButtonStateUpdater(dragButton: dragButton, annotationStateManager: annotationStateManager)
+
         self.configurations = [Self.makeToolbarConfiguration()]
+        self.additionalButtons = [dragButton]
         self.supportedToolbarPositions = .inTopBar
         self.isDragEnabled = false
         self.showDoneButton = false
@@ -49,5 +57,31 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
         ]
         let groups = items.map { AnnotationToolConfiguration.ToolGroup(items: [$0]) }
         return AnnotationToolConfiguration(annotationGroups: groups)
+    }
+}
+
+class DragButtonStateUpdater: NSObject, AnnotationStateManagerDelegate {
+    public var isButtonSelected: Bool { dragButton?.isSelected ?? false }
+    private weak var dragButton: ToolbarSelectableButton?
+    private weak var annotationStateManager: AnnotationStateManager?
+
+    public init(dragButton: ToolbarSelectableButton, annotationStateManager: AnnotationStateManager) {
+        self.dragButton = dragButton
+        self.annotationStateManager = annotationStateManager
+        super.init()
+
+        annotationStateManager.add(self)
+        dragButton.actionBlock = { [weak self] button in
+            self?.dragButtonTapped(button)
+        }
+    }
+
+    public func dragButtonTapped(_ button: PDFButton) {
+        annotationStateManager?.setState(nil, variant: nil)
+        dragButton?.setSelected(true, animated: true)
+    }
+
+    public func annotationStateManager(_ manager: AnnotationStateManager, didChangeState oldState: Annotation.Tool?, to newState: Annotation.Tool?, variant oldVariant: Annotation.Variant?, to newVariant: Annotation.Variant?) {
+        dragButton?.setSelected(false, animated: true)
     }
 }
