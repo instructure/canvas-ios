@@ -23,9 +23,7 @@ class DSGradesE2ETests: E2ETestCase {
     func testGradesE2E() {
         // Seed the usual stuff with 2 assignments
         let student = seeder.createUser()
-        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
         seeder.enrollStudent(student, in: course)
 
         let assignmentName = "Assignment"
@@ -62,19 +60,19 @@ class DSGradesE2ETests: E2ETestCase {
         TabBar.dashboardTab.tap()
         Dashboard.courseCard(id: course.id).waitToExist()
         Dashboard.courseCard(id: course.id).tap()
+        CourseNavigation.grades.waitToExist()
         CourseNavigation.grades.tap()
-        pullToRefresh()
-        XCTAssertTrue(GradeList.cell(assignmentID: assignment.id).exists())
-        XCTAssertTrue(GradeList.cell(assignmentID: assignment1.id).exists())
-        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "5", maxPoints: "10").exists())
-        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "100", maxPoints: "100").exists())
+        app.find(label: "Total Grade").waitToExist()
+        XCTAssertTrue(GradeList.cell(assignmentID: assignment.id).waitToExist(5).exists())
+        XCTAssertTrue(GradeList.cell(assignmentID: assignment1.id).waitToExist(5).exists())
+        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "5", maxPoints: "10").waitToExist(5).exists())
+        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "100", maxPoints: "100").waitToExist(5).exists())
+        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "100", maxPoints: "100").waitToExist(5).exists())
     }
 
     func testLetterGradesE2E() {
         let student = seeder.createUser()
-        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
         seeder.enrollStudent(student, in: course)
 
         let assignmentName = "Letter Grade Assignment"
@@ -103,8 +101,10 @@ class DSGradesE2ETests: E2ETestCase {
 
         Dashboard.courseCard(id: course.id).waitToExist(15)
         Dashboard.courseCard(id: course.id).tap()
+        CourseNavigation.assignments.waitToExist()
         CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: assignment.id).waitToExist()
+        pullToRefresh()
+        AssignmentsList.assignment(id: assignment.id).waitToExist(5)
         AssignmentsList.assignment(id: assignment.id).tap()
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody:
@@ -133,9 +133,7 @@ class DSGradesE2ETests: E2ETestCase {
 
     func testPercentageGradesE2E() {
         let student = seeder.createUser()
-        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
         seeder.enrollStudent(student, in: course)
 
         let assignmentName = "Percentage Grade Assignment"
@@ -179,9 +177,7 @@ class DSGradesE2ETests: E2ETestCase {
 
     func testPassFailGradeE2E() {
         let student = seeder.createUser()
-        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
         seeder.enrollStudent(student, in: course)
 
         let assignmentName = "PassFail Grade Assignment"
