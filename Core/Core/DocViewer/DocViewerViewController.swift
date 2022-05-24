@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 import PSPDFKit
 import PSPDFKitUI
@@ -40,6 +41,7 @@ public class DocViewerViewController: UIViewController {
     lazy var session = DocViewerSession { [weak self] in
         performUIUpdate { self?.sessionIsReady() }
     }
+    private var subscriptions = Set<AnyCancellable>()
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -151,6 +153,12 @@ public class DocViewerViewController: UIViewController {
 
             pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
+            annotationToolbar.isDragButtonSelected
+                .sink { [weak self] isDragEnabled in
+                    self?.pdf.documentViewController?.isScrollEnabled = !isDragEnabled
+                    self?.pdf.documentViewController?.isZoomEnabled = !isDragEnabled
+                }
+                .store(in: &subscriptions)
 
             contentView.addSubview(toolbarContainer)
             toolbarContainer.pin(inside: contentView)

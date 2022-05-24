@@ -16,26 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
 public class DocViewerAnnotationToolbar: AnnotationToolbar {
     public var showDoneButton: Bool = true
-    public var isDragButtonSelected: Bool { dragButtonStateUpdater?.isButtonSelected ?? false }
-    private var dragButtonStateUpdater: DragButtonStateUpdater?
+    public var isDragButtonSelected: AnyPublisher<Bool, Never> { dragButtonStateUpdater.isButtonSelected }
+    private var dragButtonStateUpdater: DragButtonStateUpdater
 
     override public var doneButton: UIButton? {
         return showDoneButton ? super.doneButton : nil
     }
 
     public override init(annotationStateManager: AnnotationStateManager) {
-        super.init(annotationStateManager: annotationStateManager)
-
         let dragButton = ToolbarSelectableButton()
         dragButton.image = .grab
         dragButton.isCollapsible = false
         dragButtonStateUpdater = DragButtonStateUpdater(dragButton: dragButton, annotationStateManager: annotationStateManager)
+
+        super.init(annotationStateManager: annotationStateManager)
 
         self.configurations = [Self.makeToolbarConfiguration()]
         self.additionalButtons = [dragButton]
@@ -61,9 +62,11 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
 }
 
 class DragButtonStateUpdater: NSObject, AnnotationStateManagerDelegate {
-    public var isButtonSelected: Bool { dragButton?.isSelected ?? false }
-    private weak var dragButton: ToolbarSelectableButton?
+    public lazy var isButtonSelected: AnyPublisher<Bool, Never> = isButtonSelectedSubject.eraseToAnyPublisher()
+
     private weak var annotationStateManager: AnnotationStateManager?
+    private let dragButton: ToolbarSelectableButton
+    private let isButtonSelectedSubject = CurrentValueSubject<Bool, Never>(false)
 
     public init(dragButton: ToolbarSelectableButton, annotationStateManager: AnnotationStateManager) {
         self.dragButton = dragButton
@@ -78,10 +81,12 @@ class DragButtonStateUpdater: NSObject, AnnotationStateManagerDelegate {
 
     public func dragButtonTapped(_ button: PDFButton) {
         annotationStateManager?.setState(nil, variant: nil)
-        dragButton?.setSelected(true, animated: true)
+        dragButton.setSelected(!dragButton.isSelected, animated: true)
+        isButtonSelectedSubject.send(dragButton.isSelected)
     }
 
     public func annotationStateManager(_ manager: AnnotationStateManager, didChangeState oldState: Annotation.Tool?, to newState: Annotation.Tool?, variant oldVariant: Annotation.Variant?, to newVariant: Annotation.Variant?) {
-        dragButton?.setSelected(false, animated: true)
+        dragButton.setSelected(false, animated: true)
+        isButtonSelectedSubject.send(false)
     }
 }
