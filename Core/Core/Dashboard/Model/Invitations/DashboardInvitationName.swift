@@ -16,19 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+extension String {
+    static func dashboardInvitationName(courseName: String?, sectionName: String?) -> String {
+        var result = courseName ?? ""
 
-public struct DSAssignment: Codable {
-    public let name: String
-    public let id: String
-    public let position: Int
-    public let submission_types: [SubmissionType]
-    public let points_possible: Int?
-    public let grading_type: GradingType?
-    public let description: String?
-    // due_at accepts times in ISO 8601 format, e.g. 2014-10-21T18:48:00Z.
-    public let due_at: Date?
-    public let published: Bool?
-    public let allowed_attemps: Int?
-    public let anonymous_grading: Bool?
+        if let sectionName = sectionName, sectionName != result, !sectionName.isEmpty {
+            result.append(", \(sectionName)")
+        }
+
+        return result
+    }
 }

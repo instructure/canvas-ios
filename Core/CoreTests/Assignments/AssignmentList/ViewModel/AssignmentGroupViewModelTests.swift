@@ -17,18 +17,17 @@
 //
 
 import Core
+import XCTest
 
-public struct DSAssignment: Codable {
-    public let name: String
-    public let id: String
-    public let position: Int
-    public let submission_types: [SubmissionType]
-    public let points_possible: Int?
-    public let grading_type: GradingType?
-    public let description: String?
-    // due_at accepts times in ISO 8601 format, e.g. 2014-10-21T18:48:00Z.
-    public let due_at: Date?
-    public let published: Bool?
-    public let allowed_attemps: Int?
-    public let anonymous_grading: Bool?
+class AssignmentGroupViewModelTests: CoreTestCase {
+
+    func testEqualityDetectsDifferentAssignments() {
+        let assignment1: Assignment = databaseClient.insert()
+        let assignment2: Assignment = databaseClient.insert()
+
+        let viewModel1 = AssignmentGroupViewModel(name: "", id: "1", assignments: [assignment1], courseColor: nil)
+        let viewModel2 = AssignmentGroupViewModel(name: "", id: "1", assignments: [assignment2], courseColor: nil)
+
+        XCTAssertNotEqual(viewModel1, viewModel2)
+    }
 }

@@ -16,19 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
+import XCTest
 
-public struct DSAssignment: Codable {
-    public let name: String
-    public let id: String
-    public let position: Int
-    public let submission_types: [SubmissionType]
-    public let points_possible: Int?
-    public let grading_type: GradingType?
-    public let description: String?
-    // due_at accepts times in ISO 8601 format, e.g. 2014-10-21T18:48:00Z.
-    public let due_at: Date?
-    public let published: Bool?
-    public let allowed_attemps: Int?
-    public let anonymous_grading: Bool?
+class DashboardInvitationAPIItemTests: XCTestCase {
+
+    func testIncludesInvitedEnrollments() {
+        let enrollments: [APIEnrollment] = EnrollmentState.allCases.map {
+            .make(id: $0.rawValue, course_id: "1", course_section_id: "2", enrollment_state: $0)
+        }
+
+        let result = enrollments.invitationAPIItems
+
+        XCTAssertEqual(result, [DashboardInvitationAPIItem(enrollmentId: "invited", courseId: "1", sectionId: "2")])
+    }
 }

@@ -63,8 +63,8 @@ public struct K5HomeroomView: View {
     }
 
     private var invitations: some View {
-        ForEach(viewModel.invitationsViewModel.invitations, id: \.id) { (id, course, enrollment) in
-            CourseInvitationCard(course: course, enrollment: enrollment, id: id)
+        ForEach(viewModel.invitationsViewModel.items) { invitation in
+            CourseInvitationCard(invitation: invitation)
                 .padding(.top, 16)
         }
     }

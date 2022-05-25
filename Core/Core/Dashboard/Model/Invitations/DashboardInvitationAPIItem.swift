@@ -16,19 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+struct DashboardInvitationAPIItem: Equatable {
+    let enrollmentId: ID
+    let courseId: ID
+    let sectionId: ID
+}
 
-public struct DSAssignment: Codable {
-    public let name: String
-    public let id: String
-    public let position: Int
-    public let submission_types: [SubmissionType]
-    public let points_possible: Int?
-    public let grading_type: GradingType?
-    public let description: String?
-    // due_at accepts times in ISO 8601 format, e.g. 2014-10-21T18:48:00Z.
-    public let due_at: Date?
-    public let published: Bool?
-    public let allowed_attemps: Int?
-    public let anonymous_grading: Bool?
+extension Array where Element == APIEnrollment {
+
+    var invitationAPIItems: [DashboardInvitationAPIItem] {
+        compactMap {
+            guard $0.enrollment_state == .invited, let enrollmentId = $0.id, let courseId = $0.course_id, let sectionId = $0.course_section_id else { return nil }
+            return DashboardInvitationAPIItem(enrollmentId: enrollmentId, courseId: courseId, sectionId: sectionId)
+        }
+    }
 }

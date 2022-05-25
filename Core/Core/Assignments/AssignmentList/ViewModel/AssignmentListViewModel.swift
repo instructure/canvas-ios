@@ -82,7 +82,7 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func assignmentGroupsDidUpdate() {
-        if apiAssignments.requested, apiAssignments.pending, apiAssignments.hasNextPage { return }
+        if !apiAssignments.requested || apiAssignments.pending || apiAssignments.hasNextPage { return }
 
         var assignmentGroups: [AssignmentGroupViewModel] = []
 
