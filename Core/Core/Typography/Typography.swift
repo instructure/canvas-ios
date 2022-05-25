@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public enum Typography {
+public struct Typography {
     /** This is a multiplier for a font's original line height. */
     public enum LineHeight: CGFloat, CaseIterable, Identifiable {
         case fontDefault = 1
@@ -52,16 +52,35 @@ public enum Typography {
 
     public enum Style {
         case body
+        /** Above textCellTitle in case the cell has 3 rows. */
+        case textCellTopLabel
+        case textCellTitle
+        /** Below textCellTitle. */
+        case textCellSupportingText
+        /** Below textCellTitle. */
+        case textCellSupportingTextBold
+        /** Below textCellSupportingText in case the cell has 3 rows. */
+        case textCellBottomLabel
 
         public var lineHeight: LineHeight {
             switch self {
             case .body: return k5 ? .fontDefault : .condensed
+            case .textCellTopLabel: return .condensed
+            case .textCellBottomLabel: return .condensed
+            case .textCellTitle: return .fit
+            case .textCellSupportingText: return .condensed
+            case .textCellSupportingTextBold: return .condensed
             }
         }
 
         public var fontName: UIFont.Name {
             switch self {
             case .body: return .regular16
+            case .textCellTopLabel: return .bold14
+            case .textCellBottomLabel: return .regular14
+            case .textCellTitle: return .bold16
+            case .textCellSupportingText: return .regular14
+            case .textCellSupportingTextBold: return .bold14
             }
         }
 
@@ -70,4 +89,9 @@ public enum Typography {
 
         private var k5: Bool { AppEnvironment.shared.k5.isK5Enabled }
     }
+
+    public static let Spacings = (
+        textCellTopPadding: CGFloat(8),
+        textCellBottomPadding: CGFloat(8)
+    )
 }
