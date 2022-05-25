@@ -26,9 +26,12 @@ extension View {
 
     func font(_ fontName: UIFont.Name, lineHeight: Typography.LineHeight) -> some View {
         let font = UIFont.scaledNamedFont(fontName)
+        let spacing = lineHeight.lineSpacing(for: font)
         let styledSelf = self
-            .lineSpacing(lineHeight.lineSpacing(for: font))
+            .lineSpacing(spacing)
             .font(Font(font))
+            .padding(.top, spacing/2)
+            .padding(.bottom, spacing/2)
         return styledSelf
     }
 }

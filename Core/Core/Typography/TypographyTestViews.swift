@@ -41,7 +41,7 @@ struct LineHeightTestView: View {
     let uiFont: UIFont
     let suiFont: Font
     // swiftlint:disable:next line_length
-    let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus rutrum. Donec tempus vulputate posuere. Aenean blandit nunc vitae tempus sodales. In vehicula venenatis tempus."
+    let text = "Lorem ipsum dolor sit Lamet, consectetur adipiscing elit. Etiam tincidunt rhoncus rutrum. Donec tempus vulputate posuere. Aenean blandit nunc vitae tempus sodales. In vehicula venenatis tempus."
 
     init() {
         self.uiFont = UIFont.scaledNamedFont(fontName)
@@ -61,6 +61,7 @@ struct LineHeightTestView: View {
                             .padding(.bottom, 5)
                         Text(text)
                             .font(.regular16, lineHeight: lineHeight)
+                            .border(Color.black, width: 1)
                     }
                 }
             }
