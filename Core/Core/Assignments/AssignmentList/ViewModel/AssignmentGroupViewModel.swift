@@ -39,6 +39,6 @@ public class AssignmentGroupViewModel: ObservableObject {
 extension AssignmentGroupViewModel: Equatable {
 
     public static func == (lhs: AssignmentGroupViewModel, rhs: AssignmentGroupViewModel) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.assignments == rhs.assignments
     }
 }
