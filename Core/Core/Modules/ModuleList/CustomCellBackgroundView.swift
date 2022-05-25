@@ -26,7 +26,7 @@ public class CustomCellBackgroundView: UIView {
         backgroundColor = .backgroundLight
     }
 
-    public static func create(color: UIColor) -> CustomCellBackgroundView {
+    public static func create(color: UIColor?) -> CustomCellBackgroundView {
         let view = loadFromXib()
         view.brandedColorView.backgroundColor = color
         return view

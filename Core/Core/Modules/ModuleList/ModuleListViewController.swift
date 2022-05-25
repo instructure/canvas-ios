@@ -240,7 +240,7 @@ extension ModuleListViewController: UITableViewDataSource {
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item, indexPath: indexPath, color: color ?? .backgroundLightest)
+                cell.update(item, indexPath: indexPath, color: color)
             }
             return cell
         }
