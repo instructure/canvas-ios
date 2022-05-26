@@ -25,7 +25,7 @@ struct SideMenuSubHeaderView: View {
         HStack {
             title
                 .font(.regular12)
-                .foregroundColor(.ash)
+                .foregroundColor(.textDark)
             Spacer()
         }.padding(26).frame(height: 30)
     }
