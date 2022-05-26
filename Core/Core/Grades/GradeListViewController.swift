@@ -276,17 +276,17 @@ public class GradeListCell: UITableViewCell {
     func update(_ assignment: Assignment?, userID: String?) {
         let submission = assignment?.submissions?.first { $0.userID == userID }
         accessibilityIdentifier = "GradeListCell.\(assignment?.id ?? "")"
-        nameLabel.text = assignment?.name
+        nameLabel.setText(assignment?.name, style: .textCellTitle)
         gradeLabel.text = assignment.flatMap {
             GradeFormatter.string(from: $0, userID: userID, style: .medium)
         }
         gradeLabel.accessibilityLabel = assignment.flatMap { GradeFormatter.a11yString(from: $0, userID: userID, style: .medium) }.flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 }
-        dueLabel.text = assignment?.dueText
+        dueLabel.setText(assignment?.dueText, style: .textCellSupportingText)
         let status = submission?.status ?? .notSubmitted
         if status != .missing, status != .late {
             statusLabel.isHidden = assignment?.isOnline != true
         }
-        statusLabel.text = status.text
+        statusLabel.setText(status.text, style: .textCellBottomLabel)
         statusLabel.textColor = status.color
     }
 }
