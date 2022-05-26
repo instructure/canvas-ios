@@ -76,6 +76,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     }
 
     public func cancelTapped() {
+        Analytics.shared.logEvent("share_cancelled")
         shareCompleted()
     }
 
