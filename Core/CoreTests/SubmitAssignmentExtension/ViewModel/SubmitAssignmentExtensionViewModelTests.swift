@@ -103,6 +103,20 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         XCTAssertNil(analyticsHandler.loggedParameters)
     }
 
+    func testReportsSubmitToAnalytics() {
+        testee.coursePickerViewModel.selectedCourse = .init(id: "", name: "")
+        testee.assignmentPickerViewModel.selectedAssignment = .init(id: "", name: "")
+        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+
+        testee.submitTapped()
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.loggedEvent, "submit_tapped")
+        XCTAssertNil(analyticsHandler.loggedParameters)
+    }
+
     private func makeExpectation() {
         drainMainQueue() // To swallow initial UI update triggers
         uiRefreshExpectation = expectation(description: "UI refresh triggered")

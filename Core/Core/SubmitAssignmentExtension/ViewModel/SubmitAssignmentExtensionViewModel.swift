@@ -68,6 +68,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     }
 
     public func submitTapped() {
+        Analytics.shared.logEvent("submit_tapped")
         submissionService.submit(urls: selectedFileURLs,
                                  courseID: coursePickerViewModel.selectedCourse!.id,
                                  assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
