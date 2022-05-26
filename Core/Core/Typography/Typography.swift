@@ -92,6 +92,8 @@ public struct Typography {
 
     public static let Spacings = (
         textCellTopPadding: CGFloat(8),
-        textCellBottomPadding: CGFloat(8)
+        textCellBottomPadding: CGFloat(8),
+        textCellIconLeadingPadding: CGFloat(18),
+        textCellIconTopPadding: CGFloat(10)
     )
 }
