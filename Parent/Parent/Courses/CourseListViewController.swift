@@ -113,13 +113,13 @@ class CourseListCell: UITableViewCell {
         accessibilityIdentifier = "course_cell_\(id)"
 
         nameLabel.accessibilityIdentifier = "course_title_\(id)"
-        nameLabel.text = course?.name
+        nameLabel.setText(course?.name, style: .textCellTitle)
 
         codeLabel.accessibilityIdentifier = "course_code_\(id)"
-        codeLabel.text = course?.courseCode
+        codeLabel.setText(course?.courseCode, style: .textCellSupportingTextBold)
 
         gradeLabel.accessibilityIdentifier = "course_grade_\(id)"
-        gradeLabel.text = displayGrade(course, studentID: studentID)
+        gradeLabel.setText(displayGrade(course, studentID: studentID), style: .textCellBottomLabel)
     }
 
     func displayGrade(_ course: Course?, studentID: String) -> String {
