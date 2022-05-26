@@ -34,7 +34,7 @@ struct K5ImportantDateCell: View {
             }
         }, label: {
             ZStack {
-                RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium, lineWidth: 2).background(Color.white)
+                RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium, lineWidth: 2).background(Color.backgroundLightest)
                 HStack(spacing: 0) {
                     Rectangle().frame(width: 5).foregroundColor(item.color)
                     VStack(spacing: 2) {

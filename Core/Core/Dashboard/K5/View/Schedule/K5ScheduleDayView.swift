@@ -45,10 +45,10 @@ public struct K5ScheduleDayView: View {
     private var nothingPlannedView: some View {
         Text("Nothing planned yet", bundle: .core)
             .font(.regular17)
-            .foregroundColor(.licorice)
+            .foregroundColor(.textDarkest)
             .frame(height: 55)
             .frame(maxWidth: .infinity)
-            .background(RoundedRectangle(cornerRadius: 6).stroke(Color.tiara, lineWidth: 4))
+            .background(RoundedRectangle(cornerRadius: 6).stroke(Color.backgroundMedium, lineWidth: 4))
             .cornerRadius(3)
     }
 
