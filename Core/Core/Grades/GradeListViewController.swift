@@ -281,7 +281,7 @@ public class GradeListCell: UITableViewCell {
             GradeFormatter.string(from: $0, userID: userID, style: .medium)
         }
         gradeLabel.accessibilityLabel = assignment.flatMap { GradeFormatter.a11yString(from: $0, userID: userID, style: .medium) }.flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 }
-        dueLabel.setText(assignment?.dueText, style: .textCellSupportingText)
+        dueLabel.setText(assignment?.dueText, style: .textCellSupportingTextBold)
         let status = submission?.status ?? .notSubmitted
         if status != .missing, status != .late {
             statusLabel.isHidden = assignment?.isOnline != true
