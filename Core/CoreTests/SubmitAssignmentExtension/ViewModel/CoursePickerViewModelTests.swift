@@ -21,6 +21,11 @@ import XCTest
 
 class CoursePickerViewModelTests: CoreTestCase {
 
+    override func tearDown() {
+        super.tearDown()
+        environment.userDefaults?.submitAssignmentCourseID = nil
+    }
+
     func testUnknownAPIError() {
         let testee = CoursePickerViewModel()
         XCTAssertNil(testee.selectedCourse)
@@ -68,5 +73,18 @@ class CoursePickerViewModelTests: CoreTestCase {
         let testee = CoursePickerViewModel(state: .loading)
         XCTAssertNil(testee.selectedCourse)
         XCTAssertEqual(testee.state, .loading)
+    }
+
+    func testReportsCourseSelectionToAnalytics() {
+        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+        let testee = CoursePickerViewModel()
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+
+        testee.courseSelected(.init(id: "", name: ""))
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.loggedEvent, "course_selected")
+        XCTAssertNil(analyticsHandler.loggedParameters)
     }
 }

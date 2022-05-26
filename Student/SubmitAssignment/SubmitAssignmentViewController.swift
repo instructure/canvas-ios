@@ -16,10 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Firebase
+import FirebaseAnalytics
 import UIKit
 import Social
-import Core
 
 @objc(SubmitAssignmentViewController)
 class SubmitAssignmentViewController: UIViewController {
@@ -54,5 +55,12 @@ class SubmitAssignmentViewController: UIViewController {
     private func setupFirebaseServices() {
         guard FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
         FirebaseApp.configure()
+        Core.Analytics.shared.handler = self
+    }
+}
+
+extension SubmitAssignmentViewController: Core.AnalyticsHandler {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        Analytics.logEvent(name, parameters: parameters)
     }
 }

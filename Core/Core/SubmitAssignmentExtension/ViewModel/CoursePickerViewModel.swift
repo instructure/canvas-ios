@@ -59,6 +59,11 @@ public class CoursePickerViewModel: ObservableObject {
         }
     }
 
+    public func courseSelected(_ course: CoursePickerViewModel.Course) {
+        Analytics.shared.logEvent("course_selected")
+        selectedCourse = course
+    }
+
     private func selectDefaultCourse() {
         guard
             case .data(let courses) = state,
