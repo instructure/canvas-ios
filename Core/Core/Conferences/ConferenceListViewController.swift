@@ -161,12 +161,12 @@ class ConferenceListCell: UITableViewCell {
         if Bundle.main.isTeacherApp {
             iconView.state = conference?.isConcluded == true ? .unpublished : .published
         }
-        titleLabel.text = conference?.title
+        titleLabel.setText(conference?.title, style: .textCellTitle)
         titleLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).title" }
-        statusLabel.text = conference?.statusText
+        statusLabel.setText(conference?.statusText, style: .textCellSupportingText)
         statusLabel.textColor = conference?.statusColor
         statusLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).status" }
-        detailsLabel.text = conference?.details
+        detailsLabel.setText(conference?.details, style: .textCellBottomLabel)
         detailsLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).details" }
     }
 }
