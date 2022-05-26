@@ -113,6 +113,18 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
     }
 
+    func testReportsAssignmentSelectionToAnalytics() {
+        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+
+        testee.assignmentSelected(.init(id: "", name: ""))
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.loggedEvent, "assignment_selected")
+        XCTAssertNil(analyticsHandler.loggedParameters)
+    }
+
     private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
         return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
     }

@@ -22,8 +22,8 @@ public class AssignmentPickerViewModel: ObservableObject {
     public typealias Assignment = IdentifiableName
 
     @Published public var state: ViewModelState<[Assignment]> = .loading
-    @Published public var selectedAssignment: AssignmentPickerViewModel.Assignment?
-    /** Modify this to trigger the assignment list fetch for the give course ID. */
+    @Published public var selectedAssignment: Assignment?
+    /** Modify this to trigger the assignment list fetch for the given course ID. */
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
     }
@@ -43,6 +43,11 @@ public class AssignmentPickerViewModel: ObservableObject {
     #endif
 
     public init() {
+    }
+
+    public func assignmentSelected(_ assignment: Assignment) {
+        Analytics.shared.logEvent("assignment_selected")
+        selectedAssignment = assignment
     }
 
     private func courseIdWillChange(to newValue: String?) {
