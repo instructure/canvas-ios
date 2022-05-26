@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Firebase
 import UIKit
 import Social
 import Core
@@ -29,6 +30,7 @@ class SubmitAssignmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupFirebaseServices()
         isModalInPresentation = true
 
         if let session = LoginSession.mostRecent {
@@ -47,5 +49,10 @@ class SubmitAssignmentViewController: UIViewController {
         )
 
         embed(CoreHostingController(SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
+    }
+
+    private func setupFirebaseServices() {
+        guard FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
+        FirebaseApp.configure()
     }
 }
