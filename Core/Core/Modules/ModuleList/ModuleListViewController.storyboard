@@ -141,6 +141,7 @@
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="WCl-X7-vQ8"/>
                                                         <constraint firstItem="lwl-X5-mNS" firstAttribute="leading" secondItem="rv6-mL-EtC" secondAttribute="leading" id="gj0-Xh-gMC"/>
                                                     </constraints>
                                                 </stackView>
