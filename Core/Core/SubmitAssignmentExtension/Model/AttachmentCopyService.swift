@@ -35,6 +35,7 @@ public class AttachmentCopyService {
 
     public init(extensionContext: NSExtensionContext?) {
         self.extensionItems = extensionContext?.inputItems as? [NSExtensionItem] ?? []
+        Analytics.shared.logEvent("share_started", parameters: ["fileCount": extensionItems.count])
     }
 
     public func startCopying() {
