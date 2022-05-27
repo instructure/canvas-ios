@@ -61,6 +61,6 @@ class SubmitAssignmentViewController: UIViewController {
 
 extension SubmitAssignmentViewController: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
+        Analytics.logEvent("sharex_\(name)", parameters: parameters)
     }
 }
