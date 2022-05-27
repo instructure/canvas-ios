@@ -86,15 +86,19 @@ public class AttachmentCopyService {
             do {
                 let newURL: URL
                 if let image = coding as? UIImage {
+                    Analytics.shared.logEvent("processing_file", parameters: ["type": "image"])
                     newURL = try image.write(to: directory, nameIt: "image")
                 } else if let url = coding as? URL {
+                    Analytics.shared.logEvent("processing_file", parameters: ["type": "url", "extension": "\(url.pathExtension)"])
                     newURL = directory.appendingPathComponent(url.lastPathComponent)
                     try url.move(to: newURL, copy: true)
                 } else if let data = coding as? Data {
+                    Analytics.shared.logEvent("processing_file", parameters: ["type": "data"])
                     newURL = directory.appendingPathComponent("file")
                     try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
                     try data.write(to: newURL)
                 } else {
+                    Analytics.shared.logEvent("processing_file", parameters: ["type": "unknown", "class": "\(type(of: coding))"])
                     throw NSError.instructureError(NSLocalizedString("Format not supported", comment: ""))
                 }
                 callback(.success(newURL))

@@ -32,7 +32,7 @@ public class Analytics: NSObject {
         handler?.handleEvent(name, parameters: parameters)
     }
 
-    public func logError(_ name: String, description: String?) {
+    public func logError(_ name: String, description: String? = nil) {
         handler?.handleEvent(name, parameters: ["error": description ?? ""])
     }
 
