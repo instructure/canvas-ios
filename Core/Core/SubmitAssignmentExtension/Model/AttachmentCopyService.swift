@@ -65,8 +65,7 @@ public class AttachmentCopyService {
     }
 
     private func load(attachment: NSItemProvider, callback: @escaping (Result<URL, Error>) -> Void) {
-        let supported: [UTI] = [.image, .fileURL, .any] // in priority order
-        guard let uti = supported.first(where: { attachment.hasItemConformingToTypeIdentifier($0.rawValue) }) else {
+        guard let uti = attachment.uti else {
             let error = NSError.instructureError(NSLocalizedString("Format not supported", comment: ""))
             callback(.failure(error))
             return
