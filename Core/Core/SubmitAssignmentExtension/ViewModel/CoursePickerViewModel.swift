@@ -46,9 +46,11 @@ public class CoursePickerViewModel: ObservableObject {
                     guard let name = $0.name else { return nil }
                     return Course(id: $0.id.value, name: name)
                 }
+                Analytics.shared.logEvent("courses_loaded", parameters: ["count": validCourses.count])
                 newState = .data(validCourses)
             } else {
                 let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
+                Analytics.shared.logEvent("error_loading_courses", parameters: ["error": errorMessage])
                 newState = .error(errorMessage)
             }
 
