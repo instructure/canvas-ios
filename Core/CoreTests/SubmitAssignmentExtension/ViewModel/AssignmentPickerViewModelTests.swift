@@ -125,6 +125,33 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         XCTAssertNil(analyticsHandler.loggedParameters)
     }
 
+    func testReportsNumberOfAssignments() {
+        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
+            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
+            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
+        ]))
+        testee.courseID = "successID"
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.loggedEvent, "assignments_loaded")
+        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: Int], ["count": 2])
+    }
+
+    func testReportsAssignmentLoadFailure() {
+        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        api.mock(AssignmentPickerListRequest(courseID: "successID"), error: NSError.instructureError("custom error"))
+        testee.courseID = "failureID"
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.loggedEvent, "error_loading_assignments")
+        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], ["error": "custom error"])
+    }
+
     private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
         return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
     }
