@@ -53,11 +53,11 @@ const dark = {
 }
 const medium = {
   light: tiara,
-  dark: { normal: '#556572', high: '#C7CDD1' },
+  dark: { normal: '#394B58', high: '#394B58' },
 }
 const light = {
   light: porcelain,
-  dark: { normal: '#242426', high: '#242426' },
+  dark: { normal: '#6B7780', high: '#6B7780' },
 }
 const lightest = {
   light: white,
@@ -94,18 +94,21 @@ const colors = {
   },
   backgroundGroupedCell: {
     light: white,
-    dark: { normal: '#242426', high: '#242426' },
+    dark: { normal: '#252525', high: '#252525' },
   },
   backgroundDarkest: {
     light: licorice,
-    dark: { normal: '#242426', high: '#242426' },
+    dark: { normal: '#FFFFFF', high: '#FFFFFF' },
   },
   backgroundDark: dark,
   backgroundMedium: {
     light: tiara,
     dark: { normal: '#242426', high: '#242426' },
   },
-  backgroundLight: light,
+  backgroundLight: {
+    light: porcelain,
+    dark: { normal: '#2D3B45', high: '#2D3B45' },
+  },
   backgroundLightest: {
     light: white,
     dark: { normal: '#121212', high: '#121212' },
