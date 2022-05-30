@@ -31,15 +31,15 @@ const fs = require('fs')
 const { dirname } = require('path')
 
 // Canvas Styleguide colors
-const electric  = { normal: '#008EE2', high: '#0770A3' }
-const shamrock  = { normal: '#00AC18', high: '#127A1B' }
-const barney    = { normal: '#BF32A4', high: '#B8309E' }
-const crimson   = { normal: '#EE0612', high: '#D01A19' }
-const fire      = { normal: '#FC5E13', high: '#C23C0D' }
+const electric  = { normal: '#008EE2', high: '#1283C4' }
+const shamrock  = { normal: '#00AC18', high: '#1A8E56' }
+const barney    = { normal: '#BF32A4', high: '#C74BAF' }
+const crimson   = { normal: '#EE0612', high: '#E73A4E' }
+const fire      = { normal: '#FC5E13', high: '#E36327' }
 const licorice  = { normal: '#2D3B45', high: '#2D3B45' }
 const oxford    = { normal: '#394B58', high: '#394B58' }
 const ash       = { normal: '#556572', high: '#556572' }
-const tiara     = { normal: '#C7CDD1', high: '#556572' }
+const tiara     = { normal: '#C7CDD1', high: '#5565721' }
 const porcelain = { normal: '#F5F5F5', high: '#FFFFFF' }
 const white     = { normal: '#FFFFFF', high: '#FFFFFF' }
 
