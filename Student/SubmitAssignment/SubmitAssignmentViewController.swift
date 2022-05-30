@@ -45,7 +45,9 @@ class SubmitAssignmentViewController: UIViewController {
             attachmentCopyService: attachmentCopyService,
             submissionService: attachmentSubmissionService,
             shareCompleted: { [weak self] in
-                self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+                performUIUpdate {
+                    self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+                }
             }
         )
 
