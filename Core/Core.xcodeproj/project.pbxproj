@@ -814,6 +814,7 @@
 		CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */; };
 		CF09E6A32840FB13000C72D0 /* UTIFromNSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */; };
 		CF09E6A52840FC89000C72D0 /* UTIFromNSItemProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6A42840FC89000C72D0 /* UTIFromNSItemProviderTests.swift */; };
+		CF0A3F862844C94000670DBA /* MockAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A3F852844C94000670DBA /* MockAnalyticsHandler.swift */; };
 		CF11565026FB56E900DE25B6 /* AttachmentCopyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */; };
 		CF11565226FB5C4C00DE25B6 /* AttachmentSubmissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */; };
 		CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */; };
@@ -2188,6 +2189,7 @@
 		CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
 		CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProvider.swift; sourceTree = "<group>"; };
 		CF09E6A42840FC89000C72D0 /* UTIFromNSItemProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProviderTests.swift; sourceTree = "<group>"; };
+		CF0A3F852844C94000670DBA /* MockAnalyticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyticsHandler.swift; sourceTree = "<group>"; };
 		CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCopyService.swift; sourceTree = "<group>"; };
 		CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionService.swift; sourceTree = "<group>"; };
 		CF12DFBF26CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleMissingItemsView.swift; sourceTree = "<group>"; };
@@ -4307,6 +4309,7 @@
 			isa = PBXGroup;
 			children = (
 				B14D55602130B6740066D275 /* TestOperationQueue.swift */,
+				CF0A3F852844C94000670DBA /* MockAnalyticsHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -6455,6 +6458,7 @@
 				CF575E4D2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
+				CF0A3F862844C94000670DBA /* MockAnalyticsHandler.swift in Sources */,
 				7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */,
 				CFC2C27F2735354F006CA3E0 /* CoursePickerViewModelTests.swift in Sources */,
 				EBEA637727A17DB900EA0B2D /* K5ImportantDateItemTests.swift in Sources */,

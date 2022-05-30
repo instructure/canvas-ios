@@ -49,17 +49,6 @@ class RouterTests: CoreTestCase {
             return mockCollapsed ?? super.isCollapsed
         }
     }
-    class MockAnalyticsHandler: AnalyticsHandler {
-        var loggedEventCount = 0
-        var loggedEvent: String?
-        var loggedParameters: [String: Any]?
-
-        func handleEvent(_ name: String, parameters: [String: Any]?) {
-            loggedEvent = name
-            loggedParameters = parameters
-            loggedEventCount += 1
-        }
-    }
 
     func testRouter() {
         let router = Router(routes: [
@@ -435,8 +424,8 @@ class RouterTests: CoreTestCase {
 
         router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
 
-        XCTAssertEqual(analyticsHandler.loggedEvent, "screen_view")
-        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], [
+        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
             "application": "teacher",
             "screen_name": "/courses/:courseId/assignments",
             "screen_class": "UIViewController",
@@ -453,8 +442,8 @@ class RouterTests: CoreTestCase {
         router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
 
         XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.loggedEvent, "screen_view")
-        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], [
+        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
             "application": "parent",
             "screen_name": "/courses/:courseId/assignments",
             "screen_class": "MockViewController",

@@ -114,19 +114,19 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testReportsAssignmentSelectionToAnalytics() {
-        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
         XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
 
         testee.assignmentSelected(.init(id: "", name: ""))
 
         XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.loggedEvent, "assignment_selected")
-        XCTAssertNil(analyticsHandler.loggedParameters)
+        XCTAssertEqual(analyticsHandler.lastEventName, "assignment_selected")
+        XCTAssertNil(analyticsHandler.lastEventParameters)
     }
 
     func testReportsNumberOfAssignments() {
-        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
@@ -136,20 +136,20 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         testee.courseID = "successID"
 
         XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.loggedEvent, "assignments_loaded")
-        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: Int], ["count": 2])
+        XCTAssertEqual(analyticsHandler.lastEventName, "assignments_loaded")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
     }
 
     func testReportsAssignmentLoadFailure() {
-        let analyticsHandler = RouterTests.MockAnalyticsHandler()
+        let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), error: NSError.instructureError("custom error"))
         testee.courseID = "failureID"
 
         XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.loggedEvent, "error_loading_assignments")
-        XCTAssertEqual(analyticsHandler.loggedParameters as? [String: String], ["error": "custom error"])
+        XCTAssertEqual(analyticsHandler.lastEventName, "error_loading_assignments")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
     }
 
     private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
