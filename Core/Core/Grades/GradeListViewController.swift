@@ -114,6 +114,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         tableView.separatorColor = .borderMedium
 
         totalGradeHeadingLabel.text = NSLocalizedString("Total Grade", bundle: .core, comment: "")
+        totalGradeLabel.accessibilityIdentifier = "CourseTotalGrade"
 
         assignments.refresh()
         colors.refresh()
