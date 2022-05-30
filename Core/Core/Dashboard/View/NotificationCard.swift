@@ -48,7 +48,7 @@ struct NotificationCard: View {
                                 .padding(.bottom, 12)
                         }
                     }
-                        .padding(.horizontal, 16).padding(.top, 12)
+                    .padding(.horizontal, 16).padding(.top, 12)
                 })
                 if isExpanded {
                     button
@@ -59,7 +59,7 @@ struct NotificationCard: View {
                         .identifier("AccountNotification.\(notification.id).toggleButton")
                 }
                 if isExpanded {
-                    WebView(html: notification.message)
+                    WebView(html: notification.message, forceDarkModeSupport: true)
                         .onLink { url in
                             env.router.route(to: url, from: controller, options: .detail)
                             return true

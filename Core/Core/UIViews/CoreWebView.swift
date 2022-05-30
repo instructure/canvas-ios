@@ -85,7 +85,7 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
+    public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, forceDarkModeSupport: Bool = false) {
         let config = configuration ?? Self.defaultConfiguration
         config.applyDefaultSettings()
 
@@ -97,6 +97,10 @@ open class CoreWebView: WKWebView {
 
         if disableZoom {
             addScript(zoomScript)
+        }
+
+        if forceDarkModeSupport {
+            addScript(darkModeScript)
         }
 
         setup()
@@ -175,6 +179,27 @@ open class CoreWebView: WKWebView {
         "meta.name = 'viewport';" +
         "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
         "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
+    }
+
+    // Enables simple dark mode support for unsupported pages.
+
+    var darkModeScript: String {
+        let css = """
+        @media (prefers-color-scheme: dark) {
+            html {
+                filter: invert(100%) hue-rotate(180deg);
+            }
+            img:not(.ignore-color-scheme), video:not(.ignore-color-scheme), .ignore-color-scheme {
+                filter: invert(100%) hue-rotate(180deg) !important;
+            }
+        }
+        """
+        let cssString = css.components(separatedBy: .newlines).joined()
+        return """
+           var element = document.createElement('style');
+           element.innerHTML = '\(cssString)';
+           document.head.appendChild(element);
+        """
     }
 
     /**

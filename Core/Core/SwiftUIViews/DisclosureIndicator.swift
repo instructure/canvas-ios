@@ -35,6 +35,6 @@ public struct InstDisclosureIndicator: View {
             .resizable()
             .scaledToFit()
             .frame(width: 16, height: 16)
-            .foregroundColor(.ash)
+            .foregroundColor(.textDark)
     }
 }

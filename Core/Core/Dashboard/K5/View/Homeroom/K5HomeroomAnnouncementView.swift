@@ -36,7 +36,7 @@ struct K5HomeroomAnnouncementView: View {
             Text(viewModel.title)
                 .foregroundColor(.textDarkest)
                 .font(.bold24)
-            WebView(html: viewModel.htmlContent)
+            WebView(html: viewModel.htmlContent, forceDarkModeSupport: true)
                 .frameToFit()
                 // Offset default CSS padding in CoreWebView
                 .padding(.horizontal, -16)

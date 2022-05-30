@@ -27,6 +27,7 @@ public struct WebView: UIViewRepresentable {
     private let source: Source?
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
+    private var forceDarkModeSupport: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration?
 
@@ -39,14 +40,16 @@ public struct WebView: UIViewRepresentable {
         source = url.map { .request(URLRequest(url: $0)) }
     }
 
-    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
+    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, forceDarkModeSupport: Bool = false) {
         self.init(url: url)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
+        self.forceDarkModeSupport = forceDarkModeSupport
         self.configuration = configuration
     }
 
-    public init(html: String?) {
+    public init(html: String?, forceDarkModeSupport: Bool = false) {
+        self.forceDarkModeSupport = forceDarkModeSupport
         source = html.map { .html($0) }
     }
 
@@ -93,7 +96,7 @@ public struct WebView: UIViewRepresentable {
     // MARK: - UIViewRepresentable Protocol
 
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration)
+        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration, forceDarkModeSupport: forceDarkModeSupport)
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
