@@ -97,10 +97,10 @@ public class SyllabusSummaryViewController: UITableViewController {
         let cell = tableView.dequeue(SyllabusSummaryItemCell.self, for: indexPath)
         let item = summary[indexPath.row]
         cell.backgroundColor = .backgroundLightest
-        cell.itemNameLabel?.text = item?.title
+        cell.itemNameLabel.setText(item?.title, style: .textCellTitle)
         cell.iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
         cell.iconImageView?.tintColor = colorDelegate?.iconColor ?? course.first?.color
-        cell.dateLabel?.text = item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        cell.dateLabel?.setText(item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: ""), style: .textCellSupportingText)
         return cell
     }
 
