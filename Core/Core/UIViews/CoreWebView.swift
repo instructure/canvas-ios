@@ -257,22 +257,25 @@ open class CoreWebView: WKWebView {
         let buttonText = NSLocalizedString("Launch External Tool", bundle: .core, comment: "")
         return """
             // Handle Math Equations
-            let foundMath = !!document.querySelector('math') || document.body.innerText.includes('\\\\') || document.body.innerText.includes('$$')
-            document.querySelectorAll('img.equation_image').forEach(img => {
-              let mathml = img.getAttribute('x-canvaslms-safe-mathml')
-              if (!mathml && !img.dataset.equationContent) return
-              foundMath = true
-              const div = document.createElement('div')
-              div.innerHTML = mathml || '<span>$$' + img.dataset.equationContent + '$$</span>'
-              div.firstChild.setAttribute('style', img.getAttribute('style'))
-              img.parentNode.replaceChild(div.firstChild, img)
-            })
-            if (foundMath) {
-              window.MathJax = { displayAlign: 'inherit' }
-              const script = document.createElement('script')
-              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-              document.body.appendChild(script)
+            function loadMathJaxIfNecessary() {
+              let foundMath = !!document.querySelector('math') || document.body.innerText.includes('\\\\') || document.body.innerText.includes('$$')
+              document.querySelectorAll('img.equation_image').forEach(img => {
+                let mathml = img.getAttribute('x-canvaslms-safe-mathml')
+                if (!mathml && !img.dataset.equationContent) return
+                foundMath = true
+                const div = document.createElement('div')
+                div.innerHTML = mathml || '<span>$$' + img.dataset.equationContent + '$$</span>'
+                div.firstChild.setAttribute('style', img.getAttribute('style'))
+                img.parentNode.replaceChild(div.firstChild, img)
+              })
+              if (foundMath) {
+                window.MathJax = { displayAlign: 'inherit' }
+                const script = document.createElement('script')
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+                document.body.appendChild(script)
+              }
             }
+            loadMathJaxIfNecessary()
 
             function fixLTITools() {
                 // Replace all iframes with a button to launch in SFSafariViewController

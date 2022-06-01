@@ -349,7 +349,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
     func render() {
         guard isReady, let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
-        let script: String
+        var script: String
         if let root = showRepliesToEntryID.flatMap({ entry($0) }) {
             script = DiscussionHTML.render(
                 entry: root,
@@ -383,6 +383,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 contextColor: color
             )
         }
+        script += "\nloadMathJaxIfNecessary()"
+
         webView.evaluateJavaScript(script) { [weak self] (_, error) in
             if let error = error {
                 print(error)
