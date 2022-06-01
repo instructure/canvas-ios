@@ -257,7 +257,7 @@ open class CoreWebView: WKWebView {
         let buttonText = NSLocalizedString("Launch External Tool", bundle: .core, comment: "")
         return """
             // Handle Math Equations
-            let foundMath = !!document.querySelector('math')
+            let foundMath = !!document.querySelector('math') || document.body.innerText.includes('\\\\') || document.body.innerText.includes('$$')
             document.querySelectorAll('img.equation_image').forEach(img => {
               let mathml = img.getAttribute('x-canvaslms-safe-mathml')
               if (!mathml && !img.dataset.equationContent) return
@@ -270,7 +270,7 @@ open class CoreWebView: WKWebView {
             if (foundMath) {
               window.MathJax = { displayAlign: 'inherit' }
               const script = document.createElement('script')
-              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
               document.body.appendChild(script)
             }
 
