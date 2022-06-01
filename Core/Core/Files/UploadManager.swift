@@ -170,6 +170,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.id = nil
                 file.bytesSent = 0
                 try context.save()
+                Analytics.shared.logEvent("submit_fileupload_info", parameters: ["size": file.size])
                 let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: file.size)
                 let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
                 environment.api.makeRequest(request) { response, _, error in

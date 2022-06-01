@@ -58,7 +58,7 @@ public struct AssignmentPickerView: View {
             VStack(spacing: 0) {
                 ForEach(assignments) { assignment in
                     Button(action: {
-                        viewModel.selectedAssignment = assignment
+                        viewModel.assignmentSelected(assignment)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             presentationMode.wrappedValue.dismiss()
                         }
