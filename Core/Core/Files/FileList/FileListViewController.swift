@@ -405,7 +405,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 1 {
             cell.update(result: results[indexPath.row])
         } else {
-            cell.update(item: items?[indexPath.row])
+            cell.update(item: items?[indexPath.row], color: color)
         }
         return cell
     }
@@ -483,7 +483,8 @@ class FileListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
 
-    func update(item: FolderItem?) {
+    func update(item: FolderItem?, color: UIColor?) {
+        selectedBackgroundView = CustomCellBackgroundView.create(color: color)
         nameLabel.text = item?.name
         if let folder = item?.folder {
             iconView.icon = .folderSolid
