@@ -65,5 +65,6 @@ public class Tab: NSManagedObject {
         self.context = context
         type = item.type
         visibility = TabVisibility(rawValue: item.visibility) ?? .none
+        hidden = item.hidden
     }
 }
