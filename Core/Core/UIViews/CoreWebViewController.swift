@@ -33,6 +33,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
     public init() {
         super.init(nibName: nil, bundle: nil)
         webView.linkDelegate = self
+        webView.addScript(webView.forceDarkModeScript)
     }
 
     required init?(coder aDecoder: NSCoder) {

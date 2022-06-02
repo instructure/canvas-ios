@@ -41,6 +41,7 @@ public struct K5DashboardView: View {
                 }
             }
         }
+        .background(Color.backgroundLightest)
         .navigationBarGlobal()
         .navigationBarItems(
             leading: Button(action: {
