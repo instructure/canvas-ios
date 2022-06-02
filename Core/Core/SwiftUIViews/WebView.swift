@@ -48,8 +48,7 @@ public struct WebView: UIViewRepresentable {
         self.configuration = configuration
     }
 
-    public init(html: String?, forceDarkModeSupport: Bool = false) {
-        self.forceDarkModeSupport = forceDarkModeSupport
+    public init(html: String?) {
         source = html.map { .html($0) }
     }
 

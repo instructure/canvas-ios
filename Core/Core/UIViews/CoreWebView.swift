@@ -100,7 +100,7 @@ open class CoreWebView: WKWebView {
         }
 
         if forceDarkModeSupport {
-            addScript(darkModeScript)
+            addScript(forceDarkModeScript)
         }
 
         setup()
@@ -116,6 +116,8 @@ open class CoreWebView: WKWebView {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
         uiDelegate = self
+        isOpaque = false
+        backgroundColor = UIColor.clear
 
         overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
 
@@ -168,6 +170,7 @@ open class CoreWebView: WKWebView {
             >
             <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <style>\(css)</style>
+            <style>\(darkModeCss)</style>
             \(jquery)
             \(content)
             </html>
@@ -181,10 +184,10 @@ open class CoreWebView: WKWebView {
         "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
     }
 
-    // Enables simple dark mode support for unsupported pages.
+    // Forces dark mode on webview pages.
 
-    var darkModeScript: String {
-        let css = """
+    var forceDarkModeScript: String {
+        let darkCss = """
         @media (prefers-color-scheme: dark) {
             html {
                 filter: invert(100%) hue-rotate(180deg);
@@ -194,12 +197,48 @@ open class CoreWebView: WKWebView {
             }
         }
         """
-        let cssString = css.components(separatedBy: .newlines).joined()
+
+        let cssString = darkCss.components(separatedBy: .newlines).joined()
         return """
            var element = document.createElement('style');
            element.innerHTML = '\(cssString)';
            document.head.appendChild(element);
         """
+    }
+
+    // Enables simple dark mode support for unsupported webview pages.
+
+    private var darkModeCss: String {
+
+        let background = UIColor.backgroundLightest.hexString
+        let foreground = UIColor.textDarkest.hexString
+
+           return """
+                body.dark-theme {
+                  --text-color: \(foreground);
+                  --bkg-color: \(background);
+                }
+                body {
+                  --text-color: \(foreground);
+                  --bkg-color: \(background);
+                }
+
+                @media (prefers-color-scheme: dark) {
+                  /* defaults to dark theme */
+                  html.light-theme {
+                    --text-color: \(foreground);
+                    --bkg-color: \(background);
+                  }
+                  html {
+                    --text-color: \(foreground);
+                    --bkg-color: \(background);
+                  }
+                }
+                html {
+                  background: var(--bkg-color);
+                  color: var(--text-color);
+                }
+                """
     }
 
     /**
@@ -223,14 +262,9 @@ open class CoreWebView: WKWebView {
             fontCSS = Self.LatoRegularCSSFontFace
         }
 
-        let backgroundColor: UIColor = traitCollection.userInterfaceStyle == .dark ? .black : .white
-        let foregroundColor: UIColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
-
         return """
             \(fontCSS)
             html {
-                background: \(backgroundColor.hexString);
-                color: \(foregroundColor.hexString);
                 font-family: \(font);
                 font-size: \(uiFont.pointSize)px;
                 -webkit-tap-highlight-color: transparent;
