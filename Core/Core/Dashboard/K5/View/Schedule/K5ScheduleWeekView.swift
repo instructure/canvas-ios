@@ -42,6 +42,7 @@ public struct K5ScheduleWeekView: View {
                         let isLastDay = dayModels.last == dayModel
                         let isToday = viewModel.isTodayModel(dayModel)
                         dayCell(for: dayModel, isLastDay: isLastDay, isToday: isToday, geometry: geometry)
+                            .listRowBackground(Color.backgroundLightest)
                             .iOS15ListRowSeparator(.hidden)
                     }
                 }

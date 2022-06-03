@@ -39,7 +39,7 @@ public struct K5ScheduleDayView: View {
                 }
                 missingItemsView
             }
-        }
+        }.background(Color.backgroundLightest)
     }
 
     private var nothingPlannedView: some View {
