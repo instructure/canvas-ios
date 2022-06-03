@@ -106,6 +106,10 @@ extension Enrollment {
         return grades.first { $0.gradingPeriodID == gradingPeriodID }?.currentScore
     }
 
+    public func currentGrade(gradingPeriodID: String?) -> String? {
+        grades.first { $0.gradingPeriodID == gradingPeriodID }?.currentGrade
+    }
+
     public func formattedCurrentScore(gradingPeriodID: String?) -> String {
         let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {

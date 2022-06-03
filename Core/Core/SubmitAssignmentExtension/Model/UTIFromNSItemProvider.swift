@@ -16,21 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
+extension NSItemProvider {
+    public static var SupportedUTIs: [UTI] = [.image, .fileURL, .any] // in priority order
 
-extension UILabel {
+    public var uti: UTI? {
+        let uti = Self.SupportedUTIs.first { hasItemConformingToTypeIdentifier($0.rawValue) }
 
-    public func setText(_ text: String, lineHeight: Typography.LineHeight) {
-        attributedText = NSAttributedString(string: text, attributes: NSAttributedString.attributes(lineHeight: lineHeight))
-    }
-
-    public func setText(_ text: String?, style: Typography.Style) {
-        guard let text = text else {
-            attributedText = nil
-            return
+        if uti == nil {
+            Analytics.shared.logError("error_unsupported_file_type", description: suggestedName)
         }
-        var attributes = NSAttributedString.attributes(lineHeight: style.lineHeight)
-        attributes[.font] = style.uiFont
-        attributedText = NSAttributedString(string: text, attributes: attributes)
+
+        return uti
     }
 }

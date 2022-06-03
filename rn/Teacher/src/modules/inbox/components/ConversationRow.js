@@ -134,7 +134,10 @@ const styles = createStyleSheet((colors, vars) => ({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    padding: vars.padding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
+    paddingTop: 8,
+    paddingBottom: 8,
     backgroundColor: colors.backgroundLightest,
   },
   contentContainer: {
@@ -168,14 +171,20 @@ const styles = createStyleSheet((colors, vars) => ({
     fontWeight: '600',
     fontSize: 16,
     flex: 1,
+    marginBottom: 2,
   },
   subject: {
     color: colors.textDarkest,
+    fontWeight: '600',
     fontSize: 14,
+    marginTop: 3,
+    marginBottom: 2,
   },
   message: {
     color: colors.textDark,
     fontSize: 14,
+    marginTop: 3,
+    marginBottom: 3,
   },
   date: {
     color: colors.textDark,

@@ -182,9 +182,12 @@ class CourseTests: CoreTestCase {
     }
 
     func testUpdatesRelatedGroupRelationship() {
-        let group = Group.save(.make(course_id: "course_1"), in: databaseClient)
-        XCTAssertNil(group.course)
+        let group1 = Group.save(.make(id: "1", course_id: "course_1"), in: databaseClient)
+        let group2 = Group.save(.make(id: "2", course_id: "course_1"), in: databaseClient)
+        XCTAssertNil(group1.course)
+        XCTAssertNil(group2.course)
         let course = Course.save(.make(id: "course_1"), in: databaseClient)
-        XCTAssertEqual(group.course, course)
+        XCTAssertEqual(group1.course, course)
+        XCTAssertEqual(group2.course, course)
     }
 }

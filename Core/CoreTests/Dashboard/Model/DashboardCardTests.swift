@@ -63,4 +63,24 @@ class DashboardCardTests: CoreTestCase {
         let card = DashboardCard.save(.make(), position: 0, in: databaseClient)
         XCTAssertEqual(card.course, course)
     }
+
+    func testUseCaseDoesntDeleteUpdatedObjects() {
+        let card1 = DashboardCard.save(.make(id: "1", longName: "original name"), position: 0, in: databaseClient)
+        let card2 = DashboardCard.save(.make(id: "2"), position: 0, in: databaseClient)
+        try! databaseClient.save()
+        let useCase = GetDashboardCards()
+        api.mock(useCase, value: [
+            .make(id: "1", longName: "updated name"),
+        ])
+
+        XCTAssertFalse(card1.isFault)
+        XCTAssertEqual(card1.longName, "original name")
+        XCTAssertFalse(card2.isFault)
+
+        useCase.fetch()
+
+        XCTAssertFalse(card1.isFault)
+        XCTAssertEqual(card1.longName, "updated name")
+        XCTAssertTrue(card2.isFault)
+    }
 }

@@ -144,10 +144,17 @@ class QuizListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var pointsDot: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var statusDot: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        statusDot.setText(statusDot.text, style: .textCellSupportingText)
+        pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
+    }
 
     func update(quiz: Quiz?, isTeacher: Bool) {
         if isTeacher {
@@ -155,12 +162,12 @@ class QuizListCell: UITableViewCell {
         } else {
             iconImageView.state = nil
         }
-        dateLabel.text = quiz?.dueText
-        titleLabel.text = quiz?.title
-        pointsLabel.text = quiz?.pointsPossibleText
-        questionsLabel.text = quiz?.nQuestionsText
+        dateLabel.setText(quiz?.dueText, style: .textCellSupportingText)
+        titleLabel.setText(quiz?.title, style: .textCellTitle)
+        pointsLabel.setText(quiz?.pointsPossibleText, style: .textCellBottomLabel)
+        questionsLabel.setText(quiz?.nQuestionsText, style: .textCellBottomLabel)
         if let statusText = quiz?.lockStatusText {
-            statusLabel.text = statusText
+            statusLabel.setText(statusText, style: .textCellSupportingText)
             statusLabel.isHidden = false
             statusDot.isHidden = false
         } else {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="XRZ-oN-are" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="150" width="375" height="272.5"/>
+                                    <rect key="frame" x="0.0" y="137" width="375" height="272.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHP-Vu-xTn" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
@@ -94,14 +94,14 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="QuizListCell" id="dWK-P7-acP" customClass="QuizListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="94"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dWK-P7-acP" id="5W1-KN-Uta">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350.5" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AkV-vg-YJy" userLabel="iconImageView" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                                    <rect key="frame" x="18" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="2Cd-xH-QBq"/>
                                                         <constraint firstAttribute="height" constant="24" id="Uxt-a6-qLy"/>
@@ -110,21 +110,20 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="quizLine"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="JdI-W3-Z1b">
-                                                    <rect key="frame" x="56" y="16" width="292" height="62"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="JdI-W3-Z1b">
+                                                    <rect key="frame" x="58" y="8" width="292.5" height="53.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoC-Dp-8AX" userLabel="titleLabel" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <color key="textColor" red="0.1764705882352941" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUb-Hp-M8r">
-                                                            <rect key="frame" x="0.0" y="24" width="215" height="17"/>
+                                                            <rect key="frame" x="0.0" y="19.5" width="215.5" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpP-0e-BbY" userLabel="statusLabel" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="46" height="17"/>
@@ -133,7 +132,6 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zim-hH-cAf" userLabel="statusDot" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -143,23 +141,21 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular10"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 2, 2018 at 1:57 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3D8-Qy-LXr" userLabel="dateLabel" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="63" y="0.0" width="152" height="17"/>
+                                                                    <rect key="frame" x="63" y="0.0" width="152.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBl-nw-hUx">
-                                                            <rect key="frame" x="0.0" y="45" width="153" height="17"/>
+                                                            <rect key="frame" x="0.0" y="36.5" width="153" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RdQ-gp-sFi" userLabel="pointsLabel" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="49.5" height="17"/>
@@ -168,7 +164,6 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J33-jM-YV4" userLabel="pointsDot" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -177,7 +172,6 @@
                                                                     <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular10"/>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
@@ -187,7 +181,6 @@
                                                                     <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
@@ -197,13 +190,13 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="JdI-W3-Z1b" firstAttribute="top" secondItem="5W1-KN-Uta" secondAttribute="top" constant="16" id="5F0-Zw-soi"/>
+                                                <constraint firstItem="JdI-W3-Z1b" firstAttribute="top" secondItem="5W1-KN-Uta" secondAttribute="top" constant="8" id="5F0-Zw-soi"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="AkV-vg-YJy" secondAttribute="bottom" constant="16" id="UeY-gV-8Xt"/>
                                                 <constraint firstAttribute="trailing" secondItem="JdI-W3-Z1b" secondAttribute="trailing" id="ZnO-kc-X4d"/>
-                                                <constraint firstItem="AkV-vg-YJy" firstAttribute="leading" secondItem="5W1-KN-Uta" secondAttribute="leading" constant="16" id="k1q-B3-qt5"/>
-                                                <constraint firstItem="AkV-vg-YJy" firstAttribute="top" secondItem="5W1-KN-Uta" secondAttribute="top" constant="16" id="n05-4c-I6u"/>
+                                                <constraint firstItem="AkV-vg-YJy" firstAttribute="leading" secondItem="5W1-KN-Uta" secondAttribute="leading" constant="18" id="k1q-B3-qt5"/>
+                                                <constraint firstItem="AkV-vg-YJy" firstAttribute="top" secondItem="5W1-KN-Uta" secondAttribute="top" constant="10" id="n05-4c-I6u"/>
                                                 <constraint firstItem="JdI-W3-Z1b" firstAttribute="leading" secondItem="AkV-vg-YJy" secondAttribute="trailing" constant="16" id="t1d-8G-eer"/>
-                                                <constraint firstAttribute="bottom" secondItem="JdI-W3-Z1b" secondAttribute="bottom" constant="16" id="wtk-rN-DQw"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JdI-W3-Z1b" secondAttribute="bottom" constant="8" id="wtk-rN-DQw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="tableCellGroupedBackgroundColor"/>
@@ -211,6 +204,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="3D8-Qy-LXr" id="PwE-o6-Cl1"/>
                                             <outlet property="iconImageView" destination="AkV-vg-YJy" id="Glm-Bm-SCg"/>
+                                            <outlet property="pointsDot" destination="J33-jM-YV4" id="3LR-J6-VOD"/>
                                             <outlet property="pointsLabel" destination="RdQ-gp-sFi" id="GnO-rf-bZb"/>
                                             <outlet property="questionsLabel" destination="k0o-jz-H6g" id="41X-tW-KuG"/>
                                             <outlet property="statusDot" destination="Zim-hH-cAf" id="MEs-Lv-chy"/>
@@ -252,10 +246,7 @@
     </scenes>
     <designables>
         <designable name="3D8-Qy-LXr">
-            <size key="intrinsicContentSize" width="152" height="17"/>
-        </designable>
-        <designable name="AkV-vg-YJy">
-            <size key="intrinsicContentSize" width="24" height="24"/>
+            <size key="intrinsicContentSize" width="152.5" height="17"/>
         </designable>
         <designable name="AoC-Dp-8AX">
             <size key="intrinsicContentSize" width="82.5" height="19.5"/>

@@ -16,21 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
+import Core
 
-extension UILabel {
+class MockAnalyticsHandler: AnalyticsHandler {
+    var loggedEventCount = 0
+    var lastEventName: String?
+    var lastEventParameters: [String: Any]?
 
-    public func setText(_ text: String, lineHeight: Typography.LineHeight) {
-        attributedText = NSAttributedString(string: text, attributes: NSAttributedString.attributes(lineHeight: lineHeight))
-    }
-
-    public func setText(_ text: String?, style: Typography.Style) {
-        guard let text = text else {
-            attributedText = nil
-            return
-        }
-        var attributes = NSAttributedString.attributes(lineHeight: style.lineHeight)
-        attributes[.font] = style.uiFont
-        attributedText = NSAttributedString(string: text, attributes: attributes)
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        lastEventName = name
+        lastEventParameters = parameters
+        loggedEventCount += 1
     }
 }

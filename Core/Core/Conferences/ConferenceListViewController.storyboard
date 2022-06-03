@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,10 +19,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g3K-FX-L4M">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="KLU-tr-jrd" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="166.3333358764649" width="375" height="240"/>
+                                    <rect key="frame" x="0.0" y="154" width="375" height="240"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lr-GQ-yY7" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
@@ -97,64 +98,61 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConferenceListCell" id="nnd-eX-t1R" customClass="ConferenceListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="110.33333587646484"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="86.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nnd-eX-t1R" id="jl1-at-GKW">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="110.33333587646484"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350.33333333333331" height="86.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqX-jH-TWY" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                                    <rect key="frame" x="18" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="B8m-wS-Ytx"/>
                                                         <constraint firstAttribute="width" constant="24" id="CXM-qY-NRp"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COVID-19 Conference" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHk-3R-2Pl" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="56" y="15.999999999999998" width="277" height="19.333333333333329"/>
+                                                    <rect key="frame" x="58" y="7.9999999999999982" width="276.33333333333331" height="19.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBm-ca-OYs" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="56" y="39.333333333333336" width="277" height="17"/>
+                                                    <rect key="frame" x="58" y="27.333333333333329" width="276.33333333333331" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textSuccess"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will continue to conference from home until the COVID-19 pandemic has been resolved." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-qz-xOZ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="56" y="60.333333333333343" width="277" height="33.666666666666657"/>
+                                                    <rect key="frame" x="58" y="44.333333333333343" width="276.33333333333331" height="33.666666666666657"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZHN-qz-xOZ" firstAttribute="top" secondItem="kBm-ca-OYs" secondAttribute="bottom" constant="4" id="3qu-wV-TVk"/>
+                                                <constraint firstItem="ZHN-qz-xOZ" firstAttribute="top" secondItem="kBm-ca-OYs" secondAttribute="bottom" id="3qu-wV-TVk"/>
                                                 <constraint firstAttribute="trailing" secondItem="kBm-ca-OYs" secondAttribute="trailing" constant="16" id="6gz-2Q-znk"/>
                                                 <constraint firstAttribute="trailing" secondItem="AHk-3R-2Pl" secondAttribute="trailing" constant="16" id="BaH-6S-6le"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZHN-qz-xOZ" secondAttribute="bottom" constant="16" id="LdU-PQ-u3R"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZHN-qz-xOZ" secondAttribute="bottom" constant="8" id="LdU-PQ-u3R"/>
                                                 <constraint firstItem="kBm-ca-OYs" firstAttribute="leading" secondItem="dqX-jH-TWY" secondAttribute="trailing" constant="16" id="NyG-5k-jlt"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dqX-jH-TWY" secondAttribute="bottom" id="Q3n-5v-LvZ"/>
                                                 <constraint firstItem="AHk-3R-2Pl" firstAttribute="leading" secondItem="dqX-jH-TWY" secondAttribute="trailing" constant="16" id="dZq-u8-3tH"/>
-                                                <constraint firstItem="dqX-jH-TWY" firstAttribute="top" secondItem="jl1-at-GKW" secondAttribute="top" constant="16" id="dkg-rX-UkZ"/>
-                                                <constraint firstItem="dqX-jH-TWY" firstAttribute="leading" secondItem="jl1-at-GKW" secondAttribute="leading" constant="16" id="eWD-Ph-niX"/>
-                                                <constraint firstItem="AHk-3R-2Pl" firstAttribute="top" secondItem="jl1-at-GKW" secondAttribute="top" constant="16" id="jZ2-Kb-ZrT"/>
+                                                <constraint firstItem="dqX-jH-TWY" firstAttribute="top" secondItem="jl1-at-GKW" secondAttribute="top" constant="10" id="dkg-rX-UkZ"/>
+                                                <constraint firstItem="dqX-jH-TWY" firstAttribute="leading" secondItem="jl1-at-GKW" secondAttribute="leading" constant="18" id="eWD-Ph-niX"/>
+                                                <constraint firstItem="AHk-3R-2Pl" firstAttribute="top" secondItem="jl1-at-GKW" secondAttribute="top" constant="8" id="jZ2-Kb-ZrT"/>
                                                 <constraint firstItem="ZHN-qz-xOZ" firstAttribute="leading" secondItem="dqX-jH-TWY" secondAttribute="trailing" constant="16" id="thi-OT-AMe"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZHN-qz-xOZ" secondAttribute="trailing" constant="16" id="vfF-jW-mPU"/>
-                                                <constraint firstItem="kBm-ca-OYs" firstAttribute="top" secondItem="AHk-3R-2Pl" secondAttribute="bottom" constant="4" id="xz0-6c-QTk"/>
+                                                <constraint firstItem="kBm-ca-OYs" firstAttribute="top" secondItem="AHk-3R-2Pl" secondAttribute="bottom" id="xz0-6c-QTk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -171,14 +169,14 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="YjM-lM-spc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YjM-lM-spc" firstAttribute="bottom" secondItem="g3K-FX-L4M" secondAttribute="bottom" id="ZDR-qR-3CC"/>
                             <constraint firstItem="YjM-lM-spc" firstAttribute="trailing" secondItem="g3K-FX-L4M" secondAttribute="trailing" id="gnH-ZX-une"/>
                             <constraint firstItem="g3K-FX-L4M" firstAttribute="leading" secondItem="YjM-lM-spc" secondAttribute="leading" id="ihi-0r-cRR"/>
                             <constraint firstItem="g3K-FX-L4M" firstAttribute="top" secondItem="YjM-lM-spc" secondAttribute="top" id="xAL-oW-Wu7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="YjM-lM-spc"/>
                     </view>
                     <connections>
                         <outlet property="emptyMessageLabel" destination="adb-Iq-iVf" id="vNX-gn-F7z"/>
@@ -194,7 +192,30 @@
             <point key="canvasLocation" x="-10" y="89"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="9iq-BH-els">
+            <size key="intrinsicContentSize" width="151" height="24"/>
+        </designable>
+        <designable name="AHk-3R-2Pl">
+            <size key="intrinsicContentSize" width="167.33333333333334" height="19.333333333333332"/>
+        </designable>
+        <designable name="ZHN-qz-xOZ">
+            <size key="intrinsicContentSize" width="602.33333333333337" height="17"/>
+        </designable>
+        <designable name="Zco-WG-yCy">
+            <size key="intrinsicContentSize" width="188" height="120"/>
+        </designable>
+        <designable name="adb-Iq-iVf">
+            <size key="intrinsicContentSize" width="290.66666666666669" height="19.333333333333332"/>
+        </designable>
+        <designable name="kBm-ca-OYs">
+            <size key="intrinsicContentSize" width="75" height="17"/>
+        </designable>
+    </designables>
     <resources>
         <image name="PandaAtLaptop" width="188" height="120"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -465,15 +465,16 @@ class FileListUploadCell: UITableViewCell {
 
     func update(_ file: File?) {
         iconView.isHidden = file?.uploadError == nil
-        nameLabel.text = file?.filename
+        nameLabel.setText(file?.filename, style: .textCellTitle)
         progressView.color = nil
         progressView.progress = file.map { CGFloat($0.bytesSent) / CGFloat($0.size) }
         progressView.isHidden = file?.uploadError != nil
-        sizeLabel.text = file?.uploadError ?? file.map { String.localizedStringWithFormat(
+        let sizeText = file?.uploadError ?? file.map { String.localizedStringWithFormat(
             NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "Uploading X KB of Y MB"),
             $0.bytesSent.humanReadableFileSize,
             $0.size.humanReadableFileSize
         ) }
+        sizeLabel.setText(sizeText, style: .textCellSupportingText)
         sizeLabel.textColor = file?.uploadError == nil ? .textDark : .textDanger
     }
 }
@@ -484,14 +485,15 @@ class FileListCell: UITableViewCell {
     @IBOutlet weak var sizeLabel: UILabel!
 
     func update(item: FolderItem?) {
-        nameLabel.text = item?.name
+        nameLabel.setText(item?.name, style: .textCellTitle)
         if let folder = item?.folder {
             iconView.icon = .folderSolid
             iconView.setState(locked: folder.locked, hidden: folder.hidden, unlockAt: folder.unlockAt, lockAt: folder.lockAt)
-            sizeLabel.text = String.localizedStringWithFormat(
+            let sizeText = String.localizedStringWithFormat(
                 NSLocalizedString("d_items", bundle: .core, comment: ""),
                 folder.filesCount + folder.foldersCount
             )
+            sizeLabel.setText(sizeText, style: .textCellSupportingText)
             updateAccessibilityLabel()
             return
         }
@@ -502,19 +504,19 @@ class FileListCell: UITableViewCell {
             iconView.icon = file?.icon
         }
         iconView.setState(locked: file?.locked, hidden: file?.hidden, unlockAt: file?.unlockAt, lockAt: file?.lockAt)
-        sizeLabel.text = file?.size.humanReadableFileSize
+        sizeLabel.setText(file?.size.humanReadableFileSize, style: .textCellSupportingText)
         updateAccessibilityLabel()
     }
 
     func update(result: APIFile?) {
-        nameLabel.text = result?.display_name
+        nameLabel.setText(result?.display_name, style: .textCellTitle)
         if let url = result?.thumbnail_url?.rawValue, let c = result?.created_at, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)
         } else {
             iconView.icon = File.icon(mimeClass: result?.mime_class, contentType: result?.contentType)
         }
         iconView.setState(locked: result?.locked, hidden: result?.hidden, unlockAt: result?.unlock_at, lockAt: result?.lock_at)
-        sizeLabel.text = result?.size?.humanReadableFileSize
+        sizeLabel.setText(result?.size?.humanReadableFileSize, style: .textCellSupportingText)
         updateAccessibilityLabel()
     }
 
