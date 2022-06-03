@@ -132,7 +132,7 @@ final public class Course: NSManagedObject, WriteableModel {
             dashboardCard.course = model
         }
 
-        if let group: Group = context.fetch(scope: .where(#keyPath(Group.courseID), equals: model.id)).first {
+        for group: Group in context.fetch(scope: .where(#keyPath(Group.courseID), equals: model.id)) {
             group.course = model
         }
 
