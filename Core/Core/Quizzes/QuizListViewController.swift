@@ -156,7 +156,8 @@ class QuizListCell: UITableViewCell {
         pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
     }
 
-    func update(quiz: Quiz?, isTeacher: Bool) {
+    func update(quiz: Quiz?, isTeacher: Bool, color: UIColor?) {
+        selectedBackgroundView = CustomCellBackgroundView.create(color: color)
         if isTeacher {
             iconImageView.published = quiz?.published == true
         } else {
