@@ -269,7 +269,7 @@ open class CoreWebView: WKWebView {
                 img.parentNode.replaceChild(div.firstChild, img)
               })
               if (foundMath) {
-                window.MathJax = { displayAlign: 'inherit' }
+                window.MathJax = { displayAlign: 'inherit', messageStyle: 'none' }
                 const script = document.createElement('script')
                 script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
                 document.body.appendChild(script)
