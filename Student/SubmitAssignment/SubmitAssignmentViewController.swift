@@ -16,9 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+import Firebase
+import FirebaseAnalytics
 import UIKit
 import Social
-import Core
 
 @objc(SubmitAssignmentViewController)
 class SubmitAssignmentViewController: UIViewController {
@@ -29,6 +31,7 @@ class SubmitAssignmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupFirebaseServices()
         isModalInPresentation = true
 
         if let session = LoginSession.mostRecent {
@@ -42,10 +45,24 @@ class SubmitAssignmentViewController: UIViewController {
             attachmentCopyService: attachmentCopyService,
             submissionService: attachmentSubmissionService,
             shareCompleted: { [weak self] in
-                self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+                performUIUpdate {
+                    self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+                }
             }
         )
 
         embed(CoreHostingController(SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
+    }
+
+    private func setupFirebaseServices() {
+        guard FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
+        FirebaseApp.configure()
+        Core.Analytics.shared.handler = self
+    }
+}
+
+extension SubmitAssignmentViewController: Core.AnalyticsHandler {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        Analytics.logEvent("sharex_\(name)", parameters: parameters)
     }
 }

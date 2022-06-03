@@ -24,7 +24,11 @@ extension UILabel {
         attributedText = NSAttributedString(string: text, attributes: NSAttributedString.attributes(lineHeight: lineHeight))
     }
 
-    public func setText(_ text: String, style: Typography.Style) {
+    public func setText(_ text: String?, style: Typography.Style) {
+        guard let text = text else {
+            attributedText = nil
+            return
+        }
         var attributes = NSAttributedString.attributes(lineHeight: style.lineHeight)
         attributes[.font] = style.uiFont
         attributedText = NSAttributedString(string: text, attributes: attributes)

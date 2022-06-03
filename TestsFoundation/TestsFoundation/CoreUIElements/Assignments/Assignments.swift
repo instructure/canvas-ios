@@ -74,6 +74,10 @@ public enum GradeList {
     public static func gradeOutOf(actualPoints: String, maxPoints: String) -> Element {
         app.find(label: "Grade, \(actualPoints) out of \(maxPoints)")
     }
+
+    public static func totalGrade(totalGrade: String) -> Element {
+        app.find(id: "CourseTotalGrade", label: totalGrade)
+    }
 }
 
 public enum QuizzesNext {

@@ -203,6 +203,6 @@ extension K5HomeroomViewModel: Refreshable {
         profile.refresh(force: true)
         accountAnnouncementsStore.exhaust(force: true)
         conferencesViewModel.refresh(force: true)
-        invitationsViewModel.refresh(force: true)
+        invitationsViewModel.refresh()
     }
 }

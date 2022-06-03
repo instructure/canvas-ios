@@ -127,10 +127,10 @@ class SyllabusSummaryItemCell: UITableViewCell {
 
     func update(_ item: CalendarEvent?, indexPath: IndexPath, color: UIColor?) {
         backgroundColor = .backgroundLightest
-        itemNameLabel?.text = item?.title
+        itemNameLabel?.setText(item?.title, style: .textCellTitle)
         iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
         iconImageView?.tintColor = color
-        dateLabel?.text = item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        dateLabel?.setText(item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: ""), style: .textCellSupportingText)
         selectedBackgroundView = CustomCellBackgroundView.create(color: color)
     }
 

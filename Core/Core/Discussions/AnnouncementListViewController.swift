@@ -202,17 +202,20 @@ class AnnouncementListCell: UITableViewCell {
         }
         selectedBackgroundView = CustomCellBackgroundView.create(color: color)
 
-        titleLabel.text = topic?.title
+        titleLabel.setText(topic?.title, style: .textCellTitle)
+        let dateText: String?
 
         if let delayed = topic?.delayedPostAt, delayed > Clock.now {
             iconImageView.icon = .calendarClockLine
             iconImageView.state = nil
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Delayed until %@", comment: ""), delayed.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Delayed until %@", comment: ""), delayed.dateTimeString)
         } else if let replyAt = topic?.lastReplyAt {
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
         } else {
-            dateLabel.text = topic?.postedAt?.dateTimeString
+            dateText = topic?.postedAt?.dateTimeString
         }
+
+        dateLabel.setText(dateText, style: .textCellSupportingText)
 
         accessibilityLabel = "\(titleLabel.text ?? "") \(dateLabel.text ?? "")"
     }

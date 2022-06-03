@@ -117,7 +117,7 @@ public class PlannerViewController: UIViewController {
         var contextCodes: [String]?
         if let planner = planner, !planner.allSelected {
             contextCodes = planner.selectedCourses.map {
-                Context(.course, id: $0.id).canvasContextID
+                Context(.course, id: $0).canvasContextID
             }
             if let studentID = studentID ?? env.currentSession?.userID {
                 contextCodes?.append(Context(.user, id: studentID).canvasContextID)

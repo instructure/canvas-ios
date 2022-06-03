@@ -280,6 +280,14 @@ class DiscussionListCell: UITableViewCell {
     @IBOutlet weak var unreadDot: UIView!
     @IBOutlet weak var unreadLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
+        repliesDot.setText(repliesDot.text, style: .textCellBottomLabel)
+        statusDot.setText(statusDot.text, style: .textCellBottomLabel)
+    }
+
     func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
         iconImageView.icon = topic?.assignmentID == nil ? .discussionLine : .assignmentLine
@@ -290,29 +298,32 @@ class DiscussionListCell: UITableViewCell {
         }
         selectedBackgroundView = CustomCellBackgroundView.create(color: color)
 
-        titleLabel.text = topic?.title
+        titleLabel.setText(topic?.title, style: .textCellTitle)
 
         statusDot.isHidden = true
         statusLabel.isHidden = true
+        let dateText: String?
+
         if topic?.assignment?.dueAt == nil, let replyAt = topic?.lastReplyAt {
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
         } else if isTeacher, topic?.assignment?.dueAt != nil, topic?.assignment?.hasOverrides == true {
-            dateLabel.text = NSLocalizedString("Multiple Due Dates", comment: "")
+            dateText = NSLocalizedString("Multiple Due Dates", comment: "")
         } else if topic?.assignment?.dueAt != nil, let lockAt = topic?.assignment?.lockAt, lockAt < Clock.now {
-            dateLabel.text = topic?.assignment?.dueText
+            dateText = topic?.assignment?.dueText
             statusLabel.text = NSLocalizedString("Closed", comment: "")
             statusLabel.isHidden = false
             statusDot.isHidden = false
         } else {
-            dateLabel.text = topic?.assignment?.dueText
+            dateText = topic?.assignment?.dueText
         }
 
-        pointsLabel.text = topic?.assignment?.pointsPossibleText
+        dateLabel.setText(dateText, style: .textCellSupportingText)
+        pointsLabel.setText(topic?.assignment?.pointsPossibleText, style: .textCellBottomLabel)
         pointsLabel.isHidden = topic?.assignment?.pointsPossible == nil
         pointsDot.isHidden = topic?.assignment?.pointsPossible == nil
 
-        repliesLabel.text = topic?.nRepliesString
-        unreadLabel.text = topic?.nUnreadString
+        repliesLabel.setText(topic?.nRepliesString, style: .textCellBottomLabel)
+        unreadLabel.setText(topic?.nUnreadString, style: .textCellBottomLabel)
         unreadDot.isHidden = topic?.unreadCount == 0
         unreadDot.backgroundColor = .backgroundInfo
 
