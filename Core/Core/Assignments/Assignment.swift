@@ -190,7 +190,6 @@ extension Assignment {
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
         } else if let topic = discussionTopic {
-            client.delete(topic)
             self.discussionTopic = nil
         }
 
