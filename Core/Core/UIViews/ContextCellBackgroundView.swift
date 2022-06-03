@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class CustomCellBackgroundView: UIView {
+public class ContextCellBackgroundView: UIView {
     @IBOutlet weak var brandedColorView: UIView!
 
     public override func awakeFromNib() {
@@ -26,7 +26,7 @@ public class CustomCellBackgroundView: UIView {
         backgroundColor = .backgroundLight
     }
 
-    public static func create(color: UIColor?) -> CustomCellBackgroundView {
+    public static func create(color: UIColor?) -> ContextCellBackgroundView {
         let view = loadFromXib()
         view.brandedColorView.backgroundColor = color
         return view

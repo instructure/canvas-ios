@@ -139,7 +139,7 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell = tableView.dequeue(ConferenceListCell.self, for: indexPath)
-        cell.update(conferences[indexPath])
+        cell.update(conferences[indexPath], color: color)
         return cell
     }
 
@@ -155,7 +155,7 @@ class ConferenceListCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(_ conference: Conference?) {
+    func update(_ conference: Conference?, color: UIColor?) {
         backgroundColor = .backgroundLightest
         iconView.icon = .conferences
         if Bundle.main.isTeacherApp {
@@ -168,5 +168,6 @@ class ConferenceListCell: UITableViewCell {
         statusLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).status" }
         detailsLabel.setText(conference?.details, style: .textCellBottomLabel)
         detailsLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).details" }
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
     }
 }

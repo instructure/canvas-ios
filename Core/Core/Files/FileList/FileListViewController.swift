@@ -485,7 +485,7 @@ class FileListCell: UITableViewCell {
     @IBOutlet weak var sizeLabel: UILabel!
 
     func update(item: FolderItem?, color: UIColor?) {
-        selectedBackgroundView = CustomCellBackgroundView.create(color: color)
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         nameLabel.setText(item?.name, style: .textCellTitle)
         if let folder = item?.folder {
             iconView.icon = .folderSolid

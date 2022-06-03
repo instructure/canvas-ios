@@ -809,8 +809,8 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
-		CEF0D1462837D571005867EF /* CustomCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* CustomCellBackgroundView.swift */; };
-		CEF0D1472837D571005867EF /* CustomCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* CustomCellBackgroundView.xib */; };
+		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
+		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
 		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
 		CF0894FB26FA218C0051A1BA /* AssignmentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */; };
 		CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */; };
@@ -2186,8 +2186,8 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
-		CEF0D1442837D571005867EF /* CustomCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellBackgroundView.swift; sourceTree = "<group>"; };
-		CEF0D1452837D571005867EF /* CustomCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCellBackgroundView.xib; sourceTree = "<group>"; };
+		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
+		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
 		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
 		CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModel.swift; sourceTree = "<group>"; };
 		CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
@@ -3080,8 +3080,6 @@
 			isa = PBXGroup;
 			children = (
 				7D159CE1242E553900A77A15 /* ModuleItemCell.swift */,
-				CEF0D1442837D571005867EF /* CustomCellBackgroundView.swift */,
-				CEF0D1452837D571005867EF /* CustomCellBackgroundView.xib */,
 				7D159CE2242E553900A77A15 /* ModuleItemSubHeaderCell.swift */,
 				7D159CE3242E553900A77A15 /* ModuleListViewController.storyboard */,
 				7D159CE4242E553900A77A15 /* ModuleListViewController.swift */,
@@ -3115,6 +3113,8 @@
 		7D1758B12159894C00F88613 /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */,
+				CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */,
 				B18359A722244E230005A918 /* AccessIconView.swift */,
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
 				B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */,
@@ -6032,7 +6032,7 @@
 				7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */,
 				3B4D893B2450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard in Resources */,
 				B11AEBB724070FF100B736D6 /* PlannerFilterViewController.storyboard in Resources */,
-				CEF0D1472837D571005867EF /* CustomCellBackgroundView.xib in Resources */,
+				CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */,
 				9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */,
 				7D55586A2461E75F0039CE43 /* DiscussionDetailsViewController.storyboard in Resources */,
 				9FCF1540227B6BC1009D35F6 /* GradeCircleView.xib in Resources */,
@@ -7034,7 +7034,7 @@
 				7DA260E623F72359005D2121 /* RightDetailTableViewCell.swift in Sources */,
 				7DA2600823F7227A005D2121 /* NotificationCenterExtensions.swift in Sources */,
 				CFFE285A27AA9D380029A408 /* CourseListCellView.swift in Sources */,
-				CEF0D1462837D571005867EF /* CustomCellBackgroundView.swift in Sources */,
+				CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */,
 				7DA2606723F722D9005D2121 /* TabType.swift in Sources */,
 				3BA649D324251FE50047D8DC /* PairWithObserverViewController.swift in Sources */,
 				7D630B6F24A511120039A45D /* Folder.swift in Sources */,

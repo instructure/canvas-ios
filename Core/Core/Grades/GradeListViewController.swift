@@ -251,7 +251,7 @@ extension GradeListViewController: UITableViewDataSource, UITableViewDelegate {
         let assignment = assignments[indexPath]
         let cell: GradeListCell = tableView.dequeue(for: indexPath)
         cell.typeImage.image = gradeListCellIconDelegate?.iconImage(for: assignment) ?? assignment?.icon
-        cell.update(assignment, userID: userID)
+        cell.update(assignment, userID: userID, color: color)
         return cell
     }
 
@@ -274,7 +274,7 @@ public class GradeListCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var typeImage: UIImageView!
 
-    func update(_ assignment: Assignment?, userID: String?) {
+    func update(_ assignment: Assignment?, userID: String?, color: UIColor?) {
         let submission = assignment?.submissions?.first { $0.userID == userID }
         accessibilityIdentifier = "GradeListCell.\(assignment?.id ?? "")"
         nameLabel.setText(assignment?.name, style: .textCellTitle)
@@ -289,6 +289,7 @@ public class GradeListCell: UITableViewCell {
         }
         statusLabel.setText(status.text, style: .textCellBottomLabel)
         statusLabel.textColor = status.color
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
     }
 }
 

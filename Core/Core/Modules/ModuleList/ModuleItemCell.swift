@@ -33,7 +33,7 @@ class ModuleItemCell: UITableViewCell {
 
     func update(_ item: ModuleItem, indexPath: IndexPath, color: UIColor?) {
         backgroundColor = .backgroundLightest
-        selectedBackgroundView = CustomCellBackgroundView.create(color: color)
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         isUserInteractionEnabled = env.app == .teacher || !item.isLocked
         nameLabel.setText(item.title, style: .textCellTitle)
         nameLabel.isEnabled = isUserInteractionEnabled

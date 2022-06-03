@@ -296,7 +296,7 @@ class DiscussionListCell: UITableViewCell {
         } else {
             iconImageView.state = nil
         }
-        selectedBackgroundView = CustomCellBackgroundView.create(color: color)
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
         titleLabel.setText(topic?.title, style: .textCellTitle)
 

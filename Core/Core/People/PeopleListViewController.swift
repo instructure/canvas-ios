@@ -260,7 +260,7 @@ class PeopleListCell: UITableViewCell {
 
     func update(user: User?, color: UIColor?) {
         backgroundColor = .backgroundLightest
-        selectedBackgroundView = CustomCellBackgroundView.create(color: color)
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         avatarView.name = user?.name ?? ""
         avatarView.url = user?.avatarURL
         let nameText = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }

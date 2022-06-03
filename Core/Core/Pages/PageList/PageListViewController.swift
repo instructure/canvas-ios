@@ -233,7 +233,7 @@ class PageListCell: UITableViewCell {
 
     func update(_ page: Page?, indexPath: IndexPath, color: UIColor?) {
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
-        selectedBackgroundView = CustomCellBackgroundView.create(color: color)
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         accessIconView.icon = UIImage.documentLine
         accessIconView.published = page?.published == true
         let dateText = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString
