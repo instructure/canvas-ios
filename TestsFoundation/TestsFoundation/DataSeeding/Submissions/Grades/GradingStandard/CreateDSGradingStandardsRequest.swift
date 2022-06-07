@@ -41,7 +41,7 @@ extension CreateDSGradingStandardsRequest {
             GradeEntry.init(name: "B-", value: 80), GradeEntry.init(name: "C+", value: 77),
             GradeEntry.init(name: "C", value: 74), GradeEntry.init(name: "C-", value: 70),
             GradeEntry.init(name: "D+", value: 67), GradeEntry.init(name: "D", value: 64),
-            GradeEntry.init(name: "D-", value: 61), GradeEntry.init(name: "F", value: 0)]
+            GradeEntry.init(name: "D-", value: 61), GradeEntry.init(name: "F", value: 0), ]
 
         public init(title: String = "Standard", grading_scheme_entry: [GradeEntry] = StandardGradingScheme) {
             self.title = title

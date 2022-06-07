@@ -55,7 +55,6 @@ class DSGradingStandardsE2ETests: E2ETestCase {
         seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody: .init(posted_grade: "100"))
         checkForTotalGrade(totalGrade: "100% (A)")
 
-
         seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "0"))
         checkForTotalGrade(totalGrade: "50% (F)")
     }
