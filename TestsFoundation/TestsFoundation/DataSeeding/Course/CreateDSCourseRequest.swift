@@ -40,5 +40,35 @@ extension CreateDSCourseRequest {
     public struct Body: Encodable {
         let course: RequestedDSCourse
         let offer = true // makes the course published after creation
+
+        public init(course: RequestedDSCourse) {
+            self.course = course
+        }
+    }
+}
+
+struct UpdateDSCourseRequest: APIRequestable {
+    public typealias Response = APINoContent
+
+    public let method = APIMethod.put
+    public var path: String
+    public let body: Body?
+
+    public init(body: Body, courseId: String) {
+        self.body = body
+        self.path = "courses/\(courseId)"
+    }
+}
+
+extension UpdateDSCourseRequest {
+    public struct UpdatedDSCourse: Encodable {
+        let grading_standard_id: Int
+    }
+    public struct Body: Encodable {
+        let course: UpdatedDSCourse
+
+        public init(course: UpdatedDSCourse) {
+            self.course = course
+        }
     }
 }
