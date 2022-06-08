@@ -46,7 +46,7 @@ struct GroupCard: View {
                 .padding(8)
             }
             .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
-            .background(Color(.backgroundLightest))
+            .background(Color.backgroundLightest)
             .cornerRadius(4)
         })
         .buttonStyle(ScaleButtonStyle(scale: 1))
