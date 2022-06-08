@@ -843,6 +843,9 @@
 		CF43DE8727CCDDC000015B6F /* MotionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8627CCDDC000015B6F /* MotionModifier.swift */; };
 		CF43DE8927CD036D00015B6F /* InteractivePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8827CD036D00015B6F /* InteractivePanda.swift */; };
 		CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */; };
+		CF490F112850B1C00065D242 /* AnnotationDragGestureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */; };
+		CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F132850CE230065D242 /* DragStartViewModel.swift */; };
+		CF490F162850E2750065D242 /* DragInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F152850E2750065D242 /* DragInfo.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2218,6 +2221,9 @@
 		CF43DE8627CCDDC000015B6F /* MotionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModifier.swift; sourceTree = "<group>"; };
 		CF43DE8827CD036D00015B6F /* InteractivePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePanda.swift; sourceTree = "<group>"; };
 		CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaGallery.swift; sourceTree = "<group>"; };
+		CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureViewModel.swift; sourceTree = "<group>"; };
+		CF490F132850CE230065D242 /* DragStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragStartViewModel.swift; sourceTree = "<group>"; };
+		CF490F152850E2750065D242 /* DragInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfo.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -3390,6 +3396,7 @@
 		7D29D2F5218A29B10036437C /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CF490F0F284F8E2C0065D242 /* ViewModel */,
 				CFAD0D0D2817D91A0017D07B /* Model */,
 				7DFFAB18219DDAE1003E71F8 /* Comments */,
 				7D7472DA218CEE4100CE1430 /* Views */,
@@ -4517,6 +4524,24 @@
 				CF43DE8427CCDBCB00015B6F /* MotionDetector.swift */,
 			);
 			path = Motion;
+			sourceTree = "<group>";
+		};
+		CF490F0F284F8E2C0065D242 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F122850CDFB0065D242 /* AnnotationDrag */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF490F122850CDFB0065D242 /* AnnotationDrag */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */,
+				CF490F152850E2750065D242 /* DragInfo.swift */,
+				CF490F132850CE230065D242 /* DragStartViewModel.swift */,
+			);
+			path = AnnotationDrag;
 			sourceTree = "<group>";
 		};
 		CF4BDB53264530A000A91952 /* Model */ = {
@@ -6774,6 +6799,7 @@
 				CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */,
 				CF43DE8527CCDBCB00015B6F /* MotionDetector.swift in Sources */,
 				7D06A2B32469B7D100D76267 /* DiscussionReplyViewController.swift in Sources */,
+				CF490F162850E2750065D242 /* DragInfo.swift in Sources */,
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
@@ -6890,6 +6916,7 @@
 				7DA25FB223F72136005D2121 /* APIFavorite.swift in Sources */,
 				7DA25FC123F72136005D2121 /* APIOAuth.swift in Sources */,
 				7DA2601E23F7227A005D2121 /* URLExtensions.swift in Sources */,
+				CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */,
 				CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */,
 				7DA25FDA23F72148005D2121 /* Keychain.swift in Sources */,
 				7DA2609323F72315005D2121 /* UserProfile.swift in Sources */,
@@ -7177,6 +7204,7 @@
 				CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */,
 				D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */,
 				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
+				CF490F112850B1C00065D242 /* AnnotationDragGestureViewModel.swift in Sources */,
 				CF8D5356280851A70038B0B2 /* EmbeddedWebPageView.swift in Sources */,
 				CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */,
 				7DA2603723F722D9005D2121 /* TabViewable.swift in Sources */,

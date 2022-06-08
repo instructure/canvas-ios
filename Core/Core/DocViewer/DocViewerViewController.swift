@@ -41,6 +41,7 @@ public class DocViewerViewController: UIViewController {
     lazy var session = DocViewerSession { [weak self] in
         performUIUpdate { self?.sessionIsReady() }
     }
+    private var dragGestureViewModel: AnnotationDragGestureViewModel?
     private var subscriptions = Set<AnyCancellable>()
 
     public internal(set) static var hasPSPDFKitLicense = false
@@ -82,6 +83,13 @@ public class DocViewerViewController: UIViewController {
         commentPinGestureRecognizer.delegate = self
         pdf.interactions.allInteractions.require(toFail: commentPinGestureRecognizer)
         pdf.view.addGestureRecognizer(commentPinGestureRecognizer)
+
+        let dragGestureRecognizer = UIPanGestureRecognizer()
+        pdf.interactions.allInteractions.require(toFail: dragGestureRecognizer)
+        pdf.view.addGestureRecognizer(dragGestureRecognizer)
+
+        let dragGestureViewModel = AnnotationDragGestureViewModel(pdf: pdf, gestureRecognizer: dragGestureRecognizer)
+        self.dragGestureViewModel = dragGestureViewModel
 
         if let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
             session.load(url: url, session: loginSession)
@@ -157,6 +165,7 @@ public class DocViewerViewController: UIViewController {
                 .sink { [weak self] isDragEnabled in
                     self?.pdf.documentViewController?.isScrollEnabled = !isDragEnabled
                     self?.pdf.documentViewController?.isZoomEnabled = !isDragEnabled
+                    self?.dragGestureViewModel?.isEnabled = isDragEnabled
                 }
                 .store(in: &subscriptions)
 
