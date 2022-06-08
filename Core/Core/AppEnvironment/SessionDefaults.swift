@@ -60,9 +60,15 @@ public struct SessionDefaults {
         set { self["isDashboardLayoutGrid"] = newValue }
     }
 
-    public var interfaceStyle: UIUserInterfaceStyle {
-        get { return UIUserInterfaceStyle(rawValue: self["interfaceStyle"] as? Int ?? 1) ?? .light }
-        set { self["interfaceStyle"] = newValue.rawValue }
+    public var interfaceStyle: UIUserInterfaceStyle? {
+        get {
+            guard let styleInt = self["interfaceStyle"] else { return nil }
+            return UIUserInterfaceStyle(rawValue: styleInt as? Int ?? -1)
+        }
+        set {
+            guard let newValue = newValue else { return self["interfaceStyle"] = nil}
+            self["interfaceStyle"] = newValue.rawValue
+        }
     }
 
     public var isMissingItemsSectionOpenOnK5Schedule: Bool? {

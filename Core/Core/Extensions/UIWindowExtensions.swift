@@ -22,9 +22,9 @@ import UIKit
 extension UIWindow {
 
     public func updateInterfaceStyle(_ style: UIUserInterfaceStyle?) {
+        guard let style = style else { return }
         UIView.transition(with: self, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            self.overrideUserInterfaceStyle = style ?? .unspecified
+            self.overrideUserInterfaceStyle = style
         }, completion: nil)
     }
-
 }

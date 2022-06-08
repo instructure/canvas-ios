@@ -32,6 +32,7 @@ public struct DashboardCardView: View {
     @Environment(\.viewController) var controller
 
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
+    @State private var shouldShowThemeSelector = false
 
     private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
@@ -63,9 +64,20 @@ public struct DashboardCardView: View {
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarGlobal()
         .navigationBarItems(leading: menuButton, trailing: layoutToggleButton)
-        .onAppear { refresh(force: false) }
+        .onAppear {
+            refresh(force: false) {
+                shouldShowThemeSelector = AppEnvironment.shared.userDefaults?.interfaceStyle == nil
+            }
+        }.showThemeSelectorActionSheet(isPresented: $shouldShowThemeSelector)
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
             showGrade = env.userDefaults?.showGradesOnDashboard == true
+        }
+    }
+
+    private func setStyle(style: UIUserInterfaceStyle?) {
+        env.userDefaults?.interfaceStyle = style
+        if let window = env.window {
+            window.updateInterfaceStyle(style)
         }
     }
 

@@ -163,8 +163,8 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
         let options = [
             ItemPickerItem(title: NSLocalizedString("System settings", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Light", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Dark", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Light theme", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Dark theme", bundle: .core, comment: "")),
         ]
 
         return [
@@ -173,7 +173,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
                 let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("App apperance", bundle: .core, comment: ""),
                                                                sections: [ ItemPickerSection(items: options) ],
-                                                               selected: IndexPath(row: self.env.userDefaults?.interfaceStyle.rawValue ?? 0, section: 0)) { indexPath in
+                                                               selected: IndexPath(row: self.env.userDefaults?.interfaceStyle?.rawValue ?? 0, section: 0)) { indexPath in
                     if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
                         window.updateInterfaceStyle(style)
                         self.env.userDefaults?.interfaceStyle = style
