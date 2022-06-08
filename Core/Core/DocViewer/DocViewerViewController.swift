@@ -163,9 +163,9 @@ public class DocViewerViewController: UIViewController {
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
             annotationToolbar.isDragButtonSelected
                 .sink { [weak self] isDragEnabled in
-                    self?.pdf.documentViewController?.isScrollEnabled = !isDragEnabled
-                    self?.pdf.documentViewController?.isZoomEnabled = !isDragEnabled
                     self?.dragGestureViewModel?.isEnabled = isDragEnabled
+                    self?.pdf.interactions.allInteractions.isEnabled = !isDragEnabled
+                    self?.pdf.documentViewController?.isScrollEnabled = !isDragEnabled
                 }
                 .store(in: &subscriptions)
 

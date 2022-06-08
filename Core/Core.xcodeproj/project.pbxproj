@@ -846,6 +846,7 @@
 		CF490F112850B1C00065D242 /* AnnotationDragGestureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */; };
 		CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F132850CE230065D242 /* DragStartViewModel.swift */; };
 		CF490F162850E2750065D242 /* DragInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F152850E2750065D242 /* DragInfo.swift */; };
+		CF490F182850F2960065D242 /* DragButtonStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2224,6 +2225,7 @@
 		CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureViewModel.swift; sourceTree = "<group>"; };
 		CF490F132850CE230065D242 /* DragStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragStartViewModel.swift; sourceTree = "<group>"; };
 		CF490F152850E2750065D242 /* DragInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfo.swift; sourceTree = "<group>"; };
+		CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragButtonStateViewModel.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -4530,6 +4532,7 @@
 			isa = PBXGroup;
 			children = (
 				CF490F122850CDFB0065D242 /* AnnotationDrag */,
+				CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6847,6 +6850,7 @@
 				7D7BA23724D8982800B1A68B /* RichContentEditor.swift in Sources */,
 				7DA2608923F72315005D2121 /* ProfileSettingsViewController.swift in Sources */,
 				7DA25FEC23F721DE005D2121 /* ConversationParticipant.swift in Sources */,
+				CF490F182850F2960065D242 /* DragButtonStateViewModel.swift in Sources */,
 				7D7D6D5025100D11002B1485 /* EmptyPanda.swift in Sources */,
 				7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */,
 				7DDE6E0B2476DF15006523D4 /* DiscussionHTML.swift in Sources */,
