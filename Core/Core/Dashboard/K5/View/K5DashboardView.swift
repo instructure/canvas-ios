@@ -42,7 +42,7 @@ public struct K5DashboardView: View {
                 }
             }
         }
-        .onAppear() {
+        .onAppear {
             shouldShowThemeSelector = AppEnvironment.shared.userDefaults?.interfaceStyle == nil
         }
         .showThemeSelectorActionSheet(isPresented: $shouldShowThemeSelector)
