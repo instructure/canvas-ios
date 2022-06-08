@@ -235,9 +235,10 @@ class PageListCell: UITableViewCell {
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
         accessIconView.icon = UIImage.documentLine
         accessIconView.published = page?.published == true
-        dateLabel.text = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString
+        let dateText = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
         }
-        titleLabel.text = page?.title
+        dateLabel.setText(dateText, style: .textCellSupportingText)
+        titleLabel.setText(page?.title, style: .textCellTitle)
     }
 }

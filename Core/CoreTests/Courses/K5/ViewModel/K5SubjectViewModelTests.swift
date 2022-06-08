@@ -69,7 +69,7 @@ class K5SubjectViewModelTests: CoreTestCase {
         }
         NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
         reloadListener.cancel()
     }
 }

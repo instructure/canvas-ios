@@ -32,6 +32,10 @@ public class Analytics: NSObject {
         handler?.handleEvent(name, parameters: parameters)
     }
 
+    public func logError(_ name: String, description: String? = nil) {
+        handler?.handleEvent(name, parameters: ["error": description ?? ""])
+    }
+
     @objc(logScreenView:viewController:)
     public func logScreenView(route: String, viewController: UIViewController? = nil) {
         handler?.handleEvent("screen_view", parameters: [

@@ -166,13 +166,13 @@ class ActivityCell: UITableViewCell {
     func update(_ activity: Activity, courseCache: [String: ActivityStreamViewController.Info] ) {
         backgroundColor = .backgroundGroupedCell
         if activity.type == .conversation {
-            titleLabel.text = NSLocalizedString("New Message", comment: "")
+            titleLabel.setText(NSLocalizedString("New Message", comment: ""), style: .textCellTitle)
         } else {
-            titleLabel.text = activity.title
+            titleLabel.setText(activity.title, style: .textCellTitle)
         }
 
         if activity.context?.contextType == .course || activity.type == .discussion, let id = activity.context?.id {
-            courseCode.text = courseCache[id]?.courseCode
+            courseCode.setText(courseCache[id]?.courseCode, style: .textCellTopLabel)
             courseCode.isHidden = false
         } else {
             courseCode.text = nil
@@ -180,7 +180,7 @@ class ActivityCell: UITableViewCell {
         }
 
         if let date = activity.updatedAt {
-            subTitleLabel.text = ActivityStreamViewController.dateFormatter.string(from: date)
+            subTitleLabel.setText(ActivityStreamViewController.dateFormatter.string(from: date), style: .textCellSupportingText)
         }
 
         icon.image = activity.icon

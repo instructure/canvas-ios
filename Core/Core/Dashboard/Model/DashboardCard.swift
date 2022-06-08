@@ -93,7 +93,16 @@ public class GetDashboardCards: CollectionUseCase {
     public init() {
     }
 
+    public func reset(context: NSManagedObjectContext) {
+        // We don't want the default implementation to delete everything, we'll delete what's no longer needed in the write method
+    }
+
     public func write(response: [APIDashboardCard]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        let idsToKeep = (response ?? []).map { $0.id.value }
+        let objectsManagedByUseCase: [Model] = client.fetch(scope: scope)
+        let objectsToDelete = objectsManagedByUseCase.filter { !idsToKeep.contains($0.id) }
+        client.delete(objectsToDelete)
+
         response?.enumerated().forEach {
             Model.save($0.element, position: $0.offset, in: client)
         }

@@ -230,8 +230,7 @@ class GradeListViewControllerTests: CoreTestCase {
             enrollment_state: .active,
             type: "StudentEnrollment",
             user_id: self.currentSession.userID,
-            computed_current_grade: "C",
-            current_period_computed_current_score: 42
+            grades: .make(current_grade: "C", current_score: 42)
         ), ])
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.totalGradeLabel.text, "42% (C)")

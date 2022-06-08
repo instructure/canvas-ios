@@ -54,7 +54,7 @@ public struct CoursePickerView: View {
             VStack(spacing: 0) {
                 ForEach(courses) { course in
                     Button(action: {
-                        viewModel.selectedCourse = course
+                        viewModel.courseSelected(course)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             presentationMode.wrappedValue.dismiss()
                         }
