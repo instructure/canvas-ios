@@ -20,16 +20,19 @@ import PSPDFKit
 
 extension AnnotationDragGestureViewModel {
     class DragInfo {
-        /** In the gesture view's coordinate space. */
+        /** In the page view's coordinate space. */
         public let dragPointWithinAnnotation: CGPoint
         public let draggedAnnotation: Annotation
         /** Added as a subview to the the page view. */
         public let annotationClone: UIImageView
+        /** The PSPDFKit provided page view for a single page. This contains annotations and the clone image. */
+        public let pageView: UIView
 
-        public init(dragPointWithinAnnotation: CGPoint, draggedAnnotation: Annotation, annotationClone: UIImageView) {
+        public init(dragPointWithinAnnotation: CGPoint, draggedAnnotation: Annotation, annotationClone: UIImageView, pageView: UIView) {
             self.dragPointWithinAnnotation = dragPointWithinAnnotation
             self.draggedAnnotation = draggedAnnotation
             self.annotationClone = annotationClone
+            self.pageView = pageView
         }
 
         deinit {

@@ -43,7 +43,7 @@ extension AnnotationDragGestureViewModel {
             removeExistingAnnotationSelections()
             let tapLocationInAnnotationClone = tapLocationInAnnotationClone(annotationClone)
             hideAnnotation(tappedAnnotation)
-            return DragInfo(dragPointWithinAnnotation: tapLocationInAnnotationClone, draggedAnnotation: tappedAnnotation, annotationClone: annotationClone)
+            return DragInfo(dragPointWithinAnnotation: tapLocationInAnnotationClone, draggedAnnotation: tappedAnnotation, annotationClone: annotationClone, pageView: pageView)
         }
 
         private func removeExistingAnnotationSelections() {
@@ -82,7 +82,7 @@ extension AnnotationDragGestureViewModel {
         }
 
         private func tapLocationInAnnotationClone(_ annotationClone: UIImageView) -> CGPoint {
-            let tapLocationInGestureView = gestureRecognizer.location(in: gestureRecognizer.view)
+            let tapLocationInGestureView = gestureRecognizer.location(in: pageView)
             var dragPointWithinAnnotation = CGPoint.zero
             dragPointWithinAnnotation.x = tapLocationInGestureView.x - annotationClone.frame.origin.x
             dragPointWithinAnnotation.y = tapLocationInGestureView.y - annotationClone.frame.origin.y

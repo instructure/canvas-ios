@@ -58,7 +58,7 @@ class AnnotationDragGestureViewModel {
     private func updateAnnotationClonePosition() {
         guard let dragInfo = dragInfo else { return }
 
-        let tapPointInView = gestureRecognizer.location(in: gestureRecognizer.view)
+        let tapPointInView = gestureRecognizer.location(in: dragInfo.pageView)
         var annotationImageFrame = dragInfo.annotationClone.frame
         annotationImageFrame.origin = CGPoint(x: tapPointInView.x - dragInfo.dragPointWithinAnnotation.x, y: tapPointInView.y - dragInfo.dragPointWithinAnnotation.y)
         dragInfo.annotationClone.frame = annotationImageFrame
