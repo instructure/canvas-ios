@@ -57,4 +57,3 @@ class DragButtonStateViewModel: NSObject, AnnotationStateManagerDelegate {
         isButtonSelectedSubject.send(false)
     }
 }
-
