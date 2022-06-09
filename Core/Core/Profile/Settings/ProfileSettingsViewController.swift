@@ -179,7 +179,6 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         self.env.userDefaults?.interfaceStyle = style
                     }
                 }
-
                 self.show(pickerVC, sender: self)
             },
         ]
@@ -235,7 +234,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             } else {
                 isPairingAllowed = false
             }
-
+            
             performUIUpdate {
                 self?.isPairingWithObserverAllowed = isPairingAllowed
             }

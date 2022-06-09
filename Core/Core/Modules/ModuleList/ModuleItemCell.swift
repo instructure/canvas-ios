@@ -30,6 +30,7 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var completedStatusView: UIImageView!
 
     let env = AppEnvironment.shared
+    
     func update(_ item: ModuleItem, indexPath: IndexPath) {
         backgroundColor = .backgroundLightest
         isUserInteractionEnabled = env.app == .teacher || !item.isLocked
