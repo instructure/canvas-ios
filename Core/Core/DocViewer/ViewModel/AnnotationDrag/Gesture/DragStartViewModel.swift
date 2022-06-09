@@ -27,7 +27,10 @@ extension AnnotationDragGestureViewModel {
 
         public init?(pdf: PDFViewController, documentViewController: PDFDocumentViewController, gestureRecognizer: UIGestureRecognizer) {
             let tapPointInGestureView = gestureRecognizer.location(in: gestureRecognizer.view)
-            guard let pageView = documentViewController.visiblePageView(at: tapPointInGestureView) else { return nil }
+            guard let pageView = documentViewController.visiblePageView(at: tapPointInGestureView) else {
+                gestureRecognizer.cancel()
+                return nil
+            }
 
             self.pdf = pdf
             self.gestureRecognizer = gestureRecognizer
@@ -38,7 +41,10 @@ extension AnnotationDragGestureViewModel {
             guard
                 let tappedAnnotation = tappedAnnotation(on: pageView),
                 let annotationClone = createAnnotationCloneImage(tappedAnnotation, annotationFrame: annotationFrame(tappedAnnotation, on: pageView))
-            else { return nil }
+            else {
+                gestureRecognizer.cancel()
+                return nil
+            }
 
             removeExistingAnnotationSelections()
             let tapLocationInAnnotationClone = tapLocationInAnnotationClone(annotationClone)

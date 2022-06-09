@@ -847,6 +847,8 @@
 		CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F132850CE230065D242 /* DragStartViewModel.swift */; };
 		CF490F162850E2750065D242 /* DragInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F152850E2750065D242 /* DragInfo.swift */; };
 		CF490F182850F2960065D242 /* DragButtonStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */; };
+		CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */; };
+		CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2226,6 +2228,8 @@
 		CF490F132850CE230065D242 /* DragStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragStartViewModel.swift; sourceTree = "<group>"; };
 		CF490F152850E2750065D242 /* DragInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfo.swift; sourceTree = "<group>"; };
 		CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragButtonStateViewModel.swift; sourceTree = "<group>"; };
+		CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerExtensions.swift; sourceTree = "<group>"; };
+		CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegate.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -3719,6 +3723,7 @@
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
 				789C9BC02138516300B37AC4 /* UIColorExtensions.swift */,
+				CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */,
 				7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */,
 				7D4D5EB1213F2A200080AC14 /* UIImageViewExtensions.swift */,
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
@@ -4532,7 +4537,6 @@
 			isa = PBXGroup;
 			children = (
 				CF490F122850CDFB0065D242 /* AnnotationDrag */,
-				CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -4540,11 +4544,21 @@
 		CF490F122850CDFB0065D242 /* AnnotationDrag */ = {
 			isa = PBXGroup;
 			children = (
+				CF490F1928523B450065D242 /* Gesture */,
+				CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */,
+			);
+			path = AnnotationDrag;
+			sourceTree = "<group>";
+		};
+		CF490F1928523B450065D242 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
 				CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */,
 				CF490F152850E2750065D242 /* DragInfo.swift */,
 				CF490F132850CE230065D242 /* DragStartViewModel.swift */,
+				CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */,
 			);
-			path = AnnotationDrag;
+			path = Gesture;
 			sourceTree = "<group>";
 		};
 		CF4BDB53264530A000A91952 /* Model */ = {
@@ -6726,6 +6740,7 @@
 				CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */,
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				CF9A0F3927EA100400762228 /* TabFilter.swift in Sources */,
+				CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
 				CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */,
@@ -7161,6 +7176,7 @@
 				CFF64FE927DB849600653573 /* LTICellViewModel.swift in Sources */,
 				7DA260F523F72397005D2121 /* FilePickerProgressView.swift in Sources */,
 				7DA25F8E23F72123005D2121 /* SyllabusSummaryViewController.swift in Sources */,
+				CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */,
 				7DA2606123F722D9005D2121 /* Submission.swift in Sources */,
 				7DA260BF23F72352005D2121 /* GetGroups.swift in Sources */,
 				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,

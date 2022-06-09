@@ -85,7 +85,6 @@ public class DocViewerViewController: UIViewController {
         pdf.view.addGestureRecognizer(commentPinGestureRecognizer)
 
         let dragGestureRecognizer = UIPanGestureRecognizer()
-        pdf.interactions.allInteractions.require(toFail: dragGestureRecognizer)
         pdf.view.addGestureRecognizer(dragGestureRecognizer)
 
         let dragGestureViewModel = AnnotationDragGestureViewModel(pdf: pdf, gestureRecognizer: dragGestureRecognizer)
@@ -165,7 +164,6 @@ public class DocViewerViewController: UIViewController {
                 .sink { [weak self] isDragEnabled in
                     self?.dragGestureViewModel?.isEnabled = isDragEnabled
                     self?.pdf.interactions.allInteractions.isEnabled = !isDragEnabled
-                    self?.pdf.documentViewController?.isScrollEnabled = !isDragEnabled
                 }
                 .store(in: &subscriptions)
 

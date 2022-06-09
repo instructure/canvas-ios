@@ -29,12 +29,14 @@ class AnnotationDragGestureViewModel {
     private let pdf: PDFViewController
     private let gestureRecognizer: UIGestureRecognizer
     private var dragInfo: DragInfo?
+    private let dragGestureDelegate = AnnotationDragGestureDelegate()
 
     public init(pdf: PDFViewController, gestureRecognizer: UIGestureRecognizer) {
         self.pdf = pdf
         self.gestureRecognizer = gestureRecognizer
         gestureRecognizer.addTarget(self, action: #selector(dragStateChanged))
         gestureRecognizer.isEnabled = false
+        gestureRecognizer.delegate = dragGestureDelegate
     }
 
     @objc private func dragStateChanged() {
