@@ -168,10 +168,10 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         ]
 
         return [
-            Row(NSLocalizedString("App apperance", bundle: .core, comment: "")) { [weak self] in
+            Row(NSLocalizedString("App appearance", bundle: .core, comment: "")) { [weak self] in
                 guard let self = self else { return }
 
-                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("App apperance", bundle: .core, comment: ""),
+                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("App appearance", bundle: .core, comment: ""),
                                                                sections: [ ItemPickerSection(items: options) ],
                                                                selected: IndexPath(row: self.env.userDefaults?.interfaceStyle?.rawValue ?? 0, section: 0)) { indexPath in
                     if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
@@ -234,7 +234,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             } else {
                 isPairingAllowed = false
             }
-            
+
             performUIUpdate {
                 self?.isPairingWithObserverAllowed = isPairingAllowed
             }
