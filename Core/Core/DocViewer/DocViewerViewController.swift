@@ -65,6 +65,7 @@ public class DocViewerViewController: UIViewController {
         super.viewDidLoad()
 
         loadingView.color = nil
+        self.view.backgroundColor = .backgroundMedium
 
         embed(pdf, in: contentView)
         pdf.delegate = self
