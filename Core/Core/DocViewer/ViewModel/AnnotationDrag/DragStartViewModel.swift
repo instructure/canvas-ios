@@ -40,9 +40,14 @@ extension AnnotationDragGestureViewModel {
                 let annotationClone = createAnnotationCloneImage(tappedAnnotation, annotationFrame: annotationFrame(tappedAnnotation, on: pageView))
             else { return nil }
 
+            removeExistingAnnotationSelections()
             let tapLocationInAnnotationClone = tapLocationInAnnotationClone(annotationClone)
             hideAnnotation(tappedAnnotation)
             return DragInfo(dragPointWithinAnnotation: tapLocationInAnnotationClone, draggedAnnotation: tappedAnnotation, annotationClone: annotationClone)
+        }
+
+        private func removeExistingAnnotationSelections() {
+            pdf.selectedAnnotations = []
         }
 
         private func createAnnotationCloneImage(_ annotation: Annotation, annotationFrame: CGRect) -> UIImageView? {
