@@ -22,7 +22,7 @@ public class CreateDSGradingStandardsRequest: APIRequestable {
     public typealias Response = DSGradingStandard
 
     public let method = APIMethod.post
-    public var path: String
+    public let path: String
     public let body: RequestDSGradingStandards?
 
     public init(body: RequestDSGradingStandards? = RequestDSGradingStandards(), courseId: String) {
@@ -36,12 +36,12 @@ extension CreateDSGradingStandardsRequest {
         public let title: String
         public let grading_scheme_entry: [GradeEntry]
         public static let StandardGradingScheme: [GradeEntry] = [
-            GradeEntry.init(name: "A", value: 94), GradeEntry.init(name: "A-", value: 90),
-            GradeEntry.init(name: "B+", value: 87), GradeEntry.init(name: "B", value: 84),
-            GradeEntry.init(name: "B-", value: 80), GradeEntry.init(name: "C+", value: 77),
-            GradeEntry.init(name: "C", value: 74), GradeEntry.init(name: "C-", value: 70),
-            GradeEntry.init(name: "D+", value: 67), GradeEntry.init(name: "D", value: 64),
-            GradeEntry.init(name: "D-", value: 61), GradeEntry.init(name: "F", value: 0), ]
+            GradeEntry(name: "A", value: 94), GradeEntry(name: "A-", value: 90),
+            GradeEntry(name: "B+", value: 87), GradeEntry(name: "B", value: 84),
+            GradeEntry(name: "B-", value: 80), GradeEntry(name: "C+", value: 77),
+            GradeEntry(name: "C", value: 74), GradeEntry(name: "C-", value: 70),
+            GradeEntry(name: "D+", value: 67), GradeEntry(name: "D", value: 64),
+            GradeEntry(name: "D-", value: 61), GradeEntry(name: "F", value: 0), ]
 
         public init(title: String = "Standard", grading_scheme_entry: [GradeEntry] = StandardGradingScheme) {
             self.title = title

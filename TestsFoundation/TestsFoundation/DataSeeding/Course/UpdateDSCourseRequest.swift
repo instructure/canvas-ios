@@ -18,30 +18,27 @@
 
 import Core
 
-// https://canvas.instructure.com/doc/api/courses.html#method.courses.create
-struct CreateDSCourseRequest: APIRequestable {
-    public typealias Response = DSCourse
+struct UpdateDSCourseRequest: APIRequestable {
+    public typealias Response = APINoContent
 
-    public let method = APIMethod.post
+    public let method = APIMethod.put
     public var path: String
     public let body: Body?
 
-    public init(body: Body, accountId: String = "self") {
+    public init(body: Body, courseId: String) {
         self.body = body
-        self.path = "accounts/\(accountId)/courses"
+        self.path = "courses/\(courseId)"
     }
 }
 
-extension CreateDSCourseRequest {
-    public struct RequestedDSCourse: Encodable {
-        let name: String
+extension UpdateDSCourseRequest {
+    public struct UpdatedDSCourse: Encodable {
+        let grading_standard_id: Int
     }
-
     public struct Body: Encodable {
-        let course: RequestedDSCourse
-        let offer = true // makes the course published after creation
+        let course: UpdatedDSCourse
 
-        public init(course: RequestedDSCourse) {
+        public init(course: UpdatedDSCourse) {
             self.course = course
         }
     }

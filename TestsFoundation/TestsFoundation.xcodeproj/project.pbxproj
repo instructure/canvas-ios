@@ -101,6 +101,7 @@
 		C9BCCA0B27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */; };
 		C9BCCA0D27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */; };
 		C9E9C2F727609B8E00FC60CB /* K5CourseBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */; };
+		C9F2829C2851F06C00BD406C /* UpdateDSCourseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2829B2851F06C00BD406C /* UpdateDSCourseRequest.swift */; };
 		C9FDE92226BBCBE600DF0106 /* Announcements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDE92126BBCBE600DF0106 /* Announcements.swift */; };
 		CFA078B527981BAF0078B27B /* DataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B427981BAF0078B27B /* DataSeeder.swift */; };
 		CFA078B8279861500078B27B /* DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B7279861500078B27B /* DSUser.swift */; };
@@ -263,6 +264,7 @@
 		C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSGradesRequest.swift; sourceTree = "<group>"; };
 		C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSGrades.swift"; sourceTree = "<group>"; };
 		C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseBrowser.swift; sourceTree = "<group>"; };
+		C9F2829B2851F06C00BD406C /* UpdateDSCourseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSCourseRequest.swift; sourceTree = "<group>"; };
 		C9FDE92126BBCBE600DF0106 /* Announcements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcements.swift; sourceTree = "<group>"; };
 		CFA078B427981BAF0078B27B /* DataSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSeeder.swift; sourceTree = "<group>"; };
 		CFA078B7279861500078B27B /* DSUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUser.swift; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 				CFA078C02799A8280078B27B /* CreateDSCourseRequest.swift */,
 				CFA078BE2799A7800078B27B /* DSCourse.swift */,
 				CFA078C22799A9310078B27B /* DataSeeder+DSCourse.swift */,
+				C9F2829B2851F06C00BD406C /* UpdateDSCourseRequest.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -1197,6 +1200,7 @@
 				C9A23D2227A3D6E400A1EE3B /* E2ETestCase.swift in Sources */,
 				E80936DB24C2480B00D15E9A /* RichContentToolbar.swift in Sources */,
 				B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */,
+				C9F2829C2851F06C00BD406C /* UpdateDSCourseRequest.swift in Sources */,
 				C909F7D127C37DA200CB89DE /* CreateDSSubmissionRequest.swift in Sources */,
 				7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */,
 				E80936DC24C2480B00D15E9A /* RichContentEditor.swift in Sources */,
