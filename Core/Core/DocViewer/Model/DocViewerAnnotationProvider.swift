@@ -136,11 +136,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     }
 
     public override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {
-        guard !annotation.isEmpty,
-              let apiAnnotation = annotation.apiAnnotation(),
-              // An annotation can only be hidden in case we are dragging it, the hidden state change triggers a `didChange` callback but since we don't save the hidden flag to the API we can safely ignore it
-              !annotation.isHidden
-        else { return }
+        guard !annotation.isEmpty, let apiAnnotation = annotation.apiAnnotation() else { return }
         uploader.save(apiAnnotation)
     }
 

@@ -33,7 +33,10 @@ extension AnnotationDragGestureViewModel {
         }
 
         deinit {
-            annotationClone.removeFromSuperview()
+            // Re-rendering the moved annotation to its new place takes some time so we keep the clone on screen to avoid a blink
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [annotationClone] in
+                annotationClone.removeFromSuperview()
+            }
         }
     }
 }

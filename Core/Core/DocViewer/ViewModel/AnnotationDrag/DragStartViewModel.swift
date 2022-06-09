@@ -88,7 +88,10 @@ extension AnnotationDragGestureViewModel {
 
         private func hideAnnotation(_ annotation: Annotation) {
             annotation.flags.update(with: .hidden)
-            NotificationCenter.default.post(name: .PSPDFAnnotationChanged, object: annotation, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["flags"]])
+
+            // These two lines will update the screen way faster than sending out the changed notification and also don't trigger an API upload
+            PSPDFKit.SDK.shared.cache.remove(for: pdf.document)
+            pdf.visiblePageViews.forEach { $0.update() }
         }
     }
 }
