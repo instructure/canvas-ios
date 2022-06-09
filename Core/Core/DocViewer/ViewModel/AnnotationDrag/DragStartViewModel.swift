@@ -54,7 +54,7 @@ extension AnnotationDragGestureViewModel {
             guard let annotationCloneImage = annotation.image(size: annotationFrame.size, options: nil) else { return nil }
             let annotationCloneImageView = UIImageView(image: annotationCloneImage)
             annotationCloneImageView.frame = annotationFrame
-            gestureRecognizer.view?.addSubview(annotationCloneImageView)
+            pageView.addSubview(annotationCloneImageView)
             return annotationCloneImageView
         }
 
@@ -76,11 +76,9 @@ extension AnnotationDragGestureViewModel {
             return annotationsOnPage.filter { !$0.isReadOnly && $0.isMovable }
         }
 
-        /** In the gesture view's coordinates. */
+        /** In the page view's coordinates. */
         private func annotationFrame(_ annotation: Annotation, on pageView: PDFPageView) -> CGRect {
-            let renderedSizeInPageView = pageView.convert(annotation.boundingBox, from: pageView.pdfCoordinateSpace)
-            let renderedSizeInTappedView = pageView.convert(renderedSizeInPageView, to: gestureRecognizer.view)
-            return renderedSizeInTappedView
+            pageView.convert(annotation.boundingBox, from: pageView.pdfCoordinateSpace)
         }
 
         private func tapLocationInAnnotationClone(_ annotationClone: UIImageView) -> CGPoint {

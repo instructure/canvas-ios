@@ -80,12 +80,10 @@ class AnnotationDragGestureViewModel {
         guard
             let dragInfo = dragInfo,
             let pageView = documentViewController.visiblePageView(at: gestureRecognizer.location(in: gestureRecognizer.view)),
-            let gestureView = gestureRecognizer.view,
             let document = pdf.document
         else { return }
 
-        let newBoundingBoxInGestureView = dragInfo.annotationClone.frame
-        let newBoundingBoxInPageView = gestureView.convert(newBoundingBoxInGestureView, to: pageView)
+        let newBoundingBoxInPageView = dragInfo.annotationClone.frame
         let newBoundingBoxInPdf = pageView.convert(newBoundingBoxInPageView, to: pageView.pdfCoordinateSpace)
 
         document.undoController.recordCommand(named: NSLocalizedString("Move Annotation", comment: ""), changing: [dragInfo.draggedAnnotation]) {

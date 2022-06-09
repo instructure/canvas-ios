@@ -23,7 +23,7 @@ extension AnnotationDragGestureViewModel {
         /** In the gesture view's coordinate space. */
         public let dragPointWithinAnnotation: CGPoint
         public let draggedAnnotation: Annotation
-        /** Added as a subview to the the gesture's view. */
+        /** Added as a subview to the the page view. */
         public let annotationClone: UIImageView
 
         public init(dragPointWithinAnnotation: CGPoint, draggedAnnotation: Annotation, annotationClone: UIImageView) {
