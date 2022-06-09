@@ -62,6 +62,7 @@ class AnnotationDragGestureViewModel {
         var annotationImageFrame = dragInfo.annotationClone.frame
         annotationImageFrame.origin = CGPoint(x: tapPointInView.x - dragInfo.dragPointWithinAnnotation.x, y: tapPointInView.y - dragInfo.dragPointWithinAnnotation.y)
         dragInfo.annotationClone.frame = annotationImageFrame
+        dragInfo.annotationClone.restrictFrameInsideSuperview()
     }
 
     private func finalizeAnnotationPositionAndRemoveClone(documentViewController: PDFDocumentViewController) {
@@ -77,9 +78,12 @@ class AnnotationDragGestureViewModel {
             dragInfo = nil
         }
 
+        guard let dragInfo = dragInfo, let cloneContainerView = dragInfo.annotationClone.superview else { return }
+
+        let annotationPositionInDocumentView = cloneContainerView.convert(dragInfo.annotationClone.center, to: documentViewController.view)
+
         guard
-            let dragInfo = dragInfo,
-            let pageView = documentViewController.visiblePageView(at: gestureRecognizer.location(in: gestureRecognizer.view)),
+            let pageView = documentViewController.visiblePageView(at: annotationPositionInDocumentView),
             let document = pdf.document
         else { return }
 
