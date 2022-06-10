@@ -129,7 +129,7 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: QuizListCell = tableView.dequeue(for: indexPath)
-        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true)
+        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true, color: color)
         cell.accessibilityIdentifier = "QuizListCell.\(indexPath.section).\(indexPath.row)"
         return cell
     }
@@ -156,7 +156,8 @@ class QuizListCell: UITableViewCell {
         pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
     }
 
-    func update(quiz: Quiz?, isTeacher: Bool) {
+    func update(quiz: Quiz?, isTeacher: Bool, color: UIColor?) {
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         if isTeacher {
             iconImageView.published = quiz?.published == true
         } else {

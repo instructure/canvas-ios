@@ -163,7 +163,7 @@ extension AnnouncementListViewController: UITableViewDataSource, UITableViewDele
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnnouncementListCell = tableView.dequeue(for: indexPath)
         cell.accessibilityIdentifier = "announcements.list.announcement.row-\(indexPath.row)"
-        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true)
+        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
         return cell
     }
 
@@ -193,13 +193,14 @@ class AnnouncementListCell: UITableViewCell {
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(topic: DiscussionTopic?, isTeacher: Bool) {
+    func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
         iconImageView.icon = .announcementLine
         if isTeacher {
             iconImageView.published = topic?.published == true
         } else {
             iconImageView.state = nil
         }
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
         titleLabel.setText(topic?.title, style: .textCellTitle)
         let dateText: String?

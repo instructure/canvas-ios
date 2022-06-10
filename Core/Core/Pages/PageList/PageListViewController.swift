@@ -185,7 +185,7 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell: PageListCell = tableView.dequeue(for: indexPath)
-        cell.update(pages[indexPath.row], indexPath: indexPath)
+        cell.update(pages[indexPath.row], indexPath: indexPath, color: color)
         return cell
     }
 
@@ -231,8 +231,9 @@ class PageListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(_ page: Page?, indexPath: IndexPath) {
+    func update(_ page: Page?, indexPath: IndexPath, color: UIColor?) {
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         accessIconView.icon = UIImage.documentLine
         accessIconView.published = page?.published == true
         let dateText = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString
