@@ -67,7 +67,7 @@ extension AnnotationDragGestureViewModel {
         private func tappedAnnotation(on pageView: PDFPageView) -> Annotation? {
             let movableAnnotations = movableAnnotations(on: pageView)
             let tapLocationInPDFCoordinates = tapLocationInPDFCoordinates
-            return movableAnnotations.first { $0.hitTest(tapLocationInPDFCoordinates, minDiameter: 40) }
+            return movableAnnotations.first { $0.hitTest(tapLocationInPDFCoordinates, minDiameter: 30) }
         }
 
         private var tapLocationInPDFCoordinates: CGPoint {

@@ -68,33 +68,18 @@ class AnnotationDragGestureViewModel {
     }
 
     private func finalizeAnnotationPositionAndRemoveClone(documentViewController: PDFDocumentViewController) {
-        var isAnnotationFrameUpdated = false
-
-        defer {
-            if let draggedAnnotation = dragInfo?.draggedAnnotation {
-                draggedAnnotation.flags.remove(.hidden)
-                let keyPaths = ["flags"] + (isAnnotationFrameUpdated ? ["boundingBox"] : [])
-                NotificationCenter.default.post(name: NSNotification.Name.PSPDFAnnotationChanged, object: draggedAnnotation, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: keyPaths])
-            }
-
-            dragInfo = nil
-        }
-
         guard let dragInfo = dragInfo, let cloneContainerView = dragInfo.annotationClone.superview else { return }
-
         let annotationPositionInDocumentView = cloneContainerView.convert(dragInfo.annotationClone.center, to: documentViewController.view)
-
-        guard
-            let pageView = documentViewController.visiblePageView(at: annotationPositionInDocumentView),
-            let document = pdf.document
-        else { return }
+        guard let pageView = documentViewController.visiblePageView(at: annotationPositionInDocumentView) else { return }
 
         let newBoundingBoxInPageView = dragInfo.annotationClone.frame
         let newBoundingBoxInPdf = pageView.convert(newBoundingBoxInPageView, to: pageView.pdfCoordinateSpace)
+        dragInfo.draggedAnnotation.boundingBox = newBoundingBoxInPdf
+        dragInfo.draggedAnnotation.flags.remove(.hidden)
 
-        document.undoController.recordCommand(named: NSLocalizedString("Move Annotation", comment: ""), changing: [dragInfo.draggedAnnotation]) {
-            dragInfo.draggedAnnotation.boundingBox = newBoundingBoxInPdf
-        }
-        isAnnotationFrameUpdated = true
+        NotificationCenter.default.post(name: .PSPDFAnnotationChanged,
+                                        object: dragInfo.draggedAnnotation,
+                                        userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["flags", "boundingBox"]])
+        self.dragInfo = nil
     }
 }
