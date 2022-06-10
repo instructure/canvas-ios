@@ -850,6 +850,7 @@
 		CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */; };
 		CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */; };
 		CF490F2228538FAF0065D242 /* DragInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2128538FAF0065D242 /* DragInfoTests.swift */; };
+		CF490F24285392950065D242 /* AnnotationDragGestureDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2232,6 +2233,7 @@
 		CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerExtensions.swift; sourceTree = "<group>"; };
 		CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegate.swift; sourceTree = "<group>"; };
 		CF490F2128538FAF0065D242 /* DragInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfoTests.swift; sourceTree = "<group>"; };
+		CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegateTests.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -4584,6 +4586,7 @@
 			isa = PBXGroup;
 			children = (
 				CF490F2128538FAF0065D242 /* DragInfoTests.swift */,
+				CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */,
 			);
 			path = Gesture;
 			sourceTree = "<group>";
@@ -6389,6 +6392,7 @@
 				7D5AA3C822959D5D00438667 /* GetSSOLoginTests.swift in Sources */,
 				7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */,
 				CF575E49266792CA00F8515F /* LatestAnnouncementTests.swift in Sources */,
+				CF490F24285392950065D242 /* AnnotationDragGestureDelegateTests.swift in Sources */,
 				9FC715CE23D758BD008CBDBF /* GetConversationsTests.swift in Sources */,
 				7DE949802385E08000B27F93 /* TodoTests.swift in Sources */,
 				7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */,
