@@ -849,6 +849,7 @@
 		CF490F182850F2960065D242 /* DragButtonStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */; };
 		CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */; };
 		CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */; };
+		CF490F2228538FAF0065D242 /* DragInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2128538FAF0065D242 /* DragInfoTests.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2230,6 +2231,7 @@
 		CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragButtonStateViewModel.swift; sourceTree = "<group>"; };
 		CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerExtensions.swift; sourceTree = "<group>"; };
 		CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegate.swift; sourceTree = "<group>"; };
+		CF490F2128538FAF0065D242 /* DragInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfoTests.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -3643,6 +3645,7 @@
 		7D7472D7218CD73D00CE1430 /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CF490F1E28538F830065D242 /* ViewModel */,
 				CFAD0D1128181DF40017D07B /* Model */,
 				7D2DC2F92199FD47008FE29A /* Fixtures */,
 				7D7472D5218CC4B200CE1430 /* APIDocViewerTests.swift */,
@@ -4557,6 +4560,30 @@
 				CF490F152850E2750065D242 /* DragInfo.swift */,
 				CF490F132850CE230065D242 /* DragStartViewModel.swift */,
 				CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
+		CF490F1E28538F830065D242 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F1F28538F8C0065D242 /* AnnotationDrag */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF490F1F28538F8C0065D242 /* AnnotationDrag */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F2028538F970065D242 /* Gesture */,
+			);
+			path = AnnotationDrag;
+			sourceTree = "<group>";
+		};
+		CF490F2028538F970065D242 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F2128538FAF0065D242 /* DragInfoTests.swift */,
 			);
 			path = Gesture;
 			sourceTree = "<group>";
@@ -6498,6 +6525,7 @@
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
 				7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */,
 				CF575E4D2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift in Sources */,
+				CF490F2228538FAF0065D242 /* DragInfoTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
 				CF0A3F862844C94000670DBA /* MockAnalyticsHandler.swift in Sources */,
