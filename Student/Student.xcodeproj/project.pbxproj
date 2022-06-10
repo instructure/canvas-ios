@@ -154,6 +154,7 @@
 		C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */; };
 		C95E967127C62DCC00DAAB4A /* DSDashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E967027C62DCC00DAAB4A /* DSDashboardE2ETests.swift */; };
 		C99425E2284096300078A3BD /* GradeTotalsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99425E1284096300078A3BD /* GradeTotalsE2ETests.swift */; };
+		C99425EB2847821D0078A3BD /* DSGradingStandardsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99425EA2847821D0078A3BD /* DSGradingStandardsE2ETests.swift */; };
 		C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C04C26A03B9900DAE8E1 /* K5StudentE2ETests.swift */; };
 		C9BCCA1027D73F0F003E9CB0 /* DSGradesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0F27D73F0F003E9CB0 /* DSGradesE2ETests.swift */; };
 		CF00480B25E62D0300321C8B /* GroupContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00480A25E62D0300321C8B /* GroupContextCardE2ETests.swift */; };
@@ -743,6 +744,7 @@
 		C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesE2ETests.swift; sourceTree = "<group>"; };
 		C95E967027C62DCC00DAAB4A /* DSDashboardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDashboardE2ETests.swift; sourceTree = "<group>"; };
 		C99425E1284096300078A3BD /* GradeTotalsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeTotalsE2ETests.swift; sourceTree = "<group>"; };
+		C99425EA2847821D0078A3BD /* DSGradingStandardsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSGradingStandardsE2ETests.swift; sourceTree = "<group>"; };
 		C9A3C04C26A03B9900DAE8E1 /* K5StudentE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StudentE2ETests.swift; sourceTree = "<group>"; };
 		C9BCCA0F27D73F0F003E9CB0 /* DSGradesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSGradesE2ETests.swift; sourceTree = "<group>"; };
 		CF00480A25E62D0300321C8B /* GroupContextCardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardE2ETests.swift; sourceTree = "<group>"; };
@@ -1573,6 +1575,7 @@
 			children = (
 				C9BCCA0F27D73F0F003E9CB0 /* DSGradesE2ETests.swift */,
 				C99425E1284096300078A3BD /* GradeTotalsE2ETests.swift */,
+				C99425EA2847821D0078A3BD /* DSGradingStandardsE2ETests.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -2958,6 +2961,7 @@
 				C9299FE528102A62003A47C2 /* DSAnnouncementsE2ETests.swift in Sources */,
 				E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */,
 				E80936E324C24CDD00D15E9A /* CourseFileE2ETests.swift in Sources */,
+				C99425EB2847821D0078A3BD /* DSGradingStandardsE2ETests.swift in Sources */,
 				E80936F024C2514600D15E9A /* DiscussionListE2ETests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -88,6 +88,9 @@
 		C935D43A26E5F59700C940F7 /* K5Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43926E5F59700C940F7 /* K5Grades.swift */; };
 		C95E966D27C3DB4E00DAAB4A /* SubmissionsListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E966C27C3DB4E00DAAB4A /* SubmissionsListPage.swift */; };
 		C95E967427C630E000DAAB4A /* EmptyPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E967327C630E000DAAB4A /* EmptyPanda.swift */; };
+		C99425E42844E2CE0078A3BD /* CreateDSGradingStandardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99425E32844E2CE0078A3BD /* CreateDSGradingStandardsRequest.swift */; };
+		C99425E72844E69F0078A3BD /* DSGradingStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99425E62844E69F0078A3BD /* DSGradingStandard.swift */; };
+		C99425E9284768860078A3BD /* DataSeeder+DSGradingStandards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99425E8284768860078A3BD /* DataSeeder+DSGradingStandards.swift */; };
 		C9A23D1C27A2950D00A1EE3B /* DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1B27A2950D00A1EE3B /* DSAssignment.swift */; };
 		C9A23D1E27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1D27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift */; };
 		C9A23D2027A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23D1F27A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift */; };
@@ -98,6 +101,7 @@
 		C9BCCA0B27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */; };
 		C9BCCA0D27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */; };
 		C9E9C2F727609B8E00FC60CB /* K5CourseBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */; };
+		C9F2829C2851F06C00BD406C /* UpdateDSCourseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2829B2851F06C00BD406C /* UpdateDSCourseRequest.swift */; };
 		C9FDE92226BBCBE600DF0106 /* Announcements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDE92126BBCBE600DF0106 /* Announcements.swift */; };
 		CFA078B527981BAF0078B27B /* DataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B427981BAF0078B27B /* DataSeeder.swift */; };
 		CFA078B8279861500078B27B /* DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078B7279861500078B27B /* DSUser.swift */; };
@@ -247,6 +251,9 @@
 		C935D43926E5F59700C940F7 /* K5Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Grades.swift; sourceTree = "<group>"; };
 		C95E966C27C3DB4E00DAAB4A /* SubmissionsListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsListPage.swift; sourceTree = "<group>"; };
 		C95E967327C630E000DAAB4A /* EmptyPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPanda.swift; sourceTree = "<group>"; };
+		C99425E32844E2CE0078A3BD /* CreateDSGradingStandardsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSGradingStandardsRequest.swift; sourceTree = "<group>"; };
+		C99425E62844E69F0078A3BD /* DSGradingStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSGradingStandard.swift; sourceTree = "<group>"; };
+		C99425E8284768860078A3BD /* DataSeeder+DSGradingStandards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSGradingStandards.swift"; sourceTree = "<group>"; };
 		C9A23D1B27A2950D00A1EE3B /* DSAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAssignment.swift; sourceTree = "<group>"; };
 		C9A23D1D27A2E64400A1EE3B /* CreateDSAssignmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAssignmentRequest.swift; sourceTree = "<group>"; };
 		C9A23D1F27A2E74C00A1EE3B /* DataSeeder+DSAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSAssignment.swift"; sourceTree = "<group>"; };
@@ -257,6 +264,7 @@
 		C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSGradesRequest.swift; sourceTree = "<group>"; };
 		C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSGrades.swift"; sourceTree = "<group>"; };
 		C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseBrowser.swift; sourceTree = "<group>"; };
+		C9F2829B2851F06C00BD406C /* UpdateDSCourseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSCourseRequest.swift; sourceTree = "<group>"; };
 		C9FDE92126BBCBE600DF0106 /* Announcements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcements.swift; sourceTree = "<group>"; };
 		CFA078B427981BAF0078B27B /* DataSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSeeder.swift; sourceTree = "<group>"; };
 		CFA078B7279861500078B27B /* DSUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUser.swift; sourceTree = "<group>"; };
@@ -610,6 +618,16 @@
 			path = EmptyPanda;
 			sourceTree = "<group>";
 		};
+		C99425E52844E6820078A3BD /* GradingStandard */ = {
+			isa = PBXGroup;
+			children = (
+				C99425E32844E2CE0078A3BD /* CreateDSGradingStandardsRequest.swift */,
+				C99425E62844E69F0078A3BD /* DSGradingStandard.swift */,
+				C99425E8284768860078A3BD /* DataSeeder+DSGradingStandards.swift */,
+			);
+			path = GradingStandard;
+			sourceTree = "<group>";
+		};
 		C9A23D1A27A294C900A1EE3B /* Assignment */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +651,7 @@
 		C9BCCA0727D5F06A003E9CB0 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
+				C99425E52844E6820078A3BD /* GradingStandard */,
 				C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */,
 				C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */,
 			);
@@ -679,6 +698,7 @@
 				CFA078C02799A8280078B27B /* CreateDSCourseRequest.swift */,
 				CFA078BE2799A7800078B27B /* DSCourse.swift */,
 				CFA078C22799A9310078B27B /* DataSeeder+DSCourse.swift */,
+				C9F2829B2851F06C00BD406C /* UpdateDSCourseRequest.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -1070,6 +1090,7 @@
 				7D64A97F23676434004EAEDF /* CourseSectionFixture.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
 				E81B575E23E243CA002A0C38 /* Compose.swift in Sources */,
+				C99425E9284768860078A3BD /* DataSeeder+DSGradingStandards.swift in Sources */,
 				7D7F71E0241FDE2F00D6F9CB /* ConferenceFixture.swift in Sources */,
 				3B0CEB722150406400D07CFA /* CourseFixture.swift in Sources */,
 				E80936C524C2480B00D15E9A /* ConferenceDetails.swift in Sources */,
@@ -1118,11 +1139,13 @@
 				E80936DE24C2480B00D15E9A /* TextSubmission.swift in Sources */,
 				E80936CE24C2480B00D15E9A /* FilePicker.swift in Sources */,
 				B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */,
+				C99425E42844E2CE0078A3BD /* CreateDSGradingStandardsRequest.swift in Sources */,
 				7DBED034233409D900392F3C /* TestLoginDelegate.swift in Sources */,
 				7DAC288022B1A3F900C0B692 /* XCUIElementExtensions.swift in Sources */,
 				E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */,
 				C9299FEA2816B515003A47C2 /* DataSeeder+Tabs.swift in Sources */,
 				E80936CD24C2480B00D15E9A /* ExternalURL.swift in Sources */,
+				C99425E72844E69F0078A3BD /* DSGradingStandard.swift in Sources */,
 				E80936D024C2480B00D15E9A /* FileEditor.swift in Sources */,
 				C909F7CA27BA7F8D00CB89DE /* CreateDSPageRequest.swift in Sources */,
 				B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */,
@@ -1177,6 +1200,7 @@
 				C9A23D2227A3D6E400A1EE3B /* E2ETestCase.swift in Sources */,
 				E80936DB24C2480B00D15E9A /* RichContentToolbar.swift in Sources */,
 				B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */,
+				C9F2829C2851F06C00BD406C /* UpdateDSCourseRequest.swift in Sources */,
 				C909F7D127C37DA200CB89DE /* CreateDSSubmissionRequest.swift in Sources */,
 				7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */,
 				E80936DC24C2480B00D15E9A /* RichContentEditor.swift in Sources */,

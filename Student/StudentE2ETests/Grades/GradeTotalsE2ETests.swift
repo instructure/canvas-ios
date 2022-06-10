@@ -114,6 +114,5 @@ class GradesTotalsE2ETests: E2ETestCase {
         sleep(3)
         pullToRefresh()
         GradeList.totalGrade(totalGrade: totalGrade).waitToExist(3)
-
     }
 }
