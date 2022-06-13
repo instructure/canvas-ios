@@ -13,11 +13,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d grade currently hidden</string>
+			<string>%d mark currently hidden</string>
 			<key>other</key>
-			<string>%d grades currently hidden</string>
+			<string>%d marks currently hidden</string>
 			<key>zero</key>
-			<string>%d grades currently hidden</string>
+			<string>%d marks currently hidden</string>
 		</dict>
 	</dict>
 	<key>grades_currently_posted</key>
@@ -31,11 +31,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d grade currently posted</string>
+			<string>%d mark currently posted</string>
 			<key>other</key>
-			<string>%d grades currently posted</string>
+			<string>%d marks currently posted</string>
 			<key>zero</key>
-			<string>%d grades currently posted</string>
+			<string>%d marks currently posted</string>
 		</dict>
 	</dict>
 </dict>

@@ -11,7 +11,7 @@
 "Announcements" = "Announcements";
 
 /* No comment provided by engineer. */
-"Assignment Grades" = "Assignment Grades";
+"Assignment Grades" = "Assignment Marks";
 
 /* Example course name */
 "Biology 201" = "Biology 201";
@@ -41,7 +41,7 @@
 "No Announcements" = "No announcements";
 
 /* No comment provided by engineer. */
-"No Grades To Display" = "No Grades To Display";
+"No Grades To Display" = "No Marks To Display";
 
 /* No comment provided by engineer. */
 "Please log in via the application" = "Please log in via the application";
@@ -59,7 +59,7 @@
 "View the latest announcements from your courses." = "View the latest announcements from your courses.";
 
 /* Description of the grades widget */
-"View the latest grades from assignments and your favorite courses." = "View the latest grades from assignments and your favourite courses.";
+"View the latest grades from assignments and your favorite courses." = "View the latest marks from assignments and your favourite courses.";
 
 /* Example announcement title */
 "Zoo Field Trip!" = "Zoo Field Trip!";
