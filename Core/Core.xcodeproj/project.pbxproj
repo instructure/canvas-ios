@@ -854,6 +854,7 @@
 		CF490F26285393D90065D242 /* DragButtonStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F25285393D90065D242 /* DragButtonStateViewModelTests.swift */; };
 		CF490F29285742430065D242 /* AnnotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F28285742430065D242 /* AnnotationExtensions.swift */; };
 		CF490F2C285742EF0065D242 /* AnnotationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */; };
+		CF490F2E28575B4F0065D242 /* DocumentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2D28575B4F0065D242 /* DocumentExtensions.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2240,6 +2241,7 @@
 		CF490F25285393D90065D242 /* DragButtonStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragButtonStateViewModelTests.swift; sourceTree = "<group>"; };
 		CF490F28285742430065D242 /* AnnotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationExtensions.swift; sourceTree = "<group>"; };
 		CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationExtensionsTests.swift; sourceTree = "<group>"; };
+		CF490F2D28575B4F0065D242 /* DocumentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentExtensions.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -4604,6 +4606,7 @@
 			isa = PBXGroup;
 			children = (
 				CF490F28285742430065D242 /* AnnotationExtensions.swift */,
+				CF490F2D28575B4F0065D242 /* DocumentExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -6744,6 +6747,7 @@
 				CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */,
 				7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */,
 				CFFE285E27AABCC20029A408 /* CourseSectionStatus.swift in Sources */,
+				CF490F2E28575B4F0065D242 /* DocumentExtensions.swift in Sources */,
 				7DA2601F23F7227A005D2121 /* URLResponseExtensions.swift in Sources */,
 				7DA2602423F722B3005D2121 /* LogEventListViewController.swift in Sources */,
 				7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */,

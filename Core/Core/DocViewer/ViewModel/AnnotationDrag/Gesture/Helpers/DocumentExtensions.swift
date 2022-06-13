@@ -17,14 +17,13 @@
 //
 
 import PSPDFKit
+import PSPDFKitUI
 
-extension Annotation {
+extension Optional where Wrapped == Document {
 
-    func createCloneImage(frame: CGRect, addTo view: UIView) -> UIImageView? {
-        guard let annotationCloneImage = image(size: frame.size, options: nil) else { return nil }
-        let annotationCloneImageView = UIImageView(image: annotationCloneImage)
-        annotationCloneImageView.frame = frame
-        view.addSubview(annotationCloneImageView)
-        return annotationCloneImageView
+    func movableAnnotations(on pageIndex: PageIndex) -> [Annotation] {
+        guard let document = self else { return [] }
+        let annotationsOnPage = document.annotations(at: pageIndex)
+        return annotationsOnPage.filter { !$0.isReadOnly && $0.isMovable }
     }
 }
