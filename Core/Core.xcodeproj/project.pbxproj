@@ -852,6 +852,8 @@
 		CF490F2228538FAF0065D242 /* DragInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2128538FAF0065D242 /* DragInfoTests.swift */; };
 		CF490F24285392950065D242 /* AnnotationDragGestureDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */; };
 		CF490F26285393D90065D242 /* DragButtonStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F25285393D90065D242 /* DragButtonStateViewModelTests.swift */; };
+		CF490F29285742430065D242 /* AnnotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F28285742430065D242 /* AnnotationExtensions.swift */; };
+		CF490F2C285742EF0065D242 /* AnnotationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2236,6 +2238,8 @@
 		CF490F2128538FAF0065D242 /* DragInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfoTests.swift; sourceTree = "<group>"; };
 		CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegateTests.swift; sourceTree = "<group>"; };
 		CF490F25285393D90065D242 /* DragButtonStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragButtonStateViewModelTests.swift; sourceTree = "<group>"; };
+		CF490F28285742430065D242 /* AnnotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationExtensions.swift; sourceTree = "<group>"; };
+		CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationExtensionsTests.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -4560,6 +4564,7 @@
 		CF490F1928523B450065D242 /* Gesture */ = {
 			isa = PBXGroup;
 			children = (
+				CF490F27285740620065D242 /* Helpers */,
 				CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */,
 				CF490F152850E2750065D242 /* DragInfo.swift */,
 				CF490F132850CE230065D242 /* DragStartViewModel.swift */,
@@ -4588,10 +4593,27 @@
 		CF490F2028538F970065D242 /* Gesture */ = {
 			isa = PBXGroup;
 			children = (
+				CF490F2A285742C90065D242 /* Helpers */,
 				CF490F2128538FAF0065D242 /* DragInfoTests.swift */,
 				CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */,
 			);
 			path = Gesture;
+			sourceTree = "<group>";
+		};
+		CF490F27285740620065D242 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F28285742430065D242 /* AnnotationExtensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CF490F2A285742C90065D242 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		CF4BDB53264530A000A91952 /* Model */ = {
@@ -6275,6 +6297,7 @@
 				CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
+				CF490F2C285742EF0065D242 /* AnnotationExtensionsTests.swift in Sources */,
 				7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */,
 				CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */,
 				3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */,
@@ -7197,6 +7220,7 @@
 				7DA25FFF23F7226E005D2121 /* DocViewerViewController.swift in Sources */,
 				D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */,
 				D91BC856276B7B3C008371B0 /* AssignmentGroupViewModel.swift in Sources */,
+				CF490F29285742430065D242 /* AnnotationExtensions.swift in Sources */,
 				EB75D49627903BA600AA273C /* K5ImportantDatesViewModel.swift in Sources */,
 				7DA25FF623F72268005D2121 /* CommentListViewController.swift in Sources */,
 				7DA25FB023F72136005D2121 /* APIExternalTool.swift in Sources */,

@@ -40,7 +40,7 @@ extension AnnotationDragGestureViewModel {
         public func startDragGesture() -> DragInfo? {
             guard
                 let tappedAnnotation = tappedAnnotation(on: pageView),
-                let annotationClone = createAnnotationCloneImage(tappedAnnotation, annotationFrame: annotationFrame(tappedAnnotation, on: pageView))
+                let annotationClone = tappedAnnotation.createCloneImage(frame: annotationFrame(tappedAnnotation, on: pageView), addTo: pageView)
             else {
                 gestureRecognizer.cancel()
                 return nil
@@ -56,13 +56,6 @@ extension AnnotationDragGestureViewModel {
             pdf.selectedAnnotations = []
         }
 
-        private func createAnnotationCloneImage(_ annotation: Annotation, annotationFrame: CGRect) -> UIImageView? {
-            guard let annotationCloneImage = annotation.image(size: annotationFrame.size, options: nil) else { return nil }
-            let annotationCloneImageView = UIImageView(image: annotationCloneImage)
-            annotationCloneImageView.frame = annotationFrame
-            pageView.addSubview(annotationCloneImageView)
-            return annotationCloneImageView
-        }
 
         private func tappedAnnotation(on pageView: PDFPageView) -> Annotation? {
             let movableAnnotations = movableAnnotations(on: pageView)
