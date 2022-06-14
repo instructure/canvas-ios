@@ -338,7 +338,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         entries.refresh()
         group.refresh()
         permissions.refresh()
-        self.topic.refresh()
+        self.topic.refresh(force: true)
         return false
     }
 
