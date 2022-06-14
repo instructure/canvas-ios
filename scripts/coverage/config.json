@@ -22,7 +22,9 @@
     "K5Preview.swift",
     "Core\/WebSitePreview\/",
     "FontPreview.swift",
-    "Core\/Typography\/"
+    "Core\/Typography\/",
+    "UIGestureRecognizerExtensions.swift",
+    "DocViewer\/ViewModel\/AnnotationDrag\/Gesture"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

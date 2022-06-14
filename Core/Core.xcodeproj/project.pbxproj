@@ -845,6 +845,18 @@
 		CF43DE8727CCDDC000015B6F /* MotionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8627CCDDC000015B6F /* MotionModifier.swift */; };
 		CF43DE8927CD036D00015B6F /* InteractivePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8827CD036D00015B6F /* InteractivePanda.swift */; };
 		CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */; };
+		CF490F112850B1C00065D242 /* AnnotationDragGestureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */; };
+		CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F132850CE230065D242 /* DragStartViewModel.swift */; };
+		CF490F162850E2750065D242 /* DragInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F152850E2750065D242 /* DragInfo.swift */; };
+		CF490F182850F2960065D242 /* DragButtonStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */; };
+		CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */; };
+		CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */; };
+		CF490F2228538FAF0065D242 /* DragInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2128538FAF0065D242 /* DragInfoTests.swift */; };
+		CF490F24285392950065D242 /* AnnotationDragGestureDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */; };
+		CF490F26285393D90065D242 /* DragButtonStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F25285393D90065D242 /* DragButtonStateViewModelTests.swift */; };
+		CF490F29285742430065D242 /* AnnotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F28285742430065D242 /* AnnotationExtensions.swift */; };
+		CF490F2C285742EF0065D242 /* AnnotationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */; };
+		CF490F2E28575B4F0065D242 /* DocumentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F2D28575B4F0065D242 /* DocumentExtensions.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2222,6 +2234,18 @@
 		CF43DE8627CCDDC000015B6F /* MotionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModifier.swift; sourceTree = "<group>"; };
 		CF43DE8827CD036D00015B6F /* InteractivePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePanda.swift; sourceTree = "<group>"; };
 		CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaGallery.swift; sourceTree = "<group>"; };
+		CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureViewModel.swift; sourceTree = "<group>"; };
+		CF490F132850CE230065D242 /* DragStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragStartViewModel.swift; sourceTree = "<group>"; };
+		CF490F152850E2750065D242 /* DragInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfo.swift; sourceTree = "<group>"; };
+		CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragButtonStateViewModel.swift; sourceTree = "<group>"; };
+		CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerExtensions.swift; sourceTree = "<group>"; };
+		CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegate.swift; sourceTree = "<group>"; };
+		CF490F2128538FAF0065D242 /* DragInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfoTests.swift; sourceTree = "<group>"; };
+		CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegateTests.swift; sourceTree = "<group>"; };
+		CF490F25285393D90065D242 /* DragButtonStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragButtonStateViewModelTests.swift; sourceTree = "<group>"; };
+		CF490F28285742430065D242 /* AnnotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationExtensions.swift; sourceTree = "<group>"; };
+		CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationExtensionsTests.swift; sourceTree = "<group>"; };
+		CF490F2D28575B4F0065D242 /* DocumentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentExtensions.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -3396,6 +3420,7 @@
 		7D29D2F5218A29B10036437C /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CF490F0F284F8E2C0065D242 /* ViewModel */,
 				CFAD0D0D2817D91A0017D07B /* Model */,
 				7DFFAB18219DDAE1003E71F8 /* Comments */,
 				7D7472DA218CEE4100CE1430 /* Views */,
@@ -3636,6 +3661,7 @@
 		7D7472D7218CD73D00CE1430 /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CF490F1E28538F830065D242 /* ViewModel */,
 				CFAD0D1128181DF40017D07B /* Model */,
 				7D2DC2F92199FD47008FE29A /* Fixtures */,
 				7D7472D5218CC4B200CE1430 /* APIDocViewerTests.swift */,
@@ -3716,6 +3742,7 @@
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
 				789C9BC02138516300B37AC4 /* UIColorExtensions.swift */,
+				CF490F1A285242D40065D242 /* UIGestureRecognizerExtensions.swift */,
 				7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */,
 				7D4D5EB1213F2A200080AC14 /* UIImageViewExtensions.swift */,
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
@@ -4523,6 +4550,79 @@
 				CF43DE8427CCDBCB00015B6F /* MotionDetector.swift */,
 			);
 			path = Motion;
+			sourceTree = "<group>";
+		};
+		CF490F0F284F8E2C0065D242 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F122850CDFB0065D242 /* AnnotationDrag */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF490F122850CDFB0065D242 /* AnnotationDrag */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F1928523B450065D242 /* Gesture */,
+				CF490F172850F2960065D242 /* DragButtonStateViewModel.swift */,
+			);
+			path = AnnotationDrag;
+			sourceTree = "<group>";
+		};
+		CF490F1928523B450065D242 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F27285740620065D242 /* Helpers */,
+				CF490F102850B1C00065D242 /* AnnotationDragGestureViewModel.swift */,
+				CF490F152850E2750065D242 /* DragInfo.swift */,
+				CF490F132850CE230065D242 /* DragStartViewModel.swift */,
+				CF490F1C285243F30065D242 /* AnnotationDragGestureDelegate.swift */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
+		CF490F1E28538F830065D242 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F1F28538F8C0065D242 /* AnnotationDrag */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF490F1F28538F8C0065D242 /* AnnotationDrag */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F2028538F970065D242 /* Gesture */,
+				CF490F25285393D90065D242 /* DragButtonStateViewModelTests.swift */,
+			);
+			path = AnnotationDrag;
+			sourceTree = "<group>";
+		};
+		CF490F2028538F970065D242 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F2A285742C90065D242 /* Helpers */,
+				CF490F2128538FAF0065D242 /* DragInfoTests.swift */,
+				CF490F23285392950065D242 /* AnnotationDragGestureDelegateTests.swift */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
+		CF490F27285740620065D242 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F28285742430065D242 /* AnnotationExtensions.swift */,
+				CF490F2D28575B4F0065D242 /* DocumentExtensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CF490F2A285742C90065D242 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CF490F2B285742EF0065D242 /* AnnotationExtensionsTests.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		CF4BDB53264530A000A91952 /* Model */ = {
@@ -6207,6 +6307,7 @@
 				CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
+				CF490F2C285742EF0065D242 /* AnnotationExtensionsTests.swift in Sources */,
 				7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */,
 				CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */,
 				3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */,
@@ -6327,6 +6428,7 @@
 				7D5AA3C822959D5D00438667 /* GetSSOLoginTests.swift in Sources */,
 				7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */,
 				CF575E49266792CA00F8515F /* LatestAnnouncementTests.swift in Sources */,
+				CF490F24285392950065D242 /* AnnotationDragGestureDelegateTests.swift in Sources */,
 				9FC715CE23D758BD008CBDBF /* GetConversationsTests.swift in Sources */,
 				7DE949802385E08000B27F93 /* TodoTests.swift in Sources */,
 				7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */,
@@ -6463,6 +6565,7 @@
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
 				7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */,
 				CF575E4D2667A8AA00F8515F /* GetLatestAnnouncementsTests.swift in Sources */,
+				CF490F2228538FAF0065D242 /* DragInfoTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
 				CF0A3F862844C94000670DBA /* MockAnalyticsHandler.swift in Sources */,
@@ -6512,6 +6615,7 @@
 				9F1CEA6322401AF1000BB98F /* GetContextPermissionsTests.swift in Sources */,
 				7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */,
 				7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */,
+				CF490F26285393D90065D242 /* DragButtonStateViewModelTests.swift in Sources */,
 				E8E070F424E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */,
 				EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */,
 				7D5425D2246DDAFF00E166C0 /* DiscussionReplyViewControllerTests.swift in Sources */,
@@ -6650,6 +6754,7 @@
 				CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */,
 				7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */,
 				CFFE285E27AABCC20029A408 /* CourseSectionStatus.swift in Sources */,
+				CF490F2E28575B4F0065D242 /* DocumentExtensions.swift in Sources */,
 				7DA2601F23F7227A005D2121 /* URLResponseExtensions.swift in Sources */,
 				7DA2602423F722B3005D2121 /* LogEventListViewController.swift in Sources */,
 				7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */,
@@ -6705,6 +6810,7 @@
 				CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */,
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				CF9A0F3927EA100400762228 /* TabFilter.swift in Sources */,
+				CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
 				CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */,
@@ -6781,6 +6887,7 @@
 				CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */,
 				CF43DE8527CCDBCB00015B6F /* MotionDetector.swift in Sources */,
 				7D06A2B32469B7D100D76267 /* DiscussionReplyViewController.swift in Sources */,
+				CF490F162850E2750065D242 /* DragInfo.swift in Sources */,
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
@@ -6828,6 +6935,7 @@
 				7D7BA23724D8982800B1A68B /* RichContentEditor.swift in Sources */,
 				7DA2608923F72315005D2121 /* ProfileSettingsViewController.swift in Sources */,
 				7DA25FEC23F721DE005D2121 /* ConversationParticipant.swift in Sources */,
+				CF490F182850F2960065D242 /* DragButtonStateViewModel.swift in Sources */,
 				7D7D6D5025100D11002B1485 /* EmptyPanda.swift in Sources */,
 				7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */,
 				7DDE6E0B2476DF15006523D4 /* DiscussionHTML.swift in Sources */,
@@ -6897,6 +7005,7 @@
 				7DA25FB223F72136005D2121 /* APIFavorite.swift in Sources */,
 				7DA25FC123F72136005D2121 /* APIOAuth.swift in Sources */,
 				7DA2601E23F7227A005D2121 /* URLExtensions.swift in Sources */,
+				CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */,
 				CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */,
 				7DA25FDA23F72148005D2121 /* Keychain.swift in Sources */,
 				7DA2609323F72315005D2121 /* UserProfile.swift in Sources */,
@@ -7123,6 +7232,7 @@
 				7DA25FFF23F7226E005D2121 /* DocViewerViewController.swift in Sources */,
 				D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */,
 				D91BC856276B7B3C008371B0 /* AssignmentGroupViewModel.swift in Sources */,
+				CF490F29285742430065D242 /* AnnotationExtensions.swift in Sources */,
 				EB75D49627903BA600AA273C /* K5ImportantDatesViewModel.swift in Sources */,
 				7DA25FF623F72268005D2121 /* CommentListViewController.swift in Sources */,
 				7DA25FB023F72136005D2121 /* APIExternalTool.swift in Sources */,
@@ -7138,6 +7248,7 @@
 				CFF64FE927DB849600653573 /* LTICellViewModel.swift in Sources */,
 				7DA260F523F72397005D2121 /* FilePickerProgressView.swift in Sources */,
 				7DA25F8E23F72123005D2121 /* SyllabusSummaryViewController.swift in Sources */,
+				CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */,
 				7DA2606123F722D9005D2121 /* Submission.swift in Sources */,
 				7DA260BF23F72352005D2121 /* GetGroups.swift in Sources */,
 				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,
@@ -7185,6 +7296,7 @@
 				CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */,
 				D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */,
 				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
+				CF490F112850B1C00065D242 /* AnnotationDragGestureViewModel.swift in Sources */,
 				CF8D5356280851A70038B0B2 /* EmbeddedWebPageView.swift in Sources */,
 				CF911BA0279EC25A00E1EECB /* K5SubjectViewMasqueradedSession.swift in Sources */,
 				7DA2603723F722D9005D2121 /* TabViewable.swift in Sources */,

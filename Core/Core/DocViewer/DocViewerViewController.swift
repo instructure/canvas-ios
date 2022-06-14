@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 import PSPDFKit
 import PSPDFKitUI
@@ -40,6 +41,8 @@ public class DocViewerViewController: UIViewController {
     lazy var session = DocViewerSession { [weak self] in
         performUIUpdate { self?.sessionIsReady() }
     }
+    private var dragGestureViewModel: AnnotationDragGestureViewModel?
+    private var subscriptions = Set<AnyCancellable>()
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -75,11 +78,17 @@ public class DocViewerViewController: UIViewController {
         syncAnnotationsButton.setTitleColor(.textDark, for: .disabled)
         annotationSaveStateChanges(saving: false)
 
-        let gestureRecognizer = UITapGestureRecognizer()
-        gestureRecognizer.addTarget(self, action: #selector(tapGestureRecognizerDidChangeState))
-        gestureRecognizer.delegate = self
-        pdf.interactions.allInteractions.require(toFail: gestureRecognizer)
-        pdf.view.addGestureRecognizer(gestureRecognizer)
+        let commentPinGestureRecognizer = UITapGestureRecognizer()
+        commentPinGestureRecognizer.addTarget(self, action: #selector(commentPinGestureRecognizerDidChangeState))
+        commentPinGestureRecognizer.delegate = self
+        pdf.interactions.allInteractions.require(toFail: commentPinGestureRecognizer)
+        pdf.view.addGestureRecognizer(commentPinGestureRecognizer)
+
+        let dragGestureRecognizer = UIPanGestureRecognizer()
+        pdf.view.addGestureRecognizer(dragGestureRecognizer)
+
+        let dragGestureViewModel = AnnotationDragGestureViewModel(pdf: pdf, gestureRecognizer: dragGestureRecognizer)
+        self.dragGestureViewModel = dragGestureViewModel
 
         if let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
             session.load(url: url, session: loginSession)
@@ -151,9 +160,12 @@ public class DocViewerViewController: UIViewController {
 
             pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
-            annotationToolbar.supportedToolbarPositions = .inTopBar
-            annotationToolbar.isDragEnabled = false
-            annotationToolbar.showDoneButton = false
+            annotationToolbar.isDragButtonSelected
+                .sink { [weak self] isDragEnabled in
+                    self?.dragGestureViewModel?.isEnabled = isDragEnabled
+                    self?.pdf.interactions.allInteractions.isEnabled = !isDragEnabled
+                }
+                .store(in: &subscriptions)
 
             contentView.addSubview(toolbarContainer)
             toolbarContainer.pin(inside: contentView)
@@ -235,21 +247,21 @@ extension DocViewerViewController: UIGestureRecognizerDelegate {
             metadata?.annotations != nil
     }
 
-    @objc func tapGestureRecognizerDidChangeState(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc func commentPinGestureRecognizerDidChangeState(_ gestureRecognizer: UITapGestureRecognizer) {
         guard gestureRecognizer.state == .ended, let documentViewController = pdf.documentViewController else { return }
         let pageViewPoint = gestureRecognizer.location(in: gestureRecognizer.view)
         guard let pageView = documentViewController.visiblePageView(at: pageViewPoint) else { return }
         let viewPoint = gestureRecognizer.location(in: pageView)
-        performTap(pageView: pageView, at: viewPoint)
+        createCommentPinAnnotation(pageView: pageView, at: viewPoint)
     }
 
-    func performTap(pageView: PDFPageView, at viewPoint: CGPoint) {
+    func createCommentPinAnnotation(pageView: PDFPageView, at viewPoint: CGPoint) {
         let state = pdf.annotationStateManager
-        guard state.state == .stamp,
-            let document = pdf.document,
-            let metadata = metadata?.annotations else {
-                return
+
+        guard state.state == .stamp, let document = pdf.document, let metadata = metadata?.annotations else {
+            return
         }
+
         let pointAnnotation = DocViewerPointAnnotation()
         pointAnnotation.user = metadata.user_id
         pointAnnotation.userName = metadata.user_name
@@ -258,12 +270,11 @@ extension DocViewerViewController: UIGestureRecognizerDelegate {
         pointAnnotation.pageIndex = pageView.pageIndex
 
         pageView.center(pointAnnotation, aroundPDFPoint: pageView.convert(viewPoint, to: pageView.pdfCoordinateSpace))
-        document.add(annotations: [ pointAnnotation ], options: nil)
+        document.add(annotations: [pointAnnotation], options: nil)
 
         let view = CommentListViewController.create(comments: [], inReplyTo: pointAnnotation, document: document, metadata: metadata)
         env.router.show(view, from: pdf, options: .modal(embedInNav: true))
     }
-
 }
 
 extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
