@@ -211,7 +211,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
         let topic = topics[indexPath]
-        cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true)
+        cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
         if topic?.anonymousState != nil {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.5
@@ -288,7 +288,7 @@ class DiscussionListCell: UITableViewCell {
         statusDot.setText(statusDot.text, style: .textCellBottomLabel)
     }
 
-    func update(topic: DiscussionTopic?, isTeacher: Bool) {
+    func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
         iconImageView.icon = topic?.assignmentID == nil ? .discussionLine : .assignmentLine
         if isTeacher {
@@ -296,6 +296,7 @@ class DiscussionListCell: UITableViewCell {
         } else {
             iconImageView.state = nil
         }
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
         titleLabel.setText(topic?.title, style: .textCellTitle)
 

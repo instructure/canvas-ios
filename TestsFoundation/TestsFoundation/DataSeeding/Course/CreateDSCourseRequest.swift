@@ -40,5 +40,9 @@ extension CreateDSCourseRequest {
     public struct Body: Encodable {
         let course: RequestedDSCourse
         let offer = true // makes the course published after creation
+
+        public init(course: RequestedDSCourse) {
+            self.course = course
+        }
     }
 }

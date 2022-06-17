@@ -16,17 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+import Core
 
-    public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))") -> DSCourse {
-        let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
-        let request = CreateDSCourseRequest(body: requestedBody)
-        return try! makeRequest(request)
-    }
-
-    public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
-        let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
-        let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
-        try! makeRequest(request)
-    }
+public struct DSGradingStandard: Codable {
+    public let id: String
+    public let title: String
 }

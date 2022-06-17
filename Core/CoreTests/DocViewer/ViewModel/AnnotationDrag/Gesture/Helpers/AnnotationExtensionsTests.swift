@@ -16,17 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+@testable import Core
+import PSPDFKit
+import XCTest
 
-    public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))") -> DSCourse {
-        let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
-        let request = CreateDSCourseRequest(body: requestedBody)
-        return try! makeRequest(request)
-    }
+class AnnotationExtensionsTests: XCTestCase {
 
-    public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
-        let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
-        let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
-        try! makeRequest(request)
+    func testCloneImageCreation() {
+        let frame = CGRect(x: 10, y: 10, width: 20, height: 20)
+        let pageView = UIView()
+        let testee = InkAnnotation()
+
+        let cloneImage = testee.createCloneImage(frame: frame, addTo: pageView)
+
+        guard let cloneImage = cloneImage else { XCTFail("No clone image was generated."); return }
+        XCTAssertEqual(cloneImage.superview, pageView)
+        XCTAssertEqual(cloneImage.frame, frame)
     }
 }

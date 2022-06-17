@@ -16,17 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+import UIKit
 
-    public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))") -> DSCourse {
-        let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
-        let request = CreateDSCourseRequest(body: requestedBody)
-        return try! makeRequest(request)
+class AnnotationDragGestureDelegate: NSObject, UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
     }
 
-    public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
-        let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
-        let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
-        try! makeRequest(request)
+    /** This delegate method only allows other gesture recognizers to work if dragging failed. One scenario is when the users taps on an empty area. If we allow other recognizers to work in parallel to the drag gesture, then the user will scroll pages or to the next assignment while dragging an annotation. */
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
     }
 }

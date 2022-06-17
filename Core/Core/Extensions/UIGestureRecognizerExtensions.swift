@@ -16,17 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+import UIKit
 
-    public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))") -> DSCourse {
-        let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
-        let request = CreateDSCourseRequest(body: requestedBody)
-        return try! makeRequest(request)
-    }
+extension UIGestureRecognizer {
 
-    public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
-        let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
-        let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
-        try! makeRequest(request)
+    /** If you call this method while the gesture recognizer is currently recognizing a gesture, the gesture recognizer transitions to a cancelled state. */
+     public func cancel() {
+        isEnabled = false
+        isEnabled = true
     }
 }
