@@ -85,6 +85,10 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
+    /**
+     - parameters:
+        - forceDarkModeSupport: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
+     */
     public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, forceDarkModeSupport: Bool = false) {
         let config = configuration ?? Self.defaultConfiguration
         config.applyDefaultSettings()
@@ -118,8 +122,6 @@ open class CoreWebView: WKWebView {
         uiDelegate = self
         isOpaque = false
         backgroundColor = UIColor.clear
-
-        overrideUserInterfaceStyle = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
 
         addScript(js)
         handle("resize") { [weak self] message in
@@ -206,17 +208,17 @@ open class CoreWebView: WKWebView {
         """
     }
 
-    // Enables simple dark mode support for unsupported webview pages.
-
+    /** Enables simple dark mode support for unsupported webview pages. */
     private var darkModeCss: String {
-
-        let background = UIColor.backgroundLightest.hexString
-        let foreground = UIColor.textDarkest.hexString
+        let background = UIColor.backgroundLightest.hexString(userInterfaceStyle: .light)
+        let backgroundDark = UIColor.backgroundLightest.hexString(userInterfaceStyle: .dark)
+        let foreground = UIColor.textDarkest.hexString(userInterfaceStyle: .light)
+        let foregroundDark = UIColor.textDarkest.hexString(userInterfaceStyle: .dark)
 
            return """
                 body.dark-theme {
-                  --text-color: \(foreground);
-                  --bkg-color: \(background);
+                  --text-color: \(foregroundDark);
+                  --bkg-color: \(backgroundDark);
                 }
                 body {
                   --text-color: \(foreground);
@@ -230,8 +232,8 @@ open class CoreWebView: WKWebView {
                     --bkg-color: \(background);
                   }
                   html {
-                    --text-color: \(foreground);
-                    --bkg-color: \(background);
+                    --text-color: \(foregroundDark);
+                    --bkg-color: \(backgroundDark);
                   }
                 }
                 html {

@@ -46,9 +46,10 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 
-    public var hexString: String {
-        return "#\(String(intValue, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
-    }
+    public var hexString: String { hexString(userInterfaceStyle: .current) }
+    public var intValue: UInt32 { intValue(userInterfaceStyle: .current) }
+    /** Returns the color for the current app appearance. */
+    private var interfaceStyleColor: UIColor { resolvedColor(with: UITraitCollection(userInterfaceStyle: .current)) }
 
     public convenience init(intValue value: UInt32) {
         self.init(
@@ -59,13 +60,6 @@ extension UIColor {
         )
     }
 
-    public var intValue: UInt32 {
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
-        interfaceStyleColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) // assume success
-        let toInt = { (n: CGFloat) in return UInt32(max(0.0, min(1.0, n)) * 255) }
-        return (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
-    }
-
     public func difference(to other: UIColor) -> CGFloat {
         var ared: CGFloat = 0, agreen: CGFloat = 0, ablue: CGFloat = 0, aalpha: CGFloat = 1
         interfaceStyleColor.getRed(&ared, green: &agreen, blue: &ablue, alpha: &aalpha) // assume success
@@ -74,15 +68,16 @@ extension UIColor {
         return abs(ared - bred) + abs(agreen - bgreen) + abs(ablue - bblue) + abs(aalpha - balpha)
     }
 
-    /** Returns the color for the current app appearance. */
-    private var interfaceStyleColor: UIColor {
-        var style = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
+    public func hexString(userInterfaceStyle: UIUserInterfaceStyle) -> String {
+        let intValue = intValue(userInterfaceStyle: userInterfaceStyle)
+        return "#\(String(intValue, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
+    }
 
-        if style == .unspecified {
-            style = UIScreen.main.traitCollection.userInterfaceStyle
-        }
-
-        return resolvedColor(with: UITraitCollection(userInterfaceStyle: style))
+    public func intValue(userInterfaceStyle: UIUserInterfaceStyle) -> UInt32 {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
+        resolvedColor(with: UITraitCollection(userInterfaceStyle: userInterfaceStyle)).getRed(&red, green: &green, blue: &blue, alpha: &alpha) // assume success
+        let toInt = { (n: CGFloat) in return UInt32(max(0.0, min(1.0, n)) * 255) }
+        return (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
     }
 
     // MARK: App Logo Colors
