@@ -45,6 +45,7 @@ struct GroupCard: View {
                 }
                 .padding(8)
             }
+            .contentShape(Rectangle())
             .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
             .cornerRadius(4)
         })

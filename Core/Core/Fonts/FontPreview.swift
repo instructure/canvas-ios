@@ -24,7 +24,7 @@ private func fontPreview() -> some View {
     VStack(alignment: .leading) {
         ForEach(UIFont.Name.allCases, id: \.rawValue) {
             Text($0.rawValue)
-            Text("ABC Gg 123 Ű lM")
+            Text(verbatim: "ABC Gg 123 Ű lM")
                 .font(Font(UIFont.scaledNamedFont($0)))
                 .padding(.bottom, 10)
         }
