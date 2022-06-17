@@ -76,7 +76,12 @@ extension UIColor {
 
     /** Returns the color for the current app appearance. */
     private var interfaceStyleColor: UIColor {
-        let style = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
+        var style = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
+
+        if style == .unspecified {
+            style = UIScreen.main.traitCollection.userInterfaceStyle
+        }
+
         return resolvedColor(with: UITraitCollection(userInterfaceStyle: style))
     }
 
