@@ -1122,6 +1122,7 @@
 		EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66DB9426451CAE002D3325 /* CustomTextField.swift */; };
 		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
 		EB75D49627903BA600AA273C /* K5ImportantDatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75D492278F124400AA273C /* K5ImportantDatesViewModel.swift */; };
+		EB7A8FF1285C946400940F3D /* UIApplicationDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A8FF0285C946400940F3D /* UIApplicationDelegateExtensions.swift */; };
 		EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */; };
 		EB9BF7D5282E907B0025F6D0 /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9BF7D4282E907B0025F6D0 /* UIWindowExtensions.swift */; };
 		EBAF32F227AAC147000ACD32 /* APICommentLibraryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */; };
@@ -2510,6 +2511,7 @@
 		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		EB75D492278F124400AA273C /* K5ImportantDatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDatesViewModel.swift; sourceTree = "<group>"; };
 		EB75D495278F155A00AA273C /* K5ImportantDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDatesView.swift; sourceTree = "<group>"; };
+		EB7A8FF0285C946400940F3D /* UIApplicationDelegateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationDelegateExtensions.swift; sourceTree = "<group>"; };
 		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
 		EB9BF7D4282E907B0025F6D0 /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
 		EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryRequest.swift; sourceTree = "<group>"; };
@@ -3712,6 +3714,7 @@
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
 				7D742F3F25564CF200FD6CF1 /* SwiftUIExtensions.swift */,
 				7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */,
+				EB7A8FF0285C946400940F3D /* UIApplicationDelegateExtensions.swift */,
 				CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */,
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
@@ -6800,6 +6803,7 @@
 				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
 				B1A7848B2441136C001A2B50 /* GetModules.swift in Sources */,
+				EB7A8FF1285C946400940F3D /* UIApplicationDelegateExtensions.swift in Sources */,
 				7DA260E423F72359005D2121 /* LoadingViewController.swift in Sources */,
 				7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */,
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,

@@ -83,6 +83,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
+        updateInterfaceStyle(for: window)
 
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
@@ -137,7 +138,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.handleLaunch()
         CoreWebView.keepCookieAlive(for: environment)
-        window?.updateInterfaceStyle(AppEnvironment.shared.userDefaults?.interfaceStyle)
+        updateInterfaceStyle(for: window)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {

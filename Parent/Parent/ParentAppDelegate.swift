@@ -65,7 +65,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         CoreWebView.keepCookieAlive(for: environment)
         AppStoreReview.handleLaunch()
-        window?.updateInterfaceStyle(environment.userDefaults?.interfaceStyle)
+        updateInterfaceStyle(for: window)
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -85,6 +85,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
+        updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         currentStudentID = environment.userDefaults?.parentCurrentStudentID
         if currentStudentID == nil {

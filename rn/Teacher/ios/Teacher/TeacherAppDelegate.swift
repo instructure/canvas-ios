@@ -75,6 +75,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
+        updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
@@ -173,7 +174,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if (!uiTesting) {
             AppStoreReview.handleLaunch()
         }
-        window?.updateInterfaceStyle(AppEnvironment.shared.userDefaults?.interfaceStyle)
+        updateInterfaceStyle(for: window)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
