@@ -843,6 +843,7 @@
 		CF43DE8727CCDDC000015B6F /* MotionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8627CCDDC000015B6F /* MotionModifier.swift */; };
 		CF43DE8927CD036D00015B6F /* InteractivePanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8827CD036D00015B6F /* InteractivePanda.swift */; };
 		CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */; };
+		CF490F32285CAA790065D242 /* UIUserInterfaceStyleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490F31285CAA790065D242 /* UIUserInterfaceStyleExtensions.swift */; };
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
@@ -2222,6 +2223,7 @@
 		CF43DE8627CCDDC000015B6F /* MotionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModifier.swift; sourceTree = "<group>"; };
 		CF43DE8827CD036D00015B6F /* InteractivePanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePanda.swift; sourceTree = "<group>"; };
 		CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaGallery.swift; sourceTree = "<group>"; };
+		CF490F31285CAA790065D242 /* UIUserInterfaceStyleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceStyleExtensions.swift; sourceTree = "<group>"; };
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -3731,6 +3733,7 @@
 				7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */,
 				E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */,
 				3B4D89402450AD58004ED120 /* UITextViewExtensions.swift */,
+				CF490F31285CAA790065D242 /* UIUserInterfaceStyleExtensions.swift */,
 				3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */,
 				7DD6948421951FD700BA4984 /* UIViewExtensions.swift */,
 				EB9BF7D4282E907B0025F6D0 /* UIWindowExtensions.swift */,
@@ -6884,6 +6887,7 @@
 				7DCA32122541DB8B00458651 /* WebSession.swift in Sources */,
 				CFF64FEC27DCF8A400653573 /* DefaultViewProvider.swift in Sources */,
 				7DA2607A23F722FA005D2121 /* PageViewEvent.swift in Sources */,
+				CF490F32285CAA790065D242 /* UIUserInterfaceStyleExtensions.swift in Sources */,
 				7DA260E323F72359005D2121 /* ListFormatter.swift in Sources */,
 				CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */,
 				D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */,
