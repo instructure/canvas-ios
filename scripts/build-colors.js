@@ -98,9 +98,12 @@ const colors = {
   },
   backgroundDarkest: {
     light: licorice,
-    dark: { normal: '#FFFFFF', high: '#FFFFFF' },
+    dark: licorice,
   },
-  backgroundDark: dark,
+  backgroundDark: {
+    light: ash,
+    dark: ash,
+  },
   backgroundMedium: {
     light: tiara,
     dark: { normal: '#242426', high: '#242426' },
