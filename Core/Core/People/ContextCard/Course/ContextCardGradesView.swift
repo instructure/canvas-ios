@@ -96,7 +96,13 @@ struct ContextCardGradesView_Previews: PreviewProvider {
         grade.overrideScore = 99
         grade.overrideGrade = "C"
         grade.unpostedCurrentScore = 33
-        return ContextCardGradesView(grades: grade, color: .blue).previewLayout(.sizeThatFits)
+        return SwiftUI.Group {
+            ContextCardGradesView(grades: grade, color: .blue)
+                .previewLayout(.sizeThatFits)
+            ContextCardGradesView(grades: grade, color: .blue)
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+        }
     }
 }
 #endif
