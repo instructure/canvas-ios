@@ -66,7 +66,8 @@ public struct DashboardCardView: View {
         .navigationBarItems(leading: menuButton, trailing: layoutToggleButton)
         .onAppear {
             refresh(force: false) {
-                shouldShowThemeSelector = AppEnvironment.shared.userDefaults?.interfaceStyle == nil
+                let env = AppEnvironment.shared
+                shouldShowThemeSelector = env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false
             }
         }.showThemeSelectorActionSheet(isPresented: $shouldShowThemeSelector)
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in

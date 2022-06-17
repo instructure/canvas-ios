@@ -43,7 +43,8 @@ public struct K5DashboardView: View {
             }
         }
         .onAppear {
-            shouldShowThemeSelector = AppEnvironment.shared.userDefaults?.interfaceStyle == nil
+            let env = AppEnvironment.shared
+            shouldShowThemeSelector = env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false
         }
         .showThemeSelectorActionSheet(isPresented: $shouldShowThemeSelector)
         .background(Color.backgroundLightest)
