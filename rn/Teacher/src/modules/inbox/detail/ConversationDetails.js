@@ -20,6 +20,7 @@
 
 import * as React from 'react'
 import {
+  Appearance,
   View,
   FlatList,
   TouchableOpacity,
@@ -39,6 +40,8 @@ import Images from '../../../images'
 import icon from '../../../images/inst-icons'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { getSession } from '../../../canvas-api'
+import type { EventSubscription } from 'react-native/Libraries/vendor/emitter/EventEmitter'
+import type { AppearancePreferences } from 'react-native/Libraries/Utilities/NativeAppearance'
 
 export type ConversationOwnProps = {
   conversation?: ?Conversation,
@@ -71,11 +74,22 @@ export class ConversationDetails extends React.Component <Props, State> {
   state = {
     deletePending: false,
   }
+  _appearanceChangeSubscription: ?EventSubscription
 
   componentDidMount () {
     if (this.props.conversation && this.props.conversation.workflow_state === 'unread') {
       this.props.markAsRead(this.props.conversationID)
     }
+
+    this._appearanceChangeSubscription = Appearance.addChangeListener(
+      (preferences: AppearancePreferences) => {
+        this.setState(this.state)
+      },
+    )
+  }
+
+  componentWillUnmount () {
+      this._appearanceChangeSubscription?.remove()
   }
 
   UNSAFE_componentWillReceiveProps (nextProps: Props) {

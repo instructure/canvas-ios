@@ -21,6 +21,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
+  Appearance,
   View,
   TouchableHighlight,
 } from 'react-native'
@@ -44,6 +45,8 @@ import formatter from '../formatter'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import QuizSubmissionBreakdownGraphSection from '../submissions/components/QuizSubmissionBreakdownGraphSection'
+import type { EventSubscription } from 'react-native/Libraries/vendor/emitter/EventEmitter'
+import type { AppearancePreferences } from 'react-native/Libraries/Utilities/NativeAppearance'
 
 type OwnProps = {
   quizID: string,
@@ -64,6 +67,20 @@ export type Props = State & OwnProps & RefreshProps & typeof Actions & {
 }
 
 export class QuizDetails extends Component<Props, any> {
+  _appearanceChangeSubscription: ?EventSubscription
+
+  componentDidMount () {
+    this._appearanceChangeSubscription = Appearance.addChangeListener(
+      (preferences: AppearancePreferences) => {
+        this.props.refresh()
+      },
+    )
+  }
+
+  componentWillUnmount () {
+    this._appearanceChangeSubscription?.remove()
+  }
+
   previewQuiz = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`, { modal: true, modalPresentationStyle: 'fullscreen' })
   }
