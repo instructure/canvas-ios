@@ -110,7 +110,7 @@ const colors = {
   },
   backgroundLight: {
     light: porcelain,
-    dark: { normal: '#2D3B45', high: '#2D3B45' },
+    dark: { normal: '#1D1E1F', high: '#1D1E1F' },
   },
   backgroundLightest: {
     light: white,
