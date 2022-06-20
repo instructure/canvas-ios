@@ -32,7 +32,6 @@ public struct DashboardCardView: View {
     @Environment(\.viewController) var controller
 
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
-    @State private var shouldShowThemeSelector = false
 
     private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
@@ -67,9 +66,11 @@ public struct DashboardCardView: View {
         .onAppear {
             refresh(force: false) {
                 let env = AppEnvironment.shared
-                shouldShowThemeSelector = env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false
+                if env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false {
+                    controller.value.showThemeSelectorAlert()
+                }
             }
-        }.showThemeSelectorActionSheet(isPresented: $shouldShowThemeSelector)
+        }
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
             showGrade = env.userDefaults?.showGradesOnDashboard == true
         }

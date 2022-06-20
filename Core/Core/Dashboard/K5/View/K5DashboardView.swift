@@ -24,7 +24,6 @@ public struct K5DashboardView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     @ObservedObject private var viewModel = K5DashboardViewModel()
-    @State private var shouldShowThemeSelector = false
     private var padding: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
@@ -44,9 +43,10 @@ public struct K5DashboardView: View {
         }
         .onAppear {
             let env = AppEnvironment.shared
-            shouldShowThemeSelector = env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false
+            if env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false {
+                controller.value.showThemeSelectorAlert()
+            }
         }
-        .showThemeSelectorActionSheet(isPresented: $shouldShowThemeSelector)
         .background(Color.backgroundLightest)
         .navigationBarGlobal()
         .navigationBarItems(
