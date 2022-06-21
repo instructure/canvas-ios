@@ -61,6 +61,7 @@ class StudentListViewController: UIViewController {
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium

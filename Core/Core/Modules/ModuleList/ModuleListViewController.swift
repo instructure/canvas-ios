@@ -80,6 +80,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         spinnerView.color = color
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.registerCell(EmptyCell.self)

@@ -58,6 +58,7 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
         tableView.separatorColor = .borderMedium

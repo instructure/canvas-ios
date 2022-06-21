@@ -73,6 +73,8 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
 
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.

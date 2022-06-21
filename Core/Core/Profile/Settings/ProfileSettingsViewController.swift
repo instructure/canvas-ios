@@ -61,6 +61,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
         title = NSLocalizedString("Settings", bundle: .core, comment: "")
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self

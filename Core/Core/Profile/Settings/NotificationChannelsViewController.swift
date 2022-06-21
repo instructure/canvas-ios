@@ -44,6 +44,7 @@ class NotificationChannelsViewController: UIViewController {
 
         title = channelType.name
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self
