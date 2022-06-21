@@ -188,7 +188,7 @@ open class CoreWebView: WKWebView {
 
     // Forces dark mode on webview pages.
 
-    var forceDarkModeScript: String {
+    public var forceDarkModeScript: String {
         let darkCss = """
         @media (prefers-color-scheme: dark) {
             html {
