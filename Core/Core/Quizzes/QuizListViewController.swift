@@ -159,6 +159,7 @@ class QuizListCell: UITableViewCell {
     }
 
     func update(quiz: Quiz?, isTeacher: Bool, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         if isTeacher {
             iconImageView.published = quiz?.published == true

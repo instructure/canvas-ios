@@ -219,6 +219,7 @@ class PageListFrontPageCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ page: Page?) {
+        backgroundColor = .backgroundLightest
         accessibilityIdentifier = "PageList.frontPage"
         headingLabel.text = NSLocalizedString("Front Page", bundle: .core, comment: "")
         headingLabel.accessibilityIdentifier = "PageList.frontPageHeading"
@@ -233,6 +234,7 @@ class PageListCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ page: Page?, indexPath: IndexPath, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         accessIconView.icon = UIImage.documentLine

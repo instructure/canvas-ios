@@ -358,6 +358,7 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FilePickerCell = tableView.dequeue(for: indexPath)
+        cell.backgroundColor = .backgroundLightest
         cell.file = files[indexPath.row]
         cell.accessibilityIdentifier = "FilePickerListItem.\(indexPath.row)"
         cell.delegate = self

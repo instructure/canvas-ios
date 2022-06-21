@@ -273,7 +273,7 @@ extension ModuleListViewController {
     class EmptyCell: UITableViewCell {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .default, reuseIdentifier: reuseIdentifier)
-
+            backgroundColor = .backgroundLightest
             isUserInteractionEnabled = false
             fullDivider = true
             let label = UILabel()
