@@ -264,7 +264,7 @@ extension PostGradesPresenterTests: PostGradesViewProtocol {
         hiddenStateExpectation.fulfill()
     }
 
-    var navigationController: UINavigationController? {
+    var navigationController: StyledNavigationController? {
         return nil
     }
 

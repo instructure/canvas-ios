@@ -24,7 +24,7 @@ import TestsFoundation
 class AttendanceViewControllerTests: TeacherTestCase {
     let context = Context(.course, id: "1")
     var controller: AttendanceViewController!
-    var navigation: UINavigationController!
+    var navigation: StyledNavigationController!
 
     override func setUp() {
         super.setUp()

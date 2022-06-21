@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-public class HelmNavigationController: UINavigationController {
+public class HelmNavigationController: StyledNavigationController {
     public init() {
         let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
         super.init(rootViewController: emptyViewController)
@@ -47,10 +47,6 @@ public class HelmNavigationController: UINavigationController {
     
     public override var prefersStatusBarHidden: Bool {
         return topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
-    }
-
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
     }
 }
 

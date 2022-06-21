@@ -17,11 +17,12 @@
 //
 
 import UIKit
+import Core
 
 public extension UISplitViewController {
-    var detailNavigationController: UINavigationController? {
+    var detailNavigationController: StyledNavigationController? {
         guard viewControllers.count > 1 else { return nil }
-        return viewControllers.last as? UINavigationController
+        return viewControllers.last as? StyledNavigationController
     }
 
     var masterTopViewController: UIViewController? {

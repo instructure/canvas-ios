@@ -26,7 +26,7 @@ class UrlSubmissionPresenterTests: StudentTestCase {
     var presenter: UrlSubmissionPresenter!
     var resultingUrl: URL?
     var resultingError: Error?
-    var navigationController: UINavigationController?
+    var navigationController: StyledNavigationController?
     var onError: (() -> Void)?
     var onDismiss: (() -> Void)?
 

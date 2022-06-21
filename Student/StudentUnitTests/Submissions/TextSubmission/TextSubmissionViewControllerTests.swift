@@ -23,7 +23,7 @@ import TestsFoundation
 
 class TextSubmissionViewControllerTests: StudentTestCase {
     var controller: TextSubmissionViewController!
-    var navigation: UINavigationController!
+    var navigation: StyledNavigationController!
 
     let request = CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: .init(submission: .init(
             submission_type: .online_text_entry,

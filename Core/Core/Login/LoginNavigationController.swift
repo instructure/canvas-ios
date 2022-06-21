@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class LoginNavigationController: UINavigationController {
+public class LoginNavigationController: StyledNavigationController {
     weak var loginDelegate: LoginDelegate?
     var app: App = .student
 

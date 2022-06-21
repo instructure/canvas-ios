@@ -21,7 +21,7 @@ import XCTest
 
 class ColoredNavViewProtocolTests: XCTestCase, ColoredNavViewProtocol {
     var color: UIColor?
-    var navigationController: UINavigationController? = UINavigationController(rootViewController: UIViewController())
+    var navigationController: StyledNavigationController? = UINavigationController(rootViewController: UIViewController())
     var navigationItem: UINavigationItem = UINavigationItem(title: "error")
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
     let subtitle = "subtitle"

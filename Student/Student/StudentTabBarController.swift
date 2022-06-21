@@ -124,7 +124,7 @@ class StudentTabBarController: UITabBarController {
 
     func inboxTab() -> UIViewController {
         let inboxVC: UIViewController
-        let inboxNav: UINavigationController
+        let inboxNav: StyledNavigationController
         let inboxSplit = HelmSplitViewController()
 
         if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {

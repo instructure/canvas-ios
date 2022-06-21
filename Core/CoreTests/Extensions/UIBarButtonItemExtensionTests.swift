@@ -22,7 +22,7 @@ import XCTest
 
 class UIButtonExtensionTests: XCTestCase {
 
-    var nav: UINavigationController?
+    var nav: StyledNavigationController?
     func testButtonBadge() {
         let b = DynamicButton()
         b.iconName = "hamburgerSolid"

@@ -32,7 +32,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     var presenter: AssignmentDetailsPresenter!
     var presentedView: UIViewController?
     var resultingButtonTitle: String?
-    var navigationController: UINavigationController?
+    var navigationController: StyledNavigationController?
     var pageViewLogger: MockPageViewLogger = MockPageViewLogger()
     var onUpdate: (() -> Void)?
 

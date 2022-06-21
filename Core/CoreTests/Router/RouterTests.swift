@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class RouterTests: CoreTestCase {
-    class MockNavigationController: UINavigationController {
+    class MockNavigationController: StyledNavigationController {
         override func popViewController(animated: Bool) -> UIViewController? {
             return viewControllers.popLast()
         }
@@ -78,7 +78,7 @@ class RouterTests: CoreTestCase {
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal())
         XCTAssertNotNil(mockView.presented)
-        XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == false)
+        XCTAssert(mockView.presented?.isKind(of: StyledNavigationController.self) == false)
     }
 
     func testRouteCleanURL() {
@@ -128,7 +128,7 @@ class RouterTests: CoreTestCase {
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modalEmbed")!, from: mockView, options: .modal(embedInNav: true))
         XCTAssertNotNil(mockView.presented)
-        XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == true)
+        XCTAssert(mockView.presented?.isKind(of: StyledNavigationController.self) == true)
     }
 
     func testRouteDetail() {
@@ -156,7 +156,7 @@ class RouterTests: CoreTestCase {
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.detail)
-        XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
+        XCTAssert(mockView.detail?.isKind(of: StyledNavigationController.self) == true)
     }
 
     func testRouteDetailNotInSplitViewDoesAShow() {
@@ -169,7 +169,7 @@ class RouterTests: CoreTestCase {
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
-        XCTAssert(mockView.shown?.isKind(of: UINavigationController.self) == false)
+        XCTAssert(mockView.shown?.isKind(of: StyledNavigationController.self) == false)
     }
 
     func testRouteDetailInCollapsedSplitViewDoesAShow() {
@@ -185,7 +185,7 @@ class RouterTests: CoreTestCase {
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
-        XCTAssert(mockView.shown?.isKind(of: UINavigationController.self) == false)
+        XCTAssert(mockView.shown?.isKind(of: StyledNavigationController.self) == false)
     }
 
     func testRouteDetailFromDetailDoesAShow() {

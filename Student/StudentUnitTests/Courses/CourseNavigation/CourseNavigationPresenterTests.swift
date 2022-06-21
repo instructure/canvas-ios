@@ -25,7 +25,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
     let context = Context(.course, id: "1")
     var presenter: CourseNavigationPresenter!
     var resultingError: NSError?
-    var navigationController: UINavigationController?
+    var navigationController: StyledNavigationController?
     var resultingTitle: String?
     var resultingBackgroundColor: UIColor?
 

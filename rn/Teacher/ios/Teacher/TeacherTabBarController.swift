@@ -57,7 +57,7 @@ class TeacherTabBarController: UITabBarController {
     }
 
     func toDoTab() -> UIViewController {
-        let todo = UINavigationController(rootViewController: TodoListViewController.create())
+        let todo = StyledNavigationController(rootViewController: TodoListViewController.create())
         todo.tabBarItem.title = NSLocalizedString("To Do", comment: "")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
@@ -69,12 +69,12 @@ class TeacherTabBarController: UITabBarController {
 
     func inboxTab() -> UIViewController {
         let inboxVC: UIViewController
-        let inboxNav: UINavigationController
+        let inboxNav: StyledNavigationController
         let inboxSplit = HelmSplitViewController()
 
         if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {
             inboxVC = CoreHostingController(InboxView())
-            inboxNav = UINavigationController(rootViewController: inboxVC)
+            inboxNav = StyledNavigationController(rootViewController: inboxVC)
         } else {
             inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
             inboxNav = HelmNavigationController(rootViewController: inboxVC)

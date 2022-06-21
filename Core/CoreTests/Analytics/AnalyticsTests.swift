@@ -81,7 +81,7 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(Analytics.analyticsClassName(for: nil), "unknown")
         XCTAssertEqual(Analytics.analyticsClassName(for: ProfileSettingsViewController()), "ProfileSettingsViewController")
         XCTAssertEqual(Analytics.analyticsClassName(for: courseListView), "CourseListView")
-        XCTAssertEqual(Analytics.analyticsClassName(for: UINavigationController(rootViewController: courseListView)), "CourseListView")
+        XCTAssertEqual(Analytics.analyticsClassName(for: StyledNavigationController(rootViewController: courseListView)), "CourseListView")
 
         let splitView = UISplitViewController()
         splitView.viewControllers = [UINavigationController(rootViewController: courseListView)]

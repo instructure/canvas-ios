@@ -291,7 +291,7 @@ open class HelmManager: NSObject {
             return
         }
 
-        var nav: UINavigationController? = nil
+        var nav: StyledNavigationController? = nil
         var replaceWithEmpty = false
         if let splitViewController = topViewController as? HelmSplitViewController {
             let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
@@ -303,7 +303,7 @@ open class HelmManager: NSObject {
                 nav = splitViewController.masterNavigationController
             }
         } else if let navigationController = topViewController.navigationController {
-            nav = navigationController
+            nav = navigationController as? StyledNavigationController
         } else {
             assertionFailure("\(#function) invalid controller: \(topViewController)")
             return

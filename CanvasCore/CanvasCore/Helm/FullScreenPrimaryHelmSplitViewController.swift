@@ -25,16 +25,16 @@ import Core
  */
 public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
     /** Instead of the first viewcontroller (which is just a placeholder) we return the full screen capable overlay viewcontroller. */
-    public override var masterNavigationController: UINavigationController? { fullscreenPrimaryController }
+    public override var masterNavigationController: StyledNavigationController? { fullscreenPrimaryController }
 
     private enum State {
         case fullScreen
         case divided
         case hidden
     }
-    private weak var fullscreenPrimaryController: UINavigationController?
+    private weak var fullscreenPrimaryController: StyledNavigationController?
     // This view won't be visible because our primary overlay viewcontroller will fully cover it. We use this to set the width of the primary overlay controller when not in full screen mode.
-    private weak var primaryPlaceHolder: UINavigationController?
+    private weak var primaryPlaceHolder: StyledNavigationController?
     private var state: State = .fullScreen {
         didSet {
             UIView.animate(withDuration: 0.3) { [weak self] in
@@ -45,7 +45,7 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         }
     }
 
-    public init(primary: UINavigationController, secondary: UINavigationController) {
+    public init(primary: StyledNavigationController, secondary: StyledNavigationController) {
         super.init(nibName: nil, bundle: nil)
 
         let primaryPlaceHolder = HelmNavigationController()
@@ -130,7 +130,7 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
 
     // MARK: - UINavigationControllerDelegate
 
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: StyledNavigationController, didShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count != 1 {
             // Exception for the full screen K5SubjectView
             if navigationController.viewControllers.contains(where: { $0 is CoreHostingController<K5SubjectView> }) {
@@ -143,7 +143,7 @@ public class FullScreenPrimaryHelmSplitViewController: HelmSplitViewController {
         }
     }
 
-    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+    public func navigationController(_ navigationController: StyledNavigationController, willShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.count == 1 {
             state = .fullScreen
         }
