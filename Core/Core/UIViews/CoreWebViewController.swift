@@ -30,10 +30,17 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         }
     }
 
-    public init() {
+    /**
+     - parameters:
+        - forceDarkModeSupport: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
+     */
+    public init(forceDarkModeSupport: Bool = false) {
         super.init(nibName: nil, bundle: nil)
         webView.linkDelegate = self
-        webView.addScript(webView.forceDarkModeScript)
+
+        if forceDarkModeSupport {
+            webView.addScript(webView.forceDarkModeScript)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
