@@ -160,7 +160,6 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     }
 
     private var interfaceStyleSettings: [Row] {
-
         let options = [
             ItemPickerItem(title: NSLocalizedString("System settings", bundle: .core, comment: "")),
             ItemPickerItem(title: NSLocalizedString("Light theme", bundle: .core, comment: "")),
@@ -262,7 +261,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
         if let row = row as? Row {
             let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
-            cell.backgroundColor = .backgroundGroupedCell
+            cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = row.title
             cell.detailTextLabel?.text = row.detail
             cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
@@ -273,7 +272,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.onToggleChange = { toggle in
                 switchRow.value = toggle.isOn
             }
-            cell.backgroundColor = .backgroundGroupedCell
+            cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = switchRow.title
             return cell
         }

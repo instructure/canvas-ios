@@ -109,7 +109,7 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cell = tableView.dequeue(for: indexPath) as RightDetailTableViewCell
         }
-        cell.backgroundColor = .backgroundGroupedCell
+        cell.backgroundColor = .backgroundLightest
         cell.imageView?.image = item.image
         cell.textLabel?.text = item.title
         cell.accessibilityTraits.insert(.button)

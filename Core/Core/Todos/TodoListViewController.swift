@@ -205,7 +205,7 @@ class TodoListCell: UITableViewCell {
         } else {
             accessIconView.published = todo?.assignment.published == true
         }
-        backgroundColor = .backgroundGroupedCell
+        backgroundColor = .backgroundLightest
         titleLabel.setText(todo?.assignment.name, style: .textCellTitle)
         subtitleLabel.setText(todo?.dueText, style: .textCellSupportingText)
         tintColor = todo?.contextColor

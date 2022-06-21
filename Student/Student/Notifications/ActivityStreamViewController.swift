@@ -164,7 +164,7 @@ class ActivityCell: UITableViewCell {
     @IBOutlet weak var courseCode: DynamicLabel!
 
     func update(_ activity: Activity, courseCache: [String: ActivityStreamViewController.Info] ) {
-        backgroundColor = .backgroundGroupedCell
+        backgroundColor = .backgroundLightest
         if activity.type == .conversation {
             titleLabel.setText(NSLocalizedString("New Message", comment: ""), style: .textCellTitle)
         } else {
