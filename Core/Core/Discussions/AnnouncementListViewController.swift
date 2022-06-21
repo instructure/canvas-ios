@@ -201,6 +201,7 @@ class AnnouncementListCell: UITableViewCell {
         } else {
             iconImageView.state = nil
         }
+        backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
         titleLabel.setText(topic?.title, style: .textCellTitle)
