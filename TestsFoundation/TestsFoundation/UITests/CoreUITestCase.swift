@@ -682,7 +682,7 @@ open class CoreUITestCase: XCTestCase {
     open func setAppThemeToSystem() {
         let canvasThemePromptTitle = app.find(label: "Canvas is now available in dark theme")
         let systemSettingsButton = app.find(label: "System settings", type: .button)
-        if (canvasThemePromptTitle.waitToExist(5, shouldFail: false).exists()) {
+        if canvasThemePromptTitle.waitToExist(5, shouldFail: false).exists() {
             systemSettingsButton.tapUntil {
                 !canvasThemePromptTitle.exists()
             }

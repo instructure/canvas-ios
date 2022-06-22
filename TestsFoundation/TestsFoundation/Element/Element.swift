@@ -252,7 +252,7 @@ public func waitUntil(
     let deadline = Date().addingTimeInterval(timeout)
     while !predicate() {
         if Date() > deadline {
-            if(shouldFail) {
+            if shouldFail {
                 XCTFail(failureMessage(), file: (file), line: line)
             }
             break
