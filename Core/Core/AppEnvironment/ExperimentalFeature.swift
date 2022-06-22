@@ -32,7 +32,13 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case hybridDiscussionDetails = "hybrid_discussion_details"
 
     public var isEnabled: Bool {
-        get { UserDefaults.standard.bool(forKey: userDefaultsKey) }
+        get {
+            // If there are no saved values for K5 mode we return true by default. Debug builds without Firebase feature flag fetch will have this enabled.
+            if self == .K5Dashboard, UserDefaults.standard.object(forKey: userDefaultsKey) == nil {
+                return true
+            }
+            return UserDefaults.standard.bool(forKey: userDefaultsKey)
+        }
         nonmutating set { UserDefaults.standard.set(newValue, forKey: userDefaultsKey) }
     }
 
