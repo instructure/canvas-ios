@@ -87,9 +87,9 @@ open class CoreWebView: WKWebView {
 
     /**
      - parameters:
-        - forceDarkModeSupport: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
+        - invertColorsInDarkMode: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
      */
-    public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, forceDarkModeSupport: Bool = false) {
+    public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, invertColorsInDarkMode: Bool = false) {
         let config = configuration ?? Self.defaultConfiguration
         config.applyDefaultSettings()
 
@@ -103,8 +103,8 @@ open class CoreWebView: WKWebView {
             addScript(zoomScript)
         }
 
-        if forceDarkModeSupport {
-            addScript(forceDarkModeScript)
+        if invertColorsInDarkMode {
+            addScript(colorInvertInDarkModeScript)
         }
 
         setup()
@@ -188,7 +188,7 @@ open class CoreWebView: WKWebView {
 
     // Forces dark mode on webview pages.
 
-    public var forceDarkModeScript: String {
+    public var colorInvertInDarkModeScript: String {
         let darkCss = """
         @media (prefers-color-scheme: dark) {
             html {
