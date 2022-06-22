@@ -51,7 +51,7 @@ extension UINavigationBar {
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
-        barStyle = background.luminance < 0.5 ? .black : .default
+        barStyle = tintColor.luminance > 0.5 ? .black : .default
         isTranslucent = false
 
         applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
@@ -90,5 +90,14 @@ extension UINavigationBar {
 
         standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance
+    }
+}
+
+/// Always uses the nav bar style to update status bar, even if hidden
+open class StyledNavigationController: UINavigationController {
+    public override var childForStatusBarStyle: UIViewController? { nil }
+
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        self.navigationBar.tintColor.luminance > 0.5 ? .lightContent : .default
     }
 }
