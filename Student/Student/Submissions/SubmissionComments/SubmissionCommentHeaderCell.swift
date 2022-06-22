@@ -31,6 +31,7 @@ class SubmissionCommentHeaderCell: UITableViewCell {
     }
 
     func update(comment: SubmissionComment) {
+        backgroundColor = .backgroundLightest
         isAccessibilityElement = false
         accessibilityElementsHidden = true
         authorAvatarView?.name = comment.authorName

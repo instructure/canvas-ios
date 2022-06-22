@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct SideMenuToggleItem: View {
+    @Environment(\.colorScheme) var colorScheme
     let id: String
     let image: Image
     let title: Text
@@ -34,7 +35,7 @@ struct SideMenuToggleItem: View {
         })
         .animation(.default)
         .font(.regular16)
-        .foregroundColor(.licorice)
+        .foregroundColor(colorScheme == .dark ? .white : .licorice)
         .padding(20)
         .frame(height: 48)
         .contentShape(Rectangle())

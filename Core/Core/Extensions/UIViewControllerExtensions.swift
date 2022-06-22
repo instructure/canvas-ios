@@ -165,6 +165,26 @@ extension UIViewController {
         AppEnvironment.shared.router.show(alert, from: self, options: .modal())
     }
 
+    public func showThemeSelectorAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Canvas is now available in dark theme", bundle: .core, comment: ""),
+                                      message: NSLocalizedString("Choose your app appearance!\nYou can change it later in the settings menu.", bundle: .core, comment: ""),
+                                      preferredStyle: .alert)
+
+        alert.addAction(AlertAction(NSLocalizedString("System settings", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .unspecified)})
+        alert.addAction(AlertAction(NSLocalizedString("Light theme", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .light)})
+        alert.addAction(AlertAction(NSLocalizedString("Dark theme", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .dark)})
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel) {_ in self.setStyle(style: .light)})
+        AppEnvironment.shared.router.show(alert, from: self, options: .modal())
+    }
+
+    private func setStyle(style: UIUserInterfaceStyle?) {
+        let env = AppEnvironment.shared
+        env.userDefaults?.interfaceStyle = style
+        if let window = env.window {
+            window.updateInterfaceStyle(style)
+        }
+    }
+
     public enum PermissionError {
         case camera, microphone, notifications
 

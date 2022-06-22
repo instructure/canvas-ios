@@ -76,6 +76,7 @@ public class ItemPickerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self
@@ -109,7 +110,7 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cell = tableView.dequeue(for: indexPath) as RightDetailTableViewCell
         }
-        cell.backgroundColor = .backgroundGroupedCell
+        cell.backgroundColor = .backgroundLightest
         cell.imageView?.image = item.image
         cell.textLabel?.text = item.title
         cell.accessibilityTraits.insert(.button)

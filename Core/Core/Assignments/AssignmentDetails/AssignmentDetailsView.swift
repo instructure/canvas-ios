@@ -39,6 +39,7 @@ public struct AssignmentDetailsView: View {
 
     public var body: some View {
         states
+            .background(Color.backgroundLightest)
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
             .navBarItems(trailing: {

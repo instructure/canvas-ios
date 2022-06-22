@@ -275,6 +275,7 @@ public class GradeListCell: UITableViewCell {
     @IBOutlet weak var typeImage: UIImageView!
 
     func update(_ assignment: Assignment?, userID: String?, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         let submission = assignment?.submissions?.first { $0.userID == userID }
         accessibilityIdentifier = "GradeListCell.\(assignment?.id ?? "")"
         nameLabel.setText(assignment?.name, style: .textCellTitle)

@@ -43,7 +43,7 @@ class HideGradesViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupSections()
-
+        view.backgroundColor = .backgroundLightest
         allGradesHiddenView.backgroundColor = .backgroundLightest
         allGradesHiddenView.isHidden = true
         allHiddenLabel.text = NSLocalizedString("All Hidden", comment: "")

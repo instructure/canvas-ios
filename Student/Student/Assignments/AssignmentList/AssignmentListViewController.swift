@@ -236,6 +236,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     class ListCell: UITableViewCell {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+            backgroundColor = .backgroundLightest
             textLabel?.font = UIFont.scaledNamedFont(.semibold16)
             detailTextLabel?.font = UIFont.scaledNamedFont(.medium14)
             detailTextLabel?.textColor = UIColor.textDark

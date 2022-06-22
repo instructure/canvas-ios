@@ -54,7 +54,7 @@ struct ConferenceCard: View {
                 .identifier("LiveConference.\(conference.id).dismissButton")
         }
             .background(RoundedRectangle(cornerRadius: 4).stroke(Color.backgroundInfo))
-            .background(Color.white)
+            .background(Color.backgroundLightest)
             .cornerRadius(4)
     }
 

@@ -56,7 +56,7 @@ public struct K5ResourcesView: View {
     private var importantInfo: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("Important Info", bundle: .core)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold20)
                 .padding(.bottom)
                 .accessibility(addTraits: .isHeader)
@@ -66,7 +66,7 @@ public struct K5ResourcesView: View {
                         Image.coursesLine
                             .accessibility(hidden: true)
                         Text(info.homeroomName)
-                            .foregroundColor(.licorice)
+                            .foregroundColor(.textDarkest)
                             .font(.bold17)
                     }
                 }
@@ -84,7 +84,7 @@ public struct K5ResourcesView: View {
     private var applications: some View {
         VStack(alignment: .leading, spacing: 9) {
             Text("Student Applications", bundle: .core)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold20)
                 .padding(.bottom, 8)
                 .accessibility(addTraits: .isHeader)
@@ -98,7 +98,7 @@ public struct K5ResourcesView: View {
     private var contacts: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("Staff Contact Info", bundle: .core)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold20)
                 .padding(.bottom, 8)
                 .accessibility(addTraits: .isHeader)

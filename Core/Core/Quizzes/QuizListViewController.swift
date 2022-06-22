@@ -65,6 +65,8 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
 
         colors.refresh()
         course.refresh()
@@ -157,6 +159,7 @@ class QuizListCell: UITableViewCell {
     }
 
     func update(quiz: Quiz?, isTeacher: Bool, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         if isTeacher {
             iconImageView.published = quiz?.published == true

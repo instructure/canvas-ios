@@ -175,8 +175,8 @@ public extension Element {
     }
 
     @discardableResult
-    func waitToExist(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Element {
-        waitUntil(timeout, file: file, line: line, failureMessage: "Element \(self) still doesn't exist") {
+    func waitToExist(_ timeout: TimeInterval = 10, shouldFail: Bool = true, file: StaticString = #file, line: UInt = #line) -> Element {
+        waitUntil(timeout, shouldFail: shouldFail, file: file, line: line, failureMessage: "Element \(self) still doesn't exist") {
             exists(file: file, line: line)
         }
         return self
@@ -243,6 +243,7 @@ public extension Element {
 
 public func waitUntil(
     _ timeout: TimeInterval = 10,
+    shouldFail: Bool = false,
     file: StaticString = #file,
     line: UInt = #line,
     failureMessage: @autoclosure () -> String = "waitUntil timed out",
@@ -251,7 +252,9 @@ public func waitUntil(
     let deadline = Date().addingTimeInterval(timeout)
     while !predicate() {
         if Date() > deadline {
-            XCTFail(failureMessage(), file: (file), line: line)
+            if shouldFail {
+                XCTFail(failureMessage(), file: (file), line: line)
+            }
             break
         }
         RunLoop.current.run(until: Date() + 0.1)

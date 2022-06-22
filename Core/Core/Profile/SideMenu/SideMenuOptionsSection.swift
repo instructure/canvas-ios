@@ -38,6 +38,10 @@ struct SideMenuOptionsSection: View {
                 SideMenuToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay).onTapGesture {
                     viewModel.colorOverlay.toggle()
                 }
+            } else {
+                SideMenuToggleItem(id: "darkMode", image: .imageSolid, title: Text("Dark Mode", bundle: .core), isOn: $viewModel.darkMode).onTapGesture {
+                    viewModel.darkMode.toggle()
+                }
             }
         }
         .onAppear {
@@ -55,10 +59,23 @@ extension SideMenuOptionsSection {
                 }
             }
         }
+
         @Published var colorOverlay: Bool = false {
             willSet {
                 if newValue != colorOverlay {
                     UpdateUserSettings(hide_dashcard_color_overlays: !newValue).fetch()
+                }
+            }
+        }
+
+        @Published var darkMode: Bool = false {
+            willSet {
+                if newValue != darkMode {
+                    let style: UIUserInterfaceStyle = newValue ? .dark : .light
+                    if let window = env.window {
+                        window.updateInterfaceStyle(style)
+                    }
+                    env.userDefaults?.interfaceStyle = style
                 }
             }
         }
@@ -71,6 +88,7 @@ extension SideMenuOptionsSection {
         init() {
             showGrades = env.userDefaults?.showGradesOnDashboard == true
             colorOverlay = settings.first?.hideDashcardColorOverlays != true
+            darkMode = env.userDefaults?.interfaceStyle == .dark
         }
 
         func viewDidAppear() {

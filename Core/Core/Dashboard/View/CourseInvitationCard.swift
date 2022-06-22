@@ -45,7 +45,7 @@ struct CourseInvitationCard: View {
             .padding(.horizontal, 16).padding(.vertical, 12)
         }
         .background(RoundedRectangle(cornerRadius: 4).stroke(Color.backgroundSuccess))
-        .background(Color.white)
+        .background(Color.backgroundLightest)
         .cornerRadius(4)
         .clipped()
     }

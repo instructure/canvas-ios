@@ -43,7 +43,7 @@ public struct K5ResourcesContactInfoView: View {
                 Spacer()
                 Image.emailLine
             }
-            .foregroundColor(.licorice)
+            .foregroundColor(.textDarkest)
         })
         .accessibility(label: Text(verbatim: "\(model.role), \(model.name)"))
         .accessibility(hint: Text("Send message", bundle: .core))

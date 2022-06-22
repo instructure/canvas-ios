@@ -38,7 +38,7 @@ struct ContextCardBoxView: View {
                 .multilineTextAlignment(.leading)
                 .font(.semibold12)
         }
-        .foregroundColor(selectedColor != nil ? .textLight : .textDarkest)
+        .foregroundColor(selectedColor != nil ? .textLightest : .textDarkest)
         .padding(.horizontal, 8).padding(.vertical, 12)
         .frame(height: 80.0)
         .frame(minWidth: 0, maxWidth: .infinity)
@@ -50,11 +50,14 @@ struct ContextCardBoxView: View {
 #if DEBUG
 struct ContextCardBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        HStack {
+        let stack = HStack {
             ContextCardBoxView(title: Text("56,5%"), subTitle: Text("Grade before posting"), selectedColor: .blue)
             ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade after posting"))
             ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade override"))
         }.previewLayout(.sizeThatFits)
+
+        stack
+        stack.preferredColorScheme(.dark)
     }
 }
 #endif

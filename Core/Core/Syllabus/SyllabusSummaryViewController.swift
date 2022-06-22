@@ -58,6 +58,7 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
         tableView.separatorColor = .borderMedium
@@ -118,11 +119,17 @@ class SyllabusSummaryItemCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         loadFromXib()
+        setupCell()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
+        setupCell()
+    }
+
+    func setupCell() {
+        backgroundColor = .backgroundLightest
     }
 
     func update(_ item: CalendarEvent?, indexPath: IndexPath, color: UIColor?) {

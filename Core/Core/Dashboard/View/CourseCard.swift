@@ -62,6 +62,7 @@ struct CourseCard: View {
                 }
                 .contentShape(Rectangle())
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
+                .background(Color.backgroundLightest)
                 .cornerRadius(4)
             })
             .buttonStyle(ScaleButtonStyle(scale: 1))

@@ -73,6 +73,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
@@ -218,6 +219,7 @@ class PageListFrontPageCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ page: Page?) {
+        backgroundColor = .backgroundLightest
         accessibilityIdentifier = "PageList.frontPage"
         headingLabel.text = NSLocalizedString("Front Page", bundle: .core, comment: "")
         headingLabel.accessibilityIdentifier = "PageList.frontPageHeading"
@@ -232,6 +234,7 @@ class PageListCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ page: Page?, indexPath: IndexPath, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         accessIconView.icon = UIImage.documentLine

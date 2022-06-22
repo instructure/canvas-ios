@@ -31,15 +31,15 @@ const fs = require('fs')
 const { dirname } = require('path')
 
 // Canvas Styleguide colors
-const electric  = { normal: '#008EE2', high: '#0770A3' }
-const shamrock  = { normal: '#00AC18', high: '#127A1B' }
-const barney    = { normal: '#BF32A4', high: '#B8309E' }
-const crimson   = { normal: '#EE0612', high: '#D01A19' }
-const fire      = { normal: '#FC5E13', high: '#C23C0D' }
+const electric  = { normal: '#008EE2', high: '#1283C4' }
+const shamrock  = { normal: '#00AC18', high: '#1A8E56' }
+const barney    = { normal: '#BF32A4', high: '#C74BAF' }
+const crimson   = { normal: '#EE0612', high: '#E73A4E' }
+const fire      = { normal: '#FC5E13', high: '#E36327' }
 const licorice  = { normal: '#2D3B45', high: '#2D3B45' }
 const oxford    = { normal: '#394B58', high: '#394B58' }
 const ash       = { normal: '#556572', high: '#556572' }
-const tiara     = { normal: '#C7CDD1', high: '#556572' }
+const tiara     = { normal: '#C7CDD1', high: '#5565721' }
 const porcelain = { normal: '#F5F5F5', high: '#FFFFFF' }
 const white     = { normal: '#FFFFFF', high: '#FFFFFF' }
 
@@ -53,15 +53,15 @@ const dark = {
 }
 const medium = {
   light: tiara,
-  dark: { normal: '#556572', high: '#C7CDD1' },
+  dark: { normal: '#394B58', high: '#394B58' },
 }
 const light = {
   light: porcelain,
-  dark: oxford,
+  dark: { normal: '#6B7780', high: '#6B7780' },
 }
 const lightest = {
   light: white,
-  dark: { normal: '#000000', high: '#000000' },
+  dark: white,
 }
 
 const colors = {
@@ -75,7 +75,7 @@ const colors = {
   oxford: { light: oxford, dark: oxford },
   ash: { light: ash, dark: ash },
   tiara: { light: tiara, dark: tiara },
-  porcelain: { light: porcelain, dark: porcelain },
+  porcelain: { light: porcelain, dark: ash },
   white: { light: white, dark: white },
 
   textDarkest: darkest,
@@ -90,17 +90,32 @@ const colors = {
 
   backgroundGrouped: {
     light: { normal: porcelain.normal, high: ash.normal },
-    dark: lightest.dark,
+    dark: { normal: '#121212', high: '#121212' },
   },
   backgroundGroupedCell: {
     light: white,
-    dark: { normal: '#1C1C1E', high: '#242426' },
+    dark: { normal: '#252525', high: '#252525' },
   },
-  backgroundDarkest: darkest,
-  backgroundDark: dark,
-  backgroundMedium: medium,
-  backgroundLight: light,
-  backgroundLightest: lightest,
+  backgroundDarkest: {
+    light: licorice,
+    dark: licorice,
+  },
+  backgroundDark: {
+    light: ash,
+    dark: ash,
+  },
+  backgroundMedium: {
+    light: tiara,
+    dark: { normal: '#242426', high: '#242426' },
+  },
+  backgroundLight: {
+    light: porcelain,
+    dark: { normal: '#1D1E1F', high: '#1D1E1F' },
+  },
+  backgroundLightest: {
+    light: white,
+    dark: { normal: '#121212', high: '#121212' },
+  },
   get backgroundAlert () { return colors.barney },
   get backgroundInfo () { return colors.electric },
   get backgroundSuccess () { return colors.shamrock },

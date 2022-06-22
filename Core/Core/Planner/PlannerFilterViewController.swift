@@ -114,6 +114,7 @@ extension PlannerFilterViewController: UITableViewDataSource {
         }
         let cell = tableView.dequeue(for: indexPath) as PlannerFilterCell
         let course = filteredCourses[indexPath.row]
+        cell.backgroundColor = .backgroundLightest
         cell.accessibilityIdentifier = "PlannerFilter.section.\(indexPath.section).row.\(indexPath.row)"
         cell.accessibilityLabel = course.name
         cell.courseNameLabel.text = course.name

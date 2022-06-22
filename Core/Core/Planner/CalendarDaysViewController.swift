@@ -195,6 +195,7 @@ class CalendarDayButton: UIButton {
         isOtherMonth = calendar.compare(date, to: selectedDate, toGranularity: .month) != .orderedSame
         super.init(frame: .zero)
         isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
+        backgroundColor = .backgroundLightest
 
         let year = String(calendar.component(.year, from: date))
         let month = String(calendar.component(.month, from: date))

@@ -151,6 +151,7 @@ extension ConferenceDetailsViewController: UITableViewDataSource, UITableViewDel
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let recording = conference?.recordings?[indexPath.row]
         let cell: ConferenceRecordingCell = tableView.dequeue(for: indexPath)
+        cell.backgroundColor = .backgroundLightest
         cell.titleLabel.text = recording?.title
         cell.dateLabel.text = recording?.createdAt.map {
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)

@@ -67,6 +67,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Quiz Details", comment: ""))
 
         attemptsLabel.text = NSLocalizedString("Allowed Attempts:", comment: "")

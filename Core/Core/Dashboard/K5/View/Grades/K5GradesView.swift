@@ -55,8 +55,8 @@ struct K5GradesView: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Select", bundle: .core)
                     .font(.regular13)
-                    .background(Color.white)
-                    .foregroundColor(.ash)
+                    .background(Color.backgroundLightest)
+                    .foregroundColor(.textDark)
                     .padding(.top, 15)
                     .accessibility(hidden: true)
                 HStack(spacing: 7) {
@@ -68,7 +68,7 @@ struct K5GradesView: View {
                     }, label: {
                         Text(viewModel.currentGradingPeriod.title ?? "")
                             .font(.bold24)
-                            .foregroundColor(.licorice)
+                            .foregroundColor(.textDarkest)
                     })
                     .accessibility(label: Text("Select grading period", bundle: .core) + Text(verbatim: ", ") + selectorStateText)
                     .accessibility(hint: Text(verbatim: ", \(viewModel.currentGradingPeriod.title ?? "") ,") + Text("Selected", bundle: .core))
@@ -76,7 +76,7 @@ struct K5GradesView: View {
                     Image.arrowOpenDownLine
                         .resizable()
                         .frame(width: 12, height: 12)
-                        .foregroundColor(.licorice)
+                        .foregroundColor(.textDarkest)
                         .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
                         .animation(.easeOut)
                         .accessibility(hidden: true)
@@ -86,7 +86,7 @@ struct K5GradesView: View {
                 Divider()
             }
             .zIndex(1)
-            .background(Color.white)
+            .background(Color.backgroundLightest)
             .padding(.top, 0)
 
             if gradeSelectorOpen {
@@ -98,7 +98,7 @@ struct K5GradesView: View {
                                 gradeSelectorOpen = false
                             }
                         } label: {
-                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.white).foregroundColor(.licorice)
+                            Text(gradingPeriod.title ?? "").font(.bold20).background(Color.backgroundLightest).foregroundColor(.textDarkest)
                         }.padding(.bottom, 1)
                         Divider()
                     }

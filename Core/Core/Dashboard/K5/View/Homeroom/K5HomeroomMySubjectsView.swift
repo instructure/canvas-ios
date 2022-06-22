@@ -31,7 +31,7 @@ public struct K5HomeroomMySubjectsView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text("My Subjects", bundle: .core)
                 .font(.bold20)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .padding(.bottom, 16)
             let cardWidth = calculateCardWidth(containerWidth: containerSize.width - 2 * horizontalPadding)
             JustifiedGrid(itemCount: subjectCards.count, itemSize: CGSize(width: cardWidth, height: K5HomeroomSubjectCardView.Height), spacing: cardSpacing, width: containerSize.width) { cardIndex in

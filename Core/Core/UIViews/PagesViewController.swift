@@ -43,6 +43,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
 
     public override func loadView() {
         view = scrollView
+        view.backgroundColor = .backgroundLightest
     }
 
     public override func viewDidLoad() {
