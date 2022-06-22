@@ -59,7 +59,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
             primary: .white
         )
         bar.useGlobalNavStyle(brand: shiny)
-        XCTAssertEqual(bar.barStyle, .default)
+        XCTAssertEqual(bar.barStyle, .black)
     }
 
     func testUseModalStyle() {
