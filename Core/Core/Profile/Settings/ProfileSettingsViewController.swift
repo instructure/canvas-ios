@@ -162,18 +162,19 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
     private var interfaceStyleSettings: [Row] {
         let options = [
-            ItemPickerItem(title: NSLocalizedString("System settings", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Light theme", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Dark theme", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("System Settings", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Light Theme", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Dark Theme", bundle: .core, comment: "")),
         ]
+        let selectedStyleIndex = env.userDefaults?.interfaceStyle?.rawValue ?? 0
 
         return [
-            Row(NSLocalizedString("App appearance", bundle: .core, comment: "")) { [weak self] in
+            Row(NSLocalizedString("Appearance", bundle: .core, comment: ""), detail: options[selectedStyleIndex].title) { [weak self] in
                 guard let self = self else { return }
 
-                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("App appearance", bundle: .core, comment: ""),
+                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("Appearance", bundle: .core, comment: ""),
                                                                sections: [ ItemPickerSection(items: options) ],
-                                                               selected: IndexPath(row: self.env.userDefaults?.interfaceStyle?.rawValue ?? 0, section: 0)) { indexPath in
+                                                               selected: IndexPath(row: selectedStyleIndex, section: 0)) { indexPath in
                     if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
                         window.updateInterfaceStyle(style)
                         self.env.userDefaults?.interfaceStyle = style
