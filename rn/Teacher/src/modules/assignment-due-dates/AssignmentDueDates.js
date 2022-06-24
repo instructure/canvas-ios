@@ -133,7 +133,7 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
 
     return (
       <Screen
-        title={i18n('Edit Due Dates')}
+        title={i18n('Due Dates')}
         navBarStyle='context'
         rightBarButtons={[
           {
