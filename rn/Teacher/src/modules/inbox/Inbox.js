@@ -20,6 +20,7 @@
 
 import React, { Component } from 'react'
 import {
+  Appearance,
   View,
   FlatList,
   StyleSheet,
@@ -39,6 +40,8 @@ import RowSeparator from '../../common/components/rows/RowSeparator'
 import CourseActions from '../courses/actions'
 import App from '../app'
 import { logEvent } from '../../common/CanvasAnalytics'
+import type { EventSubscription } from 'react-native/Libraries/vendor/emitter/EventEmitter'
+import type { AppearancePreferences } from 'react-native/Libraries/Utilities/NativeAppearance'
 
 export type InboxProps = {
   conversations: Conversation[],
@@ -52,11 +55,24 @@ export type InboxProps = {
 
 export class Inbox extends Component<InboxProps, any> {
   state = { selectedCourse: 'all' }
+  _appearanceChangeSubscription: ?EventSubscription
 
   UNSAFE_componentWillReceiveProps (newProps: InboxProps) {
     if (newProps.scope !== this.props.scope) {
       handleRefresh(newProps)
     }
+  }
+
+  componentDidMount () {
+    this._appearanceChangeSubscription = Appearance.addChangeListener(
+      (preferences: AppearancePreferences) => {
+        this.setState(this.state)
+      },
+    )
+  }
+
+  componentWillUnmount () {
+    this._appearanceChangeSubscription?.remove()
   }
 
   getNextPage = () => {

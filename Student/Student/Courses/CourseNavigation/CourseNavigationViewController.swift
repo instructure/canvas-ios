@@ -75,6 +75,7 @@ extension CourseNavigationViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .backgroundLightest
         cell.textLabel?.text = presenter?.tabs[indexPath.row]?.label
         cell.imageView?.image = presenter?.tabs[indexPath.row]?.icon
         cell.imageView?.tintColor = color

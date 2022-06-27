@@ -108,6 +108,8 @@ public struct AssignmentListView: View {
                     .iOS15ListRowSeparator(.hidden)
                     .frame(maxWidth: .infinity)
                     .frame(height: geometry.size.height)
+                    .background(Color.backgroundLightest)
+                    .listRowInsets(EdgeInsets())
             }
             .listStyle(.plain)
             .iOS15Refreshable { completion in
@@ -171,12 +173,15 @@ struct AssignmentListView_Previews: PreviewProvider {
         ]
         let viewModel = AssignmentListViewModel(state: .data(assignmentGroups))
         AssignmentListView(viewModel: viewModel)
+        AssignmentListView(viewModel: viewModel).preferredColorScheme(.dark)
 
         let emptyModel = AssignmentListViewModel(state: .empty)
         AssignmentListView(viewModel: emptyModel)
+        AssignmentListView(viewModel: emptyModel).preferredColorScheme(.dark)
 
         let loadingModel = AssignmentListViewModel(state: .loading)
         AssignmentListView(viewModel: loadingModel)
+        AssignmentListView(viewModel: loadingModel).preferredColorScheme(.dark)
     }
 }
 

@@ -31,10 +31,10 @@ struct K5HomeroomAnnouncementView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(viewModel.courseName)
-                .foregroundColor(.ash)
+                .foregroundColor(.textDark)
                 .font(.regular13)
             Text(viewModel.title)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold24)
             WebView(html: viewModel.htmlContent)
                 .frameToFit()

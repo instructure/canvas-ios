@@ -35,7 +35,7 @@ public struct TopBarItemView: View {
                 viewModel.label
                     .font(.regular14)
             }
-            .accentColor(viewModel.isSelected ? Color(Brand.shared.primary) : .oxford)
+            .accentColor(viewModel.isSelected ? Color(Brand.shared.primary) : .textDark)
             .padding(.vertical, 14)
         }
         .accessibility(addTraits: viewModel.isSelected ? .isSelected : [])

@@ -61,7 +61,7 @@ struct SideMenuHeaderView: View {
                 .identifier("Profile.userNameLabel")
             Text(userModel.email)
                 .font(.regular14)
-                .foregroundColor(.ash)
+                .foregroundColor(.textDark)
                 .minimumScaleFactor(0.2)
                 .identifier("Profile.userEmailLabel")
         }.padding(20).frame(height: 185)

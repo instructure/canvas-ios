@@ -464,6 +464,7 @@ class FileListUploadCell: UITableViewCell {
     @IBOutlet weak var sizeLabel: UILabel!
 
     func update(_ file: File?) {
+        backgroundColor = .backgroundLightest
         iconView.isHidden = file?.uploadError == nil
         nameLabel.setText(file?.filename, style: .textCellTitle)
         progressView.color = nil
@@ -485,6 +486,7 @@ class FileListCell: UITableViewCell {
     @IBOutlet weak var sizeLabel: UILabel!
 
     func update(item: FolderItem?, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         nameLabel.setText(item?.name, style: .textCellTitle)
         if let folder = item?.folder {

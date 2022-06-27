@@ -54,7 +54,7 @@ struct AnnouncementItemView: View {
                         .foregroundColor(.textDark)
                     Spacer()
                 }
-            }
+            }.background(Color.backgroundLightest)
         }
     }
 }

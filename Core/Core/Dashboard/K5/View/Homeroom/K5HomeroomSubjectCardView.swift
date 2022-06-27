@@ -53,7 +53,7 @@ public struct K5HomeroomSubjectCardView: View {
                 infoLines
                 Spacer()
             }
-            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
+            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium, lineWidth: 1 / UIScreen.main.scale))
             .cornerRadius(4)
         })
         .buttonStyle(PlainButtonStyle())
@@ -85,7 +85,7 @@ public struct K5HomeroomSubjectCardView: View {
                 }
             }
         }
-        .foregroundColor(.licorice)
+        .foregroundColor(.textDarkest)
         .padding(.horizontal, 8)
         .environment(\.font, Font.regular13)
         .environment(\.lineLimit, 2)

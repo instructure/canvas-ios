@@ -132,7 +132,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="8E6-bh-FSp" firstAttribute="top" secondItem="DlE-al-GEJ" secondAttribute="bottom" constant="8" id="GAd-Ov-iCD"/>
                                     <constraint firstItem="8E6-bh-FSp" firstAttribute="leading" secondItem="gd5-vQ-RGd" secondAttribute="leading" constant="16" id="Tht-XR-xzy"/>
@@ -146,7 +145,6 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9A2-v0-1Gd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9A2-v0-1Gd" firstAttribute="bottom" secondItem="gd5-vQ-RGd" secondAttribute="bottom" id="Up7-b7-Eh7"/>
                             <constraint firstItem="gd5-vQ-RGd" firstAttribute="top" secondItem="9A2-v0-1Gd" secondAttribute="top" id="eQV-xo-q8d"/>

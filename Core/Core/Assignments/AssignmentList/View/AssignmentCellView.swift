@@ -51,6 +51,7 @@ public struct AssignmentCellView: View {
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         })
+            .background(Color.backgroundLightest)
             .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
             .accessibility(identifier: "assignment-list.assignment-list-row.cell-\(viewModel.assignment.id)")
     }
@@ -106,7 +107,7 @@ struct AssignmentCellView_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        VStack(spacing: 0) {
+        let list = VStack(spacing: 0) {
             Divider()
             ForEach(assignments, id: \.id) {
                 let assignment = Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
@@ -114,7 +115,10 @@ struct AssignmentCellView_Previews: PreviewProvider {
                 AssignmentCellView(viewModel: viewModel)
                 Divider()
             }
-        }
+        }.previewLayout(.sizeThatFits)
+
+        list
+        list.preferredColorScheme(.dark)
     }
 }
 

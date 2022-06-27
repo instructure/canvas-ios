@@ -70,7 +70,8 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
-
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
         course?.refresh(force: true)
@@ -200,6 +201,7 @@ class AnnouncementListCell: UITableViewCell {
         } else {
             iconImageView.state = nil
         }
+        backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
         titleLabel.setText(topic?.title, style: .textCellTitle)

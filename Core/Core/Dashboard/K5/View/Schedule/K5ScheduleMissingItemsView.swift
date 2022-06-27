@@ -53,7 +53,7 @@ public struct K5ScheduleMissingItemsView: View {
                 }
             })
             .frame(height: 58)
-            .background(Color.white)
+            .background(Color.backgroundLightest)
 
             if isOpened {
                 VStack(spacing: 0) {

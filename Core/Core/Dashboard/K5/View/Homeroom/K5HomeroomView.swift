@@ -38,7 +38,7 @@ public struct K5HomeroomView: View {
                 accountAnnouncements
 
                 Text(viewModel.welcomeText)
-                    .foregroundColor(.licorice)
+                    .foregroundColor(.textDarkest)
                     .font(.bold34)
                     .padding(.top)
                 ForEach(viewModel.announcements) {

@@ -41,4 +41,19 @@ class ExperimentalFeatureTests: CoreTestCase {
         testFeature.isEnabled = true
         XCTAssertTrue(UserDefaults.standard.bool(forKey: testFeature.userDefaultsKey))
     }
+
+    func testK5FlagDefaultValue() {
+        UserDefaults.standard.removeObject(forKey: ExperimentalFeature.K5Dashboard.userDefaultsKey)
+        XCTAssertTrue(ExperimentalFeature.K5Dashboard.isEnabled)
+    }
+
+    func testSavedDisabledK5FlagValue() {
+        UserDefaults.standard.set(false, forKey: ExperimentalFeature.K5Dashboard.userDefaultsKey)
+        XCTAssertFalse(ExperimentalFeature.K5Dashboard.isEnabled)
+    }
+
+    func testSavedEnabledK5FlagValue() {
+        UserDefaults.standard.set(true, forKey: ExperimentalFeature.K5Dashboard.userDefaultsKey)
+        XCTAssertTrue(ExperimentalFeature.K5Dashboard.isEnabled)
+    }
 }

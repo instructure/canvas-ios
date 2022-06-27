@@ -63,11 +63,25 @@ public struct DashboardCardView: View {
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarGlobal()
         .navigationBarItems(leading: menuButton, trailing: layoutToggleButton)
-        .onAppear { refresh(force: false) }
+        .onAppear {
+            refresh(force: false) {
+                let env = AppEnvironment.shared
+                if env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false {
+                    controller.value.showThemeSelectorAlert()
+                }
+            }
+        }
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
             showGrade = env.userDefaults?.showGradesOnDashboard == true
         }
         .onReceive(invitationsViewModel.coursesChanged) { _ in refresh(force: true) }
+    }
+
+    private func setStyle(style: UIUserInterfaceStyle?) {
+        env.userDefaults?.interfaceStyle = style
+        if let window = env.window {
+            window.updateInterfaceStyle(style)
+        }
     }
 
     private var menuButton: some View {

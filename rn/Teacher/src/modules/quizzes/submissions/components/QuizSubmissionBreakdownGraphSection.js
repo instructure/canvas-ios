@@ -28,12 +28,15 @@ import EnrollmentActions from '../../../enrollments/actions'
 import AssignmentActions from '../../../assignments/actions'
 import SubmissionListActions from '../../../submissions/list/actions'
 import {
+  Appearance,
   View,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
 import { vars } from '../../../../common/stylesheet'
+import type { EventSubscription } from 'react-native/Libraries/vendor/emitter/EventEmitter'
+import type { AppearancePreferences } from 'react-native/Libraries/Utilities/NativeAppearance'
 
 export type QuizSubmissionBreakdownGraphSectionProps = {
   courseID: string,
@@ -60,19 +63,34 @@ export type QuizSubmissionBreakdownGraphSectionInitProps = {
 }
 
 export class QuizSubmissionBreakdownGraphSection extends Component<QuizSubmissionBreakdownGraphSectionProps, any> {
+  _appearanceChangeSubscription: ?EventSubscription
+
   componentDidMount () {
-    this.props.refreshQuizSubmissions(this.props.courseID, this.props.quizID, this.props.assignmentID)
-    if (this.props.assignmentID) {
-      this.props.refreshSubmissionSummary(this.props.courseID, this.props.assignmentID)
-    } else {
-      this.props.refreshEnrollments(this.props.courseID)
-    }
+    this.refresh()
+    this._appearanceChangeSubscription = Appearance.addChangeListener(
+      (preferences: AppearancePreferences) => {
+        this.refresh()
+      },
+    )
+  }
+
+  componentWillUnmount () {
+    this._appearanceChangeSubscription?.remove()
   }
 
   UNSAFE_componentWillReceiveProps (nextProps: QuizSubmissionBreakdownGraphSectionProps) {
     if (!this.props.assignmentID && nextProps.assignmentID) {
       this.props.refreshSubmissionSummary(this.props.courseID, nextProps.assignmentID)
     } else if (this.props.assignmentID && !nextProps.assignmentID) {
+      this.props.refreshEnrollments(this.props.courseID)
+    }
+  }
+
+  refresh () {
+    this.props.refreshQuizSubmissions(this.props.courseID, this.props.quizID, this.props.assignmentID)
+    if (this.props.assignmentID) {
+      this.props.refreshSubmissionSummary(this.props.courseID, this.props.assignmentID)
+    } else {
       this.props.refreshEnrollments(this.props.courseID)
     }
   }

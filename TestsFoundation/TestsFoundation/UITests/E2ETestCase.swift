@@ -44,5 +44,6 @@ open class E2ETestCase: CoreUITestCase {
 
         homeScreen.waitToExist()
         user.session = currentSession()
+        setAppThemeToSystem()
     }
 }

@@ -42,6 +42,7 @@ struct HelpItemView: View {
                 .contentShape(Rectangle())
         })
         .frame(maxWidth: .infinity)
+        .background(Color.backgroundLightest)
         .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
         .testID(.cell)
     }

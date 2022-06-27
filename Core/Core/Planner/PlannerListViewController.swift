@@ -60,6 +60,7 @@ public class PlannerListViewController: UIViewController {
         spinnerView.color = nil
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        self.view.backgroundColor = .backgroundLightest
 
         refresh()
     }
@@ -150,6 +151,7 @@ class PlannerListCell: UITableViewCell {
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
         courseCode.setText(p?.contextName, style: .textCellTopLabel)
         title.setText(p?.title, style: .textCellTitle)
+        backgroundColor = .backgroundLightest
         let dueDateText = (p?.date).flatMap {
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
         }

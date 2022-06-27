@@ -27,6 +27,7 @@ public struct WebView: UIViewRepresentable {
     private let source: Source?
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
+    private var invertColorsInDarkMode: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration?
 
@@ -39,10 +40,11 @@ public struct WebView: UIViewRepresentable {
         source = url.map { .request(URLRequest(url: $0)) }
     }
 
-    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
+    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, invertColorsInDarkMode: Bool = false) {
         self.init(url: url)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
+        self.invertColorsInDarkMode = invertColorsInDarkMode
         self.configuration = configuration
     }
 
@@ -93,7 +95,7 @@ public struct WebView: UIViewRepresentable {
     // MARK: - UIViewRepresentable Protocol
 
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration)
+        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration, invertColorsInDarkMode: invertColorsInDarkMode)
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
