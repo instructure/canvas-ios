@@ -92,12 +92,3 @@ extension UINavigationBar {
         scrollEdgeAppearance = standardAppearance
     }
 }
-
-/// Always uses the nav bar style to update status bar, even if hidden
-open class StyledNavigationController: UINavigationController {
-    public override var childForStatusBarStyle: UIViewController? { nil }
-
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        self.navigationBar.tintColor.luminance > 0.5 ? .lightContent : .default
-    }
-}

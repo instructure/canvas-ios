@@ -109,7 +109,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func showRootView() {
         guard let window = self.window else { return }
-        let controller = DashboardNavigationController(rootViewController: DashboardViewController.create())
+        let controller = HelmNavigationController(rootViewController: DashboardViewController.create())
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
             window.rootViewController = controller

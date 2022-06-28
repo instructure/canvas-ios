@@ -197,9 +197,9 @@ open class Router {
             view.navigationItem.leftItemsSupplementBackButton = true
         }
 
-        var nav: StyledNavigationController?
+        var nav: UINavigationController?
         if options.embedInNav {
-            nav = view as? StyledNavigationController ?? StyledNavigationController(rootViewController: view)
+            nav = view as? UINavigationController ?? HelmNavigationController(rootViewController: view)
         }
 
         switch options {
