@@ -287,7 +287,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
             components.host = rootAccountHost
             baseUrl = components.url ?? baseUrl
         }
-        
+
         let entry = LoginSession(
             accessToken: session.accessToken,
             baseURL: baseUrl,
