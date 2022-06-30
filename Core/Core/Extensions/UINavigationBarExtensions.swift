@@ -51,7 +51,7 @@ extension UINavigationBar {
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
-        barStyle = tintColor.luminance > 0.5 ? .black : .default
+        barStyle = background.luminance < 0.5 ? .black : .default
         isTranslucent = false
 
         applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
