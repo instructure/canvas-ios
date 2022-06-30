@@ -274,10 +274,23 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func actAsFakeStudent(withID fakeStudentID: String) {
+        actAsFakeStudent(with: APIUser.make(id: ID(rawValue: fakeStudentID)))
+    }
+
+    func actAsFakeStudent(with fakeStudent: APIUser) {
         guard let session = environment.currentSession else { return }
+
+        var baseUrl = session.baseURL
+        if let rootAccountHost = fakeStudent.root_account {
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = rootAccountHost
+            baseUrl = components.url ?? baseUrl
+        }
+        
         let entry = LoginSession(
             accessToken: session.accessToken,
-            baseURL: session.baseURL,
+            baseURL: baseUrl,
             expiresAt: session.expiresAt,
             lastUsedAt: Date(),
             locale: session.locale,
@@ -286,7 +299,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
                 .appendingPathComponent(session.originalUserID ?? session.userID),
             refreshToken: session.refreshToken,
             userAvatarURL: nil,
-            userID: fakeStudentID,
+            userID: fakeStudent.id.rawValue,
             userName: NSLocalizedString("Test Student", comment: ""),
             userEmail: session.userEmail,
             clientID: session.clientID,
@@ -302,9 +315,9 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         }
     }
 
-    func actAsStudentViewStudent(studentViewStudentID: String) {
+    func actAsStudentViewStudent(studentViewStudent: APIUser) {
         if let url = URL(string: "canvas-student://"), UIApplication.shared.canOpenURL(url) {
-            actAsFakeStudent(withID: studentViewStudentID)
+            actAsFakeStudent(with: studentViewStudent)
         } else if let url = URL(string: "https://itunes.apple.com/us/app/canvas-student/id480883488?ls=1&mt=8") {
             openExternalURL(url)
         }
