@@ -259,7 +259,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(QuizDetailsView(viewModel: viewModel))
     },
     "/courses/:courseID/quizzes/:quizID/preview": nil,
-    "/courses/:courseID/quizzes/:quizID/edit": nil,
+    "/courses/:courseID/quizzes/:quizID/edit": { _, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        return CoreHostingController(QuizEditorView(courseID: courseID, quizID: quizID))
+    },
+
     "/courses/:courseID/quizzes/:quizID/submissions": nil,
 
     "/courses/:courseID/users": { _, params, _ in

@@ -133,7 +133,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', QuizPreview, store)
-    registerScreen('/courses/:courseID/quizzes/:quizID/edit', QuizEdit, store)
+    registerScreen('/courses/:courseID/quizzes/:quizID/edit', null, store)
     registerScreen('/courses/:courseID/quizzes/:quizID/submissions', QuizSubmissions, store, { deepLink: true })
     registerScreen('/courses/:courseID/users/:userID', null, store, { deepLink: true })
 

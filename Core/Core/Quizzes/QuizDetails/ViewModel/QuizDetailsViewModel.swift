@@ -61,7 +61,7 @@ public class QuizDetailsViewModel: ObservableObject {
 
     public func editTapped(router: Router, viewController: WeakViewController) {
         env.router.route(
-            to: "courses/\(courseID)/assignments/\(quizID)/edit",
+            to: "courses/\(courseID)/quizzes/\(quizID)/edit",
             from: viewController,
             options: .modal(.formSheet, isDismissable: false, embedInNav: true)
         )
@@ -73,16 +73,6 @@ public class QuizDetailsViewModel: ObservableObject {
             from: viewController,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
         )
-    }
-
-    public struct QuizAttribute: Identifiable {
-        public var id: String
-        public var value: String
-
-        public init(_ id: String, _ value: String) {
-            self.id = id
-            self.value = value
-        }
     }
 
     public var attributes: [QuizAttribute] {
