@@ -63,8 +63,8 @@ struct CommentLibrarySheet: View {
     @ViewBuilder
     var dismissView: some View {
         ZStack {
-            Circle().foregroundColor(.tiara).frame(width: 30, height: 30).opacity(0.3)
-            Image.xLine.foregroundColor(.licorice).frame(width: 12.5, height: 12.5)
+            Circle().foregroundColor(.borderMedium).frame(width: 30, height: 30).opacity(0.3)
+            Image.xLine.foregroundColor(.textDarkest).frame(width: 12.5, height: 12.5)
         }
     }
 

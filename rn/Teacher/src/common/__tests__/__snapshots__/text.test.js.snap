@@ -6,6 +6,7 @@ exports[`renders ModalOverlayText correctly 1`] = `
     Array [
       Object {
         "color": "#FFFFFF",
+        "fontFamily": "Lato-Regular",
         "fontSize": 24,
         "fontWeight": "600",
       },
@@ -22,6 +23,7 @@ exports[`renders heading1 correctly 1`] = `
     Array [
       Object {
         "color": "#2D3B45",
+        "fontFamily": "Lato-Regular",
         "fontSize": 24,
         "fontWeight": "800",
       },
@@ -37,6 +39,7 @@ exports[`renders heading2 correctly 1`] = `
     Array [
       Object {
         "color": "#2D3B45",
+        "fontFamily": "Lato-Regular",
         "fontSize": 16,
         "fontWeight": "bold",
       },
@@ -52,6 +55,7 @@ exports[`renders paragraph correctly 1`] = `
     Array [
       Object {
         "color": "#556572",
+        "fontFamily": "Lato-Regular",
         "fontSize": 16,
         "lineHeight": 23,
       },
@@ -82,6 +86,7 @@ exports[`renders separated correctly 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         undefined,
@@ -97,6 +102,7 @@ exports[`renders separated correctly 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Array [
@@ -125,6 +131,7 @@ exports[`renders separated correctly 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         undefined,
@@ -140,6 +147,7 @@ exports[`renders separated correctly 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Array [
@@ -168,6 +176,7 @@ exports[`renders separated correctly 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         undefined,
@@ -198,6 +207,7 @@ exports[`renders separated with one item 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         undefined,
@@ -215,6 +225,7 @@ exports[`renders text correctly 1`] = `
     Array [
       Object {
         "color": "#2D3B45",
+        "fontFamily": "Lato-Regular",
         "fontSize": 16,
       },
       undefined,
@@ -229,6 +240,7 @@ exports[`renders text with fontWeight bold 1`] = `
     Array [
       Object {
         "color": "#2D3B45",
+        "fontFamily": "Lato-Regular",
         "fontSize": 16,
       },
       Object {
@@ -245,6 +257,7 @@ exports[`renders text with fontWeight semibold 1`] = `
     Array [
       Object {
         "color": "#2D3B45",
+        "fontFamily": "Lato-Regular",
         "fontSize": 16,
       },
       Object {
@@ -262,6 +275,7 @@ exports[`renders textInput correctly 1`] = `
   style={
     Array [
       Object {
+        "fontFamily": "Lato-Regular",
         "fontSize": 17,
       },
       undefined,

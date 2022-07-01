@@ -55,7 +55,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
-
+        FontAppearance.update()
         TabBarBadgeCounts.application = UIApplication.shared
 
         if let session = LoginSession.mostRecent {
@@ -75,6 +75,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
+        updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
@@ -83,16 +84,21 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { response, urlResponse, error in
-            guard response != nil, error == nil else {
+        environment.api.makeRequest(getProfile) { apiProfile, urlResponse, error in
+            guard let apiProfile = apiProfile, error == nil else {
                 if urlResponse?.isUnauthorized == true {
                     DispatchQueue.main.async { self.userDidLogout(session: session) }
                 }
                 return
             }
-            self.isK5User = response?.k5_user == true
-            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                NativeLoginManager.login(as: session)
+            self.isK5User = apiProfile.k5_user == true
+
+            DispatchQueue.main.async {
+                LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
+                    GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                        NativeLoginManager.login(as: session)
+                    }}
+                }
             }
         }
         Analytics.shared.logSession(session)
@@ -168,6 +174,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if (!uiTesting) {
             AppStoreReview.handleLaunch()
         }
+        updateInterfaceStyle(for: window)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -247,9 +254,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
-            setup(session: session)
-        }
+        setup(session: session)
     }
 
     func userDidStopActing(as session: LoginSession) {

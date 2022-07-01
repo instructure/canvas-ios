@@ -37,6 +37,7 @@ public class AttachmentSubmissionService {
         var error: Error?
         ProcessInfo.processInfo.performExpiringActivity(withReason: "get upload targets") { expired in
             if expired {
+                Analytics.shared.logError("error_performing_background_activity")
                 self.uploadManager.sendFailedNotification()
                 return
             }

@@ -58,16 +58,16 @@ struct CourseCard: View {
                             .lineLimit(2)
                         Spacer()
                     }
-                        .padding(.horizontal, 10).padding(.top, 8)
+                    .padding(.horizontal, 10).padding(.top, 8)
                 }
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(Color(white: 0.89), lineWidth: 1 / UIScreen.main.scale))
-                    .background(Color.white)
-                    .cornerRadius(4)
-                    .shadow(color: Color.black.opacity(0.2), radius: 1, x: 0, y: 1)
+                .contentShape(Rectangle())
+                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
+                .background(Color.backgroundLightest)
+                .cornerRadius(4)
             })
-                .buttonStyle(ScaleButtonStyle(scale: 1))
-                .accessibility(label: Text(verbatim: "\(card.shortName) \(card.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
-                .identifier("DashboardCourseCell.\(card.id)")
+            .buttonStyle(ScaleButtonStyle(scale: 1))
+            .accessibility(label: Text(verbatim: "\(card.shortName) \(card.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
+            .identifier("DashboardCourseCell.\(card.id)")
 
             gradePill
                 .accessibility(hidden: true) // handled in the button label
@@ -90,12 +90,12 @@ struct CourseCard: View {
         }, label: {
             Image.moreSolid.foregroundColor(.white)
                 .background(card.imageURL == nil || !hideColorOverlay ? nil :
-                    Circle().fill(Color.accentColor).frame(width: 28, height: 28)
+                                Circle().fill(Color.accentColor).frame(width: 28, height: 28)
                 )
                 .frame(width: 44, height: 44)
         })
-            .accessibility(label: Text("Open \(card.shortName) user preferences", bundle: .core))
-            .identifier("DashboardCourseCell.\(card.id).optionsButton")
+        .accessibility(label: Text("Open \(card.shortName) user preferences", bundle: .core))
+        .identifier("DashboardCourseCell.\(card.id).optionsButton")
     }
 
     @ViewBuilder var gradePill: some View {
@@ -107,10 +107,10 @@ struct CourseCard: View {
                     Text(course.displayGrade).font(.semibold14)
                 }
             }
-                .foregroundColor(.accentColor)
-                .padding(.horizontal, 6).frame(height: 20)
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                .frame(maxWidth: 120, alignment: .leading)
+            .foregroundColor(.accentColor)
+            .padding(.horizontal, 6).frame(height: 20)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+            .frame(maxWidth: 120, alignment: .leading)
         }
     }
 }

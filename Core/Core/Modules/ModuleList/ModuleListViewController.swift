@@ -80,6 +80,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         spinnerView.color = color
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.registerCell(EmptyCell.self)
@@ -240,7 +241,7 @@ extension ModuleListViewController: UITableViewDataSource {
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item, indexPath: indexPath)
+                cell.update(item, indexPath: indexPath, color: color)
             }
             return cell
         }
@@ -272,7 +273,7 @@ extension ModuleListViewController {
     class EmptyCell: UITableViewCell {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .default, reuseIdentifier: reuseIdentifier)
-
+            backgroundColor = .backgroundLightest
             isUserInteractionEnabled = false
             fullDivider = true
             let label = UILabel()

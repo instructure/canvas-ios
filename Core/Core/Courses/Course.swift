@@ -43,7 +43,6 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var name: String?
-    @NSManaged var planner: Planner?
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
@@ -133,7 +132,7 @@ final public class Course: NSManagedObject, WriteableModel {
             dashboardCard.course = model
         }
 
-        if let group: Group = context.fetch(scope: .where(#keyPath(Group.courseID), equals: model.id)).first {
+        for group: Group in context.fetch(scope: .where(#keyPath(Group.courseID), equals: model.id)) {
             group.course = model
         }
 

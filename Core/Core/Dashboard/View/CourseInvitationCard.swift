@@ -19,17 +19,10 @@
 import SwiftUI
 
 struct CourseInvitationCard: View {
-    @ObservedObject var course: Course
-    @ObservedObject var enrollment: Enrollment
-    let id: String
-
+    @ObservedObject var invitation: DashboardInvitationViewModel
     @Environment(\.appEnvironment) var env
 
     var body: some View {
-        let courseName = course.name ?? ""
-        let sectionName = course.sections.first { $0.id == enrollment.courseSectionID }? .name
-        let displayName = (sectionName == courseName ? nil : sectionName.map { "\(courseName), \($0)" }) ?? courseName
-
         HStack(spacing: 0) {
             VStack {
                 Image.invitationLine.foregroundColor(.white)
@@ -37,67 +30,83 @@ struct CourseInvitationCard: View {
                     .accessibility(hidden: true)
                 Spacer()
             }
-                .background(Color.backgroundSuccess)
+            .background(Color.backgroundSuccess)
             VStack(alignment: .leading, spacing: 0) {
-                HStack { Spacer() }
-                if enrollment.state != .invited {
-                    HStack(alignment: .top) {
-                        (enrollment.state == .active ?
-                            Text("Invite accepted!", bundle: .core) :
-                            Text("Invite declined!", bundle: .core)
-                        )
-                            .font(.semibold18)
-                            .fixedSize(horizontal: false, vertical: true)
-                        Spacer()
-                        Button(action: dismiss, label: {
-                            Image.xSolid.foregroundColor(.textDark)
-                                .padding(10)
-                        })
-                            .accessibility(label: Text("Dismiss invitation to \(course.name ?? "")", bundle: .core))
-                            .identifier("CourseInvitation.\(id).dismissButton")
-                            .padding(.horizontal, -16).padding(.vertical, -12)
-                    }
-                } else {
-                    Text("You have been invited", bundle: .core)
-                        .font(.semibold18).foregroundColor(.textDarkest)
-                    Text(displayName)
-                        .font(.regular14).foregroundColor(.textDarkest)
-                        .padding(.bottom, 12)
-                    HStack(spacing: 16) {
-                        Button(action: { handle(isAccepted: false) }, label: {
-                            Text("Decline", bundle: .core)
-                                .font(.semibold16).foregroundColor(.textDark)
-                                .frame(maxWidth: .infinity, minHeight: 40)
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
-                                .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundLightest))
-                        })
-                            .identifier("CourseInvitation.\(id).rejectButton")
-                        Button(action: { handle(isAccepted: true) }, label: {
-                            Text("Accept", bundle: .core)
-                                .font(.semibold16).foregroundColor(.white)
-                                .frame(maxWidth: .infinity, minHeight: 40)
-                                .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundSuccess))
-                        })
-                            .identifier("CourseInvitation.\(id).acceptButton")
-                    }
+                invitation.stateText
+                    .font(.semibold18)
+                    .foregroundColor(.textDarkest)
+                invitationName
+                HStack(spacing: 16) {
+                    declineButton
+                    acceptButton
                 }
+                .padding(.top, invitation.state == .active ? 12 : 0)
             }
-                .padding(.horizontal, 16).padding(.vertical, 12)
+            .padding(.horizontal, 16).padding(.vertical, 12)
         }
-            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.backgroundSuccess))
-            .background(Color.white)
-            .cornerRadius(4)
+        .background(RoundedRectangle(cornerRadius: 4).stroke(Color.backgroundSuccess))
+        .background(Color.backgroundLightest)
+        .cornerRadius(4)
+        .clipped()
     }
 
-    func handle(isAccepted: Bool) {
-        HandleCourseInvitation(courseID: course.id, enrollmentID: id, isAccepted: isAccepted).fetch()
+    private var declineButton: some View {
+        Button(action: invitation.decline) {
+            Text("Decline", bundle: .core)
+                .font(.semibold16).foregroundColor(.textDark)
+                .frame(maxWidth: .infinity, minHeight: 40)
+                .frame(height: invitation.state == .active ? nil : 0)
+                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundLightest))
+        }
+        .identifier("CourseInvitation.\(invitation.id).rejectButton")
     }
 
-    func dismiss() {
-        env.database.performWriteTask { context in
-            let enrollment: Enrollment? = context.first(where: #keyPath(Enrollment.id), equals: id)
-            enrollment?.isFromInvitation = false
-            try? context.save()
+    private var acceptButton: some View {
+        Button(action: invitation.accept) {
+            Text("Accept", bundle: .core)
+                .font(.semibold16).foregroundColor(.textLightest)
+                .frame(maxWidth: .infinity, minHeight: 40)
+                .frame(height: invitation.state == .active ? nil : 0)
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundSuccess))
         }
+        .identifier("CourseInvitation.\(invitation.id).acceptButton")
+    }
+
+    private var invitationName: some View {
+        Text(invitation.name)
+            .font(.regular14)
+            .foregroundColor(.textDarkest)
     }
 }
+
+#if DEBUG
+
+struct CourseInvitationCard_Previews: PreviewProvider {
+    class MockViewModel: DashboardInvitationViewModel {
+        override var state: State { mockState }
+        private let mockState: State
+
+        init(name: String, state: State) {
+            self.mockState = state
+            super.init(name: name, courseId: "", enrollmentId: "")
+        }
+    }
+
+    static var previews: some View {
+        let view = VStack {
+            CourseInvitationCard(invitation: DashboardInvitationViewModel(name: "Primary Course", courseId: "", enrollmentId: ""))
+            CourseInvitationCard(invitation: MockViewModel(name: "Primary Course", state: .declined))
+            CourseInvitationCard(invitation: MockViewModel(name: "Primary Course", state: .accepted))
+        }
+
+        view
+            .previewDevice(PreviewDevice(stringLiteral: "iPhone 8 (14.5)"))
+            .previewDisplayName("iOS 14")
+        view
+            .previewDevice(PreviewDevice(stringLiteral: "iPhone 8 (15.4)"))
+            .previewDisplayName("iOS 15")
+    }
+}
+
+#endif

@@ -370,6 +370,8 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
   }
 }
 
+const k5Font = 'BalsamiqSans-Regular'
+const regularFont = 'Lato-Regular'
 const styles = createStyleSheet((colors, vars) => ({
   compose: {
     flex: 1,
@@ -379,15 +381,17 @@ const styles = createStyleSheet((colors, vars) => ({
     fontSize: 16,
     lineHeight: 19,
     color: colors.textDarkest,
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   body: {
     fontSize: 16,
-    lineHeight: 19,
+    lineHeight: vars.isK5Enabled ? 19 : 24, // 24 is a manually calculated 'condensed' height for 16 point font
     color: colors.textDarkest,
     paddingTop: 10,
     paddingBottom: vars.padding / 2,
     paddingLeft: vars.padding,
     paddingRight: vars.padding,
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   wrapper: {
     borderBottomColor: colors.borderMedium,

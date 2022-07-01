@@ -33,6 +33,7 @@ class ConversationDetailCell: UITableViewCell {
 
     func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant], parent: ConversationDetailViewController) {
         guard let m = message, let createdAt = m.createdAt else { return }
+        backgroundColor = .backgroundLightest
         self.message = m
         self.parent = parent
         messageLabel.text = m.body

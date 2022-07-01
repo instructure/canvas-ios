@@ -114,6 +114,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         tableView.separatorColor = .borderMedium
 
         totalGradeHeadingLabel.text = NSLocalizedString("Total Grade", bundle: .core, comment: "")
+        totalGradeLabel.accessibilityIdentifier = "CourseTotalGrade"
 
         assignments.refresh()
         colors.refresh()
@@ -168,19 +169,19 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
             totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
         } else {
             var letterGrade: String?
-            if gradingPeriodID != nil {
+            if let gradingPeriodID = gradingPeriodID {
                 totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                letterGrade = gradeEnrollment?.computedCurrentGrade ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
+                letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
             } else {
-                totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
                 if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
                     letterGrade = nil
                 } else {
                     letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade
                 }
             }
-            if let scoreText = totalGradeLabel.text, let finalGrade = letterGrade {
-                totalGradeLabel.text = scoreText + " (\(finalGrade))"
+            if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
+                totalGradeLabel.text = scoreText + " (\(letterGrade))"
             }
         }
 
@@ -250,7 +251,7 @@ extension GradeListViewController: UITableViewDataSource, UITableViewDelegate {
         let assignment = assignments[indexPath]
         let cell: GradeListCell = tableView.dequeue(for: indexPath)
         cell.typeImage.image = gradeListCellIconDelegate?.iconImage(for: assignment) ?? assignment?.icon
-        cell.update(assignment, userID: userID)
+        cell.update(assignment, userID: userID, color: color)
         return cell
     }
 
@@ -273,21 +274,23 @@ public class GradeListCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var typeImage: UIImageView!
 
-    func update(_ assignment: Assignment?, userID: String?) {
+    func update(_ assignment: Assignment?, userID: String?, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         let submission = assignment?.submissions?.first { $0.userID == userID }
         accessibilityIdentifier = "GradeListCell.\(assignment?.id ?? "")"
-        nameLabel.text = assignment?.name
+        nameLabel.setText(assignment?.name, style: .textCellTitle)
         gradeLabel.text = assignment.flatMap {
             GradeFormatter.string(from: $0, userID: userID, style: .medium)
         }
         gradeLabel.accessibilityLabel = assignment.flatMap { GradeFormatter.a11yString(from: $0, userID: userID, style: .medium) }.flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 }
-        dueLabel.text = assignment?.dueText
+        dueLabel.setText(assignment?.dueText, style: .textCellSupportingTextBold)
         let status = submission?.status ?? .notSubmitted
         if status != .missing, status != .late {
             statusLabel.isHidden = assignment?.isOnline != true
         }
-        statusLabel.text = status.text
+        statusLabel.setText(status.text, style: .textCellBottomLabel)
         statusLabel.textColor = status.color
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
     }
 }
 

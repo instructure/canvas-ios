@@ -59,7 +59,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         titleLabel.accessibilityLabel = NSLocalizedString("Title", bundle: .core, comment: "")
         dateTitleLabel.text = NSLocalizedString("Date", bundle: .core, comment: "")
         dateTitleLabel.accessibilityElementsHidden = true
-        descTextView.font = UIFont.scaledNamedFont(.regular16)
+        descTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         descTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         descTextView.placeholder = NSLocalizedString("Description", bundle: .core, comment: "")
         descTextView.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
@@ -93,9 +93,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func showDatePicker(_ sender: Any) {
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .wheels
-        }
+        datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .dateAndTime
         let toolbar = UIToolbar()
         toolbar.sizeToFit()

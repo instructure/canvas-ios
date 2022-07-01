@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<false/>
-	<key>NSCrossWebsiteTrackingUsageDescription</key>
-	<string>Canvas uses cookies to load media embedded in rich content.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -37,6 +33,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<true/>
 	<key>ITSEncryptionExportComplianceCode</key>
@@ -45,12 +43,22 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
+	<key>NSCrossWebsiteTrackingUsageDescription</key>
+	<string>Canvas uses cookies to load media embedded in rich content.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Attach audio recordings to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Frameworks/Core.framework/lato_black.ttf</string>
+		<string>Frameworks/Core.framework/lato_bold.ttf</string>
+		<string>Frameworks/Core.framework/lato_italic.ttf</string>
+		<string>Frameworks/Core.framework/lato_bolditalic.ttf</string>
+		<string>Frameworks/Core.framework/lato_regular.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -70,8 +78,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>

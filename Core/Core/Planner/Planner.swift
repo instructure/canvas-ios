@@ -19,21 +19,33 @@
 import Foundation
 import CoreData
 
+/**
+ This object stores the courses to be shown/hidden in the calendar's course filter menu. This is a single object in the DB.
+ */
 class Planner: NSManagedObject {
     @NSManaged var studentID: String?
-    @NSManaged var courses: Set<Course>
-    @NSManaged var hiddenCourses: Set<Course>
+    @NSManaged var availableCourseIDs: [String]
+    @NSManaged var hiddenCourseIDs: [String]
 
-    var selectedCourses: Set<Course> {
+    var selectedCourses: Set<String> {
         get {
-            courses.subtracting(hiddenCourses)
+            Set(availableCourseIDs).subtracting(hiddenCourseIDs)
         }
         set {
-            hiddenCourses = courses.subtracting(newValue)
+            hiddenCourseIDs = Array(Set(availableCourseIDs).subtracting(newValue))
         }
     }
 
     var allSelected: Bool {
-        courses.allSatisfy { selectedCourses.contains($0) }
+        availableCourseIDs.allSatisfy { selectedCourses.contains($0) }
+    }
+
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+
+        // These properties aren't optional in CoreData so we have to setup an initial
+        // value after the object's creation otherwise CoreData will throw an error
+        hiddenCourseIDs = []
+        availableCourseIDs = []
     }
 }

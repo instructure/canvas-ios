@@ -42,6 +42,7 @@ public struct K5ScheduleWeekView: View {
                         let isLastDay = dayModels.last == dayModel
                         let isToday = viewModel.isTodayModel(dayModel)
                         dayCell(for: dayModel, isLastDay: isLastDay, isToday: isToday, geometry: geometry)
+                            .listRowBackground(Color.backgroundLightest)
                             .iOS15ListRowSeparator(.hidden)
                     }
                 }
@@ -103,12 +104,12 @@ public struct K5ScheduleWeekView: View {
             Text(model.weekday).font(.bold24).textCase(nil)
             Text(model.date).font(.bold17).textCase(nil)
         }
-        .foregroundColor(.licorice)
+        .foregroundColor(.textDarkest)
         .padding(.top, 26)
         .padding(.leading, horizontalPadding)
 
         let background = Rectangle()
-            .fill(Color.white)
+            .fill(Color.backgroundLightest)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .frame(minHeight: 93)
         let header = background

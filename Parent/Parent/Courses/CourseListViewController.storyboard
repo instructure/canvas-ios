@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,10 +19,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ERn-oy-hIs">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="y4F-N9-2N1" customClass="ListBackgroundView" customModule="Core">
-                                    <rect key="frame" x="0.0" y="146" width="375" height="240"/>
+                                    <rect key="frame" x="0.0" y="137" width="375" height="240"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQr-wW-6eu" customClass="CircleProgressView" customModule="Core">
@@ -32,16 +33,16 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="940-BJ-YOC">
-                                            <rect key="frame" x="0.0" y="3" width="375" height="234.5"/>
+                                            <rect key="frame" x="0.0" y="2.5" width="375" height="235.5"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaBook" translatesAutoresizingMaskIntoConstraints="NO" id="oZ2-Sa-Xg0" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="137.5" y="0.0" width="100" height="132"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaBook" translatesAutoresizingMaskIntoConstraints="NO" id="oZ2-Sa-Xg0" customClass="IconView" customModule="Parent" customModuleProvider="target">
+                                                    <rect key="frame" x="137.5" y="0.0" width="100" height="133"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaBook"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Courses" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ8-XS-xYx" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                    <rect key="frame" x="32" y="164" width="311" height="24"/>
+                                                    <rect key="frame" x="32" y="165" width="311" height="24"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="ConferenceList.emptyTitleLabel"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,7 +53,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your child’s courses might not be published yet." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEt-Jz-BCB" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                    <rect key="frame" x="32" y="196" width="311" height="38.5"/>
+                                                    <rect key="frame" x="32" y="197" width="311" height="38.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="ConferenceList.emptyMessageLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,54 +98,51 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseListCell" id="AAd-QI-no7" customClass="CourseListCell" customModule="Parent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AAd-QI-no7" id="dqj-VT-fuO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgn-BS-qek" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="12" width="343" height="19.5"/>
+                                                    <rect key="frame" x="16" y="8" width="343" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="CRS-101" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkx-UB-iQ0" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="35.5" width="343" height="17"/>
+                                                    <rect key="frame" x="16" y="27.5" width="343" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Grade" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Np-4J-G7a" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="56.5" width="343" height="17.5"/>
+                                                    <rect key="frame" x="16" y="44.5" width="343" height="17.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textInfo"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="0Np-4J-G7a" firstAttribute="leading" secondItem="dqj-VT-fuO" secondAttribute="leading" constant="16" id="KIb-pu-tp0"/>
-                                                <constraint firstAttribute="bottom" secondItem="0Np-4J-G7a" secondAttribute="bottom" constant="16" id="Rlj-9U-Zru"/>
-                                                <constraint firstItem="hgn-BS-qek" firstAttribute="top" secondItem="dqj-VT-fuO" secondAttribute="top" constant="12" id="Syh-Ss-LqT"/>
+                                                <constraint firstAttribute="bottom" secondItem="0Np-4J-G7a" secondAttribute="bottom" constant="8" id="Rlj-9U-Zru"/>
+                                                <constraint firstItem="hgn-BS-qek" firstAttribute="top" secondItem="dqj-VT-fuO" secondAttribute="top" constant="8" id="Syh-Ss-LqT"/>
                                                 <constraint firstAttribute="trailing" secondItem="dkx-UB-iQ0" secondAttribute="trailing" constant="16" id="acY-xD-PJ6"/>
                                                 <constraint firstItem="dkx-UB-iQ0" firstAttribute="leading" secondItem="dqj-VT-fuO" secondAttribute="leading" constant="16" id="avC-wh-59X"/>
                                                 <constraint firstAttribute="trailing" secondItem="hgn-BS-qek" secondAttribute="trailing" constant="16" id="cFf-V9-THO"/>
                                                 <constraint firstAttribute="trailing" secondItem="0Np-4J-G7a" secondAttribute="trailing" constant="16" id="gWN-fE-c1B"/>
-                                                <constraint firstItem="dkx-UB-iQ0" firstAttribute="top" secondItem="hgn-BS-qek" secondAttribute="bottom" constant="4" id="hIJ-ng-GGh"/>
+                                                <constraint firstItem="dkx-UB-iQ0" firstAttribute="top" secondItem="hgn-BS-qek" secondAttribute="bottom" id="hIJ-ng-GGh"/>
                                                 <constraint firstItem="hgn-BS-qek" firstAttribute="leading" secondItem="dqj-VT-fuO" secondAttribute="leading" constant="16" id="tdc-L1-a4A"/>
-                                                <constraint firstItem="0Np-4J-G7a" firstAttribute="top" secondItem="dkx-UB-iQ0" secondAttribute="bottom" constant="4" id="uMa-eI-MLQ"/>
+                                                <constraint firstItem="0Np-4J-G7a" firstAttribute="top" secondItem="dkx-UB-iQ0" secondAttribute="bottom" id="uMa-eI-MLQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -161,14 +159,14 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="kue-sk-T2k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ERn-oy-hIs" firstAttribute="top" secondItem="kue-sk-T2k" secondAttribute="top" id="7pK-yU-Ztj"/>
                             <constraint firstItem="kue-sk-T2k" firstAttribute="trailing" secondItem="ERn-oy-hIs" secondAttribute="trailing" id="JCd-r7-Rir"/>
                             <constraint firstItem="kue-sk-T2k" firstAttribute="bottom" secondItem="ERn-oy-hIs" secondAttribute="bottom" id="KAC-rb-vwk"/>
                             <constraint firstItem="ERn-oy-hIs" firstAttribute="leading" secondItem="kue-sk-T2k" secondAttribute="leading" id="bHW-DW-iEJ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kue-sk-T2k"/>
                     </view>
                     <connections>
                         <outlet property="emptyMessageLabel" destination="rEt-Jz-BCB" id="zOM-iV-IUr"/>
@@ -184,7 +182,30 @@
             <point key="canvasLocation" x="-10" y="89"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="0Np-4J-G7a">
+            <size key="intrinsicContentSize" width="63.5" height="17"/>
+        </designable>
+        <designable name="dkx-UB-iQ0">
+            <size key="intrinsicContentSize" width="58" height="17"/>
+        </designable>
+        <designable name="hgn-BS-qek">
+            <size key="intrinsicContentSize" width="102.5" height="19.5"/>
+        </designable>
+        <designable name="oZ2-Sa-Xg0">
+            <size key="intrinsicContentSize" width="100" height="133"/>
+        </designable>
+        <designable name="qZ8-XS-xYx">
+            <size key="intrinsicContentSize" width="109" height="24"/>
+        </designable>
+        <designable name="rEt-Jz-BCB">
+            <size key="intrinsicContentSize" width="347" height="19.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="PandaBook" width="100" height="133"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

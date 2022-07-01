@@ -67,7 +67,7 @@ public struct K5ScheduleView: View {
             .hidden(viewModel.isOnLastPage(currentPageIndex: currentPageIndex))
         }
         .frame(height: 56)
-        .foregroundColor(.licorice)
+        .foregroundColor(.textDarkest)
         .font(.regular16)
     }
 }

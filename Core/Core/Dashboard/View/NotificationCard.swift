@@ -48,7 +48,7 @@ struct NotificationCard: View {
                                 .padding(.bottom, 12)
                         }
                     }
-                        .padding(.horizontal, 16).padding(.top, 12)
+                    .padding(.horizontal, 16).padding(.top, 12)
                 })
                 if isExpanded {
                     button
@@ -85,7 +85,7 @@ struct NotificationCard: View {
             }
         }
             .background(RoundedRectangle(cornerRadius: 4).stroke(backgroundColor))
-            .background(Color.white)
+            .background(Color.backgroundLightest)
             .cornerRadius(4)
     }
 

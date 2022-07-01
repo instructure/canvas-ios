@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<false/>
-	<key>NSCrossWebsiteTrackingUsageDescription</key>
-	<string>Canvas uses cookies to load media embedded in rich content.</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>canvas-student</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -43,8 +35,14 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>canvas-student</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -60,6 +58,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Attach photos and videos to submission comments.</string>
+	<key>NSCrossWebsiteTrackingUsageDescription</key>
+	<string>Canvas uses cookies to load media embedded in rich content.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -68,6 +68,14 @@
 	<string>Attach photos and videos to submission comments.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload content to courses.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Frameworks/Core.framework/lato_bolditalic.ttf</string>
+		<string>Frameworks/Core.framework/lato_italic.ttf</string>
+		<string>Frameworks/Core.framework/lato_black.ttf</string>
+		<string>Frameworks/Core.framework/lato_bold.ttf</string>
+		<string>Frameworks/Core.framework/lato_regular.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -89,7 +97,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 </dict>
 </plist>

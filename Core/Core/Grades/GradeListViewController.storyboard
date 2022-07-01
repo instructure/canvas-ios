@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3n-Ay-Z48">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3n-Ay-Z48">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="29"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Grading Period" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHp-y7-PBa" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="166.5" height="29"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-1W-VFV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-1W-VFV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="347" y="3.5" width="35" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <state key="normal" title="Filter"/>
@@ -59,7 +59,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="95%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-on-2PR" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="351.5" y="0.0" width="30.5" height="17"/>
+                                                <rect key="frame" x="350" y="0.0" width="32" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="RJY-Lu-FX7" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="150" width="414" height="312.5"/>
+                                    <rect key="frame" x="0.0" y="137" width="414" height="312.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tD-YK-Aqg" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
@@ -160,24 +160,24 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GradeListCell" id="g6b-wU-nk9" customClass="GradeListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="94"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g6b-wU-nk9" id="yjG-0g-MA4">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q0S-GM-vRd">
-                                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                                    <rect key="frame" x="18" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="N4M-nq-ZVV"/>
                                                         <constraint firstAttribute="height" constant="24" id="QIF-mS-vLc"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="y3K-6U-4lb">
-                                                    <rect key="frame" x="56" y="16" width="342" height="62"/>
+                                                    <rect key="frame" x="58" y="8" width="340" height="53.5"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="VH4-lJ-NwC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="96.5" height="62"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VH4-lJ-NwC">
+                                                            <rect key="frame" x="0.0" y="0.0" width="96.5" height="53.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="252" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdc-pe-Qb5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="96.5" height="19.5"/>
@@ -186,33 +186,30 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1h-4c-725" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="23.5" width="96.5" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="19.5" width="96.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" text="Not Submitted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjb-04-nqC" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="44.5" width="96.5" height="17.5"/>
+                                                                    <rect key="frame" x="0.0" y="36.5" width="96.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKQ-Jj-qMf" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="327" y="0.0" width="15" height="62"/>
+                                                            <rect key="frame" x="325" y="0.0" width="15" height="53.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -226,12 +223,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="q0S-GM-vRd" secondAttribute="bottom" constant="16" id="5Pa-1P-SPH"/>
-                                                <constraint firstItem="q0S-GM-vRd" firstAttribute="leading" secondItem="yjG-0g-MA4" secondAttribute="leading" constant="16" id="Hwe-aJ-u5g"/>
+                                                <constraint firstItem="q0S-GM-vRd" firstAttribute="leading" secondItem="yjG-0g-MA4" secondAttribute="leading" constant="18" id="Hwe-aJ-u5g"/>
                                                 <constraint firstItem="y3K-6U-4lb" firstAttribute="leading" secondItem="q0S-GM-vRd" secondAttribute="trailing" constant="16" id="LIF-nZ-KYj"/>
-                                                <constraint firstItem="y3K-6U-4lb" firstAttribute="top" secondItem="yjG-0g-MA4" secondAttribute="top" constant="16" id="SWt-nO-Ujf"/>
+                                                <constraint firstItem="y3K-6U-4lb" firstAttribute="top" secondItem="yjG-0g-MA4" secondAttribute="top" constant="8" id="SWt-nO-Ujf"/>
                                                 <constraint firstAttribute="trailing" secondItem="y3K-6U-4lb" secondAttribute="trailing" constant="16" id="VcX-0t-OD6"/>
-                                                <constraint firstItem="q0S-GM-vRd" firstAttribute="top" secondItem="yjG-0g-MA4" secondAttribute="top" constant="16" id="b3L-XN-PKg"/>
-                                                <constraint firstAttribute="bottom" secondItem="y3K-6U-4lb" secondAttribute="bottom" constant="16" id="bmh-v0-BkT"/>
+                                                <constraint firstItem="q0S-GM-vRd" firstAttribute="top" secondItem="yjG-0g-MA4" secondAttribute="top" constant="10" id="b3L-XN-PKg"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="y3K-6U-4lb" secondAttribute="bottom" constant="8" id="bmh-v0-BkT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -249,6 +246,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="cOb-sB-t27"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7c2-aA-mlj" firstAttribute="leading" secondItem="cOb-sB-t27" secondAttribute="leading" constant="16" id="F49-7c-vxf"/>
@@ -262,7 +260,6 @@
                             <constraint firstItem="4z8-fm-RZN" firstAttribute="top" secondItem="7c2-aA-mlj" secondAttribute="bottom" constant="8" id="t79-16-03Z"/>
                             <constraint firstItem="cOb-sB-t27" firstAttribute="trailing" secondItem="rcC-p7-Yqh" secondAttribute="trailing" id="ujU-DG-gEf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cOb-sB-t27"/>
                     </view>
                     <connections>
                         <outlet property="emptyMessageLabel" destination="OLn-5N-Jy9" id="hpM-fM-wj2"/>
@@ -283,6 +280,41 @@
             <point key="canvasLocation" x="-212" y="29"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Gaj-1W-VFV">
+            <size key="intrinsicContentSize" width="35" height="29"/>
+        </designable>
+        <designable name="Mjb-04-nqC">
+            <size key="intrinsicContentSize" width="96.5" height="17"/>
+        </designable>
+        <designable name="OLn-5N-Jy9">
+            <size key="intrinsicContentSize" width="459.5" height="19.5"/>
+        </designable>
+        <designable name="SHp-y7-PBa">
+            <size key="intrinsicContentSize" width="166.5" height="29"/>
+        </designable>
+        <designable name="g1h-4c-725">
+            <size key="intrinsicContentSize" width="83.5" height="17"/>
+        </designable>
+        <designable name="jdc-pe-Qb5">
+            <size key="intrinsicContentSize" width="44.5" height="19.5"/>
+        </designable>
+        <designable name="lLH-v4-bTa">
+            <size key="intrinsicContentSize" width="77.5" height="17"/>
+        </designable>
+        <designable name="mkY-Jy-xG4">
+            <size key="intrinsicContentSize" width="154" height="24"/>
+        </designable>
+        <designable name="nKQ-Jj-qMf">
+            <size key="intrinsicContentSize" width="15" height="19.5"/>
+        </designable>
+        <designable name="oTo-R3-d8a">
+            <size key="intrinsicContentSize" width="220" height="170"/>
+        </designable>
+        <designable name="x1S-on-2PR">
+            <size key="intrinsicContentSize" width="32" height="17"/>
+        </designable>
+    </designables>
     <resources>
         <image name="PandaSpace" width="220" height="170"/>
     </resources>

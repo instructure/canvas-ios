@@ -55,7 +55,7 @@ public struct WebSitePreviewView: View {
             ForEach(viewModel.headerKeys, id: \.self) { key in
                 let value = viewModel.headers[key]!
                 ButtonRow(action: { showEditHeaderAlert(key: key, value: value) }) {
-                    Text("\(key): \(viewModel.headers[key]!)")
+                    Text(verbatim: "\(key): \(viewModel.headers[key]!)")
                         .foregroundColor(Color(Brand.shared.linkColor))
                     Spacer()
                 }

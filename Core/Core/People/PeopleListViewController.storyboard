@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -103,14 +103,14 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PeopleListCell" id="pX1-je-57g" customClass="PeopleListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="84" width="414" height="61"/>
+                                        <rect key="frame" x="0.0" y="100.5" width="414" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pX1-je-57g" id="koB-Xt-hdM">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="61"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="385.5" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ykB-TY-mth" customClass="AvatarView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="10" width="40" height="40"/>
+                                                    <rect key="frame" x="18" y="8" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="74y-QJ-tof"/>
                                                         <constraint firstAttribute="height" constant="40" id="NgN-Ex-Amq"/>
@@ -120,7 +120,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CVm-vT-K7s">
-                                                    <rect key="frame" x="68" y="12" width="130.5" height="37"/>
+                                                    <rect key="frame" x="70" y="12" width="130.5" height="37"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronnie Matthews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1m-jj-5ou" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="130.5" height="19.5"/>
@@ -129,7 +129,6 @@
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Teacher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eD-6D-vvu" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -139,7 +138,6 @@
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
@@ -148,8 +146,8 @@
                                             <constraints>
                                                 <constraint firstItem="CVm-vT-K7s" firstAttribute="leading" secondItem="ykB-TY-mth" secondAttribute="trailing" constant="12" id="4Ts-6j-PxD"/>
                                                 <constraint firstAttribute="bottom" secondItem="CVm-vT-K7s" secondAttribute="bottom" constant="12" id="RIT-Uc-wFB"/>
-                                                <constraint firstItem="ykB-TY-mth" firstAttribute="leading" secondItem="koB-Xt-hdM" secondAttribute="leading" constant="16" id="SWs-HW-BLz"/>
-                                                <constraint firstItem="ykB-TY-mth" firstAttribute="top" secondItem="koB-Xt-hdM" secondAttribute="top" constant="10" id="SX1-m1-krn"/>
+                                                <constraint firstItem="ykB-TY-mth" firstAttribute="leading" secondItem="koB-Xt-hdM" secondAttribute="leading" constant="18" id="SWs-HW-BLz"/>
+                                                <constraint firstItem="ykB-TY-mth" firstAttribute="top" secondItem="koB-Xt-hdM" secondAttribute="top" constant="8" id="SX1-m1-krn"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ykB-TY-mth" secondAttribute="bottom" priority="999" constant="10" id="SkF-OK-hde"/>
                                                 <constraint firstItem="CVm-vT-K7s" firstAttribute="top" secondItem="koB-Xt-hdM" secondAttribute="top" constant="12" id="YPC-Ey-0zI"/>
                                             </constraints>

@@ -102,7 +102,7 @@ public class CourseListViewModel: ObservableObject {
             guard !course.accessRestrictedByDate, matches else { continue }
             if course.isFutureEnrollment {
                 future.append(course)
-            } else if course.isPastEnrollment || courseSectionStatus.isSectionExpired(in: course) {
+            } else if course.isPastEnrollment || courseSectionStatus.isAllSectionsExpired(in: course) || courseSectionStatus.isNoActiveEnrollments(in: course) {
                 past.append(course)
             } else {
                 current.append(course)

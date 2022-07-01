@@ -43,14 +43,14 @@ struct GroupCard: View {
                         .font(.semibold12).foregroundColor(.textDark)
                     Spacer()
                 }
-                    .padding(8)
+                .padding(8)
             }
-                .background(RoundedRectangle(cornerRadius: 4).stroke(Color(white: 0.89), lineWidth: 1 / UIScreen.main.scale))
-                .background(Color.white)
-                .cornerRadius(4)
-                .shadow(color: Color.black.opacity(0.2), radius: 1, x: 0, y: 1)
+            .contentShape(Rectangle())
+            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
+            .background(Color.backgroundLightest)
+            .cornerRadius(4)
         })
-            .buttonStyle(ScaleButtonStyle(scale: 1))
-            .identifier("group-row-\(group.id)")
+        .buttonStyle(ScaleButtonStyle(scale: 1))
+        .identifier("group-row-\(group.id)")
     }
 }

@@ -704,9 +704,6 @@
 "Dismiss %@" = "Исключить %@";
 
 /* No comment provided by engineer. */
-"Dismiss invitation to %@" = "Отказаться от приглашения на  %@";
-
-/* No comment provided by engineer. */
 "Display Grade as" = "Отобразить оценку в виде";
 
 /* No comment provided by engineer. */
@@ -1811,10 +1808,16 @@
 "Select Course" = "Выбрать курс";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Выбрать академический период";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Выберите влияние";
 
 /* No comment provided by engineer. */
 "Select One" = "Выберите один";
+
+/* No comment provided by engineer. */
+"Selected" = "Выбрано";
 
 /* No comment provided by engineer. */
 "Selected!" = "Выбрано!";

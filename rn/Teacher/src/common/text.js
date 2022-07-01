@@ -111,47 +111,48 @@ export function DotSeparated (props: Object) {
   return <Separated {...props} separator={'  •  '} />
 }
 
-const k5Font = { fontFamily: 'BalsamiqSans-Regular' }
+const k5Font = 'BalsamiqSans-Regular'
+const regularFont = 'Lato-Regular'
 const styles = createStyleSheet((colors, vars) => ({
   h1: {
     fontSize: 24,
     color: colors.textDarkest,
     fontWeight: '800',
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   h2: {
     fontSize: 16,
     color: colors.textDarkest,
     fontWeight: 'bold',
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   title: {
     fontSize: 16,
     fontWeight: '600',
     color: colors.textDarkest,
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   subtitle: {
     fontSize: 14,
     color: colors.textDark,
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   p: {
     fontSize: 16,
     lineHeight: 23,
     color: colors.textDark,
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   heavy: {
     fontSize: 24,
     color: colors.textDarkest,
     fontWeight: '800',
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   text: {
     fontSize: 16,
     color: colors.textDarkest,
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   formLabel: {
     color: colors.textDark,
@@ -160,29 +161,29 @@ const styles = createStyleSheet((colors, vars) => ({
     marginLeft: vars.padding,
     marginTop: vars.padding,
     marginBottom: vars.padding / 2,
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   textInput: {
     fontSize: 17,
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   modalOverlayText: {
     fontSize: 24,
     color: colors.textLightest,
     fontWeight: '600',
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   unmetRequirementBannerText: {
     fontSize: 12,
     color: colors.white,
     fontWeight: '500',
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   unmetRequirementSubscriptText: {
     fontSize: 14,
     color: colors.textDanger,
     fontWeight: 'normal',
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   sectionHeader: {
     flex: 1,
@@ -193,13 +194,13 @@ const styles = createStyleSheet((colors, vars) => ({
     justifyContent: 'center',
     paddingLeft: 16,
     paddingRight: 8,
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   sectionHeaderTitle: {
     fontSize: 14,
     backgroundColor: colors.backgroundLight,
     color: colors.textDark,
     fontWeight: '600',
-    ...(vars.isK5Enabled && k5Font),
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
 }))

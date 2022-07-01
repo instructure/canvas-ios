@@ -233,7 +233,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
-        cell.update(user: users[indexPath.row])
+        cell.update(user: users[indexPath.row], color: color)
         return cell
     }
 
@@ -258,11 +258,13 @@ class PeopleListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rolesLabel: UILabel!
 
-    func update(user: User?) {
+    func update(user: User?, color: UIColor?) {
         backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         avatarView.name = user?.name ?? ""
         avatarView.url = user?.avatarURL
-        nameLabel.text = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
+        let nameText = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
+        nameLabel.setText(nameText, style: .textCellTitle)
         let courseEnrollments = user?.enrollments.filter {
             if let canvasContextID = $0.canvasContextID, let context = Context(canvasContextID: canvasContextID), context.contextType == .course {
                 return context.id == user?.courseID
@@ -271,7 +273,7 @@ class PeopleListCell: UITableViewCell {
         }
         var roles = courseEnrollments?.compactMap { $0.formattedRole } ?? []
         roles = Set(roles).sorted()
-        rolesLabel.text = ListFormatter.localizedString(from: roles)
+        rolesLabel.setText(ListFormatter.localizedString(from: roles), style: .textCellSupportingText)
         rolesLabel.isHidden = roles.isEmpty
     }
 }

@@ -39,6 +39,12 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(loggedParameters?["bar"] as? String, "foo")
     }
 
+    func testLogError() {
+        Analytics.shared.logError("test_error", description: "this is a test error")
+        XCTAssertEqual(loggedEvent, "test_error")
+        XCTAssertEqual(loggedParameters as? [String: String], ["error": "this is a test error"])
+    }
+
     func testLogSession() {
         var session = LoginSession.make(expiresAt: nil)
         var defaults = SessionDefaults(sessionID: session.uniqueID)

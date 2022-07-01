@@ -58,6 +58,7 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
         tableView.separatorColor = .borderMedium
@@ -96,11 +97,8 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusSummaryItemCell.self, for: indexPath)
         let item = summary[indexPath.row]
-        cell.backgroundColor = .backgroundLightest
-        cell.itemNameLabel?.text = item?.title
-        cell.iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
-        cell.iconImageView?.tintColor = colorDelegate?.iconColor ?? course.first?.color
-        cell.dateLabel?.text = item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        let color = colorDelegate?.iconColor ?? course.first?.color
+        cell.update(item, indexPath: indexPath, color: color)
         return cell
     }
 
@@ -110,14 +108,9 @@ public class SyllabusSummaryViewController: UITableViewController {
             env.router.route(to: url, from: self)
         }
     }
-
-    func formatDate(_ date: Date) -> String? {
-        DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
-    }
 }
 
 class SyllabusSummaryItemCell: UITableViewCell {
-
     @IBOutlet weak var dateLabel: DynamicLabel!
     @IBOutlet weak var itemNameLabel: DynamicLabel!
     @IBOutlet weak var stackView: UIStackView!
@@ -126,10 +119,29 @@ class SyllabusSummaryItemCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         loadFromXib()
+        setupCell()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
+        setupCell()
+    }
+
+    func setupCell() {
+        backgroundColor = .backgroundLightest
+    }
+
+    func update(_ item: CalendarEvent?, indexPath: IndexPath, color: UIColor?) {
+        backgroundColor = .backgroundLightest
+        itemNameLabel?.setText(item?.title, style: .textCellTitle)
+        iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
+        iconImageView?.tintColor = color
+        dateLabel?.setText(item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: ""), style: .textCellSupportingText)
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
+    }
+
+    func formatDate(_ date: Date) -> String? {
+        DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
     }
 }

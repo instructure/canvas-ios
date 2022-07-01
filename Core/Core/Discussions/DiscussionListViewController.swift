@@ -73,6 +73,8 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
 
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
@@ -211,7 +213,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
         let topic = topics[indexPath]
-        cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true)
+        cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
         if topic?.anonymousState != nil {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.5
@@ -280,7 +282,15 @@ class DiscussionListCell: UITableViewCell {
     @IBOutlet weak var unreadDot: UIView!
     @IBOutlet weak var unreadLabel: UILabel!
 
-    func update(topic: DiscussionTopic?, isTeacher: Bool) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
+        repliesDot.setText(repliesDot.text, style: .textCellBottomLabel)
+        statusDot.setText(statusDot.text, style: .textCellBottomLabel)
+    }
+
+    func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
         iconImageView.icon = topic?.assignmentID == nil ? .discussionLine : .assignmentLine
         if isTeacher {
@@ -288,30 +298,35 @@ class DiscussionListCell: UITableViewCell {
         } else {
             iconImageView.state = nil
         }
+        backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
-        titleLabel.text = topic?.title
+        titleLabel.setText(topic?.title, style: .textCellTitle)
 
         statusDot.isHidden = true
         statusLabel.isHidden = true
+        let dateText: String?
+
         if topic?.assignment?.dueAt == nil, let replyAt = topic?.lastReplyAt {
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
         } else if isTeacher, topic?.assignment?.dueAt != nil, topic?.assignment?.hasOverrides == true {
-            dateLabel.text = NSLocalizedString("Multiple Due Dates", comment: "")
+            dateText = NSLocalizedString("Multiple Due Dates", comment: "")
         } else if topic?.assignment?.dueAt != nil, let lockAt = topic?.assignment?.lockAt, lockAt < Clock.now {
-            dateLabel.text = topic?.assignment?.dueText
+            dateText = topic?.assignment?.dueText
             statusLabel.text = NSLocalizedString("Closed", comment: "")
             statusLabel.isHidden = false
             statusDot.isHidden = false
         } else {
-            dateLabel.text = topic?.assignment?.dueText
+            dateText = topic?.assignment?.dueText
         }
 
-        pointsLabel.text = topic?.assignment?.pointsPossibleText
+        dateLabel.setText(dateText, style: .textCellSupportingText)
+        pointsLabel.setText(topic?.assignment?.pointsPossibleText, style: .textCellBottomLabel)
         pointsLabel.isHidden = topic?.assignment?.pointsPossible == nil
         pointsDot.isHidden = topic?.assignment?.pointsPossible == nil
 
-        repliesLabel.text = topic?.nRepliesString
-        unreadLabel.text = topic?.nUnreadString
+        repliesLabel.setText(topic?.nRepliesString, style: .textCellBottomLabel)
+        unreadLabel.setText(topic?.nUnreadString, style: .textCellBottomLabel)
         unreadDot.isHidden = topic?.unreadCount == 0
         unreadDot.backgroundColor = .backgroundInfo
 

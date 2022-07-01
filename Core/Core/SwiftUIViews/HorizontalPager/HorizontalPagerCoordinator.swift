@@ -53,6 +53,7 @@ public class HorizontalPagerCoordinator<Page: View>: NSObject, UICollectionViewD
         let embeddedViewTag = 382576
 
         let cell = collectionView.dequeue(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .backgroundLightest
         cell.viewWithTag(embeddedViewTag)?.removeFromSuperview()
 
         let wrapperView = UIHostingController(rootView: pageFactory(indexPath.row)).view!

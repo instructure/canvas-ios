@@ -48,6 +48,7 @@ class PostGradesViewController: UIViewController {
         setupTableView()
         setupSections()
 
+        view.backgroundColor = .backgroundLightest
         postGradesButton.setTitle(NSLocalizedString("Post Grades", comment: ""), for: .normal)
 
         allGradesPostedView.backgroundColor = .backgroundLightest

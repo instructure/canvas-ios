@@ -120,6 +120,7 @@ exports[`render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -163,6 +164,7 @@ exports[`render correctly 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Array [
@@ -275,6 +277,7 @@ exports[`render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -293,6 +296,7 @@ exports[`render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -335,6 +339,7 @@ exports[`render correctly 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Array [
@@ -447,6 +452,7 @@ exports[`render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -465,6 +471,7 @@ exports[`render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -507,6 +514,7 @@ exports[`render correctly 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Array [
@@ -612,6 +620,7 @@ exports[`render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -683,6 +692,7 @@ exports[`render correctly 2`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Array [
@@ -795,6 +805,7 @@ exports[`render correctly 2`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -813,6 +824,7 @@ exports[`render correctly 2`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -855,6 +867,7 @@ exports[`render correctly 2`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Array [
@@ -967,6 +980,7 @@ exports[`render correctly 2`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {
@@ -985,6 +999,7 @@ exports[`render correctly 2`] = `
                     Array [
                       Object {
                         "color": "#2D3B45",
+                        "fontFamily": "Lato-Regular",
                         "fontSize": 16,
                       },
                       Object {

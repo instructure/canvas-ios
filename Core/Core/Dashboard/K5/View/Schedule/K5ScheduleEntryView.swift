@@ -90,7 +90,7 @@ public struct K5ScheduleEntryView: View {
 
     private var icon: some View {
         viewModel.icon
-            .foregroundColor(.licorice)
+            .foregroundColor(.textDarkest)
     }
 
     private var title: some View {
@@ -130,13 +130,13 @@ public struct K5ScheduleEntryView: View {
     private var due: some View {
         Text(viewModel.dueText)
             .font(.regular12)
-            .foregroundColor(.ash)
+            .foregroundColor(.textDark)
     }
 
     private func score(text: String) -> some View {
         Text(text)
             .font(.bold17)
-            .foregroundColor(.licorice)
+            .foregroundColor(.textDarkest)
     }
 
     private func checkBox(isChecked: Bool) -> some View {
@@ -153,7 +153,7 @@ public struct K5ScheduleEntryView: View {
                 background.overlay(icon)
             }
         })
-        .accessibility(label: Text("Mark item as done", bundle: .core))
+        .accessibility(label: Text(viewModel.title) + Text(verbatim: ",") + Text("Mark item as done", bundle: .core))
 
         if isChecked {
             button = button.accessibility(addTraits: .isSelected)

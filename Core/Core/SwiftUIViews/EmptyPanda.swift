@@ -40,7 +40,7 @@ public struct EmptyPanda: View {
     public var body: some View {
         VStack(spacing: 0) {
             Spacer()
-            Image(panda.name, bundle: .core)
+            Image(panda.name, bundle: .core).accessibilityHidden(true)
             title?
                 .font(.bold20)
                 .multilineTextAlignment(.center)
@@ -53,6 +53,7 @@ public struct EmptyPanda: View {
                 .padding(.top, 8)
             Spacer()
         }
-            .foregroundColor(.textDarkest)
+        .foregroundColor(.textDarkest)
+        .accessibilityElement(children: .combine)
     }
 }

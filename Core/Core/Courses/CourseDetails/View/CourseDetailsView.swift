@@ -94,7 +94,7 @@ public struct CourseDetailsView: View {
                             .font(.semibold14)
                     }
                 }
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 Spacer()
                 InstDisclosureIndicator()
             }
@@ -117,7 +117,7 @@ public struct CourseDetailsView: View {
                 .font(.regular16)
         }
         .multilineTextAlignment(.center)
-        .foregroundColor(.licorice)
+        .foregroundColor(.textDarkest)
         .padding(.horizontal, 16)
         .padding(.vertical, 5)
         Button(action: viewModel.retryAfterError) {

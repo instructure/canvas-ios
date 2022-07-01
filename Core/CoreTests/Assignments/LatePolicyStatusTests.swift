@@ -25,4 +25,8 @@ class LatePolicyStatusTests: XCTestCase {
         XCTAssertEqual(LatePolicyStatus(rawValue: "late"), .late)
         XCTAssertEqual(LatePolicyStatus.late.rawValue, "late")
     }
+
+    func testRecognizesExtendedCase() {
+        XCTAssertNotNil(LatePolicyStatus(rawValue: "extended"))
+    }
 }

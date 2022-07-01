@@ -184,6 +184,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
 class TodoListCell: UITableViewCell {
     @IBOutlet weak var accessIconView: AccessIconView!
     @IBOutlet weak var contextLabel: UILabel!
+    @IBOutlet weak var needsGradingSpacer: UIView!
     @IBOutlet weak var needsGradingLabel: UILabel!
     @IBOutlet weak var needsGradingView: UIView!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -204,12 +205,14 @@ class TodoListCell: UITableViewCell {
         } else {
             accessIconView.published = todo?.assignment.published == true
         }
-        titleLabel.text = todo?.assignment.name
-        subtitleLabel.text = todo?.dueText
+        backgroundColor = .backgroundLightest
+        titleLabel.setText(todo?.assignment.name, style: .textCellTitle)
+        subtitleLabel.setText(todo?.dueText, style: .textCellSupportingText)
         tintColor = todo?.contextColor
         contextLabel.textColor = tintColor
-        contextLabel.text = todo?.contextName
+        contextLabel.setText(todo?.contextName, style: .textCellTopLabel)
         needsGradingView.isHidden = todo?.type != .grading
+        needsGradingSpacer.isHidden = needsGradingView.isHidden
         needsGradingLabel.text = todo?.needsGradingText
         accessibilityIdentifier = "to-do.list.\(todo?.assignment.htmlURL?.absoluteString ?? "unknown").row"
         accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.assignment.name, todo?.dueText, todo?.needsGradingText].compactMap { $0 }.joined(separator: ", ")

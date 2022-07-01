@@ -86,7 +86,7 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     private func filteredCards() -> [DashboardCard] {
-        var filteredCards = cards.all.filter { $0.shouldShow && !courseSectionStatus.isSectionExpired(for: $0, in: courses.all) }
+        var filteredCards = cards.all.filter { $0.shouldShow && !courseSectionStatus.isAllSectionsExpired(for: $0, in: courses.all) }
 
         if showOnlyTeacherEnrollment {
             filteredCards = filteredCards.filter { $0.isTeacherEnrollment }

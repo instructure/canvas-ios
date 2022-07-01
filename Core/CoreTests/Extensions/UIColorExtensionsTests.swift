@@ -64,4 +64,25 @@ class UIColorExtensionsTests: XCTestCase {
         XCTAssertEqual(UIColor.currentLogoColor(for: Bundle.teacherBundleID), UIColor.teacherLogoColor)
         XCTAssertEqual(UIColor.currentLogoColor(), UIColor.studentLogoColor)
     }
+
+    func testCustomColorInUnspecifiedTheme() {
+        var sessionDefaults = SessionDefaults(sessionID: "testSession")
+        sessionDefaults.interfaceStyle = .unspecified
+        AppEnvironment.shared.userDefaults = sessionDefaults
+        XCTAssertEqual(UIColor.backgroundLightest.hexString, "#ffffff")
+    }
+
+    func testCustomColorInLightTheme() {
+        var sessionDefaults = SessionDefaults(sessionID: "testSession")
+        sessionDefaults.interfaceStyle = .light
+        AppEnvironment.shared.userDefaults = sessionDefaults
+        XCTAssertEqual(UIColor.backgroundLightest.hexString, "#ffffff")
+    }
+
+    func testCustomColorInDarkTheme() {
+        var sessionDefaults = SessionDefaults(sessionID: "testSession")
+        sessionDefaults.interfaceStyle = .dark
+        AppEnvironment.shared.userDefaults = sessionDefaults
+        XCTAssertEqual(UIColor.backgroundLightest.hexString, "#121212")
+    }
 }

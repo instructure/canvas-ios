@@ -23,6 +23,7 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var email: String?
+    @NSManaged public var locale: String?
     @NSManaged public var loginID: String?
     @NSManaged public var avatarURL: URL?
     @NSManaged public var calendarURL: URL?
@@ -37,6 +38,7 @@ extension UserProfile: WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.email = item.primary_email
+        model.locale = item.locale
         model.loginID = item.login_id
         model.avatarURL = item.avatar_url?.rawValue
         model.calendarURL = item.calendar?.ics

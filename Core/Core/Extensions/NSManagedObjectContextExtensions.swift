@@ -33,6 +33,10 @@ extension NSManagedObjectContext {
         return all(where: key, equals: value).first
     }
 
+    public func first<T>(scope: Scope) -> T? {
+        fetch(scope: scope).first
+    }
+
     public func all<T>(where key: String, equals value: CVarArg?) -> [T] {
         let predicate = NSPredicate(key: key, equals: value)
         return fetch(predicate)

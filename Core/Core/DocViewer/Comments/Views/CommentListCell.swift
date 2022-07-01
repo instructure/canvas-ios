@@ -35,6 +35,7 @@ class CommentListCell: UITableViewCell {
 
     func update(comment: DocViewerCommentReplyAnnotation, delegate: CommentListCellDelegate, metadata: APIDocViewerAnnotationsMetadata?) {
         accessibilityIdentifier = "CommentListItem.\(comment.name ?? "")"
+        backgroundColor = .backgroundLightest
         self.comment = comment
         self.delegate = delegate
         userLabel?.text = comment.userName

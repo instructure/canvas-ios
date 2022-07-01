@@ -22,8 +22,8 @@ public class AssignmentPickerViewModel: ObservableObject {
     public typealias Assignment = IdentifiableName
 
     @Published public var state: ViewModelState<[Assignment]> = .loading
-    @Published public var selectedAssignment: AssignmentPickerViewModel.Assignment?
-    /** Modify this to trigger the assignment list fetch for the give course ID. */
+    @Published public var selectedAssignment: Assignment?
+    /** Modify this to trigger the assignment list fetch for the given course ID. */
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
     }
@@ -43,6 +43,11 @@ public class AssignmentPickerViewModel: ObservableObject {
     #endif
 
     public init() {
+    }
+
+    public func assignmentSelected(_ assignment: Assignment) {
+        Analytics.shared.logEvent("assignment_selected")
+        selectedAssignment = assignment
     }
 
     private func courseIdWillChange(to newValue: String?) {
@@ -70,9 +75,12 @@ public class AssignmentPickerViewModel: ObservableObject {
             let newState: ViewModelState<[Assignment]>
 
             if let response = response {
-                newState = .data(Self.filterAssignments(response.assignments))
+                let assignments = Self.filterAssignments(response.assignments)
+                Analytics.shared.logEvent("assignments_loaded", parameters: ["count": assignments.count])
+                newState = .data(assignments)
             } else {
                 let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
+                Analytics.shared.logEvent("error_loading_assignments", parameters: ["error": errorMessage])
                 newState = .error(errorMessage)
             }
 

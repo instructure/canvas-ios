@@ -44,4 +44,18 @@ class TabTests: CoreTestCase {
         tab.visibilityRaw = "bogus"
         XCTAssertEqual(tab.visibility, .none)
     }
+
+    func testSavesIsHiddenProperty() {
+        let context = Context(.group, id: "1")
+        let tab = Tab.make()
+
+        tab.save(.make(hidden: nil), in: databaseClient, context: context)
+        XCTAssertNil(tab.hidden)
+
+        tab.save(.make(hidden: false), in: databaseClient, context: context)
+        XCTAssertEqual(tab.hidden, false)
+
+        tab.save(.make(hidden: true), in: databaseClient, context: context)
+        XCTAssertEqual(tab.hidden, true)
+    }
 }

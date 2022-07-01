@@ -71,6 +71,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -141,6 +142,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -190,6 +192,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -239,6 +242,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -288,6 +292,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -331,6 +336,7 @@ exports[`Inbox filters conversations based on course 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 24,
                 "fontWeight": "800",
               },
@@ -376,6 +382,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -410,7 +417,10 @@ exports[`Inbox filters conversations based on course 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
-                  "padding": 16,
+                  "paddingBottom": 8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 8,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -496,12 +506,14 @@ exports[`Inbox filters conversations based on course 1`] = `
                       Array [
                         Object {
                           "color": "#2D3B45",
+                          "fontFamily": "Lato-Regular",
                           "fontSize": 16,
                         },
                         Object {
                           "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
+                          "marginBottom": 2,
                         },
                       ]
                     }
@@ -515,6 +527,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                         Array [
                           Object {
                             "color": "#2D3B45",
+                            "fontFamily": "Lato-Regular",
                             "fontSize": 16,
                           },
                           Object {
@@ -537,11 +550,15 @@ exports[`Inbox filters conversations based on course 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 14,
+                      "fontWeight": "600",
+                      "marginBottom": 2,
+                      "marginTop": 3,
                     },
                   ]
                 }
@@ -554,11 +571,14 @@ exports[`Inbox filters conversations based on course 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#556572",
                       "fontSize": 14,
+                      "marginBottom": 3,
+                      "marginTop": 3,
                     },
                   ]
                 }
@@ -645,6 +665,7 @@ exports[`Inbox refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -715,6 +736,7 @@ exports[`Inbox refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -764,6 +786,7 @@ exports[`Inbox refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -813,6 +836,7 @@ exports[`Inbox refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -862,6 +886,7 @@ exports[`Inbox refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -905,6 +930,7 @@ exports[`Inbox refreshed component 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 24,
                 "fontWeight": "800",
               },
@@ -952,6 +978,7 @@ exports[`Inbox refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1003,6 +1030,7 @@ exports[`Inbox refreshed component 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1021,6 +1049,7 @@ exports[`Inbox refreshed component 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -1110,6 +1139,7 @@ exports[`Inbox renders correctly 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1180,6 +1210,7 @@ exports[`Inbox renders correctly 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1229,6 +1260,7 @@ exports[`Inbox renders correctly 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1278,6 +1310,7 @@ exports[`Inbox renders correctly 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1327,6 +1360,7 @@ exports[`Inbox renders correctly 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1370,6 +1404,7 @@ exports[`Inbox renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 24,
                 "fontWeight": "800",
               },
@@ -1417,6 +1452,7 @@ exports[`Inbox renders correctly 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1451,7 +1487,10 @@ exports[`Inbox renders correctly 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
-                  "padding": 16,
+                  "paddingBottom": 8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 8,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -1537,12 +1576,14 @@ exports[`Inbox renders correctly 1`] = `
                       Array [
                         Object {
                           "color": "#2D3B45",
+                          "fontFamily": "Lato-Regular",
                           "fontSize": 16,
                         },
                         Object {
                           "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
+                          "marginBottom": 2,
                         },
                       ]
                     }
@@ -1556,6 +1597,7 @@ exports[`Inbox renders correctly 1`] = `
                         Array [
                           Object {
                             "color": "#2D3B45",
+                            "fontFamily": "Lato-Regular",
                             "fontSize": 16,
                           },
                           Object {
@@ -1578,11 +1620,15 @@ exports[`Inbox renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 14,
+                      "fontWeight": "600",
+                      "marginBottom": 2,
+                      "marginTop": 3,
                     },
                   ]
                 }
@@ -1595,11 +1641,14 @@ exports[`Inbox renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#556572",
                       "fontSize": 14,
+                      "marginBottom": 3,
+                      "marginTop": 3,
                     },
                   ]
                 }
@@ -1624,7 +1673,10 @@ exports[`Inbox renders correctly 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
-                  "padding": 16,
+                  "paddingBottom": 8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 8,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -1706,12 +1758,14 @@ exports[`Inbox renders correctly 1`] = `
                       Array [
                         Object {
                           "color": "#2D3B45",
+                          "fontFamily": "Lato-Regular",
                           "fontSize": 16,
                         },
                         Object {
                           "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
+                          "marginBottom": 2,
                         },
                       ]
                     }
@@ -1725,6 +1779,7 @@ exports[`Inbox renders correctly 1`] = `
                         Array [
                           Object {
                             "color": "#2D3B45",
+                            "fontFamily": "Lato-Regular",
                             "fontSize": 16,
                           },
                           Object {
@@ -1747,11 +1802,15 @@ exports[`Inbox renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 14,
+                      "fontWeight": "600",
+                      "marginBottom": 2,
+                      "marginTop": 3,
                     },
                   ]
                 }
@@ -1764,11 +1823,14 @@ exports[`Inbox renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#556572",
                       "fontSize": 14,
+                      "marginBottom": 3,
+                      "marginTop": 3,
                     },
                   ]
                 }
@@ -1855,6 +1917,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -1925,6 +1988,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1974,6 +2038,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2023,6 +2088,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2072,6 +2138,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2115,6 +2182,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 24,
                 "fontWeight": "800",
               },
@@ -2162,6 +2230,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -2272,6 +2341,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2321,6 +2391,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2370,6 +2441,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -2440,6 +2512,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2489,6 +2562,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2532,6 +2606,7 @@ exports[`Inbox renders the starred empty state 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 24,
                 "fontWeight": "800",
               },
@@ -2579,6 +2654,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -2630,6 +2706,7 @@ exports[`Inbox renders the starred empty state 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -2648,6 +2725,7 @@ exports[`Inbox renders the starred empty state 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -2737,6 +2815,7 @@ exports[`Inbox renders with an empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -2807,6 +2886,7 @@ exports[`Inbox renders with an empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2856,6 +2936,7 @@ exports[`Inbox renders with an empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2905,6 +2986,7 @@ exports[`Inbox renders with an empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2954,6 +3036,7 @@ exports[`Inbox renders with an empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2997,6 +3080,7 @@ exports[`Inbox renders with an empty state 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 24,
                 "fontWeight": "800",
               },
@@ -3044,6 +3128,7 @@ exports[`Inbox renders with an empty state 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Array [
@@ -3095,6 +3180,7 @@ exports[`Inbox renders with an empty state 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -3113,6 +3199,7 @@ exports[`Inbox renders with an empty state 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {

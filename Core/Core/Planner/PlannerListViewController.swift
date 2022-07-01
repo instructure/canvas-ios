@@ -60,6 +60,7 @@ public class PlannerListViewController: UIViewController {
         spinnerView.color = nil
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        self.view.backgroundColor = .backgroundLightest
 
         refresh()
     }
@@ -137,23 +138,31 @@ class PlannerListCell: UITableViewCell {
     @IBOutlet weak var courseCode: UILabel!
     @IBOutlet weak var dueDate: UILabel!
     @IBOutlet weak var points: UILabel!
-    @IBOutlet weak var pointsDivider: UIView!
+    @IBOutlet weak var pointsDivider: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var icon: UIImageView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        pointsDivider.setText(pointsDivider.text, style: .textCellSupportingText)
+    }
+
     func update(_ p: Plannable?) {
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
-        courseCode.text = p?.contextName
-        title.text = p?.title
-        dueDate.text = (p?.date).flatMap {
+        courseCode.setText(p?.contextName, style: .textCellTopLabel)
+        title.setText(p?.title, style: .textCellTitle)
+        backgroundColor = .backgroundLightest
+        let dueDateText = (p?.date).flatMap {
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
         }
+        dueDate.setText(dueDateText, style: .textCellSupportingText)
         icon.image = p?.icon()
-        points.text = p?.pointsPossible.flatMap {
+        let pointsText: String? = p?.pointsPossible.flatMap {
             let format = NSLocalizedString("g_points", bundle: .core, comment: "")
             return String.localizedStringWithFormat(format, $0)
         }
-        pointsDivider.isHidden = dueDate.text == nil || points.text == nil
+        points.setText(pointsText, style: .textCellSupportingText)
+        pointsDivider.isHidden = dueDate.text == nil || pointsText == nil
         if !Bundle.main.isParentApp, let color = p?.color.ensureContrast(against: .backgroundLightest) {
             courseCode.textColor = color
             icon.tintColor = color

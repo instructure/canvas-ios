@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct SideMenuItem: View {
+    @Environment(\.colorScheme) var colorScheme
     let id: String
     let image: Image
     let title: Text
@@ -30,7 +31,7 @@ struct SideMenuItem: View {
             image
             title
                 .font(.regular16)
-                .foregroundColor(.licorice)
+                .foregroundColor(colorScheme == .dark ? .white : .licorice)
             Spacer()
 
             if badgeValue > 0 {

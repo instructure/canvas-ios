@@ -43,7 +43,6 @@ extension UINavigationBar {
         self.isTranslucent = isTranslucent
 
         applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
-        updateFontAppearance()
     }
 
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
@@ -56,7 +55,6 @@ extension UINavigationBar {
         isTranslucent = false
 
         applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
-        updateFontAppearance()
     }
 
     public func useModalStyle(brand: Brand = Brand.shared) {
@@ -68,29 +66,29 @@ extension UINavigationBar {
         isTranslucent = false
 
         applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: UIColor.textDarkest)
-        updateFontAppearance()
     }
 
     private func applyAppearanceChanges(backgroundColor: UIColor?, foreGroundColor: UIColor?) {
         let appearance = UINavigationBarAppearance()
-        if isTranslucent == true {
+
+        if isTranslucent {
             appearance.configureWithTransparentBackground()
         } else {
             appearance.configureWithDefaultBackground()
+
             if let backgroundColor = backgroundColor {
                 appearance.backgroundColor = backgroundColor
             }
         }
+
         if let foreGroundColor = foreGroundColor {
             appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
         }
+
+        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(.bold17)
+        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(.regular17)
+
         standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance
-    }
-
-    public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.k5.isK5Enabled) {
-        if useK5Fonts {
-            titleTextAttributes?[NSAttributedString.Key.font] = UIFont.scaledNamedFont(.bold17)
-        }
     }
 }

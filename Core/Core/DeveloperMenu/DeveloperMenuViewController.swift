@@ -149,10 +149,12 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
             guard let menuItem = SettingsRow(rawValue: indexPath.row) else { fatalError("invalid menu item") }
             let cell = tableView.dequeue(for: indexPath) as UITableViewCell
             cell.textLabel?.text = menuItem.title()
+            cell.backgroundColor = .backgroundLightest
             return cell
         } else {
             let cell = tableView.dequeue(for: indexPath)
             cell.textLabel?.text = URL(string: routeHistory[indexPath.row])?.path
+            cell.backgroundColor = .backgroundLightest
             return cell
         }
     }

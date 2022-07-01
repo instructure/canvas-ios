@@ -20,8 +20,17 @@ import UIKit
 import Core
 
 public class HelmSplitViewController: UISplitViewController {
-    public override func viewDidLoad() {
+
+    public override init(nibName: String? = nil, bundle: Bundle? = nil) {
+        super.init(nibName: nibName, bundle: bundle)
         delegate = self
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    public override func viewDidLoad() {
         preferredDisplayMode = .oneBesideSecondary
     }
 

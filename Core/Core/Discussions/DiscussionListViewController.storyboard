@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Aec-hZ-1GY" customClass="ListBackgroundView" customModule="Core">
-                                    <rect key="frame" x="0.0" y="153" width="414" height="319.5"/>
+                                    <rect key="frame" x="0.0" y="137" width="414" height="319.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnr-AZ-0HU" customClass="CircleProgressView" customModule="Core">
@@ -94,34 +95,33 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DiscussionListCell" id="COV-AQ-Vvf" customClass="DiscussionListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="86"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="COV-AQ-Vvf" id="ShE-DQ-DQ8">
-                                            <rect key="frame" x="0.0" y="0.0" width="385.5" height="86"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="385.5" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fBl-nW-0Y3" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="12" width="24" height="24"/>
+                                                    <rect key="frame" x="18" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="FtY-82-9mN"/>
                                                         <constraint firstAttribute="width" constant="24" id="hTY-Ku-FiH"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tha-Th-Ssc">
-                                                    <rect key="frame" x="56" y="12" width="329.5" height="62"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="tha-Th-Ssc">
+                                                    <rect key="frame" x="58" y="8" width="327.5" height="53.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discussion Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2k-wU-iWr" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="130.5" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="130.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XmS-Jz-fto">
-                                                            <rect key="frame" x="0.0" y="24" width="215.5" height="17"/>
+                                                            <rect key="frame" x="0.0" y="19.5" width="215.5" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEo-pg-5ik" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="46" height="17"/>
@@ -130,7 +130,6 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psK-eK-CAY" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -150,22 +149,20 @@
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2z-XH-uuR">
-                                                            <rect key="frame" x="0.0" y="45" width="212" height="17"/>
+                                                            <rect key="frame" x="0.0" y="36.5" width="212" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oou-Q6-BY0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="49.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                                    <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" name="textDark"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJY-WE-Ess" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -181,11 +178,10 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 Replies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqZ-db-Po7" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="66.5" y="0.0" width="67.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                                    <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" name="textDark"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nw-ey-8dG" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -201,11 +197,10 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 Unread" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9h0-n1-dhS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="151" y="0.0" width="61" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                                    <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" name="textDark"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
@@ -227,15 +222,15 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="fBl-nW-0Y3" firstAttribute="leading" secondItem="ShE-DQ-DQ8" secondAttribute="leading" constant="16" id="0bA-Xn-dZk"/>
+                                                <constraint firstItem="fBl-nW-0Y3" firstAttribute="leading" secondItem="ShE-DQ-DQ8" secondAttribute="leading" constant="18" id="0bA-Xn-dZk"/>
                                                 <constraint firstItem="tha-Th-Ssc" firstAttribute="leading" secondItem="fBl-nW-0Y3" secondAttribute="trailing" constant="16" id="1Fx-kO-e6O"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="fBl-nW-0Y3" secondAttribute="bottom" constant="16" id="Fn2-VO-thc"/>
                                                 <constraint firstAttribute="trailing" secondItem="tha-Th-Ssc" secondAttribute="trailing" id="HEe-Uh-hQ3"/>
                                                 <constraint firstItem="4tN-f7-RVG" firstAttribute="leading" secondItem="ShE-DQ-DQ8" secondAttribute="leading" constant="8" id="I1I-iO-CNd"/>
-                                                <constraint firstItem="fBl-nW-0Y3" firstAttribute="top" secondItem="ShE-DQ-DQ8" secondAttribute="top" constant="12" id="j6Q-zA-exZ"/>
+                                                <constraint firstItem="fBl-nW-0Y3" firstAttribute="top" secondItem="ShE-DQ-DQ8" secondAttribute="top" constant="10" id="j6Q-zA-exZ"/>
                                                 <constraint firstItem="4tN-f7-RVG" firstAttribute="top" secondItem="ShE-DQ-DQ8" secondAttribute="top" constant="6" id="mkM-DR-7k9"/>
-                                                <constraint firstItem="tha-Th-Ssc" firstAttribute="top" secondItem="ShE-DQ-DQ8" secondAttribute="top" constant="12" id="tIx-Hc-KL8"/>
-                                                <constraint firstAttribute="bottom" secondItem="tha-Th-Ssc" secondAttribute="bottom" constant="12" id="uIM-Kw-ReZ"/>
+                                                <constraint firstItem="tha-Th-Ssc" firstAttribute="top" secondItem="ShE-DQ-DQ8" secondAttribute="top" constant="8" id="tIx-Hc-KL8"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tha-Th-Ssc" secondAttribute="bottom" constant="8" id="uIM-Kw-ReZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="tableCellGroupedBackgroundColor"/>
@@ -326,6 +321,9 @@
     </designables>
     <resources>
         <image name="PandaNoDiscussions" width="174" height="217"/>
+        <namedColor name="textDark">
+            <color red="0.33333333333333331" green="0.396078431372549" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="tableCellGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
