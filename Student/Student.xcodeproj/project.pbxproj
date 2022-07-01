@@ -18,10 +18,6 @@
 		2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */; };
 		2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E356D20939C2D0071ED94 /* Settings.bundle */; };
 		2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */; };
-		3B5542482369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542472369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift */; };
-		3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B978D7C242EF9F700AFC4FF /* AssignmentListModel.swift */; };
-		3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */; };
-		3B978D7B242EF81000AFC4FF /* AssignmentListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B978D7A242EF80F00AFC4FF /* AssignmentListModelTests.swift */; };
 		492704771CF4AF7100C631C6 /* StudentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492704761CF4AF7100C631C6 /* StudentAppDelegate.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
 		49A04E571CF64C7F0051E1E7 /* StudentTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* StudentTabBarController.swift */; };
@@ -70,7 +66,6 @@
 		7DC5719522F8B43800F2E9BB /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DCF0F7822F8A0CC000AACCE /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7722F8A0CC000AACCE /* Routes.swift */; };
 		7DCF0F7A22F8A0D2000AACCE /* RouterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */; };
-		7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9422F89FB0000AACCE /* AssignmentListViewController.swift */; };
 		7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9722F89FB0000AACCE /* AssignmentDetailsPresenter.swift */; };
 		7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9822F89FB0000AACCE /* AssignmentDetailsViewController.storyboard */; };
 		7DCF0F8522F8A831000AACCE /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9922F89FB0000AACCE /* AssignmentDetailsViewController.swift */; };
@@ -341,11 +336,7 @@
 		2C8E356D20939C2D0071ED94 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F60CD48D1AD6AD81369BEFD /* Pods-defaults-PreSubmissionAnnotations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; sourceTree = "<group>"; };
-		3B5542472369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewControllerTests.swift; sourceTree = "<group>"; };
 		3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentListViewController.storyboard; sourceTree = "<group>"; };
-		3B978D7A242EF80F00AFC4FF /* AssignmentListModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListModelTests.swift; sourceTree = "<group>"; };
-		3B978D7C242EF9F700AFC4FF /* AssignmentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListModel.swift; sourceTree = "<group>"; };
 		3C806B61E5A681BC20FC41E9 /* Pods_needs_pspdfkit_StudentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_StudentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704731CF4AF7100C631C6 /* Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704761CF4AF7100C631C6 /* StudentAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAppDelegate.swift; sourceTree = "<group>"; };
@@ -577,7 +568,6 @@
 		7DB3C83E24AA613B00B85D35 /* CalendarEventDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarEventDetailsViewController.storyboard; sourceTree = "<group>"; };
 		7DC4A0BC24BE5024007A7EAD /* CalendarEventDetailsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7DCF0E9422F89FB0000AACCE /* AssignmentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListViewController.swift; sourceTree = "<group>"; };
 		7DCF0E9722F89FB0000AACCE /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
 		7DCF0E9822F89FB0000AACCE /* AssignmentDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AssignmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		7DCF0E9922F89FB0000AACCE /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1070,16 +1060,6 @@
 			path = Planner;
 			sourceTree = "<group>";
 		};
-		7DCF0E9622F89FB0000AACCE /* AssignmentList */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0E9422F89FB0000AACCE /* AssignmentListViewController.swift */,
-				3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */,
-				3B978D7C242EF9F700AFC4FF /* AssignmentListModel.swift */,
-			);
-			path = AssignmentList;
-			sourceTree = "<group>";
-		};
 		7DCF0E9C22F89FB0000AACCE /* AssignmentDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1095,7 +1075,6 @@
 		7DCF0E9D22F89FB0000AACCE /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0E9622F89FB0000AACCE /* AssignmentList */,
 				7DCF0E9C22F89FB0000AACCE /* AssignmentDetails */,
 			);
 			path = Assignments;
@@ -1279,15 +1258,6 @@
 			path = Submissions;
 			sourceTree = "<group>";
 		};
-		7DCF0F0C22F8A096000AACCE /* AssignmentList */ = {
-			isa = PBXGroup;
-			children = (
-				3B5542472369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift */,
-				3B978D7A242EF80F00AFC4FF /* AssignmentListModelTests.swift */,
-			);
-			path = AssignmentList;
-			sourceTree = "<group>";
-		};
 		7DCF0F0E22F8A096000AACCE /* AssignmentDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,7 +1270,6 @@
 		7DCF0F0F22F8A096000AACCE /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F0C22F8A096000AACCE /* AssignmentList */,
 				7DCF0F0E22F8A096000AACCE /* AssignmentDetails */,
 			);
 			path = Assignments;
@@ -2322,7 +2291,6 @@
 				2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */,
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
-				3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */,
 				9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */,
 				7DCF0FBD22F8A8D7000AACCE /* Drawer.xib in Resources */,
 				7DCF0FC122F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.xib in Resources */,
@@ -2809,10 +2777,8 @@
 				7DCF0FB022F8A8D7000AACCE /* RubricCircleView.swift in Sources */,
 				7DCF0FAD22F8A8D7000AACCE /* RubricPresenter.swift in Sources */,
 				7DCF0FB922F8A8D7000AACCE /* SubmissionCommentsViewController.swift in Sources */,
-				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				CFC7AE3927157DC50077F9D5 /* StudentAnnotationSubmissionView.swift in Sources */,
-				3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */,
 				7DA4DA2E2440EF70009CA964 /* IBDesignables.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
@@ -2873,7 +2839,6 @@
 				7DE1162222F8AB5C005BFE98 /* TextSubmissionViewControllerTests.swift in Sources */,
 				B11028BA23CFC92A00FFAB7E /* SubmissionCommentsViewControllerTests.swift in Sources */,
 				7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */,
-				3B5542482369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift in Sources */,
 				7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */,
 				7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */,
 				7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */,
@@ -2887,7 +2852,6 @@
 				7DE1162022F8AB5C005BFE98 /* SubmissionCommentsPresenterTests.swift in Sources */,
 				7DE1162122F8AB5C005BFE98 /* SubmissionDetailsPresenterTests.swift in Sources */,
 				7D0E22B923A19E430075E879 /* SubmissionDetailsViewControllerTests.swift in Sources */,
-				3B978D7B242EF81000AFC4FF /* AssignmentListModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
