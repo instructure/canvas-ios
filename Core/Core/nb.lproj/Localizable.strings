@@ -374,6 +374,9 @@
 "Canvas Guides" = "Canvas-guider";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas er nå tilgjengelig med mørkt tema";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Logg inn på Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Velg profilbilde";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Velg app-utseendet ditt\nDu kan endre det senere i innstillinger-menyen.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Slett emne";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Daglig";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Mørk modus";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Mørkt tema";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashbord";
@@ -1132,6 +1144,9 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Lyseblå";
 
+/* No comment provided by engineer. */
+"Light theme" = "Lyst tema";
+
 /* like action */
 "Like" = "Like";
 
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Flytt merknad";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Flere forfallsdatoer";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Innhold emneoversikt";
+
+/* No comment provided by engineer. */
+"System settings" = "Systeminnstillinger";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "LA";

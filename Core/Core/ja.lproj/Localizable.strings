@@ -374,6 +374,9 @@
 "Canvas Guides" = "Canvas ガイド";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvasがダークテーマで利用可能に";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "キャンバスログイン";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "プロフィール写真を選択する";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "アプリの外観を選択しましょう！\n設定メニューで後から変更可能です。";
 
 /* No comment provided by engineer. */
 "Clear Course" = "コースをクリアする";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "毎日";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "ダークモード";
+
+/* No comment provided by engineer. */
+"Dark theme" = "ダークテーマ";
 
 /* No comment provided by engineer. */
 "Dashboard" = "ダッシュボード";
@@ -1132,6 +1144,9 @@
 /* No comment provided by engineer. */
 "Light Blue" = "ライトブルー";
 
+/* No comment provided by engineer. */
+"Light theme" = "ライトテーマ";
+
 /* like action */
 "Like" = "いいね！";
 
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "モジュール";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "昼食を移動";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "複数の締切日";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "シラバスの内容";
+
+/* No comment provided by engineer. */
+"System settings" = "システム設定";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

@@ -374,6 +374,9 @@
 "Canvas Guides" = "Canvas Kaiārahi";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas ko inaianei e wātea ana i te pouri kaupapa";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas Takiuru";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Kōwhiri Pikitia Kōtaha";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Whiriwhiria to app ahua!\nKa taea e koe huri  i muri mai i roto i nga tautuhinga tahua.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Purata Akoranga";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Ia rā";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Aratau Pouri";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Pouriuri kaupapa";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Papatohu";
@@ -1132,6 +1144,9 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Puru marama";
 
+/* No comment provided by engineer. */
+"Light theme" = "Maama kaupapa";
+
 /* like action */
 "Like" = "Pīrangi";
 
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Kōwae";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Nuku Tohutohu";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Maha Rā e tika ana";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Marautanga Ihirangi";
+
+/* No comment provided by engineer. */
+"System settings" = "Pūnaha tautuhinga";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

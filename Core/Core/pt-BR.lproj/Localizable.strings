@@ -374,6 +374,9 @@
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "O Canvas agora está disponível no tema escuro";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Login Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Escolher a Foto do Perfil";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Escolha a aparência do seu aplicativo!\nVocê pode alterá-lo mais tarde no menu de configurações.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Limpar curso";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Diariamente";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Modo escuro";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Tema escuro";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Painel";
@@ -1132,6 +1144,9 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Azul Claro";
 
+/* No comment provided by engineer. */
+"Light theme" = "Tema claro";
+
 /* like action */
 "Like" = "Curtida";
 
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Módulos";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Mover anotação";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Vários prazos de entrega";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Conteúdo do programa de estudos";
+
+/* No comment provided by engineer. */
+"System settings" = "Configurações do sistema";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Assistente";
