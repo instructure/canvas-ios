@@ -374,6 +374,9 @@
 "Canvas Guides" = "Vodniki po sistemu Canvas";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Sistem Canvas je zdaj na voljo v temni preobleki";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Prijava v sistem Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Izberi sliko profila";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Izberite videz aplikacije!\nTo lahko pozneje spremenite v meniju nastavitev.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Počisti predmet";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Dnevno";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Temni način";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Temna preobleka";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Preglednica";
@@ -1132,6 +1144,9 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Svetlo modra";
 
+/* No comment provided by engineer. */
+"Light theme" = "Svetla preobleka";
+
 /* like action */
 "Like" = "Všeček";
 
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduli";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Premakni opombo";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Več rokov";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Vsebina učnega načrta predmeta";
+
+/* No comment provided by engineer. */
+"System settings" = "Sistemske nastavitve";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Demonstrator";

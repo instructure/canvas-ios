@@ -176,7 +176,7 @@
 "Allow liking" = "Likes zulassen";
 
 /* No comment provided by engineer. */
-"Allow threaded replies" = "Gelistete Antworten zulassen";
+"Allow threaded replies" = "Antworten aller Diskussionsstränge zulassen";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Benutzern Kommentare erlauben";
@@ -218,7 +218,7 @@
 "Are you sure you want to delete this page?" = "Möchten Sie diese Seite wirklich löschen?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to exit Student View?" = "Sind Sie sicher, dass Sie die Studentenansicht verlassen wollen?";
+"Are you sure you want to exit Student View?" = "Sind Sie sicher, dass Sie die Studierendenansicht verlassen wollen?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to remove this file?" = "Möchten Sie diese Datei wirklich entfernen?";
@@ -374,6 +374,9 @@
 "Canvas Guides" = "Canvas-Leitfäden";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas ist jetzt in dunklem Design verfügbar";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Anmeldung bei Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Profilbild wählen";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Wählen Sie Ihre App-Darstellung!\nSie können es später im Einstellungsmenü ändern.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Kurs löschen";
@@ -497,10 +503,10 @@
 "Contact your school to create an account." = "Wenden Sie sich an Ihre Schule, um ein neues Konto zu erstellen.";
 
 /* No comment provided by engineer. */
-"Content" = "Content";
+"Content" = "Inhalt";
 
 /* No comment provided by engineer. */
-"Content Link Error" = "Content-Link-Fehler";
+"Content Link Error" = "Inhalt-Link-Fehler";
 
 /* No comment provided by engineer. */
 "Contribute" = "Beitragen";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Täglich";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Dunkel-Modus";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Dunkles Design";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
@@ -977,7 +989,7 @@
 "Help your students with this assignment by adding instructions." = "Helfen Sie Ihren Studenten bei dieser Aufgabe mit zusätzlichen Anweisungen.";
 
 /* No comment provided by engineer. */
-"Hide content for %@" = "Ausblenden des Contents für %@";
+"Hide content for %@" = "Ausblenden des Inhalts für %@";
 
 /* No comment provided by engineer. */
 "High: %@" = "Hoch: %@";
@@ -1118,7 +1130,7 @@
 "Launch External Tool" = "Externes Tool starten";
 
 /* No comment provided by engineer. */
-"Leave Student View" = "Studentenansicht verlassen";
+"Leave Student View" = "Studierendenansicht verlassen";
 
 /* No comment provided by engineer. */
 "Legal" = "Rechtliches";
@@ -1131,6 +1143,9 @@
 
 /* No comment provided by engineer. */
 "Light Blue" = "Hellblau";
+
+/* No comment provided by engineer. */
+"Light theme" = "Helles Design";
 
 /* like action */
 "Like" = "Like";
@@ -1253,7 +1268,7 @@
 "me & %@" = "Ich und %@";
 
 /* No comment provided by engineer. */
-"Mean: %@" = "Mittel: %@";
+"Mean: %@" = "Mittelwert: %@";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Medienaufzeichnung";
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Module";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Anmerkung verschieben";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Mehrere Abgabetermine";
@@ -1346,7 +1364,7 @@
 "No Conferences" = "Keine Konferenzen";
 
 /* No comment provided by engineer. */
-"No Content" = "Kein Content";
+"No Content" = "Kein Inhalt";
 
 /* No comment provided by engineer. */
 "No Courses" = "Keine Kurse";
@@ -1928,7 +1946,7 @@
 "Student Appointment Signups" = "Terminanmeldungen von Studenten";
 
 /* No comment provided by engineer. */
-"Student View" = "Studentenansicht";
+"Student View" = "Studierendenansicht";
 
 /* No comment provided by engineer. */
 "Students" = "Studenten";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Inhalt des Kursplans";
+
+/* No comment provided by engineer. */
+"System settings" = "Systemeinstellungen";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Lehrassistent";

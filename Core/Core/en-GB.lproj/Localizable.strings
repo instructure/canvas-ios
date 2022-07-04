@@ -374,6 +374,9 @@
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas is now available in dark theme";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas login";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Choose profile picture";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Choose your app appearance!\nYou can change it later in the settings menu.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Clear Course";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Daily";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Dark Mode";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Dark theme";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
@@ -1132,6 +1144,9 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Light blue";
 
+/* No comment provided by engineer. */
+"Light theme" = "Light theme";
+
 /* like action */
 "Like" = "Like";
 
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modules";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Move Annotation";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Multiple Due Dates";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Syllabus content";
+
+/* No comment provided by engineer. */
+"System settings" = "System settings";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

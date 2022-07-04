@@ -374,6 +374,9 @@
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas متاح الآن في النسق الداكن";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "تسجيل الدخول إلى Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +426,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "اختيار صورة الملف التعريفي";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "اختر مظهر التطبيق!\nيمكنك تغييره لاحقًا في قائمة الإعدادات.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "مسح المساق";
@@ -606,6 +612,12 @@
 
 /* No comment provided by engineer. */
 "Daily" = "يوميًا";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "وضع داكن";
+
+/* No comment provided by engineer. */
+"Dark theme" = "النسق الداكن";
 
 /* No comment provided by engineer. */
 "Dashboard" = "لوحة المعلومات";
@@ -1132,6 +1144,9 @@
 /* No comment provided by engineer. */
 "Light Blue" = "أزرق فاتح";
 
+/* No comment provided by engineer. */
+"Light theme" = "النسق الفاتح";
+
 /* like action */
 "Like" = "إعجاب";
 
@@ -1275,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "الوحدات النمطية";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "نقل التعليق التوضيحي";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "تواريخ استحقاق متعددة";
@@ -1980,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "محتوى المخطط الدراسي";
+
+/* No comment provided by engineer. */
+"System settings" = "إعدادات النظام";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "مساعد المعلم";
