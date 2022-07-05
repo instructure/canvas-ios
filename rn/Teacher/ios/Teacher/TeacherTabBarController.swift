@@ -57,7 +57,7 @@ class TeacherTabBarController: UITabBarController {
     }
 
     func toDoTab() -> UIViewController {
-        let todo = UINavigationController(rootViewController: TodoListViewController.create())
+        let todo = HelmNavigationController(rootViewController: TodoListViewController.create())
         todo.tabBarItem.title = NSLocalizedString("To Do", comment: "")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive

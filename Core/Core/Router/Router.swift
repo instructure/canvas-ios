@@ -199,7 +199,7 @@ open class Router {
 
         var nav: UINavigationController?
         if options.embedInNav {
-            nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
+            nav = view as? UINavigationController ?? HelmNavigationController(rootViewController: view)
         }
 
         switch options {
