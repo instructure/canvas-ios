@@ -274,10 +274,23 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func actAsFakeStudent(withID fakeStudentID: String) {
+        actAsFakeStudent(with: fakeStudentID)
+    }
+
+    func actAsFakeStudent(with fakeStudentID: String, rootAccount: String? = nil) {
         guard let session = environment.currentSession else { return }
+
+        var baseUrl = session.baseURL
+        if let rootAccountHost = rootAccount {
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = rootAccountHost
+            baseUrl = components.url ?? baseUrl
+        }
+
         let entry = LoginSession(
             accessToken: session.accessToken,
-            baseURL: session.baseURL,
+            baseURL: baseUrl,
             expiresAt: session.expiresAt,
             lastUsedAt: Date(),
             locale: session.locale,
@@ -302,9 +315,9 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         }
     }
 
-    func actAsStudentViewStudent(studentViewStudentID: String) {
+    func actAsStudentViewStudent(studentViewStudent: APIUser) {
         if let url = URL(string: "canvas-student://"), UIApplication.shared.canOpenURL(url) {
-            actAsFakeStudent(withID: studentViewStudentID)
+            actAsFakeStudent(with: studentViewStudent.id.rawValue, rootAccount: studentViewStudent.root_account)
         } else if let url = URL(string: "https://itunes.apple.com/us/app/canvas-student/id480883488?ls=1&mt=8") {
             openExternalURL(url)
         }
