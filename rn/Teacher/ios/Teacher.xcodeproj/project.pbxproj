@@ -96,6 +96,8 @@
 		C909F7D527C383D800CB89DE /* DSSubmissionsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */; };
 		C914BC0F26AFE0BC009A5607 /* QuizzesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */; };
 		C91B216B26CA4E28006EE156 /* MessagesE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */; };
+		C9270D712861A89100FE4BAD /* DSSpeedGraderE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9270D702861A89100FE4BAD /* DSSpeedGraderE2ETests.swift */; };
+		C9270D73286C6F7A00FE4BAD /* DSAnnouncementsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9270D72286C6F7A00FE4BAD /* DSAnnouncementsE2ETests.swift */; };
 		C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */; };
 		C92796F126772C5B00582AC5 /* SyllabusE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92796F026772C5B00582AC5 /* SyllabusE2ETests.swift */; };
 		C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9279700267C7AFC00582AC5 /* PeopleE2ETests.swift */; };
@@ -547,6 +549,8 @@
 		C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmissionsE2ETests.swift; sourceTree = "<group>"; };
 		C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
 		C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesE2ETest.swift; sourceTree = "<group>"; };
+		C9270D702861A89100FE4BAD /* DSSpeedGraderE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSpeedGraderE2ETests.swift; sourceTree = "<group>"; };
+		C9270D72286C6F7A00FE4BAD /* DSAnnouncementsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAnnouncementsE2ETests.swift; sourceTree = "<group>"; };
 		C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsE2ETests.swift; sourceTree = "<group>"; };
 		C92796F026772C5B00582AC5 /* SyllabusE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusE2ETests.swift; sourceTree = "<group>"; };
 		C9279700267C7AFC00582AC5 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
@@ -903,6 +907,8 @@
 				C909F7D427C383D800CB89DE /* DSSubmissionsE2ETests.swift */,
 				C9BCCA1127E46B4B003E9CB0 /* DSContextCardE2ETests.swift */,
 				C9BCCA1827F33E4A003E9CB0 /* DSTodosE2ETests.swift */,
+				C9270D702861A89100FE4BAD /* DSSpeedGraderE2ETests.swift */,
+				C9270D72286C6F7A00FE4BAD /* DSAnnouncementsE2ETests.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -1788,6 +1794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9270D73286C6F7A00FE4BAD /* DSAnnouncementsE2ETests.swift in Sources */,
 				C946A8C026661C2E004BCA4D /* DashboardE2ETests.swift in Sources */,
 				E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */,
 				C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */,
@@ -1811,6 +1818,7 @@
 				C9A3C0412698391000DAE8E1 /* FilesE2ETests.swift in Sources */,
 				C9A23D2527A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift in Sources */,
 				C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */,
+				C9270D712861A89100FE4BAD /* DSSpeedGraderE2ETests.swift in Sources */,
 				C909F7C527BA7E4A00CB89DE /* DSPagesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

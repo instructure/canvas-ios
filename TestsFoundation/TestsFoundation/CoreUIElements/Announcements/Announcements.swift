@@ -54,3 +54,9 @@ public enum EditAnnouncements: ElementWrapper {
         app.find(label: "Edit Announcement")
     }
 }
+
+public enum AnnouncementList {
+    public static func announcement(index: Int) -> Element {
+        return app.find(id: "announcements.list.announcement.row-\(index)")
+    }
+}
