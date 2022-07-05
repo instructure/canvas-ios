@@ -121,12 +121,18 @@ public protocol APIRequestable {
     var headers: [String: String?] { get }
     var path: String { get }
     var query: [APIQueryItem] { get }
+    /** If `form` property is set, then the `body` property is ignored. */
     var form: APIFormData? { get }
+    /** Only used if `form` property is `nil`. */
     var body: Body? { get }
     var cachePolicy: URLRequest.CachePolicy { get }
     var shouldHandleCookies: Bool { get }
 
-    func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
+    /**
+     - parameters:
+        - skipBodyCreation: If this parameter is true, then the returned request's `httpBody` parameter won't be set and it will be the caller's responsibility to create one either by assigning a value to `httpBody` or write it to an external file. Useful if the body would be so big that it wouldn't fit into memory.
+     */
+    func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?, skipBodyCreation: Bool) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
     func encode(_ body: Body) throws -> Data
     func encode(response: Response) throws -> Data
@@ -157,7 +163,8 @@ extension APIRequestable {
     public var shouldHandleCookies: Bool {
         return true
     }
-    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
+
+    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?, skipBodyCreation: Bool = false) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
         if !path.hasPrefix("/") && components.host == nil {
@@ -180,10 +187,17 @@ extension APIRequestable {
 
         if let form = self.form {
             let boundary = UUID.string
-            request.httpBody = try encodeFormData(boundary: boundary, form: form)
+
+            if !skipBodyCreation {
+                request.httpBody = try encodeFormData(boundary: boundary, form: form)
+            }
+
             request.setValue("multipart/form-data; charset=utf-8; boundary=\"\(boundary)\"", forHTTPHeaderField: HttpHeader.contentType)
         } else if let body = self.body {
-            request.httpBody = try encode(body)
+            if !skipBodyCreation {
+                request.httpBody = try encode(body)
+            }
+
             request.setValue("application/json", forHTTPHeaderField: HttpHeader.contentType)
         }
 

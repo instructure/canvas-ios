@@ -175,12 +175,26 @@ class APIRequestableTests: XCTestCase {
         XCTAssertEqual(request.httpBody, expected)
     }
 
+    func testSkipHttpBody() throws {
+        let requestable = UploadBody(body: "hello")
+        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil, skipBodyCreation: true)
+        XCTAssertNil(request.httpBody)
+    }
+
     func testFormData() throws {
         UUID.mock("xxzzxx")
         let requestable = PostForm()
         let expected = try requestable.encodeFormData(boundary: UUID.string, form: requestable.form!)
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
         XCTAssertEqual(request.httpBody, expected)
+        XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.contentType], "multipart/form-data; charset=utf-8; boundary=\"xxzzxx\"")
+    }
+
+    func testFormDataWithSkippedHttpBody() throws {
+        UUID.mock("xxzzxx")
+        let requestable = PostForm()
+        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil, skipBodyCreation: true)
+        XCTAssertNil(request.httpBody)
         XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.contentType], "multipart/form-data; charset=utf-8; boundary=\"xxzzxx\"")
     }
 
