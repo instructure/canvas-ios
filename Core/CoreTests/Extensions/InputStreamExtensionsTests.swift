@@ -41,8 +41,12 @@ class InputStreamExtensionsTests: XCTestCase {
             return
         }
         defer { try? FileManager.default.removeItem(at: targetFilePath) }
-        let handle = try! FileHandle(forWritingTo: targetFilePath)
-        defer { handle.closeFile() }
+        guard let outputStream = OutputStream(toFileAtPath: targetFilePath.path, append: false) else {
+            XCTFail("Failed to open stream to temp file.")
+            return
+        }
+        outputStream.open()
+        defer { outputStream.close() }
 
         // Create test data and setup a stream to read it
         let testData = Data(repeating: 6, count: streamSize)
@@ -51,7 +55,7 @@ class InputStreamExtensionsTests: XCTestCase {
         defer { testDataStream.close() }
 
         // Copy stream content to file
-        try! testDataStream.copy(to: handle, bufferSize: bufferSize)
+        try! testDataStream.copy(to: outputStream, bufferSize: bufferSize)
 
         // Read back written data to be compared with original data
         guard let resultData = try? Data(contentsOf: targetFilePath) else {
