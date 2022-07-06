@@ -182,9 +182,6 @@ public struct QuizEditorView: View {
             quiz = env.database.viewContext.fetch(scope: useCase.scope).first
             assignmentID = quiz?.assignmentID
             //TODO quiz only attributes
-
-            isLoading = false
-            isLoaded = true
             alert = fetchError.map { .error($0) }
             loadAssignment()
         } }
