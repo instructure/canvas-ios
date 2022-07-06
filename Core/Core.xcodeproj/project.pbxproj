@@ -813,6 +813,8 @@
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
 		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
+		CF0075DE2875C51E00588E40 /* InputStreamExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075DD2875C51E00588E40 /* InputStreamExtensions.swift */; };
+		CF0075E02875C56500588E40 /* InputStreamExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075DF2875C56500588E40 /* InputStreamExtensionsTests.swift */; };
 		CF0894FB26FA218C0051A1BA /* AssignmentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */; };
 		CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */; };
 		CF09E6A32840FB13000C72D0 /* UTIFromNSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */; };
@@ -2208,6 +2210,8 @@
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
 		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
+		CF0075DD2875C51E00588E40 /* InputStreamExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStreamExtensions.swift; sourceTree = "<group>"; };
+		CF0075DF2875C56500588E40 /* InputStreamExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStreamExtensionsTests.swift; sourceTree = "<group>"; };
 		CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModel.swift; sourceTree = "<group>"; };
 		CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
 		CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProvider.swift; sourceTree = "<group>"; };
@@ -3736,6 +3740,7 @@
 				CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */,
 				B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */,
 				B1A464BA225669140052F8DF /* DispatchExtensions.swift */,
+				CF0075DD2875C51E00588E40 /* InputStreamExtensions.swift */,
 				7DF2F5FA2347DAE900C1802C /* InstColorExtensions.swift */,
 				7DA20E8E21680DBF00F5FD19 /* InstIconExtensions.swift */,
 				3B69253F21A12E020023ED75 /* Int64Extensions.swift */,
@@ -3807,6 +3812,7 @@
 				7DD694802194CE8C00BA4984 /* DateExtensionsTests.swift */,
 				B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */,
 				CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */,
+				CF0075DF2875C56500588E40 /* InputStreamExtensionsTests.swift */,
 				7D7BA23E24DC776000B1A68B /* InstColorExtensionsTests.swift */,
 				7DA20E922168128400F5FD19 /* InstIconExtensionsTests.swift */,
 				7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */,
@@ -6532,6 +6538,7 @@
 				E887275F24E1F85B00798DCA /* SequenceExtensionsTests.swift in Sources */,
 				3B1988B524256CE7004ADCC6 /* PairWithObserverViewControllerTests.swift in Sources */,
 				3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */,
+				CF0075E02875C56500588E40 /* InputStreamExtensionsTests.swift in Sources */,
 				D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */,
 				7D8B78F8215EC74A005E08F1 /* UIImageExtensionsTests.swift in Sources */,
 				7D016B5F23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift in Sources */,
@@ -7215,6 +7222,7 @@
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
 				EB2A9BD22632E43600A19A5A /* SideMenuToggleItem.swift in Sources */,
+				CF0075DE2875C51E00588E40 /* InputStreamExtensions.swift in Sources */,
 				7D70869925699AAA00647D37 /* CourseInvitationCard.swift in Sources */,
 				CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */,
 				7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */,
