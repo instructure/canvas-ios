@@ -45,7 +45,7 @@ extension InputStream {
         let errorOccurred = readResult < 0
 
         if errorOccurred {
-            throw streamError ?? NSError.instructureError("Error while copying contents of InputStream to FileHandle.")
+            throw streamError ?? NSError.instructureError("Error while copying contents of InputStream to OutputStream.")
         }
     }
 }

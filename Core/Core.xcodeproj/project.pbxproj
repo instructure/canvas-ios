@@ -815,6 +815,7 @@
 		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
 		CF0075DE2875C51E00588E40 /* InputStreamExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075DD2875C51E00588E40 /* InputStreamExtensions.swift */; };
 		CF0075E02875C56500588E40 /* InputStreamExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075DF2875C56500588E40 /* InputStreamExtensionsTests.swift */; };
+		CF0075E22875E4AF00588E40 /* OutputStreamExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */; };
 		CF0894FB26FA218C0051A1BA /* AssignmentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */; };
 		CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */; };
 		CF09E6A32840FB13000C72D0 /* UTIFromNSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */; };
@@ -2212,6 +2213,7 @@
 		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
 		CF0075DD2875C51E00588E40 /* InputStreamExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStreamExtensions.swift; sourceTree = "<group>"; };
 		CF0075DF2875C56500588E40 /* InputStreamExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStreamExtensionsTests.swift; sourceTree = "<group>"; };
+		CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputStreamExtensions.swift; sourceTree = "<group>"; };
 		CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModel.swift; sourceTree = "<group>"; };
 		CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
 		CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProvider.swift; sourceTree = "<group>"; };
@@ -3751,6 +3753,7 @@
 				7DF4FFE421714952007E5F81 /* NSNumberExtensions.swift */,
 				B1C783F02241EB5E00DD89A9 /* NSPersistentContainerExtensions.swift */,
 				B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */,
+				CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */,
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
 				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
@@ -6881,6 +6884,7 @@
 				7DA2600A23F7227A005D2121 /* NSManagedObjectContextExtensions.swift in Sources */,
 				7DA260CD23F72359005D2121 /* BottomSheetTransitioning.swift in Sources */,
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
+				CF0075E22875E4AF00588E40 /* OutputStreamExtensions.swift in Sources */,
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
