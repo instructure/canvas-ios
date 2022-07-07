@@ -65,14 +65,19 @@ class APIRequestableTests: XCTestCase {
         let path = "post"
     }
 
-    struct PostForm: APIRequestable {
+    class PostForm: APIRequestable {
         typealias Response = DateHaver
+        var isBodyFromURL: Bool { false }
         let path = "form"
         let form: APIFormData? = [
             (key: "string", value: .string("abcde")),
             (key: "data", value: .data(filename: "data.txt", type: "text/plain", data: "hi".data(using: .utf8)!)),
             (key: "file", value: .file(filename: "file.gif", type: "image/gif", at: URL(string: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")!)),
         ]
+    }
+
+    class PostFormWithExternalBody: PostForm {
+        override var isBodyFromURL: Bool { true }
     }
 
     struct UploadBody: APIRequestable {
@@ -175,12 +180,6 @@ class APIRequestableTests: XCTestCase {
         XCTAssertEqual(request.httpBody, expected)
     }
 
-    func testSkipHttpBody() throws {
-        let requestable = UploadBody(body: "hello")
-        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil, skipBodyCreation: true)
-        XCTAssertNil(request.httpBody)
-    }
-
     func testFormData() throws {
         UUID.mock("xxzzxx")
         let requestable = PostForm()
@@ -192,8 +191,8 @@ class APIRequestableTests: XCTestCase {
 
     func testFormDataWithSkippedHttpBody() throws {
         UUID.mock("xxzzxx")
-        let requestable = PostForm()
-        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil, skipBodyCreation: true)
+        let requestable = PostFormWithExternalBody()
+        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
         XCTAssertNil(request.httpBody)
         XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.contentType], "multipart/form-data; charset=utf-8; boundary=\"xxzzxx\"")
     }

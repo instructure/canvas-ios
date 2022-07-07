@@ -108,20 +108,18 @@ public protocol APIRequestable {
     var query: [APIQueryItem] { get }
     /** If `form` property is set, then the `body` property is ignored. */
     var form: APIFormData? { get }
-    var isFormRequest: Bool { get }
     /** Only used if `form` property is `nil`. */
     var body: Body? { get }
     var cachePolicy: URLRequest.CachePolicy { get }
     var shouldHandleCookies: Bool { get }
-
     /**
-     - parameters:
-        - skipBodyCreation: If this parameter is true, then the returned request's `httpBody` parameter won't be set and it will be the caller's responsibility
-                            to create one either by assigning a value to `httpBody` or write it to an external file.
-                            Useful if the body would be so big that it wouldn't fit into memory.
-        - boundary: The boundary string that separates form fields in the body. Only used if there's a `form` parameter set.
+     If this parameter is true, then the `urlRequest` method won't set the `httpBody` parameter on the created `URLRequest`.
+     Useful if the body would be so big that it wouldn't fit into memory. In such cases it's the caller's responsibility to create the http body
+     in an external file and use `URLSession`'s `uploadTask` method that accepts a URL for the request body. Only used for `form` requests.
      */
-    func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?, skipBodyCreation: Bool, boundary: String) throws -> URLRequest
+    var isBodyFromURL: Bool { get }
+
+    func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
     func encode(_ body: Body) throws -> Data
     func encode(response: Response) throws -> Data
@@ -153,8 +151,9 @@ extension APIRequestable {
     public var shouldHandleCookies: Bool {
         return true
     }
+    public var isBodyFromURL: Bool { false }
 
-    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?, skipBodyCreation: Bool = false, boundary: String = UUID.string) throws -> URLRequest {
+    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
         if !path.hasPrefix("/") && components.host == nil {
@@ -176,16 +175,14 @@ extension APIRequestable {
         request.httpMethod = method.rawValue.uppercased()
 
         if let form = self.form {
-            if !skipBodyCreation {
+            let boundary = UUID.string
+            request.setValue("multipart/form-data; charset=utf-8; boundary=\"\(boundary)\"", forHTTPHeaderField: HttpHeader.contentType)
+
+            if !isBodyFromURL {
                 request.httpBody = try form.encode(using: boundary)
             }
-
-            request.setValue("multipart/form-data; charset=utf-8; boundary=\"\(boundary)\"", forHTTPHeaderField: HttpHeader.contentType)
         } else if let body = self.body {
-            if !skipBodyCreation {
-                request.httpBody = try encode(body)
-            }
-
+            request.httpBody = try encode(body)
             request.setValue("application/json", forHTTPHeaderField: HttpHeader.contentType)
         }
 

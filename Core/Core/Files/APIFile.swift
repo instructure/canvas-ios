@@ -437,6 +437,7 @@ public struct PostFileUploadRequest: APIRequestable {
         )))
         return form
     }
+    public var isBodyFromURL: Bool { true }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.resolve_path

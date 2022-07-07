@@ -115,12 +115,7 @@ public class API {
 
     @discardableResult
     public func uploadTask<Request: APIRequestable>(_ requestable: Request) throws -> APITask {
-        let boundary = UUID.string
-        let request = try requestable.urlRequest(relativeTo: baseURL,
-                                                 accessToken: loginSession?.accessToken,
-                                                 actAsUserID: loginSession?.actAsUserID,
-                                                 skipBodyCreation: requestable.isFormRequest,
-                                                 boundary: boundary)
+        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
 
         #if DEBUG
         if API.shouldMock(request) {
@@ -128,11 +123,16 @@ public class API {
         }
         #endif
 
-        if let form = requestable.form {
+        if requestable.isBodyFromURL, let form = requestable.form {
+            guard let boundary = request.boundary else {
+                throw NSError.instructureError("Failed to extract boundary from HTTP header.")
+            }
             let bodyFileURL: URL = try form.encode(using: boundary) // TODO: delete this file after upload completes
             return urlSession.uploadTask(with: request, fromFile: bodyFileURL)
         } else {
-            return urlSession.uploadTask(with: request, from: request.httpBody ?? Data())
+            let url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+            try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
+            return urlSession.uploadTask(with: request, fromFile: url)
         }
     }
 
