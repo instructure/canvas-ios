@@ -116,7 +116,9 @@ public protocol APIRequestable {
 
     /**
      - parameters:
-        - skipBodyCreation: If this parameter is true, then the returned request's `httpBody` parameter won't be set and it will be the caller's responsibility to create one either by assigning a value to `httpBody` or write it to an external file. Useful if the body would be so big that it wouldn't fit into memory.
+        - skipBodyCreation: If this parameter is true, then the returned request's `httpBody` parameter won't be set and it will be the caller's responsibility
+                            to create one either by assigning a value to `httpBody` or write it to an external file.
+                            Useful if the body would be so big that it wouldn't fit into memory.
         - boundary: The boundary string that separates form fields in the body. Only used if there's a `form` parameter set.
      */
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?, skipBodyCreation: Bool, boundary: String) throws -> URLRequest

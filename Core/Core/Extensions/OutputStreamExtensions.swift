@@ -18,12 +18,12 @@
 
 extension OutputStream {
 
-    static func +=(outputStream: inout OutputStream, string: String) {
+    static func += (outputStream: inout OutputStream, string: String) {
         guard let data = string.data(using: .utf8) else { return }
         outputStream += data
     }
 
-    static func +=(outputStream: inout OutputStream, data: Data) {
+    static func += (outputStream: inout OutputStream, data: Data) {
         let dataBuffer: [UInt8] = Array(data)
         outputStream.write(dataBuffer, maxLength: dataBuffer.count)
     }

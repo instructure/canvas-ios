@@ -116,7 +116,11 @@ public class API {
     @discardableResult
     public func uploadTask<Request: APIRequestable>(_ requestable: Request) throws -> APITask {
         let boundary = UUID.string
-        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID, skipBodyCreation: requestable.isFormRequest, boundary: boundary)
+        let request = try requestable.urlRequest(relativeTo: baseURL,
+                                                 accessToken: loginSession?.accessToken,
+                                                 actAsUserID: loginSession?.actAsUserID,
+                                                 skipBodyCreation: requestable.isFormRequest,
+                                                 boundary: boundary)
 
         #if DEBUG
         if API.shouldMock(request) {
