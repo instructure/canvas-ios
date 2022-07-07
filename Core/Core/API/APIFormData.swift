@@ -75,12 +75,17 @@ extension APIFormData {
                 outputStream += contents
             case .file(let filename, let type, let url):
                 outputStream += "; filename=\"\(filename)\"\r\nContent-Type: \(type)\r\n\r\n"
-                guard let inputStream = InputStream(fileAtPath: url.path) else {
-                    throw NSError.instructureError("Failed to open file for reading.")
+
+                if url.isFileURL {
+                    guard let inputStream = InputStream(fileAtPath: url.path) else {
+                        throw NSError.instructureError("Failed to open file for reading.")
+                    }
+                    inputStream.open()
+                    defer { inputStream.close() }
+                    try inputStream.copy(to: outputStream)
+                } else {
+                    outputStream += try Data(contentsOf: url)
                 }
-                inputStream.open()
-                defer { inputStream.close() }
-                try inputStream.copy(to: outputStream)
             }
             outputStream += "\r\n"
         }
