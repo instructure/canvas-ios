@@ -90,21 +90,6 @@ public class APIJSONEncoder: JSONEncoder {
     }
 }
 
-public typealias APIFormData = [(key: String, value: APIFormDatum)]
-
-public enum APIFormDatum: Equatable {
-    case string(String)
-    case data(filename: String, type: String, data: Data)
-    case file(filename: String, type: String, at: URL)
-
-    public static func bool(_ value: Bool) -> APIFormDatum {
-        return .string(value ? "1" : "0")
-    }
-    public static func date(_ value: Date?) -> APIFormDatum {
-        return .string(value?.isoString() ?? "")
-    }
-}
-
 // These errors are all definitely mistakes in our app code
 enum APIRequestableError: Error, Equatable {
     case invalidPath(String) // our request path string can't be parsed by URLComponents
@@ -188,7 +173,7 @@ extension APIRequestable {
 
         if let form = self.form {
             if !skipBodyCreation {
-                request.httpBody = try encodeFormData(boundary: boundary, form: form)
+                request.httpBody = try form.encode(using: boundary)
             }
 
             request.setValue("multipart/form-data; charset=utf-8; boundary=\"\(boundary)\"", forHTTPHeaderField: HttpHeader.contentType)
@@ -231,30 +216,6 @@ extension APIRequestable {
 
     public func encode(response: Response) throws -> Data {
         try APIJSONEncoder().encode(response)
-    }
-
-    public func encodeFormData(boundary: String, form: APIFormData) throws -> Data {
-        var data = Data()
-        let delimiter = "--\(boundary)\r\n".data(using: .utf8)!
-
-        for (key, value) in form {
-            data += delimiter
-            data += "Content-Disposition: form-data; name=\"\(key)\"".data(using: .utf8)!
-            switch value {
-            case .string(let string):
-                data += "\r\n\r\n\(string)".data(using: .utf8)!
-            case .data(filename: let filename, type: let type, data: let contents):
-                data += "; filename=\"\(filename)\"\r\nContent-Type: \(type)\r\n\r\n".data(using: .utf8)!
-                data += contents
-            case .file(filename: let filename, type: let type, at: let url):
-                data += "; filename=\"\(filename)\"\r\nContent-Type: \(type)\r\n\r\n".data(using: .utf8)!
-                data += try Data(contentsOf: url)
-            }
-            data += "\r\n".data(using: .utf8)!
-        }
-
-        data += "--\(boundary)--\r\n".data(using: .utf8)!
-        return data
     }
 }
 

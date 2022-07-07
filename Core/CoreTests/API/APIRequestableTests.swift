@@ -184,7 +184,7 @@ class APIRequestableTests: XCTestCase {
     func testFormData() throws {
         UUID.mock("xxzzxx")
         let requestable = PostForm()
-        let expected = try requestable.encodeFormData(boundary: UUID.string, form: requestable.form!)
+        let expected: Data = try requestable.form!.encode(using: UUID.string)
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
         XCTAssertEqual(request.httpBody, expected)
         XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.contentType], "multipart/form-data; charset=utf-8; boundary=\"xxzzxx\"")
