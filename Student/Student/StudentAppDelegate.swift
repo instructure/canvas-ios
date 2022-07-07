@@ -367,7 +367,6 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
-        NativeLoginManager.shared().logout()
     }
 
     func userDidLogout(session: LoginSession) {
