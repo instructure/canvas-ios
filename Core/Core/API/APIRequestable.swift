@@ -108,6 +108,7 @@ public protocol APIRequestable {
     var query: [APIQueryItem] { get }
     /** If `form` property is set, then the `body` property is ignored. */
     var form: APIFormData? { get }
+    var isFormRequest: Bool { get }
     /** Only used if `form` property is `nil`. */
     var body: Body? { get }
     var cachePolicy: URLRequest.CachePolicy { get }
@@ -140,6 +141,7 @@ extension APIRequestable {
     public var form: APIFormData? {
         return nil
     }
+    public var isFormRequest: Bool { form != nil }
     public var body: Body? {
         return nil
     }

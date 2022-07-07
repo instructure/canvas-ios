@@ -35,6 +35,10 @@ public typealias APIFormData = [(key: String, value: APIFormDatum)]
 
 extension APIFormData {
 
+    /**
+     Encodes the form data into a file.
+     - returns: The URL of the file where form data was written to.
+     */
     public func encode(using boundary: String) throws -> URL {
         let tempFileURL = URL.temporaryDirectory.appendingPathComponent(UUID.string)
         guard FileManager.default.createFile(atPath: tempFileURL.path, contents: nil),

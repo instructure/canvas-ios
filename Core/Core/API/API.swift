@@ -115,16 +115,21 @@ public class API {
 
     @discardableResult
     public func uploadTask<Request: APIRequestable>(_ requestable: Request) throws -> APITask {
-        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
-        let url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+        let boundary = UUID.string
+        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID, skipBodyCreation: requestable.isFormRequest, boundary: boundary)
+
         #if DEBUG
-        print("uploading", url, "to", request.url ?? "")
         if API.shouldMock(request) {
             return MockAPITask(self, request: request)
         }
         #endif
-        try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
-        return urlSession.uploadTask(with: request, fromFile: url)
+
+        if let form = requestable.form {
+            let bodyFileURL: URL = try form.encode(using: boundary) // TODO: delete this file after upload completes
+            return urlSession.uploadTask(with: request, fromFile: bodyFileURL)
+        } else {
+            return urlSession.uploadTask(with: request, from: request.httpBody ?? Data())
+        }
     }
 
     func refreshToken() {
