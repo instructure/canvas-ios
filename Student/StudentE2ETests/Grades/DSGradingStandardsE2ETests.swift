@@ -20,6 +20,7 @@ import TestsFoundation
 
 class DSGradingStandardsE2ETests: E2ETestCase {
     func testGradingStandardsE2E() {
+        // Testing
         // Seed the usual stuff with 2 assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
