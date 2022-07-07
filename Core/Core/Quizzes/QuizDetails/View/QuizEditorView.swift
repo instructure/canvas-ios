@@ -36,6 +36,8 @@ public struct QuizEditorView: View {
     @State var pointsPossible: Double?
     @State var published: Bool = false
 
+    @State var quizAttributes: QuizAttributes?
+
     @State var isLoading = true
     @State var isLoaded = false
     @State var isSaving = false
@@ -121,6 +123,22 @@ public struct QuizEditorView: View {
                     .frame(height: max(200, rceHeight))
             }
 
+            if let attributes = quizAttributes?.attributes {
+                /*Toggle(isOn: $atributes[0]) { Text("Publish", bundle: .core) }
+                    .font(.semibold16).foregroundColor(.textDarkest)
+                    .padding(16)
+                    .disabled(isFrontPage)
+                    .identifier("PageEditor.publishedToggle")*/
+                Divider()
+                ForEach(attributes) { attribute in
+                    HStack(spacing: 4) {
+                        Text(attribute.id).font(.semibold16)
+                        Text(attribute.value)
+                    }
+                }
+            }
+
+
             EditorSection(label: Text("Options", bundle: .core)) {
                 DoubleFieldRow(
                     label: Text("Points", bundle: .core),
@@ -181,7 +199,6 @@ public struct QuizEditorView: View {
         useCase.fetch(force: true) { _, _, fetchError in performUIUpdate {
             quiz = env.database.viewContext.fetch(scope: useCase.scope).first
             assignmentID = quiz?.assignmentID
-            //TODO quiz only attributes
             alert = fetchError.map { .error($0) }
             loadAssignment()
         } }
@@ -199,6 +216,10 @@ public struct QuizEditorView: View {
             overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
             pointsPossible = assignment?.pointsPossible
             published = assignment?.published == true
+
+            if let quiz = quiz, let assignment = assignment {
+                quizAttributes = QuizAttributes(quiz: quiz, assignment: assignment)
+            }
 
             isLoading = false
             isLoaded = true
