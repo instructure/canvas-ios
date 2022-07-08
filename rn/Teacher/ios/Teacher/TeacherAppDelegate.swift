@@ -252,6 +252,10 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         environment.router.show(safari, from: from, options: .modal())
     }
 
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
+
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
         setup(session: session)
