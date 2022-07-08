@@ -59,6 +59,14 @@ public class HelmNavigationController: UINavigationController {
 
 extension HelmNavigationController: UIGestureRecognizerDelegate {
 
+    /**
+     We only want the pop navigation gesture to work when there are multiple view controllers in the stack.
+     Enabling it on the root view when it also have a swipe gesture setup causes a weird screen freeze issue.
+     */
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        viewControllers.count != 1
+    }
+
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
