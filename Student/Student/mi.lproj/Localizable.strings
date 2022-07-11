@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Tāpiri ngā kaiwhiwhi";
 
-/* No comment provided by engineer. */
-"All" = "Katoa";
-
 /* Button to select all members of a group */
 "All members" = "Ngā mema katoa";
 
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Kōwhiri Ataata";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Tātari mārama";
 
 /* No comment provided by engineer. */
 "Close" = "Katia";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ngā kōnae (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Tātari";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Tātari ī:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Kua oti te tikiake";
