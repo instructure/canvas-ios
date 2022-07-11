@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Thêm người nhận";
 
-/* No comment provided by engineer. */
-"All" = "Tất Cả";
-
 /* Button to select all members of a group */
 "All members" = "Tất cả thành viên";
 
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Chọn Video";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Bỏ bộ lọc";
 
 /* No comment provided by engineer. */
 "Close" = "Đóng";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Các Tập Tin (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Lọc";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Lọc theo:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Đã hoàn thành tải xuống";

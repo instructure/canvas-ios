@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "添加收件人";
 
-/* No comment provided by engineer. */
-"All" = "全部";
-
 /* Button to select all members of a group */
 "All members" = "全体成员";
 
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "选择视频";
-
-/* No comment provided by engineer. */
-"Clear filter" = "清除筛选条件";
 
 /* No comment provided by engineer. */
 "Close" = "关闭";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "文件(%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "筛选器";
-
-/* No comment provided by engineer. */
-"Filter by:" = "筛选条件：";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "完成下载";
