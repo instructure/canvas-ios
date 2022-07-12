@@ -27,6 +27,10 @@ public class TestLoginDelegate: LoginDelegate {
         externalURL = url
     }
 
+    public func openExternalURLinSafari(_ url: URL) {
+        externalURL = url
+    }
+
     public var session: LoginSession?
     public func userDidLogin(session: LoginSession) {
         self.session = session

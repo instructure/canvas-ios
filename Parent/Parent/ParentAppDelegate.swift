@@ -180,6 +180,10 @@ extension ParentAppDelegate: LoginDelegate {
         }
     }
 
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
+
     func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
         let controller = CoreWebViewController(invertColorsInDarkMode: true)
         controller.isInteractionLimited = true
