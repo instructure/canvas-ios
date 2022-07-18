@@ -28,8 +28,6 @@ enum FileUploaderError: Error {
 
 open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
-    public typealias Store = Core.Store<LocalUseCase<File>>
-
     public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
 
     public let identifier: String
@@ -94,18 +92,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return newURL
     }
 
-    public func subscribe(batchID: String, eventHandler: @escaping Store.EventHandler) -> Store {
-        let scope = Scope(predicate: filesPredicate(batchID: batchID), order: [NSSortDescriptor(key: #keyPath(File.size), ascending: true)])
-        let useCase = LocalUseCase<File>(scope: scope)
-        return Store(env: environment, database: database, useCase: useCase, eventHandler: eventHandler)
-    }
-
-    private func filesPredicate(batchID: String) -> NSPredicate {
-        let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
-        let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
-        return NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
-    }
-
     public func isUploading(completionHandler: @escaping (Bool) -> Void) {
         if let validSession = validSession {
             validSession.getAllTasks { tasks in
@@ -136,10 +122,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     open func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         context.performAndWait {
-            let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
-            let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
-            let files: [File] = context.fetch(predicate)
+            let files: [File] = context.fetch(filesPredicate(batchID: batchID))
             for file in files {
                 upload(file: file, to: uploadContext, callback: callback)
             }
@@ -289,12 +272,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             context.delete(files)
             try? context.save()
         }
-    }
-
-    private func predicate(userID: String, batchID: String) -> NSPredicate {
-        let user = NSPredicate(format: "%K == %@", #keyPath(File.userID), userID)
-        let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
-        return NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
     }
 
     /**
