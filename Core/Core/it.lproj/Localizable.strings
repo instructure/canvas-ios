@@ -200,6 +200,9 @@
 "Anyone" = "Chiunque";
 
 /* No comment provided by engineer. */
+"Appearance" = "Aspetto";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilità appuntamento";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Tema scuro";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Tema scuro";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Tema chiaro";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Tema chiaro";
 
 /* like action */
 "Like" = "Mi piace";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Impostazioni sistema";
+
+/* No comment provided by engineer. */
+"System Settings" = "Impostazioni sistema";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Assistente";

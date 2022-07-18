@@ -200,6 +200,9 @@
 "Anyone" = "أي شخص";
 
 /* No comment provided by engineer. */
+"Appearance" = "المظهر";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "توفر الموعد";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "النسق الداكن";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "النسق الداكن";
 
 /* No comment provided by engineer. */
 "Dashboard" = "لوحة المعلومات";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "النسق الفاتح";
+
+/* No comment provided by engineer. */
+"Light Theme" = "النسق الفاتح";
 
 /* like action */
 "Like" = "إعجاب";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "إعدادات النظام";
+
+/* No comment provided by engineer. */
+"System Settings" = "إعدادات النظام";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "مساعد المعلم";

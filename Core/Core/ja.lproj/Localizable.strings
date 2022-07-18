@@ -200,6 +200,9 @@
 "Anyone" = "全員";
 
 /* No comment provided by engineer. */
+"Appearance" = "外観";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "予約利用可能性";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "ダークテーマ";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "ダークテーマ";
 
 /* No comment provided by engineer. */
 "Dashboard" = "ダッシュボード";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "ライトテーマ";
+
+/* No comment provided by engineer. */
+"Light Theme" = "ライトテーマ";
 
 /* like action */
 "Like" = "いいね！";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "システム設定";
+
+/* No comment provided by engineer. */
+"System Settings" = "システム設定";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

@@ -200,6 +200,9 @@
 "Anyone" = "Nenpòt";
 
 /* No comment provided by engineer. */
+"Appearance" = "Aparans";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilite Randevou";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Tèm fonse";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Tèm Sonm";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Tablo";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Tèm klere";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Tèm Klè";
 
 /* like action */
 "Like" = "Jèm";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Paramèt sistèm";
+
+/* No comment provided by engineer. */
+"System Settings" = "Paramèt Sistèm";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

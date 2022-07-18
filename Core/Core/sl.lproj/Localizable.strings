@@ -200,6 +200,9 @@
 "Anyone" = "Kdor koli";
 
 /* No comment provided by engineer. */
+"Appearance" = "Videz";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Objave novih sestankov";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Temna preobleka";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Temna preobleka";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Preglednica";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Svetla preobleka";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Svetla preobleka";
 
 /* like action */
 "Like" = "Všeček";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Sistemske nastavitve";
+
+/* No comment provided by engineer. */
+"System Settings" = "Sistemske nastavitve";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Demonstrator";

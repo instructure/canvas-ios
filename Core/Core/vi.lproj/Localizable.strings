@@ -200,6 +200,9 @@
 "Anyone" = "Bất Kỳ Ai";
 
 /* No comment provided by engineer. */
+"Appearance" = "Ngoại Hình";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Độ Khả Dụng Cuộc Họp Theo Lịch";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Chủ đề tối";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Chủ Đề Tối";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Bảng Điều Khiển";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Chủ đề sáng";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Chủ Đề Sáng";
 
 /* like action */
 "Like" = "Thích";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Cài đặt hệ thống";
+
+/* No comment provided by engineer. */
+"System Settings" = "Cài Đặt Hệ Thống";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Trợ Giảng";

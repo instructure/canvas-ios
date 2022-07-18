@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "‘Prazo de entrega’ deve estar entre as datas ‘Disponível a partir de’ e ‘Disponível até’"
   },
+  "due_dates_520a6c08": {
+    "message": "Prazos de entrega"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Prazos de entrega, toque duas vezes para detalhes."
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "Assunto"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Configurações de envio"
   },
   "submissions_11e96106": {
     "message": "Envios"

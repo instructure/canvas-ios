@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "“截止日期”必须在“起始可用日期”与“截止可用日期”之间"
   },
+  "due_dates_520a6c08": {
+    "message": "截止日期"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "截止日期，双击可显示详情。"
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "主题"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "提交设置"
   },
   "submissions_11e96106": {
     "message": "提交项"

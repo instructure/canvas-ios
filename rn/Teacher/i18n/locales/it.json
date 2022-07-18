@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "La “Data di scadenza” deve essere compresa tra le date ''Disponibile da'' e ''Disponibile fino a”"
   },
+  "due_dates_520a6c08": {
+    "message": "Date di scadenza"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Date di scadenza. Tocca due volte per visualizzare i dettagli."
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "Oggetto"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Impostazioni invio"
   },
   "submissions_11e96106": {
     "message": "Consegne"

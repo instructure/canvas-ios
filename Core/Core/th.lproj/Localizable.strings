@@ -200,6 +200,9 @@
 "Anyone" = "ทุกคน";
 
 /* No comment provided by engineer. */
+"Appearance" = "ลักษณะภายนอก";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "ความพร้อมตามนัดหมาย";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "ธีมมืด";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "ธีมมืด";
 
 /* No comment provided by engineer. */
 "Dashboard" = "แผงข้อมูล";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "ธีมสว่าง";
+
+/* No comment provided by engineer. */
+"Light Theme" = "ธีมสว่าง";
 
 /* like action */
 "Like" = "กดไลค์";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "ค่าปรับตั้งระบบ";
+
+/* No comment provided by engineer. */
+"System Settings" = "ค่าปรับตั้งระบบ";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

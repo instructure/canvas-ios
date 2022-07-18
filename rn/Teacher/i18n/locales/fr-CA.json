@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "« Date d'échéance » doit être comprise entre « disponible à partir de » et « disponible jusqu’au »"
   },
+  "due_dates_520a6c08": {
+    "message": "Dates d'échéance"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Dates d'échéance, appuyez deux fois pour plus de détails."
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "Sujet"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Paramètres d’envoi"
   },
   "submissions_11e96106": {
     "message": "Soumissions"

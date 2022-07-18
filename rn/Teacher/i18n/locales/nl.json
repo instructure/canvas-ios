@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "'Inleverdatum' moet liggen tussen de datums voor 'Beschikbaar vanaf' en 'Beschikbaar tot'"
   },
+  "due_dates_520a6c08": {
+    "message": "Inleverdatums"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Vervaldata, voor details dubbelklikken."
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "Vak"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Instellingen voor inleveren"
   },
   "submissions_11e96106": {
     "message": "Inleveringen"

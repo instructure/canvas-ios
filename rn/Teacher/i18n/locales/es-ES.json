@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "La “Fecha de entrega” debe estar entre las fechas '“Disponible desde” y “Disponible hasta”"
   },
+  "due_dates_520a6c08": {
+    "message": "Fechas de entrega"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Fechas de entrega, toca dos veces para ver los detalles"
   },
