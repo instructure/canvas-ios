@@ -106,7 +106,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     @discardableResult
-    public func add(url: URL, batchID: String? = nil) throws -> File {
+    public func add(url: URL, batchID: String) throws -> File {
         let file: File = viewContext.insert()
         let uploadURL = try self.uploadURL(url)
         file.filename = url.lastPathComponent
@@ -129,7 +129,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    open func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+    open func upload(url: URL, batchID: String, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         context.performAndWait {
             guard let file = try? add(url: url, batchID: batchID) else { return }
             upload(file: file, to: uploadContext, folderPath: folderPath, callback: callback)

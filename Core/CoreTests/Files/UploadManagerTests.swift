@@ -117,7 +117,7 @@ class UploadManagerTests: CoreTestCase {
     func testUploadURL() throws {
         let mock = mockUpload(fileURL: url, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext))
         mock.suspend()
-        manager.upload(url: url, to: uploadContext)
+        manager.upload(url: url, batchID: "testBatchID", to: uploadContext)
         XCTAssertEqual(mock.queue.first?.state, .running)
     }
 
@@ -134,7 +134,7 @@ class UploadManagerTests: CoreTestCase {
 
     func testSessionTaskDidCompleteWithUpload() throws {
         LoginSession.add(currentSession)
-        let file = try manager.add(url: url)
+        let file = try manager.add(url: url, batchID: "testBatchID")
         file.taskID = "1"
         try context.save()
         XCTAssertTrue(file.isUploading)
