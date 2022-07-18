@@ -59,7 +59,7 @@ class UploadManagerTests: CoreTestCase {
             .temporaryDirectory
             .appendingPathComponent("uploads/default/")
             .appendingPathComponent(url.lastPathComponent)
-        XCTAssertEqual(try manager.uploadURL(url), expected)
+        XCTAssertEqual(try manager.copyFileToSharedContainer(url), expected)
     }
 
     func testUploadURLSharedContainer() throws {
@@ -69,7 +69,7 @@ class UploadManagerTests: CoreTestCase {
             .appendingPathComponent("uploads/shared/")
             .appendingPathComponent(url.lastPathComponent)
         let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
-        XCTAssertEqual(try manager.uploadURL(url), expected)
+        XCTAssertEqual(try manager.copyFileToSharedContainer(url), expected)
     }
 
     func testAddAndSubscribe() throws {

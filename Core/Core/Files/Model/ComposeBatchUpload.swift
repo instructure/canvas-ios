@@ -20,7 +20,11 @@ import CoreData
 
 extension UploadManager {
 
-    public func uploadURL(_ url: URL) throws -> URL {
+    /**
+     Copies the file at `url` to the background session's shared container (or if not available then to the temp directory).
+     - returns: The new url of the file.
+     */
+    public func copyFileToSharedContainer(_ url: URL) throws -> URL {
         let dir: URL
         if let containerID = backgroundSession.configuration.sharedContainerIdentifier, let container = URL.sharedContainer(containerID) {
             dir = container
@@ -42,7 +46,7 @@ extension UploadManager {
     @objc
     public func add(url: URL, batchID: String) throws -> File {
         let file: File = viewContext.insert()
-        let uploadURL = try self.uploadURL(url)
+        let uploadURL = try self.copyFileToSharedContainer(url)
         file.filename = url.lastPathComponent
         file.localFileURL = uploadURL
         file.batchID = batchID
