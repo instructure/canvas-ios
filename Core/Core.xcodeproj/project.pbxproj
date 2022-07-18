@@ -3039,22 +3039,8 @@
 		7D08B1D02371E9C70075623A /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				7D82DB352374A78700C699B8 /* FileDetails */,
-				7DBA77C424F9BE2600B4D6B3 /* FileEditor */,
-				7DBA77C324F9BE1D00B4D6B3 /* FileList */,
-				7D2E82832270BB7600735854 /* FilePicker */,
-				9FD504E52180BE1300B395BA /* APIFile.swift */,
-				CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */,
-				9FD504EB2180BF1A00B395BA /* File.swift */,
-				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
-				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
-				7D630B6E24A511120039A45D /* Folder.swift */,
-				7D08B1D6237207460075623A /* GetFile.swift */,
-				7D630B7024A52C050039A45D /* GetFolders.swift */,
-				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
-				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
-				7D8E265A24A1026E00A678E7 /* UsageRights.swift */,
-				B1B6F070219A1F2800C1575D /* UTI.swift */,
+				CF3E76002885619800276703 /* Model */,
+				CF3E76032885624900276703 /* View */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -3062,18 +3048,9 @@
 		7D08B1D5237205C00075623A /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				7D82DB362374A80200C699B8 /* FileDetails */,
-				7D89A2CC250A8052009D0FD2 /* FileEditor */,
-				7D3A0D3025016EF8000C6F42 /* FileList */,
-				B1B42C1422403AE90087399A /* FilePicker */,
-				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
-				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
-				7DC7047524ABF6D800CD1C46 /* FolderTests.swift */,
-				7D08B1D82372084B0075623A /* GetFileTests.swift */,
-				7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */,
-				B14B70562294758600B568D6 /* UploadFileCommentTests.swift */,
+				CF3E76042885720D00276703 /* Model */,
+				CF3E76052885721300276703 /* View */,
 				B1B42C1522403AFD0087399A /* UploadManagerTests.swift */,
-				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -4569,6 +4546,93 @@
 				CF37631C2837B98900F25B81 /* DashboardInvitationNameTests.swift */,
 			);
 			path = Invitations;
+			sourceTree = "<group>";
+		};
+		CF3E76002885619800276703 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E7601288561A500276703 /* API */,
+				CF3E7602288561B000276703 /* Entities */,
+				CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */,
+				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF3E7601288561A500276703 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9FD504E52180BE1300B395BA /* APIFile.swift */,
+				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
+				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
+				7D08B1D6237207460075623A /* GetFile.swift */,
+				7D630B7024A52C050039A45D /* GetFolders.swift */,
+				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		CF3E7602288561B000276703 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9FD504EB2180BF1A00B395BA /* File.swift */,
+				7D630B6E24A511120039A45D /* Folder.swift */,
+				7D8E265A24A1026E00A678E7 /* UsageRights.swift */,
+				B1B6F070219A1F2800C1575D /* UTI.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		CF3E76032885624900276703 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D82DB352374A78700C699B8 /* FileDetails */,
+				7DBA77C424F9BE2600B4D6B3 /* FileEditor */,
+				7DBA77C324F9BE1D00B4D6B3 /* FileList */,
+				7D2E82832270BB7600735854 /* FilePicker */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF3E76042885720D00276703 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E76062885722F00276703 /* API */,
+				CF3E76072885723500276703 /* Entities */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF3E76052885721300276703 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D82DB362374A80200C699B8 /* FileDetails */,
+				7D89A2CC250A8052009D0FD2 /* FileEditor */,
+				7D3A0D3025016EF8000C6F42 /* FileList */,
+				B1B42C1422403AE90087399A /* FilePicker */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF3E76062885722F00276703 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
+				7D08B1D82372084B0075623A /* GetFileTests.swift */,
+				7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */,
+				B14B70562294758600B568D6 /* UploadFileCommentTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		CF3E76072885723500276703 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
+				7DC7047524ABF6D800CD1C46 /* FolderTests.swift */,
+				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		CF43DE8027CCD6A800015B6F /* Pandas */ = {
