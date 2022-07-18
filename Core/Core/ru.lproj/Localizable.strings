@@ -200,6 +200,9 @@
 "Anyone" = "Все";
 
 /* No comment provided by engineer. */
+"Appearance" = "Представление";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Доступность регистрации";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Темная тема";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Темная тема";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Информационная панель";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Светлая тема";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Светлая тема";
 
 /* like action */
 "Like" = "Мне нравится";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Системные настройки";
+
+/* No comment provided by engineer. */
+"System Settings" = "Системные настройки";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

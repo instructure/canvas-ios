@@ -200,6 +200,9 @@
 "Anyone" = "Hvem som helst";
 
 /* No comment provided by engineer. */
+"Appearance" = "Utseende";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tilgjengelighet for avtaler";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Mørkt tema";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Mørkt tema";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashbord";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Lyst tema";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Lyst tema";
 
 /* like action */
 "Like" = "Like";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Systeminnstillinger";
+
+/* No comment provided by engineer. */
+"System Settings" = "Systeminnstillinger";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "LA";

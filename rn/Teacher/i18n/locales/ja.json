@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "'期日'は '利用可能初日'と '利用可能最終日'の間の日付である必要があります"
   },
+  "due_dates_520a6c08": {
+    "message": "期日"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "期限、詳細をダブルタップしてください。"
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "件名"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "投稿の設定"
   },
   "submissions_11e96106": {
     "message": "提出物"

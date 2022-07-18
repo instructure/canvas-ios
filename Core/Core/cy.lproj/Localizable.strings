@@ -200,6 +200,9 @@
 "Anyone" = "Unrhyw un";
 
 /* No comment provided by engineer. */
+"Appearance" = "Ymddangdosiad";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Apwyntiadau ar gael";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Thema dywyll";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Thema Dywyll";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dangosfwrdd";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Thema golau";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Thema Olau";
 
 /* like action */
 "Like" = "Yn hoffi";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Gosodiadau system";
+
+/* No comment provided by engineer. */
+"System Settings" = "Gosodiadau System";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Cynorthwyydd Dysgu";

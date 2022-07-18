@@ -200,6 +200,9 @@
 "Anyone" = "Iedereen";
 
 /* No comment provided by engineer. */
+"Appearance" = "Uiterlijk";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Beschikbaarheid voor afspraak";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Donker thema";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Donker thema";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Licht thema";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Licht thema";
 
 /* like action */
 "Like" = "Like";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Systeeminstellingen";
+
+/* No comment provided by engineer. */
+"System Settings" = "Systeeminstellingen";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Onderwijsassistent";
