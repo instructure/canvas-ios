@@ -845,6 +845,7 @@
 		CF37631F2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */; };
 		CF376323283B757600F25B81 /* AssignmentGroupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
+		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF43DE7927B5611400015B6F /* SafeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7827B5611400015B6F /* SafeURL.swift */; };
 		CF43DE7B27B5667100015B6F /* SafeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7A27B5667100015B6F /* SafeURLTests.swift */; };
 		CF43DE7D27BE3C8200015B6F /* DashboardLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */; };
@@ -2248,6 +2249,7 @@
 		CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationViewModelTests.swift; sourceTree = "<group>"; };
 		CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroupViewModelTests.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
+		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF43DE7827B5611400015B6F /* SafeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURL.swift; sourceTree = "<group>"; };
 		CF43DE7A27B5667100015B6F /* SafeURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURLTests.swift; sourceTree = "<group>"; };
 		CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardLayoutViewModel.swift; sourceTree = "<group>"; };
@@ -4558,6 +4560,7 @@
 				CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */,
 				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
 				CF3E76082885967B00276703 /* FileUploadObservation.swift */,
+				CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6969,6 +6972,7 @@
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
+				CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */,
 				CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* SideMenuTransitioning.swift in Sources */,

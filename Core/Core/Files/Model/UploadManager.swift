@@ -77,21 +77,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 
-    public func uploadURL(_ url: URL) throws -> URL {
-        let dir: URL
-        if let containerID = backgroundSession.configuration.sharedContainerIdentifier, let container = URL.sharedContainer(containerID) {
-            dir = container
-        } else {
-            dir = URL.temporaryDirectory
-        }
-        let newURL = dir
-            .appendingPathComponent("uploads", isDirectory: true)
-            .appendingPathComponent(UUID.string, isDirectory: true)
-            .appendingPathComponent(url.lastPathComponent)
-        try url.copy(to: newURL)
-        return newURL
-    }
-
     public func isUploading(completionHandler: @escaping (Bool) -> Void) {
         if let validSession = validSession {
             validSession.getAllTasks { tasks in
@@ -103,21 +88,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         } else {
             completionHandler(false)
         }
-    }
-
-    @discardableResult
-    public func add(url: URL, batchID: String) throws -> File {
-        let file: File = viewContext.insert()
-        let uploadURL = try self.uploadURL(url)
-        file.filename = url.lastPathComponent
-        file.localFileURL = uploadURL
-        file.batchID = batchID
-        file.size = uploadURL.lookupFileSize()
-        if let session = environment.currentSession {
-            file.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
-        }
-        try viewContext.save()
-        return file
     }
 
     open func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
@@ -230,19 +200,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     // MARK: -
-
-    func delete(userID: String, batchID: String) {
-        Logger.shared.log()
-        context.performAndWait {
-            let files: [File] = context.fetch(predicate(userID: userID, batchID: batchID))
-            for file in files {
-                guard let url = file.localFileURL else { continue }
-                try? FileManager.default.removeItem(at: url)
-            }
-            context.delete(files)
-            try? context.save()
-        }
-    }
 
     open func cancel(file: File) {
         Logger.shared.log()
@@ -357,7 +314,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         ])
                     }
                     if let userID = file.userID, let batchID = file.batchID {
-                        self.delete(userID: userID, batchID: batchID)
+                        self.delete(userID: userID, batchID: batchID, in: self.context)
                     }
                     Analytics.shared.logEvent("submit_fileupload_succeeded")
                     self.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
