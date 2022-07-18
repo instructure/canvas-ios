@@ -130,7 +130,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     self.context.performAndWait {
                         defer { callback?() }
                         guard let file = try? self.context.existingObject(with: objectID) as? File else {
-                            return self.sendFailedNotification()
+                            return self.notificationManager.sendFailedNotification()
                         }
                         guard let target = response, error == nil else {
                             return self.complete(file: file, error: error)
@@ -317,7 +317,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         self.delete(userID: userID, batchID: batchID, in: self.context)
                     }
                     Analytics.shared.logEvent("submit_fileupload_succeeded")
-                    self.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                    self.notificationManager.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                 }
             }
             semaphore.wait()
@@ -358,35 +358,11 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             try? context.save()
             if error != nil {
                 if case let .submission(courseID, assignmentID, _)? = file.context {
-                    sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+                    notificationManager.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {
-                    sendFailedNotification()
+                    notificationManager.sendFailedNotification()
                 }
             }
         }
-    }
-
-    private func sendFailedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
-        let identifier = "failed-submission-\(courseID)-\(assignmentID)"
-        let route = "/courses/\(courseID)/assignments/\(assignmentID)"
-        let title = NSString.localizedUserNotificationString(forKey: "Assignment submission failed!", arguments: nil)
-        let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with an assignment submission.", arguments: nil)
-        notificationManager.notify(identifier: identifier, title: title, body: body, route: route)
-    }
-
-    private func sendCompletedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
-        let identifier = "completed-submission-\(courseID)-\(assignmentID)"
-        let route = "/courses/\(courseID)/assignments/\(assignmentID)"
-        let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)
-        let body = NSString.localizedUserNotificationString(forKey: "Your files were uploaded and the assignment was submitted successfully.", arguments: nil)
-        notificationManager.notify(identifier: identifier, title: title, body: body, route: route)
-    }
-
-    public func sendFailedNotification() {
-        let title = NSString.localizedUserNotificationString(forKey: "Failed to send files!", arguments: nil)
-        let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with uploading files.", arguments: nil)
-        notificationManager.notify(identifier: "upload-manager", title: title, body: body, route: nil)
     }
 }

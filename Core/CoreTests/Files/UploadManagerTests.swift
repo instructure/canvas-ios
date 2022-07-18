@@ -210,7 +210,7 @@ class UploadManagerTests: CoreTestCase {
     }
 
     func testFailedNotification() throws {
-        manager.sendFailedNotification()
+        manager.notificationManager.sendFailedNotification()
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Failed to send files!")
