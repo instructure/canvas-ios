@@ -124,34 +124,38 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.bytesSent = 0
                 try context.save()
                 Analytics.shared.logEvent("submit_fileupload_info", parameters: ["size": file.size])
-                let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: file.size)
-                let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
-                environment.api.makeRequest(request) { response, _, error in
-                    self.context.performAndWait {
-                        defer { callback?() }
-                        guard let file = try? self.context.existingObject(with: objectID) as? File else {
-                            return self.notificationManager.sendFailedNotification()
-                        }
-                        guard let target = response, error == nil else {
-                            return self.complete(file: file, error: error)
-                        }
-                        do {
-                            file.size = url.lookupFileSize()
-                            let request = PostFileUploadRequest(fileURL: url, target: target)
-                            let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
-                            var task = try api.uploadTask(request)
-                            file.taskID = UUID.string
-                            task.taskID = file.taskID
-                            try self.context.save()
-                            task.resume()
-                        } catch let error {
-                            self.complete(file: file, error: error)
-                        }
-                    }
-                }
+                requestFileUpload(fileURL: url, uploadContext: uploadContext, fileSize: file.size, fileObjectID: objectID, callback: callback)
             } catch {
                 complete(file: file, error: error)
                 callback?()
+            }
+        }
+    }
+
+    private func requestFileUpload(fileURL url: URL, uploadContext: FileUploadContext, fileSize: Int, fileObjectID: NSManagedObjectID, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+        let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: fileSize)
+        let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
+        environment.api.makeRequest(request) { response, _, error in
+            self.context.performAndWait {
+                defer { callback?() }
+                guard let file = try? self.context.existingObject(with: fileObjectID) as? File else {
+                    return self.notificationManager.sendFailedNotification()
+                }
+                guard let target = response, error == nil else {
+                    return self.complete(file: file, error: error)
+                }
+                do {
+                    file.size = url.lookupFileSize()
+                    let request = PostFileUploadRequest(fileURL: url, target: target)
+                    let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
+                    var task = try api.uploadTask(request)
+                    file.taskID = UUID.string
+                    task.taskID = file.taskID
+                    try self.context.save()
+                    task.resume()
+                } catch let error {
+                    self.complete(file: file, error: error)
+                }
             }
         }
     }
