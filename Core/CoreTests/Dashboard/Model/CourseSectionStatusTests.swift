@@ -55,6 +55,9 @@ class CourseSectionStatusTests: CoreTestCase {
 
         XCTAssertTrue(testee.isAllSectionsExpired(in: course))
         XCTAssertTrue(testee.isAllSectionsExpired(for: dashboardCard, in: [course]))
+
+        let noSectionCourse = Course.make(from: .make(id: "course_2", sections: nil))
+        XCTAssertFalse(testee.isAllSectionsExpired(in: noSectionCourse))
     }
 
     func testExpiredSectionAndActiveSectionWithoutEndDate() {
