@@ -127,7 +127,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         guard let file = files.first else {
             if let error = files.error {
                 // If file download failed because of unauthorization error and we have a verifier token, then we modify the url and try to open the file in a webview.
-                if var url = originURL, url.containsVerifier {
+                if var url = originURL, url.containsVerifier, case .unauthorized = (error as? APIError) {
                     if !url.path.hasSuffix("download") {
                         url.path.append("/download")
                         url.queryItems?.append(URLQueryItem(name: "download_frd", value: "1"))
