@@ -19,36 +19,27 @@
 import SwiftUI
 
 public struct QuizEditorView: View {
-    let courseID: String
-    let quizID: String?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @State var assignmentID: String?
-    @State var assignment: Assignment?
+    @ObservedObject private var viewModel: QuizEditorViewModel
+
     @State var quiz: Quiz?
     @State var canUnpublish: Bool = true
     @State var description: String = ""
     @State var gradingType: GradingType = .points
-    @State var name: String = ""
+    @State var title: String = ""
     @State var overrides: [AssignmentOverridesEditor.Override] = []
     @State var pointsPossible: Double?
     @State var published: Bool = false
 
-    @State var quizAttributes: QuizAttributes?
-
-    @State var isLoading = true
-    @State var isLoaded = false
-    @State var isSaving = false
-    @State var isTeacher = false
     @State var rceHeight: CGFloat = 60
     @State var rceCanSubmit = false
     @State var alert: AlertItem?
 
-    public init(courseID: String, quizID: String) {
-        self.courseID = courseID
-        self.quizID = quizID
+    public init(viewModel: QuizEditorViewModel) {
+        self.viewModel = viewModel
     }
 
     public var body: some View {
@@ -65,7 +56,7 @@ public struct QuizEditorView: View {
                 Button(action: save, label: {
                     Text("Done", bundle: .core).bold()
                 })
-                    .disabled(isLoading || isSaving)
+                .disabled(viewModel.state != .ready)
                     .identifier("AssignmentEditor.doneButton")
             })
 
@@ -78,7 +69,7 @@ public struct QuizEditorView: View {
                 }
             }
 
-            .onAppear(perform: load)
+            //.onAppear(perform: load) is this necessary?
     }
 
     enum AlertItem: Identifiable {
@@ -96,10 +87,10 @@ public struct QuizEditorView: View {
     }
 
     var form: some View {
-        EditorForm(isSpinning: isLoading || isSaving) {
+        EditorForm(isSpinning: viewModel.state != .ready) {
             EditorSection(label: Text("Title", bundle: .core)) {
                 CustomTextField(placeholder: Text("Add Title", bundle: .core),
-                                text: $name,
+                                text: $viewModel.title,
                                 identifier: "QuizEditor.titleField",
                                 accessibilityLabel: Text("Title", bundle: .core))
             }
@@ -109,8 +100,8 @@ public struct QuizEditorView: View {
                     placeholder: NSLocalizedString("Add description", comment: ""),
                     a11yLabel: NSLocalizedString("Description", comment: ""),
                     html: $description,
-                    context: .course(courseID),
-                    uploadTo: .context(.course(courseID)),
+                    context: .course(viewModel.courseID),
+                    uploadTo: .context(.course(viewModel.courseID)),
                     height: $rceHeight,
                     canSubmit: $rceCanSubmit,
                     error: Binding(get: {
@@ -122,22 +113,6 @@ public struct QuizEditorView: View {
                 )
                     .frame(height: max(200, rceHeight))
             }
-
-            if let attributes = quizAttributes?.attributes {
-                /*Toggle(isOn: $atributes[0]) { Text("Publish", bundle: .core) }
-                    .font(.semibold16).foregroundColor(.textDarkest)
-                    .padding(16)
-                    .disabled(isFrontPage)
-                    .identifier("PageEditor.publishedToggle")*/
-                Divider()
-                ForEach(attributes) { attribute in
-                    HStack(spacing: 4) {
-                        Text(attribute.id).font(.semibold16)
-                        Text(attribute.value)
-                    }
-                }
-            }
-
 
             EditorSection(label: Text("Options", bundle: .core)) {
                 DoubleFieldRow(
@@ -178,8 +153,8 @@ public struct QuizEditorView: View {
             }
 
             AssignmentOverridesEditor(
-                courseID: courseID,
-                groupCategoryID: assignment?.groupCategoryID,
+                courseID: viewModel.courseID,
+                groupCategoryID: viewModel.assignment?.groupCategoryID,
                 overrides: $overrides,
                 toRemove: Binding(get: {
                     if case .removeOverride(let override) = alert {
@@ -193,40 +168,9 @@ public struct QuizEditorView: View {
         }
     }
 
-    func load() {
-        guard !isLoaded, let quizID = quizID else { return }
-        let useCase = GetQuiz(courseID: courseID, quizID: quizID)
-        useCase.fetch(force: true) { _, _, fetchError in performUIUpdate {
-            quiz = env.database.viewContext.fetch(scope: useCase.scope).first
-            assignmentID = quiz?.assignmentID
-            alert = fetchError.map { .error($0) }
-            loadAssignment()
-        } }
+    func save() {
     }
-
-    func loadAssignment() {
-        guard !isLoaded, let assignmentID = assignmentID else { return }
-        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
-        useCase.fetch(force: true) { _, _, fetchError in performUIUpdate {
-            assignment = env.database.viewContext.fetch(scope: useCase.scope).first
-            canUnpublish = assignment?.canUnpublish == true
-            description = assignment?.details ?? ""
-            gradingType = assignment?.gradingType ?? .points
-            name = assignment?.name ?? ""
-            overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
-            pointsPossible = assignment?.pointsPossible
-            published = assignment?.published == true
-
-            if let quiz = quiz, let assignment = assignment {
-                quizAttributes = QuizAttributes(quiz: quiz, assignment: assignment)
-            }
-
-            isLoading = false
-            isLoaded = true
-            alert = fetchError.map { .error($0) }
-        } }
-    }
-
+/*
     func save() {
         controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
@@ -238,7 +182,7 @@ public struct QuizEditorView: View {
             assignment.gradingType != gradingType ||
             assignment.pointsPossible != pointsPossible ||
             assignment.published != published ||
-            assignment.name != name ||
+            assignment.name != title ||
             originalOverrides != overrides
         else {
             isSaving = false
@@ -252,7 +196,7 @@ public struct QuizEditorView: View {
             dueAt: dueAt,
             gradingType: gradingType,
             lockAt: lockAt,
-            name: name,
+            name: title,
             overrides: originalOverrides == overrides ? nil : apiOverrides,
             pointsPossible: pointsPossible,
             published: published,
@@ -267,4 +211,5 @@ public struct QuizEditorView: View {
             }
         } }
     }
+ */
 }

@@ -25,11 +25,13 @@ public class QuizDetailsViewModel: ObservableObject {
         case error
         case data(T, U)
     }
+
     @Environment(\.appEnvironment) private var env
-    public let quizID: String
-    public let courseID: String
     @Published public private(set) var state: ViewModelState<Quiz, Assignment> = .loading
     @Published public private(set) var courseColor: UIColor?
+
+    public let quizID: String
+    public let courseID: String
 
     public var title: String { NSLocalizedString("Quiz Details", comment: "") }
     public var subtitle: String { course.first?.name ?? "" }
@@ -46,6 +48,7 @@ public class QuizDetailsViewModel: ObservableObject {
     private lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.didUpdate()
     }
+
     private var assignment: Assignment?
 
     public init(courseID: String, quizID: String) {

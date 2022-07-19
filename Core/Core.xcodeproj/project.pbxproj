@@ -1071,6 +1071,7 @@
 		D91BC856276B7B3C008371B0 /* AssignmentGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BC854276B7B3B008371B0 /* AssignmentGroupViewModel.swift */; };
 		D91BC858276B9679008371B0 /* AssignmentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BC857276B9679008371B0 /* AssignmentCellView.swift */; };
 		D91BC85A276B96CD008371B0 /* AssignmentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BC859276B96CD008371B0 /* AssignmentCellViewModel.swift */; };
+		D92FEE3A2886E06000F8DC0C /* QuizEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92FEE392886E06000F8DC0C /* QuizEditorViewModel.swift */; };
 		D9436D1725A4BAD200DD3873 /* GetCourseSingleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */; };
 		D9436D1D25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */; };
 		D94FA2A826CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */; };
@@ -2470,6 +2471,7 @@
 		D91BC854276B7B3B008371B0 /* AssignmentGroupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupViewModel.swift; sourceTree = "<group>"; };
 		D91BC857276B9679008371B0 /* AssignmentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCellView.swift; sourceTree = "<group>"; };
 		D91BC859276B96CD008371B0 /* AssignmentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCellViewModel.swift; sourceTree = "<group>"; };
+		D92FEE392886E06000F8DC0C /* QuizEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizEditorViewModel.swift; sourceTree = "<group>"; };
 		D9436D1625A4BAD200DD3873 /* GetCourseSingleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUser.swift; sourceTree = "<group>"; };
 		D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSingleUserTests.swift; sourceTree = "<group>"; };
 		D94FA2A726CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -5695,6 +5697,7 @@
 			isa = PBXGroup;
 			children = (
 				D9709E132805B29900B648D5 /* QuizDetailsViewModel.swift */,
+				D92FEE392886E06000F8DC0C /* QuizEditorViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7077,6 +7080,7 @@
 				CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */,
 				CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */,
 				7DA25FDA23F72148005D2121 /* Keychain.swift in Sources */,
+				D92FEE3A2886E06000F8DC0C /* QuizEditorViewModel.swift in Sources */,
 				7DA2609323F72315005D2121 /* UserProfile.swift in Sources */,
 				7DA260FE23F773D9005D2121 /* PlannerListViewController.swift in Sources */,
 				7DA2605023F722D9005D2121 /* LogEvent.swift in Sources */,
