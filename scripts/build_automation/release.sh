@@ -77,11 +77,11 @@ curl https://app.bitrise.io/app/$SLUG/build/start.json --data '{
                 "mapped_to": "APP_RELEASE_VERSION",
                 "value": "'"$2"'"
             },
-			{
-				"is_expand" : true,
-				"mapped_to": "APP_RELEASE_TARGET",
-				"value": "'"$1"'"
-			}
+            {
+                "is_expand": true,
+                "mapped_to": "APP_RELEASE_TARGET",
+                "value": "'"$1"'"
+            }
         ],
         "workflow_id": "ReleaseTrigger"
     },
