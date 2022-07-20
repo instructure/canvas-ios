@@ -29,7 +29,6 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var descriptionView: UIView!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var reminderDateButton: UIButton!
-    @IBOutlet weak var reminderDatePicker: UIDatePicker!
     @IBOutlet weak var reminderHeadingLabel: UILabel!
     @IBOutlet weak var reminderMessageLabel: UILabel!
     @IBOutlet weak var reminderSwitch: UISwitch!
@@ -40,7 +39,9 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
-
+    let dateFormatter = DateFormatter()
+    let datePicker = CoreDatePicker()
+    var selectedDate: Date = Clock.now
     var assignmentID = ""
     var courseID = ""
     let env = AppEnvironment.shared
@@ -69,6 +70,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        datePicker.datePickerDelegate = self
         view.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Assignment Details", comment: "")
         webViewContainer.addSubview(webView)
@@ -97,9 +99,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         reminderSwitch.isEnabled = false
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
-        reminderDatePicker.isHidden = true
-        reminderDatePicker.minimumDate = Clock.now.addMinutes(1)
-        reminderDatePicker.maximumDate = Clock.now.addYears(1)
+        reminderDateButton.setTitleColor(Brand.shared.primary, for: .normal)
 
         statusLabel.text = ""
 
@@ -116,7 +116,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 self.reminderSwitch.isOn = true
                 self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
                 self.reminderDateButton.isHidden = false
-                self.reminderDatePicker.date = date
+                self.datePicker.date = date
             }
         } }
     }
@@ -165,10 +165,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBAction func reminderSwitchChanged() {
         guard let assignment = assignment.first else { return }
         if reminderSwitch.isOn {
+            self.reminderDateButton.isHidden = false
             let minDate = Clock.now.addMinutes(1)
             let maxDate = Clock.now.addYears(1)
-            reminderDatePicker.minimumDate = minDate
-            reminderDatePicker.maximumDate = maxDate
+            datePicker.minimumDate = minDate
+            datePicker.maximumDate = maxDate
             let defaultDate = max(minDate, min(maxDate,
                 assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
             ))
@@ -178,39 +179,20 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                     return self.showPermissionError(.notifications)
                 }
                 self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
-                self.reminderDatePicker.date = defaultDate
-                UIView.animate(withDuration: 0.2) {
-                    self.reminderDateButton.isHidden = false
-                    self.reminderDatePicker.isHidden = false
-                }
-                self.reminderDateChanged()
+                self.datePicker.date = defaultDate
+                self.reminderDateButton.isHidden = false
+                self.reminderDateChanged(selectedDate: self.datePicker.date)
             } }
         } else {
             NotificationManager.shared.removeReminder(assignmentID)
             UIView.animate(withDuration: 0.2) {
                 self.reminderDateButton.isHidden = true
-                self.reminderDatePicker.isHidden = true
             }
         }
     }
 
-    @IBAction func reminderButtonTapped() {
-        UIView.animate(withDuration: 0.2) {
-            self.reminderDatePicker.isHidden = !self.reminderDatePicker.isHidden
-        }
-    }
-
-    @IBAction func reminderDateChanged() {
-        guard let assignment = assignment.first else { return }
-        let date = reminderDatePicker.date
-        NotificationManager.shared.setReminder(for: assignment, at: date, studentID: studentID) { error in performUIUpdate {
-            if error == nil {
-                self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
-            } else {
-                self.reminderSwitch.setOn(false, animated: true)
-                self.reminderSwitchChanged()
-            }
-        } }
+    @IBAction func reminderDateButtonPressed(_ sender: Any) {
+        buttonPressed()
     }
 
     @IBAction func compose() {
@@ -233,5 +215,35 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             hiddenMessage: hiddenMessage
         )
         env.router.show(compose, from: self, options: .modal(embedInNav: true), analyticsRoute: "/conversations/compose")
+    }
+}
+
+extension AssignmentDetailsViewController {
+    func buttonPressed() {
+        let storyboard = UIStoryboard(name: "Sheet", bundle: .core)
+        let sheetPresentationController = storyboard.instantiateViewController(withIdentifier: "SheetViewController") as! SheetViewController
+        sheetPresentationController.datePickerDelegate = self
+        sheetPresentationController.modalPresentationStyle = .overFullScreen
+        self.present(sheetPresentationController, animated: true, completion: nil)
+    }
+
+    func reminderDateChanged(selectedDate: Date) {
+        guard let assignment = assignment.first else { return }
+        NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate {
+            if error == nil {
+                self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
+            } else {
+                self.reminderSwitch.setOn(false, animated: true)
+                self.reminderSwitchChanged()
+            }
+        } }
+    }
+}
+
+extension AssignmentDetailsViewController: DatePickerProtocol {
+    func didSelectDate(selectedDate: Date) {
+        self.selectedDate = datePicker.date
+        reminderDateButton.setTitle(datePicker.dateFormatter(selectedDate: selectedDate), for: .normal)
+        reminderDateChanged(selectedDate: selectedDate)
     }
 }
