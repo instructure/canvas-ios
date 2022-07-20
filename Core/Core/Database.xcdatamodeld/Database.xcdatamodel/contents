@@ -759,6 +759,7 @@
         <attribute name="timeLimitRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="unpublishable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QuizSubmission" inverseName="quiz" inverseEntity="QuizSubmission"/>
     </entity>
     <entity name="QuizSubmission" representedClassName="Core.QuizSubmission" syncable="YES">
@@ -1009,7 +1010,7 @@
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1079"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
-        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="569"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="584"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="178"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>

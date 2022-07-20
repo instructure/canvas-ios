@@ -58,6 +58,7 @@ public struct APIQuiz: Codable, Equatable {
     let time_limit: Double? // minutes
     let title: String
     let unlock_at: Date?
+    let unpublishable: Bool
     // let all_dates: [Date]?
     // let anonymous_submissions: Bool?
     // let assignment_group_id: String?
@@ -67,7 +68,6 @@ public struct APIQuiz: Codable, Equatable {
     // let preview_url: URL
     // let quiz_extensions_url: URL?
     // let speedgrader_url: URL?
-    // let unpublishable: Bool
     // let version_number: Int
 }
 
@@ -201,7 +201,8 @@ extension APIQuiz {
         shuffle_answers: Bool = false,
         time_limit: Double? = nil,
         title: String = "What kind of pokemon are you?",
-        unlock_at: Date? = nil
+        unlock_at: Date? = nil,
+        unpublishable: Bool = false
     ) -> APIQuiz {
         APIQuiz(
             access_code: access_code,
@@ -235,7 +236,8 @@ extension APIQuiz {
             shuffle_answers: shuffle_answers,
             time_limit: time_limit,
             title: title,
-            unlock_at: unlock_at
+            unlock_at: unlock_at,
+            unpublishable: unpublishable
         )
     }
 }

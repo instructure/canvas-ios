@@ -25,7 +25,6 @@ public struct QuizEditorView: View {
 
     @ObservedObject private var viewModel: QuizEditorViewModel
 
-    @State var quiz: Quiz?
     @State var canUnpublish: Bool = true
     @State var description: String = ""
     @State var gradingType: GradingType = .points
@@ -57,7 +56,7 @@ public struct QuizEditorView: View {
                     Text("Done", bundle: .core).bold()
                 })
                 .disabled(viewModel.state != .ready)
-                    .identifier("AssignmentEditor.doneButton")
+                    .identifier("QuizEditor.doneButton")
             })
 
             .alert(item: $alert) { alert in
@@ -99,7 +98,7 @@ public struct QuizEditorView: View {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add description", comment: ""),
                     a11yLabel: NSLocalizedString("Description", comment: ""),
-                    html: $description,
+                    html: $viewModel.description,
                     context: .course(viewModel.courseID),
                     uploadTo: .context(.course(viewModel.courseID)),
                     height: $rceHeight,
@@ -114,44 +113,24 @@ public struct QuizEditorView: View {
                     .frame(height: max(200, rceHeight))
             }
 
-            EditorSection(label: Text("Options", bundle: .core)) {
-                DoubleFieldRow(
-                    label: Text("Points", bundle: .core),
-                    placeholder: "--",
-                    value: $pointsPossible
-                )
-                    .identifier("QuizEditor.pointsField")
+            quizTypeRow
+            Divider()
+
+            if (viewModel.shouldShowPublishedToggle) {
                 Divider()
-                ButtonRow(action: {
-                    let options = GradingType.allCases
-                    self.env.router.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Display Grade as", comment: ""),
-                        sections: [ ItemPickerSection(items: options.map {
-                            ItemPickerItem(title: $0.string)
-                        }), ],
-                        selected: options.firstIndex(of: gradingType).flatMap {
-                            IndexPath(row: $0, section: 0)
-                        },
-                        didSelect: { gradingType = options[$0.row] }
-                    ), from: controller)
-                }, content: {
-                    Text("Display Grade as", bundle: .core)
-                    Spacer()
-                    Text(gradingType.string)
-                        .font(.medium16).foregroundColor(.textDark)
-                    Spacer().frame(width: 16)
-                    DisclosureIndicator()
-                })
-                    .identifier("QuizEditor.gradingTypeButton")
-                if !published || canUnpublish {
-                    Divider()
-                    Toggle(isOn: $published) { Text("Publish", bundle: .core) }
+                Toggle(isOn: $viewModel.published) { Text("Publish", bundle: .core) }
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .padding(16)
                         .identifier("QuizEditor.publishedToggle")
-                }
             }
 
+            Divider()
+            Toggle(isOn: $viewModel.shuffleAnswers) { Text("Shuffle Answers", bundle: .core) }
+                    .font(.semibold16).foregroundColor(.textDarkest)
+                    .padding(16)
+                    .identifier("QuizEditor.shuffleAnswersToggle")
+            Divider()
+            assignmentGroupRow
             AssignmentOverridesEditor(
                 courseID: viewModel.courseID,
                 groupCategoryID: viewModel.assignment?.groupCategoryID,
@@ -166,6 +145,58 @@ public struct QuizEditorView: View {
                 })
             )
         }
+    }
+
+    @ViewBuilder
+    private var quizTypeRow: some View {
+        ButtonRow(action: {
+            let options = QuizType.allCases
+            self.env.router.show(ItemPickerViewController.create(
+                title: NSLocalizedString("Quiz Type", comment: ""),
+                sections: [ ItemPickerSection(items: options.map {
+                    ItemPickerItem(title: $0.sectionTitle)
+                }), ],
+                selected: options.firstIndex(of: viewModel.quizType).flatMap {
+                    IndexPath(row: $0, section: 0)
+                },
+                didSelect: { viewModel.quizType = options[$0.row] }
+            ), from: controller)
+        }, content: {
+            Text("Quiz Type", bundle: .core)
+            Spacer()
+            Text(viewModel.quizType.sectionTitle)
+                .font(.medium16).foregroundColor(.textDark)
+            Spacer().frame(width: 16)
+            DisclosureIndicator()
+        })
+            .identifier("QuizEditor.quizTypeButton")
+    }
+
+    @ViewBuilder
+    private var assignmentGroupRow: some View {
+        Text("Assignment Group", bundle: .core)
+
+       /* ButtonRow(action: {
+            let options = viewModel.assignmentGroups
+            self.env.router.show(ItemPickerViewController.create(
+                title: NSLocalizedString("Quiz Type", comment: ""),
+                sections: [ ItemPickerSection(items: options.map {
+                    ItemPickerItem(title: $0.sectionTitle)
+                }), ],
+                selected: options.firstIndex(of: viewModel.quizType).flatMap {
+                    IndexPath(row: $0, section: 0)
+                },
+                didSelect: { viewModel.quizType = options[$0.row] }
+            ), from: controller)
+        }, content: {
+            Text("Quiz Type", bundle: .core)
+            Spacer()
+            Text(viewModel.quizType.sectionTitle)
+                .font(.medium16).foregroundColor(.textDark)
+            Spacer().frame(width: 16)
+            DisclosureIndicator()
+        })
+            .identifier("QuizEditor.quizTypeButton")*/
     }
 
     func save() {

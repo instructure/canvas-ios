@@ -56,6 +56,7 @@ public class Quiz: NSManagedObject {
     @NSManaged var timeLimitRaw: NSNumber? // minutes
     @NSManaged public var title: String
     @NSManaged public var unlockAt: Date?
+    @NSManaged public var unpublishable: Bool
 
     public var hideResults: QuizHideResults? {
         get { return hideResultsRaw.flatMap { QuizHideResults(rawValue: $0) } }
@@ -184,6 +185,7 @@ extension Quiz {
         model.timeLimit = item.time_limit
         model.title = item.title
         model.unlockAt = item.unlock_at
+        model.unpublishable = item.unpublishable == true
         let orderDate = (item.quiz_type == .assignment ? item.due_at : item.lock_at) ?? Date.distantFuture
         model.order = orderDate.isoString()
         return model

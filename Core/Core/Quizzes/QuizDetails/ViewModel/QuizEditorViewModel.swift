@@ -35,11 +35,29 @@ public class QuizEditorViewModel: ObservableObject {
     public let courseID: String
 
     //Quiz attributes
-    @Published public var title: String = ""
+    public var title: String = ""
+    public var description: String = ""
+    @Published public var quizType: QuizType = .assignment
+    public var published: Bool = false
+    public var shouldShowPublishedToggle: Bool {
+        quiz?.published == false || quiz?.unpublishable == true
+    }
+
+    public var assignmentGroup: String = ""
+    public var shuffleAnswers: Bool = false
+    public var timeLimit: Bool = false
+    public var lenghtInMinutes: String = ""
+    public var allowMultipleAttempts: Bool = false
+    public var scoreToKeep: String = ""
+    public var allowedAttempts: String = ""
+    public var seeResponses: Bool = false
+    public var onlyOnceAfterEachAttempt: Bool = false
+    public var showCorrectAnswersAt: Bool = false
+    public var hideCorrectAnswersAt: Bool = false
 
     private let quizID: String
     private var assignmentID: String?
-    private var quiz: Quiz?
+    public var quiz: Quiz?
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -63,26 +81,45 @@ public class QuizEditorViewModel: ObservableObject {
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
         useCase.fetch(force: true) { [weak self] _, _, fetchError in
             guard let self = self else { return }
-
             self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
-            /*
-            canUnpublish = assignment?.canUnpublish == true
-            description = assignment?.details ?? ""
-            gradingType = assignment?.gradingType ?? .points
-            title = assignment?.name ?? ""
-            overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
-            pointsPossible = assignment?.pointsPossible
-            published = assignment?.published == true
-
-             if let quiz = quiz, let assignment = assignment {
-                 quizAttributes = QuizAttributes(quiz: quiz, assignment: assignment)
-             }
-*/
-            self.title = self.assignment?.name ?? ""
-
-
+            self.loadAttributes()
             self.state = .ready
             //alert = fetchError.map { .error($0) }
         }
+    }
+
+    func fetchAssignmentGroups() {
+        guard let assignmentID = assignmentID else { return }
+        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
+        useCase.fetch(force: true) { [weak self] _, _, fetchError in
+            guard let self = self else { return }
+            self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
+            self.loadAttributes()
+            self.state = .ready
+            //alert = fetchError.map { .error($0) }
+        }
+    }
+
+    func loadAttributes() {
+        guard let quiz = quiz, let assignment = assignment else { return }
+        /*
+        canUnpublish = assignment?.canUnpublish == true
+        description = assignment?.details ?? ""
+        gradingType = assignment?.gradingType ?? .points
+        title = assignment?.name ?? ""
+        overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
+        pointsPossible = assignment?.pointsPossible
+        published = assignment?.published == true
+
+         if let quiz = quiz, let assignment = assignment {
+             quizAttributes = QuizAttributes(quiz: quiz, assignment: assignment)
+         }
+*/
+        title = quiz.title
+        description = quiz.details ?? ""
+        //TODO hack assignment
+        quizType = quiz.quizType
+        published = quiz.published
+        shuffleAnswers = quiz.shuffleAnswers
     }
 }
