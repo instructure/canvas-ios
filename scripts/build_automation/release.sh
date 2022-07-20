@@ -47,22 +47,9 @@ CONFIG_FILE="$(dirname "${BASH_SOURCE[0]}")/release.config"
 if [ -e $CONFIG_FILE ]
 then
 	source $CONFIG_FILE
-	
-	case $1 in
-		Student)
-			SLUG=$Student_SLUG
-			TOKEN=$Student_TOKEN
-			;;
-		Teacher)
-			SLUG=$Teacher_SLUG
-			TOKEN=$Teacher_TOKEN
-			;;
-		Parent)
-			SLUG=$Parent_SLUG
-			TOKEN=$Parent_TOKEN
-			;;
-	  esac
-	
+	SLUG=$BITRISE_SLUG
+	TOKEN=$BITRISE_TOKEN
+
 else
 	if [ -z ${3} ]; then
 	    echo "bitrise slug missing"
@@ -89,9 +76,14 @@ curl https://app.bitrise.io/app/$SLUG/build/start.json --data '{
                 "is_expand": true,
                 "mapped_to": "APP_RELEASE_VERSION",
                 "value": "'"$2"'"
+            },
+            {
+                "is_expand": true,
+                "mapped_to": "APP_RELEASE_TARGET",
+                "value": "'"$1"'"
             }
         ],
-        "workflow_id": "app-store-automated"
+        "workflow_id": "ReleaseTrigger"
     },
     "hook_info": {
         "build_trigger_token": "'"$TOKEN"'",
