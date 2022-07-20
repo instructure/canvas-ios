@@ -221,7 +221,10 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 extension AssignmentDetailsViewController {
     func buttonPressed() {
         let storyboard = UIStoryboard(name: "Sheet", bundle: .core)
-        let sheetPresentationController = storyboard.instantiateViewController(withIdentifier: "SheetViewController") as! SheetViewController
+        guard let sheetPresentationController = storyboard.instantiateViewController(withIdentifier: "SheetViewController") as? SheetViewController else {
+            fatalError("Could not create sheetPresentationController from a storyboard.")
+        }
+
         sheetPresentationController.datePickerDelegate = self
         sheetPresentationController.modalPresentationStyle = .overFullScreen
         self.present(sheetPresentationController, animated: true, completion: nil)

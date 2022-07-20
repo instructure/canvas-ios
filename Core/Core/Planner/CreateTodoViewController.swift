@@ -94,10 +94,10 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
 
     @IBAction func showDatePicker(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Sheet", bundle: .core)
-        let sheetPresentationController = storyboard.instantiateViewController(withIdentifier: "SheetViewController") as! SheetViewController
-        sheetPresentationController.datePickerDelegate = self
-        sheetPresentationController.modalPresentationStyle = .overFullScreen
-        self.present(sheetPresentationController, animated: true, completion: nil)
+        let sheetPresentationController = storyboard.instantiateViewController(withIdentifier: "SheetViewController") as? SheetViewController
+        sheetPresentationController?.datePickerDelegate = self
+        sheetPresentationController?.modalPresentationStyle = .overFullScreen
+        self.present(sheetPresentationController!, animated: true, completion: nil)
     }
 
     func refreshPlannables() {
@@ -199,7 +199,7 @@ class SelectCourseViewController: UITableViewController {
     }
 }
 
-extension CreateTodoViewController : DatePickerProtocol {
+extension CreateTodoViewController: DatePickerProtocol {
     public func didSelectDate(selectedDate: Date) {
         dateTextField.resignFirstResponder()
         self.selectedDate = datePicker.date

@@ -19,8 +19,7 @@
 import UIKit
 import CloudKit
 
-public class SheetViewController: UIViewController, UISheetPresentationControllerDelegate
-{
+public class SheetViewController: UIViewController, UISheetPresentationControllerDelegate {
     @IBOutlet weak var fadeView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -39,15 +38,9 @@ public class SheetViewController: UIViewController, UISheetPresentationControlle
     public override func viewDidLoad() {
         super.viewDidLoad()
         cancelButton.title = "Cancel"
-        cancelButton.setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17),
-            NSAttributedString.Key.foregroundColor: Brand.shared.primary],
-        for: .normal)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17), NSAttributedString.Key.foregroundColor: Brand.shared.primary], for: .normal)
         doneButton.title = "Done"
-        doneButton.setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17),
-            NSAttributedString.Key.foregroundColor: Brand.shared.primary],
-        for: .normal)
+        doneButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17), NSAttributedString.Key.foregroundColor: Brand.shared.primary], for: .normal)
         datePicker.preferredDatePickerStyle = .wheels
     }
 

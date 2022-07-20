@@ -18,7 +18,7 @@
 
 import Foundation
 
-public class CoreDatePicker : UIDatePicker {
+public class CoreDatePicker: UIDatePicker {
     public let toolbar = UIToolbar()
     public weak var datePickerDelegate: DatePickerProtocol?
 
@@ -39,11 +39,9 @@ public class CoreDatePicker : UIDatePicker {
         self.addSubview(toolbar)
         toolbar.sizeToFit()
         toolbar.frame.size.width = frame.width
-
         let done = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(didPickDate))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancel = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelDatePicker))
-
         toolbar.setItems([cancel, space, done], animated: false)
     }
 
@@ -65,12 +63,11 @@ public class CoreDatePicker : UIDatePicker {
     }
 }
 
-public protocol DatePickerProtocol : AnyObject {
-    func didSelectDate(selectedDate : Date)
+public protocol DatePickerProtocol: AnyObject {
+    func didSelectDate(selectedDate: Date)
     func didCancelSelection()
 }
 
 public extension DatePickerProtocol {
     func didCancelSelection() {}
 }
-
