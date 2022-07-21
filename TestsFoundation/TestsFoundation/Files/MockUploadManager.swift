@@ -35,7 +35,7 @@ public class MockUploadManager: UploadManager {
         return singleSharedTestDatabase
     }
 
-    public override func add(url: URL, batchID: String? = nil) throws -> File {
+    public override func add(url: URL, batchID: String) throws -> File {
         addWasCalled = true
         return try super.add(url: url, batchID: batchID)
     }

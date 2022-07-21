@@ -844,6 +844,9 @@
 		CF37631D2837B98900F25B81 /* DashboardInvitationNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631C2837B98900F25B81 /* DashboardInvitationNameTests.swift */; };
 		CF37631F2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */; };
 		CF376323283B757600F25B81 /* AssignmentGroupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */; };
+		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
+		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
+		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
 		CF43DE7927B5611400015B6F /* SafeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7827B5611400015B6F /* SafeURL.swift */; };
 		CF43DE7B27B5667100015B6F /* SafeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7A27B5667100015B6F /* SafeURLTests.swift */; };
 		CF43DE7D27BE3C8200015B6F /* DashboardLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */; };
@@ -2246,6 +2249,9 @@
 		CF37631C2837B98900F25B81 /* DashboardInvitationNameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationNameTests.swift; sourceTree = "<group>"; };
 		CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationViewModelTests.swift; sourceTree = "<group>"; };
 		CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroupViewModelTests.swift; sourceTree = "<group>"; };
+		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
+		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
+		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
 		CF43DE7827B5611400015B6F /* SafeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURL.swift; sourceTree = "<group>"; };
 		CF43DE7A27B5667100015B6F /* SafeURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURLTests.swift; sourceTree = "<group>"; };
 		CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardLayoutViewModel.swift; sourceTree = "<group>"; };
@@ -4384,6 +4390,7 @@
 				7D9E80CB233D2399003C608B /* APINotificationPreferences.swift */,
 				7D9E80C3233C64E4003C608B /* CommunicationChannel.swift */,
 				3B3FCA3023802B800011F11A /* GetActivities.swift */,
+				CF3E760C2885AE6F00276703 /* LocalNotifications.swift */,
 				7D9E80CD233D2701003C608B /* NotificationCategory.swift */,
 				B1911CE821C8460000F42F91 /* NotificationManager.swift */,
 			);
@@ -4555,6 +4562,8 @@
 				CF3E7602288561B000276703 /* Entities */,
 				CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */,
 				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
+				CF3E76082885967B00276703 /* FileUploadObservation.swift */,
+				CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6946,6 +6955,7 @@
 				7DA25FA923F72136005D2121 /* APIDiscussion.swift in Sources */,
 				7DA25FDC23F72148005D2121 /* MDMManager.swift in Sources */,
 				7DA260B323F72352005D2121 /* GetFrontPage.swift in Sources */,
+				CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */,
 				7DA25FE623F721DE005D2121 /* AddMessage.swift in Sources */,
 				7D7BA23924DB57BD00B1A68B /* CircleProgress.swift in Sources */,
 				CFF64FE527DB5A8700653573 /* StudentViewCellViewModel.swift in Sources */,
@@ -6966,6 +6976,7 @@
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
+				CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */,
 				CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* SideMenuTransitioning.swift in Sources */,
@@ -7006,6 +7017,7 @@
 				EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
 				D9D7EBD127AD7A8D00544339 /* CourseDetailsView.swift in Sources */,
+				CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */,
 				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
 				CF575E3F26667AB700F8515F /* GetLatestAnnouncements.swift in Sources */,
