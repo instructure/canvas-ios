@@ -33,6 +33,7 @@ public class CircleProgressView: UIView {
         didSet { tintColorDidChange() }
     }
 
+    /** The value of this property must be in the range 0.0 to 1.0. */
     public var progress: CGFloat? {
         didSet { updateProgress() }
     }

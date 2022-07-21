@@ -847,6 +847,9 @@
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
+		CF3E76122886EA6100276703 /* FileProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76112886EA6100276703 /* FileProgressView.swift */; };
+		CF3E761928884C1C00276703 /* FileProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E761828884C1C00276703 /* FileProgressViewModel.swift */; };
+		CF3E761B28884E5100276703 /* FileProgressViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E761A28884E5100276703 /* FileProgressViewPreview.swift */; };
 		CF43DE7927B5611400015B6F /* SafeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7827B5611400015B6F /* SafeURL.swift */; };
 		CF43DE7B27B5667100015B6F /* SafeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7A27B5667100015B6F /* SafeURLTests.swift */; };
 		CF43DE7D27BE3C8200015B6F /* DashboardLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */; };
@@ -2252,6 +2255,9 @@
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
+		CF3E76112886EA6100276703 /* FileProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressView.swift; sourceTree = "<group>"; };
+		CF3E761828884C1C00276703 /* FileProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressViewModel.swift; sourceTree = "<group>"; };
+		CF3E761A28884E5100276703 /* FileProgressViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressViewPreview.swift; sourceTree = "<group>"; };
 		CF43DE7827B5611400015B6F /* SafeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURL.swift; sourceTree = "<group>"; };
 		CF43DE7A27B5667100015B6F /* SafeURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURLTests.swift; sourceTree = "<group>"; };
 		CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardLayoutViewModel.swift; sourceTree = "<group>"; };
@@ -3045,6 +3051,7 @@
 		7D08B1D02371E9C70075623A /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF3E760E2886EA1B00276703 /* FileUploadProgress */,
 				CF3E76002885619800276703 /* Model */,
 				CF3E76032885624900276703 /* View */,
 			);
@@ -4642,6 +4649,32 @@
 				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		CF3E760E2886EA1B00276703 /* FileUploadProgress */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E761528884B8400276703 /* View */,
+				CF3E761628884B8C00276703 /* ViewModel */,
+			);
+			path = FileUploadProgress;
+			sourceTree = "<group>";
+		};
+		CF3E761528884B8400276703 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E76112886EA6100276703 /* FileProgressView.swift */,
+				CF3E761A28884E5100276703 /* FileProgressViewPreview.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF3E761628884B8C00276703 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E761828884C1C00276703 /* FileProgressViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CF43DE8027CCD6A800015B6F /* Pandas */ = {
@@ -6950,6 +6983,7 @@
 				D94FA2AE26CBE787007B9CA4 /* K5GradeProgressBar.swift in Sources */,
 				CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */,
 				7DA260FA23F724D7005D2121 /* Database.xcdatamodeld in Sources */,
+				CF3E761928884C1C00276703 /* FileProgressViewModel.swift in Sources */,
 				CFCB0F6C27CF9003008DDEA4 /* FilesPanda.swift in Sources */,
 				CF9A0EDE27E2497E00762228 /* ListSelectionViewModel.swift in Sources */,
 				7DA25FA923F72136005D2121 /* APIDiscussion.swift in Sources */,
@@ -7161,6 +7195,7 @@
 				7DA25FED23F721DE005D2121 /* CreateConversation.swift in Sources */,
 				CF6C7FC826F8DC15002937E5 /* CoursePickerView.swift in Sources */,
 				7DA2607E23F722FA005D2121 /* PageViewSession.swift in Sources */,
+				CF3E76122886EA6100276703 /* FileProgressView.swift in Sources */,
 				CFEC7F4826B7E853008B9F77 /* K5ScheduleWeekViewModel.swift in Sources */,
 				7DA25FC723F72136005D2121 /* APIPostPolicyInfo.swift in Sources */,
 				3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */,
@@ -7229,6 +7264,7 @@
 				7DA2600C23F7227A005D2121 /* NSPersistentContainerExtensions.swift in Sources */,
 				7DA2606623F722D9005D2121 /* Tab.swift in Sources */,
 				7DA25FAC23F72136005D2121 /* APIDocViewer.swift in Sources */,
+				CF3E761B28884E5100276703 /* FileProgressViewPreview.swift in Sources */,
 				3B4D89292450A8E9004ED120 /* ConversationCoursesActionSheet.swift in Sources */,
 				EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */,
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,

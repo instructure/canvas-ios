@@ -94,6 +94,7 @@ public struct Typography {
         textCellTopPadding: CGFloat(8),
         textCellBottomPadding: CGFloat(8),
         textCellIconLeadingPadding: CGFloat(18),
-        textCellIconTopPadding: CGFloat(10)
+        textCellIconTopPadding: CGFloat(10),
+        textCellIconTrailingPadding: CGFloat(12)
     )
 }
