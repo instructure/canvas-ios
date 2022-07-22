@@ -55,6 +55,13 @@ class FileProgressViewPreview {
         file.mimeClass = "video"
         return file
     }
+    static var files: [File] = [
+        fileToUpload,
+        fileUploadStarted,
+        fileUploading,
+        fileCompleted,
+        fileFailed,
+    ]
 
     static var staticPreviews: some View {
         let staticPreviewData = [
@@ -62,7 +69,7 @@ class FileProgressViewPreview {
             (file: fileUploadStarted, title: "Upload Started"),
             (file: fileUploading, title: "Upload In Progress"),
             (file: fileCompleted, title: "Upload Completed"),
-            (file: fileFailed, title: "Upload Failed")
+            (file: fileFailed, title: "Upload Failed"),
         ]
         return SwiftUI.Group {
             ForEach(staticPreviewData, id: \.title) { data in

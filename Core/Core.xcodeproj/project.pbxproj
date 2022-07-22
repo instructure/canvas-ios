@@ -850,6 +850,10 @@
 		CF3E76122886EA6100276703 /* FileProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76112886EA6100276703 /* FileProgressView.swift */; };
 		CF3E761928884C1C00276703 /* FileProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E761828884C1C00276703 /* FileProgressViewModel.swift */; };
 		CF3E761B28884E5100276703 /* FileProgressViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E761A28884E5100276703 /* FileProgressViewPreview.swift */; };
+		CF3E761D2889610300276703 /* FileProgressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E761C2889610300276703 /* FileProgressListViewModel.swift */; };
+		CF3E761F2889736600276703 /* FileProgressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E761E2889736600276703 /* FileProgressListView.swift */; };
+		CF3E76212889848000276703 /* FileProgressListViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76202889848000276703 /* FileProgressListViewPreview.swift */; };
+		CF3E7623288AB07700276703 /* FileProgressListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E7622288AB07700276703 /* FileProgressListViewModelProtocol.swift */; };
 		CF43DE7927B5611400015B6F /* SafeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7827B5611400015B6F /* SafeURL.swift */; };
 		CF43DE7B27B5667100015B6F /* SafeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7A27B5667100015B6F /* SafeURLTests.swift */; };
 		CF43DE7D27BE3C8200015B6F /* DashboardLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */; };
@@ -2258,6 +2262,10 @@
 		CF3E76112886EA6100276703 /* FileProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressView.swift; sourceTree = "<group>"; };
 		CF3E761828884C1C00276703 /* FileProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressViewModel.swift; sourceTree = "<group>"; };
 		CF3E761A28884E5100276703 /* FileProgressViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressViewPreview.swift; sourceTree = "<group>"; };
+		CF3E761C2889610300276703 /* FileProgressListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListViewModel.swift; sourceTree = "<group>"; };
+		CF3E761E2889736600276703 /* FileProgressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListView.swift; sourceTree = "<group>"; };
+		CF3E76202889848000276703 /* FileProgressListViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListViewPreview.swift; sourceTree = "<group>"; };
+		CF3E7622288AB07700276703 /* FileProgressListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListViewModelProtocol.swift; sourceTree = "<group>"; };
 		CF43DE7827B5611400015B6F /* SafeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURL.swift; sourceTree = "<group>"; };
 		CF43DE7A27B5667100015B6F /* SafeURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURLTests.swift; sourceTree = "<group>"; };
 		CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardLayoutViewModel.swift; sourceTree = "<group>"; };
@@ -4663,6 +4671,9 @@
 		CF3E761528884B8400276703 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF3E7622288AB07700276703 /* FileProgressListViewModelProtocol.swift */,
+				CF3E761E2889736600276703 /* FileProgressListView.swift */,
+				CF3E76202889848000276703 /* FileProgressListViewPreview.swift */,
 				CF3E76112886EA6100276703 /* FileProgressView.swift */,
 				CF3E761A28884E5100276703 /* FileProgressViewPreview.swift */,
 			);
@@ -4672,6 +4683,7 @@
 		CF3E761628884B8C00276703 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF3E761C2889610300276703 /* FileProgressListViewModel.swift */,
 				CF3E761828884C1C00276703 /* FileProgressViewModel.swift */,
 			);
 			path = ViewModel;
@@ -6955,6 +6967,7 @@
 				7DA2607123F722E9005D2121 /* NotificationCategory.swift in Sources */,
 				97DDE0DA24119D6800A05B55 /* CreateTodoViewController.swift in Sources */,
 				B14D993524BE65A9006DFF12 /* CommonCourse.swift in Sources */,
+				CF3E761D2889610300276703 /* FileProgressListViewModel.swift in Sources */,
 				7DA260D123F72359005D2121 /* CoreWebView.swift in Sources */,
 				CFAD0D102817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift in Sources */,
 				7D89A2C92509326B009D0FD2 /* DisclosureIndicator.swift in Sources */,
@@ -7240,6 +7253,7 @@
 				CF8D53512806E1160038B0B2 /* WebSitePreviewView.swift in Sources */,
 				7DA2601423F7227A005D2121 /* InstIconExtensions.swift in Sources */,
 				CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */,
+				CF3E7623288AB07700276703 /* FileProgressListViewModelProtocol.swift in Sources */,
 				CFFE285C27AA9D410029A408 /* CourseListViewModel.swift in Sources */,
 				7D159CEC242E556900A77A15 /* ModuleListViewController.swift in Sources */,
 				7DA260C623F72352005D2121 /* GetConversationCourses.swift in Sources */,
@@ -7291,6 +7305,7 @@
 				7DA25FD723F72148005D2121 /* CacheManager.swift in Sources */,
 				7DA2606A23F722D9005D2121 /* UserSettings.swift in Sources */,
 				CF53F730266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift in Sources */,
+				CF3E76212889848000276703 /* FileProgressListViewPreview.swift in Sources */,
 				7DA2600123F72272005D2121 /* APIErrorReport.swift in Sources */,
 				7DA2607B23F722FA005D2121 /* PageViewEventController.swift in Sources */,
 				B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */,
@@ -7424,6 +7439,7 @@
 				D91BC85A276B96CD008371B0 /* AssignmentCellViewModel.swift in Sources */,
 				B1A7848D2441136C001A2B50 /* GetModuleItemSequence.swift in Sources */,
 				7D7BA23524D8959300B1A68B /* PageEditorView.swift in Sources */,
+				CF3E761F2889736600276703 /* FileProgressListView.swift in Sources */,
 				7DA2601723F7227A005D2121 /* UIScrollViewExtensions.swift in Sources */,
 				7D70869D256C1C6500647D37 /* ConferenceCard.swift in Sources */,
 				CF43DE8727CCDDC000015B6F /* MotionModifier.swift in Sources */,

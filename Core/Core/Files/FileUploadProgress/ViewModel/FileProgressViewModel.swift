@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-class FileProgressViewModel: ObservableObject {
+public class FileProgressViewModel: ObservableObject {
     public var fileName: String { file.localFileURL?.lastPathComponent ?? "" }
     public let size: String
     public let icon: Image
@@ -38,4 +38,8 @@ class FileProgressViewModel: ObservableObject {
             self?.objectWillChange.send()
         }
     }
+}
+
+extension FileProgressViewModel: Identifiable {
+    public var id: String { file.objectID.uriRepresentation().lastPathComponent }
 }

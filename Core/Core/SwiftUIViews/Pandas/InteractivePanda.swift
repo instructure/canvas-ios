@@ -47,7 +47,7 @@ public struct InteractivePanda: View {
 
             if let title = title {
                 title
-                    .font(.bold24)
+                    .font(.bold20)
                     .foregroundColor(.textDarkest)
                     .padding(.bottom, 8)
             }
@@ -55,7 +55,7 @@ public struct InteractivePanda: View {
             if let subtitle = subtitle {
                 subtitle
                     .font(.regular16)
-                    .foregroundColor(.textDarkest)
+                    .foregroundColor(.textDark)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 16)
             }
