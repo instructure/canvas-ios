@@ -46,10 +46,6 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             Spacer()
             InteractivePanda(scene: ConferencesPanda(), title: Text("Submission Success!", bundle: .core), subtitle: Text("Your file was successfully submitted. Enjoy your day!", bundle: .core))
             .padding(.bottom, 21)
-            Button(action: {}) {
-                Text("Open In App", bundle: .core)
-                    .foregroundColor(Color(Brand.shared.primary))
-            }
             Spacer()
         }
         .padding(40)

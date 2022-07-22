@@ -30,7 +30,7 @@ class FileProgressListViewPreview {
             scheduleUpdate()
         }
 
-        public func cancel(env: AppEnvironment, controller: WeakViewController) {}
+        func cancel(env: AppEnvironment, controller: WeakViewController) {}
 
         private func updateState() {
             switch state {
