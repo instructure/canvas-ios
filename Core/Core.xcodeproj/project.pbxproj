@@ -854,6 +854,7 @@
 		CF3E761F2889736600276703 /* FileProgressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E761E2889736600276703 /* FileProgressListView.swift */; };
 		CF3E76212889848000276703 /* FileProgressListViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76202889848000276703 /* FileProgressListViewPreview.swift */; };
 		CF3E7623288AB07700276703 /* FileProgressListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E7622288AB07700276703 /* FileProgressListViewModelProtocol.swift */; };
+		CF3E7627288AB60800276703 /* FileProgressListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E7626288AB60800276703 /* FileProgressListViewModelTests.swift */; };
 		CF43DE7927B5611400015B6F /* SafeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7827B5611400015B6F /* SafeURL.swift */; };
 		CF43DE7B27B5667100015B6F /* SafeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7A27B5667100015B6F /* SafeURLTests.swift */; };
 		CF43DE7D27BE3C8200015B6F /* DashboardLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */; };
@@ -2266,6 +2267,7 @@
 		CF3E761E2889736600276703 /* FileProgressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListView.swift; sourceTree = "<group>"; };
 		CF3E76202889848000276703 /* FileProgressListViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListViewPreview.swift; sourceTree = "<group>"; };
 		CF3E7622288AB07700276703 /* FileProgressListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListViewModelProtocol.swift; sourceTree = "<group>"; };
+		CF3E7626288AB60800276703 /* FileProgressListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListViewModelTests.swift; sourceTree = "<group>"; };
 		CF43DE7827B5611400015B6F /* SafeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURL.swift; sourceTree = "<group>"; };
 		CF43DE7A27B5667100015B6F /* SafeURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURLTests.swift; sourceTree = "<group>"; };
 		CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardLayoutViewModel.swift; sourceTree = "<group>"; };
@@ -3069,6 +3071,7 @@
 		7D08B1D5237205C00075623A /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF3E7624288AB5B000276703 /* FileUploadProgress */,
 				CF3E76042885720D00276703 /* Model */,
 				CF3E76052885721300276703 /* View */,
 				B1B42C1522403AFD0087399A /* UploadManagerTests.swift */,
@@ -4685,6 +4688,22 @@
 			children = (
 				CF3E761C2889610300276703 /* FileProgressListViewModel.swift */,
 				CF3E761828884C1C00276703 /* FileProgressViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF3E7624288AB5B000276703 /* FileUploadProgress */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E7625288AB5BC00276703 /* ViewModel */,
+			);
+			path = FileUploadProgress;
+			sourceTree = "<group>";
+		};
+		CF3E7625288AB5BC00276703 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E7626288AB60800276703 /* FileProgressListViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6823,6 +6842,7 @@
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
 				B109249423CE81C400796903 /* RoleTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
+				CF3E7627288AB60800276703 /* FileProgressListViewModelTests.swift in Sources */,
 				EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */,

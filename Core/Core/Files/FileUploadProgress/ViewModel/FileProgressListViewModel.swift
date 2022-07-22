@@ -18,11 +18,11 @@
 
 import SwiftUI
 
-class FileProgressListViewModel: FileProgressListViewModelProtocol {
+public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public internal(set) var items: [FileProgressViewModel] = []
     @Published public internal(set) var state: FileProgressListViewModelState = .waiting
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
-        self?.updateFilesList()
+        self?.update()
     }
     private let batchID: String
     private var failedCount: Int {
@@ -41,9 +41,15 @@ class FileProgressListViewModel: FileProgressListViewModelProtocol {
 
     public init(batchID: String) {
         self.batchID = batchID
+        update()
     }
 
-    func updateFilesList() {
+    private func update() {
+        updateFilesList()
+        updateState()
+    }
+
+    private func updateFilesList() {
         items = filesStore.all.map { FileProgressViewModel(file: $0) }
     }
 

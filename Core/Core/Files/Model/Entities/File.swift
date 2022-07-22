@@ -134,7 +134,7 @@ final public class File: NSManagedObject {
         self.batchID = nil
     }
 
-    func setUser(session: LoginSession) {
+    public func setUser(session: LoginSession) {
         self.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
     }
 }
