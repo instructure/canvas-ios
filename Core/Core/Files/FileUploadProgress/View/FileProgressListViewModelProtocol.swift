@@ -23,7 +23,7 @@ public protocol FileProgressListViewModelProtocol: ObservableObject {
     var state: FileProgressListViewModelState { get }
 }
 
-public enum FileProgressListViewModelState, Equatable {
+public enum FileProgressListViewModelState: Equatable {
     case waiting
     case uploading(progressText: String, progress: Float)
     case failed
