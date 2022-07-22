@@ -23,9 +23,9 @@ import Foundation
 class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {
         @Published var items: [FileProgressViewModel] = FileProgressViewPreview.files.map { FileProgressViewModel(file: $0) }
-        @Published var state: FileProgressListViewModelState
+        @Published var state: FileProgressListViewState
 
-        init(state: FileProgressListViewModelState? = nil) {
+        init(state: FileProgressListViewState? = nil) {
             self.state = state ?? .waiting
             scheduleUpdate()
         }

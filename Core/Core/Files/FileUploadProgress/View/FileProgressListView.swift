@@ -87,7 +87,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
 struct FileProgressListView_Previews: PreviewProvider {
     @ViewBuilder
     static var previews: some View {
-        let staticStates: [FileProgressListViewModelState] = [
+        let staticStates: [FileProgressListViewState] = [
             .waiting,
             .uploading(progressText: "Uploading 10 MB of 13 MB", progress: 0.66),
             .failed,

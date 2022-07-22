@@ -20,19 +20,17 @@ import SwiftUI
 
 public protocol FileProgressListViewModelProtocol: ObservableObject {
     var items: [FileProgressViewModel] { get }
-    var state: FileProgressListViewModelState { get }
+    var state: FileProgressListViewState { get }
 
     func cancel(env: AppEnvironment, controller: WeakViewController)
 }
 
-public enum FileProgressListViewModelState: Equatable {
+public enum FileProgressListViewState: Equatable, Identifiable {
     case waiting
     case uploading(progressText: String, progress: Float)
     case failed
     case success
-}
 
-extension FileProgressListViewModelState: Identifiable {
     public var id: String {
         switch self {
         case .waiting: return "waiting"

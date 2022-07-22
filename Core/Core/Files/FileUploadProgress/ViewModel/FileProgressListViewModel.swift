@@ -20,7 +20,7 @@ import SwiftUI
 
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public internal(set) var items: [FileProgressViewModel] = []
-    @Published public internal(set) var state: FileProgressListViewModelState = .waiting
+    @Published public internal(set) var state: FileProgressListViewState = .waiting
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
