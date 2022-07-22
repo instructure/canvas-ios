@@ -104,6 +104,39 @@ class FileProgressListViewModelTests: CoreTestCase {
         uiRefreshObserver.cancel()
     }
 
+    func testCancelDialogProperties() {
+        testee.cancel(env: environment, controller: WeakViewController())
+        wait(for: [router.showExpectation], timeout: 0.1)
+
+        guard let alert = router.presented as? UIAlertController else {
+            XCTFail("No cancel dialog.")
+            return
+        }
+
+        XCTAssertEqual(alert.title, "Cancel Submission?")
+        XCTAssertEqual(alert.message, "This will cancel and delete your upload.")
+        XCTAssertEqual(alert.actions.count, 2)
+        XCTAssertEqual(alert.actions[0].title, "Yes")
+        XCTAssertEqual(alert.actions[0].style, .destructive)
+        XCTAssertEqual(alert.actions[1].title, "No")
+        XCTAssertEqual(alert.actions[1].style, .cancel)
+    }
+
+    func testCancelDialogConfirmation() {
+        let presentingViewController = UIViewController()
+        testee.cancel(env: environment, controller: WeakViewController(presentingViewController))
+
+        guard let alert = router.presented as? UIAlertController else {
+            XCTFail("No cancel dialog.")
+            return
+        }
+
+        (alert.actions[0] as? AlertAction)!.handler!(alert.actions[0])
+        XCTAssertTrue(uploadManager.cancelWasCalled)
+        XCTAssertEqual(uploadManager.canceledBatchID, "testBatch")
+        XCTAssertEqual(router.dismissed, presentingViewController)
+    }
+
     @discardableResult
     private func makeFile() -> File {
         let file = context.insert() as File

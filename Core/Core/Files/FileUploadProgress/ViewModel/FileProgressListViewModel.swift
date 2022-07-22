@@ -44,6 +44,18 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         update()
     }
 
+    public func cancel(env: AppEnvironment, controller: WeakViewController) {
+        let title = NSLocalizedString("Cancel Submission?", comment: "")
+        let message = NSLocalizedString("This will cancel and delete your upload.", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Yes", bundle: .core, comment: ""), style: .destructive) { _ in
+            UploadManager.shared.cancel(batchID: self.batchID)
+            env.router.dismiss(controller)
+        })
+        alert.addAction(AlertAction(NSLocalizedString("No", bundle: .core, comment: ""), style: .cancel))
+        env.router.show(alert, from: controller.value, options: .modal())
+    }
+
     private func update() {
         updateFilesList()
         updateState()

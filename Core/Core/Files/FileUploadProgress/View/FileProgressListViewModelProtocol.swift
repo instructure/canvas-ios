@@ -21,6 +21,8 @@ import SwiftUI
 public protocol FileProgressListViewModelProtocol: ObservableObject {
     var items: [FileProgressViewModel] { get }
     var state: FileProgressListViewModelState { get }
+
+    func cancel(env: AppEnvironment, controller: WeakViewController)
 }
 
 public enum FileProgressListViewModelState: Equatable {
