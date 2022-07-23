@@ -38,7 +38,22 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                     }
                 }
             }
-        }.animation(.default)
+        }
+        .animation(.default)
+        .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
+    }
+
+    @ViewBuilder
+    private func barButton(_ model: BarButtonItemViewModel?) -> some View {
+        if let model = model {
+            Button(action: model.action) {
+                Text("Cancel", bundle: .core)
+                    .foregroundColor(Color(Brand.shared.primary))
+                    .font(.regular17)
+            }
+        } else {
+            SwiftUI.EmptyView()
+        }
     }
 
     private var successView: some View {

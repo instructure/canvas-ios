@@ -19,12 +19,17 @@
 import SwiftUI
 
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
-    @Published public internal(set) var items: [FileProgressViewModel] = []
-    @Published public internal(set) var state: FileProgressListViewState = .waiting
+    @Published public private(set) var items: [FileProgressViewModel] = []
+    @Published public private(set) var state: FileProgressListViewState = .waiting
+    @Published public private(set) var leftBarButton: BarButtonItemViewModel?
+    @Published public private(set) var rightBarButton: BarButtonItemViewModel?
+
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
     private let batchID: String
+    private let env: AppEnvironment
+    private let controller: WeakViewController
     private var failedCount: Int {
         filesStore.reduce(into: 0) { total, file in
             total += (file.uploadError == nil ? 0 : 1)
@@ -39,26 +44,29 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
     private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
 
-    public init(batchID: String) {
+    public init(batchID: String, env: AppEnvironment, controller: WeakViewController) {
         self.batchID = batchID
+        self.env = env
+        self.controller = controller
         update()
     }
 
-    public func cancel(env: AppEnvironment, controller: WeakViewController) {
+    private func cancel() {
         let title = NSLocalizedString("Cancel Submission?", comment: "")
         let message = NSLocalizedString("This will cancel and delete your upload.", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Yes", bundle: .core, comment: ""), style: .destructive) { _ in
-            UploadManager.shared.cancel(batchID: self.batchID)
+        alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [env, controller, batchID] _ in
+            UploadManager.shared.cancel(batchID: batchID)
             env.router.dismiss(controller)
         })
-        alert.addAction(AlertAction(NSLocalizedString("No", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("No", comment: ""), style: .cancel))
         env.router.show(alert, from: controller.value, options: .modal())
     }
 
     private func update() {
         updateFilesList()
         updateState()
+        updateNavBarButtons()
     }
 
     private func updateFilesList() {
@@ -74,9 +82,28 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             }
         } else {
             let progress = Float(uploadedSize) / Float(totalUploadSize)
-            let format = NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "")
+            let format = NSLocalizedString("Uploading %@ of %@", comment: "")
             let progressText = String.localizedStringWithFormat(format, uploadedSize.humanReadableFileSize, totalUploadSize.humanReadableFileSize)
             state = .uploading(progressText: progressText, progress: progress)
+        }
+    }
+
+    private func updateNavBarButtons() {
+        switch state {
+        case .waiting:
+            leftBarButton = nil
+            rightBarButton = nil
+        case .uploading:
+            leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
+                self?.cancel()
+            }
+            rightBarButton = nil
+        case .failed:
+            leftBarButton = nil
+            rightBarButton = nil
+        case .success:
+            leftBarButton = nil
+            rightBarButton = nil
         }
     }
 }

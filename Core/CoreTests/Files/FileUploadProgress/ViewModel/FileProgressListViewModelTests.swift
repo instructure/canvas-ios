@@ -22,11 +22,12 @@ import CoreData
 
 class FileProgressListViewModelTests: CoreTestCase {
     private var context: NSManagedObjectContext { UploadManager.shared.viewContext }
+    private let presentingViewController = UIViewController()
     private var testee: FileProgressListViewModel!
 
     override func setUp() {
         super.setUp()
-        testee = FileProgressListViewModel(batchID: "testBatch")
+        testee = FileProgressListViewModel(batchID: "testBatch", env: environment, controller: WeakViewController(presentingViewController))
     }
 
     func testUploadingState() {
@@ -34,6 +35,8 @@ class FileProgressListViewModelTests: CoreTestCase {
         makeFile()
         saveFiles()
 
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertNil(testee.rightBarButton)
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 20 bytes", progress: 0))
     }
@@ -93,7 +96,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
 
         let uiRefreshExpectation = expectation(description: "UI refresh trigger received")
-        uiRefreshExpectation.expectedFulfillmentCount = 2
+        uiRefreshExpectation.assertForOverFulfill = false
         let uiRefreshObserver = testee.objectWillChange.sink { _ in
             uiRefreshExpectation.fulfill()
         }
@@ -105,7 +108,11 @@ class FileProgressListViewModelTests: CoreTestCase {
     }
 
     func testCancelDialogProperties() {
-        testee.cancel(env: environment, controller: WeakViewController())
+        makeFile()
+        saveFiles()
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
+
+        testee.leftBarButton?.action()
         wait(for: [router.showExpectation], timeout: 0.1)
 
         guard let alert = router.presented as? UIAlertController else {
@@ -123,8 +130,11 @@ class FileProgressListViewModelTests: CoreTestCase {
     }
 
     func testCancelDialogConfirmation() {
-        let presentingViewController = UIViewController()
-        testee.cancel(env: environment, controller: WeakViewController(presentingViewController))
+        makeFile()
+        saveFiles()
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
+
+        testee.leftBarButton?.action()
 
         guard let alert = router.presented as? UIAlertController else {
             XCTFail("No cancel dialog.")

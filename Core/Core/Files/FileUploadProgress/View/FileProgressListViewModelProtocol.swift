@@ -21,8 +21,8 @@ import SwiftUI
 public protocol FileProgressListViewModelProtocol: ObservableObject {
     var items: [FileProgressViewModel] { get }
     var state: FileProgressListViewState { get }
-
-    func cancel(env: AppEnvironment, controller: WeakViewController)
+    var leftBarButton: BarButtonItemViewModel? { get }
+    var rightBarButton: BarButtonItemViewModel? { get }
 }
 
 public enum FileProgressListViewState: Equatable, Identifiable {
@@ -38,5 +38,15 @@ public enum FileProgressListViewState: Equatable, Identifiable {
         case .failed: return "failed"
         case .success: return "success"
         }
+    }
+}
+
+public struct BarButtonItemViewModel {
+    public let title: String
+    public let action: () -> Void
+
+    public init(title: String, action: @escaping () -> Void) {
+        self.title = title
+        self.action = action
     }
 }

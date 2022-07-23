@@ -24,13 +24,14 @@ class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {
         @Published var items: [FileProgressViewModel] = FileProgressViewPreview.files.map { FileProgressViewModel(file: $0) }
         @Published var state: FileProgressListViewState
+        var leftBarButton: BarButtonItemViewModel?
+        var rightBarButton: BarButtonItemViewModel?
+
 
         init(state: FileProgressListViewState? = nil) {
             self.state = state ?? .waiting
             scheduleUpdate()
         }
-
-        func cancel(env: AppEnvironment, controller: WeakViewController) {}
 
         private func updateState() {
             switch state {
