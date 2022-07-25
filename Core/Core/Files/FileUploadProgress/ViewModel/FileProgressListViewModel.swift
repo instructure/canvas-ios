@@ -21,12 +21,15 @@ import SwiftUI
 public protocol FileProgressListViewModelDelegate: AnyObject {
     /** Called when the user wants to hide the upload dialog during an upload or when all upload is finished and the user taps the done button. */
     func fileProgressViewModelDidDismiss(_ viewModel: FileProgressListViewModel)
-    /** Called when the user cancels the upload. */
+    /** Called when the user cancels the upload. The UI is dismissed by the view model. */
     func fileProgressViewModelDidCancel(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the retry button after a file upload or the submission API call failed. */
     func fileProgressViewModelDidRetry(_ viewModel: FileProgressListViewModel)
 }
 
+/**
+ This view model observes file uploads but doesn't control the upload's business logic. Callbacks for the business logic updates are delivered via delegate methods.
+ */
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public private(set) var items: [FileProgressViewModel] = []
     @Published public private(set) var state: FileProgressListViewState = .waiting

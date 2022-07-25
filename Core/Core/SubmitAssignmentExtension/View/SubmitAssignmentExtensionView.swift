@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct SubmitAssignmentExtensionView: View {
     @Environment(\.viewController) private var viewController
+    @Environment(\.appEnvironment) private var env
     @ObservedObject private var viewModel: SubmitAssignmentExtensionViewModel
 
     public init(viewModel: SubmitAssignmentExtensionViewModel) {
@@ -33,7 +34,9 @@ public struct SubmitAssignmentExtensionView: View {
             } else {
                 notLoggedInView
             }
-        }.navigationViewStyle(.stack)
+        }
+        .navigationViewStyle(.stack)
+        .onReceive(viewModel.showUploadStateView, perform: showFileProgressView)
     }
 
     private var notLoggedInView: some View {
@@ -189,6 +192,12 @@ public struct SubmitAssignmentExtensionView: View {
                 .padding(.horizontal, -20)
         }
         .padding(.top, 20)
+    }
+
+    private func showFileProgressView(_ viewModel: FileProgressListViewModel) {
+        let listView = FileProgressListView(viewModel: viewModel)
+        let listViewController = CoreHostingController(listView)
+        env.router.show(listViewController, from: viewController, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: false), analyticsRoute: "/file_progress")
     }
 }
 

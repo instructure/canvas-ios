@@ -25,7 +25,6 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        viewModel.setupViewEnvironment(env: env, controller: controller)
     }
 
     var body: some View {
@@ -39,19 +38,23 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                         FileProgressView(viewModel: $0)
                         Divider()
                     }
+                    Spacer()
                 }
             }
         }
         .animation(.default)
         .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
         .navigationTitle(viewModel.title)
+        .onAppear {
+            viewModel.setupViewEnvironment(env: env, controller: controller)
+        }
     }
 
     @ViewBuilder
     private func barButton(_ model: BarButtonItemViewModel?) -> some View {
         if let model = model {
             Button(action: model.action) {
-                Text("Cancel", bundle: .core)
+                Text(model.title)
                     .foregroundColor(Color(Brand.shared.primary))
                     .font(.regular17)
             }

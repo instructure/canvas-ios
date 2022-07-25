@@ -29,6 +29,8 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
     @Published public private(set) var previews: [URL] = []
+    public private(set) lazy var showUploadStateView: AnyPublisher<FileProgressListViewModel, Never> = showUploadStateViewSubject.eraseToAnyPublisher()
+
     public var isUserLoggedIn: Bool { LoginSession.mostRecent != nil }
     public let coursePickerViewModel: CoursePickerViewModel
     public let assignmentPickerViewModel = AssignmentPickerViewModel()
@@ -38,6 +40,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     private var assignmentCopyServiceStateSubscription: AnyCancellable?
     private let shareCompleted: () -> Void
     private var subscriptions: Set<AnyCancellable> = []
+    private let showUploadStateViewSubject = PassthroughSubject<FileProgressListViewModel, Never>()
 
     #if DEBUG
 
@@ -69,11 +72,14 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
 
     public func submitTapped() {
         Analytics.shared.logEvent("submit_tapped")
+        let batchID = "assignment-\(assignmentPickerViewModel.selectedAssignment!.id)"
         submissionService.submit(urls: selectedFileURLs,
                                  courseID: coursePickerViewModel.selectedCourse!.id,
                                  assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
-                                 comment: comment,
-                                 callback: shareCompleted)
+                                 batchID: batchID,
+                                 comment: comment)
+        let fileProgressViewModel = FileProgressListViewModel(batchID: batchID)
+        showUploadStateViewSubject.send(fileProgressViewModel)
     }
 
     public func cancelTapped() {

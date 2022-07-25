@@ -25,43 +25,37 @@ public class AttachmentSubmissionService {
         self.uploadManager = uploadManager
     }
 
-    public func submit(urls: [URL], courseID: String, assignmentID: String, comment: String?, callback: @escaping () -> Void) {
+    public func submit(urls: [URL], courseID: String, assignmentID: String, batchID: String, comment: String?) {
         let uploadContext = FileUploadContext.submission(
             courseID: courseID,
             assignmentID: assignmentID,
             comment: comment
         )
-        let batchID = "assignment-\(assignmentID)"
         uploadManager.cancel(batchID: batchID)
-        let semaphore = DispatchSemaphore(value: 0)
         var error: Error?
-        ProcessInfo.processInfo.performExpiringActivity(withReason: "get upload targets") { expired in
+        ProcessInfo.processInfo.performExpiringActivity(withReason: "get upload targets") { [uploadManager] expired in
             if expired {
                 Analytics.shared.logError("error_performing_background_activity")
-                self.uploadManager.notificationManager.sendFailedNotification()
+                uploadManager.notificationManager.sendFailedNotification()
                 return
             }
-            self.uploadManager.viewContext.perform {
+            uploadManager.viewContext.perform {
                 do {
                     var files: [File] = []
                     for url in urls {
-                        let file = try self.uploadManager.add(url: url, batchID: batchID)
+                        let file = try uploadManager.add(url: url, batchID: batchID)
                         files.append(file)
                     }
                     for file in files {
-                        self.uploadManager.upload(file: file, to: uploadContext) {
-                            semaphore.signal()
-                        }
+                        uploadManager.upload(file: file, to: uploadContext)
                     }
                 } catch let e {
                     error = e
                 }
             }
             if error != nil {
-                self.uploadManager.notificationManager.sendFailedNotification()
+                uploadManager.notificationManager.sendFailedNotification()
             }
-            semaphore.wait()
-            callback()
         }
     }
 }
