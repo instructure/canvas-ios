@@ -18,12 +18,22 @@
 
 import SwiftUI
 
+public protocol FileProgressListViewModelDelegate: AnyObject {
+    /** Called when the user wants to hide the upload dialog during an upload or when all upload is finished and the user taps the done button. */
+    func fileProgressViewModelDidDismiss(_ viewModel: FileProgressListViewModel)
+    /** Called when the user cancels the upload. */
+    func fileProgressViewModelDidCancel(_ viewModel: FileProgressListViewModel)
+    /** Called when the user taps the retry button after a file upload or the submission API call failed. */
+    func fileProgressViewModelDidRetry(_ viewModel: FileProgressListViewModel)
+}
+
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public private(set) var items: [FileProgressViewModel] = []
     @Published public private(set) var state: FileProgressListViewState = .waiting
     @Published public private(set) var leftBarButton: BarButtonItemViewModel?
     @Published public private(set) var rightBarButton: BarButtonItemViewModel?
     public let title = NSLocalizedString("Submission", comment: "")
+    public weak var delegate: FileProgressListViewModelDelegate?
 
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
@@ -31,8 +41,6 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private let batchID: String
     private var env: AppEnvironment?
     private var controller = WeakViewController()
-    private var completion: () -> Void
-    private var retry: () -> Void
     private var failedCount: Int {
         filesStore.reduce(into: 0) { total, file in
             total += (file.uploadError == nil ? 0 : 1)
@@ -47,15 +55,8 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
     private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
 
-    /**
-     - parameters:
-        - completion: The block that gets called when the share extension should close.
-        - retry: The block that gets called when the user taps the retry button after a file upload or the submission failed.
-     */
-    public init(batchID: String, completion: @escaping () -> Void, retry: @escaping () -> Void) {
+    public init(batchID: String) {
         self.batchID = batchID
-        self.completion = completion
-        self.retry = retry
         update()
     }
 
@@ -64,13 +65,15 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         self.controller = controller
     }
 
-    private func cancel() {
+    private func showCancelDialog() {
         let title = NSLocalizedString("Cancel Submission?", comment: "")
         let message = NSLocalizedString("This will cancel and delete your upload.", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [env, controller, batchID] _ in
-            UploadManager.shared.cancel(batchID: batchID)
-            env?.router.dismiss(controller)
+        alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [weak self] _ in
+            self.flatMap {
+                $0.delegate?.fileProgressViewModelDidCancel($0)
+                $0.env?.router.dismiss($0.controller)
+            }
         })
         alert.addAction(AlertAction(NSLocalizedString("No", comment: ""), style: .cancel))
         env?.router.show(alert, from: controller.value, options: .modal())
@@ -108,22 +111,22 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             rightBarButton = nil
         case .uploading:
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
-                self?.cancel()
+                self?.showCancelDialog()
             }
-            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [completion] in
-                completion()
+            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
+                self.flatMap { $0.delegate?.fileProgressViewModelDidDismiss($0) }
             }
         case .failed:
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
-                self?.cancel()
+                self?.showCancelDialog()
             }
-            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [retry] in
-                retry()
+            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [weak self] in
+                self.flatMap { $0.delegate?.fileProgressViewModelDidRetry($0) }
             }
         case .success:
             leftBarButton = nil
-            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [completion] in
-                completion()
+            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [weak self] in
+                self.flatMap { $0.delegate?.fileProgressViewModelDidDismiss($0) }
             }
         }
     }

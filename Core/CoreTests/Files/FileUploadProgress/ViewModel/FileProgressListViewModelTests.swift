@@ -20,18 +20,36 @@ import Core
 import XCTest
 import CoreData
 
+class MockDelegate: FileProgressListViewModelDelegate {
+    private(set) var dismissCalled = false
+    private(set) var cancelCalled = false
+    private(set) var retryCalled = false
+
+    func fileProgressViewModelDidDismiss(_ viewModel: FileProgressListViewModel) {
+        dismissCalled = true
+    }
+
+    func fileProgressViewModelDidCancel(_ viewModel: FileProgressListViewModel) {
+        cancelCalled = true
+    }
+
+    func fileProgressViewModelDidRetry(_ viewModel: FileProgressListViewModel) {
+        retryCalled = true
+    }
+}
+
 class FileProgressListViewModelTests: CoreTestCase {
     private var context: NSManagedObjectContext { UploadManager.shared.viewContext }
     private let presentingViewController = UIViewController()
     private var testee: FileProgressListViewModel!
-    private var isCompletionCalled = false
-    private var isRetryCalled = false
+    private var mockDelegate: MockDelegate!
 
     override func setUp() {
         super.setUp()
-        testee = FileProgressListViewModel(batchID: "testBatch",
-                                           completion: { [weak self] in self?.isCompletionCalled = true },
-                                           retry: { [weak self] in self?.isRetryCalled = true})
+        mockDelegate = MockDelegate()
+
+        testee = FileProgressListViewModel(batchID: "testBatch")
+        testee.delegate = mockDelegate
         testee.setupViewEnvironment(env: environment, controller: WeakViewController(presentingViewController))
     }
 
@@ -131,7 +149,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         testee.rightBarButton?.action()
-        XCTAssertTrue(isCompletionCalled)
+        XCTAssertTrue(mockDelegate.dismissCalled)
     }
 
     func testDoneOnSucceeded() {
@@ -140,7 +158,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         testee.rightBarButton?.action()
-        XCTAssertTrue(isCompletionCalled)
+        XCTAssertTrue(mockDelegate.dismissCalled)
     }
 
     func testRetryOnUploadFailure() {
@@ -149,7 +167,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         testee.rightBarButton?.action()
-        XCTAssertTrue(isRetryCalled)
+        XCTAssertTrue(mockDelegate.retryCalled)
     }
 
     func testCancelDialogPropertiesDuringUpload() {
@@ -187,9 +205,8 @@ class FileProgressListViewModelTests: CoreTestCase {
         }
 
         (alert.actions[0] as? AlertAction)!.handler!(alert.actions[0])
-        XCTAssertTrue(uploadManager.cancelWasCalled)
-        XCTAssertEqual(uploadManager.canceledBatchID, "testBatch")
         XCTAssertEqual(router.dismissed, presentingViewController)
+        XCTAssertTrue(mockDelegate.cancelCalled)
     }
 
     // MARK: Helpers
