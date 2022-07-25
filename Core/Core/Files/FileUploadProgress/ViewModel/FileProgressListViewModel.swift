@@ -114,7 +114,9 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             rightBarButton = nil
         case .success:
             leftBarButton = nil
-            rightBarButton = nil
+            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [completion] in
+                completion()
+            }
         }
     }
 }

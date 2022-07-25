@@ -88,6 +88,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         file2.id = "uploadedId"
         saveFiles()
 
+        XCTAssertEqual(testee.rightBarButton?.title, "Done")
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .success)
     }
@@ -113,6 +114,15 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testDismissDuringUpload() {
         makeFile()
+        saveFiles()
+
+        testee.rightBarButton?.action()
+        XCTAssertTrue(isCompletionCalled)
+    }
+
+    func testDoneOnSucceeded() {
+        let file = makeFile()
+        file.id = "uploadedId"
         saveFiles()
 
         testee.rightBarButton?.action()
