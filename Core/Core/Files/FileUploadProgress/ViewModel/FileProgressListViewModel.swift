@@ -31,6 +31,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private var env: AppEnvironment?
     private var controller = WeakViewController()
     private var completion: () -> Void
+    private var retry: () -> Void
     private var failedCount: Int {
         filesStore.reduce(into: 0) { total, file in
             total += (file.uploadError == nil ? 0 : 1)
@@ -48,10 +49,12 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     /**
      - parameters:
         - completion: The block that gets called when the share extension should close.
+        - retry: The block that gets called when the user taps the retry button after a file upload or the submission failed.
      */
-    public init(batchID: String, completion: @escaping () -> Void) {
+    public init(batchID: String, completion: @escaping () -> Void, retry: @escaping () -> Void) {
         self.batchID = batchID
         self.completion = completion
+        self.retry = retry
         update()
     }
 
@@ -110,8 +113,12 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
                 completion()
             }
         case .failed:
-            leftBarButton = nil
-            rightBarButton = nil
+            leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
+                self?.cancel()
+            }
+            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [retry] in
+                retry()
+            }
         case .success:
             leftBarButton = nil
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [completion] in

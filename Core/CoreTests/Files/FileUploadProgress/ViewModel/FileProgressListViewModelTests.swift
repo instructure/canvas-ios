@@ -25,10 +25,13 @@ class FileProgressListViewModelTests: CoreTestCase {
     private let presentingViewController = UIViewController()
     private var testee: FileProgressListViewModel!
     private var isCompletionCalled = false
+    private var isRetryCalled = false
 
     override func setUp() {
         super.setUp()
-        testee = FileProgressListViewModel(batchID: "testBatch") { [weak self] in self?.isCompletionCalled = true }
+        testee = FileProgressListViewModel(batchID: "testBatch",
+                                           completion: { [weak self] in self?.isCompletionCalled = true },
+                                           retry: { [weak self] in self?.isRetryCalled = true})
         testee.setupViewEnvironment(env: environment, controller: WeakViewController(presentingViewController))
     }
 
@@ -37,10 +40,10 @@ class FileProgressListViewModelTests: CoreTestCase {
         makeFile()
         saveFiles()
 
-        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
-        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 20 bytes", progress: 0))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
 
     func testOneFileFinishedOtherIsUploading() {
@@ -52,6 +55,8 @@ class FileProgressListViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 20 bytes", progress: 0.5))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
 
     func testOneFileFailedOtherIsUploading() {
@@ -64,6 +69,8 @@ class FileProgressListViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 20 bytes", progress: 0.5))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
 
     func testOneFileFailedOtherSucceeded() {
@@ -77,6 +84,8 @@ class FileProgressListViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .failed)
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Retry")
     }
 
     func testBothFilesSucceeded() {
@@ -88,9 +97,10 @@ class FileProgressListViewModelTests: CoreTestCase {
         file2.id = "uploadedId"
         saveFiles()
 
-        XCTAssertEqual(testee.rightBarButton?.title, "Done")
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .success)
+        XCTAssertNil(testee.leftBarButton)
+        XCTAssertEqual(testee.rightBarButton?.title, "Done")
     }
 
     func testUpdatesProgress() {
@@ -129,7 +139,16 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertTrue(isCompletionCalled)
     }
 
-    func testCancelDialogProperties() {
+    func testRetryOnUploadFailure() {
+        let file = makeFile()
+        file.uploadError = "error"
+        saveFiles()
+
+        testee.rightBarButton?.action()
+        XCTAssertTrue(isRetryCalled)
+    }
+
+    func testCancelDialogPropertiesDuringUpload() {
         makeFile()
         saveFiles()
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
@@ -151,7 +170,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(alert.actions[1].style, .cancel)
     }
 
-    func testCancelDialogConfirmation() {
+    func testCancelDialogConfirmationDuringUpload() {
         makeFile()
         saveFiles()
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
