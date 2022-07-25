@@ -23,6 +23,7 @@ public protocol FileProgressListViewModelProtocol: ObservableObject {
     var state: FileProgressListViewState { get }
     var leftBarButton: BarButtonItemViewModel? { get }
     var rightBarButton: BarButtonItemViewModel? { get }
+    var title: String { get }
 
     func setupViewEnvironment(env: AppEnvironment, controller: WeakViewController)
 }

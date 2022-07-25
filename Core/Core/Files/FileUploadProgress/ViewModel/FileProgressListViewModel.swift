@@ -23,6 +23,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public private(set) var state: FileProgressListViewState = .waiting
     @Published public private(set) var leftBarButton: BarButtonItemViewModel?
     @Published public private(set) var rightBarButton: BarButtonItemViewModel?
+    public let title = NSLocalizedString("Submission", comment: "")
 
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()

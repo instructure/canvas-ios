@@ -26,6 +26,7 @@ class FileProgressListViewPreview {
         @Published var state: FileProgressListViewState
         var leftBarButton: BarButtonItemViewModel?
         var rightBarButton: BarButtonItemViewModel?
+        var title: String { "Title" }
 
         init(state: FileProgressListViewState? = nil) {
             self.state = state ?? .waiting

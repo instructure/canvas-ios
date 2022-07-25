@@ -35,6 +35,10 @@ class FileProgressListViewModelTests: CoreTestCase {
         testee.setupViewEnvironment(env: environment, controller: WeakViewController(presentingViewController))
     }
 
+    func testTitle() {
+        XCTAssertEqual(testee.title, "Submission")
+    }
+
     func testUploadingState() {
         makeFile()
         makeFile()

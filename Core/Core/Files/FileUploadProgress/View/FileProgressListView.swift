@@ -44,6 +44,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         }
         .animation(.default)
         .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
+        .navigationTitle(viewModel.title)
     }
 
     @ViewBuilder
