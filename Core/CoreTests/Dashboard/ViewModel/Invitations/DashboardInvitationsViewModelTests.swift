@@ -59,6 +59,6 @@ class DashboardInvitationsViewModelTests: CoreTestCase {
         api.mock(enrollmentsRequest, value: [.make(id: "enrollmentId", course_id: "courseId", course_section_id: "sectionId", enrollment_state: .invited)])
 
         let coursesRequest = GetCoursesRequest(enrollmentState: .invited_or_pending, perPage: 100)
-        api.mock(coursesRequest, value: [.make(id: "courseId", name: "test course", sections: [.init(end_at: nil, enrollment_role: "", id: "sectionId", name: "Section One", start_at: nil)])])
+        api.mock(coursesRequest, value: [.make(id: "courseId", name: "test course", sections: [.init(end_at: nil, id: "sectionId", name: "Section One", start_at: nil)])])
     }
 }
