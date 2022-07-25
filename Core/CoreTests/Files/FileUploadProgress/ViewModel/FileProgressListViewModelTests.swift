@@ -24,10 +24,12 @@ class FileProgressListViewModelTests: CoreTestCase {
     private var context: NSManagedObjectContext { UploadManager.shared.viewContext }
     private let presentingViewController = UIViewController()
     private var testee: FileProgressListViewModel!
+    private var isCompletionCalled = false
 
     override func setUp() {
         super.setUp()
-        testee = FileProgressListViewModel(batchID: "testBatch", env: environment, controller: WeakViewController(presentingViewController))
+        testee = FileProgressListViewModel(batchID: "testBatch") { [weak self] in self?.isCompletionCalled = true }
+        testee.setupViewEnvironment(env: environment, controller: WeakViewController(presentingViewController))
     }
 
     func testUploadingState() {
@@ -36,7 +38,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
-        XCTAssertNil(testee.rightBarButton)
+        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 20 bytes", progress: 0))
     }
@@ -107,6 +109,16 @@ class FileProgressListViewModelTests: CoreTestCase {
         uiRefreshObserver.cancel()
     }
 
+    // MARK: Navigation Bar Actions
+
+    func testDismissDuringUpload() {
+        makeFile()
+        saveFiles()
+
+        testee.rightBarButton?.action()
+        XCTAssertTrue(isCompletionCalled)
+    }
+
     func testCancelDialogProperties() {
         makeFile()
         saveFiles()
@@ -146,6 +158,8 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(uploadManager.canceledBatchID, "testBatch")
         XCTAssertEqual(router.dismissed, presentingViewController)
     }
+
+    // MARK: Helpers
 
     @discardableResult
     private func makeFile() -> File {

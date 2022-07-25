@@ -19,10 +19,13 @@
 import SwiftUI
 
 struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListViewModelProtocol {
-    @ObservedObject var viewModel: ViewModel
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
+    @ObservedObject private var viewModel: ViewModel
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
+        viewModel.setupViewEnvironment(env: env, controller: controller)
     }
 
     var body: some View {

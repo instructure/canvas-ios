@@ -27,11 +27,12 @@ class FileProgressListViewPreview {
         var leftBarButton: BarButtonItemViewModel?
         var rightBarButton: BarButtonItemViewModel?
 
-
         init(state: FileProgressListViewState? = nil) {
             self.state = state ?? .waiting
             scheduleUpdate()
         }
+
+        func setupViewEnvironment(env: AppEnvironment, controller: WeakViewController) {}
 
         private func updateState() {
             switch state {

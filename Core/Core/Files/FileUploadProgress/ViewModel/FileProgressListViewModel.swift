@@ -28,8 +28,9 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         self?.update()
     }
     private let batchID: String
-    private let env: AppEnvironment
-    private let controller: WeakViewController
+    private var env: AppEnvironment?
+    private var controller = WeakViewController()
+    private var completion: () -> Void
     private var failedCount: Int {
         filesStore.reduce(into: 0) { total, file in
             total += (file.uploadError == nil ? 0 : 1)
@@ -44,11 +45,19 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
     private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
 
-    public init(batchID: String, env: AppEnvironment, controller: WeakViewController) {
+    /**
+     - parameters:
+        - completion: The block that gets called when the share extension should close.
+     */
+    public init(batchID: String, completion: @escaping () -> Void) {
         self.batchID = batchID
+        self.completion = completion
+        update()
+    }
+
+    public func setupViewEnvironment(env: AppEnvironment, controller: WeakViewController) {
         self.env = env
         self.controller = controller
-        update()
     }
 
     private func cancel() {
@@ -57,10 +66,10 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [env, controller, batchID] _ in
             UploadManager.shared.cancel(batchID: batchID)
-            env.router.dismiss(controller)
+            env?.router.dismiss(controller)
         })
         alert.addAction(AlertAction(NSLocalizedString("No", comment: ""), style: .cancel))
-        env.router.show(alert, from: controller.value, options: .modal())
+        env?.router.show(alert, from: controller.value, options: .modal())
     }
 
     private func update() {
@@ -97,7 +106,9 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
                 self?.cancel()
             }
-            rightBarButton = nil
+            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [completion] in
+                completion()
+            }
         case .failed:
             leftBarButton = nil
             rightBarButton = nil
