@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public protocol FileProgressListViewModelDelegate: AnyObject {
@@ -31,14 +32,16 @@ public protocol FileProgressListViewModelDelegate: AnyObject {
  This view model observes file uploads but doesn't control the upload's business logic. Callbacks for the business logic updates are delivered via delegate methods.
  */
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
+    public lazy var presentDialog: AnyPublisher<UIAlertController, Never> = presentDialogSubject.eraseToAnyPublisher()
     @Published public private(set) var items: [FileProgressItemViewModel] = []
     @Published public private(set) var state: FileProgressListViewState = .waiting
     @Published public private(set) var leftBarButton: BarButtonItemViewModel?
     @Published public private(set) var rightBarButton: BarButtonItemViewModel?
     public let title = NSLocalizedString("Submission", comment: "")
-    public weak var delegate: FileProgressListViewModelDelegate?
     public let batchID: String
+    public weak var delegate: FileProgressListViewModelDelegate?
 
+    private let presentDialogSubject = PassthroughSubject<UIAlertController, Never>()
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
@@ -85,7 +88,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             }
         })
         alert.addAction(AlertAction(NSLocalizedString("No", comment: ""), style: .cancel))
-        env?.router.show(alert, from: controller.value, options: .modal())
+        presentDialogSubject.send(alert)
     }
 
     private func update() {

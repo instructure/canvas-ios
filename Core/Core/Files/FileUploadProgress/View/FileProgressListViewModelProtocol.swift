@@ -16,9 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public protocol FileProgressListViewModelProtocol: ObservableObject {
+    var presentDialog: AnyPublisher<UIAlertController, Never> { get }
+
     var items: [FileProgressItemViewModel] { get }
     var state: FileProgressListViewState { get }
     var leftBarButton: BarButtonItemViewModel? { get }

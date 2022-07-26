@@ -48,6 +48,9 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         .onAppear {
             viewModel.setupViewEnvironment(env: env, controller: controller)
         }
+        .onReceive(viewModel.presentDialog) {
+            env.router.show($0, from: controller, options: .modal())
+        }
     }
 
     @ViewBuilder

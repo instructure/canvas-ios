@@ -180,10 +180,13 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
 
+        var receivedAlert: UIAlertController?
+        let alertSubscription = testee.presentDialog.sink { alert in
+            receivedAlert = alert
+        }
         testee.leftBarButton?.action()
-        wait(for: [router.showExpectation], timeout: 0.1)
 
-        guard let alert = router.presented as? UIAlertController else {
+        guard let alert = receivedAlert else {
             XCTFail("No cancel dialog.")
             return
         }
@@ -195,6 +198,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(alert.actions[0].style, .destructive)
         XCTAssertEqual(alert.actions[1].title, "No")
         XCTAssertEqual(alert.actions[1].style, .cancel)
+        alertSubscription.cancel()
     }
 
     func testCancelDialogConfirmationDuringUpload() {
@@ -202,9 +206,13 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
 
+        var receivedAlert: UIAlertController?
+        let alertSubscription = testee.presentDialog.sink { alert in
+            receivedAlert = alert
+        }
         testee.leftBarButton?.action()
 
-        guard let alert = router.presented as? UIAlertController else {
+        guard let alert = receivedAlert else {
             XCTFail("No cancel dialog.")
             return
         }
@@ -212,6 +220,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         (alert.actions[0] as? AlertAction)!.handler!(alert.actions[0])
         XCTAssertEqual(router.dismissed, presentingViewController)
         XCTAssertTrue(mockDelegate.cancelCalled)
+        alertSubscription.cancel()
     }
 
     // MARK: Helpers

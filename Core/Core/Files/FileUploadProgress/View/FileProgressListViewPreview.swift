@@ -18,10 +18,12 @@
 
 #if DEBUG
 
+import Combine
 import Foundation
 
 class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {
+        var presentDialog: AnyPublisher<UIAlertController, Never> = PassthroughSubject().eraseToAnyPublisher()
         @Published var items: [FileProgressItemViewModel] = FileProgressItemPreview.files.map { FileProgressItemViewModel(file: $0, onRemove: {}) }
         @Published var state: FileProgressListViewState
         var leftBarButton: BarButtonItemViewModel?
