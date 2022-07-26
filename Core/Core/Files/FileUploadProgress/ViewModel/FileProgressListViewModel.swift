@@ -37,11 +37,11 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public private(set) var rightBarButton: BarButtonItemViewModel?
     public let title = NSLocalizedString("Submission", comment: "")
     public weak var delegate: FileProgressListViewModelDelegate?
+    public let batchID: String
 
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
-    private let batchID: String
     private var env: AppEnvironment?
     private var controller = WeakViewController()
     private var failedCount: Int {

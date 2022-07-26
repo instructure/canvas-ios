@@ -59,3 +59,17 @@ public class AttachmentSubmissionService {
         }
     }
 }
+
+extension AttachmentSubmissionService: FileProgressListViewModelDelegate {
+
+    public func fileProgressViewModelDidDismiss(_ viewModel: FileProgressListViewModel) {
+    }
+
+    public func fileProgressViewModelDidCancel(_ viewModel: FileProgressListViewModel) {
+        uploadManager.cancel(batchID: viewModel.batchID)
+    }
+
+    public func fileProgressViewModelDidRetry(_ viewModel: FileProgressListViewModel) {
+        uploadManager.retry(batchID: viewModel.batchID)
+    }
+}

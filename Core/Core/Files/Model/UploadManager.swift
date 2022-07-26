@@ -90,6 +90,18 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
+    public func retry(batchID: String) {
+        context.performAndWait {
+            let files: [File] = context.fetch(filesPredicate(batchID: batchID))
+            let nonCompletedFiles = files.filter { $0.id == nil }
+
+            for file in nonCompletedFiles {
+                guard let uploadContext = file.context else { continue }
+                upload(file: file, to: uploadContext)
+            }
+        }
+    }
+
     open func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         context.performAndWait {
             let files: [File] = context.fetch(filesPredicate(batchID: batchID))
