@@ -45,11 +45,11 @@ public class QuizEditorViewModel: ObservableObject {
 
     public var assignmentGroup: String = ""
     public var shuffleAnswers: Bool = false
-    public var timeLimit: Bool = false
-    public var lenghtInMinutes: String = ""
-    public var allowMultipleAttempts: Bool = false
-    public var scoreToKeep: String = ""
-    public var allowedAttempts: String = ""
+    @Published public var timeLimit: Bool = false
+    public var lengthInMinutes: Double?
+    @Published public var allowMultipleAttempts: Bool = false
+    @Published public var scoreToKeep: ScoringPolicy?
+    public var allowedAttempts: Double?
     public var seeResponses: Bool = false
     public var onlyOnceAfterEachAttempt: Bool = false
     public var showCorrectAnswersAt: Bool = false
@@ -102,24 +102,21 @@ public class QuizEditorViewModel: ObservableObject {
 
     func loadAttributes() {
         guard let quiz = quiz, let assignment = assignment else { return }
-        /*
-        canUnpublish = assignment?.canUnpublish == true
-        description = assignment?.details ?? ""
-        gradingType = assignment?.gradingType ?? .points
-        title = assignment?.name ?? ""
-        overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
-        pointsPossible = assignment?.pointsPossible
-        published = assignment?.published == true
 
-         if let quiz = quiz, let assignment = assignment {
-             quizAttributes = QuizAttributes(quiz: quiz, assignment: assignment)
-         }
-*/
         title = quiz.title
         description = quiz.details ?? ""
-        //TODO hack assignment
+        //TODO hack assignment group
         quizType = quiz.quizType
         published = quiz.published
         shuffleAnswers = quiz.shuffleAnswers
+        if let timeLimit = quiz.timeLimit {
+            self.timeLimit = true
+            lengthInMinutes = timeLimit
+        }
+        allowMultipleAttempts = ![0, 1].contains(quiz.allowedAttempts)
+        scoreToKeep = quiz.scoringPolicy
+
+
+        //overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
     }
 }

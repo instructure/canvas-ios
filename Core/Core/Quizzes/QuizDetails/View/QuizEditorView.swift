@@ -87,50 +87,10 @@ public struct QuizEditorView: View {
 
     var form: some View {
         EditorForm(isSpinning: viewModel.state != .ready) {
-            EditorSection(label: Text("Title", bundle: .core)) {
-                CustomTextField(placeholder: Text("Add Title", bundle: .core),
-                                text: $viewModel.title,
-                                identifier: "QuizEditor.titleField",
-                                accessibilityLabel: Text("Title", bundle: .core))
-            }
+            titleSection
+            basicSettingsSection
+            attemptsSection
 
-            EditorSection(label: Text("Description", bundle: .core)) {
-                RichContentEditor(
-                    placeholder: NSLocalizedString("Add description", comment: ""),
-                    a11yLabel: NSLocalizedString("Description", comment: ""),
-                    html: $viewModel.description,
-                    context: .course(viewModel.courseID),
-                    uploadTo: .context(.course(viewModel.courseID)),
-                    height: $rceHeight,
-                    canSubmit: $rceCanSubmit,
-                    error: Binding(get: {
-                        if case .error(let error) = alert { return error }
-                        return nil
-                    }, set: {
-                        if let error = $0 { alert = .error(error) }
-                    })
-                )
-                    .frame(height: max(200, rceHeight))
-            }
-
-            quizTypeRow
-            Divider()
-
-            if (viewModel.shouldShowPublishedToggle) {
-                Divider()
-                Toggle(isOn: $viewModel.published) { Text("Publish", bundle: .core) }
-                        .font(.semibold16).foregroundColor(.textDarkest)
-                        .padding(16)
-                        .identifier("QuizEditor.publishedToggle")
-            }
-
-            Divider()
-            Toggle(isOn: $viewModel.shuffleAnswers) { Text("Shuffle Answers", bundle: .core) }
-                    .font(.semibold16).foregroundColor(.textDarkest)
-                    .padding(16)
-                    .identifier("QuizEditor.shuffleAnswersToggle")
-            Divider()
-            assignmentGroupRow
             AssignmentOverridesEditor(
                 courseID: viewModel.courseID,
                 groupCategoryID: viewModel.assignment?.groupCategoryID,
@@ -144,6 +104,94 @@ public struct QuizEditorView: View {
                     alert = $0.map { AlertItem.removeOverride($0) }
                 })
             )
+        }
+    }
+
+    @ViewBuilder
+    private var titleSection: some View {
+        EditorSection(label: Text("Title", bundle: .core)) {
+            CustomTextField(placeholder: Text("Add Title", bundle: .core),
+                            text: $viewModel.title,
+                            identifier: "QuizEditor.titleField",
+                            accessibilityLabel: Text("Title", bundle: .core))
+        }
+
+        EditorSection(label: Text("Description", bundle: .core)) {
+            RichContentEditor(
+                placeholder: NSLocalizedString("Add description", comment: ""),
+                a11yLabel: NSLocalizedString("Description", comment: ""),
+                html: $viewModel.description,
+                context: .course(viewModel.courseID),
+                uploadTo: .context(.course(viewModel.courseID)),
+                height: $rceHeight,
+                canSubmit: $rceCanSubmit,
+                error: Binding(get: {
+                    if case .error(let error) = alert { return error }
+                    return nil
+                }, set: {
+                    if let error = $0 { alert = .error(error) }
+                })
+            )
+                .frame(height: max(200, rceHeight))
+        }
+    }
+
+    @ViewBuilder
+    private var basicSettingsSection: some View {
+        EditorSection {
+            quizTypeRow
+            if (viewModel.shouldShowPublishedToggle) {
+                Divider()
+                Toggle(isOn: $viewModel.published) { Text("Publish", bundle: .core) }
+                    .font(.semibold16).foregroundColor(.textDarkest)
+                    .padding(16)
+                    .identifier("QuizEditor.publishedToggle")
+            }
+            Divider()
+            //assignmentGroupRow
+            //Divider()
+            Toggle(isOn: $viewModel.shuffleAnswers) { Text("Shuffle Answers", bundle: .core) }
+                .font(.semibold16).foregroundColor(.textDarkest)
+                .padding(16)
+                .identifier("QuizEditor.shuffleAnswersToggle")
+                .background(Color.backgroundLightest)
+            Divider()
+            Toggle(isOn: $viewModel.timeLimit) { Text("Time Limit", bundle: .core) }
+                .font(.semibold16).foregroundColor(.textDarkest)
+                .padding(16)
+                .identifier("QuizEditor.timeLimitToggle")
+                .background(Color.backgroundLightest)
+            if viewModel.timeLimit {
+                Divider()
+                DoubleFieldRow(
+                    label: Text("Length in minutes", bundle: .core),
+                    placeholder: "--",
+                    value: $viewModel.lengthInMinutes
+                )
+                .identifier("QuizEditor.lengthInMinutes")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var attemptsSection: some View {
+        EditorSection {
+            Toggle(isOn: $viewModel.allowMultipleAttempts) { Text("Allow Multiple Attempts", bundle: .core) }
+                .font(.semibold16).foregroundColor(.textDarkest)
+                .padding(16)
+                .identifier("QuizEditor.allowMultipleAttemptsToggle")
+                .background(Color.backgroundLightest)
+            if viewModel.allowMultipleAttempts {
+                Divider()
+                scoreToKeepRow
+                Divider()
+                DoubleFieldRow(
+                    label: Text("Allowed Attempts", bundle: .core),
+                    placeholder: NSLocalizedString("Unlimited", bundle: .core, comment: ""),
+                    value: $viewModel.allowedAttempts
+                )
+                .identifier("QuizEditor.lengthInMinutes")
+            }
         }
     }
 
@@ -197,6 +245,31 @@ public struct QuizEditorView: View {
             DisclosureIndicator()
         })
             .identifier("QuizEditor.quizTypeButton")*/
+    }
+
+    @ViewBuilder
+    private var scoreToKeepRow: some View {
+        ButtonRow(action: {
+            let options = ScoringPolicy.allCases
+            self.env.router.show(ItemPickerViewController.create(
+                title: NSLocalizedString("Quiz Score to Keep", comment: ""),
+                sections: [ ItemPickerSection(items: options.map {
+                    ItemPickerItem(title: $0.text)
+                }), ],
+                selected: options.firstIndex(of: viewModel.scoreToKeep ?? ScoringPolicy.keep_highest).flatMap {
+                    IndexPath(row: $0, section: 0)
+                },
+                didSelect: { viewModel.scoreToKeep = options[$0.row] }
+            ), from: controller)
+        }, content: {
+            Text("Quiz Score to Keep", bundle: .core)
+            Spacer()
+            Text(viewModel.scoreToKeep?.text ?? "")
+                .font(.medium16).foregroundColor(.textDark)
+            Spacer().frame(width: 16)
+            DisclosureIndicator()
+        })
+            .identifier("QuizEditor.quizScoreToKeepButton")
     }
 
     func save() {
