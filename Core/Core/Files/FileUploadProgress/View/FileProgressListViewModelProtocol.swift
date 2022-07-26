@@ -19,7 +19,7 @@
 import SwiftUI
 
 public protocol FileProgressListViewModelProtocol: ObservableObject {
-    var items: [FileProgressViewModel] { get }
+    var items: [FileProgressItemViewModel] { get }
     var state: FileProgressListViewState { get }
     var leftBarButton: BarButtonItemViewModel? { get }
     var rightBarButton: BarButtonItemViewModel? { get }

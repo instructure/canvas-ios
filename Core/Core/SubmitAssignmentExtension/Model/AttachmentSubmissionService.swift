@@ -72,4 +72,8 @@ extension AttachmentSubmissionService: FileProgressListViewModelDelegate {
     public func fileProgressViewModelDidRetry(_ viewModel: FileProgressListViewModel) {
         uploadManager.retry(batchID: viewModel.batchID)
     }
+
+    public func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didDelete file: File) {
+        uploadManager.cancel(file: file)
+    }
 }

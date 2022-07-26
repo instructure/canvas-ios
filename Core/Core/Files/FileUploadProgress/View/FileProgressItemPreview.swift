@@ -20,7 +20,7 @@
 
 import SwiftUI
 
-class FileProgressViewPreview {
+class FileProgressItemPreview {
     private static let env = PreviewEnvironment()
     private static let context = env.globalDatabase.viewContext
     private static var fileToUpload: File = {
@@ -73,14 +73,14 @@ class FileProgressViewPreview {
         ]
         return SwiftUI.Group {
             ForEach(staticPreviewData, id: \.title) { data in
-                let viewModel = FileProgressViewModel(file: data.file)
-                FileProgressView(viewModel: viewModel)
+                let viewModel = FileProgressItemViewModel(file: data.file, onRemove: {})
+                FileProgressItemView(viewModel: viewModel)
                     .previewLayout(.sizeThatFits)
                     .previewDisplayName(data.title + " - Light")
             }
             ForEach(staticPreviewData, id: \.title) { data in
-                let viewModel = FileProgressViewModel(file: data.file)
-                FileProgressView(viewModel: viewModel).preferredColorScheme(.dark)
+                let viewModel = FileProgressItemViewModel(file: data.file, onRemove: {})
+                FileProgressItemView(viewModel: viewModel).preferredColorScheme(.dark)
                     .previewLayout(.sizeThatFits)
                     .previewDisplayName(data.title + " - Dark")
             }
@@ -89,7 +89,7 @@ class FileProgressViewPreview {
 
     static var loopDemoPreview: some View {
         let demoViewModel = DemoViewModel(file: Self.makeFile())
-        return FileProgressView(viewModel: demoViewModel)
+        return FileProgressItemView(viewModel: demoViewModel)
             .frame(maxHeight: .infinity, alignment: .top)
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Live Looping Demo")
@@ -99,7 +99,7 @@ class FileProgressViewPreview {
         return VStack(spacing: 0) {
             ForEach(0..<6) { _ in
                 let demoViewModel = DemoViewModel(file: Self.makeFile(), isInfinite: false)
-                FileProgressView(viewModel: demoViewModel)
+                FileProgressItemView(viewModel: demoViewModel)
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
@@ -108,14 +108,16 @@ class FileProgressViewPreview {
     }
 }
 
-extension FileProgressViewPreview {
+extension FileProgressItemPreview {
 
-    private class DemoViewModel: FileProgressViewModel {
+    private class DemoViewModel: FileProgressItemViewModel {
         private var isFailedLastTime = Bool.random()
         private let isInfinite: Bool
         private let progressIncrementTimeout: DispatchTimeInterval
+        private let file: File
 
         init(file: File, isInfinite: Bool = true) {
+            self.file = file
             self.isInfinite = isInfinite
             self.progressIncrementTimeout = {
                 var timeout: Int = 100
@@ -127,7 +129,7 @@ extension FileProgressViewPreview {
                 return DispatchTimeInterval.milliseconds(timeout)
             }()
 
-            super.init(file: file)
+            super.init(file: file, onRemove: {})
             waitForUpload()
         }
 

@@ -19,27 +19,46 @@
 import Combine
 import SwiftUI
 
-public class FileProgressViewModel: ObservableObject {
+public class FileProgressItemViewModel: ObservableObject {
+    public enum State: Equatable {
+        case waiting
+        case uploading(progress: CGFloat)
+        case completed
+        case error
+    }
     public var fileName: String { file.localFileURL?.lastPathComponent ?? "" }
     public let size: String
     public let icon: Image
-    public var showErrorIcon: Bool { file.uploadError != nil }
-    public var isCompleted: Bool { file.bytesSent == file.size }
-    public var progress: CGFloat { CGFloat(file.bytesSent) / CGFloat(file.size) }
-    public var isUploading: Bool { file.isUploading }
-    let file: File
+    public var state: State {
+        if file.uploadError != nil {
+            return .error
+        } else if file.bytesSent == file.size {
+            return .completed
+        } else if file.isUploading {
+            return .uploading(progress: CGFloat(file.bytesSent) / CGFloat(file.size))
+        } else {
+            return .waiting
+        }
+    }
+    private let onRemove: () -> Void
+    private let file: File
     private var fileChangeObserver: AnyCancellable?
 
-    init(file: File) {
+    init(file: File, onRemove: @escaping () -> Void) {
         self.file = file
         self.icon = Image(uiImage: file.icon)
         self.size = file.size.humanReadableFileSize
+        self.onRemove = onRemove
         self.fileChangeObserver = file.objectWillChange.sink { [weak self] in
             self?.objectWillChange.send()
         }
     }
+
+    public func remove() {
+        onRemove()
+    }
 }
 
-extension FileProgressViewModel: Identifiable {
+extension FileProgressItemViewModel: Identifiable {
     public var id: String { file.objectID.uriRepresentation().lastPathComponent }
 }

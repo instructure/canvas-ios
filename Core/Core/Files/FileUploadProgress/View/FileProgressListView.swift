@@ -35,7 +35,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                 VStack(spacing: 0) {
                     statusBanner
                     ForEach(viewModel.items) {
-                        FileProgressView(viewModel: $0)
+                        FileProgressItemView(viewModel: $0)
                         Divider()
                     }
                     Spacer()
@@ -81,10 +81,11 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         case .uploading(let progressText, let progress):
             VStack(spacing: 15) {
                 Text(progressText)
-                    .font(.bold16)
+                    .font(.regular14)
+                    .foregroundColor(.textDarkest)
                 ProgressView(value: progress)
+                    .foregroundColor(Color(Brand.shared.primary))
             }
-            .foregroundColor(.electric)
             .padding(Typography.Spacings.textCellIconLeadingPadding)
             Divider()
         case .failed:

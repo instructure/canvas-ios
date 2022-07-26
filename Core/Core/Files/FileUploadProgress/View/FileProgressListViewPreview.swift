@@ -22,7 +22,7 @@ import Foundation
 
 class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {
-        @Published var items: [FileProgressViewModel] = FileProgressViewPreview.files.map { FileProgressViewModel(file: $0) }
+        @Published var items: [FileProgressItemViewModel] = FileProgressItemPreview.files.map { FileProgressItemViewModel(file: $0, onRemove: {}) }
         @Published var state: FileProgressListViewState
         var leftBarButton: BarButtonItemViewModel?
         var rightBarButton: BarButtonItemViewModel?

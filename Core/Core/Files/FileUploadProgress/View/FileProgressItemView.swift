@@ -18,10 +18,10 @@
 
 import SwiftUI
 
-struct FileProgressView: View {
-    @ObservedObject private var viewModel: FileProgressViewModel
+struct FileProgressItemView: View {
+    @ObservedObject private var viewModel: FileProgressItemViewModel
 
-    init(viewModel: FileProgressViewModel) {
+    init(viewModel: FileProgressItemViewModel) {
         self.viewModel = viewModel
     }
 
@@ -38,12 +38,12 @@ struct FileProgressView: View {
 
     private var leadingIcon: some View {
         SwiftUI.Group {
-            if viewModel.showErrorIcon {
+            if viewModel.state == .error {
                 Image.warningLine
                     .foregroundColor(.crimson)
-                    .transition(.asymmetric(insertion: .slide, removal: .opacity))
             } else {
                 viewModel.icon
+                    .foregroundColor(.textDarkest)
             }
         }
         .padding(.top, Typography.Spacings.textCellIconTopPadding)
@@ -69,18 +69,22 @@ struct FileProgressView: View {
     private var trailingIcon: some View {
         let placeholder = Color.clear.frame(width: 23)
         SwiftUI.Group {
-            if !viewModel.showErrorIcon {
-                if viewModel.isCompleted {
-                    Image.checkLine.foregroundColor(.shamrock)
+            switch viewModel.state {
+            case .completed:
+                Image.checkLine.foregroundColor(.shamrock)
+                    .frame(maxHeight: .infinity)
+                    .transition(.opacity)
+            case .uploading(let progress):
+                CircleProgress(color: Color(Brand.shared.primary), progress: progress, size: 23, thickness: 1.68)
+                    .frame(maxHeight: .infinity)
+            case .error:
+                Button(action: viewModel.remove) {
+                    Image.xLine
+                        .foregroundColor(.textDarkest)
                         .frame(maxHeight: .infinity)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
-                } else if viewModel.isUploading {
-                    CircleProgress(color: .electric, progress: viewModel.progress, size: 23, thickness: 1.2)
-                        .frame(maxHeight: .infinity)
-                } else {
-                    placeholder
                 }
-            } else {
+                .transition(.opacity)
+            default:
                 placeholder
             }
         }
@@ -95,9 +99,9 @@ class FileProgressView_Previews: PreviewProvider {
 
     @ViewBuilder
     static var previews: some View {
-        FileProgressViewPreview.oneTimeDemoPreview
-        FileProgressViewPreview.loopDemoPreview
-        FileProgressViewPreview.staticPreviews
+        FileProgressItemPreview.oneTimeDemoPreview
+        FileProgressItemPreview.loopDemoPreview
+        FileProgressItemPreview.staticPreviews
     }
 }
 

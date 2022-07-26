@@ -25,13 +25,15 @@ public protocol FileProgressListViewModelDelegate: AnyObject {
     func fileProgressViewModelDidCancel(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the retry button after a file upload or the submission API call failed. */
     func fileProgressViewModelDidRetry(_ viewModel: FileProgressListViewModel)
+    /** Called when the user taps the delete button on a file. */
+    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didDelete file: File)
 }
 
 /**
  This view model observes file uploads but doesn't control the upload's business logic. Callbacks for the business logic updates are delivered via delegate methods.
  */
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
-    @Published public private(set) var items: [FileProgressViewModel] = []
+    @Published public private(set) var items: [FileProgressItemViewModel] = []
     @Published public private(set) var state: FileProgressListViewState = .waiting
     @Published public private(set) var leftBarButton: BarButtonItemViewModel?
     @Published public private(set) var rightBarButton: BarButtonItemViewModel?
@@ -89,7 +91,12 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateFilesList() {
-        items = filesStore.all.map { FileProgressViewModel(file: $0) }
+        items = filesStore.all.map { file in
+            FileProgressItemViewModel(file: file, onRemove: { [weak self] in
+                guard let self = self else { return }
+                self.delegate?.fileProgressViewModel(self, didDelete: file)
+            })
+        }
     }
 
     private func updateState() {
