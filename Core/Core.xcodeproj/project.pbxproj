@@ -810,7 +810,7 @@
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
 		CE1428BF287D74AF0049C368 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1428BE287D74AF0049C368 /* SheetViewController.swift */; };
-		CE1428C9287D98F20049C368 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1428C8287D98F20049C368 /* Sheet.storyboard */; };
+		CE1428C9287D98F20049C368 /* SheetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1428C8287D98F20049C368 /* SheetViewController.storyboard */; };
 		CE9F46C9287859D9002F0CDF /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F46C8287859D9002F0CDF /* CoreDatePicker.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
@@ -2208,7 +2208,7 @@
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
 		CE1428BE287D74AF0049C368 /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
-		CE1428C8287D98F20049C368 /* Sheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
+		CE1428C8287D98F20049C368 /* SheetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SheetViewController.storyboard; sourceTree = "<group>"; };
 		CE9F46C8287859D9002F0CDF /* CoreDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePicker.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
@@ -3215,7 +3215,7 @@
 				9767F2972383B846006633CA /* TokenLabelView.swift */,
 				CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */,
 				CE1428BE287D74AF0049C368 /* SheetViewController.swift */,
-				CE1428C8287D98F20049C368 /* Sheet.storyboard */,
+				CE1428C8287D98F20049C368 /* SheetViewController.storyboard */,
 			);
 			path = UIViews;
 			sourceTree = "<group>";
@@ -6099,7 +6099,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE1428C9287D98F20049C368 /* Sheet.storyboard in Resources */,
+				CE1428C9287D98F20049C368 /* SheetViewController.storyboard in Resources */,
 				3BA649D524251FF70047D8DC /* PairWithObserverViewController.storyboard in Resources */,
 				7DA260F923F723AE005D2121 /* FileDetailsViewController.storyboard in Resources */,
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,

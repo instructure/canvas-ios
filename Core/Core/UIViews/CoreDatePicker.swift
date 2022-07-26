@@ -35,7 +35,7 @@ public class CoreDatePicker: UIDatePicker {
         super.init(coder: coder)
     }
 
-    func toolbarSetup() {
+    private func toolbarSetup() {
         self.addSubview(toolbar)
         toolbar.sizeToFit()
         toolbar.frame.size.width = frame.width
@@ -45,7 +45,7 @@ public class CoreDatePicker: UIDatePicker {
         toolbar.setItems([cancel, space, done], animated: false)
     }
 
-    func datepickerSetup() {
+    private func datepickerSetup() {
         preferredDatePickerStyle = .wheels
         datePickerMode = .dateAndTime
     }

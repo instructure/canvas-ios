@@ -165,7 +165,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBAction func reminderSwitchChanged() {
         guard let assignment = assignment.first else { return }
         if reminderSwitch.isOn {
-            self.reminderDateButton.isHidden = false
+            reminderDateButton.isHidden = false
             let minDate = Clock.now.addMinutes(1)
             let maxDate = Clock.now.addYears(1)
             datePicker.minimumDate = minDate
@@ -192,7 +192,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     @IBAction func reminderDateButtonPressed(_ sender: Any) {
-        buttonPressed()
+        selectDateButtonPressed()
     }
 
     @IBAction func compose() {
@@ -219,15 +219,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 }
 
 extension AssignmentDetailsViewController {
-    func buttonPressed() {
-        let storyboard = UIStoryboard(name: "Sheet", bundle: .core)
-        guard let sheetPresentationController = storyboard.instantiateViewController(withIdentifier: "SheetViewController") as? SheetViewController else {
-            fatalError("Could not create sheetPresentationController from a storyboard.")
-        }
-
-        sheetPresentationController.datePickerDelegate = self
-        sheetPresentationController.modalPresentationStyle = .overFullScreen
-        self.present(sheetPresentationController, animated: true, completion: nil)
+    func selectDateButtonPressed() {
+        let sheetVC = SheetViewController.loadFromStoryboard()
+        sheetVC.datePickerDelegate = self
+        sheetVC.modalPresentationStyle = .overFullScreen
+        self.present(sheetVC, animated: true, completion: nil)
     }
 
     func reminderDateChanged(selectedDate: Date) {
