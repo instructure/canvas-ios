@@ -25,7 +25,7 @@ class MockDelegate: FileProgressListViewModelDelegate {
     private(set) var cancelCalled = false
     private(set) var retryCalled = false
 
-    func fileProgressViewModelDidDismiss(_ viewModel: FileProgressListViewModel) {
+    func fileProgressViewModelDismiss(_ viewModel: FileProgressListViewModel) {
         dismissCalled = true
     }
 

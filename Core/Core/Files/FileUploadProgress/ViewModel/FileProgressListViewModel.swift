@@ -20,13 +20,13 @@ import SwiftUI
 
 public protocol FileProgressListViewModelDelegate: AnyObject {
     /** Called when the user wants to hide the upload dialog during an upload or when all upload is finished and the user taps the done button. */
-    func fileProgressViewModelDidDismiss(_ viewModel: FileProgressListViewModel)
+    func fileProgressViewModelDismiss(_ viewModel: FileProgressListViewModel)
     /** Called when the user cancels the upload. The UI is dismissed by the view model. */
-    func fileProgressViewModelDidCancel(_ viewModel: FileProgressListViewModel)
+    func fileProgressViewModelCancel(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the retry button after a file upload or the submission API call failed. */
-    func fileProgressViewModelDidRetry(_ viewModel: FileProgressListViewModel)
+    func fileProgressViewModelRetry(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the delete button on a file. */
-    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didDelete file: File)
+    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete file: File)
 }
 
 /**
@@ -76,7 +76,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [weak self] _ in
             self.flatMap {
-                $0.delegate?.fileProgressViewModelDidCancel($0)
+                $0.delegate?.fileProgressViewModelCancel($0)
                 $0.env?.router.dismiss($0.controller)
             }
         })
@@ -94,7 +94,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         items = filesStore.all.map { file in
             FileProgressItemViewModel(file: file, onRemove: { [weak self] in
                 guard let self = self else { return }
-                self.delegate?.fileProgressViewModel(self, didDelete: file)
+                self.delegate?.fileProgressViewModel(self, delete: file)
             })
         }
     }
@@ -124,19 +124,19 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
                 self?.showCancelDialog()
             }
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
-                self.flatMap { $0.delegate?.fileProgressViewModelDidDismiss($0) }
+                self.flatMap { $0.delegate?.fileProgressViewModelDismiss($0) }
             }
         case .failed:
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
                 self?.showCancelDialog()
             }
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [weak self] in
-                self.flatMap { $0.delegate?.fileProgressViewModelDidRetry($0) }
+                self.flatMap { $0.delegate?.fileProgressViewModelRetry($0) }
             }
         case .success:
             leftBarButton = nil
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [weak self] in
-                self.flatMap { $0.delegate?.fileProgressViewModelDidDismiss($0) }
+                self.flatMap { $0.delegate?.fileProgressViewModelDismiss($0) }
             }
         }
     }
