@@ -223,6 +223,59 @@ class FileProgressListViewModelTests: CoreTestCase {
         alertSubscription.cancel()
     }
 
+    // MARK: Item Deletion
+
+    func testDeleteSingleFileDialogProperties() {
+        let file = makeFile()
+        file.uploadError = "asd"
+        saveFiles()
+        XCTAssertEqual(testee.state, .failed)
+
+        var receivedAlert: UIAlertController?
+        let alertSubscription = testee.presentDialog.sink { alert in
+            receivedAlert = alert
+        }
+        testee.items[0].remove()
+
+        guard let alert = receivedAlert else {
+            XCTFail("No cancel dialog.")
+            return
+        }
+
+        XCTAssertFalse(mockDelegate.deleteCalled)
+        XCTAssertEqual(alert.title, "Remove From List?")
+        XCTAssertEqual(alert.message, "This will cancel and delete your upload.")
+        XCTAssertEqual(alert.actions.count, 2)
+        XCTAssertEqual(alert.actions[0].title, "Yes")
+        XCTAssertEqual(alert.actions[0].style, .destructive)
+        XCTAssertEqual(alert.actions[1].title, "No")
+        XCTAssertEqual(alert.actions[1].style, .cancel)
+        alertSubscription.cancel()
+    }
+
+    func testDeleteSingleFileDialogConfirmation() {
+        let file = makeFile()
+        file.uploadError = "asd"
+        saveFiles()
+        XCTAssertEqual(testee.state, .failed)
+
+        var receivedAlert: UIAlertController?
+        let alertSubscription = testee.presentDialog.sink { alert in
+            receivedAlert = alert
+        }
+        testee.items[0].remove()
+
+        guard let alert = receivedAlert else {
+            XCTFail("No cancel dialog.")
+            return
+        }
+
+        (alert.actions[0] as? AlertAction)!.handler!(alert.actions[0])
+        XCTAssertEqual(router.dismissed, presentingViewController)
+        XCTAssertTrue(mockDelegate.deleteCalled)
+        alertSubscription.cancel()
+    }
+
     // MARK: Helpers
 
     @discardableResult

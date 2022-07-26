@@ -100,10 +100,28 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private func updateFilesList() {
         items = filesStore.all.map { file in
             FileProgressItemViewModel(file: file, onRemove: { [weak self] in
-                guard let self = self else { return }
-                self.delegate?.fileProgressViewModel(self, delete: file)
+                self?.remove(file)
             })
         }
+    }
+
+    private func remove(_ file: File) {
+        if items.count > 1 {
+            delegate?.fileProgressViewModel(self, delete: file)
+            return
+        }
+
+        let title = NSLocalizedString("Remove From List?", comment: "")
+        let message = NSLocalizedString("This will cancel and delete your upload.", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            self.env?.router.dismiss(self.controller) {
+                self.delegate?.fileProgressViewModel(self, delete: file)
+            }
+        })
+        alert.addAction(AlertAction(NSLocalizedString("No", comment: ""), style: .cancel))
+        presentDialogSubject.send(alert)
     }
 
     private func updateState() {
