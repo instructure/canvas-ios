@@ -45,11 +45,11 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         .animation(.default)
         .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
         .navigationTitle(viewModel.title)
-        .onAppear {
-            viewModel.setupViewEnvironment(env: env, controller: controller)
-        }
         .onReceive(viewModel.presentDialog) {
             env.router.show($0, from: controller, options: .modal())
+        }
+        .onReceive(viewModel.dismiss) { completion in
+            env.router.dismiss(controller, completion: completion)
         }
     }
 

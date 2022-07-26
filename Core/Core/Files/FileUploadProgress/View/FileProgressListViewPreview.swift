@@ -23,6 +23,7 @@ import Foundation
 
 class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {
+        var dismiss: AnyPublisher<() -> Void, Never> = PassthroughSubject().eraseToAnyPublisher()
         var presentDialog: AnyPublisher<UIAlertController, Never> = PassthroughSubject().eraseToAnyPublisher()
         @Published var items: [FileProgressItemViewModel] = FileProgressItemPreview.files.map { FileProgressItemViewModel(file: $0, onRemove: {}) }
         @Published var state: FileProgressListViewState
@@ -34,8 +35,6 @@ class FileProgressListViewPreview {
             self.state = state ?? .waiting
             scheduleUpdate()
         }
-
-        func setupViewEnvironment(env: AppEnvironment, controller: WeakViewController) {}
 
         private func updateState() {
             switch state {

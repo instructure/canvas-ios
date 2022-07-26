@@ -32,6 +32,7 @@ public protocol FileProgressListViewModelDelegate: AnyObject {
  This view model observes file uploads but doesn't control the upload's business logic. Callbacks for the business logic updates are delivered via delegate methods.
  */
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
+    public lazy var dismiss: AnyPublisher<() -> Void, Never> = dismissSubject.eraseToAnyPublisher()
     public lazy var presentDialog: AnyPublisher<UIAlertController, Never> = presentDialogSubject.eraseToAnyPublisher()
     @Published public private(set) var items: [FileProgressItemViewModel] = []
     @Published public private(set) var state: FileProgressListViewState = .waiting
@@ -41,12 +42,11 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     public let batchID: String
     public weak var delegate: FileProgressListViewModelDelegate?
 
+    private let dismissSubject = PassthroughSubject<() -> Void, Never>()
     private let presentDialogSubject = PassthroughSubject<UIAlertController, Never>()
     private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
-    private var env: AppEnvironment?
-    private var controller = WeakViewController()
     private var failedCount: Int {
         filesStore.reduce(into: 0) { total, file in
             total += (file.uploadError == nil ? 0 : 1)
@@ -60,7 +60,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private var allUploadFinished: Bool { failedCount + successCount == filesStore.count }
     private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
     private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
-    private let dismiss: () -> Void
+    private let flowCompleted: () -> Void
 
     /**
      - parameters:
@@ -68,13 +68,8 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
      */
     public init(batchID: String, dismiss: @escaping () -> Void) {
         self.batchID = batchID
-        self.dismiss = dismiss
+        self.flowCompleted = dismiss
         update()
-    }
-
-    public func setupViewEnvironment(env: AppEnvironment, controller: WeakViewController) {
-        self.env = env
-        self.controller = controller
     }
 
     private func showCancelDialog() {
@@ -82,9 +77,9 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let message = NSLocalizedString("This will cancel and delete your upload.", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [weak self] _ in
-            self.flatMap {
-                $0.delegate?.fileProgressViewModelCancel($0)
-                $0.env?.router.dismiss($0.controller)
+            guard let self = self else { return }
+            self.dismissSubject.send {
+                self.delegate?.fileProgressViewModelCancel(self)
             }
         })
         alert.addAction(AlertAction(NSLocalizedString("No", comment: ""), style: .cancel))
@@ -116,7 +111,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [weak self] _ in
             guard let self = self else { return }
-            self.env?.router.dismiss(self.controller) {
+            self.dismissSubject.send {
                 self.delegate?.fileProgressViewModel(self, delete: file)
             }
         })
@@ -149,7 +144,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
                 self?.showCancelDialog()
             }
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
-                self?.dismiss()
+                self?.flowCompleted()
             }
         case .failed:
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
@@ -161,7 +156,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         case .success:
             leftBarButton = nil
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [weak self] in
-                self?.dismiss()
+                self?.flowCompleted()
             }
         }
     }

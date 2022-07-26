@@ -21,14 +21,14 @@ import SwiftUI
 
 public protocol FileProgressListViewModelProtocol: ObservableObject {
     var presentDialog: AnyPublisher<UIAlertController, Never> { get }
+    /** The value of this action is a block that the view executes when the dismissal finished. */
+    var dismiss: AnyPublisher<() -> Void, Never> { get }
 
     var items: [FileProgressItemViewModel] { get }
     var state: FileProgressListViewState { get }
     var leftBarButton: BarButtonItemViewModel? { get }
     var rightBarButton: BarButtonItemViewModel? { get }
     var title: String { get }
-
-    func setupViewEnvironment(env: AppEnvironment, controller: WeakViewController)
 }
 
 public enum FileProgressListViewState: Equatable, Identifiable {

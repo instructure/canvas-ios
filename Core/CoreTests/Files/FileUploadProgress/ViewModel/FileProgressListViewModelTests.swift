@@ -51,11 +51,9 @@ class FileProgressListViewModelTests: CoreTestCase {
 
         testee = FileProgressListViewModel(batchID: "testBatch", dismiss: { [weak self] in
             self?.dismissCalled = true
-        }
-)
+        })
         dismissCalled = false
         testee.delegate = mockDelegate
-        testee.setupViewEnvironment(env: environment, controller: WeakViewController(presentingViewController))
     }
 
     func testTitle() {
@@ -210,6 +208,11 @@ class FileProgressListViewModelTests: CoreTestCase {
         let alertSubscription = testee.presentDialog.sink { alert in
             receivedAlert = alert
         }
+        var dismissReceived = false
+        let dismissSubscription = testee.dismiss.sink { completion in
+            dismissReceived = true
+            completion()
+        }
         testee.leftBarButton?.action()
 
         guard let alert = receivedAlert else {
@@ -218,9 +221,10 @@ class FileProgressListViewModelTests: CoreTestCase {
         }
 
         (alert.actions[0] as? AlertAction)!.handler!(alert.actions[0])
-        XCTAssertEqual(router.dismissed, presentingViewController)
+        XCTAssertTrue(dismissReceived)
         XCTAssertTrue(mockDelegate.cancelCalled)
         alertSubscription.cancel()
+        dismissSubscription.cancel()
     }
 
     // MARK: Item Deletion
@@ -270,10 +274,17 @@ class FileProgressListViewModelTests: CoreTestCase {
             return
         }
 
+        var dismissReceived = false
+        let dismissSubscription = testee.dismiss.sink { completion in
+            dismissReceived = true
+            completion()
+        }
+
         (alert.actions[0] as? AlertAction)!.handler!(alert.actions[0])
-        XCTAssertEqual(router.dismissed, presentingViewController)
+        XCTAssertTrue(dismissReceived)
         XCTAssertTrue(mockDelegate.deleteCalled)
         alertSubscription.cancel()
+        dismissSubscription.cancel()
     }
 
     // MARK: Helpers
