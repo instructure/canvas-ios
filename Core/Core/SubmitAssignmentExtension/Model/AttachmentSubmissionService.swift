@@ -62,9 +62,6 @@ public class AttachmentSubmissionService {
 
 extension AttachmentSubmissionService: FileProgressListViewModelDelegate {
 
-    public func fileProgressViewModelDismiss(_ viewModel: FileProgressListViewModel) {
-    }
-
     public func fileProgressViewModelCancel(_ viewModel: FileProgressListViewModel) {
         uploadManager.cancel(batchID: viewModel.batchID)
     }

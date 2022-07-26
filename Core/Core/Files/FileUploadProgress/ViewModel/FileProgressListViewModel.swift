@@ -19,8 +19,6 @@
 import SwiftUI
 
 public protocol FileProgressListViewModelDelegate: AnyObject {
-    /** Called when the user wants to hide the upload dialog during an upload or when all upload is finished and the user taps the done button. */
-    func fileProgressViewModelDismiss(_ viewModel: FileProgressListViewModel)
     /** Called when the user cancels the upload. The UI is dismissed by the view model. */
     func fileProgressViewModelCancel(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the retry button after a file upload or the submission API call failed. */
@@ -59,9 +57,15 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private var allUploadFinished: Bool { failedCount + successCount == filesStore.count }
     private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
     private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
+    private let dismiss: () -> Void
 
-    public init(batchID: String) {
+    /**
+     - parameters:
+        - dismiss: The block that gets called when the user wants to hide the upload progress UI.
+     */
+    public init(batchID: String, dismiss: @escaping () -> Void) {
         self.batchID = batchID
+        self.dismiss = dismiss
         update()
     }
 
@@ -124,7 +128,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
                 self?.showCancelDialog()
             }
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
-                self.flatMap { $0.delegate?.fileProgressViewModelDismiss($0) }
+                self?.dismiss()
             }
         case .failed:
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
@@ -136,7 +140,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         case .success:
             leftBarButton = nil
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [weak self] in
-                self.flatMap { $0.delegate?.fileProgressViewModelDismiss($0) }
+                self?.dismiss()
             }
         }
     }

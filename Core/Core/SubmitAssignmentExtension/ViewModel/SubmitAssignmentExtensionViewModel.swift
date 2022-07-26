@@ -78,7 +78,9 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
                                  assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
                                  batchID: batchID,
                                  comment: comment)
-        let fileProgressViewModel = FileProgressListViewModel(batchID: batchID)
+        let fileProgressViewModel = FileProgressListViewModel(batchID: batchID, dismiss: { [shareCompleted] in
+            shareCompleted()
+        })
         fileProgressViewModel.delegate = submissionService
         showUploadStateViewSubject.send(fileProgressViewModel)
     }
