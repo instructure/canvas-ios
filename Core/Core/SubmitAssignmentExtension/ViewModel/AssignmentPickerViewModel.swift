@@ -19,7 +19,15 @@
 import SwiftUI
 
 public class AssignmentPickerViewModel: ObservableObject {
-    public typealias Assignment = IdentifiableName
+    public struct Assignment: Equatable, Identifiable {
+        public let id: String
+        public let name: String
+        public let allowedExtensions: [String]
+
+        public func isFileAllowed(_ url: URL) -> Bool {
+            allowedExtensions.isEmpty ? true : allowedExtensions.contains(url.pathExtension)
+        }
+    }
 
     @Published public var state: ViewModelState<[Assignment]> = .loading
     @Published public var selectedAssignment: Assignment?
@@ -94,7 +102,7 @@ public class AssignmentPickerViewModel: ObservableObject {
     private static func filterAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> [Assignment] {
         assignments.compactMap {
             guard $0.isLocked == false, $0.submissionTypes.contains(.online_upload) else { return nil }
-            return Assignment(id: $0._id, name: $0.name)
+            return Assignment(id: $0._id, name: $0.name, allowedExtensions: $0.allowedExtensions ?? [])
         }
     }
 

@@ -51,7 +51,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         testee.courseID = "successID"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload"),
+            .init(id: "A2", name: "online upload", allowedExtensions: []),
         ]))
     }
 
@@ -62,14 +62,14 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         testee.courseID = "successID"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload"),
+            .init(id: "A1", name: "online upload", allowedExtensions: []),
         ]))
 
         api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
         testee.courseID = "successID"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload"),
+            .init(id: "A1", name: "online upload", allowedExtensions: []),
         ]))
     }
 
@@ -79,9 +79,9 @@ class AssignmentPickerViewModelTests: CoreTestCase {
             mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
         ]))
         testee.courseID = "successID"
-        XCTAssertEqual(testee.selectedAssignment, .init(id: "A2", name: "online upload"))
+        XCTAssertEqual(testee.selectedAssignment, .init(id: "A2", name: "online upload", allowedExtensions: []))
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload"),
+            .init(id: "A2", name: "online upload", allowedExtensions: []),
         ]))
         // Keep the assignment ID so if the user submits another attempt without starting the app we'll pre-select
         XCTAssertNotNil(environment.userDefaults?.submitAssignmentID)
@@ -93,17 +93,17 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         ]))
         testee.courseID = "successID"
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload"),
+            .init(id: "A1", name: "online upload", allowedExtensions: []),
         ]))
 
-        testee.selectedAssignment = .init(id: "A1", name: "online upload")
+        testee.selectedAssignment = .init(id: "A1", name: "online upload", allowedExtensions: [])
         api.mock(AssignmentPickerListRequest(courseID: "successID2"), value: mockAssignments([
             mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
         ]))
         testee.courseID = "successID2"
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload"),
+            .init(id: "A2", name: "online upload", allowedExtensions: []),
         ]))
     }
 
@@ -118,7 +118,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         Analytics.shared.handler = analyticsHandler
         XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
 
-        testee.assignmentSelected(.init(id: "", name: ""))
+        testee.assignmentSelected(.init(id: "", name: "", allowedExtensions: []))
 
         XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
         XCTAssertEqual(analyticsHandler.lastEventName, "assignment_selected")
@@ -152,11 +152,20 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
     }
 
+    func testAssignmentCompatibleURLs() {
+        var assignment = AssignmentPickerViewModel.Assignment(id: "1", name: "1", allowedExtensions: ["pdf", "jpg"])
+        XCTAssertTrue(assignment.isFileAllowed(URL(string: "/file.jpg")!))
+        XCTAssertFalse(assignment.isFileAllowed(URL(string: "/file.png")!))
+
+        assignment = AssignmentPickerViewModel.Assignment(id: "1", name: "1", allowedExtensions: [])
+        XCTAssertTrue(assignment.isFileAllowed(URL(string: "/file.anyextension")!))
+    }
+
     private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
         return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
     }
 
     private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = []) -> AssignmentPickerListResponse.Assignment {
-        .init(name: name, _id: id, submissionTypes: submission_types, lockInfo: .init(isLocked: isLocked))
+        .init(name: name, _id: id, submissionTypes: submission_types, allowedExtensions: [], lockInfo: .init(isLocked: isLocked))
     }
 }
