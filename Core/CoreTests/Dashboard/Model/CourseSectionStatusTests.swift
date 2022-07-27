@@ -43,7 +43,7 @@ class CourseSectionStatusTests: CoreTestCase {
         api.mock(request, value: enrollments)
 
         // Course mock
-        let section = APICourse.SectionRef(end_at: .distantPast, enrollment_role: "", id: "section_1", name: "", start_at: nil)
+        let section = APICourse.SectionRef(end_at: .distantPast, id: "section_1", name: "", start_at: nil)
         let course = Course.make(from: .make(id: "course_1", sections: [section]))
 
         // DashboardCard mock
@@ -70,8 +70,8 @@ class CourseSectionStatusTests: CoreTestCase {
         api.mock(request, value: enrollments)
 
         // Course mock
-        let activeSection = APICourse.SectionRef(end_at: nil, enrollment_role: "", id: "activeSection", name: "", start_at: nil)
-        let expiredSection = APICourse.SectionRef(end_at: .distantPast, enrollment_role: "", id: "expiredSection", name: "", start_at: nil)
+        let activeSection = APICourse.SectionRef(end_at: nil, id: "activeSection", name: "", start_at: nil)
+        let expiredSection = APICourse.SectionRef(end_at: .distantPast, id: "expiredSection", name: "", start_at: nil)
         let course = Course.make(from: .make(id: "course_1", sections: [activeSection, expiredSection]))
 
         // DashboardCard mock
@@ -95,8 +95,8 @@ class CourseSectionStatusTests: CoreTestCase {
         api.mock(request, value: enrollments)
 
         // Course mock
-        let activeSection = APICourse.SectionRef(end_at: Clock.now.addDays(1), enrollment_role: "", id: "activeSection", name: "", start_at: nil)
-        let expiredSection = APICourse.SectionRef(end_at: .distantPast, enrollment_role: "", id: "expiredSection", name: "", start_at: nil)
+        let activeSection = APICourse.SectionRef(end_at: Clock.now.addDays(1), id: "activeSection", name: "", start_at: nil)
+        let expiredSection = APICourse.SectionRef(end_at: .distantPast, id: "expiredSection", name: "", start_at: nil)
         let course = Course.make(from: .make(id: "course_1", sections: [activeSection, expiredSection]))
 
         // DashboardCard mock
@@ -117,7 +117,7 @@ class CourseSectionStatusTests: CoreTestCase {
         api.mock(request, value: enrollments)
 
         // Course mock
-        let section = APICourse.SectionRef(end_at: nil, enrollment_role: "", id: "", name: "", start_at: nil)
+        let section = APICourse.SectionRef(end_at: nil, id: "", name: "", start_at: nil)
         let course = Course.make(from: .make(id: "course_1", sections: [section]))
 
         // DashboardCard mock
