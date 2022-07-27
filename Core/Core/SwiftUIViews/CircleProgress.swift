@@ -45,7 +45,8 @@ public struct CircleProgress: View {
     public var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.borderLight, lineWidth: thickness)
+                .stroke(Color.accentColor, lineWidth: thickness)
+                .opacity(0.2)
             if progress != nil {
                 Circle()
                     .trim(from: 0, to: progress!)

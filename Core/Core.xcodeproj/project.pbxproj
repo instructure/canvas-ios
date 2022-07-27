@@ -4674,11 +4674,10 @@
 		CF3E761528884B8400276703 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFF2A6B428915EAF0072606E /* PreviewSupport */,
 				CF3E7622288AB07700276703 /* FileProgressListViewModelProtocol.swift */,
 				CF3E761E2889736600276703 /* FileProgressListView.swift */,
-				CF3E76202889848000276703 /* FileProgressListViewPreview.swift */,
 				CF3E76112886EA6100276703 /* FileProgressItemView.swift */,
-				CF3E761A28884E5100276703 /* FileProgressItemPreview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5675,6 +5674,15 @@
 				CF6C100226C5235B002E7FE6 /* PlannerOverrideUpdater.swift */,
 			);
 			path = Schedule;
+			sourceTree = "<group>";
+		};
+		CFF2A6B428915EAF0072606E /* PreviewSupport */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E76202889848000276703 /* FileProgressListViewPreview.swift */,
+				CF3E761A28884E5100276703 /* FileProgressItemPreview.swift */,
+			);
+			path = PreviewSupport;
 			sourceTree = "<group>";
 		};
 		CFF64FDD27DA058700653573 /* ButtonStyles */ = {

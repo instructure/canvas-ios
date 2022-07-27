@@ -88,6 +88,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                     .foregroundColor(.textDarkest)
                 ProgressView(value: progress)
                     .foregroundColor(Color(Brand.shared.primary))
+                    .background(Color(Brand.shared.primary).opacity(0.2))
             }
             .padding(Typography.Spacings.textCellIconLeadingPadding)
             Divider()
@@ -95,7 +96,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             VStack(spacing: 4) {
                 Text("Submission Failed", bundle: .core)
                     .font(.bold16)
-                Text("One or more files failed to upload. Check your internet connection and retry to submit.")
+                Text("One or more files failed to upload. Check your internet connection and retry to submit.", bundle: .core)
                     .font(.regular14)
                     .multilineTextAlignment(.center)
             }

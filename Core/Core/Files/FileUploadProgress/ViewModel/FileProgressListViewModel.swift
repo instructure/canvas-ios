@@ -32,8 +32,8 @@ public protocol FileProgressListViewModelDelegate: AnyObject {
  This view model observes file uploads but doesn't control the upload's business logic. Callbacks for the business logic updates are delivered via delegate methods.
  */
 public class FileProgressListViewModel: FileProgressListViewModelProtocol {
-    public lazy var dismiss: AnyPublisher<() -> Void, Never> = dismissSubject.eraseToAnyPublisher()
-    public lazy var presentDialog: AnyPublisher<UIAlertController, Never> = presentDialogSubject.eraseToAnyPublisher()
+    public private(set) lazy var dismiss: AnyPublisher<() -> Void, Never> = dismissSubject.eraseToAnyPublisher()
+    public private(set) lazy var presentDialog: AnyPublisher<UIAlertController, Never> = presentDialogSubject.eraseToAnyPublisher()
     @Published public private(set) var items: [FileProgressItemViewModel] = []
     @Published public private(set) var state: FileProgressListViewState = .waiting
     @Published public private(set) var leftBarButton: BarButtonItemViewModel?
