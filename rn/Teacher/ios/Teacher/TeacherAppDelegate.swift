@@ -77,10 +77,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         environment.userDidLogin(session: session)
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
         NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
