@@ -198,6 +198,7 @@ public enum QuizQuestionType: String, Codable, CaseIterable {
         numerical_question, short_answer_question, text_only_question, true_false_question
 }
 
+/*Dictates whether or not quiz results are hidden from students. If null, students can see their results after any attempt. If “always”, students can never see their results. If “until_after_last_attempt”, students can only see results after their last attempt. (Only valid if allowed_attempts > 1).*/
 public enum QuizHideResults: String, Codable, CaseIterable {
     case always, until_after_last_attempt
 

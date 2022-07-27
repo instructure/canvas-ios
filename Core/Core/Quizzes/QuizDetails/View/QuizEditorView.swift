@@ -50,13 +50,11 @@ public struct QuizEditorView: View {
                 }, label: {
                     Text("Cancel", bundle: .core).fontWeight(.regular)
                 })
-                    .identifier("screen.dismiss")
             }, trailing: {
                 Button(action: save, label: {
                     Text("Done", bundle: .core).bold()
                 })
                 .disabled(viewModel.state != .ready)
-                    .identifier("QuizEditor.doneButton")
             })
 
             .alert(item: $alert) { alert in
@@ -90,6 +88,7 @@ public struct QuizEditorView: View {
             titleSection
             basicSettingsSection
             attemptsSection
+            responsesSection
 
             AssignmentOverridesEditor(
                 courseID: viewModel.courseID,
@@ -142,25 +141,20 @@ public struct QuizEditorView: View {
             quizTypeRow
             if (viewModel.shouldShowPublishedToggle) {
                 Divider()
-                Toggle(isOn: $viewModel.published) { Text("Publish", bundle: .core) }
-                    .font(.semibold16).foregroundColor(.textDarkest)
-                    .padding(16)
-                    .identifier("QuizEditor.publishedToggle")
+                ToggleRow(
+                    label: Text("Publish", bundle: .core),
+                    value: $viewModel.published)
             }
             Divider()
             //assignmentGroupRow
             //Divider()
-            Toggle(isOn: $viewModel.shuffleAnswers) { Text("Shuffle Answers", bundle: .core) }
-                .font(.semibold16).foregroundColor(.textDarkest)
-                .padding(16)
-                .identifier("QuizEditor.shuffleAnswersToggle")
-                .background(Color.backgroundLightest)
+            ToggleRow(
+                label: Text("Shuffle Answers", bundle: .core),
+                value: $viewModel.shuffleAnswers)
             Divider()
-            Toggle(isOn: $viewModel.timeLimit) { Text("Time Limit", bundle: .core) }
-                .font(.semibold16).foregroundColor(.textDarkest)
-                .padding(16)
-                .identifier("QuizEditor.timeLimitToggle")
-                .background(Color.backgroundLightest)
+            ToggleRow(
+                label: Text("Time Limit", bundle: .core),
+                value: $viewModel.timeLimit)
             if viewModel.timeLimit {
                 Divider()
                 DoubleFieldRow(
@@ -168,7 +162,6 @@ public struct QuizEditorView: View {
                     placeholder: "--",
                     value: $viewModel.lengthInMinutes
                 )
-                .identifier("QuizEditor.lengthInMinutes")
             }
         }
     }
@@ -176,21 +169,51 @@ public struct QuizEditorView: View {
     @ViewBuilder
     private var attemptsSection: some View {
         EditorSection {
-            Toggle(isOn: $viewModel.allowMultipleAttempts) { Text("Allow Multiple Attempts", bundle: .core) }
-                .font(.semibold16).foregroundColor(.textDarkest)
-                .padding(16)
-                .identifier("QuizEditor.allowMultipleAttemptsToggle")
-                .background(Color.backgroundLightest)
+            ToggleRow(
+                label: Text("Allow Multiple Attempts", bundle: .core),
+                value: $viewModel.allowMultipleAttempts)
+
             if viewModel.allowMultipleAttempts {
                 Divider()
                 scoreToKeepRow
                 Divider()
-                DoubleFieldRow(
+                IntFieldRow(
                     label: Text("Allowed Attempts", bundle: .core),
                     placeholder: NSLocalizedString("Unlimited", bundle: .core, comment: ""),
                     value: $viewModel.allowedAttempts
                 )
-                .identifier("QuizEditor.lengthInMinutes")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var responsesSection: some View {
+        EditorSection {
+            ToggleRow(
+                label: Text("Let Students See Their Quiz Responses", bundle: .core),
+                value: $viewModel.seeResponses)
+            if viewModel.seeResponses {
+                Divider()
+                ToggleRow(
+                    label: Text("Only Once After Each Attempt", bundle: .core),
+                    value: $viewModel.onlyOnceAfterEachAttempt)
+                ToggleRow(
+                    label: Text("Let Students See the Correct Answer", bundle: .core),
+                    value: $viewModel.showCorrectAnswers)
+                if viewModel.showCorrectAnswers {
+                    OptionalDatePicker(
+                        selection: $viewModel.showCorrectAnswersAt,
+                        max: nil,
+                        initial: Clock.now.startOfDay()) {
+                            Text("Show Correct Answers At", bundle: .core)
+                        }
+                    OptionalDatePicker(
+                        selection: $viewModel.hideCorrectAnswersAt,
+                        max: nil,
+                        initial: Clock.now.startOfDay()) {
+                            Text("Hide Correct Answers At", bundle: .core)
+                        }
+                }
             }
         }
     }
@@ -217,7 +240,6 @@ public struct QuizEditorView: View {
             Spacer().frame(width: 16)
             DisclosureIndicator()
         })
-            .identifier("QuizEditor.quizTypeButton")
     }
 
     @ViewBuilder
@@ -243,8 +265,7 @@ public struct QuizEditorView: View {
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
             DisclosureIndicator()
-        })
-            .identifier("QuizEditor.quizTypeButton")*/
+        })*/
     }
 
     @ViewBuilder
@@ -269,7 +290,6 @@ public struct QuizEditorView: View {
             Spacer().frame(width: 16)
             DisclosureIndicator()
         })
-            .identifier("QuizEditor.quizScoreToKeepButton")
     }
 
     func save() {

@@ -49,11 +49,12 @@ public class QuizEditorViewModel: ObservableObject {
     public var lengthInMinutes: Double?
     @Published public var allowMultipleAttempts: Bool = false
     @Published public var scoreToKeep: ScoringPolicy?
-    public var allowedAttempts: Double?
-    public var seeResponses: Bool = false
+    public var allowedAttempts: Int?
+    @Published public var seeResponses: Bool = false
     public var onlyOnceAfterEachAttempt: Bool = false
-    public var showCorrectAnswersAt: Bool = false
-    public var hideCorrectAnswersAt: Bool = false
+    @Published public var showCorrectAnswers: Bool = false
+    public var showCorrectAnswersAt: Date?
+    public var hideCorrectAnswersAt: Date?
 
     private let quizID: String
     private var assignmentID: String?
@@ -108,14 +109,22 @@ public class QuizEditorViewModel: ObservableObject {
         //TODO hack assignment group
         quizType = quiz.quizType
         published = quiz.published
+
         shuffleAnswers = quiz.shuffleAnswers
         if let timeLimit = quiz.timeLimit {
             self.timeLimit = true
             lengthInMinutes = timeLimit
         }
+
         allowMultipleAttempts = ![0, 1].contains(quiz.allowedAttempts)
         scoreToKeep = quiz.scoringPolicy
+        allowedAttempts = quiz.allowedAttempts
 
+        seeResponses = quiz.hideResults != .always
+        onlyOnceAfterEachAttempt = quiz.hideResults == .until_after_last_attempt
+        showCorrectAnswers = quiz.showCorrectAnswers
+        showCorrectAnswersAt = quiz.showCorrectAnswersAt
+        hideCorrectAnswersAt = quiz.hideCorrectAnswersAt
 
         //overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
     }
