@@ -96,7 +96,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
             .init(id: "A1", name: "online upload", allowedExtensions: []),
         ]))
 
-        testee.selectedAssignment = .init(id: "A1", name: "online upload", allowedExtensions: [])
+        testee.assignmentSelected(.init(id: "A1", name: "online upload", allowedExtensions: []))
         api.mock(AssignmentPickerListRequest(courseID: "successID2"), value: mockAssignments([
             mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
         ]))

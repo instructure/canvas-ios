@@ -29,8 +29,8 @@ public class AssignmentPickerViewModel: ObservableObject {
         }
     }
 
-    @Published public var state: ViewModelState<[Assignment]> = .loading
-    @Published public var selectedAssignment: Assignment?
+    @Published public private(set) var state: ViewModelState<[Assignment]> = .loading
+    @Published public private(set) var selectedAssignment: Assignment?
     /** Modify this to trigger the assignment list fetch for the given course ID. */
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
