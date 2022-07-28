@@ -56,25 +56,29 @@ public struct AssignmentPickerView: View {
     private func assignments(assignments: [AssignmentPickerItem]) -> some View {
         ScrollView {
             VStack(spacing: 0) {
-                ForEach(assignments) { assignment in
+                ForEach(assignments) { item in
                     Button(action: {
-                        viewModel.assignmentSelected(assignment)
+                        viewModel.assignmentSelected(item)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             presentationMode.wrappedValue.dismiss()
                         }
                     }) {
                         HStack(spacing: 0) {
-                            Text(assignment.name)
+                            Text(item.name)
                                 .font(.regular16)
                                 .foregroundColor(.textDarkest)
                                 .frame(height: 50)
                                 .multilineTextAlignment(.leading)
                             Spacer()
 
-                            if viewModel.selectedAssignment == assignment {
+                            if viewModel.selectedAssignment == item {
                                 Image.checkSolid
                                     .frame(width: 50, height: 50)
                                     .foregroundColor(.electric)
+                            } else if item.notAvailableReason != nil {
+                                Image.noLine
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(.textDarkest)
                             }
                         }
                         .padding(.leading, 16)
@@ -96,8 +100,9 @@ struct AssignmentPickerView_Previews: PreviewProvider {
             .init(id: "0", name: "American Literature"),
             .init(id: "1", name: "History"),
             .init(id: "2", name: "Math"),
-            .init(id: "3", name: "Biology"),
+            .init(id: "3", name: "Biology", notAvailableReason: "error"),
         ]))
+        dataModel.assignmentSelected(.init(id: "2", name: "Math"))
         return dataModel
     }
 
@@ -105,11 +110,22 @@ struct AssignmentPickerView_Previews: PreviewProvider {
         let loadingModel = AssignmentPickerViewModel(state: .loading)
         let errorModel = AssignmentPickerViewModel(state: .error("Something went wrong"))
         AssignmentPickerView(viewModel: dataModel)
-            .previewLayout(.fixed(width: 500, height: 500))
+            .previewLayout(.fixed(width: 300, height: 400))
+        AssignmentPickerView(viewModel: dataModel)
+            .previewLayout(.fixed(width: 300, height: 400))
+            .preferredColorScheme(.dark)
+
         AssignmentPickerView(viewModel: loadingModel)
-            .previewLayout(.fixed(width: 500, height: 500))
+            .previewLayout(.fixed(width: 300, height: 400))
+        AssignmentPickerView(viewModel: loadingModel)
+            .previewLayout(.fixed(width: 300, height: 400))
+            .preferredColorScheme(.dark)
+
         AssignmentPickerView(viewModel: errorModel)
-            .previewLayout(.fixed(width: 500, height: 500))
+            .previewLayout(.fixed(width: 300, height: 400))
+        AssignmentPickerView(viewModel: errorModel)
+            .previewLayout(.fixed(width: 300, height: 400))
+            .preferredColorScheme(.dark)
     }
 }
 

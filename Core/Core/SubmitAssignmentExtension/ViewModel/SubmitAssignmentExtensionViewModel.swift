@@ -66,6 +66,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
         refreshAssignmentListOnCourseSelection()
         updateAssignmentNameOnAssignmentSelection()
         updateSubmitButtonStateOnAssignmentChange()
+        forwardSharedFileExtensionsToAssignmentPicker(from: attachmentCopyService)
         attachmentCopyService.startCopying()
     }
 
@@ -109,6 +110,16 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
             }()
             self.selectedFileURLs = self.previews
         }.store(in: &subscriptions)
+    }
+
+    private func forwardSharedFileExtensionsToAssignmentPicker(from attachmentCopyService: AttachmentCopyService) {
+        attachmentCopyService.state
+            .compactMap { state -> Set<String>? in
+                guard case .completed(let result) = state, case .success(let attachments) = result else { return nil }
+                return attachments.pathExtensions
+            }
+            .subscribe(assignmentPickerViewModel.sharedFileExtensions)
+            .store(in: &subscriptions)
     }
 
     private func updateCourseNameOnCourseSelection() {

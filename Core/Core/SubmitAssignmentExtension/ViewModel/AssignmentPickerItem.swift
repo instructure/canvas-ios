@@ -44,4 +44,3 @@ public struct AssignmentPickerItem: Equatable, Identifiable {
         self.notAvailableReason = notAvailableReason
     }
 }
-
