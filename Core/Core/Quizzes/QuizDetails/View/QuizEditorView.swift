@@ -50,7 +50,7 @@ public struct QuizEditorView: View {
                     Text("Cancel", bundle: .core).fontWeight(.regular)
                 })
             }, trailing: {
-                Button(action: save, label: {
+                Button(action: doneTapped, label: {
                     Text("Done", bundle: .core).bold()
                 })
                 .disabled(viewModel.state != .ready)
@@ -64,8 +64,6 @@ public struct QuizEditorView: View {
                     return AssignmentOverridesEditor.alert(toRemove: override, from: $viewModel.assignmentOverrides)
                 }
             }
-
-            //.onAppear(perform: load) is this necessary?
     }
 
     enum AlertItem: Identifiable {
@@ -329,48 +327,8 @@ public struct QuizEditorView: View {
         })
     }
 
-    func save() {
-    }
-/*
-    func save() {
+    func doneTapped() {
         controller.view.endEditing(true) // dismiss keyboard
-        isSaving = true
-        let originalOverrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) }
-        guard
-            let assignmentID = assignmentID,
-            let assignment = assignment,
-            assignment.details != description ||
-            assignment.gradingType != gradingType ||
-            assignment.pointsPossible != pointsPossible ||
-            assignment.published != published ||
-            assignment.name != title ||
-            originalOverrides != overrides
-        else {
-            isSaving = false
-            return env.router.dismiss(controller)
-        }
-        let (dueAt, unlockAt, lockAt, apiOverrides) = AssignmentOverridesEditor.apiOverrides(for: assignment.id, from: overrides)
-        UpdateAssignment(
-            courseID: courseID,
-            assignmentID: assignmentID,
-            description: description,
-            dueAt: dueAt,
-            gradingType: gradingType,
-            lockAt: lockAt,
-            name: title,
-            overrides: originalOverrides == overrides ? nil : apiOverrides,
-            pointsPossible: pointsPossible,
-            published: published,
-            unlockAt: unlockAt
-        ).fetch { result, _, fetchError in performUIUpdate {
-            alert = fetchError.map { .error($0) }
-            isSaving = false
-            if result != nil {
-                GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
-                    .fetch(force: true) // updated overrides & allDates aren't in result
-                env.router.dismiss(controller)
-            }
-        } }
+        viewModel.doneTapped(router: env.router, viewController: controller)
     }
- */
 }

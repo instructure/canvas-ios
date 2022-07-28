@@ -136,4 +136,65 @@ public class QuizEditorViewModel: ObservableObject {
         accessCode = quiz.accessCode ?? ""
         assignmentOverrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
     }
+
+    public func doneTapped(router: Router, viewController: WeakViewController) {
+        state = .saving
+        /*UpdateCourse(courseID: context.id,
+                     name: newName,
+                     defaultView: newDefaultView
+        ).fetch { [weak self] result, _, error in performUIUpdate {
+            guard let self = self else { return }
+            self.state = .ready
+
+            if error != nil {
+                self.errorText = error?.localizedDescription
+                self.showError = true
+            }
+
+            if result != nil {
+                router.dismiss(viewController)
+            }
+        } }
+*/
+        /*
+            func save() {
+                let originalOverrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) }
+                guard
+                    let assignmentID = assignmentID,
+                    let assignment = assignment,
+                    assignment.details != description ||
+                    assignment.gradingType != gradingType ||
+                    assignment.pointsPossible != pointsPossible ||
+                    assignment.published != published ||
+                    assignment.name != title ||
+                    originalOverrides != overrides
+                else {
+                    isSaving = false
+                    return env.router.dismiss(controller)
+                }
+                let (dueAt, unlockAt, lockAt, apiOverrides) = AssignmentOverridesEditor.apiOverrides(for: assignment.id, from: overrides)
+                UpdateAssignment(
+                    courseID: courseID,
+                    assignmentID: assignmentID,
+                    description: description,
+                    dueAt: dueAt,
+                    gradingType: gradingType,
+                    lockAt: lockAt,
+                    name: title,
+                    overrides: originalOverrides == overrides ? nil : apiOverrides,
+                    pointsPossible: pointsPossible,
+                    published: published,
+                    unlockAt: unlockAt
+                ).fetch { result, _, fetchError in performUIUpdate {
+                    alert = fetchError.map { .error($0) }
+                    isSaving = false
+                    if result != nil {
+                        GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
+                            .fetch(force: true) // updated overrides & allDates aren't in result
+                        env.router.dismiss(controller)
+                    }
+                } }
+            }
+         */
+    }
 }
