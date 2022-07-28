@@ -55,6 +55,11 @@ public class QuizEditorViewModel: ObservableObject {
     @Published public var showCorrectAnswers: Bool = false
     public var showCorrectAnswersAt: Date?
     public var hideCorrectAnswersAt: Date?
+    @Published public var oneQuestionAtaTime: Bool = false
+    public var lockQuestionAfterViewing: Bool = false
+    @Published public var requireAccessCode: Bool = false
+    @Published public var accessCode: String = ""
+    @Published public var assignmentOverrides: [AssignmentOverridesEditor.Override] = []
 
     private let quizID: String
     private var assignmentID: String?
@@ -102,7 +107,7 @@ public class QuizEditorViewModel: ObservableObject {
     }
 
     func loadAttributes() {
-        guard let quiz = quiz, let assignment = assignment else { return }
+        guard let quiz = quiz else { return }
 
         title = quiz.title
         description = quiz.details ?? ""
@@ -125,7 +130,10 @@ public class QuizEditorViewModel: ObservableObject {
         showCorrectAnswers = quiz.showCorrectAnswers
         showCorrectAnswersAt = quiz.showCorrectAnswersAt
         hideCorrectAnswersAt = quiz.hideCorrectAnswersAt
-
-        //overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
+        oneQuestionAtaTime = quiz.oneQuestionAtATime
+        lockQuestionAfterViewing = quiz.cantGoBack
+        requireAccessCode = quiz.hasAccessCode
+        accessCode = quiz.accessCode ?? ""
+        assignmentOverrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
     }
 }

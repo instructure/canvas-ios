@@ -29,7 +29,6 @@ public struct QuizEditorView: View {
     @State var description: String = ""
     @State var gradingType: GradingType = .points
     @State var title: String = ""
-    @State var overrides: [AssignmentOverridesEditor.Override] = []
     @State var pointsPossible: Double?
     @State var published: Bool = false
 
@@ -62,7 +61,7 @@ public struct QuizEditorView: View {
                 case .error(let error):
                     return Alert(title: Text(error.localizedDescription))
                 case .removeOverride(let override):
-                    return AssignmentOverridesEditor.alert(toRemove: override, from: $overrides)
+                    return AssignmentOverridesEditor.alert(toRemove: override, from: $viewModel.assignmentOverrides)
                 }
             }
 
@@ -89,20 +88,9 @@ public struct QuizEditorView: View {
             basicSettingsSection
             attemptsSection
             responsesSection
-
-            AssignmentOverridesEditor(
-                courseID: viewModel.courseID,
-                groupCategoryID: viewModel.assignment?.groupCategoryID,
-                overrides: $overrides,
-                toRemove: Binding(get: {
-                    if case .removeOverride(let override) = alert {
-                        return override
-                    }
-                    return nil
-                }, set: {
-                    alert = $0.map { AlertItem.removeOverride($0) }
-                })
-            )
+            oneQuestionSection
+            accessCodeSection
+            assignmentOverridesSection
         }
     }
 
@@ -216,6 +204,55 @@ public struct QuizEditorView: View {
                 }
             }
         }
+    }
+
+    @ViewBuilder
+    private var oneQuestionSection: some View {
+        EditorSection {
+            ToggleRow(
+                label: Text("Show One Question at a Time", bundle: .core),
+                value: $viewModel.oneQuestionAtaTime)
+            if viewModel.oneQuestionAtaTime {
+                Divider()
+                ToggleRow(
+                    label: Text("Lock Questions After Answering", bundle: .core),
+                    value: $viewModel.lockQuestionAfterViewing)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var accessCodeSection: some View {
+        EditorSection {
+            ToggleRow(
+                label: Text("Require an Access Code", bundle: .core),
+                value: $viewModel.requireAccessCode)
+            if viewModel.requireAccessCode {
+                Divider()
+                TextFieldRow(
+                    label: Text("Access Code", bundle: .core),
+                    placeholder: NSLocalizedString("Enter code", comment: ""),
+                    text: $viewModel.accessCode
+                )
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var assignmentOverridesSection: some View {
+        AssignmentOverridesEditor(
+            courseID: viewModel.courseID,
+            groupCategoryID: viewModel.assignment?.groupCategoryID,
+            overrides: $viewModel.assignmentOverrides,
+            toRemove: Binding(get: {
+                if case .removeOverride(let override) = alert {
+                    return override
+                }
+                return nil
+            }, set: {
+                alert = $0.map { AlertItem.removeOverride($0) }
+            })
+        )
     }
 
     @ViewBuilder
