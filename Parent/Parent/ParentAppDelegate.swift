@@ -93,10 +93,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             // The method call below ensures that we always start with the first color scheme.    
             ColorScheme.clear()
         }
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
         Analytics.shared.logSession(session)
         getPreferences { userProfile in performUIUpdate {
             LocalizationManager.localizeForApp(UIApplication.shared, locale: userProfile.locale) {
