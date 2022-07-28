@@ -927,6 +927,10 @@
 		CF6C7FC826F8DC15002937E5 /* CoursePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C7FC726F8DC15002937E5 /* CoursePickerView.swift */; };
 		CF6C7FCB26F8DED2002937E5 /* SubmitAssignmentExtensionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C7FCA26F8DED2002937E5 /* SubmitAssignmentExtensionViewModel.swift */; };
 		CF6C7FCD26F9CBAF002937E5 /* CoursePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C7FCC26F9CBAF002937E5 /* CoursePickerViewModel.swift */; };
+		CF6F91CC28929416009F147E /* AssignmentPickerListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6F91CB28929416009F147E /* AssignmentPickerListService.swift */; };
+		CF6F91CE289294E3009F147E /* AssignmentPickerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6F91CD289294E3009F147E /* AssignmentPickerListItem.swift */; };
+		CF6F91D128929858009F147E /* AssignmentPickerListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6F91D028929858009F147E /* AssignmentPickerListServiceTests.swift */; };
+		CF6F91D32892ACE6009F147E /* AssignmentPickerListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6F91D22892ACE6009F147E /* AssignmentPickerListItemTests.swift */; };
 		CF748D1D274D43B9000EA34E /* DashboardConferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF748D1C274D43B9000EA34E /* DashboardConferencesViewModel.swift */; };
 		CF748D21274D52C6000EA34E /* DashboardConferencesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF748D20274D52C6000EA34E /* DashboardConferencesViewModelTests.swift */; };
 		CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */; };
@@ -2340,6 +2344,10 @@
 		CF6C7FC726F8DC15002937E5 /* CoursePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePickerView.swift; sourceTree = "<group>"; };
 		CF6C7FCA26F8DED2002937E5 /* SubmitAssignmentExtensionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentExtensionViewModel.swift; sourceTree = "<group>"; };
 		CF6C7FCC26F9CBAF002937E5 /* CoursePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePickerViewModel.swift; sourceTree = "<group>"; };
+		CF6F91CB28929416009F147E /* AssignmentPickerListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListService.swift; sourceTree = "<group>"; };
+		CF6F91CD289294E3009F147E /* AssignmentPickerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListItem.swift; sourceTree = "<group>"; };
+		CF6F91D028929858009F147E /* AssignmentPickerListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListServiceTests.swift; sourceTree = "<group>"; };
+		CF6F91D22892ACE6009F147E /* AssignmentPickerListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListItemTests.swift; sourceTree = "<group>"; };
 		CF748D1C274D43B9000EA34E /* DashboardConferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConferencesViewModel.swift; sourceTree = "<group>"; };
 		CF748D20274D52C6000EA34E /* DashboardConferencesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConferencesViewModelTests.swift; sourceTree = "<group>"; };
 		CF7C36732677B0D200ACAC79 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
@@ -4522,6 +4530,8 @@
 		CF2091A4275A5B25003E8EA6 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				CF6F91CB28929416009F147E /* AssignmentPickerListService.swift */,
+				CF6F91CD289294E3009F147E /* AssignmentPickerListItem.swift */,
 				CF2091A5275A5B37003E8EA6 /* AssignmentPickerListRequest.swift */,
 				CF2091A7275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift */,
 			);
@@ -5115,6 +5125,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		CF6F91CF2892984B009F147E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CF6F91D028929858009F147E /* AssignmentPickerListServiceTests.swift */,
+				CF6F91D22892ACE6009F147E /* AssignmentPickerListItemTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		CF748D1E274D5283000EA34E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5614,6 +5633,7 @@
 		CFC2C27A2735328C006CA3E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF6F91CF2892984B009F147E /* API */,
 				CFC2C2842735961E006CA3E0 /* AttachmentCopyServiceTests.swift */,
 				CFC2C28227358796006CA3E0 /* AttachmentSubmissionServiceTests.swift */,
 				CF09E6A42840FC89000C72D0 /* UTIFromNSItemProviderTests.swift */,
@@ -6684,6 +6704,7 @@
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
+				CF6F91D128929858009F147E /* AssignmentPickerListServiceTests.swift in Sources */,
 				B149098C23D9154C0051D961 /* LTIViewControllerTests.swift in Sources */,
 				CFE83FA827468AD200C1278F /* GetEnrollmentsTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
@@ -6847,6 +6868,7 @@
 				CF941B1E267B439600700DE9 /* K5ScheduleViewModelTests.swift in Sources */,
 				7DCF1EC0216BC97F003AF358 /* TabVisibilityTests.swift in Sources */,
 				7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */,
+				CF6F91D32892ACE6009F147E /* AssignmentPickerListItemTests.swift in Sources */,
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
 				B109249423CE81C400796903 /* RoleTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
@@ -6955,6 +6977,7 @@
 				7DA2602523F722B3005D2121 /* LoggableCell.swift in Sources */,
 				D91BC851276B7B2D008371B0 /* AssignmentListView.swift in Sources */,
 				7DA2607023F722E9005D2121 /* CommunicationChannel.swift in Sources */,
+				CF6F91CE289294E3009F147E /* AssignmentPickerListItem.swift in Sources */,
 				E888382A24DDD20D00DDF691 /* SequenceExtensions.swift in Sources */,
 				7DA25FD423F72136005D2121 /* ID.swift in Sources */,
 				7DA2608323F72303005D2121 /* PeopleListViewController.swift in Sources */,
@@ -7208,6 +7231,7 @@
 				CF490F142850CE230065D242 /* DragStartViewModel.swift in Sources */,
 				CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */,
 				7DA25FDA23F72148005D2121 /* Keychain.swift in Sources */,
+				CF6F91CC28929416009F147E /* AssignmentPickerListService.swift in Sources */,
 				7DA2609323F72315005D2121 /* UserProfile.swift in Sources */,
 				7DA260FE23F773D9005D2121 /* PlannerListViewController.swift in Sources */,
 				7DA2605023F722D9005D2121 /* LogEvent.swift in Sources */,

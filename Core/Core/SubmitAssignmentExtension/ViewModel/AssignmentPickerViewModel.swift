@@ -16,44 +16,53 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class AssignmentPickerViewModel: ObservableObject {
-    public struct Assignment: Equatable, Identifiable {
-        public let id: String
-        public let name: String
-        public let allowedExtensions: [String]
-
-        public func isFileAllowed(_ url: URL) -> Bool {
-            allowedExtensions.isEmpty ? true : allowedExtensions.contains(url.pathExtension)
-        }
-    }
-
-    @Published public private(set) var state: ViewModelState<[Assignment]> = .loading
-    @Published public private(set) var selectedAssignment: Assignment?
+    public typealias State = ViewModelState<[AssignmentPickerListItem]>
+    @Published public private(set) var state: State = .loading
+    @Published public private(set) var selectedAssignment: AssignmentPickerListItem?
     /** Modify this to trigger the assignment list fetch for the given course ID. */
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
     }
 
-    private var requestedCourseID: String?
+    /** Until we know what files the user wants to share we don't allow assignment selection so we can correctly filter out incompatible assignments. */
+    private var sharedFilesReady = false
+    private let service: AssignmentPickerListServiceProtocol
+    private var serviceSubscription: AnyCancellable?
 
     #if DEBUG
 
     // MARK: - Preview Support
 
-    public init(state: ViewModelState<[Assignment]>) {
+    public init(state: ViewModelState<[AssignmentPickerListItem]>) {
         self.state = state
+        self.service = AssignmentPickerListService()
     }
 
     // MARK: Preview Support -
 
     #endif
 
-    public init() {
+    public init(service: AssignmentPickerListServiceProtocol = AssignmentPickerListService()) {
+        self.service = service
+        self.serviceSubscription = service.result
+            .map { result -> State in
+                switch result {
+                case .success(let items): return State.data(items)
+                case .failure(let error): return State.error(error)
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                self?.state = state
+                self?.selectDefaultAssignment()
+            }
     }
 
-    public func assignmentSelected(_ assignment: Assignment) {
+    public func assignmentSelected(_ assignment: AssignmentPickerListItem) {
         Analytics.shared.logEvent("assignment_selected")
         selectedAssignment = assignment
     }
@@ -66,43 +75,7 @@ public class AssignmentPickerViewModel: ObservableObject {
 
         if let newValue = newValue {
             selectedAssignment = nil
-            fetchAssignments(for: newValue)
-        }
-    }
-
-    private func fetchAssignments(for courseID: String) {
-        requestedCourseID = courseID
-        let request = AssignmentPickerListRequest(courseID: courseID)
-
-        AppEnvironment.shared.api.makeRequest(request) { response, _, error in
-            // If the finished request was for an older fetch we ignore its results
-            if self.requestedCourseID != courseID {
-                return
-            }
-
-            let newState: ViewModelState<[Assignment]>
-
-            if let response = response {
-                let assignments = Self.filterAssignments(response.assignments)
-                Analytics.shared.logEvent("assignments_loaded", parameters: ["count": assignments.count])
-                newState = .data(assignments)
-            } else {
-                let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
-                Analytics.shared.logEvent("error_loading_assignments", parameters: ["error": errorMessage])
-                newState = .error(errorMessage)
-            }
-
-            performUIUpdate {
-                self.state = newState
-                self.selectDefaultAssignment()
-            }
-        }
-    }
-
-    private static func filterAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> [Assignment] {
-        assignments.compactMap {
-            guard $0.isLocked == false, $0.submissionTypes.contains(.online_upload) else { return nil }
-            return Assignment(id: $0._id, name: $0.name, allowedExtensions: $0.allowedExtensions ?? [])
+            service.courseID = newValue
         }
     }
 

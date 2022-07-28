@@ -61,3 +61,6 @@ extension String {
         return result
     }
 }
+
+extension String: Error {
+}

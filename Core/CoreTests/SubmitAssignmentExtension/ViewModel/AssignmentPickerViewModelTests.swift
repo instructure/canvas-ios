@@ -16,39 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 @testable import Core
 import XCTest
 
 class AssignmentPickerViewModelTests: CoreTestCase {
+    private let mockService = MockAssignmentPickerListService()
     private var testee: AssignmentPickerViewModel!
 
     override func setUp() {
         super.setUp()
-        testee = AssignmentPickerViewModel()
+        testee = AssignmentPickerViewModel(service: mockService)
         environment.userDefaults?.reset()
     }
 
-    func testUnknownAPIError() {
-        testee.courseID = "failingID"
-        XCTAssertNil(testee.selectedAssignment)
-        XCTAssertEqual(testee.state, .error("Something went wrong"))
-    }
-
     func testAPIError() {
-        api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
+        mockService.mockResult = .failure("Custom error")
         testee.courseID = "failingID"
+        drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .error("Custom error"))
     }
 
     func testAssignmentFetchSuccessful() {
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "unknown submission type"),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
-            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool]),
-        ]))
+        mockService.mockResult = .success([
+            .init(id: "A2", name: "online upload", allowedExtensions: []),
+        ])
         testee.courseID = "successID"
+        drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
             .init(id: "A2", name: "online upload", allowedExtensions: []),
@@ -56,17 +51,19 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testSameCourseIdDoesntTriggerRefresh() {
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
-        ]))
+        mockService.mockResult = .success([
+            .init(id: "A1", name: "online upload", allowedExtensions: []),
+        ])
         testee.courseID = "successID"
+        drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
             .init(id: "A1", name: "online upload", allowedExtensions: []),
         ]))
 
-        api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
+        mockService.mockResult = .failure("Custom error")
         testee.courseID = "successID"
+        drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
             .init(id: "A1", name: "online upload", allowedExtensions: []),
@@ -75,10 +72,11 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testDefaultAssignmentSelection() {
         environment.userDefaults?.submitAssignmentID = "A2"
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
-        ]))
+        mockService.mockResult = .success([
+            .init(id: "A2", name: "online upload", allowedExtensions: []),
+        ])
         testee.courseID = "successID"
+        drainMainQueue()
         XCTAssertEqual(testee.selectedAssignment, .init(id: "A2", name: "online upload", allowedExtensions: []))
         XCTAssertEqual(testee.state, .data([
             .init(id: "A2", name: "online upload", allowedExtensions: []),
@@ -88,19 +86,21 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testCourseChangeRefreshesState() {
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
-        ]))
+        mockService.mockResult = .success([
+            .init(id: "A1", name: "online upload", allowedExtensions: []),
+        ])
         testee.courseID = "successID"
+        drainMainQueue()
         XCTAssertEqual(testee.state, .data([
             .init(id: "A1", name: "online upload", allowedExtensions: []),
         ]))
 
         testee.assignmentSelected(.init(id: "A1", name: "online upload", allowedExtensions: []))
-        api.mock(AssignmentPickerListRequest(courseID: "successID2"), value: mockAssignments([
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
-        ]))
+        mockService.mockResult = .success([
+            .init(id: "A2", name: "online upload", allowedExtensions: []),
+        ])
         testee.courseID = "successID2"
+        drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
             .init(id: "A2", name: "online upload", allowedExtensions: []),
@@ -124,48 +124,14 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(analyticsHandler.lastEventName, "assignment_selected")
         XCTAssertNil(analyticsHandler.lastEventParameters)
     }
+}
 
-    func testReportsNumberOfAssignments() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
-        ]))
-        testee.courseID = "successID"
-
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "assignments_loaded")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
+class MockAssignmentPickerListService: AssignmentPickerListServiceProtocol {
+    public private(set) lazy var result: AnyPublisher<APIResult, Never> = resultSubject.eraseToAnyPublisher()
+    public var courseID: String? {
+        didSet { resultSubject.send(mockResult ?? .failure("No mock result")) }
     }
 
-    func testReportsAssignmentLoadFailure() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), error: NSError.instructureError("custom error"))
-        testee.courseID = "failureID"
-
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "error_loading_assignments")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
-    }
-
-    func testAssignmentCompatibleURLs() {
-        var assignment = AssignmentPickerViewModel.Assignment(id: "1", name: "1", allowedExtensions: ["pdf", "jpg"])
-        XCTAssertTrue(assignment.isFileAllowed(URL(string: "/file.jpg")!))
-        XCTAssertFalse(assignment.isFileAllowed(URL(string: "/file.png")!))
-
-        assignment = AssignmentPickerViewModel.Assignment(id: "1", name: "1", allowedExtensions: [])
-        XCTAssertTrue(assignment.isFileAllowed(URL(string: "/file.anyextension")!))
-    }
-
-    private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
-        return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
-    }
-
-    private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = []) -> AssignmentPickerListResponse.Assignment {
-        .init(name: name, _id: id, submissionTypes: submission_types, allowedExtensions: [], lockInfo: .init(isLocked: isLocked))
-    }
+    var mockResult: APIResult?
+    private let resultSubject = PassthroughSubject<APIResult, Never>()
 }

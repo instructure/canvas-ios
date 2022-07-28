@@ -53,7 +53,7 @@ public struct AssignmentPickerView: View {
             .foregroundColor(.textDarkest)
     }
 
-    private func assignments(assignments: [AssignmentPickerViewModel.Assignment]) -> some View {
+    private func assignments(assignments: [AssignmentPickerListItem]) -> some View {
         ScrollView {
             VStack(spacing: 0) {
                 ForEach(assignments) { assignment in
