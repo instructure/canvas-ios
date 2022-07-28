@@ -37,7 +37,6 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
 
     private var selectedFileURLs: [URL] = []
     private let submissionService: AttachmentSubmissionService
-    private var assignmentCopyServiceStateSubscription: AnyCancellable?
     private let shareCompleted: () -> Void
     private var subscriptions: Set<AnyCancellable> = []
     private let showUploadStateViewSubject = PassthroughSubject<FileProgressListViewModel, Never>()
@@ -91,7 +90,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     }
 
     private func subscribeToAssignmentCopyServiceUpdates(_ attachmentCopyService: AttachmentCopyService) {
-        assignmentCopyServiceStateSubscription = attachmentCopyService.state.sink { [weak self] state in
+        attachmentCopyService.state.sink { [weak self] state in
             guard let self = self else { return }
 
             self.isProcessingFiles = {
@@ -109,7 +108,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
                 }
             }()
             self.selectedFileURLs = self.previews
-        }
+        }.store(in: &subscriptions)
     }
 
     private func updateCourseNameOnCourseSelection() {

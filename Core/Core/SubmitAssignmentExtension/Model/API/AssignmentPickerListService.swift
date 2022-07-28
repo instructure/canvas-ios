@@ -19,7 +19,7 @@
 import Combine
 
 public protocol AssignmentPickerListServiceProtocol: AnyObject {
-    typealias APIResult = Result<[AssignmentPickerListItem], String>
+    typealias APIResult = Result<[APIAssignmentPickerListItem], String>
     var result: AnyPublisher<APIResult, Never> { get }
     var courseID: String? { get set }
 }
@@ -54,7 +54,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
             return
         }
 
-        let result: Result<[AssignmentPickerListItem], String>
+        let result: Result<[APIAssignmentPickerListItem], String>
 
         if let response = response {
             let assignments = Self.filterAssignments(response.assignments)
@@ -69,10 +69,10 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         resultSubject.send(result)
     }
 
-    private static func filterAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> [AssignmentPickerListItem] {
+    private static func filterAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> [APIAssignmentPickerListItem] {
         assignments.compactMap {
             guard $0.isLocked == false, $0.submissionTypes.contains(.online_upload) else { return nil }
-            return AssignmentPickerListItem(id: $0._id, name: $0.name, allowedExtensions: $0.allowedExtensions ?? [])
+            return APIAssignmentPickerListItem(id: $0._id, name: $0.name, allowedExtensions: $0.allowedExtensions ?? [])
         }
     }
 }

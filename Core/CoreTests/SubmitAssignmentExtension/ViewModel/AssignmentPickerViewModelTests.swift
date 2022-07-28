@@ -27,6 +27,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         testee = AssignmentPickerViewModel(service: mockService)
+        testee.sharedFileExtensions.send(Set())
         environment.userDefaults?.reset()
     }
 
@@ -46,8 +47,19 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload"),
         ]))
+    }
+
+    func testAssignmentFetchSuccessfulButSharedFilesArentReady() {
+        testee.sharedFileExtensions.send(nil)
+        mockService.mockResult = .success([
+            .init(id: "A2", name: "online upload", allowedExtensions: []),
+        ])
+        testee.courseID = "successID"
+        drainMainQueue()
+        XCTAssertNil(testee.selectedAssignment)
+        XCTAssertEqual(testee.state, .loading)
     }
 
     func testSameCourseIdDoesntTriggerRefresh() {
@@ -58,7 +70,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload", allowedExtensions: []),
+            .init(id: "A1", name: "online upload"),
         ]))
 
         mockService.mockResult = .failure("Custom error")
@@ -66,7 +78,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload", allowedExtensions: []),
+            .init(id: "A1", name: "online upload"),
         ]))
     }
 
@@ -77,9 +89,9 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         ])
         testee.courseID = "successID"
         drainMainQueue()
-        XCTAssertEqual(testee.selectedAssignment, .init(id: "A2", name: "online upload", allowedExtensions: []))
+        XCTAssertEqual(testee.selectedAssignment, .init(id: "A2", name: "online upload"))
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload"),
         ]))
         // Keep the assignment ID so if the user submits another attempt without starting the app we'll pre-select
         XCTAssertNotNil(environment.userDefaults?.submitAssignmentID)
@@ -92,10 +104,10 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         testee.courseID = "successID"
         drainMainQueue()
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload", allowedExtensions: []),
+            .init(id: "A1", name: "online upload"),
         ]))
 
-        testee.assignmentSelected(.init(id: "A1", name: "online upload", allowedExtensions: []))
+        testee.assignmentSelected(.init(id: "A1", name: "online upload"))
         mockService.mockResult = .success([
             .init(id: "A2", name: "online upload", allowedExtensions: []),
         ])
@@ -103,7 +115,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload"),
         ]))
     }
 
@@ -118,7 +130,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         Analytics.shared.handler = analyticsHandler
         XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
 
-        testee.assignmentSelected(.init(id: "", name: "", allowedExtensions: []))
+        testee.assignmentSelected(.init(id: "", name: ""))
 
         XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
         XCTAssertEqual(analyticsHandler.lastEventName, "assignment_selected")

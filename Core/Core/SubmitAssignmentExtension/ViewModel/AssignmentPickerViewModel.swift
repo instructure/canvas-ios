@@ -20,16 +20,16 @@ import Combine
 import SwiftUI
 
 public class AssignmentPickerViewModel: ObservableObject {
-    public typealias State = ViewModelState<[AssignmentPickerListItem]>
+    public typealias State = ViewModelState<[AssignmentPickerItem]>
     @Published public private(set) var state: State = .loading
-    @Published public private(set) var selectedAssignment: AssignmentPickerListItem?
+    @Published public private(set) var selectedAssignment: AssignmentPickerItem?
     /** Modify this to trigger the assignment list fetch for the given course ID. */
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
     }
-
     /** Until we know what files the user wants to share we don't allow assignment selection so we can correctly filter out incompatible assignments. */
-    private var sharedFilesReady = false
+    public let sharedFileExtensions = CurrentValueSubject<Set<String>?, Never>(nil)
+
     private let service: AssignmentPickerListServiceProtocol
     private var serviceSubscription: AnyCancellable?
 
@@ -37,7 +37,7 @@ public class AssignmentPickerViewModel: ObservableObject {
 
     // MARK: - Preview Support
 
-    public init(state: ViewModelState<[AssignmentPickerListItem]>) {
+    public init(state: ViewModelState<[AssignmentPickerItem]>) {
         self.state = state
         self.service = AssignmentPickerListService()
     }
@@ -49,10 +49,13 @@ public class AssignmentPickerViewModel: ObservableObject {
     public init(service: AssignmentPickerListServiceProtocol = AssignmentPickerListService()) {
         self.service = service
         self.serviceSubscription = service.result
-            .map { result -> State in
+            .combineLatest(sharedFileExtensions) { result, sharedExtensions -> State in
+                guard var sharedExtensions = sharedExtensions else { return .loading }
+                sharedExtensions = Set(sharedExtensions.map { $0.lowercased() })
+
                 switch result {
-                case .success(let items): return State.data(items)
-                case .failure(let error): return State.error(error)
+                case .success(let items): return .data(items.map { AssignmentPickerItem(apiItem: $0, sharedFileExtensions: sharedExtensions) })
+                case .failure(let error): return .error(error)
                 }
             }
             .receive(on: DispatchQueue.main)
@@ -62,7 +65,7 @@ public class AssignmentPickerViewModel: ObservableObject {
             }
     }
 
-    public func assignmentSelected(_ assignment: AssignmentPickerListItem) {
+    public func assignmentSelected(_ assignment: AssignmentPickerItem) {
         Analytics.shared.logEvent("assignment_selected")
         selectedAssignment = assignment
     }

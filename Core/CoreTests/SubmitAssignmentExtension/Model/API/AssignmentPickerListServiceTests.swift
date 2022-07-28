@@ -22,7 +22,7 @@ import XCTest
 
 class AssignmentPickerListServiceTests: CoreTestCase {
     private var testee: AssignmentPickerListService!
-    private var receivedResult: Result<[AssignmentPickerListItem], String>?
+    private var receivedResult: Result<[APIAssignmentPickerListItem], String>?
     private var resultSubscription: AnyCancellable?
 
     override func setUp() {

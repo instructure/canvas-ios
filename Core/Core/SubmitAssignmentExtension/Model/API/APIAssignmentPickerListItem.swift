@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct AssignmentPickerListItem: Equatable, Identifiable {
+public struct APIAssignmentPickerListItem: Equatable {
     public let id: String
     public let name: String
     public let allowedExtensions: [String]

@@ -53,7 +53,7 @@ public struct AssignmentPickerView: View {
             .foregroundColor(.textDarkest)
     }
 
-    private func assignments(assignments: [AssignmentPickerListItem]) -> some View {
+    private func assignments(assignments: [AssignmentPickerItem]) -> some View {
         ScrollView {
             VStack(spacing: 0) {
                 ForEach(assignments) { assignment in
@@ -93,10 +93,10 @@ public struct AssignmentPickerView: View {
 struct AssignmentPickerView_Previews: PreviewProvider {
     static var dataModel: AssignmentPickerViewModel {
         let dataModel = AssignmentPickerViewModel(state: .data([
-            .init(id: "0", name: "American Literature", allowedExtensions: []),
-            .init(id: "1", name: "History", allowedExtensions: []),
-            .init(id: "2", name: "Math", allowedExtensions: []),
-            .init(id: "3", name: "Biology", allowedExtensions: []),
+            .init(id: "0", name: "American Literature"),
+            .init(id: "1", name: "History"),
+            .init(id: "2", name: "Math"),
+            .init(id: "3", name: "Biology"),
         ]))
         return dataModel
     }
