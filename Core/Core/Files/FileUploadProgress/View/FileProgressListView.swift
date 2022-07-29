@@ -67,13 +67,16 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
     }
 
     private var successView: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            InteractivePanda(scene: SuccessPanda(), title: Text("Submission Success!", bundle: .core), subtitle: Text("Your file was successfully submitted. Enjoy your day!", bundle: .core))
-            .padding(.bottom, 21)
-            Spacer()
+        GeometryReader { _ in
+            VStack(spacing: 0) {
+                Spacer()
+                InteractivePanda(scene: SuccessPanda(), title: Text("Submission Success!", bundle: .core), subtitle: Text("Your file was successfully submitted.\nEnjoy your day!", bundle: .core))
+                Spacer()
+            }
+            .padding(40)
+            LottieView(name: "confetti", loopMode: .playOnce)
+                .allowsHitTesting(false)
         }
-        .padding(40)
     }
 
     @ViewBuilder

@@ -33,7 +33,10 @@ class FileProgressListViewPreview {
 
         init(state: FileProgressListViewState? = nil) {
             self.state = state ?? .waiting
-            scheduleUpdate()
+
+            if state == nil {
+                scheduleUpdate()
+            }
         }
 
         private func updateState() {
