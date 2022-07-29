@@ -22,7 +22,11 @@ public protocol PandaScene {
     var name: String { get }
     /** The offset of the background and foreground views from the center of the view. */
     var offset: (background: CGSize, foreground: CGSize) { get }
-    /** The total height of the scene. */
+    /**
+     The total height of the scene. This value must be set in a way that if you add a background color to the panda view
+     then both the panda and the panda background should be inside the colored background and
+     there should be some spacing below the scene so the title text doesn't get too close to it.
+     */
     var height: CGFloat { get }
     var background: AnyView { get }
     var foreground: AnyView { get }

@@ -69,7 +69,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
     private var successView: some View {
         VStack(spacing: 0) {
             Spacer()
-            InteractivePanda(scene: ConferencesPanda(), title: Text("Submission Success!", bundle: .core), subtitle: Text("Your file was successfully submitted. Enjoy your day!", bundle: .core))
+            InteractivePanda(scene: SuccessPanda(), title: Text("Submission Success!", bundle: .core), subtitle: Text("Your file was successfully submitted. Enjoy your day!", bundle: .core))
             .padding(.bottom, 21)
             Spacer()
         }
