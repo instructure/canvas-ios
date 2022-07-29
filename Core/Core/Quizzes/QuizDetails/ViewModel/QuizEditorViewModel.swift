@@ -139,6 +139,49 @@ public class QuizEditorViewModel: ObservableObject {
 
     public func doneTapped(router: Router, viewController: WeakViewController) {
         state = .saving
+        let modQuiz = Quiz()
+        modQuiz.title = title
+        modQuiz.details = description
+        modQuiz.quizType = quizType
+        modQuiz.published = published
+        modQuiz.shuffleAnswers = shuffleAnswers
+
+        if timeLimit {
+            modQuiz.timeLimit = lengthInMinutes
+        }
+
+        if allowMultipleAttempts {
+            modQuiz.scoringPolicy = scoreToKeep
+            modQuiz.allowedAttempts = allowedAttempts ?? -1 // default is unlimited (-1)
+        } else {
+            modQuiz.allowedAttempts = 0
+        }
+
+        if seeResponses {
+            modQuiz.hideResults = onlyOnceAfterEachAttempt ? .until_after_last_attempt : nil
+            modQuiz.showCorrectAnswers = showCorrectAnswers
+            if showCorrectAnswers {
+                modQuiz.showCorrectAnswersAt = showCorrectAnswersAt
+                modQuiz.hideCorrectAnswersAt = hideCorrectAnswersAt
+            }
+        } else {
+            modQuiz.hideResults = .always
+        }
+
+        modQuiz.oneQuestionAtATime = oneQuestionAtaTime
+
+        if oneQuestionAtaTime {
+            modQuiz.cantGoBack = lockQuestionAfterViewing
+        }
+
+        modQuiz.hasAccessCode = requireAccessCode
+        if requireAccessCode {
+            modQuiz.accessCode = accessCode
+        }
+
+        UpdateQuiz(courseID: courseID, quizID: quizID, quiz: modQuiz)
+            .fetch()
+
         /*UpdateCourse(courseID: context.id,
                      name: newName,
                      defaultView: newDefaultView

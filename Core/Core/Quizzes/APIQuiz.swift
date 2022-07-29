@@ -442,3 +442,17 @@ struct PostQuizSubmissionCompleteRequest: APIRequestable {
 
     let method = APIMethod.post
 }
+
+// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
+struct PutQuizRequest: APIRequestable {
+    typealias Response = APIQuiz
+    struct Body: Codable, Equatable {
+        let quiz: APIQuiz
+    }
+    let courseID: String
+    let quizID: String
+
+    var method: APIMethod { .put }
+    var path: String { "courses/\(courseID)/quizzes/\(quizID)" }
+    let body: Body?
+}
