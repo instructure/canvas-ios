@@ -29,6 +29,12 @@ public struct AssignmentPickerView: View {
     public var body: some View {
         content
             .navigationBarTitleView(Text("Select Assignment", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
+            .onReceive(viewModel.dismissView) {
+                presentationMode.wrappedValue.dismiss()
+            }
+            .alert(item: $viewModel.incompatibleFilesMessage, content: { item in
+                Alert(title: Text("Incompatible File Type", bundle: .core), message: Text(item.message), dismissButton: .default(Text("OK", bundle: .core)))
+            })
     }
 
     @ViewBuilder
@@ -57,12 +63,7 @@ public struct AssignmentPickerView: View {
         ScrollView {
             VStack(spacing: 0) {
                 ForEach(assignments) { item in
-                    Button(action: {
-                        viewModel.assignmentSelected(item)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                    }) {
+                    Button(action: { viewModel.assignmentSelected(item) }) {
                         HStack(spacing: 0) {
                             Text(item.name)
                                 .font(.regular16)

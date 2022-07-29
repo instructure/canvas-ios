@@ -25,7 +25,7 @@ public struct AssignmentPickerItem: Equatable, Identifiable {
         let incompatibleExtensions = Array(sharedFileExtensions.subtracting(Set(apiItem.allowedExtensions))).sorted()
         var notAvailableReason: String?
 
-        if !incompatibleExtensions.isEmpty {
+        if !apiItem.allowedExtensions.isEmpty, !incompatibleExtensions.isEmpty {
             let availableExtensions = apiItem.allowedExtensions.sorted()
             let notCompatibleStringFormat = NSLocalizedString("incompatible_files_for_assignment", comment: "")
             let notCompatibleText = String.localizedStringWithFormat(notCompatibleStringFormat, incompatibleExtensions.count, incompatibleExtensions.joined(separator: ", "))

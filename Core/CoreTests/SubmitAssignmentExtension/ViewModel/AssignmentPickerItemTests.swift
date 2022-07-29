@@ -28,6 +28,12 @@ class AssignmentPickerItemTests: XCTestCase {
         XCTAssertEqual(testee.name, "n1")
     }
 
+    func testNoReasonWhenAllFilesAllowed() {
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: [])
+        let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>(["jpg"]))
+        XCTAssertNil(testee.notAvailableReason)
+    }
+
     func testUnknownFileExtensionReason() {
         let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"])
         let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>())

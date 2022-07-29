@@ -125,6 +125,26 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
     }
 
+    func testDismissesViewDelayedAfterAssignmentSelection() {
+        let viewDismissed = expectation(description: "View dismissed")
+        var isDismissCalled = false
+        let dismissSubscription = testee.dismissView.sink {
+            viewDismissed.fulfill()
+            isDismissCalled = true
+        }
+        testee.assignmentSelected(.init(id: "", name: "", notAvailableReason: nil))
+        XCTAssertFalse(isDismissCalled)
+        waitForExpectations(timeout: 0.3)
+        dismissSubscription.cancel()
+    }
+
+    func testPresentsIncompatibleFileDialog() {
+        XCTAssertNil(testee.incompatibleFilesMessage)
+        testee.assignmentSelected(.init(id: "", name: "", notAvailableReason: "error"))
+        XCTAssertEqual(testee.incompatibleFilesMessage?.message, "error")
+        XCTAssertNil(testee.selectedAssignment)
+    }
+
     func testReportsAssignmentSelectionToAnalytics() {
         let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
