@@ -147,9 +147,9 @@ public struct SubmitAssignmentExtensionView: View {
                         InstDisclosureIndicator().padding(.leading, 10)
                     }
                         .frame(height: 54)
-                    divider
                 }
             }
+            divider
         }
     }
 
