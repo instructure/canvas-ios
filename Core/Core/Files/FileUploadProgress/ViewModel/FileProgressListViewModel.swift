@@ -127,9 +127,12 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
                 state = .failed
             }
         } else {
-            let progress = Float(uploadedSize) / Float(totalUploadSize)
+            let uploadSize = totalUploadSize
+            // This is because sometimes we upload more than the expected
+            let uploadedSize = min(uploadSize, uploadedSize)
+            let progress = Float(uploadedSize) / Float(uploadSize)
             let format = NSLocalizedString("Uploading %@ of %@", comment: "")
-            let progressText = String.localizedStringWithFormat(format, uploadedSize.humanReadableFileSize, totalUploadSize.humanReadableFileSize)
+            let progressText = String.localizedStringWithFormat(format, uploadedSize.humanReadableFileSize, uploadSize.humanReadableFileSize)
             state = .uploading(progressText: progressText, progress: progress)
         }
     }

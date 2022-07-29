@@ -47,9 +47,9 @@ public struct CircleProgress: View {
             Circle()
                 .stroke(Color.accentColor, lineWidth: thickness)
                 .opacity(0.2)
-            if progress != nil {
+            if let progress = progress {
                 Circle()
-                    .trim(from: 0, to: progress!)
+                    .trim(from: 0, to: progress)
                     .stroke(Color.accentColor, lineWidth: thickness)
                     .rotationEffect(Angle(radians: -0.5 * .pi))
             } else {

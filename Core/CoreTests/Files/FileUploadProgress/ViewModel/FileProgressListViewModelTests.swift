@@ -145,6 +145,13 @@ class FileProgressListViewModelTests: CoreTestCase {
         uiRefreshObserver.cancel()
     }
 
+    func testClampsProgressToOneWhenMoreBytesUploadedThanExpected() {
+        let file = makeFile()
+        file.bytesSent = file.size + 1
+        saveFiles()
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 10 bytes", progress: 1))
+    }
+
     // MARK: Navigation Bar Actions
 
     func testDismissDuringUpload() {
