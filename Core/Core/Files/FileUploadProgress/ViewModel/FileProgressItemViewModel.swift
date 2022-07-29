@@ -32,7 +32,7 @@ public class FileProgressItemViewModel: ObservableObject {
     public var state: State {
         if file.uploadError != nil {
             return .error
-        } else if file.bytesSent == file.size {
+        } else if file.isUploaded {
             return .completed
         } else if file.isUploading {
             return .uploading(progress: CGFloat(file.bytesSent) / CGFloat(file.size))
