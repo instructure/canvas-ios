@@ -25,11 +25,16 @@ public struct SuccessPanda: PandaScene {
         foreground: CGSize(width: 0, height: -30))
     }
     public var height: CGFloat { 220 }
+    public var background: AnyView { AnyView(ImageBackground(scene: self).foregroundColor(Color.backgroundLight)) }
+    public var isParallaxDisabled: Bool { true }
 }
 
 struct SuccessPanda_Previews: PreviewProvider {
     static var previews: some View {
         InteractivePanda(scene: SuccessPanda(), title: Text(verbatim: "Title"), subtitle: Text(verbatim: "Subtitle"))
-            .background(Color.red)
+            .previewLayout(.sizeThatFits)
+        InteractivePanda(scene: SuccessPanda(), title: Text(verbatim: "Title"), subtitle: Text(verbatim: "Subtitle"))
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
     }
 }

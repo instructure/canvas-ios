@@ -42,6 +42,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                 }
             }
         }
+        .background(Color.backgroundLightest)
         .animation(.default)
         .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
         .navigationTitle(viewModel.title)
@@ -103,7 +104,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                     .font(.regular14)
                     .multilineTextAlignment(.center)
             }
-            .foregroundColor(.licorice)
+            .foregroundColor(Color.textDarkest)
             .padding(.horizontal, 16)
             .padding(.top, 16)
             .padding(.bottom, 16)
@@ -127,6 +128,9 @@ struct FileProgressListView_Previews: PreviewProvider {
         ForEach(staticStates) {
             FileProgressListView(viewModel: FileProgressListViewPreview.PreviewViewModel(state: $0))
                 .previewLayout(.sizeThatFits)
+            FileProgressListView(viewModel: FileProgressListViewPreview.PreviewViewModel(state: $0))
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
         }
 
         VStack {

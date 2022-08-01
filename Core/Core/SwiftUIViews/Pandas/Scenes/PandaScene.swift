@@ -30,6 +30,7 @@ public protocol PandaScene {
     var height: CGFloat { get }
     var background: AnyView { get }
     var foreground: AnyView { get }
+    var isParallaxDisabled: Bool { get }
 }
 
 extension PandaScene {
@@ -37,4 +38,5 @@ extension PandaScene {
     public var foregroundFileName: String { "panda-\(name)-foreground" }
     public var foreground: AnyView { AnyView(BouncyImage(imageFileName: foregroundFileName)) }
     public var background: AnyView { AnyView(ImageBackground(scene: self)) }
+    public var isParallaxDisabled: Bool { false }
 }

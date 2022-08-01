@@ -61,6 +61,7 @@ struct FileProgressItemView: View {
             Text(viewModel.size)
                 .style(.textCellSupportingText)
         }
+        .foregroundColor(Color.textDarkest)
         .padding(.top, Typography.Spacings.textCellTopPadding)
         .padding(.bottom, Typography.Spacings.textCellBottomPadding)
     }
