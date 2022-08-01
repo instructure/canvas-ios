@@ -96,9 +96,16 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             let files: [File] = context.fetch(filesPredicate(batchID: batchID))
             let nonCompletedFiles = files.filter { $0.id == nil }
 
-            for file in nonCompletedFiles {
-                guard let uploadContext = file.context else { continue }
-                upload(file: file, to: uploadContext)
+            if nonCompletedFiles.isEmpty {
+                // File upload was successful but submission failed, only submission should be retried.
+                if let file = files.first, case let .submission(courseID, assignmentID, comment)? = file.context {
+                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
+                }
+            } else {
+                for file in nonCompletedFiles {
+                    guard let uploadContext = file.context else { continue }
+                    upload(file: file, to: uploadContext)
+                }
             }
         }
     }
