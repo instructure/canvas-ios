@@ -1050,6 +1050,7 @@
 		CFCBB899266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */; };
 		CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE214B2656895E00E3B32A /* Bounds.swift */; };
 		CFD1D0E92897E1EE008E8AAA /* FileProgressItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD1D0E82897E1EE008E8AAA /* FileProgressItemViewModelTests.swift */; };
+		CFD1D0EC289816AC008E8AAA /* FileProgressListViewModelProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD1D0EB289816AC008E8AAA /* FileProgressListViewModelProtocolTests.swift */; };
 		CFD3EC3028940558001E7D4E /* SuccessPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD3EC2F28940558001E7D4E /* SuccessPanda.swift */; };
 		CFD3EC34289420C3001E7D4E /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = CFD3EC33289420C3001E7D4E /* confetti.json */; };
 		CFD3EC37289422C0001E7D4E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CFD3EC36289422C0001E7D4E /* Lottie */; };
@@ -2473,6 +2474,7 @@
 		CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardView.swift; sourceTree = "<group>"; };
 		CFCE214B2656895E00E3B32A /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		CFD1D0E82897E1EE008E8AAA /* FileProgressItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressItemViewModelTests.swift; sourceTree = "<group>"; };
+		CFD1D0EB289816AC008E8AAA /* FileProgressListViewModelProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListViewModelProtocolTests.swift; sourceTree = "<group>"; };
 		CFD3EC2F28940558001E7D4E /* SuccessPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPanda.swift; sourceTree = "<group>"; };
 		CFD3EC33289420C3001E7D4E /* confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
 		CFD3EC39289422FB001E7D4E /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -4717,6 +4719,7 @@
 		CF3E7624288AB5B000276703 /* FileUploadProgress */ = {
 			isa = PBXGroup;
 			children = (
+				CFD1D0EA289816A1008E8AAA /* View */,
 				CF3E7625288AB5BC00276703 /* ViewModel */,
 			);
 			path = FileUploadProgress;
@@ -5702,6 +5705,14 @@
 			path = ViewPreferences;
 			sourceTree = "<group>";
 		};
+		CFD1D0EA289816A1008E8AAA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFD1D0EB289816AC008E8AAA /* FileProgressListViewModelProtocolTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CFD6F6C326C13E1500F5C445 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -6623,6 +6634,7 @@
 				9F3107FA2371E02600502428 /* PageTests.swift in Sources */,
 				B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */,
 				CFCBB88626692A040026CEDF /* K5HomeroomAnnouncementViewModelTests.swift in Sources */,
+				CFD1D0EC289816AC008E8AAA /* FileProgressListViewModelProtocolTests.swift in Sources */,
 				7D81F3FC24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift in Sources */,
 				CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */,
 				EBEA637927A2E84800EA0B2D /* K5ImportantDatesViewModelTests.swift in Sources */,
