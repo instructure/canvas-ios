@@ -75,6 +75,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                 Spacer()
             }
             .padding(40)
+            .accessibilityElement(children: .combine)
             LottieView(name: "confetti", loopMode: .playOnce)
                 .allowsHitTesting(false)
         }
@@ -108,6 +109,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             .padding(.horizontal, 16)
             .padding(.top, 16)
             .padding(.bottom, 16)
+            .accessibilityElement(children: .combine)
             Divider()
         }
     }

@@ -50,6 +50,7 @@ struct FileProgressItemView: View {
         .padding(.leading, Typography.Spacings.textCellIconLeadingPadding)
         .padding(.trailing, Typography.Spacings.textCellIconTrailingPadding)
         .animation(.default)
+        .accessibility(hidden: true)
     }
 
     private var fileInfo: some View {
@@ -64,6 +65,8 @@ struct FileProgressItemView: View {
         .foregroundColor(Color.textDarkest)
         .padding(.top, Typography.Spacings.textCellTopPadding)
         .padding(.bottom, Typography.Spacings.textCellBottomPadding)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(viewModel.accessibilityLabel)
     }
 
     @ViewBuilder
@@ -75,9 +78,11 @@ struct FileProgressItemView: View {
                 Image.checkLine.foregroundColor(.shamrock)
                     .frame(maxHeight: .infinity)
                     .transition(.opacity)
+                    .accessibility(hidden: true)
             case .uploading(let progress):
                 CircleProgress(color: Color(Brand.shared.primary), progress: progress, size: 23, thickness: 1.68)
                     .frame(maxHeight: .infinity)
+                    .accessibility(hidden: true)
             case .error:
                 Button(action: viewModel.remove) {
                     Image.xLine
@@ -85,6 +90,7 @@ struct FileProgressItemView: View {
                         .frame(maxHeight: .infinity)
                 }
                 .transition(.opacity)
+                .accessibilityLabel(Text("Remove file from submission.", bundle: .core))
             default:
                 placeholder
             }

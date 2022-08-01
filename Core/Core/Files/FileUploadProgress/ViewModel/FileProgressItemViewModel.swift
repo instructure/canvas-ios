@@ -40,6 +40,20 @@ public class FileProgressItemViewModel: ObservableObject {
             return .waiting
         }
     }
+    public var accessibilityLabel: String {
+        let fileInfo = NSLocalizedString("File \(fileName) size \(size).", comment: "")
+        let status: String = {
+            switch state {
+            case .waiting: return ""
+            case .uploading(progress: let progress): return NSLocalizedString("Upload in progress \(Int(100 * progress))%", comment: "")
+            case .completed: return NSLocalizedString("Upload completed.", comment: "")
+            case .error: return NSLocalizedString("Upload failed.", comment: "")
+            }
+        }()
+
+        return [fileInfo, status].joined(separator: " ")
+
+    }
     private let onRemove: () -> Void
     private let file: File
     private var fileChangeObserver: AnyCancellable?
