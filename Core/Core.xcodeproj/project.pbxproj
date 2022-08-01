@@ -4732,6 +4732,7 @@
 			isa = PBXGroup;
 			children = (
 				CFCB0F5F27CE7B0E008DDEA4 /* Scenes */,
+				CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */,
 				CF43DE8827CD036D00015B6F /* InteractivePanda.swift */,
 				CF43DE8A27CD0B6500015B6F /* PandaGallery.swift */,
 			);
@@ -5667,7 +5668,6 @@
 			isa = PBXGroup;
 			children = (
 				CFCB0F6427CE7DF6008DDEA4 /* SharedLayers */,
-				CFCB0F6227CE7B58008DDEA4 /* PandaScene.swift */,
 				CFCB0F7327CFC55E008DDEA4 /* ConferencesPanda.swift */,
 				CFCB0F6927CF8CED008DDEA4 /* DiscussionsPanda.swift */,
 				CFCB0F6B27CF9003008DDEA4 /* FilesPanda.swift */,

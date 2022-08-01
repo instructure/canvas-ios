@@ -25,8 +25,28 @@ public struct SuccessPanda: PandaScene {
         foreground: CGSize(width: 0, height: -30))
     }
     public var height: CGFloat { 220 }
+    public var foreground: AnyView { AnyView(JumpingPanda(imageName: foregroundFileName))}
     public var background: AnyView { AnyView(ImageBackground(scene: self).foregroundColor(Color.backgroundLight)) }
     public var isParallaxDisabled: Bool { true }
+}
+
+private struct JumpingPanda: View {
+    @State private var jumpOffset: CGFloat = 30
+    private let imageName: String
+
+    public init(imageName: String) {
+        self.imageName = imageName
+    }
+
+    var body: some View {
+        BouncyImage(imageFileName: imageName)
+            .offset(y: jumpOffset)
+            .onAppear {
+                withAnimation(Animation.timingCurve(0.2, 1.07, 0.2, 0.94, duration: 1.5)) {
+                    jumpOffset = 0
+                }
+            }
+    }
 }
 
 struct SuccessPanda_Previews: PreviewProvider {
