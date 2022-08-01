@@ -113,7 +113,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.rightBarButton?.title, "Retry")
     }
 
-    func testBothFilesSucceeded() {
+    func testBothFilesUploaded() {
         let file1 = makeFile()
         file1.bytesSent = 10
         file1.id = "uploadedId"
@@ -121,6 +121,23 @@ class FileProgressListViewModelTests: CoreTestCase {
         file2.bytesSent = 10
         file2.id = "uploadedId"
         saveFiles()
+
+        XCTAssertEqual(testee.items.count, 2)
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 20 bytes of 20 bytes", progress: 1))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
+    }
+
+    func testBothFilesUploadedAndSuccessNotificationReceived() {
+        let file1 = makeFile()
+        file1.bytesSent = 10
+        file1.id = "uploadedId"
+        let file2 = makeFile()
+        file2.bytesSent = 10
+        file2.id = "uploadedId"
+        saveFiles()
+
+        NotificationCenter.default.post(name: UploadManager.BatchSubmissionCompletedNotification, object: nil, userInfo: ["batchID": "testBatch"])
 
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .success)

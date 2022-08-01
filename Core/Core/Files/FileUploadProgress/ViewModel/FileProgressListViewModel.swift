@@ -54,13 +54,17 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
     private var successCount: Int {
         filesStore.reduce(into: 0) { total, file in
-            total += (file.id == nil ? 0 : 1)
+            let hasFileID = (file.id != nil)
+            let hasNoError = (file.uploadError == nil)
+            total += (hasFileID && hasNoError) ? 1 : 0
         }
     }
     private var allUploadFinished: Bool { failedCount + successCount == filesStore.count }
     private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
     private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
     private let flowCompleted: () -> Void
+    private var receivedSuccessfulSubmissionNotification = false
+    private var subscriptions = Set<AnyCancellable>()
 
     /**
      - parameters:
@@ -69,7 +73,20 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     public init(batchID: String, dismiss: @escaping () -> Void) {
         self.batchID = batchID
         self.flowCompleted = dismiss
+        subscribeToSuccessfulBatchSubmissonNotification(batchID: batchID)
         update()
+    }
+
+    private func subscribeToSuccessfulBatchSubmissonNotification(batchID: String) {
+        NotificationCenter.default.publisher(for: UploadManager.BatchSubmissionCompletedNotification)
+            .compactMap { $0.userInfo?["batchID"] as? String }
+            .map { $0 == batchID }
+            .filter { $0 }
+            .sink { [weak self] _ in
+                self?.receivedSuccessfulSubmissionNotification = true
+                self?.update()
+            }
+            .store(in: &subscriptions)
     }
 
     private func showCancelDialog() {
@@ -120,12 +137,13 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateState() {
-        if allUploadFinished {
-            if failedCount == 0 {
-                state = .success
-            } else {
-                state = .failed
-            }
+        if receivedSuccessfulSubmissionNotification {
+            state = .success
+            return
+        }
+
+        if allUploadFinished, failedCount != 0 {
+            state = .failed
         } else {
             let uploadSize = totalUploadSize
             // This is because sometimes we upload more than the expected
