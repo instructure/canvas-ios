@@ -1049,6 +1049,7 @@
 		CFCBB895266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */; };
 		CFCBB899266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */; };
 		CFCE214C2656895E00E3B32A /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE214B2656895E00E3B32A /* Bounds.swift */; };
+		CFD1D0E92897E1EE008E8AAA /* FileProgressItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD1D0E82897E1EE008E8AAA /* FileProgressItemViewModelTests.swift */; };
 		CFD3EC3028940558001E7D4E /* SuccessPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD3EC2F28940558001E7D4E /* SuccessPanda.swift */; };
 		CFD3EC34289420C3001E7D4E /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = CFD3EC33289420C3001E7D4E /* confetti.json */; };
 		CFD3EC37289422C0001E7D4E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CFD3EC36289422C0001E7D4E /* Lottie */; };
@@ -2471,6 +2472,7 @@
 		CFCBB894266A2B520026CEDF /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
 		CFCBB898266A37BA0026CEDF /* K5HomeroomSubjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardView.swift; sourceTree = "<group>"; };
 		CFCE214B2656895E00E3B32A /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
+		CFD1D0E82897E1EE008E8AAA /* FileProgressItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressItemViewModelTests.swift; sourceTree = "<group>"; };
 		CFD3EC2F28940558001E7D4E /* SuccessPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPanda.swift; sourceTree = "<group>"; };
 		CFD3EC33289420C3001E7D4E /* confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
 		CFD3EC39289422FB001E7D4E /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -4724,6 +4726,7 @@
 			isa = PBXGroup;
 			children = (
 				CF3E7626288AB60800276703 /* FileProgressListViewModelTests.swift */,
+				CFD1D0E82897E1EE008E8AAA /* FileProgressItemViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6591,6 +6594,7 @@
 				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
 				7DCF1ED4216C05A0003AF358 /* DueViewableTests.swift in Sources */,
 				CF9A0F4527EA2E0100762228 /* StudentViewCellViewModelTests.swift in Sources */,
+				CFD1D0E92897E1EE008E8AAA /* FileProgressItemViewModelTests.swift in Sources */,
 				7DD6947B21949DC900BA4984 /* IconViewTests.swift in Sources */,
 				7D80AC15212B67E100C40ECE /* APIUserRequestableTests.swift in Sources */,
 				9F4D65B22396A3D600660038 /* ProfileSettingsViewControllerTests.swift in Sources */,

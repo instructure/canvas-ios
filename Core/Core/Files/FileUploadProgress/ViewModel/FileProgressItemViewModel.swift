@@ -30,10 +30,10 @@ public class FileProgressItemViewModel: ObservableObject {
     public let size: String
     public let icon: Image
     public var state: State {
-        if file.uploadError != nil {
-            return .error
-        } else if file.isUploaded {
+        if file.isUploaded {
             return .completed
+        } else if file.uploadError != nil {
+            return .error
         } else if file.isUploading {
             return .uploading(progress: CGFloat(file.bytesSent) / CGFloat(file.size))
         } else {
@@ -44,7 +44,7 @@ public class FileProgressItemViewModel: ObservableObject {
     private let file: File
     private var fileChangeObserver: AnyCancellable?
 
-    init(file: File, onRemove: @escaping () -> Void) {
+    public init(file: File, onRemove: @escaping () -> Void) {
         self.file = file
         self.icon = Image(uiImage: file.icon)
         self.size = file.size.humanReadableFileSize
