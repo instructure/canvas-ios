@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "PSPDFKit",
-        "repositoryURL": "https://github.com/PSPDFKit/PSPDFKit-SP",
-        "state": {
-          "branch": null,
-          "revision": "f5e430da0017148c2455a8bdabc4856a8494334b",
-          "version": "10.0.0"
-        }
+  "pins" : [
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "revision" : "b04b773957e3e359730590c2e7c16d8c3874ec50",
+        "version" : "3.4.1"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }
