@@ -34,14 +34,14 @@ public protocol FileProgressListViewModelProtocol: ObservableObject {
 public enum FileProgressListViewState: Equatable, Identifiable {
     case waiting
     case uploading(progressText: String, progress: Float)
-    case failedUpload
+    case failed(message: String, error: String?)
     case success
 
     public var id: String {
         switch self {
         case .waiting: return "waiting"
         case .uploading(let progressText, let progress): return "uploading(\(progressText), \(progress))"
-        case .failedUpload: return "failedUpload"
+        case .failed(let message, let error): return "failed(\(message), \(String(describing: error)))"
         case .success: return "success"
         }
     }

@@ -97,11 +97,11 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             }
             .padding(Typography.Spacings.textCellIconLeadingPadding)
             Divider()
-        case .failedUpload:
+        case .failed(let message, let error):
             VStack(spacing: 4) {
                 Text("Submission Failed", bundle: .core)
                     .font(.bold16)
-                Text("One or more files failed to upload. Check your internet connection and retry to submit.", bundle: .core)
+                Text(message)
                     .font(.regular14)
                     .multilineTextAlignment(.center)
             }
@@ -123,7 +123,7 @@ struct FileProgressListView_Previews: PreviewProvider {
         let staticStates: [FileProgressListViewState] = [
             .waiting,
             .uploading(progressText: "Uploading 10 MB of 13 MB", progress: 0.66),
-            .failedUpload,
+            .failed(message: "error happened", error: "unknown error"),
             .success,
         ]
 

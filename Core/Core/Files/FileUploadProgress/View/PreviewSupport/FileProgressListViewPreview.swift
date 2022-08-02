@@ -44,8 +44,8 @@ class FileProgressListViewPreview {
             case .waiting:
                 state = .uploading(progressText: "Uploading 10 MB of 13 MB", progress: 0.66)
             case .uploading:
-                state = Bool.random() ? .failedUpload : .success
-            case .failedUpload, .success:
+                state = Bool.random() ? .failed(message: "error happened", error: "unknown error") : .success
+            case .failed, .success:
                 state = .waiting
             }
             scheduleUpdate()

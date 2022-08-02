@@ -143,7 +143,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         }
 
         if allUploadFinished, failedCount != 0 {
-            state = .failedUpload
+            state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
         } else {
             let uploadSize = totalUploadSize
             // This is because sometimes we upload more than the expected
@@ -167,7 +167,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
                 self?.flowCompleted()
             }
-        case .failedUpload:
+        case .failed:
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
                 self?.showCancelDialog()
             }
