@@ -167,6 +167,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         NotificationCenter.default.post(name: UploadManager.BatchSubmissionCompletedNotification, object: nil, userInfo: ["batchID": "testBatch"])
+        drainMainQueue()
 
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .success)

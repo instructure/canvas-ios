@@ -84,6 +84,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             .compactMap { $0.userInfo?["batchID"] as? String }
             .map { $0 == batchID }
             .filter { $0 }
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.receivedSuccessfulSubmissionNotification = true
                 self?.update()

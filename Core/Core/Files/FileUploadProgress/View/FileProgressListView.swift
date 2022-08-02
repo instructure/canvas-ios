@@ -104,6 +104,13 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                 Text(message)
                     .font(.regular14)
                     .multilineTextAlignment(.center)
+                if let error = error {
+                    Button(action: { showAlertDialog(message: error) }) {
+                        Text("Tap here for details", bundle: .core)
+                            .font(.regular14)
+                            .foregroundColor(Color(Brand.shared.primary))
+                    }
+                }
             }
             .foregroundColor(Color.textDarkest)
             .padding(.horizontal, 16)
@@ -112,6 +119,13 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             .accessibilityElement(children: .combine)
             Divider()
         }
+    }
+
+    private func showAlertDialog(message: String) {
+        let dismissAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel)
+        let alert = UIAlertController(title: NSLocalizedString("Error Details", comment: ""), message: message, preferredStyle: .alert)
+        alert.addAction(dismissAction)
+        controller.value.present(alert, animated: true)
     }
 }
 
