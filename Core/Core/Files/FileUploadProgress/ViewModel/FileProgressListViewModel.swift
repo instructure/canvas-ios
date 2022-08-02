@@ -59,6 +59,8 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             total += (hasFileID && hasNoError) ? 1 : 0
         }
     }
+    private var allFilesHaveUploadedId: Bool { filesStore.all.allSatisfy { $0.id != nil } }
+    private var submissionError: String? { filesStore.first { $0.id != nil && $0.uploadError != nil }?.uploadError }
     private var allUploadFinished: Bool { failedCount + successCount == filesStore.count }
     private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
     private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
@@ -143,7 +145,13 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         }
 
         if allUploadFinished, failedCount != 0 {
-            state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
+            if allFilesHaveUploadedId {
+                let format = NSLocalizedString("submission_failed_for_files", comment: "")
+                let message = String.localizedStringWithFormat(format, filesStore.count)
+                state = .failed(message: message, error: submissionError)
+            } else {
+                state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
+            }
         } else {
             let uploadSize = totalUploadSize
             // This is because sometimes we upload more than the expected

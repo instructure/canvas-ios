@@ -128,6 +128,35 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
 
+    func testFileIsUploadedButSubmissionFailed() {
+        let file = makeFile()
+        file.bytesSent = 10
+        file.id = "uploadedId"
+        file.uploadError = "apierror"
+        saveFiles()
+
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.state, .failed(message: "Your file was successfully uploaded but the submission to the assignment failed.", error: "apierror"))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Retry")
+    }
+
+    func testFilesAreUploadedButSubmissionFailed() {
+        let file1 = makeFile()
+        file1.bytesSent = 10
+        file1.id = "uploadedId"
+        let file2 = makeFile()
+        file2.bytesSent = 10
+        file2.id = "uploadedId"
+        file2.uploadError = "apierror"
+        saveFiles()
+
+        XCTAssertEqual(testee.items.count, 2)
+        XCTAssertEqual(testee.state, .failed(message: "Your files were successfully uploaded but the submission to the assignment failed.", error: "apierror"))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Retry")
+    }
+
     func testBothFilesUploadedAndSuccessNotificationReceived() {
         let file1 = makeFile()
         file1.bytesSent = 10
