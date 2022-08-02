@@ -143,7 +143,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         }
 
         if allUploadFinished, failedCount != 0 {
-            state = .failed
+            state = .failedUpload
         } else {
             let uploadSize = totalUploadSize
             // This is because sometimes we upload more than the expected
@@ -167,7 +167,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
                 self?.flowCompleted()
             }
-        case .failed:
+        case .failedUpload:
             leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
                 self?.showCancelDialog()
             }

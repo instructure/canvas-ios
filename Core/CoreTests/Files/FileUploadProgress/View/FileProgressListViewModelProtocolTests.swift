@@ -24,7 +24,7 @@ class FileProgressListViewModelProtocolTests: XCTestCase {
     func testFileProgressListViewStateIDsAreUnique() {
         let IDs = Set<String>([
             FileProgressListViewState.success.id,
-            FileProgressListViewState.failed.id,
+            FileProgressListViewState.failedUpload.id,
             FileProgressListViewState.waiting.id,
             FileProgressListViewState.uploading(progressText: "p", progress: 0.5).id,
         ])

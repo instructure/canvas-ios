@@ -108,7 +108,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
-        XCTAssertEqual(testee.state, .failed)
+        XCTAssertEqual(testee.state, .failedUpload)
         XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
         XCTAssertEqual(testee.rightBarButton?.title, "Retry")
     }
@@ -257,7 +257,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         let file = makeFile()
         file.uploadError = "asd"
         saveFiles()
-        XCTAssertEqual(testee.state, .failed)
+        XCTAssertEqual(testee.state, .failedUpload)
 
         var receivedAlert: UIAlertController?
         let alertSubscription = testee.presentDialog.sink { alert in
@@ -285,7 +285,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         let file = makeFile()
         file.uploadError = "asd"
         saveFiles()
-        XCTAssertEqual(testee.state, .failed)
+        XCTAssertEqual(testee.state, .failedUpload)
 
         var receivedAlert: UIAlertController?
         let alertSubscription = testee.presentDialog.sink { alert in
