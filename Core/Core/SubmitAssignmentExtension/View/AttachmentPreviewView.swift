@@ -32,7 +32,6 @@ public struct AttachmentPreviewView: View {
         case .loading: loadingView
         case .noPreview: noPreview
         case .media(let image, let length): mediaPreview(image, length: length)
-        case .pdf(let fileName): pdfPreview(fileName: fileName)
         }
     }
 
@@ -40,14 +39,6 @@ public struct AttachmentPreviewView: View {
         CircleProgress()
             .background(Color.backgroundLightest)
             .frame(width: size, height: size)
-    }
-
-    fileprivate func imagePreview(_ image: UIImage) -> some View {
-        Image(uiImage: image)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: size, height: size)
-            .clipped()
     }
 
     fileprivate func mediaPreview(_ frame: UIImage, length: String?) -> some View {
@@ -83,24 +74,6 @@ public struct AttachmentPreviewView: View {
         .frame(width: size, height: size)
         .background(Color.backgroundLight)
     }
-
-    fileprivate func pdfPreview(fileName: String) -> some View {
-        ZStack(alignment: .bottom) {
-            Image.pdfLine
-                .resizable()
-                .foregroundColor(.textDark)
-                .opacity(0.8)
-                .padding(30)
-            Text(fileName)
-                .lineLimit(1)
-                .padding(.horizontal, 10)
-                .padding(.bottom, 10)
-                .font(.regular16)
-                .foregroundColor(.textDarkest)
-        }
-        .background(Color.backgroundLightest)
-        .frame(width: size, height: size)
-    }
 }
 
 #if DEBUG
@@ -114,14 +87,9 @@ struct AttachmentPreviewView_Previews: PreviewProvider {
         view.loadingView
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
-        view.imagePreview(image).previewLayout(.sizeThatFits)
         view.mediaPreview(image, length: "3:06").previewLayout(.sizeThatFits)
         view.noPreview.previewLayout(.sizeThatFits)
         view.noPreview
-            .previewLayout(.sizeThatFits)
-            .preferredColorScheme(.dark)
-        view.pdfPreview(fileName: "verylongfilenamejusttoseeifitfits.pdf").previewLayout(.sizeThatFits)
-        view.pdfPreview(fileName: "test.pdf")
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
     }

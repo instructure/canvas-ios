@@ -20,41 +20,44 @@ import AVFoundation
 import Combine
 
 class FilePreviewProvider {
-    enum PreviewType {
-        case pdf(fileName: String)
-        case image(UIImage)
-        case movie(UIImage, duration: Double)
-        case unknown
+    struct FailedToGeneratePreview: Error {}
+    struct PreviewData {
+        let image: UIImage
+        let duration: Double?
     }
-
-    public private(set) lazy var result: AnyPublisher<PreviewType?, Never> = resultSubject.eraseToAnyPublisher()
-
+    public private(set) lazy var result: AnyPublisher<PreviewData, Error> = resultSubject.eraseToAnyPublisher()
     private let url: URL
-    private let resultSubject = CurrentValueSubject<PreviewType?, Never>(nil)
+    private let resultSubject = PassthroughSubject<PreviewData, Error>()
 
     public init(url: URL) {
         self.url = url
+    }
+
+    /** Starts the asynchronous loading of preview data from the given url. */
+    public func load() {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
-            self.resultSubject.send(self.determineType())
+
+            if let previewData = self.generatePreview() {
+                self.resultSubject.send(previewData)
+                self.resultSubject.send(completion: .finished)
+            } else {
+                self.resultSubject.send(completion: .failure(FailedToGeneratePreview()))
+            }
         }
     }
 
-    private func determineType() -> PreviewType {
-        if isPDFDocument() {
-            return .pdf(fileName: url.lastPathComponent)
-        } else if let image = image() {
-            return .image(image)
-        } else if let movieData = self.movieData {
-            return .movie(movieData.firstFrame, duration: movieData.movieLength)
+    private func generatePreview() -> PreviewData? {
+        if let image = image() {
+            return PreviewData(image: image, duration: nil)
+        } else if let movieData = movieData() {
+            return PreviewData(image: movieData.firstFrame, duration: movieData.movieLength)
         } else {
-            return .unknown
+            return nil
         }
     }
 
-    private var movieData: (firstFrame: UIImage, movieLength: Double)? {
-        guard url.pathExtension.lowercased() == "mov" else { return nil }
-
+    private func movieData() -> (firstFrame: UIImage, movieLength: Double)? {
         let asset = AVURLAsset(url: url)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
@@ -64,15 +67,24 @@ class FilePreviewProvider {
         return (firstFrame: UIImage(cgImage: cgImage), movieLength: asset.duration.seconds)
     }
 
-    private func isPDFDocument() -> Bool {
-        url.pathExtension.lowercased().hasSuffix("pdf")
-    }
-
+    /** Creates a thumbnail from the given URL if it's an image or PDF without reading the whole file into memory. */
     private func image() -> UIImage? {
-        guard let imageData = try? Data(contentsOf: url), let uiImage = UIImage(data: imageData) else {
+        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        let maxDimensionInPixels: CGFloat = 200 * UIScreen.main.scale
+        let downsampleOptions = [
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceShouldCacheImmediately: true,
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceCreateThumbnailFromImageIfAbsent: true,
+            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels,
+        ] as CFDictionary
+
+        guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions),
+              let downsampledImage =  CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downsampleOptions)
+        else {
             return nil
         }
 
-        return uiImage
+        return UIImage(cgImage: downsampledImage)
     }
 }

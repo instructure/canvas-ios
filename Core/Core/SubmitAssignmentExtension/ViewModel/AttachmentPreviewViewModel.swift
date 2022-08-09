@@ -24,7 +24,6 @@ class AttachmentPreviewViewModel: ObservableObject {
         case loading
         case noPreview
         case media(image: UIImage, length: String?)
-        case pdf(fileName: String)
     }
     private static let videoLengthFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
@@ -39,18 +38,22 @@ class AttachmentPreviewViewModel: ObservableObject {
 
     public init(url: URL) {
         filePreviewProvider = FilePreviewProvider(url: url)
+        subscribeToPreviewData()
+        filePreviewProvider.load()
+    }
+
+    private func subscribeToPreviewData() {
         filePreviewProvider.result
-            .map { result -> State in
-                switch result {
-                case .pdf(let fileName): return .pdf(fileName: fileName)
-                case .image(let image): return .media(image: image, length: nil)
-                case .movie(let image, let duration): return .media(image: image, length: Self.videoLengthFormatter.string(from: duration))
-                case .unknown: return .noPreview
-                case .none: return .loading
-                }
+            .map { previewData -> State in
+                let durationString: String? = {
+                    guard let duration = previewData.duration else { return nil }
+                    return Self.videoLengthFormatter.string(from: duration)
+                }()
+                return .media(image: previewData.image, length: durationString)
             }
+            .replaceError(with: .noPreview)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] state in self?.state = state }
+            .assign(to: \.state, on: self)
             .store(in: &subscriptions)
     }
 }
