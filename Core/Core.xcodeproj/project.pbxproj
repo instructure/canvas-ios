@@ -1003,6 +1003,8 @@
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
+		CFB9B2F728A12DB000C18C79 /* FilePreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9B2F628A12DB000C18C79 /* FilePreviewProvider.swift */; };
+		CFB9B2F928A2460600C18C79 /* AttachmentPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9B2F828A2460600C18C79 /* AttachmentPreviewViewModel.swift */; };
 		CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */; };
 		CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */; };
 		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
@@ -2408,6 +2410,8 @@
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
+		CFB9B2F628A12DB000C18C79 /* FilePreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePreviewProvider.swift; sourceTree = "<group>"; };
+		CFB9B2F828A2460600C18C79 /* AttachmentPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPreviewViewModel.swift; sourceTree = "<group>"; };
 		CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
@@ -4495,6 +4499,7 @@
 				CF2091A4275A5B25003E8EA6 /* API */,
 				CF11564F26FB56E900DE25B6 /* AttachmentCopyService.swift */,
 				CF11565126FB5C4C00DE25B6 /* AttachmentSubmissionService.swift */,
+				CFB9B2F628A12DB000C18C79 /* FilePreviewProvider.swift */,
 				CFC2C2752733C9DA006CA3E0 /* IdentifiableName.swift */,
 				CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */,
 			);
@@ -5045,6 +5050,7 @@
 			isa = PBXGroup;
 			children = (
 				CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */,
+				CFB9B2F828A2460600C18C79 /* AttachmentPreviewViewModel.swift */,
 				CF6C7FCC26F9CBAF002937E5 /* CoursePickerViewModel.swift */,
 				CF6C7FCA26F8DED2002937E5 /* SubmitAssignmentExtensionViewModel.swift */,
 				CFC2C27727344053006CA3E0 /* ViewModelState.swift */,
@@ -7112,6 +7118,7 @@
 				CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */,
 				D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */,
 				CF2F7E7A27FF211500942241 /* FontPreview.swift in Sources */,
+				CFB9B2F728A12DB000C18C79 /* FilePreviewProvider.swift in Sources */,
 				3BA649CD2423E0080047D8DC /* APIPairingCode.swift in Sources */,
 				7DA2603F23F722D9005D2121 /* Course.swift in Sources */,
 				7DA25FB423F72136005D2121 /* APIFeatureFlags.swift in Sources */,
@@ -7399,6 +7406,7 @@
 				CF60CC5926496EBD00C1C173 /* K5ResourcesViewModel.swift in Sources */,
 				7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */,
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
+				CFB9B2F928A2460600C18C79 /* AttachmentPreviewViewModel.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
 				CF8CB52F26CC0BF6008361E2 /* K5ResourcesContactViewModel.swift in Sources */,
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,

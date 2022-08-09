@@ -20,30 +20,29 @@ import AVFoundation
 import SwiftUI
 
 public struct AttachmentPreviewView: View {
-    private let url: URL
+    @ObservedObject private var viewModel: AttachmentPreviewViewModel
     private let size: CGFloat = 200
-    private let videoLengthFormatter = DateComponentsFormatter()
-    private var isPDFDocument: Bool { url.pathExtension.lowercased().hasSuffix("pdf") }
 
     public init(url: URL) {
-        self.url = url
-        videoLengthFormatter.allowedUnits = [.second, .minute]
-        videoLengthFormatter.zeroFormattingBehavior = .pad
+        viewModel = AttachmentPreviewViewModel(url: url)
     }
 
     public var body: some View {
-        if isPDFDocument {
-            pdfPreview(fileName: url.lastPathComponent)
-        } else if let image = self.image {
-            imagePreview(image)
-        } else if let movieData = self.movieData {
-            moviePreview(movieData.frame, movieLength: movieData.movieLength)
-        } else {
-            noPreview
+        switch viewModel.state {
+        case .loading: loadingView
+        case .noPreview: noPreview
+        case .media(let image, let length): mediaPreview(image, length: length)
+        case .pdf(let fileName): pdfPreview(fileName: fileName)
         }
     }
 
-    public func imagePreview(_ image: UIImage) -> some View {
+    fileprivate var loadingView: some View {
+        CircleProgress()
+            .background(Color.backgroundLightest)
+            .frame(width: size, height: size)
+    }
+
+    fileprivate func imagePreview(_ image: UIImage) -> some View {
         Image(uiImage: image)
             .resizable()
             .aspectRatio(contentMode: .fill)
@@ -51,7 +50,7 @@ public struct AttachmentPreviewView: View {
             .clipped()
     }
 
-    public func moviePreview(_ frame: UIImage, movieLength: Double) -> some View {
+    fileprivate func mediaPreview(_ frame: UIImage, length: String?) -> some View {
         ZStack(alignment: .bottomTrailing) {
             Image(uiImage: frame)
                 .resizable()
@@ -59,16 +58,18 @@ public struct AttachmentPreviewView: View {
                 .contentShape(Rectangle())
                 .frame(width: size, height: size)
                 .clipped()
-            Text(videoLengthFormatter.string(from: movieLength) ?? "")
-                .font(.bold13)
-                .padding(4)
-                .background(Color.black.opacity(0.4))
-                .foregroundColor(.textLightest)
+            if let length = length {
+                Text(length)
+                    .font(.bold13)
+                    .padding(4)
+                    .background(Color.black.opacity(0.4))
+                    .foregroundColor(.textLightest)
+            }
         }
         .frame(width: size, height: size)
     }
 
-    public var noPreview: some View {
+    fileprivate var noPreview: some View {
         ZStack {
             Image.noSolid
                 .resizable()
@@ -83,7 +84,7 @@ public struct AttachmentPreviewView: View {
         .background(Color.backgroundLight)
     }
 
-    public func pdfPreview(fileName: String) -> some View {
+    fileprivate func pdfPreview(fileName: String) -> some View {
         ZStack(alignment: .bottom) {
             Image.pdfLine
                 .resizable()
@@ -97,27 +98,8 @@ public struct AttachmentPreviewView: View {
                 .font(.regular16)
                 .foregroundColor(.textDarkest)
         }
+        .background(Color.backgroundLightest)
         .frame(width: size, height: size)
-    }
-
-    private var image: UIImage? {
-        guard let imageData = try? Data(contentsOf: url), let uiImage = UIImage(data: imageData) else {
-            return nil
-        }
-
-        return uiImage
-    }
-
-    private var movieData: (frame: UIImage, movieLength: Double)? {
-        guard url.pathExtension.lowercased() == "mov" else { return nil }
-
-        let asset = AVURLAsset(url: url)
-        let imageGenerator = AVAssetImageGenerator(asset: asset)
-        imageGenerator.appliesPreferredTrackTransform = true
-
-        guard let cgImage = try? imageGenerator.copyCGImage(at: .zero, actualTime: nil) else { return nil }
-
-        return (frame: UIImage(cgImage: cgImage), movieLength: asset.duration.seconds)
     }
 }
 
@@ -127,8 +109,13 @@ struct AttachmentPreviewView_Previews: PreviewProvider {
     static var previews: some View {
         let view = AttachmentPreviewView(url: URL(string: "https://instructure.com")!)
         let image = UIImage(named: "PandaAtLaptop", in: .core, compatibleWith: nil)!
+        view.loadingView
+            .previewLayout(.sizeThatFits)
+        view.loadingView
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
         view.imagePreview(image).previewLayout(.sizeThatFits)
-        view.moviePreview(image, movieLength: 186).previewLayout(.sizeThatFits)
+        view.mediaPreview(image, length: "3:06").previewLayout(.sizeThatFits)
         view.noPreview.previewLayout(.sizeThatFits)
         view.noPreview
             .previewLayout(.sizeThatFits)
