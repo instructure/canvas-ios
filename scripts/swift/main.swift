@@ -25,16 +25,18 @@ let dependencies = [
   "yarn": "brew install yarn",
 ]
 
-for (dependency, installInstructions) in dependencies {
-    if !cmd("/usr/bin/which", dependency).output(overwritingFile: "/dev/null").runBool() {
-        FileHandle.standardError.write("""
+let dependencyMissing: (String) -> Bool = { dependency in
+    !cmd("/usr/bin/which", dependency).output(overwritingFile: "/dev/null").runBool()
+}
 
-        WARNING: dependency '\(dependency)' not detected, install with:
-          \(installInstructions)
+for (dependency, installInstructions) in dependencies where dependencyMissing(dependency) {
+    FileHandle.standardError.write("""
+
+    WARNING: dependency '\(dependency)' not detected, install with:
+      \(installInstructions)
 
 
-        """.data(using: .utf8)!)
-    }
+    """.data(using: .utf8)!)
 }
 
 struct Scripts: ParsableCommand {

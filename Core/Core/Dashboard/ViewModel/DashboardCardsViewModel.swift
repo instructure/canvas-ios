@@ -73,7 +73,7 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     private func update() {
-        guard cards.requested, !cards.pending, !courseSectionStatus.isUpdatePending, courses.requested, !courses.pending else { return }
+        guard cards.requested, !cards.pending, !courseSectionStatus.isUpdatePending, courses.requested, !courses.pending, !courses.hasNextPage else { return }
 
         guard cards.state != .error else {
             state = .error(NSLocalizedString("Something went wrong", comment: ""))
