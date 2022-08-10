@@ -20,7 +20,7 @@ import Combine
 import SwiftUI
 
 class AttachmentPreviewViewModel: ObservableObject {
-    enum State {
+    enum State: Equatable {
         case loading
         case noPreview
         case media(image: UIImage, length: String?)
@@ -36,8 +36,8 @@ class AttachmentPreviewViewModel: ObservableObject {
     private let filePreviewProvider: FilePreviewProvider
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(url: URL) {
-        filePreviewProvider = FilePreviewProvider(url: url)
+    public init(previewProvider: FilePreviewProvider) {
+        filePreviewProvider = previewProvider
         subscribeToPreviewData()
         filePreviewProvider.load()
     }

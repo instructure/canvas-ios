@@ -24,7 +24,7 @@ public struct AttachmentPreviewView: View {
     private let size: CGFloat = 200
 
     public init(url: URL) {
-        viewModel = AttachmentPreviewViewModel(url: url)
+        viewModel = AttachmentPreviewViewModel(previewProvider: FilePreviewProvider(url: url))
     }
 
     public var body: some View {
@@ -53,7 +53,7 @@ public struct AttachmentPreviewView: View {
                 Text(length)
                     .font(.bold13)
                     .padding(4)
-                    .background(Color.black.opacity(0.4))
+                    .background(Color.backgroundDarkest.opacity(0.5))
                     .foregroundColor(.textLightest)
             }
         }
@@ -87,7 +87,12 @@ struct AttachmentPreviewView_Previews: PreviewProvider {
         view.loadingView
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
-        view.mediaPreview(image, length: "3:06").previewLayout(.sizeThatFits)
+        view.mediaPreview(image, length: "3:06")
+            .previewLayout(.sizeThatFits)
+        view.mediaPreview(image, length: "3:06")
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
+        view.mediaPreview(image, length: nil).previewLayout(.sizeThatFits)
         view.noPreview.previewLayout(.sizeThatFits)
         view.noPreview
             .previewLayout(.sizeThatFits)

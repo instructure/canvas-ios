@@ -19,11 +19,11 @@
 import AVFoundation
 import Combine
 
-class FilePreviewProvider {
-    struct FailedToGeneratePreview: Error {}
-    struct PreviewData {
-        let image: UIImage
-        let duration: Double?
+public class FilePreviewProvider {
+    public struct FailedToGeneratePreview: Error {}
+    public struct PreviewData {
+        public let image: UIImage
+        public let duration: Double?
     }
     public private(set) lazy var result: AnyPublisher<PreviewData, Error> = resultSubject.eraseToAnyPublisher()
     private let url: URL
