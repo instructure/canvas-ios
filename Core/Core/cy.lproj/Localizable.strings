@@ -65,15 +65,6 @@
 "%d missing" = "%d ar goll";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Ateb";
-
-/* No comment provided by engineer. */
-"%d students" = "%d myfyriwr";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Heb ddarllen";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Ychwanegu cynnwys";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Ychwanegu Enw Cwrs";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Ychwanegu Llysenw Cwrs";
@@ -206,6 +200,9 @@
 "Anyone" = "Unrhyw un";
 
 /* No comment provided by engineer. */
+"Appearance" = "Ymddangdosiad";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Apwyntiadau ar gael";
 
 /* No comment provided by engineer. */
@@ -270,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Aseiniadau";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Rhestr Aseiniadau";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Atodwch ffeiliau trwy dapio opsiwn isod.";
@@ -377,6 +377,9 @@
 "Canvas Guides" = "Canllawiau Canvas";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Mae Canvas bellach ar gael mewn thema dywyll";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Manylion Mewngofnodi Canvas";
 
 /* No comment provided by engineer. */
@@ -396,6 +399,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Awgrym neu gwestiwn anffurfiol";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Newid cynllun y dangosfwrdd i grid";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Newid cynllun y dangosfwrdd i restr";
 
 /* No comment provided by engineer. */
 "Change User" = "Newid Defnyddiwr";
@@ -420,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Dewiswch Lun Proffil";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Dewiswch ymddangosiad eich ap!\nGallwch chi ei newid yn nes ymlaen yn y ddewislen gosodiadau.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Clirio Cwrs";
@@ -512,9 +524,6 @@
 "Conversation Message" = "Neges Sgwrs";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Sgyrsiau";
 
 /* No comment provided by engineer. */
@@ -539,6 +548,9 @@
 "Course Activities" = "Gweithgareddau Cwrs";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Ffrwd Gweithgarwch Cwrs";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Cyhoeddiad Cwrs";
 
 /* No comment provided by engineer. */
@@ -558,6 +570,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Gradd y Cwrs yn Is na %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Modiwlau Cwrs";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Adrannau Cwrs";
@@ -599,31 +614,22 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Pob dydd";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Modd Tywyll";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Thema dywyll";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Thema Dywyll";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dangosfwrdd";
 
 /* No comment provided by engineer. */
 "Date" = "Dyddiad";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Gwrthod";
@@ -716,9 +722,6 @@
 "Dismiss %@" = "Gwrthod %@";
 
 /* No comment provided by engineer. */
-"Dismiss invitation to %@" = "Diystyru’r gwahoddiad i %@";
-
-/* No comment provided by engineer. */
 "Display Grade as" = "Dangos Gradd fel";
 
 /* No comment provided by engineer. */
@@ -762,6 +765,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Golygu atodiad (dim)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Golygu gosodiadau’r cwrs";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Golygu’r Dangosfwrdd";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Golygu Trafodaeth";
@@ -890,13 +899,7 @@
 "Filter Inbox" = "Mewnflwch yr Hidlydd";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Gradd Derfynol: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Dod o hyd i god i’w sganio";
@@ -930,15 +933,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Ymrestriadau yn y Dyfodol";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Mynd i heddiw";
@@ -1002,9 +996,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Cuddio cynnwys ar gyfer %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Uchel: %@";
@@ -1115,6 +1106,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Mae’n ymddangos nad oes cyrsiau’n gysylltiedig â'r cyfrif hwn. Ewch ar y we i greu cwrs heddiw.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Mae’n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
 
 /* No comment provided by engineer. */
@@ -1139,9 +1133,6 @@
 "Late Grading" = "Graddio Hwyr";
 
 /* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
-
-/* No comment provided by engineer. */
 "Launch External Tool" = "Lansio Adnodd Allanol";
 
 /* No comment provided by engineer. */
@@ -1158,6 +1149,12 @@
 
 /* No comment provided by engineer. */
 "Light Blue" = "Glas golau";
+
+/* No comment provided by engineer. */
+"Light theme" = "Thema golau";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Thema Olau";
 
 /* like action */
 "Like" = "Yn hoffi";
@@ -1304,6 +1301,9 @@
 "Modules" = "Modiwlau";
 
 /* No comment provided by engineer. */
+"Move Annotation" = "Symud Anodiad";
+
+/* No comment provided by engineer. */
 "Multiple Due Dates" = "Mwy nag un dyddiad erbyn";
 
 /* No comment provided by engineer. */
@@ -1448,6 +1448,9 @@
 "Not Submitted" = "Heb Gyflwyno";
 
 /* No comment provided by engineer. */
+"Not supported" = "Does dim modd delio â hwn";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Dim Brys";
 
 /* No due assignments for today */
@@ -1514,6 +1517,9 @@
 "Open item details" = "Agor manylion eitem";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Yn agor yn Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Opsiynau";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1538,6 @@
 "out of" = "allan o";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "tudalen";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Tudalennau";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Tudalen Flaen ar gyfer Tudalennau";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Paru ag Arsyllwr";
@@ -1599,9 +1605,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Arhoswch funud, gall hyn gymryd ychydig funudau.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Pwynt";
@@ -1668,6 +1671,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Cwisiau";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Gweithgarwch diweddar";
 
 /* No comment provided by engineer. */
 "Recipients" = "Derbynwyr";
@@ -1829,10 +1835,16 @@
 "Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Dewis cyfnod graddio";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Dewiswch Effaith";
 
 /* No comment provided by engineer. */
 "Select One" = "Dewiswch Un";
+
+/* No comment provided by engineer. */
+"Selected" = "Wedi dewis";
 
 /* No comment provided by engineer. */
 "Selected!" = "Wedi dewis!";
@@ -1859,6 +1871,9 @@
 "Sent" = "Wedi anfon";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Pennu \"Hafan” i...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Gosod fel Tudalen Flaen";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1893,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Dangos mwy o ddewisiadau";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Gan fod hon yn drafodaeth grŵp, mae gan bob grŵp ei sgwrs ei hun ar gyfer y pwnc hwn. Dyma’r trafodaethau mae gennych chi fynediad atyn nhw.";
@@ -1943,6 +1955,9 @@
 "Student Appointment Signups" = "Archebu Apwyntiadau gan Fyfyrwyr";
 
 /* No comment provided by engineer. */
+"Student View" = "Gwedd Myfyriwr";
+
+/* No comment provided by engineer. */
 "Students" = "Myfyrwyr";
 
 /* No comment provided by engineer. */
@@ -1992,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Cynnwys maes llafur";
+
+/* No comment provided by engineer. */
+"System settings" = "Gosodiadau system";
+
+/* No comment provided by engineer. */
+"System Settings" = "Gosodiadau System";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Cynorthwyydd Dysgu";
@@ -2112,9 +2133,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Gwall annisgwyl. Rhowch gynnig arall arni.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Mae’r aseiniad hwn i fod i gael ei gyflwyno erbyn %@";

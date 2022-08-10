@@ -91,6 +91,32 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         XCTAssertTrue(isShareCompletebBlockExecuted)
     }
 
+    func testReportsCancelToAnalytics() {
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+
+        testee.cancelTapped()
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEventName, "share_cancelled")
+        XCTAssertNil(analyticsHandler.lastEventParameters)
+    }
+
+    func testReportsSubmitToAnalytics() {
+        testee.coursePickerViewModel.selectedCourse = .init(id: "", name: "")
+        testee.assignmentPickerViewModel.selectedAssignment = .init(id: "", name: "")
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+
+        testee.submitTapped()
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEventName, "submit_tapped")
+        XCTAssertNil(analyticsHandler.lastEventParameters)
+    }
+
     private func makeExpectation() {
         drainMainQueue() // To swallow initial UI update triggers
         uiRefreshExpectation = expectation(description: "UI refresh triggered")

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -34,10 +36,20 @@
 				<integer>10</integer>
 			</dict>
 		</dict>
-		<key>NSExtensionPrincipalClass</key>
-		<string>SubmitAssignmentViewController</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>SubmitAssignmentViewController</string>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>../../Frameworks/Core.framework/lato_italic.ttf</string>
+		<string>../../Frameworks/Core.framework/lato_bolditalic.ttf</string>
+		<string>../../Frameworks/Core.framework/lato_black.ttf</string>
+		<string>../../Frameworks/Core.framework/lato_bold.ttf</string>
+		<string>../../Frameworks/Core.framework/lato_regular.ttf</string>
+		<string>../../Frameworks/Core.framework/balsamiq_regular.ttf</string>
+		<string>../../Frameworks/Core.framework/balsamiq_bold.ttf</string>
+	</array>
 </dict>
 </plist>

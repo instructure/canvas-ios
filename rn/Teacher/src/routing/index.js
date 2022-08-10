@@ -29,6 +29,7 @@ import Navigator from './Navigator'
 import { getSession } from '../canvas-api/session'
 import ErrorScreen from './ErrorScreen'
 import app from '../modules/app'
+import { logScreenView } from '../common/CanvasAnalytics'
 
 import { ApolloProvider } from 'react-apollo'
 import getClient from '../canvas-api-v2/client'
@@ -149,6 +150,7 @@ export function route (url: string, additionalProps: Object = {}): ?RouteOptions
         params = Object.assign(params, additionalProps)
       }
       if (params) {
+        logScreenView(r.template)
         params = { ...params, ...location.query }
         params.location = location
         params.screenInstanceID = Math.random().toString(36).slice(2)

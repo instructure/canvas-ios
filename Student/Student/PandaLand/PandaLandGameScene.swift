@@ -33,7 +33,7 @@ class PandaLandGameScene: SKScene {
     let timerLabel = SKLabelNode(text: "0.0")
     let coinLabel = SKLabelNode(text: "30")
     let bgMusic = SKAudioNode(fileNamed: "bgMusic.mp3")
-    let coinSound = SKAction.playSoundFileNamed("coin", waitForCompletion: true)
+    let coinSound = SKAction.playSoundFileNamed("coin", waitForCompletion: false)
     var timer = Timer()
     var counter = 0.0
     var bgMusicOn = true {
@@ -80,7 +80,7 @@ class PandaLandGameScene: SKScene {
 
     func labelNode(with sceneSize: CGSize) -> SKNode {
         let node = SKNode()
-        let yPosition = sceneSize.height / 2 - 60
+        let yPosition = sceneSize.height / 2 - 70
         exitLabel.position = CGPoint(x: -sceneSize.width / 2 + 30, y: yPosition)
         exitLabel.name = "exitLabel"
         timerLabel.position = CGPoint(x: 0, y: yPosition)
@@ -204,7 +204,7 @@ struct PandaLandSceneView: View {
 
     var scene: PandaLandGameScene {
         let scene = PandaLandGameScene()
-        scene.size = CGSize(width: 320, height: 586)
+        scene.size = CGSize(width: 414, height: 896)
         scene.scaleMode = .aspectFill
         return scene
     }

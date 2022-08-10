@@ -50,13 +50,18 @@ private extension WKWebViewConfiguration {
 
 @IBDesignable
 open class CoreWebView: WKWebView {
-    public static var defaultConfiguration: WKWebViewConfiguration = {
+    public static var defaultConfiguration: WKWebViewConfiguration {
         let configuration = WKWebViewConfiguration()
         configuration.applyDefaultSettings()
         return configuration
-    }()
+    }
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
+        // swiftlint:disable:next force_try
+        return try! String(contentsOf: url)
+    }()
+    private static var LatoRegularCSSFontFace: String = {
+        let url = Bundle.core.url(forResource: "font_lato_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
@@ -80,7 +85,11 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
+    /**
+     - parameters:
+        - invertColorsInDarkMode: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
+     */
+    public init(customUserAgentName: String? = nil, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, invertColorsInDarkMode: Bool = false) {
         let config = configuration ?? Self.defaultConfiguration
         config.applyDefaultSettings()
 
@@ -92,6 +101,10 @@ open class CoreWebView: WKWebView {
 
         if disableZoom {
             addScript(zoomScript)
+        }
+
+        if invertColorsInDarkMode {
+            addScript(colorInvertInDarkModeScript)
         }
 
         setup()
@@ -107,6 +120,8 @@ open class CoreWebView: WKWebView {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
         uiDelegate = self
+        isOpaque = false
+        backgroundColor = UIColor.clear
 
         addScript(js)
         handle("resize") { [weak self] message in
@@ -157,6 +172,7 @@ open class CoreWebView: WKWebView {
             >
             <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <style>\(css)</style>
+            <style>\(darkModeCss)</style>
             \(jquery)
             \(content)
             </html>
@@ -170,29 +186,97 @@ open class CoreWebView: WKWebView {
         "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
     }
 
+    // Forces dark mode on webview pages.
+
+    public var colorInvertInDarkModeScript: String {
+        let darkCss = """
+        @media (prefers-color-scheme: dark) {
+            html {
+                filter: invert(100%) hue-rotate(180deg);
+            }
+            img:not(.ignore-color-scheme), video:not(.ignore-color-scheme), .ignore-color-scheme {
+                filter: invert(100%) hue-rotate(180deg) !important;
+            }
+        }
+        """
+
+        let cssString = darkCss.components(separatedBy: .newlines).joined()
+        return """
+           var element = document.createElement('style');
+           element.innerHTML = '\(cssString)';
+           document.head.appendChild(element);
+        """
+    }
+
+    /** Enables simple dark mode support for unsupported webview pages. */
+    private var darkModeCss: String {
+        let background = UIColor.backgroundLightest.hexString(userInterfaceStyle: .light)
+        let backgroundDark = UIColor.backgroundLightest.hexString(userInterfaceStyle: .dark)
+        let foreground = UIColor.textDarkest.hexString(userInterfaceStyle: .light)
+        let foregroundDark = UIColor.textDarkest.hexString(userInterfaceStyle: .dark)
+
+           return """
+                body.dark-theme {
+                  --text-color: \(foregroundDark);
+                  --bkg-color: \(backgroundDark);
+                }
+                body {
+                  --text-color: \(foreground);
+                  --bkg-color: \(background);
+                }
+
+                @media (prefers-color-scheme: dark) {
+                  /* defaults to dark theme */
+                  html.light-theme {
+                    --text-color: \(foreground);
+                    --bkg-color: \(background);
+                  }
+                  html {
+                    --text-color: \(foregroundDark);
+                    --bkg-color: \(backgroundDark);
+                  }
+                }
+                html {
+                  background: var(--bkg-color);
+                  color: var(--text-color);
+                }
+                """
+    }
+
+    /**
+     This is used only if we load a html string locally but not for real URL loads.
+     The font-size property of the body tag is overriden by the OS so that's why we set the p tag's font-size.
+     */
     var css: String {
         let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
         let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
-        var font = "system-ui"
-        var fontCSS = ""
+        let font: String
+        let fontCSS: String
+        let style = Typography.Style.body
+        let uiFont = style.uiFont
 
         if AppEnvironment.shared.k5.isK5Enabled {
             font = "BalsamiqSans-Regular"
             fontCSS = Self.BalsamiqRegularCSSFontFace
+        } else {
+            font = "Lato-Regular"
+            fontCSS = Self.LatoRegularCSSFontFace
         }
 
         return """
             \(fontCSS)
             html {
-                background: \(UIColor.backgroundLightest.hexString);
-                color: \(UIColor.textDarkest.hexString);
                 font-family: \(font);
-                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
+                font-size: \(uiFont.pointSize)px;
                 -webkit-tap-highlight-color: transparent;
             }
             body {
                 margin: 16px;
+            }
+            p {
+                font-size: \(uiFont.pointSize)px;
+                line-height: \(style.lineHeight.toPoints(for: uiFont))px;
             }
             a {
                 color: \(link.hexString);
@@ -239,22 +323,25 @@ open class CoreWebView: WKWebView {
         let buttonText = NSLocalizedString("Launch External Tool", bundle: .core, comment: "")
         return """
             // Handle Math Equations
-            let foundMath = !!document.querySelector('math')
-            document.querySelectorAll('img.equation_image').forEach(img => {
-              let mathml = img.getAttribute('x-canvaslms-safe-mathml')
-              if (!mathml && !img.dataset.equationContent) return
-              foundMath = true
-              const div = document.createElement('div')
-              div.innerHTML = mathml || '<span>$$' + img.dataset.equationContent + '$$</span>'
-              div.firstChild.setAttribute('style', img.getAttribute('style'))
-              img.parentNode.replaceChild(div.firstChild, img)
-            })
-            if (foundMath) {
-              window.MathJax = { displayAlign: 'inherit' }
-              const script = document.createElement('script')
-              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-              document.body.appendChild(script)
+            function loadMathJaxIfNecessary() {
+              let foundMath = !!document.querySelector('math') || document.body.innerText.includes('\\\\') || document.body.innerText.includes('$$')
+              document.querySelectorAll('img.equation_image').forEach(img => {
+                let mathml = img.getAttribute('x-canvaslms-safe-mathml')
+                if (!mathml && !img.dataset.equationContent) return
+                foundMath = true
+                const div = document.createElement('div')
+                div.innerHTML = mathml || '<span>$$' + img.dataset.equationContent + '$$</span>'
+                div.firstChild.setAttribute('style', img.getAttribute('style'))
+                img.parentNode.replaceChild(div.firstChild, img)
+              })
+              if (foundMath) {
+                window.MathJax = { displayAlign: 'inherit', messageStyle: 'none' }
+                const script = document.createElement('script')
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+                document.body.appendChild(script)
+              }
             }
+            loadMathJaxIfNecessary()
 
             function fixLTITools() {
                 // Replace all iframes with a button to launch in SFSafariViewController

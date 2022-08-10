@@ -25,12 +25,14 @@ public protocol LoginDelegate: AnyObject {
     var findSchoolButtonTitle: String { get }
 
     func openExternalURL(_ url: URL)
+    func openExternalURLinSafari(_ url: URL)
     func openSupportTicket()
     func userDidLogin(session: LoginSession)
     func userDidStartActing(as session: LoginSession)
     func userDidStopActing(as session: LoginSession)
     func userDidLogout(session: LoginSession)
     func changeUser()
+    func actAsStudentViewStudent(studentViewStudent: APIUser)
 }
 
 public extension LoginDelegate {
@@ -41,6 +43,7 @@ public extension LoginDelegate {
 
     func openSupportTicket() {}
     func changeUser() {}
+    func openExternalURLinSafari(_ url: URL) {}
 
     func userDidStartActing(as session: LoginSession) {
         userDidLogin(session: session)
@@ -65,4 +68,6 @@ public extension LoginDelegate {
             userDidLogout(session: session)
         }
     }
+
+    func actAsStudentViewStudent(studentViewStudent: APIUser) {}
 }

@@ -180,7 +180,7 @@
     "message": "録音を開始できませんでした"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,\n     =0 {0 の受講生}\n    one {# 受講生}\n  other {# 受講生}\n}"
+    "message": "{ count, plural,\n     =0 {0 の受講者}\n    one {# 受講者}\n  other {# 受講者}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    other {採点が必要です}\n}"
@@ -189,7 +189,7 @@
     "message": "{ count, plural,\n    other {# が採点が必要です}\n}"
   },
   "count_students_4ae780ca": {
-    "message": "{ count } 受講生"
+    "message": "{ count } 受講者"
   },
   "course_activity_stream_40091c17": {
     "message": "コースのアクティビティ ストリーム"
@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "'期日'は '利用可能初日'と '利用可能最終日'の間の日付である必要があります"
   },
+  "due_dates_520a6c08": {
+    "message": "期日"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "期限、詳細をダブルタップしてください。"
   },
@@ -270,7 +273,7 @@
     "message": "コース設定を編集"
   },
   "edit_quiz_details_72cd055": {
-    "message": "クイズ詳細を編集"
+    "message": "小テスト詳細を編集"
   },
   "enter_code_c7ab5104": {
     "message": "コードを入力する"
@@ -342,7 +345,7 @@
     "message": "採点済み"
   },
   "graded_quiz_7fabdf1f": {
-    "message": "採点済みのクイズ"
+    "message": "採点済みの小テスト"
   },
   "graded_survey_c0f0c395": {
     "message": "採点済みのサーベイ"
@@ -366,7 +369,7 @@
     "message": "ヘルプ"
   },
   "help_your_students_with_this_assignment_by_adding__5d22ea1a": {
-    "message": "指示を追加して、この課題を受講生に分かりやすくしてください。"
+    "message": "指示を追加して、この課題を受講者に分かりやすくしてください。"
   },
   "hidden_14a032a7": {
     "message": "非表示"
@@ -405,10 +408,10 @@
     "message": "長さ（分）"
   },
   "let_students_see_the_correct_answer_a4da886e": {
-    "message": "受講生に正解を見せる"
+    "message": "受講者に正解を見せる"
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
-    "message": "受講生にクイズの結果を表示"
+    "message": "受講者に小テストの結果を表示"
   },
   "light_blue_5374f600": {
     "message": "ライトブルー"
@@ -552,7 +555,7 @@
     "message": "一度に 1 つの問題"
   },
   "online_quiz_5beb2ae5": {
-    "message": "オンラインクイズ"
+    "message": "オンライン小テスト"
   },
   "online_text_entry_1d893ce": {
     "message": "オンラインテキスト入力"
@@ -567,7 +570,7 @@
     "message": "各試行の後一度のみ"
   },
   "opens_in_canvas_student_5f299948": {
-    "message": "Canvas受講生内で開く"
+    "message": "Canvas受講者内で開く"
   },
   "orange_81386a62": {
     "message": "オレンジ"
@@ -591,13 +594,13 @@
     "message": "再度試してください。"
   },
   "practice_quiz_19a8505d": {
-    "message": "練習クイズ"
+    "message": "練習小テスト"
   },
   "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
-    "message": "演習クイズと調査には詳細ビューはありません。"
+    "message": "演習小テストと調査には詳細ビューはありません。"
   },
   "preview_quiz_1ffbf684": {
-    "message": "プレビュークイズ"
+    "message": "プレビュー小テスト"
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "このファイルタイプのプレビューはサポートされていません"
@@ -621,16 +624,16 @@
     "message": "パープル"
   },
   "quiz_details_6c4473d3": {
-    "message": "クイズの詳細情報"
+    "message": "小テストの詳細情報"
   },
   "quiz_preview_a7e75769": {
-    "message": "クイズプレビュー"
+    "message": "小テストプレビュー"
   },
   "quiz_score_to_keep_d1f7c4b1": {
-    "message": "保持するクイズ スコア"
+    "message": "保持する小テスト スコア"
   },
   "quiz_type_be1633db": {
-    "message": "クイズ タイプ"
+    "message": "小テスト タイプ"
   },
   "recent_activity_51239235": {
     "message": "最近のアクティビティ"
@@ -774,19 +777,16 @@
     "message": "録画停止"
   },
   "student_5da6bfd1": {
-    "message": "受講生"
+    "message": "受講者"
   },
   "student_view_ac9b672f": {
-    "message": "受講生ビュー"
+    "message": "受講者ビュー"
   },
   "students_1b8cd07b": {
-    "message": "受講生"
+    "message": "受講者"
   },
   "subject_114b2e98": {
     "message": "件名"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "投稿の設定"
   },
   "submissions_11e96106": {
     "message": "提出物"
@@ -804,7 +804,7 @@
     "message": "\"+\" をタップして新しい会話を作成する"
   },
   "teachers_52e2423f": {
-    "message": "講師"
+    "message": "教員"
   },
   "teal_f729a294": {
     "message": "ティール"
@@ -825,7 +825,7 @@
     "message": "グループの読み込み中、問題がありました。"
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
-    "message": "クイズ提出を読み込み中、問題がありました。."
+    "message": "小テスト提出を読み込み中、問題がありました。."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "添付読み込み中にエラーが発生しました。"
@@ -834,7 +834,7 @@
     "message": "登録リストの読み込み中にエラーが発生しました"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
-    "message": "クイズプレビューの読み込み中にエラーが発生しました。"
+    "message": "小テストプレビューの読み込み中にエラーが発生しました。"
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "添付読み込み中にエラーが発生しました。"
@@ -882,7 +882,7 @@
     "message": "～へ{ name }"
   },
   "total_grade_568e719f": {
-    "message": "トータルの成績："
+    "message": "トータルの評定："
   },
   "un_starred_8fef021f": {
     "message": "スターなし"

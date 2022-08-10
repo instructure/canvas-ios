@@ -32,7 +32,10 @@ public struct AssignmentGroupView: View {
                 let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
                 VStack(spacing: 0) {
                     AssignmentCellView(viewModel: assignmentCellViewModel)
-                    Divider()
+
+                    if viewModel.assignments.last != assignment {
+                        Divider()
+                    }
                 }
             }
         }

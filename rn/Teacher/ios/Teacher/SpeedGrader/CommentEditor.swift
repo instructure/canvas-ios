@@ -28,24 +28,9 @@ struct CommentEditor: View {
 
     var body: some View {
         HStack(alignment: .bottom) {
-            if #available(iOS 14, *) {
-                DynamicHeightTextEditor(text: $text, maxLines: 3, font: .scaledNamedFont(.regular16), placeholder: NSLocalizedString("Comment", bundle: .core, comment: ""))
-                    .accessibility(label: Text("Comment"))
-                    .identifier("SubmissionComments.commentTextView")
-            } else {
-                ZStack(alignment: .leading) {
-                    if text.isEmpty {
-                        Text("Comment")
-                            .font(.regular16).foregroundColor(.textDark)
-                            .accessibility(hidden: true)
-                    }
-                    Core.TextEditor(text: $text, maxHeight: containerHeight / 2)
-                        .font(.regular16).foregroundColor(.textDarkest)
-                        .accessibility(label: Text("Comment"))
-                        .identifier("SubmissionComments.commentTextView")
-                        .padding(.vertical, 2)
-                }
-            }
+            DynamicHeightTextEditor(text: $text, maxLines: 3, font: .scaledNamedFont(.regular16), placeholder: NSLocalizedString("Comment", bundle: .core, comment: ""))
+                .accessibility(label: Text("Comment"))
+                .identifier("SubmissionComments.commentTextView")
             Button(action: {
                 action()
                 controller.view.endEditing(true)

@@ -20,9 +20,18 @@ import UIKit
 import Core
 
 public class HelmSplitViewController: UISplitViewController {
-    public override func viewDidLoad() {
+
+    public override init(nibName: String? = nil, bundle: Bundle? = nil) {
+        super.init(nibName: nibName, bundle: bundle)
         delegate = self
-        preferredDisplayMode = .allVisible
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    public override func viewDidLoad() {
+        preferredDisplayMode = .oneBesideSecondary
     }
 
     public override var prefersStatusBarHidden: Bool {
@@ -59,7 +68,7 @@ public class HelmSplitViewController: UISplitViewController {
 
     public func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
         let defaultButton = self.displayModeButtonItem
-        let collapse = displayMode == .primaryOverlay || displayMode == .primaryHidden
+        let collapse = displayMode == .oneOverSecondary || displayMode == .secondaryOnly
         let icon: UIImage = collapse ? .exitFullScreenLine : .fullScreenLine
         let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
         prettyButton.accessibilityLabel = collapse ?
@@ -99,24 +108,25 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
     }
     
     public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
-        // This logic fixes the rotation glitches on course home and assignments list screens on larger iPhones where master/detail split view is supported in landscape mode.
-        // When react-native is removed we need to re-think how the we'll handle split view rotation events since `canBecomeMaster` navigation option is only available in react-native routing.
+
+        // Setup default detail view provided by the master view controller
         if let nav = primaryViewController as? UINavigationController,
            nav.viewControllers.count > 1,
-           let newDetail = nav.viewControllers.last,
-           let moduleName = (newDetail as? HelmViewController)?.moduleName,
-           ["/courses/:courseID", "/courses/:courseID/assignments"].contains(moduleName)
+           let defaultViewProvider = nav.viewControllers.last as? DefaultViewProvider,
+           let defaultRoute = defaultViewProvider.defaultViewRoute,
+           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute, userInfo: nil)
         {
-            // If all the above conditions pass the current controller can act as primary so we put an empty view as secondary.
-            let empty = EmptyViewController()
+            let detailNavController = HelmNavigationController(rootViewController: defaultViewController)
+            detailNavController.syncStyles(from: nav, to: detailNavController)
 
-            if let color = nav.navigationBar.barTintColor {
-                empty.navBarStyle = .color(color)
+            if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute) {
+                Analytics.shared.logScreenView(route: routeTemplate, viewController: defaultViewController)
             }
 
-            return HelmNavigationController(rootViewController: empty)
+            return detailNavController
         }
 
+        // Default behaviour of putting the current top viewcontroller into a nav controller and moving it to the detail view
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)
@@ -153,8 +163,16 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
     }
 }
 
+// - MARK: Master Navigation Controller Transition Actions
+
 extension HelmSplitViewController: UINavigationControllerDelegate {
+
+    /**
+     This method gets called only when a real transition occurs. UINavigationControllerDelegate.willShow/didShow also gets
+     called when the navigation controller is removed from the screen and re-added for example on a tab bar change event. */
     open func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        toVC.showDefaultDetailView()
+
         if let masterNav = masterNavigationController, let detailNav = detailNavigationController, let coursesViewController = masterNav.viewControllers.first, toVC == coursesViewController, operation == .pop {
             // When navigating back to all courses list, detail view should show empty vc
             detailNav.navigationItem.leftBarButtonItem = nil

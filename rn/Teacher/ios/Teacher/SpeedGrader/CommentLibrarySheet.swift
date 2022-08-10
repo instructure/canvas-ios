@@ -34,7 +34,7 @@ struct CommentLibrarySheet: View {
                 }
                 CommentEditor(text: $comment, action: editorAction, containerHeight: geometry.size.height)
                     .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-                    .background(Color.backgroundLight).onDataChange(of: comment) { text in
+                    .background(Color.backgroundLight).onChange(of: comment) { text in
                         viewModel.comment = text
                     }
             }.onAppear {
@@ -63,8 +63,8 @@ struct CommentLibrarySheet: View {
     @ViewBuilder
     var dismissView: some View {
         ZStack {
-            Circle().foregroundColor(.tiara).frame(width: 30, height: 30).opacity(0.3)
-            Image.xLine.foregroundColor(.licorice).frame(width: 12.5, height: 12.5)
+            Circle().foregroundColor(.borderMedium).frame(width: 30, height: 30).opacity(0.3)
+            Image.xLine.foregroundColor(.textDarkest).frame(width: 12.5, height: 12.5)
         }
     }
 

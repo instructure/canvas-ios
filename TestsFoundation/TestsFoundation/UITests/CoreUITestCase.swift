@@ -284,6 +284,7 @@ open class CoreUITestCase: XCTestCase {
 
         homeScreen.waitToExist()
         user.session = currentSession()
+        setAppThemeToSystem()
     }
 
     open func currentSession() -> LoginSession? {
@@ -306,7 +307,7 @@ open class CoreUITestCase: XCTestCase {
 
     open func pullToRefresh() {
         let window = app.find(type: .window)
-        window.relativeCoordinate(x: 0.5, y: 0.5)
+        window.relativeCoordinate(x: 0.5, y: 0.2)
             .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
     }
 
@@ -675,5 +676,16 @@ open class CoreUITestCase: XCTestCase {
     open func mockNow(_ date: Date) {
         Clock.mockNow(date)
         send(.mockNow(date))
+    }
+
+    // Workaround to handle app theme prompt
+    open func setAppThemeToSystem() {
+        let canvasThemePromptTitle = app.find(label: "Canvas is now available in dark theme")
+        let systemSettingsButton = app.find(label: "System settings", type: .button)
+        if canvasThemePromptTitle.waitToExist(5, shouldFail: false).exists() {
+            systemSettingsButton.tapUntil {
+                !canvasThemePromptTitle.exists()
+            }
+        }
     }
 }

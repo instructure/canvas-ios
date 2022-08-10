@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "„Fälligkeitsdatum“ muss zwischen „Verfügbar von“ und „Verfügbar bis“ liegen."
   },
+  "due_dates_520a6c08": {
+    "message": "Abgabetermine"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Fälligkeitsdaten, Doppeltipp für Details"
   },
@@ -777,16 +780,13 @@
     "message": "Student"
   },
   "student_view_ac9b672f": {
-    "message": "Studentenansicht"
+    "message": "Studierendenansicht"
   },
   "students_1b8cd07b": {
     "message": "Studenten"
   },
   "subject_114b2e98": {
     "message": "Betreff"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Abgabeeinstellungen"
   },
   "submissions_11e96106": {
     "message": "Einsendungen"

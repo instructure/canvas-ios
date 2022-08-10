@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "”Inlämningsdatum” måste vara mellan datumen: ”Tillgänglig från” och ”Tillgänglig till”"
   },
+  "due_dates_520a6c08": {
+    "message": "Inlämningsdatum"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Inlämningsdatum, dubbelklicka för detaljer."
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "Ämne"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Inlämningsinställningar"
   },
   "submissions_11e96106": {
     "message": "Inskickningar"

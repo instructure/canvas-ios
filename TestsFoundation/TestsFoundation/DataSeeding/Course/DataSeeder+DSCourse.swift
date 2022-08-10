@@ -23,4 +23,10 @@ extension DataSeeder {
         let request = CreateDSCourseRequest(body: requestedBody)
         return try! makeRequest(request)
     }
+
+    public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
+        let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
+        let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
+        try! makeRequest(request)
+    }
 }

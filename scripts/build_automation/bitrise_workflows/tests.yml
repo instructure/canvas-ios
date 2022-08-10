@@ -96,7 +96,7 @@ workflows:
                 -scheme CITests \
                 -sdk iphonesimulator \
                 -configuration Debug \
-                -destination 'platform=iOS Simulator,name=iPhone SE (2nd generation)' \
+                -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
                 COMPILER_INDEX_STORE_ENABLE=NO \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
@@ -114,7 +114,7 @@ workflows:
             xcodebuild \
                 -workspace Canvas.xcworkspace \
                 -scheme CITests \
-                -destination 'platform=iOS Simulator,name=iPhone SE (2nd generation)' \
+                -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
                 test-without-building 2>&1 | xcbeautify
     - script:
@@ -286,7 +286,7 @@ workflows:
 
             ./scripts/run-swift run-ui-tests --build \
                 --scheme IPadTests \
-                --device-name 'iPad Air (3rd generation)'
+                --device-name 'iPad Air (5th generation)'
     - script:
         title: Prepare cache
         inputs:
@@ -420,7 +420,7 @@ workflows:
 
                 ./scripts/run-swift run-ui-tests --build \
                     --scheme IPadTests \
-                    --device-name 'iPad (8th generation)' \
+                    --device-name 'iPad (9th generation)' \
                     --all-tests || ret=$?
                 ./scripts/run-swift run-ui-tests --build --append-results $group_A_targets || ret=$?
 

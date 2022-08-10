@@ -58,7 +58,7 @@ extension UIViewController {
     public var splitDisplayModeButtonItem: UIBarButtonItem? {
         guard let splitView = splitViewController else { return nil }
         let defaultButton = splitView.displayModeButtonItem
-        let isExpanded = splitView.displayMode == .primaryOverlay || splitView.displayMode == .primaryHidden
+        let isExpanded = splitView.displayMode == .oneOverSecondary || splitView.displayMode == .secondaryOnly
         let icon: UIImage = isExpanded ? .exitFullScreenLine : .fullScreenLine
         let buttonItem = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
         buttonItem.accessibilityLabel = splitView.isCollapsed ? NSLocalizedString("Collapse", bundle: .core, comment: "") : NSLocalizedString("Expand", bundle: .core, comment: "")
@@ -163,6 +163,26 @@ extension UIViewController {
         })
         alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         AppEnvironment.shared.router.show(alert, from: self, options: .modal())
+    }
+
+    public func showThemeSelectorAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Canvas is now available in dark theme", bundle: .core, comment: ""),
+                                      message: NSLocalizedString("Choose your app appearance!\nYou can change it later in the settings menu.", bundle: .core, comment: ""),
+                                      preferredStyle: .alert)
+
+        alert.addAction(AlertAction(NSLocalizedString("System settings", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .unspecified)})
+        alert.addAction(AlertAction(NSLocalizedString("Light theme", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .light)})
+        alert.addAction(AlertAction(NSLocalizedString("Dark theme", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .dark)})
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel) {_ in self.setStyle(style: .light)})
+        AppEnvironment.shared.router.show(alert, from: self, options: .modal())
+    }
+
+    private func setStyle(style: UIUserInterfaceStyle?) {
+        let env = AppEnvironment.shared
+        env.userDefaults?.interfaceStyle = style
+        if let window = env.window {
+            window.updateInterfaceStyle(style)
+        }
     }
 
     public enum PermissionError {

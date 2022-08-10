@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "''Due Date'' must be between ''Available From'' and ''Available Until'' dates"
   },
+  "due_dates_520a6c08": {
+    "message": "Due dates"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Due Dates, Double tap for details."
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "Subject"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "Submission Settings"
   },
   "submissions_11e96106": {
     "message": "Submissions"

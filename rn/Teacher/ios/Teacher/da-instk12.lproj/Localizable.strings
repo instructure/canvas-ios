@@ -53,10 +53,19 @@
 "Choose Files" = "Vælg filer";
 
 /* No comment provided by engineer. */
+"Close" = "Luk";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Luk skuffe";
 
 /* No comment provided by engineer. */
 "Comment" = "Kommentar";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Kommentarbibliotek";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Kommentarbibliotek er ikke tilgængeligt";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
@@ -148,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Vurderinger vil blive gjort synlige for elever med afleveringer med vurdering";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "Gruppe";
 
@@ -197,10 +200,16 @@
 "No Submissions" = "Ingen afleveringer";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Ingen forslag til rådighed";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Ikke bedømt";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Åbn kommentarbibliotek";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Åbn skuffe i fuld skærm";

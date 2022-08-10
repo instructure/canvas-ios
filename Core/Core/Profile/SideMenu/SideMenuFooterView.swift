@@ -27,7 +27,7 @@ struct SideMenuFooterView: View {
                 Text(verbatim: "\(env.app?.rawValue.capitalized ?? "") V. \(version)")
                     .padding(.leading, 10)
                     .font(.regular14)
-                    .foregroundColor(.ash)
+                    .foregroundColor(.textDark)
                 Spacer()
             }
             .padding()

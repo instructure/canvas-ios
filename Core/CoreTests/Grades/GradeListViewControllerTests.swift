@@ -78,7 +78,7 @@ class GradeListViewControllerTests: CoreTestCase {
         ), ]),
     ]
 
-    func mockGrades(gradingPeriodID: String?, score: Double?) {
+    func mockGrades(gradingPeriodID: String?, score: Double?, grade: String? = nil) {
         api.mock(GetEnrollments(
             context: .course("1"),
             userID: currentSession.userID,
@@ -92,8 +92,8 @@ class GradeListViewControllerTests: CoreTestCase {
             type: "StudentEnrollment",
             user_id: self.currentSession.userID,
             grades: .make(
-                current_grade: score.flatMap { String($0) },
-                final_grade: score.flatMap { String($0) },
+                current_grade: grade,
+                final_grade: grade,
                 current_score: score,
                 final_score: score
             )
@@ -230,8 +230,7 @@ class GradeListViewControllerTests: CoreTestCase {
             enrollment_state: .active,
             type: "StudentEnrollment",
             user_id: self.currentSession.userID,
-            computed_current_grade: "C",
-            current_period_computed_current_score: 42
+            grades: .make(current_grade: "C", current_score: 42)
         ), ])
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.totalGradeLabel.text, "42% (C)")

@@ -41,6 +41,7 @@ public class ConversationDetailViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
         configureTableView()
     }
 

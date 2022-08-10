@@ -36,3 +36,15 @@ public struct ListSectionHeader<Content: View>: View {
             .background(Color.backgroundGrouped)
     }
 }
+
+#if DEBUG
+
+struct MyPreviewProvider_Previews: PreviewProvider {
+    static var previews: some View {
+        ListSectionHeader { Text(verbatim: "Hello, world!") }
+            .padding()
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif

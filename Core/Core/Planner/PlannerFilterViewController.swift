@@ -39,6 +39,10 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
     lazy var courses = env.subscribe(GetPlannerCourses(studentID: studentID)) { [weak self] in
         self?.update()
     }
+    private var filteredCourses: [Course] {
+        let courseIDs = planner?.availableCourseIDs ?? []
+        return courses.all.filter { courseIDs.contains($0.id) }
+    }
 
     public static func create(studentID: String?) -> PlannerFilterViewController {
         let controller = loadFromStoryboard()
@@ -71,7 +75,7 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
         guard courses.requested, courses.pending == false else { return }
         tableView.refreshControl?.endRefreshing()
         spinnerView.isHidden = true
-        emptyStateView.isHidden = courses.error != nil || !courses.isEmpty
+        emptyStateView.isHidden = courses.error != nil || !filteredCourses.isEmpty
         errorView.isHidden = courses.error == nil
         tableView.reloadData()
     }
@@ -81,10 +85,10 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
     }
 
     func toggleCourse(_ course: Course) throws {
-        if planner?.selectedCourses.contains(course) == true {
-            planner?.selectedCourses.remove(course)
+        if planner?.selectedCourses.contains(course.id) == true {
+            planner?.selectedCourses.remove(course.id)
         } else {
-            planner?.selectedCourses.insert(course)
+            planner?.selectedCourses.insert(course.id)
         }
         try env.database.viewContext.save()
     }
@@ -96,7 +100,7 @@ extension PlannerFilterViewController: UITableViewDataSource {
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = courses.count
+        var count = filteredCourses.count
         if courses.hasNextPage {
             count += 1
         }
@@ -104,16 +108,17 @@ extension PlannerFilterViewController: UITableViewDataSource {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if courses.hasNextPage && indexPath.row == courses.count {
+        if courses.hasNextPage && indexPath.row == filteredCourses.count {
             courses.getNextPage()
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell = tableView.dequeue(for: indexPath) as PlannerFilterCell
-        let course = courses[indexPath]
+        let course = filteredCourses[indexPath.row]
+        cell.backgroundColor = .backgroundLightest
         cell.accessibilityIdentifier = "PlannerFilter.section.\(indexPath.section).row.\(indexPath.row)"
-        cell.accessibilityLabel = course?.name
-        cell.courseNameLabel.text = course?.name
-        cell.isSelected = course.flatMap { planner?.selectedCourses.contains($0) } == true
+        cell.accessibilityLabel = course.name
+        cell.courseNameLabel.text = course.name
+        cell.isSelected = planner?.selectedCourses.contains(course.id) == true
         return cell
     }
 
@@ -128,7 +133,7 @@ extension PlannerFilterViewController: UITableViewDataSource {
 extension PlannerFilterViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let course = courses[indexPath] else { return }
+        let course = filteredCourses[indexPath.row]
         do {
             try toggleCourse(course)
         } catch {

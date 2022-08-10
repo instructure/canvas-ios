@@ -20,6 +20,7 @@ import SwiftUI
 
 struct CourseListCell: View {
     @ObservedObject var course: Course
+    let isFavoriteButtonHidden: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -32,18 +33,22 @@ struct CourseListCell: View {
                 let icon = pending ? Image.starSolid.foregroundColor(.textDark) :
                     course.isFavorite ? Image.starSolid.foregroundColor(.textInfo) :
                     Image.starLine.foregroundColor(.textDark)
-                icon.padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 12))
+                icon
+                    .frame(width: 20, height: 20)
+                    .padding(EdgeInsets(top: Typography.Spacings.textCellIconTopPadding, leading: Typography.Spacings.textCellIconLeadingPadding, bottom: 0, trailing: 12))
             }
                 .buttonStyle(PlainButtonStyle())
                 .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
                 .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
+                .hidden(isFavoriteButtonHidden)
 
             Button(action: {
                 env.router.route(to: "/courses/\(course.id)", from: controller)
-            }, label: { HStack {
-                VStack(alignment: .leading) {
+            }) { HStack {
+                VStack(alignment: .leading, spacing: 0) {
                     Text(course.name ?? "")
-                        .font(.semibold16).foregroundColor(.textDarkest)
+                        .style(.textCellTitle)
+                        .foregroundColor(.textDarkest)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
@@ -56,9 +61,11 @@ struct CourseListCell: View {
                         role.map { Text($0) }
                         Spacer()
                     }
-                        .font(.medium14).foregroundColor(.textDark)
+                    .style(.textCellSupportingText)
+                    .foregroundColor(.textDark)
                 }
-                    .padding(.vertical, 16)
+                .padding(.top, Typography.Spacings.textCellTopPadding)
+                .padding(.bottom, Typography.Spacings.textCellTopPadding)
 
                 if course.hasTeacherEnrollment {
                     let icon = course.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
@@ -67,9 +74,9 @@ struct CourseListCell: View {
                 } else {
                     DisclosureIndicator().padding(16)
                 }
-            } })
-                .accessibilityElement(children: .ignore)
-                .accessibility(label: accessibilityLabel)
+            } }
+            .accessibilityElement(children: .ignore)
+            .accessibility(label: accessibilityLabel)
         }
         .accessibility(identifier: "DashboardCourseCell.\(course.id)")
     }
@@ -93,3 +100,17 @@ struct CourseListCell: View {
         }
     }
 }
+
+#if DEBUG
+
+struct CourseListCell_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+
+    static var previews: some View {
+        CourseListCell(course: Course.save(.make(), in: context), isFavoriteButtonHidden: false)
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif

@@ -55,7 +55,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
-
+        FontAppearance.update()
         TabBarBadgeCounts.application = UIApplication.shared
 
         if let session = LoginSession.mostRecent {
@@ -65,6 +65,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .teacher)
             window?.makeKeyAndVisible()
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
         handleLaunchOptionsNotifications(launchOptions)
@@ -74,24 +75,26 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
+        updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
         NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { response, urlResponse, error in
-            guard response != nil, error == nil else {
+        environment.api.makeRequest(getProfile) { apiProfile, urlResponse, error in
+            guard let apiProfile = apiProfile, error == nil else {
                 if urlResponse?.isUnauthorized == true {
                     DispatchQueue.main.async { self.userDidLogout(session: session) }
                 }
                 return
             }
-            self.isK5User = response?.k5_user == true
-            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                NativeLoginManager.login(as: session)
+            self.isK5User = apiProfile.k5_user == true
+
+            DispatchQueue.main.async {
+                LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
+                    GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                        NativeLoginManager.login(as: session)
+                    }}
+                }
             }
         }
         Analytics.shared.logSession(session)
@@ -130,7 +133,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 
     func userNotificationCenter(
@@ -167,6 +170,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if (!uiTesting) {
             AppStoreReview.handleLaunch()
         }
+        updateInterfaceStyle(for: window)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -219,6 +223,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .teacher)
+            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 
@@ -243,11 +248,13 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         environment.router.show(safari, from: from, options: .modal())
     }
 
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
+
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
-            setup(session: session)
-        }
+        setup(session: session)
     }
 
     func userDidStopActing(as session: LoginSession) {
@@ -267,10 +274,23 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func actAsFakeStudent(withID fakeStudentID: String) {
+        actAsFakeStudent(with: fakeStudentID)
+    }
+
+    func actAsFakeStudent(with fakeStudentID: String, rootAccount: String? = nil) {
         guard let session = environment.currentSession else { return }
+
+        var baseUrl = session.baseURL
+        if let rootAccountHost = rootAccount {
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = rootAccountHost
+            baseUrl = components.url ?? baseUrl
+        }
+
         let entry = LoginSession(
             accessToken: session.accessToken,
-            baseURL: session.baseURL,
+            baseURL: baseUrl,
             expiresAt: session.expiresAt,
             lastUsedAt: Date(),
             locale: session.locale,
@@ -292,6 +312,14 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         }
         if let url = URL(string: deepLink) {
             UIApplication.shared.open(url)
+        }
+    }
+
+    func actAsStudentViewStudent(studentViewStudent: APIUser) {
+        if let url = URL(string: "canvas-student://"), UIApplication.shared.canOpenURL(url) {
+            actAsFakeStudent(with: studentViewStudent.id.rawValue, rootAccount: studentViewStudent.root_account)
+        } else if let url = URL(string: "https://itunes.apple.com/us/app/canvas-student/id480883488?ls=1&mt=8") {
+            openExternalURL(url)
         }
     }
 }
@@ -327,6 +355,7 @@ extension TeacherAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .teacher)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/to-do"], ["/conversations", "/inbox"]]

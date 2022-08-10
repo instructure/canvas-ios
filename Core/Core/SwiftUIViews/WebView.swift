@@ -27,6 +27,7 @@ public struct WebView: UIViewRepresentable {
     private let source: Source?
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
+    private var invertColorsInDarkMode: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration?
 
@@ -36,18 +37,24 @@ public struct WebView: UIViewRepresentable {
     // MARK: - Initializers
 
     public init(url: URL?) {
-        source = url.map { .url($0) }
+        source = url.map { .request(URLRequest(url: $0)) }
     }
 
-    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil) {
+    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, invertColorsInDarkMode: Bool = false) {
         self.init(url: url)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
+        self.invertColorsInDarkMode = invertColorsInDarkMode
         self.configuration = configuration
     }
 
     public init(html: String?) {
         source = html.map { .html($0) }
+    }
+
+    public init(request: URLRequest, disableZoom: Bool = false) {
+        self.source = .request(request)
+        self.disableZoom = disableZoom
     }
 
     // MARK: - View Modifiers
@@ -88,7 +95,7 @@ public struct WebView: UIViewRepresentable {
     // MARK: - UIViewRepresentable Protocol
 
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration)
+        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration, invertColorsInDarkMode: invertColorsInDarkMode)
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
@@ -101,8 +108,8 @@ public struct WebView: UIViewRepresentable {
             switch source {
             case .html(let html):
                 uiView.loadHTMLString(html)
-            case .url(let url):
-                uiView.load(URLRequest(url: url))
+            case .request(let request):
+                uiView.load(request)
             case nil:
                 break
             }
@@ -119,7 +126,7 @@ public struct WebView: UIViewRepresentable {
 extension WebView {
     enum Source: Equatable {
         case html(String)
-        case url(URL)
+        case request(URLRequest)
     }
 
     private struct FrameToFit: View {
@@ -129,8 +136,10 @@ extension WebView {
 
         var body: some View {
             view
-                .onChangeSize { height = $0 }
-                .frame(height: height)
+                .onChangeSize { height in
+                    withAnimation { self.height = height }
+                }
+                .frame(height: height, alignment: .top)
         }
     }
 

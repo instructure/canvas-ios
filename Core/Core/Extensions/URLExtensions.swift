@@ -60,6 +60,11 @@ extension URL {
         return components.url ?? self
     }
 
+    public func containsQueryItem(named key: String) -> Bool {
+        let components = URLComponents.parse(self)
+        return components.queryValue(for: key) != nil
+    }
+
     public func appendingOrigin(_ origin: String) -> URL {
         return appendingQueryItems(.init(name: "origin", value: origin))
     }

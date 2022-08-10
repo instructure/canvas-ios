@@ -53,10 +53,19 @@
 "Choose Files" = "Choisir des fichiers";
 
 /* No comment provided by engineer. */
+"Close" = "Fermer";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Fermer le tiroir";
 
 /* No comment provided by engineer. */
 "Comment" = "Commenter";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Bibliothèque de commentaires";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "La bibliothèque de commentaires est indisponible";
 
 /* No comment provided by engineer. */
 "Comments" = "Commentaires";
@@ -148,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Les notes seront rendues visibles aux élèves dont la soumission a été notée.";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "Groupe";
 
@@ -197,10 +200,16 @@
 "No Submissions" = "Aucune soumission";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Aucune suggestion disponible";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Non noté";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Ouvrir la bibliothèque de commentaires";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Ouvrir le tiroir en plein écran";

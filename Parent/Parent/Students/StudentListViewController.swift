@@ -61,6 +61,7 @@ class StudentListViewController: UIViewController {
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
@@ -121,6 +122,7 @@ class StudentListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 
     func update(_ student: User?, indexPath: IndexPath) {
+        backgroundColor = .backgroundLightest
         accessibilityIdentifier = "StudentListCell.\(indexPath.row)"
         nameLabel.text = student.map {
             User.displayName($0.shortName, pronouns: $0.pronouns)

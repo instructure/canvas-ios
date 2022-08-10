@@ -49,12 +49,14 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
+        FontAppearance.update()
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
             userDidLogin(session: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .parent)
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
         window?.makeKeyAndVisible()
         return true
@@ -63,6 +65,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         CoreWebView.keepCookieAlive(for: environment)
         AppStoreReview.handleLaunch()
+        updateInterfaceStyle(for: window)
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -82,6 +85,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
+        updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         currentStudentID = environment.userDefaults?.parentCurrentStudentID
         if currentStudentID == nil {
@@ -89,20 +93,19 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             // The method call below ensures that we always start with the first color scheme.    
             ColorScheme.clear()
         }
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
         Analytics.shared.logSession(session)
-        getPreferences()
-        GetBrandVariables().fetch(environment: self.environment) { [weak self] _, _, _ in performUIUpdate {
-            self?.showRootView()
-        } }
+        getPreferences { userProfile in performUIUpdate {
+            LocalizationManager.localizeForApp(UIApplication.shared, locale: userProfile.locale) {
+                GetBrandVariables().fetch(environment: self.environment) { [weak self] _, _, _ in performUIUpdate {
+                    self?.showRootView()
+                }}
+            }
+        }}
     }
 
     func showRootView() {
         guard let window = self.window else { return }
-        let controller = DashboardNavigationController(rootViewController: DashboardViewController.create())
+        let controller = HelmNavigationController(rootViewController: DashboardViewController.create())
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
             window.rootViewController = controller
@@ -111,10 +114,12 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
 
-    func getPreferences() {
+    func getPreferences(_ completion: @escaping (APIUser) -> Void) {
         let request = GetUserRequest(userID: "self")
         environment.api.makeRequest(request) { [weak self] response, _, _ in
-            self?.environment.userDefaults?.limitWebAccess = response?.permissions?.limit_parent_app_web_access
+            guard let response = response else { return }
+            self?.environment.userDefaults?.limitWebAccess = response.permissions?.limit_parent_app_web_access
+            completion(response)
         }
     }
 
@@ -153,6 +158,7 @@ extension ParentAppDelegate: LoginDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
+            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 
@@ -170,8 +176,12 @@ extension ParentAppDelegate: LoginDelegate {
         }
     }
 
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
+
     func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
-        let controller = CoreWebViewController()
+        let controller = CoreWebViewController(invertColorsInDarkMode: true)
         controller.isInteractionLimited = true
         controller.webView.load(URLRequest(url: url))
         environment.router.show(controller, from: sourceViewController, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
@@ -180,9 +190,7 @@ extension ParentAppDelegate: LoginDelegate {
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
         // TODO: Register for push notifications?
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
-            setup(session: session)
-        }
+        setup(session: session)
     }
 
     func userDidStopActing(as session: LoginSession) {
@@ -272,7 +280,7 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 }
 

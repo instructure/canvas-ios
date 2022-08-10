@@ -32,10 +32,6 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func logInDSUser(_ dsUser: DSUser) {
-        if let entry = user.session {
-            return logInEntry(entry)
-        }
-
         // Assumes we are on the login start screen
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.pasteText("\(user.host)")
@@ -48,5 +44,6 @@ open class E2ETestCase: CoreUITestCase {
 
         homeScreen.waitToExist()
         user.session = currentSession()
+        setAppThemeToSystem()
     }
 }

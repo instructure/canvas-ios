@@ -39,6 +39,7 @@ exports[`render larger icon size 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Array [
@@ -96,6 +97,7 @@ exports[`render published 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Array [
@@ -153,6 +155,7 @@ exports[`render unpublished 1`] = `
       Array [
         Object {
           "color": "#2D3B45",
+          "fontFamily": "Lato-Regular",
           "fontSize": 16,
         },
         Array [

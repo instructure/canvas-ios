@@ -65,15 +65,6 @@
 "%d missing" = "%d vantar";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Svör";
-
-/* No comment provided by engineer. */
-"%d students" = "%d nemendur";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Ólesið";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Bæta við efni";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Bæta við heiti námskeiðs";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Bæta við stuttu heiti fyrir námskeið";
@@ -206,6 +200,9 @@
 "Anyone" = "Hver sem er";
 
 /* No comment provided by engineer. */
+"Appearance" = "Útlit";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tiltækir fundir";
 
 /* No comment provided by engineer. */
@@ -270,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Verkefni";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Verkefnalisti";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Settu skrár í viðhengi með því að pikka á valkost fyrir neðan.";
@@ -377,6 +377,9 @@
 "Canvas Guides" = "Canvas leiðarvísar";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas er nú í boði með dökku þema";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas innskráning";
 
 /* No comment provided by engineer. */
@@ -396,6 +399,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Almenn spurning eða uppástunga";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Breyta skipulagi skjáborðs í net";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Breyta skipulagi skjáborðs í lista";
 
 /* No comment provided by engineer. */
 "Change User" = "Breyta notanda";
@@ -420,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Veldu upplýsingamynd";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Veldu útlit smáforritsins!\nÞú getur breytt því seinna í stillingarvalmyndinni.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Hreinsa námskeið";
@@ -512,9 +524,6 @@
 "Conversation Message" = "Samræðuskilaboð";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Samræður";
 
 /* No comment provided by engineer. */
@@ -539,6 +548,9 @@
 "Course Activities" = "Virkni námskeiðs";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Virknistreymi námskeiðs";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Tilkynning námskeiðs";
 
 /* No comment provided by engineer. */
@@ -558,6 +570,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Námskeiðaeinkunn að neðan %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Námsefni námskeiðs";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Hlutar námskeiðs";
@@ -599,31 +614,22 @@
 "Cyan" = "Blágrænn";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Daglega";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Dökk stilling";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Dökkt þema";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Dökkt þema";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Skjáborð";
 
 /* No comment provided by engineer. */
 "Date" = "Dagsetning";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Hafna";
@@ -716,9 +722,6 @@
 "Dismiss %@" = "Sleppa %@";
 
 /* No comment provided by engineer. */
-"Dismiss invitation to %@" = "Sleppa boðum til %@";
-
-/* No comment provided by engineer. */
 "Display Grade as" = "Sýna einkunn sem";
 
 /* No comment provided by engineer. */
@@ -762,6 +765,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Breyta viðhengi (ekkert)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Breyta námskeiðsstillingum";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Breyta skjáborði";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Breyta umræðu";
@@ -890,13 +899,7 @@
 "Filter Inbox" = "Sía innhólf";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Lokaeinkunn: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Finndu kóða til að skanna";
@@ -930,15 +933,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Framtíðarinnritanir";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Fara í daginn í dag";
@@ -1002,9 +996,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Fela efni fyrir %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Hátt: %@";
@@ -1115,6 +1106,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Svo virðist sem engin námskeið séu tengd við þennan reikning. Heimsæktu vefinn til að búa til námskeið strax í dag.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Þú virðist ekki vera innritaður/innrituð í nein námskeið.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Þú virðist ekki vera innritaður í nein námskeið sem %@. Eitthvað að hinum öppunum okkar gæti hentað betur. Smelltu á eitt þeirra til að fara í App Store.";
 
 /* No comment provided by engineer. */
@@ -1139,9 +1133,6 @@
 "Late Grading" = "Síðbúin einkunnagjöf";
 
 /* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
-
-/* No comment provided by engineer. */
 "Launch External Tool" = "Nota ytra verkfæri";
 
 /* No comment provided by engineer. */
@@ -1158,6 +1149,12 @@
 
 /* No comment provided by engineer. */
 "Light Blue" = "Ljósblár";
+
+/* No comment provided by engineer. */
+"Light theme" = "Ljóst þema";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Ljóst þema";
 
 /* like action */
 "Like" = "líka við";
@@ -1304,6 +1301,9 @@
 "Modules" = "Námsefni";
 
 /* No comment provided by engineer. */
+"Move Annotation" = "Færa athugasemdir";
+
+/* No comment provided by engineer. */
 "Multiple Due Dates" = "Margir skiladagar";
 
 /* No comment provided by engineer. */
@@ -1448,6 +1448,9 @@
 "Not Submitted" = "Ekki lagt fram";
 
 /* No comment provided by engineer. */
+"Not supported" = "Ekki stutt";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Ekki áríðandi";
 
 /* No due assignments for today */
@@ -1514,6 +1517,9 @@
 "Open item details" = "Opnið upplýsingar um atriði";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Opnast í Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Valkostir";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1538,6 @@
 "out of" = "af";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "síða";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Síður";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Forsíða síðna";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Para við áhorfanda";
@@ -1599,9 +1605,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Hinkraðu þetta gæti tekið mínútu.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Punktar";
@@ -1668,6 +1671,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Próf";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Nýleg virkni";
 
 /* No comment provided by engineer. */
 "Recipients" = "Viðtakendur";
@@ -1829,10 +1835,16 @@
 "Select Course" = "Velja námskeið";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Velja einkunnatímabil";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Velja áhrif";
 
 /* No comment provided by engineer. */
 "Select One" = "Velja einn";
+
+/* No comment provided by engineer. */
+"Selected" = "Valið";
 
 /* No comment provided by engineer. */
 "Selected!" = "Valið!";
@@ -1859,6 +1871,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Stilla „Heima“ á...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Setja sem forsíðu";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1893,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Sýna fleiri möguleika";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Þar sem þetta er hópumræða, hefur hver hópur eigið samtal um þetta efni. Þetta er það sem þú hefur aðgang að.";
@@ -1943,6 +1955,9 @@
 "Student Appointment Signups" = "Fundaskráningar nemanda";
 
 /* No comment provided by engineer. */
+"Student View" = "Nemandasýn";
+
+/* No comment provided by engineer. */
 "Students" = "Nemendur";
 
 /* No comment provided by engineer. */
@@ -1992,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Innihald kennsluáætlunar";
+
+/* No comment provided by engineer. */
+"System settings" = "Kerfisstillingar";
+
+/* No comment provided by engineer. */
+"System Settings" = "Kerfisstillingar";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Aðstoðarkennari";
@@ -2112,9 +2133,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Upp kom óvænt villa. Vinsamlegast reynið aftur.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Skiladagur þessa verkefnis er %@";

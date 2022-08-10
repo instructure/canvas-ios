@@ -65,15 +65,6 @@
 "%d missing" = "%d ขาดหายไป";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d การตอบกลับ";
-
-/* No comment provided by engineer. */
-"%d students" = "%d ผู้เรียน";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d ไม่ได้อ่าน";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "เพิ่มเนื้อหา";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "เพิ่มชื่อบทเรียน";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "เพิ่มชื่อเล่นบทเรียน";
@@ -206,6 +200,9 @@
 "Anyone" = "ทุกคน";
 
 /* No comment provided by engineer. */
+"Appearance" = "ลักษณะภายนอก";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "ความพร้อมตามนัดหมาย";
 
 /* No comment provided by engineer. */
@@ -270,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "ภารกิจ";
+
+/* No comment provided by engineer. */
+"Assignments List" = "รายการภารกิจ";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "แนบไฟล์โดยกดเลือกตัวเลือกด้านล่าง";
@@ -377,6 +377,9 @@
 "Canvas Guides" = "คู่มือ Canvas";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas พร้อมใช้งานในธีมมืดแล้ว";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "ล็อกอินไปยัง Canvas";
 
 /* No comment provided by engineer. */
@@ -396,6 +399,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "คำถามหรือข้อเสนอแนะทั่วไป";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "แก้ไขเค้าโครงแผงข้อมูลเป็นตาราง";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "แก้ไขเค้าโครงแผงข้อมูลเป็นรายการ";
 
 /* No comment provided by engineer. */
 "Change User" = "เปลี่ยนผู้ใช้";
@@ -420,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "เลือกภาพโพรไฟล์";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "เลือกลักษณะภายนอกสำหรับแอพของคุณ!\nคุณสามารถแก้ไขได้ภายหลังในเมนูค่าปรับตั้ง";
 
 /* No comment provided by engineer. */
 "Clear Course" = "ล้างบทเรียน";
@@ -512,9 +524,6 @@
 "Conversation Message" = "ข้อความการพูดคุย";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "การพูดคุย";
 
 /* No comment provided by engineer. */
@@ -539,6 +548,9 @@
 "Course Activities" = "กิจกรรมในบทเรียน";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "สตรีมกิจกรรมสำหรับบทเรียน";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "ประกาศแจ้งสำหรับบทเรียน";
 
 /* No comment provided by engineer. */
@@ -558,6 +570,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "บทเรียน เกรดน้อยกว่า %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "โมดูลบทเรียน";
 
 /* No comment provided by engineer. */
 "Course Sections" = "กลุ่มย่อยบทเรียน";
@@ -599,31 +614,22 @@
 "Cyan" = "ฟ้า";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "รายวัน";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "โหมดมืด";
+
+/* No comment provided by engineer. */
+"Dark theme" = "ธีมมืด";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "ธีมมืด";
 
 /* No comment provided by engineer. */
 "Dashboard" = "แผงข้อมูล";
 
 /* No comment provided by engineer. */
 "Date" = "วันที่";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "ปฏิเสธ";
@@ -716,9 +722,6 @@
 "Dismiss %@" = "ยกเลิก %@";
 
 /* No comment provided by engineer. */
-"Dismiss invitation to %@" = "ล้มเลิกคำเชิญไปยัง %@";
-
-/* No comment provided by engineer. */
 "Display Grade as" = "แสดงเกรดเป็น";
 
 /* No comment provided by engineer. */
@@ -762,6 +765,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "แก้ไขเอกสารแนบ (ไม่มี)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "แก้ไขค่าปรับตั้งบทเรียน";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "แก้ไขแผงข้อมูล";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "แก้ไขการพูดคุย";
@@ -890,13 +899,7 @@
 "Filter Inbox" = "กล่องจดหมายตัวกรอง";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "เกรดสรุป: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "ค้นหารหัสเพื่อสแกน";
@@ -930,15 +933,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "การลงทะเบียนในอนาคต";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "ไปที่วันนี้";
@@ -1002,9 +996,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "ซ่อนเนื้อหาสำหรับ %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "สูง: %@";
@@ -1115,6 +1106,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "ดูเหมือนจะยังไม่ได้เชื่อมโยงบทเรียนใด ๆ กับบัญชีนี้ เยี่ยมชมเว็บเพื่อจัดทำบทเรียนในวันนี้";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "ดูเหมือนคุณจะไม่ได้ลงทะเบียนในบทเรียนใด ๆ";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "ดูเหมือนคุณจะไม่ได้ลงทะเบียนในบทเรียนใด ๆ ในฐาน %@ แอพอื่น ๆ บางส่วนของเราอาจเหมาะสมมากกว่า กดเลือกหนึ่งรายการเพื่อไปยัง App Store";
 
 /* No comment provided by engineer. */
@@ -1139,9 +1133,6 @@
 "Late Grading" = "การให้เกรดล่าช้า";
 
 /* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
-
-/* No comment provided by engineer. */
 "Launch External Tool" = "เรียกใช้ชุดเครื่องมือจากภายนอก";
 
 /* No comment provided by engineer. */
@@ -1158,6 +1149,12 @@
 
 /* No comment provided by engineer. */
 "Light Blue" = "ฟ้า";
+
+/* No comment provided by engineer. */
+"Light theme" = "ธีมสว่าง";
+
+/* No comment provided by engineer. */
+"Light Theme" = "ธีมสว่าง";
 
 /* like action */
 "Like" = "กดไลค์";
@@ -1304,6 +1301,9 @@
 "Modules" = "หน่วยการเรียน";
 
 /* No comment provided by engineer. */
+"Move Annotation" = "หมายเหตุกำกับการเคลื่อนย้าย";
+
+/* No comment provided by engineer. */
 "Multiple Due Dates" = "วันครบกำหนดหลายรายการ";
 
 /* No comment provided by engineer. */
@@ -1448,6 +1448,9 @@
 "Not Submitted" = "ไม่ได้จัดส่ง";
 
 /* No comment provided by engineer. */
+"Not supported" = "ไม่รองรับ";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "ไม่ด่วน";
 
 /* No due assignments for today */
@@ -1514,6 +1517,9 @@
 "Open item details" = "เปิดรายละเอียดรายการ";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "เปิดในผู้เรียนของ Canvas";
+
+/* No comment provided by engineer. */
 "Options" = "ตัวเลือก";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1538,6 @@
 "out of" = "จาก";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "หน้าเพจ";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "เพจ";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "หน้าเพจ หน้าแรก";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "เข้าคู่กับผู้สังเกตการณ์";
@@ -1599,9 +1605,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "กรุณารอสักครู่ อาจต้องใช้เวลาครู่หนึ่ง";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "คะแนน";
@@ -1668,6 +1671,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "คำถาม";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "กิจกรรมล่าสุด";
 
 /* No comment provided by engineer. */
 "Recipients" = "ผู้รับ";
@@ -1829,10 +1835,16 @@
 "Select Course" = "เลือกบทเรียน";
 
 /* No comment provided by engineer. */
+"Select grading period" = "เลือกระยะเวลาการให้เกรด";
+
+/* No comment provided by engineer. */
 "Select Impact" = "เลือกผลกระทบ";
 
 /* No comment provided by engineer. */
 "Select One" = "เลือกหนึ่งรายการ";
+
+/* No comment provided by engineer. */
+"Selected" = "เลือกแล้ว";
 
 /* No comment provided by engineer. */
 "Selected!" = "เลือกแล้ว!";
@@ -1859,6 +1871,9 @@
 "Sent" = "ส่งแล้ว";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "ตั้งค่า “โฮม” (Home) เป็น..";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "กำหนดเป็นหน้าแรก";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1893,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "แสดงตัวเลือกเพิ่มเติม";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "เนื่องจากนี้เป็นการพูดคุยเป็นกลุ่ม แต่ละกลุ่มจะมีการพูดคุยของตนเองสำหรับหัวข้อนี้ ต่อไปนี้เป็นการพูดคุยที่คุณสามารถเข้าถึงได้";
@@ -1943,6 +1955,9 @@
 "Student Appointment Signups" = "การรับนัดหมายของผู้เรียน";
 
 /* No comment provided by engineer. */
+"Student View" = "มุมมองผู้เรียน";
+
+/* No comment provided by engineer. */
 "Students" = "ผู้เรียน";
 
 /* No comment provided by engineer. */
@@ -1992,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "เนื้อหาหลักสูตร";
+
+/* No comment provided by engineer. */
+"System settings" = "ค่าปรับตั้งระบบ";
+
+/* No comment provided by engineer. */
+"System Settings" = "ค่าปรับตั้งระบบ";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
@@ -2112,9 +2133,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "มีข้อผิดพลาดที่ไม่คาดคิด กรุณาลองใหม่อีกครั้งในภายหลัง";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "ภารกิจนี้ครบกำหนดภายใน %@";

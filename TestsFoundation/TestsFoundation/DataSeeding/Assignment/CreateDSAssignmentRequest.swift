@@ -38,12 +38,21 @@ extension CreateDSAssignmentRequest {
         let description: String?
         let published: Bool
         let submission_types: [SubmissionType]
+        let points_possible: Float?
+        let grading_type: GradingType?
 
-        public init(name: String = "Assignment Name", description: String? = nil, published: Bool = true, submission_types: [SubmissionType] = [SubmissionType.online_text_entry]) {
+        public init(name: String = "Assignment Name",
+                    description: String? = nil,
+                    published: Bool = true,
+                    submission_types: [SubmissionType] = [.online_text_entry],
+                    points_possible: Float? = nil,
+                    grading_type: GradingType? = nil) {
             self.name = name
             self.description = description
             self.published = published
             self.submission_types = submission_types
+            self.points_possible = points_possible
+            self.grading_type = grading_type
         }
     }
 

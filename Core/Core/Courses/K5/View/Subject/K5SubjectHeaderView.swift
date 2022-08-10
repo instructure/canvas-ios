@@ -40,7 +40,7 @@ struct K5SubjectHeaderView: View {
             ).frame(height: 38).opacity(0.60)
             if let title = title {
                 HStack {
-                    Text(title.uppercased()).foregroundColor(.white).font(.regular17).padding(.leading, 16)
+                    Text(title.uppercased()).foregroundColor(.textLightest).font(.regular17).padding(.leading, 16)
                     Spacer()
                 }.padding(.bottom, 8)
             }

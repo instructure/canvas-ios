@@ -46,9 +46,10 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 
-    public var hexString: String {
-        return "#\(String(intValue, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
-    }
+    public var hexString: String { hexString(userInterfaceStyle: .current) }
+    public var intValue: UInt32 { intValue(userInterfaceStyle: .current) }
+    /** Returns the color for the current app appearance. */
+    private var interfaceStyleColor: UIColor { resolvedColor(with: UITraitCollection(userInterfaceStyle: .current)) }
 
     public convenience init(intValue value: UInt32) {
         self.init(
@@ -59,19 +60,24 @@ extension UIColor {
         )
     }
 
-    public var intValue: UInt32 {
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha) // assume success
-        let toInt = { (n: CGFloat) in return UInt32(max(0.0, min(1.0, n)) * 255) }
-        return (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
-    }
-
     public func difference(to other: UIColor) -> CGFloat {
         var ared: CGFloat = 0, agreen: CGFloat = 0, ablue: CGFloat = 0, aalpha: CGFloat = 1
-        getRed(&ared, green: &agreen, blue: &ablue, alpha: &aalpha) // assume success
+        interfaceStyleColor.getRed(&ared, green: &agreen, blue: &ablue, alpha: &aalpha) // assume success
         var bred: CGFloat = 0, bgreen: CGFloat = 0, bblue: CGFloat = 0, balpha: CGFloat = 1
-        other.getRed(&bred, green: &bgreen, blue: &bblue, alpha: &balpha) // assume success
+        other.interfaceStyleColor.getRed(&bred, green: &bgreen, blue: &bblue, alpha: &balpha) // assume success
         return abs(ared - bred) + abs(agreen - bgreen) + abs(ablue - bblue) + abs(aalpha - balpha)
+    }
+
+    public func hexString(userInterfaceStyle: UIUserInterfaceStyle) -> String {
+        let intValue = intValue(userInterfaceStyle: userInterfaceStyle)
+        return "#\(String(intValue, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
+    }
+
+    public func intValue(userInterfaceStyle: UIUserInterfaceStyle) -> UInt32 {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
+        resolvedColor(with: UITraitCollection(userInterfaceStyle: userInterfaceStyle)).getRed(&red, green: &green, blue: &blue, alpha: &alpha) // assume success
+        let toInt = { (n: CGFloat) in return UInt32(max(0.0, min(1.0, n)) * 255) }
+        return (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
     }
 
     // MARK: App Logo Colors
@@ -98,7 +104,7 @@ extension UIColor {
     /// `0.0` for darkest black and `1.0` for lightest white.
     public var luminance: CGFloat {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0
-        getRed(&red, green: &green, blue: &blue, alpha: nil) // assume success
+        interfaceStyleColor.getRed(&red, green: &green, blue: &blue, alpha: nil) // assume success
         let convert = { (c: CGFloat) -> CGFloat in
             return c <= 0.03928 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4)
         }
@@ -127,10 +133,10 @@ extension UIColor {
         // return against.luminance < 0.5 ? .white : .black
 
         var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 1
-        getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        interfaceStyleColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
 
         let delta: CGFloat = against.luminance < 0.5 ? 0.01 : -0.01
-        var color = self
+        var color = interfaceStyleColor
         while color.contrast(against: against) < minRatio, saturation >= 0.0, saturation <= 1.0 {
             if brightness >= 0.0, brightness <= 1.0 {
                 brightness += delta // first modify brightness

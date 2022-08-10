@@ -90,7 +90,7 @@ class AssignmentDetailsTests: CoreUITestCase {
 
         let authorName = app.webViews.links.element(boundBy: 0).label
         let message = app.webViews.staticTexts.element(boundBy: 0).label
-        XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
+        XCTAssertEqual(authorName, assignment.discussion_topic?.author?.display_name)
         XCTAssertEqual(message, assignment.discussion_topic?.message)
     }
 

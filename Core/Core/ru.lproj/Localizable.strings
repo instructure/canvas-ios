@@ -65,15 +65,6 @@
 "%d missing" = "%d отсутствует";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Ответы";
-
-/* No comment provided by engineer. */
-"%d students" = "%d студенты";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Не прочитано";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Добавить содержание";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Добавить название курса";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Добавить краткое имя курса";
@@ -206,6 +200,9 @@
 "Anyone" = "Все";
 
 /* No comment provided by engineer. */
+"Appearance" = "Представление";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Доступность регистрации";
 
 /* No comment provided by engineer. */
@@ -270,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Задания";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Список заданий";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Прикрепите файлы, щелкнув по расположенной ниже опции.";
@@ -377,6 +377,9 @@
 "Canvas Guides" = "Руководства Canvas";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas теперь доступно в темной теме";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Вход в Canvas";
 
 /* No comment provided by engineer. */
@@ -396,6 +399,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Изменить формат панели управления на сетку";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Изменить формат панели управления на список";
 
 /* No comment provided by engineer. */
 "Change User" = "Сменить пользователя";
@@ -420,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Выбор фото профиля";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Выберите оформление своего приложения!\nВы можете изменить его позднее в меню настроек. ";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Удалить курс";
@@ -512,9 +524,6 @@
 "Conversation Message" = "Сообщение обсуждения";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Обсуждения";
 
 /* No comment provided by engineer. */
@@ -539,6 +548,9 @@
 "Course Activities" = "Активность в рамках курса";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Лента активности курса";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Объявление о курсе";
 
 /* No comment provided by engineer. */
@@ -558,6 +570,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Оценка за курс ниже %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Модули курса";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Разделы курса";
@@ -599,31 +614,22 @@
 "Cyan" = "Голубой";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Ежедневно";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Темный режим";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Темная тема";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Темная тема";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Информационная панель";
 
 /* No comment provided by engineer. */
 "Date" = "Дата";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Снизить";
@@ -716,9 +722,6 @@
 "Dismiss %@" = "Исключить %@";
 
 /* No comment provided by engineer. */
-"Dismiss invitation to %@" = "Отказаться от приглашения на  %@";
-
-/* No comment provided by engineer. */
 "Display Grade as" = "Отобразить оценку в виде";
 
 /* No comment provided by engineer. */
@@ -762,6 +765,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Редактировать вложение (нет)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Редактировать настройки курса";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Редактировать информационную панель";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Редактировать дискуссию";
@@ -890,13 +899,7 @@
 "Filter Inbox" = "Фильтровать Входящие";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Итоговая оценка: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Поиск кода для сканирования";
@@ -930,15 +933,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Будущие регистрации";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Перейти к сегодня";
@@ -1002,9 +996,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Скрыть контент для  %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "Высокий: %@";
@@ -1115,6 +1106,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Похоже, что к этой учетной записи не привязано ни одного курса. Зайдите в сеть для создания курса сегодня.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "Похоже, что вы не зачислены ни на один курс.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Похоже, вы не зачислены ни на какие курсы в качестве %@. Вам может подойти одно из наших других приложений. Нажмите, чтобы посетить App Store.";
 
 /* No comment provided by engineer. */
@@ -1139,9 +1133,6 @@
 "Late Grading" = "Несвоевременное выставление оценок";
 
 /* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
-
-/* No comment provided by engineer. */
 "Launch External Tool" = "Запуск внешнего инструмента";
 
 /* No comment provided by engineer. */
@@ -1158,6 +1149,12 @@
 
 /* No comment provided by engineer. */
 "Light Blue" = "Светло-синий";
+
+/* No comment provided by engineer. */
+"Light theme" = "Светлая тема";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Светлая тема";
 
 /* like action */
 "Like" = "Мне нравится";
@@ -1304,6 +1301,9 @@
 "Modules" = "Модули";
 
 /* No comment provided by engineer. */
+"Move Annotation" = "Переместить аннотацию";
+
+/* No comment provided by engineer. */
 "Multiple Due Dates" = "Множественные даты выполнения";
 
 /* No comment provided by engineer. */
@@ -1448,6 +1448,9 @@
 "Not Submitted" = "Не отправлено";
 
 /* No comment provided by engineer. */
+"Not supported" = "Не поддерживается";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Не срочно";
 
 /* No due assignments for today */
@@ -1514,6 +1517,9 @@
 "Open item details" = "Открыть подробную информацию об элементе";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Открыть в Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Опции";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1538,6 @@
 "out of" = "из";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "страница";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Страницы";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Страницы титульной страницы";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Объединение с наблюдателем";
@@ -1599,9 +1605,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Подождите несколько минут.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Баллы";
@@ -1668,6 +1671,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Тесты";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Недавно выполненные действия";
 
 /* No comment provided by engineer. */
 "Recipients" = "Получатели";
@@ -1829,10 +1835,16 @@
 "Select Course" = "Выбрать курс";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Выбрать академический период";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Выберите влияние";
 
 /* No comment provided by engineer. */
 "Select One" = "Выберите один";
+
+/* No comment provided by engineer. */
+"Selected" = "Выбрано";
 
 /* No comment provided by engineer. */
 "Selected!" = "Выбрано!";
@@ -1859,6 +1871,9 @@
 "Sent" = "Отправлено";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Установить «Домой» на...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Установить в качестве титульной страницы";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1893,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Показать больше вариантов";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Поскольку это групповое обсуждение, у каждой группы есть свой разговор на эту тему. Вот обсуждения, к которым у вас есть доступ.";
@@ -1943,6 +1955,9 @@
 "Student Appointment Signups" = "Заявления о регистрации студентов";
 
 /* No comment provided by engineer. */
+"Student View" = "Просмотр для студентов";
+
+/* No comment provided by engineer. */
 "Students" = "Студенты";
 
 /* No comment provided by engineer. */
@@ -1992,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Содержание курса";
+
+/* No comment provided by engineer. */
+"System settings" = "Системные настройки";
+
+/* No comment provided by engineer. */
+"System Settings" = "Системные настройки";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
@@ -2112,9 +2133,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Произошла непредвиденная ошибка. Попробуйте еще раз.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Данное задание необходимо выполнить до %@";

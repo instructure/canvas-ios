@@ -338,7 +338,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         entries.refresh()
         group.refresh()
         permissions.refresh()
-        self.topic.refresh()
+        self.topic.refresh(force: true)
         return false
     }
 
@@ -349,7 +349,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
     func render() {
         guard isReady, let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
-        let script: String
+        var script: String
         if let root = showRepliesToEntryID.flatMap({ entry($0) }) {
             script = DiscussionHTML.render(
                 entry: root,
@@ -383,6 +383,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 contextColor: color
             )
         }
+        script += "\nloadMathJaxIfNecessary()"
+
         webView.evaluateJavaScript(script) { [weak self] (_, error) in
             if let error = error {
                 print(error)
@@ -494,7 +496,7 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
-            if url.pathComponents.count > 1, url.pathComponents[1] == "files" {
+            if url.pathComponents.contains("files") {
                 env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             } else {
                 env.router.route(to: url, from: self)

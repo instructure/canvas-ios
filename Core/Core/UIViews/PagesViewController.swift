@@ -39,8 +39,11 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
 
     private var showing: [UIViewController] = []
 
+    private var currentWidth: CGFloat = 0
+
     public override func loadView() {
         view = scrollView
+        view.backgroundColor = .backgroundLightest
     }
 
     public override func viewDidLoad() {
@@ -64,6 +67,12 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
             subview.frame = CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height)
         }
         scrollView.contentSize = CGSize(width: CGFloat(views.count) * width, height: height)
+
+        if width != currentWidth {
+            currentWidth = width
+            let currentPageNumber = scrollView.subviews.firstIndex(of: currentPage.view)
+            scrollView.contentOffset.x = CGFloat(currentPageNumber ?? 0) * frame.width
+        }
     }
 
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

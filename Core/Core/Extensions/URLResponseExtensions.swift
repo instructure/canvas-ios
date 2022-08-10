@@ -41,7 +41,9 @@ extension URLResponse {
     }
 
     public var isUnauthorized: Bool {
-        return (self as? HTTPURLResponse)?.statusCode == 401
+        guard let statusCode = (self as? HTTPURLResponse)?.statusCode else { return false }
+        let unauthorizedCodes = [401, 403]
+        return unauthorizedCodes.contains(statusCode)
     }
 
     /**

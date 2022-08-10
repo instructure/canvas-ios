@@ -20,8 +20,8 @@ import UIKit
 
 extension UIBarButtonItem {
 
-    public static func updateFontAppearance(useK5Fonts: Bool) {
-        let attributes = useK5Fonts ? [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17)] : [:]
+    public static func updateFontAppearance() {
+        let attributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17)]
         let appearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
         appearance.setTitleTextAttributes(attributes, for: .normal)
     }

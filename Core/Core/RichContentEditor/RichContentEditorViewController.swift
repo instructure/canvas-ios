@@ -95,8 +95,8 @@ public class RichContentEditorViewController: UIViewController {
                 --color-textDark: \(UIColor.textDark.hexString);
                 --color-textDarkest: \(UIColor.textDarkest.hexString);
 
-                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
-                font-family: \(AppEnvironment.shared.k5.isK5Enabled ? "BalsamiqSans-Regular" : "system-ui");
+                font-size: \(Typography.Style.body.uiFont.pointSize)px;
+                font-family: \(AppEnvironment.shared.k5.isK5Enabled ? "BalsamiqSans-Regular" : "Lato-Regular");
             }
             </style>
             <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\" aria-label=\"\(a11yLabel)\"></div>
@@ -299,7 +299,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         let context = uploadManager.viewContext
         context.performAndWait {
             do {
-                let url = try self.uploadManager.uploadURL(url)
+                let url = try self.uploadManager.copyFileToSharedContainer(url)
                 let file: File = context.insert()
                 file.filename = url.lastPathComponent
                 file.batchID = self.batchID

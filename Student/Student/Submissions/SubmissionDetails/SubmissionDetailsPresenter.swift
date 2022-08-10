@@ -200,7 +200,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         case .some(.online_quiz):
             if let quizID = assignment.quizID,
                 let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt ?? 1)&headless=1", relativeTo: env.api.baseURL) {
-                let controller = CoreWebViewController()
+                let controller = CoreWebViewController(invertColorsInDarkMode: true)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
@@ -234,7 +234,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                         navigationItem: view?.navigationItem
                     )
                 }
-                let controller = CoreWebViewController()
+                let controller = CoreWebViewController(invertColorsInDarkMode: true)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
@@ -242,7 +242,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         case .some(.discussion_topic):
             guard let previewUrl = submission.previewUrl else { break }
 
-            let controller = CoreWebViewController()
+            let controller = CoreWebViewController(invertColorsInDarkMode: true)
             controller.webView.accessibilityIdentifier = "SubmissionDetails.discussionWebView"
             controller.webView.load(URLRequest(url: previewUrl))
             return controller

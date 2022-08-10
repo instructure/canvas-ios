@@ -90,6 +90,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -185,6 +186,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -202,6 +204,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -237,6 +240,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -254,6 +258,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -834,6 +839,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -929,6 +935,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -946,6 +953,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -981,6 +989,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -998,6 +1007,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1608,6 +1618,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -1703,6 +1714,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1720,6 +1732,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -1755,6 +1768,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -1772,6 +1786,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2562,6 +2577,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -2657,6 +2673,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2674,6 +2691,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -2709,6 +2727,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -2726,6 +2745,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -3516,6 +3536,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -3611,6 +3632,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -3628,6 +3650,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -3663,6 +3686,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -3680,6 +3704,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -4470,6 +4495,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -4565,6 +4591,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -4582,6 +4609,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -4617,6 +4645,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -4634,6 +4663,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -5424,6 +5454,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -5535,6 +5566,7 @@ exports[`UserCoursePreferences renders 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -5552,6 +5584,7 @@ exports[`UserCoursePreferences renders 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -5587,6 +5620,7 @@ exports[`UserCoursePreferences renders 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -5604,6 +5638,7 @@ exports[`UserCoursePreferences renders 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -6394,6 +6429,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -6489,6 +6525,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -6506,6 +6543,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -6541,6 +6579,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -6558,6 +6597,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -7348,6 +7388,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -7443,6 +7484,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -7460,6 +7502,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -7495,6 +7538,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -7512,6 +7556,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -8302,6 +8347,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   Array [
                     Object {
                       "color": "#FFFFFF",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -8400,6 +8446,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -8417,6 +8464,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               style={
                 Array [
                   Object {
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 17,
                   },
                   Object {
@@ -8452,6 +8500,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -8469,6 +8518,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {

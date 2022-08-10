@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,58 +20,55 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LaJ-fe-ueQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="MV2-bW-BPQ">
-                                    <rect key="frame" x="0.0" y="140" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="151" width="414" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityCell" rowHeight="84" id="ZED-OC-sgx" customClass="ActivityCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="84"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZED-OC-sgx" id="gT3-JZ-L8G">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-D9-Zdi">
-                                                    <rect key="frame" x="16" y="12" width="24" height="24"/>
+                                                    <rect key="frame" x="18" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="SxD-Vh-yeM"/>
                                                         <constraint firstAttribute="height" constant="24" id="bis-Df-D5r"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="DRp-nT-Xeo">
-                                                    <rect key="frame" x="56" y="16" width="342" height="52"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DRp-nT-Xeo">
+                                                    <rect key="frame" x="58" y="8" width="340" height="61.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6K-4f-8T0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="342" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6K-4f-8T0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="340" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-YT-iVI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="24.5" width="342" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-YT-iVI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="20.5" width="340" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-0p-mHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="49" width="342" height="3"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-0p-mHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="41" width="340" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
@@ -79,11 +77,11 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dvx-D9-Zdi" secondAttribute="bottom" constant="12" id="20q-eN-LQV"/>
                                                 <constraint firstAttribute="trailing" secondItem="DRp-nT-Xeo" secondAttribute="trailing" constant="16" id="Fqy-Tk-LDA"/>
-                                                <constraint firstItem="dvx-D9-Zdi" firstAttribute="leading" secondItem="gT3-JZ-L8G" secondAttribute="leading" constant="16" id="Iyv-4m-Gqd"/>
-                                                <constraint firstItem="dvx-D9-Zdi" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" constant="12" id="YYo-hQ-QRo"/>
-                                                <constraint firstAttribute="bottom" secondItem="DRp-nT-Xeo" secondAttribute="bottom" constant="16" id="qK9-CN-p3c"/>
+                                                <constraint firstItem="dvx-D9-Zdi" firstAttribute="leading" secondItem="gT3-JZ-L8G" secondAttribute="leading" constant="18" id="Iyv-4m-Gqd"/>
+                                                <constraint firstItem="dvx-D9-Zdi" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" constant="10" id="YYo-hQ-QRo"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DRp-nT-Xeo" secondAttribute="bottom" constant="8" id="qK9-CN-p3c"/>
                                                 <constraint firstItem="DRp-nT-Xeo" firstAttribute="leading" secondItem="dvx-D9-Zdi" secondAttribute="trailing" constant="16" id="vZ4-dD-zjG"/>
-                                                <constraint firstItem="DRp-nT-Xeo" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" constant="16" id="wqc-0N-Y40"/>
+                                                <constraint firstItem="DRp-nT-Xeo" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" constant="8" id="wqc-0N-Y40"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -134,7 +132,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="8E6-bh-FSp" firstAttribute="top" secondItem="DlE-al-GEJ" secondAttribute="bottom" constant="8" id="GAd-Ov-iCD"/>
                                     <constraint firstItem="8E6-bh-FSp" firstAttribute="leading" secondItem="gd5-vQ-RGd" secondAttribute="leading" constant="16" id="Tht-XR-xzy"/>
@@ -147,7 +144,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9A2-v0-1Gd"/>
                         <constraints>
                             <constraint firstItem="9A2-v0-1Gd" firstAttribute="bottom" secondItem="gd5-vQ-RGd" secondAttribute="bottom" id="Up7-b7-Eh7"/>
                             <constraint firstItem="gd5-vQ-RGd" firstAttribute="top" secondItem="9A2-v0-1Gd" secondAttribute="top" id="eQV-xo-q8d"/>
@@ -155,7 +152,6 @@
                             <constraint firstItem="gd5-vQ-RGd" firstAttribute="leading" secondItem="9A2-v0-1Gd" secondAttribute="leading" id="lXq-F6-ZfX"/>
                             <constraint firstItem="9A2-v0-1Gd" firstAttribute="trailing" secondItem="gd5-vQ-RGd" secondAttribute="trailing" id="taG-bp-xEb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="9A2-v0-1Gd"/>
                     </view>
                     <connections>
                         <outlet property="emptyStateContainer" destination="gd5-vQ-RGd" id="8th-qs-rjM"/>
@@ -170,7 +166,30 @@
             <point key="canvasLocation" x="0.0" y="3"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="8E6-bh-FSp">
+            <size key="intrinsicContentSize" width="280.5" height="20.5"/>
+        </designable>
+        <designable name="DlE-al-GEJ">
+            <size key="intrinsicContentSize" width="122.5" height="20.5"/>
+        </designable>
+        <designable name="V4E-YT-iVI">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="k6K-4f-8T0">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="omR-IT-KtW">
+            <size key="intrinsicContentSize" width="198" height="225"/>
+        </designable>
+        <designable name="qAO-0p-mHa">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="PandaNoAlerts" width="198" height="225"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -42,7 +42,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         deleted_by: String? = "b",
         deleted_by_id: String? = "2",
         color: String? = "#ffff00",
-        bgColor: String? = nil,
+        bgColor: String? = "transparent",
         icon: String? = nil,
         contents: String? = nil,
         inreplyto: String? = nil,
@@ -90,7 +90,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
     }
 
     func testFreetext() {
-        let apiAnnotation = model(type: .freetext, bgColor: "#ffffff", contents: "freetext", font: "38pt Helvetica")
+        let apiAnnotation = model(type: .freetext, bgColor: "#ffffff", contents: "freetext", font: "38pt Lato-Regular")
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is FreeTextAnnotation)
@@ -100,16 +100,15 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         })
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.contents, "freetext")
-        XCTAssertEqual(annotation?.fontName, "Helvetica")
+        XCTAssertEqual(annotation?.fontName, "Lato-Regular")
         XCTAssertEqual(annotation?.fontSize, 38 * 0.85)
 
         let apiEmpty = model(type: .freetext, contents: nil, font: nil)
-        let empty = Annotation.from(apiEmpty, metadata: metadata)
-        XCTAssertEqual(empty?.contents, "")
-        XCTAssertEqual(empty?.fontName, "Helvetica")
-        XCTAssertEqual(empty?.fontSize, 14 * 0.85)
-        guard let fillColor = empty?.fillColor, let testColor = UIColor(hexString: "#ffffff") else { XCTFail(); return }
-        XCTAssertEqual(Double(fillColor.difference(to: testColor)), 0, accuracy: 0.000001)
+        guard let empty = Annotation.from(apiEmpty, metadata: metadata) else { return XCTFail() }
+        XCTAssertEqual(empty.contents, "")
+        XCTAssertEqual(empty.fontName, "Lato-Regular")
+        XCTAssertEqual(empty.fontSize, 14 * 0.85)
+        XCTAssertNil(empty.fillColor)
     }
 
     func testPoint() {

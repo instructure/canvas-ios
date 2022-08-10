@@ -79,6 +79,7 @@ class CreateTodoViewControllerTests: CoreTestCase {
         XCTAssertEqual(vc.titleLabel.accessibilityLabel, "Title")
         XCTAssertEqual(vc.selectCourseButton.accessibilityLabel, "Course (optional), None")
         XCTAssertEqual(vc.descTextView.accessibilityLabel, "Description")
+        XCTAssertEqual(vc.descTextView.placeholder, "Description")
 
         vc.titleLabel.text = title
         vc.selectedDate = date

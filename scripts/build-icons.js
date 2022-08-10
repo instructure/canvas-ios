@@ -147,8 +147,8 @@ run(`rm -rf ${assetsFolder}`)
 run(`mkdir -p tmp ${assetsFolder}`)
 fs.writeFileSync(`${assetsFolder}/Contents.json`, `{
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
 `)

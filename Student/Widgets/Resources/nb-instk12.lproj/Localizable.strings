@@ -56,10 +56,10 @@
 "Thomas McKempis" = "Thomas McKempis";
 
 /* Description of the announcements widget */
-"View the latest announcements from your courses." = "Vis de siste beskjedene fra fagne dine.";
+"View the latest announcements from your courses." = "Vis de siste beskjedene fra fagene dine.";
 
 /* Description of the grades widget */
-"View the latest grades from assignments and your favorite courses." = "Vis de siste vurderingene fra oppgaver og favorittfagne dine.";
+"View the latest grades from assignments and your favorite courses." = "Vis de siste vurderingene fra oppgaver og favorittfagene dine.";
 
 /* Example announcement title */
 "Zoo Field Trip!" = "Ekskursjon til dyrehage!";

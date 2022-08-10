@@ -27,6 +27,7 @@ public  class ConversationListCell: UITableViewCell {
     @IBOutlet weak var unreadView: UIView!
 
     public func update(_ conversation: Conversation) {
+        backgroundColor = .backgroundLightest
         avatarGroupView.loadUsers(conversation.audience.compactMap {
             (name: $0.name, url: $0.avatarURL)
         })

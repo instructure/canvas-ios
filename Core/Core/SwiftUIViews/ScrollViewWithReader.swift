@@ -19,19 +19,19 @@
 import SwiftUI
 
 public struct ScrollViewWithReader<Content>: View where Content: View {
-    private let contentBuilder: (CompatibleScrollViewProxy) -> Content
+    private let contentBuilder: (ScrollViewProxy) -> Content
     private let axes: Axis.Set
     private let showsIndicators: Bool
 
     public var body: some View {
-        CompatibleScrollViewReader { proxy in
+        ScrollViewReader { proxy in
             ScrollView(axes, showsIndicators: showsIndicators) {
                 contentBuilder(proxy)
             }
         }
     }
 
-    public init(_ axes: Axis.Set = .vertical, showsIndicators: Bool = true, @ViewBuilder contentBuilder: @escaping (CompatibleScrollViewProxy) -> Content) {
+    public init(_ axes: Axis.Set = .vertical, showsIndicators: Bool = true, @ViewBuilder contentBuilder: @escaping (ScrollViewProxy) -> Content) {
         self.axes = axes
         self.showsIndicators = showsIndicators
         self.contentBuilder = contentBuilder

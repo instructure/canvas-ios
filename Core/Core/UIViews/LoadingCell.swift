@@ -22,6 +22,7 @@ import UIKit
 public class LoadingCell: UITableViewCell {
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .backgroundLightest
         let indicator = CircleProgressView()
         indicator.color = .textDark
         indicator.translatesAutoresizingMaskIntoConstraints = false

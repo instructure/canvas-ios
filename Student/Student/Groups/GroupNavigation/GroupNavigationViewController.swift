@@ -45,6 +45,7 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
         super.viewDidLoad()
         setupTitleViewInNavbar(title: groups.first?.name ?? "")
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.separatorColor = .borderMedium

@@ -37,7 +37,8 @@ public class AttachmentSubmissionService {
         var error: Error?
         ProcessInfo.processInfo.performExpiringActivity(withReason: "get upload targets") { expired in
             if expired {
-                self.uploadManager.sendFailedNotification()
+                Analytics.shared.logError("error_performing_background_activity")
+                self.uploadManager.notificationManager.sendFailedNotification()
                 return
             }
             self.uploadManager.viewContext.perform {
@@ -57,7 +58,7 @@ public class AttachmentSubmissionService {
                 }
             }
             if error != nil {
-                self.uploadManager.sendFailedNotification()
+                self.uploadManager.notificationManager.sendFailedNotification()
             }
             semaphore.wait()
             callback()

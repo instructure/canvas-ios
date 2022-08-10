@@ -67,6 +67,7 @@ class SubmissionFilterPickerViewController: UIViewController {
         navigationItem.leftBarButtonItem = resetButton
         navigationItem.rightBarButtonItem = doneButton
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.dataSource = self
         tableView.delegate = self

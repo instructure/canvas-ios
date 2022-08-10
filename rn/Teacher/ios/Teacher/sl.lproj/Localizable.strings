@@ -53,10 +53,19 @@
 "Choose Files" = "Izberi datoteke";
 
 /* No comment provided by engineer. */
+"Close" = "Zapri";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Zapri predal";
 
 /* No comment provided by engineer. */
 "Comment" = "Komentar";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Knjižnica komentarjev";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Knjižnica komentarjev ni na voljo";
 
 /* No comment provided by engineer. */
 "Comments" = "Komentarji";
@@ -148,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Ocene bodo vidne študentom z ocenjenimi oddajami";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "Skupina";
 
@@ -197,10 +200,16 @@
 "No Submissions" = "Ni oddaj";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Na voljo ni nobenih predlogov";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno";
 
 /* No comment provided by engineer. */
 "OK" = "V redu";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Odpri knjižnico komentarjev";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Odpri predal na celoten zaslon";

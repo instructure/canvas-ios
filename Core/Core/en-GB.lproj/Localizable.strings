@@ -65,15 +65,6 @@
 "%d missing" = "%d missing";
 
 /* No comment provided by engineer. */
-"%d Replies" = "%d Replies";
-
-/* No comment provided by engineer. */
-"%d students" = "%d students";
-
-/* No comment provided by engineer. */
-"%d Unread" = "%d Unread";
-
-/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -120,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Add content";
+
+/* No comment provided by engineer. */
+"Add Course Name" = "Add Course Name";
 
 /* No comment provided by engineer. */
 "Add Course Nickname" = "Add Course Nickname";
@@ -206,6 +200,9 @@
 "Anyone" = "Anyone";
 
 /* No comment provided by engineer. */
+"Appearance" = "Appearance";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Appointment availability";
 
 /* No comment provided by engineer. */
@@ -270,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "Assignments" = "Assignments";
+
+/* No comment provided by engineer. */
+"Assignments List" = "Assignments list";
 
 /* No comment provided by engineer. */
 "Attach files by tapping an option below." = "Attach files by tapping an option below.";
@@ -377,6 +377,9 @@
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas is now available in dark theme";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas login";
 
 /* No comment provided by engineer. */
@@ -396,6 +399,12 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Casual question or suggestion";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to grid" = "Change dashboard layout to grid";
+
+/* No comment provided by engineer. */
+"Change dashboard layout to list" = "Change dashboard layout to list";
 
 /* No comment provided by engineer. */
 "Change User" = "Change user";
@@ -420,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Choose profile picture";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Choose your app appearance!\nYou can change it later in the settings menu.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Clear Course";
@@ -512,9 +524,6 @@
 "Conversation Message" = "Conversation message";
 
 /* No comment provided by engineer. */
-"conversation_recipients_to" = "conversation_recipients_to";
-
-/* No comment provided by engineer. */
 "Conversations" = "Conversations";
 
 /* No comment provided by engineer. */
@@ -539,6 +548,9 @@
 "Course Activities" = "Course activities";
 
 /* No comment provided by engineer. */
+"Course Activity Stream" = "Course activity stream";
+
+/* No comment provided by engineer. */
 "Course Announcement" = "Course announcement";
 
 /* No comment provided by engineer. */
@@ -558,6 +570,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Course Grade Below %d";
+
+/* No comment provided by engineer. */
+"Course Modules" = "Course modules";
 
 /* No comment provided by engineer. */
 "Course Sections" = "Course sections";
@@ -599,31 +614,22 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_likes" = "d_likes";
-
-/* No comment provided by engineer. */
-"d_needs_grading" = "d_needs_grading";
-
-/* No comment provided by engineer. */
-"d_options" = "d_options";
-
-/* No comment provided by engineer. */
-"d_questions" = "d_questions";
-
-/* No comment provided by engineer. */
 "Daily" = "Daily";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Dark Mode";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Dark theme";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Dark Theme";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
 "Date" = "Date";
-
-/* No comment provided by engineer. */
-"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Decline";
@@ -716,9 +722,6 @@
 "Dismiss %@" = "Dismiss %@";
 
 /* No comment provided by engineer. */
-"Dismiss invitation to %@" = "Dismiss invitation to %@";
-
-/* No comment provided by engineer. */
 "Display Grade as" = "Display grade as";
 
 /* No comment provided by engineer. */
@@ -762,6 +765,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edit attachment (none)";
+
+/* No comment provided by engineer. */
+"Edit course settings" = "Edit course settings";
+
+/* No comment provided by engineer. */
+"Edit Dashboard" = "Edit Dashboard";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edit Discussion";
@@ -890,13 +899,7 @@
 "Filter Inbox" = "Filter inbox";
 
 /* No comment provided by engineer. */
-"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
-
-/* No comment provided by engineer. */
 "Final Grade: %@" = "Final grade: %@";
-
-/* No comment provided by engineer. */
-"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Find a code to scan";
@@ -930,15 +933,6 @@
 
 /* No comment provided by engineer. */
 "Future Enrollments" = "Future enrolments";
-
-/* No comment provided by engineer. */
-"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
-
-/* No comment provided by engineer. */
-"g_points" = "g_points";
-
-/* No comment provided by engineer. */
-"g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
 "Go to today" = "Go to today";
@@ -1002,9 +996,6 @@
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Hide content for %@";
-
-/* No comment provided by engineer. */
-"hide_%d_missing_items" = "hide_%d_missing_items";
 
 /* No comment provided by engineer. */
 "High: %@" = "High: %@";
@@ -1115,6 +1106,9 @@
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "It looks like there aren’t any courses associated with this account. Visit the web to create a course today.";
 
 /* No comment provided by engineer. */
+"It looks like you aren't enrolled in any courses." = "It looks like you aren't enrolled in any courses.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store.";
 
 /* No comment provided by engineer. */
@@ -1139,9 +1133,6 @@
 "Late Grading" = "Late grading";
 
 /* No comment provided by engineer. */
-"late_penalty_g_pts" = "late_penalty_g_pts";
-
-/* No comment provided by engineer. */
 "Launch External Tool" = "Launch external tool";
 
 /* No comment provided by engineer. */
@@ -1158,6 +1149,12 @@
 
 /* No comment provided by engineer. */
 "Light Blue" = "Light blue";
+
+/* No comment provided by engineer. */
+"Light theme" = "Light theme";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Light Theme";
 
 /* like action */
 "Like" = "Like";
@@ -1304,6 +1301,9 @@
 "Modules" = "Modules";
 
 /* No comment provided by engineer. */
+"Move Annotation" = "Move Annotation";
+
+/* No comment provided by engineer. */
 "Multiple Due Dates" = "Multiple Due Dates";
 
 /* No comment provided by engineer. */
@@ -1448,6 +1448,9 @@
 "Not Submitted" = "Not submitted";
 
 /* No comment provided by engineer. */
+"Not supported" = "Not supported";
+
+/* No comment provided by engineer. */
 "Not Urgent" = "Not Urgent";
 
 /* No due assignments for today */
@@ -1514,6 +1517,9 @@
 "Open item details" = "Open item details";
 
 /* No comment provided by engineer. */
+"Opens in Canvas Student" = "Opens in Canvas Student";
+
+/* No comment provided by engineer. */
 "Options" = "Options";
 
 /* No comment provided by engineer. */
@@ -1532,9 +1538,6 @@
 "out of" = "out of";
 
 /* No comment provided by engineer. */
-"out_of_g_pts" = "out_of_g_pts";
-
-/* No comment provided by engineer. */
 "page" = "page";
 
 /* No comment provided by engineer. */
@@ -1548,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Pages";
+
+/* No comment provided by engineer. */
+"Pages Front Page" = "Pages front page";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Pair with observer";
@@ -1599,9 +1605,6 @@
 
 /* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Please wait, this might take a minute.";
-
-/* No comment provided by engineer. */
-"plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
 "Points" = "Points";
@@ -1668,6 +1671,9 @@
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quizzes";
+
+/* No comment provided by engineer. */
+"Recent Activity" = "Recent activity";
 
 /* No comment provided by engineer. */
 "Recipients" = "Recipients";
@@ -1829,10 +1835,16 @@
 "Select Course" = "Select Course";
 
 /* No comment provided by engineer. */
+"Select grading period" = "Select grading period";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Select impact";
 
 /* No comment provided by engineer. */
 "Select One" = "Select one";
+
+/* No comment provided by engineer. */
+"Selected" = "Selected";
 
 /* No comment provided by engineer. */
 "Selected!" = "Selected!";
@@ -1859,6 +1871,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Set \"Home\" to..." = "Set \"Home\" to...";
+
+/* No comment provided by engineer. */
 "Set as Front Page" = "Set as front page";
 
 /* No comment provided by engineer. */
@@ -1878,9 +1893,6 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Show more options";
-
-/* No comment provided by engineer. */
-"show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.";
@@ -1943,6 +1955,9 @@
 "Student Appointment Signups" = "Student appointment signups";
 
 /* No comment provided by engineer. */
+"Student View" = "Student view";
+
+/* No comment provided by engineer. */
 "Students" = "Students";
 
 /* No comment provided by engineer. */
@@ -1992,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Syllabus content";
+
+/* No comment provided by engineer. */
+"System settings" = "System settings";
+
+/* No comment provided by engineer. */
+"System Settings" = "System Settings";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
@@ -2112,9 +2133,6 @@
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "There was an unexpected error. Please try again.";
-
-/* No comment provided by engineer. */
-"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "This assignment is due by %@";

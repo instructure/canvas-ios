@@ -65,6 +65,8 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
 
         colors.refresh()
         course.refresh()
@@ -129,7 +131,7 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: QuizListCell = tableView.dequeue(for: indexPath)
-        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true)
+        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true, color: color)
         cell.accessibilityIdentifier = "QuizListCell.\(indexPath.section).\(indexPath.row)"
         return cell
     }
@@ -144,23 +146,32 @@ class QuizListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var pointsDot: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var statusDot: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(quiz: Quiz?, isTeacher: Bool) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        statusDot.setText(statusDot.text, style: .textCellSupportingText)
+        pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
+    }
+
+    func update(quiz: Quiz?, isTeacher: Bool, color: UIColor?) {
+        backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         if isTeacher {
             iconImageView.published = quiz?.published == true
         } else {
             iconImageView.state = nil
         }
-        dateLabel.text = quiz?.dueText
-        titleLabel.text = quiz?.title
-        pointsLabel.text = quiz?.pointsPossibleText
-        questionsLabel.text = quiz?.nQuestionsText
+        dateLabel.setText(quiz?.dueText, style: .textCellSupportingText)
+        titleLabel.setText(quiz?.title, style: .textCellTitle)
+        pointsLabel.setText(quiz?.pointsPossibleText, style: .textCellBottomLabel)
+        questionsLabel.setText(quiz?.nQuestionsText, style: .textCellBottomLabel)
         if let statusText = quiz?.lockStatusText {
-            statusLabel.text = statusText
+            statusLabel.setText(statusText, style: .textCellSupportingText)
             statusLabel.isHidden = false
             statusDot.isHidden = false
         } else {

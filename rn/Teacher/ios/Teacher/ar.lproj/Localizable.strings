@@ -53,10 +53,19 @@
 "Choose Files" = "اختر الملفات";
 
 /* No comment provided by engineer. */
+"Close" = "إغلاق";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "أغلق الدرج";
 
 /* No comment provided by engineer. */
 "Comment" = "تعليق";
+
+/* No comment provided by engineer. */
+"Comment Library" = "مكتبة التعليقات";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "مكتبة التعليقات غير متاحة";
 
 /* No comment provided by engineer. */
 "Comments" = "التعليقات";
@@ -148,12 +157,6 @@
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "سيتم عرض الدرجات للطلاب أصحاب الإرسالات التي تم وضع درجة لها";
 
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
-
 /* No comment provided by engineer. */
 "Group" = "المجموعة";
 
@@ -197,10 +200,16 @@
 "No Submissions" = "لا توجد إرسالات";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "لا توجد مقترحات متاحة";
+
+/* No comment provided by engineer. */
 "Not Graded" = "لم يتم التقييم";
 
 /* No comment provided by engineer. */
 "OK" = "موافق";
+
+/* No comment provided by engineer. */
+"Open comment library" = "فتح مكتبة التعليقات";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "فتح الدرج في ملء الشاشة";

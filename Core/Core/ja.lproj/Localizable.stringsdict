@@ -55,7 +55,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d受講生</string>
+			<string>%d受講者</string>
 		</dict>
 	</dict>
 	<key>%g pts</key>
@@ -209,13 +209,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d選択された予定表</string>
+			<string>%d選択されたカレンダー</string>
 		</dict>
 	</dict>
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>最終的な成績：%#@points@</string>
+		<string>最終的な評定：%#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -349,7 +349,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>成績のない課題提出者が%dいます。</string>
+			<string>評定のない課題提出者が%dいます。</string>
 		</dict>
 	</dict>
 </dict>

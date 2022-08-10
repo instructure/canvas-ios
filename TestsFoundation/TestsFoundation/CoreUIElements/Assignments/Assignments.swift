@@ -50,6 +50,10 @@ public enum AssignmentDetails: String, ElementWrapper {
     public static func link(_ description: String) -> Element {
         return app.webViews.staticTexts.matching(label: description).firstElement
     }
+
+    public static func pointsOutOf(actualScore: String, maxScore: String) -> Element {
+        app.find(id: "AssignmentDetails.gradeCircle", label: "Scored \(actualScore) out of \(maxScore) points possible")
+    }
 }
 
 public enum AssignmentsList {
@@ -65,6 +69,14 @@ public enum GradeList {
 
     public static func cell(assignmentID: String) -> Element {
         return app.find(id: "GradeListCell.\(assignmentID)")
+    }
+
+    public static func gradeOutOf(actualPoints: String, maxPoints: String) -> Element {
+        app.find(label: "Grade, \(actualPoints) out of \(maxPoints)")
+    }
+
+    public static func totalGrade(totalGrade: String) -> Element {
+        app.find(id: "CourseTotalGrade", label: totalGrade)
     }
 }
 

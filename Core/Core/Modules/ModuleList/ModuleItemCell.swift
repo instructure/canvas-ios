@@ -31,13 +31,13 @@ class ModuleItemCell: UITableViewCell {
 
     let env = AppEnvironment.shared
 
-    func update(_ item: ModuleItem, indexPath: IndexPath) {
+    func update(_ item: ModuleItem, indexPath: IndexPath, color: UIColor?) {
         backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         isUserInteractionEnabled = env.app == .teacher || !item.isLocked
-        nameLabel.text = item.title
+        nameLabel.setText(item.title, style: .textCellTitle)
         nameLabel.isEnabled = isUserInteractionEnabled
         nameLabel.textColor = nameLabel.isEnabled ? .textDarkest : .textLight
-        nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
         iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
         publishedIconView.published = item.published
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
@@ -54,11 +54,11 @@ class ModuleItemCell: UITableViewCell {
         let requirement = item.completionRequirement?.description
         if let masteryPath = item.masteryPath, masteryPath.needsSelection, !masteryPath.locked {
             let format = NSLocalizedString("d_options", bundle: .core, comment: "")
-            dueLabel.text = String.localizedStringWithFormat(format, masteryPath.numberOfOptions)
+            dueLabel.setText(String.localizedStringWithFormat(format, masteryPath.numberOfOptions), style: .textCellSupportingText)
             dueLabel.textColor = tintColor
             accessoryView = UIImageView(image: .masteryPathsLine)
         } else {
-            dueLabel.text = [dueAt, points, requirement].compactMap { $0 }.joined(separator: " | ")
+            dueLabel.setText([dueAt, points, requirement].compactMap { $0 }.joined(separator: " | "), style: .textCellSupportingText)
             dueLabel.textColor = .textDark
             accessoryView = nil
         }

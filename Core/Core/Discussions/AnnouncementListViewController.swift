@@ -70,7 +70,8 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
-
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
         course?.refresh(force: true)
@@ -163,7 +164,7 @@ extension AnnouncementListViewController: UITableViewDataSource, UITableViewDele
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnnouncementListCell = tableView.dequeue(for: indexPath)
         cell.accessibilityIdentifier = "announcements.list.announcement.row-\(indexPath.row)"
-        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true)
+        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
         return cell
     }
 
@@ -193,25 +194,30 @@ class AnnouncementListCell: UITableViewCell {
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(topic: DiscussionTopic?, isTeacher: Bool) {
+    func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
         iconImageView.icon = .announcementLine
         if isTeacher {
             iconImageView.published = topic?.published == true
         } else {
             iconImageView.state = nil
         }
+        backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
-        titleLabel.text = topic?.title
+        titleLabel.setText(topic?.title, style: .textCellTitle)
+        let dateText: String?
 
         if let delayed = topic?.delayedPostAt, delayed > Clock.now {
             iconImageView.icon = .calendarClockLine
             iconImageView.state = nil
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Delayed until %@", comment: ""), delayed.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Delayed until %@", comment: ""), delayed.dateTimeString)
         } else if let replyAt = topic?.lastReplyAt {
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
         } else {
-            dateLabel.text = topic?.postedAt?.dateTimeString
+            dateText = topic?.postedAt?.dateTimeString
         }
+
+        dateLabel.setText(dateText, style: .textCellSupportingText)
 
         accessibilityLabel = "\(titleLabel.text ?? "") \(dateLabel.text ?? "")"
     }
