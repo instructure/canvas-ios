@@ -32,14 +32,14 @@ public class CacheManager {
     }()
 
     public static func resetAppIfNecessary() {
-        guard UserDefaults.standard.bool(forKey: "reset_cache_on_next_launch") else {
+        let defaults = UserDefaults.standard
+
+        guard defaults.bool(forKey: "reset_cache_on_next_launch") else {
             return clearIfNeeded()
         }
 
-        for key in UserDefaults.standard.dictionaryRepresentation().keys {
-            if !UserDefaults.standard.objectIsForced(forKey: key) {
-                UserDefaults.standard.removeObject(forKey: key)
-            }
+        for key in defaults.dictionaryRepresentation().keys where !defaults.objectIsForced(forKey: key) {
+            defaults.removeObject(forKey: key)
         }
 
         clear()
