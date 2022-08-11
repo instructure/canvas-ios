@@ -73,7 +73,8 @@ We strive to maintain a simple architecture that is easy to understand and pick 
 Code should be self-documenting and easy to follow.
 
 ```
-Ugly code is easy to recognize and its cost is easy to estimate. Neither is true for a wrong abstraction.
+Ugly code is easy to recognize and its cost is easy to estimate. 
+Neither is true for a wrong abstraction.
 - Dan Abramov
 ```
 
