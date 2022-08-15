@@ -179,8 +179,8 @@ public struct SubmitAssignmentExtensionView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     Spacer().frame(width: 20)
-                    ForEach(viewModel.previews, id: \.self) {
-                        AttachmentPreviewView(url: $0)
+                    ForEach(viewModel.previews) {
+                        AttachmentPreviewView(viewModel: $0)
                     }
                     Spacer().frame(width: 20)
                 }
