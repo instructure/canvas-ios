@@ -67,17 +67,16 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         }
     }
 
+    @ViewBuilder
     private var successView: some View {
-        GeometryReader { _ in
-            VStack(spacing: 0) {
-                Spacer()
-                InteractivePanda(scene: SuccessPanda(), title: Text("Submission Success!", bundle: .core), subtitle: Text("Your file was successfully submitted.\nEnjoy your day!", bundle: .core))
-                Spacer()
-            }
-            .padding(40)
-            .accessibilityElement(children: .combine)
+        GeometryReader { geometry in
+            InteractivePanda(scene: SuccessPanda(), title: Text("Submission Success!", bundle: .core), subtitle: Text("Your file was successfully submitted.\nEnjoy your day!", bundle: .core))
+                .padding(40)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .accessibilityElement(children: .combine)
             LottieView(name: "confetti", loopMode: .playOnce)
                 .allowsHitTesting(false)
+                .frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
 
@@ -143,9 +142,9 @@ struct FileProgressListView_Previews: PreviewProvider {
 
         ForEach(staticStates) {
             FileProgressListView(viewModel: FileProgressListViewPreview.PreviewViewModel(state: $0))
-                .previewLayout(.sizeThatFits)
+                .previewLayout(.fixed(width: 400, height: 600))
             FileProgressListView(viewModel: FileProgressListViewPreview.PreviewViewModel(state: $0))
-                .previewLayout(.sizeThatFits)
+                .previewLayout(.fixed(width: 400, height: 600))
                 .preferredColorScheme(.dark)
         }
 
@@ -153,8 +152,8 @@ struct FileProgressListView_Previews: PreviewProvider {
             FileProgressListView(viewModel: FileProgressListViewPreview.PreviewViewModel(state: nil))
             Spacer()
         }
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("Looping Demo")
+        .previewLayout(.fixed(width: 400, height: 600))
+        .previewDisplayName("Looping Demo")
     }
 }
 
