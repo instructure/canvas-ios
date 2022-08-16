@@ -87,8 +87,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
         CoreWebView.keepCookieAlive(for: environment)
 
-        Analytics.setUserID(session.userID)
-        Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
+//        Analytics.setUserID(session.userID)
+//        Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         NotificationManager.shared.subscribeToPushChannel()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
@@ -176,7 +176,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }

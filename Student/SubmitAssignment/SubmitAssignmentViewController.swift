@@ -18,7 +18,6 @@
 
 import Core
 import Firebase
-import FirebaseAnalytics
 import UIKit
 import Social
 

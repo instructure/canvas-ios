@@ -154,7 +154,6 @@
 		C9BCCA1027D73F0F003E9CB0 /* DSGradesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0F27D73F0F003E9CB0 /* DSGradesE2ETests.swift */; };
 		CF00480B25E62D0300321C8B /* GroupContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00480A25E62D0300321C8B /* GroupContextCardE2ETests.swift */; };
 		CF09E69C283FB59A000C72D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF09E69B283FB59A000C72D0 /* GoogleService-Info.plist */; };
-		CF09E69F283FB861000C72D0 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = CF09E69E283FB861000C72D0 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		CF09E6A1283FB861000C72D0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */; };
 		CF79958D2554233900A92A1E /* PreviewSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79958C2554233900A92A1E /* PreviewSimulator.swift */; };
 		CF799599255589EE00A92A1E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF799598255589ED00A92A1E /* EmptyView.swift */; };
@@ -855,7 +854,6 @@
 			files = (
 				CF09E6A1283FB861000C72D0 /* FirebaseCrashlytics in Frameworks */,
 				B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */,
-				CF09E69F283FB861000C72D0 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2093,7 +2091,6 @@
 			);
 			name = SubmitAssignment;
 			packageProductDependencies = (
-				CF09E69E283FB861000C72D0 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */,
 			);
 			productName = ShareSubmission;
@@ -3829,12 +3826,7 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B1B4E990252641C300B0DDD8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		CF09E69E283FB861000C72D0 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
+		};	
 		CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
