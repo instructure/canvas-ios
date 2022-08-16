@@ -496,7 +496,7 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
-            if url.pathComponents.count > 1, url.pathComponents[1] == "files" {
+            if url.pathComponents.contains("files") {
                 env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             } else {
                 env.router.route(to: url, from: self)

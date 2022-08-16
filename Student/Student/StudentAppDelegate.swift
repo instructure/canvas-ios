@@ -86,10 +86,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         updateInterfaceStyle(for: window)
 
         CoreWebView.keepCookieAlive(for: environment)
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
 
         Analytics.setUserID(session.userID)
         Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")

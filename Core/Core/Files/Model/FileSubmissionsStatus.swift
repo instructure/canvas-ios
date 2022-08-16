@@ -46,12 +46,7 @@ class FileSubmissionsStatus {
         var result = false
 
         accessQueue.sync {
-            for fileID in fileIDs {
-                if inProgressSubmissions.contains(fileID) {
-                    result = true
-                    break
-                }
-            }
+            result = fileIDs.contains { inProgressSubmissions.contains($0) }
         }
 
         return result

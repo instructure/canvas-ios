@@ -28,7 +28,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     @Published public private(set) var selectCourseButtonTitle: Text = selectCourseText
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
-    @Published public private(set) var previews: [URL] = []
+    @Published public private(set) var previews: [AttachmentPreviewViewModel] = []
     public private(set) lazy var showUploadStateView: AnyPublisher<FileProgressListViewModel, Never> = showUploadStateViewSubject.eraseToAnyPublisher()
 
     public var isUserLoggedIn: Bool { LoginSession.mostRecent != nil }
@@ -101,14 +101,15 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
                     return true
                 }
             }()
-            self.previews = {
-                if case .completed(let result) = state, case .success(let data) = result {
-                    return data
+            let fileURLs: [URL] = {
+                if case .completed(let result) = state, case .success(let urls) = result {
+                    return urls
                 } else {
                     return []
                 }
             }()
-            self.selectedFileURLs = self.previews
+            self.previews = fileURLs.map { AttachmentPreviewViewModel(previewProvider: FilePreviewProvider(url: $0)) }
+            self.selectedFileURLs = fileURLs
         }.store(in: &subscriptions)
     }
 
