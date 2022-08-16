@@ -63,6 +63,7 @@ class SubmitAssignmentViewController: UIViewController {
 
 extension SubmitAssignmentViewController: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent("sharex_\(name)", parameters: parameters)
+        // Google Analytics needs to be disabled for now
+//        Analytics.logEvent("sharex_\(name)", parameters: parameters)
     }
 }

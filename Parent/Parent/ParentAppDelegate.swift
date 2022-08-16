@@ -263,7 +263,8 @@ extension ParentAppDelegate {
 
 extension ParentAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
+        // Google Analytics needs to be disabled for now
+//        Analytics.logEvent(name, parameters: parameters)
     }
 }
 
