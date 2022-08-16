@@ -26,7 +26,7 @@ public class FilePreviewProvider {
         public let duration: Double?
     }
     public private(set) lazy var result: AnyPublisher<PreviewData, Error> = resultSubject.eraseToAnyPublisher()
-    private let url: URL
+    public let url: URL
     private let resultSubject = PassthroughSubject<PreviewData, Error>()
 
     public init(url: URL) {

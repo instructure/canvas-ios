@@ -23,8 +23,8 @@ public struct AttachmentPreviewView: View {
     @ObservedObject private var viewModel: AttachmentPreviewViewModel
     private let size: CGFloat = 200
 
-    public init(url: URL) {
-        viewModel = AttachmentPreviewViewModel(previewProvider: FilePreviewProvider(url: url))
+    public init(viewModel: AttachmentPreviewViewModel) {
+        self.viewModel = viewModel
     }
 
     public var body: some View {
@@ -80,7 +80,7 @@ public struct AttachmentPreviewView: View {
 
 struct AttachmentPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        let view = AttachmentPreviewView(url: URL(string: "https://instructure.com")!)
+        let view = AttachmentPreviewView(viewModel: AttachmentPreviewViewModel(previewProvider: FilePreviewProvider(url: URL(string: "https://instructure.com")!)))
         let image = UIImage(named: "PandaAtLaptop", in: .core, compatibleWith: nil)!
         view.loadingView
             .previewLayout(.sizeThatFits)

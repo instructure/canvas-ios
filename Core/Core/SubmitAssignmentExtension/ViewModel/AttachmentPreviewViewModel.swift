@@ -19,8 +19,8 @@
 import Combine
 import SwiftUI
 
-class AttachmentPreviewViewModel: ObservableObject {
-    enum State: Equatable {
+public class AttachmentPreviewViewModel: ObservableObject {
+    public enum State: Equatable {
         case loading
         case noPreview
         case media(image: UIImage, length: String?)
@@ -56,4 +56,8 @@ class AttachmentPreviewViewModel: ObservableObject {
             .assign(to: \.state, on: self)
             .store(in: &subscriptions)
     }
+}
+
+extension AttachmentPreviewViewModel: Identifiable {
+    public var id: URL { filePreviewProvider.url }
 }
