@@ -368,7 +368,6 @@
         <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="observerEnrollments" inverseEntity="User"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="enrollments" inverseEntity="Submission"/>
     </entity>
-    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -430,6 +429,22 @@
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="usageRights" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UsageRights" inverseName="file" inverseEntity="UsageRights"/>
+    </entity>
+    <entity name="FileSubmission" representedClassName="Core.FileSubmission" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="submissionError" optional="YES" attributeType="String"/>
+        <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="FileSubmissionItem" inverseName="fileSubmission" inverseEntity="FileSubmissionItem"/>
+    </entity>
+    <entity name="FileSubmissionItem" representedClassName="Core.FileSubmissionItem" syncable="YES">
+        <attribute name="apiID" optional="YES" attributeType="String"/>
+        <attribute name="bytesToUpload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bytesUploaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="localFileURL" attributeType="URI"/>
+        <attribute name="uploadError" optional="YES" attributeType="String"/>
+        <relationship name="fileSubmission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileSubmission" inverseName="files" inverseEntity="FileSubmission"/>
     </entity>
     <entity name="Folder" representedClassName="Core.Folder" syncable="YES">
         <attribute name="canUpload" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -975,11 +990,11 @@
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="404"/>
-        <element name="Entity" positionX="-549" positionY="-18" width="128" height="29"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="688"/>
+        <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="119"/>
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="328"/>
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="163"/>
@@ -1023,5 +1038,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="28"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="FileSubmissionItem" positionX="-540" positionY="-18" width="128" height="119"/>
     </elements>
 </model>
