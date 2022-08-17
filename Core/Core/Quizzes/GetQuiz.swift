@@ -72,12 +72,12 @@ class UpdateQuiz: APIUseCase {
     init(
         courseID: String,
         quizID: String,
-        quiz: Quiz
+        quiz: APIQuizParameters
     ) {
         request = PutQuizRequest(
             courseID: courseID,
             quizID: quizID,
-            body: nil //TODO
+            body: .init(quiz: quiz)
         )
     }
 

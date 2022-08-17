@@ -443,16 +443,59 @@ struct PostQuizSubmissionCompleteRequest: APIRequestable {
     let method = APIMethod.post
 }
 
+struct APIQuizParameters: Codable, Equatable {
+    let title: String?
+    let details: String?
+    let quizType: QuizType?
+    let published: Bool?
+    let assignmentGroup: String?
+    let shuffleAnswers: Bool?
+    let timeLimit: Double?
+    let scoringPolicy: ScoringPolicy?
+    let allowedAttempts: Int?
+    let hideResults: QuizHideResults?
+    let showCorrectAnswers: Bool?
+    let showCorrectAnswersAt: Date?
+    let hideCorrectAnswersAt: Date?
+    let cantGoBack: Bool?
+    let hasAccessCode: Bool?
+    let accessCode: String?
+    let assignmentOverrides: [APIAssignmentOverride]?
+/*
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(title, forKey: .title)
+
+        try container.encodeIfPresent(details, forKey: .details)
+        try container.encodeIfPresent(quizType, forKey: .quizType)
+        try container.encodeIfPresent(published, forKey: .published)
+        try container.encodeIfPresent(assignmentGroup, forKey: .assignmentGroup)
+        try container.encodeIfPresent(shuffleAnswers, forKey: .shuffleAnswers)
+        try container.encodeIfPresent(timeLimit, forKey: .timeLimit)
+        try container.encodeIfPresent(scoringPolicy, forKey: .scoringPolicy)
+        try container.encodeIfPresent(allowedAttempts, forKey: .allowedAttempts)
+        try container.encodeIfPresent(hideResults, forKey: .hideResults)
+        try container.encodeIfPresent(showCorrectAnswers, forKey: .showCorrectAnswers)
+        try container.encodeIfPresent(showCorrectAnswersAt, forKey: .showCorrectAnswersAt)
+        try container.encodeIfPresent(hideCorrectAnswersAt, forKey: .hideCorrectAnswersAt)
+        try container.encodeIfPresent(cantGoBack, forKey: .cantGoBack)
+        try container.encodeIfPresent(hasAccessCode, forKey: .requireAccessCode)
+        try container.encodeIfPresent(accessCode, forKey: .accessCode)
+        try container.encodeIfPresent(assignmentOverrides, forKey: .assignmentOverrides)
+    }
+ */
+}
+
 // https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
 struct PutQuizRequest: APIRequestable {
     typealias Response = APIQuiz
     struct Body: Codable, Equatable {
-        let quiz: APIQuiz
+        let quiz: APIQuizParameters
     }
     let courseID: String
     let quizID: String
 
     var method: APIMethod { .put }
-    var path: String { "courses/\(courseID)/quizzes/\(quizID)" }
+    var path: String { "TESTcourses/\(courseID)/quizzes/\(quizID)" }
     let body: Body?
 }

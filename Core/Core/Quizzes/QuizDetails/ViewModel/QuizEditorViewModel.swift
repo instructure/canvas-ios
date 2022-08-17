@@ -139,47 +139,37 @@ public class QuizEditorViewModel: ObservableObject {
 
     public func doneTapped(router: Router, viewController: WeakViewController) {
         state = .saving
-        let modQuiz = Quiz()
-        modQuiz.title = title
-        modQuiz.details = description
-        modQuiz.quizType = quizType
-        modQuiz.published = published
-        modQuiz.shuffleAnswers = shuffleAnswers
 
-        if timeLimit {
-            modQuiz.timeLimit = lengthInMinutes
-        }
-
+        var allowedAttempts: Int?
         if allowMultipleAttempts {
-            modQuiz.scoringPolicy = scoreToKeep
-            modQuiz.allowedAttempts = allowedAttempts ?? -1 // default is unlimited (-1)
+            allowedAttempts = self.allowedAttempts ?? -1 // default is unlimited (-1)
         } else {
-            modQuiz.allowedAttempts = 0
+            allowedAttempts = 0
         }
 
-        if seeResponses {
-            modQuiz.hideResults = onlyOnceAfterEachAttempt ? .until_after_last_attempt : nil
-            modQuiz.showCorrectAnswers = showCorrectAnswers
-            if showCorrectAnswers {
-                modQuiz.showCorrectAnswersAt = showCorrectAnswersAt
-                modQuiz.hideCorrectAnswersAt = hideCorrectAnswersAt
-            }
-        } else {
-            modQuiz.hideResults = .always
-        }
+        let quizParams = APIQuizParameters(
+            title: title,
+            details: description,
+            quizType: quizType,
+            published: published,
+            assignmentGroup: assignmentGroup,
+            shuffleAnswers: shuffleAnswers,
+            timeLimit: timeLimit ? lengthInMinutes : nil,
+            scoringPolicy: allowMultipleAttempts ? scoreToKeep : nil,
+            allowedAttempts: allowedAttempts,
+            hideResults: seeResponses ?
+                (onlyOnceAfterEachAttempt ? .until_after_last_attempt : nil)
+                : .always,
+            showCorrectAnswers: seeResponses ? showCorrectAnswers : nil,
+            showCorrectAnswersAt: seeResponses && showCorrectAnswers ? showCorrectAnswersAt : nil,
+            hideCorrectAnswersAt: seeResponses && showCorrectAnswers ? hideCorrectAnswersAt : nil,
+            cantGoBack: oneQuestionAtaTime ? lockQuestionAfterViewing : nil,
+            hasAccessCode: requireAccessCode,
+            accessCode: requireAccessCode ? accessCode : nil,
+            assignmentOverrides: nil
+        )
 
-        modQuiz.oneQuestionAtATime = oneQuestionAtaTime
-
-        if oneQuestionAtaTime {
-            modQuiz.cantGoBack = lockQuestionAfterViewing
-        }
-
-        modQuiz.hasAccessCode = requireAccessCode
-        if requireAccessCode {
-            modQuiz.accessCode = accessCode
-        }
-
-        UpdateQuiz(courseID: courseID, quizID: quizID, quiz: modQuiz)
+        UpdateQuiz(courseID: courseID, quizID: quizID, quiz: quizParams)
             .fetch()
 
         /*UpdateCourse(courseID: context.id,
