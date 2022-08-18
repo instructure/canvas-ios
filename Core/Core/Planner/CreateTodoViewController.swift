@@ -60,6 +60,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         dateTitleLabel.text = NSLocalizedString("Date", bundle: .core, comment: "")
         dateTitleLabel.accessibilityElementsHidden = true
         descTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
+        descTextView.textColor = UIColor.textDarkest
         descTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         descTextView.placeholder = NSLocalizedString("Description", bundle: .core, comment: "")
         descTextView.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
