@@ -809,6 +809,7 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
+		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
@@ -2241,6 +2242,7 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
+		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
@@ -4868,6 +4870,7 @@
 				7D70868E2568D6CA00647D37 /* GroupCard.swift */,
 				7D7086922569607D00647D37 /* NotificationCard.swift */,
 				CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */,
+				B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7375,6 +7378,7 @@
 				EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */,
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,
 				7DCA32072541C5F700458651 /* VideoPlayer.swift in Sources */,
+				B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */,
 				7DA2604F23F722D9005D2121 /* LatePolicyStatus.swift in Sources */,
 				7DCB2E9C247D9FD00071F172 /* GetSubmissionComments.swift in Sources */,
 				7DCA320325411E8200458651 /* DocViewer.swift in Sources */,
