@@ -445,45 +445,22 @@ struct PostQuizSubmissionCompleteRequest: APIRequestable {
 
 struct APIQuizParameters: Codable, Equatable {
     let title: String?
-    let details: String?
-    let quizType: QuizType?
+    let description: String?
+    let quiz_type: QuizType?
+    let time_limit: Double?
+    let shuffle_answers: Bool?
+    let show_correct_answers: Bool?
+    let scoring_policy: ScoringPolicy?
+    let allowed_attempts: Int?
+    let one_question_at_a_time: Bool?
+    let cant_go_back: Bool?
+    let access_code: String?
     let published: Bool?
-    let assignmentGroup: String?
-    let shuffleAnswers: Bool?
-    let timeLimit: Double?
-    let scoringPolicy: ScoringPolicy?
-    let allowedAttempts: Int?
-    let hideResults: QuizHideResults?
-    let showCorrectAnswers: Bool?
-    let showCorrectAnswersAt: Date?
-    let hideCorrectAnswersAt: Date?
-    let cantGoBack: Bool?
-    let hasAccessCode: Bool?
-    let accessCode: String?
-    let assignmentOverrides: [APIAssignmentOverride]?
-/*
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(title, forKey: .title)
-
-        try container.encodeIfPresent(details, forKey: .details)
-        try container.encodeIfPresent(quizType, forKey: .quizType)
-        try container.encodeIfPresent(published, forKey: .published)
-        try container.encodeIfPresent(assignmentGroup, forKey: .assignmentGroup)
-        try container.encodeIfPresent(shuffleAnswers, forKey: .shuffleAnswers)
-        try container.encodeIfPresent(timeLimit, forKey: .timeLimit)
-        try container.encodeIfPresent(scoringPolicy, forKey: .scoringPolicy)
-        try container.encodeIfPresent(allowedAttempts, forKey: .allowedAttempts)
-        try container.encodeIfPresent(hideResults, forKey: .hideResults)
-        try container.encodeIfPresent(showCorrectAnswers, forKey: .showCorrectAnswers)
-        try container.encodeIfPresent(showCorrectAnswersAt, forKey: .showCorrectAnswersAt)
-        try container.encodeIfPresent(hideCorrectAnswersAt, forKey: .hideCorrectAnswersAt)
-        try container.encodeIfPresent(cantGoBack, forKey: .cantGoBack)
-        try container.encodeIfPresent(hasAccessCode, forKey: .requireAccessCode)
-        try container.encodeIfPresent(accessCode, forKey: .accessCode)
-        try container.encodeIfPresent(assignmentOverrides, forKey: .assignmentOverrides)
-    }
- */
+    let hide_results: QuizHideResults?
+    let show_correct_answers_at: Date?
+    let hide_correct_answers_at: Date?
+    let assignment_group_id: String?
+    let overrides: [APIAssignmentOverride]?
 }
 
 // https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
@@ -496,6 +473,6 @@ struct PutQuizRequest: APIRequestable {
     let quizID: String
 
     var method: APIMethod { .put }
-    var path: String { "TESTcourses/\(courseID)/quizzes/\(quizID)" }
+    var path: String { "courses/\(courseID)/quizzes/\(quizID)" }
     let body: Body?
 }

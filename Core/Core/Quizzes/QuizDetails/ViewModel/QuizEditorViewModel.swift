@@ -23,7 +23,7 @@ public class QuizEditorViewModel: ObservableObject {
     public enum ViewModelState: Equatable {
         case loading
         case saving
-        case error
+        case error(String)
         case ready
     }
 
@@ -149,85 +149,43 @@ public class QuizEditorViewModel: ObservableObject {
 
         let quizParams = APIQuizParameters(
             title: title,
-            details: description,
-            quizType: quizType,
+            description: description,
+            quiz_type: quizType,
+            time_limit: timeLimit ? lengthInMinutes : nil,
+            shuffle_answers: shuffleAnswers,
+            show_correct_answers: seeResponses ? showCorrectAnswers : nil,
+            scoring_policy: allowMultipleAttempts ? scoreToKeep : nil,
+            allowed_attempts: allowedAttempts,
+            one_question_at_a_time: oneQuestionAtaTime, // TODO
+            cant_go_back: oneQuestionAtaTime ? lockQuestionAfterViewing : nil,
+            access_code: requireAccessCode ? accessCode : nil,
             published: published,
-            assignmentGroup: assignmentGroup,
-            shuffleAnswers: shuffleAnswers,
-            timeLimit: timeLimit ? lengthInMinutes : nil,
-            scoringPolicy: allowMultipleAttempts ? scoreToKeep : nil,
-            allowedAttempts: allowedAttempts,
-            hideResults: seeResponses ?
+            hide_results: seeResponses ?
                 (onlyOnceAfterEachAttempt ? .until_after_last_attempt : nil)
                 : .always,
-            showCorrectAnswers: seeResponses ? showCorrectAnswers : nil,
-            showCorrectAnswersAt: seeResponses && showCorrectAnswers ? showCorrectAnswersAt : nil,
-            hideCorrectAnswersAt: seeResponses && showCorrectAnswers ? hideCorrectAnswersAt : nil,
-            cantGoBack: oneQuestionAtaTime ? lockQuestionAfterViewing : nil,
-            hasAccessCode: requireAccessCode,
-            accessCode: requireAccessCode ? accessCode : nil,
-            assignmentOverrides: nil
+            show_correct_answers_at: seeResponses && showCorrectAnswers ? showCorrectAnswersAt : nil,
+            hide_correct_answers_at: seeResponses && showCorrectAnswers ? hideCorrectAnswersAt : nil,
+            assignment_group_id: assignmentGroup,
+
+
+            overrides: nil
         )
 
         UpdateQuiz(courseID: courseID, quizID: quizID, quiz: quizParams)
-            .fetch()
+            .fetch { [weak self] result, _, error in performUIUpdate {
+                guard let self = self else { return }
+                self.state = .ready
 
-        /*UpdateCourse(courseID: context.id,
-                     name: newName,
-                     defaultView: newDefaultView
-        ).fetch { [weak self] result, _, error in performUIUpdate {
-            guard let self = self else { return }
-            self.state = .ready
-
-            if error != nil {
-                self.errorText = error?.localizedDescription
-                self.showError = true
-            }
-
-            if result != nil {
-                router.dismiss(viewController)
-            }
-        } }
-*/
-        /*
-            func save() {
-                let originalOverrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) }
-                guard
-                    let assignmentID = assignmentID,
-                    let assignment = assignment,
-                    assignment.details != description ||
-                    assignment.gradingType != gradingType ||
-                    assignment.pointsPossible != pointsPossible ||
-                    assignment.published != published ||
-                    assignment.name != title ||
-                    originalOverrides != overrides
-                else {
-                    isSaving = false
-                    return env.router.dismiss(controller)
+                //alert = fetchError.map { .error($0) }
+                if error != nil {
+                    self.state = .error(error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
                 }
-                let (dueAt, unlockAt, lockAt, apiOverrides) = AssignmentOverridesEditor.apiOverrides(for: assignment.id, from: overrides)
-                UpdateAssignment(
-                    courseID: courseID,
-                    assignmentID: assignmentID,
-                    description: description,
-                    dueAt: dueAt,
-                    gradingType: gradingType,
-                    lockAt: lockAt,
-                    name: title,
-                    overrides: originalOverrides == overrides ? nil : apiOverrides,
-                    pointsPossible: pointsPossible,
-                    published: published,
-                    unlockAt: unlockAt
-                ).fetch { result, _, fetchError in performUIUpdate {
-                    alert = fetchError.map { .error($0) }
-                    isSaving = false
-                    if result != nil {
-                        GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
-                            .fetch(force: true) // updated overrides & allDates aren't in result
-                        env.router.dismiss(controller)
-                    }
-                } }
-            }
-         */
+                if result != nil {
+                    //TODO Get Quiz and Assingment
+                    //GetAssignment(courseID: self.courseID, assignmentID: self.assignmentID, include: [ .overrides ])
+                       // .fetch(force: true) // updated overrides & allDates aren't in result
+                    router.dismiss(viewController)
+                }
+            } }
     }
 }
