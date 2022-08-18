@@ -41,4 +41,14 @@ class FileSubmissionTests: CoreTestCase {
         testee.files = Set([file])
         XCTAssertEqual(testee.state, .uploading(progress: 0.5))
     }
+
+    func testTotalSize() {
+        let file1: FileSubmissionItem = databaseClient.insert()
+        file1.bytesToUpload = 10
+        let file2: FileSubmissionItem = databaseClient.insert()
+        file2.bytesToUpload = 22
+        let testee: FileSubmission = databaseClient.insert()
+        testee.files = Set([file1, file2])
+        XCTAssertEqual(testee.totalSize, 32)
+    }
 }

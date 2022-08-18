@@ -44,4 +44,9 @@ extension FileSubmission {
             return State(files.map { $0.state })
         }
     }
+
+    /** The sum of file sizes in this submission, in bytes. */
+    public var totalSize: Int {
+        files.reduce(into: 0) { $0 += $1.bytesToUpload }
+    }
 }
