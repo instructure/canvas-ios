@@ -4233,7 +4233,6 @@
 		7DF4AACD2486A37400B07BB8 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */,
 				7D2E812C25632143008C568F /* AssignmentDetails */,
 				7D531D42254B103000CBFCA6 /* AssignmentEditor */,
 				D91BC84D276B7AD3008371B0 /* AssignmentList */,
@@ -5817,6 +5816,7 @@
 			isa = PBXGroup;
 			children = (
 				CFD987DF28ACEB3E00905515 /* FileSubmission.swift */,
+				CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */,
 				CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */,
 			);
 			path = Entities;
