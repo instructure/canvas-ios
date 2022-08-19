@@ -22,7 +22,7 @@ import CoreData
  This object is responsible for managing submission entries in CoreData.
  */
 public struct FileSubmissionComposer {
-    public let context: NSManagedObjectContext
+    private let context: NSManagedObjectContext
 
     public init(context: NSManagedObjectContext) {
         self.context = context
