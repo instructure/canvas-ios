@@ -200,6 +200,9 @@
 "Anyone" = "Kuka tahansa";
 
 /* No comment provided by engineer. */
+"Appearance" = "Ulkoasu";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tapaamisen saatavilla olo";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Tumma teema";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Tumma teema";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Koontinäyttö";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Vaalea teema";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Vaalea teema";
 
 /* like action */
 "Like" = "Tykkää";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Järjestelmäasetukset";
+
+/* No comment provided by engineer. */
+"System Settings" = "Järjestelmäasetukset";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Apuopettaja";

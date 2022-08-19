@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+/**
+ This is an in-memory, thread-safe storage to keep track of which files are being uploaded.
+ */
 class FileSubmissionsStatus {
     private var inProgressSubmissions: [String] = []
     private let accessQueue = DispatchQueue(label: "Synchronized Array Access")
@@ -43,12 +46,7 @@ class FileSubmissionsStatus {
         var result = false
 
         accessQueue.sync {
-            for fileID in fileIDs {
-                if inProgressSubmissions.contains(fileID) {
-                    result = true
-                    break
-                }
-            }
+            result = fileIDs.contains { inProgressSubmissions.contains($0) }
         }
 
         return result

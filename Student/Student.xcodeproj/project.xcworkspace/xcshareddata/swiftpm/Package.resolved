@@ -82,15 +82,6 @@
       }
     },
     {
-      "identity" : "lottie-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/airbnb/lottie-ios",
-      "state" : {
-        "revision" : "4a6058cbbdfe4f74aeae92c8bd51ad3b0de2a1ee",
-        "version" : "3.3.0"
-      }
-    },
-    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",

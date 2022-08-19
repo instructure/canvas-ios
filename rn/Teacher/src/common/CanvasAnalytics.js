@@ -27,7 +27,8 @@ import { NativeModules } from 'react-native'
 const { CanvasAnalytics } = NativeModules
 
 export function logEvent (name: string, parameters?: { [string]: any }): void {
-  CanvasAnalytics.logEvent(name, parameters)
+  // Google Analytics needs to be disabled for now
+// CanvasAnalytics.logEvent(name, parameters)
 }
 
 export function logScreenView (route: string): void {

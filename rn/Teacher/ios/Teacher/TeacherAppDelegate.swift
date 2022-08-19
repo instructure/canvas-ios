@@ -77,10 +77,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         environment.userDidLogin(session: session)
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
         NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
@@ -202,7 +198,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }
@@ -211,7 +207,8 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
 extension TeacherAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
+        // Google Analytics needs to be disabled for now
+//        Analytics.logEvent(name, parameters: parameters)
     }
 }
 
@@ -250,6 +247,10 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         let safari = SFSafariViewController(url: url)
         safari.transitioningDelegate = ResetTransitionDelegate.shared
         environment.router.show(safari, from: from, options: .modal())
+    }
+
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
     }
 
     func userDidLogin(session: LoginSession) {

@@ -18,6 +18,16 @@
 
 import Foundation
 
+extension Sequence where Element == URL {
+    public var pathExtensions: Set<String> {
+        reduce(into: Set<String>()) {
+            if $1.pathExtension != "" {
+                $0.insert($1.pathExtension)
+            }
+        }
+    }
+}
+
 extension URL {
     public static var temporaryDirectory: URL {
         return URL(fileURLWithPath: NSTemporaryDirectory())

@@ -299,7 +299,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         let context = uploadManager.viewContext
         context.performAndWait {
             do {
-                let url = try self.uploadManager.uploadURL(url)
+                let url = try self.uploadManager.copyFileToSharedContainer(url)
                 let file: File = context.insert()
                 file.filename = url.lastPathComponent
                 file.batchID = self.batchID

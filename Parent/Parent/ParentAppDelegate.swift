@@ -93,10 +93,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             // The method call below ensures that we always start with the first color scheme.    
             ColorScheme.clear()
         }
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
         Analytics.shared.logSession(session)
         getPreferences { userProfile in performUIUpdate {
             LocalizationManager.localizeForApp(UIApplication.shared, locale: userProfile.locale) {
@@ -141,7 +137,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }
@@ -178,6 +174,10 @@ extension ParentAppDelegate: LoginDelegate {
         } else {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
     }
 
     func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
@@ -263,7 +263,8 @@ extension ParentAppDelegate {
 
 extension ParentAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
+        // Google Analytics needs to be disabled for now
+//        Analytics.logEvent(name, parameters: parameters)
     }
 }
 

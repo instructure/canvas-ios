@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "\"Data de lliurament\" ha d'estar entre les dates de \"Disponible de\" i \"Disponible fins a\""
   },
+  "due_dates_520a6c08": {
+    "message": "Dates de lliurament"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Dates de lliurament. Toqueu dues vegades per obtenir informació."
   },

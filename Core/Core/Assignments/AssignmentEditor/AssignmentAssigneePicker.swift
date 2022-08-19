@@ -75,7 +75,11 @@ struct AssignmentAssigneePicker: View {
                         case .everyone:
                             Avatar.Anonymous(isGroup: true)
                                 .padding(.trailing, 16).padding(.vertical, -4)
-                            selection.count <= 1 ? Text("Everyone", bundle: .core) : Text("Everyone else", bundle: .core)
+                            if selection.count <= 1 {
+                                Text("Everyone", bundle: .core)
+                            } else {
+                                Text("Everyone else", bundle: .core)
+                            }
                         case .group(let id):
                             let group = self.group(id)
                             Avatar(name: group?.name, url: group?.avatarURL)

@@ -33,6 +33,7 @@ public class CircleProgressView: UIView {
         didSet { tintColorDidChange() }
     }
 
+    /** The value of this property must be in the range 0.0 to 1.0. */
     public var progress: CGFloat? {
         didSet { updateProgress() }
     }
@@ -83,6 +84,8 @@ public class CircleProgressView: UIView {
         fill.fillColor = UIColor.clear.cgColor
         fill.strokeEnd = 0.1
         layer.addSublayer(fill)
+
+        backgroundColor = .clear
 
         let ease = CAMediaTimingFunction(controlPoints: 0.25, 0.1, 0.25, 1.0)
 

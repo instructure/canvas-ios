@@ -28,13 +28,9 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         let testUploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads", sharedContainerIdentifier: "group.instructure.shared")
 
         let testee = AttachmentSubmissionService(uploadManager: testUploadManager)
-        var completionCalled = false
-        testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment") {
-            completionCalled = true
-        }
+        testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", batchID: "testBatch", comment: "testComment")
         RunLoop.main.run(until: Date() + 0.1)
 
-        XCTAssertTrue(completionCalled)
         XCTAssertEqual(testUploadManager.viewContext.registeredObjects.count, 1) // One file added
 
         guard let file = (testUploadManager.viewContext.fetch(scope: .all(orderBy: "batchID")) as [File]).first else {
@@ -42,7 +38,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
             return
         }
 
-        XCTAssertEqual(file.batchID, "assignment-testAssignmentID")
+        XCTAssertEqual(file.batchID, "testBatch")
         XCTAssertEqual(file.filename, "loadFileURL.txt")
     }
 }

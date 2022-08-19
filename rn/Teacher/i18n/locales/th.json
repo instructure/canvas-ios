@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "“วันครบกำหนด” จะต้องอยู่ระหว่างวันที่ “ใช้ได้จาก” และ “ใช้ได้ถึง”"
   },
+  "due_dates_520a6c08": {
+    "message": "วันครบกำหนด"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "วันครบกำหนด กดสองครั้งเพื่อดูรายละเอียด"
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "วิชา"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "ค่าปรับตั้งการจัดส่ง"
   },
   "submissions_11e96106": {
     "message": "ผลงานจัดส่ง"

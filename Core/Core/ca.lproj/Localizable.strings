@@ -200,6 +200,9 @@
 "Anyone" = "Qualsevol persona";
 
 /* No comment provided by engineer. */
+"Appearance" = "Aspecte";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilitat de cites";
 
 /* No comment provided by engineer. */
@@ -618,6 +621,9 @@
 
 /* No comment provided by engineer. */
 "Dark theme" = "Tema fosc";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Tema fosc";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Panell de control";
@@ -1146,6 +1152,9 @@
 
 /* No comment provided by engineer. */
 "Light theme" = "Tema clar";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Tema clar";
 
 /* like action */
 "Like" = "M'agrada";
@@ -2001,6 +2010,9 @@
 
 /* No comment provided by engineer. */
 "System settings" = "Configuració del sistema";
+
+/* No comment provided by engineer. */
+"System Settings" = "Configuració del sistema";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Auxiliar de professor";

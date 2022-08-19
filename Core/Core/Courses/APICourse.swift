@@ -89,7 +89,6 @@ public struct APICourse: Codable, Equatable {
 
     public struct SectionRef: Codable, Equatable {
         let end_at: Date?
-        let enrollment_role: String
         let id: ID
         let name: String
         let start_at: Date?

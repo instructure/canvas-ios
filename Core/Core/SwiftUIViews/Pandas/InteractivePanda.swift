@@ -33,12 +33,15 @@ public struct InteractivePanda: View {
     public var body: some View {
         VStack(spacing: 0) {
             MotionScene { detector in
+                let noMovement = scene.isParallaxDisabled
                 let offset = scene.offset
+                let horizontalMultiplier = noMovement ? 0.0 : 40
+                let verticalMultiplier = noMovement ? 0.0 : 10
                 scene.background
-                    .motion(detector, horizontalMultiplier: -40, verticalMultiplier: -10)
+                    .motion(detector, horizontalMultiplier: -horizontalMultiplier, verticalMultiplier: -verticalMultiplier)
                     .offset(offset.background)
                 scene.foreground
-                    .motion(detector, horizontalMultiplier: 40, verticalMultiplier: 10)
+                    .motion(detector, horizontalMultiplier: horizontalMultiplier, verticalMultiplier: verticalMultiplier)
                     .offset(offset.foreground)
             }
             .frame(height: scene.height)
@@ -47,7 +50,7 @@ public struct InteractivePanda: View {
 
             if let title = title {
                 title
-                    .font(.bold24)
+                    .font(.bold20)
                     .foregroundColor(.textDarkest)
                     .padding(.bottom, 8)
             }
@@ -55,7 +58,7 @@ public struct InteractivePanda: View {
             if let subtitle = subtitle {
                 subtitle
                     .font(.regular16)
-                    .foregroundColor(.textDarkest)
+                    .foregroundColor(.textDark)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 16)
             }

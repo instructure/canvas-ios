@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Добавить получателей";
 
-/* No comment provided by engineer. */
-"All" = "Все";
-
 /* Button to select all members of a group */
 "All members" = "Все члены";
 
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Выбрать видео";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Очистить фильтр";
 
 /* No comment provided by engineer. */
 "Close" = "Закрыть";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Файлы (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Фильтровать";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Фильтровать по:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Загрузка завершена";

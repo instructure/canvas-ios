@@ -254,6 +254,9 @@
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "「截止日期」必須介乎「可用開始時間」和「可用截止時間」之間"
   },
+  "due_dates_520a6c08": {
+    "message": "截止日期"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "截止日期，雙擊以顯示詳情。"
   },
@@ -784,9 +787,6 @@
   },
   "subject_114b2e98": {
     "message": "課程"
-  },
-  "submission_settings_f57b0cf8": {
-    "message": "提交項目設定"
   },
   "submissions_11e96106": {
     "message": "提交件"

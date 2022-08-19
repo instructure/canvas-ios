@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Afegeix destinataris";
 
-/* No comment provided by engineer. */
-"All" = "Tot";
-
 /* Button to select all members of a group */
 "All members" = "Tots els membres";
 
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Tria un vídeo";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Esborra el filtre";
 
 /* No comment provided by engineer. */
 "Close" = "Tanca";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Fitxers (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Filtre";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Filtra per:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Ha finalitzat la baixada";
