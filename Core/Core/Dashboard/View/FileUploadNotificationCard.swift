@@ -19,6 +19,16 @@
 import SwiftUI
 
 struct FileUploadNotificationCard: View {
+    // MARK: - Dependencies
+
+    @ObservedObject private var viewModel: FileUploadNotificationCardViewModel
+
+    // MARK: - Init
+
+    init(viewModel: FileUploadNotificationCardViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         HStack(spacing: 16) {
             Color.fire
@@ -28,40 +38,51 @@ struct FileUploadNotificationCard: View {
                         .frame(width: 24, height: 24, alignment: .center)
                 )
                 .frame(width: 48, alignment: .center)
-            VStack(spacing: 8) {
-                Text("Uploading submission")
-                    .font(.regular16)
-                    .frame(alignment: .leading)
-                ProgressView(value: 0.5)
-                    .foregroundColor(Color(Brand.shared.primary))
-                    .background(Color(Brand.shared.primary).opacity(0.2))
+            VStack(alignment: .leading, spacing: 8) {
+                switch viewModel.state {
+                case .uploading(let progress):
+                    Text("Uploading submission")
+                        .font(.regular16)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    ProgressView(value: progress)
+                        .foregroundColor(Color(Brand.shared.primary))
+                        .background(Color(Brand.shared.primary).opacity(0.2))
+                case .done:
+                    Text("Success ✅")
+                        .font(.regular16)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
             .padding(.top, 12)
             .padding(.bottom, 12)
             .padding(.trailing, 12)
         }
+        .frame(minHeight: 58)
         .border(
             Color.fire,
             width: 2
         )
         .cornerRadius(4)
+        
     }
 }
 
 struct FileUploadNotificationCard_Previews: PreviewProvider {
     static var previews: some View {
-        FileUploadNotificationCard()
+        let viewModel = FileUploadNotificationCardViewModel()
+
+        FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
             .environment(\.sizeCategory, .extraSmall)
-        FileUploadNotificationCard()
+        FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
-        FileUploadNotificationCard()
+        FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
             .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
-        FileUploadNotificationCard()
+        FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }
