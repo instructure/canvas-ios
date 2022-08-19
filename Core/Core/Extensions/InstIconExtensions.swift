@@ -391,6 +391,7 @@ public extension Image {
     static var rubricSolid: Image { Image("rubricSolid", bundle: .core) }
     static var settingsLine: Image { Image("settingsLine", bundle: .core) }
     static var settingsSolid: Image { Image("settingsSolid", bundle: .core) }
+    static var share: Image { Image("share", bundle: .core) }
     static var starLine: Image { Image("starLine", bundle: .core) }
     static var starSolid: Image { Image("starSolid", bundle: .core) }
     static var strikethroughLine: Image { Image("strikethroughLine", bundle: .core) }

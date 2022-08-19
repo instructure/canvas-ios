@@ -20,34 +20,41 @@ import SwiftUI
 
 struct FileUploadNotificationCard: View {
     var body: some View {
-        HStack {
-            VStack {
-                Image(systemName: "info.circle.fill")
-                    .foregroundColor(.white)
-                    .frame(width: 24, height: 24, alignment: .center)
-            }
-            .padding(.leading, 16)
-            VStack {
+        HStack(spacing: 16) {
+            Color.fire
+                .overlay(
+                    Image.share
+                        .foregroundColor(Color.backgroundLightest)
+                        .frame(width: 24, height: 24, alignment: .center)
+                )
+                .frame(width: 48, height: .infinity, alignment: .center)
+            VStack(spacing: 8) {
                 Text("Uploading submission")
+                    .font(.regular16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 ProgressView(value: 0.5)
                     .foregroundColor(Color(Brand.shared.primary))
                     .background(Color(Brand.shared.primary).opacity(0.2))
             }
             .padding(.top, 12)
             .padding(.bottom, 12)
-            .padding(.leading, 16)
             .padding(.trailing, 12)
         }
         .border(
-            Color(Brand.shared.color("fire")!),
+            Color.fire,
             width: 2
         )
+        .frame(width: .infinity, height: 58, alignment: .center)
     }
 }
 
 struct FileUploadNotificationCard_Previews: PreviewProvider {
     static var previews: some View {
         FileUploadNotificationCard()
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+        FileUploadNotificationCard()
+            .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }
 }
