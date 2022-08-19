@@ -27,11 +27,11 @@ struct FileUploadNotificationCard: View {
                         .foregroundColor(Color.backgroundLightest)
                         .frame(width: 24, height: 24, alignment: .center)
                 )
-                .frame(width: 48, height: .infinity, alignment: .center)
+                .frame(width: 48, alignment: .center)
             VStack(spacing: 8) {
                 Text("Uploading submission")
                     .font(.regular16)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(alignment: .leading)
                 ProgressView(value: 0.5)
                     .foregroundColor(Color(Brand.shared.primary))
                     .background(Color(Brand.shared.primary).opacity(0.2))
@@ -44,7 +44,7 @@ struct FileUploadNotificationCard: View {
             Color.fire,
             width: 2
         )
-        .frame(width: .infinity, height: 58, alignment: .center)
+        .cornerRadius(4)
     }
 }
 
@@ -53,6 +53,14 @@ struct FileUploadNotificationCard_Previews: PreviewProvider {
         FileUploadNotificationCard()
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
+            .environment(\.sizeCategory, .extraSmall)
+        FileUploadNotificationCard()
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+        FileUploadNotificationCard()
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+            .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
         FileUploadNotificationCard()
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
