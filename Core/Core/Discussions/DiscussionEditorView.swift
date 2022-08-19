@@ -31,9 +31,7 @@ public struct DiscussionEditorView: View {
     @State var assignment: Assignment?
     @State var attachment: URL?
     @State var canUnpublish: Bool = true
-    @State var delayedPostAt: Date?
     @State var gradingType: GradingType = .points
-    @State var lockAt: Date?
     @State var locked: Bool = true
     @State var message: String = ""
     @State var onlyGradersCanRate: Bool = false
@@ -54,6 +52,9 @@ public struct DiscussionEditorView: View {
     @State var rceHeight: CGFloat = 60
     @State var rceCanSubmit = false
     @State var alert: AlertItem?
+
+    @State var delayedPostAt: Date?
+    @State var lockAt: Date?
 
     public init(context: Context, topicID: String?, isAnnouncement: Bool) {
         self.context = context
@@ -185,9 +186,9 @@ public struct DiscussionEditorView: View {
                     Divider()
                 }
                 if isAnnouncement {
-                    Toggle(isOn: Binding(get: { delayedPostAt != nil }, set: { newValue in
+                    Toggle(isOn: Binding(get: { lockAt != nil }, set: { newValue in
                         withAnimation(.default) {
-                            delayedPostAt = newValue ? Clock.now.startOfDay() : nil
+                            lockAt = newValue ? Clock.now.startOfDay() : nil
                         }
                     })) {
                         Text("Delay posting", bundle: .core)
@@ -196,15 +197,16 @@ public struct DiscussionEditorView: View {
                         .padding(16)
                         .identifier("DiscussionEditor.delayedPostAtToggle")
                     Divider()
-                    if delayedPostAt != nil {
-                        OptionalDatePicker(
-                            selection: $delayedPostAt,
-                            max: lockAt,
-                            initial: Clock.now.startOfDay()
-                        ) {
+                    if lockAt != nil {
+                        ButtonRow(action: pickUntilDate, content: {
                             Text("Post at", bundle: .core)
-                        }
-                            .identifier("DiscussionEditor.delayedPostAtPicker")
+                            Spacer()
+                            if let dateValidator = lockAt {
+                                Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                            } else {
+                                Text("")
+                            }
+                        })
                         Divider()
                     }
                     Toggle(isOn: Binding(get: { !locked }, set: { newValue in
@@ -295,18 +297,43 @@ public struct DiscussionEditorView: View {
                 )
             } else if isTeacher, !isAnnouncement {
                 EditorSection(label: Text("Availability", bundle: .core)) {
-                    OptionalDatePicker(selection: $delayedPostAt, max: lockAt, initial: Clock.now.startOfDay()) {
-                        Text("Available from", bundle: .core)
-                    }
-                        .identifier("DiscussionEditor.delayedPostAtPicker")
+                    ButtonRow(action: pickFromDate, content: {
+                        Text("From", bundle: .core)
+                        Spacer()
+                        if let dateValidator = delayedPostAt {
+                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                        } else {
+                            Text("")
+                        }
+                    })
+
                     Divider()
-                    OptionalDatePicker(selection: $lockAt, min: delayedPostAt, initial: Clock.now.endOfDay()) {
-                        Text("Available until", bundle: .core)
-                    }
-                        .identifier("DiscussionEditor.lockAtPicker")
+
+                    ButtonRow(action: pickUntilDate, content: {
+                        Text("Until", bundle: .core)
+                        Spacer()
+                        if let dateValidator = lockAt {
+                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                        } else {
+                            Text("")
+                        }
+                    })
+
                 }
             }
         }
+    }
+
+    func pickFromDate() {
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $delayedPostAt))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
+    }
+
+    func pickUntilDate() {
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $lockAt))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
     }
 
     func attach() {
@@ -348,9 +375,9 @@ public struct DiscussionEditorView: View {
             assignment = topic?.assignment
             attachment = topic?.attachments?.first?.url
             canUnpublish = topic?.canUnpublish != false
-            delayedPostAt = topic?.delayedPostAt
+            lockAt = topic?.delayedPostAt
             locked = topic?.locked == true
-            lockAt = topic?.lockAt
+            delayedPostAt = topic?.lockAt
             message = topic?.message ?? ""
             onlyGradersCanRate = topic?.onlyGradersCanRate == true
             published = topic?.published ?? false
@@ -419,11 +446,11 @@ public struct DiscussionEditorView: View {
                 type: "application/octet-stream",
                 at: $0
             ) } : nil,
-            .delayed_post_at: .date(delayedPostAt),
+            .delayed_post_at: .date(lockAt),
             .discussion_type: .string(threaded ? "threaded" : "side_comment"),
             .is_announcement: .bool(isAnnouncement),
             .locked: isAnnouncement ? .bool(locked) : nil,
-            .lock_at: .date(lockAt),
+            .lock_at: .date(delayedPostAt),
             .message: .string(message),
             .only_graders_can_rate: .bool(allowRating && onlyGradersCanRate),
             .published: .bool(isTeacher && !isAnnouncement ? published : true),

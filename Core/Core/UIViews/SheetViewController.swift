@@ -29,12 +29,14 @@ public class SheetViewController: UIViewController, UISheetPresentationControlle
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.toolBar.isHidden = false
+        self.datePicker.isHidden = false
+        self.view.isHidden = false
+
         UIView.animate(withDuration: 0.2, animations: {
             self.fadeView.alpha = 0.5
-            self.cancelButton.customView?.isHidden = false
-            self.doneButton.customView?.isHidden = false
-            self.datePicker.isHidden = false
-            self.view.isHidden = false
+            self.toolBar.alpha = 1
+            self.datePicker.alpha = 1
         })
      }
 
@@ -42,20 +44,25 @@ public class SheetViewController: UIViewController, UISheetPresentationControlle
         super.viewDidLoad()
         cancelButton.title = NSLocalizedString("Cancel", bundle: .core, comment: "")
         cancelButton.setTitleTextAttributes(attributes, for: .normal)
-        cancelButton.customView?.isHidden = true
+
         doneButton.title = NSLocalizedString("Done", bundle: .core, comment: "")
         doneButton.setTitleTextAttributes(attributes, for: .normal)
-        doneButton.customView?.isHidden = true
+
         datePicker.preferredDatePickerStyle = .wheels
+
+        fadeView.alpha = 0
+        toolBar.alpha = 0
+        datePicker.alpha = 0
+
         datePicker.isHidden = true
+        toolBar.isHidden = true
         view.isHidden = true
     }
 
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         if touch?.view != self.view {
-            self.dismiss(animated: true, completion: nil)
+            dismiss()
         }
     }
 
@@ -64,18 +71,23 @@ public class SheetViewController: UIViewController, UISheetPresentationControlle
         return vc
     }
 
-    @IBAction func didPressCancel(_ sender: Any) {
+    public func dismiss() {
         UIView.animate(withDuration: 0.2, animations: {
-            self.fadeView.alpha = 0
-        }, completion: { _ in
             self.datePickerDelegate?.didCancelSelection()
+            self.fadeView.alpha = 0
+            self.toolBar.alpha = 0
+            self.datePicker.alpha = 0
+        }, completion: { _ in
             self.dismiss(animated: true)
         })
     }
 
+    @IBAction func didPressCancel(_ sender: Any) {
+        dismiss()
+    }
+
     @IBAction func didPressDone(_ sender: Any) {
-        viewWillDisappear(true)
         datePickerDelegate?.didSelectDate(selectedDate: datePicker.date)
-        self.dismiss(animated: true)
+        dismiss()
     }
 }

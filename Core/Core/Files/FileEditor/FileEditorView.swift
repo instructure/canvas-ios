@@ -36,6 +36,7 @@ public struct FileEditorView: View {
     @State var copyright: String = ""
     @State var justification: UseJustification = .own_copyright
     @State var license: License = .cc_by
+    @State var showDatePicker = false
 
     @State var isLoading = true
     @State var isLoaded = false
@@ -127,15 +128,28 @@ public struct FileEditorView: View {
 
                 if access == .scheduled {
                     Divider()
-                    OptionalDatePicker(selection: $unlockAt, max: lockAt, initial: Clock.now.startOfDay()) {
+
+                    ButtonRow(action: pickUnlockAtDate, content: {
                         Text("Available from", bundle: .core)
-                    }
-                        .identifier("FileEditor.unlockAtButton")
+                        Spacer()
+                        if let dateValidator = unlockAt {
+                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                        } else {
+                            Text("")
+                        }
+                    })
+
                     Divider()
-                    OptionalDatePicker(selection: $lockAt, min: unlockAt, initial: Clock.now.endOfDay()) {
+
+                    ButtonRow(action: pickLockAtDate, content: {
                         Text("Available until", bundle: .core)
-                    }
-                        .identifier("FileEditor.lockAtButton")
+                        Spacer()
+                        if let dateValidator = lockAt {
+                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                        } else {
+                            Text("")
+                        }
+                    })
                 }
             }
 
@@ -226,6 +240,20 @@ public struct FileEditorView: View {
                 self.loaded(locked: folder?.locked, hidden: folder?.hidden, unlockAt: folder?.unlockAt, lockAt: folder?.lockAt)
             } }
         }
+    }
+
+    func pickUnlockAtDate() {
+        showDatePicker.toggle()
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $unlockAt))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
+    }
+
+    func pickLockAtDate() {
+        showDatePicker.toggle()
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $lockAt))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
     }
 
     func loaded(locked: Bool?, hidden: Bool?, unlockAt: Date?, lockAt: Date?) {

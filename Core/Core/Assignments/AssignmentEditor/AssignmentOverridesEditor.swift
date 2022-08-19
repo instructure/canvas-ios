@@ -24,6 +24,11 @@ struct AssignmentOverridesEditor: View {
     @Binding var overrides: [Override]
     @Binding var toRemove: Override?
 
+    @State var showDatePicker = false
+    @State var unlockAt: Date?
+    @State var lockAt: Date?
+    @State var dueAt: Date?
+
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -49,28 +54,37 @@ struct AssignmentOverridesEditor: View {
                     DisclosureIndicator()
                 })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.dueAt }, set: { set(override, \.dueAt, $0) }),
-                    initial: Clock.now.startOfDay()
-                ) {
+
+                ButtonRow(action: pickDueAtDate, content: {
                     Text("Due", bundle: .core)
-                }
+                    Spacer()
+                    if let dateValidator = dueAt {
+                        Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                    } else {
+                        Text("")
+                    }
+                })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.unlockAt }, set: { set(override, \.unlockAt, $0) }),
-                    max: override.lockAt,
-                    initial: Clock.now.startOfDay()
-                ) {
+                ButtonRow(action: pickUnlockAtDate, content: {
                     Text("Available from", bundle: .core)
-                }
+                    Spacer()
+                    if let dateValidator = unlockAt {
+                        Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                    } else {
+                        Text("")
+                    }
+                })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.lockAt }, set: { set(override, \.lockAt, $0) }),
-                    min: override.unlockAt,
-                    initial: Clock.now.endOfDay()
-                ) {
+                ButtonRow(action: pickLockAtDate, content: {
                     Text("Available until", bundle: .core)
-                }
+                    Spacer()
+                    if let dateValidator = lockAt {
+                        Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                    } else {
+                        Text("")
+                    }
+                })
+                Divider()
             }
         }
         EditorSection {
@@ -87,6 +101,27 @@ struct AssignmentOverridesEditor: View {
 
     var everyone: String {
         overrides.count <= 1 ? NSLocalizedString("Everyone", comment: "") : NSLocalizedString("Everyone else", comment: "")
+    }
+
+    func pickUnlockAtDate() {
+        showDatePicker.toggle()
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $unlockAt))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
+    }
+
+    func pickLockAtDate() {
+        showDatePicker.toggle()
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $lockAt))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
+    }
+
+    func pickDueAtDate() {
+        showDatePicker.toggle()
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $dueAt))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
     }
 
     func add() {

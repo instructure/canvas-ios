@@ -19,8 +19,8 @@
 import Foundation
 
 public class CoreDatePicker: UIDatePicker {
-    public let toolbar = UIToolbar()
     public weak var datePickerDelegate: DatePickerProtocol?
+    public let toolbar = UIToolbar()
 
     public override init(frame: CGRect) {
         super.init(frame: frame)

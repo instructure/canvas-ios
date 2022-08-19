@@ -813,6 +813,8 @@
 		CE1428C9287D98F20049C368 /* SheetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1428C8287D98F20049C368 /* SheetViewController.storyboard */; };
 		CE9F46C9287859D9002F0CDF /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F46C8287859D9002F0CDF /* CoreDatePicker.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
+		CED0D7CA28981274007E99FE /* CoreDatePickerActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0D7C928981274007E99FE /* CoreDatePickerActionSheetCard.swift */; };
+		CED0D7D228981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0D7D128981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
 		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
@@ -2211,6 +2213,8 @@
 		CE1428C8287D98F20049C368 /* SheetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SheetViewController.storyboard; sourceTree = "<group>"; };
 		CE9F46C8287859D9002F0CDF /* CoreDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePicker.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
+		CED0D7C928981274007E99FE /* CoreDatePickerActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerActionSheetCard.swift; sourceTree = "<group>"; };
+		CED0D7D128981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerGreyOutFocusOfView.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
 		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
@@ -3215,6 +3219,8 @@
 				9767F2972383B846006633CA /* TokenLabelView.swift */,
 				CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */,
 				CE1428BE287D74AF0049C368 /* SheetViewController.swift */,
+				CED0D7C928981274007E99FE /* CoreDatePickerActionSheetCard.swift */,
+				CED0D7D128981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift */,
 				CE1428C8287D98F20049C368 /* SheetViewController.storyboard */,
 			);
 			path = UIViews;
@@ -6917,6 +6923,7 @@
 				7DA260D423F72359005D2121 /* DynamicButton.swift in Sources */,
 				7DA260A323F7234C005D2121 /* IPC.swift in Sources */,
 				CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */,
+				CED0D7CA28981274007E99FE /* CoreDatePickerActionSheetCard.swift in Sources */,
 				CF43DE8527CCDBCB00015B6F /* MotionDetector.swift in Sources */,
 				7D06A2B32469B7D100D76267 /* DiscussionReplyViewController.swift in Sources */,
 				CF490F162850E2750065D242 /* DragInfo.swift in Sources */,
@@ -7346,6 +7353,7 @@
 				7DA2602623F722B3005D2121 /* LogEventListPresenter.swift in Sources */,
 				CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */,
 				7DA25FCF23F72136005D2121 /* APITab.swift in Sources */,
+				CED0D7D228981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift in Sources */,
 				7DA260D523F72359005D2121 /* DynamicLabel.swift in Sources */,
 				7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */,
 				CFC2C27827344053006CA3E0 /* ViewModelState.swift in Sources */,

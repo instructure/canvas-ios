@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="602"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1M-2M-xG4">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1M-2M-xG4">
                                 <rect key="frame" x="0.0" y="602" width="414" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="cancel" id="Kl5-MU-1Up">
@@ -36,6 +36,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" name="backgroundLightest"/>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l86-0E-iQ1" userLabel="DatePickerBackgroundView">
                                 <rect key="frame" x="0.0" y="646" width="414" height="216"/>
