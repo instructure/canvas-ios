@@ -24,7 +24,8 @@
     "FontPreview.swift",
     "Core\/Typography\/",
     "UIGestureRecognizerExtensions.swift",
-    "DocViewer\/ViewModel\/AnnotationDrag\/Gesture"
+    "DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
+    "Core\/Files\/FileUploadProgress\/View\/PreviewSupport\/"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

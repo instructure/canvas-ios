@@ -26,6 +26,7 @@ public class MockUploadManager: UploadManager {
     public var uploadWasCalled = false
     public var addWasCalled = false
     public var cancelWasCalled = false
+    public var canceledBatchID: String?
 
    public init() {
         super.init(identifier: "mock")
@@ -56,6 +57,7 @@ public class MockUploadManager: UploadManager {
 
     open override func cancel(batchID: String) {
         cancelWasCalled = true
+        canceledBatchID = batchID
     }
 
     open override func cancel(file: File) {

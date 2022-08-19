@@ -28,6 +28,7 @@ enum FileUploaderError: Error {
 
 open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
+    public static let BatchSubmissionCompletedNotification = NSNotification.Name(rawValue: "com.instructure.core.batch-submission-completed")
     public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
 
     public let identifier: String
@@ -87,6 +88,25 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             }
         } else {
             completionHandler(false)
+        }
+    }
+
+    public func retry(batchID: String) {
+        context.performAndWait {
+            let files: [File] = context.fetch(filesPredicate(batchID: batchID))
+            let nonCompletedFiles = files.filter { $0.id == nil }
+
+            if nonCompletedFiles.isEmpty {
+                // File upload was successful but submission failed, only submission should be retried.
+                if let file = files.first, case let .submission(courseID, assignmentID, comment)? = file.context {
+                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
+                }
+            } else {
+                for file in nonCompletedFiles {
+                    guard let uploadContext = file.context else { continue }
+                    upload(file: file, to: uploadContext)
+                }
+            }
         }
     }
 
@@ -316,6 +336,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
                             "assignmentID": assignmentID,
                         ])
+                    }
+                    if let batchID = file.batchID {
+                        NotificationCenter.default.post(name: Self.BatchSubmissionCompletedNotification, object: nil, userInfo: ["batchID": batchID])
                     }
                     if let userID = file.userID, let batchID = file.batchID {
                         self.delete(userID: userID, batchID: batchID, in: self.context)

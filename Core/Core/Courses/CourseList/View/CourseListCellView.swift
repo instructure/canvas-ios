@@ -35,7 +35,9 @@ struct CourseListCell: View {
                     Image.starLine.foregroundColor(.textDark)
                 icon
                     .frame(width: 20, height: 20)
-                    .padding(EdgeInsets(top: Typography.Spacings.textCellIconTopPadding, leading: Typography.Spacings.textCellIconLeadingPadding, bottom: 0, trailing: 12))
+                    .padding(EdgeInsets(top: Typography.Spacings.textCellIconTopPadding,
+                                        leading: Typography.Spacings.textCellIconLeadingPadding, bottom: 0,
+                                        trailing: Typography.Spacings.textCellIconTrailingPadding))
             }
                 .buttonStyle(PlainButtonStyle())
                 .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))

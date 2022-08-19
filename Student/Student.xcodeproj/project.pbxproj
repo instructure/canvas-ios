@@ -33,7 +33,6 @@
 		7D0E22B923A19E430075E879 /* SubmissionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E22B823A19E430075E879 /* SubmissionDetailsViewControllerTests.swift */; };
 		7D14864E230EF4AF003944A2 /* TextSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */; };
 		7D148654230F0EAF003944A2 /* SubmissionButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */; };
-		7D1D5BE2249184B4009EA317 /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D5BE1249184B4009EA317 /* confetti.json */; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D38A7D324CF5FEF00A4373E /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D38A7D224CF5FEF00A4373E /* QuizWebViewController.swift */; };
@@ -135,7 +134,6 @@
 		9F61B52C205985A5009C0B13 /* StudentAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* StudentAppDelegate+Helm.swift */; };
 		B11028BA23CFC92A00FFAB7E /* SubmissionCommentsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11028B923CFC92A00FFAB7E /* SubmissionCommentsViewControllerTests.swift */; };
 		B175D62223A969F600F8E696 /* IPadAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62123A969F600F8E696 /* IPadAssignmentsTests.swift */; };
-		B1B4E992252641C300B0DDD8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B1B4E991252641C300B0DDD8 /* Lottie */; };
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
@@ -539,7 +537,6 @@
 		7D0E22B823A19E430075E879 /* SubmissionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionTests.swift; sourceTree = "<group>"; };
 		7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonTests.swift; sourceTree = "<group>"; };
-		7D1D5BE1249184B4009EA317 /* confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
 		7D1D7E04213743D300F7CCFE /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D349CDD21430EB2004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349CDE21430EB2004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -816,7 +813,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1B4E992252641C300B0DDD8 /* Lottie in Frameworks */,
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
@@ -1148,7 +1144,6 @@
 		7DCF0EDC22F8A050000AACCE /* SubmissionButton */ = {
 			isa = PBXGroup;
 			children = (
-				7D1D5BE1249184B4009EA317 /* confetti.json */,
 				7DCF0EDA22F8A050000AACCE /* SubmissionButtonAlertView.swift */,
 				7DCF0EDB22F8A050000AACCE /* SubmissionButtonPresenter.swift */,
 			);
@@ -2030,7 +2025,6 @@
 			);
 			name = Student;
 			packageProductDependencies = (
-				B1B4E991252641C300B0DDD8 /* Lottie */,
 			);
 			productName = Canvas;
 			productReference = 492704731CF4AF7100C631C6 /* Student.app */;
@@ -2262,7 +2256,6 @@
 			);
 			mainGroup = 4927046A1CF4AF7100C631C6;
 			packageReferences = (
-				B1B4E990252641C300B0DDD8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 492704741CF4AF7100C631C6 /* Products */;
@@ -2306,7 +2299,6 @@
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
 				7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */,
-				7D1D5BE2249184B4009EA317 /* confetti.json in Resources */,
 				7DCF0FBF22F8A8D7000AACCE /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DCF0FCD22F8A8D7000AACCE /* TextSubmissionViewController.storyboard in Resources */,
 			);
@@ -3803,14 +3795,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B1B4E990252641C300B0DDD8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.8;
-			};
-		};
 		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -3822,11 +3806,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B1B4E991252641C300B0DDD8 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1B4E990252641C300B0DDD8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};	
 		CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
