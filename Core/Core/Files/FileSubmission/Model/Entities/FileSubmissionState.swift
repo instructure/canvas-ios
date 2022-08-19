@@ -32,7 +32,7 @@ extension FileSubmission {
          States `failedSubmission` and `submitted` are not valid results of this initializer because these states
          are the results of the submission API call and that happens after file uploads were successful.
          */
-        public init(_ itemStates: [FileSubmissionItem.State]) {
+        public init(_ itemStates: [FileUploadItem.State]) {
             if itemStates.finishedCount == itemStates.count {
                 if itemStates.failedCount == 0 {
                     self = .uploading(progress: 1)
@@ -48,7 +48,7 @@ extension FileSubmission {
     }
 }
 
-private extension Array where Element == FileSubmissionItem.State {
+private extension Array where Element == FileUploadItem.State {
 
     var finishedCount: Int {
         reduce(into: 0) { result, state in

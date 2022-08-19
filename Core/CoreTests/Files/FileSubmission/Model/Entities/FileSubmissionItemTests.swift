@@ -22,7 +22,7 @@ import Core
 class FileSubmissionItemTests: CoreTestCase {
 
     func testCalculatedProgress() {
-        let testee: FileSubmissionItem = databaseClient.insert()
+        let testee: FileUploadItem = databaseClient.insert()
 
         testee.bytesUploaded = -1
         testee.bytesToUpload = 100
@@ -54,19 +54,19 @@ class FileSubmissionItemTests: CoreTestCase {
     }
 
     func testWaitingState() {
-        let testee: FileSubmissionItem = databaseClient.insert()
+        let testee: FileUploadItem = databaseClient.insert()
         XCTAssertEqual(testee.state, .waiting)
     }
 
     func testUploadingState() {
-        let testee: FileSubmissionItem = databaseClient.insert()
+        let testee: FileUploadItem = databaseClient.insert()
         testee.bytesToUpload = 100
         testee.bytesUploaded = 50
         XCTAssertEqual(testee.state, .uploading(progress: 0.5))
     }
 
     func testErrorState() {
-        let testee: FileSubmissionItem = databaseClient.insert()
+        let testee: FileUploadItem = databaseClient.insert()
         testee.bytesToUpload = 100
         testee.bytesUploaded = 50
         testee.uploadError = "error"
@@ -74,14 +74,14 @@ class FileSubmissionItemTests: CoreTestCase {
     }
 
     func testUploadingAtEndState() {
-        let testee: FileSubmissionItem = databaseClient.insert()
+        let testee: FileUploadItem = databaseClient.insert()
         testee.bytesToUpload = 100
         testee.bytesUploaded = 100
         XCTAssertEqual(testee.state, .uploading(progress: 1.0))
     }
 
     func testUploadingFinishedState() {
-        let testee: FileSubmissionItem = databaseClient.insert()
+        let testee: FileUploadItem = databaseClient.insert()
         testee.bytesToUpload = 100
         testee.bytesUploaded = 100
         testee.apiID = "apiID"

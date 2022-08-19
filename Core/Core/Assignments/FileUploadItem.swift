@@ -21,7 +21,7 @@ import CoreData
 /**
  This entity contains the information of a single file that is part of a file submission.
  */
-public final class FileSubmissionItem: NSManagedObject {
+public final class FileUploadItem: NSManagedObject {
     /** The url pointing to the file we want to upload on the user's device. */
     @NSManaged public var localFileURL: URL
     /** The file ID assigned by the API to this file after the file has been uploaded. Nil means that the file is yet to be uploaded. */
@@ -34,7 +34,7 @@ public final class FileSubmissionItem: NSManagedObject {
     @NSManaged public var uploadError: String?
 }
 
-extension FileSubmissionItem {
+extension FileUploadItem {
 
     public enum State: Equatable {
         case waiting

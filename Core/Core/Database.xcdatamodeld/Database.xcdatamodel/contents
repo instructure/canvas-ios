@@ -436,9 +436,9 @@
         <attribute name="courseID" attributeType="String"/>
         <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="submissionError" optional="YES" attributeType="String"/>
-        <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="FileSubmissionItem" inverseName="fileSubmission" inverseEntity="FileSubmissionItem"/>
+        <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="FileUploadItem" inverseName="fileSubmission" inverseEntity="FileUploadItem"/>
     </entity>
-    <entity name="FileSubmissionItem" representedClassName="Core.FileSubmissionItem" syncable="YES">
+    <entity name="FileUploadItem" representedClassName="Core.FileUploadItem" syncable="YES">
         <attribute name="apiID" optional="YES" attributeType="String"/>
         <attribute name="bytesToUpload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bytesUploaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -995,6 +995,7 @@
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="688"/>
         <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="119"/>
+        <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="119"/>
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="328"/>
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="163"/>
@@ -1038,6 +1039,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="28"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="FileSubmissionItem" positionX="-540" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

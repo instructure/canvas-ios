@@ -34,7 +34,7 @@ class FileSubmissionTests: CoreTestCase {
     }
 
     func testStateOfFiles() {
-        let file: FileSubmissionItem = databaseClient.insert()
+        let file: FileUploadItem = databaseClient.insert()
         file.bytesToUpload = 10
         file.bytesUploaded = 5
         let testee: FileSubmission = databaseClient.insert()
@@ -43,9 +43,9 @@ class FileSubmissionTests: CoreTestCase {
     }
 
     func testTotalSize() {
-        let file1: FileSubmissionItem = databaseClient.insert()
+        let file1: FileUploadItem = databaseClient.insert()
         file1.bytesToUpload = 10
-        let file2: FileSubmissionItem = databaseClient.insert()
+        let file2: FileUploadItem = databaseClient.insert()
         file2.bytesToUpload = 22
         let testee: FileSubmission = databaseClient.insert()
         testee.files = Set([file1, file2])

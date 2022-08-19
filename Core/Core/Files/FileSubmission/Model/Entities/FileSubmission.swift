@@ -27,7 +27,7 @@ public final class FileSubmission: NSManagedObject {
     @NSManaged public var assignmentID: String
     /** The user entered comment for the submission. **/
     @NSManaged public var comment: String?
-    @NSManaged public var files: Set<FileSubmissionItem>
+    @NSManaged public var files: Set<FileUploadItem>
     /** The description of the error happened during submission. */
     @NSManaged public var submissionError: String?
     @NSManaged public var isSubmitted: Bool
