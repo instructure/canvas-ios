@@ -56,7 +56,7 @@ public struct DashboardCardView: View {
                     CircleRefresh { endRefreshing in
                         refresh(force: true, onComplete: endRefreshing)
                     }
-                    fileUploadNotificationCard()
+                    fileUploadNotificationCards()
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
                 .padding(.horizontal, verticalSpacing)
@@ -110,7 +110,7 @@ public struct DashboardCardView: View {
         }
     }
 
-    @ViewBuilder func fileUploadNotificationCard() -> some View {
+    @ViewBuilder func fileUploadNotificationCards() -> some View {
         ForEach(fileUploadNotificationCardViewModel.fileUploads, id: \.id) { viewModel in
             FileUploadNotificationCard(viewModel: viewModel)
                 .frame(maxWidth: .infinity)
