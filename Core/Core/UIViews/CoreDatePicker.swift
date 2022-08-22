@@ -58,7 +58,7 @@ public class CoreDatePicker: UIDatePicker {
         datePickerDelegate?.didSelectDate(selectedDate: self.date)
     }
 
-    @objc func cancelDatePicker() {
+    @objc public func cancelDatePicker() {
         datePickerDelegate?.didCancelSelection()
     }
 }

@@ -24,7 +24,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var titleLabel: DynamicTextField!
     @IBOutlet weak var dateTitleLabel: DynamicLabel!
     @IBOutlet weak var dateTextField: DynamicTextField!
-    @IBOutlet weak var selectDateButton: UIButton!
+    @IBOutlet weak var reminderDatePicker: UIButton!
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var courseTitleLabel: DynamicLabel!
     @IBOutlet weak var courseSelectionLabel: DynamicLabel!
@@ -40,6 +40,10 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         guard let c = selectedCourse else { return NSLocalizedString("None", bundle: .core, comment: "")  }
         return c.name
     }
+    var formattedDate: String {
+        DateFormatter.localizedString(from: selectedDate, dateStyle: .medium, timeStyle: .short)
+    }
+
     var selectedCourse: Course?
     var plannables: Store<GetPlannables>?
     private var keyboardListener: KeyboardTransitioning!
@@ -66,7 +70,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         dateTextField.text = datePicker.dateFormatter(selectedDate: selectedDate)
         dateTextField.accessibilityElementsHidden = true
         dateTextField.textColor = .textDark
-        selectDateButton.accessibilityLabel = NSLocalizedString("Date", bundle: .core, comment: "")
+        reminderDatePicker.accessibilityLabel = NSLocalizedString("Date", bundle: .core, comment: "")
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDark
         courseSelectionLabel.accessibilityElementsHidden = true

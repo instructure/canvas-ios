@@ -79,6 +79,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
 
         controller.reminderDatePicker.date = prev.addDays(1)
         controller.reminderDatePicker.sendActions(for: .valueChanged)
+        controller.reminderDatePicker.didPickDate()
         notificationManager.getReminder("1") { request in
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
