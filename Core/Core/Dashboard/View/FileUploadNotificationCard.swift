@@ -21,67 +21,75 @@ import SwiftUI
 struct FileUploadNotificationCard: View {
     // MARK: - Dependencies
 
-    @ObservedObject private var viewModel: FileUploadNotificationCardViewModel
+    @ObservedObject private var viewModel: FileUploadNotificationCardItemViewModel
 
     // MARK: - Init
 
-    init(viewModel: FileUploadNotificationCardViewModel) {
+    init(viewModel: FileUploadNotificationCardItemViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
         HStack(spacing: 16) {
-            Color.fire
+            Color.electric
                 .overlay(
                     Image.share
                         .foregroundColor(Color.backgroundLightest)
                         .frame(width: 24, height: 24, alignment: .center)
                 )
                 .frame(width: 48, alignment: .center)
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 8) {
-                switch viewModel.state {
-                case .uploading(let progress):
-                    Text("Uploading submission")
-                        .font(.regular16)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    ProgressView(value: progress)
-                        .foregroundColor(Color(Brand.shared.primary))
-                        .background(Color(Brand.shared.primary).opacity(0.2))
-                case .done:
-                    Text("Success ✅")
-                        .font(.regular16)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
+                Text("Uploading submission")
+                    .font(.regular16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(viewModel.assignmentName)
+                    .font(.regular14)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                ProgressView(value: viewModel.progress)
+                    .foregroundColor(Color(Brand.shared.primary))
+                    .background(Color(Brand.shared.primary).opacity(0.2))
             }
+            .accessibilityElement(children: .combine)
             .padding(.top, 12)
             .padding(.bottom, 12)
             .padding(.trailing, 12)
         }
         .frame(minHeight: 58)
         .border(
-            Color.fire,
+            Color.electric,
             width: 2
         )
         .cornerRadius(4)
-        
+        .onTapGesture {
+            viewModel.cardDidTap()
+        }
     }
 }
 
 struct FileUploadNotificationCard_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = FileUploadNotificationCardViewModel()
+        let viewModel = FileUploadNotificationCardItemViewModel(
+            id: "1",
+            assignmentName: "Test assignment",
+            progress: 0.65,
+            cardDidTap: {}
+        )
 
         FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
             .environment(\.sizeCategory, .extraSmall)
+
         FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
+
         FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
             .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
+
         FileUploadNotificationCard(viewModel: viewModel)
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)

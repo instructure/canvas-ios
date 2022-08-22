@@ -111,8 +111,8 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder func fileUploadNotificationCard() -> some View {
-        if fileUploadNotificationCardViewModel.isVisible {
-            FileUploadNotificationCard(viewModel: fileUploadNotificationCardViewModel)
+        ForEach(fileUploadNotificationCardViewModel.fileUploads, id: \.id) { viewModel in
+            FileUploadNotificationCard(viewModel: viewModel)
                 .frame(maxWidth: .infinity)
                 .padding(.top, verticalSpacing)
                 .transition(.move(edge: .top))
@@ -199,8 +199,7 @@ public struct DashboardCardView: View {
                         .accessibility(addTraits: .isHeader)
                     Spacer()
                 }
-                .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2))
-            {
+                .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)) {
                 let filteredGroups = activeGroups
                 ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.course)
