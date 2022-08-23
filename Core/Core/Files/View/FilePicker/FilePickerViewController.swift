@@ -139,15 +139,15 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
 
     func updateProgressBar() {
         let total: Int = files.reduce(0, { $0 + $1.size })
-        let sent = files.reduce(0, { $0 + $1.bytesSent })
-        let failed = files.first { $0.uploadError != nil } != nil
+        let sent: Int = files.reduce(0, { $0 + $1.bytesSent })
+        let failed: Bool = files.first { $0.uploadError != nil } != nil
         guard total > 0 && sent > 0 && !failed else {
             hideProgressBar()
             return
         }
         showProgressBar()
-        let progress = Float(sent) / Float(total)
-        let format = NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "")
+        let progress: Float = Float(sent) / Float(total)
+        let format: String = NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "")
         progressView.text = String.localizedStringWithFormat(format, sent.humanReadableFileSize, total.humanReadableFileSize)
         progressView.progress = progress
     }
