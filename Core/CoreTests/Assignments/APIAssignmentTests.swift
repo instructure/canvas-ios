@@ -63,6 +63,7 @@ class APIAssignmentRequestableTests: XCTestCase {
             grading_type: .percent,
             lock_at: nil,
             name: nil,
+            only_visible_to_overrides: nil,
             points_possible: 10,
             published: nil,
             unlock_at: nil
