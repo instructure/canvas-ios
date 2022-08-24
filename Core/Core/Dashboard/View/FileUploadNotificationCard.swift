@@ -51,8 +51,7 @@ struct FileUploadNotificationCard: View {
                     .background(Color(Brand.shared.primary).opacity(0.2))
             }
             .accessibilityElement(children: .combine)
-            .padding(.top, 12)
-            .padding(.bottom, 12)
+            .padding(.vertical, 12)
             .padding(.trailing, 12)
         }
         .frame(minHeight: 58)
