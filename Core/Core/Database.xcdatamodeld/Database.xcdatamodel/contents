@@ -59,6 +59,7 @@
         <attribute name="moderatedGrading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="needsGradingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="onlyVisibleToOverrides" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="published" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>

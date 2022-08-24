@@ -28,17 +28,14 @@ struct AssignmentOverridesEditor: View {
     @Environment(\.viewController) var controller
 
     var body: some View {
-        let everyonesCount = overrides.filter { $0.isEveryone } .count
         ForEach(overrides) { override in
             EditorSection(label: HStack {
                 Text("Assign", bundle: .core)
                 Spacer()
-                if !override.isEveryone || everyonesCount != 1 {
-                    Button(action: { toRemove = override }, label: {
-                        Text("Remove", bundle: .core)
-                            .foregroundColor(Color(Brand.shared.linkColor))
-                    })
-                }
+                Button(action: { toRemove = override }, label: {
+                    Text("Remove", bundle: .core)
+                        .foregroundColor(Color(Brand.shared.linkColor))
+                })
             }) {
                 ButtonRow(action: { pickAssignee(for: override) }, content: {
                     Text("Assign to", bundle: .core)
@@ -147,17 +144,18 @@ struct AssignmentOverridesEditor: View {
             )
         } .sorted { $0.id < $1.id }
         // Everyone
-        let base = assignment.allDates.first { $0.base }
-        overrides.append(Override(
-            dueAt: base?.dueAt,
-            id: "base",
-            groupID: nil,
-            lockAt: base?.lockAt,
-            sectionID: nil,
-            studentIDs: nil,
-            title: nil,
-            unlockAt: base?.unlockAt
-        ))
+        if assignment.onlyVisibleToOverrides == false, let base = assignment.allDates.first(where: { $0.base }) {
+            overrides.append(Override(
+                dueAt: base.dueAt,
+                id: "base",
+                groupID: nil,
+                lockAt: base.lockAt,
+                sectionID: nil,
+                studentIDs: nil,
+                title: nil,
+                unlockAt: base.unlockAt
+            ))
+        }
         return overrides
     }
 
