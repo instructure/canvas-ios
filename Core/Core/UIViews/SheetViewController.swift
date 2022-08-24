@@ -24,8 +24,19 @@ public class SheetViewController: UIViewController, UISheetPresentationControlle
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+
+    public var minDate: Date? = nil
+    public var maxDate: Date? = nil
+    public var currentDate = Date()
+    
     public weak var datePickerDelegate: DatePickerProtocol?
     let attributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17), NSAttributedString.Key.foregroundColor: Brand.shared.primary]
+
+    public override func viewWillAppear(_ animated: Bool) {
+        datePicker.minimumDate = minDate
+        datePicker.maximumDate = maxDate
+        datePicker.date = currentDate
+    }
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
