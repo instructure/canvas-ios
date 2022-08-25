@@ -1,0 +1,14 @@
+<table>
+<tr><th>Before</th><th>After</th></tr>
+<tr>
+<td><img src="url"></td>
+<td><img src="url"></td>
+</tr>
+</table>
+
+
+Things to check:
+
+- [] Manual testing
+- [] Follow-up e2e test ticket created
+- [] A11y checked
