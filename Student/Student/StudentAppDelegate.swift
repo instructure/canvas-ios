@@ -86,13 +86,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         updateInterfaceStyle(for: window)
 
         CoreWebView.keepCookieAlive(for: environment)
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
 
-        Analytics.setUserID(session.userID)
-        Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
+//        Analytics.setUserID(session.userID)
+//        Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         NotificationManager.shared.subscribeToPushChannel()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
@@ -180,7 +176,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }
@@ -223,7 +219,8 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
+        // Google Analytics needs to be disabled for now
+//        Analytics.logEvent(name, parameters: parameters)
     }
 }
 
@@ -351,7 +348,11 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func openExternalURL(_ url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        openExternalURLinSafari(url)
+    }
+
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
     }
 
     func userDidLogin(session: LoginSession) {
@@ -367,7 +368,6 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
-        NativeLoginManager.shared().logout()
     }
 
     func userDidLogout(session: LoginSession) {

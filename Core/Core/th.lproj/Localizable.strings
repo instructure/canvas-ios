@@ -200,6 +200,9 @@
 "Anyone" = "ทุกคน";
 
 /* No comment provided by engineer. */
+"Appearance" = "ลักษณะภายนอก";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "ความพร้อมตามนัดหมาย";
 
 /* No comment provided by engineer. */
@@ -374,6 +377,9 @@
 "Canvas Guides" = "คู่มือ Canvas";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas พร้อมใช้งานในธีมมืดแล้ว";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "ล็อกอินไปยัง Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "เลือกภาพโพรไฟล์";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "เลือกลักษณะภายนอกสำหรับแอพของคุณ!\nคุณสามารถแก้ไขได้ภายหลังในเมนูค่าปรับตั้ง";
 
 /* No comment provided by engineer. */
 "Clear Course" = "ล้างบทเรียน";
@@ -606,6 +615,15 @@
 
 /* No comment provided by engineer. */
 "Daily" = "รายวัน";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "โหมดมืด";
+
+/* No comment provided by engineer. */
+"Dark theme" = "ธีมมืด";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "ธีมมืด";
 
 /* No comment provided by engineer. */
 "Dashboard" = "แผงข้อมูล";
@@ -1132,6 +1150,12 @@
 /* No comment provided by engineer. */
 "Light Blue" = "ฟ้า";
 
+/* No comment provided by engineer. */
+"Light theme" = "ธีมสว่าง";
+
+/* No comment provided by engineer. */
+"Light Theme" = "ธีมสว่าง";
+
 /* like action */
 "Like" = "กดไลค์";
 
@@ -1275,6 +1299,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "หน่วยการเรียน";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "หมายเหตุกำกับการเคลื่อนย้าย";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "วันครบกำหนดหลายรายการ";
@@ -1980,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "เนื้อหาหลักสูตร";
+
+/* No comment provided by engineer. */
+"System settings" = "ค่าปรับตั้งระบบ";
+
+/* No comment provided by engineer. */
+"System Settings" = "ค่าปรับตั้งระบบ";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

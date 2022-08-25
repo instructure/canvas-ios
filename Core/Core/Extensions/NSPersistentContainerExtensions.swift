@@ -32,18 +32,34 @@ extension NSPersistentContainer {
 
         container.loadPersistentStores { _, error in
             guard error == nil else {
-                container.destroy() // ignore migration conflicts
-                container.loadPersistentStores { _, error in
-                    if let error = error {
-                        fatalError(error.localizedDescription)
-                    }
-                    container.setUp()
-                }
+                destroyAndReCreatePersistentStore(in: container)
                 return
             }
             container.setUp()
         }
         return container
+    }
+
+    private static func destroyAndReCreatePersistentStore(in container: NSPersistentContainer) {
+        container.destroy() // ignore migration conflicts
+        container.loadPersistentStores { _, error in
+            guard error == nil else {
+                destroyAndCreateInMemoryStore(in: container)
+                return
+            }
+            container.setUp()
+        }
+    }
+
+    private static func destroyAndCreateInMemoryStore(in container: NSPersistentContainer) {
+        container.destroy() // ignore migration conflicts
+        container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))]
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+            container.setUp()
+        }
     }
 
     func setUp() {

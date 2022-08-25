@@ -58,7 +58,7 @@ class StudentViewCellViewModel: CourseDetailsCellViewModel {
             }
 
             if let loginDelegate = self?.env.loginDelegate {
-                loginDelegate.actAsStudentViewStudent(studentViewStudentID: user.id.rawValue)
+                loginDelegate.actAsStudentViewStudent(studentViewStudent: user)
             }
         }
     }

@@ -200,6 +200,9 @@
 "Anyone" = "Hver sem er";
 
 /* No comment provided by engineer. */
+"Appearance" = "Útlit";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tiltækir fundir";
 
 /* No comment provided by engineer. */
@@ -374,6 +377,9 @@
 "Canvas Guides" = "Canvas leiðarvísar";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas er nú í boði með dökku þema";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas innskráning";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Veldu upplýsingamynd";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Veldu útlit smáforritsins!\nÞú getur breytt því seinna í stillingarvalmyndinni.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Hreinsa námskeið";
@@ -606,6 +615,15 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Daglega";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Dökk stilling";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Dökkt þema";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Dökkt þema";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Skjáborð";
@@ -1132,6 +1150,12 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Ljósblár";
 
+/* No comment provided by engineer. */
+"Light theme" = "Ljóst þema";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Ljóst þema";
+
 /* like action */
 "Like" = "líka við";
 
@@ -1275,6 +1299,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Námsefni";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Færa athugasemdir";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Margir skiladagar";
@@ -1980,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Innihald kennsluáætlunar";
+
+/* No comment provided by engineer. */
+"System settings" = "Kerfisstillingar";
+
+/* No comment provided by engineer. */
+"System Settings" = "Kerfisstillingar";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Aðstoðarkennari";

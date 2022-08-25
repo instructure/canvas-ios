@@ -28,16 +28,18 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     @Published public private(set) var selectCourseButtonTitle: Text = selectCourseText
     @Published public private(set) var selectAssignmentButtonTitle: Text = selectAssignmentText
     @Published public private(set) var isProcessingFiles: Bool = true
-    @Published public private(set) var previews: [URL] = []
+    @Published public private(set) var previews: [AttachmentPreviewViewModel] = []
+    public private(set) lazy var showUploadStateView: AnyPublisher<FileProgressListViewModel, Never> = showUploadStateViewSubject.eraseToAnyPublisher()
+
     public var isUserLoggedIn: Bool { LoginSession.mostRecent != nil }
     public let coursePickerViewModel: CoursePickerViewModel
     public let assignmentPickerViewModel = AssignmentPickerViewModel()
 
     private var selectedFileURLs: [URL] = []
     private let submissionService: AttachmentSubmissionService
-    private var assignmentCopyServiceStateSubscription: AnyCancellable?
     private let shareCompleted: () -> Void
     private var subscriptions: Set<AnyCancellable> = []
+    private let showUploadStateViewSubject = PassthroughSubject<FileProgressListViewModel, Never>()
 
     #if DEBUG
 
@@ -64,16 +66,23 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
         refreshAssignmentListOnCourseSelection()
         updateAssignmentNameOnAssignmentSelection()
         updateSubmitButtonStateOnAssignmentChange()
+        forwardSharedFileExtensionsToAssignmentPicker(from: attachmentCopyService)
         attachmentCopyService.startCopying()
     }
 
     public func submitTapped() {
         Analytics.shared.logEvent("submit_tapped")
+        let batchID = "assignment-\(assignmentPickerViewModel.selectedAssignment!.id)"
         submissionService.submit(urls: selectedFileURLs,
                                  courseID: coursePickerViewModel.selectedCourse!.id,
                                  assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
-                                 comment: comment,
-                                 callback: shareCompleted)
+                                 batchID: batchID,
+                                 comment: comment)
+        let fileProgressViewModel = FileProgressListViewModel(batchID: batchID, dismiss: { [shareCompleted] in
+            shareCompleted()
+        })
+        fileProgressViewModel.delegate = submissionService
+        showUploadStateViewSubject.send(fileProgressViewModel)
     }
 
     public func cancelTapped() {
@@ -82,7 +91,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     }
 
     private func subscribeToAssignmentCopyServiceUpdates(_ attachmentCopyService: AttachmentCopyService) {
-        assignmentCopyServiceStateSubscription = attachmentCopyService.state.sink { [weak self] state in
+        attachmentCopyService.state.sink { [weak self] state in
             guard let self = self else { return }
 
             self.isProcessingFiles = {
@@ -92,15 +101,26 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
                     return true
                 }
             }()
-            self.previews = {
-                if case .completed(let result) = state, case .success(let data) = result {
-                    return data
+            let fileURLs: [URL] = {
+                if case .completed(let result) = state, case .success(let urls) = result {
+                    return urls
                 } else {
                     return []
                 }
             }()
-            self.selectedFileURLs = self.previews
-        }
+            self.previews = fileURLs.map { AttachmentPreviewViewModel(previewProvider: FilePreviewProvider(url: $0)) }
+            self.selectedFileURLs = fileURLs
+        }.store(in: &subscriptions)
+    }
+
+    private func forwardSharedFileExtensionsToAssignmentPicker(from attachmentCopyService: AttachmentCopyService) {
+        attachmentCopyService.state
+            .compactMap { state -> Set<String>? in
+                guard case .completed(let result) = state, case .success(let attachments) = result else { return nil }
+                return attachments.pathExtensions
+            }
+            .subscribe(assignmentPickerViewModel.sharedFileExtensions)
+            .store(in: &subscriptions)
     }
 
     private func updateCourseNameOnCourseSelection() {

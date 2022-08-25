@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Add recipients";
 
-/* No comment provided by engineer. */
-"All" = "All";
-
 /* Button to select all members of a group */
 "All members" = "All members";
 
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Choose Video";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Clear filter";
 
 /* No comment provided by engineer. */
 "Close" = "Close";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Files (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Filter";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Filter by:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Finished downloading";

@@ -200,6 +200,9 @@
 "Anyone" = "Tous";
 
 /* No comment provided by engineer. */
+"Appearance" = "Apparence";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilité de rendez-vous";
 
 /* No comment provided by engineer. */
@@ -374,6 +377,9 @@
 "Canvas Guides" = "Guides de Canvas";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas est désormais disponible en thème sombre";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Connexion à Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Choisir une photo de profil";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Choisissez l'apparence de votre application!\nVous pouvez la changer plus tard dans le menu des paramètres";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Effacer le cours";
@@ -606,6 +615,15 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Tous les jours";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Mode sombre";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Thème sombre";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Thème sombre";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Tableau de bord";
@@ -1132,6 +1150,12 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Bleu clair";
 
+/* No comment provided by engineer. */
+"Light theme" = "Thème clair";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Thème clair";
+
 /* like action */
 "Like" = "J’aime";
 
@@ -1275,6 +1299,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modules";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Déplacer l'annotation";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Dates limites multiples";
@@ -1980,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Contenu du programme";
+
+/* No comment provided by engineer. */
+"System settings" = "Paramètres du système";
+
+/* No comment provided by engineer. */
+"System Settings" = "Réglages du système";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Instructeur-assistant";

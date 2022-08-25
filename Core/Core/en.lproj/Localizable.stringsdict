@@ -2,6 +2,54 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<key>other</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Please use %2$@ file extension.</string>
+			<key>other</key>
+			<string>Please use %2$@ file extensions.</string>
+		</dict>
+	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<key>other</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+		</dict>
+	</dict>
 	<key>show_%d_missing_items</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

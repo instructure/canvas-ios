@@ -200,6 +200,9 @@
 "Anyone" = "Nenpòt";
 
 /* No comment provided by engineer. */
+"Appearance" = "Aparans";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilite Randevou";
 
 /* No comment provided by engineer. */
@@ -374,6 +377,9 @@
 "Canvas Guides" = "Gid Canvas";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas disponib kounye a an mòd sonm";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Koneksyon Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Chwazi Foto Pwofil";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Chwazi aparans app ou a!\nOu ka chanje li apre nan meni paramèt la.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Netwaye Kou";
@@ -606,6 +615,15 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Chak jou";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Mòd Fonse";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Tèm fonse";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Tèm Sonm";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Tablo";
@@ -1132,6 +1150,12 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Limyè Ble";
 
+/* No comment provided by engineer. */
+"Light theme" = "Tèm klere";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Tèm Klè";
+
 /* like action */
 "Like" = "Jèm";
 
@@ -1275,6 +1299,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modil";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Deplase Anotasyon";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Plizyè Delè";
@@ -1980,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Kontni pwogram";
+
+/* No comment provided by engineer. */
+"System settings" = "Paramèt sistèm";
+
+/* No comment provided by engineer. */
+"System Settings" = "Paramèt Sistèm";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

@@ -45,10 +45,11 @@ public struct CircleProgress: View {
     public var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.borderLight, lineWidth: thickness)
-            if progress != nil {
+                .stroke(Color.accentColor, lineWidth: thickness)
+                .opacity(0.2)
+            if let progress = progress {
                 Circle()
-                    .trim(from: 0, to: progress!)
+                    .trim(from: 0, to: progress)
                     .stroke(Color.accentColor, lineWidth: thickness)
                     .rotationEffect(Angle(radians: -0.5 * .pi))
             } else {

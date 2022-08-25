@@ -28,6 +28,7 @@ public struct AssignmentPickerListRequest: APIGraphQLRequestable {
               nodes {
                 name
                 _id
+                allowedExtensions
                 submissionTypes
                 lockInfo {
                   isLocked

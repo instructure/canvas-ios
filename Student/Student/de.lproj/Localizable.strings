@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Empfänger hinzufügen";
 
-/* No comment provided by engineer. */
-"All" = "Alle";
-
 /* Button to select all members of a group */
 "All members" = "Alle Mitglieder";
 
@@ -217,10 +214,6 @@
 
 /* Title of the new announcement view */
 "Announcement" = "Ankündigung";
-
-/* Announcements title
-   Title for the announcements view controller */
-"Announcements" = "Ankündigungen";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -363,9 +356,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Video wählen";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Filter löschen";
 
 /* No comment provided by engineer. */
 "Close" = "Schließen";
@@ -634,12 +624,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Dateien (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Filter";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Filtern nach:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Download abgeschlossen";

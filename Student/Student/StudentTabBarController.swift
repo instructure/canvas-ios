@@ -45,38 +45,40 @@ class StudentTabBarController: UITabBarController {
     }
 
     func dashboardTab() -> UIViewController {
-        let split: HelmSplitViewController
+        let result: UIViewController
         let tabBarTitle: String
         let tabBarImage: UIImage
         let tabBarImageSelected: UIImage?
 
         if AppEnvironment.shared.k5.isK5Enabled {
-            let primary = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
+            let dashboard = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
             // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in HelmNavigationController.
-            primary.interactivePopGestureRecognizer?.isEnabled = false
-            let secondary = HelmNavigationController(rootViewController: EmptyViewController())
-            split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
+            dashboard.interactivePopGestureRecognizer?.isEnabled = false
+            result = dashboard
+
             tabBarTitle = NSLocalizedString("Homeroom", comment: "Homeroom tab title")
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
-            split = HelmSplitViewController()
+            let split = HelmSplitViewController()
+            split.preferredDisplayMode = .oneBesideSecondary
             split.viewControllers = [
                 HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false))),
                 HelmNavigationController(rootViewController: EmptyViewController()),
             ]
+            split.masterNavigationController?.delegate = split
+            result = split
+
             tabBarTitle = NSLocalizedString("Dashboard", comment: "dashboard page title")
             tabBarImage = .dashboardTab
             tabBarImageSelected = .dashboardTabActive
         }
 
-        split.masterNavigationController?.delegate = split
-        split.tabBarItem.title = tabBarTitle
-        split.tabBarItem.image = tabBarImage
-        split.tabBarItem.selectedImage = tabBarImageSelected
-        split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        split.preferredDisplayMode = .oneBesideSecondary
-        return split
+        result.tabBarItem.title = tabBarTitle
+        result.tabBarItem.image = tabBarImage
+        result.tabBarItem.selectedImage = tabBarImageSelected
+        result.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
+        return result
     }
 
     func calendarTab() -> UIViewController {

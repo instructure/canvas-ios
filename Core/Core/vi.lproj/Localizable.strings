@@ -200,6 +200,9 @@
 "Anyone" = "Bất Kỳ Ai";
 
 /* No comment provided by engineer. */
+"Appearance" = "Ngoại Hình";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Độ Khả Dụng Cuộc Họp Theo Lịch";
 
 /* No comment provided by engineer. */
@@ -374,6 +377,9 @@
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas hiện nay đã có sẵn ở chủ đề tối";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Thông Tin Đăng Nhập Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Chọn Hình Ảnh Hồ Sơ";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Chọn giao diện ứng dụng của bạn!\nBạn có thể thay đổi giao diện sau trong menu cài đặt.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Xóa Khóa Học";
@@ -606,6 +615,15 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Hằng Ngày";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Chế Độ Tối";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Chủ đề tối";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Chủ Đề Tối";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Bảng Điều Khiển";
@@ -1132,6 +1150,12 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Xanh Dương Nhạt";
 
+/* No comment provided by engineer. */
+"Light theme" = "Chủ đề sáng";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Chủ Đề Sáng";
+
 /* like action */
 "Like" = "Thích";
 
@@ -1275,6 +1299,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Học Phần";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Di Chuyển Chú Thích";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Nhiều Ngày Đến Hạn";
@@ -1980,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Nội dung chương trình học";
+
+/* No comment provided by engineer. */
+"System settings" = "Cài đặt hệ thống";
+
+/* No comment provided by engineer. */
+"System Settings" = "Cài Đặt Hệ Thống";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Trợ Giảng";

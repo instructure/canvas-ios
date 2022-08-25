@@ -49,7 +49,8 @@ public class Analytics: NSObject {
         var defaults = SessionDefaults(sessionID: session.uniqueID)
         let tokenExpires = session.expiresAt != nil
         if defaults.tokenExpires == nil || defaults.tokenExpires != tokenExpires {
-            tokenExpires ? logEvent("auth_expiring_token") : logEvent("auth_forever_token")
+            let event = tokenExpires ? "auth_expiring_token" : "auth_forever_token"
+            logEvent(event)
             defaults.tokenExpires = tokenExpires
         }
     }

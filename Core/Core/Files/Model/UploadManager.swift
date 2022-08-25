@@ -28,8 +28,7 @@ enum FileUploaderError: Error {
 
 open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
-    public typealias Store = Core.Store<LocalUseCase<File>>
-
+    public static let BatchSubmissionCompletedNotification = NSNotification.Name(rawValue: "com.instructure.core.batch-submission-completed")
     public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
 
     public let identifier: String
@@ -79,33 +78,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 
-    public func uploadURL(_ url: URL) throws -> URL {
-        let dir: URL
-        if let containerID = backgroundSession.configuration.sharedContainerIdentifier, let container = URL.sharedContainer(containerID) {
-            dir = container
-        } else {
-            dir = URL.temporaryDirectory
-        }
-        let newURL = dir
-            .appendingPathComponent("uploads", isDirectory: true)
-            .appendingPathComponent(UUID.string, isDirectory: true)
-            .appendingPathComponent(url.lastPathComponent)
-        try url.copy(to: newURL)
-        return newURL
-    }
-
-    public func subscribe(batchID: String, eventHandler: @escaping Store.EventHandler) -> Store {
-        let scope = Scope(predicate: filesPredicate(batchID: batchID), order: [NSSortDescriptor(key: #keyPath(File.size), ascending: true)])
-        let useCase = LocalUseCase<File>(scope: scope)
-        return Store(env: environment, database: database, useCase: useCase, eventHandler: eventHandler)
-    }
-
-    private func filesPredicate(batchID: String) -> NSPredicate {
-        let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
-        let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
-        return NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
-    }
-
     public func isUploading(completionHandler: @escaping (Bool) -> Void) {
         if let validSession = validSession {
             validSession.getAllTasks { tasks in
@@ -119,34 +91,35 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    @discardableResult
-    public func add(url: URL, batchID: String? = nil) throws -> File {
-        let file: File = viewContext.insert()
-        let uploadURL = try self.uploadURL(url)
-        file.filename = url.lastPathComponent
-        file.localFileURL = uploadURL
-        file.batchID = batchID
-        file.size = uploadURL.lookupFileSize()
-        if let session = environment.currentSession {
-            file.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
+    public func retry(batchID: String) {
+        context.performAndWait {
+            let files: [File] = context.fetch(filesPredicate(batchID: batchID))
+            let nonCompletedFiles = files.filter { $0.id == nil }
+
+            if nonCompletedFiles.isEmpty {
+                // File upload was successful but submission failed, only submission should be retried.
+                if let file = files.first, case let .submission(courseID, assignmentID, comment)? = file.context {
+                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
+                }
+            } else {
+                for file in nonCompletedFiles {
+                    guard let uploadContext = file.context else { continue }
+                    upload(file: file, to: uploadContext)
+                }
+            }
         }
-        try viewContext.save()
-        return file
     }
 
     open func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         context.performAndWait {
-            let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
-            let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
-            let files: [File] = context.fetch(predicate)
+            let files: [File] = context.fetch(filesPredicate(batchID: batchID))
             for file in files {
                 upload(file: file, to: uploadContext, callback: callback)
             }
         }
     }
 
-    open func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+    open func upload(url: URL, batchID: String, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         context.performAndWait {
             guard let file = try? add(url: url, batchID: batchID) else { return }
             upload(file: file, to: uploadContext, folderPath: folderPath, callback: callback)
@@ -171,34 +144,38 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.bytesSent = 0
                 try context.save()
                 Analytics.shared.logEvent("submit_fileupload_info", parameters: ["size": file.size])
-                let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: file.size)
-                let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
-                environment.api.makeRequest(request) { response, _, error in
-                    self.context.performAndWait {
-                        defer { callback?() }
-                        guard let file = try? self.context.existingObject(with: objectID) as? File else {
-                            return self.sendFailedNotification()
-                        }
-                        guard let target = response, error == nil else {
-                            return self.complete(file: file, error: error)
-                        }
-                        do {
-                            file.size = url.lookupFileSize()
-                            let request = PostFileUploadRequest(fileURL: url, target: target)
-                            let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
-                            var task = try api.uploadTask(request)
-                            file.taskID = UUID.string
-                            task.taskID = file.taskID
-                            try self.context.save()
-                            task.resume()
-                        } catch let error {
-                            self.complete(file: file, error: error)
-                        }
-                    }
-                }
+                requestFileUpload(fileURL: url, uploadContext: uploadContext, fileSize: file.size, fileObjectID: objectID, callback: callback)
             } catch {
                 complete(file: file, error: error)
                 callback?()
+            }
+        }
+    }
+
+    private func requestFileUpload(fileURL url: URL, uploadContext: FileUploadContext, fileSize: Int, fileObjectID: NSManagedObjectID, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+        let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: fileSize)
+        let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
+        environment.api.makeRequest(request) { response, _, error in
+            self.context.performAndWait {
+                defer { callback?() }
+                guard let file = try? self.context.existingObject(with: fileObjectID) as? File else {
+                    return self.notificationManager.sendFailedNotification()
+                }
+                guard let target = response, error == nil else {
+                    return self.complete(file: file, error: error)
+                }
+                do {
+                    file.size = url.lookupFileSize()
+                    let request = PostFileUploadRequest(fileURL: url, target: target)
+                    let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
+                    var task = try api.uploadTask(request)
+                    file.taskID = UUID.string
+                    task.taskID = file.taskID
+                    try self.context.save()
+                    task.resume()
+                } catch let error {
+                    self.complete(file: file, error: error)
+                }
             }
         }
     }
@@ -248,19 +225,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     // MARK: -
 
-    func delete(userID: String, batchID: String) {
-        Logger.shared.log()
-        context.performAndWait {
-            let files: [File] = context.fetch(predicate(userID: userID, batchID: batchID))
-            for file in files {
-                guard let url = file.localFileURL else { continue }
-                try? FileManager.default.removeItem(at: url)
-            }
-            context.delete(files)
-            try? context.save()
-        }
-    }
-
     open func cancel(file: File) {
         Logger.shared.log()
         let objectID = file.objectID
@@ -289,12 +253,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             context.delete(files)
             try? context.save()
         }
-    }
-
-    private func predicate(userID: String, batchID: String) -> NSPredicate {
-        let user = NSPredicate(format: "%K == %@", #keyPath(File.userID), userID)
-        let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
-        return NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
     }
 
     /**
@@ -379,11 +337,14 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                             "assignmentID": assignmentID,
                         ])
                     }
+                    if let batchID = file.batchID {
+                        NotificationCenter.default.post(name: Self.BatchSubmissionCompletedNotification, object: nil, userInfo: ["batchID": batchID])
+                    }
                     if let userID = file.userID, let batchID = file.batchID {
-                        self.delete(userID: userID, batchID: batchID)
+                        self.delete(userID: userID, batchID: batchID, in: self.context)
                     }
                     Analytics.shared.logEvent("submit_fileupload_succeeded")
-                    self.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                    self.notificationManager.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                 }
             }
             semaphore.wait()
@@ -424,35 +385,11 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             try? context.save()
             if error != nil {
                 if case let .submission(courseID, assignmentID, _)? = file.context {
-                    sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+                    notificationManager.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {
-                    sendFailedNotification()
+                    notificationManager.sendFailedNotification()
                 }
             }
         }
-    }
-
-    private func sendFailedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
-        let identifier = "failed-submission-\(courseID)-\(assignmentID)"
-        let route = "/courses/\(courseID)/assignments/\(assignmentID)"
-        let title = NSString.localizedUserNotificationString(forKey: "Assignment submission failed!", arguments: nil)
-        let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with an assignment submission.", arguments: nil)
-        notificationManager.notify(identifier: identifier, title: title, body: body, route: route)
-    }
-
-    private func sendCompletedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
-        let identifier = "completed-submission-\(courseID)-\(assignmentID)"
-        let route = "/courses/\(courseID)/assignments/\(assignmentID)"
-        let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)
-        let body = NSString.localizedUserNotificationString(forKey: "Your files were uploaded and the assignment was submitted successfully.", arguments: nil)
-        notificationManager.notify(identifier: identifier, title: title, body: body, route: route)
-    }
-
-    public func sendFailedNotification() {
-        let title = NSString.localizedUserNotificationString(forKey: "Failed to send files!", arguments: nil)
-        let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with uploading files.", arguments: nil)
-        notificationManager.notify(identifier: "upload-manager", title: title, body: body, route: nil)
     }
 }

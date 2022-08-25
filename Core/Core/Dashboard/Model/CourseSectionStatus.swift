@@ -45,7 +45,7 @@ class CourseSectionStatus {
         let sectionEndDates = sections.map { $0.endAt }
 
         // Check if there's an active section
-        if sectionEndDates.contains(where: { $0 == nil || ($0 != nil && Clock.now < $0!) }) {
+        if sections.count == 0 || sectionEndDates.contains(where: { $0 == nil || ($0 != nil && Clock.now < $0!) }) {
             return false
         }
 

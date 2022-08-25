@@ -200,6 +200,9 @@
 "Anyone" = "任何人";
 
 /* No comment provided by engineer. */
+"Appearance" = "外觀";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "預約可用性";
 
 /* No comment provided by engineer. */
@@ -374,6 +377,9 @@
 "Canvas Guides" = "Canvas 指南";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas 現在可在暗色主題中使用";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas 登入";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "選擇個人檔案照片";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "選擇您的應用程式外觀！\n您可以稍後在設定選單中變更。";
 
 /* No comment provided by engineer. */
 "Clear Course" = "清除課程";
@@ -606,6 +615,15 @@
 
 /* No comment provided by engineer. */
 "Daily" = "每天";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "暗色模式";
+
+/* No comment provided by engineer. */
+"Dark theme" = "暗色主題";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "暗色主題";
 
 /* No comment provided by engineer. */
 "Dashboard" = "控制面板";
@@ -1132,6 +1150,12 @@
 /* No comment provided by engineer. */
 "Light Blue" = "淺藍色";
 
+/* No comment provided by engineer. */
+"Light theme" = "淡色主題";
+
+/* No comment provided by engineer. */
+"Light Theme" = "淡色主題";
+
 /* like action */
 "Like" = "讚好";
 
@@ -1275,6 +1299,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "單元";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "移動註釋";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "多個截止日期";
@@ -1980,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "課程大綱內容";
+
+/* No comment provided by engineer. */
+"System settings" = "系統設定";
+
+/* No comment provided by engineer. */
+"System Settings" = "系統設定";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "助教";

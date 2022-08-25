@@ -16,21 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
+import XCTest
 
-public protocol PandaScene {
-    var name: String { get }
-    /** The offset of the background and foreground views from the center of the view. */
-    var offset: (background: CGSize, foreground: CGSize) { get }
-    /** The total height of the scene. */
-    var height: CGFloat { get }
-    var background: AnyView { get }
-    var foreground: AnyView { get }
-}
+class FileProgressListViewModelProtocolTests: XCTestCase {
 
-extension PandaScene {
-    public var backgroundFileName: String { "panda-\(name)-background" }
-    public var foregroundFileName: String { "panda-\(name)-foreground" }
-    public var foreground: AnyView { AnyView(BouncyImage(imageFileName: foregroundFileName)) }
-    public var background: AnyView { AnyView(ImageBackground(scene: self)) }
+    func testFileProgressListViewStateIDsAreUnique() {
+        let IDs = Set<String>([
+            FileProgressListViewState.success.id,
+            FileProgressListViewState.failed(message: "error message", error: nil).id,
+            FileProgressListViewState.waiting.id,
+            FileProgressListViewState.uploading(progressText: "p", progress: 0.5).id,
+        ])
+        XCTAssertEqual(IDs.count, 4)
+    }
 }

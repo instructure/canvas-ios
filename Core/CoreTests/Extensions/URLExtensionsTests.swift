@@ -130,4 +130,14 @@ class URLExtensionsTests: XCTestCase {
         testee = URL(string: "/path/to/resource?param=value&embed=true")!
         XCTAssertTrue(testee.containsQueryItem(named: "embed"))
     }
+
+    func testPathExtensions() {
+        let urls = [
+            URL(string: "/file")!,
+            URL(string: "/file.txt")!,
+            URL(string: "https://instructure.com/file.png")!,
+            URL(string: "/file.jpeg")!,
+        ]
+        XCTAssertEqual(urls.pathExtensions, Set(["txt", "jpeg", "png"]))
+    }
 }

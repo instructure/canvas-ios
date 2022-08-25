@@ -200,6 +200,9 @@
 "Anyone" = "Hvem som helst";
 
 /* No comment provided by engineer. */
+"Appearance" = "Utseende";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tilgjengelighet for avtaler";
 
 /* No comment provided by engineer. */
@@ -374,6 +377,9 @@
 "Canvas Guides" = "Canvas-guider";
 
 /* No comment provided by engineer. */
+"Canvas is now available in dark theme" = "Canvas er nå tilgjengelig med mørkt tema";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Logg inn på Canvas";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Velg profilbilde";
+
+/* No comment provided by engineer. */
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Velg app-utseendet ditt\nDu kan endre det senere i innstillinger-menyen.";
 
 /* No comment provided by engineer. */
 "Clear Course" = "Slett fag";
@@ -606,6 +615,15 @@
 
 /* No comment provided by engineer. */
 "Daily" = "Daglig";
+
+/* No comment provided by engineer. */
+"Dark Mode" = "Mørk modus";
+
+/* No comment provided by engineer. */
+"Dark theme" = "Mørkt tema";
+
+/* No comment provided by engineer. */
+"Dark Theme" = "Mørkt tema";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Oversikt";
@@ -1132,6 +1150,12 @@
 /* No comment provided by engineer. */
 "Light Blue" = "Lyseblå";
 
+/* No comment provided by engineer. */
+"Light theme" = "Lyst tema";
+
+/* No comment provided by engineer. */
+"Light Theme" = "Lyst tema";
+
 /* like action */
 "Like" = "Like";
 
@@ -1275,6 +1299,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
+
+/* No comment provided by engineer. */
+"Move Annotation" = "Flytt merknad";
 
 /* No comment provided by engineer. */
 "Multiple Due Dates" = "Flere forfallsdatoer";
@@ -1980,6 +2007,12 @@
 
 /* No comment provided by engineer. */
 "Syllabus content" = "Innhold fagoversikt";
+
+/* No comment provided by engineer. */
+"System settings" = "Systeminnstillinger";
+
+/* No comment provided by engineer. */
+"System Settings" = "Systeminnstillinger";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "LA";
