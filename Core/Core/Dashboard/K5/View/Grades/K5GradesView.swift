@@ -58,7 +58,7 @@ struct K5GradesView: View {
                     .foregroundColor(.textDark)
                     .padding(.top, 15)
                     .accessibility(hidden: true)
-                gradingPeriodSelectorState
+                gradingPeriodSelection
                     .padding(.bottom, 13)
                 Divider()
             }
@@ -85,7 +85,7 @@ struct K5GradesView: View {
         .clipped()
     }
 
-    private var gradingPeriodSelectorState: some View {
+    private var gradingPeriodSelection: some View {
         HStack(spacing: 7) {
             let selectorStateText: Text = gradeSelectorOpen ? Text("Open", bundle: .core) : Text("Closed", bundle: .core)
             Button(
