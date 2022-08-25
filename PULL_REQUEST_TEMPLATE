@@ -4,8 +4,8 @@
 <table>
 <tr><th>Before</th><th>After</th></tr>
 <tr>
-<td><img src="url"></td>
-<td><img src="url"></td>
+<td><img src="" height=500></td>
+<td><img src="" height=500></td>
 </tr>
 </table>
 
