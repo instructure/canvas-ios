@@ -1,3 +1,4 @@
+--- edit or delete this section ---
 <table>
 <tr><th>Before</th><th>After</th></tr>
 <tr>
@@ -9,6 +10,7 @@
 
 Things to check:
 
-- [ ] Manual testing
-- [ ] Follow-up e2e test ticket created
+- [ ] Follow-up e2e test ticket created or not needed
 - [ ] A11y checked
+- [ ] tested on iPhone
+- [ ] tested on iPAd
