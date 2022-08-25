@@ -12,5 +12,6 @@ Things to check:
 
 - [ ] Follow-up e2e test ticket created or not needed
 - [ ] A11y checked
-- [ ] tested on iPhone
-- [ ] tested on iPAd
+- [ ] Tested on phone
+- [ ] Tested on tablet
+- [ ] Approve from product or not needed
