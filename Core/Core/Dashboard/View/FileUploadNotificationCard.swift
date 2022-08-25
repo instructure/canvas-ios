@@ -47,8 +47,8 @@ struct FileUploadNotificationCard: View {
                     .font(.regular14)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 ProgressView(value: viewModel.progress)
-                    .foregroundColor(Color(Brand.shared.primary))
-                    .background(Color(Brand.shared.primary).opacity(0.2))
+                    .foregroundColor(Color.electric)
+                    .background(Color.electric.opacity(0.2))
             }
             .accessibilityElement(children: .combine)
             .padding(.vertical, 12)
