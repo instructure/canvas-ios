@@ -2329,6 +2329,7 @@
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
 		CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPager.swift; sourceTree = "<group>"; };
 		CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundURLSessionProviderTests.swift; sourceTree = "<group>"; };
+		CF5234E928B7C81E00D2D3B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetK5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
 		CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
 		CF53F73B266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetK5HomeroomMissingSubmissionsCount.swift; sourceTree = "<group>"; };
@@ -5803,6 +5804,7 @@
 			isa = PBXGroup;
 			children = (
 				CFD987DD28ACEB2100905515 /* Model */,
+				CF5234E928B7C81E00D2D3B9 /* README.md */,
 			);
 			path = FileSubmission;
 			sourceTree = "<group>";
