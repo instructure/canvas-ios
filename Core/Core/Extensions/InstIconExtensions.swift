@@ -236,6 +236,7 @@ public extension UIImage {
     static var k5schedule: UIImage { UIImage(named: "k5schedule", in: .core, compatibleWith: nil)! }
     static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
+    static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
 }
@@ -391,7 +392,6 @@ public extension Image {
     static var rubricSolid: Image { Image("rubricSolid", bundle: .core) }
     static var settingsLine: Image { Image("settingsLine", bundle: .core) }
     static var settingsSolid: Image { Image("settingsSolid", bundle: .core) }
-    static var share: Image { Image("share", bundle: .core) }
     static var starLine: Image { Image("starLine", bundle: .core) }
     static var starSolid: Image { Image("starSolid", bundle: .core) }
     static var strikethroughLine: Image { Image("strikethroughLine", bundle: .core) }
@@ -416,7 +416,7 @@ public extension Image {
     static var warningSolid: Image { Image("warningSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
-
+    
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -456,6 +456,7 @@ public extension Image {
     static var k5schedule: Image { Image("k5schedule", bundle: .core) }
     static var logout: Image { Image("logout", bundle: .core) }
     static var qrCode: Image { Image("qrCode", bundle: .core) }
+    static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
 }

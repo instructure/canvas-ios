@@ -111,7 +111,7 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder func fileUploadNotificationCards() -> some View {
-        ForEach(fileUploadNotificationCardViewModel.fileUploads, id: \.id) { viewModel in
+        ForEach(fileUploadNotificationCardViewModel.fileUploads) { viewModel in
             FileUploadNotificationCard(viewModel: viewModel)
                 .frame(maxWidth: .infinity)
                 .padding(.top, verticalSpacing)

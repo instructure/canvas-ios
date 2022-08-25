@@ -18,11 +18,11 @@
 
 import Foundation
 
-final class FileUploadNotificationCardItemViewModel: ObservableObject {
-    let id: String
-    let assignmentName: String
-    private(set) var progress: Float
-    let cardDidTap: () -> Void
+final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
+    public let id: String
+    public let assignmentName: String
+    @Published public private(set) var progress: Float
+    public let cardDidTap: () -> Void
 
     init(
         id: String,
