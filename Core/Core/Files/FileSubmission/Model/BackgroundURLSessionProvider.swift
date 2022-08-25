@@ -20,7 +20,7 @@ import Foundation
 
 /**
  This class manages the lifecycle of a background `URLSession`. It creates it, keeps it alive, waits until the session
- finishes then tears it down. If a session is required while the previous is already destroyed then it re-creates it.
+ finishes then tears it down. If a session is required while the previous is already destroyed then this class re-creates it.
  */
 public class BackgroundURLSessionProvider: NSObject {
     public var session: URLSession {
@@ -42,9 +42,9 @@ public class BackgroundURLSessionProvider: NSObject {
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharecContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
      */
-    public init(sessionID: String, sharecContainerID: String) {
+    public init(sessionID: String, sharedContainerID: String) {
         self.sessionID = sessionID
-        self.sharedContainerID = sharecContainerID
+        self.sharedContainerID = sharedContainerID
     }
 
     private func createSession() -> URLSession {
