@@ -20,13 +20,21 @@ import CoreData
 
 public class FileSubmissionAssembly {
     public let composer: FileSubmissionComposer
+    public let backgroundURLSessionProvider: BackgroundURLSessionProvider
 
     /** This is a background context so we can work with it from any background thread. */
     private let backgroundContext: NSManagedObjectContext
 
-    public init(container: NSPersistentContainer) {
+    /**
+     - parameters:
+        - container: The CoreData database.
+        - sessionID: The background session identifier. Must be unique for each process (app / share extension).
+        - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
+     */
+    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String) {
         backgroundContext = container.newBackgroundContext()
         backgroundContext.mergePolicy = NSMergePolicy.overwrite
         composer = FileSubmissionComposer(context: backgroundContext)
+        backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID)
     }
 }

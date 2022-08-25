@@ -40,7 +40,7 @@ public class BackgroundURLSessionProvider: NSObject {
     /**
      - parameters:
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
-        - sharecContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
+        - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
      */
     public init(sessionID: String, sharedContainerID: String) {
         self.sessionID = sessionID

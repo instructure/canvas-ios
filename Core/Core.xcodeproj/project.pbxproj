@@ -5822,8 +5822,8 @@
 			isa = PBXGroup;
 			children = (
 				CFD987DF28ACEB3E00905515 /* FileSubmission.swift */,
-				CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */,
 				CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */,
+				CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
