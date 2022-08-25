@@ -1,4 +1,6 @@
 --- edit or delete this section ---
+## Screenshots
+
 <table>
 <tr><th>Before</th><th>After</th></tr>
 <tr>
@@ -7,8 +9,7 @@
 </tr>
 </table>
 
-
-Things to check:
+## Checklist
 
 - [ ] Follow-up e2e test ticket created or not needed
 - [ ] A11y checked
