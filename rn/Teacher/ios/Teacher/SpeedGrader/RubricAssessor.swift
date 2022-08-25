@@ -143,7 +143,7 @@ struct RubricAssessor: View {
                 }
             }
         )
-        
+
         return CircleToggle(isOn: binding) {
             if let grade = customGrade {
                 Text(grade)
