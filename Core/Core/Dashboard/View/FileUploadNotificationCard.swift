@@ -30,39 +30,60 @@ struct FileUploadNotificationCard: View {
     }
 
     var body: some View {
-        HStack(spacing: 16) {
-            Color.electric
-                .overlay(
-                    Image.share
-                        .foregroundColor(Color.backgroundLightest)
-                        .frame(width: 24, height: 24, alignment: .center)
-                )
-                .frame(width: 48, alignment: .center)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Uploading submission")
-                    .font(.regular16)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(viewModel.assignmentName)
-                    .font(.regular14)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                ProgressView(value: viewModel.progress)
-                    .foregroundColor(Color.electric)
-                    .background(Color.electric.opacity(0.2))
+        Button(action: viewModel.cardDidTap) {
+            HStack(spacing: 16) {
+                shareImage
+                VStack(alignment: .leading, spacing: 0) {
+                    uploadingSubmissionText
+                    assignmentNameText
+                    progressView
+                }
+                .accessibilityElement(children: .combine)
+                .padding(.top, 14)
+                .padding([.bottom, .trailing], 16)
             }
-            .accessibilityElement(children: .combine)
-            .padding(.vertical, 12)
-            .padding(.trailing, 12)
+            .frame(minHeight: 58)
+            .cornerRadius(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(
+                        Color(.electric),
+                        lineWidth: 1
+                    )
+            )
         }
-        .frame(minHeight: 58)
-        .border(
-            Color.electric,
-            width: 2
-        )
-        .cornerRadius(4)
-        .onTapGesture {
-            viewModel.cardDidTap()
-        }
+    }
+
+    private var shareImage: some View {
+        Color.electric
+            .overlay(
+                Image.share
+                    .foregroundColor(Color.backgroundLightest)
+                    .frame(width: 24, height: 24, alignment: .center)
+            )
+            .frame(width: 40, alignment: .center)
+            .accessibilityHidden(true)
+    }
+
+    private var uploadingSubmissionText: some View {
+        Text("Uploading submission")
+            .font(.bold16)
+            .foregroundColor(.textDarkest)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var assignmentNameText: some View {
+        Text(viewModel.assignmentName)
+            .font(.regular14)
+            .foregroundColor(.textDark)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var progressView: some View {
+        ProgressView(value: viewModel.progress)
+            .foregroundColor(Color.electric)
+            .background(Color.electric.opacity(0.2))
+            .padding(.top, 8)
     }
 }
 
