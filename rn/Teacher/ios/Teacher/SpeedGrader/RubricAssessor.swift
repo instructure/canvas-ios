@@ -133,18 +133,20 @@ struct RubricAssessor: View {
         )
             ? assessment?.points : nil
 
+        let binding = Binding(
+            get: { customGrade != nil },
+            set: { newValue in
+                if newValue {
+                    promptCustomGrade(criteria, assessment: assessment)
+                } else {
+                    assessments[criteria.id] = APIRubricAssessment(comments: assessment?.comments)
+                }
+            }
+        )
+        
         return CircleToggle(
             isOn:
-            Binding(
-                get: { customGrade != nil },
-                set: { newValue in
-                    if newValue {
-                        promptCustomGrade(criteria, assessment: assessment)
-                    } else {
-                        assessments[criteria.id] = APIRubricAssessment(comments: assessment?.comments)
-                    }
-                }
-            )
+            binding
         ) {
             if let grade = customGrade {
                 Text(grade)
