@@ -234,6 +234,7 @@ public struct AssignmentEditorView: View {
             gradingType: gradingType,
             lockAt: lockAt,
             name: name,
+            onlyVisibleToOverrides: !overrides.contains { $0.isEveryone },
             overrides: originalOverrides == overrides ? nil : apiOverrides,
             pointsPossible: pointsPossible,
             published: published,
