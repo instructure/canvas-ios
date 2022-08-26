@@ -10,8 +10,8 @@ sequenceDiagram
     end
     Share Extension->>CoreData: Creates File Submission Metadata
     loop For All Files
-        Share Extension->>API: Request File Upload
-        API-->>Share Extension: Provides Upload URL
+        Share Extension->>Canvas API: Request File Upload
+        Canvas API-->>Share Extension: Provides Upload URL
     end
     Share Extension->>iOS: Start Background Session
     loop For All Files
@@ -21,8 +21,8 @@ sequenceDiagram
     iOS->>Application: Starts In Background
     Application-->>CoreData: Loads Submission Metadata
     loop For All Files
-        iOS->>Application: Reports Upload Progress
-        Application-->>CoreData: Saves Upload State
+        iOS->>Application: Report Upload Progress
+        Application-->>CoreData: Save Upload State
     end
     User->>Application: Starts To Check Progress
     Application-->>User: Displays Upload Progress
@@ -30,7 +30,7 @@ sequenceDiagram
         iOS->>Application: File Upload Finished
         Application-->>CoreData: Save File ID
     end
-    Application->>API: Submit File IDs To Assignment
-    API-->>Application: Confirms Successful Submission
+    Application->>Canvas API: Submit File IDs To Assignment
+    Canvas API-->>Application: Confirms Successful Submission
     Application->>User: Sends Successful Submission Notification
 ```

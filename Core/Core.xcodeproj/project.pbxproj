@@ -886,6 +886,8 @@
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
 		CF5123DB26BA922E00C1EB27 /* HorizontalPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */; };
 		CF5234E828B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */; };
+		CF5234EB28B8D11500D2D3B9 /* FileUploadProgressObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */; };
+		CF5234ED28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */; };
 		CF53F730266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */; };
 		CF53F734266F836000FA58D7 /* K5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */; };
 		CF53F73C266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF53F73B266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift */; };
@@ -2330,6 +2332,8 @@
 		CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPager.swift; sourceTree = "<group>"; };
 		CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundURLSessionProviderTests.swift; sourceTree = "<group>"; };
 		CF5234E928B7C81E00D2D3B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserver.swift; sourceTree = "<group>"; };
+		CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserverTests.swift; sourceTree = "<group>"; };
 		CF53F72F266F782300FA58D7 /* GetK5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetK5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
 		CF53F733266F836000FA58D7 /* K5HomeroomDueItemCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomDueItemCount.swift; sourceTree = "<group>"; };
 		CF53F73B266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetK5HomeroomMissingSubmissionsCount.swift; sourceTree = "<group>"; };
@@ -4628,6 +4632,7 @@
 				CF34180928AF79220087433B /* Entities */,
 				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
 				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
+				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5816,6 +5821,7 @@
 				CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */,
 				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
 				CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */,
+				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6684,6 +6690,7 @@
 				CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
+				CF5234ED28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift in Sources */,
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
@@ -7209,6 +7216,7 @@
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
 				CF748D1D274D43B9000EA34E /* DashboardConferencesViewModel.swift in Sources */,
 				CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */,
+				CF5234EB28B8D11500D2D3B9 /* FileUploadProgressObserver.swift in Sources */,
 				E8D20399250A723E009B2ABE /* InboxView.swift in Sources */,
 				D94FA2AE26CBE787007B9CA4 /* K5GradeProgressBar.swift in Sources */,
 				CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */,
