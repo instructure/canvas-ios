@@ -411,10 +411,23 @@ public struct PostFileUploadRequest: APIRequestable {
 
     public let fileURL: URL
     public let target: FileUploadTarget
-
-    public init(fileURL: URL, target: FileUploadTarget) {
+    public let loadBodyFromURL: Bool
+    
+    /**
+        Creates an `APIRequestable` instance for file upload.
+        - Parameters:
+            - fileURL: The `URL` at which the file is located.
+            - target: `FileUploadTarget` for upload parameters
+            - isBodyFromURL: By default it's set to **true** meaning that the request will try to read the data from a file. See `APIRequestable` for more details.
+    */
+    public init(
+        fileURL: URL,
+        target: FileUploadTarget,
+        isBodyFromURL: Bool = true
+    ) {
         self.fileURL = fileURL
         self.target = target
+        self.loadBodyFromURL = isBodyFromURL
     }
 
     public let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
@@ -437,7 +450,7 @@ public struct PostFileUploadRequest: APIRequestable {
         )))
         return form
     }
-    public var isBodyFromURL: Bool { false }
+    public var isBodyFromURL: Bool { loadBodyFromURL }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.resolve_path
