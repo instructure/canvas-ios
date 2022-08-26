@@ -165,7 +165,7 @@ class ActivityCell: UITableViewCell {
 
     func update(_ activity: Activity, courseCache: [String: ActivityStreamViewController.Info] ) {
         backgroundColor = .backgroundLightest
-        if activity.type == .conversation {
+        if activity.type == ActivityType.conversation {
             titleLabel.setText(NSLocalizedString("New Message", comment: ""), style: .textCellTitle)
         } else {
             titleLabel.setText(activity.title, style: .textCellTitle)

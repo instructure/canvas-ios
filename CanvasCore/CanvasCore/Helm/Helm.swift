@@ -473,7 +473,7 @@ extension HelmManager {
         } else if (splitViewController?.detailTopViewController as? HelmModule)?.moduleName == sourceModule {
             return splitViewController?.detailNavigationController
         } else {
-            if (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
+            if (splitViewController?.traitCollection.horizontalSizeClass ?? UIUserInterfaceSizeClass.compact) == UIUserInterfaceSizeClass.compact {
                 return splitViewController?.masterNavigationController
             }
 
