@@ -19,75 +19,26 @@
 import XCTest
 import Core
 
-class FileSubmissionStateTests: XCTestCase {
+class FileSubmissionStateTests: CoreTestCase {
 
-    func testWaiting() {
-        let testee = FileSubmission.State([
-            .waiting,
-            .waiting,
-        ])
-        XCTAssertEqual(testee, .waiting)
+    func testSubmittedState() {
+        let testee: FileSubmission = databaseClient.insert()
+        testee.isSubmitted = true
+        XCTAssertEqual(testee.state, .submitted)
     }
 
-    // MARK: - Uploading
-
-    func testUploadingWhileOthersWaiting() {
-        let testee = FileSubmission.State([
-            .waiting,
-            .uploading(progress: 0.2),
-        ])
-        XCTAssertEqual(testee, .uploading(progress: 0.1))
+    func testFailedState() {
+        let testee: FileSubmission = databaseClient.insert()
+        testee.submissionError = "error"
+        XCTAssertEqual(testee.state, .failedSubmission(message: "error"))
     }
 
-    func testUploadingWhileOthersFailed() {
-        let testee = FileSubmission.State([
-            .error(description: "error"),
-            .uploading(progress: 0.2),
-        ])
-        XCTAssertEqual(testee, .uploading(progress: 0.6))
-    }
-
-    func testUploadingWhileOthersSucceeded() {
-        let testee = FileSubmission.State([
-            .uploaded,
-            .uploading(progress: 0.2),
-        ])
-        XCTAssertEqual(testee, .uploading(progress: 0.6))
-    }
-
-    func testUploading() {
-        let testee = FileSubmission.State([
-            .uploading(progress: 0.2),
-            .uploading(progress: 0.2),
-        ])
-        XCTAssertEqual(testee, .uploading(progress: 0.2))
-    }
-
-    // MARK: - Upload Failed
-
-    func testAllFailed() {
-        let testee = FileSubmission.State([
-            .error(description: "error"),
-            .error(description: "error"),
-        ])
-        XCTAssertEqual(testee, .failedUpload)
-    }
-
-    func testOneFailedOneSucceeded() {
-        let testee = FileSubmission.State([
-            .uploaded,
-            .error(description: "error"),
-        ])
-        XCTAssertEqual(testee, .failedUpload)
-    }
-
-    // MARK: - Completed
-
-    func testFileUploadFinished() {
-        let testee = FileSubmission.State([
-            .uploaded,
-            .uploaded,
-        ])
-        XCTAssertEqual(testee, .uploading(progress: 1))
+    func testStateOfFiles() {
+        let file: FileUploadItem = databaseClient.insert()
+        file.bytesToUpload = 10
+        file.bytesUploaded = 5
+        let testee: FileSubmission = databaseClient.insert()
+        testee.files = Set([file])
+        XCTAssertEqual(testee.state, .uploading(progress: 0.5))
     }
 }

@@ -16,19 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
+extension FileSubmission {
 
-/**
- This entity encapsulates all the necessary information to submit multiple files to a file upload assignment
- and contains the state of the upload progress.
- */
-public final class FileSubmission: NSManagedObject {
-    @NSManaged public var courseID: String
-    @NSManaged public var assignmentID: String
-    /** The user entered comment for the submission. **/
-    @NSManaged public var comment: String?
-    @NSManaged public var files: Set<FileUploadItem>
-    /** The description of the error happened during submission. */
-    @NSManaged public var submissionError: String?
-    @NSManaged public var isSubmitted: Bool
+    /** The sum of file sizes in this submission, in bytes. */
+    public var totalSize: Int {
+        files.reduce(into: 0) { $0 += $1.bytesToUpload }
+    }
+
+    public var fileUploadContext: FileUploadContext { .submission(courseID: courseID, assignmentID: assignmentID, comment: comment) }
 }

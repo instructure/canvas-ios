@@ -46,6 +46,16 @@ extension FileSubmission {
             }
         }
     }
+
+    public var state: State {
+        if isSubmitted {
+            return .submitted
+        } else if let submissionError = submissionError {
+            return .failedSubmission(message: submissionError)
+        } else {
+            return State(files.map { $0.state })
+        }
+    }
 }
 
 private extension Array where Element == FileUploadItem.State {

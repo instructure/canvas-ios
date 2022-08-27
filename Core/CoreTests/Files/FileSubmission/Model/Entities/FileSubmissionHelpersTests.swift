@@ -19,28 +19,7 @@
 import XCTest
 import Core
 
-class FileSubmissionTests: CoreTestCase {
-
-    func testSubmittedState() {
-        let testee: FileSubmission = databaseClient.insert()
-        testee.isSubmitted = true
-        XCTAssertEqual(testee.state, .submitted)
-    }
-
-    func testFailedState() {
-        let testee: FileSubmission = databaseClient.insert()
-        testee.submissionError = "error"
-        XCTAssertEqual(testee.state, .failedSubmission(message: "error"))
-    }
-
-    func testStateOfFiles() {
-        let file: FileUploadItem = databaseClient.insert()
-        file.bytesToUpload = 10
-        file.bytesUploaded = 5
-        let testee: FileSubmission = databaseClient.insert()
-        testee.files = Set([file])
-        XCTAssertEqual(testee.state, .uploading(progress: 0.5))
-    }
+class FileSubmissionHelpersTests: CoreTestCase {
 
     func testTotalSize() {
         let file1: FileUploadItem = databaseClient.insert()
@@ -50,5 +29,13 @@ class FileSubmissionTests: CoreTestCase {
         let testee: FileSubmission = databaseClient.insert()
         testee.files = Set([file1, file2])
         XCTAssertEqual(testee.totalSize, 32)
+    }
+
+    func testFileUploadContext() {
+        let testee: FileSubmission = databaseClient.insert()
+        testee.courseID = "testCourse"
+        testee.assignmentID = "testAssignment"
+        testee.comment = "testComment"
+        XCTAssertEqual(testee.fileUploadContext, FileUploadContext.submission(courseID: "testCourse", assignmentID: "testAssignment", comment: "testComment"))
     }
 }
