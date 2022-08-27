@@ -32,6 +32,8 @@ public final class FileUploadItem: NSManagedObject {
     @NSManaged public var bytesToUpload: Int
     /** The description of the error happened during upload. */
     @NSManaged public var uploadError: String?
+    /** The `FileSubmission` CoreData object containing this item. */
+    @NSManaged public var fileSubmission: FileSubmission?
 }
 
 extension FileUploadItem {
