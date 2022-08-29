@@ -240,6 +240,7 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.k5schedule, UIImage(named: "k5schedule", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.logout, UIImage(named: "logout", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.qrCode, UIImage(named: "qrCode", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.share, UIImage(named: "share", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTab, UIImage(named: "todoTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTabActive, UIImage(named: "todoTabActive", in: .core, compatibleWith: nil))
     }
