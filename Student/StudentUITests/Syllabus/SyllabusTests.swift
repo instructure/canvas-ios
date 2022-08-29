@@ -30,7 +30,7 @@ class SyllabusTests: CoreUITestCase {
         mockData(
             GetCustomColorsRequest(),
             value: APICustomColors(
-                custom_colors: [Context(.course, id: course.id.value).canvasContextID: "#123456",]
+                custom_colors: [Context(.course, id: course.id.value).canvasContextID: "#123456", ]
             )
         )
 
