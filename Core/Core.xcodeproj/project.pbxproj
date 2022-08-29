@@ -951,6 +951,7 @@
 		CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */; };
 		CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */; };
 		CF7C6DAD25E56A0000363203 /* GroupContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */; };
+		CF7C7DAA28BA55AC00B7F1EE /* FileUploadTargetRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */; };
 		CF7C7DAC28BA597900B7F1EE /* FileSubmissionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C7DAB28BA597900B7F1EE /* FileSubmissionHelpers.swift */; };
 		CF7C7DAE28BA5A9A00B7F1EE /* FileSubmissionHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7C7DAD28BA5A9A00B7F1EE /* FileSubmissionHelpersTests.swift */; };
 		CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */; };
@@ -1022,6 +1023,7 @@
 		CFAD79D826AEC02A0000A90D /* K5ScheduleEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */; };
 		CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
+		CFB06F9428BCF84900DAC40B /* FileUploadTargetRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
@@ -2402,6 +2404,7 @@
 		CF7C6D9E25E5130200363203 /* GroupContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardView.swift; sourceTree = "<group>"; };
 		CF7C6DA225E5139D00363203 /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
 		CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardTests.swift; sourceTree = "<group>"; };
+		CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetRequester.swift; sourceTree = "<group>"; };
 		CF7C7DAB28BA597900B7F1EE /* FileSubmissionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionHelpers.swift; sourceTree = "<group>"; };
 		CF7C7DAD28BA5A9A00B7F1EE /* FileSubmissionHelpersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionHelpersTests.swift; sourceTree = "<group>"; };
 		CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2473,6 +2476,7 @@
 		CFAD79D726AEC02A0000A90D /* K5ScheduleEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModel.swift; sourceTree = "<group>"; };
 		CFAD79DA26AEFBCC0000A90D /* K5ScheduleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryView.swift; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
+		CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetRequesterTests.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -4643,6 +4647,7 @@
 				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
 				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
 				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
+				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5836,6 +5841,7 @@
 				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
 				CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */,
 				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
+				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6803,6 +6809,7 @@
 				7DEAD09E22790B720030C28A /* RichContentEditorViewControllerTests.swift in Sources */,
 				7DBED03623344EDF00392F3C /* ExternalToolLaunchPlacementTests.swift in Sources */,
 				97F69C4023F209DB009622E3 /* PlannableTests.swift in Sources */,
+				CFB06F9428BCF84900DAC40B /* FileUploadTargetRequesterTests.swift in Sources */,
 				9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuthTests.swift in Sources */,
 				B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */,
@@ -7294,6 +7301,7 @@
 				CFF64FDC27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift in Sources */,
 				7D0A28DA25194CE6004FB3B6 /* Avatar.swift in Sources */,
 				7DA260D423F72359005D2121 /* DynamicButton.swift in Sources */,
+				CF7C7DAA28BA55AC00B7F1EE /* FileUploadTargetRequester.swift in Sources */,
 				7DA260A323F7234C005D2121 /* IPC.swift in Sources */,
 				CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */,
 				CF43DE8527CCDBCB00015B6F /* MotionDetector.swift in Sources */,
