@@ -19,7 +19,7 @@
 import XCTest
 import Core
 
-class FileSubmissionItemTests: CoreTestCase {
+class FileUploadItemTests: CoreTestCase {
 
     func testCalculatedProgress() {
         let testee: FileUploadItem = databaseClient.insert()
@@ -86,5 +86,23 @@ class FileSubmissionItemTests: CoreTestCase {
         testee.bytesUploaded = 100
         testee.apiID = "apiID"
         XCTAssertEqual(testee.state, .uploaded)
+    }
+
+    func testFileUploadTargetPersistency() {
+        let testee: FileUploadItem = databaseClient.insert()
+        testee.localFileURL = URL(string: "/toLocalFile")!
+        testee.uploadTarget = FileUploadTarget(upload_url: URL(string: "/test")!, upload_params: ["testKey": "testValue"])
+        XCTAssertNoThrow(try databaseClient.save())
+        // Make sure we discard the FileUploadItem from the context so fetch() will read it back from the persistent store
+        databaseClient.reset()
+
+        let uploadItems = databaseClient.fetch() as [FileUploadItem]
+
+        guard uploadItems.count == 1 else {
+            XCTFail("More than one FileUploadItem was found")
+            return
+        }
+
+        XCTAssertEqual(uploadItems[0].uploadTarget, FileUploadTarget(upload_url: URL(string: "/test")!, upload_params: ["testKey": "testValue"]))
     }
 }

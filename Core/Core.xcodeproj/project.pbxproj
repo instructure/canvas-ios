@@ -1081,7 +1081,7 @@
 		CFD9B44527EDBECD0099F173 /* TabToCellViewModelMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B44427EDBECD0099F173 /* TabToCellViewModelMapping.swift */; };
 		CFD9B44727EDC40A0099F173 /* TabToCellViewModelMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B44627EDC40A0099F173 /* TabToCellViewModelMappingTests.swift */; };
 		CFDB61F528AD03050008C3F3 /* FileUploadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */; };
-		CFDB61F828AD16B40008C3F3 /* FileSubmissionItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61F728AD16B40008C3F3 /* FileSubmissionItemTests.swift */; };
+		CFDB61F828AD16B40008C3F3 /* FileUploadItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61F728AD16B40008C3F3 /* FileUploadItemTests.swift */; };
 		CFDB61FA28AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61F928AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift */; };
 		CFDB61FC28AD2FC70008C3F3 /* FileSubmissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */; };
 		CFDB61FE28AD3B650008C3F3 /* FileSubmissionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */; };
@@ -2528,7 +2528,7 @@
 		CFD9B44427EDBECD0099F173 /* TabToCellViewModelMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabToCellViewModelMapping.swift; sourceTree = "<group>"; };
 		CFD9B44627EDC40A0099F173 /* TabToCellViewModelMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabToCellViewModelMappingTests.swift; sourceTree = "<group>"; };
 		CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItem.swift; sourceTree = "<group>"; };
-		CFDB61F728AD16B40008C3F3 /* FileSubmissionItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionItemTests.swift; sourceTree = "<group>"; };
+		CFDB61F728AD16B40008C3F3 /* FileUploadItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItemTests.swift; sourceTree = "<group>"; };
 		CFDB61F928AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionStateEnumTests.swift; sourceTree = "<group>"; };
 		CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionState.swift; sourceTree = "<group>"; };
 		CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionStateTests.swift; sourceTree = "<group>"; };
@@ -4647,7 +4647,7 @@
 				CF7C7DAD28BA5A9A00B7F1EE /* FileSubmissionHelpersTests.swift */,
 				CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */,
 				CFDB61F928AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift */,
-				CFDB61F728AD16B40008C3F3 /* FileSubmissionItemTests.swift */,
+				CFDB61F728AD16B40008C3F3 /* FileUploadItemTests.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -6869,7 +6869,7 @@
 				3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */,
 				3BA649D12424351B0047D8DC /* APIPairingCodeTests.swift in Sources */,
 				EE424B3422E8DE2E00D083EE /* APIPageTests.swift in Sources */,
-				CFDB61F828AD16B40008C3F3 /* FileSubmissionItemTests.swift in Sources */,
+				CFDB61F828AD16B40008C3F3 /* FileUploadItemTests.swift in Sources */,
 				7DCF1ED8216C060B003AF358 /* SubmissionViewableTests.swift in Sources */,
 				9FCD79D62188DE8B0054293A /* APISubmissionTests.swift in Sources */,
 				7D2DC2F82199F774008FE29A /* DocViewerAnnotationProviderTests.swift in Sources */,

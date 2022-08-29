@@ -24,16 +24,26 @@ import CoreData
 public final class FileUploadItem: NSManagedObject {
     /** The url pointing to the file we want to upload on the user's device. */
     @NSManaged public var localFileURL: URL
-    /** The file ID assigned by the API to this file after the file has been uploaded. Nil means that the file is yet to be uploaded. */
-    @NSManaged public var apiID: String?
+    /** The `FileSubmission` CoreData object containing this item. */
+    @NSManaged public var fileSubmission: FileSubmission?
+
+    // MARK: Upload Step 1: Getting the upload url and parameters
+
+    @NSManaged public var uploadTarget: FileUploadTarget?
+
+    // MARK: Upload Step 2: Uploading binary
+
     /** The number of bytes uploaded to the server. Continuously updated during upload. */
     @NSManaged public var bytesUploaded: Int
     /** The expected number of  bytes to be uploaded to finish the file upload. This can change during the upload process. */
     @NSManaged public var bytesToUpload: Int
+    /** The file ID assigned by the API to this file after the file has been uploaded. Nil means that the file is yet to be uploaded. */
+    @NSManaged public var apiID: String?
+
+    // MARK: Upload Step All: Error
+
     /** The description of the error happened during upload. */
     @NSManaged public var uploadError: String?
-    /** The `FileSubmission` CoreData object containing this item. */
-    @NSManaged public var fileSubmission: FileSubmission?
 }
 
 extension FileUploadItem {

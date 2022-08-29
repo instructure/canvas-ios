@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -444,6 +444,7 @@
         <attribute name="bytesUploaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="localFileURL" attributeType="URI"/>
         <attribute name="uploadError" optional="YES" attributeType="String"/>
+        <attribute name="uploadTarget" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="Core.FileUploadTarget"/>
         <relationship name="fileSubmission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileSubmission" inverseName="files" inverseEntity="FileSubmission"/>
     </entity>
     <entity name="Folder" representedClassName="Core.Folder" syncable="YES">
@@ -995,7 +996,7 @@
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="688"/>
         <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="119"/>
-        <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="119"/>
+        <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="134"/>
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="328"/>
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="163"/>

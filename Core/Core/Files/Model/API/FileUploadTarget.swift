@@ -18,7 +18,21 @@
 
 import Foundation
 
-public struct FileUploadTarget: Codable, Equatable {
+/**
+ This class can be stored in CoreData because it conforms to `NSObject` and `Codable` and all of its properties
+ are supported by `NSSecureUnarchiveFromDataTransformer`.
+ */
+public class FileUploadTarget: NSObject, Codable {
     public let upload_url: URL
     public let upload_params: [String: String?]
+
+    public init(upload_url: URL, upload_params: [String: String?]) {
+        self.upload_url = upload_url
+        self.upload_params = upload_params
+    }
+
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let rhs = object as? FileUploadTarget else { return false }
+        return upload_url == rhs.upload_url && upload_params == rhs.upload_params
+    }
 }
