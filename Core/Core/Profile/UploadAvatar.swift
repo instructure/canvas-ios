@@ -53,7 +53,13 @@ public class UploadAvatar {
     }
 
     func upload(_ target: FileUploadTarget) {
-        task = env.api.makeRequest(PostFileUploadRequest(fileURL: url, target: target)) { data, _, error in
+        task = env.api.makeRequest(
+            PostFileUploadRequest(
+                fileURL: url,
+                target: target,
+                isBodyFromURL: false
+            )
+        ) { data, _, error in
             guard let id = data?.id.value, error == nil else {
                 return self.callback(.failure(error ?? NSError.internalError()))
             }

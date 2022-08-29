@@ -52,30 +52,30 @@ public struct APIFile: Codable, Equatable {
     var usage_rights: APIUsageRights?
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case uuid = "uuid"
-        case folder_id = "folder_id"
-        case display_name = "display_name"
-        case filename = "filename"
+        case id
+        case uuid
+        case folder_id
+        case display_name
+        case filename
         case contentType = "content-type"
-        case url = "url"
-        case size = "size"
-        case created_at = "created_at"
-        case updated_at = "updated_at"
-        case unlock_at = "unlock_at"
-        case locked = "locked"
-        case hidden = "hidden"
-        case lock_at = "lock_at"
-        case hidden_for_user = "hidden_for_user"
-        case thumbnail_url = "thumbnail_url"
-        case modified_at = "modified_at"
-        case mime_class = "mime_class"
-        case media_entry_id = "media_entry_id"
-        case locked_for_user = "locked_for_user"
-        case lock_explanation = "lock_explanation"
-        case preview_url = "preview_url"
-        case avatar = "avatar"
-        case usage_rights = "usage_rights"
+        case url
+        case size
+        case created_at
+        case updated_at
+        case unlock_at
+        case locked
+        case hidden
+        case lock_at
+        case hidden_for_user
+        case thumbnail_url
+        case modified_at
+        case mime_class
+        case media_entry_id
+        case locked_for_user
+        case lock_explanation
+        case preview_url
+        case avatar
+        case usage_rights
     }
 
     init(
@@ -202,14 +202,15 @@ public enum APIFolderItem: Codable {
     public init(from decoder: Decoder) throws {
         throw NSError.instructureError("Not for actual api decoding")
     }
+
     public func encode(to encoder: Encoder) throws {
         throw NSError.instructureError("Not for actual api encoding")
     }
 }
 
 #if DEBUG
-extension APIFile {
-    public static func make(
+public extension APIFile {
+    static func make(
         id: ID = "1",
         uuid: String = "uuid-1234",
         folder_id: ID = "1",
@@ -264,8 +265,8 @@ extension APIFile {
     }
 }
 
-extension APIFolder {
-    public static func make(
+public extension APIFolder {
+    static func make(
         can_upload: Bool = true,
         context_type: String = "User",
         context_id: ID = 1,
@@ -314,8 +315,8 @@ extension APIFolder {
     }
 }
 
-extension APIUsageRights {
-    public static func make(
+public extension APIUsageRights {
+    static func make(
         legal_copyright: String? = nil,
         license: String? = nil,
         use_justification: UseJustification? = nil
@@ -350,7 +351,7 @@ public struct GetFileRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        return [ .include(include.map { $0.rawValue }) ]
+        return [.include(include.map { $0.rawValue })]
     }
 }
 
@@ -411,10 +412,23 @@ public struct PostFileUploadRequest: APIRequestable {
 
     public let fileURL: URL
     public let target: FileUploadTarget
+    public let loadBodyFromURL: Bool
 
-    public init(fileURL: URL, target: FileUploadTarget) {
+    /**
+         Creates an `APIRequestable` instance for file upload.
+         - Parameters:
+             - fileURL: The `URL` at which the file is located.
+             - target: `FileUploadTarget` for upload parameters
+             - isBodyFromURL: By default it's set to **true** meaning that the request will try to read the data from a file. See `APIRequestable` for more details.
+     */
+    public init(
+        fileURL: URL,
+        target: FileUploadTarget,
+        isBodyFromURL: Bool = true
+    ) {
         self.fileURL = fileURL
         self.target = target
+        loadBodyFromURL = isBodyFromURL
     }
 
     public let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
@@ -425,8 +439,9 @@ public struct PostFileUploadRequest: APIRequestable {
     public var path: String {
         return target.upload_url.absoluteString
     }
+
     public var form: APIFormData? {
-        var form: APIFormData = target.upload_params.map { (key, value) in
+        var form: APIFormData = target.upload_params.map { key, value in
             (key: key, value: .string(value ?? ""))
         }
         let filename = target.upload_params["filename"] ?? target.upload_params["Filename"]
@@ -437,7 +452,8 @@ public struct PostFileUploadRequest: APIRequestable {
         )))
         return form
     }
-    public var isBodyFromURL: Bool { true }
+
+    public var isBodyFromURL: Bool { loadBodyFromURL }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.resolve_path
@@ -457,7 +473,7 @@ public class GetContextFolderHierarchyRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        [ .include([ "usage_rights" ]) ]
+        [.include(["usage_rights"])]
     }
 }
 
@@ -479,7 +495,7 @@ public class GetFoldersRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         [
-            .include([ "usage_rights" ]),
+            .include(["usage_rights"]),
             .perPage(perPage),
         ]
     }
@@ -502,7 +518,7 @@ public class GetFilesRequest: APIRequestable {
     public var path: String { "\(context.pathComponent)/files" }
 
     public var query: [APIQueryItem] { [
-        .include([ "usage_rights" ]),
+        .include(["usage_rights"]),
         .optionalValue("search_term", searchTerm),
         .perPage(perPage),
     ] }
@@ -544,7 +560,7 @@ struct PostFolderRequest: APIRequestable {
 
     init(context: Context, name: String, parentFolderID: String) {
         self.context = context
-        self.body = Body(name: name, parent_folder_id: parentFolderID, locked: true)
+        body = Body(name: name, parent_folder_id: parentFolderID, locked: true)
     }
 
     var method: APIMethod { .post }
@@ -578,7 +594,7 @@ struct PutFileRequest: APIRequestable {
 
     init(fileID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
         self.fileID = fileID
-        self.body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
+        body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
     }
 
     var method: APIMethod { .put }
@@ -595,7 +611,7 @@ struct PutFolderRequest: APIRequestable {
 
     init(folderID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
         self.folderID = folderID
-        self.body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
+        body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
     }
 
     var method: APIMethod { .put }
@@ -621,7 +637,7 @@ struct DeleteFolderRequest: APIRequestable {
 
     var method: APIMethod { .delete }
     var path: String { "folders/\(folderID)" }
-    var query: [APIQueryItem] { [ .bool("force", force) ] }
+    var query: [APIQueryItem] { [.bool("force", force)] }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.usage_rights.set_usage_right
@@ -631,6 +647,7 @@ public struct PutUsageRightsRequest: APIRequestable {
         let publish: Bool?
         let usage_rights: APIUsageRights
     }
+
     public typealias Response = APIUsageRights
 
     public let context: Context
@@ -638,7 +655,7 @@ public struct PutUsageRightsRequest: APIRequestable {
 
     public init(context: Context, fileIDs: [String], publish: Bool? = nil, usageRights: APIUsageRights) {
         self.context = context
-        self.body = Body(file_ids: fileIDs, publish: publish, usage_rights: usageRights)
+        body = Body(file_ids: fileIDs, publish: publish, usage_rights: usageRights)
     }
 
     public var method: APIMethod { .put }
