@@ -1,0 +1,18 @@
+--- edit or delete this section ---
+## Screenshots
+
+<table>
+<tr><th>Before</th><th>After</th></tr>
+<tr>
+<td><img src="" height=500></td>
+<td><img src="" height=500></td>
+</tr>
+</table>
+
+## Checklist
+
+- [ ] Follow-up e2e test ticket created or not needed
+- [ ] A11y checked
+- [ ] Tested on phone
+- [ ] Tested on tablet
+- [ ] Approve from product or not needed
