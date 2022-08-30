@@ -41,6 +41,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         let item: FileUploadItem = databaseClient.insert()
         item.localFileURL = tempFileURL
         item.fileSubmission = submission
+        item.uploadError = "previousError"
 
         let body = PostFileUploadTargetRequest.Body(name: "FileUploadTargetRequesterTests.txt", on_duplicate: .rename, parent_folder_path: nil, size: 3)
         let request = PostFileUploadTargetRequest(context: submission.fileUploadContext, body: body)
@@ -70,6 +71,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         let item: FileUploadItem = databaseClient.insert()
         item.localFileURL = tempFileURL
         item.fileSubmission = submission
+        item.uploadTarget = FileUploadTarget(upload_url: URL(string: "/previous_url")!, upload_params: [:])
 
         let body = PostFileUploadTargetRequest.Body(name: "FileUploadTargetRequesterTests.txt", on_duplicate: .rename, parent_folder_path: nil, size: 3)
         let request = PostFileUploadTargetRequest(context: submission.fileUploadContext, body: body)

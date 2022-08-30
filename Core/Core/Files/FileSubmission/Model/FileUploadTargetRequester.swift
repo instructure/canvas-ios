@@ -58,17 +58,18 @@ public class FileUploadTargetRequester {
         context.perform { [self] in
             guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
 
-            defer { completionSubject.send() }
-
-            guard let response = response else {
+            if let response = response {
+                fileItem.uploadError = nil
+                fileItem.uploadTarget = response
+            } else {
                 let validError: Error = error ?? NSError.instructureError("Failed to get file upload target.")
                 fileItem.uploadError = validError.localizedDescription
-                try? context.save()
-                return
+                fileItem.uploadTarget = nil
             }
 
-            fileItem.uploadTarget = response
             try? context.save()
+            completionSubject.send()
+            completionSubject.send(completion: .finished)
         }
     }
 }
