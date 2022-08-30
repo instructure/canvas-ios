@@ -28,6 +28,7 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case favoriteGroups = "favorite_groups"
     case nativeStudentInbox = "native_student_inbox"
     case nativeTeacherInbox = "native_teacher_inbox"
+    case nativeTeacherQuiz = "native_teacher_quiz"
     case K5Dashboard = "enable_K5_dashboard"
     case hybridDiscussionDetails = "hybrid_discussion_details"
 

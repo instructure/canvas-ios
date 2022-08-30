@@ -253,16 +253,24 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return QuizListViewController.create(courseID: courseID)
     },
 
-    "/courses/:courseID/quizzes/:quizID": { url, params, _ in
-        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = QuizDetailsViewModel(courseID: courseID, quizID: quizID)
-        return CoreHostingController(QuizDetailsView(viewModel: viewModel))
+    "/courses/:courseID/quizzes/:quizID": { url, params, userInfo in
+        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
+            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+            let viewModel = QuizDetailsViewModel(courseID: courseID, quizID: quizID)
+            return CoreHostingController(QuizDetailsView(viewModel: viewModel))
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID", url: url, params: params, userInfo: userInfo)
+        }
     },
     "/courses/:courseID/quizzes/:quizID/preview": nil,
-    "/courses/:courseID/quizzes/:quizID/edit": { _, params, _ in
-        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = QuizEditorViewModel(courseID: courseID, quizID: quizID)
-        return CoreHostingController(QuizEditorView(viewModel: viewModel))
+    "/courses/:courseID/quizzes/:quizID/edit": { url, params, userInfo in
+        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
+            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+            let viewModel = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+            return CoreHostingController(QuizEditorView(viewModel: viewModel))
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/edit", url: url, params: params, userInfo: userInfo)
+        }
     },
 
     "/courses/:courseID/quizzes/:quizID/submissions": nil,
