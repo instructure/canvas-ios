@@ -55,7 +55,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
             guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
 
             if item.apiID == nil, error == nil {
-                item.uploadError = "Session completed without error or file id."
+                item.uploadError = NSLocalizedString("Session completed without error or file ID.", comment: "")
             } else {
                 item.uploadError = error?.localizedDescription
             }

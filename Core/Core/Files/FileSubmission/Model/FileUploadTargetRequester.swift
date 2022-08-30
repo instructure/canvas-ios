@@ -62,7 +62,7 @@ public class FileUploadTargetRequester {
                 fileItem.uploadError = nil
                 fileItem.uploadTarget = response
             } else {
-                let validError: Error = error ?? NSError.instructureError("Failed to get file upload target.")
+                let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Failed to get file upload target.", comment: ""))
                 fileItem.uploadError = validError.localizedDescription
                 fileItem.uploadTarget = nil
             }

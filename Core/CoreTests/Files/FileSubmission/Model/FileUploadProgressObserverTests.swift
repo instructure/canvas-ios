@@ -70,7 +70,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
 
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
-        XCTAssertEqual(uploadItem.uploadError, "Session completed without error or file id.")
+        XCTAssertEqual(uploadItem.uploadError, "Session completed without error or file ID.")
     }
 
     // MARK: - Complete Without Error

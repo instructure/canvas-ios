@@ -19,6 +19,9 @@
 import Combine
 import CoreData
 
+/**
+ This class submits all the files with `apiID` to the assignment in the given `FileSubmission`
+ */
 public class FileSubmissionSubmitter {
     /** This publisher is signalled when requesting finishes. The result of the request is written into the underlying `FileSubmission` object.  */
     public private(set) lazy var completion: AnyPublisher<Void, Never> = completionSubject.eraseToAnyPublisher()
@@ -55,7 +58,7 @@ public class FileSubmissionSubmitter {
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
 
             if response == nil {
-                let validError: Error = error ?? NSError.instructureError("Submission failed due to unknown error.")
+                let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Submission failed due to unknown error.", comment: ""))
                 submission.submissionError = validError.localizedDescription
                 submission.isSubmitted = false
             } else {
