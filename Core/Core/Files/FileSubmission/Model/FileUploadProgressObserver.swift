@@ -62,6 +62,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
 
             try? context.save()
             completionSubject.send()
+            completionSubject.send(completion: .finished)
         }
     }
 }
@@ -75,6 +76,7 @@ extension FileUploadProgressObserver: URLSessionDataDelegate {
             else { return }
 
             item.apiID = response.id.value
+            item.uploadError = nil
             try? context.save()
         }
     }

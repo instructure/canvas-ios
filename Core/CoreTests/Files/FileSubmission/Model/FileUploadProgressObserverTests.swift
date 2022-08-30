@@ -22,6 +22,8 @@ import XCTest
 class FileUploadProgressObserverTests: CoreTestCase {
     private lazy var mockTask = api.urlSession.dataTask(with: URL(string: "/")!)
 
+    // MARK: - Receive Progress Update
+
     func testUpdatesUploadedAndTotalSize() {
         let uploadItem: FileUploadItem = databaseClient.insert()
         XCTAssertEqual(uploadItem.bytesToUpload, 0)
@@ -34,8 +36,11 @@ class FileUploadProgressObserverTests: CoreTestCase {
         XCTAssertEqual(uploadItem.bytesToUpload, 10)
     }
 
-    func testUpdatesFileIDOnSuccessfulUpload() {
+    // MARK: - Receive API Response
+
+    func testUpdatesFileIDOnSuccessfulBodyResponse() {
         let uploadItem: FileUploadItem = databaseClient.insert()
+        uploadItem.uploadError = "testError"
         XCTAssertNil(uploadItem.apiID)
         let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
         let encoder = JSONEncoder()
@@ -45,7 +50,10 @@ class FileUploadProgressObserverTests: CoreTestCase {
         testee.urlSession(api.urlSession, dataTask: mockTask, didReceive: apiResponse)
 
         XCTAssertEqual(uploadItem.apiID, "testAPIID")
+        XCTAssertNil(uploadItem.uploadError)
     }
+
+    // MARK: - Complete With Error
 
     func testWritesErrorToUploadItem() {
         let uploadItem: FileUploadItem = databaseClient.insert()
@@ -58,13 +66,14 @@ class FileUploadProgressObserverTests: CoreTestCase {
 
     func testCreatesErrorIfTaskCompletesWithoutErrorAndID() {
         let uploadItem: FileUploadItem = databaseClient.insert()
-        XCTAssertNil(uploadItem.apiID)
         let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
 
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
         XCTAssertEqual(uploadItem.uploadError, "Session completed without error or file id.")
     }
+
+    // MARK: - Complete Without Error
 
     func testSignalsCompletionOnUploadFinish() {
         let uploadItem: FileUploadItem = databaseClient.insert()
