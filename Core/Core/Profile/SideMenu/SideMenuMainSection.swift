@@ -53,7 +53,7 @@ struct SideMenuMainSection: View {
                 Button {
                     route(to: "/conversations")
                 } label: {
-                    SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: unreadCount).onAppear {
+                    SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: $unreadCount).onAppear {
                         env.api.makeRequest(GetConversationsUnreadCountRequest()) { (response, _, _) in
                             self.unreadCount = response?.unread_count ?? 0
                         }
@@ -91,7 +91,7 @@ struct SideMenuMainSection: View {
                     route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
                 } label: {
                         SideMenuItem(id: "settings", image: .settingsLine,
-                                 title: Text("Settings", bundle: .core), badgeValue: 0)
+                                 title: Text("Settings", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
