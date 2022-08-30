@@ -1026,6 +1026,7 @@
 		CFB06F9428BCF84900DAC40B /* FileUploadTargetRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */; };
 		CFB06F9628BD0D0D00DAC40B /* FileSubmissionSubmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */; };
 		CFB06F9828BDF64500DAC40B /* FileSubmissionSubmitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */; };
+		CFB06F9A28BE5D0600DAC40B /* FutureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
@@ -2481,6 +2482,7 @@
 		CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetRequesterTests.swift; sourceTree = "<group>"; };
 		CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionSubmitter.swift; sourceTree = "<group>"; };
 		CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionSubmitterTests.swift; sourceTree = "<group>"; };
+		CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensions.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -3837,6 +3839,7 @@
 				CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */,
 				B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */,
 				B1A464BA225669140052F8DF /* DispatchExtensions.swift */,
+				CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */,
 				CF0075DD2875C51E00588E40 /* InputStreamExtensions.swift */,
 				7DF2F5FA2347DAE900C1802C /* InstColorExtensions.swift */,
 				7DA20E8E21680DBF00F5FD19 /* InstIconExtensions.swift */,
@@ -7610,6 +7613,7 @@
 				97F5520424061AF1005D80FC /* PlannerNoteDetailViewController.swift in Sources */,
 				7DBD14E32547213F00750F52 /* QuizListViewController.swift in Sources */,
 				CF60CC332645524500C1C173 /* K5GradesView.swift in Sources */,
+				CFB06F9A28BE5D0600DAC40B /* FutureExtensions.swift in Sources */,
 				CFD9B44527EDBECD0099F173 /* TabToCellViewModelMapping.swift in Sources */,
 				CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,

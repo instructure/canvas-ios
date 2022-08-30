@@ -20,16 +20,12 @@ import Combine
 import CoreData
 
 /**
- This class submits all the files with `apiID` to the assignment in the given `FileSubmission`
+ This class submits all the files with `apiID` to the assignment in the given `FileSubmission`.
  */
 public class FileSubmissionSubmitter {
-    /** This publisher is signalled when requesting finishes. The result of the request is written into the underlying `FileSubmission` object.  */
-    public private(set) lazy var completion: AnyPublisher<Void, Never> = completionSubject.eraseToAnyPublisher()
-
     private let api: API
     private let context: NSManagedObjectContext
     private let fileSubmissionID: NSManagedObjectID
-    private let completionSubject = PassthroughSubject<Void, Never>()
 
     public init(api: API, context: NSManagedObjectContext, fileSubmissionID: NSManagedObjectID) {
         self.api = api
@@ -37,7 +33,12 @@ public class FileSubmissionSubmitter {
         self.fileSubmissionID = fileSubmissionID
     }
 
-    public func submitFiles() {
+    public func submitFiles() -> Future<Void, Error> {
+        Future<Void, Error> { self.sendRequest($0) }
+    }
+
+    /** The result of the request is also written into the underlying `FileSubmission` object.  */
+    private func sendRequest(_ promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
             let fileIDs = submission.files.compactMap { $0.apiID }
@@ -48,12 +49,12 @@ public class FileSubmissionSubmitter {
                                                       assignmentID: submission.assignmentID,
                                                       body: .init(submission: requestedSubmission))
             api.makeRequest(request) { [weak self] response, _, error in
-                self?.handleResponse(response, error: error)
+                self?.handleResponse(response, error: error, promise: promise)
             }
         }
     }
 
-    private func handleResponse(_ response: APISubmission?, error: Error?) {
+    private func handleResponse(_ response: APISubmission?, error: Error?, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
 
@@ -67,8 +68,12 @@ public class FileSubmissionSubmitter {
             }
 
             try? context.save()
-            completionSubject.send()
-            completionSubject.send(completion: .finished)
+
+            if let error = submission.submissionError {
+                promise(.failure(error))
+            } else {
+                promise(.success(()))
+            }
         }
     }
 }

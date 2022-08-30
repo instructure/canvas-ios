@@ -45,10 +45,13 @@ class FileSubmissionSubmitterTests: CoreTestCase {
 
         let testee = FileSubmissionSubmitter(api: api, context: databaseClient, fileSubmissionID: submission.objectID)
         let completionEvent = expectation(description: "completion event fire")
-        let subscription = testee.completion.sink { completionEvent.fulfill() }
 
         // MARK: - WHEN
-        testee.submitFiles()
+        let subscription = testee.submitFiles().sink { completion in
+            if case .finished = completion {
+                completionEvent.fulfill()
+            }
+        }
 
         // MARK: - THEN
         waitForExpectations(timeout: 0.1)
@@ -81,10 +84,13 @@ class FileSubmissionSubmitterTests: CoreTestCase {
 
         let testee = FileSubmissionSubmitter(api: api, context: databaseClient, fileSubmissionID: submission.objectID)
         let completionEvent = expectation(description: "completion event fire")
-        let subscription = testee.completion.sink { completionEvent.fulfill() }
 
         // MARK: - WHEN
-        testee.submitFiles()
+        let subscription = testee.submitFiles().sink { completion in
+            if case .failure = completion {
+                completionEvent.fulfill()
+            }
+        }
 
         // MARK: - THEN
         waitForExpectations(timeout: 0.1)
