@@ -21,17 +21,12 @@ import CoreData
 
 /**
  This class is responsible for requesting a `FileUploadTarget` from the API. A file upload target contains the url where the file
- should be uploaded and few upload parameters. These are written back to the given `FileUploadItem`. Completion of the request is
- communicated via a `Combine.Publisher` object.
+ should be uploaded and few upload parameters. These are written back to the given `FileUploadItem`.
  */
 public class FileUploadTargetRequester {
-    /** This publisher is signalled when requesting finishes. The result of the request is written into the underlying `FileUploadItem` object.  */
-    public private(set) lazy var completion: AnyPublisher<Void, Never> = completionSubject.eraseToAnyPublisher()
-
     private let api: API
     private let context: NSManagedObjectContext
     private let fileUploadItemID: NSManagedObjectID
-    private let completionSubject = PassthroughSubject<Void, Never>()
 
     public init(api: API, context: NSManagedObjectContext, fileUploadItemID: NSManagedObjectID) {
         self.api = api
@@ -39,7 +34,12 @@ public class FileUploadTargetRequester {
         self.fileUploadItemID = fileUploadItemID
     }
 
-    public func requestUploadTarget() {
+    /** The result of the request is also written into the underlying `FileUploadItem` object.  */
+    public func requestUploadTarget() -> Future<Void, Error> {
+        Future<Void, Error> { self.sendRequest(promise: $0) }
+    }
+
+    public func sendRequest(promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
                   let fileSubmission = fileItem.fileSubmission
@@ -49,12 +49,12 @@ public class FileUploadTargetRequester {
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)
             let request = PostFileUploadTargetRequest(context: fileSubmission.fileUploadContext, body: body)
             api.makeRequest(request) { [weak self] response, _, error in
-                self?.handleResponse(response, error: error)
+                self?.handleResponse(response, error: error, promise: promise)
             }
         }
     }
 
-    private func handleResponse(_ response: FileUploadTarget?, error: Error?) {
+    private func handleResponse(_ response: FileUploadTarget?, error: Error?, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
 
@@ -68,8 +68,12 @@ public class FileUploadTargetRequester {
             }
 
             try? context.save()
-            completionSubject.send()
-            completionSubject.send(completion: .finished)
+
+            if let error = fileItem.uploadError {
+                promise(.failure(error))
+            } else {
+                promise(.success(()))
+            }
         }
     }
 }

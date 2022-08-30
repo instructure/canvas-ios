@@ -87,7 +87,8 @@ class FileSubmissionSubmitterTests: CoreTestCase {
 
         // MARK: - WHEN
         let subscription = testee.submitFiles().sink { completion in
-            if case .failure = completion {
+            if case .failure(let error) = completion {
+                XCTAssertEqual(error as! String, "testError")
                 completionEvent.fulfill()
             }
         }

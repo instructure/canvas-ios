@@ -49,10 +49,13 @@ class FileUploadTargetRequesterTests: CoreTestCase {
 
         let testee = FileUploadTargetRequester(api: api, context: databaseClient, fileUploadItemID: item.objectID)
         let completionEvent = expectation(description: "completion event fire")
-        let subscription = testee.completion.sink { completionEvent.fulfill() }
 
         // MARK: - WHEN
-        testee.requestUploadTarget()
+        let subscription = testee.requestUploadTarget().sink { completion in
+            if case .finished = completion {
+                completionEvent.fulfill()
+            }
+        }
 
         // MARK: - THEN
         waitForExpectations(timeout: 0.1)
@@ -79,10 +82,14 @@ class FileUploadTargetRequesterTests: CoreTestCase {
 
         let testee = FileUploadTargetRequester(api: api, context: databaseClient, fileUploadItemID: item.objectID)
         let completionEvent = expectation(description: "completion event fire")
-        let subscription = testee.completion.sink { completionEvent.fulfill() }
 
         // MARK: - WHEN
-        testee.requestUploadTarget()
+        let subscription = testee.requestUploadTarget().sink { completion in
+            if case .failure(let error) = completion {
+                XCTAssertEqual(error as! String, "testError")
+                completionEvent.fulfill()
+            }
+        }
 
         // MARK: - THEN
         waitForExpectations(timeout: 0.1)
