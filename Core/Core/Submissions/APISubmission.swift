@@ -397,7 +397,7 @@ public struct GetSubmissionsRequest: APIRequestable {
 public struct CreateSubmissionRequest: APIRequestable {
     public typealias Response = APISubmission
     public struct Body: Codable, Equatable {
-        struct Submission: Codable, Equatable {
+        public struct Submission: Codable, Equatable {
             let annotatable_attachment_id: String? // Required if submission_type is student_annotation
             let text_comment: String?
             let submission_type: SubmissionType
@@ -407,7 +407,7 @@ public struct CreateSubmissionRequest: APIRequestable {
             let media_comment_id: String? // Requires submission_type of media_recording
             let media_comment_type: MediaCommentType? // Requires submission_type of media_recording
 
-            init(
+            public init(
                 annotatable_attachment_id: String? = nil,
                 text_comment: String? = nil,
                 submission_type: SubmissionType,
@@ -432,7 +432,7 @@ public struct CreateSubmissionRequest: APIRequestable {
             let text_comment: String
         }
 
-        init(submission: Submission) {
+        public init(submission: Submission) {
             self.submission = submission
             self.comment = submission.text_comment.flatMap(Comment.init(text_comment:))
         }
@@ -448,6 +448,12 @@ public struct CreateSubmissionRequest: APIRequestable {
     public var method: APIMethod { .post }
     public var path: String {
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
+    }
+
+    public init(context: Context, assignmentID: String, body: Body?) {
+        self.context = context
+        self.assignmentID = assignmentID
+        self.body = body
     }
 }
 
