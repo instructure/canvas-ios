@@ -136,17 +136,12 @@ class DashboardViewController: UIViewController, ErrorViewController {
 
     func updateBadgeCount() {
         profileButton.addBadge(number: badgeCount, color: currentColor)
+        profileButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
         if badgeCount > 0 {
-            let unreadMessages = String.localizedStringWithFormat(
+            profileButton.accessibilityHint = String.localizedStringWithFormat(
                 NSLocalizedString("conversation_unread_messages", bundle: .core, comment: ""),
                 badgeCount
             )
-            profileButton.accessibilityLabel = String.localizedStringWithFormat(
-                NSLocalizedString("Settings. %@", comment: ""),
-                unreadMessages
-            )
-        } else {
-            profileButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
         }
     }
 

@@ -20,11 +20,17 @@ import SwiftUI
 
 struct SideMenuItem: View {
     @Environment(\.colorScheme) var colorScheme
+    @Binding var badgeValue: UInt
+
     let id: String
     let image: Image
     let title: Text
-
-    @Binding var badgeValue: UInt
+    var accessibilityHint: Text {
+        guard badgeValue > 0 else { return Text("") }
+        return Text(String.localizedStringWithFormat(
+            NSLocalizedString("conversation_unread_messages", bundle: .core, comment: ""),
+            badgeValue))
+    }
 
     init(id: String, image: Image, title: Text, badgeValue: Binding<UInt>) {
         self.id = id
@@ -57,6 +63,7 @@ struct SideMenuItem: View {
         .contentShape(Rectangle())
         .accessibilityElement(children: .ignore)
         .accessibility(label: title)
+        .accessibilityHint(accessibilityHint)
         .identifier("Profile.\(id)Button")
     }
 }
@@ -65,12 +72,12 @@ private struct Badge: View {
     @Binding var value: UInt
 
     var body: some View {
-             clampedValueText()
-                .font(.semibold12)
-                .padding(EdgeInsets(top: 2.5, leading: 6.5, bottom: 3, trailing: 6.5))
-                .foregroundColor(.white)
-                .background(Color.crimson)
-                .clipShape(Capsule())
+        clampedValueText()
+            .font(.semibold12)
+            .padding(EdgeInsets(top: 2.5, leading: 6.5, bottom: 3, trailing: 6.5))
+            .foregroundColor(.white)
+            .background(Color.crimson)
+            .clipShape(Capsule())
     }
 
     func clampedValueText() -> Text {
