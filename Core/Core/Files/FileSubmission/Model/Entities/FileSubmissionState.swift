@@ -65,7 +65,7 @@ private extension Array where Element == FileUploadItem.State {
             switch state {
             case .uploaded, .error:
                 result += 1
-            default:
+            case .waiting, .uploading:
                 break
             }
         }
@@ -93,7 +93,7 @@ private extension Array where Element == FileUploadItem.State {
                 result += progress
             case .waiting:
                 break
-            default:
+            case .uploaded, .error:
                 result += 1
             }
         }
