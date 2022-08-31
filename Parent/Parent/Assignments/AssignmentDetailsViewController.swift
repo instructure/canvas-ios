@@ -42,7 +42,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     let dateFormatter = DateFormatter()
     var selectedDate: Date = Clock.now
     let sheetVC = SheetViewController.loadFromStoryboard()
-    var currentDate: Date? = nil
+    var currentDate: Date?
     var assignmentID = ""
     var courseID = ""
     let env = AppEnvironment.shared
@@ -180,6 +180,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                     return self.showPermissionError(.notifications)
                 }
                 self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
+                self.currentDate = defaultDate
                 self.reminderDateButton.isHidden = false
             } }
         } else {
@@ -191,7 +192,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     @IBAction func reminderDateButtonPressed(_ sender: Any) {
-        sheetVC.currentDate = currentDate ?? Date()
+        sheetVC.currentDate = currentDate ?? Clock.now.startOfDay()
         sheetVC.modalPresentationStyle = .overFullScreen
         self.present(sheetVC, animated: true, completion: nil)
     }
@@ -225,6 +226,7 @@ extension AssignmentDetailsViewController {
         NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate {
             if error == nil {
                 self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
+                self.currentDate = selectedDate
             } else {
                 self.reminderSwitch.setOn(false, animated: true)
                 self.reminderSwitchChanged()
@@ -236,7 +238,6 @@ extension AssignmentDetailsViewController {
 extension AssignmentDetailsViewController: DatePickerProtocol {
     func didSelectDate(selectedDate: Date) {
         self.selectedDate = selectedDate
-        reminderDateButton.setTitle(selectedDate.dateTimeString ,for: .normal)
         reminderDateChanged(selectedDate: selectedDate)
     }
 }

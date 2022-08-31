@@ -25,10 +25,10 @@ public class SheetViewController: UIViewController, UISheetPresentationControlle
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
-    public var minDate: Date? = nil
-    public var maxDate: Date? = nil
-    public var currentDate = Date()
-    
+    public var minDate: Date?
+    public var maxDate: Date?
+    public var currentDate = Clock.now.startOfDay()
+
     public weak var datePickerDelegate: DatePickerProtocol?
     let attributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17), NSAttributedString.Key.foregroundColor: Brand.shared.primary]
 
