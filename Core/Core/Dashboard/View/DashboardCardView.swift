@@ -27,6 +27,7 @@ public struct DashboardCardView: View {
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
     @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
+    @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardViewModel()
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -39,7 +40,7 @@ public struct DashboardCardView: View {
     private let verticalSpacing: CGFloat = 16
 
     public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
-        self.cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
+        cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
         colors = env.subscribe(GetCustomColors())
@@ -55,6 +56,7 @@ public struct DashboardCardView: View {
                     CircleRefresh { endRefreshing in
                         refresh(force: true, onComplete: endRefreshing)
                     }
+                    fileUploadNotificationCards()
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
                 .padding(.horizontal, verticalSpacing)
@@ -66,7 +68,7 @@ public struct DashboardCardView: View {
         .onAppear {
             refresh(force: false) {
                 let env = AppEnvironment.shared
-                if env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false {
+                if env.userDefaults?.interfaceStyle == nil, env.currentSession?.isFakeStudent == false {
                     controller.value.showThemeSelectorAlert()
                 }
             }
@@ -105,6 +107,15 @@ public struct DashboardCardView: View {
                     .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
             }
             .frame(width: 44, height: 44).padding(.trailing, -6)
+        }
+    }
+
+    @ViewBuilder func fileUploadNotificationCards() -> some View {
+        ForEach(fileUploadNotificationCardViewModel.fileUploads) { viewModel in
+            FileUploadNotificationCard(viewModel: viewModel)
+                .frame(maxWidth: .infinity)
+                .padding(.top, verticalSpacing)
+                .transition(.move(edge: .top))
         }
     }
 
