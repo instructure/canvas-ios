@@ -122,9 +122,9 @@ public struct FileEditorView: View {
                     Spacer()
                     DisclosureIndicator()
                 })
-                    .identifier("FileEditor.accessButton")
-                    .accessibility(label: Text("Access", bundle: .core))
-                    .accessibility(value: Text(access.label))
+                .identifier("FileEditor.accessButton")
+                .accessibility(label: Text("Access", bundle: .core))
+                .accessibility(value: Text(access.label))
 
                 if access == .scheduled {
                     Divider()
@@ -138,6 +138,7 @@ public struct FileEditorView: View {
                             Text("")
                         }
                     })
+                    .identifier("FileEditor.unlockAtButton")
 
                     Divider()
 
@@ -150,6 +151,7 @@ public struct FileEditorView: View {
                             Text("")
                         }
                     })
+                    .identifier("FileEditor.lockAtButton")
                 }
             }
 
