@@ -6301,6 +6301,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C964842211E2F1A002C3255 /* Build configuration list for PBXNativeTarget "Core" */;
 			buildPhases = (
+				B4DE2AD128BCB4B1000F8D4D /* SwiftLint */,
 				D99BB92EECB794224AAACF8B /* [CP] Check Pods Manifest.lock */,
 				2C96482B211E2F1A002C3255 /* Headers */,
 				7DA25F8923F720C7005D2121 /* Sources */,
@@ -6643,6 +6644,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-CoreTester/Pods-needs-pspdfkit-CoreTester-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B4DE2AD128BCB4B1000F8D4D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/../scripts/swiftLint.sh\n";
 		};
 		BD015C033B8EBDDD0E5EEACA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
