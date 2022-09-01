@@ -28,7 +28,7 @@ public struct WebView: UIViewRepresentable {
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
     private var isPullToRefreshEnabled: Bool
-    private var pullToRefreshColor: UIColor? = nil
+    private var pullToRefreshColor: UIColor?
     private var invertColorsInDarkMode: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration?
@@ -73,9 +73,8 @@ public struct WebView: UIViewRepresentable {
         request: URLRequest,
         disableZoom: Bool = false,
         isPullToRefreshEnabled: Bool
-        
     ) {
-        self.source = .request(request)
+        source = .request(request)
         self.disableZoom = disableZoom
         self.isPullToRefreshEnabled = isPullToRefreshEnabled
     }

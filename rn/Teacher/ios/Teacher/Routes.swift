@@ -324,8 +324,7 @@ private func discussionDetails(url: URLComponents, params: [String: String], use
     guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
 
     if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
-       DiscussionWebPageViewModel.isRedesignEnabled(in: context)
-    {
+       DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
         let viewModel = DiscussionWebPageViewModel(
             context: context,
             topicID: topicID

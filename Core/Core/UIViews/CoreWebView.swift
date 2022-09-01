@@ -95,7 +95,7 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+    override public init(frame: CGRect, configuration: WKWebViewConfiguration) {
         isPullToRefreshEnabled = false
         configuration.applyDefaultSettings()
         super.init(frame: frame, configuration: configuration)
@@ -115,7 +115,7 @@ open class CoreWebView: WKWebView {
         invertColorsInDarkMode: Bool = false
     ) {
         self.isPullToRefreshEnabled = isPullToRefreshEnabled
-        
+
         let config = configuration ?? Self.defaultConfiguration
         config.applyDefaultSettings()
 
@@ -136,7 +136,7 @@ open class CoreWebView: WKWebView {
         if isPullToRefreshEnabled {
             addRefreshControl(color: pullToRefreshColor)
         }
-        
+
         setup()
     }
 

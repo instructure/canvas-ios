@@ -461,8 +461,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
     }
 
     if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
-       DiscussionWebPageViewModel.isRedesignEnabled(in: context)
-    {
+       DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
         let viewModel = DiscussionWebPageViewModel(
             context: context,
             topicID: discussionID

@@ -21,7 +21,7 @@ import SwiftUI
 public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
     @ObservedObject private var viewModel: ViewModel
     private let isPullToRefreshEnabled: Bool
-    
+
     public init(
         viewModel: ViewModel,
         isPullToRefreshEnabled: Bool
