@@ -88,7 +88,7 @@ open class CoreWebView: WKWebView {
         self.isPullToRefreshEnabled = isPullToRefreshEnabled
         super.init(frame: .zero)
     }
-    
+
     public required init?(coder: NSCoder) {
         isPullToRefreshEnabled = false
         super.init(coder: coder)
@@ -174,7 +174,7 @@ open class CoreWebView: WKWebView {
         scrollView.bounces = true
         refreshControl.color = color
     }
-    
+
     @objc func refreshWebView(_ sender: UIRefreshControl) {
         reload()
         sender.endRefreshing()
