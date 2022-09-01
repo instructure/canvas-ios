@@ -27,8 +27,7 @@ public struct WebView: UIViewRepresentable {
     private let source: Source?
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
-    private var isPullToRefreshEnabled: Bool
-    private var pullToRefreshColor: UIColor?
+    private var pullToRefresh: CoreWebView.PullToRefresh
     private var invertColorsInDarkMode: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration?
@@ -40,43 +39,41 @@ public struct WebView: UIViewRepresentable {
 
     public init(
         url: URL?,
-        isPullToRefreshEnabled: Bool
+        pullToRefresh: CoreWebView.PullToRefresh
     ) {
         source = url.map { .request(URLRequest(url: $0)) }
-        self.isPullToRefreshEnabled = isPullToRefreshEnabled
+        self.pullToRefresh = pullToRefresh
     }
 
     public init(
         url: URL?,
         customUserAgentName: String?,
         disableZoom: Bool = false,
-        isPullToRefreshEnabled: Bool,
-        pullToRefreshColor: UIColor? = nil,
+        pullToRefresh: CoreWebView.PullToRefresh,
         configuration: WKWebViewConfiguration? = nil,
         invertColorsInDarkMode: Bool = false
     ) {
-        self.init(url: url, isPullToRefreshEnabled: isPullToRefreshEnabled)
+        self.init(url: url, pullToRefresh: pullToRefresh)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
-        self.isPullToRefreshEnabled = isPullToRefreshEnabled
-        self.pullToRefreshColor = pullToRefreshColor
+        self.pullToRefresh = pullToRefresh
         self.invertColorsInDarkMode = invertColorsInDarkMode
         self.configuration = configuration
     }
 
     public init(html: String?) {
         source = html.map { .html($0) }
-        isPullToRefreshEnabled = false
+        pullToRefresh = .disabled
     }
 
     public init(
         request: URLRequest,
         disableZoom: Bool = false,
-        isPullToRefreshEnabled: Bool
+        pullToRefresh: CoreWebView.PullToRefresh
     ) {
         source = .request(request)
         self.disableZoom = disableZoom
-        self.isPullToRefreshEnabled = isPullToRefreshEnabled
+        self.pullToRefresh = pullToRefresh
     }
 
     // MARK: - View Modifiers
@@ -120,8 +117,7 @@ public struct WebView: UIViewRepresentable {
         CoreWebView(
             customUserAgentName: customUserAgentName,
             disableZoom: disableZoom,
-            isPullToRefreshEnabled: isPullToRefreshEnabled,
-            pullToRefreshColor: pullToRefreshColor,
+            pullToRefresh: pullToRefresh,
             configuration: configuration,
             invertColorsInDarkMode: invertColorsInDarkMode
         )

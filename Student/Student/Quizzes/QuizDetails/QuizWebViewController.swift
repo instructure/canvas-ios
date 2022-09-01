@@ -28,7 +28,7 @@ class QuizWebViewController: UIViewController {
     let webView = CoreWebView(
         customUserAgentName: nil,
         disableZoom: false,
-        isPullToRefreshEnabled: false,
+        pullToRefresh: .disabled,
         configuration: nil,
         invertColorsInDarkMode: true
     )

@@ -74,7 +74,7 @@ class WebSitePreviewViewModel: ObservableObject {
             CoreHostingController(
                 WebView(
                     request: request,
-                    isPullToRefreshEnabled: false
+                    pullToRefresh: .disabled
                 )
                 .navigationTitle("WebSite Preview")
             ), from: viewController

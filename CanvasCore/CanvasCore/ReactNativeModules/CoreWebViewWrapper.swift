@@ -20,7 +20,7 @@ import WebKit
 import Core
 
 public class CoreWebViewWrapper: UIView, RCTAutoInsetsProtocol {
-    @objc public let webView = CoreWebView(isPullToRefreshEnabled: false)
+    @objc public let webView = CoreWebView(pullToRefresh: .disabled)
 
     @objc public var onError: RCTDirectEventBlock?
     @objc public var onFinishedLoading: RCTDirectEventBlock?

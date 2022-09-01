@@ -39,8 +39,7 @@ public struct K5SubjectView: View {
                         url: currentPageURL,
                         customUserAgentName: nil,
                         disableZoom: true,
-                        isPullToRefreshEnabled: true,
-                        pullToRefreshColor: viewModel.courseColor,
+                        pullToRefresh: .enabled(color: viewModel.courseColor),
                         configuration: viewModel.config,
                         invertColorsInDarkMode: true
                     )

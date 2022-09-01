@@ -181,7 +181,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     func embedWebView(for url: URL, isLocalURL: Bool = true) {
         let webView = CoreWebView(
-            isPullToRefreshEnabled: false,
+            pullToRefresh: .disabled,
             invertColorsInDarkMode: true
         )
         contentView.addSubview(webView)

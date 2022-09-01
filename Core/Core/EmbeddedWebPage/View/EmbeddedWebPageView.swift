@@ -36,8 +36,7 @@ public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
                 url: sessionURL,
                 customUserAgentName: nil,
                 disableZoom: true,
-                isPullToRefreshEnabled: isPullToRefreshEnabled,
-                pullToRefreshColor: viewModel.contextColor
+                pullToRefresh: isPullToRefreshEnabled ? .enabled(color: viewModel.contextColor) : .disabled
             )
         }
         .navigationTitle(viewModel.navTitle, subtitle: viewModel.subTitle)

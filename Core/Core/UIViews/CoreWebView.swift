@@ -50,6 +50,12 @@ private extension WKWebViewConfiguration {
 
 @IBDesignable
 open class CoreWebView: WKWebView {
+    
+    public enum PullToRefresh {
+        case disabled
+        case enabled(color: UIColor?)
+    }
+    
     public static var defaultConfiguration: WKWebViewConfiguration {
         let configuration = WKWebViewConfiguration()
         configuration.applyDefaultSettings()
@@ -74,7 +80,8 @@ open class CoreWebView: WKWebView {
         )
         return refreshControl
     }()
-    private let isPullToRefreshEnabled: Bool
+    private let pullToRefresh: CoreWebView.PullToRefresh
+    private var pullToRefreshNavigation: WKNavigation?
 
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
@@ -84,19 +91,19 @@ open class CoreWebView: WKWebView {
 
     public static let processPool = WKProcessPool()
 
-    public init(isPullToRefreshEnabled: Bool) {
-        self.isPullToRefreshEnabled = isPullToRefreshEnabled
+    public init(pullToRefresh: CoreWebView.PullToRefresh) {
+        self.pullToRefresh = pullToRefresh
         super.init(frame: .zero)
     }
 
     public required init?(coder: NSCoder) {
-        isPullToRefreshEnabled = false
+        pullToRefresh = .disabled
         super.init(coder: coder)
         setup()
     }
 
     override public init(frame: CGRect, configuration: WKWebViewConfiguration) {
-        isPullToRefreshEnabled = false
+        pullToRefresh = .disabled
         configuration.applyDefaultSettings()
         super.init(frame: frame, configuration: configuration)
         setup()
@@ -109,12 +116,12 @@ open class CoreWebView: WKWebView {
     public init(
         customUserAgentName: String? = nil,
         disableZoom: Bool = false,
-        isPullToRefreshEnabled: Bool,
+        pullToRefresh: CoreWebView.PullToRefresh,
         pullToRefreshColor: UIColor? = nil,
         configuration: WKWebViewConfiguration? = nil,
         invertColorsInDarkMode: Bool = false
     ) {
-        self.isPullToRefreshEnabled = isPullToRefreshEnabled
+        self.pullToRefresh = pullToRefresh
 
         let config = configuration ?? Self.defaultConfiguration
         config.applyDefaultSettings()
@@ -133,15 +140,15 @@ open class CoreWebView: WKWebView {
             addScript(colorInvertInDarkModeScript)
         }
 
-        if isPullToRefreshEnabled {
-            addRefreshControl(color: pullToRefreshColor)
+        if case let .enabled(color) = pullToRefresh {
+            addRefreshControl(color: color)
         }
 
         setup()
     }
 
     private init(externalConfiguration: WKWebViewConfiguration) {
-        self.isPullToRefreshEnabled = false
+        self.pullToRefresh = .disabled
         super.init(frame: .zero, configuration: externalConfiguration)
         navigationDelegate = self
         uiDelegate = self
@@ -176,8 +183,8 @@ open class CoreWebView: WKWebView {
     }
 
     @objc func refreshWebView(_ sender: UIRefreshControl) {
-        reload()
-        sender.endRefreshing()
+        guard pullToRefreshNavigation == nil else { return }
+        pullToRefreshNavigation = reload()
     }
 
     public var contentInputAccessoryView: UIView? {
@@ -507,6 +514,11 @@ extension CoreWebView: WKNavigationDelegate {
         linkDelegate?.finishedNavigation()
         if let fragment = url?.fragment {
             scrollIntoView(fragment: fragment)
+        }
+        
+        if navigation == pullToRefreshNavigation {
+            refreshControl.endRefreshing()
+            pullToRefreshNavigation = nil
         }
     }
 
