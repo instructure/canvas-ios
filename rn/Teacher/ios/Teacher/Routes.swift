@@ -323,9 +323,19 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
 
-    if ExperimentalFeature.hybridDiscussionDetails.isEnabled, DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
-        let viewModel = DiscussionWebPageViewModel(context: context, topicID: topicID)
-        return CoreHostingController(EmbeddedWebPageView(viewModel: viewModel))
+    if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
+       DiscussionWebPageViewModel.isRedesignEnabled(in: context)
+    {
+        let viewModel = DiscussionWebPageViewModel(
+            context: context,
+            topicID: topicID
+        )
+        return CoreHostingController(
+            EmbeddedWebPageView(
+                viewModel: viewModel,
+                isPullToRefreshEnabled: true
+            )
+        )
     } else {
         return DiscussionDetailsViewController.create(context: context, topicID: topicID)
     }

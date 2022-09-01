@@ -37,7 +37,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     public var titleSubtitleView = TitleSubtitleView.create()
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewPlaceholder: UIView!
-    var webView = CoreWebView()
+    var webView = CoreWebView(isPullToRefreshEnabled: false)
 
     public var color: UIColor?
     var context = Context.currentUser
