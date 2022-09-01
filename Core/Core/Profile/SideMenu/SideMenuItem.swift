@@ -56,6 +56,7 @@ struct SideMenuItem: View {
 
             if badgeValue > 0 {
                 Badge(value: $badgeValue)
+                    .accessibilityHidden(true)
             }
         }
         .padding(20)
