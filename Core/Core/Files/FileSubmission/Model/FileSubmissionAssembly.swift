@@ -24,6 +24,7 @@ public class FileSubmissionAssembly {
 
     /** This is a background context so we can work with it from any background thread. */
     private let backgroundContext: NSManagedObjectContext
+    private let uploadProgressObserversCache: FileUploadProgressObserversCache
 
     /**
      - parameters:
@@ -32,9 +33,12 @@ public class FileSubmissionAssembly {
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
      */
     public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String) {
-        backgroundContext = container.newBackgroundContext()
+        let backgroundContext = container.newBackgroundContext()
         backgroundContext.mergePolicy = NSMergePolicy.overwrite
+        let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext)
+        self.backgroundContext = backgroundContext
         composer = FileSubmissionComposer(context: backgroundContext)
-        backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID)
+        backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
+        self.uploadProgressObserversCache = uploadProgressObserversCache
     }
 }

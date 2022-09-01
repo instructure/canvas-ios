@@ -39,7 +39,7 @@ public class FileUploadTargetRequester {
         Future<Void, Error> { self.sendRequest(promise: $0) }
     }
 
-    public func sendRequest(promise: @escaping Future<Void, Error>.Promise) {
+    private func sendRequest(promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
                   let fileSubmission = fileItem.fileSubmission

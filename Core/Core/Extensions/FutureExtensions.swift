@@ -54,7 +54,7 @@ extension Array where Element: Future<Void, Error> {
                         subscription?.cancel()
                         subscription = nil
                     },
-                    receiveValue: { values in
+                    receiveValue: { _ in
                         promise(.success(()))
                     })
         }

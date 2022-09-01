@@ -1028,6 +1028,7 @@
 		CFB06F9828BDF64500DAC40B /* FileSubmissionSubmitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */; };
 		CFB06F9A28BE5D0600DAC40B /* FutureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */; };
 		CFB06FA128BFFADF00DAC40B /* FutureExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA028BFFADF00DAC40B /* FutureExtensionsTests.swift */; };
+		CFB06FA428C0E62400DAC40B /* FileUploadProgressObserversCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
@@ -2485,6 +2486,7 @@
 		CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionSubmitterTests.swift; sourceTree = "<group>"; };
 		CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensions.swift; sourceTree = "<group>"; };
 		CFB06FA028BFFADF00DAC40B /* FutureExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensionsTests.swift; sourceTree = "<group>"; };
+		CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCache.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -5851,6 +5853,7 @@
 				CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */,
 				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
 				CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */,
+				CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */,
 				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
 				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
 				CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */,
@@ -7678,6 +7681,7 @@
 				7DA2604323F722D9005D2121 /* DiscussionEntry.swift in Sources */,
 				D9D7EBE227BC0A1D00544339 /* CourseSettingsView.swift in Sources */,
 				CFDB61FC28AD2FC70008C3F3 /* FileSubmissionState.swift in Sources */,
+				CFB06FA428C0E62400DAC40B /* FileUploadProgressObserversCache.swift in Sources */,
 				7D1E85622566E80100D093C5 /* CustomizeCourseView.swift in Sources */,
 				EB2A9BCF2632E40600A19A5A /* SideMenuItem.swift in Sources */,
 				7DA25FF223F7225D005D2121 /* APIAccountNotification.swift in Sources */,

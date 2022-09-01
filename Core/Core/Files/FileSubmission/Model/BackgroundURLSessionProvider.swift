@@ -36,15 +36,17 @@ public class BackgroundURLSessionProvider: NSObject {
     private var activeSession: URLSession?
     private let sessionID: String
     private let sharedContainerID: String
+    private let uploadProgressObserversCache: FileUploadProgressObserversCache
 
     /**
      - parameters:
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
      */
-    public init(sessionID: String, sharedContainerID: String) {
+    public init(sessionID: String, sharedContainerID: String, uploadProgressObserversCache: FileUploadProgressObserversCache) {
         self.sessionID = sessionID
         self.sharedContainerID = sharedContainerID
+        self.uploadProgressObserversCache = uploadProgressObserversCache
     }
 
     private func createSession() -> URLSession {
@@ -71,5 +73,23 @@ extension BackgroundURLSessionProvider: URLSessionDelegate {
         session.finishTasksAndInvalidate()
         completionHandler?()
         completionHandler = nil
+    }
+}
+
+extension BackgroundURLSessionProvider: URLSessionTaskDelegate {
+
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        uploadProgressObserversCache.urlSession(session, task: task, didSendBodyData: bytesSent, totalBytesSent: totalBytesSent, totalBytesExpectedToSend: totalBytesExpectedToSend)
+    }
+
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        uploadProgressObserversCache.urlSession(session, task: task, didCompleteWithError: error)
+    }
+}
+
+extension BackgroundURLSessionProvider: URLSessionDataDelegate {
+
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        uploadProgressObserversCache.urlSession(session, dataTask: dataTask, didReceive: data)
     }
 }

@@ -16,16 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+@testable import Core
+import CoreData
 import XCTest
-import Core
 
-class BackgroundURLSessionProviderTests: XCTestCase {
+class BackgroundURLSessionProviderTests: CoreTestCase {
     private var testee: BackgroundURLSessionProvider!
+    private var mockUploadProgressObserversCache: MockFileUploadProgressObserversCache!
 
     override func setUp() {
         super.setUp()
-        testee = BackgroundURLSessionProvider(sessionID: "testSession", sharedContainerID: "testContainer")
+        mockUploadProgressObserversCache = MockFileUploadProgressObserversCache()
+        testee = BackgroundURLSessionProvider(sessionID: "testSession", sharedContainerID: "testContainer", uploadProgressObserversCache: mockUploadProgressObserversCache)
     }
+
+    // MARK: - URLSession Lifecycle Tests
 
     func testURLSessionProperties() {
         let session = testee.session
@@ -55,5 +60,43 @@ class BackgroundURLSessionProviderTests: XCTestCase {
         drainMainQueue()
         let newSession = testee.session
         XCTAssertNotEqual(oldSession, newSession)
+    }
+
+    // MARK: - Event Forwarding To Upload Observer Tests
+
+    func testForwardsURLSessionEventsToProgressObserver() {
+        XCTAssertNil(mockUploadProgressObserversCache.receivedProgressUpdate)
+        XCTAssertNil(mockUploadProgressObserversCache.receivedCompletionError)
+        XCTAssertNil(mockUploadProgressObserversCache.receivedData)
+        let mockTask = api.urlSession.dataTask(with: URL(string: "/")!)
+
+        testee.urlSession(api.urlSession, task: mockTask, didSendBodyData: 1, totalBytesSent: 2, totalBytesExpectedToSend: 3)
+
+        let result = mockUploadProgressObserversCache.receivedProgressUpdate
+        XCTAssertEqual(result?.bytesSent, 1)
+        XCTAssertEqual(result?.totalBytesSent, 2)
+        XCTAssertEqual(result?.totalBytesExpectedToSend, 3)
+    }
+}
+
+private class MockFileUploadProgressObserversCache: FileUploadProgressObserversCache {
+    public var receivedProgressUpdate: (bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64)?
+    public var receivedCompletionError: Error?
+    public var receivedData: Data?
+
+    init() {
+        super.init(context: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType))
+    }
+
+    public override func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        receivedProgressUpdate = (bytesSent, totalBytesSent, totalBytesExpectedToSend)
+    }
+
+    public override func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        receivedCompletionError = error
+    }
+
+    public override func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        receivedData = data
     }
 }
