@@ -24,16 +24,16 @@ struct AssignmentOverridesEditor: View {
     @Binding var overrides: [Override]
     @Binding var toRemove: Override?
 
-    @State var showDatePicker = false
-    @State var unlockAt: Date?
-    @State var lockAt: Date?
-    @State var dueAt: Date?
-
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     var body: some View {
         ForEach(overrides) { override in
+
+            let dueAt = Binding(get: { override.dueAt }, set: { set(override, \.dueAt, $0) })
+            let unlockAt = Binding(get: { override.unlockAt }, set: { set(override, \.unlockAt, $0) })
+            let lockAt = Binding(get: { override.lockAt }, set: { set(override, \.lockAt, $0) })
+
             EditorSection(label: HStack {
                 Text("Assign", bundle: .core)
                 Spacer()
@@ -52,30 +52,30 @@ struct AssignmentOverridesEditor: View {
                 })
                 Divider()
 
-                ButtonRow(action: pickDueAtDate, content: {
+                ButtonRow(action: { pickDate(for: dueAt) }, content: {
                     Text("Due", bundle: .core)
                     Spacer()
-                    if let dateValidator = dueAt {
+                    if let dateValidator = dueAt.wrappedValue {
                         Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
                     } else {
                         Text("")
                     }
                 })
                 Divider()
-                ButtonRow(action: pickUnlockAtDate, content: {
+                ButtonRow(action: { pickDate(for: unlockAt) }, content: {
                     Text("Available from", bundle: .core)
                     Spacer()
-                    if let dateValidator = unlockAt {
+                    if let dateValidator = unlockAt.wrappedValue {
                         Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
                     } else {
                         Text("")
                     }
                 })
                 Divider()
-                ButtonRow(action: pickLockAtDate, content: {
+                ButtonRow(action: { pickDate(for: lockAt) }, content: {
                     Text("Available until", bundle: .core)
                     Spacer()
-                    if let dateValidator = lockAt {
+                    if let dateValidator = lockAt.wrappedValue {
                         Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
                     } else {
                         Text("")
@@ -100,25 +100,15 @@ struct AssignmentOverridesEditor: View {
         overrides.count <= 1 ? NSLocalizedString("Everyone", comment: "") : NSLocalizedString("Everyone else", comment: "")
     }
 
-    func pickUnlockAtDate() {
-        showDatePicker.toggle()
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $unlockAt))
+    func pickDate(for date: Binding<Date?>) {
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date))
         picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
-    }
-
-    func pickLockAtDate() {
-        showDatePicker.toggle()
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $lockAt))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
-    }
-
-    func pickDueAtDate() {
-        showDatePicker.toggle()
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $dueAt))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
+        env.router.show(picker,
+                        from: controller,
+                        options: .modal(.overFullScreen,
+                                        isDismissable: true,
+                                        embedInNav: false,
+                                        addDoneButton: false))
     }
 
     func add() {

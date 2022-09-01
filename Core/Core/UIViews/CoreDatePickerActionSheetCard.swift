@@ -20,7 +20,7 @@ import SwiftUI
 import Combine
 
 public struct CoreDatePickerActionSheetCard: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.viewController) var controller
     @State var grayViewOpacity = 0.0
     @State var animationOffset = 300.0
     @State var offset = UIScreen.main.bounds.height
@@ -43,8 +43,8 @@ public struct CoreDatePickerActionSheetCard: View {
     func dismissPresentation() {
         animationOffset = 300
         grayViewOpacity = 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.presentationMode.wrappedValue.dismiss()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.controller.value.dismiss(animated: false)
         }
     }
 
