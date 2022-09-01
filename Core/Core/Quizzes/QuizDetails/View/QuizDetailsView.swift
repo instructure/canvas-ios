@@ -56,11 +56,9 @@ public struct QuizDetailsView: View {
             Spacer().onAppear { env.router.dismiss(controller) }
         case .data(let quiz, let assignment):
             ScrollView { VStack(alignment: .leading, spacing: 0) {
-                /*CircleRefresh { endRefreshing in
-                    self.viewModel.refresh { _ in
-                        endRefreshing()
-                    }
-                }*/
+                CircleRefresh { endRefreshing in
+                    viewModel.refresh(completion: endRefreshing)
+                }
                 details(quiz: quiz, assignment: assignment)
                     .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
             } }
@@ -93,8 +91,7 @@ public struct QuizDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        AssignmentDateSection(assignment: assignment)
-
+        DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
         Divider().padding(.horizontal, 16)
 
         if viewModel.showSubmissions {

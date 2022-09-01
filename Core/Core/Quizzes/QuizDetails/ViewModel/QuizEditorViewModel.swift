@@ -28,7 +28,6 @@ public class QuizEditorViewModel: ObservableObject {
     }
 
     @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
 
     @Published public private(set) var state: ViewModelState = .loading
     public var assignment: Assignment?

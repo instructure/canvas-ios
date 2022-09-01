@@ -50,6 +50,7 @@ public class QuizDetailsViewModel: ObservableObject {
     }
 
     private var assignment: Assignment?
+    private var refreshCompletion: (() -> Void)?
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -57,9 +58,9 @@ public class QuizDetailsViewModel: ObservableObject {
     }
 
     public func viewDidAppear() {
-        quiz.refresh()
+        quiz.refresh(force: true)
+        assignments.refresh(force: true)
         course.refresh()
-        assignments.refresh()
     }
 
     public func editTapped(router: Router, viewController: WeakViewController) {
@@ -89,7 +90,7 @@ public class QuizDetailsViewModel: ObservableObject {
 
     private func didUpdate() {
         if quiz.requested, quiz.pending, assignments.requested, assignments.pending, assignments.hasNextPage { return }
-
+        finishRefresh()
         if let quiz = quiz.first, let assignmentID = quiz.assignmentID, let assignment = assignments.first(where: { $0.id == assignmentID }) {
             self.assignment = assignment
             state = .data(quiz, assignment)
@@ -97,13 +98,20 @@ public class QuizDetailsViewModel: ObservableObject {
             state = .error
         }
     }
+
+    private func finishRefresh() {
+        performUIUpdate {
+            self.refreshCompletion?()
+            self.refreshCompletion = nil
+        }
+    }
 }
 
 extension QuizDetailsViewModel: Refreshable {
 
     public func refresh(completion: @escaping () -> Void) {
-        quiz.refresh(force: true) { [weak self] _ in
-            completion()
-        }
+        refreshCompletion = completion
+        quiz.refresh(force: true)
+        assignments.refresh(force: true)
     }
 }

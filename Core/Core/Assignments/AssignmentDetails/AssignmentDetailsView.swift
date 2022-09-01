@@ -104,7 +104,7 @@ public struct AssignmentDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        AssignmentDateSection(assignment: assignment)
+        DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
 
         Divider().padding(.horizontal, 16)
 
