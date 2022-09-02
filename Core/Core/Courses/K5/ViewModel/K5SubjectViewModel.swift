@@ -26,6 +26,7 @@ public class K5SubjectViewModel: ObservableObject {
     @Published public private(set) var courseTitle: String?
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var currentPageURL: URL?
+    @Published public private(set) var courseBannerImageUrl: URL?
     @Published public private(set) var courseImageUrl: URL?
     public var reloadWebView: AnyPublisher<Void, Never> {
         NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted, object: nil)
@@ -99,6 +100,7 @@ public class K5SubjectViewModel: ObservableObject {
         guard let course = course.first else { return }
         courseTitle = course.name
         courseColor = course.color
+        courseBannerImageUrl = course.bannerImageDownloadURL
         courseImageUrl = course.imageDownloadURL
     }
 

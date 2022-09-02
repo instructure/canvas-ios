@@ -214,6 +214,7 @@
         <attribute name="accessRestrictedByDate" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
+        <attribute name="bannerImageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canCreateDiscussionTopic" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>
@@ -984,7 +985,7 @@
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="434"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="449"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="254"/>
