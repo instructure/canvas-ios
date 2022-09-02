@@ -34,7 +34,11 @@ public class FileUploadTargetRequester {
         self.fileUploadItemID = fileUploadItemID
     }
 
-    /** The result of the request is also written into the underlying `FileUploadItem` object.  */
+    /**
+     The result of the request is also written into the underlying `FileUploadItem` object.
+     - returns: A `Future` that will fulfill the request. This `Future` keeps the class alive
+     so you don't need to keep a strong reference to it.
+     */
     public func requestUploadTarget() -> Future<Void, Error> {
         Future<Void, Error> { self.sendRequest(promise: $0) }
     }
@@ -48,8 +52,8 @@ public class FileUploadTargetRequester {
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)
             let request = PostFileUploadTargetRequest(context: fileSubmission.fileUploadContext, body: body)
-            api.makeRequest(request) { [weak self] response, _, error in
-                self?.handleResponse(response, error: error, promise: promise)
+            api.makeRequest(request) { [self] response, _, error in
+                handleResponse(response, error: error, promise: promise)
             }
         }
     }
