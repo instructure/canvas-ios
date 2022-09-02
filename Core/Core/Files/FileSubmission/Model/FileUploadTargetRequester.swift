@@ -71,7 +71,11 @@ public class FileUploadTargetRequester {
                 fileItem.uploadTarget = nil
             }
 
-            try? context.save()
+            do {
+                try context.save()
+            } catch(let error) {
+                fileItem.uploadError = error.localizedDescription
+            }
 
             if let error = fileItem.uploadError {
                 promise(.failure(error))

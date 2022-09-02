@@ -19,10 +19,9 @@
 import Foundation
 
 /**
- This class can be stored in CoreData because it conforms to `NSObject` and `Codable` and all of its properties
- are supported by `NSSecureUnarchiveFromDataTransformer`.
+ This class can be stored in CoreData by using `FileUploadTargetTransformer`.
  */
-public class FileUploadTarget: NSObject, Codable {
+public class FileUploadTarget: NSObject, Codable, NSSecureCoding {
     public let upload_url: URL
     public let upload_params: [String: String?]
 
@@ -34,5 +33,36 @@ public class FileUploadTarget: NSObject, Codable {
     public override func isEqual(_ object: Any?) -> Bool {
         guard let rhs = object as? FileUploadTarget else { return false }
         return upload_url == rhs.upload_url && upload_params == rhs.upload_params
+    }
+
+    // MARK: - NSSecureCoding Protocol
+
+    public static var supportsSecureCoding: Bool { true }
+
+    public required init?(coder: NSCoder) {
+        guard
+            let upload_url = coder.decodeObject(of: NSURL.self, forKey: "upload_url") as? URL,
+            let upload_params = coder.decodeObject(of: [NSDictionary.self, NSString.self], forKey: "upload_params") as? [String: String?]
+        else {
+            return nil
+        }
+
+        self.upload_url = upload_url
+        self.upload_params = upload_params
+    }
+
+    public func encode(with coder: NSCoder) {
+        coder.encode(upload_url, forKey: "upload_url")
+        coder.encode(upload_params, forKey: "upload_params")
+    }
+}
+
+class FileUploadTargetTransformer: NSSecureUnarchiveFromDataTransformer {
+    override static var allowedTopLevelClasses: [AnyClass] { [FileUploadTarget.self] }
+
+    static func register() {
+        let transformer = FileUploadTargetTransformer()
+        let name = NSValueTransformerName(rawValue: String(describing: FileUploadTargetTransformer.self))
+        ValueTransformer.setValueTransformer(transformer, forName: name)
     }
 }
