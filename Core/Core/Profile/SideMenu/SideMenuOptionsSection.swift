@@ -39,7 +39,7 @@ struct SideMenuOptionsSection: View {
                     viewModel.colorOverlay.toggle()
                 }
             } else {
-                SideMenuToggleItem(id: "darkMode", image: .imageSolid, title: Text("Dark Mode", bundle: .core), isOn: $viewModel.darkMode).onTapGesture {
+                SideMenuToggleItem(id: "darkMode", image: .imageLine, title: Text("Dark Mode", bundle: .core), isOn: $viewModel.darkMode).onTapGesture {
                     viewModel.darkMode.toggle()
                 }
             }
