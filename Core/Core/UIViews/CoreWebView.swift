@@ -50,22 +50,23 @@ private extension WKWebViewConfiguration {
 
 @IBDesignable
 open class CoreWebView: WKWebView {
-    
     public enum PullToRefresh {
         case disabled
         case enabled(color: UIColor?)
     }
-    
+
     public static var defaultConfiguration: WKWebViewConfiguration {
         let configuration = WKWebViewConfiguration()
         configuration.applyDefaultSettings()
         return configuration
     }
+
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
+
     private static var LatoRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_lato_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
@@ -80,7 +81,7 @@ open class CoreWebView: WKWebView {
         )
         return refreshControl
     }()
-    private let pullToRefresh: CoreWebView.PullToRefresh
+    private let pullToRefresh: PullToRefresh
     private var pullToRefreshNavigation: WKNavigation?
 
     @IBInspectable public var autoresizesHeight: Bool = false
@@ -91,7 +92,7 @@ open class CoreWebView: WKWebView {
 
     public static let processPool = WKProcessPool()
 
-    public init(pullToRefresh: CoreWebView.PullToRefresh) {
+    public init(pullToRefresh: PullToRefresh) {
         self.pullToRefresh = pullToRefresh
         super.init(frame: .zero)
     }
@@ -116,7 +117,7 @@ open class CoreWebView: WKWebView {
     public init(
         customUserAgentName: String? = nil,
         disableZoom: Bool = false,
-        pullToRefresh: CoreWebView.PullToRefresh,
+        pullToRefresh: PullToRefresh,
         pullToRefreshColor: UIColor? = nil,
         configuration: WKWebViewConfiguration? = nil,
         invertColorsInDarkMode: Bool = false
@@ -515,7 +516,7 @@ extension CoreWebView: WKNavigationDelegate {
         if let fragment = url?.fragment {
             scrollIntoView(fragment: fragment)
         }
-        
+
         if navigation == pullToRefreshNavigation {
             refreshControl.endRefreshing()
             pullToRefreshNavigation = nil
