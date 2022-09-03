@@ -23,11 +23,12 @@ import CoreData
  This class listens to `URLSessionTask` state updates and writes the upload state to a `FileUploadItem`.
  */
 public class FileUploadProgressObserver: NSObject {
+    // TODO: Convert this to Future
     /** This publisher is signalled when the upload finishes. At this point either the file's `apiID` or `error` property is non-nil. */
     public private(set) lazy var completion: AnyPublisher<Void, Never> = completionSubject.eraseToAnyPublisher()
+    public let fileUploadItemID: NSManagedObjectID
 
     private let context: NSManagedObjectContext
-    private let fileUploadItemID: NSManagedObjectID
     private let decoder: JSONDecoder
     private let completionSubject = PassthroughSubject<Void, Never>()
 
@@ -39,6 +40,7 @@ public class FileUploadProgressObserver: NSObject {
     }
 }
 
+// TODO: Extract these 3 delegate methods into a new protocol
 extension FileUploadProgressObserver: URLSessionTaskDelegate {
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {

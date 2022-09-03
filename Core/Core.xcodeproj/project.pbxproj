@@ -1029,6 +1029,10 @@
 		CFB06F9A28BE5D0600DAC40B /* FutureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */; };
 		CFB06FA128BFFADF00DAC40B /* FutureExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA028BFFADF00DAC40B /* FutureExtensionsTests.swift */; };
 		CFB06FA428C0E62400DAC40B /* FileUploadProgressObserversCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */; };
+		CFB06FA628C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */; };
+		CFB06FA828C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */; };
+		CFB06FAA28C3FA6D00DAC40B /* FileSubmissionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */; };
+		CFB06FAC28C3FD5300DAC40B /* FileSubmissionItemsUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploader.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
@@ -2487,6 +2491,10 @@
 		CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensions.swift; sourceTree = "<group>"; };
 		CFB06FA028BFFADF00DAC40B /* FutureExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensionsTests.swift; sourceTree = "<group>"; };
 		CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCache.swift; sourceTree = "<group>"; };
+		CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFileUploadFinishedCheck.swift; sourceTree = "<group>"; };
+		CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionTargetsRequester.swift; sourceTree = "<group>"; };
+		CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionErrors.swift; sourceTree = "<group>"; };
+		CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionItemsUploader.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -5857,6 +5865,9 @@
 				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
 				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
 				CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */,
+				CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */,
+				CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */,
+				CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5868,6 +5879,7 @@
 				CF7C7DAB28BA597900B7F1EE /* FileSubmissionHelpers.swift */,
 				CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */,
 				CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */,
+				CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -7365,6 +7377,7 @@
 				7DA260E423F72359005D2121 /* LoadingViewController.swift in Sources */,
 				7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */,
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
+				CFB06FAA28C3FA6D00DAC40B /* FileSubmissionErrors.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
 				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
 				CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */,
@@ -7561,6 +7574,7 @@
 				7DA260BD23F72352005D2121 /* GetSubmissions.swift in Sources */,
 				CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */,
 				B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */,
+				CFB06FA628C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift in Sources */,
 				CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
 				CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */,
@@ -7616,6 +7630,7 @@
 				CFFE285A27AA9D380029A408 /* CourseListCellView.swift in Sources */,
 				CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */,
 				7DA2606723F722D9005D2121 /* TabType.swift in Sources */,
+				CFB06FA828C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift in Sources */,
 				3BA649D324251FE50047D8DC /* PairWithObserverViewController.swift in Sources */,
 				7D630B6F24A511120039A45D /* Folder.swift in Sources */,
 				7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */,
@@ -7656,6 +7671,7 @@
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
 				7DA2604D23F722D9005D2121 /* Group.swift in Sources */,
 				3B4D893A2450A8FC004ED120 /* EditComposeRecipientsViewController.swift in Sources */,
+				CFB06FAC28C3FD5300DAC40B /* FileSubmissionItemsUploader.swift in Sources */,
 				7D4C6F37243BE229003C1728 /* GetEnrollments.swift in Sources */,
 				7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */,
 				7DA260EC23F7235F005D2121 /* WrongAppLinkView.swift in Sources */,

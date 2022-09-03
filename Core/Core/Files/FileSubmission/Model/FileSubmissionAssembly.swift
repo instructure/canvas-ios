@@ -16,15 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import CoreData
 
 public class FileSubmissionAssembly {
     public let composer: FileSubmissionComposer
-    public let backgroundURLSessionProvider: BackgroundURLSessionProvider
 
     /** This is a background context so we can work with it from any background thread. */
     private let backgroundContext: NSManagedObjectContext
+    private let backgroundURLSessionProvider: BackgroundURLSessionProvider
     private let uploadProgressObserversCache: FileUploadProgressObserversCache
+    private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
+    private let fileSubmissionItemsUploader: FileSubmissionItemsUploader
 
     /**
      - parameters:
@@ -32,13 +35,47 @@ public class FileSubmissionAssembly {
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
      */
-    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String) {
+    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API) {
         let backgroundContext = container.newBackgroundContext()
         backgroundContext.mergePolicy = NSMergePolicy.overwrite
-        let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext)
+        let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { fileSubmissionID, fileUploadItemID in
+            let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
+            var subscription: AnyCancellable?
+            subscription = observer.completion.flatMap { _ in
+                AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID)
+                    .checkFileUploadFinished()
+                    .flatMap { _ in
+                        FileSubmissionSubmitter(api: api, context: backgroundContext, fileSubmissionID: fileSubmissionID)
+                            .submitFiles()
+                    }
+            }.sink { _ in
+                subscription?.cancel()
+                subscription = nil
+            } receiveValue: { _ in }
+
+            return observer
+        }
+        let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
+
+        self.composer = FileSubmissionComposer(context: backgroundContext)
         self.backgroundContext = backgroundContext
-        composer = FileSubmissionComposer(context: backgroundContext)
-        backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
+        self.backgroundURLSessionProvider = backgroundURLSessionProvider
         self.uploadProgressObserversCache = uploadProgressObserversCache
+        self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
+        self.fileSubmissionItemsUploader = FileSubmissionItemsUploader(api: api, context: backgroundContext, backgroundSessionProvider: backgroundURLSessionProvider)
+    }
+
+    public func start(fileSubmissionID: NSManagedObjectID) {
+        var keepAliveSubscription = Set<AnyCancellable>()
+        fileSubmissionTargetsRequester
+            .request(fileSubmissionID: fileSubmissionID)
+            .flatMap { [fileSubmissionItemsUploader] _ in
+                fileSubmissionItemsUploader
+                    .startUploads(fileSubmissionID: fileSubmissionID)
+            }
+            .sink(receiveCompletion: { _ in
+                keepAliveSubscription.removeAll()
+            }, receiveValue: {})
+            .store(in: &keepAliveSubscription)
     }
 }

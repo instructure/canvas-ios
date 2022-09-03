@@ -48,8 +48,8 @@ public class FileSubmissionSubmitter {
             let request = CreateSubmissionRequest(context: .course(submission.courseID),
                                                       assignmentID: submission.assignmentID,
                                                       body: .init(submission: requestedSubmission))
-            api.makeRequest(request) { [weak self] response, _, error in
-                self?.handleResponse(response, error: error, promise: promise)
+            api.makeRequest(request) { [self] response, _, error in
+                handleResponse(response, error: error, promise: promise)
             }
         }
     }
