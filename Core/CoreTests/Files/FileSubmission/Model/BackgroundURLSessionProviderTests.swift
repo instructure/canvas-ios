@@ -85,7 +85,10 @@ private class MockFileUploadProgressObserversCache: FileUploadProgressObserversC
     public var receivedData: Data?
 
     init() {
-        super.init(context: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType))
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        super.init(context: context, factory: { _, _ in
+            FileUploadProgressObserver(context: context, fileUploadItemID: NSManagedObjectID())
+        })
     }
 
     public override func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {

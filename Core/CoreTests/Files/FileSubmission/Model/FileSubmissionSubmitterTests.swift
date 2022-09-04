@@ -43,11 +43,11 @@ class FileSubmissionSubmitterTests: CoreTestCase {
                                               body: .init(submission: requestedSubmission))
         api.mock(request, value: APISubmission.make())
 
-        let testee = FileSubmissionSubmitter(api: api, context: databaseClient, fileSubmissionID: submission.objectID)
+        let testee = FileSubmissionSubmitter(api: api, context: databaseClient)
         let completionEvent = expectation(description: "completion event fire")
 
         // MARK: - WHEN
-        let subscription = testee.submitFiles().sink { completion in
+        let subscription = testee.submitFiles(fileSubmissionID: submission.objectID).sink { completion in
             if case .finished = completion {
                 completionEvent.fulfill()
             }
@@ -82,11 +82,11 @@ class FileSubmissionSubmitterTests: CoreTestCase {
                                               body: .init(submission: requestedSubmission))
         api.mock(request, value: nil, error: NSError.instructureError("testError"))
 
-        let testee = FileSubmissionSubmitter(api: api, context: databaseClient, fileSubmissionID: submission.objectID)
+        let testee = FileSubmissionSubmitter(api: api, context: databaseClient)
         let completionEvent = expectation(description: "completion event fire")
 
         // MARK: - WHEN
-        let subscription = testee.submitFiles().sink { completion in
+        let subscription = testee.submitFiles(fileSubmissionID: submission.objectID).sink { completion in
             if case .failure(let error) = completion {
                 XCTAssertEqual(error as! String, "testError")
                 completionEvent.fulfill()
