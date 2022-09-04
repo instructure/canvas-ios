@@ -19,4 +19,5 @@
 public struct FileSubmissionErrors {
     public struct SubmissionNotFound: Error, Equatable {}
     public struct UploadItemNotFound: Error, Equatable {}
+    public struct NotReady: Error, Equatable {}
 }

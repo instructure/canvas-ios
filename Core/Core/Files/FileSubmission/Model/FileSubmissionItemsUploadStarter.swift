@@ -24,7 +24,7 @@ import CoreData
  The created `URLSessionTask`'s `taskDescription` field will contain the `FileUploadItem`s
  `objectID` so when we receive progress updates we know which `URLSessionTask` is for which `FileUploadItem`.
  */
-public class FileSubmissionItemsUploader {
+public class FileSubmissionItemsUploadStarter {
     private let api: API
     private let context: NSManagedObjectContext
     private let backgroundSessionProvider: BackgroundURLSessionProvider

@@ -23,9 +23,6 @@ import CoreData
  This task completes successfully if all files in the given `FileSubmission` have a valid `apiID`.
  */
 class AllFileUploadFinishedCheck {
-    public struct NotReady: Error {}
-    public struct SubmissionNotFound: Error {}
-
     private let context: NSManagedObjectContext
     private let fileSubmissionID: NSManagedObjectID
 
@@ -41,12 +38,12 @@ class AllFileUploadFinishedCheck {
     private func checkFileUploadState(promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
-                promise(.failure(SubmissionNotFound()))
+                promise(.failure(FileSubmissionErrors.SubmissionNotFound()))
                 return
             }
 
             let isAllFileUploadFinished = submission.files.allSatisfy { $0.apiID != nil }
-            promise(isAllFileUploadFinished ? .success(()) : .failure(NotReady()))
+            promise(isAllFileUploadFinished ? .success(()) : .failure(FileSubmissionErrors.NotReady()))
         }
     }
 }

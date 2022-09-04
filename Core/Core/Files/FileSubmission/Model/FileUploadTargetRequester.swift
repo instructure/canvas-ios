@@ -60,7 +60,10 @@ public class FileUploadTargetRequester {
 
     private func handleResponse(_ response: FileUploadTarget?, error: Error?, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
-            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
+            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
+                promise(.failure(FileSubmissionErrors.UploadItemNotFound()))
+                return
+            }
 
             if let response = response {
                 fileItem.uploadError = nil

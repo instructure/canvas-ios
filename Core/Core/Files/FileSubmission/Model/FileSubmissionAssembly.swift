@@ -27,7 +27,8 @@ public class FileSubmissionAssembly {
     private let backgroundURLSessionProvider: BackgroundURLSessionProvider
     private let uploadProgressObserversCache: FileUploadProgressObserversCache
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
-    private let fileSubmissionItemsUploader: FileSubmissionItemsUploader
+    private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
+    private let fileSubmissionSubmitter: FileSubmissionSubmitter
 
     /**
      - parameters:
@@ -38,15 +39,21 @@ public class FileSubmissionAssembly {
     public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API) {
         let backgroundContext = container.newBackgroundContext()
         backgroundContext.mergePolicy = NSMergePolicy.overwrite
-        let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { fileSubmissionID, fileUploadItemID in
+        self.backgroundContext = backgroundContext
+
+        self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
+        self.fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
+        self.composer = FileSubmissionComposer(context: backgroundContext)
+
+        let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { [fileSubmissionSubmitter] fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?
-            subscription = observer.completion.flatMap { _ in
+            subscription = observer.completion.flatMap {
                 AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID)
                     .checkFileUploadFinished()
-                    .flatMap { _ in
-                        FileSubmissionSubmitter(api: api, context: backgroundContext, fileSubmissionID: fileSubmissionID)
-                            .submitFiles()
+                    .flatMap {
+                        fileSubmissionSubmitter
+                            .submitFiles(fileSubmissionID: fileSubmissionID)
                     }
             }.sink { _ in
                 subscription?.cancel()
@@ -55,21 +62,19 @@ public class FileSubmissionAssembly {
 
             return observer
         }
-        let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
-
-        self.composer = FileSubmissionComposer(context: backgroundContext)
-        self.backgroundContext = backgroundContext
-        self.backgroundURLSessionProvider = backgroundURLSessionProvider
         self.uploadProgressObserversCache = uploadProgressObserversCache
-        self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
-        self.fileSubmissionItemsUploader = FileSubmissionItemsUploader(api: api, context: backgroundContext, backgroundSessionProvider: backgroundURLSessionProvider)
+
+        let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
+        self.backgroundURLSessionProvider = backgroundURLSessionProvider
+
+        self.fileSubmissionItemsUploader = FileSubmissionItemsUploadStarter(api: api, context: backgroundContext, backgroundSessionProvider: backgroundURLSessionProvider)
     }
 
     public func start(fileSubmissionID: NSManagedObjectID) {
         var keepAliveSubscription = Set<AnyCancellable>()
         fileSubmissionTargetsRequester
             .request(fileSubmissionID: fileSubmissionID)
-            .flatMap { [fileSubmissionItemsUploader] _ in
+            .flatMap { [fileSubmissionItemsUploader] in
                 fileSubmissionItemsUploader
                     .startUploads(fileSubmissionID: fileSubmissionID)
             }

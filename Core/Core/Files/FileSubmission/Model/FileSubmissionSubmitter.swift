@@ -25,20 +25,18 @@ import CoreData
 public class FileSubmissionSubmitter {
     private let api: API
     private let context: NSManagedObjectContext
-    private let fileSubmissionID: NSManagedObjectID
 
-    public init(api: API, context: NSManagedObjectContext, fileSubmissionID: NSManagedObjectID) {
+    public init(api: API, context: NSManagedObjectContext) {
         self.api = api
         self.context = context
-        self.fileSubmissionID = fileSubmissionID
     }
 
-    public func submitFiles() -> Future<Void, Error> {
-        Future<Void, Error> { self.sendRequest($0) }
+    public func submitFiles(fileSubmissionID: NSManagedObjectID) -> Future<Void, Error> {
+        Future<Void, Error> { self.sendRequest(fileSubmissionID: fileSubmissionID, promise: $0) }
     }
 
     /** The result of the request is also written into the underlying `FileSubmission` object.  */
-    private func sendRequest(_ promise: @escaping Future<Void, Error>.Promise) {
+    private func sendRequest(fileSubmissionID: NSManagedObjectID, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
             let fileIDs = submission.files.compactMap { $0.apiID }
@@ -49,14 +47,17 @@ public class FileSubmissionSubmitter {
                                                       assignmentID: submission.assignmentID,
                                                       body: .init(submission: requestedSubmission))
             api.makeRequest(request) { [self] response, _, error in
-                handleResponse(response, error: error, promise: promise)
+                handleResponse(response, error: error, fileSubmissionID: fileSubmissionID, promise: promise)
             }
         }
     }
 
-    private func handleResponse(_ response: APISubmission?, error: Error?, promise: @escaping Future<Void, Error>.Promise) {
+    private func handleResponse(_ response: APISubmission?, error: Error?, fileSubmissionID: NSManagedObjectID, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
-            guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
+            guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
+                promise(.failure(FileSubmissionErrors.SubmissionNotFound()))
+                return
+            }
 
             if response == nil {
                 let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Submission failed due to unknown error.", comment: ""))
