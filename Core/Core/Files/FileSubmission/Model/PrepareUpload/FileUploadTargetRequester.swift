@@ -47,7 +47,15 @@ public class FileUploadTargetRequester {
         context.perform { [self] in
             guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
                   let fileSubmission = fileItem.fileSubmission
-            else { return }
+            else {
+                promise(.failure(FileSubmissionErrors.UploadItemNotFound()))
+                return
+            }
+
+            guard fileItem.uploadTarget == nil else {
+                promise(.success(()))
+                return
+            }
 
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)
@@ -65,26 +73,27 @@ public class FileUploadTargetRequester {
                 return
             }
 
+            var result: Result<Void, Error>
+
             if let response = response {
                 fileItem.uploadError = nil
                 fileItem.uploadTarget = response
+                result = .success(())
             } else {
-                let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Failed to get file upload target.", comment: ""))
+                let validError: Error = error ?? FileSubmissionErrors.RequestUploadTargetUnknownError()
                 fileItem.uploadError = validError.localizedDescription
                 fileItem.uploadTarget = nil
+                result = .failure(validError)
             }
 
             do {
                 try context.save()
             } catch(let error) {
                 fileItem.uploadError = error.localizedDescription
+                result = .failure(error.localizedDescription)
             }
 
-            if let error = fileItem.uploadError {
-                promise(.failure(error))
-            } else {
-                promise(.success(()))
-            }
+            promise(result)
         }
     }
 }
