@@ -79,7 +79,7 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
     }
 }
 
-private class MockFileUploadProgressObserversCache: FileUploadProgressObserversCache {
+class MockFileUploadProgressObserversCache: FileUploadProgressObserversCache {
     public var receivedProgressUpdate: (bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64)?
     public var receivedCompletionError: Error?
     public var receivedData: Data?

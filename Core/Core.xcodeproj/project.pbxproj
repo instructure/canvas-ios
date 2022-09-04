@@ -1034,6 +1034,7 @@
 		CFB06FAA28C3FA6D00DAC40B /* FileSubmissionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */; };
 		CFB06FAC28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift */; };
 		CFB06FB628C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FB528C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift */; };
+		CFB06FB828C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FB728C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
@@ -2497,6 +2498,7 @@
 		CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionErrors.swift; sourceTree = "<group>"; };
 		CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionItemsUploadStarter.swift; sourceTree = "<group>"; };
 		CFB06FB528C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFileUploadFinishedCheckTests.swift; sourceTree = "<group>"; };
+		CFB06FB728C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionItemsUploadStarterTests.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -5657,6 +5659,7 @@
 				CFB06FB528C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift */,
 				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
 				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
+				CFB06FB728C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift */,
 			);
 			path = BinaryUpload;
 			sourceTree = "<group>";
@@ -6827,6 +6830,7 @@
 				B1CA3348233948870015CBB4 /* UserTests.swift in Sources */,
 				D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */,
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
+				CFB06FB828C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift in Sources */,
 				CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */,
 				CF7C7DAE28BA5A9A00B7F1EE /* FileSubmissionHelpersTests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */,
