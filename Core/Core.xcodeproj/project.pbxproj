@@ -4664,11 +4664,10 @@
 			isa = PBXGroup;
 			children = (
 				CF34180928AF79220087433B /* Entities */,
-				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
+				CFB06FB028C4E8DF00DAC40B /* PrepareUpload */,
+				CFB06FAE28C4E85400DAC40B /* BinaryUpload */,
+				CFB06FB228C4E90F00DAC40B /* Submission */,
 				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
-				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
-				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
-				CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5639,6 +5638,61 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CFB06FAD28C4E7EC00DAC40B /* BinaryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */,
+				CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */,
+				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
+				CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */,
+				CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift */,
+			);
+			path = BinaryUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FAE28C4E85400DAC40B /* BinaryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
+				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
+			);
+			path = BinaryUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FAF28C4E88700DAC40B /* PrepareUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
+				CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */,
+				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
+			);
+			path = PrepareUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FB028C4E8DF00DAC40B /* PrepareUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
+			);
+			path = PrepareUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FB128C4E8F500DAC40B /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
+		CFB06FB228C4E90F00DAC40B /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -5858,16 +5912,10 @@
 			isa = PBXGroup;
 			children = (
 				CFD987DE28ACEB2900905515 /* Entities */,
+				CFB06FAF28C4E88700DAC40B /* PrepareUpload */,
+				CFB06FAD28C4E7EC00DAC40B /* BinaryUpload */,
+				CFB06FB128C4E8F500DAC40B /* Submission */,
 				CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */,
-				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
-				CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */,
-				CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */,
-				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
-				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
-				CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */,
-				CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */,
-				CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */,
-				CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
