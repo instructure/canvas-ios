@@ -4667,7 +4667,6 @@
 				CFB06FB028C4E8DF00DAC40B /* PrepareUpload */,
 				CFB06FAE28C4E85400DAC40B /* BinaryUpload */,
 				CFB06FB228C4E90F00DAC40B /* Submission */,
-				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5672,6 +5671,7 @@
 		CFB06FB028C4E8DF00DAC40B /* PrepareUpload */ = {
 			isa = PBXGroup;
 			children = (
+				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
 				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
 			);
 			path = PrepareUpload;
