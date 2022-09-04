@@ -22,7 +22,7 @@ import CoreData
 /**
  This task completes successfully if all files in the given `FileSubmission` have a valid `apiID`.
  */
-class AllFileUploadFinishedCheck {
+public class AllFileUploadFinishedCheck {
     private let context: NSManagedObjectContext
     private let fileSubmissionID: NSManagedObjectID
 
@@ -31,7 +31,7 @@ class AllFileUploadFinishedCheck {
         self.fileSubmissionID = fileSubmissionID
     }
 
-    func checkFileUploadFinished() -> Future<Void, Error> {
+    public func checkFileUploadFinished() -> Future<Void, Error> {
         Future<Void, Error> { self.checkFileUploadState(promise: $0) }
     }
 
