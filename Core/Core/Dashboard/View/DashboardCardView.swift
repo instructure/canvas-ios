@@ -84,8 +84,6 @@ public struct DashboardCardView: View {
     }
 
     private func forceRefresh() async {
-        // swiftlint:disable:next force_try
-        try! await Task.sleep(nanoseconds: 1_000_000_000)
         await withCheckedContinuation { continuation in
             refresh(force: true) {
                 continuation.resume()
