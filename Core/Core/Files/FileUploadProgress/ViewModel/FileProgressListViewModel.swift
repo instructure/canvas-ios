@@ -102,6 +102,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
 
             itemViewModel.objectWillChange.sink { [weak self] _ in
                 self?.updateState()
+                self?.updateNavBarButtons()
             }
             .store(in: &childViewModelUpdateSubscriptions)
 
