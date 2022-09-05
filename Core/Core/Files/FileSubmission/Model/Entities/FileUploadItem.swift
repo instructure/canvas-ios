@@ -24,6 +24,7 @@ import CoreData
 public final class FileUploadItem: NSManagedObject {
     /** The url pointing to the file we want to upload on the user's device. */
     @NSManaged public var localFileURL: URL
+    @NSManaged public var fileSize: Int
     /** The `FileSubmission` CoreData object containing this item. */
     @NSManaged public var fileSubmission: FileSubmission?
 

@@ -38,7 +38,7 @@ struct FileProgressItemView: View {
 
     private var leadingIcon: some View {
         SwiftUI.Group {
-            if viewModel.state == .error {
+            if case .error = viewModel.state {
                 Image.warningLine
                     .foregroundColor(.crimson)
             } else {
@@ -74,7 +74,7 @@ struct FileProgressItemView: View {
         let placeholder = Color.clear.frame(width: 23)
         SwiftUI.Group {
             switch viewModel.state {
-            case .completed:
+            case .uploaded:
                 Image.checkLine.foregroundColor(.shamrock)
                     .frame(maxHeight: .infinity)
                     .transition(.opacity)

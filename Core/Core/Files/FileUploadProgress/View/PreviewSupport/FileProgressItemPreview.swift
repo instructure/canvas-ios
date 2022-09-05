@@ -23,39 +23,36 @@ import SwiftUI
 class FileProgressItemPreview {
     private static let env = PreviewEnvironment()
     private static let context = env.globalDatabase.viewContext
-    private static var fileToUpload: File = {
+    private static var fileToUpload: FileUploadItem = {
         makeFile()
     }()
-    private static var fileUploadStarted: File = {
+    private static var fileUploadStarted: FileUploadItem = {
         let file = makeFile()
-        file.bytesSent = 0
-        file.taskID = "123"
+        file.bytesUploaded = 0
         return file
     }()
-    private static var fileCompleted: File = {
+    private static var fileCompleted: FileUploadItem = {
         let file = makeFile()
-        file.bytesSent = file.size
+        file.apiID = ""
         return file
     }()
-    private static var fileUploading: File = {
+    private static var fileUploading: FileUploadItem = {
         let file = makeFile()
-        file.taskID = "123"
-        file.bytesSent = Int(0.75 * Double(file.size))
+        file.bytesUploaded = Int(0.75 * Double(file.bytesToUpload))
         return file
     }()
-    private static var fileFailed: File = {
+    private static var fileFailed: FileUploadItem = {
         let file = makeFile()
         file.uploadError = "error"
         return file
     }()
-    private static func makeFile() -> File {
-        let file = File(context: Self.context)
+    private static func makeFile() -> FileUploadItem {
+        let file = FileUploadItem(context: Self.context)
         file.localFileURL = URL(string: "/1655995556.791297.1655995556.791297.1655995556.791297.MOV")!
-        file.size = 2_936_013
-        file.mimeClass = "video"
+        file.fileSize = 2_936_013
         return file
     }
-    static var files: [File] = [
+    static var files: [FileUploadItem] = [
         fileToUpload,
         fileUploadStarted,
         fileUploading,
@@ -73,13 +70,13 @@ class FileProgressItemPreview {
         ]
         return SwiftUI.Group {
             ForEach(staticPreviewData, id: \.title) { data in
-                let viewModel = FileProgressItemViewModel(file: data.file, onRemove: {})
+                let viewModel = FileProgressItemViewModel(file: data.file, onRemove: { _ in })
                 FileProgressItemView(viewModel: viewModel)
                     .previewLayout(.sizeThatFits)
                     .previewDisplayName(data.title + " - Light")
             }
             ForEach(staticPreviewData, id: \.title) { data in
-                let viewModel = FileProgressItemViewModel(file: data.file, onRemove: {})
+                let viewModel = FileProgressItemViewModel(file: data.file, onRemove: { _ in })
                 FileProgressItemView(viewModel: viewModel).preferredColorScheme(.dark)
                     .previewLayout(.sizeThatFits)
                     .previewDisplayName(data.title + " - Dark")
@@ -114,9 +111,9 @@ extension FileProgressItemPreview {
         private var isFailedLastTime = Bool.random()
         private let isInfinite: Bool
         private let progressIncrementTimeout: DispatchTimeInterval
-        private let file: File
+        private let file: FileUploadItem
 
-        init(file: File, isInfinite: Bool = true) {
+        init(file: FileUploadItem, isInfinite: Bool = true) {
             self.file = file
             self.isInfinite = isInfinite
             self.progressIncrementTimeout = {
@@ -129,14 +126,14 @@ extension FileProgressItemPreview {
                 return DispatchTimeInterval.milliseconds(timeout)
             }()
 
-            super.init(file: file, onRemove: {})
+            super.init(file: file, onRemove: { _ in })
             waitForUpload()
         }
 
         private func waitForUpload() {
-            file.taskID = nil
+            file.apiID = ""
             file.uploadError = nil
-            file.bytesSent = 0
+            file.bytesUploaded = 0
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 self.startUpload()
@@ -144,7 +141,7 @@ extension FileProgressItemPreview {
         }
 
         private func startUpload() {
-            file.taskID = "1"
+            file.bytesUploaded = 1
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.progressUpload()
@@ -152,11 +149,11 @@ extension FileProgressItemPreview {
         }
 
         private func progressUpload() {
-            let increase = file.size / 20
-            file.bytesSent += increase
-            file.bytesSent = min(file.size, file.bytesSent)
+            let increase = file.fileSize / 20
+            file.bytesUploaded += increase
+            file.bytesUploaded = min(file.fileSize, file.bytesUploaded)
 
-            if file.bytesSent >= 2 * file.size / 3 {
+            if file.bytesUploaded >= 2 * file.fileSize / 3 {
                 if !isFailedLastTime {
                     failUpload()
                     isFailedLastTime.toggle()
@@ -164,14 +161,15 @@ extension FileProgressItemPreview {
                 }
             }
 
-            if file.bytesSent == file.size {
+            if file.bytesUploaded == file.fileSize {
+                file.apiID = ""
+
                 if isInfinite {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                         self.waitForUpload()
                     }
                     isFailedLastTime.toggle()
                 }
-                return
             } else {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + progressIncrementTimeout) {
                     self.progressUpload()

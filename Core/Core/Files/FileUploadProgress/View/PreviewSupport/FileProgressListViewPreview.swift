@@ -25,7 +25,7 @@ class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {
         var dismiss: AnyPublisher<() -> Void, Never> = PassthroughSubject().eraseToAnyPublisher()
         var presentDialog: AnyPublisher<UIAlertController, Never> = PassthroughSubject().eraseToAnyPublisher()
-        @Published var items: [FileProgressItemViewModel] = FileProgressItemPreview.files.map { FileProgressItemViewModel(file: $0, onRemove: {}) }
+        @Published var items: [FileProgressItemViewModel] = FileProgressItemPreview.files.map { FileProgressItemViewModel(file: $0, onRemove: { _ in }) }
         @Published var state: FileProgressListViewState
         var leftBarButton: BarButtonItemViewModel?
         var rightBarButton: BarButtonItemViewModel?

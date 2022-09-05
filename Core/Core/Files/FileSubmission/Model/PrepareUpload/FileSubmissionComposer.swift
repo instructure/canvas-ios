@@ -42,6 +42,7 @@ public struct FileSubmissionComposer {
             fileSubmission.files = Set(files.map {
                 let item: FileUploadItem = context.insert()
                 item.localFileURL = $0
+                item.fileSize = $0.lookupFileSize()
                 return item
             })
             try? context.save()

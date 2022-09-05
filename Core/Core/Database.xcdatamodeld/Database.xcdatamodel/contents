@@ -443,6 +443,7 @@
         <attribute name="apiID" optional="YES" attributeType="String"/>
         <attribute name="bytesToUpload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bytesUploaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fileSize" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="localFileURL" attributeType="URI"/>
         <attribute name="uploadError" optional="YES" attributeType="String"/>
         <attribute name="uploadTarget" optional="YES" attributeType="Transformable" valueTransformerName="FileUploadTargetTransformer" customClassName="Core.FileUploadTarget"/>
@@ -997,7 +998,7 @@
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="688"/>
         <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="119"/>
-        <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="134"/>
+        <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="149"/>
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="328"/>
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="163"/>

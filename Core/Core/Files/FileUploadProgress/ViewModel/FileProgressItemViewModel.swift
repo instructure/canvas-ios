@@ -16,52 +16,37 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Combine
 import SwiftUI
 
 public class FileProgressItemViewModel: ObservableObject {
-    public enum State: Equatable {
-        case waiting
-        case uploading(progress: CGFloat)
-        case completed
-        case error
-    }
-    public var fileName: String { file.localFileURL?.lastPathComponent ?? "" }
+    public var fileName: String { file.localFileURL.lastPathComponent }
     public let size: String
     public let icon: Image
-    public var state: State {
-        if file.isUploaded {
-            return .completed
-        } else if file.uploadError != nil {
-            return .error
-        } else if file.isUploading {
-            return .uploading(progress: CGFloat(file.bytesSent) / CGFloat(file.size))
-        } else {
-            return .waiting
-        }
-    }
+    public var state: FileUploadItem.State { file.state }
     public var accessibilityLabel: String {
         let fileInfo = NSLocalizedString("File \(fileName) size \(size).", comment: "")
         let status: String = {
-            switch state {
+            switch file.state {
             case .waiting: return ""
             case .uploading(progress: let progress): return NSLocalizedString("Upload in progress \(Int(100 * progress))%", comment: "")
-            case .completed: return NSLocalizedString("Upload completed.", comment: "")
+            case .uploaded: return NSLocalizedString("Upload completed.", comment: "")
             case .error: return NSLocalizedString("Upload failed.", comment: "")
             }
         }()
 
         return [fileInfo, status].joined(separator: " ")
-
     }
-    private let onRemove: () -> Void
-    private let file: File
+    private let onRemove: (_ item: NSManagedObjectID) -> Void
+    private let file: FileUploadItem
     private var fileChangeObserver: AnyCancellable?
 
-    public init(file: File, onRemove: @escaping () -> Void) {
+    public init(file: FileUploadItem, onRemove: @escaping (_ item: NSManagedObjectID) -> Void) {
         self.file = file
-        self.icon = Image(uiImage: file.icon)
-        self.size = file.size.humanReadableFileSize
+        // TODO: Add image
+        self.icon = Image.addAudioLine // Image(uiImage: file.icon)
+        self.size = file.fileSize.humanReadableFileSize
         self.onRemove = onRemove
         self.fileChangeObserver = file.objectWillChange.sink { [weak self] in
             self?.objectWillChange.send()
@@ -69,7 +54,7 @@ public class FileProgressItemViewModel: ObservableObject {
     }
 
     public func remove() {
-        onRemove()
+        onRemove(file.objectID)
     }
 }
 

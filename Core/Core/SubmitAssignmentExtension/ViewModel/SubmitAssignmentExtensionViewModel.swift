@@ -72,13 +72,11 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
 
     public func submitTapped() {
         Analytics.shared.logEvent("submit_tapped")
-        let batchID = "assignment-\(assignmentPickerViewModel.selectedAssignment!.id)"
-        submissionService.submit(urls: selectedFileURLs,
-                                 courseID: coursePickerViewModel.selectedCourse!.id,
-                                 assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
-                                 batchID: batchID,
-                                 comment: comment)
-        let fileProgressViewModel = FileProgressListViewModel(batchID: batchID, dismiss: { [shareCompleted] in
+        let submissionID = submissionService.submit(urls: selectedFileURLs,
+                                                    courseID: coursePickerViewModel.selectedCourse!.id,
+                                                    assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
+                                                    comment: comment)
+        let fileProgressViewModel = FileProgressListViewModel(submissionID: submissionID, dismiss: { [shareCompleted] in
             shareCompleted()
         })
         fileProgressViewModel.delegate = submissionService

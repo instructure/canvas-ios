@@ -84,3 +84,13 @@ public class FileSubmissionAssembly {
             .store(in: &keepAliveSubscription)
     }
 }
+
+extension FileSubmissionAssembly {
+
+    public static func makeShareExtensionAssembly() -> FileSubmissionAssembly {
+        FileSubmissionAssembly(container: AppEnvironment.shared.database,
+                               sessionID: "com.instructure.icanvas.SubmitAssignment.file-uploads",
+                               sharedContainerID: "group.instructure.shared",
+                               api: AppEnvironment.shared.api)
+    }
+}
