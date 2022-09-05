@@ -812,9 +812,6 @@
 		B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */; };
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
 		B453728828B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */; };
-		CE1428BF287D74AF0049C368 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1428BE287D74AF0049C368 /* SheetViewController.swift */; };
-		CE1428C9287D98F20049C368 /* SheetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1428C8287D98F20049C368 /* SheetViewController.storyboard */; };
-		CE9F46C9287859D9002F0CDF /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F46C8287859D9002F0CDF /* CoreDatePicker.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CED0D7CA28981274007E99FE /* CoreDatePickerActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0D7C928981274007E99FE /* CoreDatePickerActionSheetCard.swift */; };
 		CED0D7D228981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0D7D128981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift */; };
@@ -2269,12 +2266,9 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
-    B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModel.swift; sourceTree = "<group>"; };
+		B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModel.swift; sourceTree = "<group>"; };
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
 		B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModel.swift; sourceTree = "<group>"; };
-		CE1428BE287D74AF0049C368 /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
-		CE1428C8287D98F20049C368 /* SheetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SheetViewController.storyboard; sourceTree = "<group>"; };
-		CE9F46C8287859D9002F0CDF /* CoreDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePicker.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CED0D7C928981274007E99FE /* CoreDatePickerActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerActionSheetCard.swift; sourceTree = "<group>"; };
 		CED0D7D128981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerGreyOutFocusOfView.swift; sourceTree = "<group>"; };
@@ -3262,7 +3256,6 @@
 		7D1758B12159894C00F88613 /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
-				CE9F46C8287859D9002F0CDF /* CoreDatePicker.swift */,
 				CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */,
 				CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */,
 				B18359A722244E230005A918 /* AccessIconView.swift */,
@@ -3321,10 +3314,6 @@
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
 				9767F2972383B846006633CA /* TokenLabelView.swift */,
 				CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */,
-				CE1428BE287D74AF0049C368 /* SheetViewController.swift */,
-				CED0D7C928981274007E99FE /* CoreDatePickerActionSheetCard.swift */,
-				CED0D7D128981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift */,
-				CE1428C8287D98F20049C368 /* SheetViewController.storyboard */,
 			);
 			path = UIViews;
 			sourceTree = "<group>";
@@ -6118,6 +6107,8 @@
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
+				CED0D7C928981274007E99FE /* CoreDatePickerActionSheetCard.swift */,
+				CED0D7D128981359007E99FE /* CoreDatePickerGreyOutFocusOfView.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */,
@@ -6476,7 +6467,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE1428C9287D98F20049C368 /* SheetViewController.storyboard in Resources */,
 				3BA649D524251FF70047D8DC /* PairWithObserverViewController.storyboard in Resources */,
 				7DA260F923F723AE005D2121 /* FileDetailsViewController.storyboard in Resources */,
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,
@@ -7287,7 +7277,6 @@
 				7DA2600523F7227A005D2121 /* DispatchExtensions.swift in Sources */,
 				CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */,
 				7DA260DD23F72359005D2121 /* GroupedSectionHeaderView.swift in Sources */,
-				CE1428BF287D74AF0049C368 /* SheetViewController.swift in Sources */,
 				7DA25FB523F72136005D2121 /* APIGradingPeriod.swift in Sources */,
 				7D742F4025564CF200FD6CF1 /* SwiftUIExtensions.swift in Sources */,
 				7DA25FB623F72136005D2121 /* APIGraphQLRequestable.swift in Sources */,
@@ -7801,7 +7790,6 @@
 				7DA2603023F722C9005D2121 /* GoogleCloudAssignmentViewController.swift in Sources */,
 				D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */,
 				7DA2607923F722FA005D2121 /* AppBackgroundHelperProtocol.swift in Sources */,
-				CE9F46C9287859D9002F0CDF /* CoreDatePicker.swift in Sources */,
 				CF53F734266F836000FA58D7 /* K5HomeroomDueItemCount.swift in Sources */,
 				CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */,
 				7D531D3B2549CF0500CBFCA6 /* AssignmentOverridesEditor.swift in Sources */,

@@ -19,20 +19,13 @@
 import SwiftUI
 
 public struct CoreDatePickerGreyOutFocusOfView: View {
-    @State public var opacitySetter: CGFloat = 0.5
-
-    @Environment(\.presentationMode) var presentationMode
-
-    var greyView: some View {
-        Rectangle()
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            .background(Color.clear)
-            .opacity(opacitySetter)
-            .ignoresSafeArea()
-    }
 
     public var body: some View {
-        greyView
+        Rectangle()
+            .frame(width: UIScreen.main.bounds.width,
+                   height: UIScreen.main.bounds.height)
+            .background(Color.clear)
+            .ignoresSafeArea()
     }
 }
 
