@@ -812,6 +812,7 @@
 		B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */; };
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
 		B453728828B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */; };
+		B4CD9DAF28C63CFC0084EB65 /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
@@ -2267,6 +2268,7 @@
 		B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModel.swift; sourceTree = "<group>"; };
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
 		B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModel.swift; sourceTree = "<group>"; };
+		B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
@@ -6119,6 +6121,7 @@
 				E8A8FA8D24D328C3000B27DF /* SearchBar.swift */,
 				7DCA32112541DB8B00458651 /* WebSession.swift */,
 				7DCA31F72540835300458651 /* WebView.swift */,
+				B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -7407,6 +7410,7 @@
 				7DA25FE123F72154005D2121 /* AudioRecorderViewController.swift in Sources */,
 				3B4D892D2450A8E9004ED120 /* ComposeRecipientsView.swift in Sources */,
 				7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */,
+				B4CD9DAF28C63CFC0084EB65 /* RefreshableView.swift in Sources */,
 				CFD5814626B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift in Sources */,
 				7DA2604523F722D9005D2121 /* Enrollment.swift in Sources */,
 				7DA25FD923F72148005D2121 /* ExperimentalFeature.swift in Sources */,

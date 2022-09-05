@@ -51,15 +51,19 @@ public struct DashboardCardView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            ScrollView {
-                VStack(spacing: 0) {
-                    CircleRefresh { endRefreshing in
-                        refresh(force: true, onComplete: endRefreshing)
+            if #available(iOSApplicationExtension 15.0, *) {
+                ScrollView {
+                    RefreshableView {
+                        VStack(spacing: 0) {
+                            fileUploadNotificationCards()
+                            list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
+                        }
+                        .padding(.horizontal, verticalSpacing)
                     }
-                    fileUploadNotificationCards()
-                    list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
-                .padding(.horizontal, verticalSpacing)
+                .refreshable {
+                    await forceRefresh()
+                }
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -77,6 +81,16 @@ public struct DashboardCardView: View {
             showGrade = env.userDefaults?.showGradesOnDashboard == true
         }
         .onReceive(invitationsViewModel.coursesChanged) { _ in refresh(force: true) }
+    }
+
+    private func forceRefresh() async {
+        // swiftlint:disable:next force_try
+        try! await Task.sleep(nanoseconds: 1_000_000_000)
+        await withCheckedContinuation { continuation in
+            refresh(force: true) {
+                continuation.resume()
+            }
+        }
     }
 
     private func setStyle(style: UIUserInterfaceStyle?) {
