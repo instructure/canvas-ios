@@ -33,13 +33,13 @@ class MockDelegate: FileProgressListViewModelDelegate {
         retryCalled = true
     }
 
-    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete file: File) {
+    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete fileUploadItemID: NSManagedObjectID) {
         deleteCalled = true
     }
 }
 
 class FileProgressListViewModelTests: CoreTestCase {
-    private var context: NSManagedObjectContext { UploadManager.shared.viewContext }
+    private var submission: FileSubmission!
     private let presentingViewController = UIViewController()
     private var testee: FileProgressListViewModel!
     private var mockDelegate: MockDelegate!
@@ -49,7 +49,12 @@ class FileProgressListViewModelTests: CoreTestCase {
         super.setUp()
         mockDelegate = MockDelegate()
 
-        testee = FileProgressListViewModel(batchID: "testBatch", dismiss: { [weak self] in
+        submission = databaseClient.insert() as FileSubmission
+        submission.assignmentID = ""
+        submission.courseID = ""
+        saveFiles()
+
+        testee = FileProgressListViewModel(submissionID: submission.objectID, environment: environment, dismiss: { [weak self] in
             self?.dismissCalled = true
         })
         dismissCalled = false
@@ -73,8 +78,8 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testOneFileFinishedOtherIsUploading() {
         let file1 = makeFile()
-        file1.id = "uploadedId"
-        file1.bytesSent = file1.size
+        file1.apiID = "uploadedId"
+        file1.bytesUploaded = file1.fileSize
         makeFile()
         saveFiles()
 
@@ -87,9 +92,9 @@ class FileProgressListViewModelTests: CoreTestCase {
     func testOneFileFailedOtherIsUploading() {
         let file1 = makeFile()
         file1.uploadError = "error"
-        file1.bytesSent = 5
+        file1.bytesUploaded = 5
         let file2 = makeFile()
-        file2.bytesSent = 5
+        file2.bytesUploaded = 5
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
@@ -100,11 +105,11 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testOneFileFailedOtherSucceeded() {
         let file1 = makeFile()
-        file1.bytesSent = 5
+        file1.bytesUploaded = 5
         file1.uploadError = "error"
         let file2 = makeFile()
-        file2.bytesSent = 10
-        file2.id = "uploadedId"
+        file2.bytesUploaded = 10
+        file2.apiID = "uploadedId"
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
@@ -115,11 +120,11 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testBothFilesUploaded() {
         let file1 = makeFile()
-        file1.bytesSent = 10
-        file1.id = "uploadedId"
+        file1.bytesUploaded = 10
+        file1.apiID = "uploadedId"
         let file2 = makeFile()
-        file2.bytesSent = 10
-        file2.id = "uploadedId"
+        file2.bytesUploaded = 10
+        file2.apiID = "uploadedId"
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
@@ -130,9 +135,9 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testFileIsUploadedButSubmissionFailed() {
         let file = makeFile()
-        file.bytesSent = 10
-        file.id = "uploadedId"
-        file.uploadError = "apierror"
+        file.bytesUploaded = 10
+        file.apiID = "uploadedId"
+        submission.submissionError = "apierror"
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 1)
@@ -143,12 +148,12 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testFilesAreUploadedButSubmissionFailed() {
         let file1 = makeFile()
-        file1.bytesSent = 10
-        file1.id = "uploadedId"
+        file1.bytesUploaded = 10
+        file1.apiID = "uploadedId"
         let file2 = makeFile()
-        file2.bytesSent = 10
-        file2.id = "uploadedId"
-        file2.uploadError = "apierror"
+        file2.bytesUploaded = 10
+        file2.apiID = "uploadedId"
+        submission.submissionError = "apierror"
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
@@ -157,17 +162,16 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.rightBarButton?.title, "Retry")
     }
 
-    func testBothFilesUploadedAndSuccessNotificationReceived() {
+    func testBothFilesUploadedAndSubmissionCompleted() {
         let file1 = makeFile()
-        file1.bytesSent = 10
-        file1.id = "uploadedId"
+        file1.bytesUploaded = 10
+        file1.apiID = "uploadedId"
         let file2 = makeFile()
-        file2.bytesSent = 10
-        file2.id = "uploadedId"
-        saveFiles()
+        file2.bytesUploaded = 10
+        file2.apiID = "uploadedId"
+        submission.isSubmitted = true
 
-        NotificationCenter.default.post(name: UploadManager.BatchSubmissionCompletedNotification, object: nil, userInfo: ["batchID": "testBatch"])
-        drainMainQueue()
+        saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
         XCTAssertEqual(testee.state, .success)
@@ -178,14 +182,14 @@ class FileProgressListViewModelTests: CoreTestCase {
     func testUpdatesProgress() {
         let file = makeFile()
         saveFiles()
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
+        XCTAssertEqual(testee.state, .waiting)
 
         let uiRefreshExpectation = expectation(description: "UI refresh trigger received")
         uiRefreshExpectation.assertForOverFulfill = false
         let uiRefreshObserver = testee.objectWillChange.sink { _ in
             uiRefreshExpectation.fulfill()
         }
-        file.bytesSent = 1
+        file.bytesUploaded = 1
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0.1))
 
@@ -194,7 +198,7 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testClampsProgressToOneWhenMoreBytesUploadedThanExpected() {
         let file = makeFile()
-        file.bytesSent = file.size + 1
+        file.bytesUploaded = file.fileSize + 1
         saveFiles()
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 10 bytes", progress: 1))
     }
@@ -202,7 +206,8 @@ class FileProgressListViewModelTests: CoreTestCase {
     // MARK: Navigation Bar Actions
 
     func testDismissDuringUpload() {
-        makeFile()
+        let fileItem = makeFile()
+        fileItem.bytesUploaded = 1 // dismiss only available when upload started
         saveFiles()
 
         testee.rightBarButton?.action()
@@ -211,7 +216,7 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testDoneOnSucceeded() {
         let file = makeFile()
-        file.id = "uploadedId"
+        file.apiID = "uploadedId"
         saveFiles()
 
         testee.rightBarButton?.action()
@@ -228,9 +233,10 @@ class FileProgressListViewModelTests: CoreTestCase {
     }
 
     func testCancelDialogPropertiesDuringUpload() {
-        makeFile()
+        let file = makeFile()
+        file.bytesUploaded = 1
         saveFiles()
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0))
 
         var receivedAlert: UIAlertController?
         let alertSubscription = testee.presentDialog.sink { alert in
@@ -254,9 +260,10 @@ class FileProgressListViewModelTests: CoreTestCase {
     }
 
     func testCancelDialogConfirmationDuringUpload() {
-        makeFile()
+        let file = makeFile()
+        file.bytesUploaded = 1
         saveFiles()
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 10 bytes", progress: 0))
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0))
 
         var receivedAlert: UIAlertController?
         let alertSubscription = testee.presentDialog.sink { alert in
@@ -344,16 +351,16 @@ class FileProgressListViewModelTests: CoreTestCase {
     // MARK: Helpers
 
     @discardableResult
-    private func makeFile() -> File {
-        let file = context.insert() as File
-        file.batchID = "testBatch"
-        file.size = 10
-        file.filename = "file"
-        file.setUser(session: environment.currentSession!)
+    private func makeFile() -> FileUploadItem {
+        let file = databaseClient.insert() as FileUploadItem
+        file.bytesToUpload = 10
+        file.fileSize = 10
+        file.localFileURL = URL(string: "/file")!
+        file.fileSubmission = submission
         return file
     }
 
     private func saveFiles() {
-        try! UploadManager.shared.viewContext.save()
+        try! databaseClient.save()
     }
 }

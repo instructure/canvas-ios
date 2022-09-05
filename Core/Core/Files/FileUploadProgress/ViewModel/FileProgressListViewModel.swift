@@ -49,10 +49,11 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let predicate = NSPredicate(format: "SELF = %@", submissionID)
         let scope = Scope(predicate: predicate, order: [])
         let useCase = LocalUseCase<FileSubmission>(scope: scope)
-        return AppEnvironment.shared.subscribe(useCase) { [weak self] in
+        return environment.subscribe(useCase) { [weak self] in
             self?.update()
         }
     }()
+    private let environment: AppEnvironment
     private let flowCompleted: () -> Void
     private var receivedSuccessfulSubmissionNotification = false
     private var subscriptions = Set<AnyCancellable>()
@@ -62,10 +63,11 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
      - parameters:
         - dismiss: The block that gets called when the user wants to hide the upload progress UI.
      */
-    public init(submissionID: NSManagedObjectID, dismiss: @escaping () -> Void) {
+    public init(submissionID: NSManagedObjectID, environment: AppEnvironment = .shared, dismiss: @escaping () -> Void) {
         self.submissionID = submissionID
+        self.environment = environment
         self.flowCompleted = dismiss
-        update()
+        fileSubmission.refresh()
     }
 
     private func showCancelDialog() {
@@ -101,6 +103,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             }
 
             itemViewModel.objectWillChange.sink { [weak self] _ in
+                // TODO: Shouln't we update after the view model has changed?
                 self?.updateState()
                 self?.updateNavBarButtons()
             }

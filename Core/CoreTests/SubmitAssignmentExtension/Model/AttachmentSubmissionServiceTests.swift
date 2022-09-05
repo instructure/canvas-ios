@@ -25,20 +25,30 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         let fileURL = URL.temporaryDirectory.appendingPathComponent("loadFileURL.txt", isDirectory: false)
         try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
 
-        let testUploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads", sharedContainerIdentifier: "group.instructure.shared")
-
-        let testee = AttachmentSubmissionService(uploadManager: testUploadManager)
-        testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", batchID: "testBatch", comment: "testComment")
+        let testee = AttachmentSubmissionService()
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment")
         RunLoop.main.run(until: Date() + 0.1)
 
-        XCTAssertEqual(testUploadManager.viewContext.registeredObjects.count, 1) // One file added
+        let viewContext = AppEnvironment.shared.database.viewContext
+        XCTAssertEqual(viewContext.registeredObjects.count, 2) // submission + item
 
-        guard let file = (testUploadManager.viewContext.fetch(scope: .all(orderBy: "batchID")) as [File]).first else {
-            XCTFail("File not saved")
+        let scope = Scope(predicate: NSPredicate(format: "SELF = %@", submissionID), order: [])
+
+        guard let submission = (viewContext.fetch(scope: scope) as [FileSubmission]).first else {
+            XCTFail("Submission not created")
             return
         }
 
-        XCTAssertEqual(file.batchID, "testBatch")
-        XCTAssertEqual(file.filename, "loadFileURL.txt")
+        XCTAssertEqual(submission.assignmentID, "testAssignmentID")
+        XCTAssertEqual(submission.courseID, "testCourseID")
+        XCTAssertEqual(submission.comment, "testComment")
+
+        guard submission.files.count == 1, let uploadItem = submission.files.first else {
+            XCTFail("File upload item not created")
+            return
+        }
+
+        XCTAssertEqual(uploadItem.fileSize, 4)
+        XCTAssertEqual(uploadItem.localFileURL, fileURL)
     }
 }
