@@ -29,6 +29,7 @@ struct RefreshableView<Content: View>: View {
     @State private var viewState: CircularProgressView.ViewState = .animating
     @State private var offset: CGFloat = 0
     private let snappingPoint: CGFloat = 64
+    private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
     var body: some View {
         VStack(spacing: 0) {
@@ -56,6 +57,7 @@ struct RefreshableView<Content: View>: View {
             viewState = .progress(progress)
             isVisible = progress > 0
             if progress == 1 {
+                hapticGenerator.impactOccurred()
                 isAnimating = true
                 viewState = .animating
                 Task {
