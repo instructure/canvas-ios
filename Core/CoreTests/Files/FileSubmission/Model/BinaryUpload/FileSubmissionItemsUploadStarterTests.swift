@@ -107,6 +107,40 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
 
         subscription.cancel()
     }
+
+    func testResetsPreviousUploadErrorAndUploadedBytesOnUploadItem() {
+        // MARK: - GIVEN
+        let submission: FileSubmission = databaseClient.insert()
+        let item: FileUploadItem = databaseClient.insert()
+        item.apiID = "id1"
+        item.localFileURL = URL(string: "/localFile.txt")!
+        item.uploadTarget = FileUploadTarget(upload_url: URL(string: "/uploadURL")!, upload_params: [:])
+        item.uploadError = "error"
+        item.bytesUploaded = 1
+        item.fileSubmission = submission
+
+        let apiMock = api.mock(url: URL(string: "///uploadURL")!)
+        apiMock.suspend()
+
+        let completionEvent = expectation(description: "completion event fire")
+        let testee = FileSubmissionItemsUploadStarter(api: api,
+                                                      context: databaseClient,
+                                                      backgroundSessionProvider: MockBackgroundURLSessionProvider())
+
+        // MARK: - WHEN
+        let subscription = testee.startUploads(fileSubmissionID: submission.objectID).sink { completion in
+            if case .finished = completion {
+                completionEvent.fulfill()
+            }
+        }
+
+        // MARK: - THEN
+        waitForExpectations(timeout: 0.1)
+        XCTAssertNil(item.uploadError)
+        XCTAssertEqual(item.bytesUploaded, 0)
+
+        subscription.cancel()
+    }
 }
 
 class MockBackgroundURLSessionProvider: BackgroundURLSessionProvider {

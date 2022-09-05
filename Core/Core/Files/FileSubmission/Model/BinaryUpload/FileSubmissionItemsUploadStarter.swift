@@ -52,9 +52,12 @@ public class FileSubmissionItemsUploadStarter {
             for file in submission.files {
                 guard let uploadTarget = file.uploadTarget else {
                     file.uploadError = NSLocalizedString("Failed to start upload.", comment: "")
-                    try? context.save()
                     continue
                 }
+
+                file.uploadError = nil
+                file.bytesUploaded = 0
+
                 let request = PostFileUploadRequest(fileURL: file.localFileURL, target: uploadTarget)
                 let api = API(baseURL: uploadTarget.upload_url, urlSession: backgroundSessionProvider.session)
 
@@ -64,9 +67,10 @@ public class FileSubmissionItemsUploadStarter {
                     task.resume()
                 } catch {
                     file.uploadError = NSLocalizedString("Failed to start upload.", comment: "")
-                    try? context.save()
                 }
             }
+
+            try? context.save()
             promise(.success(()))
         }
     }
