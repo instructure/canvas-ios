@@ -44,11 +44,10 @@ public class AttachmentSubmissionService {
 extension AttachmentSubmissionService: FileProgressListViewModelDelegate {
 
     public func fileProgressViewModelCancel(_ viewModel: FileProgressListViewModel) {
-        // TODO: Cancel ongoing URLSessionTask
-
         if let existingSubmissionID = existingSubmissionID {
-            submissionAssembly.composer.deleteSubmission(submissionID: existingSubmissionID)
+            submissionAssembly.cancel(submissionID: existingSubmissionID)
         }
+        existingSubmissionID = nil
     }
 
     public func fileProgressViewModelRetry(_ viewModel: FileProgressListViewModel) {

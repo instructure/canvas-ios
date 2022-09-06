@@ -95,6 +95,15 @@ public class FileSubmissionAssembly {
         // This will create the background URLSession
         _ = backgroundURLSessionProvider.session
     }
+
+    /**
+     This method deletes the given submisson from CoreData and cancels background file uploads.
+     Submission files on the file system remain intact.
+     */
+    public func cancel(submissionID: NSManagedObjectID) {
+        composer.deleteSubmission(submissionID: submissionID)
+        backgroundURLSessionProvider.session.invalidateAndCancel()
+    }
 }
 
 extension FileSubmissionAssembly {
