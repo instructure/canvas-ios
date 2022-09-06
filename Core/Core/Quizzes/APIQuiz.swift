@@ -21,6 +21,7 @@ import Foundation
 // https://canvas.instructure.com/doc/api/quizzes.html#Quiz
 public struct APIQuiz: Codable, Equatable {
     let access_code: String?
+    let all_dates: [APIAssignmentDate]?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let allowed_attempts: Int?
     let assignment_id: ID?
@@ -59,7 +60,6 @@ public struct APIQuiz: Codable, Equatable {
     let title: String
     let unlock_at: Date?
     let unpublishable: Bool?
-    // let all_dates: [Date]?
     // let anonymous_submissions: Bool?
     // let assignment_group_id: String?
     // let lock_info: LockInfoModel?
@@ -171,6 +171,7 @@ public enum APIQuizAnswerValue: Codable, Equatable {
 extension APIQuiz {
     public static func make(
         access_code: String? = nil,
+        all_dates: [APIAssignmentDate]? = nil,
         allowed_attempts: Int = 1,
         assignment_id: ID? = nil,
         cant_go_back: Bool? = nil,
@@ -206,6 +207,7 @@ extension APIQuiz {
     ) -> APIQuiz {
         APIQuiz(
             access_code: access_code,
+            all_dates: all_dates,
             allowed_attempts: allowed_attempts,
             assignment_id: assignment_id,
             cant_go_back: cant_go_back,

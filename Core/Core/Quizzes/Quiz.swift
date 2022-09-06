@@ -21,6 +21,7 @@ import CoreData
 
 public class Quiz: NSManagedObject {
     @NSManaged public var accessCode: String?
+    @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int
     @NSManaged public var assignmentID: String?
     @NSManaged public var cantGoBack: Bool
@@ -153,6 +154,13 @@ extension Quiz {
     static func save(_ item: APIQuiz, in context: NSManagedObjectContext) -> Quiz {
         let model: Quiz = context.first(where: #keyPath(Quiz.id), equals: item.id.value) ?? context.insert()
         model.accessCode = item.access_code
+
+        if let dates = item.all_dates {
+            model.allDates = Set(dates.map {
+                AssignmentDate.save($0, quizID: item.id.value, in: context)
+            })
+        }
+
         model.allowedAttempts = item.allowed_attempts ?? 0
         model.assignmentID = item.assignment_id?.value
         model.cantGoBack = item.cant_go_back ?? false

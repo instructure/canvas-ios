@@ -20,9 +20,9 @@ import SwiftUI
 
 public class AssignmentDateSectionViewModel: DateSectionViewModel {
 
-
     @ObservedObject var assignment: Assignment
     public var firstAssignmentDate: AssignmentDate?
+    public var isButton = true
 
     public init(assignment: Assignment) {
         self.assignment = assignment
@@ -30,7 +30,7 @@ public class AssignmentDateSectionViewModel: DateSectionViewModel {
     }
 
     public var hasMultipleDueDates: Bool {
-        assignment.allDates.count > 1
+        assignment.hasMultipleDueDates
     }
 
     public var dueAt: Date? {

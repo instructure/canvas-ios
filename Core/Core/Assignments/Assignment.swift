@@ -373,6 +373,19 @@ public final class AssignmentDate: NSManagedObject {
         model.lockAt = item.lock_at
         return model
     }
+
+    @discardableResult
+    public static func save(_ item: APIAssignmentDate, quizID: String, in context: NSManagedObjectContext) -> AssignmentDate {
+        let id = item.id?.value ?? "base-quiz-\(quizID)"
+        let model: AssignmentDate = context.first(where: #keyPath(AssignmentDate.id), equals: id) ?? context.insert()
+        model.id = id
+        model.base = item.base == true
+        model.title = item.title
+        model.dueAt = item.due_at
+        model.unlockAt = item.unlock_at
+        model.lockAt = item.lock_at
+        return model
+    }
 }
 
 public final class AssignmentOverride: NSManagedObject, WriteableModel {

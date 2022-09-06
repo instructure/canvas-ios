@@ -18,14 +18,32 @@
 
 import SwiftUI
 
-public protocol DateSectionViewModel: ObservableObject {
+public class QuizDateSectionViewModel: DateSectionViewModel {
 
-    var hasMultipleDueDates: Bool { get }
-    var firstAssignmentDate: AssignmentDate? { get }
-    var dueAt: Date? { get }
-    var lockAt: Date? { get }
-    var unlockAt: Date? { get }
-    var isButton: Bool { get }
+    @ObservedObject var quiz: Quiz
+    public var firstAssignmentDate: AssignmentDate? = nil
+    public var isButton = false
 
-    func buttonTapped(router: Router, viewController: WeakViewController)
+    public init(quiz: Quiz) {
+        self.quiz = quiz
+        firstAssignmentDate = quiz.allDates.first
+    }
+
+    public var hasMultipleDueDates: Bool {
+        quiz.allDates.count > 1
+    }
+
+    public var dueAt: Date? {
+        quiz.dueAt ?? firstAssignmentDate?.dueAt
+    }
+
+    public var lockAt: Date? {
+        firstAssignmentDate?.lockAt ?? quiz.lockAt
+    }
+
+    public var unlockAt: Date? {
+        firstAssignmentDate?.unlockAt ?? quiz.unlockAt
+    }
+
+    public func buttonTapped(router: Router, viewController: WeakViewController) {}
 }
