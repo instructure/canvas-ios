@@ -45,12 +45,16 @@ class FileSubmissionSubmitterTests: CoreTestCase {
 
         let testee = FileSubmissionSubmitter(api: api, context: databaseClient)
         let completionEvent = expectation(description: "completion event fire")
+        let apiResponseEvent = expectation(description: "api response event fire")
 
         // MARK: - WHEN
         let subscription = testee.submitFiles(fileSubmissionID: submission.objectID).sink { completion in
             if case .finished = completion {
                 completionEvent.fulfill()
             }
+        } receiveValue: { apiSubmission in
+            XCTAssertEqual(apiSubmission, APISubmission.make())
+            apiResponseEvent.fulfill()
         }
 
         // MARK: - THEN
@@ -84,13 +88,17 @@ class FileSubmissionSubmitterTests: CoreTestCase {
 
         let testee = FileSubmissionSubmitter(api: api, context: databaseClient)
         let completionEvent = expectation(description: "completion event fire")
+        let apiResponseEvent = expectation(description: "api response event fire")
+        apiResponseEvent.isInverted = true
 
         // MARK: - WHEN
         let subscription = testee.submitFiles(fileSubmissionID: submission.objectID).sink { completion in
             if case .failure(let error) = completion {
-                XCTAssertEqual(error as! String, "testError")
+                XCTAssertEqual(error as NSError, NSError.instructureError("testError"))
                 completionEvent.fulfill()
             }
+        } receiveValue: { _ in
+            apiResponseEvent.fulfill()
         }
 
         // MARK: - THEN

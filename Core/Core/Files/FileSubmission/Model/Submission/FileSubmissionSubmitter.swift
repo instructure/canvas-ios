@@ -64,6 +64,7 @@ public class FileSubmissionSubmitter {
                 submission.submissionError = validError.localizedDescription
                 submission.isSubmitted = false
                 try? context.save()
+                promise(.failure(validError))
                 return
             }
 
