@@ -155,21 +155,20 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateNavBarButtons() {
+        let cancelButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
+            self?.showCancelDialog()
+        }
         switch state {
         case .waiting:
-            leftBarButton = nil
+            leftBarButton = cancelButton
             rightBarButton = nil
         case .uploading:
-            leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
-                self?.showCancelDialog()
-            }
+            leftBarButton = cancelButton
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
                 self?.flowCompleted()
             }
         case .failed:
-            leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
-                self?.showCancelDialog()
-            }
+            leftBarButton = cancelButton
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [weak self] in
                 self.flatMap { $0.delegate?.fileProgressViewModelRetry($0) }
             }

@@ -65,15 +65,15 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.title, "Submission")
     }
 
-    func testUploadingState() {
+    func testWaitingState() {
         makeFile()
         makeFile()
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading Zero KB of 20 bytes", progress: 0))
+        XCTAssertEqual(testee.state, .waiting)
         XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
-        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
+        XCTAssertNil(testee.rightBarButton)
     }
 
     func testOneFileFinishedOtherIsUploading() {
@@ -98,7 +98,8 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 20 bytes", progress: 0.5))
+        // A finished file is considered completed, that's why the 15 bytes uploaded.
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 15 bytes of 20 bytes", progress: 0.75))
         XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
         XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
@@ -236,7 +237,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         let file = makeFile()
         file.bytesUploaded = 1
         saveFiles()
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0))
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0.1))
 
         var receivedAlert: UIAlertController?
         let alertSubscription = testee.presentDialog.sink { alert in
@@ -263,7 +264,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         let file = makeFile()
         file.bytesUploaded = 1
         saveFiles()
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0))
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0.1))
 
         var receivedAlert: UIAlertController?
         let alertSubscription = testee.presentDialog.sink { alert in

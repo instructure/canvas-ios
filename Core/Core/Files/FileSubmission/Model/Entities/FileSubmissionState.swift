@@ -39,10 +39,10 @@ extension FileSubmission {
                 } else {
                     self = .failedUpload
                 }
-            } else if itemStates.containsUploading {
-                self = .uploading(progress: itemStates.progressSum / CGFloat(itemStates.count))
-            } else {
+            } else if itemStates.allWaiting {
                 self = .waiting
+            } else {
+                self = .uploading(progress: itemStates.progressSum / CGFloat(itemStates.count))
             }
         }
     }
@@ -77,14 +77,8 @@ private extension Array where Element == FileUploadItem.State {
             }
         }
     }
-    var containsUploading: Bool {
-        contains { state in
-            if case .uploading = state {
-                return true
-            } else {
-                return false
-            }
-        }
+    var allWaiting: Bool {
+        allSatisfy { $0 == .waiting }
     }
     var progressSum: CGFloat {
         reduce(into: CGFloat(0)) { result, state in

@@ -83,16 +83,24 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
     @ViewBuilder
     private var statusBanner: some View {
         switch viewModel.state {
-        case .waiting, .success:
+        case .waiting:
+            VStack(spacing: 15) {
+                Text("Preparing Files For Upload")
+                    .font(.regular14)
+                    .foregroundColor(.textDarkest)
+                progressView()
+            }
+            .padding(Typography.Spacings.textCellIconLeadingPadding)
+            Divider()
+        case .success:
             SwiftUI.EmptyView()
         case .uploading(let progressText, let progress):
             VStack(spacing: 15) {
                 Text(progressText)
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
-                ProgressView(value: progress)
-                    .foregroundColor(Color(Brand.shared.primary))
-                    .background(Color(Brand.shared.primary).opacity(0.2))
+                    .animation(.none)
+                progressView(value: progress)
             }
             .padding(Typography.Spacings.textCellIconLeadingPadding)
             Divider()
@@ -118,6 +126,12 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             .accessibilityElement(children: .combine)
             Divider()
         }
+    }
+
+    private func progressView(value: Float = 0) -> some View {
+        ProgressView(value: value)
+            .foregroundColor(Color(Brand.shared.primary))
+            .background(Color(Brand.shared.primary).opacity(0.2))
     }
 
     private func showAlertDialog(message: String) {

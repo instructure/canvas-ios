@@ -131,7 +131,7 @@ extension FileProgressItemPreview {
         }
 
         private func waitForUpload() {
-            file.apiID = ""
+            file.apiID = nil
             file.uploadError = nil
             file.bytesUploaded = 0
 
