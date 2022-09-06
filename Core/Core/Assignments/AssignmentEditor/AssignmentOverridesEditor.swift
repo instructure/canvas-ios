@@ -52,7 +52,7 @@ struct AssignmentOverridesEditor: View {
                 })
                 Divider()
 
-                ButtonRow(action: { pickDate(for: dueAt) }, content: {
+                ButtonRow(action: { CoreDatePicker.pickDate(for: dueAt, from: controller) }, content: {
                     Text("Due", bundle: .core)
                     Spacer()
                     if let dateValidator = dueAt.wrappedValue {
@@ -62,7 +62,7 @@ struct AssignmentOverridesEditor: View {
                     }
                 })
                 Divider()
-                ButtonRow(action: { pickDate(for: unlockAt) }, content: {
+                ButtonRow(action: { CoreDatePicker.pickDate(for: unlockAt, from: controller) }, content: {
                     Text("Available from", bundle: .core)
                     Spacer()
                     if let dateValidator = unlockAt.wrappedValue {
@@ -72,7 +72,7 @@ struct AssignmentOverridesEditor: View {
                     }
                 })
                 Divider()
-                ButtonRow(action: { pickDate(for: lockAt) }, content: {
+                ButtonRow(action: { CoreDatePicker.pickDate(for: lockAt, from: controller) }, content: {
                     Text("Available until", bundle: .core)
                     Spacer()
                     if let dateValidator = lockAt.wrappedValue {
@@ -98,17 +98,6 @@ struct AssignmentOverridesEditor: View {
 
     var everyone: String {
         overrides.count <= 1 ? NSLocalizedString("Everyone", comment: "") : NSLocalizedString("Everyone else", comment: "")
-    }
-
-    func pickDate(for date: Binding<Date?>) {
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker,
-                        from: controller,
-                        options: .modal(.overFullScreen,
-                                        isDismissable: true,
-                                        embedInNav: false,
-                                        addDoneButton: false))
     }
 
     func add() {

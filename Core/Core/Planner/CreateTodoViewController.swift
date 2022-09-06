@@ -101,19 +101,9 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func showDatePicker(_ sender: Any) {
-        pickDate(for: Binding(get: { self.selectedDate },
-                              set: { self.selectedDate = $0 }))
-    }
-
-    func pickDate(for date: Binding<Date?>) {
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker,
-                        from: self,
-                        options: .modal(.overFullScreen,
-                                        isDismissable: true,
-                                        embedInNav: false,
-                                        addDoneButton: false))
+        let dateBinding = Binding(get: { self.selectedDate },
+                                  set: { self.selectedDate = $0 })
+        CoreDatePicker.pickDate(for: dateBinding, from: self)
     }
 
     func refreshPlannables() {

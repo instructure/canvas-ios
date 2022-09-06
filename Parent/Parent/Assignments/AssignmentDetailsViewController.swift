@@ -20,6 +20,7 @@ import Foundation
 import UIKit
 import UserNotifications
 import Core
+import SwiftUI
 
 class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate {
     @IBOutlet weak var composeButton: UIButton!
@@ -37,27 +38,26 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
-    let webView = CoreWebView()
-    let refreshControl = CircleRefreshControl()
-    let dateFormatter = DateFormatter()
-    var selectedDate: Date = Clock.now
-    let sheetVC = SheetViewController.loadFromStoryboard()
-    var currentDate: Date?
-    var assignmentID = ""
-    var courseID = ""
-    let env = AppEnvironment.shared
-    var studentID = ""
+    private let webView = CoreWebView()
+    private let refreshControl = CircleRefreshControl()
+    private var selectedDate: Date?
+    private var assignmentID = ""
+    private var courseID = ""
+    private let env = AppEnvironment.shared
+    private var studentID = ""
+    private var minDate = Clock.now
+    private var maxDate = Clock.now
 
-    lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
+    private lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
     }
-    lazy var course = env.subscribe(GetCourse(courseID: courseID)) {  [weak self] in
+    private lazy var course = env.subscribe(GetCourse(courseID: courseID)) {  [weak self] in
         self?.update()
     }
-    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
+    private lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
         self?.update()
     }
-    lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
+    private lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
         self?.update()
     }
 
@@ -71,7 +71,6 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sheetVC.datePickerDelegate = self
         view.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Assignment Details", comment: "")
         webViewContainer.addSubview(webView)
@@ -114,7 +113,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 Calendar.current.date(from: $0.dateComponents)
             }
             if let date = date {
-                self.currentDate = date
+                self.selectedDate = date
                 self.reminderSwitch.isOn = true
                 self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
                 self.reminderDateButton.isHidden = false
@@ -129,7 +128,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-    @objc func refresh() {
+    @objc private func refresh() {
         assignment.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
@@ -138,7 +137,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         teachers.refresh(force: true)
     }
 
-    func update() {
+    private func update() {
         guard let assignment = assignment.first else { return }
         let status = assignment.submissions?.first(where: { $0.userID == studentID })?.status ?? .notSubmitted
         title = course.first?.name ?? NSLocalizedString("Assignment Details", comment: "")
@@ -167,10 +166,8 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         guard let assignment = assignment.first else { return }
         if reminderSwitch.isOn {
             reminderDateButton.isHidden = false
-            let minDate = Clock.now.addMinutes(1)
-            let maxDate = Clock.now.addYears(1)
-            sheetVC.minDate = minDate
-            sheetVC.maxDate = maxDate
+            minDate = Clock.now.addMinutes(1)
+            maxDate = Clock.now.addYears(1)
             let defaultDate = max(minDate, min(maxDate,
                 assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
             ))
@@ -180,7 +177,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                     return self.showPermissionError(.notifications)
                 }
                 self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
-                self.currentDate = defaultDate
+                self.selectedDate = defaultDate
                 self.reminderDateButton.isHidden = false
             } }
         } else {
@@ -192,9 +189,9 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     @IBAction func reminderDateButtonPressed(_ sender: Any) {
-        sheetVC.currentDate = currentDate ?? Clock.now.startOfDay()
-        sheetVC.modalPresentationStyle = .overFullScreen
-        self.present(sheetVC, animated: true, completion: nil)
+        let dateBinding = Binding(get: { self.selectedDate },
+                                  set: { self.reminderDateChanged(selectedDate: $0) })
+        CoreDatePicker.pickDate(for: dateBinding, with: minDate...maxDate, from: self)
     }
 
     @IBAction func compose() {
@@ -221,23 +218,16 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 }
 
 extension AssignmentDetailsViewController {
-    func reminderDateChanged(selectedDate: Date) {
-        guard let assignment = assignment.first else { return }
+    private func reminderDateChanged(selectedDate: Date?) {
+        guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
         NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate {
             if error == nil {
                 self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
-                self.currentDate = selectedDate
+                self.selectedDate = selectedDate
             } else {
                 self.reminderSwitch.setOn(false, animated: true)
                 self.reminderSwitchChanged()
             }
         } }
-    }
-}
-
-extension AssignmentDetailsViewController: DatePickerProtocol {
-    func didSelectDate(selectedDate: Date) {
-        self.selectedDate = selectedDate
-        reminderDateChanged(selectedDate: selectedDate)
     }
 }

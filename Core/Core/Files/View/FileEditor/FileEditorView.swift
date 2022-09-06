@@ -36,7 +36,6 @@ public struct FileEditorView: View {
     @State var copyright: String = ""
     @State var justification: UseJustification = .own_copyright
     @State var license: License = .cc_by
-    @State var showDatePicker = false
 
     @State var isLoading = true
     @State var isLoaded = false
@@ -129,7 +128,7 @@ public struct FileEditorView: View {
                 if access == .scheduled {
                     Divider()
 
-                    ButtonRow(action: pickUnlockAtDate, content: {
+                    ButtonRow(action: { CoreDatePicker.pickDate(for: $unlockAt, from: controller) }, content: {
                         Text("Available from", bundle: .core)
                         Spacer()
                         if let dateValidator = unlockAt {
@@ -142,7 +141,7 @@ public struct FileEditorView: View {
 
                     Divider()
 
-                    ButtonRow(action: pickLockAtDate, content: {
+                    ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, from: controller) }, content: {
                         Text("Available until", bundle: .core)
                         Spacer()
                         if let dateValidator = lockAt {
@@ -242,20 +241,6 @@ public struct FileEditorView: View {
                 self.loaded(locked: folder?.locked, hidden: folder?.hidden, unlockAt: folder?.unlockAt, lockAt: folder?.lockAt)
             } }
         }
-    }
-
-    func pickUnlockAtDate() {
-        showDatePicker.toggle()
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $unlockAt))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
-    }
-
-    func pickLockAtDate() {
-        showDatePicker.toggle()
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $lockAt))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
     }
 
     func loaded(locked: Bool?, hidden: Bool?, unlockAt: Date?, lockAt: Date?) {

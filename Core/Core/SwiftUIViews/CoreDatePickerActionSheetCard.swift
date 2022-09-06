@@ -18,6 +18,26 @@
 
 import SwiftUI
 
+public struct CoreDatePicker {
+
+    public static func pickDate(for date: Binding<Date?>, with dateRange: ClosedRange<Date>? = nil, from controller: UIViewController) {
+        let env = AppEnvironment.shared
+        let dateRange = dateRange ?? Date().addYears(-1)...Date().addYears(1)
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date, dateRange: dateRange))
+        picker.view.backgroundColor = UIColor.clear
+        env.router.show(picker,
+                        from: controller,
+                        options: .modal(.overFullScreen,
+                                        isDismissable: true,
+                                        embedInNav: false,
+                                        addDoneButton: false))
+    }
+
+    public static func pickDate(for date: Binding<Date?>, from controller: WeakViewController) {
+        self.pickDate(for: date, from: controller.value)
+    }
+}
+
 public struct CoreDatePickerActionSheetCard: View {
     @Environment(\.viewController) var controller
     @State private var grayViewOpacity = 0.0
@@ -30,12 +50,12 @@ public struct CoreDatePickerActionSheetCard: View {
     private let heightToDisappear = UIScreen.main.bounds.height
     private let backgroundColor = Color.backgroundLightest
 
-    private var pickerDateRange: ClosedRange<Date>!
+    private var pickerDateRange: ClosedRange<Date>
 
-    public init(selection: Binding<Date?>, minDate: Date = Date().addYears(-1), maxDate: Date = Date().addYears(1)) {
+    public init(selection: Binding<Date?>, dateRange: ClosedRange<Date> = Clock.now...Clock.now.addYears(1)) {
         _selectionDate = selection
         _selectedDate = State<Date>(initialValue: selection.wrappedValue ?? Date())
-        pickerDateRange = minDate...maxDate
+        pickerDateRange = dateRange
     }
 
     public var body: some View {
@@ -100,7 +120,7 @@ public struct CoreDatePickerActionSheetCard: View {
 struct CoreDatePickerActionSheetCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            CoreDatePickerActionSheetCard(selection: .constant(Date()))
+            CoreDatePickerActionSheetCard(selection: .constant(Date()), dateRange: Clock.now...Clock.now.addDays(5))
         }
     }
 }
