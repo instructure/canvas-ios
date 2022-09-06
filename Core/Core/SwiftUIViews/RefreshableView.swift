@@ -56,13 +56,21 @@ struct RefreshableView<Content: View>: View {
             viewState = .progress(progress)
             isVisible = progress > 0
             if progress == 1 {
+                let triggerStartDate = Date()
+
                 hapticGenerator.impactOccurred()
                 isAnimating = true
                 viewState = .animating
+
                 refreshAction {
-                    isVisible = false
-                    isAnimating = false
-                    progress = 0
+                    let triggerEndDate = Date()
+                    let timeElapsed = triggerEndDate.timeIntervalSince1970 - triggerStartDate.timeIntervalSince1970
+                    let additionalDuration = 1 - timeElapsed
+                    DispatchQueue.main.asyncAfter(deadline: .now() + additionalDuration) {
+                        isVisible = false
+                        isAnimating = false
+                        progress = 0
+                    }
                 }
             }
         }

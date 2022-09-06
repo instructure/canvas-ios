@@ -53,10 +53,7 @@ class DashboardCardsViewModel: ObservableObject {
         needsRefresh = false
         courses.exhaust(force: true)
         cards.refresh(force: true) { [weak self] _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                onComplete?()
-            }
-
+            onComplete?()
             guard let self = self else { return }
             if self.needsRefresh { self.refresh() }
         }
