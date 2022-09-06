@@ -85,7 +85,7 @@ struct CircularProgressView_Previews: PreviewProvider {
         CircularProgressView(viewState: .constant(.animating))
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
-        
+
         CircularProgressView(viewState: .constant(.progress(0.25)))
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
