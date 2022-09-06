@@ -79,7 +79,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
         let uploadItem: FileUploadItem = databaseClient.insert()
         let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
         let completionExpectation = expectation(description: "completion got signalled")
-        let subscription = testee.completion.sink { _ in
+        let subscription = testee.uploadCompleted.sink { _ in
             completionExpectation.fulfill()
         } receiveValue: { _ in }
 

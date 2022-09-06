@@ -55,7 +55,8 @@ public class FileSubmissionAssembly {
         let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { [fileSubmissionSubmitter] fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?
-            subscription = observer.completion
+            subscription = observer
+                .uploadCompleted
                 .flatMap { AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID).isAllUploadFinished() }
                 .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID) }
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }

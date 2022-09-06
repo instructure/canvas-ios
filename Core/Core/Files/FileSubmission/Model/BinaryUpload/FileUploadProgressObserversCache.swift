@@ -89,7 +89,7 @@ public class FileUploadProgressObserversCache: NSObject {
     private func removeObserverOnCompletion(_ observer: FileUploadProgressObserver) {
         var uploadCompletionSubscription: AnyCancellable?
         uploadCompletionSubscription = observer
-            .completion
+            .uploadCompleted
             .sink { [weak self] _ in
                 uploadCompletionSubscription?.cancel()
                 self?.observerCache[observer.fileUploadItemID] = nil
