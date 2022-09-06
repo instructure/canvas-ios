@@ -29,6 +29,7 @@ public class FileSubmissionAssembly {
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
     private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
     private let fileSubmissionSubmitter: FileSubmissionSubmitter
+    private let backgroundSessionCompletion: BackgroundSessionCompletion
 
     /**
      - parameters:
@@ -41,19 +42,29 @@ public class FileSubmissionAssembly {
         backgroundContext.mergePolicy = NSMergePolicy.overwrite
         self.backgroundContext = backgroundContext
 
+        let backgroundSessionCompletion = BackgroundSessionCompletion()
+        self.backgroundSessionCompletion = backgroundSessionCompletion
+
         self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
         self.fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
         self.composer = FileSubmissionComposer(context: backgroundContext)
+
+        let cleaner = FileSubmissionCleanup(context: backgroundContext)
+        let notificationsSender = SubmissionCompletedNotificationsSender(context: backgroundContext)
 
         let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { [fileSubmissionSubmitter] fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?
             subscription = observer.completion.flatMap {
                 AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID)
-                    .checkFileUploadFinished()
-                    .flatMap {
-                        fileSubmissionSubmitter
-                            .submitFiles(fileSubmissionID: fileSubmissionID)
+                    .checkFileUploadFinished().flatMap {
+                        fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID).flatMap { apiSubmission in
+                            notificationsSender.sendNotifications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission).flatMap {
+                                cleaner.clean(fileSubmissionID: fileSubmissionID).flatMap {
+                                    backgroundSessionCompletion.backgroundOperationsFinished()
+                                }
+                            }
+                        }
                     }
             }.sink { _ in
                 subscription?.cancel()
@@ -83,13 +94,23 @@ public class FileSubmissionAssembly {
             }, receiveValue: {})
             .store(in: &keepAliveSubscription)
     }
+
+    /**
+     Use this method to pass he completion block received in handleEventsForBackgroundURLSession appdelegate method
+     when the app is doing background uploading. This method also creates the necessary `URLSession` object that receives delegate method updates.*/
+    public func handleBackgroundUpload(_ completion: @escaping () -> Void) {
+        backgroundSessionCompletion.callback = completion
+        // This will create the background URLSession
+        _ = backgroundURLSessionProvider.session
+    }
 }
 
 extension FileSubmissionAssembly {
+    public static let ShareExtensionSessionID = "com.instructure.icanvas.SubmitAssignment.file-uploads"
 
     public static func makeShareExtensionAssembly() -> FileSubmissionAssembly {
         FileSubmissionAssembly(container: AppEnvironment.shared.database,
-                               sessionID: "com.instructure.icanvas.SubmitAssignment.file-uploads",
+                               sessionID: ShareExtensionSessionID,
                                sharedContainerID: "group.instructure.shared",
                                api: AppEnvironment.shared.api)
     }

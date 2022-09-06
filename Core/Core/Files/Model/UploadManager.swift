@@ -28,7 +28,7 @@ enum FileUploaderError: Error {
 
 open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
-    public static let BatchSubmissionCompletedNotification = NSNotification.Name(rawValue: "com.instructure.core.batch-submission-completed")
+    public static let BatchSubmissionCompletedNotification = NSNotification.Name(rawValue: "com.instructure.core.batch-submission-completed") // TODO: Remove this
     public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
 
     public let identifier: String

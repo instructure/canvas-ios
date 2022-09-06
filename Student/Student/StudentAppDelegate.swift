@@ -151,15 +151,29 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         BackgroundVideoPlayer.shared.reconnect()
     }
 
+    private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
+
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
-        let manager = UploadManager(identifier: identifier)
-        manager.completionHandler = {
-            DispatchQueue.main.async {
-                completionHandler()
+
+        if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
+            let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
+            backgroundAssembly.handleBackgroundUpload {
+                DispatchQueue.main.async { [weak self] in
+                    completionHandler()
+                    self?.backgroundFileSubmissionAssembly = nil
+                }
             }
+            backgroundFileSubmissionAssembly = backgroundAssembly
+        } else {
+            let manager = UploadManager(identifier: identifier)
+            manager.completionHandler = {
+                DispatchQueue.main.async {
+                    completionHandler()
+                }
+            }
+            manager.createSession()
         }
-        manager.createSession()
     }
 
     // similar methods exist in all other app delegates

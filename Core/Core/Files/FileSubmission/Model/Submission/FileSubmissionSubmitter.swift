@@ -31,12 +31,12 @@ public class FileSubmissionSubmitter {
         self.context = context
     }
 
-    public func submitFiles(fileSubmissionID: NSManagedObjectID) -> Future<Void, Error> {
-        Future<Void, Error> { self.sendRequest(fileSubmissionID: fileSubmissionID, promise: $0) }
+    public func submitFiles(fileSubmissionID: NSManagedObjectID) -> Future<APISubmission, Error> {
+        Future<APISubmission, Error> { self.sendRequest(fileSubmissionID: fileSubmissionID, promise: $0) }
     }
 
     /** The result of the request is also written into the underlying `FileSubmission` object.  */
-    private func sendRequest(fileSubmissionID: NSManagedObjectID, promise: @escaping Future<Void, Error>.Promise) {
+    private func sendRequest(fileSubmissionID: NSManagedObjectID, promise: @escaping Future<APISubmission, Error>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
             let fileIDs = submission.files.compactMap { $0.apiID }
@@ -52,28 +52,30 @@ public class FileSubmissionSubmitter {
         }
     }
 
-    private func handleResponse(_ response: APISubmission?, error: Error?, fileSubmissionID: NSManagedObjectID, promise: @escaping Future<Void, Error>.Promise) {
+    private func handleResponse(_ response: APISubmission?, error: Error?, fileSubmissionID: NSManagedObjectID, promise: @escaping Future<APISubmission, Error>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
                 promise(.failure(FileSubmissionErrors.SubmissionNotFound()))
                 return
             }
 
-            if response == nil {
+            guard let response = response else {
                 let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Submission failed due to unknown error.", comment: ""))
                 submission.submissionError = validError.localizedDescription
                 submission.isSubmitted = false
-            } else {
-                submission.submissionError = nil
-                submission.isSubmitted = true
+                try? context.save()
+                return
             }
+
+            submission.submissionError = nil
+            submission.isSubmitted = true
 
             try? context.save()
 
             if let error = submission.submissionError {
                 promise(.failure(error))
             } else {
-                promise(.success(()))
+                promise(.success(response))
             }
         }
     }

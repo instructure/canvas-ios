@@ -837,6 +837,9 @@
 		CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */; };
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
+		CF24634028C72D2E00A77A88 /* BackgroundSessionCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24633F28C72D2E00A77A88 /* BackgroundSessionCompletion.swift */; };
+		CF24634228C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */; };
+		CF24634428C74BCC00A77A88 /* FileSubmissionCleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */; };
 		CF25022127FC26C9005D187C /* lato_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF25022027FC26C9005D187C /* lato_regular.ttf */; };
 		CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */; };
 		CF2F7E7A27FF211500942241 /* FontPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F7E7927FF211500942241 /* FontPreview.swift */; };
@@ -2300,6 +2303,9 @@
 		CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGrid.swift; sourceTree = "<group>"; };
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
+		CF24633F28C72D2E00A77A88 /* BackgroundSessionCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionCompletion.swift; sourceTree = "<group>"; };
+		CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSender.swift; sourceTree = "<group>"; };
+		CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionCleanup.swift; sourceTree = "<group>"; };
 		CF25022027FC26C9005D187C /* lato_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_regular.ttf; sourceTree = "<group>"; };
 		CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
 		CF2F7E7927FF211500942241 /* FontPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreview.swift; sourceTree = "<group>"; };
@@ -5687,6 +5693,9 @@
 			isa = PBXGroup;
 			children = (
 				CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */,
+				CF24633F28C72D2E00A77A88 /* BackgroundSessionCompletion.swift */,
+				CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */,
+				CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */,
 			);
 			path = Submission;
 			sourceTree = "<group>";
@@ -7430,6 +7439,7 @@
 				CF0075DA28746E3B00588E40 /* APIFormData.swift in Sources */,
 				B1A7848B2441136C001A2B50 /* GetModules.swift in Sources */,
 				EB7A8FF1285C946400940F3D /* UIApplicationDelegateExtensions.swift in Sources */,
+				CF24634428C74BCC00A77A88 /* FileSubmissionCleanup.swift in Sources */,
 				7DA260E423F72359005D2121 /* LoadingViewController.swift in Sources */,
 				7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */,
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
@@ -7480,6 +7490,7 @@
 				7DA2606B23F722D9005D2121 /* UTI.swift in Sources */,
 				7DA2602123F7227A005D2121 /* StringExtensions.swift in Sources */,
 				7DA260C023F72352005D2121 /* GetUserSettings.swift in Sources */,
+				CF24634028C72D2E00A77A88 /* BackgroundSessionCompletion.swift in Sources */,
 				7DA25FE123F72154005D2121 /* AudioRecorderViewController.swift in Sources */,
 				3B4D892D2450A8E9004ED120 /* ComposeRecipientsView.swift in Sources */,
 				7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */,
@@ -7625,6 +7636,7 @@
 				7DA2605923F722D9005D2121 /* Quiz.swift in Sources */,
 				CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */,
 				CF7C3696267A3CEE00ACAC79 /* TypeSafeCodable.swift in Sources */,
+				CF24634228C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift in Sources */,
 				7D531D44254B105700CBFCA6 /* AssignmentAssigneePicker.swift in Sources */,
 				CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */,
 				7DA260BD23F72352005D2121 /* GetSubmissions.swift in Sources */,
