@@ -18,11 +18,10 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 15.0, *)
 struct RefreshableView<Content: View>: View {
     var content: () -> Content
+    var refreshAction: (@escaping () -> Void) -> Void
 
-    @Environment(\.refresh) private var refresh
     @State private var isVisible = false
     @State private var isAnimating = false
     @State private var progress: CGFloat = 0
@@ -60,13 +59,10 @@ struct RefreshableView<Content: View>: View {
                 hapticGenerator.impactOccurred()
                 isAnimating = true
                 viewState = .animating
-                Task {
-                    await refresh?()
-                    await MainActor.run {
-                        isVisible = false
-                        isAnimating = false
-                        progress = 0
-                    }
+                refreshAction {
+                    isVisible = false
+                    isAnimating = false
+                    progress = 0
                 }
             }
         }
