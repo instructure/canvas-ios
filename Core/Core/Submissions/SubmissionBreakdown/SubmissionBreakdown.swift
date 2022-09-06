@@ -18,30 +18,11 @@
 
 import SwiftUI
 
-struct SubmissionBreakdown: View {
-    let assignmentID: String
-    let courseID: String
-    let submissionTypes: [SubmissionType]
+struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
+    @StateObject var viewModel: ViewModel
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-
-    var summary: Store<GetSubmissionSummary>
-
-    @State var graded = 0
-    @State var ungraded = 0
-    @State var unsubmitted = 0
-    @State var submissionCount = 0
-
-    init(courseID: String, assignmentID: String, submissionTypes: [SubmissionType]) {
-        self.assignmentID = assignmentID
-        self.courseID = courseID
-        self.submissionTypes = submissionTypes
-        summary = AppEnvironment.shared.subscribe(GetSubmissionSummary(
-            context: .course(courseID),
-            assignmentID: assignmentID
-        ))
-    }
 
     var body: some View {
         Button(action: routeToAll, label: {
@@ -52,20 +33,20 @@ struct SubmissionBreakdown: View {
                             .font(.medium16).foregroundColor(.textDark)
                         Spacer()
                     }
-                    if submissionTypes.contains(.not_graded) || submissionTypes.contains(.none) {
+                    if viewModel.noSubmissionTypes {
                         Text("Tap to view submissions list.")
                             .font(.regular16).foregroundColor(.textDarkest)
-                    } else if submissionTypes.contains(.on_paper) {
+                    } else if viewModel.paperSubmissionTypes {
                         HStack(alignment: .top, spacing: 0) {
                             Graph(
                                 action: routeToGraded,
                                 label: Text("Graded", bundle: .core),
-                                count: graded,
-                                total: submissionCount
+                                count: viewModel.graded,
+                                total: viewModel.submissionCount
                             )
                             Text(String.localizedStringWithFormat(
                                 NSLocalizedString("there_are_d_assignees_without_grades", comment: ""),
-                                ungraded + unsubmitted
+                                viewModel.ungraded + viewModel.unsubmitted
                             ))
                                 .font(.regular14).foregroundColor(.textDarkest)
                                 .padding(.leading, 22)
@@ -76,22 +57,22 @@ struct SubmissionBreakdown: View {
                             Graph(
                                 action: routeToGraded,
                                 label: Text("Graded", bundle: .core),
-                                count: graded,
-                                total: submissionCount
+                                count: viewModel.graded,
+                                total: viewModel.submissionCount
                             )
                                 .frame(maxWidth: .infinity)
                             Graph(
                                 action: routeToUngraded,
                                 label: Text("Needs Grading", bundle: .core),
-                                count: ungraded,
-                                total: submissionCount
+                                count: viewModel.ungraded,
+                                total: viewModel.submissionCount
                             )
                                 .frame(maxWidth: .infinity)
                             Graph(
                                 action: routeToUnsubmitted,
                                 label: Text("Not Submitted", bundle: .core),
-                                count: unsubmitted,
-                                total: submissionCount
+                                count: viewModel.unsubmitted,
+                                total: viewModel.submissionCount
                             )
                                 .frame(maxWidth: .infinity)
                         }
@@ -107,19 +88,10 @@ struct SubmissionBreakdown: View {
             .buttonStyle(ScaleButtonStyle(scale: 1))
             .accessibility(label: Text("View all submissions", bundle: .core))
             .identifier("AssignmentDetails.viewAllSubmissionsButton")
+            .animation(Animation.easeOut(duration: 0.5).delay(0.2))
             .onAppear {
-                summary.eventHandler = update
-                summary.refresh(force: true)
+                viewModel.viewDidAppear()
             }
-    }
-
-    func update() {
-        withAnimation(Animation.easeOut(duration: 0.5).delay(0.2)) {
-            graded = summary.first?.graded ?? 0
-            ungraded = summary.first?.ungraded ?? 0
-            unsubmitted = summary.first?.unsubmitted ?? 0
-            submissionCount = summary.first?.submissionCount ?? 0
-        }
     }
 
     struct Graph: View {
@@ -162,21 +134,19 @@ struct SubmissionBreakdown: View {
         }
     }
 
-    var submissionsPath: String { "courses/\(courseID)/assignments/\(assignmentID)/submissions" }
-
     func routeToAll() {
-        env.router.route(to: submissionsPath, from: controller)
+        viewModel.routeToAll(router: env.router, viewController: controller)
     }
 
     func routeToGraded() {
-        env.router.route(to: "\(submissionsPath)?filter=graded", from: controller)
+        viewModel.routeToGraded(router: env.router, viewController: controller)
     }
 
     func routeToUngraded() {
-        env.router.route(to: "\(submissionsPath)?filter=needs_grading", from: controller)
+        viewModel.routeToUngraded(router: env.router, viewController: controller)
     }
 
     func routeToUnsubmitted() {
-        env.router.route(to: "\(submissionsPath)?filter=not_submitted", from: controller)
+        viewModel.routeToUnsubmitted(router: env.router, viewController: controller)
     }
 }

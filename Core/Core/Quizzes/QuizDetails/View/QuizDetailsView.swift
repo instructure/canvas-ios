@@ -91,11 +91,13 @@ public struct QuizDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
+        DateSection(viewModel: QuizDateSectionViewModel(quiz: quiz))
         Divider().padding(.horizontal, 16)
 
         if viewModel.showSubmissions {
-            SubmissionBreakdown(courseID: viewModel.courseID, assignmentID: assignment.id, submissionTypes: assignment.submissionTypes)
+            //if assignment TODO
+            let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: viewModel.courseID, assignmentID: assignment.id, submissionTypes: assignment.submissionTypes)
+            SubmissionBreakdown(viewModel: viewModel)
 
             Divider().padding(.horizontal, 16)
         }

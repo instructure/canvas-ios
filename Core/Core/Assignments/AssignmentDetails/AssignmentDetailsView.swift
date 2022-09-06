@@ -129,8 +129,8 @@ public struct AssignmentDetailsView: View {
         Divider().padding(.horizontal, 16)
 
         if course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true {
-            SubmissionBreakdown(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
-
+            let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+            SubmissionBreakdown(viewModel: viewModel)
             Divider().padding(.horizontal, 16)
         }
 

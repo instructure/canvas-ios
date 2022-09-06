@@ -268,11 +268,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             }
 
             if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden {
-                let controller = CoreHostingController(SubmissionBreakdown(
-                    courseID: courseID,
-                    assignmentID: assignmentID,
-                    submissionTypes: [.discussion_topic]
-                ))
+                let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: [.discussion_topic])
+                let controller = CoreHostingController(SubmissionBreakdown(viewModel: viewModel))
                 controller.view.backgroundColor = nil
                 embed(controller, in: submissionsSection)
                 submissionsSection.isHidden = false
