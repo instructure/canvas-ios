@@ -26,7 +26,7 @@ public class SubmissionCompletedNotificationsSender {
         self.context = context
     }
 
-    func sendNotifications(fileSubmissionID: NSManagedObjectID, apiSubmission: CreateSubmissionRequest.Response) -> Future<Void, Never> {
+    func sendSuccessNofitications(fileSubmissionID: NSManagedObjectID, apiSubmission: CreateSubmissionRequest.Response) -> Future<Void, Never> {
         Future<Void, Never> { [context] promise in
             context.perform {
                 defer { promise(.success(())) }

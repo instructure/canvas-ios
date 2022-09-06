@@ -55,22 +55,16 @@ public class FileSubmissionAssembly {
         let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { [fileSubmissionSubmitter] fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?
-            subscription = observer.completion.flatMap {
-                AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID)
-                    .checkFileUploadFinished().flatMap {
-                        fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID).flatMap { apiSubmission in
-                            notificationsSender.sendNotifications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission).flatMap {
-                                cleaner.clean(fileSubmissionID: fileSubmissionID).flatMap {
-                                    backgroundSessionCompletion.backgroundOperationsFinished()
-                                }
-                            }
-                        }
-                    }
-            }.sink { _ in
-                subscription?.cancel()
-                subscription = nil
-            } receiveValue: { _ in }
-
+            subscription = observer.completion
+                .flatMap { AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID).isAllUploadFinished() }
+                .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID) }
+                .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
+                .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
+                .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
+                .sink { completion in
+                    subscription?.cancel()
+                    subscription = nil
+                } receiveValue: { _ in }
             return observer
         }
         self.uploadProgressObserversCache = uploadProgressObserversCache
@@ -85,10 +79,7 @@ public class FileSubmissionAssembly {
         var keepAliveSubscription = Set<AnyCancellable>()
         fileSubmissionTargetsRequester
             .request(fileSubmissionID: fileSubmissionID)
-            .flatMap { [fileSubmissionItemsUploader] in
-                fileSubmissionItemsUploader
-                    .startUploads(fileSubmissionID: fileSubmissionID)
-            }
+            .flatMap { [fileSubmissionItemsUploader] in fileSubmissionItemsUploader.startUploads(fileSubmissionID: fileSubmissionID) }
             .sink(receiveCompletion: { _ in
                 keepAliveSubscription.removeAll()
             }, receiveValue: {})

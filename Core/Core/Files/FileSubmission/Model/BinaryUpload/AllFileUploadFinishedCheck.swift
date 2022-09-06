@@ -31,7 +31,7 @@ public class AllFileUploadFinishedCheck {
         self.fileSubmissionID = fileSubmissionID
     }
 
-    public func checkFileUploadFinished() -> Future<Void, Error> {
+    public func isAllUploadFinished() -> Future<Void, Error> {
         Future<Void, Error> { self.checkFileUploadState(promise: $0) }
     }
 
