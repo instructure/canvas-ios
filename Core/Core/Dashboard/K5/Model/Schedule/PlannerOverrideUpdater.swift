@@ -23,7 +23,7 @@ public class PlannerOverrideUpdater {
     public var updateInProgress: Bool { completion != nil }
 
     private let api: API
-    private var completion:((_ succeeded: Bool) -> Void)?
+    private var completion: ((_ succeeded: Bool) -> Void)?
 
     public init(api: API, plannableId: ID, plannableType: String, overrideId: ID?) {
         self.api = api
