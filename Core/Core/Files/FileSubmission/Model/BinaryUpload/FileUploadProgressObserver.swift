@@ -25,12 +25,12 @@ import CoreData
 public class FileUploadProgressObserver: NSObject {
     // TODO: Convert this to Future
     /** This publisher is signalled when the upload finishes. At this point either the file's `apiID` or `error` property is non-nil. */
-    public private(set) lazy var completion: AnyPublisher<Void, Never> = completionSubject.eraseToAnyPublisher()
+    public private(set) lazy var completion: AnyPublisher<Void, Error> = completionSubject.eraseToAnyPublisher()
     public let fileUploadItemID: NSManagedObjectID
 
     private let context: NSManagedObjectContext
     private let decoder: JSONDecoder
-    private let completionSubject = PassthroughSubject<Void, Never>()
+    private let completionSubject = PassthroughSubject<Void, Error>()
 
     public init(context: NSManagedObjectContext, fileUploadItemID: NSManagedObjectID) {
         self.context = context
@@ -54,7 +54,10 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         context.performAndWait {
-            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
+            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
+                completionSubject.send(completion: .failure(FileSubmissionErrors.UploadItemNotFound()))
+                return
+            }
 
             if item.apiID == nil, error == nil {
                 item.uploadError = NSLocalizedString("Session completed without error or file ID.", comment: "")

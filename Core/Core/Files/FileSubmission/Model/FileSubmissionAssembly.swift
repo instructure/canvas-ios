@@ -61,7 +61,7 @@ public class FileSubmissionAssembly {
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
                 .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
-                .sink { completion in
+                .sink { _ in
                     subscription?.cancel()
                     subscription = nil
                 } receiveValue: { _ in }
