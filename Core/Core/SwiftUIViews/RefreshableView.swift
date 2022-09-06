@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct RefreshableView<Content: View>: View {
+public struct RefreshableView<Content: View>: View {
     var content: () -> Content
     var refreshAction: (@escaping () -> Void) -> Void
 
@@ -30,7 +30,7 @@ struct RefreshableView<Content: View>: View {
     private let snappingPoint: CGFloat = 64
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 0) {
             if isVisible {
                 CircularProgressView(viewState: $viewState)
@@ -72,63 +72,6 @@ struct RefreshableView<Content: View>: View {
                         progress = 0
                     }
                 }
-            }
-        }
-    }
-}
-
-public struct CircularProgressView: View {
-    @Binding public private(set) var viewState: ViewState
-    @State private var isVisible = false
-    public static let size: CGFloat = 32
-
-    public enum ViewState {
-        case progress(CGFloat)
-        case animating
-    }
-
-    public var body: some View {
-        ZStack {
-            switch viewState {
-            case .animating:
-                Circle()
-                    .stroke(
-                        Color.borderLight,
-                        lineWidth: 3
-                    )
-                Circle()
-                    .trim(from: 0.15, to: 1)
-                    .stroke(
-                        Color.blue,
-                        style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
-                    )
-                    .frame(width: Self.size, height: Self.size)
-                    .rotationEffect(Angle(degrees: isVisible ? 359 : 0))
-                    .animation(
-                        .linear(duration: 2)
-                            .repeatForever(autoreverses: false),
-                        value: isVisible
-                    )
-                    .transition(.scale)
-                    .onAppear {
-                        isVisible = true
-                    }
-            case .progress(let progress):
-                Circle()
-                    .stroke(
-                        Color.borderLight,
-                        lineWidth: 3
-                    )
-                Circle()
-                    .trim(from: 0, to: progress)
-                    .stroke(
-                        Color.blue,
-                        style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
-                    )
-                    .frame(width: Self.size, height: Self.size)
-                    .rotationEffect(.degrees(-90))
-                    .animation(.none, value: progress)
-                    .transition(.scale)
             }
         }
     }
