@@ -175,7 +175,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         // MARK: - WHEN
         let subscription = testee.requestUploadTarget().sink { completion in
             if case .failure(let error) = completion {
-                XCTAssertTrue(error is FileSubmissionErrors.UploadItemNotFound)
+                XCTAssertEqual(error as? FileSubmissionErrors.CoreData, .uploadItemNotFound)
                 completionEvent.fulfill()
             }
         }
@@ -206,7 +206,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         // MARK: - WHEN
         let subscription = testee.requestUploadTarget().sink { completion in
             if case .failure(let error) = completion {
-                XCTAssertTrue(error is FileSubmissionErrors.UploadItemNotFound)
+                XCTAssertEqual(error as? FileSubmissionErrors.CoreData, .uploadItemNotFound)
                 completionEvent.fulfill()
             }
         }

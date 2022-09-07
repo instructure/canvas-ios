@@ -55,7 +55,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         context.performAndWait {
             guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
-                completionSubject.send(completion: .failure(FileSubmissionErrors.UploadItemNotFound()))
+                completionSubject.send(completion: .failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
                 return
             }
 

@@ -34,7 +34,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         let subscription = testee.startUploads(fileSubmissionID: invalidSubmissionID).sink { completion in
             if case .failure(let error) = completion {
                 completionEvent.fulfill()
-                XCTAssertTrue(error is FileSubmissionErrors.SubmissionNotFound)
+                XCTAssertEqual(error as? FileSubmissionErrors.CoreData, .submissionNotFound)
             }
         }
 

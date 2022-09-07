@@ -48,7 +48,7 @@ public class FileUploadTargetRequester {
             guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
                   let fileSubmission = fileItem.fileSubmission
             else {
-                promise(.failure(FileSubmissionErrors.UploadItemNotFound()))
+                promise(.failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
                 return
             }
 
@@ -69,7 +69,7 @@ public class FileUploadTargetRequester {
     private func handleResponse(_ response: FileUploadTarget?, error: Error?, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
             guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
-                promise(.failure(FileSubmissionErrors.UploadItemNotFound()))
+                promise(.failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
                 return
             }
 

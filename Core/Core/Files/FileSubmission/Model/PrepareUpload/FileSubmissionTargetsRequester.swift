@@ -38,7 +38,7 @@ public class FileSubmissionTargetsRequester {
     private func requestFileUploadTargets(fileSubmissionID: NSManagedObjectID, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [api, context] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
-                promise(.failure(FileSubmissionErrors.SubmissionNotFound()))
+                promise(.failure(FileSubmissionErrors.CoreData.submissionNotFound))
                 return
             }
 

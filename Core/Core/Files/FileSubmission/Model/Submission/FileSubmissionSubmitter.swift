@@ -55,7 +55,7 @@ public class FileSubmissionSubmitter {
     private func handleResponse(_ response: APISubmission?, error: Error?, fileSubmissionID: NSManagedObjectID, promise: @escaping Future<APISubmission, Error>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
-                promise(.failure(FileSubmissionErrors.SubmissionNotFound()))
+                promise(.failure(FileSubmissionErrors.CoreData.submissionNotFound))
                 return
             }
 

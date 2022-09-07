@@ -27,7 +27,5 @@ public struct FileSubmissionErrors {
         case coreData(CoreData)
     }
 
-    public struct SubmissionNotFound: Error, Equatable {}
-    public struct UploadItemNotFound: Error, Equatable {}
     public struct RequestUploadTargetUnknownError: Error, Equatable {}
 }
