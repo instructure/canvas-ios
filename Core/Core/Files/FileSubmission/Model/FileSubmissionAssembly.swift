@@ -64,8 +64,8 @@ public class FileSubmissionAssembly {
                 .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
                 .sink { completion in
                     if case .failure(let error) = completion,
-                       let uploadFinishError = error as? FileSubmissionErrors.UploadFinishedCheck,
-                       uploadFinishError == .uploadFailed {
+                       ((error as? FileSubmissionErrors.UploadFinishedCheck) == .uploadFailed ||
+                        (error as? FileSubmissionErrors.Submission) == .submissionFailed) {
                         notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
                     }
                     subscription?.cancel()
