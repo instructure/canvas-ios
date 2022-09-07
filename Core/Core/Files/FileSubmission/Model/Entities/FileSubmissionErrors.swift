@@ -21,4 +21,5 @@ public struct FileSubmissionErrors {
     public struct UploadItemNotFound: Error, Equatable {}
     public struct NotReady: Error, Equatable {}
     public struct RequestUploadTargetUnknownError: Error, Equatable {}
+    public struct UploadFailed: Error, Equatable {}
 }

@@ -22,7 +22,7 @@ import XCTest
 
 class AllFileUploadFinishedCheckTests: CoreTestCase {
 
-    func testFinishesWhenAllItemHasAPIID() {
+    func testFinishesWhenAllItemsHaveAPIID() {
         // MARK: - GIVEN
         let submission: FileSubmission = databaseClient.insert()
         let item1: FileUploadItem = databaseClient.insert()
@@ -48,7 +48,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testFailsWhenOneFileHasNoAPIID() {
+    func testNotReadyErrorWhenOneFileHasNoAPIIDAndOtherHas() {
         // MARK: - GIVEN
         let submission: FileSubmission = databaseClient.insert()
         let item1: FileUploadItem = databaseClient.insert()
@@ -74,7 +74,60 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testFailsWhenSubmissionNotFoundInCoreData() {
+    func testNotReadyErrorWhenOneFileIsUploadingAndOtherFailed() {
+        // MARK: - GIVEN
+        let submission: FileSubmission = databaseClient.insert()
+        let item1: FileUploadItem = databaseClient.insert()
+        item1.uploadError = "error"
+        item1.fileSubmission = submission
+        let item2: FileUploadItem = databaseClient.insert()
+        item2.fileSubmission = submission
+
+        let completionEvent = expectation(description: "completion event fire")
+        let testee = AllFileUploadFinishedCheck(context: databaseClient, fileSubmissionID: submission.objectID)
+
+        // MARK: - WHEN
+        let subscription = testee.isAllUploadFinished().sink { completion in
+            if case .failure(let error) = completion {
+                completionEvent.fulfill()
+                XCTAssertTrue(error is FileSubmissionErrors.NotReady)
+            }
+        }
+
+        // MARK: - THEN
+        waitForExpectations(timeout: 0.1)
+
+        subscription.cancel()
+    }
+
+    func testUploadFailedErrorWhenOneFileHasAPIIDAndOtherHasError() {
+        // MARK: - GIVEN
+        let submission: FileSubmission = databaseClient.insert()
+        let item1: FileUploadItem = databaseClient.insert()
+        item1.apiID = "id1"
+        item1.fileSubmission = submission
+        let item2: FileUploadItem = databaseClient.insert()
+        item2.fileSubmission = submission
+        item2.uploadError = "error"
+
+        let completionEvent = expectation(description: "completion event fire")
+        let testee = AllFileUploadFinishedCheck(context: databaseClient, fileSubmissionID: submission.objectID)
+
+        // MARK: - WHEN
+        let subscription = testee.isAllUploadFinished().sink { completion in
+            if case .failure(let error) = completion {
+                completionEvent.fulfill()
+                XCTAssertTrue(error is FileSubmissionErrors.UploadFailed)
+            }
+        }
+
+        // MARK: - THEN
+        waitForExpectations(timeout: 0.1)
+
+        subscription.cancel()
+    }
+
+    func testSubmissionNotFoundErrorWhenSubmissionNotFoundInCoreData() {
         // MARK: - GIVEN
         let invalidSubmissionID: NSManagedObjectID = (databaseClient.insert() as FileUploadItem).objectID
         let completionEvent = expectation(description: "completion event fire")

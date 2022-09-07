@@ -62,7 +62,10 @@ public class FileSubmissionAssembly {
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
                 .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
-                .sink { _ in
+                .sink { completion in
+                    if case .failure(let error) = completion, error is FileSubmissionErrors.UploadFailed {
+                        notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
+                    }
                     subscription?.cancel()
                     subscription = nil
                 } receiveValue: { _ in }

@@ -47,4 +47,14 @@ public class SubmissionCompletedNotificationsSender {
             }
         }
     }
+
+    func sendFailedNotification(fileSubmissionID: NSManagedObjectID) {
+        context.perform { [context] in
+            guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
+                return
+            }
+
+            NotificationManager.shared.sendFailedNotification(courseID: submission.courseID, assignmentID: submission.assignmentID)
+        }
+    }
 }

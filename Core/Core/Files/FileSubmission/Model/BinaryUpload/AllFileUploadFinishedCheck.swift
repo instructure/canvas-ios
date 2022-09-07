@@ -42,8 +42,21 @@ public class AllFileUploadFinishedCheck {
                 return
             }
 
-            let isAllFileUploadFinished = submission.files.allSatisfy { $0.apiID != nil }
-            promise(isAllFileUploadFinished ? .success(()) : .failure(FileSubmissionErrors.NotReady()))
+            let isAllFileUploadFinished = submission.files.allSatisfy { $0.apiID != nil || $0.uploadError != nil }
+            let isOneUploadFailed = submission.files.contains { $0.uploadError != nil }
+            let result: Result<Void, Error>
+
+            if isAllFileUploadFinished {
+                if isOneUploadFailed {
+                    result = .failure(FileSubmissionErrors.UploadFailed())
+                } else {
+                    result = .success(())
+                }
+            } else {
+                result = .failure(FileSubmissionErrors.NotReady())
+            }
+
+            promise(result)
         }
     }
 }
