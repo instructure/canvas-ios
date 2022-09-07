@@ -204,6 +204,27 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 10 bytes", progress: 1))
     }
 
+    func testStaysInErrorStateWhenTheLastFailedItemRemoved() {
+        let file1 = makeFile()
+        file1.bytesUploaded = 5
+        file1.uploadError = "error"
+        let file2 = makeFile()
+        file2.bytesUploaded = 10
+        file2.apiID = "uploadedId"
+        saveFiles()
+
+        XCTAssertEqual(testee.state, .failed(message: "One or more files failed to upload. Check your internet connection and retry to submit.", error: nil))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Retry")
+
+        submission.managedObjectContext?.delete(file1)
+        saveFiles()
+
+        XCTAssertEqual(testee.state, .failed(message: "One or more files failed to upload. Check your internet connection and retry to submit.", error: nil))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Retry")
+    }
+
     // MARK: Navigation Bar Actions
 
     func testDismissDuringUpload() {

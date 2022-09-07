@@ -58,6 +58,11 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     private var receivedSuccessfulSubmissionNotification = false
     private var subscriptions = Set<AnyCancellable>()
     private var childViewModelUpdateSubscriptions = Set<AnyCancellable>()
+    /**
+     This variable ensures that once an error is displayed it stays on the screen until the user retries the submission.
+     If the user removes the last failed upload item (so only succeeded items remain) we should still display the error.
+     */
+    private var isErrorDisplayed = false
 
     /**
      - parameters:
@@ -133,7 +138,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateState() {
-        guard let submission = fileSubmission.first else { return }
+        guard let submission = fileSubmission.first, !isErrorDisplayed else { return }
 
         switch submission.state {
         case .waiting:
@@ -145,10 +150,12 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             state = .uploading(progressText: progressText, progress: Float(progress))
         case .failedUpload:
             state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
+            isErrorDisplayed = true
         case .failedSubmission(message: let message):
             let format = NSLocalizedString("submission_failed_for_files", comment: "")
             let title = String.localizedStringWithFormat(format, submission.files.count)
             state = .failed(message: title, error: message)
+            isErrorDisplayed = true
         case .submitted:
             state = .success
         }
@@ -170,7 +177,9 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         case .failed:
             leftBarButton = cancelButton
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [weak self] in
-                self.flatMap { $0.delegate?.fileProgressViewModelRetry($0) }
+                guard let self = self else { return }
+                self.isErrorDisplayed = false
+                self.delegate?.fileProgressViewModelRetry(self)
             }
         case .success:
             leftBarButton = nil
