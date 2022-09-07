@@ -31,29 +31,29 @@ public class AllFileUploadFinishedCheck {
         self.fileSubmissionID = fileSubmissionID
     }
 
-    public func isAllUploadFinished() -> Future<Void, Error> {
-        Future<Void, Error> { self.checkFileUploadState(promise: $0) }
+    public func isAllUploadFinished() -> Future<Void, FileSubmissionErrors.UploadFinishedCheck> {
+        Future<Void, FileSubmissionErrors.UploadFinishedCheck> { self.checkFileUploadState(promise: $0) }
     }
 
-    private func checkFileUploadState(promise: @escaping Future<Void, Error>.Promise) {
+    private func checkFileUploadState(promise: @escaping Future<Void, FileSubmissionErrors.UploadFinishedCheck>.Promise) {
         context.perform { [self] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
-                promise(.failure(FileSubmissionErrors.SubmissionNotFound()))
+                promise(.failure(.coreData(.submissionNotFound)))
                 return
             }
 
             let isAllFileUploadFinished = submission.files.allSatisfy { $0.apiID != nil || $0.uploadError != nil }
             let isOneUploadFailed = submission.files.contains { $0.uploadError != nil }
-            let result: Result<Void, Error>
+            let result: Result<Void, FileSubmissionErrors.UploadFinishedCheck>
 
             if isAllFileUploadFinished {
                 if isOneUploadFailed {
-                    result = .failure(FileSubmissionErrors.UploadFailed())
+                    result = .failure(.uploadFailed)
                 } else {
                     result = .success(())
                 }
             } else {
-                result = .failure(FileSubmissionErrors.NotReady())
+                result = .failure(.notReady)
             }
 
             promise(result)

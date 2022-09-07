@@ -64,7 +64,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         let subscription = testee.isAllUploadFinished().sink { completion in
             if case .failure(let error) = completion {
                 completionEvent.fulfill()
-                XCTAssertTrue(error is FileSubmissionErrors.NotReady)
+                XCTAssertEqual(error, .notReady)
             }
         }
 
@@ -90,7 +90,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         let subscription = testee.isAllUploadFinished().sink { completion in
             if case .failure(let error) = completion {
                 completionEvent.fulfill()
-                XCTAssertTrue(error is FileSubmissionErrors.NotReady)
+                XCTAssertEqual(error, .notReady)
             }
         }
 
@@ -117,7 +117,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         let subscription = testee.isAllUploadFinished().sink { completion in
             if case .failure(let error) = completion {
                 completionEvent.fulfill()
-                XCTAssertTrue(error is FileSubmissionErrors.UploadFailed)
+                XCTAssertEqual(error, .uploadFailed)
             }
         }
 
@@ -137,7 +137,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         let subscription = testee.isAllUploadFinished().sink { completion in
             if case .failure(let error) = completion {
                 completionEvent.fulfill()
-                XCTAssertTrue(error is FileSubmissionErrors.SubmissionNotFound)
+                XCTAssertEqual(error, .coreData(.submissionNotFound))
             }
         }
 

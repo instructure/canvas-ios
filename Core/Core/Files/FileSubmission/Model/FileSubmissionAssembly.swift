@@ -57,13 +57,15 @@ public class FileSubmissionAssembly {
             var subscription: AnyCancellable?
             subscription = observer
                 .uploadCompleted
-                .flatMap { AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID).isAllUploadFinished() }
+                .flatMap { AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID).isAllUploadFinished().mapError { $0 as Error } }
                 .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID) }
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
                 .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
                 .sink { completion in
-                    if case .failure(let error) = completion, error is FileSubmissionErrors.UploadFailed {
+                    if case .failure(let error) = completion,
+                       let uploadFinishError = error as? FileSubmissionErrors.UploadFinishedCheck,
+                       uploadFinishError == .uploadFailed {
                         notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
                     }
                     subscription?.cancel()

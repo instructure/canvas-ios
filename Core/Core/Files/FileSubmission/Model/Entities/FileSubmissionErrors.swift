@@ -17,9 +17,17 @@
 //
 
 public struct FileSubmissionErrors {
+    public enum CoreData: Error, Equatable {
+        case submissionNotFound
+        case uploadItemNotFound
+    }
+    public enum UploadFinishedCheck: Error, Equatable {
+        case notReady
+        case uploadFailed
+        case coreData(CoreData)
+    }
+
     public struct SubmissionNotFound: Error, Equatable {}
     public struct UploadItemNotFound: Error, Equatable {}
-    public struct NotReady: Error, Equatable {}
     public struct RequestUploadTargetUnknownError: Error, Equatable {}
-    public struct UploadFailed: Error, Equatable {}
 }
