@@ -26,6 +26,10 @@ public struct FileSubmissionErrors {
         case uploadFailed
         case coreData(CoreData)
     }
+    public enum Submission: Error, Equatable {
+        case submissionFailed
+        case coreData(CoreData)
+    }
 
     public struct RequestUploadTargetUnknownError: Error, Equatable {}
 }

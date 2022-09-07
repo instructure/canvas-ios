@@ -94,7 +94,7 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         // MARK: - WHEN
         let subscription = testee.submitFiles(fileSubmissionID: submission.objectID).sink { completion in
             if case .failure(let error) = completion {
-                XCTAssertEqual(error as NSError, NSError.instructureError("testError"))
+                XCTAssertEqual(error, .submissionFailed)
                 completionEvent.fulfill()
             }
         } receiveValue: { _ in
