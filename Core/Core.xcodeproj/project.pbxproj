@@ -6107,6 +6107,7 @@
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
+				B4D76D7128C75641005750AF /* CircularProgressView.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */,
@@ -6118,13 +6119,12 @@
 				CFD9B44227EDB7CC0099F173 /* ListWithoutVerticalScrollIndicator.swift */,
 				CFD3EC39289422FB001E7D4E /* LottieView.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
+				B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */,
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
 				CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBar.swift */,
 				7DCA32112541DB8B00458651 /* WebSession.swift */,
 				7DCA31F72540835300458651 /* WebView.swift */,
-				B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */,
-				B4D76D7128C75641005750AF /* CircularProgressView.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";

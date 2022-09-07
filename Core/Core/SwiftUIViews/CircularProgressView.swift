@@ -19,8 +19,6 @@
 import SwiftUI
 
 public struct CircularProgressView: View {
-    @Binding public private(set) var viewState: ViewState
-    @State private var isVisible = false
     public static let size: CGFloat = 32
 
     public enum ViewState {
@@ -28,51 +26,85 @@ public struct CircularProgressView: View {
         case animating
     }
 
+    @Binding public private(set) var viewState: ViewState
+    @State private var isVisible = false
+    @State private var fillWidth: CGFloat = 0.1
+    @State private var fillRotate: Angle = .zero
+    @State private var rotate: Angle = .zero
+
+    private let easeAnimation = Animation.timingCurve(
+        0.25, 0.1, 0.25, 1.0,
+        duration: 0.875
+    )
+    private let animationTimer = Timer.publish(
+        every: 0.875,
+        on: .main,
+        in: .common
+    ).autoconnect()
+
     public var body: some View {
         ZStack {
             switch viewState {
             case .animating:
                 Circle()
                     .stroke(
-                        Color.borderLight,
+                        Color.accentColor,
                         lineWidth: 3
                     )
-                    .frame(width: Self.size, height: Self.size)
+                    .opacity(0.2)
                 Circle()
-                    .trim(from: 0.15, to: 1)
+                    .trim(from: 0, to: fillWidth)
                     .stroke(
-                        Color.blue,
+                        Color.accentColor,
                         style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
                     )
-                    .frame(width: Self.size, height: Self.size)
-                    .rotationEffect(Angle(degrees: isVisible ? 359 : 0))
-                    .animation(
-                        .linear(duration: 2)
-                            .repeatForever(autoreverses: false),
-                        value: isVisible
-                    )
-                    .transition(.scale)
+                    .rotationEffect(fillRotate)
+                    .onReceive(animationTimer) { _ in
+                        progressAnimation()
+                    }
+                    .rotationEffect(rotate)
                     .onAppear {
                         isVisible = true
+
+                        // Until the animation timer's first fire we still need to show some animation
+                        progressAnimation()
+
+                        // This repeating animation caused other parts of the UI to animate their appearance repeatedly on iOS 14.0 and below.
+                        if #available(iOS 14.1, *) {
+                            withAnimation(.linear(duration: 2.25).repeatForever(autoreverses: false)) {
+                                rotate = Angle(radians: 2 * .pi)
+                            }
+                        }
+                    }
+                    .onDisappear {
+                        animationTimer.upstream.connect().cancel()
                     }
             case .progress(let progress):
                 Circle()
                     .stroke(
-                        Color.borderLight,
+                        Color.accentColor,
                         lineWidth: 3
                     )
-                    .frame(width: Self.size, height: Self.size)
+                    .opacity(0.2)
                 Circle()
                     .trim(from: 0, to: progress)
                     .stroke(
-                        Color.blue,
+                        Color.accentColor,
                         style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
                     )
-                    .frame(width: Self.size, height: Self.size)
                     .rotationEffect(.degrees(-90))
                     .animation(.none, value: progress)
                     .transition(.scale)
             }
+        }
+        .frame(width: Self.size, height: Self.size)
+        .accessibility(label: Text("Loading", bundle: .core))
+    }
+
+    private func progressAnimation() {
+        withAnimation(easeAnimation) {
+            fillRotate += Angle(radians: fillWidth == 0.1 ? 0.5 * .pi : 1.5 * .pi)
+            fillWidth = fillWidth == 0.1 ? 0.725 : 0.1
         }
     }
 }
