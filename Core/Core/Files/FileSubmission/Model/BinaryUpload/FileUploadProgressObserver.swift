@@ -25,12 +25,12 @@ import CoreData
 public class FileUploadProgressObserver: NSObject {
     // TODO: Convert this to Future
     /** This publisher is signalled when the upload finishes. At this point either the file's `apiID` or `error` property is non-nil. */
-    public private(set) lazy var uploadCompleted: AnyPublisher<Void, Error> = completionSubject.eraseToAnyPublisher()
+    public private(set) lazy var uploadCompleted: AnyPublisher<Void, FileSubmissionErrors.CoreData> = completionSubject.eraseToAnyPublisher()
     public let fileUploadItemID: NSManagedObjectID
 
     private let context: NSManagedObjectContext
     private let decoder: JSONDecoder
-    private let completionSubject = PassthroughSubject<Void, Error>()
+    private let completionSubject = PassthroughSubject<Void, FileSubmissionErrors.CoreData>()
     private var receivedFileID: String?
 
     public init(context: NSManagedObjectContext, fileUploadItemID: NSManagedObjectID) {

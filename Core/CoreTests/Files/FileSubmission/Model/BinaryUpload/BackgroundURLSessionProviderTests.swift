@@ -72,10 +72,16 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
 
         testee.urlSession(api.urlSession, task: mockTask, didSendBodyData: 1, totalBytesSent: 2, totalBytesExpectedToSend: 3)
 
-        let result = mockUploadProgressObserversCache.receivedProgressUpdate
-        XCTAssertEqual(result?.bytesSent, 1)
-        XCTAssertEqual(result?.totalBytesSent, 2)
-        XCTAssertEqual(result?.totalBytesExpectedToSend, 3)
+        let progressResult = mockUploadProgressObserversCache.receivedProgressUpdate
+        XCTAssertEqual(progressResult?.bytesSent, 1)
+        XCTAssertEqual(progressResult?.totalBytesSent, 2)
+        XCTAssertEqual(progressResult?.totalBytesExpectedToSend, 3)
+
+        testee.urlSession(api.urlSession, dataTask: mockTask, didReceive: "test".data(using: .utf8)!)
+        XCTAssertEqual(mockUploadProgressObserversCache.receivedData, "test".data(using: .utf8)!)
+
+        testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: NSError.instructureError("test error"))
+        XCTAssertEqual(mockUploadProgressObserversCache.receivedCompletionError?.localizedDescription, NSError.instructureError("test error").localizedDescription)
     }
 }
 
