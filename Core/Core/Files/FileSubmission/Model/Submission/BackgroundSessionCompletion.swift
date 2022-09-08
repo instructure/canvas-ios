@@ -18,10 +18,12 @@
 
 import Combine
 
-class BackgroundSessionCompletion {
-    var callback: (() -> Void)?
+public class BackgroundSessionCompletion {
+    public var callback: (() -> Void)?
 
-    func backgroundOperationsFinished() -> Future<Void, Never> {
+    public init() {}
+
+    public func backgroundOperationsFinished() -> Future<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             guard let callback = self?.callback else {
                 promise(.success(()))
