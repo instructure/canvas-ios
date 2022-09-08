@@ -22,13 +22,9 @@ import CoreData
 public class FileSubmissionAssembly {
     public let composer: FileSubmissionComposer
 
-    /** This is a background context so we can work with it from any background thread. */
-    private let backgroundContext: NSManagedObjectContext
     private let backgroundURLSessionProvider: BackgroundURLSessionProvider
-    private let uploadProgressObserversCache: FileUploadProgressObserversCache
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
     private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
-    private let fileSubmissionSubmitter: FileSubmissionSubmitter
     private let backgroundSessionCompletion: BackgroundSessionCompletion
 
     /**
@@ -38,21 +34,14 @@ public class FileSubmissionAssembly {
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
      */
     public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API) {
+        /** A background context so we can work with it from any background thread. */
         let backgroundContext = container.newBackgroundContext()
         backgroundContext.mergePolicy = NSMergePolicy.overwrite
-        self.backgroundContext = backgroundContext
-
         let backgroundSessionCompletion = BackgroundSessionCompletion()
-        self.backgroundSessionCompletion = backgroundSessionCompletion
-
-        self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
-        self.fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
-        self.composer = FileSubmissionComposer(context: backgroundContext)
-
+        let fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
         let cleaner = FileSubmissionCleanup(context: backgroundContext)
         let notificationsSender = SubmissionCompletedNotificationsSender(context: backgroundContext)
-
-        let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { [fileSubmissionSubmitter] fileSubmissionID, fileUploadItemID in
+        let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?
             subscription = observer
@@ -73,11 +62,12 @@ public class FileSubmissionAssembly {
                 } receiveValue: { _ in }
             return observer
         }
-        self.uploadProgressObserversCache = uploadProgressObserversCache
-
         let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
-        self.backgroundURLSessionProvider = backgroundURLSessionProvider
 
+        self.backgroundSessionCompletion = backgroundSessionCompletion
+        self.backgroundURLSessionProvider = backgroundURLSessionProvider
+        self.composer = FileSubmissionComposer(context: backgroundContext)
+        self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
         self.fileSubmissionItemsUploader = FileSubmissionItemsUploadStarter(api: api, context: backgroundContext, backgroundSessionProvider: backgroundURLSessionProvider)
     }
 
