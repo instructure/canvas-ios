@@ -40,7 +40,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var webViewContainer: UIView!
     private let webView = CoreWebView()
     private let refreshControl = CircleRefreshControl()
-    private var selectedDate: Date?
+    var selectedDate: Date?
     private var assignmentID = ""
     private var courseID = ""
     private let env = AppEnvironment.shared
@@ -48,16 +48,16 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     private var minDate = Clock.now
     private var maxDate = Clock.now
 
-    private lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
+    lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
     }
-    private lazy var course = env.subscribe(GetCourse(courseID: courseID)) {  [weak self] in
+    lazy var course = env.subscribe(GetCourse(courseID: courseID)) {  [weak self] in
         self?.update()
     }
-    private lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
+    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
         self?.update()
     }
-    private lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
         self?.update()
     }
 
@@ -218,7 +218,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 }
 
 extension AssignmentDetailsViewController {
-    private func reminderDateChanged(selectedDate: Date?) {
+    func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
         NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate {
             if error == nil {

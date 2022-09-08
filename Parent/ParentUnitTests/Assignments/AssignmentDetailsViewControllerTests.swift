@@ -46,7 +46,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.reminderMessageLabel.text, "Set a date and time to be notified of this event.")
         XCTAssertEqual(controller.reminderSwitch.isOn, false)
         XCTAssertEqual(controller.reminderDateButton.isHidden, true)
-        XCTAssertEqual(controller.sheetVC.isBeingPresented, false)
+        XCTAssertTrue(controller.presentedViewController == nil)
 
         api.mock(controller.assignment, value: .make(description: "", due_at: nil, html_url: url))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
@@ -71,15 +71,13 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.reminderSwitch.isOn, true)
         XCTAssertEqual(controller.reminderDateButton.isHidden, false)
         XCTAssertEqual(controller.reminderDateButton.title(for: .normal), prev.dateTimeString)
-        XCTAssertEqual(controller.sheetVC.isBeingPresented, false)
-        controller.reminderDateButton.sendActions(for: .touchUpInside)
-        controller.sheetVC.loadView()
-        controller.sheetVC.viewWillAppear(false)
-        XCTAssertEqual(controller.sheetVC.datePicker.isHidden, false)
-        XCTAssertEqual(controller.sheetVC.currentDate, prev)
-        controller.sheetVC.currentDate = prev.addDays(1)
-        controller.sheetVC.datePickerDelegate?.didSelectDate(selectedDate: controller.sheetVC.currentDate)
+        XCTAssertFalse(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
 
+        controller.reminderDateButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
+        XCTAssertEqual(controller.selectedDate, prev)
+
+        controller.reminderDateChanged(selectedDate: prev.addDays(1))
         notificationManager.getReminder("1") { request in
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
@@ -87,8 +85,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
             XCTAssertEqual(date, prev.addDays(1))
         }
         notificationCenter.error = NSError.internalError()
-        controller.sheetVC.datePickerDelegate?.didSelectDate(selectedDate: controller.sheetVC.currentDate)
-
+        controller.reminderDateChanged(selectedDate: controller.selectedDate)
         XCTAssertEqual(controller.reminderSwitch.isOn, false)
 
         notificationCenter.authorized = false
@@ -100,17 +97,13 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         controller.reminderSwitch.isOn = false
         controller.reminderSwitch.sendActions(for: .valueChanged)
         XCTAssertEqual(controller.reminderDateButton.isHidden, true)
-        XCTAssertEqual(controller.sheetVC.isBeingPresented, false)
+        XCTAssertTrue(controller.presentedViewController == nil)
 
         notificationCenter.authorized = true
         notificationCenter.error = nil
         controller.reminderSwitch.isOn = true
         controller.reminderSwitch.sendActions(for: .valueChanged)
-        XCTAssertEqual(controller.reminderDateButton.isHidden, false)
-
-        controller.reminderDateButton.sendActions(for: .touchUpInside)
-        XCTAssertEqual(controller.reminderDateButton.title(for: .normal), controller.sheetVC.currentDate.dateTimeString)
-        XCTAssertGreaterThan(controller.sheetVC.currentDate, Clock.now)
-        XCTAssertEqual(controller.sheetVC.datePicker.isHidden, false)
+        XCTAssertFalse(controller.reminderDateButton.isHidden)
+        XCTAssertFalse(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
 }
