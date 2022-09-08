@@ -447,7 +447,7 @@
         <attribute name="localFileURL" attributeType="URI"/>
         <attribute name="uploadError" optional="YES" attributeType="String"/>
         <attribute name="uploadTarget" optional="YES" attributeType="Transformable" valueTransformerName="FileUploadTargetTransformer" customClassName="Core.FileUploadTarget"/>
-        <relationship name="fileSubmission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileSubmission" inverseName="files" inverseEntity="FileSubmission"/>
+        <relationship name="fileSubmission" maxCount="1" deletionRule="Nullify" destinationEntity="FileSubmission" inverseName="files" inverseEntity="FileSubmission"/>
     </entity>
     <entity name="Folder" representedClassName="Core.Folder" syncable="YES">
         <attribute name="canUpload" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

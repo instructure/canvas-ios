@@ -45,9 +45,7 @@ public class FileUploadTargetRequester {
 
     private func sendRequest(promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
-            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
-                  let fileSubmission = fileItem.fileSubmission
-            else {
+            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
                 promise(.failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
                 return
             }
@@ -59,7 +57,7 @@ public class FileUploadTargetRequester {
 
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)
-            let request = PostFileUploadTargetRequest(context: fileSubmission.fileUploadContext, body: body)
+            let request = PostFileUploadTargetRequest(context: fileItem.fileSubmission.fileUploadContext, body: body)
             api.makeRequest(request) { [self] response, _, error in
                 handleResponse(response, error: error, promise: promise)
             }

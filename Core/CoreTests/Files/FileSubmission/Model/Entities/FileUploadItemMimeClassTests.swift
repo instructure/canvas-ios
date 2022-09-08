@@ -20,7 +20,7 @@ import Core
 import XCTest
 
 class FileUploadItemMimeClassTestss: CoreTestCase {
-    
+
     func testMimeClassJpgClassifiesAsImage() {
         let testee: FileUploadItem = databaseClient.insert()
         testee.localFileURL = URL(string: "/fileName.jpg")!

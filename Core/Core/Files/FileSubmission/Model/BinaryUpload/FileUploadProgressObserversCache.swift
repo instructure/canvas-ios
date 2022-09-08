@@ -56,19 +56,11 @@ public class FileUploadProgressObserversCache: NSObject {
     /**
      - returns: The `FileUploadProgressObserver` for the given upload item either from the cache or a newly created instance.
      */
-    public func retrieveProgressObserver(fileUploadItemID: NSManagedObjectID) -> FileUploadProgressObserver {
+    public func retrieveProgressObserver(fileUploadItemID: NSManagedObjectID, fileSubmissionID: NSManagedObjectID) -> FileUploadProgressObserver {
         if let observer = observerCache[fileUploadItemID] {
             return observer
         }
 
-        var fileSubmissionID: NSManagedObjectID!
-        context.performAndWait {
-            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
-                  let fileSubmission = fileItem.fileSubmission
-            else { return } // TODO: If a submission isn't found for the given item we'll crash, make fileSubmission non-optional
-
-            fileSubmissionID = fileSubmission.objectID
-        }
         let observer = factory(fileSubmissionID, fileUploadItemID)
         removeObserverOnCompletion(observer)
         observerCache[fileUploadItemID] = observer
@@ -79,8 +71,11 @@ public class FileUploadProgressObserversCache: NSObject {
         var observer: FileUploadProgressObserver?
 
         context.performAndWait { [self] in
-            guard let managedObjectID = makeObjectID(url: taskID) else { return }
-            observer = retrieveProgressObserver(fileUploadItemID: managedObjectID)
+            guard let managedObjectID = makeObjectID(url: taskID),
+                  let uploadItem = try? context.existingObject(with: managedObjectID) as? FileUploadItem
+            else { return }
+            observer = retrieveProgressObserver(fileUploadItemID: managedObjectID,
+                                                fileSubmissionID: uploadItem.fileSubmission.objectID)
         }
 
         return observer

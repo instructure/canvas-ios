@@ -28,7 +28,7 @@ public final class FileUploadItem: NSManagedObject {
     @NSManaged public var localFileURL: URL
     @NSManaged public var fileSize: Int
     /** The `FileSubmission` CoreData object containing this item. */
-    @NSManaged public var fileSubmission: FileSubmission?
+    @NSManaged public var fileSubmission: FileSubmission
 
     // MARK: Upload Step 1: Getting the upload url and parameters
 
