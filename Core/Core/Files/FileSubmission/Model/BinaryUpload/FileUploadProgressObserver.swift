@@ -31,6 +31,7 @@ public class FileUploadProgressObserver: NSObject {
     private let context: NSManagedObjectContext
     private let decoder: JSONDecoder
     private let completionSubject = PassthroughSubject<Void, Error>()
+    private var receivedFileID: String?
 
     public init(context: NSManagedObjectContext, fileUploadItemID: NSManagedObjectID) {
         self.context = context
@@ -53,16 +54,22 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        context.performAndWait {
-            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
+        context.performAndWait { [weak self] in
+            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
+                  let self = self
+            else {
                 completionSubject.send(completion: .failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
                 return
             }
 
-            if item.apiID == nil, error == nil {
-                item.uploadError = NSLocalizedString("Session completed without error or file ID.", comment: "")
+            if let receivedFileID = self.receivedFileID {
+                item.apiID = receivedFileID
             } else {
-                item.uploadError = error?.localizedDescription
+                if let error = error {
+                    item.uploadError = error.localizedDescription
+                } else {
+                    item.uploadError = NSLocalizedString("Upload failed due to unknown reason.", comment: "")
+                }
             }
 
             try? context.save()
@@ -75,14 +82,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
 extension FileUploadProgressObserver: URLSessionDataDelegate {
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        context.performAndWait {
-            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
-                  let response = try? decoder.decode(APIFile.self, from: data)
-            else { return }
-
-            item.apiID = response.id.value
-            item.uploadError = nil
-            try? context.save()
-        }
+        guard let response = try? decoder.decode(APIFile.self, from: data) else { return }
+        receivedFileID = response.id.value
     }
 }

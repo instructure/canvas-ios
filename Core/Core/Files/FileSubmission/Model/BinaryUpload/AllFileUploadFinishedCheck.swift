@@ -36,7 +36,7 @@ public class AllFileUploadFinishedCheck {
     }
 
     private func checkFileUploadState(promise: @escaping Future<Void, FileSubmissionErrors.UploadFinishedCheck>.Promise) {
-        context.perform { [self] in
+        context.performAndWait {
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
                 promise(.failure(.coreData(.submissionNotFound)))
                 return

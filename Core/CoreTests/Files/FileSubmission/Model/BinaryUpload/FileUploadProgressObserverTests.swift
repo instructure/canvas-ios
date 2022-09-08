@@ -36,46 +36,33 @@ class FileUploadProgressObserverTests: CoreTestCase {
         XCTAssertEqual(uploadItem.bytesToUpload, 10)
     }
 
-    // MARK: - Receive API Response
+    // MARK: - Successful Completion
 
     func testUpdatesFileIDOnSuccessfulBodyResponse() {
         let uploadItem: FileUploadItem = databaseClient.insert()
-        uploadItem.uploadError = "testError"
         XCTAssertNil(uploadItem.apiID)
         let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let apiResponse = try! encoder.encode(APIFile.make(id: "testAPIID"))
+        let completionExpectation = expectation(description: "completion got signalled")
+        let subscription = testee.uploadCompleted.sink { _ in
+            completionExpectation.fulfill()
+        } receiveValue: { _ in }
 
         testee.urlSession(api.urlSession, dataTask: mockTask, didReceive: apiResponse)
-
-        XCTAssertEqual(uploadItem.apiID, "testAPIID")
-        XCTAssertNil(uploadItem.uploadError)
-    }
-
-    // MARK: - Complete With Error
-
-    func testWritesErrorToUploadItem() {
-        let uploadItem: FileUploadItem = databaseClient.insert()
-        let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
-
-        testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: NSError.instructureError("Test Error"))
-
-        XCTAssertEqual(uploadItem.uploadError, "Test Error")
-    }
-
-    func testCreatesErrorIfTaskCompletesWithoutErrorAndID() {
-        let uploadItem: FileUploadItem = databaseClient.insert()
-        let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
-
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
-        XCTAssertEqual(uploadItem.uploadError, "Session completed without error or file ID.")
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(uploadItem.apiID, "testAPIID")
+        XCTAssertNil(uploadItem.uploadError)
+
+        subscription.cancel()
     }
 
-    // MARK: - Complete Without Error
+    // MARK: - Failures
 
-    func testSignalsCompletionOnUploadFinish() {
+    func testWritesErrorToUploadItem() {
         let uploadItem: FileUploadItem = databaseClient.insert()
         let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
         let completionExpectation = expectation(description: "completion got signalled")
@@ -83,6 +70,37 @@ class FileUploadProgressObserverTests: CoreTestCase {
             completionExpectation.fulfill()
         } receiveValue: { _ in }
 
+        testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: NSError.instructureError("Test Error"))
+
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(uploadItem.uploadError, "Test Error")
+        subscription.cancel()
+    }
+
+    func testCreatesErrorIfTaskCompletesWithoutReceivingHttpBody() {
+        let uploadItem: FileUploadItem = databaseClient.insert()
+        let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
+        let completionExpectation = expectation(description: "completion got signalled")
+        let subscription = testee.uploadCompleted.sink { _ in
+            completionExpectation.fulfill()
+        } receiveValue: { _ in }
+
+        testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
+
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(uploadItem.uploadError, "Upload failed due to unknown reason.")
+        subscription.cancel()
+    }
+
+    func testCreatesErrorIfTaskCompletesWithReceivingInvalidHttpBody() {
+        let uploadItem: FileUploadItem = databaseClient.insert()
+        let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
+        let completionExpectation = expectation(description: "completion got signalled")
+        let subscription = testee.uploadCompleted.sink { _ in
+            completionExpectation.fulfill()
+        } receiveValue: { _ in }
+
+        testee.urlSession(api.urlSession, dataTask: mockTask, didReceive: Data())
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
         waitForExpectations(timeout: 0.1)
