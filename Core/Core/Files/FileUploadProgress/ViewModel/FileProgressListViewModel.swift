@@ -138,7 +138,10 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateState() {
-        guard let submission = fileSubmission.first, !isErrorDisplayed else { return }
+        guard let submission = fileSubmission.first,
+              !isErrorDisplayed,
+              state != .success // After we reached success state we don't allow the UI to go back, no matter what changes in CoreData.
+        else { return }
 
         switch submission.state {
         case .waiting:

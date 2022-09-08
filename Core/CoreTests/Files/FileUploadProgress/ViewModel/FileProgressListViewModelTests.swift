@@ -225,6 +225,31 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.rightBarButton?.title, "Retry")
     }
 
+    /**
+     There was a bug which caused the success screen to go back to the uploading state without any upload items.
+     I think this was somehow caused by the submission and its items being deleted from CoreData while the UI is refreshing.
+     This test doesn't exactly reproduces that scenario but ensures that once a success state was reached the UI won't go back to uploading.
+     */
+    func testStaysInSuccessStateWhenSubmissionIsDeletedFromCoreData() {
+        let file1 = makeFile()
+        file1.bytesUploaded = 5
+        file1.apiID = "id"
+        submission.isSubmitted = true
+        saveFiles()
+
+        XCTAssertEqual(testee.state, .success)
+        XCTAssertEqual(testee.leftBarButton?.title, nil)
+        XCTAssertEqual(testee.rightBarButton?.title, "Done")
+
+        submission.managedObjectContext?.delete(file1)
+        submission.isSubmitted = false
+        saveFiles()
+
+        XCTAssertEqual(testee.state, .success)
+        XCTAssertEqual(testee.leftBarButton?.title, nil)
+        XCTAssertEqual(testee.rightBarButton?.title, "Done")
+    }
+
     // MARK: Navigation Bar Actions
 
     func testDismissDuringUpload() {
