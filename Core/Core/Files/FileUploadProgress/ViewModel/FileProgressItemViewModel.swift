@@ -44,8 +44,7 @@ public class FileProgressItemViewModel: ObservableObject {
 
     public init(file: FileUploadItem, onRemove: @escaping (_ item: NSManagedObjectID) -> Void) {
         self.file = file
-        // TODO: Add image
-        self.icon = Image.addAudioLine // Image(uiImage: file.icon)
+        self.icon = file.mimeClass.image
         self.size = file.fileSize.humanReadableFileSize
         self.onRemove = onRemove
         self.fileChangeObserver = file.objectWillChange.sink { [weak self] in

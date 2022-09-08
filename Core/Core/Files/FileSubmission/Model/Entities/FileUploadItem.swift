@@ -17,6 +17,8 @@
 //
 
 import CoreData
+import SwiftUI
+import UniformTypeIdentifiers
 
 /**
  This entity contains the information of a single file that is part of a file submission.
@@ -47,9 +49,8 @@ public final class FileUploadItem: NSManagedObject {
     @NSManaged public var uploadError: String?
 }
 
-extension FileUploadItem {
-
-    public enum State: Equatable {
+public extension FileUploadItem {
+    enum State: Equatable {
         case waiting
         case uploading(progress: CGFloat)
         case uploaded
@@ -57,12 +58,12 @@ extension FileUploadItem {
     }
 
     /** From 0.0 to 1.0. */
-    public var uploadProgress: CGFloat {
+    var uploadProgress: CGFloat {
         guard bytesToUpload > 0, bytesUploaded >= 0 else { return 0 }
         return min(CGFloat(bytesUploaded) / CGFloat(bytesToUpload), 1.0)
     }
 
-    public var state: State {
+    var state: State {
         if apiID != nil {
             return .uploaded
         } else if let uploadError = uploadError {
@@ -72,5 +73,46 @@ extension FileUploadItem {
         } else {
             return .waiting
         }
+    }
+
+    enum MimeClass {
+        case image, audio, video, pdf, doc
+
+        var image: Image {
+            switch self {
+            case .image: return Image.imageLine
+            case .audio: return Image.audioLine
+            case .video: return Image.videoLine
+            case .pdf: return Image.pdfLine
+            case .doc: return Image.documentLine
+            }
+        }
+    }
+
+    var mimeClass: MimeClass {
+        let mimeType = localFileURL.mimeType()
+        if mimeType.hasPrefix("image/") {
+            return .image
+        } else if mimeType.hasPrefix("audio/") {
+            return .audio
+        } else if mimeType.hasPrefix("video/") {
+            return .video
+        } else if mimeType.hasPrefix("application/pdf") {
+            return .pdf
+        } else {
+            return .doc
+        }
+    }
+}
+
+private extension URL {
+    func mimeType() -> String {
+        let pathExtension = self.pathExtension
+        if let type = UTType(filenameExtension: pathExtension) {
+            if let mimetype = type.preferredMIMEType {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
     }
 }
