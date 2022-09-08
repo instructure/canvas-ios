@@ -41,7 +41,6 @@ public class FileUploadProgressObserver: NSObject {
     }
 }
 
-// TODO: Extract these 3 delegate methods into a new protocol
 extension FileUploadProgressObserver: URLSessionTaskDelegate {
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {

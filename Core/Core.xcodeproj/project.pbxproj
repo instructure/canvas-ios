@@ -842,6 +842,7 @@
 		CF24634228C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */; };
 		CF24634428C74BCC00A77A88 /* FileSubmissionCleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */; };
 		CF24634628CA298200A77A88 /* BackgroundSessionCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */; };
+		CF24634828CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */; };
 		CF25022127FC26C9005D187C /* lato_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF25022027FC26C9005D187C /* lato_regular.ttf */; };
 		CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */; };
 		CF2F7E7A27FF211500942241 /* FontPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F7E7927FF211500942241 /* FontPreview.swift */; };
@@ -2310,6 +2311,7 @@
 		CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSender.swift; sourceTree = "<group>"; };
 		CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionCleanup.swift; sourceTree = "<group>"; };
 		CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionCompletionTests.swift; sourceTree = "<group>"; };
+		CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCacheTests.swift; sourceTree = "<group>"; };
 		CF25022027FC26C9005D187C /* lato_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_regular.ttf; sourceTree = "<group>"; };
 		CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
 		CF2F7E7927FF211500942241 /* FontPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreview.swift; sourceTree = "<group>"; };
@@ -5670,6 +5672,7 @@
 				CFB06FB528C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift */,
 				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
 				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
+				CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */,
 				CFB06FB728C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift */,
 			);
 			path = BinaryUpload;
@@ -6836,6 +6839,7 @@
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
+				CF24634828CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift in Sources */,
 				B127C0F0245B56BE008DB716 /* MasteryPathViewControllerTests.swift in Sources */,
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,

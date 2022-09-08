@@ -31,15 +31,16 @@ import CoreData
  - `URLSessionTask` delegate callbacks then forwarded to this `FileUploadProgressObserver`.
  */
 public class FileUploadProgressObserversCache: NSObject {
+    public typealias Factory = (_ fileSubmissionID: NSManagedObjectID, _ fileUploadItemID: NSManagedObjectID) -> FileUploadProgressObserver
     private let context: NSManagedObjectContext
-    private let factory: (_ fileSubmissionID: NSManagedObjectID, _ fileUploadItemID: NSManagedObjectID) -> FileUploadProgressObserver
+    private let factory: Factory
     private var observerCache: [NSManagedObjectID: FileUploadProgressObserver] = [:]
 
     /**
      - parameters:
         - factory: A block that gets invoked when the cache needs a new FileUploadProgressObserver for the given `FileUploadItem`.
      */
-    public init(context: NSManagedObjectContext, factory: @escaping (_ fileSubmissionID: NSManagedObjectID, _ fileUploadItemID: NSManagedObjectID) -> FileUploadProgressObserver) {
+    public init(context: NSManagedObjectContext, factory: @escaping Factory) {
         self.context = context
         self.factory = factory
     }
