@@ -37,7 +37,7 @@ public class FileSubmissionSubmitter {
 
     /** The result of the request is also written into the underlying `FileSubmission` object.  */
     private func sendRequest(fileSubmissionID: NSManagedObjectID, promise: @escaping Future<APISubmission, FileSubmissionErrors.Submission>.Promise) {
-        context.perform { [self] in
+        context.performAndWait {
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
             let fileIDs = submission.files.compactMap { $0.apiID }
             let requestedSubmission = CreateSubmissionRequest.Body.Submission(text_comment: submission.comment,
@@ -72,12 +72,7 @@ public class FileSubmissionSubmitter {
             submission.isSubmitted = true
 
             try? context.save()
-
-            if submission.submissionError != nil {
-                promise(.failure(.submissionFailed))
-            } else {
-                promise(.success(response))
-            }
+            promise(.success(response))
         }
     }
 }
