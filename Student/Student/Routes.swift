@@ -460,9 +460,18 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
 
-    if ExperimentalFeature.hybridDiscussionDetails.isEnabled, DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
-        let viewModel = DiscussionWebPageViewModel(context: context, topicID: discussionID)
-        return CoreHostingController(EmbeddedWebPageView(viewModel: viewModel))
+    if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
+       DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
+        let viewModel = DiscussionWebPageViewModel(
+            context: context,
+            topicID: discussionID
+        )
+        return CoreHostingController(
+            EmbeddedWebPageView(
+                viewModel: viewModel,
+                isPullToRefreshEnabled: true
+            )
+        )
     } else {
         return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
     }

@@ -29,7 +29,7 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
     @IBOutlet weak var scrollView: UIScrollView!
     let titleSubtitleView = TitleSubtitleView.create()
     @IBOutlet weak var viewMoreButton: UIButton!
-    var webView = CoreWebView()
+    var webView = CoreWebView(pullToRefresh: .disabled)
     @IBOutlet weak var webViewContainer: UIView!
     @IBOutlet var webViewHeight: NSLayoutConstraint!
 
