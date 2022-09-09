@@ -40,7 +40,10 @@ public class FileSubmissionAssembly {
         let backgroundSessionCompletion = BackgroundSessionCompletion()
         let fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
         let cleaner = FileSubmissionCleanup(context: backgroundContext)
-        let notificationsSender = SubmissionCompletedNotificationsSender(context: backgroundContext)
+        let notificationsSender = SubmissionCompletedNotificationsSender(
+            context: backgroundContext,
+            notificationManager: NotificationManager.shared
+        )
         let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?

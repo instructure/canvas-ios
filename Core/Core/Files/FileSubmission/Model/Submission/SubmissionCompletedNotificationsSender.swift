@@ -21,13 +21,18 @@ import CoreData
 
 public class SubmissionCompletedNotificationsSender {
     private let context: NSManagedObjectContext
+    private let notificationManager: NotificationManager
 
-    public init(context: NSManagedObjectContext) {
+    public init(
+        context: NSManagedObjectContext,
+        notificationManager: NotificationManager
+    ) {
         self.context = context
+        self.notificationManager = notificationManager
     }
 
     func sendSuccessNofitications(fileSubmissionID: NSManagedObjectID, apiSubmission: CreateSubmissionRequest.Response) -> Future<Void, Never> {
-        Future<Void, Never> { [context] promise in
+        Future<Void, Never> { [context, notificationManager] promise in
             context.perform {
                 defer { promise(.success(())) }
                 guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
@@ -43,18 +48,18 @@ public class SubmissionCompletedNotificationsSender {
                     userInfo: ["assignmentID": assignmentID, "submission": apiSubmission]
                 )
                 NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
-                NotificationManager.shared.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                notificationManager.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
             }
         }
     }
 
     func sendFailedNotification(fileSubmissionID: NSManagedObjectID) {
-        context.perform { [context] in
+        context.perform { [context, notificationManager] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
                 return
             }
 
-            NotificationManager.shared.sendFailedNotification(courseID: submission.courseID, assignmentID: submission.assignmentID)
+            notificationManager.sendFailedNotification(courseID: submission.courseID, assignmentID: submission.assignmentID)
         }
     }
 }
