@@ -51,39 +51,3 @@ sequenceDiagram
     Application->>User: Sends Successful Submission Notification
     deactivate Application
 ```
-## Class Diagram Of Involved Entities
-```mermaid
-classDiagram
-    direction TB
-    class FileSubmissionAssembly
-    class BackgroundURLSessionProvider
-    class FileSubmissionComposer{
-        <<Step 0>>
-    }
-    class FileUploadTargetRequester {
-        <<Step 1>>
-    }
-    class FileUploadProgressObserver {
-        <<Step 2>>
-    }
-    class FileSubmissionSubmitter {
-        <<Step 3>>
-    }
-    class FileSubmission{
-        <<CoreData>>
-    }
-    class FileUploadItem{
-        <<CoreData>>
-    }
-    class URLSession
-    
-    FileSubmissionAssembly o-- FileSubmissionComposer: Stores
-    FileSubmissionAssembly o-- BackgroundURLSessionProvider: Stores
-    FileSubmissionComposer --> FileSubmission: Creates/Updates
-    FileSubmission "1" *-- "1..*" FileUploadItem: Contains
-    FileUploadTargetRequester --> FileUploadItem: Updates
-    FileUploadProgressObserver --> FileUploadItem: Updates
-    BackgroundURLSessionProvider --> URLSession: Provides
-    URLSession --> FileUploadProgressObserver: Notifies
-    FileSubmissionSubmitter --> FileSubmission: Updates
-```

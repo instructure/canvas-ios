@@ -21,10 +21,10 @@ import Combine
 import SwiftUI
 
 public class FileProgressItemViewModel: ObservableObject {
+    @Published public var state: FileUploadItem.State
     public var fileName: String { file.localFileURL.lastPathComponent }
     public let size: String
     public let icon: Image
-    public var state: FileUploadItem.State { file.state }
     public var accessibilityLabel: String {
         let fileInfo = NSLocalizedString("File \(fileName) size \(size).", comment: "")
         let status: String = {
@@ -43,12 +43,13 @@ public class FileProgressItemViewModel: ObservableObject {
     private var fileChangeObserver: AnyCancellable?
 
     public init(file: FileUploadItem, onRemove: @escaping (_ item: NSManagedObjectID) -> Void) {
+        self.state = file.state
         self.file = file
         self.icon = file.mimeClass.image
         self.size = file.fileSize.humanReadableFileSize
         self.onRemove = onRemove
-        self.fileChangeObserver = file.objectWillChange.sink { [weak self] in
-            self?.objectWillChange.send()
+        self.fileChangeObserver = file.stateChangePublisher.sink { [weak self] in
+            self?.state = file.state
         }
     }
 

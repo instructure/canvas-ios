@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import CoreData
 import SwiftUI
 import UniformTypeIdentifiers
@@ -73,6 +74,17 @@ public extension FileUploadItem {
         } else {
             return .waiting
         }
+    }
+
+    var stateChangePublisher: AnyPublisher<Void, Never> {
+        Publishers.MergeMany([
+            publisher(for: \.apiID).map { _ in }.eraseToAnyPublisher(),
+            publisher(for: \.uploadError).map { _ in }.eraseToAnyPublisher(),
+            publisher(for: \.bytesUploaded).map { _ in }.eraseToAnyPublisher(),
+            publisher(for: \.bytesToUpload).map { _ in }.eraseToAnyPublisher(),
+        ])
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
     }
 
     enum MimeClass {

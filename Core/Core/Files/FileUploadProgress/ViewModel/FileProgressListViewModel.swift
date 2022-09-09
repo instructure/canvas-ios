@@ -45,6 +45,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
 
     private let dismissSubject = PassthroughSubject<() -> Void, Never>()
     private let presentDialogSubject = PassthroughSubject<UIAlertController, Never>()
+    /** This is to update our state when the FileSubmission object changes. */
     private lazy var fileSubmission: Store<LocalUseCase<FileSubmission>> = {
         let predicate = NSPredicate(format: "SELF = %@", submissionID)
         let scope = Scope(predicate: predicate, order: [])
@@ -53,11 +54,19 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             self?.update()
         }
     }()
+    /** This is to update our state when the FileSubmission's items change. */
+    private lazy var fileUploadItems: Store<LocalUseCase<FileUploadItem>> = {
+        let predicate = NSPredicate(format: "fileSubmission = %@", submissionID)
+        let scope = Scope(predicate: predicate, order: [])
+        let useCase = LocalUseCase<FileUploadItem>(scope: scope)
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
+        }
+    }()
     private let environment: AppEnvironment
     private let flowCompleted: () -> Void
     private var receivedSuccessfulSubmissionNotification = false
     private var subscriptions = Set<AnyCancellable>()
-    private var childViewModelUpdateSubscriptions = Set<AnyCancellable>()
     /**
      This variable ensures that once an error is displayed it stays on the screen until the user retries the submission.
      If the user removes the last failed upload item (so only succeeded items remain) we should still display the error.
@@ -73,6 +82,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         self.environment = environment
         self.flowCompleted = dismiss
         fileSubmission.refresh()
+        fileUploadItems.refresh()
     }
 
     private func showCancelDialog() {
@@ -101,20 +111,10 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             return
         }
 
-        childViewModelUpdateSubscriptions.removeAll()
         items = submission.files.map { uploadItem in
-            let itemViewModel = FileProgressItemViewModel(file: uploadItem) { [weak self] itemID in
+            FileProgressItemViewModel(file: uploadItem) { [weak self] itemID in
                 self?.remove(itemID)
             }
-
-            itemViewModel.objectWillChange.sink { [weak self] _ in
-                // TODO: Shouln't we update after the view model has changed?
-                self?.updateState()
-                self?.updateNavBarButtons()
-            }
-            .store(in: &childViewModelUpdateSubscriptions)
-
-            return itemViewModel
         }
     }
 

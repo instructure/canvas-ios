@@ -23,7 +23,6 @@ import CoreData
  This class listens to `URLSessionTask` state updates and writes the upload state to a `FileUploadItem`.
  */
 public class FileUploadProgressObserver: NSObject {
-    // TODO: Convert this to Future
     /** This publisher is signalled when the upload finishes. At this point either the file's `apiID` or `error` property is non-nil. */
     public private(set) lazy var uploadCompleted: AnyPublisher<Void, FileSubmissionErrors.CoreData> = completionSubject.eraseToAnyPublisher()
     public let fileUploadItemID: NSManagedObjectID
