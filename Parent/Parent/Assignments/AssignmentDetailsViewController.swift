@@ -178,7 +178,10 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 }
                 self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
                 self.selectedDate = defaultDate
-                self.reminderDateButton.isHidden = false
+                UIView.animate(withDuration: 0.2) {
+                    self.reminderDateButton.isHidden = false
+
+                }
             } }
         } else {
             NotificationManager.shared.removeReminder(assignmentID)
@@ -228,6 +231,7 @@ extension AssignmentDetailsViewController {
                 self.reminderSwitch.setOn(false, animated: true)
                 self.reminderSwitchChanged()
             }
+            self.reminderDateChanged(selectedDate: self.selectedDate)
         } }
     }
 }
