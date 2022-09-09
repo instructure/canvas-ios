@@ -809,6 +809,7 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
+		B434277228CB65070015D597 /* FileSubmissionCleanupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */; };
 		B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */; };
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
 		B453728828B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */; };
@@ -2280,6 +2281,7 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
+		B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionCleanupTests.swift; sourceTree = "<group>"; };
 		B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModel.swift; sourceTree = "<group>"; };
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
 		B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModel.swift; sourceTree = "<group>"; };
@@ -5719,6 +5721,7 @@
 				CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */,
 				CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */,
 				B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */,
+				B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */,
 			);
 			path = Submission;
 			sourceTree = "<group>";
@@ -7033,6 +7036,7 @@
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,
 				9F1CEA5F22400DC0000BB98F /* PermissionsTests.swift in Sources */,
 				7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */,
+				B434277228CB65070015D597 /* FileSubmissionCleanupTests.swift in Sources */,
 				B1F2F8A723F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift in Sources */,
 				CF9A0F3227E8AD8900762228 /* CourseSettingsViewModelTests.swift in Sources */,
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
