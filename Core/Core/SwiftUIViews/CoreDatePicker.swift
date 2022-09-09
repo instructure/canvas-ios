@@ -38,7 +38,7 @@ public struct CoreDatePicker {
     }
 }
 
-public struct CoreDatePickerActionSheetCard: View {
+private struct CoreDatePickerActionSheetCard: View {
     @Environment(\.viewController) var controller
     @State private var grayViewOpacity = 0.0
     @State private var animationOffset = 300.0
@@ -46,7 +46,6 @@ public struct CoreDatePickerActionSheetCard: View {
     @State private var selectedDate: Date
     @Binding private var selectionDate: Date?
 
-    private var grayView = CoreDatePickerGreyOutFocusOfView()
     private let heightToDisappear = UIScreen.main.bounds.height
     private let backgroundColor = Color.backgroundLightest
 
@@ -106,6 +105,14 @@ public struct CoreDatePickerActionSheetCard: View {
             .datePickerStyle(WheelDatePickerStyle())
             .labelsHidden()
         }
+    }
+
+    private var grayView: some View {
+        Rectangle()
+            .frame(width: UIScreen.main.bounds.width,
+                   height: UIScreen.main.bounds.height)
+            .background(Color.clear)
+            .ignoresSafeArea()
     }
 
     func dismissPresentation() {

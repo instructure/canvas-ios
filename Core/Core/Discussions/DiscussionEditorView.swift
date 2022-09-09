@@ -198,7 +198,7 @@ public struct DiscussionEditorView: View {
                         .identifier("DiscussionEditor.delayedPostAtToggle")
                     Divider()
                     if lockAt != nil {
-                        ButtonRow(action: pickUntilDate, content: {
+                        ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, from: controller) }, content: {
                             Text("Post at", bundle: .core)
                             Spacer()
                             if let dateValidator = lockAt {
@@ -297,7 +297,7 @@ public struct DiscussionEditorView: View {
                 )
             } else if isTeacher, !isAnnouncement {
                 EditorSection(label: Text("Availability", bundle: .core)) {
-                    ButtonRow(action: pickFromDate, content: {
+                    ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, from: controller) }, content: {
                         Text("From", bundle: .core)
                         Spacer()
                         if let dateValidator = delayedPostAt {
@@ -309,7 +309,7 @@ public struct DiscussionEditorView: View {
 
                     Divider()
 
-                    ButtonRow(action: pickUntilDate, content: {
+                    ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, from: controller) }, content: {
                         Text("Until", bundle: .core)
                         Spacer()
                         if let dateValidator = lockAt {
@@ -322,18 +322,6 @@ public struct DiscussionEditorView: View {
                 }
             }
         }
-    }
-
-    func pickFromDate() {
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $delayedPostAt))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
-    }
-
-    func pickUntilDate() {
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: $lockAt))
-        picker.view.backgroundColor = UIColor.clear
-        env.router.show(picker, from: controller, options: .modal(.overFullScreen, isDismissable: true, embedInNav: false, addDoneButton: false))
     }
 
     func attach() {
