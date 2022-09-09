@@ -22,7 +22,7 @@ import CoreData
 public class FileSubmissionAssembly {
     public let composer: FileSubmissionComposer
 
-    private let backgroundURLSessionProvider: BackgroundURLSessionProvider
+    let backgroundURLSessionProvider: BackgroundURLSessionProvider
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
     private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
     private let backgroundSessionCompletion: BackgroundSessionCompletion
@@ -83,8 +83,9 @@ public class FileSubmissionAssembly {
     }
 
     /**
-     Use this method to pass he completion block received in handleEventsForBackgroundURLSession appdelegate method
-     when the app is doing background uploading. This method also creates the necessary `URLSession` object that receives delegate method updates.*/
+     Use this method to pass he completion block received in handleEventsForBackgroundURLSession appdelegate method when the share extension
+     is doing background uploading. This method also creates the necessary `URLSession` object that receives delegate method updates.
+     */
     public func handleBackgroundUpload(_ completion: @escaping () -> Void) {
         backgroundSessionCompletion.callback = completion
         // This will create the background URLSession
