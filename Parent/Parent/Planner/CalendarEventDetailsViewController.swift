@@ -182,7 +182,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     }
 
     @IBAction func reminderDateChanged(selectedDate: Date?) {
-        guard let selectedDate = selectedDate,let event = events.first else { return }
+        guard let selectedDate = selectedDate, let event = events.first else { return }
         NotificationManager.shared.setReminder(for: event, at: selectedDate, studentID: studentID) { error in performUIUpdate {
             if error == nil {
                 self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)

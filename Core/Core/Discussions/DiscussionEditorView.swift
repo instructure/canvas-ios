@@ -31,7 +31,9 @@ public struct DiscussionEditorView: View {
     @State var assignment: Assignment?
     @State var attachment: URL?
     @State var canUnpublish: Bool = true
+    @State var delayedPostAt: Date?
     @State var gradingType: GradingType = .points
+    @State var lockAt: Date?
     @State var locked: Bool = true
     @State var message: String = ""
     @State var onlyGradersCanRate: Bool = false
@@ -52,9 +54,6 @@ public struct DiscussionEditorView: View {
     @State var rceHeight: CGFloat = 60
     @State var rceCanSubmit = false
     @State var alert: AlertItem?
-
-    @State var delayedPostAt: Date?
-    @State var lockAt: Date?
 
     public init(context: Context, topicID: String?, isAnnouncement: Bool) {
         self.context = context
@@ -186,9 +185,9 @@ public struct DiscussionEditorView: View {
                     Divider()
                 }
                 if isAnnouncement {
-                    Toggle(isOn: Binding(get: { lockAt != nil }, set: { newValue in
+                    Toggle(isOn: Binding(get: { delayedPostAt != nil }, set: { newValue in
                         withAnimation(.default) {
-                            lockAt = newValue ? Clock.now.startOfDay() : nil
+                            delayedPostAt = newValue ? Clock.now.startOfDay() : nil
                         }
                     })) {
                         Text("Delay posting", bundle: .core)
@@ -197,16 +196,14 @@ public struct DiscussionEditorView: View {
                         .padding(16)
                         .identifier("DiscussionEditor.delayedPostAtToggle")
                     Divider()
-                    if lockAt != nil {
-                        ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, from: controller) }, content: {
+                    if let delayedPostAt = delayedPostAt {
+                        let dateRange = Clock.now.startOfDay()...(lockAt ?? .distantFuture)
+                        ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, with: dateRange, from: controller) }, content: {
                             Text("Post at", bundle: .core)
                             Spacer()
-                            if let dateValidator = lockAt {
-                                Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                            } else {
-                                Text("")
-                            }
+                            Text(DateFormatter.localizedString(from: delayedPostAt, dateStyle: .medium, timeStyle: .short))
                         })
+                        .identifier("DiscussionEditor.delayedPostAtPicker")
                         Divider()
                     }
                     Toggle(isOn: Binding(get: { !locked }, set: { newValue in
@@ -297,25 +294,22 @@ public struct DiscussionEditorView: View {
                 )
             } else if isTeacher, !isAnnouncement {
                 EditorSection(label: Text("Availability", bundle: .core)) {
-                    ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, from: controller) }, content: {
+                    let dateRange = Clock.now.startOfDay()...(lockAt ?? .distantFuture)
+                    ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, with: dateRange, from: controller) }, content: {
                         Text("From", bundle: .core)
                         Spacer()
                         if let dateValidator = delayedPostAt {
                             Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                        } else {
-                            Text("")
                         }
                     })
 
                     Divider()
-
-                    ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, from: controller) }, content: {
+                    let lockDateRange = (delayedPostAt ?? .distantPast)...(.distantFuture)
+                    ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, with: lockDateRange, from: controller) }, content: {
                         Text("Until", bundle: .core)
                         Spacer()
                         if let dateValidator = lockAt {
                             Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                        } else {
-                            Text("")
                         }
                     })
 

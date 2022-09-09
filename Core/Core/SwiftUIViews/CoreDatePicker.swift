@@ -33,8 +33,8 @@ public struct CoreDatePicker {
                                         addDoneButton: false))
     }
 
-    public static func pickDate(for date: Binding<Date?>, from controller: WeakViewController) {
-        self.pickDate(for: date, from: controller.value)
+    public static func pickDate(for date: Binding<Date?>, with dateRange: ClosedRange<Date>? = nil, from controller: WeakViewController) {
+        self.pickDate(for: date, with: dateRange, from: controller.value)
     }
 }
 
