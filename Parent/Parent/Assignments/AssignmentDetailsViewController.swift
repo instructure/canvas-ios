@@ -128,7 +128,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-    @objc private func refresh() {
+    @objc func refresh() {
         assignment.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
@@ -137,7 +137,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         teachers.refresh(force: true)
     }
 
-    private func update() {
+    func update() {
         guard let assignment = assignment.first else { return }
         let status = assignment.submissions?.first(where: { $0.userID == studentID })?.status ?? .notSubmitted
         title = course.first?.name ?? NSLocalizedString("Assignment Details", comment: "")
