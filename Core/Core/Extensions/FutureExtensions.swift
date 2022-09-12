@@ -26,15 +26,11 @@ extension Future where Output == Void {
     }
 }
 
-public struct UpstreamPublisherFailure: Error, Equatable {
-    public init() {}
-}
-
 extension Array where Element: Future<Void, Error> {
 
     /**
      - returns: A `Future` that finishes when all `Future`s finish in this `Array`.
-     If any of the `Future`s fail, then this `Future` will also fail with the error `UpstreamPublisherFailure`.
+     If any of the `Future`s fail, then this `Future` will also fail with the error of the failed upstream `Future`.
      */
     public func allFinished() -> Future<Void, Error> {
         let future = Future<Void, Error> { promise in
@@ -48,8 +44,8 @@ extension Array where Element: Future<Void, Error> {
                 .collect()
                 .sink(
                     receiveCompletion: { completion in
-                        if case .failure = completion {
-                            promise(.failure(UpstreamPublisherFailure()))
+                        if case .failure(let error) = completion {
+                            promise(.failure(error))
                         }
                         subscription?.cancel()
                         subscription = nil

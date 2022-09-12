@@ -61,7 +61,7 @@ class FutureExtensionsTests: XCTestCase {
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
                         receivedError.fulfill()
-                        XCTAssertEqual(error as? UpstreamPublisherFailure, UpstreamPublisherFailure())
+                        XCTAssertEqual(error as NSError, NSError.internalError())
                     }
                 },
                 receiveValue: { _ in
