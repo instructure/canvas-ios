@@ -374,6 +374,9 @@
 "Cancel" = "Annuler";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Annuler la soumission ?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Guides de Canvas";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Erreur";
 
 /* No comment provided by engineer. */
+"Error Details" = "Détails de l’erreur";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Sauvegarde des erreurs. Tapez pour réessayer.";
 
 /* No comment provided by engineer. */
@@ -848,6 +854,9 @@
 "Fail" = "Échec";
 
 /* No comment provided by engineer. */
+"Failed to get file upload target." = "Échec de la récupération de la cible d’envoi de fichier.";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Échec lors de l’enregistrement de l’image";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fichier";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Taille du fichier (fileName) (taille).";
 
 /* No comment provided by engineer. */
 "File Details" = "Détails du fichier";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Boîte de réception";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Type de fichier incompatible";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incomplet";
@@ -1358,6 +1373,9 @@
 "Nickname" = "Pseudonyme :";
 
 /* No comment provided by engineer. */
+"No" = "Non";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Aucune annonce";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "L'une de vos soumissions est en cours de téléchargement. Se déconnecter peut l'interrompre.\nVoulez-vous vraiment vous déconnecter ?";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "L’envoi d'un ou plusieurs fichiers a échoué. Vérifiez l’état de votre connexion internet, puis réessayez.";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Disponible aux élèves par lien uniquement";
@@ -1718,6 +1739,12 @@
 "Remove File" = "Supprimer le fichier";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "Retirer le fichier de la soumission.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Retirer de la liste ?";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Supprimé %1$@";
 
 /* No comment provided by engineer. */
@@ -1871,6 +1898,9 @@
 "Sent" = "Envoyé";
 
 /* No comment provided by engineer. */
+"Session completed without error or file ID." = "Session terminée sans erreur ou identifiant de fichier.";
+
+/* No comment provided by engineer. */
 "Set \"Home\" to..." = "Fixer l'accueil à..";
 
 /* No comment provided by engineer. */
@@ -1967,10 +1997,22 @@
 "Subject" = "Sujet";
 
 /* No comment provided by engineer. */
+"Submission" = "Soumission";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Soumission %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Commentaire de soumission";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Échec de l’envoi";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Échec de la soumission à cause d’une erreur inconnue.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Soumission effectuée avec succès !";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Types de soumission";
@@ -2019,6 +2061,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Prendre une photo";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Appuyez ici pour obtenir des détails";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Appuyez ici pour obtenir de l’aide.";
@@ -2159,6 +2204,9 @@
 "This page has been disabled for this course." = "Cette page a été désactivée pour ce cours.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Ceci annulera et supprimera votre envoi.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Cela supprimera la date limite de rendu ainsi que toutes les personnes assignées associées.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2285,28 @@
 "Updating" = "Mise à jour";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Envoi terminé.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Échec de l’envoi.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Envoyer fichier";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Envoi en cours";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Envoi en cours (Int(100 * progression))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "L’envoi de %1$@ est à %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Envoi de %1$@ sur %2$@";
+
+/* No comment provided by engineer. */
+"Uploading submission" = "Envoi de la soumission...";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Téléchargement en cours...";
@@ -2394,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Votre email";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Votre fichier a été envoyé avec succès.\nBonne journée !";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Votre liste de tâches est vide. Il est temps de vous ressourcer.";

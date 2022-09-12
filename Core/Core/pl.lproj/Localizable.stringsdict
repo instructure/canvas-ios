@@ -417,9 +417,9 @@
 			<key>many</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>Typ pliku %2$@ w przesyłce jest niezgodny z wybranym zadaniem.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>Typy plików %2$@ w przesyłce są niezgodne z wybranym zadaniem.</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -517,9 +517,9 @@
 			<key>many</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>Pomyślnie przesłano plik, ale nie udało się przesłać zadania.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>Pomyślnie przesłano pliki, ale nie udało się przesłać zadania.</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>
@@ -557,9 +557,9 @@
 			<key>many</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>Użyj pliku z rozszerzeniem %2$@.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>Użyj plików z rozszerzeniami %2$@.</string>
 		</dict>
 	</dict>
 </dict>
