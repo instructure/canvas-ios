@@ -197,7 +197,7 @@ public struct DiscussionEditorView: View {
                         .identifier("DiscussionEditor.delayedPostAtToggle")
                     Divider()
                     if let delayedPostAt = delayedPostAt {
-                        let dateRange = Clock.now.startOfDay()...(lockAt ?? .distantFuture)
+                        let dateRange = Clock.now.startOfDay()...(lockAt ?? Clock.now.addYears(1))
                         ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, with: dateRange, from: controller) }, content: {
                             Text("Post at", bundle: .core)
                             Spacer()
@@ -294,9 +294,9 @@ public struct DiscussionEditorView: View {
                 )
             } else if isTeacher, !isAnnouncement {
                 EditorSection(label: Text("Availability", bundle: .core)) {
-                    let dateRange = Clock.now.startOfDay()...(lockAt ?? .distantFuture)
+                    let dateRange = Clock.now.startOfDay()...(lockAt ?? Clock.now.addYears(1))
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, with: dateRange, from: controller) }, content: {
-                        Text("From", bundle: .core)
+                        Text("Available from", bundle: .core)
                         Spacer()
                         if let delayedPostAt = delayedPostAt {
                             Text(DateFormatter.localizedString(from: delayedPostAt, dateStyle: .medium, timeStyle: .short))
@@ -304,9 +304,9 @@ public struct DiscussionEditorView: View {
                     })
 
                     Divider()
-                    let lockDateRange = (delayedPostAt ?? .distantPast)...(.distantFuture)
+                    let lockDateRange = (delayedPostAt ?? Clock.now.addYears(-1))...(Clock.now.addYears(1))
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, with: lockDateRange, from: controller) }, content: {
-                        Text("Until", bundle: .core)
+                        Text("Available until", bundle: .core)
                         Spacer()
                         if let lockAt = lockAt {
                             Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))

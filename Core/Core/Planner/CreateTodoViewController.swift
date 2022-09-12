@@ -45,10 +45,6 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         return c.name
     }
     var selectedCourse: Course?
-    var formattedDate: String {
-        DateFormatter.localizedString(from: selectedDate ?? Clock.now, dateStyle: .medium, timeStyle: .short)
-    }
-
     var plannables: Store<GetPlannables>?
     private var keyboardListener: KeyboardTransitioning!
 

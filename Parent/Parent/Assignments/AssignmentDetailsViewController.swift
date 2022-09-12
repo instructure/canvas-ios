@@ -38,13 +38,13 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
-    private let webView = CoreWebView()
-    private let refreshControl = CircleRefreshControl()
+    let webView = CoreWebView()
+    let refreshControl = CircleRefreshControl()
     var selectedDate: Date?
-    private var assignmentID = ""
-    private var courseID = ""
-    private let env = AppEnvironment.shared
-    private var studentID = ""
+    var assignmentID = ""
+    var courseID = ""
+    let env = AppEnvironment.shared
+    var studentID = ""
     private var minDate = Clock.now
     private var maxDate = Clock.now
 
