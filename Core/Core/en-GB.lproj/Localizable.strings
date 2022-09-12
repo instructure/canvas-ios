@@ -374,6 +374,9 @@
 "Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Cancel Submission?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Error";
 
 /* No comment provided by engineer. */
+"Error Details" = "Error Details";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Error saving. Tap to retry.";
 
 /* No comment provided by engineer. */
@@ -848,6 +854,9 @@
 "Fail" = "Fail";
 
 /* No comment provided by engineer. */
+"Failed to get file upload target." = "Failed to get file upload target.";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Failed to save image";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "File";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "File (fileName) size (size).";
 
 /* No comment provided by engineer. */
 "File Details" = "File Details";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Inbox";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Incompatible File Type";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incomplete";
@@ -1358,6 +1373,9 @@
 "Nickname" = "Nickname";
 
 /* No comment provided by engineer. */
+"No" = "No";
+
+/* No comment provided by engineer. */
 "No Announcements" = "No Announcements";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "One or more files failed to upload. Check your internet connection and retry to submit.";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Only available to students with link";
@@ -1718,6 +1739,12 @@
 "Remove File" = "Remove File";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "Remove file from submission.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Remove From List?";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Removed %1$@";
 
 /* No comment provided by engineer. */
@@ -1871,6 +1898,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Session completed without error or file ID." = "Session completed without error or file ID.";
+
+/* No comment provided by engineer. */
 "Set \"Home\" to..." = "Set \"Home\" to...";
 
 /* No comment provided by engineer. */
@@ -1967,10 +1997,22 @@
 "Subject" = "Subject";
 
 /* No comment provided by engineer. */
+"Submission" = "Submission";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Submission %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Submission comment";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Submission failed";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Submission failed due to unknown error.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Submission Success!";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Submission types";
@@ -2019,6 +2061,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Take photo";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Tap here for details";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tap here for help.";
@@ -2159,6 +2204,9 @@
 "This page has been disabled for this course." = "This page has been disabled for this course.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "This will cancel and delete your upload.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "This will remove the due date and all of the associated assignees.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2285,28 @@
 "Updating" = "Updating";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Upload completed.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Upload failed.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Upload file";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Upload in progress";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Upload in progress (Int(100 * progress))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uploading %1$@ is at %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Uploading %1$@ of %2$@";
+
+/* No comment provided by engineer. */
+"Uploading submission" = "Uploading submission";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Uploading...";
@@ -2394,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Your email";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Your file was successfully submitted.\nEnjoy your day!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Your to do list is empty. Time to recharge.";

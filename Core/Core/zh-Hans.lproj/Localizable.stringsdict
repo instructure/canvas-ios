@@ -293,7 +293,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>您提交的 %2$@ 文件类型与所选作业不兼容。</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -363,7 +363,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>您的文件已成功上传，但未能提交到作业。</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>
@@ -391,7 +391,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>请使用 %2$@ 文件扩展名。</string>
 		</dict>
 	</dict>
 </dict>

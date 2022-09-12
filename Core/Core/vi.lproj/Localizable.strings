@@ -374,6 +374,9 @@
 "Cancel" = "Hủy";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Hủy Nộp?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Lỗi";
 
 /* No comment provided by engineer. */
+"Error Details" = "Lỗi Chi Tiết";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Lỗi Lưu. Hãy nhấn để thử lại.";
 
 /* No comment provided by engineer. */
@@ -848,6 +854,9 @@
 "Fail" = "Không đạt";
 
 /* No comment provided by engineer. */
+"Failed to get file upload target." = "Không thể nhận được mục tiêu tải lên tập tin.";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Lưu hình ảnh thất bại";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Tập Tin";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Kích thước (kích thước) tập tin (fileName).";
 
 /* No comment provided by engineer. */
 "File Details" = "Thông Tin Chi Tiết Tập Tin";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Hộp Thư Đến";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Loại Tập Tin Không Phù Hợp";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Chưa hoàn thành";
@@ -1358,6 +1373,9 @@
 "Nickname" = "Biệt Danh";
 
 /* No comment provided by engineer. */
+"No" = "Không";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Không Có Thông Báo Chung";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Một trong các bài nộp của bạn vẫn đang được tải lên. Đăng xuất có thể sẽ làm gián đoạn quá trình này.\nBạn có chắc chắn muốn đăng xuất không?";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Tải lên một hoặc nhiều tập tin thất bại. Hãy kiểm tra kết nối internet của bạn rồi thử lại để nộp.";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Chỉ khả dụng đối với sinh viên bằng liên kết";
@@ -1718,6 +1739,12 @@
 "Remove File" = "Gỡ Tập Tin";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "Gỡ tập tin khỏi quá trình gửi.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Gỡ khỏi Danh Sách?";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "%1$@ đã bị gỡ";
 
 /* No comment provided by engineer. */
@@ -1871,6 +1898,9 @@
 "Sent" = "Đã Gửi";
 
 /* No comment provided by engineer. */
+"Session completed without error or file ID." = "Đã hoàn thành phiên mà không có lỗi hoặc ID tập tin.";
+
+/* No comment provided by engineer. */
 "Set \"Home\" to..." = "Đặt \"Trang Chủ\" thành...";
 
 /* No comment provided by engineer. */
@@ -1967,10 +1997,22 @@
 "Subject" = "Tiêu Đề";
 
 /* No comment provided by engineer. */
+"Submission" = "Nộp";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Nộp %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Bình Luận Bài Nộp";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Nộp Thất Bại";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Gửi không thành công do lỗi không xác định.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Nộp Thành Công!";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Loại Nộp";
@@ -2019,6 +2061,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Chụp Ảnh";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Nhấn vào đây để biết chi tiết";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Nhấn vào đây để được trợ giúp.";
@@ -2159,6 +2204,9 @@
 "This page has been disabled for this course." = "Trang này đã bị vô hiệu hóa cho khóa học này.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Thao tác này sẽ hủy và xóa bài nộp tải lên của bạn.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Thao tác này sẽ xóa ngày đến hạn và toàn bộ người được giao bài tập liên quan";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2285,28 @@
 "Updating" = "Đang Cập Nhật";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Tải lên hoàn thành.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Tải lên thất bại.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Tải Lên Tập Tin";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Đang tải lên";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Đang tải lên (Int (100 * tiến độ))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@ đang tải lên là vào %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Đang tải lên %1$@ / %2$@";
+
+/* No comment provided by engineer. */
+"Uploading submission" = "Tải lên bài nộp";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Đang tải lên...";
@@ -2394,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Email Của Bạn";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Tập tin của bạn đã được nộp thành công.\nHãy tận hưởng thời gian còn lại trong ngày nhé!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Danh sách việc cần làm của bạn đang trống. Đến lúc nạp năng lượng rồi.";

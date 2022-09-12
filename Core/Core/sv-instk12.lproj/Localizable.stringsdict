@@ -497,9 +497,9 @@
 			<key>many</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>Filtypen %2$@ i din inlämning är inkompatibel med den valda uppgiften.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>Filtyperna %2$@ i din inlämning är inkompatibla med den valda uppgiften.</string>
 			<key>two</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>zero</key>
@@ -617,9 +617,9 @@
 			<key>many</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>Din fil laddades upp men inlämningen misslyckades för din uppgift.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>Dina filer laddades upp men inlämningen misslyckades för din uppgift.</string>
 			<key>two</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>zero</key>
@@ -665,9 +665,9 @@
 			<key>many</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>Använd filtillägget %2$@.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>Använd filtilläggen %2$@.</string>
 			<key>two</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>zero</key>

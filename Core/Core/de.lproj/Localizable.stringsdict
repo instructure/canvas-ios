@@ -333,9 +333,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>Der %2$@-Dateityp in Ihrer Abgabe ist mit der ausgewählten Aufgabe nicht kompatibel.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>Die %2$@-Dateitypen in Ihrem Abgabe sind mit der ausgewählten Aufgabe nicht kompatibel.</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -413,9 +413,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>Ihre Datei wurde erfolgreich hochgeladen, aber die Übermittlung der Aufgabe ist fehlgeschlagen.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>Ihre Dateien wurden erfolgreich hochgeladen, aber die Übermittlung der Aufgabe ist fehlgeschlagen.</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>
@@ -445,9 +445,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>Verwenden Sie die Dateierweiterung %2$@.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>Verwenden Sie Dateierweiterungen %2$@.</string>
 		</dict>
 	</dict>
 </dict>
