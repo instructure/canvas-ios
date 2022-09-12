@@ -38,7 +38,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
-    let webView = CoreWebView()
+    let webView = CoreWebView(pullToRefresh: .disabled)
     let refreshControl = CircleRefreshControl()
     var selectedDate: Date?
     var assignmentID = ""

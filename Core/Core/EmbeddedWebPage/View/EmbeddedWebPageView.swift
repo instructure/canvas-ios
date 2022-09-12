@@ -20,14 +20,24 @@ import SwiftUI
 
 public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
     @ObservedObject private var viewModel: ViewModel
+    private let isPullToRefreshEnabled: Bool
 
-    public init(viewModel: ViewModel) {
+    public init(
+        viewModel: ViewModel,
+        isPullToRefreshEnabled: Bool
+    ) {
         self.viewModel = viewModel
+        self.isPullToRefreshEnabled = isPullToRefreshEnabled
     }
 
     public var body: some View {
         WebSession(url: viewModel.url) { sessionURL in
-            WebView(url: sessionURL, customUserAgentName: nil, disableZoom: true)
+            WebView(
+                url: sessionURL,
+                customUserAgentName: nil,
+                disableZoom: true,
+                pullToRefresh: isPullToRefreshEnabled ? .enabled(color: viewModel.contextColor) : .disabled
+            )
         }
         .navigationTitle(viewModel.navTitle, subtitle: viewModel.subTitle)
         .navigationBarStyle(.color(viewModel.contextColor))

@@ -27,7 +27,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var instructionsHeadingLabel: UILabel!
     @IBOutlet weak var instructionsContainer: UIView!
-    let instructionsWebView = CoreWebView()
+    let instructionsWebView = CoreWebView(pullToRefresh: .disabled)
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!

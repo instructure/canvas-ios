@@ -415,9 +415,9 @@
 			<key>few</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>Vrsta datoteke %2$@ v vaši oddaji ni združljiva z izbrano nalogo.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>Vrste datotek %2$@ v vaši oddaji niso združljive z izbrano nalogo.</string>
 			<key>two</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 		</dict>
@@ -515,9 +515,9 @@
 			<key>few</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>Vaša datoteka je bila uspešno naložena, vendar oddaja naloge ni uspela.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>Vaše datoteke so bile uspešno naložene, vendar oddaja naloge ni uspela.</string>
 			<key>two</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 		</dict>
@@ -555,9 +555,9 @@
 			<key>few</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>Uporabite končnico datoteke %2$@.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>Uporabite končnice datotek %2$@.</string>
 			<key>two</key>
 			<string>Please use %2$@ file extensions.</string>
 		</dict>
