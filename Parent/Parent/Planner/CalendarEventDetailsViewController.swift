@@ -171,6 +171,9 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
             NotificationManager.shared.removeReminder(eventID)
             UIView.animate(withDuration: 0.2) {
                 self.reminderDateButton.isHidden = true
+                if self.presentedViewController is CoreHostingController<CoreDatePickerActionSheetCard> {
+                    self.presentedViewController?.dismiss(animated: true)
+                }
             }
         }
     }

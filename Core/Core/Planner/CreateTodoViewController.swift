@@ -35,7 +35,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
 
     let env = AppEnvironment.shared
     var createPlannerNote: Store<CreatePlannerNote>?
-    var selectedDate: Date? = Clock.now {
+    var selectedDate: Date? {
         didSet {
             self.dateTextField.text = selectedDate?.dateTimeString
         }

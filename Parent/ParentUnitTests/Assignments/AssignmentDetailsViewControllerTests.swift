@@ -46,7 +46,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.reminderMessageLabel.text, "Set a date and time to be notified of this event.")
         XCTAssertEqual(controller.reminderSwitch.isOn, false)
         XCTAssertEqual(controller.reminderDateButton.isHidden, true)
-        XCTAssertTrue(controller.presentedViewController == nil)
+        XCTAssertFalse(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
 
         api.mock(controller.assignment, value: .make(description: "", due_at: nil, html_url: url))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
@@ -97,13 +97,14 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         controller.reminderSwitch.isOn = false
         controller.reminderSwitch.sendActions(for: .valueChanged)
         XCTAssertEqual(controller.reminderDateButton.isHidden, true)
-        XCTAssertTrue(controller.presentedViewController == nil)
+        XCTAssertFalse(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
 
         notificationCenter.authorized = true
         notificationCenter.error = nil
         controller.reminderSwitch.isOn = true
         controller.reminderSwitch.sendActions(for: .valueChanged)
         XCTAssertFalse(controller.reminderDateButton.isHidden)
-        XCTAssertFalse(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
+        controller.reminderDateButtonPressed(UIButton())
+        XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
 }

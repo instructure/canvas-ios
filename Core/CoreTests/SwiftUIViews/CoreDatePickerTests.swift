@@ -27,4 +27,10 @@ class CoreDatePickerTests: CoreTestCase {
         CoreDatePicker.pickDate(for: .constant(Clock.now), from: controller)
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
+
+    func testWeakRouting() {
+        let controller = WeakViewController()
+        CoreDatePicker.pickDate(for: .constant(Clock.now), from: controller)
+        XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
+    }
 }

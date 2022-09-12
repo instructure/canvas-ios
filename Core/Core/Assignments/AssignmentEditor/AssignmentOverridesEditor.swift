@@ -57,8 +57,6 @@ struct AssignmentOverridesEditor: View {
                     Spacer()
                     if let dateValidator = dueAt.wrappedValue {
                         Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                    } else {
-                        Text("")
                     }
                 })
                 Divider()
@@ -67,8 +65,6 @@ struct AssignmentOverridesEditor: View {
                     Spacer()
                     if let dateValidator = unlockAt.wrappedValue {
                         Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                    } else {
-                        Text("")
                     }
                 })
                 Divider()
@@ -77,8 +73,6 @@ struct AssignmentOverridesEditor: View {
                     Spacer()
                     if let dateValidator = lockAt.wrappedValue {
                         Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                    } else {
-                        Text("")
                     }
                 })
                 Divider()

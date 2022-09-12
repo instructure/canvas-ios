@@ -22,7 +22,7 @@ public struct CoreDatePicker {
 
     public static func pickDate(for date: Binding<Date?>, with dateRange: ClosedRange<Date>? = nil, from controller: UIViewController) {
         let env = AppEnvironment.shared
-        let dateRange = dateRange ?? Date().addYears(-1)...Date().addYears(1)
+        let dateRange = dateRange ?? Clock.now.addYears(-1)...Clock.now.addYears(1)
         let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date, dateRange: dateRange))
         picker.view.backgroundColor = UIColor.clear
         env.router.show(picker,
@@ -53,7 +53,7 @@ public struct CoreDatePickerActionSheetCard: View {
 
     public init(selection: Binding<Date?>, dateRange: ClosedRange<Date> = Clock.now...Clock.now.addYears(1)) {
         _selectionDate = selection
-        _selectedDate = State<Date>(initialValue: selection.wrappedValue ?? Date())
+        _selectedDate = State<Date>(initialValue: selection.wrappedValue ?? Clock.now)
         pickerDateRange = dateRange
     }
 
@@ -117,7 +117,7 @@ public struct CoreDatePickerActionSheetCard: View {
             .ignoresSafeArea()
     }
 
-    func dismissPresentation() {
+    private func dismissPresentation() {
         animationOffset = 300
         grayViewOpacity = 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

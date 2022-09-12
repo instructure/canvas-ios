@@ -131,10 +131,8 @@ public struct FileEditorView: View {
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $unlockAt, from: controller) }, content: {
                         Text("Available from", bundle: .core)
                         Spacer()
-                        if let dateValidator = unlockAt {
-                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                        } else {
-                            Text("")
+                        if let unlockAt = unlockAt {
+                            Text(DateFormatter.localizedString(from: unlockAt, dateStyle: .medium, timeStyle: .short))
                         }
                     })
                     .identifier("FileEditor.unlockAtButton")
@@ -144,10 +142,8 @@ public struct FileEditorView: View {
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, from: controller) }, content: {
                         Text("Available until", bundle: .core)
                         Spacer()
-                        if let dateValidator = lockAt {
-                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
-                        } else {
-                            Text("")
+                        if let lockAt = lockAt {
+                            Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))
                         }
                     })
                     .identifier("FileEditor.lockAtButton")

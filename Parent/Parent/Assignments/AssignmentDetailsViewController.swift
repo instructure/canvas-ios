@@ -231,7 +231,6 @@ extension AssignmentDetailsViewController {
                 self.reminderSwitch.setOn(false, animated: true)
                 self.reminderSwitchChanged()
             }
-            self.reminderDateChanged(selectedDate: self.selectedDate)
         } }
     }
 }

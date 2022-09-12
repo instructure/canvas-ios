@@ -298,8 +298,8 @@ public struct DiscussionEditorView: View {
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, with: dateRange, from: controller) }, content: {
                         Text("From", bundle: .core)
                         Spacer()
-                        if let dateValidator = delayedPostAt {
-                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                        if let delayedPostAt = delayedPostAt {
+                            Text(DateFormatter.localizedString(from: delayedPostAt, dateStyle: .medium, timeStyle: .short))
                         }
                     })
 
@@ -308,8 +308,8 @@ public struct DiscussionEditorView: View {
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, with: lockDateRange, from: controller) }, content: {
                         Text("Until", bundle: .core)
                         Spacer()
-                        if let dateValidator = lockAt {
-                            Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                        if let lockAt = lockAt {
+                            Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))
                         }
                     })
 

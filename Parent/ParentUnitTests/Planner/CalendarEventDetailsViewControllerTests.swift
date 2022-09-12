@@ -53,7 +53,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.reminderMessageLabel.text, "Set a date and time to be notified of this event.")
         XCTAssertEqual(controller.reminderSwitch.isOn, false)
         XCTAssertEqual(controller.reminderDateButton.isHidden, true)
-        XCTAssertNil(router.presented)
+        XCTAssertFalse(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
 
         api.mock(controller.events, value: .make(
             id: "1",
@@ -106,19 +106,20 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         controller.reminderSwitch.sendActions(for: .valueChanged)
         XCTAssertEqual(controller.reminderSwitch.isOn, false)
         XCTAssertEqual((router.presented as? UIAlertController)?.title, "Permission Needed")
-
+        router.presented?.dismiss(animated: false)
         controller.reminderSwitch.isOn = false
         controller.reminderSwitch.sendActions(for: .valueChanged)
         XCTAssertEqual(controller.reminderDateButton.isHidden, true)
-        XCTAssertNil(router.presented)
+        XCTAssertFalse(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
 
         notificationCenter.authorized = true
         notificationCenter.error = nil
         controller.reminderSwitch.isOn = true
         controller.reminderSwitch.sendActions(for: .valueChanged)
         XCTAssertEqual(controller.reminderDateButton.isHidden, false)
-        XCTAssertEqual(controller.reminderDateButton.title(for: .normal), controller.selectedDate.dateTimeString)
-        XCTAssertGreaterThan(controller.selectedDate, Clock.now)
+        controller.reminderDateButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.reminderDateButton.title(for: .normal), controller.selectedDate!.dateTimeString)
+        XCTAssertGreaterThan(controller.selectedDate!, Clock.now)
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
 }
