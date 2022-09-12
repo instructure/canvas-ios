@@ -127,7 +127,7 @@ public struct FileEditorView: View {
 
                 if access == .scheduled {
                     Divider()
-                    let dateRange = Clock.now...(lockAt ?? Clock.now.addYears(1))
+                    let dateRange = Clock.now.addYears(-1)...(lockAt ?? Clock.now.addYears(1))
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $unlockAt, with: dateRange, from: controller) }, content: {
                         Text("Available from", bundle: .core)
                         Spacer()
@@ -138,7 +138,7 @@ public struct FileEditorView: View {
                     .identifier("FileEditor.unlockAtButton")
 
                     Divider()
-                    let lockDateRange = (unlockAt ?? Clock.now.addYears(-1))...(Clock.now.addYears(1))
+                    let lockDateRange = (unlockAt ?? Clock.now.addYears(-1))...Clock.now.addYears(1)
                     ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, with: lockDateRange, from: controller) }, content: {
                         Text("Available until", bundle: .core)
                         Spacer()
