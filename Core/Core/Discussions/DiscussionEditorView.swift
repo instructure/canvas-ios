@@ -357,9 +357,9 @@ public struct DiscussionEditorView: View {
             assignment = topic?.assignment
             attachment = topic?.attachments?.first?.url
             canUnpublish = topic?.canUnpublish != false
-            lockAt = topic?.delayedPostAt
+            delayedPostAt = topic?.delayedPostAt
             locked = topic?.locked == true
-            delayedPostAt = topic?.lockAt
+            lockAt = topic?.lockAt
             message = topic?.message ?? ""
             onlyGradersCanRate = topic?.onlyGradersCanRate == true
             published = topic?.published ?? false
@@ -428,11 +428,11 @@ public struct DiscussionEditorView: View {
                 type: "application/octet-stream",
                 at: $0
             ) } : nil,
-            .delayed_post_at: .date(lockAt),
+            .delayed_post_at: .date(delayedPostAt),
             .discussion_type: .string(threaded ? "threaded" : "side_comment"),
             .is_announcement: .bool(isAnnouncement),
             .locked: isAnnouncement ? .bool(locked) : nil,
-            .lock_at: .date(delayedPostAt),
+            .lock_at: .date(lockAt),
             .message: .string(message),
             .only_graders_can_rate: .bool(allowRating && onlyGradersCanRate),
             .published: .bool(isTeacher && !isAnnouncement ? published : true),

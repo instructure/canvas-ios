@@ -1195,6 +1195,7 @@
 		EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */; };
 		EB368AB427BFD0B500A9F1C1 /* APICommentLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */; };
 		EB4368B328CA07A0004B3D39 /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */; };
+		EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */; };
 		EB60D0FC2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */; };
 		EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66DB9426451CAE002D3325 /* CustomTextField.swift */; };
 		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
@@ -2660,6 +2661,7 @@
 		EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModel.swift; sourceTree = "<group>"; };
 		EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryTests.swift; sourceTree = "<group>"; };
 		EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePicker.swift; sourceTree = "<group>"; };
+		EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerTests.swift; sourceTree = "<group>"; };
 		EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationDelegateExtensionTests.swift; sourceTree = "<group>"; };
 		EB66DB9426451CAE002D3325 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
@@ -6080,6 +6082,7 @@
 			children = (
 				CFA078AD2791D3390078B27B /* TopBar */,
 				CF5F603525DBD92100E7E0ED /* UIKitSwiftUIBridging */,
+				EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -7048,6 +7051,7 @@
 				B1A7849124412101001A2B50 /* BackgroundVideoPlayerTests.swift in Sources */,
 				9FEBF1D823CE1E18001C824B /* CreateConversationTests.swift in Sources */,
 				9F10A66F22931E7900E3360C /* GetUserSettingsTests.swift in Sources */,
+				EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */,
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,
 				7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */,
 				7D57398D2437E411000073BE /* GetAssignmentsByGroupTests.swift in Sources */,

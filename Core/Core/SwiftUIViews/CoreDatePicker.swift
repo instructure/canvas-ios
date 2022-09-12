@@ -38,7 +38,7 @@ public struct CoreDatePicker {
     }
 }
 
-private struct CoreDatePickerActionSheetCard: View {
+public struct CoreDatePickerActionSheetCard: View {
     @Environment(\.viewController) var controller
     @State private var grayViewOpacity = 0.0
     @State private var animationOffset = 300.0
@@ -87,14 +87,16 @@ private struct CoreDatePickerActionSheetCard: View {
                 Button {
                     dismissPresentation()
                 } label: {
-                    Text("Cancel").font(.regular17)
+                    Text("Cancel", bundle: .core)
+                        .font(.regular17)
                 }
                 Spacer()
                 Button {
                     selectionDate = selectedDate
                     dismissPresentation()
                 } label: {
-                    Text("Done").font(.regular17)
+                    Text("Done", bundle: .core)
+                        .font(.regular17)
                 }
             }
             .padding(.horizontal, 16)
@@ -124,10 +126,14 @@ private struct CoreDatePickerActionSheetCard: View {
     }
 }
 
-struct CoreDatePickerActionSheetCard_Previews: PreviewProvider {
+#if DEBUG
+
+private struct CoreDatePickerActionSheetCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             CoreDatePickerActionSheetCard(selection: .constant(Date()), dateRange: Clock.now...Clock.now.addDays(5))
         }
     }
 }
+
+#endif

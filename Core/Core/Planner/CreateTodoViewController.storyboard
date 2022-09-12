@@ -61,7 +61,7 @@
                                                         <rect key="frame" x="20" y="0.0" width="560" height="62"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Course (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-fF-7HV" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="267.5" height="62"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="193.5" height="62"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgJ-rV-aa6" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="275.5" y="0.0" width="83" height="62"/>
+                                                                <rect key="frame" x="201.5" y="0.0" width="60" height="62"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GvP-Wx-aid" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="366.5" y="0.0" width="193.5" height="62"/>
+                                                                <rect key="frame" x="269.5" y="0.0" width="290.5" height="62"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="4aM-SZ-XDj"/>
                                                                 </constraints>
@@ -226,9 +226,9 @@
                         <outlet property="dateTextField" destination="ghm-wD-jrE" id="Qum-7r-Fqo"/>
                         <outlet property="dateTitleLabel" destination="u3q-Tx-yWq" id="D9t-hN-ARu"/>
                         <outlet property="descTextView" destination="orM-JY-5ma" id="emS-AH-JDL"/>
-                        <outlet property="reminderDatePicker" destination="9nQ-75-7RD" id="TTR-6g-nz7"/>
                         <outlet property="scrollViewBottomConstraint" destination="gsN-ln-9LQ" id="cX4-dd-alD"/>
                         <outlet property="selectCourseButton" destination="Kby-td-fkF" id="0WO-bq-ftC"/>
+                        <outlet property="selectDateButton" destination="9nQ-75-7RD" id="TTR-6g-nz7"/>
                         <outlet property="titleLabel" destination="3te-NC-l05" id="FNU-8V-Zf3"/>
                     </connections>
                 </viewController>
