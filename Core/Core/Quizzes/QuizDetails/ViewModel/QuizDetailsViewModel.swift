@@ -20,14 +20,14 @@ import SwiftUI
 
 public class QuizDetailsViewModel: ObservableObject {
 
-    public enum ViewModelState<T: Equatable, U: Equatable>: Equatable {
+    public enum ViewModelState<T: Equatable>: Equatable {
         case loading
         case error
-        case data(T, U)
+        case data(T)
     }
 
     @Environment(\.appEnvironment) private var env
-    @Published public private(set) var state: ViewModelState<Quiz, Assignment> = .loading
+    @Published public private(set) var state: ViewModelState<Quiz> = .loading
     @Published public private(set) var courseColor: UIColor?
 
     public let quizID: String
@@ -36,6 +36,10 @@ public class QuizDetailsViewModel: ObservableObject {
     public var title: String { NSLocalizedString("Quiz Details", comment: "") }
     public var subtitle: String { course.first?.name ?? "" }
     public var showSubmissions: Bool { course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
+    public var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
+    public var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel?
+    public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
+    public var quizDateSectionViewModel: QuizDateSectionViewModel?
 
     private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseDidUpdate()
@@ -91,9 +95,16 @@ public class QuizDetailsViewModel: ObservableObject {
     private func didUpdate() {
         if quiz.requested, quiz.pending, assignments.requested, assignments.pending, assignments.hasNextPage { return }
         finishRefresh()
-        if let quiz = quiz.first, let assignmentID = quiz.assignmentID, let assignment = assignments.first(where: { $0.id == assignmentID }) {
-            self.assignment = assignment
-            state = .data(quiz, assignment)
+        if let quiz = quiz.first {
+            if let assignmentID = quiz.assignmentID, let assignment = assignments.first(where: { $0.id == assignmentID }) {
+                self.assignment = assignment
+                assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
+                assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+            } else {
+                quizSubmissionBreakdownViewModel = QuizSubmissionBreakdownViewModel(courseID: courseID, quizID: quizID)
+                quizDateSectionViewModel = QuizDateSectionViewModel(quiz: quiz)
+            }
+            state = .data(quiz)
         } else {
             state = .error
         }

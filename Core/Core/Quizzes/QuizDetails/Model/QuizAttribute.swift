@@ -32,7 +32,7 @@ public struct QuizAttributes {
 
     public var attributes: [QuizAttribute]
 
-    public init(quiz: Quiz, assignment: Assignment) {
+    public init(quiz: Quiz, assignment: Assignment?) {
         attributes = [QuizAttribute]()
 
         var quizType = quiz.quizType.sectionTitle
@@ -44,7 +44,7 @@ public struct QuizAttributes {
             quizType
         ))
 
-        if let assignmentGroupName = assignment.assignmentGroup?.name {
+        if let assignmentGroupName = assignment?.assignmentGroup?.name {
             attributes.append(QuizAttribute(
                 NSLocalizedString("Assignment Group:", bundle: .core, comment: ""),
                 assignmentGroupName

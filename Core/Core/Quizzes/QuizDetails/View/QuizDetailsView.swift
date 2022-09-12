@@ -54,18 +54,18 @@ public struct QuizDetailsView: View {
         case .error:
             // Quiz not found, perhaps recently deleted
             Spacer().onAppear { env.router.dismiss(controller) }
-        case .data(let quiz, let assignment):
+        case .data(let quiz):
             ScrollView { VStack(alignment: .leading, spacing: 0) {
                 CircleRefresh { endRefreshing in
                     viewModel.refresh(completion: endRefreshing)
                 }
-                details(quiz: quiz, assignment: assignment)
+                details(quiz: quiz)
                     .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
             } }
         }
     }
 
-    @ViewBuilder func details(quiz: Quiz, assignment: Assignment) -> some View {
+    @ViewBuilder func details(quiz: Quiz) -> some View {
         Section {
             Text(quiz.title)
                 .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "QuizDetails.name")
@@ -91,14 +91,20 @@ public struct QuizDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        DateSection(viewModel: QuizDateSectionViewModel(quiz: quiz))
-        Divider().padding(.horizontal, 16)
+        if let assDateSectionViewModel = viewModel.assignmentDateSectionViewModel {
+            DateSection(viewModel: assDateSectionViewModel)
+            Divider().padding(.horizontal, 16)
+        } else if let quizDateSectionViewModel = viewModel.quizDateSectionViewModel {
+            DateSection(viewModel: quizDateSectionViewModel)
+            Divider().padding(.horizontal, 16)
+        }
 
         if viewModel.showSubmissions {
-            //if assignment TODO
-            let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: viewModel.courseID, assignmentID: assignment.id, submissionTypes: assignment.submissionTypes)
-            SubmissionBreakdown(viewModel: viewModel)
-
+            if let assViewModel = viewModel.assignmentSubmissionBreakdownViewModel {
+                SubmissionBreakdown(viewModel: assViewModel)
+            } else if let quizViewModel = viewModel.quizSubmissionBreakdownViewModel {
+                SubmissionBreakdown(viewModel: quizViewModel)
+            }
             Divider().padding(.horizontal, 16)
         }
 

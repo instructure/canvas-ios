@@ -1120,6 +1120,7 @@
 		D97F991828C0FD8F002F3495 /* QuizDateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */; };
 		D97F991B28C75C10002F3495 /* SubmissionBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModel.swift */; };
 		D97F991D28C75D88002F3495 /* AssignmentSubmissionBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991C28C75D88002F3495 /* AssignmentSubmissionBreakdownViewModel.swift */; };
+		D97F991F28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991E28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift */; };
 		D9BFFC7325921C04001B5E7B /* ContextCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */; };
 		D9D7EBD127AD7A8D00544339 /* CourseDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7EBCF27AD7A8D00544339 /* CourseDetailsView.swift */; };
 		D9D7EBD227AD7A8D00544339 /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7EBD027AD7A8D00544339 /* CourseDetailsViewModel.swift */; };
@@ -2562,6 +2563,7 @@
 		D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDateSectionViewModel.swift; sourceTree = "<group>"; };
 		D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewModel.swift; sourceTree = "<group>"; };
 		D97F991C28C75D88002F3495 /* AssignmentSubmissionBreakdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionBreakdownViewModel.swift; sourceTree = "<group>"; };
+		D97F991E28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionBreakdownViewModel.swift.swift; sourceTree = "<group>"; };
 		D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardTests.swift; sourceTree = "<group>"; };
 		D9D7EBCF27AD7A8D00544339 /* CourseDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsView.swift; sourceTree = "<group>"; };
 		D9D7EBD027AD7A8D00544339 /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -6016,6 +6018,7 @@
 				D9FE691828B7A4EC00895930 /* QuizDetailsViewModel.swift */,
 				D9FE691928B7A4EC00895930 /* QuizEditorViewModel.swift */,
 				D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */,
+				D97F991E28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7283,6 +7286,7 @@
 				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
 				CF575E3F26667AB700F8515F /* GetLatestAnnouncements.swift in Sources */,
+				D97F991F28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift in Sources */,
 				7D5400B3252BD3D7003691F4 /* APIMock.swift in Sources */,
 				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
