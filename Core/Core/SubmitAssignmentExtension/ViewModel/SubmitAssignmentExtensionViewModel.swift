@@ -46,7 +46,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
     // MARK: - Preview Support
 
     public init(coursePickerViewModel: CoursePickerViewModel) {
-        self.submissionService = AttachmentSubmissionService()
+        self.submissionService = AttachmentSubmissionService(submissionAssembly: .makeShareExtensionAssembly())
         self.shareCompleted = {}
         self.coursePickerViewModel = coursePickerViewModel
     }

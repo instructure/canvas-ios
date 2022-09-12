@@ -24,12 +24,12 @@ import CoreData
  */
 public class FileUploadProgressObserver: NSObject {
     /** This publisher is signalled when the upload finishes. At this point either the file's `apiID` or `error` property is non-nil. */
-    public private(set) lazy var uploadCompleted: AnyPublisher<Void, FileSubmissionErrors.CoreData> = completionSubject.eraseToAnyPublisher()
+    public private(set) lazy var uploadCompleted: AnyPublisher<Void, FileSubmissionErrors.UploadProgress> = completionSubject.eraseToAnyPublisher()
     public let fileUploadItemID: NSManagedObjectID
 
     private let context: NSManagedObjectContext
     private let decoder: JSONDecoder
-    private let completionSubject = PassthroughSubject<Void, FileSubmissionErrors.CoreData>()
+    private let completionSubject = PassthroughSubject<Void, FileSubmissionErrors.UploadProgress>()
     private var receivedFileID: String?
 
     public init(context: NSManagedObjectContext, fileUploadItemID: NSManagedObjectID) {
@@ -52,11 +52,16 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if error?.isBackgroundSessionDisconnected == true {
+            completionSubject.send(completion: .failure(.uploadContinuedInApp))
+            return
+        }
+
         context.performAndWait { [weak self] in
             guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
                   let self = self
             else {
-                completionSubject.send(completion: .failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
+                completionSubject.send(completion: .failure(.coreData(.uploadItemNotFound)))
                 return
             }
 
@@ -82,5 +87,15 @@ extension FileUploadProgressObserver: URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         guard let response = try? decoder.decode(APIFile.self, from: data) else { return }
         receivedFileID = response.id.value
+    }
+}
+
+extension Error {
+    var isBackgroundSessionDisconnected: Bool {
+        guard let error = self as? URLError,
+              error.code == .backgroundSessionWasDisconnected
+        else { return false }
+
+        return true
     }
 }

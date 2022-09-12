@@ -137,7 +137,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
         let completionExpectation = expectation(description: "completion got signalled")
         let subscription = testee.uploadCompleted.sink { completion in
             if case .failure(let error) = completion {
-                XCTAssertEqual(error, FileSubmissionErrors.CoreData.uploadItemNotFound)
+                XCTAssertEqual(error, .coreData(.uploadItemNotFound))
             } else {
                 XCTFail()
             }
@@ -150,6 +150,24 @@ class FileUploadProgressObserverTests: CoreTestCase {
 
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
+    }
 
+    func testReportsUploadContinuedInAppError() {
+        let uploadItem: FileUploadItem = databaseClient.insert()
+        let testee = FileUploadProgressObserver(context: databaseClient, fileUploadItemID: uploadItem.objectID)
+        let completionExpectation = expectation(description: "completion got signalled")
+        let subscription = testee.uploadCompleted.sink { completion in
+            if case .failure(let error) = completion {
+                XCTAssertEqual(error, .uploadContinuedInApp)
+            } else {
+                XCTFail()
+            }
+            completionExpectation.fulfill()
+        } receiveValue: { _ in }
+
+        testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: URLError(.backgroundSessionWasDisconnected))
+
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
     }
 }

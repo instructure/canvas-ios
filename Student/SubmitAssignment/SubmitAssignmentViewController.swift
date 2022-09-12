@@ -37,18 +37,19 @@ class SubmitAssignmentViewController: UIViewController {
             AppEnvironment.shared.userDidLogin(session: session)
         }
 
+        let shareCompleted = { [weak self] in
+           performUIUpdate {
+               self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+           }
+        }
+
         // extensionContext is nil in init so we have to initialize here
         attachmentCopyService = AttachmentCopyService(extensionContext: extensionContext)
-        attachmentSubmissionService = AttachmentSubmissionService()
+        attachmentSubmissionService = AttachmentSubmissionService(submissionAssembly: .makeShareExtensionAssembly(shareCompleted: shareCompleted))
         viewModel = SubmitAssignmentExtensionViewModel(
             attachmentCopyService: attachmentCopyService,
             submissionService: attachmentSubmissionService,
-            shareCompleted: { [weak self] in
-                performUIUpdate {
-                    self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-                }
-            }
-        )
+            shareCompleted: shareCompleted)
 
         embed(CoreHostingController(SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
     }

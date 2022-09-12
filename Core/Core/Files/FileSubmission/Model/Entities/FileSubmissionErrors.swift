@@ -30,6 +30,10 @@ public struct FileSubmissionErrors {
         case submissionFailed
         case coreData(CoreData)
     }
+    public enum UploadProgress: Error, Equatable {
+        case uploadContinuedInApp
+        case coreData(CoreData)
+    }
 
     public struct RequestUploadTargetUnknownError: Error, Equatable {}
 }

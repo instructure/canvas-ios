@@ -25,7 +25,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         let fileURL = URL.temporaryDirectory.appendingPathComponent("loadFileURL.txt", isDirectory: false)
         try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
 
-        let testee = AttachmentSubmissionService()
+        let testee = AttachmentSubmissionService(submissionAssembly: .makeShareExtensionAssembly())
         let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment")
         RunLoop.main.run(until: Date() + 0.1)
 

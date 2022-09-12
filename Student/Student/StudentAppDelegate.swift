@@ -38,6 +38,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }()
 
     private var shouldSetK5StudentView = false
+    private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
@@ -150,8 +151,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func applicationWillEnterForeground(_ application: UIApplication) {
         BackgroundVideoPlayer.shared.reconnect()
     }
-
-    private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()

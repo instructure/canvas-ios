@@ -32,11 +32,13 @@ public class FileSubmissionAssembly {
         - container: The CoreData database.
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
+        - shareCompleted: This block gets called when the app takes over the management of the upload and the share extension can be closed.
      */
-    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API) {
+    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API, shareCompleted: (() -> Void)? = nil) {
         /** A background context so we can work with it from any background thread. */
         let backgroundContext = container.newBackgroundContext()
-        backgroundContext.mergePolicy = NSMergePolicy.overwrite
+        // If the app takes control of the upload respect what it does in CoreData and discard our context's changes
+        backgroundContext.mergePolicy = NSMergePolicy.rollback
         let backgroundSessionCompletion = BackgroundSessionCompletion()
         let fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
         let cleaner = FileSubmissionCleanup(context: backgroundContext)
@@ -55,10 +57,13 @@ public class FileSubmissionAssembly {
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
                 .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
                 .sink { completion in
-                    if case .failure(let error) = completion,
-                       ((error as? FileSubmissionErrors.UploadFinishedCheck) == .uploadFailed ||
-                        (error as? FileSubmissionErrors.Submission) == .submissionFailed) {
+                    if case .failure(let error) = completion {
+                        if ((error as? FileSubmissionErrors.UploadFinishedCheck) == .uploadFailed ||
+                            (error as? FileSubmissionErrors.Submission) == .submissionFailed) {
                         notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
+                        } else if (error as? FileSubmissionErrors.UploadProgress) == .uploadContinuedInApp {
+                            shareCompleted?()
+                        }
                     }
                     subscription?.cancel()
                     subscription = nil
@@ -108,10 +113,11 @@ public class FileSubmissionAssembly {
 extension FileSubmissionAssembly {
     public static let ShareExtensionSessionID = "com.instructure.icanvas.SubmitAssignment.file-uploads"
 
-    public static func makeShareExtensionAssembly() -> FileSubmissionAssembly {
+    public static func makeShareExtensionAssembly(shareCompleted: (() -> Void)? = nil) -> FileSubmissionAssembly {
         FileSubmissionAssembly(container: AppEnvironment.shared.database,
                                sessionID: ShareExtensionSessionID,
                                sharedContainerID: "group.instructure.shared",
-                               api: AppEnvironment.shared.api)
+                               api: AppEnvironment.shared.api,
+                               shareCompleted: shareCompleted)
     }
 }

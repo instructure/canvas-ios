@@ -22,7 +22,7 @@ public class AttachmentSubmissionService {
     private let submissionAssembly: FileSubmissionAssembly
     private var existingSubmissionID: NSManagedObjectID?
 
-    public init(submissionAssembly: FileSubmissionAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()) {
+    public init(submissionAssembly: FileSubmissionAssembly) {
         self.submissionAssembly = submissionAssembly
     }
 
