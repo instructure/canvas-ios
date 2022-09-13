@@ -181,7 +181,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     @IBAction func reminderButtonTapped() {
         let dateBinding = Binding(get: { self.selectedDate },
                                   set: { self.reminderDateChanged(selectedDate: $0) })
-        CoreDatePicker.pickDate(for: dateBinding, with: minDate...maxDate, from: self)
+        CoreDatePicker.pickDate(for: dateBinding, minDate: minDate, maxDate: maxDate, from: self)
     }
 
     @IBAction func reminderDateChanged(selectedDate: Date?) {

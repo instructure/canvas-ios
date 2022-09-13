@@ -60,19 +60,19 @@ struct AssignmentOverridesEditor: View {
                     }
                 })
                 Divider()
-                ButtonRow(action: { CoreDatePicker.pickDate(for: unlockAt, from: controller) }, content: {
+                ButtonRow(action: { CoreDatePicker.pickDate(for: unlockAt, maxDate: lockAt.wrappedValue, from: controller) }, content: {
                     Text("Available from", bundle: .core)
                     Spacer()
-                    if let dateValidator = unlockAt.wrappedValue {
-                        Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                    if let unlockAt = unlockAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: unlockAt, dateStyle: .medium, timeStyle: .short))
                     }
                 })
                 Divider()
-                ButtonRow(action: { CoreDatePicker.pickDate(for: lockAt, from: controller) }, content: {
+                ButtonRow(action: { CoreDatePicker.pickDate(for: lockAt, minDate: unlockAt.wrappedValue, from: controller) }, content: {
                     Text("Available until", bundle: .core)
                     Spacer()
-                    if let dateValidator = lockAt.wrappedValue {
-                        Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                    if let lockAt = lockAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))
                     }
                 })
                 Divider()

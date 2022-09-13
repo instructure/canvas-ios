@@ -33,4 +33,29 @@ class CoreDatePickerTests: CoreTestCase {
         CoreDatePicker.pickDate(for: .constant(Clock.now), from: controller)
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
+
+    func testDateRange() {
+        var minDate: Date?
+        var maxDate: Date?
+        var dateRange: ClosedRange<Date> {
+            CoreDatePickerActionSheetCard.dateRange(with: minDate, max: maxDate)
+        }
+        let now = Clock.now
+        Clock.mockNow(now)
+        // no date range is set
+        XCTAssertEqual(dateRange, now.addYears(-1)...now.addYears(1))
+        minDate = now
+        // there is a minDate but no maxDate
+        XCTAssertEqual(dateRange, now...now.addYears(2))
+        maxDate = now.addDays(1)
+        // a proper date range is set
+        XCTAssertEqual(dateRange, now...now.addDays(1))
+        minDate = nil
+        // there is a maxDate but no minDate
+        XCTAssertEqual(dateRange, now.addDays(1).addYears(-2)...now.addDays(1))
+        minDate = now.addDays(1)
+        maxDate = now.addDays(-1)
+        // maxDate is before minDate (invalid date range)
+        XCTAssertEqual(dateRange, now.addYears(-1)...now.addYears(1))
+    }
 }

@@ -25,7 +25,8 @@ public enum RouteOptions: Equatable {
         _ style: UIModalPresentationStyle? = nil,
         isDismissable: Bool = true,
         embedInNav: Bool = false,
-        addDoneButton: Bool = false
+        addDoneButton: Bool = false,
+        animated: Bool = true
     )
 
     public var isModal: Bool {
@@ -44,7 +45,7 @@ public enum RouteOptions: Equatable {
 
     public var embedInNav: Bool {
         switch self {
-        case .detail, .modal(_, _, embedInNav: true, _):
+        case .detail, .modal(_, _, embedInNav: true, _, _):
             return true
         default:
             return false
@@ -55,7 +56,7 @@ public enum RouteOptions: Equatable {
 #if DEBUG
 extension RouteOptions: Codable {
     enum CodingKeys: String, CodingKey {
-        case type, style, isDissmissable, embedInNav, addDoneButton
+        case type, style, isDissmissable, embedInNav, addDoneButton, animated
     }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -69,7 +70,8 @@ extension RouteOptions: Codable {
                 container.decodeIfPresent(Int.self, forKey: .style).flatMap { UIModalPresentationStyle(rawValue: $0) },
                 isDismissable: container.decode(Bool.self, forKey: .isDissmissable),
                 embedInNav: container.decode(Bool.self, forKey: .embedInNav),
-                addDoneButton: container.decode(Bool.self, forKey: .addDoneButton)
+                addDoneButton: container.decode(Bool.self, forKey: .addDoneButton),
+                animated: container.decode(Bool.self, forKey: .animated)
             )
         }
     }
@@ -81,12 +83,13 @@ extension RouteOptions: Codable {
             try container.encode("push", forKey: .type)
         case .detail:
             try container.encode("push", forKey: .type)
-        case .modal(let style, let isDismissable, let embedInNav, let addDoneButton):
+        case .modal(let style, let isDismissable, let embedInNav, let addDoneButton, let animated):
             try container.encode("modal", forKey: .type)
             try container.encodeIfPresent(style?.rawValue, forKey: .style)
             try container.encode(isDismissable, forKey: .isDissmissable)
             try container.encode(embedInNav, forKey: .embedInNav)
             try container.encode(addDoneButton, forKey: .addDoneButton)
+            try container.encode(animated, forKey: .animated)
         }
     }
 }
@@ -203,7 +206,7 @@ open class Router {
         }
 
         switch options {
-        case let .modal(style, isDismissable, _, addDoneButton):
+        case let .modal(style, isDismissable, _, addDoneButton, animated):
             if addDoneButton {
                 view.addDoneButton(side: .left)
             }
@@ -214,7 +217,7 @@ open class Router {
             if !isDismissable {
                 (nav ?? view).isModalInPresentation = true
             }
-            from.present(nav ?? view, animated: true, completion: completion)
+            from.present(nav ?? view, animated: animated, completion: completion)
         case .detail:
             if from.splitViewController == nil || from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
                 from.show(view, sender: nil)

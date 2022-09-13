@@ -162,6 +162,19 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         composeButton.isHidden = teachers.isEmpty || student.isEmpty
     }
 
+    func reminderDateChanged(selectedDate: Date?) {
+        guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
+        NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate { [self] in
+            if error == nil {
+                reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
+                self.selectedDate = selectedDate
+            } else {
+                reminderSwitch.setOn(false, animated: true)
+                reminderSwitchChanged()
+            }
+        } }
+    }
+
     @IBAction func reminderSwitchChanged() {
         guard let assignment = assignment.first else { return }
         if reminderSwitch.isOn {
@@ -194,7 +207,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBAction func reminderDateButtonPressed(_ sender: Any) {
         let dateBinding = Binding(get: { self.selectedDate },
                                   set: { self.reminderDateChanged(selectedDate: $0) })
-        CoreDatePicker.pickDate(for: dateBinding, with: minDate...maxDate, from: self)
+        CoreDatePicker.pickDate(for: dateBinding, minDate: minDate, maxDate: maxDate, from: self)
     }
 
     @IBAction func compose() {
@@ -217,20 +230,5 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             hiddenMessage: hiddenMessage
         )
         env.router.show(compose, from: self, options: .modal(embedInNav: true), analyticsRoute: "/conversations/compose")
-    }
-}
-
-extension AssignmentDetailsViewController {
-    func reminderDateChanged(selectedDate: Date?) {
-        guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
-        NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate {
-            if error == nil {
-                self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
-                self.selectedDate = selectedDate
-            } else {
-                self.reminderSwitch.setOn(false, animated: true)
-                self.reminderSwitchChanged()
-            }
-        } }
     }
 }

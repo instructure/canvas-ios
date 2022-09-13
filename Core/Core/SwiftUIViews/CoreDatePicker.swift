@@ -20,21 +20,21 @@ import SwiftUI
 
 public struct CoreDatePicker {
 
-    public static func pickDate(for date: Binding<Date?>, with dateRange: ClosedRange<Date>? = nil, from controller: UIViewController) {
+    public static func pickDate(for date: Binding<Date?>, minDate: Date? = nil, maxDate: Date? = nil, from controller: UIViewController) {
         let env = AppEnvironment.shared
-        let dateRange = dateRange ?? Clock.now.addYears(-1)...Clock.now.addYears(1)
-        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date, dateRange: dateRange))
+        let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date, minDate: minDate, maxDate: maxDate))
         picker.view.backgroundColor = UIColor.clear
         env.router.show(picker,
                         from: controller,
                         options: .modal(.overFullScreen,
                                         isDismissable: true,
                                         embedInNav: false,
-                                        addDoneButton: false))
+                                        addDoneButton: false,
+                                        animated: false))
     }
 
-    public static func pickDate(for date: Binding<Date?>, with dateRange: ClosedRange<Date>? = nil, from controller: WeakViewController) {
-        self.pickDate(for: date, with: dateRange, from: controller.value)
+    public static func pickDate(for date: Binding<Date?>, minDate: Date? = nil, maxDate: Date? = nil, from controller: WeakViewController) {
+        self.pickDate(for: date, minDate: minDate, maxDate: maxDate, from: controller.value)
     }
 }
 
@@ -46,35 +46,32 @@ public struct CoreDatePickerActionSheetCard: View {
     @State private var selectedDate: Date
     @Binding private var selectionDate: Date?
 
-    private let heightToDisappear = UIScreen.main.bounds.height
-    private let backgroundColor = Color.backgroundLightest
-
     private var pickerDateRange: ClosedRange<Date>
 
-    public init(selection: Binding<Date?>, dateRange: ClosedRange<Date> = Clock.now...Clock.now.addYears(1)) {
+    public init(selection: Binding<Date?>, minDate: Date?, maxDate: Date?) {
         _selectionDate = selection
         _selectedDate = State<Date>(initialValue: selection.wrappedValue ?? Clock.now)
-        pickerDateRange = dateRange
+        pickerDateRange = CoreDatePickerActionSheetCard.dateRange(with: minDate, max: maxDate)
     }
 
     public var body: some View {
         ZStack {
             grayView
                 .opacity(grayViewOpacity)
-                .animation(.easeInOut.delay(0.2), value: grayViewOpacity)
+                .animation(.easeOut(duration: 0.2), value: grayViewOpacity)
                 .onTapGesture {
                     dismissPresentation()
                 }
             VStack {
                 Spacer()
                 itemsView
-                    .background(backgroundColor)
-                    .animation(.easeInOut.delay(0.2), value: animationOffset)
+                    .background(Color.backgroundLightest)
+                    .animation(.easeOut(duration: 0.2), value: animationOffset)
                     .offset(x: 0.0, y: animationOffset)
                     .onAppear {
                         self.animationOffset = 0.0
                     }
-            }
+            }.ignoresSafeArea()
         }
         .onAppear {
             grayViewOpacity = 0.5
@@ -100,7 +97,8 @@ public struct CoreDatePickerActionSheetCard: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 10)
+            .padding(.top, 10)
+            .padding(.bottom, 0)
 
             DatePicker(selection: $selectedDate, in: pickerDateRange) {}
             .padding(.bottom, 14)
@@ -111,16 +109,32 @@ public struct CoreDatePickerActionSheetCard: View {
 
     private var grayView: some View {
         Rectangle()
-            .frame(width: UIScreen.main.bounds.width,
-                   height: UIScreen.main.bounds.height)
+            .frame(width: .infinity,
+                   height: .infinity)
             .background(Color.clear)
             .ignoresSafeArea()
+    }
+
+    static func dateRange(with min: Date?, max: Date?) -> ClosedRange<Date> {
+        if let min = min, let max = max, min < max {
+            return min...max
+        }
+
+        if let min = min, max == nil {
+            return min...min.addYears(2)
+        }
+
+        if let max = max, min == nil {
+            return max.addYears(-2)...max
+        }
+
+        return Clock.now.addYears(-1)...Clock.now.addYears(1)
     }
 
     private func dismissPresentation() {
         animationOffset = 300
         grayViewOpacity = 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.controller.value.dismiss(animated: false)
         }
     }
@@ -128,10 +142,12 @@ public struct CoreDatePickerActionSheetCard: View {
 
 #if DEBUG
 
-private struct CoreDatePickerActionSheetCard_Previews: PreviewProvider {
+struct CoreDatePickerActionSheetCard_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            CoreDatePickerActionSheetCard(selection: .constant(Date()), dateRange: Clock.now...Clock.now.addDays(5))
+        ForEach(ColorScheme.allCases, id: \.self) {
+            VStack {
+                CoreDatePickerActionSheetCard(selection: .constant(Date()), minDate: Clock.now, maxDate: Clock.now.addDays(5))
+            }.preferredColorScheme($0)
         }
     }
 }
