@@ -30,6 +30,12 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
         testee = BackgroundURLSessionProvider(sessionID: "testSession", sharedContainerID: "testContainer", uploadProgressObserversCache: mockUploadProgressObserversCache)
     }
 
+    override func tearDown() {
+        testee = nil
+        mockUploadProgressObserversCache = nil
+        super.tearDown()
+    }
+
     // MARK: - URLSession Lifecycle Tests
 
     func testURLSessionProperties() {

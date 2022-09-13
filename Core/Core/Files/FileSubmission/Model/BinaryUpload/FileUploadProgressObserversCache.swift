@@ -45,7 +45,7 @@ public class FileUploadProgressObserversCache: NSObject {
         self.factory = factory
     }
 
-    public func makeObjectID(url stringURL: String?) -> NSManagedObjectID? {
+    private func makeObjectID(url stringURL: String?) -> NSManagedObjectID? {
         guard
             let stringURL = stringURL,
             let url = URL(string: stringURL)
@@ -57,29 +57,29 @@ public class FileUploadProgressObserversCache: NSObject {
     /**
      - returns: The `FileUploadProgressObserver` for the given upload item either from the cache or a newly created instance.
      */
-    public func retrieveProgressObserver(fileUploadItemID: NSManagedObjectID, fileSubmissionID: NSManagedObjectID) -> FileUploadProgressObserver {
-        if let observer = observerCache[fileUploadItemID] {
+    private func retrieveProgressObserver(_ uploadInfo: (submissionID: NSManagedObjectID, itemID: NSManagedObjectID)) -> FileUploadProgressObserver {
+        if let observer = observerCache[uploadInfo.itemID] {
             return observer
         }
 
-        let observer = factory(fileSubmissionID, fileUploadItemID)
+        let observer = factory(uploadInfo.submissionID, uploadInfo.itemID)
         removeObserverOnCompletion(observer)
-        observerCache[fileUploadItemID] = observer
+        observerCache[uploadInfo.itemID] = observer
         return observer
     }
 
-    private func retrieveProgressObserver(taskID: String?) -> FileUploadProgressObserver? {
-        var observer: FileUploadProgressObserver?
+    private func objectIDs(from taskID: String?) -> (submissionID: NSManagedObjectID, itemID: NSManagedObjectID)? {
+        var result: (submissionID: NSManagedObjectID, itemID: NSManagedObjectID)?
 
         context.performAndWait { [self] in
             guard let managedObjectID = makeObjectID(url: taskID),
                   let uploadItem = try? context.existingObject(with: managedObjectID) as? FileUploadItem
             else { return }
-            observer = retrieveProgressObserver(fileUploadItemID: managedObjectID,
-                                                fileSubmissionID: uploadItem.fileSubmission.objectID)
+
+            result = (submissionID: uploadItem.fileSubmission.objectID, itemID: managedObjectID)
         }
 
-        return observer
+        return result
     }
 
     private func removeObserverOnCompletion(_ observer: FileUploadProgressObserver) {
@@ -96,17 +96,23 @@ public class FileUploadProgressObserversCache: NSObject {
 extension FileUploadProgressObserversCache: URLSessionTaskDelegate {
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        retrieveProgressObserver(taskID: task.taskID)?.urlSession(session, task: task, didSendBodyData: bytesSent, totalBytesSent: totalBytesSent, totalBytesExpectedToSend: totalBytesExpectedToSend)
+        guard let uploadData = objectIDs(from: task.taskID) else { return }
+        let observer = retrieveProgressObserver(uploadData)
+        observer.urlSession(session, task: task, didSendBodyData: bytesSent, totalBytesSent: totalBytesSent, totalBytesExpectedToSend: totalBytesExpectedToSend)
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        retrieveProgressObserver(taskID: task.taskID)?.urlSession(session, task: task, didCompleteWithError: error)
+        guard let uploadData = objectIDs(from: task.taskID) else { return }
+        let observer = retrieveProgressObserver(uploadData)
+        observer.urlSession(session, task: task, didCompleteWithError: error)
     }
 }
 
 extension FileUploadProgressObserversCache: URLSessionDataDelegate {
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        retrieveProgressObserver(taskID: dataTask.taskID)?.urlSession(session, dataTask: dataTask, didReceive: data)
+        guard let uploadData = objectIDs(from: dataTask.taskID) else { return }
+        let observer = retrieveProgressObserver(uploadData)
+        observer.urlSession(session, dataTask: dataTask, didReceive: data)
     }
 }

@@ -30,7 +30,6 @@ public class BackgroundSessionCompletion {
                 return
             }
 
-            Logger.shared.log()
             DispatchQueue.main.async {
                 callback()
                 self?.callback = nil
