@@ -39,6 +39,7 @@ class FileUploadTargetTests: XCTestCase {
 
     func testTransformerRegistration() {
         // MARK: - GIVEN
+        ValueTransformer.setValueTransformer(nil, forName: FileUploadTargetTransformer.name)
         for transformerName in ValueTransformer.valueTransformerNames() {
             XCTAssertFalse(ValueTransformer(forName: transformerName) is FileUploadTargetTransformer)
         }

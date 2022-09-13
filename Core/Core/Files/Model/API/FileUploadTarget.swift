@@ -58,11 +58,11 @@ public class FileUploadTarget: NSObject, Codable, NSSecureCoding {
 }
 
 class FileUploadTargetTransformer: NSSecureUnarchiveFromDataTransformer {
+    static let name = NSValueTransformerName(rawValue: String(describing: FileUploadTargetTransformer.self))
     override static var allowedTopLevelClasses: [AnyClass] { [FileUploadTarget.self] }
 
     static func register() {
         let transformer = FileUploadTargetTransformer()
-        let name = NSValueTransformerName(rawValue: String(describing: FileUploadTargetTransformer.self))
         ValueTransformer.setValueTransformer(transformer, forName: name)
     }
 }
