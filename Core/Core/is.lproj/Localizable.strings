@@ -374,6 +374,9 @@
 "Cancel" = "Hætta við";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Hætta við skil?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas leiðarvísar";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Villa";
 
 /* No comment provided by engineer. */
+"Error Details" = "Upplýsingar um villu";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Villa við að vista. Smelltu til að reyna aftur.";
 
 /* No comment provided by engineer. */
@@ -848,6 +854,9 @@
 "Fail" = "Tókst ekki";
 
 /* No comment provided by engineer. */
+"Failed to get file upload target." = "Mistókst að sækja skráarupphleðslumarkmið.";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Ekki tókst að vista mynd";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Skrá";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Skrá (fileName) stærð (stærð).";
 
 /* No comment provided by engineer. */
 "File Details" = "Upplýsingar um skrá";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Innhólf";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Ósamrýmanleg skráargerð";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ólokið";
@@ -1358,6 +1373,9 @@
 "Nickname" = "Gælunafn";
 
 /* No comment provided by engineer. */
+"No" = "Nei";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Engar tilkynningar";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Enn er verið að hlaða upp skilunum þínum. Útskráning gæti truflað ferlið.\nViltu örugglega skrá þig út?";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Ekki tókst að hlaða upp einni eða fleiri skrám. Athugaðu nettenginguna þína og reyndu aftur að skila.";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Aðeins aðgengilegt nemendum með tengil";
@@ -1718,6 +1739,12 @@
 "Remove File" = "Fjarlægja skrá";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "Fjarlægja skrá úr skilum.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Fjarlægja af lista?";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Fjarlægt %1$@";
 
 /* No comment provided by engineer. */
@@ -1871,6 +1898,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Session completed without error or file ID." = "Lotu lokið án villu eða skráarauðkennis.";
+
+/* No comment provided by engineer. */
 "Set \"Home\" to..." = "Stilla „Heima“ á...";
 
 /* No comment provided by engineer. */
@@ -1967,10 +1997,22 @@
 "Subject" = "Efni";
 
 /* No comment provided by engineer. */
+"Submission" = "Skil";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Skil %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Athugasemd með skilum";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Mistókst að skila";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Skil mistókust vegna óþekktrar villu.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Skil tókust!";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Tegundir skila";
@@ -2019,6 +2061,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Taka mynd";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Smelltu hér til að fá upplýsingar";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Smelltu hér til að fá hjálp.";
@@ -2159,6 +2204,9 @@
 "This page has been disabled for this course." = "Slökkt hefur verið á þessari síðu fyrir þetta námskeið.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Þetta hættir við og eyðir upphleðslunni þinni.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Þetta fjarlægir skiladag og alla tengda viðtakendur.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2285,28 @@
 "Updating" = "Uppfæri";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Upphleðslu lokið.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Upphleðsla mistókst.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Hlaða upp skrá";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Upphleðsla í gangi";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Upphleðsla í gangi (Int(100 * framvinda))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Upphleðsla %1$@ er í %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Hleð upp %1$@ af %2$@";
+
+/* No comment provided by engineer. */
+"Uploading submission" = "Hlaða upp skilum";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Hleð upp...";
@@ -2394,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Netfangið þitt";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Skil skjals tókust.\nNjóttu dagsins!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Verkefnalistinn þinn er tómur. Kominn tími á að hlaða rafhlöðurnar.";

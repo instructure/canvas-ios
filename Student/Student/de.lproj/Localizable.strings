@@ -215,6 +215,10 @@
 /* Title of the new announcement view */
 "Announcement" = "Ankündigung";
 
+/* Announcements title
+   Title for the announcements view controller */
+"Announcements" = "Ankündigungen";
+
 /* Archive selected messages button
    mark a message as archived */
 "Archive" = "Archivieren";

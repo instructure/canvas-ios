@@ -70,6 +70,14 @@ class WebSitePreviewViewModel: ObservableObject {
             request.addValue(value, forHTTPHeaderField: key)
         }
 
-        AppEnvironment.shared.router.show(CoreHostingController(WebView(request: request).navigationTitle("WebSite Preview")), from: viewController)
+        AppEnvironment.shared.router.show(
+            CoreHostingController(
+                WebView(
+                    request: request,
+                    pullToRefresh: .disabled
+                )
+                .navigationTitle("WebSite Preview")
+            ), from: viewController
+        )
     }
 }

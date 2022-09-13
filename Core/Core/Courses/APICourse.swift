@@ -70,6 +70,7 @@ public struct APICourse: Codable, Equatable {
     // let blueprint: Bool?
     // let blueprint_restrictions: ?
     // let blueprint_restrictions_by_object_type: ?
+    let banner_image_download_url: String?
     let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
     var is_favorite: Bool? // include[]=favorites
     let sections: [SectionRef]? // include[]=sections
@@ -151,6 +152,7 @@ extension APICourse {
         hide_final_grades: Bool? = false,
         homeroom_course: Bool? = false,
         access_restricted_by_date: Bool? = nil,
+        banner_image_download_url: String? = nil,
         image_download_url: String? = nil,
         is_favorite: Bool? = nil,
         sections: [SectionRef]? = nil
@@ -174,6 +176,7 @@ extension APICourse {
             hide_final_grades: hide_final_grades,
             homeroom_course: homeroom_course,
             access_restricted_by_date: access_restricted_by_date,
+            banner_image_download_url: banner_image_download_url,
             image_download_url: image_download_url,
             is_favorite: is_favorite,
             sections: sections
@@ -227,6 +230,7 @@ public struct GetCoursesRequest: APIRequestable {
     }
 
     private enum Include: String, CaseIterable {
+        case banner_image
         case course_image
         case current_grading_period_scores
         case favorites
@@ -285,6 +289,7 @@ public struct GetCourseRequest: APIRequestable {
 
     public enum Include: String, CaseIterable {
         case courseImage = "course_image"
+        case courseBannerImage = "banner_image"
         case currentGradingPeriodScores = "current_grading_period_scores"
         case favorites
         case permissions
@@ -297,6 +302,7 @@ public struct GetCourseRequest: APIRequestable {
 
     let courseID: String
     public static let defaultIncludes: [Include] = [
+        .courseBannerImage,
         .courseImage,
         .currentGradingPeriodScores,
         .favorites,
