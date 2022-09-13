@@ -42,7 +42,7 @@ public class FileUploadTarget: NSObject, Codable, NSSecureCoding {
     public required init?(coder: NSCoder) {
         guard
             let upload_url = coder.decodeObject(of: NSURL.self, forKey: "upload_url") as? URL,
-            let upload_params = coder.decodeObject(of: [NSDictionary.self, NSString.self], forKey: "upload_params") as? [String: String?]
+            let upload_params = coder.decodeObject(of: [NSDictionary.self, NSString.self, NSNull.self], forKey: "upload_params") as? [String: String?]
         else {
             return nil
         }

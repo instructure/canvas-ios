@@ -846,6 +846,7 @@
 		CF24634628CA298200A77A88 /* BackgroundSessionCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */; };
 		CF24634828CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */; };
 		CF24634A28CB317300A77A88 /* FileSubmissionAssemblyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634928CB317300A77A88 /* FileSubmissionAssemblyTests.swift */; };
+		CF24634C28D065D100A77A88 /* FileUploadTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634B28D065D100A77A88 /* FileUploadTargetTests.swift */; };
 		CF25022127FC26C9005D187C /* lato_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF25022027FC26C9005D187C /* lato_regular.ttf */; };
 		CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */; };
 		CF2F7E7A27FF211500942241 /* FontPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F7E7927FF211500942241 /* FontPreview.swift */; };
@@ -2318,6 +2319,7 @@
 		CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionCompletionTests.swift; sourceTree = "<group>"; };
 		CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCacheTests.swift; sourceTree = "<group>"; };
 		CF24634928CB317300A77A88 /* FileSubmissionAssemblyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionAssemblyTests.swift; sourceTree = "<group>"; };
+		CF24634B28D065D100A77A88 /* FileUploadTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetTests.swift; sourceTree = "<group>"; };
 		CF25022027FC26C9005D187C /* lato_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_regular.ttf; sourceTree = "<group>"; };
 		CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
 		CF2F7E7927FF211500942241 /* FontPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreview.swift; sourceTree = "<group>"; };
@@ -4796,6 +4798,7 @@
 			isa = PBXGroup;
 			children = (
 				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
+				CF24634B28D065D100A77A88 /* FileUploadTargetTests.swift */,
 				7D08B1D82372084B0075623A /* GetFileTests.swift */,
 				7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */,
 				B14B70562294758600B568D6 /* UploadFileCommentTests.swift */,
@@ -6933,6 +6936,7 @@
 				7D6E580E255207100068D3C3 /* DiscussionListViewControllerTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
 				EB60D0FC2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift in Sources */,
+				CF24634C28D065D100A77A88 /* FileUploadTargetTests.swift in Sources */,
 				CFDB61FA28AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift in Sources */,
 				CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */,
 				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
