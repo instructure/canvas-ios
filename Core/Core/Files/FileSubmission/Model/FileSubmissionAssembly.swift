@@ -20,7 +20,7 @@ import Combine
 import CoreData
 
 public class FileSubmissionAssembly {
-    public let composer: FileSubmissionComposer
+    public private(set) var composer: FileSubmissionComposer
 
     let backgroundURLSessionProvider: BackgroundURLSessionProvider
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester

@@ -21,7 +21,7 @@ import CoreData
 /**
  This object is responsible for managing submission entries in CoreData.
  */
-public struct FileSubmissionComposer {
+public class FileSubmissionComposer {
     private let context: NSManagedObjectContext
 
     public init(context: NSManagedObjectContext) {
@@ -67,7 +67,7 @@ public struct FileSubmissionComposer {
     }
 
     private func delete(objectID: NSManagedObjectID) {
-        context.perform {
+        context.perform { [context] in
             guard let item = try? context.existingObject(with: objectID) else { return }
             context.delete(item)
             try? context.save()
