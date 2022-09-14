@@ -18,6 +18,12 @@
 
 import Combine
 
+/**
+ The purposes of this class are
+ - Allow the task of calling the background completion block in a reactive environment.
+ - Make possible to lazy init the upload chain in `FileSubmissionAssembly` and setup the background callback after the assembly has been created.
+ - Make sure the callback block is executed on the main thread.
+ */
 public class BackgroundSessionCompletion {
     public var callback: (() -> Void)?
 

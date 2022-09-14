@@ -26,20 +26,21 @@ public class FileSubmissionAssembly {
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
     private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
     private let backgroundSessionCompletion: BackgroundSessionCompletion
+    private let shareSheet: ShareDismissBlockStorage
 
     /**
      - parameters:
         - container: The CoreData database.
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
-        - shareCompleted: This block gets called when the app takes over the management of the upload and the share extension can be closed.
      */
-    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API, shareCompleted: (() -> Void)? = nil) {
+    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API) {
         /** A background context so we can work with it from any background thread. */
         let backgroundContext = container.newBackgroundContext()
         // If the app takes control of the upload respect what it does in CoreData and discard our context's changes
         backgroundContext.mergePolicy = NSMergePolicy.rollback
         let backgroundSessionCompletion = BackgroundSessionCompletion()
+        let shareSheet = ShareDismissBlockStorage()
         let fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
         let cleaner = FileSubmissionCleanup(context: backgroundContext)
         let notificationsSender = SubmissionCompletedNotificationsSender(
@@ -62,7 +63,7 @@ public class FileSubmissionAssembly {
                             (error as? FileSubmissionErrors.Submission) == .submissionFailed) {
                         notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
                         } else if (error as? FileSubmissionErrors.UploadProgress) == .uploadContinuedInApp {
-                            shareCompleted?()
+                            shareSheet.dismiss?()
                         }
                     }
                     subscription?.cancel()
@@ -72,6 +73,7 @@ public class FileSubmissionAssembly {
         }
         let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
 
+        self.shareSheet = shareSheet
         self.backgroundSessionCompletion = backgroundSessionCompletion
         self.backgroundURLSessionProvider = backgroundURLSessionProvider
         self.composer = FileSubmissionComposer(context: backgroundContext)
@@ -108,16 +110,29 @@ public class FileSubmissionAssembly {
         composer.deleteSubmission(submissionID: submissionID)
         backgroundURLSessionProvider.session.invalidateAndCancel()
     }
+
+    /**
+     - parameters:
+        - callback: This block gets called when the app takes over the management of the upload and the share extension can be closed.
+     */
+    public func setupShareUIDismissBlock(_ callback: @escaping () -> Void) {
+        shareSheet.dismiss = callback
+    }
 }
 
 extension FileSubmissionAssembly {
     public static let ShareExtensionSessionID = "com.instructure.icanvas.SubmitAssignment.file-uploads"
 
-    public static func makeShareExtensionAssembly(shareCompleted: (() -> Void)? = nil) -> FileSubmissionAssembly {
+    public static func makeShareExtensionAssembly() -> FileSubmissionAssembly {
         FileSubmissionAssembly(container: AppEnvironment.shared.database,
                                sessionID: ShareExtensionSessionID,
                                sharedContainerID: "group.instructure.shared",
-                               api: AppEnvironment.shared.api,
-                               shareCompleted: shareCompleted)
+                               api: AppEnvironment.shared.api)
+    }
+}
+
+extension FileSubmissionAssembly {
+    class ShareDismissBlockStorage {
+        var dismiss: (() -> Void)?
     }
 }

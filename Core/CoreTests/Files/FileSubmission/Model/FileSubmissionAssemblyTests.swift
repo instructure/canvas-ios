@@ -94,9 +94,10 @@ class FileSubmissionAssemblyTests: CoreTestCase {
     func testCallsShareCompletedBlockWhenUploadContinuesInApp() {
         // MARK: - GIVEN
         let shareCompletedCallback = expectation(description: "Share completed callback called")
-        let testee = FileSubmissionAssembly.makeShareExtensionAssembly(shareCompleted: {
+        let testee = FileSubmissionAssembly.makeShareExtensionAssembly()
+        testee.setupShareUIDismissBlock {
             shareCompletedCallback.fulfill()
-        })
+        }
         let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", comment: "testComment", files: [testFileURL])
         let submission = try! databaseClient.existingObject(with: submissionID) as! FileSubmission
 
