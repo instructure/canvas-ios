@@ -99,7 +99,7 @@ struct K5GradesView: View {
                         .font(.bold24)
                         .foregroundColor(.textDarkest)
                 })
-                .accessibility(label: Text("Select grading period", bundle: .core) + Text(verbatim: ", ") + selectorStateText)
+                .accessibility(label: Text("Select Grading Period", bundle: .core) + Text(verbatim: ", ") + selectorStateText)
                 .accessibility(hint: Text(verbatim: ", \(viewModel.currentGradingPeriod.title ?? "") ,") + Text("Selected", bundle: .core))
 
             Image.arrowOpenDownLine

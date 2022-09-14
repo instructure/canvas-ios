@@ -27,15 +27,35 @@ class SyllabusTests: CoreUITestCase {
 
     func testSyllabusLoad() {
         let assignmentName = "Foobar"
-        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            Context(.course, id: course.id.value).canvasContextID: "#123456",
-        ]))
+        mockData(
+            GetCustomColorsRequest(),
+            value: APICustomColors(
+                custom_colors: [Context(.course, id: course.id.value).canvasContextID: "#123456", ]
+            )
+        )
 
-        let assignment = APIAssignment.make(description: "hello world", name: assignmentName, submission: .make())
+        let assignment = APIAssignment.make(
+            description: "hello world",
+            name: assignmentName,
+            submission: .make()
+        )
         mock(assignment: assignment)
-        mockData(GetCalendarEventsRequest(contexts: [Context(.course, id: course.id.value)], type: .event, allEvents: true), value: [
-            .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),
-        ])
+        mockData(
+            GetCalendarEventsRequest(
+                contexts: [Context(.course, id: course.id.value)],
+                type: .assignment,
+                allEvents: true,
+                importantDates: false
+            ),
+            value: [
+                .make(
+                    html_url: assignment.html_url,
+                    title: assignment.name,
+                    type: .assignment,
+                    assignment: assignment
+                ),
+            ]
+        )
         mockData(GetCourseSettingsRequest(courseID: course.id.value), value: .make())
         mockData(GetCourseRequest(courseID: course.id.value), value: course)
 
