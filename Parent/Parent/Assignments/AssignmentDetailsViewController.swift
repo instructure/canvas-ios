@@ -207,7 +207,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBAction func reminderDateButtonPressed(_ sender: Any) {
         let dateBinding = Binding(get: { self.selectedDate },
                                   set: { self.reminderDateChanged(selectedDate: $0) })
-        CoreDatePicker.pickDate(for: dateBinding, minDate: minDate, maxDate: maxDate, from: self)
+        CoreDatePicker.showDatePicker(for: dateBinding, minDate: minDate, maxDate: maxDate, from: self)
     }
 
     @IBAction func compose() {

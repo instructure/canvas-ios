@@ -52,7 +52,7 @@ struct AssignmentOverridesEditor: View {
                 })
                 Divider()
 
-                ButtonRow(action: { CoreDatePicker.pickDate(for: dueAt, from: controller) }, content: {
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: dueAt, from: controller) }, content: {
                     Text("Due", bundle: .core)
                     Spacer()
                     if let dateValidator = dueAt.wrappedValue {
@@ -60,7 +60,7 @@ struct AssignmentOverridesEditor: View {
                     }
                 })
                 Divider()
-                ButtonRow(action: { CoreDatePicker.pickDate(for: unlockAt, maxDate: lockAt.wrappedValue, from: controller) }, content: {
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: unlockAt, maxDate: lockAt.wrappedValue, from: controller) }, content: {
                     Text("Available from", bundle: .core)
                     Spacer()
                     if let unlockAt = unlockAt.wrappedValue {
@@ -68,7 +68,7 @@ struct AssignmentOverridesEditor: View {
                     }
                 })
                 Divider()
-                ButtonRow(action: { CoreDatePicker.pickDate(for: lockAt, minDate: unlockAt.wrappedValue, from: controller) }, content: {
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: lockAt, minDate: unlockAt.wrappedValue, from: controller) }, content: {
                     Text("Available until", bundle: .core)
                     Spacer()
                     if let lockAt = lockAt.wrappedValue {

@@ -20,7 +20,7 @@ import SwiftUI
 
 public struct CoreDatePicker {
 
-    public static func pickDate(for date: Binding<Date?>, minDate: Date? = nil, maxDate: Date? = nil, from controller: UIViewController) {
+    public static func showDatePicker(for date: Binding<Date?>, minDate: Date? = nil, maxDate: Date? = nil, from controller: UIViewController) {
         let env = AppEnvironment.shared
         let picker = CoreHostingController(CoreDatePickerActionSheetCard(selection: date, minDate: minDate, maxDate: maxDate))
         picker.view.backgroundColor = UIColor.clear
@@ -33,8 +33,8 @@ public struct CoreDatePicker {
                                         animated: false))
     }
 
-    public static func pickDate(for date: Binding<Date?>, minDate: Date? = nil, maxDate: Date? = nil, from controller: WeakViewController) {
-        self.pickDate(for: date, minDate: minDate, maxDate: maxDate, from: controller.value)
+    public static func showDatePicker(for date: Binding<Date?>, minDate: Date? = nil, maxDate: Date? = nil, from controller: WeakViewController) {
+        self.showDatePicker(for: date, minDate: minDate, maxDate: maxDate, from: controller.value)
     }
 }
 

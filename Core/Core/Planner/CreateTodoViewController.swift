@@ -99,7 +99,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     @IBAction func showDatePicker(_ sender: Any) {
         let dateBinding = Binding(get: { self.selectedDate },
                                   set: { self.selectedDate = $0 })
-        CoreDatePicker.pickDate(for: dateBinding, from: self)
+        CoreDatePicker.showDatePicker(for: dateBinding, from: self)
     }
 
     func refreshPlannables() {

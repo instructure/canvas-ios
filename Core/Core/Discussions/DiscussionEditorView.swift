@@ -197,7 +197,7 @@ public struct DiscussionEditorView: View {
                         .identifier("DiscussionEditor.delayedPostAtToggle")
                     Divider()
                     if let delayedPostAt = delayedPostAt {
-                        ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, maxDate: lockAt, from: controller) }, content: {
+                        ButtonRow(action: { CoreDatePicker.showDatePicker(for: $delayedPostAt, maxDate: lockAt, from: controller) }, content: {
                             Text("Post at", bundle: .core)
                             Spacer()
                             Text(DateFormatter.localizedString(from: delayedPostAt, dateStyle: .medium, timeStyle: .short))
@@ -293,7 +293,7 @@ public struct DiscussionEditorView: View {
                 )
             } else if isTeacher, !isAnnouncement {
                 EditorSection(label: Text("Availability", bundle: .core)) {
-                    ButtonRow(action: { CoreDatePicker.pickDate(for: $delayedPostAt, maxDate: lockAt, from: controller) }, content: {
+                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $delayedPostAt, maxDate: lockAt, from: controller) }, content: {
                         Text("Available from", bundle: .core)
                         Spacer()
                         if let delayedPostAt = delayedPostAt {
@@ -302,7 +302,7 @@ public struct DiscussionEditorView: View {
                     })
 
                     Divider()
-                    ButtonRow(action: { CoreDatePicker.pickDate(for: $lockAt, minDate: lockAt, from: controller) }, content: {
+                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $lockAt, minDate: lockAt, from: controller) }, content: {
                         Text("Available until", bundle: .core)
                         Spacer()
                         if let lockAt = lockAt {

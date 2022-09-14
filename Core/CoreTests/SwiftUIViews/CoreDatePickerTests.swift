@@ -24,13 +24,13 @@ class CoreDatePickerTests: CoreTestCase {
 
     func testRouting() {
         let controller = UIViewController()
-        CoreDatePicker.pickDate(for: .constant(Clock.now), from: controller)
+        CoreDatePicker.showDatePicker(for: .constant(Clock.now), from: controller)
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
 
     func testWeakRouting() {
         let controller = WeakViewController()
-        CoreDatePicker.pickDate(for: .constant(Clock.now), from: controller)
+        CoreDatePicker.showDatePicker(for: .constant(Clock.now), from: controller)
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
 
