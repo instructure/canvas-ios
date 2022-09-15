@@ -1,4 +1,5 @@
 //
+import CoreData
 // This file is part of Canvas.
 // Copyright (C) 2022-present  Instructure, Inc.
 //
@@ -15,24 +16,44 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-
 import Foundation
 
 final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
-    public let id: String
+    // MARK: - Dependencies
+
+    public let id: NSManagedObjectID
     public let assignmentName: String
-    @Published public private(set) var progress: Float
-    public let cardDidTap: () -> Void
+    private let cardDidTap: (
+        NSManagedObjectID,
+        WeakViewController
+    ) -> Void
+    private let dismissDidTap: () -> Void
+
+    // MARK: - Outputs
+
+    @Published public private(set) var isHiddenByUser: Bool
+
+    // MARK: - Init
 
     init(
-        id: String,
+        id: NSManagedObjectID,
         assignmentName: String,
-        progress: Float,
-        cardDidTap: @escaping () -> Void
+        isHiddenByUser: Bool,
+        cardDidTap: @escaping (
+            NSManagedObjectID,
+            WeakViewController
+        ) -> Void,
+        dismissDidTap: @escaping () -> Void
     ) {
         self.id = id
         self.assignmentName = assignmentName
-        self.progress = progress
+        self.isHiddenByUser = isHiddenByUser
         self.cardDidTap = cardDidTap
+        self.dismissDidTap = dismissDidTap
+    }
+
+    public func hideDidTap() {
+        isHiddenByUser = true
+        dismissDidTap()
     }
 }

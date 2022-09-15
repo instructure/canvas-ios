@@ -46,6 +46,7 @@ public class FileSubmissionComposer {
                 item.fileSize = $0.lookupFileSize()
                 return item
             })
+            fileSubmission.isHiddenOnDashboard = false
             try? context.save()
             result = fileSubmission.objectID
         }

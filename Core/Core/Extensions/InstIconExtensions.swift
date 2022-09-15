@@ -213,6 +213,7 @@ public extension UIImage {
     static var cameraLine: UIImage { UIImage(named: "cameraLine", in: .core, compatibleWith: nil)! }
     static var cameraSolid: UIImage { UIImage(named: "cameraSolid", in: .core, compatibleWith: nil)! }
     static var chatBubble: UIImage { UIImage(named: "chatBubble", in: .core, compatibleWith: nil)! }
+    static var close: UIImage { UIImage(named: "close", in: .core, compatibleWith: nil)! }
     static var collaborations: UIImage { UIImage(named: "collaborations", in: .core, compatibleWith: nil)! }
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }
@@ -433,6 +434,7 @@ public extension Image {
     static var cameraLine: Image { Image("cameraLine", bundle: .core) }
     static var cameraSolid: Image { Image("cameraSolid", bundle: .core) }
     static var chatBubble: Image { Image("chatBubble", bundle: .core) }
+    static var close: Image { Image("close", bundle: .core) }
     static var collaborations: Image { Image("collaborations", bundle: .core) }
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }

@@ -22,6 +22,7 @@ struct FileUploadNotificationCard: View {
     // MARK: - Dependencies
 
     @ObservedObject private var viewModel: FileUploadNotificationCardItemViewModel
+    @Environment(\.viewController) var viewController
 
     // MARK: - Init
 
@@ -30,28 +31,40 @@ struct FileUploadNotificationCard: View {
     }
 
     var body: some View {
-        Button(action: viewModel.cardDidTap) {
-            HStack(spacing: 16) {
-                shareImage
-                VStack(alignment: .leading, spacing: 0) {
+        // TODO: Routing to a fully functional `FileProgressListView` will be possible once
+        // the new File Upload logic is used everywhere in the app.
+        /*
+         Button {
+             viewModel.cardDidTap(
+                 viewModel.id,
+                 viewController
+             )
+         } label: {
+         */
+        HStack(spacing: 16) {
+            shareImage
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(alignment: .top) {
                     uploadingSubmissionText
-                    assignmentNameText
-                    progressView
+                    closeButton
                 }
-                .accessibilityElement(children: .combine)
-                .padding(.top, 14)
-                .padding([.bottom, .trailing], 16)
+                assignmentNameText
+                progressView
             }
-            .frame(minHeight: 58)
-            .cornerRadius(4)
-            .overlay(
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(
-                        Color(.electric),
-                        lineWidth: 1
-                    )
-            )
+            .accessibilityElement(children: .combine)
+            .padding(.top, 14)
+            .padding([.bottom, .trailing], 16)
         }
+        .frame(minHeight: 58)
+        .cornerRadius(4)
+        .overlay(
+            RoundedRectangle(cornerRadius: 4)
+                .stroke(
+                    Color(.electric),
+                    lineWidth: 1
+                )
+        )
+//        }
     }
 
     private var shareImage: some View {
@@ -72,6 +85,16 @@ struct FileUploadNotificationCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    private var closeButton: some View {
+        Button {
+            viewModel.hideDidTap()
+        } label: {
+            Image.close
+                .frame(width: 24, height: 24)
+                .foregroundColor(Color.textDarkest)
+        }
+    }
+
     private var assignmentNameText: some View {
         Text(viewModel.assignmentName)
             .font(.regular14)
@@ -80,38 +103,45 @@ struct FileUploadNotificationCard: View {
     }
 
     private var progressView: some View {
-        ProgressView(value: viewModel.progress)
+        ProgressBar()
             .foregroundColor(Color.electric)
             .background(Color.electric.opacity(0.2))
             .padding(.top, 8)
     }
 }
 
-struct FileUploadNotificationCard_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = FileUploadNotificationCardItemViewModel(
-            id: "1",
-            assignmentName: "Test assignment",
-            progress: 0.65,
-            cardDidTap: {}
-        )
+#if DEBUG
+    struct FileUploadNotificationCard_Previews: PreviewProvider {
+        static var previews: some View {
+            let env = PreviewEnvironment()
+            let context = env.globalDatabase.viewContext
+            let submission: FileSubmission = context.insert()
 
-        FileUploadNotificationCard(viewModel: viewModel)
-            .preferredColorScheme(.light)
-            .previewLayout(.sizeThatFits)
-            .environment(\.sizeCategory, .extraSmall)
+            let viewModel = FileUploadNotificationCardItemViewModel(
+                id: submission.objectID,
+                assignmentName: "Test assignment",
+                isHiddenByUser: false,
+                cardDidTap: { _, _ in },
+                dismissDidTap: {}
+            )
 
-        FileUploadNotificationCard(viewModel: viewModel)
-            .preferredColorScheme(.light)
-            .previewLayout(.sizeThatFits)
+            FileUploadNotificationCard(viewModel: viewModel)
+                .preferredColorScheme(.light)
+                .previewLayout(.sizeThatFits)
+                .environment(\.sizeCategory, .extraSmall)
 
-        FileUploadNotificationCard(viewModel: viewModel)
-            .preferredColorScheme(.light)
-            .previewLayout(.sizeThatFits)
-            .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
+            FileUploadNotificationCard(viewModel: viewModel)
+                .preferredColorScheme(.light)
+                .previewLayout(.sizeThatFits)
 
-        FileUploadNotificationCard(viewModel: viewModel)
-            .preferredColorScheme(.dark)
-            .previewLayout(.sizeThatFits)
+            FileUploadNotificationCard(viewModel: viewModel)
+                .preferredColorScheme(.light)
+                .previewLayout(.sizeThatFits)
+                .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
+
+            FileUploadNotificationCard(viewModel: viewModel)
+                .preferredColorScheme(.dark)
+                .previewLayout(.sizeThatFits)
+        }
     }
-}
+#endif

@@ -29,6 +29,7 @@ public final class FileSubmission: NSManagedObject {
     /** The user entered comment for the submission. **/
     @NSManaged public var comment: String?
     @NSManaged public var files: Set<FileUploadItem>
+    @NSManaged public var isHiddenOnDashboard: Bool
 
     // MARK: - Submission Result
 

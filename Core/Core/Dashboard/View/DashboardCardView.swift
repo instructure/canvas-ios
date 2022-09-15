@@ -29,6 +29,7 @@ public struct DashboardCardView: View {
     @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
     @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardViewModel()
 
+    @Environment(\.scenePhase) var scenePhase
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -73,6 +74,9 @@ public struct DashboardCardView: View {
                 }
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            fileUploadNotificationCardViewModel.sceneDidBecomeActive.send(())
+        }
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
             showGrade = env.userDefaults?.showGradesOnDashboard == true
         }
@@ -111,11 +115,13 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder func fileUploadNotificationCards() -> some View {
-        ForEach(fileUploadNotificationCardViewModel.fileUploads) { viewModel in
-            FileUploadNotificationCard(viewModel: viewModel)
-                .frame(maxWidth: .infinity)
-                .padding(.top, verticalSpacing)
-                .transition(.move(edge: .top))
+        ForEach(fileUploadNotificationCardViewModel.items) { viewModel in
+            if !viewModel.isHiddenByUser {
+                FileUploadNotificationCard(viewModel: viewModel)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, verticalSpacing)
+                    .transition(.move(edge: .top))
+            }
         }
     }
 

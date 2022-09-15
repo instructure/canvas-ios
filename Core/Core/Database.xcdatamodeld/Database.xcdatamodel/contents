@@ -437,6 +437,7 @@
         <attribute name="assignmentName" attributeType="String" defaultValueString=""/>
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
+        <attribute name="isHiddenOnDashboard" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="submissionError" optional="YES" attributeType="String"/>
         <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="FileUploadItem" inverseName="fileSubmission" inverseEntity="FileUploadItem"/>
