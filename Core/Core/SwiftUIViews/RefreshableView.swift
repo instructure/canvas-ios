@@ -52,7 +52,7 @@ public struct RefreshableView<Content: View>: View {
         .onPreferenceChange(ViewOffsetKey.self) { newValue in
             offset = newValue - 91
             guard !isAnimating else { return }
-            progress = min(abs((newValue - 91) / snappingPoint), 1)
+            progress = min(abs((offset) / snappingPoint), 1)
             viewState = .progress(progress)
             isVisible = progress > 0
             if progress == 1 {
