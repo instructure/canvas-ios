@@ -58,10 +58,10 @@ public class FileSubmissionAssembly {
                     .handleTermination(fileUploadItemID: fileUploadItemID)
             })
 
-            subscription = backgroundActivity
-                .start().mapError { $0 as Error }
-                .flatMap { observer.uploadCompleted.mapError { $0 as Error } }
+            subscription = observer
+                .uploadCompleted.mapError { $0 as Error }
                 .flatMap { AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID).isAllUploadFinished().mapError { $0 as Error } }
+                .flatMap { backgroundActivity.start().mapError { $0 as Error } }
                 .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID).mapError { $0 as Error } }
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
