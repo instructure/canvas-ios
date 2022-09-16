@@ -43,7 +43,6 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             }
         }
         .background(Color.backgroundLightest)
-        .animation(.default)
         .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
         .navigationTitle(viewModel.title)
         .onReceive(viewModel.presentDialog) {
@@ -128,10 +127,12 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         }
     }
 
-    private func progressView(value: Float = 0) -> some View {
-        ProgressView(value: value)
-            .foregroundColor(Color(Brand.shared.primary))
-            .background(Color(Brand.shared.primary).opacity(0.2))
+    private func progressView(value: Float? = nil) -> some View {
+        ProgressBar(
+            progress: value,
+            foregroundColor: Color(Brand.shared.primary),
+            backgroundColor: Color(Brand.shared.primary).opacity(0.2)
+        )
     }
 
     private func showAlertDialog(message: String) {
