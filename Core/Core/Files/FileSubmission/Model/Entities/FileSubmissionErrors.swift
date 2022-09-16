@@ -22,7 +22,7 @@ public struct FileSubmissionErrors {
         case uploadItemNotFound
     }
     public enum UploadFinishedCheck: Error, Equatable {
-        case notReady
+        case notFinished
         case uploadFailed
         case coreData(CoreData)
     }

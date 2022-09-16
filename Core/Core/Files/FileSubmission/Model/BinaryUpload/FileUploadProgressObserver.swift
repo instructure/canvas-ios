@@ -57,15 +57,13 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
             return
         }
 
-        context.performAndWait { [weak self] in
-            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
-                  let self = self
-            else {
+        context.performAndWait {
+            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
                 completionSubject.send(completion: .failure(.coreData(.uploadItemNotFound)))
                 return
             }
 
-            if let receivedFileID = self.receivedFileID {
+            if let receivedFileID = receivedFileID {
                 item.apiID = receivedFileID
             } else {
                 if let error = error {

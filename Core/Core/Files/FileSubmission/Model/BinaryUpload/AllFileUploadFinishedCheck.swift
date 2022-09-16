@@ -53,7 +53,7 @@ public class AllFileUploadFinishedCheck {
                     result = .success(())
                 }
             } else {
-                result = .failure(.notReady)
+                result = .failure(.notFinished)
             }
 
             promise(result)
