@@ -50,8 +50,17 @@ public class FileSubmissionAssembly {
         let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?
-            subscription = observer
-                .uploadCompleted.mapError { $0 as Error }
+
+            let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, abortHandler: {
+                subscription?.cancel()
+                subscription = nil
+                BackgroundActivityTerminationHandler(context: backgroundContext, notificationsSender: notificationsSender)
+                    .handleTermination(fileUploadItemID: fileUploadItemID)
+            })
+
+            subscription = backgroundActivity
+                .start().mapError { $0 as Error }
+                .flatMap { observer.uploadCompleted.mapError { $0 as Error } }
                 .flatMap { AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID).isAllUploadFinished().mapError { $0 as Error } }
                 .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID).mapError { $0 as Error } }
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
@@ -66,6 +75,7 @@ public class FileSubmissionAssembly {
                             shareSheet.dismiss?()
                         }
                     }
+                    backgroundActivity.stopAndWait()
                     subscription?.cancel()
                     subscription = nil
                 } receiveValue: { _ in }
