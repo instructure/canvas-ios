@@ -55,8 +55,8 @@ struct AssignmentOverridesEditor: View {
                 ButtonRow(action: { CoreDatePicker.showDatePicker(for: dueAt, from: controller) }, content: {
                     Text("Due", bundle: .core)
                     Spacer()
-                    if let dateValidator = dueAt.wrappedValue {
-                        Text(DateFormatter.localizedString(from: dateValidator, dateStyle: .medium, timeStyle: .short))
+                    if let dueAt = dueAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: dueAt, dateStyle: .medium, timeStyle: .short))
                     }
                 })
                 Divider()
