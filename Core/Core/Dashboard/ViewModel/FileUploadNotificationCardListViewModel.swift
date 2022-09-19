@@ -74,6 +74,13 @@ final class FileUploadNotificationCardViewModel: ObservableObject {
     }
 
     private func update() {
+        let submissionsToKeep = fileSubmissions
+            .map { $0.objectID }
+            .reduce(into: Set<NSManagedObjectID>()) { ids, newValue in
+                ids.insert(newValue)
+            }
+        items.removeAll { !submissionsToKeep.contains($0.id) }
+
         fileSubmissions.forEach { submission in
             if items.first(where: { $0.id == submission.objectID }) != nil {
                 switch submission.state {
