@@ -25,3 +25,35 @@ extension Future where Output == Void {
         sink(receiveCompletion: receiveCompletion, receiveValue: {})
     }
 }
+
+extension Array where Element: Future<Void, Error> {
+
+    /**
+     - returns: A `Future` that finishes when all `Future`s finish in this `Array`.
+     If any of the `Future`s fail, then this `Future` will also fail with the error of the failed upstream `Future`.
+     */
+    public func allFinished() -> Future<Void, Error> {
+        let future = Future<Void, Error> { promise in
+            // This subscription is kept alive with a retain cycle,
+            // the subscription keeps alive the publisher and the publisher
+            // keeps a strong ref to the subscription. The cycle breaks
+            // when we receive a completion from the upstream publishers.
+            var subscription: AnyCancellable?
+            subscription = Publishers
+                .MergeMany(self)
+                .collect()
+                .sink(
+                    receiveCompletion: { completion in
+                        if case .failure(let error) = completion {
+                            promise(.failure(error))
+                        }
+                        subscription?.cancel()
+                        subscription = nil
+                    },
+                    receiveValue: { _ in
+                        promise(.success(()))
+                    })
+        }
+        return future
+    }
+}

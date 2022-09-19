@@ -24,12 +24,13 @@ import CoreData
  */
 public class FileUploadProgressObserver: NSObject {
     /** This publisher is signalled when the upload finishes. At this point either the file's `apiID` or `error` property is non-nil. */
-    public private(set) lazy var completion: AnyPublisher<Void, Never> = completionSubject.eraseToAnyPublisher()
+    public private(set) lazy var uploadCompleted: AnyPublisher<Void, FileSubmissionErrors.UploadProgress> = completionSubject.eraseToAnyPublisher()
+    public let fileUploadItemID: NSManagedObjectID
 
     private let context: NSManagedObjectContext
-    private let fileUploadItemID: NSManagedObjectID
     private let decoder: JSONDecoder
-    private let completionSubject = PassthroughSubject<Void, Never>()
+    private let completionSubject = PassthroughSubject<Void, FileSubmissionErrors.UploadProgress>()
+    private var receivedFileID: String?
 
     public init(context: NSManagedObjectContext, fileUploadItemID: NSManagedObjectID) {
         self.context = context
@@ -51,13 +52,25 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        context.performAndWait {
-            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
+        if error?.isBackgroundSessionDisconnected == true {
+            completionSubject.send(completion: .failure(.uploadContinuedInApp))
+            return
+        }
 
-            if item.apiID == nil, error == nil {
-                item.uploadError = NSLocalizedString("Session completed without error or file ID.", comment: "")
+        context.performAndWait {
+            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
+                completionSubject.send(completion: .failure(.coreData(.uploadItemNotFound)))
+                return
+            }
+
+            if let receivedFileID = receivedFileID {
+                item.apiID = receivedFileID
             } else {
-                item.uploadError = error?.localizedDescription
+                if let error = error {
+                    item.uploadError = error.localizedDescription
+                } else {
+                    item.uploadError = NSLocalizedString("Upload failed due to unknown reason.", comment: "")
+                }
             }
 
             try? context.save()
@@ -70,14 +83,17 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
 extension FileUploadProgressObserver: URLSessionDataDelegate {
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        context.performAndWait {
-            guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
-                  let response = try? decoder.decode(APIFile.self, from: data)
-            else { return }
+        guard let response = try? decoder.decode(APIFile.self, from: data) else { return }
+        receivedFileID = response.id.value
+    }
+}
 
-            item.apiID = response.id.value
-            item.uploadError = nil
-            try? context.save()
-        }
+extension Error {
+    var isBackgroundSessionDisconnected: Bool {
+        guard let error = self as? URLError,
+              error.code == .backgroundSessionWasDisconnected
+        else { return false }
+
+        return true
     }
 }

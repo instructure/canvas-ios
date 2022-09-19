@@ -38,7 +38,7 @@ struct FileProgressItemView: View {
 
     private var leadingIcon: some View {
         SwiftUI.Group {
-            if viewModel.state == .error {
+            if case .error = viewModel.state {
                 Image.warningLine
                     .foregroundColor(.crimson)
             } else {
@@ -71,18 +71,15 @@ struct FileProgressItemView: View {
 
     @ViewBuilder
     private var trailingIcon: some View {
-        let placeholder = Color.clear.frame(width: 23)
         SwiftUI.Group {
             switch viewModel.state {
-            case .completed:
+            case .uploaded:
                 Image.checkLine.foregroundColor(.shamrock)
                     .frame(maxHeight: .infinity)
                     .transition(.opacity)
                     .accessibility(hidden: true)
             case .uploading(let progress):
-                CircleProgress(color: Color(Brand.shared.primary), progress: progress, size: 23, thickness: 1.68)
-                    .frame(maxHeight: .infinity)
-                    .accessibility(hidden: true)
+                circleProgress(progress: progress)
             case .error:
                 Button(action: viewModel.remove) {
                     Image.xLine
@@ -91,12 +88,18 @@ struct FileProgressItemView: View {
                 }
                 .transition(.opacity)
                 .accessibilityLabel(Text("Remove file from submission.", bundle: .core))
-            default:
-                placeholder
+            case .waiting:
+                circleProgress()
             }
         }
         .padding(.trailing, Typography.Spacings.textCellIconLeadingPadding)
         .animation(.default)
+    }
+
+    private func circleProgress(progress: CGFloat? = nil) -> some View {
+        CircleProgress(color: Color(Brand.shared.primary), progress: progress, size: 23, thickness: 1.68)
+            .frame(maxHeight: .infinity)
+            .accessibility(hidden: true)
     }
 }
 

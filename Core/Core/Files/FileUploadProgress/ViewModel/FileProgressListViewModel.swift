@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Combine
 import SwiftUI
 
@@ -25,7 +26,7 @@ public protocol FileProgressListViewModelDelegate: AnyObject {
     /** Called when the user taps the retry button after a file upload or the submission API call failed. */
     func fileProgressViewModelRetry(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the delete button on a file. */
-    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete file: File)
+    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete fileUploadItemID: NSManagedObjectID)
 }
 
 /**
@@ -39,57 +40,49 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public private(set) var leftBarButton: BarButtonItemViewModel?
     @Published public private(set) var rightBarButton: BarButtonItemViewModel?
     public let title = NSLocalizedString("Submission", comment: "")
-    public let batchID: String
+    public let submissionID: NSManagedObjectID
     public weak var delegate: FileProgressListViewModelDelegate?
 
     private let dismissSubject = PassthroughSubject<() -> Void, Never>()
     private let presentDialogSubject = PassthroughSubject<UIAlertController, Never>()
-    private lazy var filesStore = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
-        self?.update()
-    }
-    private var failedCount: Int {
-        filesStore.reduce(into: 0) { total, file in
-            total += (file.uploadError == nil ? 0 : 1)
+    /** This is to update our state when the FileSubmission object changes. */
+    private lazy var fileSubmission: Store<LocalUseCase<FileSubmission>> = {
+        let predicate = NSPredicate(format: "SELF = %@", submissionID)
+        let scope = Scope(predicate: predicate, order: [])
+        let useCase = LocalUseCase<FileSubmission>(scope: scope)
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
         }
-    }
-    private var successCount: Int {
-        filesStore.reduce(into: 0) { total, file in
-            let hasFileID = (file.id != nil)
-            let hasNoError = (file.uploadError == nil)
-            total += (hasFileID && hasNoError) ? 1 : 0
+    }()
+    /** This is to update our state when the FileSubmission's items change. */
+    private lazy var fileUploadItems: Store<LocalUseCase<FileUploadItem>> = {
+        let predicate = NSPredicate(format: "fileSubmission = %@", submissionID)
+        let scope = Scope(predicate: predicate, order: [])
+        let useCase = LocalUseCase<FileUploadItem>(scope: scope)
+        return environment.subscribe(useCase) { [weak self] in
+            self?.update()
         }
-    }
-    private var allFilesHaveUploadedId: Bool { filesStore.all.allSatisfy { $0.id != nil } }
-    private var submissionError: String? { filesStore.first { $0.id != nil && $0.uploadError != nil }?.uploadError }
-    private var allUploadFinished: Bool { failedCount + successCount == filesStore.count }
-    private var totalUploadSize: Int { filesStore.reduce(0) { $0 + $1.size } }
-    private var uploadedSize: Int { filesStore.reduce(0) { $0 + $1.bytesSent } }
+    }()
+    private let environment: AppEnvironment
     private let flowCompleted: () -> Void
     private var receivedSuccessfulSubmissionNotification = false
     private var subscriptions = Set<AnyCancellable>()
+    /**
+     This variable ensures that once an error is displayed it stays on the screen until the user retries the submission.
+     If the user removes the last failed upload item (so only succeeded items remain) we should still display the error.
+     */
+    private var isErrorDisplayed = false
 
     /**
      - parameters:
         - dismiss: The block that gets called when the user wants to hide the upload progress UI.
      */
-    public init(batchID: String, dismiss: @escaping () -> Void) {
-        self.batchID = batchID
+    public init(submissionID: NSManagedObjectID, environment: AppEnvironment = .shared, dismiss: @escaping () -> Void) {
+        self.submissionID = submissionID
+        self.environment = environment
         self.flowCompleted = dismiss
-        subscribeToSuccessfulBatchSubmissonNotification(batchID: batchID)
-        update()
-    }
-
-    private func subscribeToSuccessfulBatchSubmissonNotification(batchID: String) {
-        NotificationCenter.default.publisher(for: UploadManager.BatchSubmissionCompletedNotification)
-            .compactMap { $0.userInfo?["batchID"] as? String }
-            .map { $0 == batchID }
-            .filter { $0 }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.receivedSuccessfulSubmissionNotification = true
-                self?.update()
-            }
-            .store(in: &subscriptions)
+        fileSubmission.refresh()
+        fileUploadItems.refresh()
     }
 
     private func showCancelDialog() {
@@ -113,16 +106,21 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateFilesList() {
-        items = filesStore.all.map { file in
-            FileProgressItemViewModel(file: file, onRemove: { [weak self] in
-                self?.remove(file)
-            })
+        guard let submission = fileSubmission.first else {
+            items = []
+            return
+        }
+
+        items = submission.files.map { uploadItem in
+            FileProgressItemViewModel(file: uploadItem) { [weak self] itemID in
+                self?.remove(itemID)
+            }
         }
     }
 
-    private func remove(_ file: File) {
+    private func remove(_ fileUploadItemID: NSManagedObjectID) {
         if items.count > 1 {
-            delegate?.fileProgressViewModel(self, delete: file)
+            delegate?.fileProgressViewModel(self, delete: fileUploadItemID)
             return
         }
 
@@ -132,7 +130,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         alert.addAction(AlertAction(NSLocalizedString("Yes", comment: ""), style: .destructive) { [weak self] _ in
             guard let self = self else { return }
             self.dismissSubject.send {
-                self.delegate?.fileProgressViewModel(self, delete: file)
+                self.delegate?.fileProgressViewModel(self, delete: fileUploadItemID)
             }
         })
         alert.addAction(AlertAction(NSLocalizedString("No", comment: ""), style: .cancel))
@@ -140,48 +138,51 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateState() {
-        if receivedSuccessfulSubmissionNotification {
-            state = .success
-            return
-        }
+        guard let submission = fileSubmission.first,
+              !isErrorDisplayed,
+              state != .success // After we reached success state we don't allow the UI to go back, no matter what changes in CoreData.
+        else { return }
 
-        if allUploadFinished, failedCount != 0 {
-            if allFilesHaveUploadedId {
-                let format = NSLocalizedString("submission_failed_for_files", comment: "")
-                let message = String.localizedStringWithFormat(format, filesStore.count)
-                state = .failed(message: message, error: submissionError)
-            } else {
-                state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
-            }
-        } else {
-            let uploadSize = totalUploadSize
-            // This is because sometimes we upload more than the expected
-            let uploadedSize = min(uploadSize, uploadedSize)
-            let progress = Float(uploadedSize) / Float(uploadSize)
+        switch submission.state {
+        case .waiting:
+            state = .waiting
+        case .uploading(progress: let progress):
             let format = NSLocalizedString("Uploading %@ of %@", comment: "")
-            let progressText = String.localizedStringWithFormat(format, uploadedSize.humanReadableFileSize, uploadSize.humanReadableFileSize)
-            state = .uploading(progressText: progressText, progress: progress)
+            let uploadedSize = Int(progress * CGFloat(submission.totalSize))
+            let progressText = String.localizedStringWithFormat(format, uploadedSize.humanReadableFileSize, submission.totalSize.humanReadableFileSize)
+            state = .uploading(progressText: progressText, progress: Float(progress))
+        case .failedUpload:
+            state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
+            isErrorDisplayed = true
+        case .failedSubmission(message: let message):
+            let format = NSLocalizedString("submission_failed_for_files", comment: "")
+            let title = String.localizedStringWithFormat(format, submission.files.count)
+            state = .failed(message: title, error: message)
+            isErrorDisplayed = true
+        case .submitted:
+            state = .success
         }
     }
 
     private func updateNavBarButtons() {
+        let cancelButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
+            self?.showCancelDialog()
+        }
         switch state {
         case .waiting:
-            leftBarButton = nil
+            leftBarButton = cancelButton
             rightBarButton = nil
         case .uploading:
-            leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
-                self?.showCancelDialog()
-            }
+            leftBarButton = cancelButton
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", comment: "")) { [weak self] in
                 self?.flowCompleted()
             }
         case .failed:
-            leftBarButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", comment: "")) { [weak self] in
-                self?.showCancelDialog()
-            }
+            leftBarButton = cancelButton
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [weak self] in
-                self.flatMap { $0.delegate?.fileProgressViewModelRetry($0) }
+                guard let self = self else { return }
+                self.isErrorDisplayed = false
+                self.delegate?.fileProgressViewModelRetry(self)
             }
         case .success:
             leftBarButton = nil

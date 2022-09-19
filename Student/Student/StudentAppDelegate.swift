@@ -38,6 +38,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }()
 
     private var shouldSetK5StudentView = false
+    private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
@@ -153,13 +154,25 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
-        let manager = UploadManager(identifier: identifier)
-        manager.completionHandler = {
-            DispatchQueue.main.async {
-                completionHandler()
+
+        if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
+            let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
+            backgroundAssembly.handleBackgroundUpload {
+                DispatchQueue.main.async { [weak self] in
+                    completionHandler()
+                    self?.backgroundFileSubmissionAssembly = nil
+                }
             }
+            backgroundFileSubmissionAssembly = backgroundAssembly
+        } else {
+            let manager = UploadManager(identifier: identifier)
+            manager.completionHandler = {
+                DispatchQueue.main.async {
+                    completionHandler()
+                }
+            }
+            manager.createSession()
         }
-        manager.createSession()
     }
 
     // similar methods exist in all other app delegates

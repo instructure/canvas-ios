@@ -88,7 +88,12 @@ class FileUploadItemTests: CoreTestCase {
         XCTAssertEqual(testee.state, .uploaded)
     }
 
-    func testFileUploadTargetPersistency() {
+    func testFileUploadTargetPersistency() throws {
+        try XCTSkipIf(true,
+        """
+        This test only works if the test CoreData storage uses NSSQLiteStoreType. If there are issues with the persistence
+        of FileUploadItem, modify description.type = NSInMemoryStoreType to NSSQLiteStoreType in TestPersistence.swift.
+        """)
         let testee: FileUploadItem = databaseClient.insert()
         testee.localFileURL = URL(string: "/toLocalFile")!
         testee.uploadTarget = FileUploadTarget(upload_url: URL(string: "/test")!, upload_params: ["testKey": "testValue"])

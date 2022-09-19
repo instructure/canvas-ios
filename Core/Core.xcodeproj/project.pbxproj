@@ -809,9 +809,13 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
+		B434277228CB65070015D597 /* FileSubmissionCleanupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */; };
 		B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */; };
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
 		B453728828B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */; };
+		B453C8B328CA351200327A13 /* FileUploadItemMimeClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */; };
+		B4BC3CD728D09A7A00FD368E /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */; };
+		B4C045E328CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
@@ -835,8 +839,17 @@
 		CF2091A6275A5B37003E8EA6 /* AssignmentPickerListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A5275A5B37003E8EA6 /* AssignmentPickerListRequest.swift */; };
 		CF2091A8275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A7275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift */; };
 		CF2091AA275E6553003E8EA6 /* DashboardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */; };
+		CF21E75928D3068300F73066 /* BackgroundActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21E75828D3068300F73066 /* BackgroundActivity.swift */; };
+		CF21E75B28D30F9E00F73066 /* BackgroundActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21E75A28D30F9E00F73066 /* BackgroundActivityTests.swift */; };
 		CF22C94325F2874A00C2E012 /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */; };
 		CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */; };
+		CF24634028C72D2E00A77A88 /* BackgroundSessionCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24633F28C72D2E00A77A88 /* BackgroundSessionCompletion.swift */; };
+		CF24634228C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */; };
+		CF24634428C74BCC00A77A88 /* FileSubmissionCleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */; };
+		CF24634628CA298200A77A88 /* BackgroundSessionCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */; };
+		CF24634828CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */; };
+		CF24634A28CB317300A77A88 /* FileSubmissionAssemblyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634928CB317300A77A88 /* FileSubmissionAssemblyTests.swift */; };
+		CF24634C28D065D100A77A88 /* FileUploadTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24634B28D065D100A77A88 /* FileUploadTargetTests.swift */; };
 		CF25022127FC26C9005D187C /* lato_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF25022027FC26C9005D187C /* lato_regular.ttf */; };
 		CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */; };
 		CF2F7E7A27FF211500942241 /* FontPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F7E7927FF211500942241 /* FontPreview.swift */; };
@@ -924,6 +937,8 @@
 		CF60CC5C26496ECF00C1C173 /* K5HomeroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5B26496ECF00C1C173 /* K5HomeroomViewModel.swift */; };
 		CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */; };
 		CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC6126497BC100C1C173 /* Refreshable.swift */; };
+		CF61834728D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61834628D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift */; };
+		CF61834928D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61834828D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF67B29226EBA12F00E51F13 /* HorizontalPagerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */; };
 		CF67B29626EBA19700E51F13 /* HorizontalPagerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */; };
@@ -1027,6 +1042,14 @@
 		CFB06F9628BD0D0D00DAC40B /* FileSubmissionSubmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */; };
 		CFB06F9828BDF64500DAC40B /* FileSubmissionSubmitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */; };
 		CFB06F9A28BE5D0600DAC40B /* FutureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */; };
+		CFB06FA128BFFADF00DAC40B /* FutureExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA028BFFADF00DAC40B /* FutureExtensionsTests.swift */; };
+		CFB06FA428C0E62400DAC40B /* FileUploadProgressObserversCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */; };
+		CFB06FA628C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */; };
+		CFB06FA828C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */; };
+		CFB06FAA28C3FA6D00DAC40B /* FileSubmissionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */; };
+		CFB06FAC28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift */; };
+		CFB06FB628C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FB528C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift */; };
+		CFB06FB828C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB06FB728C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift */; };
 		CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E3269C8D4A00429B3E /* K5State.swift */; };
 		CFB3A1E8269D8B0600429B3E /* K5StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
@@ -2266,9 +2289,13 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
+		B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionCleanupTests.swift; sourceTree = "<group>"; };
 		B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModel.swift; sourceTree = "<group>"; };
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
 		B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModel.swift; sourceTree = "<group>"; };
+		B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItemMimeClassTests.swift; sourceTree = "<group>"; };
+		B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSenderTests.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
@@ -2292,8 +2319,17 @@
 		CF2091A5275A5B37003E8EA6 /* AssignmentPickerListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListRequest.swift; sourceTree = "<group>"; };
 		CF2091A7275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListResponse.swift; sourceTree = "<group>"; };
 		CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGrid.swift; sourceTree = "<group>"; };
+		CF21E75828D3068300F73066 /* BackgroundActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivity.swift; sourceTree = "<group>"; };
+		CF21E75A28D30F9E00F73066 /* BackgroundActivityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTests.swift; sourceTree = "<group>"; };
 		CF22C94225F2874A00C2E012 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		CF22C94E25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncementTests.swift; sourceTree = "<group>"; };
+		CF24633F28C72D2E00A77A88 /* BackgroundSessionCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionCompletion.swift; sourceTree = "<group>"; };
+		CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSender.swift; sourceTree = "<group>"; };
+		CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionCleanup.swift; sourceTree = "<group>"; };
+		CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionCompletionTests.swift; sourceTree = "<group>"; };
+		CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCacheTests.swift; sourceTree = "<group>"; };
+		CF24634928CB317300A77A88 /* FileSubmissionAssemblyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionAssemblyTests.swift; sourceTree = "<group>"; };
+		CF24634B28D065D100A77A88 /* FileUploadTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetTests.swift; sourceTree = "<group>"; };
 		CF25022027FC26C9005D187C /* lato_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_regular.ttf; sourceTree = "<group>"; };
 		CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
 		CF2F7E7927FF211500942241 /* FontPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreview.swift; sourceTree = "<group>"; };
@@ -2382,6 +2418,8 @@
 		CF60CC5B26496ECF00C1C173 /* K5HomeroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomViewModel.swift; sourceTree = "<group>"; };
 		CF60CC5E26496EDE00C1C173 /* K5GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModel.swift; sourceTree = "<group>"; };
 		CF60CC6126497BC100C1C173 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
+		CF61834628D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTerminationHandler.swift; sourceTree = "<group>"; };
+		CF61834828D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTerminationHandlerTests.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerProxy.swift; sourceTree = "<group>"; };
 		CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerCoordinator.swift; sourceTree = "<group>"; };
@@ -2485,6 +2523,14 @@
 		CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionSubmitter.swift; sourceTree = "<group>"; };
 		CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionSubmitterTests.swift; sourceTree = "<group>"; };
 		CFB06F9928BE5D0600DAC40B /* FutureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensions.swift; sourceTree = "<group>"; };
+		CFB06FA028BFFADF00DAC40B /* FutureExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensionsTests.swift; sourceTree = "<group>"; };
+		CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCache.swift; sourceTree = "<group>"; };
+		CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFileUploadFinishedCheck.swift; sourceTree = "<group>"; };
+		CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionTargetsRequester.swift; sourceTree = "<group>"; };
+		CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionErrors.swift; sourceTree = "<group>"; };
+		CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionItemsUploadStarter.swift; sourceTree = "<group>"; };
+		CFB06FB528C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFileUploadFinishedCheckTests.swift; sourceTree = "<group>"; };
+		CFB06FB728C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionItemsUploadStarterTests.swift; sourceTree = "<group>"; };
 		CFB3A1E3269C8D4A00429B3E /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		CFB3A1E7269D8B0600429B3E /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -3919,6 +3965,7 @@
 				7DD694802194CE8C00BA4984 /* DateExtensionsTests.swift */,
 				B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */,
 				CF941B0E267B3F1000700DE9 /* FontExtensionTests.swift */,
+				CFB06FA028BFFADF00DAC40B /* FutureExtensionsTests.swift */,
 				CF0075DF2875C56500588E40 /* InputStreamExtensionsTests.swift */,
 				7D7BA23E24DC776000B1A68B /* InstColorExtensionsTests.swift */,
 				7DA20E922168128400F5FD19 /* InstIconExtensionsTests.swift */,
@@ -4655,11 +4702,12 @@
 			isa = PBXGroup;
 			children = (
 				CF34180928AF79220087433B /* Entities */,
-				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
-				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
-				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
-				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
-				CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */,
+				CFB06FB028C4E8DF00DAC40B /* PrepareUpload */,
+				CFB06FAE28C4E85400DAC40B /* BinaryUpload */,
+				CFB06FB228C4E90F00DAC40B /* Submission */,
+				CF24634928CB317300A77A88 /* FileSubmissionAssemblyTests.swift */,
+				CF21E75A28D30F9E00F73066 /* BackgroundActivityTests.swift */,
+				CF61834828D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4671,6 +4719,7 @@
 				CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */,
 				CFDB61F928AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift */,
 				CFDB61F728AD16B40008C3F3 /* FileUploadItemTests.swift */,
+				B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -4765,6 +4814,7 @@
 			isa = PBXGroup;
 			children = (
 				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
+				CF24634B28D065D100A77A88 /* FileUploadTargetTests.swift */,
 				7D08B1D82372084B0075623A /* GetFileTests.swift */,
 				7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */,
 				B14B70562294758600B568D6 /* UploadFileCommentTests.swift */,
@@ -5630,6 +5680,71 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CFB06FAD28C4E7EC00DAC40B /* BinaryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFB06FA528C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift */,
+				CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */,
+				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
+				CFB06FA328C0E62400DAC40B /* FileUploadProgressObserversCache.swift */,
+				CFB06FAB28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift */,
+			);
+			path = BinaryUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FAE28C4E85400DAC40B /* BinaryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFB06FB528C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift */,
+				CF5234E728B7AD6300D2D3B9 /* BackgroundURLSessionProviderTests.swift */,
+				CF5234EC28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift */,
+				CF24634728CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift */,
+				CFB06FB728C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift */,
+			);
+			path = BinaryUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FAF28C4E88700DAC40B /* PrepareUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
+				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
+				CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */,
+			);
+			path = PrepareUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FB028C4E8DF00DAC40B /* PrepareUpload */ = {
+			isa = PBXGroup;
+			children = (
+				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
+				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
+			);
+			path = PrepareUpload;
+			sourceTree = "<group>";
+		};
+		CFB06FB128C4E8F500DAC40B /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */,
+				CF24633F28C72D2E00A77A88 /* BackgroundSessionCompletion.swift */,
+				CF24634128C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift */,
+				CF24634328C74BCC00A77A88 /* FileSubmissionCleanup.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
+		CFB06FB228C4E90F00DAC40B /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				CF24634528CA298200A77A88 /* BackgroundSessionCompletionTests.swift */,
+				CFB06F9728BDF64500DAC40B /* FileSubmissionSubmitterTests.swift */,
+				B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */,
+				B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -5849,12 +5964,12 @@
 			isa = PBXGroup;
 			children = (
 				CFD987DE28ACEB2900905515 /* Entities */,
+				CFB06FAF28C4E88700DAC40B /* PrepareUpload */,
+				CFB06FAD28C4E7EC00DAC40B /* BinaryUpload */,
+				CFB06FB128C4E8F500DAC40B /* Submission */,
 				CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */,
-				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
-				CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */,
-				CF5234EA28B8D11500D2D3B9 /* FileUploadProgressObserver.swift */,
-				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
-				CFB06F9528BD0D0D00DAC40B /* FileSubmissionSubmitter.swift */,
+				CF21E75828D3068300F73066 /* BackgroundActivity.swift */,
+				CF61834628D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5866,6 +5981,7 @@
 				CF7C7DAB28BA597900B7F1EE /* FileSubmissionHelpers.swift */,
 				CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */,
 				CFDB61F428AD03050008C3F3 /* FileUploadItem.swift */,
+				CFB06FA928C3FA6D00DAC40B /* FileSubmissionErrors.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -6125,6 +6241,7 @@
 				E8A8FA8D24D328C3000B27DF /* SearchBar.swift */,
 				7DCA32112541DB8B00458651 /* WebSession.swift */,
 				7DCA31F72540835300458651 /* WebView.swift */,
+				B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -6728,6 +6845,7 @@
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
 				CF490F2C285742EF0065D242 /* AnnotationExtensionsTests.swift in Sources */,
+				CFB06FA128BFFADF00DAC40B /* FutureExtensionsTests.swift in Sources */,
 				7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */,
 				CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */,
 				3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */,
@@ -6754,6 +6872,7 @@
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
+				CF24634828CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift in Sources */,
 				B127C0F0245B56BE008DB716 /* MasteryPathViewControllerTests.swift in Sources */,
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
@@ -6763,6 +6882,7 @@
 				B1CA3348233948870015CBB4 /* UserTests.swift in Sources */,
 				D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */,
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
+				CFB06FB828C4F9AE00DAC40B /* FileSubmissionItemsUploadStarterTests.swift in Sources */,
 				CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */,
 				CF7C7DAE28BA5A9A00B7F1EE /* FileSubmissionHelpersTests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */,
@@ -6798,6 +6918,7 @@
 				CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */,
 				7D54D6AF24646AF800409520 /* DiscussionParticipantTests.swift in Sources */,
 				CF6C100726C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift in Sources */,
+				B453C8B328CA351200327A13 /* FileUploadItemMimeClassTests.swift in Sources */,
 				7D288B04257589520013FF65 /* TransactionExtensionTests.swift in Sources */,
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,
@@ -6832,9 +6953,11 @@
 				7DBD14EB2547343B00750F52 /* QuizListViewControllerTests.swift in Sources */,
 				7DE4B17F24EAE51100E7935C /* PageEditorViewTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
+				B4C045E328CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift in Sources */,
 				7D6E580E255207100068D3C3 /* DiscussionListViewControllerTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
 				EB60D0FC2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift in Sources */,
+				CF24634C28D065D100A77A88 /* FileUploadTargetTests.swift in Sources */,
 				CFDB61FA28AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift in Sources */,
 				CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */,
 				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
@@ -6890,6 +7013,7 @@
 				E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */,
 				3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */,
 				CF8D5362280EC41B0038B0B2 /* FeatureFlagTests.swift in Sources */,
+				CF21E75B28D30F9E00F73066 /* BackgroundActivityTests.swift in Sources */,
 				7DA20E932168128400F5FD19 /* InstIconExtensionsTests.swift in Sources */,
 				7D63F788215D44A600151E49 /* APIBrandVariablesTests.swift in Sources */,
 				CF9A0F3627E9E82400762228 /* CourseDetailsViewModelTests.swift in Sources */,
@@ -6918,6 +7042,7 @@
 				7D062AF721249E7700677F66 /* ContextModelTests.swift in Sources */,
 				3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */,
 				3BA649D12424351B0047D8DC /* APIPairingCodeTests.swift in Sources */,
+				CF61834928D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift in Sources */,
 				EE424B3422E8DE2E00D083EE /* APIPageTests.swift in Sources */,
 				CFDB61F828AD16B40008C3F3 /* FileUploadItemTests.swift in Sources */,
 				7DCF1ED8216C060B003AF358 /* SubmissionViewableTests.swift in Sources */,
@@ -6938,6 +7063,7 @@
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,
 				9F1CEA5F22400DC0000BB98F /* PermissionsTests.swift in Sources */,
 				7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */,
+				B434277228CB65070015D597 /* FileSubmissionCleanupTests.swift in Sources */,
 				B1F2F8A723F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift in Sources */,
 				CF9A0F3227E8AD8900762228 /* CourseSettingsViewModelTests.swift in Sources */,
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
@@ -6953,12 +7079,14 @@
 				CF43DE7B27B5667100015B6F /* SafeURLTests.swift in Sources */,
 				97F5520824062199005D80FC /* PlannerNoteDetailViewControllerTests.swift in Sources */,
 				B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */,
+				CF24634A28CB317300A77A88 /* FileSubmissionAssemblyTests.swift in Sources */,
 				B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */,
 				CF37631F2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift in Sources */,
 				7D2DC2FD219A001E008FE29A /* UIViewExtensionsTests.swift in Sources */,
 				9F6878B722397E8F00E559CE /* MediaCommentTests.swift in Sources */,
 				7D288B0F25758F630013FF65 /* DashboardCardTests.swift in Sources */,
 				CF0075DC2874765300588E40 /* APIFormDataTests.swift in Sources */,
+				CF24634628CA298200A77A88 /* BackgroundSessionCompletionTests.swift in Sources */,
 				7D82DB382374A82800C699B8 /* FileDetailsViewControllerTests.swift in Sources */,
 				E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */,
 				B150C63C2298DE590096D58C /* WKWebViewExtensionsTests.swift in Sources */,
@@ -6979,6 +7107,7 @@
 				7D80AC56212CF41900C40ECE /* APIRequestableTests.swift in Sources */,
 				7D6E580A2551F0510068D3C3 /* AnnouncementListViewControllerTests.swift in Sources */,
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
+				CFB06FB628C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
 				CF6C101026CA4F00002E7FE6 /* K5ScheduleItemInfoTests.swift in Sources */,
@@ -7362,9 +7491,11 @@
 				CF0075DA28746E3B00588E40 /* APIFormData.swift in Sources */,
 				B1A7848B2441136C001A2B50 /* GetModules.swift in Sources */,
 				EB7A8FF1285C946400940F3D /* UIApplicationDelegateExtensions.swift in Sources */,
+				CF24634428C74BCC00A77A88 /* FileSubmissionCleanup.swift in Sources */,
 				7DA260E423F72359005D2121 /* LoadingViewController.swift in Sources */,
 				7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */,
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
+				CFB06FAA28C3FA6D00DAC40B /* FileSubmissionErrors.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
 				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
 				CF29DF91272BD9F10046C04D /* DynamicHeightTextEditor.swift in Sources */,
@@ -7411,6 +7542,7 @@
 				7DA2606B23F722D9005D2121 /* UTI.swift in Sources */,
 				7DA2602123F7227A005D2121 /* StringExtensions.swift in Sources */,
 				7DA260C023F72352005D2121 /* GetUserSettings.swift in Sources */,
+				CF24634028C72D2E00A77A88 /* BackgroundSessionCompletion.swift in Sources */,
 				7DA25FE123F72154005D2121 /* AudioRecorderViewController.swift in Sources */,
 				3B4D892D2450A8E9004ED120 /* ComposeRecipientsView.swift in Sources */,
 				7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */,
@@ -7506,6 +7638,7 @@
 				CF3E76122886EA6100276703 /* FileProgressItemView.swift in Sources */,
 				CFEC7F4826B7E853008B9F77 /* K5ScheduleWeekViewModel.swift in Sources */,
 				7DA25FC723F72136005D2121 /* APIPostPolicyInfo.swift in Sources */,
+				CF61834728D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift in Sources */,
 				3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */,
 				EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */,
 				7DA260CF23F72359005D2121 /* ChatBubbleView.swift in Sources */,
@@ -7529,6 +7662,7 @@
 				7DA2610E23FCD907005D2121 /* CircleRefreshControl.swift in Sources */,
 				7DA2609723F72338005D2121 /* RouteHandler.swift in Sources */,
 				EBAF32F427AAC194000ACD32 /* APICommentLibraryResponse.swift in Sources */,
+				B4BC3CD728D09A7A00FD368E /* ProgressBar.swift in Sources */,
 				B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */,
 				CFEC7F3826B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift in Sources */,
 				D9D7EBE427BC0A3000544339 /* CourseSettingsViewModel.swift in Sources */,
@@ -7557,11 +7691,13 @@
 				7DA2605923F722D9005D2121 /* Quiz.swift in Sources */,
 				CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */,
 				CF7C3696267A3CEE00ACAC79 /* TypeSafeCodable.swift in Sources */,
+				CF24634228C7381500A77A88 /* SubmissionCompletedNotificationsSender.swift in Sources */,
 				7D531D44254B105700CBFCA6 /* AssignmentAssigneePicker.swift in Sources */,
 				CF7C6DA325E5139D00363203 /* GroupContextCardViewModel.swift in Sources */,
 				7DA260BD23F72352005D2121 /* GetSubmissions.swift in Sources */,
 				CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */,
 				B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */,
+				CFB06FA628C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift in Sources */,
 				CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
 				CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */,
@@ -7617,6 +7753,7 @@
 				CFFE285A27AA9D380029A408 /* CourseListCellView.swift in Sources */,
 				CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */,
 				7DA2606723F722D9005D2121 /* TabType.swift in Sources */,
+				CFB06FA828C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift in Sources */,
 				3BA649D324251FE50047D8DC /* PairWithObserverViewController.swift in Sources */,
 				7D630B6F24A511120039A45D /* Folder.swift in Sources */,
 				7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */,
@@ -7644,6 +7781,7 @@
 				CFD9B44527EDBECD0099F173 /* TabToCellViewModelMapping.swift in Sources */,
 				CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
+				CF21E75928D3068300F73066 /* BackgroundActivity.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */,
 				B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */,
@@ -7657,6 +7795,7 @@
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
 				7DA2604D23F722D9005D2121 /* Group.swift in Sources */,
 				3B4D893A2450A8FC004ED120 /* EditComposeRecipientsViewController.swift in Sources */,
+				CFB06FAC28C3FD5300DAC40B /* FileSubmissionItemsUploadStarter.swift in Sources */,
 				7D4C6F37243BE229003C1728 /* GetEnrollments.swift in Sources */,
 				7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */,
 				7DA260EC23F7235F005D2121 /* WrongAppLinkView.swift in Sources */,
@@ -7682,6 +7821,7 @@
 				7DA2604323F722D9005D2121 /* DiscussionEntry.swift in Sources */,
 				D9D7EBE227BC0A1D00544339 /* CourseSettingsView.swift in Sources */,
 				CFDB61FC28AD2FC70008C3F3 /* FileSubmissionState.swift in Sources */,
+				CFB06FA428C0E62400DAC40B /* FileUploadProgressObserversCache.swift in Sources */,
 				7D1E85622566E80100D093C5 /* CustomizeCourseView.swift in Sources */,
 				EB2A9BCF2632E40600A19A5A /* SideMenuItem.swift in Sources */,
 				7DA25FF223F7225D005D2121 /* APIAccountNotification.swift in Sources */,

@@ -31,7 +31,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         super.setUp()
         isShareCompletebBlockExecuted = false
         testee = SubmitAssignmentExtensionViewModel(attachmentCopyService: AttachmentCopyService(extensionContext: nil),
-                                                    submissionService: AttachmentSubmissionService(),
+                                                    submissionService: AttachmentSubmissionService(submissionAssembly: .makeShareExtensionAssembly()),
                                                     shareCompleted: { [weak self] in self?.isShareCompletebBlockExecuted = true })
     }
 

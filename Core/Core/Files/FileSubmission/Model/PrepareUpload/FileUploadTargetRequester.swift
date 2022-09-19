@@ -34,46 +34,64 @@ public class FileUploadTargetRequester {
         self.fileUploadItemID = fileUploadItemID
     }
 
-    /** The result of the request is also written into the underlying `FileUploadItem` object.  */
+    /**
+     The result of the request is also written into the underlying `FileUploadItem` object.
+     - returns: A `Future` that will fulfill the request. This `Future` keeps the class alive
+     so you don't need to keep a strong reference to it.
+     */
     public func requestUploadTarget() -> Future<Void, Error> {
         Future<Void, Error> { self.sendRequest(promise: $0) }
     }
 
-    public func sendRequest(promise: @escaping Future<Void, Error>.Promise) {
+    private func sendRequest(promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
-            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem,
-                  let fileSubmission = fileItem.fileSubmission
-            else { return }
+            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
+                promise(.failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
+                return
+            }
+
+            guard fileItem.uploadTarget == nil else {
+                promise(.success(()))
+                return
+            }
 
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)
-            let request = PostFileUploadTargetRequest(context: fileSubmission.fileUploadContext, body: body)
-            api.makeRequest(request) { [weak self] response, _, error in
-                self?.handleResponse(response, error: error, promise: promise)
+            let request = PostFileUploadTargetRequest(context: fileItem.fileSubmission.fileUploadContext, body: body)
+            api.makeRequest(request) { [self] response, _, error in
+                handleResponse(response, error: error, promise: promise)
             }
         }
     }
 
     private func handleResponse(_ response: FileUploadTarget?, error: Error?, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [self] in
-            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
+            guard let fileItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else {
+                promise(.failure(FileSubmissionErrors.CoreData.uploadItemNotFound))
+                return
+            }
+
+            var result: Result<Void, Error>
 
             if let response = response {
                 fileItem.uploadError = nil
                 fileItem.uploadTarget = response
+                result = .success(())
             } else {
-                let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Failed to get file upload target.", comment: ""))
+                let validError: Error = error ?? FileSubmissionErrors.RequestUploadTargetUnknownError()
                 fileItem.uploadError = validError.localizedDescription
                 fileItem.uploadTarget = nil
+                result = .failure(validError)
             }
 
-            try? context.save()
-
-            if let error = fileItem.uploadError {
-                promise(.failure(error))
-            } else {
-                promise(.success(()))
+            do {
+                try context.save()
+            } catch(let error) {
+                fileItem.uploadError = error.localizedDescription
+                result = .failure(error.localizedDescription)
             }
+
+            promise(result)
         }
     }
 }
