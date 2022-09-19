@@ -389,7 +389,7 @@ exports[`Compose renders after picking a course 1`] = `
             }
             style={
               Object {
-                "tintColor": undefined,
+                "tintColor": "#556572",
               }
             }
           />
@@ -664,7 +664,7 @@ exports[`Compose renders reply 1`] = `
             }
             style={
               Object {
-                "tintColor": undefined,
+                "tintColor": "#556572",
               }
             }
           />
