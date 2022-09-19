@@ -75,6 +75,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
         let submissionID = submissionService.submit(urls: selectedFileURLs,
                                                     courseID: coursePickerViewModel.selectedCourse!.id,
                                                     assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
+                                                    assignmentName: assignmentPickerViewModel.selectedAssignment!.name,
                                                     comment: comment)
         let fileProgressViewModel = FileProgressListViewModel(submissionID: submissionID, dismiss: { [shareCompleted] in
             shareCompleted()

@@ -40,7 +40,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
     func testSubmission() {
         // MARK: - GIVEN
         let testee = FileSubmissionAssembly.makeShareExtensionAssembly()
-        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", comment: "testComment", files: [testFileURL])
+        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", files: [testFileURL])
         let submission = try! databaseClient.existingObject(with: submissionID) as! FileSubmission
         XCTAssertEqual(databaseClient.registeredObjects.count, 2) // submission + item
 
@@ -83,7 +83,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
 
     func testCancelDeletesSubmission() {
         let testee = FileSubmissionAssembly.makeShareExtensionAssembly()
-        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", comment: "testComment", files: [])
+        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", files: [])
         XCTAssertEqual(databaseClient.registeredObjects.count, 1)
         testee.cancel(submissionID: submissionID)
         drainMainQueue()
@@ -98,7 +98,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         testee.setupShareUIDismissBlock {
             shareCompletedCallback.fulfill()
         }
-        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", comment: "testComment", files: [testFileURL])
+        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", files: [testFileURL])
         let submission = try! databaseClient.existingObject(with: submissionID) as! FileSubmission
 
         // MARK: File target request API mock
