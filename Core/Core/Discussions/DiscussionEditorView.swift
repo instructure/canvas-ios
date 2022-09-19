@@ -302,7 +302,7 @@ public struct DiscussionEditorView: View {
                     })
 
                     Divider()
-                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $lockAt, minDate: lockAt, from: controller) }, content: {
+                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $lockAt, minDate: delayedPostAt, from: controller) }, content: {
                         Text("Available until", bundle: .core)
                         Spacer()
                         if let lockAt = lockAt {
