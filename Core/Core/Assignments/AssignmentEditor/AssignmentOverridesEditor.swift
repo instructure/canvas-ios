@@ -29,6 +29,11 @@ struct AssignmentOverridesEditor: View {
 
     var body: some View {
         ForEach(overrides) { override in
+
+            let dueAt = Binding(get: { override.dueAt }, set: { set(override, \.dueAt, $0) })
+            let unlockAt = Binding(get: { override.unlockAt }, set: { set(override, \.unlockAt, $0) })
+            let lockAt = Binding(get: { override.lockAt }, set: { set(override, \.lockAt, $0) })
+
             EditorSection(label: HStack {
                 Text("Assign", bundle: .core)
                 Spacer()
@@ -46,28 +51,31 @@ struct AssignmentOverridesEditor: View {
                     DisclosureIndicator()
                 })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.dueAt }, set: { set(override, \.dueAt, $0) }),
-                    initial: Clock.now.startOfDay()
-                ) {
+
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: dueAt, from: controller) }, content: {
                     Text("Due", bundle: .core)
-                }
+                    Spacer()
+                    if let dueAt = dueAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: dueAt, dateStyle: .medium, timeStyle: .short))
+                    }
+                })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.unlockAt }, set: { set(override, \.unlockAt, $0) }),
-                    max: override.lockAt,
-                    initial: Clock.now.startOfDay()
-                ) {
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: unlockAt, maxDate: lockAt.wrappedValue, from: controller) }, content: {
                     Text("Available from", bundle: .core)
-                }
+                    Spacer()
+                    if let unlockAt = unlockAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: unlockAt, dateStyle: .medium, timeStyle: .short))
+                    }
+                })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.lockAt }, set: { set(override, \.lockAt, $0) }),
-                    min: override.unlockAt,
-                    initial: Clock.now.endOfDay()
-                ) {
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: lockAt, minDate: unlockAt.wrappedValue, from: controller) }, content: {
                     Text("Available until", bundle: .core)
-                }
+                    Spacer()
+                    if let lockAt = lockAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))
+                    }
+                })
+                Divider()
             }
         }
         EditorSection {

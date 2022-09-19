@@ -196,15 +196,13 @@ public struct DiscussionEditorView: View {
                         .padding(16)
                         .identifier("DiscussionEditor.delayedPostAtToggle")
                     Divider()
-                    if delayedPostAt != nil {
-                        OptionalDatePicker(
-                            selection: $delayedPostAt,
-                            max: lockAt,
-                            initial: Clock.now.startOfDay()
-                        ) {
+                    if let delayedPostAt = delayedPostAt {
+                        ButtonRow(action: { CoreDatePicker.showDatePicker(for: $delayedPostAt, maxDate: lockAt, from: controller) }, content: {
                             Text("Post at", bundle: .core)
-                        }
-                            .identifier("DiscussionEditor.delayedPostAtPicker")
+                            Spacer()
+                            Text(DateFormatter.localizedString(from: delayedPostAt, dateStyle: .medium, timeStyle: .short))
+                        })
+                        .identifier("DiscussionEditor.delayedPostAtPicker")
                         Divider()
                     }
                     Toggle(isOn: Binding(get: { !locked }, set: { newValue in
@@ -295,15 +293,23 @@ public struct DiscussionEditorView: View {
                 )
             } else if isTeacher, !isAnnouncement {
                 EditorSection(label: Text("Availability", bundle: .core)) {
-                    OptionalDatePicker(selection: $delayedPostAt, max: lockAt, initial: Clock.now.startOfDay()) {
+                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $delayedPostAt, maxDate: lockAt, from: controller) }, content: {
                         Text("Available from", bundle: .core)
-                    }
-                        .identifier("DiscussionEditor.delayedPostAtPicker")
+                        Spacer()
+                        if let delayedPostAt = delayedPostAt {
+                            Text(DateFormatter.localizedString(from: delayedPostAt, dateStyle: .medium, timeStyle: .short))
+                        }
+                    })
+
                     Divider()
-                    OptionalDatePicker(selection: $lockAt, min: delayedPostAt, initial: Clock.now.endOfDay()) {
+                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $lockAt, minDate: delayedPostAt, from: controller) }, content: {
                         Text("Available until", bundle: .core)
-                    }
-                        .identifier("DiscussionEditor.lockAtPicker")
+                        Spacer()
+                        if let lockAt = lockAt {
+                            Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))
+                        }
+                    })
+
                 }
             }
         }

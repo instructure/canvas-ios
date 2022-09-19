@@ -1194,6 +1194,8 @@
 		EB35FA5526B0085B00AA8C22 /* K5GradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */; };
 		EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */; };
 		EB368AB427BFD0B500A9F1C1 /* APICommentLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */; };
+		EB4368B328CA07A0004B3D39 /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */; };
+		EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */; };
 		EB60D0FC2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */; };
 		EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66DB9426451CAE002D3325 /* CustomTextField.swift */; };
 		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
@@ -2658,6 +2660,8 @@
 		EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCell.swift; sourceTree = "<group>"; };
 		EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModel.swift; sourceTree = "<group>"; };
 		EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryTests.swift; sourceTree = "<group>"; };
+		EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePicker.swift; sourceTree = "<group>"; };
+		EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerTests.swift; sourceTree = "<group>"; };
 		EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationDelegateExtensionTests.swift; sourceTree = "<group>"; };
 		EB66DB9426451CAE002D3325 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
@@ -6078,6 +6082,7 @@
 			children = (
 				CFA078AD2791D3390078B27B /* TopBar */,
 				CF5F603525DBD92100E7E0ED /* UIKitSwiftUIBridging */,
+				EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -6103,6 +6108,7 @@
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
+				EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */,
@@ -7064,6 +7070,7 @@
 				B1A7849124412101001A2B50 /* BackgroundVideoPlayerTests.swift in Sources */,
 				9FEBF1D823CE1E18001C824B /* CreateConversationTests.swift in Sources */,
 				9F10A66F22931E7900E3360C /* GetUserSettingsTests.swift in Sources */,
+				EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */,
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,
 				7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */,
 				7D57398D2437E411000073BE /* GetAssignmentsByGroupTests.swift in Sources */,
@@ -7487,6 +7494,7 @@
 				7DA2600723F7227A005D2121 /* LoggerExtensions.swift in Sources */,
 				7DA2602023F7227A005D2121 /* WKWebViewExtensions.swift in Sources */,
 				CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */,
+				EB4368B328CA07A0004B3D39 /* CoreDatePicker.swift in Sources */,
 				7DA260EE23F72391005D2121 /* APIFile.swift in Sources */,
 				7DA2603823F722D9005D2121 /* AlertThreshold.swift in Sources */,
 				7DA260F223F72391005D2121 /* GetFile.swift in Sources */,

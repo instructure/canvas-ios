@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,20 +13,20 @@
             <objects>
                 <viewController storyboardIdentifier="CreateTodoViewController" id="AWO-1s-ePE" customClass="CreateTodoViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d9Q-k5-9JE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsd-eE-xvF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aAu-NV-BZd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="569"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="569"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6s-J1-nvD">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3te-NC-l05" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="0.0" width="378" height="62"/>
+                                                        <rect key="frame" x="20" y="0.0" width="564" height="62"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="62" id="kh3-3y-aD2"/>
                                                         </constraints>
@@ -48,7 +46,7 @@
                                                 </constraints>
                                             </view>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz1-Zy-Tja" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="62" width="414" height="1"/>
+                                                <rect key="frame" x="0.0" y="62" width="600" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Chq-cM-854"/>
                                                 </constraints>
@@ -57,13 +55,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-P1-FbW">
-                                                <rect key="frame" x="0.0" y="63" width="414" height="62"/>
+                                                <rect key="frame" x="0.0" y="63" width="600" height="62"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cvb-Uh-8J9">
-                                                        <rect key="frame" x="20" y="0.0" width="374" height="62"/>
+                                                        <rect key="frame" x="20" y="0.0" width="560" height="62"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Course (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-fF-7HV" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="62"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="193.5" height="62"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -72,7 +70,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgJ-rV-aa6" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="141.5" y="0.0" width="41.5" height="62"/>
+                                                                <rect key="frame" x="201.5" y="0.0" width="60" height="62"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -81,7 +79,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GvP-Wx-aid" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="191" y="0.0" width="183" height="62"/>
+                                                                <rect key="frame" x="269.5" y="0.0" width="290.5" height="62"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="4aM-SZ-XDj"/>
                                                                 </constraints>
@@ -96,7 +94,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kby-td-fkF">
-                                                        <rect key="frame" x="20" y="0.0" width="374" height="62"/>
+                                                        <rect key="frame" x="20" y="0.0" width="560" height="62"/>
                                                         <connections>
                                                             <action selector="actionSelectCourse" destination="AWO-1s-ePE" eventType="primaryActionTriggered" id="fMp-N0-vdt"/>
                                                         </connections>
@@ -116,7 +114,7 @@
                                                 </constraints>
                                             </view>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntk-0E-Ki1" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="125" width="414" height="1"/>
+                                                <rect key="frame" x="0.0" y="125" width="600" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="4hK-h1-SF5"/>
                                                 </constraints>
@@ -125,13 +123,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tes-FS-3Ha">
-                                                <rect key="frame" x="0.0" y="126" width="414" height="62"/>
+                                                <rect key="frame" x="0.0" y="126" width="600" height="62"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EBd-g2-6Wm">
-                                                        <rect key="frame" x="20" y="0.0" width="374" height="62"/>
+                                                        <rect key="frame" x="20" y="0.0" width="560" height="62"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3q-Tx-yWq" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="336.5" height="62"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="504" height="62"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -140,7 +138,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ghm-wD-jrE" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="336.5" y="0.0" width="37.5" height="62"/>
+                                                                <rect key="frame" x="504" y="0.0" width="56" height="62"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="62" id="0Kr-Zo-Mf0"/>
                                                                 </constraints>
@@ -156,7 +154,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nQ-75-7RD">
-                                                        <rect key="frame" x="20" y="0.0" width="374" height="62"/>
+                                                        <rect key="frame" x="20" y="0.0" width="560" height="62"/>
                                                         <connections>
                                                             <action selector="showDatePicker:" destination="AWO-1s-ePE" eventType="primaryActionTriggered" id="Sxe-Xu-lNf"/>
                                                         </connections>
@@ -176,7 +174,7 @@
                                                 </constraints>
                                             </view>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BG4-HJ-AnK" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="188" width="414" height="1"/>
+                                                <rect key="frame" x="0.0" y="188" width="600" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="LnN-Dp-zVs"/>
                                                 </constraints>
@@ -185,7 +183,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="orM-JY-5ma">
-                                                <rect key="frame" x="0.0" y="189" width="414" height="380"/>
+                                                <rect key="frame" x="0.0" y="189" width="600" height="380"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="380" id="omK-gr-lej"/>
@@ -239,23 +237,6 @@
             <point key="canvasLocation" x="-230" y="108"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="3te-NC-l05">
-            <size key="intrinsicContentSize" width="40.5" height="18.5"/>
-        </designable>
-        <designable name="VgJ-rV-aa6">
-            <size key="intrinsicContentSize" width="41" height="20.5"/>
-        </designable>
-        <designable name="ghm-wD-jrE">
-            <size key="intrinsicContentSize" width="4" height="18.5"/>
-        </designable>
-        <designable name="u3q-Tx-yWq">
-            <size key="intrinsicContentSize" width="36" height="20.5"/>
-        </designable>
-        <designable name="xKL-fF-7HV">
-            <size key="intrinsicContentSize" width="132" height="20.5"/>
-        </designable>
-    </designables>
     <resources>
         <namedColor name="textDark">
             <color red="0.33333333333333331" green="0.396078431372549" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

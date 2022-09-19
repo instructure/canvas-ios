@@ -21,13 +21,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="buS-hh-oq4">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jss-Wo-ZSs">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Discussion Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhx-CY-knm" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="16" width="343" height="22"/>
+                                                        <rect key="frame" x="16" y="16" width="343" height="24"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <color key="textColor" name="backgroundDarkest"/>
                                                         <nil key="highlightedColor"/>
@@ -45,13 +45,13 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rlY-NF-d29">
-                                                <rect key="frame" x="0.0" y="42" width="375" height="20"/>
+                                                <rect key="frame" x="0.0" y="44" width="375" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="N95-VH-4Pr">
-                                                        <rect key="frame" x="0.0" y="3" width="56" height="14.5"/>
+                                                        <rect key="frame" x="0.0" y="1.5" width="56" height="17"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aX-wW-Ee5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="0.0" width="40" height="14.5"/>
+                                                                <rect key="frame" x="16" y="0.0" width="40" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -84,7 +84,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Published" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQV-x4-3qS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="42" y="3" width="277" height="14.5"/>
+                                                                <rect key="frame" x="42" y="1.5" width="277" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -106,10 +106,10 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YvP-2W-eFt">
-                                                <rect key="frame" x="0.0" y="62" width="375" height="22.5"/>
+                                                <rect key="frame" x="0.0" y="64" width="375" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Sections: Section A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPu-cr-6WE" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="8" width="343" height="14.5"/>
+                                                        <rect key="frame" x="16" y="8" width="343" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -127,7 +127,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-8O-7TX">
-                                                <rect key="frame" x="0.0" y="84.5" width="375" height="16"/>
+                                                <rect key="frame" x="0.0" y="89" width="375" height="16"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caY-IB-cCm" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="15" width="343" height="1"/>
@@ -147,7 +147,7 @@
                                                 </constraints>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAH-NI-Ygz">
-                                                <rect key="frame" x="0.0" y="100.5" width="375" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="105" width="375" height="0.0"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dge-70-xPq" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="-1" width="343" height="1"/>
@@ -166,7 +166,7 @@
                                                 </constraints>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fm-Ke-3KQ">
-                                                <rect key="frame" x="0.0" y="100.5" width="375" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="105" width="375" height="0.0"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2r-Qi-FOo" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="-1" width="343" height="1"/>
@@ -187,7 +187,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BdY-dO-wTh">
-                                        <rect key="frame" x="0.0" y="100.5" width="375" height="500"/>
+                                        <rect key="frame" x="0.0" y="105" width="375" height="500"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="500" placeholder="YES" id="np6-E2-G0Q"/>
                                         </constraints>
@@ -253,16 +253,16 @@
     </scenes>
     <designables>
         <designable name="9aX-wW-Ee5">
-            <size key="intrinsicContentSize" width="40" height="14.5"/>
+            <size key="intrinsicContentSize" width="49.5" height="17"/>
         </designable>
         <designable name="ZQV-x4-3qS">
-            <size key="intrinsicContentSize" width="53" height="14.5"/>
+            <size key="intrinsicContentSize" width="65.5" height="17"/>
         </designable>
         <designable name="dhx-CY-knm">
-            <size key="intrinsicContentSize" width="127" height="22"/>
+            <size key="intrinsicContentSize" width="149" height="24"/>
         </designable>
         <designable name="wPu-cr-6WE">
-            <size key="intrinsicContentSize" width="99.5" height="14.5"/>
+            <size key="intrinsicContentSize" width="126" height="17"/>
         </designable>
         <designable name="wSe-0M-z3E">
             <size key="intrinsicContentSize" width="24" height="24"/>
