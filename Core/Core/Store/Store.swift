@@ -117,6 +117,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         } catch {
             assertionFailure("Failed to performFetch \(error)")
         }
+
+        database.observeAppExtensionDataChanges {
+            try? frc.performFetch()
+            print("🔫 \(frc.fetchedObjects)")
+            self.notify()
+        }
     }
 
     /// Updates predicate & sortDescriptors, but not sectionNameKeyPath.
