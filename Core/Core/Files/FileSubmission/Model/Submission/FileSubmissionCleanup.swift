@@ -41,6 +41,7 @@ public class FileSubmissionCleanup {
 
                 context.delete(submission)
                 try? context.save()
+                DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
             }
         }
     }

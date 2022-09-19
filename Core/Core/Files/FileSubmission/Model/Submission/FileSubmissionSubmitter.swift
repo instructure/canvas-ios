@@ -72,6 +72,7 @@ public class FileSubmissionSubmitter {
             submission.isSubmitted = true
 
             try? context.save()
+            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
             promise(.success(response))
         }
     }

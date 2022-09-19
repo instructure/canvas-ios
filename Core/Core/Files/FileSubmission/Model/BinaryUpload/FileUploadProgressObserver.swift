@@ -48,6 +48,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
             item.bytesUploaded = Int(totalBytesSent)
             item.bytesToUpload = Int(totalBytesExpectedToSend)
             try? context.save()
+            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
         }
     }
 
@@ -74,6 +75,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
             }
 
             try? context.save()
+            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
             completionSubject.send()
             completionSubject.send(completion: .finished)
         }

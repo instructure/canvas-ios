@@ -48,6 +48,7 @@ public class FileSubmissionComposer {
             })
             fileSubmission.isHiddenOnDashboard = false
             try? context.save()
+            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
             result = fileSubmission.objectID
         }
 
@@ -73,6 +74,7 @@ public class FileSubmissionComposer {
             guard let item = try? context.existingObject(with: objectID) else { return }
             context.delete(item)
             try? context.save()
+            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
         }
     }
 }

@@ -86,6 +86,7 @@ public class FileUploadTargetRequester {
 
             do {
                 try context.save()
+                DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
             } catch(let error) {
                 fileItem.uploadError = error.localizedDescription
                 result = .failure(error.localizedDescription)

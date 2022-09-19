@@ -57,8 +57,6 @@ public class FileSubmissionAssembly {
                 BackgroundActivityTerminationHandler(context: backgroundContext, notificationsSender: notificationsSender)
                     .handleTermination(fileUploadItemID: fileUploadItemID)
             })
-            
-            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
 
             subscription = observer
                 .uploadCompleted.mapError { $0 as Error }
