@@ -39,12 +39,19 @@ class SubmitAssignmentViewController: UIViewController {
         setupFirebaseServices()
         isModalInPresentation = true
 
+        let lastApplicationSession = LoginSession.mostRecent
+        let currentSession = AppEnvironment.shared.currentSession
+
         /**
          If we already logged in the user during a previous share but our process didn't terminate we skip logging in the user again,
          otherwise the CoreData stack will be re-initialized resulting in strange errors.
         */
-        if AppEnvironment.shared.currentSession == nil, let session = LoginSession.mostRecent {
-            AppEnvironment.shared.userDidLogin(session: session)
+        if currentSession != lastApplicationSession {
+            if let lastApplicationSession = lastApplicationSession {
+                AppEnvironment.shared.userDidLogin(session: lastApplicationSession)
+            } else if let currentSession = currentSession {
+                AppEnvironment.shared.userDidLogout(session: currentSession)
+            }
         }
 
         let shareCompleted = { [weak self] in
