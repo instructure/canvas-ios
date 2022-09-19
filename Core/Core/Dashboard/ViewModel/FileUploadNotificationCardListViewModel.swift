@@ -105,7 +105,7 @@ final class FileUploadNotificationCardViewModel: ObservableObject {
     ) -> FileUploadNotificationCardItemViewModel {
         return FileUploadNotificationCardItemViewModel(
             id: submission.objectID,
-            assignmentName: "assignID: \(submission.assignmentID)",
+            assignmentName: submission.assignmentName,
             isHiddenByUser: submission.isHiddenOnDashboard,
             cardDidTap: { [weak self] submissionID, viewController in
                 self?.cardDidTap(
