@@ -814,6 +814,8 @@
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
 		B453728828B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */; };
 		B453C8B328CA351200327A13 /* FileUploadItemMimeClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */; };
+		B472C7DD28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */; };
+		B4A687C628DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */; };
 		B4BC3CD728D09A7A00FD368E /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */; };
 		B4C045E328CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */; };
 		B4D7405528D86BFC0004CA1A /* DarwinNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7405428D86BFC0004CA1A /* DarwinNotificationCenter.swift */; };
@@ -2297,6 +2299,8 @@
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
 		B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModel.swift; sourceTree = "<group>"; };
 		B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItemMimeClassTests.swift; sourceTree = "<group>"; };
+		B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModelTests.swift; sourceTree = "<group>"; };
+		B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModelTests.swift; sourceTree = "<group>"; };
 		B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSenderTests.swift; sourceTree = "<group>"; };
 		B4D7405428D86BFC0004CA1A /* DarwinNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarwinNotificationCenter.swift; sourceTree = "<group>"; };
@@ -5328,6 +5332,8 @@
 				CFFE286127ABA4DF0029A408 /* DashboardCardsViewModelTests.swift */,
 				CF748D20274D52C6000EA34E /* DashboardConferencesViewModelTests.swift */,
 				CF43DE7E27BE6B9100015B6F /* DashboardLayoutViewModelTests.swift */,
+				B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */,
+				B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7050,6 +7056,7 @@
 				7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
 				7D062AF721249E7700677F66 /* ContextModelTests.swift in Sources */,
+				B472C7DD28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift in Sources */,
 				3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */,
 				3BA649D12424351B0047D8DC /* APIPairingCodeTests.swift in Sources */,
 				CF61834928D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift in Sources */,
@@ -7212,6 +7219,7 @@
 				EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */,
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,
 				7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */,
+				B4A687C628DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift in Sources */,
 				7D57398D2437E411000073BE /* GetAssignmentsByGroupTests.swift in Sources */,
 				7DCF203A216D5712003AF358 /* QuizTypeTests.swift in Sources */,
 				7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */,

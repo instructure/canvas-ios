@@ -20,7 +20,7 @@ import Combine
 import CoreData
 import SwiftUI
 
-final class FileUploadNotificationCardViewModel: ObservableObject {
+final class FileUploadNotificationCardListViewModel: ObservableObject {
     // MARK: - Dependencies
 
     private let environment: AppEnvironment
@@ -36,7 +36,10 @@ final class FileUploadNotificationCardViewModel: ObservableObject {
     // MARK: - Private properties
 
     private lazy var fileSubmissions: Store<LocalUseCase<FileSubmission>> = {
-        let scope = Scope(predicate: .all, order: [])
+        let scope = Scope(
+            predicate: NSPredicate(format: "isHiddenOnDashboard == %@", false as NSNumber),
+            order: []
+        )
         let useCase = LocalUseCase<FileSubmission>(scope: scope)
         return environment.subscribe(useCase) { [weak self] in
             self?.update()
@@ -87,7 +90,6 @@ final class FileUploadNotificationCardViewModel: ObservableObject {
                 items[index].objectWillChange.send()
                 items[index].state = getNotificationCardItemState(from: submission.state)
             } else {
-                guard !submission.isHiddenOnDashboard else { return }
                 let vm = createFileUploadNotificationCardItemViewModel(
                     for: submission,
                     state: getNotificationCardItemState(from: submission.state)

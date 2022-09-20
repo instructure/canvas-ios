@@ -27,7 +27,7 @@ public struct DashboardCardView: View {
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
     @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
-    @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardViewModel()
+    @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardListViewModel()
 
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.appEnvironment) var env
