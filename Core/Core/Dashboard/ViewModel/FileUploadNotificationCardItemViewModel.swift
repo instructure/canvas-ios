@@ -17,12 +17,42 @@ import CoreData
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 import Foundation
+import SwiftUI
 
 final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
+    enum State {
+        case uploading, success, failure
+
+        var stateText: String {
+            switch self {
+            case .uploading: return "Uploading Submission"
+            case .success: return "Submission Uploaded"
+            case .failure: return "Submission Failed"
+            }
+        }
+
+        var image: Image {
+            switch self {
+            case .uploading: return Image.share
+            case .success: return Image.checkLine
+            case .failure: return Image.infoLine
+            }
+        }
+
+        var color: Color {
+            switch self {
+            case .uploading: return Color.electric
+            case .success: return Color.backgroundSuccess
+            case .failure: return Color.crimson
+            }
+        }
+    }
+
     // MARK: - Dependencies
 
     public let id: NSManagedObjectID
     public let assignmentName: String
+    public var state: State
     private let cardDidTap: (
         NSManagedObjectID,
         WeakViewController
@@ -38,6 +68,7 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
     init(
         id: NSManagedObjectID,
         assignmentName: String,
+        state: State,
         isHiddenByUser: Bool,
         cardDidTap: @escaping (
             NSManagedObjectID,
@@ -47,6 +78,7 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
     ) {
         self.id = id
         self.assignmentName = assignmentName
+        self.state = state
         self.isHiddenByUser = isHiddenByUser
         self.cardDidTap = cardDidTap
         self.dismissDidTap = dismissDidTap

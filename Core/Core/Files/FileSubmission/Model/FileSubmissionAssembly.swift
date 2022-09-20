@@ -64,7 +64,6 @@ public class FileSubmissionAssembly {
                 .flatMap { backgroundActivity.start().mapError { $0 as Error } }
                 .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID).mapError { $0 as Error } }
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
-                .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
                 .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
                 .sink { completion in
                     if case .failure(let error) = completion {

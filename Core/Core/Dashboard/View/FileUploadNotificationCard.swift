@@ -49,7 +49,9 @@ struct FileUploadNotificationCard: View {
                     closeButton
                 }
                 assignmentNameText
-                progressView
+                if case .uploading = viewModel.state {
+                    progressView
+                }
             }
             .accessibilityElement(children: .combine)
             .padding(.top, 14)
@@ -60,7 +62,7 @@ struct FileUploadNotificationCard: View {
         .overlay(
             RoundedRectangle(cornerRadius: 4)
                 .stroke(
-                    Color(.electric),
+                    viewModel.state.color,
                     lineWidth: 1
                 )
         )
@@ -68,10 +70,10 @@ struct FileUploadNotificationCard: View {
     }
 
     private var shareImage: some View {
-        Color.electric
+        viewModel.state.color
             .overlay(
-                Image.share
-                    .foregroundColor(Color.backgroundLightest)
+                viewModel.state.image
+                    .foregroundColor(.white)
                     .frame(width: 24, height: 24, alignment: .center)
             )
             .frame(width: 40, alignment: .center)
@@ -79,7 +81,7 @@ struct FileUploadNotificationCard: View {
     }
 
     private var uploadingSubmissionText: some View {
-        Text("Uploading submission")
+        Text(viewModel.state.stateText)
             .font(.bold16)
             .foregroundColor(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -120,6 +122,7 @@ struct FileUploadNotificationCard: View {
             let viewModel = FileUploadNotificationCardItemViewModel(
                 id: submission.objectID,
                 assignmentName: "Test assignment",
+                state: .success,
                 isHiddenByUser: false,
                 cardDidTap: { _, _ in },
                 dismissDidTap: {}

@@ -82,37 +82,43 @@ final class FileUploadNotificationCardViewModel: ObservableObject {
         items.removeAll { !submissionsToKeep.contains($0.id) }
 
         fileSubmissions.forEach { submission in
-            if items.first(where: { $0.id == submission.objectID }) != nil {
-                switch submission.state {
-                case .failedUpload, .failedSubmission, .submitted:
-                    items.removeAll { $0.id == submission.objectID }
-                default:
-                    break
-                }
+            if let item = items.first(where: { $0.id == submission.objectID }) {
+                guard let index = items.firstIndex(where: { $0.id == item.id }) else { return }
+                items[index].objectWillChange.send()
+                items[index].state = getNotificationCardItemState(from: submission.state)
             } else {
-                switch submission.state {
-                case .uploading:
-                    guard !submission.isHiddenOnDashboard else { return }
-
-                    let vm = createFileUploadNotificationCardItemViewModel(for: submission)
-                    let cancellable = vm.objectWillChange.sink { [weak self] _ in
-                        self?.objectWillChange.send()
-                    }
-                    subscriptions.update(with: cancellable)
-                    items.append(vm)
-                default:
-                    break
+                guard !submission.isHiddenOnDashboard else { return }
+                let vm = createFileUploadNotificationCardItemViewModel(
+                    for: submission,
+                    state: getNotificationCardItemState(from: submission.state)
+                )
+                let cancellable = vm.objectWillChange.sink { [weak self] _ in
+                    self?.objectWillChange.send()
                 }
+                subscriptions.update(with: cancellable)
+                items.append(vm)
             }
         }
     }
 
+    private func getNotificationCardItemState(
+        from state: FileSubmission.State
+    ) -> FileUploadNotificationCardItemViewModel.State {
+        switch state {
+        case .waiting, .uploading: return .uploading
+        case .failedUpload, .failedSubmission: return .failure
+        case .submitted: return .success
+        }
+    }
+
     private func createFileUploadNotificationCardItemViewModel(
-        for submission: FileSubmission
+        for submission: FileSubmission,
+        state: FileUploadNotificationCardItemViewModel.State
     ) -> FileUploadNotificationCardItemViewModel {
         return FileUploadNotificationCardItemViewModel(
             id: submission.objectID,
             assignmentName: submission.assignmentName,
+            state: state,
             isHiddenByUser: submission.isHiddenOnDashboard,
             cardDidTap: { [weak self] submissionID, viewController in
                 self?.cardDidTap(
