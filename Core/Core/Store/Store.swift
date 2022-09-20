@@ -120,7 +120,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
         database.observeAppExtensionDataChanges {
             try? frc.performFetch()
-            print("🔫 \(frc.fetchedObjects)")
             self.notify()
         }
     }
