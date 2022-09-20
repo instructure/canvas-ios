@@ -71,8 +71,6 @@ public class FileSubmissionAssembly {
                         if ((error as? FileSubmissionErrors.UploadFinishedCheck) == .uploadFailed ||
                             (error as? FileSubmissionErrors.Submission) == .submissionFailed) {
                         notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
-                        } else if (error as? FileSubmissionErrors.UploadProgress) == .uploadContinuedInApp {
-                            shareSheet.dismiss?()
                         }
                     }
                     backgroundActivity.stopAndWait()
