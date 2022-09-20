@@ -49,3 +49,34 @@ public class GetQuizSubmission: APIUseCase {
         quiz?.submission = submission
     }
 }
+
+public class GetAllQuizSubmissions: CollectionUseCase {
+    public typealias Model = QuizSubmission
+
+    public let courseID: String
+    public let quizID: String
+
+    public init(courseID: String, quizID: String) {
+        self.courseID = courseID
+        self.quizID = quizID
+    }
+
+    public var cacheKey: String? {
+        return "get-courses-\(courseID)-quizzes-\(quizID)-submissions"
+    }
+
+    public var request: GetAllQuizSubmissionsRequest {
+        return GetAllQuizSubmissionsRequest(courseID: courseID, quizID: quizID, includes: [.submission], perPage: 100)
+    }
+
+    public var scope: Scope {
+        return .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
+    }
+
+    public func write(response: GetAllQuizSubmissionsRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response?.quiz_submissions.first else { return }
+        let submission = QuizSubmission.save(item, in: client)
+        let quiz: Quiz? = client.first(where: #keyPath(Quiz.id), equals: quizID)
+        quiz?.submission = submission
+    }
+}

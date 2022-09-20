@@ -30,7 +30,8 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
 
     private let quizID: String
     private let courseID: String
-    private var summary: Store<GetSubmissionSummary>
+    private var submissions: Store<GetAllQuizSubmissions>
+    private var enrollments: Store<GetEnrollments>
 
     private var submissionsPath: String { "courses/\(courseID)/quizzes/\(quizID)/submissions"
     }
@@ -38,15 +39,20 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
     init(courseID: String, quizID: String) {
         self.quizID = quizID
         self.courseID = courseID
-        summary = AppEnvironment.shared.subscribe(GetSubmissionSummary(
+        submissions = AppEnvironment.shared.subscribe(GetAllQuizSubmissions(
+            courseID: courseID,
+            quizID: quizID))
+
+        enrollments = AppEnvironment.shared.subscribe(GetEnrollments(
             context: .course(courseID),
-            assignmentID: quizID
-        ))
+            types: [ "StudentEnrollment" ]))
     }
 
     public func viewDidAppear() {
-        summary.eventHandler = update
-        summary.refresh(force: true)
+        submissions.eventHandler = didUpdate
+        submissions.exhaust(force: true)
+        enrollments.eventHandler = didUpdate
+        enrollments.exhaust(force: true)
     }
     public func routeToAll(router: Router, viewController: WeakViewController) {
         router.route(to: submissionsPath, from: viewController)
@@ -64,11 +70,12 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
         router.route(to: "\(submissionsPath)?filter=not_submitted", from: viewController)
     }
 
-    private func update() {
-        graded = summary.first?.graded ?? 0
-        ungraded = summary.first?.ungraded ?? 0
-        unsubmitted = summary.first?.unsubmitted ?? 0
-        submissionCount = summary.first?.submissionCount ?? 0
+    private func didUpdate() {
+        if submissions.requested, submissions.pending, submissions.hasNextPage, enrollments.requested, enrollments.pending, enrollments.hasNextPage { return }
+        submissionCount = enrollments.count
+        graded = submissions.filter { $0.workflowState == .complete }.count
+        ungraded = submissions.filter { $0.workflowState == .pending_review }.count
+        unsubmitted = submissionCount - (graded + ungraded)
         isReady = true
     }
 
