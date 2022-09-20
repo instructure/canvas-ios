@@ -31,13 +31,14 @@ public class FileSubmissionComposer {
     /**
      - returns: The `objectID` of the created `FileSubmission` object.
      */
-    public func makeNewSubmission(courseId: String, assignmentId: String, comment: String?, files: [URL]) -> NSManagedObjectID {
+    public func makeNewSubmission(courseId: String, assignmentId: String, assignmentName: String, comment: String?, files: [URL]) -> NSManagedObjectID {
         var result: NSManagedObjectID!
 
         context.performAndWait {
             let fileSubmission: FileSubmission = context.insert()
             fileSubmission.courseID = courseId
             fileSubmission.assignmentID = assignmentId
+            fileSubmission.assignmentName = assignmentName
             fileSubmission.comment = comment
             fileSubmission.files = Set(files.map {
                 let item: FileUploadItem = context.insert()

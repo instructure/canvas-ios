@@ -25,6 +25,7 @@ class FileSubmissionComposerTests: CoreTestCase {
         let testee = FileSubmissionComposer(context: databaseClient)
         let submissionID = testee.makeNewSubmission(courseId: "testCourseID",
                                                     assignmentId: "testAssignmentID",
+                                                    assignmentName: "testName",
                                                     comment: "testComment",
                                                     files: [
                                                         URL(string: "/test")!,
@@ -37,6 +38,7 @@ class FileSubmissionComposerTests: CoreTestCase {
 
         XCTAssertEqual(submission.courseID, "testCourseID")
         XCTAssertEqual(submission.assignmentID, "testAssignmentID")
+        XCTAssertEqual(submission.assignmentName, "testName")
         XCTAssertEqual(submission.comment, "testComment")
 
         guard submission.files.count == 2 else {
@@ -55,6 +57,7 @@ class FileSubmissionComposerTests: CoreTestCase {
         let testee = FileSubmissionComposer(context: databaseClient)
         let submissionID = testee.makeNewSubmission(courseId: "testCourseID",
                                                     assignmentId: "testAssignmentID",
+                                                    assignmentName: "testName",
                                                     comment: "testComment",
                                                     files: [
                                                         URL(string: "/test")!,
@@ -77,6 +80,7 @@ class FileSubmissionComposerTests: CoreTestCase {
         let testee = FileSubmissionComposer(context: databaseClient)
         let submissionID = testee.makeNewSubmission(courseId: "testCourseID",
                                                     assignmentId: "testAssignmentID",
+                                                    assignmentName: "testName",
                                                     comment: "testComment",
                                                     files: [
                                                         URL(string: "/test")!,

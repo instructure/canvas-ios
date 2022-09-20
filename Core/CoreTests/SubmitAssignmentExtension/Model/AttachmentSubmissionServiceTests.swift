@@ -44,12 +44,13 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
 
         // MARK: - WHEN
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
 
         // MARK: - THEN
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmissionID, submissionID)
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.courseId, "testCourseID")
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentId, "testAssignmentID")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentName, "testName")
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.comment, "testComment")
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.files, [fileURL])
         XCTAssertEqual(mockAssembly.startedSubmission, submissionID)
@@ -60,14 +61,15 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
 
         // MARK: - WHEN
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment")
-        let submissionID2 = testee.submit(urls: [fileURL], courseID: "testCourseID2", assignmentID: "testAssignmentID2", comment: "testComment2")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let submissionID2 = testee.submit(urls: [fileURL], courseID: "testCourseID2", assignmentID: "testAssignmentID2", assignmentName: "testName2", comment: "testComment2")
 
         // MARK: - THEN
         XCTAssertEqual(mockAssembly.mockComposer.deletedSubmission, submissionID)
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmissionID, submissionID2)
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.courseId, "testCourseID2")
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentId, "testAssignmentID2")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentName, "testName2")
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.comment, "testComment2")
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.files, [fileURL])
         XCTAssertEqual(mockAssembly.startedSubmission, submissionID2)
@@ -76,7 +78,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     func testCancel() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
 
         // MARK: - WHEN
         testee.fileProgressViewModelCancel(FileProgressListViewModel(submissionID: submissionID, dismiss: {}))
@@ -88,7 +90,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     func testRetry() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
 
         // MARK: - WHEN
         testee.fileProgressViewModelRetry(FileProgressListViewModel(submissionID: submissionID, dismiss: {}))
@@ -100,7 +102,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     func testItemDeletion() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
         let itemID = NSManagedObjectID()
 
         // MARK: - WHEN
@@ -132,13 +134,24 @@ class MockFileSubmissionAssembly: FileSubmissionAssembly {
 }
 
 class MockFileSubmissionComposer: FileSubmissionComposer {
+    struct StartedSubmissionParams {
+        let courseId: String
+        let assignmentId: String
+        let assignmentName: String
+        let comment: String?
+        let files: [URL]
+    }
     var deletedSubmission: NSManagedObjectID?
     var deletedItem: NSManagedObjectID?
-    var startedSubmission: (courseId: String, assignmentId: String, comment: String?, files: [URL])?
+    var startedSubmission: StartedSubmissionParams?
     var startedSubmissionID: NSManagedObjectID?
 
-    public override func makeNewSubmission(courseId: String, assignmentId: String, comment: String?, files: [URL]) -> NSManagedObjectID {
-        startedSubmission = (courseId: courseId, assignmentId: assignmentId, comment: comment, files: files)
+    public override func makeNewSubmission(courseId: String, assignmentId: String, assignmentName: String, comment: String?, files: [URL]) -> NSManagedObjectID {
+        startedSubmission = StartedSubmissionParams(courseId: courseId,
+                                                    assignmentId: assignmentId,
+                                                    assignmentName: assignmentName,
+                                                    comment: comment,
+                                                    files: files)
         let startedSubmissionID = NSManagedObjectID()
         self.startedSubmissionID = startedSubmissionID
         return startedSubmissionID

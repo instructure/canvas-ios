@@ -25,6 +25,7 @@ import CoreData
 public final class FileSubmission: NSManagedObject {
     @NSManaged public var courseID: String
     @NSManaged public var assignmentID: String
+    @NSManaged public var assignmentName: String
     /** The user entered comment for the submission. **/
     @NSManaged public var comment: String?
     @NSManaged public var files: Set<FileUploadItem>

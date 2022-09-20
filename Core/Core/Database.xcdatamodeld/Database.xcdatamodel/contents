@@ -434,6 +434,7 @@
     </entity>
     <entity name="FileSubmission" representedClassName="Core.FileSubmission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="assignmentName" attributeType="String" defaultValueString=""/>
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -998,7 +999,7 @@
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="688"/>
-        <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="119"/>
+        <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="149"/>
         <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="149"/>
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="328"/>
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
