@@ -38,10 +38,6 @@ public class FileSubmissionCleanup {
                 for item in submission.files {
                     try? FileManager.default.removeItem(at: item.localFileURL)
                 }
-
-                context.delete(submission)
-                try? context.save()
-                DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
             }
         }
     }

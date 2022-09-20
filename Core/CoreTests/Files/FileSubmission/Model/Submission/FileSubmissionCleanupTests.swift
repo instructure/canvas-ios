@@ -21,27 +21,40 @@ import TestsFoundation
 import XCTest
 
 class FileSubmissionCleanupTests: CoreTestCase {
-    func testCleanUp() {
+    private let tempFileURL = URL.temporaryDirectory.appendingPathComponent("FileUploadTargetRequesterTests.txt")
+
+    override func setUp() {
+        super.setUp()
+        FileManager.default.createFile(atPath: tempFileURL.path, contents: "tst".data(using: .utf8), attributes: nil)
+    }
+
+    override func tearDown() {
+        try? FileManager.default.removeItem(at: tempFileURL)
+        super.tearDown()
+    }
+
+    func testDeletesFile() {
         // MARK: - GIVEN
 
         let testee = FileSubmissionCleanup(context: databaseClient)
         let submission: FileSubmission = databaseClient.insert()
+        let item: FileUploadItem = databaseClient.insert()
+        item.fileSubmission = submission
+        item.localFileURL = tempFileURL
 
         // MARK: - WHEN
 
         let completionEvent = expectation(description: "completion event fire")
-        let subscription = testee.clean(
-            fileSubmissionID: submission.objectID
-        ).sink { _ in
-            completionEvent.fulfill()
-        }
-        receiveValue: { _ in }
+        let subscription = testee
+            .clean(fileSubmissionID: submission.objectID)
+            .sink { _ in
+                completionEvent.fulfill()
+            } receiveValue: { _ in }
 
         // MARK: - THEN
 
         waitForExpectations(timeout: 0.1)
-
-        XCTAssertTrue(databaseClient.isObjectDeleted(submission))
+        FileManager.default.fileExists(atPath: tempFileURL.path)
 
         subscription.cancel()
     }
