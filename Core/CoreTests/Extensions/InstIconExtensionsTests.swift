@@ -244,6 +244,7 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.share, UIImage(named: "share", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTab, UIImage(named: "todoTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTabActive, UIImage(named: "todoTabActive", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.warningBorderless, UIImage(named: "warningBorderless", in: .core, compatibleWith: nil))
     }
 
     func testImage() {

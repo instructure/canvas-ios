@@ -240,6 +240,7 @@ public extension UIImage {
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
+    static var warningBorderless: UIImage { UIImage(named: "warningBorderless", in: .core, compatibleWith: nil)! }
 }
 
 public extension Image {
@@ -417,7 +418,7 @@ public extension Image {
     static var warningSolid: Image { Image("warningSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
-
+    
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -461,4 +462,5 @@ public extension Image {
     static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
+    static var warningBorderless: Image { Image("warningBorderless", bundle: .core) }
 }

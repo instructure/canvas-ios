@@ -35,7 +35,7 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
             switch self {
             case .uploading: return Image.share
             case .success: return Image.checkLine
-            case .failure: return Image.infoLine
+            case .failure: return Image.warningBorderless
             }
         }
 
