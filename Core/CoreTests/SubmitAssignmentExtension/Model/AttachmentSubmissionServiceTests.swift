@@ -134,14 +134,24 @@ class MockFileSubmissionAssembly: FileSubmissionAssembly {
 }
 
 class MockFileSubmissionComposer: FileSubmissionComposer {
+    struct StartedSubmissionParams {
+        let courseId: String
+        let assignmentId: String
+        let assignmentName: String
+        let comment: String?
+        let files: [URL]
+    }
     var deletedSubmission: NSManagedObjectID?
     var deletedItem: NSManagedObjectID?
-    // swiftlint:disable:next large_tuple
-    var startedSubmission: (courseId: String, assignmentId: String, assignmentName: String, comment: String?, files: [URL])?
+    var startedSubmission: StartedSubmissionParams?
     var startedSubmissionID: NSManagedObjectID?
 
     public override func makeNewSubmission(courseId: String, assignmentId: String, assignmentName: String, comment: String?, files: [URL]) -> NSManagedObjectID {
-        startedSubmission = (courseId: courseId, assignmentId: assignmentId, assignmentName: assignmentName, comment: comment, files: files)
+        startedSubmission = StartedSubmissionParams(courseId: courseId,
+                                                    assignmentId: assignmentId,
+                                                    assignmentName: assignmentName,
+                                                    comment: comment,
+                                                    files: files)
         let startedSubmissionID = NSManagedObjectID()
         self.startedSubmissionID = startedSubmissionID
         return startedSubmissionID
