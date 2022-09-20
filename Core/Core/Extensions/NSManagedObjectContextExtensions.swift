@@ -93,4 +93,9 @@ extension NSManagedObjectContext {
         ))
         return copy
     }
+
+    public func saveAndNotify() throws {
+        try save()
+        DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
+    }
 }

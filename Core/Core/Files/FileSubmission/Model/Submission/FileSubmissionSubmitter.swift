@@ -63,7 +63,7 @@ public class FileSubmissionSubmitter {
                 let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Submission failed due to unknown error.", comment: ""))
                 submission.submissionError = validError.localizedDescription
                 submission.isSubmitted = false
-                try? context.save()
+                try? context.saveAndNotify()
                 promise(.failure(.submissionFailed))
                 return
             }
@@ -71,8 +71,7 @@ public class FileSubmissionSubmitter {
             submission.submissionError = nil
             submission.isSubmitted = true
 
-            try? context.save()
-            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
+            try? context.saveAndNotify()
             promise(.success(response))
         }
     }

@@ -72,8 +72,7 @@ public class FileSubmissionItemsUploadStarter {
 
             // We want to disconnect from the session and tear it down after all uploads complete
             backgroundSessionProvider.session.finishTasksAndInvalidate()
-            try? context.save()
-            DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
+            try? context.saveAndNotify()
             promise(.success(()))
         }
     }
