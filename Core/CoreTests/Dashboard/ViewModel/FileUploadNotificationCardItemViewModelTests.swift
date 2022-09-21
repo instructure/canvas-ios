@@ -27,7 +27,7 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
         let viewModel = createViewModel(state: .uploading)
 
         // Then
-        XCTAssertEqual(viewModel.state.stateText, "Uploading Submission")
+        XCTAssertEqual(viewModel.state.text, "Uploading Submission")
         XCTAssertEqual(viewModel.state.image, Image.share)
         XCTAssertEqual(viewModel.state.color, Color.electric)
     }
@@ -37,7 +37,7 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
         let viewModel = createViewModel(state: .success)
 
         // Then
-        XCTAssertEqual(viewModel.state.stateText, "Submission Uploaded")
+        XCTAssertEqual(viewModel.state.text, "Submission Uploaded")
         XCTAssertEqual(viewModel.state.image, Image.checkLine)
         XCTAssertEqual(viewModel.state.color, Color.backgroundSuccess)
     }
@@ -47,7 +47,7 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
         let viewModel = createViewModel(state: .failure)
 
         // Then
-        XCTAssertEqual(viewModel.state.stateText, "Submission Failed")
+        XCTAssertEqual(viewModel.state.text, "Submission Failed")
         XCTAssertEqual(viewModel.state.image, Image.warningBorderlessLine)
         XCTAssertEqual(viewModel.state.color, Color.crimson)
     }

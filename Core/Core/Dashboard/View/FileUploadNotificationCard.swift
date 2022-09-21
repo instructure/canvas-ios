@@ -45,7 +45,7 @@ struct FileUploadNotificationCard: View {
             shareImage
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .top) {
-                    uploadingSubmissionText
+                    submissionStateText
                     closeButton
                 }
                 assignmentNameText
@@ -80,9 +80,9 @@ struct FileUploadNotificationCard: View {
             .accessibilityHidden(true)
     }
 
-    private var uploadingSubmissionText: some View {
-        Text(viewModel.state.stateText)
-            .font(.bold16)
+    private var submissionStateText: some View {
+        Text(viewModel.state.text)
+            .font(.bold16, lineHeight: .fit)
             .foregroundColor(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibility(sortPriority: 2)
@@ -95,6 +95,7 @@ struct FileUploadNotificationCard: View {
             Image.xLine
                 .frame(width: 24, height: 24)
                 .foregroundColor(Color.textDarkest)
+                .offset(x: 0, y: -4)
         }
         .accessibility(sortPriority: 0)
         .accessibilityLabel(Text("Hide", bundle: .core))
