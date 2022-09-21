@@ -60,16 +60,16 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
 
     init(environment: AppEnvironment = .shared) {
         self.environment = environment
-        getSubmissions()
+        refreshSubmissions()
 
         sceneDidBecomeActive
             .sink { [self] in
-                getSubmissions()
+                refreshSubmissions()
             }
             .store(in: &subscriptions)
     }
 
-    private func getSubmissions() {
+    private func refreshSubmissions() {
         fileSubmissions.refresh()
         fileUploadItems.refresh()
     }
