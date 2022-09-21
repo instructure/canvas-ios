@@ -115,36 +115,46 @@ struct FileUploadNotificationCard: View {
 #if DEBUG
     struct FileUploadNotificationCard_Previews: PreviewProvider {
         static var previews: some View {
+            FileUploadNotificationCard(viewModel: createViewModel(state: .uploading))
+                .preferredColorScheme(.light)
+                .previewLayout(.fixed(width: 450, height: 65))
+
+            FileUploadNotificationCard(viewModel: createViewModel(state: .uploading))
+                .preferredColorScheme(.dark)
+                .previewLayout(.fixed(width: 450, height: 65))
+
+            FileUploadNotificationCard(viewModel: createViewModel(state: .success))
+                .preferredColorScheme(.light)
+                .previewLayout(.fixed(width: 450, height: 65))
+
+            FileUploadNotificationCard(viewModel: createViewModel(state: .success))
+                .preferredColorScheme(.dark)
+                .previewLayout(.fixed(width: 450, height: 65))
+
+            FileUploadNotificationCard(viewModel: createViewModel(state: .failure))
+                .preferredColorScheme(.light)
+                .previewLayout(.fixed(width: 450, height: 65))
+
+            FileUploadNotificationCard(viewModel: createViewModel(state: .failure))
+                .preferredColorScheme(.dark)
+                .previewLayout(.fixed(width: 450, height: 65))
+        }
+
+        private static func createViewModel(
+            state: FileUploadNotificationCardItemViewModel.State
+        ) -> FileUploadNotificationCardItemViewModel {
             let env = PreviewEnvironment()
             let context = env.globalDatabase.viewContext
             let submission: FileSubmission = context.insert()
 
-            let viewModel = FileUploadNotificationCardItemViewModel(
+            return FileUploadNotificationCardItemViewModel(
                 id: submission.objectID,
                 assignmentName: "Test assignment",
-                state: .success,
+                state: state,
                 isHiddenByUser: false,
                 cardDidTap: { _, _ in },
                 dismissDidTap: {}
             )
-
-            FileUploadNotificationCard(viewModel: viewModel)
-                .preferredColorScheme(.light)
-                .previewLayout(.sizeThatFits)
-                .environment(\.sizeCategory, .extraSmall)
-
-            FileUploadNotificationCard(viewModel: viewModel)
-                .preferredColorScheme(.light)
-                .previewLayout(.sizeThatFits)
-
-            FileUploadNotificationCard(viewModel: viewModel)
-                .preferredColorScheme(.light)
-                .previewLayout(.sizeThatFits)
-                .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
-
-            FileUploadNotificationCard(viewModel: viewModel)
-                .preferredColorScheme(.dark)
-                .previewLayout(.sizeThatFits)
         }
     }
 #endif
