@@ -53,7 +53,7 @@ struct FileUploadNotificationCard: View {
                     progressView
                 }
             }
-            .accessibilityElement(children: .combine)
+            .accessibilityElement(children: .contain)
             .padding(.top, 14)
             .padding([.bottom, .trailing], 16)
         }
@@ -85,6 +85,7 @@ struct FileUploadNotificationCard: View {
             .font(.bold16)
             .foregroundColor(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibility(sortPriority: 2)
     }
 
     private var closeButton: some View {
@@ -95,6 +96,8 @@ struct FileUploadNotificationCard: View {
                 .frame(width: 24, height: 24)
                 .foregroundColor(Color.textDarkest)
         }
+        .accessibility(sortPriority: 0)
+        .accessibilityLabel(Text("Hide", bundle: .core))
     }
 
     private var assignmentNameText: some View {
@@ -102,6 +105,7 @@ struct FileUploadNotificationCard: View {
             .font(.regular14)
             .foregroundColor(.textDark)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibility(sortPriority: 1)
     }
 
     private var progressView: some View {
