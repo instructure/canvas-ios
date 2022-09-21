@@ -96,6 +96,13 @@ extension NSManagedObjectContext {
 
     public func saveAndNotify() throws {
         try save()
-        DarwinNotificationCenter.shared.postNotification(.didSaveManagedObjectContextLocally)
+        InterprocessNotificationCenter.shared.post(name: NSPersistentStore.InterProcessNotifications.didWriteLocally)
+    }
+
+    /** This method force fetches all objects ignoring any cached data on the context. */
+    func forceRefreshAllObjects() {
+        stalenessInterval = 0
+        refreshAllObjects()
+        stalenessInterval = -1
     }
 }
