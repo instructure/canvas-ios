@@ -90,6 +90,9 @@ public class FileSubmissionAssembly {
     }
 
     public func start(fileSubmissionID: NSManagedObjectID) {
+        FileSubmissionRetryPreparations(context: backgroundContext)
+            .clearErrorsAndWait(submissionID: fileSubmissionID)
+
         var keepAliveSubscription = Set<AnyCancellable>()
         fileSubmissionTargetsRequester
             .request(fileSubmissionID: fileSubmissionID)

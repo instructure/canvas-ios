@@ -183,8 +183,8 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             leftBarButton = cancelButton
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [weak self] in
                 guard let self = self else { return }
-                self.isErrorDisplayed = false
                 self.delegate?.fileProgressViewModelRetry(self)
+                self.isErrorDisplayed = false
             }
         case .success:
             leftBarButton = nil

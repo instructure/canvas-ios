@@ -1010,6 +1010,8 @@
 		CF99CB1128D9D2CD001BBDF1 /* InterprocessNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1028D9D2CC001BBDF1 /* InterprocessNotificationCenter.swift */; };
 		CF99CB1528D9D99D001BBDF1 /* InterprocessNotificationCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1428D9D99D001BBDF1 /* InterprocessNotificationCenterTests.swift */; };
 		CF99CB1728DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1628DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift */; };
+		CF99CB1928DB6BF9001BBDF1 /* FileSubmissionRetryPreparations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1828DB6BF9001BBDF1 /* FileSubmissionRetryPreparations.swift */; };
+		CF99CB1C28DB738A001BBDF1 /* FileSubmissionRetryPreparationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1A28DB736C001BBDF1 /* FileSubmissionRetryPreparationsTests.swift */; };
 		CF9A0EDE27E2497E00762228 /* ListSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */; };
 		CF9A0EE027E38CFC00762228 /* SyllabusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */; };
 		CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */; };
@@ -2496,6 +2498,8 @@
 		CF99CB1028D9D2CC001BBDF1 /* InterprocessNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterprocessNotificationCenter.swift; sourceTree = "<group>"; };
 		CF99CB1428D9D99D001BBDF1 /* InterprocessNotificationCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterprocessNotificationCenterTests.swift; sourceTree = "<group>"; };
 		CF99CB1628DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
+		CF99CB1828DB6BF9001BBDF1 /* FileSubmissionRetryPreparations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionRetryPreparations.swift; sourceTree = "<group>"; };
+		CF99CB1A28DB736C001BBDF1 /* FileSubmissionRetryPreparationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionRetryPreparationsTests.swift; sourceTree = "<group>"; };
 		CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusCellViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModelTests.swift; sourceTree = "<group>"; };
@@ -5725,6 +5729,7 @@
 				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
 				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
 				CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */,
+				CF99CB1828DB6BF9001BBDF1 /* FileSubmissionRetryPreparations.swift */,
 			);
 			path = PrepareUpload;
 			sourceTree = "<group>";
@@ -5734,6 +5739,7 @@
 			children = (
 				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
 				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
+				CF99CB1A28DB736C001BBDF1 /* FileSubmissionRetryPreparationsTests.swift */,
 			);
 			path = PrepareUpload;
 			sourceTree = "<group>";
@@ -6938,6 +6944,7 @@
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,
 				EB24231128521EF00058A100 /* UIWindowExtensionsTests.swift in Sources */,
+				CF99CB1C28DB738A001BBDF1 /* FileSubmissionRetryPreparationsTests.swift in Sources */,
 				7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */,
 				9FD504EA2180BE2900B395BA /* APIFileTests.swift in Sources */,
 				CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */,
@@ -7288,6 +7295,7 @@
 				B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */,
 				CF09E6A32840FB13000C72D0 /* UTIFromNSItemProvider.swift in Sources */,
 				7DA2601623F7227A005D2121 /* UINavigationBarExtensions.swift in Sources */,
+				CF99CB1928DB6BF9001BBDF1 /* FileSubmissionRetryPreparations.swift in Sources */,
 				CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */,
 				7DA2604A23F722D9005D2121 /* GradeFormatter.swift in Sources */,
 				7DA2602723F722C2005D2121 /* LoginDelegate.swift in Sources */,
