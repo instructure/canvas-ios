@@ -90,6 +90,8 @@ struct FileProgressItemView: View {
                 .accessibilityLabel(Text("Remove file from submission.", bundle: .core))
             case .waiting:
                 circleProgress()
+            case .readyForUpload:
+                SwiftUI.EmptyView()
             }
         }
         .padding(.trailing, Typography.Spacings.textCellIconLeadingPadding)

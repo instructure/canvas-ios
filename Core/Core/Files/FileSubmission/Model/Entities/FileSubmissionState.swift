@@ -33,16 +33,18 @@ extension FileSubmission {
          are the results of the submission API call and that happens after file uploads were successful.
          */
         public init(_ itemStates: [FileUploadItem.State]) {
+            let progress = itemStates.count > 0 ? itemStates.progressSum / CGFloat(itemStates.count) : 0
+
             if itemStates.finishedCount == itemStates.count {
                 if itemStates.failedCount == 0 {
-                    self = .uploading(progress: 1)
+                    self = .uploading(progress: progress)
                 } else {
                     self = .failedUpload
                 }
-            } else if itemStates.allWaiting {
+            } else if itemStates.hasWaiting {
                 self = .waiting
             } else {
-                self = .uploading(progress: itemStates.progressSum / CGFloat(itemStates.count))
+                self = .uploading(progress: progress)
             }
         }
     }
@@ -63,7 +65,7 @@ private extension Array where Element == FileUploadItem.State {
     var finishedCount: Int {
         reduce(into: 0) { result, state in
             switch state {
-            case .uploaded, .error:
+            case .uploaded, .error, .readyForUpload:
                 result += 1
             case .waiting, .uploading:
                 break
@@ -77,15 +79,15 @@ private extension Array where Element == FileUploadItem.State {
             }
         }
     }
-    var allWaiting: Bool {
-        allSatisfy { $0 == .waiting }
+    var hasWaiting: Bool {
+        contains { $0 == .waiting }
     }
     var progressSum: CGFloat {
         reduce(into: CGFloat(0)) { result, state in
             switch state {
             case .uploading(let progress):
                 result += progress
-            case .waiting:
+            case .waiting, .readyForUpload:
                 break
             case .uploaded, .error:
                 result += 1

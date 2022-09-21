@@ -53,6 +53,7 @@ public final class FileUploadItem: NSManagedObject {
 public extension FileUploadItem {
     enum State: Equatable {
         case waiting
+        case readyForUpload
         case uploading(progress: CGFloat)
         case uploaded
         case error(description: String)
@@ -71,6 +72,8 @@ public extension FileUploadItem {
             return .error(description: uploadError)
         } else if bytesUploaded > 0 {
             return .uploading(progress: uploadProgress)
+        } else if uploadTarget != nil {
+            return .readyForUpload
         } else {
             return .waiting
         }

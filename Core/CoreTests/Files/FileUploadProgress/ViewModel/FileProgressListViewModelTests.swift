@@ -81,15 +81,29 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertNil(testee.rightBarButton)
     }
 
+    func testOneFileReadyForUploadOtherIsUploading() {
+        let file1 = makeFile()
+        file1.uploadTarget = FileUploadTarget(upload_url: URL(string: "/")!, upload_params: [:])
+        let file2 = makeFile()
+        file2.bytesUploaded = 5
+        saveFiles()
+
+        XCTAssertEqual(testee.items.count, 2)
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 5 bytes of 20 bytes", progress: 0.25))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
+    }
+
     func testOneFileFinishedOtherIsUploading() {
         let file1 = makeFile()
         file1.apiID = "uploadedId"
         file1.bytesUploaded = file1.fileSize
-        makeFile()
+        let file2 = makeFile()
+        file2.bytesUploaded = 1
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 20 bytes", progress: 0.5))
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 11 bytes of 20 bytes", progress: 0.55))
         XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
         XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
