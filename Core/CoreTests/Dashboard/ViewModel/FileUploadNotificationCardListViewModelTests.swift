@@ -29,9 +29,9 @@ class FileUploadNotificationCardViewModelTests: CoreTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         viewModel = nil
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
+        super.tearDown()
     }
 
     func testUploadingStateMapsToUploading() {
