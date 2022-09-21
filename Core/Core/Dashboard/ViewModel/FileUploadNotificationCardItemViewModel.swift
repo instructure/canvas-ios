@@ -1,5 +1,4 @@
 //
-import CoreData
 // This file is part of Canvas.
 // Copyright (C) 2022-present  Instructure, Inc.
 //
@@ -16,6 +15,7 @@ import CoreData
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
+import CoreData
 import Foundation
 import SwiftUI
 
@@ -33,17 +33,17 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
 
         var image: Image {
             switch self {
-            case .uploading: return Image.share
-            case .success: return Image.checkLine
-            case .failure: return Image.warningBorderless
+            case .uploading: return .share
+            case .success: return .checkLine
+            case .failure: return .warningBorderlessLine
             }
         }
 
         var color: Color {
             switch self {
-            case .uploading: return Color.electric
-            case .success: return Color.backgroundSuccess
-            case .failure: return Color.crimson
+            case .uploading: return .electric
+            case .success: return .backgroundSuccess
+            case .failure: return .crimson
             }
         }
     }

@@ -92,7 +92,7 @@ struct FileUploadNotificationCard: View {
         Button {
             viewModel.hideDidTap()
         } label: {
-            Image.close
+            Image.xLine
                 .frame(width: 24, height: 24)
                 .foregroundColor(Color.textDarkest)
         }

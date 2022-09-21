@@ -194,6 +194,8 @@ public extension UIImage {
     static var videoSolid: UIImage { UIImage(named: "videoSolid", in: .core, compatibleWith: nil)! }
     static var warningLine: UIImage { UIImage(named: "warningLine", in: .core, compatibleWith: nil)! }
     static var warningSolid: UIImage { UIImage(named: "warningSolid", in: .core, compatibleWith: nil)! }
+    static var warningBorderlessLine: UIImage { UIImage(named: "warningBorderlessLine", in: .core, compatibleWith: nil)! }
+    static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
 
@@ -213,7 +215,6 @@ public extension UIImage {
     static var cameraLine: UIImage { UIImage(named: "cameraLine", in: .core, compatibleWith: nil)! }
     static var cameraSolid: UIImage { UIImage(named: "cameraSolid", in: .core, compatibleWith: nil)! }
     static var chatBubble: UIImage { UIImage(named: "chatBubble", in: .core, compatibleWith: nil)! }
-    static var close: UIImage { UIImage(named: "close", in: .core, compatibleWith: nil)! }
     static var collaborations: UIImage { UIImage(named: "collaborations", in: .core, compatibleWith: nil)! }
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }
@@ -240,7 +241,6 @@ public extension UIImage {
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
-    static var warningBorderless: UIImage { UIImage(named: "warningBorderless", in: .core, compatibleWith: nil)! }
 }
 
 public extension Image {
@@ -416,9 +416,11 @@ public extension Image {
     static var videoSolid: Image { Image("videoSolid", bundle: .core) }
     static var warningLine: Image { Image("warningLine", bundle: .core) }
     static var warningSolid: Image { Image("warningSolid", bundle: .core) }
+    static var warningBorderlessLine: Image { Image("warningBorderlessLine", bundle: .core) }
+    static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
-
+    
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -435,7 +437,6 @@ public extension Image {
     static var cameraLine: Image { Image("cameraLine", bundle: .core) }
     static var cameraSolid: Image { Image("cameraSolid", bundle: .core) }
     static var chatBubble: Image { Image("chatBubble", bundle: .core) }
-    static var close: Image { Image("close", bundle: .core) }
     static var collaborations: Image { Image("collaborations", bundle: .core) }
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
@@ -462,5 +463,4 @@ public extension Image {
     static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
-    static var warningBorderless: Image { Image("warningBorderless", bundle: .core) }
 }

@@ -125,6 +125,7 @@ const whitelist = [
   'user',
   'video',
   'warning',
+  'warning-borderless',
   'x',
 ]
 
