@@ -111,12 +111,25 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         // MARK: - THEN
         XCTAssertEqual(mockAssembly.mockComposer.deletedItem, itemID)
     }
+
+    func testSuccess() {
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+
+        // MARK: - WHEN
+        testee.fileProgressViewModel(FileProgressListViewModel(submissionID: submissionID, dismiss: {}), didAcknowledgeSuccess: submissionID)
+
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.doneSubmission, submissionID)
+    }
 }
 
 class MockFileSubmissionAssembly: FileSubmissionAssembly {
     public override var composer: FileSubmissionComposer { mockComposer }
     var canceledSubmission: NSManagedObjectID?
     var startedSubmission: NSManagedObjectID?
+    var doneSubmission: NSManagedObjectID?
     let mockComposer: MockFileSubmissionComposer
 
     init(testCase: CoreTestCase) {
@@ -130,6 +143,10 @@ class MockFileSubmissionAssembly: FileSubmissionAssembly {
 
     public override func start(fileSubmissionID submissionID: NSManagedObjectID) {
         startedSubmission = submissionID
+    }
+
+    public override func markSubmissionAsDone(submissionID: NSManagedObjectID) {
+        doneSubmission = submissionID
     }
 }
 

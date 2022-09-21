@@ -24,6 +24,7 @@ class MockDelegate: FileProgressListViewModelDelegate {
     private(set) var cancelCalled = false
     private(set) var retryCalled = false
     private(set) var deleteCalled = false
+    private(set) var successCalled = false
 
     func fileProgressViewModelCancel(_ viewModel: FileProgressListViewModel) {
         cancelCalled = true
@@ -35,6 +36,10 @@ class MockDelegate: FileProgressListViewModelDelegate {
 
     func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete fileUploadItemID: NSManagedObjectID) {
         deleteCalled = true
+    }
+
+    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didAcknowledgeSuccess fileSubmissionID: NSManagedObjectID) {
+        successCalled = true
     }
 }
 
@@ -263,10 +268,11 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testDoneOnSucceeded() {
         let file = makeFile()
-        file.apiID = "uploadedId"
+        file.fileSubmission.isSubmitted = true
         saveFiles()
 
         testee.rightBarButton?.action()
+        XCTAssertTrue(mockDelegate.successCalled)
         XCTAssertTrue(dismissCalled)
     }
 

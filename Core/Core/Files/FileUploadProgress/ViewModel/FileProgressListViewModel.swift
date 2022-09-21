@@ -27,6 +27,8 @@ public protocol FileProgressListViewModelDelegate: AnyObject {
     func fileProgressViewModelRetry(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the delete button on a file. */
     func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete fileUploadItemID: NSManagedObjectID)
+    /** Called when the user taps the Done button after a successful upload. */
+    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didAcknowledgeSuccess fileSubmissionID: NSManagedObjectID)
 }
 
 /**
@@ -187,7 +189,9 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         case .success:
             leftBarButton = nil
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [weak self] in
-                self?.flowCompleted()
+                guard let self = self else { return }
+                self.delegate?.fileProgressViewModel(self, didAcknowledgeSuccess: self.submissionID)
+                self.flowCompleted()
             }
         }
     }

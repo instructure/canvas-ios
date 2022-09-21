@@ -100,7 +100,7 @@ extension NSManagedObjectContext {
     }
 
     /** This method force fetches all objects ignoring any cached data on the context. */
-    func forceRefreshAllObjects() {
+    public func forceRefreshAllObjects() {
         stalenessInterval = 0
         refreshAllObjects()
         stalenessInterval = -1

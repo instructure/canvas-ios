@@ -27,6 +27,8 @@ public class FileSubmissionAssembly {
     private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
     private let backgroundSessionCompletion: BackgroundSessionCompletion
     private let shareSheet: ShareDismissBlockStorage
+    /** A background context so we can work with it from any background thread. */
+    private let backgroundContext: NSManagedObjectContext
 
     /**
      - parameters:
@@ -81,6 +83,7 @@ public class FileSubmissionAssembly {
         }
         let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
 
+        self.backgroundContext = backgroundContext
         self.shareSheet = shareSheet
         self.backgroundSessionCompletion = backgroundSessionCompletion
         self.backgroundURLSessionProvider = backgroundURLSessionProvider
@@ -125,6 +128,14 @@ public class FileSubmissionAssembly {
      */
     public func setupShareUIDismissBlock(_ callback: @escaping () -> Void) {
         shareSheet.dismiss = callback
+    }
+
+    public func markSubmissionAsDone(submissionID: NSManagedObjectID) {
+        backgroundContext.performAndWait {
+            guard let submission = try? backgroundContext.existingObject(with: submissionID) as? FileSubmission else { return }
+            submission.isHiddenOnDashboard = true
+            try? backgroundContext.saveAndNotify()
+        }
     }
 }
 

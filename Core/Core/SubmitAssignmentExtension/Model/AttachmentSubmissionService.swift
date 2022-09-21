@@ -59,4 +59,8 @@ extension AttachmentSubmissionService: FileProgressListViewModelDelegate {
     public func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete fileUploadItemID: NSManagedObjectID) {
         submissionAssembly.composer.deleteItem(itemID: fileUploadItemID)
     }
+
+    public func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didAcknowledgeSuccess fileSubmissionID: NSManagedObjectID) {
+        submissionAssembly.markSubmissionAsDone(submissionID: fileSubmissionID)
+    }
 }
