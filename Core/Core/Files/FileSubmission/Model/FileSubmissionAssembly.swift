@@ -26,7 +26,6 @@ public class FileSubmissionAssembly {
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
     private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
     private let backgroundSessionCompletion: BackgroundSessionCompletion
-    private let shareSheet: ShareDismissBlockStorage
     /** A background context so we can work with it from any background thread. */
     private let backgroundContext: NSManagedObjectContext
 
@@ -42,7 +41,6 @@ public class FileSubmissionAssembly {
         // If the app takes control of the upload respect what it does in CoreData and discard our context's changes
         backgroundContext.mergePolicy = NSMergePolicy.rollback
         let backgroundSessionCompletion = BackgroundSessionCompletion()
-        let shareSheet = ShareDismissBlockStorage()
         let fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
         let cleaner = FileSubmissionCleanup(context: backgroundContext)
         let notificationsSender = SubmissionCompletedNotificationsSender(
@@ -84,7 +82,6 @@ public class FileSubmissionAssembly {
         let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
 
         self.backgroundContext = backgroundContext
-        self.shareSheet = shareSheet
         self.backgroundSessionCompletion = backgroundSessionCompletion
         self.backgroundURLSessionProvider = backgroundURLSessionProvider
         self.composer = FileSubmissionComposer(context: backgroundContext)
@@ -123,13 +120,9 @@ public class FileSubmissionAssembly {
     }
 
     /**
-     - parameters:
-        - callback: This block gets called when the app takes over the management of the upload and the share extension can be closed.
+     This method sets the `isHiddenOnDashboard` parameter on the submission to `true` so when
+     the user returns to the app it doesn't need to dismiss the dashboard notification again.
      */
-    public func setupShareUIDismissBlock(_ callback: @escaping () -> Void) {
-        shareSheet.dismiss = callback
-    }
-
     public func markSubmissionAsDone(submissionID: NSManagedObjectID) {
         backgroundContext.performAndWait {
             guard let submission = try? backgroundContext.existingObject(with: submissionID) as? FileSubmission else { return }
@@ -147,11 +140,5 @@ extension FileSubmissionAssembly {
                                sessionID: ShareExtensionSessionID,
                                sharedContainerID: "group.instructure.shared",
                                api: AppEnvironment.shared.api)
-    }
-}
-
-extension FileSubmissionAssembly {
-    class ShareDismissBlockStorage {
-        var dismiss: (() -> Void)?
     }
 }
