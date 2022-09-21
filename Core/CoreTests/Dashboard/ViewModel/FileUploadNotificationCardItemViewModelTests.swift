@@ -48,7 +48,7 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(viewModel.state.stateText, "Submission Failed")
-        XCTAssertEqual(viewModel.state.image, Image.warningBorderless)
+        XCTAssertEqual(viewModel.state.image, Image.warningBorderlessLine)
         XCTAssertEqual(viewModel.state.color, Color.crimson)
     }
 
