@@ -37,7 +37,7 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
 
     private lazy var fileSubmissions: Store<LocalUseCase<FileSubmission>> = {
         let scope = Scope(
-            predicate: NSPredicate(format: "isHiddenOnDashboard == %@", false as NSNumber),
+            predicate: NSPredicate(format: "%K == false", #keyPath(FileSubmission.isHiddenOnDashboard)),
             order: []
         )
         let useCase = LocalUseCase<FileSubmission>(scope: scope)
@@ -77,29 +77,8 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
     }
 
     private func update() {
-        let submissionsToKeep = fileSubmissions
-            .map { $0.objectID }
-            .reduce(into: Set<NSManagedObjectID>()) { ids, newValue in
-                ids.insert(newValue)
-            }
-        items.removeAll { !submissionsToKeep.contains($0.id) }
-
-        fileSubmissions.forEach { submission in
-            if let item = items.first(where: { $0.id == submission.objectID }) {
-                guard let index = items.firstIndex(where: { $0.id == item.id }) else { return }
-                items[index].objectWillChange.send()
-                items[index].state = getNotificationCardItemState(from: submission.state)
-            } else {
-                let vm = createFileUploadNotificationCardItemViewModel(
-                    for: submission,
-                    state: getNotificationCardItemState(from: submission.state)
-                )
-                let cancellable = vm.objectWillChange.sink { [weak self] _ in
-                    self?.objectWillChange.send()
-                }
-                subscriptions.update(with: cancellable)
-                items.append(vm)
-            }
+        items = fileSubmissions.map { submission in
+            createFileUploadNotificationCardItemViewModel(for: submission)
         }
     }
 
@@ -114,13 +93,12 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
     }
 
     private func createFileUploadNotificationCardItemViewModel(
-        for submission: FileSubmission,
-        state: FileUploadNotificationCardItemViewModel.State
+        for submission: FileSubmission
     ) -> FileUploadNotificationCardItemViewModel {
         return FileUploadNotificationCardItemViewModel(
             id: submission.objectID,
             assignmentName: submission.assignmentName,
-            state: state,
+            state: getNotificationCardItemState(from: submission.state),
             isHiddenByUser: submission.isHiddenOnDashboard,
             cardDidTap: { [weak self] submissionID, viewController in
                 self?.cardDidTap(
