@@ -62,11 +62,9 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
         self.environment = environment
         getSubmissions()
 
-        unowned let unownedSelf = self
-
         sceneDidBecomeActive
-            .sink { _ in
-                unownedSelf.getSubmissions()
+            .sink { [self] in
+                getSubmissions()
             }
             .store(in: &subscriptions)
     }
