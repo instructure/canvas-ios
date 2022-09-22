@@ -118,11 +118,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         } catch {
             assertionFailure("Failed to performFetch \(error)")
         }
-
-        externalStoreChangeListener = database.observeAppExtensionDataChanges {
-            try? frc.performFetch()
-            self.notify()
-        }
     }
 
     /// Updates predicate & sortDescriptors, but not sectionNameKeyPath.
@@ -171,6 +166,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) -> Self {
         request(useCase, force: force, callback: callback)
         return self
+    }
+
+    public func forceFetchObjects() throws {
+        try frc.performFetch()
     }
 
     @discardableResult

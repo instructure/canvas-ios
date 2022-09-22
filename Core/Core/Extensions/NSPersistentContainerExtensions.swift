@@ -120,17 +120,3 @@ extension NSPersistentContainer {
 }
 
 private var writeContextKey: UInt8 = 0
-
-extension NSPersistentContainer {
-
-    func observeAppExtensionDataChanges(completion: @escaping () -> Void) -> AnyCancellable {
-        InterprocessNotificationCenter.shared
-            .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
-            .sink { [viewContext] in
-                viewContext.perform {
-                    viewContext.forceRefreshAllObjects()
-                    completion()
-                }
-            }
-    }
-}

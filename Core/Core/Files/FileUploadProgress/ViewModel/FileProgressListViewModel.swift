@@ -85,6 +85,17 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         self.flowCompleted = dismiss
         fileSubmission.refresh()
         fileUploadItems.refresh()
+
+        InterprocessNotificationCenter.shared
+            .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak fileSubmission, weak fileUploadItems] in
+                    try? fileSubmission?.forceFetchObjects()
+                    try? fileUploadItems?.forceFetchObjects()
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     private func showCancelDialog() {

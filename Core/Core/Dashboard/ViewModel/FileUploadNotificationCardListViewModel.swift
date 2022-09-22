@@ -67,6 +67,17 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
                 refreshSubmissions()
             }
             .store(in: &subscriptions)
+
+        InterprocessNotificationCenter.shared
+            .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak fileSubmissions, weak fileUploadItems] in
+                    try? fileSubmissions?.forceFetchObjects()
+                    try? fileUploadItems?.forceFetchObjects()
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     private func refreshSubmissions() {

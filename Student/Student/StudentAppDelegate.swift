@@ -281,9 +281,12 @@ extension StudentAppDelegate {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
             var tasks: [String: UIBackgroundTaskIdentifier] = [:]
             func startBackgroundTask(taskName: String) {
-                tasks[taskName] = UIApplication.shared.beginBackgroundTask(withName: taskName) { [weak self] in
-                    self?.tasks[taskName] = .invalid
-                }
+                tasks[taskName] = UIApplication.shared.beginBackgroundTask(
+                    withName: taskName,
+                    expirationHandler: { [weak self] in
+                        self?.tasks[taskName] = .invalid
+                        self?.endBackgroundTask(taskName: taskName)
+                })
             }
 
             func endBackgroundTask(taskName: String) {
