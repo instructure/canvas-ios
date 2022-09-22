@@ -38,6 +38,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                         FileProgressItemView(viewModel: $0)
                         Divider()
                     }
+                    .animation(.default)
                     Spacer()
                 }
             }
