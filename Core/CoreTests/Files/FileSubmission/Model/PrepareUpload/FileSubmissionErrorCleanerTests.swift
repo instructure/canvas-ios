@@ -34,7 +34,7 @@ class FileSubmissionRetryPreparationsTests: CoreTestCase {
         file2.fileSubmission = submission
 
         // MARK: - WHEN
-        FileSubmissionRetryPreparations(context: databaseClient).clearErrorsAndWait(submissionID: submission.objectID)
+        FileSubmissionErrorCleaner(context: databaseClient).clearErrorsAndWait(submissionID: submission.objectID)
 
         // MARK: - THEN
         XCTAssertNil(submission.submissionError)

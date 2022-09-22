@@ -28,6 +28,7 @@ public class FileSubmissionAssembly {
     private let backgroundSessionCompletion: BackgroundSessionCompletion
     /** A background context so we can work with it from any background thread. */
     private let backgroundContext: NSManagedObjectContext
+    private let errorCleaner: FileSubmissionErrorCleaner
 
     /**
      - parameters:
@@ -81,6 +82,7 @@ public class FileSubmissionAssembly {
         }
         let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
 
+        self.errorCleaner = FileSubmissionErrorCleaner(context: backgroundContext)
         self.backgroundContext = backgroundContext
         self.backgroundSessionCompletion = backgroundSessionCompletion
         self.backgroundURLSessionProvider = backgroundURLSessionProvider
@@ -90,8 +92,7 @@ public class FileSubmissionAssembly {
     }
 
     public func start(fileSubmissionID: NSManagedObjectID) {
-        FileSubmissionRetryPreparations(context: backgroundContext)
-            .clearErrorsAndWait(submissionID: fileSubmissionID)
+        errorCleaner.clearErrorsAndWait(submissionID: fileSubmissionID)
 
         var keepAliveSubscription = Set<AnyCancellable>()
         fileSubmissionTargetsRequester

@@ -19,7 +19,7 @@
 import Combine
 import CoreData
 
-public class FileSubmissionRetryPreparations {
+public class FileSubmissionErrorCleaner {
     private let context: NSManagedObjectContext
 
     public init(context: NSManagedObjectContext) {
