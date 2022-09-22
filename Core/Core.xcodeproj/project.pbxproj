@@ -1012,6 +1012,7 @@
 		CF99CB1728DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1628DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift */; };
 		CF99CB1928DB6BF9001BBDF1 /* FileSubmissionPreparation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1828DB6BF9001BBDF1 /* FileSubmissionPreparation.swift */; };
 		CF99CB1C28DB738A001BBDF1 /* FileSubmissionPreparationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1A28DB736C001BBDF1 /* FileSubmissionPreparationTests.swift */; };
+		CF99CB1E28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */; };
 		CF9A0EDE27E2497E00762228 /* ListSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */; };
 		CF9A0EE027E38CFC00762228 /* SyllabusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */; };
 		CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */; };
@@ -2500,6 +2501,7 @@
 		CF99CB1628DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
 		CF99CB1828DB6BF9001BBDF1 /* FileSubmissionPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparation.swift; sourceTree = "<group>"; };
 		CF99CB1A28DB736C001BBDF1 /* FileSubmissionPreparationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparationTests.swift; sourceTree = "<group>"; };
+		CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionErrorsTests.swift; sourceTree = "<group>"; };
 		CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusCellViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModelTests.swift; sourceTree = "<group>"; };
@@ -4737,6 +4739,7 @@
 				CFDB61F928AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift */,
 				CFDB61F728AD16B40008C3F3 /* FileUploadItemTests.swift */,
 				B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */,
+				CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -7063,6 +7066,7 @@
 				7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
 				7D062AF721249E7700677F66 /* ContextModelTests.swift in Sources */,
+				CF99CB1E28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift in Sources */,
 				B472C7DD28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift in Sources */,
 				3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */,
 				3BA649D12424351B0047D8DC /* APIPairingCodeTests.swift in Sources */,
