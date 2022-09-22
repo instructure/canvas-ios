@@ -55,6 +55,7 @@ public class FileSubmissionItemsUploadStarter {
                     continue
                 }
 
+                file.apiID = nil
                 file.uploadError = nil
                 file.bytesUploaded = 0
 

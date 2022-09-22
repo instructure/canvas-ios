@@ -99,7 +99,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testRequestUploadTargetErrorWhenNoErrorNorEntityReceivedFromAPI() {
+    func testFailsWhenNoErrorNorEntityReceivedFromAPI() {
         // MARK: - GIVEN
         let submission: FileSubmission = databaseClient.insert()
         submission.courseID = "testCourse"
@@ -132,7 +132,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testFileWithExistingUploadTargetSkipped() {
+    func testFileWithExistingUploadTargetRetried() {
         // MARK: - GIVEN
         let submission: FileSubmission = databaseClient.insert()
         submission.courseID = "testCourse"
@@ -143,25 +143,23 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         item.fileSubmission = submission
         item.uploadTarget = FileUploadTarget(upload_url: URL(string: "/previous_url")!, upload_params: ["testKey": "testValue"])
 
-        // These shouldn't matter as the API request should be skipped
         let body = PostFileUploadTargetRequest.Body(name: "FileUploadTargetRequesterTests.txt", on_duplicate: .rename, parent_folder_path: nil, size: 3)
         let request = PostFileUploadTargetRequest(context: submission.fileUploadContext, body: body)
-        api.mock(request, value: nil, error: NSError.instructureError("testError"))
+        let mockRequest = api.mock(request, value: nil, error: NSError.instructureError("testError"))
+        mockRequest.suspend()
 
         let testee = FileUploadTargetRequester(api: api, context: databaseClient, fileUploadItemID: item.objectID)
-        let completionEvent = expectation(description: "completion event fire")
+        let responseNotYetReceived = expectation(description: "API request is pending")
+        responseNotYetReceived.isInverted = true
 
         // MARK: - WHEN
-        let subscription = testee.requestUploadTarget().sink { completion in
-            if case .finished = completion {
-                completionEvent.fulfill()
-            }
+        let subscription = testee.requestUploadTarget().sink { _ in
+            responseNotYetReceived.fulfill()
         }
 
         // MARK: - THEN
         waitForExpectations(timeout: 0.1)
-        XCTAssertNil(item.uploadError)
-        XCTAssertEqual(item.uploadTarget, FileUploadTarget(upload_url: URL(string: "/previous_url")!, upload_params: ["testKey": "testValue"]))
+        XCTAssertNil(item.uploadTarget)
 
         subscription.cancel()
     }

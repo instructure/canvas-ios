@@ -50,10 +50,7 @@ public class FileUploadTargetRequester {
                 return
             }
 
-            guard fileItem.uploadTarget == nil else {
-                promise(.success(()))
-                return
-            }
+            fileItem.uploadTarget = nil
 
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)

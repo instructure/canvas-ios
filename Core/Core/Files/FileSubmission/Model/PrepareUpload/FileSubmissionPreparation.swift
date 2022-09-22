@@ -19,14 +19,14 @@
 import Combine
 import CoreData
 
-public class FileSubmissionErrorCleaner {
+public class FileSubmissionPreparation {
     private let context: NSManagedObjectContext
 
     public init(context: NSManagedObjectContext) {
         self.context = context
     }
 
-    public func clearErrorsAndWait(submissionID: NSManagedObjectID) {
+    public func prepare(submissionID: NSManagedObjectID) {
         context.performAndWait {
             guard let submission = try? context.existingObject(with: submissionID) as? FileSubmission else {
                 return
@@ -34,9 +34,12 @@ public class FileSubmissionErrorCleaner {
 
             for fileItem in submission.files {
                 fileItem.uploadError = nil
+                fileItem.apiID = nil
+                fileItem.uploadTarget = nil
             }
 
             submission.submissionError = nil
+            try? context.saveAndNotify()
         }
     }
 }

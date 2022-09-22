@@ -19,26 +19,34 @@
 import XCTest
 import Core
 
-class FileSubmissionRetryPreparationsTests: CoreTestCase {
+class FileSubmissionPreparationTests: CoreTestCase {
 
-    func testClearFileAndSubmissionErrors() {
+    func testClearFileAndSubmissionStates() {
         // MARK: - GIVEN
         let submission = databaseClient.insert() as FileSubmission
         submission.submissionError = "testError"
 
         let file1 = databaseClient.insert() as FileUploadItem
         file1.uploadError = "testError"
+        file1.uploadTarget = FileUploadTarget(upload_url: URL(string: "/")!, upload_params: [:])
+        file1.apiID = "test"
         file1.fileSubmission = submission
         let file2 = databaseClient.insert() as FileUploadItem
         file2.uploadError = "testError"
+        file2.uploadTarget = FileUploadTarget(upload_url: URL(string: "/")!, upload_params: [:])
+        file2.apiID = "test"
         file2.fileSubmission = submission
 
         // MARK: - WHEN
-        FileSubmissionErrorCleaner(context: databaseClient).clearErrorsAndWait(submissionID: submission.objectID)
+        FileSubmissionPreparation(context: databaseClient).prepare(submissionID: submission.objectID)
 
         // MARK: - THEN
         XCTAssertNil(submission.submissionError)
         XCTAssertNil(file1.uploadError)
+        XCTAssertNil(file1.uploadTarget)
+        XCTAssertNil(file1.apiID)
         XCTAssertNil(file2.uploadError)
+        XCTAssertNil(file2.uploadTarget)
+        XCTAssertNil(file2.apiID)
     }
 }

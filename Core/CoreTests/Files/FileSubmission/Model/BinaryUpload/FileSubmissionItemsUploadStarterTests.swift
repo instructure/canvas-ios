@@ -48,7 +48,6 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         // MARK: - GIVEN
         let submission: FileSubmission = databaseClient.insert()
         let item: FileUploadItem = databaseClient.insert()
-        item.apiID = "id1"
         item.fileSubmission = submission
 
         let completionEvent = expectation(description: "completion event fire")
@@ -74,7 +73,6 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         // MARK: - GIVEN
         let submission: FileSubmission = databaseClient.insert()
         let item: FileUploadItem = databaseClient.insert()
-        item.apiID = "id1"
         item.localFileURL = URL(string: "/localFile.txt")!
         item.uploadTarget = FileUploadTarget(upload_url: URL(string: "/uploadURL")!, upload_params: [:])
         item.fileSubmission = submission
@@ -108,7 +106,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testResetsPreviousUploadErrorAndUploadedBytesOnUploadItem() {
+    func testResetsPreviousUploadErrorAndUploadedBytesAndAPIIDOnUploadItem() {
         // MARK: - GIVEN
         let submission: FileSubmission = databaseClient.insert()
         let item: FileUploadItem = databaseClient.insert()
@@ -137,6 +135,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         // MARK: - THEN
         waitForExpectations(timeout: 0.1)
         XCTAssertNil(item.uploadError)
+        XCTAssertNil(item.apiID)
         XCTAssertEqual(item.bytesUploaded, 0)
 
         subscription.cancel()
