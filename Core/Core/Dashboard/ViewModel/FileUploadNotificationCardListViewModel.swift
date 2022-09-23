@@ -52,7 +52,10 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
     }()
 
     private lazy var fileUploadItems: Store<LocalUseCase<FileUploadItem>> = {
-        let scope = Scope(predicate: .all, order: [])
+        let scope = Scope(
+            predicate: NSPredicate(format: "%K == false", #keyPath(FileUploadItem.fileSubmission.isHiddenOnDashboard)),
+            order: []
+        )
         let useCase = LocalUseCase<FileUploadItem>(scope: scope)
         return Store(env: environment, context: localViewContext, useCase: useCase) { [weak self] in
             self?.update()
