@@ -172,11 +172,28 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         switch submission.state {
         case .waiting:
             state = .waiting
-        case .uploading(progress: let progress):
+        case .uploading:
             let format = NSLocalizedString("Uploading %@ of %@", comment: "")
-            let uploadedSize = Int(progress * CGFloat(submission.totalSize))
-            let progressText = String.localizedStringWithFormat(format, uploadedSize.humanReadableFileSize, submission.totalSize.humanReadableFileSize)
-            state = .uploading(progressText: progressText, progress: Float(progress))
+
+            let progress: Float
+            let totalUploadedSize: Int
+            if submission.totalSize > 0 {
+                totalUploadedSize = submission.totalUploadedSize > submission.totalSize ?
+                    submission.totalSize :
+                    submission.totalUploadedSize
+
+                progress = min(Float(totalUploadedSize) / Float(submission.totalSize), 1.0)
+            } else {
+                progress = 0
+                totalUploadedSize = 0
+            }
+
+            let progressText = String.localizedStringWithFormat(
+                format,
+                totalUploadedSize.humanReadableFileSize,
+                submission.totalSize.humanReadableFileSize
+            )
+            state = .uploading(progressText: progressText, progress: progress)
         case .failedUpload:
             state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
             isErrorDisplayed = true

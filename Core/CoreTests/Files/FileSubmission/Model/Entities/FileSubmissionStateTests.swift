@@ -39,6 +39,6 @@ class FileSubmissionStateTests: CoreTestCase {
         file.bytesUploaded = 5
         let testee: FileSubmission = databaseClient.insert()
         testee.files = Set([file])
-        XCTAssertEqual(testee.state, .uploading(progress: 0.5))
+        XCTAssertEqual(testee.state, .uploading)
     }
 }

@@ -117,8 +117,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         saveFiles()
 
         XCTAssertEqual(testee.items.count, 2)
-        // A finished file is considered completed, that's why the 15 bytes uploaded.
-        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 15 bytes of 20 bytes", progress: 0.75))
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 10 bytes of 20 bytes", progress: 0.5))
         XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
         XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
@@ -136,6 +135,19 @@ class FileProgressListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .failed(message: "One or more files failed to upload. Check your internet connection and retry to submit.", error: nil))
         XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
         XCTAssertEqual(testee.rightBarButton?.title, "Retry")
+    }
+
+    func testBothFilesUploading() {
+        let file1 = makeFile()
+        file1.bytesUploaded = 2
+        let file2 = makeFile()
+        file2.bytesUploaded = 3
+        saveFiles()
+
+        XCTAssertEqual(testee.items.count, 2)
+        XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 5 bytes of 20 bytes", progress: 0.25))
+        XCTAssertEqual(testee.leftBarButton?.title, "Cancel")
+        XCTAssertEqual(testee.rightBarButton?.title, "Dismiss")
     }
 
     func testBothFilesUploaded() {

@@ -16,12 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension FileSubmission {
-
+public extension FileSubmission {
     /** The sum of file sizes in this submission, in bytes. */
-    public var totalSize: Int {
+    var totalSize: Int {
         files.reduce(into: 0) { $0 += $1.bytesToUpload }
     }
 
-    public var fileUploadContext: FileUploadContext { .submission(courseID: courseID, assignmentID: assignmentID, comment: comment) }
+    /** The sum of uploaded file sizes in this submission, in bytes. */
+    var totalUploadedSize: Int {
+        files.reduce(into: 0) { $0 += $1.bytesUploaded }
+    }
+
+    var fileUploadContext: FileUploadContext { .submission(courseID: courseID, assignmentID: assignmentID, comment: comment) }
 }
