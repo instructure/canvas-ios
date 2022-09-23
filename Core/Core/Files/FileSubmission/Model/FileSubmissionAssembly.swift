@@ -29,6 +29,8 @@ public class FileSubmissionAssembly {
     /** A background context so we can work with it from any background thread. */
     private let backgroundContext: NSManagedObjectContext
     private let submissionPreparation: FileSubmissionPreparation
+    /** We use this to fetch changes in the persistent store made by out-of-process activities. */
+    private let interprocessContextChangeListener: AnyCancellable
 
     /**
      - parameters:
@@ -89,6 +91,15 @@ public class FileSubmissionAssembly {
         self.composer = FileSubmissionComposer(context: backgroundContext)
         self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
         self.fileSubmissionItemsUploader = FileSubmissionItemsUploadStarter(api: api, context: backgroundContext, backgroundSessionProvider: backgroundURLSessionProvider)
+
+        interprocessContextChangeListener = InterprocessNotificationCenter.shared
+            .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    backgroundContext.forceRefreshAllObjects()
+                }
+            )
     }
 
     public func start(fileSubmissionID: NSManagedObjectID) {

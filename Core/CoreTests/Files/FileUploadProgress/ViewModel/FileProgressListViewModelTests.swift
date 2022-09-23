@@ -210,6 +210,7 @@ class FileProgressListViewModelTests: CoreTestCase {
             uiRefreshExpectation.fulfill()
         }
         file.bytesUploaded = 1
+        saveFiles()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0.1))
 
@@ -429,5 +430,6 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     private func saveFiles() {
         try! databaseClient.save()
+        drainMainQueue()
     }
 }

@@ -89,9 +89,9 @@ class FileUploadNotificationCardViewModelTests: CoreTestCase {
     }
 
     func testUserHiddenSubmissionIsNotInTheList() {
-        // Give
+        // Given
         let submission = createSubmission(fileUploadItem: createFileUploadItem())
-        submission.isHiddenOnDashboard = false
+        submission.isHiddenOnDashboard = true
         saveFiles()
 
         // Then
@@ -151,6 +151,7 @@ class FileUploadNotificationCardViewModelTests: CoreTestCase {
 
         // When
         databaseClient.delete(submission)
+        saveFiles()
 
         // Then
         XCTAssertTrue(databaseClient.isObjectDeleted(submission))
@@ -198,5 +199,6 @@ class FileUploadNotificationCardViewModelTests: CoreTestCase {
 
     private func saveFiles() {
         try! databaseClient.save()
+        drainMainQueue()
     }
 }

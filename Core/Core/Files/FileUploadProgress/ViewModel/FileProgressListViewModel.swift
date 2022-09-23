@@ -52,7 +52,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let predicate = NSPredicate(format: "SELF = %@", submissionID)
         let scope = Scope(predicate: predicate, order: [])
         let useCase = LocalUseCase<FileSubmission>(scope: scope)
-        return environment.subscribe(useCase) { [weak self] in
+        return Store(env: environment, context: localViewContext, useCase: useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -61,7 +61,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let predicate = NSPredicate(format: "fileSubmission = %@", submissionID)
         let scope = Scope(predicate: predicate, order: [])
         let useCase = LocalUseCase<FileUploadItem>(scope: scope)
-        return environment.subscribe(useCase) { [weak self] in
+        return Store(env: environment, context: localViewContext, useCase: useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -74,6 +74,11 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
      If the user removes the last failed upload item (so only succeeded items remain) we should still display the error.
      */
     private var isErrorDisplayed = false
+    /**
+     When an upload happens we force refresh quite often the view context to get changes made by out-of-process activities,
+     so we use this local context to avoid refreshing the whole app each time.
+     */
+    private let localViewContext: NSManagedObjectContext
 
     /**
      - parameters:
@@ -83,6 +88,13 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         self.submissionID = submissionID
         self.environment = environment
         self.flowCompleted = dismiss
+        self.localViewContext = {
+            let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+            context.persistentStoreCoordinator = environment.database.persistentStoreCoordinator
+            context.automaticallyMergesChangesFromParent = true
+            return context
+        }()
+
         fileSubmission.refresh()
         fileUploadItems.refresh()
 
@@ -90,7 +102,8 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: { [weak fileSubmission, weak fileUploadItems] in
+                receiveValue: { [weak fileSubmission, weak fileUploadItems, weak localViewContext] in
+                    localViewContext?.forceRefreshAllObjects()
                     try? fileSubmission?.forceFetchObjects()
                     try? fileUploadItems?.forceFetchObjects()
                 }

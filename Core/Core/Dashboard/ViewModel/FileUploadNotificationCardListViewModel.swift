@@ -35,13 +35,18 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
 
     // MARK: - Private properties
 
+    /**
+     When an upload happens we force refresh quite often the view context to get changes made by out-of-process activities,
+     so we use this local context to avoid refreshing the whole app each time.
+     */
+    private let localViewContext: NSManagedObjectContext
     private lazy var fileSubmissions: Store<LocalUseCase<FileSubmission>> = {
         let scope = Scope(
             predicate: NSPredicate(format: "%K == false", #keyPath(FileSubmission.isHiddenOnDashboard)),
             order: []
         )
         let useCase = LocalUseCase<FileSubmission>(scope: scope)
-        return environment.subscribe(useCase) { [weak self] in
+        return Store(env: environment, context: localViewContext, useCase: useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -49,7 +54,7 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
     private lazy var fileUploadItems: Store<LocalUseCase<FileUploadItem>> = {
         let scope = Scope(predicate: .all, order: [])
         let useCase = LocalUseCase<FileUploadItem>(scope: scope)
-        return environment.subscribe(useCase) { [weak self] in
+        return Store(env: environment, context: localViewContext, useCase: useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -60,11 +65,20 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
 
     init(environment: AppEnvironment = .shared) {
         self.environment = environment
+        self.localViewContext = {
+            let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+            context.persistentStoreCoordinator = environment.database.persistentStoreCoordinator
+            context.automaticallyMergesChangesFromParent = true
+            return context
+        }()
+
         refreshSubmissions()
 
         sceneDidBecomeActive
-            .sink { [self] in
-                refreshSubmissions()
+            .sink { [weak fileSubmissions, weak fileUploadItems, weak localViewContext] in
+                localViewContext?.forceRefreshAllObjects()
+                try? fileSubmissions?.forceFetchObjects()
+                try? fileUploadItems?.forceFetchObjects()
             }
             .store(in: &subscriptions)
 
@@ -72,7 +86,8 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
             .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: { [weak fileSubmissions, weak fileUploadItems] in
+                receiveValue: { [weak fileSubmissions, weak fileUploadItems, weak localViewContext] in
+                    localViewContext?.forceRefreshAllObjects()
                     try? fileSubmissions?.forceFetchObjects()
                     try? fileUploadItems?.forceFetchObjects()
                 }
@@ -115,10 +130,10 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
                     viewController: viewController
                 )
             },
-            dismissDidTap: { [weak environment] in
-                environment?.database.viewContext.perform {
+            dismissDidTap: {
+                submission.managedObjectContext?.perform {
                     submission.isHiddenOnDashboard = true
-                    try? environment?.database.viewContext.save()
+                    try? submission.managedObjectContext?.save()
                 }
             }
         )
