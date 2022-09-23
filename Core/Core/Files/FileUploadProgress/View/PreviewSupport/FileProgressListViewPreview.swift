@@ -52,7 +52,7 @@ class FileProgressListViewPreview {
         }
 
         private func scheduleUpdate() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + (state == .success ? 3 : 1)) { [weak self] in
                 self?.updateState()
             }
         }
