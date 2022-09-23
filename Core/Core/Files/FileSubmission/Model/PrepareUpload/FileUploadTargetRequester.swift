@@ -50,7 +50,9 @@ public class FileUploadTargetRequester {
                 return
             }
 
+            fileItem.uploadError = nil
             fileItem.uploadTarget = nil
+            try? context.saveAndNotify()
 
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)

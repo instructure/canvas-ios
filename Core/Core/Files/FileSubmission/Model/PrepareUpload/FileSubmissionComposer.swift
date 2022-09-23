@@ -44,6 +44,7 @@ public class FileSubmissionComposer {
                 let item: FileUploadItem = context.insert()
                 item.localFileURL = $0
                 item.fileSize = $0.lookupFileSize()
+                item.bytesToUpload = item.fileSize
                 return item
             })
             fileSubmission.isHiddenOnDashboard = false

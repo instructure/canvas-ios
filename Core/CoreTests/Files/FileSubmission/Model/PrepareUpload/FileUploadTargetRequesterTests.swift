@@ -44,6 +44,8 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         item.fileSubmission = submission
         item.uploadError = "previousError"
 
+        try? databaseClient.save()
+
         let body = PostFileUploadTargetRequest.Body(name: "FileUploadTargetRequesterTests.txt", on_duplicate: .rename, parent_folder_path: nil, size: 3)
         let request = PostFileUploadTargetRequest(context: submission.fileUploadContext, body: body)
         api.mock(request, value: FileUploadTarget(upload_url: URL(string: "/test")!, upload_params: ["testKey": "testValue"]))
@@ -76,6 +78,8 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         item.localFileURL = tempFileURL
         item.fileSubmission = submission
 
+        try? databaseClient.save()
+
         let body = PostFileUploadTargetRequest.Body(name: "FileUploadTargetRequesterTests.txt", on_duplicate: .rename, parent_folder_path: nil, size: 3)
         let request = PostFileUploadTargetRequest(context: submission.fileUploadContext, body: body)
         api.mock(request, value: nil, error: NSError.instructureError("testError"))
@@ -92,7 +96,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(item.uploadError, "testError")
         XCTAssertNil(item.uploadTarget)
 
@@ -108,6 +112,8 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         let item: FileUploadItem = databaseClient.insert()
         item.localFileURL = tempFileURL
         item.fileSubmission = submission
+
+        try? databaseClient.save()
 
         let body = PostFileUploadTargetRequest.Body(name: "FileUploadTargetRequesterTests.txt", on_duplicate: .rename, parent_folder_path: nil, size: 3)
         let request = PostFileUploadTargetRequest(context: submission.fileUploadContext, body: body)

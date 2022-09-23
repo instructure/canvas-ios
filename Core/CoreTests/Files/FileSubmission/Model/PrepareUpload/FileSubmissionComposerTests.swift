@@ -20,6 +20,17 @@ import XCTest
 import Core
 
 class FileSubmissionComposerTests: CoreTestCase {
+    private let tempFileURL = URL.temporaryDirectory.appendingPathComponent("FileSubmissionComposerTests.txt")
+
+    override func setUp() {
+        super.setUp()
+        FileManager.default.createFile(atPath: tempFileURL.path, contents: "tst".data(using: .utf8), attributes: nil)
+    }
+
+    override func tearDown() {
+        try? FileManager.default.removeItem(at: tempFileURL)
+        super.tearDown()
+    }
 
     func testCreatesSubmissionWithItems() {
         let testee = FileSubmissionComposer(context: databaseClient)
@@ -28,8 +39,8 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentName: "testName",
                                                     comment: "testComment",
                                                     files: [
-                                                        URL(string: "/test")!,
-                                                        URL(string: "/test2")!,
+                                                        tempFileURL,
+                                                        tempFileURL,
                                                     ])
         guard let submission = try? databaseClient.existingObject(with: submissionID) as? FileSubmission else {
             XCTFail("Submission not found")
@@ -46,10 +57,11 @@ class FileSubmissionComposerTests: CoreTestCase {
             return
         }
 
-        XCTAssertEqual(Set(submission.files.map { $0.localFileURL }), Set([URL(string: "/test")!, URL(string: "/test2")!]))
+        XCTAssertEqual(Set(submission.files.map { $0.localFileURL }), Set([tempFileURL]))
         XCTAssertTrue(submission.files.allSatisfy { $0.apiID == nil })
         XCTAssertTrue(submission.files.allSatisfy { $0.bytesUploaded == 0 })
-        XCTAssertTrue(submission.files.allSatisfy { $0.bytesToUpload == 0 })
+        XCTAssertTrue(submission.files.allSatisfy { $0.bytesToUpload == 3 })
+        XCTAssertTrue(submission.files.allSatisfy { $0.fileSize == 3 })
         XCTAssertTrue(submission.files.allSatisfy { $0.uploadError == nil })
     }
 
