@@ -814,6 +814,8 @@
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
 		B453728828B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */; };
 		B453C8B328CA351200327A13 /* FileUploadItemMimeClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */; };
+		B472C7DD28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */; };
+		B4A687C628DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */; };
 		B4BC3CD728D09A7A00FD368E /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */; };
 		B4C045E328CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
@@ -1007,6 +1009,10 @@
 		CF941B1E267B439600700DE9 /* K5ScheduleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */; };
 		CF99CB1128D9D2CD001BBDF1 /* InterprocessNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1028D9D2CC001BBDF1 /* InterprocessNotificationCenter.swift */; };
 		CF99CB1528D9D99D001BBDF1 /* InterprocessNotificationCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1428D9D99D001BBDF1 /* InterprocessNotificationCenterTests.swift */; };
+		CF99CB1728DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1628DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift */; };
+		CF99CB1928DB6BF9001BBDF1 /* FileSubmissionPreparation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1828DB6BF9001BBDF1 /* FileSubmissionPreparation.swift */; };
+		CF99CB1C28DB738A001BBDF1 /* FileSubmissionPreparationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1A28DB736C001BBDF1 /* FileSubmissionPreparationTests.swift */; };
+		CF99CB1E28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */; };
 		CF9A0EDE27E2497E00762228 /* ListSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */; };
 		CF9A0EE027E38CFC00762228 /* SyllabusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */; };
 		CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */; };
@@ -2296,6 +2302,8 @@
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
 		B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModel.swift; sourceTree = "<group>"; };
 		B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItemMimeClassTests.swift; sourceTree = "<group>"; };
+		B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModelTests.swift; sourceTree = "<group>"; };
+		B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModelTests.swift; sourceTree = "<group>"; };
 		B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSenderTests.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
@@ -2490,6 +2498,10 @@
 		CF941B1D267B439600700DE9 /* K5ScheduleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleViewModelTests.swift; sourceTree = "<group>"; };
 		CF99CB1028D9D2CC001BBDF1 /* InterprocessNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterprocessNotificationCenter.swift; sourceTree = "<group>"; };
 		CF99CB1428D9D99D001BBDF1 /* InterprocessNotificationCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterprocessNotificationCenterTests.swift; sourceTree = "<group>"; };
+		CF99CB1628DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
+		CF99CB1828DB6BF9001BBDF1 /* FileSubmissionPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparation.swift; sourceTree = "<group>"; };
+		CF99CB1A28DB736C001BBDF1 /* FileSubmissionPreparationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparationTests.swift; sourceTree = "<group>"; };
+		CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionErrorsTests.swift; sourceTree = "<group>"; };
 		CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusCellViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModelTests.swift; sourceTree = "<group>"; };
@@ -3905,6 +3917,7 @@
 				B1C783EE2241EA3700DD89A9 /* NSManagedObjectContextExtensions.swift */,
 				7DF4FFE421714952007E5F81 /* NSNumberExtensions.swift */,
 				B1C783F02241EB5E00DD89A9 /* NSPersistentContainerExtensions.swift */,
+				CF99CB1628DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift */,
 				B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */,
 				CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */,
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
@@ -4726,6 +4739,7 @@
 				CFDB61F928AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift */,
 				CFDB61F728AD16B40008C3F3 /* FileUploadItemTests.swift */,
 				B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */,
+				CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -5325,6 +5339,8 @@
 				CFFE286127ABA4DF0029A408 /* DashboardCardsViewModelTests.swift */,
 				CF748D20274D52C6000EA34E /* DashboardConferencesViewModelTests.swift */,
 				CF43DE7E27BE6B9100015B6F /* DashboardLayoutViewModelTests.swift */,
+				B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */,
+				B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5716,6 +5732,7 @@
 				CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */,
 				CF7C7DA928BA55AC00B7F1EE /* FileUploadTargetRequester.swift */,
 				CFB06FA728C3F80E00DAC40B /* FileSubmissionTargetsRequester.swift */,
+				CF99CB1828DB6BF9001BBDF1 /* FileSubmissionPreparation.swift */,
 			);
 			path = PrepareUpload;
 			sourceTree = "<group>";
@@ -5725,6 +5742,7 @@
 			children = (
 				CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */,
 				CFB06F9328BCF84900DAC40B /* FileUploadTargetRequesterTests.swift */,
+				CF99CB1A28DB736C001BBDF1 /* FileSubmissionPreparationTests.swift */,
 			);
 			path = PrepareUpload;
 			sourceTree = "<group>";
@@ -6929,6 +6947,7 @@
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,
 				EB24231128521EF00058A100 /* UIWindowExtensionsTests.swift in Sources */,
+				CF99CB1C28DB738A001BBDF1 /* FileSubmissionPreparationTests.swift in Sources */,
 				7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */,
 				9FD504EA2180BE2900B395BA /* APIFileTests.swift in Sources */,
 				CF22C94F25F60FDC00C2E012 /* UIAccessibilityAnnouncementTests.swift in Sources */,
@@ -7047,6 +7066,8 @@
 				7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
 				7D062AF721249E7700677F66 /* ContextModelTests.swift in Sources */,
+				CF99CB1E28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift in Sources */,
+				B472C7DD28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift in Sources */,
 				3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */,
 				3BA649D12424351B0047D8DC /* APIPairingCodeTests.swift in Sources */,
 				CF61834928D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift in Sources */,
@@ -7209,6 +7230,7 @@
 				EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */,
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,
 				7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */,
+				B4A687C628DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift in Sources */,
 				7D57398D2437E411000073BE /* GetAssignmentsByGroupTests.swift in Sources */,
 				7DCF203A216D5712003AF358 /* QuizTypeTests.swift in Sources */,
 				7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */,
@@ -7277,6 +7299,7 @@
 				B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */,
 				CF09E6A32840FB13000C72D0 /* UTIFromNSItemProvider.swift in Sources */,
 				7DA2601623F7227A005D2121 /* UINavigationBarExtensions.swift in Sources */,
+				CF99CB1928DB6BF9001BBDF1 /* FileSubmissionPreparation.swift in Sources */,
 				CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */,
 				7DA2604A23F722D9005D2121 /* GradeFormatter.swift in Sources */,
 				7DA2602723F722C2005D2121 /* LoginDelegate.swift in Sources */,
@@ -7768,6 +7791,7 @@
 				7DA2607223F722E9005D2121 /* NotificationManager.swift in Sources */,
 				CFFA6CEB26554FBC00B47380 /* TopBarItemView.swift in Sources */,
 				E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */,
+				CF99CB1728DAF5CD001BBDF1 /* NSPersistentStoreExtensions.swift in Sources */,
 				CF6C7FC626F8D106002937E5 /* SubmitAssignmentExtensionView.swift in Sources */,
 				E83BB40625196E2C000E5B00 /* ConversationListCell.swift in Sources */,
 				CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */,

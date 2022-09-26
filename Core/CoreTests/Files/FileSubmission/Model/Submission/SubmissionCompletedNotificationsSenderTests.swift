@@ -65,7 +65,7 @@ class SubmissionCompletedNotificationSenderTests: CoreTestCase {
 
         let notificationRequestIdentifier = "completed-submission-\(courseID)-\(assignmentID)"
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 0.4)
 
         guard let firedRequest = notificationManager.mock.requests.first else {
             return XCTFail("Couldn't find UNNotificationRequest with id: \(notificationRequestIdentifier)")

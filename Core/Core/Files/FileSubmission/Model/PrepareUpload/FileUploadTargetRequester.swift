@@ -50,10 +50,9 @@ public class FileUploadTargetRequester {
                 return
             }
 
-            guard fileItem.uploadTarget == nil else {
-                promise(.success(()))
-                return
-            }
+            fileItem.uploadError = nil
+            fileItem.uploadTarget = nil
+            try? context.saveAndNotify()
 
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)
@@ -85,7 +84,7 @@ public class FileUploadTargetRequester {
             }
 
             do {
-                try context.save()
+                try context.saveAndNotify()
             } catch(let error) {
                 fileItem.uploadError = error.localizedDescription
                 result = .failure(error.localizedDescription)

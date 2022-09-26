@@ -44,9 +44,11 @@ public class FileSubmissionComposer {
                 let item: FileUploadItem = context.insert()
                 item.localFileURL = $0
                 item.fileSize = $0.lookupFileSize()
+                item.bytesToUpload = item.fileSize
                 return item
             })
-            try? context.save()
+            fileSubmission.isHiddenOnDashboard = false
+            try? context.saveAndNotify()
             result = fileSubmission.objectID
         }
 
@@ -71,7 +73,7 @@ public class FileSubmissionComposer {
         context.perform { [context] in
             guard let item = try? context.existingObject(with: objectID) else { return }
             context.delete(item)
-            try? context.save()
+            try? context.saveAndNotify()
         }
     }
 }

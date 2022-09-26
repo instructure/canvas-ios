@@ -27,6 +27,8 @@ public protocol FileProgressListViewModelDelegate: AnyObject {
     func fileProgressViewModelRetry(_ viewModel: FileProgressListViewModel)
     /** Called when the user taps the delete button on a file. */
     func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete fileUploadItemID: NSManagedObjectID)
+    /** Called when the user taps the Done button after a successful upload. */
+    func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didAcknowledgeSuccess fileSubmissionID: NSManagedObjectID)
 }
 
 /**
@@ -50,7 +52,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let predicate = NSPredicate(format: "SELF = %@", submissionID)
         let scope = Scope(predicate: predicate, order: [])
         let useCase = LocalUseCase<FileSubmission>(scope: scope)
-        return environment.subscribe(useCase) { [weak self] in
+        return Store(env: environment, context: localViewContext, useCase: useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -59,7 +61,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         let predicate = NSPredicate(format: "fileSubmission = %@", submissionID)
         let scope = Scope(predicate: predicate, order: [])
         let useCase = LocalUseCase<FileUploadItem>(scope: scope)
-        return environment.subscribe(useCase) { [weak self] in
+        return Store(env: environment, context: localViewContext, useCase: useCase) { [weak self] in
             self?.update()
         }
     }()
@@ -72,6 +74,11 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
      If the user removes the last failed upload item (so only succeeded items remain) we should still display the error.
      */
     private var isErrorDisplayed = false
+    /**
+     When an upload happens we force refresh quite often the view context to get changes made by out-of-process activities,
+     so we use this local context to avoid refreshing the whole app each time.
+     */
+    private let localViewContext: NSManagedObjectContext
 
     /**
      - parameters:
@@ -81,8 +88,27 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         self.submissionID = submissionID
         self.environment = environment
         self.flowCompleted = dismiss
+        self.localViewContext = {
+            let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+            context.persistentStoreCoordinator = environment.database.persistentStoreCoordinator
+            context.automaticallyMergesChangesFromParent = true
+            return context
+        }()
+
         fileSubmission.refresh()
         fileUploadItems.refresh()
+
+        InterprocessNotificationCenter.shared
+            .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak fileSubmission, weak fileUploadItems, weak localViewContext] in
+                    localViewContext?.forceRefreshAllObjects()
+                    try? fileSubmission?.forceFetchObjects()
+                    try? fileUploadItems?.forceFetchObjects()
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     private func showCancelDialog() {
@@ -146,11 +172,28 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         switch submission.state {
         case .waiting:
             state = .waiting
-        case .uploading(progress: let progress):
+        case .uploading:
             let format = NSLocalizedString("Uploading %@ of %@", comment: "")
-            let uploadedSize = Int(progress * CGFloat(submission.totalSize))
-            let progressText = String.localizedStringWithFormat(format, uploadedSize.humanReadableFileSize, submission.totalSize.humanReadableFileSize)
-            state = .uploading(progressText: progressText, progress: Float(progress))
+
+            let progress: Float
+            let totalUploadedSize: Int
+            if submission.totalSize > 0 {
+                totalUploadedSize = submission.totalUploadedSize > submission.totalSize ?
+                    submission.totalSize :
+                    submission.totalUploadedSize
+
+                progress = min(Float(totalUploadedSize) / Float(submission.totalSize), 1.0)
+            } else {
+                progress = 0
+                totalUploadedSize = 0
+            }
+
+            let progressText = String.localizedStringWithFormat(
+                format,
+                totalUploadedSize.humanReadableFileSize,
+                submission.totalSize.humanReadableFileSize
+            )
+            state = .uploading(progressText: progressText, progress: progress)
         case .failedUpload:
             state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", comment: ""), error: nil)
             isErrorDisplayed = true
@@ -181,13 +224,15 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             leftBarButton = cancelButton
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", comment: "")) { [weak self] in
                 guard let self = self else { return }
-                self.isErrorDisplayed = false
                 self.delegate?.fileProgressViewModelRetry(self)
+                self.isErrorDisplayed = false
             }
         case .success:
             leftBarButton = nil
             rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", comment: "")) { [weak self] in
-                self?.flowCompleted()
+                guard let self = self else { return }
+                self.delegate?.fileProgressViewModel(self, didAcknowledgeSuccess: self.submissionID)
+                self.flowCompleted()
             }
         }
     }

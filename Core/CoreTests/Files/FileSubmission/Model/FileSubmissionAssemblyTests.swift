@@ -76,8 +76,6 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         urlSessionDelegate.urlSession?(session, task: mockDataTask, didCompleteWithError: nil)
         drainMainQueue()
 
-        // After successful upload entities from CoreData should be removed and file should be deleted
-        XCTAssertEqual(databaseClient.registeredObjects.count, 0)
         XCTAssertFalse(FileManager.default.fileExists(atPath: testFileURL.relativePath))
     }
 
@@ -89,38 +87,6 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         drainMainQueue()
         databaseClient.reset()
         XCTAssertEqual(databaseClient.registeredObjects.count, 0)
-    }
-
-    func testCallsShareCompletedBlockWhenUploadContinuesInApp() {
-        // MARK: - GIVEN
-        let shareCompletedCallback = expectation(description: "Share completed callback called")
-        let testee = FileSubmissionAssembly.makeShareExtensionAssembly()
-        testee.setupShareUIDismissBlock {
-            shareCompletedCallback.fulfill()
-        }
-        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", files: [testFileURL])
-        let submission = try! databaseClient.existingObject(with: submissionID) as! FileSubmission
-
-        // MARK: File target request API mock
-        let body = PostFileUploadTargetRequest.Body(name: "test.txt", on_duplicate: .rename, parent_folder_path: nil, size: 8)
-        let fileUploadTargetRequest = PostFileUploadTargetRequest(context: .submission(courseID: "testCourse",
-                                                                                       assignmentID: "testAssignment",
-                                                                                       comment: "testComment"),
-                                                                  body: body)
-        api.mock(fileUploadTargetRequest, value: FileUploadTarget(upload_url: URL(string: "/uploadURL")!, upload_params: ["testKey": "testValue"]), error: nil)
-
-        // MARK: Binary upload mock
-        let session = testee.backgroundURLSessionProvider.session
-        let mockDataTask = session.dataTask(with: URL(string: "/")!)
-        mockDataTask.taskID = submission.files.first!.objectID.uriRepresentation().absoluteString
-        let urlSessionDelegate = session.delegate as! URLSessionDataDelegate
-
-        // MARK: - WHEN
-        testee.start(fileSubmissionID: submissionID)
-
-        // MARK: - THEN
-        urlSessionDelegate.urlSession?(session, task: mockDataTask, didCompleteWithError: URLError(.backgroundSessionWasDisconnected))
-        waitForExpectations(timeout: 0.1)
     }
 
     private func createTestFile() {

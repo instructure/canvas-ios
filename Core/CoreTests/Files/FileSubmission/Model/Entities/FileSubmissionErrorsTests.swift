@@ -16,29 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import Core
+import XCTest
 
-class FileSubmissionStateTests: CoreTestCase {
+class FileSubmissionErrorsTests: XCTestCase {
 
-    func testSubmittedState() {
-        let testee: FileSubmission = databaseClient.insert()
-        testee.isSubmitted = true
-        XCTAssertEqual(testee.state, .submitted)
-    }
-
-    func testFailedState() {
-        let testee: FileSubmission = databaseClient.insert()
-        testee.submissionError = "error"
-        XCTAssertEqual(testee.state, .failedSubmission(message: "error"))
-    }
-
-    func testStateOfFiles() {
-        let file: FileUploadItem = databaseClient.insert()
-        file.bytesToUpload = 10
-        file.bytesUploaded = 5
-        let testee: FileSubmission = databaseClient.insert()
-        testee.files = Set([file])
-        XCTAssertEqual(testee.state, .uploading)
+    func testErrorsRaisingFailedNotification() {
+        XCTAssertTrue(FileSubmissionErrors.UploadFinishedCheck.uploadFailed.shouldSendFailedNotification)
+        XCTAssertTrue(FileSubmissionErrors.Submission.submissionFailed.shouldSendFailedNotification)
     }
 }

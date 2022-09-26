@@ -62,8 +62,6 @@ class SubmitAssignmentViewController: UIViewController {
 
         // extensionContext is nil in init so we have to initialize here
         attachmentCopyService = AttachmentCopyService(extensionContext: extensionContext)
-        // Update the shared assembly with the newly received completion block.
-        Self.submissionAssembly.setupShareUIDismissBlock(shareCompleted)
         attachmentSubmissionService = AttachmentSubmissionService(submissionAssembly: Self.submissionAssembly)
         viewModel = SubmitAssignmentExtensionViewModel(
             attachmentCopyService: attachmentCopyService,

@@ -16,29 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import Core
+import Combine
+import CoreData
 
-class FileSubmissionStateTests: CoreTestCase {
+public class FileSubmissionPreparation {
+    private let context: NSManagedObjectContext
 
-    func testSubmittedState() {
-        let testee: FileSubmission = databaseClient.insert()
-        testee.isSubmitted = true
-        XCTAssertEqual(testee.state, .submitted)
+    public init(context: NSManagedObjectContext) {
+        self.context = context
     }
 
-    func testFailedState() {
-        let testee: FileSubmission = databaseClient.insert()
-        testee.submissionError = "error"
-        XCTAssertEqual(testee.state, .failedSubmission(message: "error"))
-    }
+    public func prepare(submissionID: NSManagedObjectID) {
+        context.performAndWait {
+            guard let submission = try? context.existingObject(with: submissionID) as? FileSubmission else {
+                return
+            }
 
-    func testStateOfFiles() {
-        let file: FileUploadItem = databaseClient.insert()
-        file.bytesToUpload = 10
-        file.bytesUploaded = 5
-        let testee: FileSubmission = databaseClient.insert()
-        testee.files = Set([file])
-        XCTAssertEqual(testee.state, .uploading)
+            for fileItem in submission.files {
+                fileItem.uploadError = nil
+                fileItem.apiID = nil
+                fileItem.uploadTarget = nil
+            }
+
+            submission.submissionError = nil
+            try? context.saveAndNotify()
+        }
     }
 }

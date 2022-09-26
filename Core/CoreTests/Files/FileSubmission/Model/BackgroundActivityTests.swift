@@ -51,7 +51,7 @@ class BackgroundActivityTests: XCTestCase {
         mockProcessManager.expireActivity()
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(result, .failure(.failedToStartBackgroundActivity))
     }
 
@@ -72,7 +72,7 @@ class BackgroundActivityTests: XCTestCase {
         mockProcessManager.startActivity()
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(result, .finished)
         XCTAssertTrue(mockProcessManager.isExecutingBackgroundBlock)
     }
@@ -90,7 +90,7 @@ class BackgroundActivityTests: XCTestCase {
 
         // MARK: - WHEN
         mockProcessManager.startActivity()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         RunLoop.main.run(until: Date() + 0.5)
         XCTAssertTrue(mockProcessManager.isExecutingBackgroundBlock)
         mockProcessManager.expireActivity()
@@ -113,7 +113,7 @@ class BackgroundActivityTests: XCTestCase {
 
         // MARK: - WHEN
         mockProcessManager.startActivity()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         RunLoop.main.run(until: Date() + 0.5)
         XCTAssertTrue(mockProcessManager.isExecutingBackgroundBlock)
@@ -127,7 +127,7 @@ class BackgroundActivityTests: XCTestCase {
             .store(in: &subscriptions)
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertFalse(mockProcessManager.isExecutingBackgroundBlock)
     }
 
@@ -145,14 +145,14 @@ class BackgroundActivityTests: XCTestCase {
             }
             .store(in: &subscriptions)
         mockProcessManager.startActivity()
-        wait(for: [start1Finished], timeout: 0.1)
+        wait(for: [start1Finished], timeout: 1)
         testee
             .start()
             .sink { _ in
                 start2Finished.fulfill()
             }
             .store(in: &subscriptions)
-        wait(for: [start2Finished], timeout: 0.1)
+        wait(for: [start2Finished], timeout: 1)
 
         // MARK: - THEN
         XCTAssertEqual(mockProcessManager.backgroundActivityRequestCount, 1)
@@ -172,11 +172,11 @@ class BackgroundActivityTests: XCTestCase {
             }
             .store(in: &subscriptions)
         mockProcessManager.startActivity()
-        wait(for: [startFinished], timeout: 0.1)
+        wait(for: [startFinished], timeout: 1)
 
         // MARK: - WHEN
         mockProcessManager.expireActivity()
-        wait(for: [abortHandlerInvoked], timeout: 0.1)
+        wait(for: [abortHandlerInvoked], timeout: 1)
     }
 }
 

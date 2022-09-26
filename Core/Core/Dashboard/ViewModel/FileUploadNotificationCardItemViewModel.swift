@@ -16,23 +16,77 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
+import SwiftUI
 
 final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
-    public let id: String
+    enum State {
+        case uploading, success, failure
+
+        var text: String {
+            switch self {
+            case .uploading: return NSLocalizedString("Uploading Submission", comment: "")
+            case .success: return NSLocalizedString("Submission Uploaded", comment: "")
+            case .failure: return NSLocalizedString("Submission Failed", comment: "")
+            }
+        }
+
+        var image: Image {
+            switch self {
+            case .uploading: return .share
+            case .success: return .checkLine
+            case .failure: return .warningBorderlessLine
+            }
+        }
+
+        var color: Color {
+            switch self {
+            case .uploading: return .electric
+            case .success: return .backgroundSuccess
+            case .failure: return .crimson
+            }
+        }
+    }
+
+    // MARK: - Dependencies
+
+    public let id: NSManagedObjectID
     public let assignmentName: String
-    @Published public private(set) var progress: Float
-    public let cardDidTap: () -> Void
+    public var state: State
+    private let cardDidTap: (
+        NSManagedObjectID,
+        WeakViewController
+    ) -> Void
+    private let dismissDidTap: () -> Void
+
+    // MARK: - Outputs
+
+    @Published public private(set) var isHiddenByUser: Bool
+
+    // MARK: - Init
 
     init(
-        id: String,
+        id: NSManagedObjectID,
         assignmentName: String,
-        progress: Float,
-        cardDidTap: @escaping () -> Void
+        state: State,
+        isHiddenByUser: Bool,
+        cardDidTap: @escaping (
+            NSManagedObjectID,
+            WeakViewController
+        ) -> Void,
+        dismissDidTap: @escaping () -> Void
     ) {
         self.id = id
         self.assignmentName = assignmentName
-        self.progress = progress
+        self.state = state
+        self.isHiddenByUser = isHiddenByUser
         self.cardDidTap = cardDidTap
+        self.dismissDidTap = dismissDidTap
+    }
+
+    public func hideDidTap() {
+        isHiddenByUser = true
+        dismissDidTap()
     }
 }

@@ -47,7 +47,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
             guard let item = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
             item.bytesUploaded = Int(totalBytesSent)
             item.bytesToUpload = Int(totalBytesExpectedToSend)
-            try? context.save()
+            try? context.saveAndNotify()
         }
     }
 
@@ -73,7 +73,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
                 }
             }
 
-            try? context.save()
+            try? context.saveAndNotify()
             completionSubject.send()
             completionSubject.send(completion: .finished)
         }

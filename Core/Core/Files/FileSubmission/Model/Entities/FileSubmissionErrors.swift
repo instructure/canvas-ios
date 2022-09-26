@@ -37,3 +37,11 @@ public struct FileSubmissionErrors {
 
     public struct RequestUploadTargetUnknownError: Error, Equatable {}
 }
+
+public extension Error {
+
+    var shouldSendFailedNotification: Bool {
+        (self as? FileSubmissionErrors.UploadFinishedCheck) == .uploadFailed ||
+        (self as? FileSubmissionErrors.Submission) == .submissionFailed
+    }
+}

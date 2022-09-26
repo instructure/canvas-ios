@@ -31,12 +31,12 @@ class FileSubmissionStateEnumTests: XCTestCase {
 
     // MARK: - Uploading
 
-    func testUploadingWhileOthersWaiting() {
+    func testUploadingWhileOthersIsReadyForUpload() {
         let testee = FileSubmission.State([
-            .waiting,
+            .readyForUpload,
             .uploading(progress: 0.2),
         ])
-        XCTAssertEqual(testee, .uploading(progress: 0.1))
+        XCTAssertEqual(testee, .uploading)
     }
 
     func testUploadingWhileOthersFailed() {
@@ -44,7 +44,7 @@ class FileSubmissionStateEnumTests: XCTestCase {
             .error(description: "error"),
             .uploading(progress: 0.2),
         ])
-        XCTAssertEqual(testee, .uploading(progress: 0.6))
+        XCTAssertEqual(testee, .uploading)
     }
 
     func testUploadingWhileOthersSucceeded() {
@@ -52,7 +52,7 @@ class FileSubmissionStateEnumTests: XCTestCase {
             .uploaded,
             .uploading(progress: 0.2),
         ])
-        XCTAssertEqual(testee, .uploading(progress: 0.6))
+        XCTAssertEqual(testee, .uploading)
     }
 
     func testUploading() {
@@ -60,15 +60,15 @@ class FileSubmissionStateEnumTests: XCTestCase {
             .uploading(progress: 0.2),
             .uploading(progress: 0.2),
         ])
-        XCTAssertEqual(testee, .uploading(progress: 0.2))
+        XCTAssertEqual(testee, .uploading)
     }
 
-    func testWaitingWhileOthersSucceeded() {
+    func testWaitingWhileOtherIsReadyForUpload() {
         let testee = FileSubmission.State([
             .uploaded,
-            .waiting,
+            .readyForUpload,
         ])
-        XCTAssertEqual(testee, .uploading(progress: 0.5))
+        XCTAssertEqual(testee, .uploading)
     }
 
     // MARK: - Upload Failed
@@ -89,6 +89,22 @@ class FileSubmissionStateEnumTests: XCTestCase {
         XCTAssertEqual(testee, .failedUpload)
     }
 
+    func testOneFailedOneWaiting() {
+        let testee = FileSubmission.State([
+            .waiting,
+            .error(description: "error"),
+        ])
+        XCTAssertEqual(testee, .waiting)
+    }
+
+    func testOneFailedOneReadyForUpload() {
+        let testee = FileSubmission.State([
+            .readyForUpload,
+            .error(description: "error"),
+        ])
+        XCTAssertEqual(testee, .failedUpload)
+    }
+
     // MARK: - Completed
 
     func testFileUploadFinished() {
@@ -96,6 +112,6 @@ class FileSubmissionStateEnumTests: XCTestCase {
             .uploaded,
             .uploaded,
         ])
-        XCTAssertEqual(testee, .uploading(progress: 1))
+        XCTAssertEqual(testee, .uploading)
     }
 }

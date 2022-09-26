@@ -20,7 +20,7 @@ extension FileSubmission {
 
     public enum State: Equatable {
         case waiting
-        case uploading(progress: CGFloat)
+        case uploading
         /** One of the files failed to upload. */
         case failedUpload
         /** Files are successfully uploaded but the submission of those files to the assignment failed. */
@@ -35,14 +35,14 @@ extension FileSubmission {
         public init(_ itemStates: [FileUploadItem.State]) {
             if itemStates.finishedCount == itemStates.count {
                 if itemStates.failedCount == 0 {
-                    self = .uploading(progress: 1)
+                    self = .uploading
                 } else {
                     self = .failedUpload
                 }
-            } else if itemStates.allWaiting {
+            } else if itemStates.hasWaiting {
                 self = .waiting
             } else {
-                self = .uploading(progress: itemStates.progressSum / CGFloat(itemStates.count))
+                self = .uploading
             }
         }
     }
@@ -59,17 +59,17 @@ extension FileSubmission {
 }
 
 private extension Array where Element == FileUploadItem.State {
-
     var finishedCount: Int {
         reduce(into: 0) { result, state in
             switch state {
-            case .uploaded, .error:
+            case .uploaded, .error, .readyForUpload:
                 result += 1
             case .waiting, .uploading:
                 break
             }
         }
     }
+
     var failedCount: Int {
         reduce(into: 0) { result, state in
             if case .error = state {
@@ -77,19 +77,8 @@ private extension Array where Element == FileUploadItem.State {
             }
         }
     }
-    var allWaiting: Bool {
-        allSatisfy { $0 == .waiting }
-    }
-    var progressSum: CGFloat {
-        reduce(into: CGFloat(0)) { result, state in
-            switch state {
-            case .uploading(let progress):
-                result += progress
-            case .waiting:
-                break
-            case .uploaded, .error:
-                result += 1
-            }
-        }
+
+    var hasWaiting: Bool {
+        contains { $0 == .waiting }
     }
 }

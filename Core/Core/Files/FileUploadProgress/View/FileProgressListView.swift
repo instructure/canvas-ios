@@ -22,6 +22,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: ViewModel
+    @State private var confettiVisible = false
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -38,6 +39,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                         FileProgressItemView(viewModel: $0)
                         Divider()
                     }
+                    .animation(.default)
                     Spacer()
                 }
             }
@@ -73,9 +75,22 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                 .padding(40)
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .accessibilityElement(children: .combine)
-            LottieView(name: "confetti", loopMode: .playOnce)
-                .allowsHitTesting(false)
-                .frame(width: geometry.size.width, height: geometry.size.height)
+
+            if confettiVisible {
+                LottieView(name: "confetti", loopMode: .playOnce)
+                    .allowsHitTesting(false)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.confettiVisible = true
+                let feedback = UIImpactFeedbackGenerator(style: .rigid)
+                feedback.impactOccurred()
+            }
+        }
+        .onDisappear {
+            confettiVisible = false
         }
     }
 

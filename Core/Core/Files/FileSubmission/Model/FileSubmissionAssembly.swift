@@ -26,7 +26,11 @@ public class FileSubmissionAssembly {
     private let fileSubmissionTargetsRequester: FileSubmissionTargetsRequester
     private let fileSubmissionItemsUploader: FileSubmissionItemsUploadStarter
     private let backgroundSessionCompletion: BackgroundSessionCompletion
-    private let shareSheet: ShareDismissBlockStorage
+    /** A background context so we can work with it from any background thread. */
+    private let backgroundContext: NSManagedObjectContext
+    private let submissionPreparation: FileSubmissionPreparation
+    /** We use this to fetch changes in the persistent store made by out-of-process activities. */
+    private let interprocessContextChangeListener: AnyCancellable
 
     /**
      - parameters:
@@ -40,7 +44,6 @@ public class FileSubmissionAssembly {
         // If the app takes control of the upload respect what it does in CoreData and discard our context's changes
         backgroundContext.mergePolicy = NSMergePolicy.rollback
         let backgroundSessionCompletion = BackgroundSessionCompletion()
-        let shareSheet = ShareDismissBlockStorage()
         let fileSubmissionSubmitter = FileSubmissionSubmitter(api: api, context: backgroundContext)
         let cleaner = FileSubmissionCleanup(context: backgroundContext)
         let notificationsSender = SubmissionCompletedNotificationsSender(
@@ -66,15 +69,13 @@ public class FileSubmissionAssembly {
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
                 .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
-                .sink { completion in
-                    if case .failure(let error) = completion {
-                        if ((error as? FileSubmissionErrors.UploadFinishedCheck) == .uploadFailed ||
-                            (error as? FileSubmissionErrors.Submission) == .submissionFailed) {
+                .mapError { error -> Error in
+                    if error.shouldSendFailedNotification {
                         notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
-                        } else if (error as? FileSubmissionErrors.UploadProgress) == .uploadContinuedInApp {
-                            shareSheet.dismiss?()
-                        }
                     }
+                    return error
+                }
+                .sink { _ in
                     backgroundActivity.stopAndWait()
                     subscription?.cancel()
                     subscription = nil
@@ -83,15 +84,27 @@ public class FileSubmissionAssembly {
         }
         let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
 
-        self.shareSheet = shareSheet
+        self.submissionPreparation = FileSubmissionPreparation(context: backgroundContext)
+        self.backgroundContext = backgroundContext
         self.backgroundSessionCompletion = backgroundSessionCompletion
         self.backgroundURLSessionProvider = backgroundURLSessionProvider
         self.composer = FileSubmissionComposer(context: backgroundContext)
         self.fileSubmissionTargetsRequester = FileSubmissionTargetsRequester(api: api, context: backgroundContext)
         self.fileSubmissionItemsUploader = FileSubmissionItemsUploadStarter(api: api, context: backgroundContext, backgroundSessionProvider: backgroundURLSessionProvider)
+
+        interprocessContextChangeListener = InterprocessNotificationCenter.shared
+            .subscribe(forName: NSPersistentStore.InterProcessNotifications.didModifyExternally)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    backgroundContext.forceRefreshAllObjects()
+                }
+            )
     }
 
     public func start(fileSubmissionID: NSManagedObjectID) {
+        submissionPreparation.prepare(submissionID: fileSubmissionID)
+
         var keepAliveSubscription = Set<AnyCancellable>()
         fileSubmissionTargetsRequester
             .request(fileSubmissionID: fileSubmissionID)
@@ -122,11 +135,15 @@ public class FileSubmissionAssembly {
     }
 
     /**
-     - parameters:
-        - callback: This block gets called when the app takes over the management of the upload and the share extension can be closed.
+     This method sets the `isHiddenOnDashboard` parameter on the submission to `true` so when
+     the user returns to the app it doesn't need to dismiss the dashboard notification again.
      */
-    public func setupShareUIDismissBlock(_ callback: @escaping () -> Void) {
-        shareSheet.dismiss = callback
+    public func markSubmissionAsDone(submissionID: NSManagedObjectID) {
+        backgroundContext.performAndWait {
+            guard let submission = try? backgroundContext.existingObject(with: submissionID) as? FileSubmission else { return }
+            submission.isHiddenOnDashboard = true
+            try? backgroundContext.saveAndNotify()
+        }
     }
 }
 
@@ -138,11 +155,5 @@ extension FileSubmissionAssembly {
                                sessionID: ShareExtensionSessionID,
                                sharedContainerID: "group.instructure.shared",
                                api: AppEnvironment.shared.api)
-    }
-}
-
-extension FileSubmissionAssembly {
-    class ShareDismissBlockStorage {
-        var dismiss: (() -> Void)?
     }
 }
