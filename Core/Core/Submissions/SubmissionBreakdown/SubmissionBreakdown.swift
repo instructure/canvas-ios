@@ -92,6 +92,9 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
             .onAppear {
                 viewModel.viewDidAppear()
             }
+            .alert(isPresented: $viewModel.showError) {
+                Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
+            }
     }
 
     struct Graph: View {

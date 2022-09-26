@@ -240,7 +240,7 @@ public enum QuizType: String, Codable, CaseIterable {
 }
 
 public enum ScoringPolicy: String, Codable, CaseIterable {
-    case keep_latest, keep_highest
+    case keep_latest, keep_highest, keep_average
 
     public var text: String {
         switch self {
@@ -248,6 +248,8 @@ public enum ScoringPolicy: String, Codable, CaseIterable {
             return NSLocalizedString("Latest", bundle: .core, comment: "")
         case .keep_highest:
             return NSLocalizedString("Highest", bundle: .core, comment: "")
+        case .keep_average:
+            return NSLocalizedString("Average", bundle: .core, comment: "")
         }
     }
 }

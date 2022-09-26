@@ -27,6 +27,8 @@ public protocol SubmissionBreakdownViewModel: ObservableObject {
     var submissionCount: Int { get }
     var noSubmissionTypes: Bool { get }
     var paperSubmissionTypes: Bool { get }
+    var showError: Bool {get set}
+    var errorText: String? { get }
 
     func viewDidAppear()
     func routeToAll(router: Router, viewController: WeakViewController)

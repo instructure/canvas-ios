@@ -25,6 +25,8 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     public var ungraded: Int = 0
     public var unsubmitted: Int = 0
     public var submissionCount: Int = 0
+    public var showError: Bool = false
+    public var errorText: String?
 
     public var noSubmissionTypes: Bool {
         submissionTypes.contains(.not_graded) || submissionTypes.contains(.none)

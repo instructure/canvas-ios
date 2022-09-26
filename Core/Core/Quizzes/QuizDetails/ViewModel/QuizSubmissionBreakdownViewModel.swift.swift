@@ -21,6 +21,9 @@ import SwiftUI
 public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
 
     @Published public var isReady: Bool = false
+    @Published public var showError: Bool = false
+    @Published public private(set) var errorText: String?
+
     public var graded: Int = 0
     public var ungraded: Int = 0
     public var unsubmitted: Int = 0
@@ -54,20 +57,26 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
         enrollments.eventHandler = didUpdate
         enrollments.exhaust(force: true)
     }
+
     public func routeToAll(router: Router, viewController: WeakViewController) {
-        router.route(to: submissionsPath, from: viewController)
+        showPracticeError()
     }
 
     public func routeToGraded(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=graded", from: viewController)
+        showPracticeError()
     }
 
     public func routeToUngraded(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=needs_grading", from: viewController)
+        showPracticeError()
     }
 
     public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=not_submitted", from: viewController)
+        showPracticeError()
+    }
+
+    private func showPracticeError() {
+        showError = true
+        errorText = NSLocalizedString("Practice quizzes & surveys do not have detail views.", comment: "")
     }
 
     private func didUpdate() {
@@ -78,5 +87,4 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
         unsubmitted = submissionCount - (graded + ungraded)
         isReady = true
     }
-
 }
