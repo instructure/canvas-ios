@@ -134,7 +134,7 @@ public struct QuizDetailsView: View {
         quizAttributes()
 
         Spacer()
-        
+
         Button(action: previewQuiz, label: {
             HStack {
                 Spacer()

@@ -21,7 +21,7 @@ import SwiftUI
 public class QuizDateSectionViewModel: DateSectionViewModel {
 
     @ObservedObject var quiz: Quiz
-    public var firstAssignmentDate: AssignmentDate? = nil
+    public var firstAssignmentDate: AssignmentDate?
     public var isButton = false
 
     public init(quiz: Quiz) {

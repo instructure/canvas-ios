@@ -132,8 +132,8 @@ public struct QuizEditorView: View {
                     value: $viewModel.published)
             }
             Divider()
-            //assignmentGroupRow
-            //Divider()
+            // assignmentGroupRow
+            // Divider()
             ToggleRow(
                 label: Text("Shuffle Answers", bundle: .core),
                 value: $viewModel.shuffleAnswers)

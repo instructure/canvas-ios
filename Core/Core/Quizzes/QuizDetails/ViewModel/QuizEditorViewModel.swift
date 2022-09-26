@@ -33,7 +33,7 @@ public class QuizEditorViewModel: ObservableObject {
     public var assignment: Assignment?
     public let courseID: String
 
-    //Quiz attributes
+    // Quiz attributes
     public var title: String = ""
     public var description: String = ""
     @Published public var quizType: QuizType = .assignment
@@ -72,11 +72,11 @@ public class QuizEditorViewModel: ObservableObject {
 
     func fetchQuiz() {
         let useCase = GetQuiz(courseID: courseID, quizID: quizID)
-        useCase.fetch(force: true) { [weak self] _, _, fetchError in
+        useCase.fetch(force: true) { [weak self] _, _, _ in
             guard let self = self else { return }
             self.quiz = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.assignmentID = self.quiz?.assignmentID
-            //alert = fetchError.map { .error($0) }
+            // alert = fetchError.map { .error($0) }
             self.fetchAssignment()
         }
     }
@@ -84,24 +84,24 @@ public class QuizEditorViewModel: ObservableObject {
     func fetchAssignment() {
         guard let assignmentID = assignmentID else { return }
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
-        useCase.fetch(force: true) { [weak self] _, _, fetchError in
+        useCase.fetch(force: true) { [weak self] _, _, _ in
             guard let self = self else { return }
             self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.loadAttributes()
             self.state = .ready
-            //alert = fetchError.map { .error($0) }
+            // alert = fetchError.map { .error($0) }
         }
     }
 
     func fetchAssignmentGroups() {
         guard let assignmentID = assignmentID else { return }
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
-        useCase.fetch(force: true) { [weak self] _, _, fetchError in
+        useCase.fetch(force: true) { [weak self] _, _, _ in
             guard let self = self else { return }
             self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.loadAttributes()
             self.state = .ready
-            //alert = fetchError.map { .error($0) }
+            // alert = fetchError.map { .error($0) }
         }
     }
 
@@ -110,7 +110,7 @@ public class QuizEditorViewModel: ObservableObject {
 
         title = quiz.title
         description = quiz.details ?? ""
-        //TODO hack assignment group
+        // TODO assignment group
         quizType = quiz.quizType
         published = quiz.published
 
@@ -165,8 +165,6 @@ public class QuizEditorViewModel: ObservableObject {
             show_correct_answers_at: seeResponses && showCorrectAnswers ? showCorrectAnswersAt : nil,
             hide_correct_answers_at: seeResponses && showCorrectAnswers ? hideCorrectAnswersAt : nil,
             assignment_group_id: assignmentGroup,
-
-
             overrides: nil
         )
 
@@ -175,13 +173,13 @@ public class QuizEditorViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.state = .ready
 
-                //alert = fetchError.map { .error($0) }
+                // alert = fetchError.map { .error($0) }
                 if error != nil {
                     self.state = .error(error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
                 }
                 if result != nil {
-                    //TODO Get Quiz and Assingment
-                    //GetAssignment(courseID: self.courseID, assignmentID: self.assignmentID, include: [ .overrides ])
+                    // TODO Get Quiz and Assingment
+                    // GetAssignment(courseID: self.courseID, assignmentID: self.assignmentID, include: [ .overrides ])
                        // .fetch(force: true) // updated overrides & allDates aren't in result
                     router.dismiss(viewController)
                 }
