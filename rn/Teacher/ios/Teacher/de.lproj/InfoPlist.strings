@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Lehrer";
+"CFBundleDisplayName" = "Lehrende*r";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Fügen Sie Fotos und Videos zu Abgabekommentaren hinzu.";

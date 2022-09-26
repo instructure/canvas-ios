@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Student</string>
+			<string>%d Studierende*r</string>
 			<key>other</key>
-			<string>%d Studenten</string>
+			<string>%d Studierende</string>
 		</dict>
 	</dict>
 	<key>%g pts</key>

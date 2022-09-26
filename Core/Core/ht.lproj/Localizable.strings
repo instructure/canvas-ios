@@ -74,6 +74,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "Yon deskripsyon obligatwa";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -852,9 +855,6 @@
 
 /* No comment provided by engineer. */
 "Fail" = "Echwe";
-
-/* No comment provided by engineer. */
-"Failed to get file upload target." = "Echèk rekiperasyon sib telechajman fichye.";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Echèk anrejistreman imaj";
@@ -1862,6 +1862,9 @@
 "Select Course" = "Seleksyone Kou";
 
 /* No comment provided by engineer. */
+"Select Grading Period" = "Seleksyone Peryòd Klasman";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Seleksyone Enpak";
 
 /* No comment provided by engineer. */
@@ -1893,9 +1896,6 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Voye";
-
-/* No comment provided by engineer. */
-"Session completed without error or file ID." = "Sesyon konplete san erè oswa ID fichye.";
 
 /* No comment provided by engineer. */
 "Set \"Home\" to..." = "Defini \"Akèy\" pou...";
