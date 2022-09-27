@@ -53,14 +53,16 @@ public struct DashboardCardView: View {
     public var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: 0) {
-                    CircleRefresh { endRefreshing in
-                        refresh(force: true, onComplete: endRefreshing)
+                RefreshableView {
+                    VStack(spacing: 0) {
+                        fileUploadNotificationCards()
+                        list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                     }
-                    fileUploadNotificationCards()
-                    list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
+                    .padding(.horizontal, verticalSpacing)
                 }
-                .padding(.horizontal, verticalSpacing)
+                    refreshAction: { onComplete in
+                    refresh(force: true, onComplete: onComplete)
+                }
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))

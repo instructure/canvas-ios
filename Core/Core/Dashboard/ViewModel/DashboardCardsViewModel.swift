@@ -54,7 +54,6 @@ class DashboardCardsViewModel: ObservableObject {
         courses.exhaust(force: true)
         cards.refresh(force: true) { [weak self] _ in
             onComplete?()
-
             guard let self = self else { return }
             if self.needsRefresh { self.refresh() }
         }

@@ -818,6 +818,10 @@
 		B4A687C628DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */; };
 		B4BC3CD728D09A7A00FD368E /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */; };
 		B4C045E328CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */; };
+		B4CD9DAF28C63CFC0084EB65 /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */; };
+		B4D7405128D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7405028D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift */; };
+		B4D7405328D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7405228D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift */; };
+		B4D76D7228C75641005750AF /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D76D7128C75641005750AF /* CircularProgressView.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
@@ -2308,6 +2312,10 @@
 		B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModelTests.swift; sourceTree = "<group>"; };
 		B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSenderTests.swift; sourceTree = "<group>"; };
+		B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
+		B4D7405028D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateCircularProgressViewStyle.swift; sourceTree = "<group>"; };
+		B4D7405228D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateCircularProgressViewStyle.swift; sourceTree = "<group>"; };
+		B4D76D7128C75641005750AF /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
@@ -4672,6 +4680,15 @@
 			path = ModuleItems;
 			sourceTree = "<group>";
 		};
+		B4D7404F28D8636B0004CA1A /* ProgressViewStyle */ = {
+			isa = PBXGroup;
+			children = (
+				B4D7405028D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift */,
+				B4D7405228D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift */,
+			);
+			path = ProgressViewStyle;
+			sourceTree = "<group>";
+		};
 		CF11564E26FB566D00DE25B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -6244,6 +6261,7 @@
 		E8A8FA8C24D3289D000B27DF /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				B4D7404F28D8636B0004CA1A /* ProgressViewStyle */,
 				CFF64FDD27DA058700653573 /* ButtonStyles */,
 				CF67B29026EBA10A00E51F13 /* HorizontalPager */,
 				CF43DE8027CCD6A800015B6F /* Pandas */,
@@ -6255,6 +6273,7 @@
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
 				EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */,
+				B4D76D7128C75641005750AF /* CircularProgressView.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				CF29DF90272BD9F10046C04D /* DynamicHeightTextEditor.swift */,
@@ -6266,6 +6285,7 @@
 				CFD9B44227EDB7CC0099F173 /* ListWithoutVerticalScrollIndicator.swift */,
 				CFD3EC39289422FB001E7D4E /* LottieView.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
+				B4CD9DAE28C63CFC0084EB65 /* RefreshableView.swift */,
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
 				CF575E1F265E9D5200F8515F /* ScrollViewWithReader.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBar.swift */,
@@ -7397,6 +7417,7 @@
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */,
+				B4D7405328D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift in Sources */,
 				7DA260E023F72359005D2121 /* IconView.swift in Sources */,
 				EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */,
 				7D4B2740253CEE6800A98DE3 /* AudioPlayer.swift in Sources */,
@@ -7583,6 +7604,7 @@
 				7DA25FE123F72154005D2121 /* AudioRecorderViewController.swift in Sources */,
 				3B4D892D2450A8E9004ED120 /* ComposeRecipientsView.swift in Sources */,
 				7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */,
+				B4CD9DAF28C63CFC0084EB65 /* RefreshableView.swift in Sources */,
 				CFD5814626B2AFD3000B2A8A /* K5ScheduleSubjectViewModel.swift in Sources */,
 				7DA2604523F722D9005D2121 /* Enrollment.swift in Sources */,
 				7DA25FD923F72148005D2121 /* ExperimentalFeature.swift in Sources */,
@@ -7657,6 +7679,7 @@
 				CFCB0F7027CFC02A008DDEA4 /* ModulesPanda.swift in Sources */,
 				7DFD5F7B23FF158700D988E0 /* CalendarDaysViewController.swift in Sources */,
 				7DA2604E23F722D9005D2121 /* LatePolicyInterval.swift in Sources */,
+				B4D7405128D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift in Sources */,
 				CFDB620028AE46C80008C3F3 /* FileSubmissionAssembly.swift in Sources */,
 				7DA2600423F7227A005D2121 /* DateExtensions.swift in Sources */,
 				7DA25FDE23F72148005D2121 /* SessionDefaults.swift in Sources */,
@@ -7999,6 +8022,7 @@
 				CFB06F9628BD0D0D00DAC40B /* FileSubmissionSubmitter.swift in Sources */,
 				7DA260CC23F72359005D2121 /* BottomSheetPickerViewController.swift in Sources */,
 				E8D6949824D46B1E0080D883 /* CoreHostingController.swift in Sources */,
+				B4D76D7228C75641005750AF /* CircularProgressView.swift in Sources */,
 				49C56C9D24BECA7400E96799 /* ClosedRangeExtensions.swift in Sources */,
 				D9436D1725A4BAD200DD3873 /* GetCourseSingleUser.swift in Sources */,
 				7D5F103D2429BA5D00803324 /* CardView.swift in Sources */,
