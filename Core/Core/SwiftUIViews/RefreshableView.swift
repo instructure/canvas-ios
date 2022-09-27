@@ -19,35 +19,41 @@
 import SwiftUI
 
 public struct RefreshableView<Content: View>: View {
+    enum ViewState {
+        case progress(CGFloat)
+        case animating
+    }
+
     var content: () -> Content
     var refreshAction: (@escaping () -> Void) -> Void
 
-    @State private var isVisible = false
     @State private var isAnimating = false
     @State private var progress: CGFloat = 0
-    @State private var viewState: CircularProgressView.ViewState = .animating
+    @State private var viewState: ViewState = .animating
     @State private var offset: CGFloat = 0
     private let snappingPoint: CGFloat = 64
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
-    
     public var body: some View {
         VStack(spacing: 0) {
-            if isVisible {
-                switch viewState {
-                case .animating:
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircular)
-                case .progress(let progress):
-                    ProgressView(value: progress)
-                        .progressViewStyle(.determinateCircular)
-                }
-           
+            switch viewState {
+            case .animating:
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircular)
+                    .opacity(progress)
+                    .padding(.top, 16)
+                    .offset(x: 0, y: -offset)
+            case let .progress(progress):
+                ProgressView(value: progress)
+                    .progressViewStyle(.determinateCircular)
+                    .opacity(progress)
+                    .padding(.top, 16)
+                    .offset(x: 0, y: -offset)
             }
             content()
-                .offset(x: 0, y: isVisible ? -CircularProgressView.size : 0)
+                .offset(x: 0, y: isAnimating ? 0 : -48)
+                .animation(.default, value: isAnimating)
         }
-        .animation(.default, value: isVisible)
         .background(
             GeometryReader {
                 Color.clear.preference(
@@ -57,11 +63,17 @@ public struct RefreshableView<Content: View>: View {
             }
         )
         .onPreferenceChange(ViewOffsetKey.self) { newValue in
-            offset = newValue - 91
-            guard !isAnimating, offset >= 0 else { return }
+            let newOffset = newValue - 91
+            guard newOffset >= 0 else {
+                isAnimating = false
+                offset = 0
+                return
+            }
+            offset = newOffset
+
+            guard !isAnimating else { return }
             progress = min(abs(offset / snappingPoint), 1)
             viewState = .progress(progress)
-            isVisible = progress > 0
             if progress == 1 {
                 let triggerStartDate = Date()
                 hapticGenerator.impactOccurred()
@@ -73,7 +85,6 @@ public struct RefreshableView<Content: View>: View {
                     let timeElapsed = triggerEndDate.timeIntervalSince1970 - triggerStartDate.timeIntervalSince1970
                     let additionalDuration = 1 - timeElapsed
                     DispatchQueue.main.asyncAfter(deadline: .now() + additionalDuration) {
-                        isVisible = false
                         isAnimating = false
                         progress = 0
                     }

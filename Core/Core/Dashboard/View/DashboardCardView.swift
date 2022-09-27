@@ -56,6 +56,7 @@ public struct DashboardCardView: View {
                 RefreshableView {
                     VStack(spacing: 0) {
                         fileUploadNotificationCards()
+                        let _ = print("✳️✳️✳️ ", geometry.size.height)
                         list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                     }
                     .padding(.horizontal, verticalSpacing)
