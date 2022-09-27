@@ -1013,6 +1013,8 @@
 		CF99CB1928DB6BF9001BBDF1 /* FileSubmissionPreparation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1828DB6BF9001BBDF1 /* FileSubmissionPreparation.swift */; };
 		CF99CB1C28DB738A001BBDF1 /* FileSubmissionPreparationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1A28DB736C001BBDF1 /* FileSubmissionPreparationTests.swift */; };
 		CF99CB1E28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */; };
+		CF99CB2028E2E41F001BBDF1 /* CoreActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB1F28E2E41F001BBDF1 /* CoreActivityViewController.swift */; };
+		CF99CB2228E2EDAD001BBDF1 /* CoreActivityViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99CB2128E2EDAD001BBDF1 /* CoreActivityViewControllerTests.swift */; };
 		CF9A0EDE27E2497E00762228 /* ListSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */; };
 		CF9A0EE027E38CFC00762228 /* SyllabusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */; };
 		CF9A0EE427E494BE00762228 /* ListSelectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */; };
@@ -2502,6 +2504,8 @@
 		CF99CB1828DB6BF9001BBDF1 /* FileSubmissionPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparation.swift; sourceTree = "<group>"; };
 		CF99CB1A28DB736C001BBDF1 /* FileSubmissionPreparationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparationTests.swift; sourceTree = "<group>"; };
 		CF99CB1D28DC8B77001BBDF1 /* FileSubmissionErrorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionErrorsTests.swift; sourceTree = "<group>"; };
+		CF99CB1F28E2E41F001BBDF1 /* CoreActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreActivityViewController.swift; sourceTree = "<group>"; };
+		CF99CB2128E2EDAD001BBDF1 /* CoreActivityViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreActivityViewControllerTests.swift; sourceTree = "<group>"; };
 		CF9A0EDD27E2497E00762228 /* ListSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EDF27E38CFC00762228 /* SyllabusCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusCellViewModel.swift; sourceTree = "<group>"; };
 		CF9A0EE327E494BE00762228 /* ListSelectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModelTests.swift; sourceTree = "<group>"; };
@@ -3335,6 +3339,7 @@
 				3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */,
 				7D85FFEB23E2314B0055851D /* CircleProgressView.swift */,
 				7DA2610D23FCD907005D2121 /* CircleRefreshControl.swift */,
+				CF99CB1F28E2E41F001BBDF1 /* CoreActivityViewController.swift */,
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				7D765023215AEDDD00BB4F38 /* DividerView.swift */,
@@ -3389,6 +3394,7 @@
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
 				7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */,
 				7DA2610B23FCD8E6005D2121 /* CircleRefreshControlTests.swift */,
+				CF99CB2128E2EDAD001BBDF1 /* CoreActivityViewControllerTests.swift */,
 				B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
@@ -6936,6 +6942,7 @@
 				7DD6947B21949DC900BA4984 /* IconViewTests.swift in Sources */,
 				7D80AC15212B67E100C40ECE /* APIUserRequestableTests.swift in Sources */,
 				9F4D65B22396A3D600660038 /* ProfileSettingsViewControllerTests.swift in Sources */,
+				CF99CB2228E2EDAD001BBDF1 /* CoreActivityViewControllerTests.swift in Sources */,
 				7D70DE98233E9F3400F5C3D4 /* APICommunicationChannelTests.swift in Sources */,
 				7D7472D6218CC4B200CE1430 /* APIDocViewerTests.swift in Sources */,
 				3BEA6CCA24588D1400BE4589 /* ConversationCoursesActionSheetTests.swift in Sources */,
@@ -7734,6 +7741,7 @@
 				CFB3A1E4269C8D4A00429B3E /* K5State.swift in Sources */,
 				CFBF1DFD281FEE1300DA99F7 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */,
 				7DA260E223F72359005D2121 /* KeyboardTransitioning.swift in Sources */,
+				CF99CB2028E2E41F001BBDF1 /* CoreActivityViewController.swift in Sources */,
 				7DA2600923F7227A005D2121 /* NSErrorExtensions.swift in Sources */,
 				CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */,
 				7DA25FD623F72148005D2121 /* Brand.swift in Sources */,

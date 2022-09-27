@@ -226,7 +226,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         guard let url = localURL else { return }
         let pdf = children.first { $0 is PDFViewController } as? PDFViewController
         try? pdf?.document?.save()
-        let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        let controller = CoreActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = sender
         env.router.show(controller, from: self, options: .modal())
     }
