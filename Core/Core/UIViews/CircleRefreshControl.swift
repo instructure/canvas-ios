@@ -26,6 +26,7 @@ public class CircleRefreshControl: UIRefreshControl {
     let snappingPoint: CGFloat = -64
     var selfAdding = false
     var isAnimating = false
+    var triggerStartDate: Date?
 
     public var color: UIColor? {
         get { progressView.color }
@@ -50,9 +51,8 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     private func setupView() {
-        addSubview(progressView)
+        insertSubview(progressView, at: 0)
         tintColor = .clear
-        addTarget(self, action: #selector(beginRefreshing), for: .valueChanged)
     }
 
     override public func didMoveToSuperview() {
@@ -73,22 +73,40 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     func updateProgress(_ scrollView: UIScrollView) {
-        guard !isAnimating else { return }
-        let progress = min(abs(scrollView.contentOffset.y / snappingPoint), 1)
-        if progress == 0 { progressView.isHidden = false }
+        guard !isAnimating, !isRefreshing, scrollView.isDragging else { return }
+        let inset = scrollView.adjustedContentInset.top
+        let offset = scrollView.contentOffset.y
+        guard inset <= 0, offset <= 0 else { return }
+        let progress = min(abs((inset + offset) / snappingPoint), 1)
+
         progressView.progress = progress
+        progressView.isHidden = progress == 0
+
+        if !isRefreshing, progress == 1 {
+            sendActions(for: .valueChanged)
+            beginRefreshing()
+            triggerStartDate = Date()
+        }
     }
 
     override public func beginRefreshing() {
+        super.beginRefreshing()
         isAnimating = true
         progressView.startAnimating()
-        super.beginRefreshing()
     }
 
     override public func endRefreshing() {
-        isAnimating = false
-        progressView.stopAninating()
-        super.endRefreshing()
+        let triggerStartDate = triggerStartDate ?? Date()
+        let triggerEndDate = Date()
+        let timeElapsed = triggerEndDate.timeIntervalSince1970 - triggerStartDate.timeIntervalSince1970
+        let additionalDuration = 1 - timeElapsed
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + additionalDuration) {
+            super.endRefreshing()
+            self.isAnimating = false
+            self.progressView.stopAninating()
+            self.triggerStartDate = nil
+        }
     }
 
     func insertSelf() {
