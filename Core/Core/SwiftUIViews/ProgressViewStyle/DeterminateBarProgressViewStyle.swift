@@ -69,3 +69,47 @@ extension ProgressViewStyle where Self == DeterminateBarProgressViewStyle {
         )
     }
 }
+
+struct DeterminateBarProgressViewStyle_Previews: PreviewProvider {
+    static var previews: some View {
+        ProgressView(value: 0.25)
+            .progressViewStyle(.determinateBar())
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView(value: 0.75)
+            .progressViewStyle(.determinateBar())
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView(value: 0.75)
+            .progressViewStyle(
+                .determinateBar(
+                    foregroundColor: .red,
+                    backgroundColor: .green
+                )
+            )
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView(value: 0.25)
+            .progressViewStyle(.determinateBar())
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView(value: 0.75)
+            .progressViewStyle(.determinateBar())
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView(value: 0.75)
+            .progressViewStyle(
+                .determinateBar(
+                    foregroundColor: .red,
+                    backgroundColor: .green
+                )
+            )
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+    }
+}

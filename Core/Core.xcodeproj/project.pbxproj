@@ -4681,8 +4681,8 @@
 			children = (
 				B4D7405028D864C80004CA1A /* DeterminateCircleProgressViewStyle.swift */,
 				B4D7405228D867E70004CA1A /* IndeterminateCircleProgressViewStyle.swift */,
-				B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */,
 				B4F523B028E4732D001A16BC /* DeterminateBarProgressViewStyle.swift */,
+				B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */,
 			);
 			path = ProgressViewStyle;
 			sourceTree = "<group>";
