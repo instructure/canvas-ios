@@ -72,4 +72,39 @@ class K5SubjectViewModelTests: CoreTestCase {
         wait(for: [expectation], timeout: 0.5)
         reloadListener.cancel()
     }
+
+    func testReloadsWhenAppMovesToForegroundOnModulesPage() {
+        Tab.make(from: .make(id: "home", type: .internal, position: 0), context: context)
+        Tab.make(from: .make(id: "modules", type: .internal, position: 1), context: context)
+
+        let testee = K5SubjectViewModel(context: context, selectedTabId: "modules")
+        let expectation = self.expectation(description: "WebView reload trigger received")
+        expectation.expectedFulfillmentCount = 1
+
+        let reloadListener = testee.reloadWebView.sink {
+            expectation.fulfill()
+        }
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+
+        wait(for: [expectation], timeout: 0.5)
+        reloadListener.cancel()
+    }
+
+    func testNotReloadsWhenAppMovesToForegroundAndNotOnModulesPage() {
+        Tab.make(from: .make(id: "home", type: .internal, position: 0), context: context)
+        Tab.make(from: .make(id: "modules", type: .internal, position: 1), context: context)
+
+        let testee = K5SubjectViewModel(context: context, selectedTabId: "home")
+        let expectation = self.expectation(description: "WebView reload trigger received")
+        expectation.expectedFulfillmentCount = 1
+        expectation.isInverted = true
+
+        let reloadListener = testee.reloadWebView.sink {
+            expectation.fulfill()
+        }
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+
+        wait(for: [expectation], timeout: 0.5)
+        reloadListener.cancel()
+    }
 }
