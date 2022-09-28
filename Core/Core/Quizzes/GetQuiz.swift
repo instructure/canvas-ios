@@ -63,3 +63,28 @@ public class GetQuiz: UseCase {
         quiz.submission = submission
     }
 }
+
+class UpdateQuiz: APIUseCase {
+    typealias Model = Quiz
+
+    let request: PutQuizRequest
+
+    init(
+        courseID: String,
+        quizID: String,
+        quiz: APIQuizParameters
+    ) {
+        request = PutQuizRequest(
+            courseID: courseID,
+            quizID: quizID,
+            body: .init(quiz: quiz)
+        )
+    }
+
+    var cacheKey: String? { nil }
+
+    func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else { return }
+        Quiz.save(item, in: client)
+    }
+}
