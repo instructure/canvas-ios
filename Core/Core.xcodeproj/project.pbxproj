@@ -128,7 +128,6 @@
 		7D2E812925631BEC008C568F /* AssignmentDateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E812825631BEC008C568F /* AssignmentDateSection.swift */; };
 		7D2E812F25632C34008C568F /* SubmissionBreakdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E812E25632C34008C568F /* SubmissionBreakdown.swift */; };
 		7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */; };
-		7D2FA37F255EEC3F00C9552F /* CircleRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */; };
 		7D2FADC4225BBA5600BCE19E /* RichContentEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FADC3225BBA5600BCE19E /* RichContentEditor.js */; };
 		7D303DE82412F9AB001F5F36 /* PagesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D303DE72412F9AB001F5F36 /* PagesViewControllerTests.swift */; };
 		7D37BE8621C81C9A0063FAAC /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8521C81C9A0063FAAC /* UserAgentTests.swift */; };
@@ -1708,7 +1707,6 @@
 		7D2E827F2270BB7600735854 /* FilePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerCell.swift; sourceTree = "<group>"; };
 		7D2E82812270BB7600735854 /* FilePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerViewController.swift; sourceTree = "<group>"; };
 		7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilePickerViewController.storyboard; sourceTree = "<group>"; };
-		7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRefresh.swift; sourceTree = "<group>"; };
 		7D2FADBD225BA50A00BCE19E /* RichContentEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorViewController.swift; sourceTree = "<group>"; };
 		7D2FADC3225BBA5600BCE19E /* RichContentEditor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = RichContentEditor.js; sourceTree = "<group>"; };
 		7D303DE72412F9AB001F5F36 /* PagesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewControllerTests.swift; sourceTree = "<group>"; };
@@ -6269,7 +6267,6 @@
 				D9D9F0F3276CC69D008846AE /* AccessIcon.swift */,
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
-				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
 				EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */,
 				EB66DB9426451CAE002D3325 /* CustomTextField.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
@@ -7705,7 +7702,6 @@
 				7DA260DB23F72359005D2121 /* GradeCircleView.swift in Sources */,
 				7DA2603D23F722D9005D2121 /* ContextColor.swift in Sources */,
 				7D62716C245B591E00FC1798 /* GetDiscussions.swift in Sources */,
-				7D2FA37F255EEC3F00C9552F /* CircleRefresh.swift in Sources */,
 				7DA2603423F722D9005D2121 /* GradeViewable.swift in Sources */,
 				7DA2605723F722D9005D2121 /* Page.swift in Sources */,
 				7DA25FBC23F72136005D2121 /* APILoginWeb.swift in Sources */,

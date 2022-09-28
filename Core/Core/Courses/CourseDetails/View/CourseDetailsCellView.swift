@@ -77,7 +77,13 @@ public struct CourseDetailsCellView: View {
                 .frame(width: 20, height: 20)
                 .foregroundColor(.textDarkest)
         case .loading:
-            CircleProgress(size: 20, thickness: 2)
+            ProgressView()
+                .progressViewStyle(
+                    .indeterminateCircular(
+                        size: 20,
+                        lineWidth: 2
+                    )
+                )
         }
     }
 }

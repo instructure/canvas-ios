@@ -73,7 +73,10 @@ public struct AssignmentDetailsView: View {
                 }
             }
         } else if assignment.state == .loading {
-            ZStack { CircleProgress() }
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircular())
+            }
         } else /* Assignment not found, perhaps recently deleted */ {
             Spacer().onAppear { env.router.dismiss(controller) }
         }

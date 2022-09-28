@@ -53,8 +53,8 @@ public struct K5ScheduleDayView: View {
     }
 
     private var loadingView: some View {
-        CircleProgress()
-            .frame(height: 55)
+        ProgressView()
+            .progressViewStyle(.indeterminateCircular(size: 55))
             .frame(maxWidth: .infinity)
     }
 

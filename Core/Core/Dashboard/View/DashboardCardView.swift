@@ -149,8 +149,11 @@ public struct DashboardCardView: View {
     @ViewBuilder func courseCards(_ size: CGSize) -> some View {
         switch cards.state {
         case .loading:
-            ZStack { CircleProgress() }
-                .frame(minWidth: size.width, minHeight: size.height)
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircular())
+            }
+            .frame(minWidth: size.width, minHeight: size.height)
         case .data(let cards):
             coursesHeader(width: size.width)
 

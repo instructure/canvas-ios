@@ -38,7 +38,6 @@ struct K5GradesView: View {
             } refreshAction: { endRefreshing in
                 viewModel.refresh(completion: endRefreshing)
             }
-            
         }
         .padding(.horizontal)
         .contentShape(Rectangle())

@@ -99,7 +99,13 @@ struct FileProgressItemView: View {
     }
 
     private func circleProgress(progress: CGFloat? = nil) -> some View {
-        CircleProgress(color: Color(Brand.shared.primary), progress: progress, size: 23, thickness: 1.68)
+        ProgressView(value: progress)
+            .progressViewStyle(
+                .determinateCircular(
+                    size: 23,
+                    lineWidth: 1.68)
+            )
+            .accentColor(Color(Brand.shared.primary))
             .frame(maxHeight: .infinity)
             .accessibility(hidden: true)
     }

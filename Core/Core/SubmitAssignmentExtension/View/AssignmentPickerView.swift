@@ -41,7 +41,8 @@ public struct AssignmentPickerView: View {
     private var content: some View {
         switch viewModel.state {
         case .loading:
-            CircleProgress()
+            ProgressView()
+                .progressViewStyle(.indeterminateCircular())
         case .error(let message):
             error(message: message)
         case .data(let assignments):

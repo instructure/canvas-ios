@@ -88,7 +88,7 @@ public struct RefreshableScrollView<Content: View>: View {
 
     @ViewBuilder private func indeterminateProgressView() -> some View {
         ProgressView()
-            .progressViewStyle(.indeterminateCircular)
+            .progressViewStyle(.indeterminateCircular())
             .opacity(progress)
             .padding(.top, 16)
             .offset(x: 0, y: -offset)
@@ -96,7 +96,7 @@ public struct RefreshableScrollView<Content: View>: View {
 
     @ViewBuilder private func determinateProgressView(_ progress: CGFloat) -> some View {
         ProgressView(value: progress)
-            .progressViewStyle(.determinateCircular)
+            .progressViewStyle(.determinateCircular())
             .opacity(progress)
             .padding(.top, 16)
             .offset(x: 0, y: -offset)

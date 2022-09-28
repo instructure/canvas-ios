@@ -38,7 +38,7 @@ public struct CourseListView: View {
                     case .loading:
                         ZStack {
                             ProgressView()
-                                .progressViewStyle(.indeterminateCircular)
+                                .progressViewStyle(.indeterminateCircular())
                         }
                         .frame(minWidth: width, minHeight: height)
                     case let .data(sections):
@@ -71,15 +71,15 @@ public struct CourseListView: View {
             } refreshAction: { endRefreshing in
                 viewModel.refresh(completion: endRefreshing)
             }
-            
+
         }
-            .avoidKeyboardArea()
-            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .avoidKeyboardArea()
+        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
 
-            .navigationBarStyle(.global)
-            .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
+        .navigationBarStyle(.global)
+        .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
 
-            .onAppear { viewModel.viewDidAppear() }
+        .onAppear { viewModel.viewDidAppear() }
     }
 
     @ViewBuilder

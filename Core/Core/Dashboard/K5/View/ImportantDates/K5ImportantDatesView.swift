@@ -53,7 +53,6 @@ public struct K5ImportantDatesView: View {
                 } refreshAction: { endRefreshing in
                     viewModel.refresh(completion: endRefreshing)
                 }
-                
             }
         }
     }
