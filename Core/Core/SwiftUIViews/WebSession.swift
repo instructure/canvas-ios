@@ -40,7 +40,7 @@ public struct WebSession<Content: View>: View {
                 HStack { Spacer() }
                 Spacer()
                 ProgressView()
-                    .progressViewStyle(.indeterminateCircular())
+                    .progressViewStyle(.indeterminateCircle())
                 Spacer()
             }
                 .onAppear {

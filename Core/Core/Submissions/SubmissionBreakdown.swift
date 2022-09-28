@@ -133,7 +133,7 @@ struct SubmissionBreakdown: View {
                 VStack(spacing: 8) {
                     ProgressView(value: total == 0 ? 0 : CGFloat(count) / CGFloat(total))
                         .progressViewStyle(
-                            .determinateCircular(
+                            .determinateCircle(
                                 size: 70,
                                 lineWidth: 7)
                         )

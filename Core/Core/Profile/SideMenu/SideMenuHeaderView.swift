@@ -56,7 +56,7 @@ struct SideMenuHeaderView: View {
                 .opacity(isUploadingImage ? 0.4 : 1)
                 .overlay(isUploadingImage ?
                     ProgressView()
-                        .progressViewStyle(.indeterminateCircular())
+                        .progressViewStyle(.indeterminateCircle())
                         .padding(.bottom, 12) :
                     nil
                 )

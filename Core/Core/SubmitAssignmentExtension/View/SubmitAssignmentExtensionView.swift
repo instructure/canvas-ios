@@ -165,7 +165,7 @@ public struct SubmitAssignmentExtensionView: View {
     private var submitButton: some View {
         if viewModel.isProcessingFiles {
             ProgressView()
-                .progressViewStyle(.indeterminateCircular(size: 20))
+                .progressViewStyle(.indeterminateCircle(size: 20))
         } else {
             Button(action: viewModel.submitTapped) {
                 Text("Submit", bundle: .core)

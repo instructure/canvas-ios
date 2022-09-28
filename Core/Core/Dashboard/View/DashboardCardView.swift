@@ -151,7 +151,7 @@ public struct DashboardCardView: View {
         case .loading:
             ZStack {
                 ProgressView()
-                    .progressViewStyle(.indeterminateCircular())
+                    .progressViewStyle(.indeterminateCircle())
             }
             .frame(minWidth: size.width, minHeight: size.height)
         case .data(let cards):

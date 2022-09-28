@@ -79,7 +79,7 @@ public struct CourseDetailsCellView: View {
         case .loading:
             ProgressView()
                 .progressViewStyle(
-                    .indeterminateCircular(
+                    .indeterminateCircle(
                         size: 20,
                         lineWidth: 2
                     )

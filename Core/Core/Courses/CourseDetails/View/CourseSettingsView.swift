@@ -33,7 +33,7 @@ public struct CourseSettingsView: View {
             switch viewModel.state {
             case .loading:
                 ProgressView()
-                    .progressViewStyle(.indeterminateCircular())
+                    .progressViewStyle(.indeterminateCircle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             case .ready, .saving:
                 editor(width: geometry.size.width)

@@ -101,7 +101,7 @@ struct FileProgressItemView: View {
     private func circleProgress(progress: CGFloat? = nil) -> some View {
         ProgressView(value: progress)
             .progressViewStyle(
-                .determinateCircular(
+                .determinateCircle(
                     size: 23,
                     lineWidth: 1.68)
             )

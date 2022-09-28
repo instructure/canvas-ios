@@ -101,7 +101,7 @@ public struct IndeterminateCircleProgressViewStyle: ProgressViewStyle {
 }
 
 extension ProgressViewStyle where Self == IndeterminateCircleProgressViewStyle {
-    static func indeterminateCircular(
+    static func indeterminateCircle(
         size: CGFloat = 32,
         lineWidth: CGFloat = 3
     ) -> IndeterminateCircleProgressViewStyle {
@@ -115,22 +115,22 @@ extension ProgressViewStyle where Self == IndeterminateCircleProgressViewStyle {
 struct IndeterminateCircularProgressViewStyle_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView()
-            .progressViewStyle(.indeterminateCircular())
+            .progressViewStyle(.indeterminateCircle())
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView()
-            .progressViewStyle(.indeterminateCircular(size: 20, lineWidth: 2))
+            .progressViewStyle(.indeterminateCircle(size: 20, lineWidth: 2))
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView()
-            .progressViewStyle(.indeterminateCircular())
+            .progressViewStyle(.indeterminateCircle())
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
 
         ProgressView()
-            .progressViewStyle(.indeterminateCircular(size: 20, lineWidth: 2))
+            .progressViewStyle(.indeterminateCircle(size: 20, lineWidth: 2))
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }

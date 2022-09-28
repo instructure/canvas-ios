@@ -58,7 +58,7 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
 }
 
 extension ProgressViewStyle where Self == DeterminateCircleProgressViewStyle {
-    static func determinateCircular(
+    static func determinateCircle(
         size: CGFloat = 32,
         lineWidth: CGFloat = 3
     ) -> DeterminateCircleProgressViewStyle {
@@ -72,18 +72,18 @@ extension ProgressViewStyle where Self == DeterminateCircleProgressViewStyle {
 struct DeterminateCircularProgressViewStyle_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView(value: 0.25)
-            .progressViewStyle(.determinateCircular())
+            .progressViewStyle(.determinateCircle())
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.75)
-            .progressViewStyle(.determinateCircular())
+            .progressViewStyle(.determinateCircle())
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.75)
             .progressViewStyle(
-                .determinateCircular(
+                .determinateCircle(
                     size: 20,
                     lineWidth: 2
                 )
@@ -92,18 +92,18 @@ struct DeterminateCircularProgressViewStyle_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.25)
-            .progressViewStyle(.determinateCircular())
+            .progressViewStyle(.determinateCircle())
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.75)
-            .progressViewStyle(.determinateCircular())
+            .progressViewStyle(.determinateCircle())
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.75)
             .progressViewStyle(
-                .determinateCircular(
+                .determinateCircle(
                     size: 20,
                     lineWidth: 2
                 )

@@ -123,7 +123,7 @@ public struct AssignmentListView: View {
         Divider()
         Spacer()
         ProgressView()
-            .progressViewStyle(.indeterminateCircular())
+            .progressViewStyle(.indeterminateCircle())
         Spacer()
     }
 

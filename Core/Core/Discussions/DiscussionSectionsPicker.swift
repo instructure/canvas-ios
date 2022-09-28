@@ -41,7 +41,7 @@ struct DiscussionSectionsPicker: View {
                 case .loading:
                     ZStack {
                         ProgressView()
-                            .progressViewStyle(.indeterminateCircular())
+                            .progressViewStyle(.indeterminateCircle())
                     }
                     .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
                 case .empty:

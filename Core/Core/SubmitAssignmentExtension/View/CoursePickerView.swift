@@ -36,7 +36,7 @@ public struct CoursePickerView: View {
         switch viewModel.state {
         case .loading:
             ProgressView()
-                .progressViewStyle(.indeterminateCircular())
+                .progressViewStyle(.indeterminateCircle())
         case .error(let message):
             error(message: message)
         case .data(let courses):

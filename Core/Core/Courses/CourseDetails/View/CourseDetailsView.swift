@@ -132,7 +132,7 @@ public struct CourseDetailsView: View {
     private var loadingView: some View {
         Spacer()
         ProgressView()
-            .progressViewStyle(.indeterminateCircular())
+            .progressViewStyle(.indeterminateCircle())
         Spacer()
     }
 

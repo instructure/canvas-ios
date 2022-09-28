@@ -50,7 +50,7 @@ public struct ContextCardView: View {
     @ViewBuilder var contextCard: some View {
         if model.pending {
             ProgressView()
-                .progressViewStyle(.indeterminateCircular())
+                .progressViewStyle(.indeterminateCircle())
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             if let course = model.course.first, let apiUser = model.apiUser, let enrollment = model.enrollment {

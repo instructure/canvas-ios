@@ -38,7 +38,7 @@ public struct CourseListView: View {
                     case .loading:
                         ZStack {
                             ProgressView()
-                                .progressViewStyle(.indeterminateCircular())
+                                .progressViewStyle(.indeterminateCircle())
                         }
                         .frame(minWidth: width, minHeight: height)
                     case let .data(sections):

@@ -49,7 +49,7 @@ public struct GroupContextCardView: View {
     @ViewBuilder var contextCard: some View {
         if model.pending {
             ProgressView()
-                .progressViewStyle(.indeterminateCircular())
+                .progressViewStyle(.indeterminateCircle())
         } else {
             if let user = model.user.first, let group = model.group.first {
                 VStack(spacing: 10) {
