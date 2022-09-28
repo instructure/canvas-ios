@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct AssignmentOverridesEditor: View {
+struct AssignmentOverridesEditor: View {
     let courseID: String
     let groupCategoryID: String?
     @Binding var overrides: [Override]
@@ -27,7 +27,7 @@ public struct AssignmentOverridesEditor: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    public var body: some View {
+    var body: some View {
         let everyonesCount = overrides.filter { $0.isEveryone } .count
         ForEach(overrides) { override in
             EditorSection(label: HStack {
@@ -185,9 +185,9 @@ public struct AssignmentOverridesEditor: View {
         return (dueAt: dueAt, unlockAt: unlockAt, lockAt: lockAt, overrides: overrides)
     }
 
-    public struct Override: Equatable, Identifiable {
+    struct Override: Equatable, Identifiable {
         var dueAt: Date?
-        public var id: String
+        var id: String
         let groupID: String?
         var lockAt: Date?
         let sectionID: String?

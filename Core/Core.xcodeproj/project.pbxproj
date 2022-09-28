@@ -1140,10 +1140,7 @@
 		D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */; };
 		D9FE691728B7A4DE00895930 /* QuizAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE691628B7A4DE00895930 /* QuizAttribute.swift */; };
 		D9FE691A28B7A4EC00895930 /* QuizDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE691828B7A4EC00895930 /* QuizDetailsViewModel.swift */; };
-		D9FE691B28B7A4EC00895930 /* QuizEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE691928B7A4EC00895930 /* QuizEditorViewModel.swift */; };
 		D9FE691F28B7A50600895930 /* QuizDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE691C28B7A50600895930 /* QuizDetailsView.swift */; };
-		D9FE692028B7A50600895930 /* QuizPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE691D28B7A50600895930 /* QuizPreview.swift */; };
-		D9FE692128B7A50600895930 /* QuizEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE691E28B7A50600895930 /* QuizEditorView.swift */; };
 		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
 		DFE1FF2D212F69B3003F27AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2B212F69B3003F27AA /* Main.storyboard */; };
@@ -2583,10 +2580,7 @@
 		D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewControllerTests.swift; sourceTree = "<group>"; };
 		D9FE691628B7A4DE00895930 /* QuizAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizAttribute.swift; sourceTree = "<group>"; };
 		D9FE691828B7A4EC00895930 /* QuizDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModel.swift; sourceTree = "<group>"; };
-		D9FE691928B7A4EC00895930 /* QuizEditorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizEditorViewModel.swift; sourceTree = "<group>"; };
 		D9FE691C28B7A50600895930 /* QuizDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDetailsView.swift; sourceTree = "<group>"; };
-		D9FE691D28B7A50600895930 /* QuizPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizPreview.swift; sourceTree = "<group>"; };
-		D9FE691E28B7A50600895930 /* QuizEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizEditorView.swift; sourceTree = "<group>"; };
 		DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.release.xcconfig"; sourceTree = "<group>"; };
 		DD44F6EDD0A85E0D8AFC1EF4 /* Pods_needs_pspdfkit_CoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_CoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5B10F40238556EA8BA6B6A /* Pods_defaults_CoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6006,8 +6000,6 @@
 			isa = PBXGroup;
 			children = (
 				D9FE691C28B7A50600895930 /* QuizDetailsView.swift */,
-				D9FE691E28B7A50600895930 /* QuizEditorView.swift */,
-				D9FE691D28B7A50600895930 /* QuizPreview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6016,7 +6008,6 @@
 			isa = PBXGroup;
 			children = (
 				D9FE691828B7A4EC00895930 /* QuizDetailsViewModel.swift */,
-				D9FE691928B7A4EC00895930 /* QuizEditorViewModel.swift */,
 				D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */,
 				D97F991E28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift */,
 			);
@@ -7122,7 +7113,6 @@
 				7DA25FD523F72148005D2121 /* AppEnvironment.swift in Sources */,
 				7DA2601923F7227A005D2121 /* UITableViewCellExtensions.swift in Sources */,
 				7DA4DA2B2440C94D009CA964 /* GetPages.swift in Sources */,
-				D9FE692128B7A50600895930 /* QuizEditorView.swift in Sources */,
 				7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */,
 				CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */,
 				7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */,
@@ -7198,7 +7188,6 @@
 				7DA25FE023F72154005D2121 /* AudioPlayerViewController.swift in Sources */,
 				7DA260DE23F72359005D2121 /* HorizontalMenuViewController.swift in Sources */,
 				D9D7EBD427B2B08700544339 /* GenericCellViewModel.swift in Sources */,
-				D9FE692028B7A50600895930 /* QuizPreview.swift in Sources */,
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
 				CF598B32282552150029BEBE /* View.swift in Sources */,
@@ -7218,7 +7207,6 @@
 				7DA260B323F72352005D2121 /* GetFrontPage.swift in Sources */,
 				CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */,
 				7DA25FE623F721DE005D2121 /* AddMessage.swift in Sources */,
-				D9FE691B28B7A4EC00895930 /* QuizEditorViewModel.swift in Sources */,
 				7D7BA23924DB57BD00B1A68B /* CircleProgress.swift in Sources */,
 				CFF64FE527DB5A8700653573 /* StudentViewCellViewModel.swift in Sources */,
 				7DC35385255C9ABF00B36CD3 /* DashboardCard.swift in Sources */,
