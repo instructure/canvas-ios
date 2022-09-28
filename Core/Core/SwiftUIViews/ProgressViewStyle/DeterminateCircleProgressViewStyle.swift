@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct DeterminateCircularProgressViewStyle: ProgressViewStyle {
+struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
     // MARK: - Dependencies
 
     private let size: CGFloat
@@ -57,12 +57,12 @@ struct DeterminateCircularProgressViewStyle: ProgressViewStyle {
     }
 }
 
-extension ProgressViewStyle where Self == DeterminateCircularProgressViewStyle {
+extension ProgressViewStyle where Self == DeterminateCircleProgressViewStyle {
     static func determinateCircular(
         size: CGFloat = 32,
         lineWidth: CGFloat = 3
-    ) -> DeterminateCircularProgressViewStyle {
-        DeterminateCircularProgressViewStyle(
+    ) -> DeterminateCircleProgressViewStyle {
+        DeterminateCircleProgressViewStyle(
             size: size,
             lineWidth: lineWidth
         )

@@ -814,11 +814,12 @@
 		B453C8B328CA351200327A13 /* FileUploadItemMimeClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */; };
 		B472C7DD28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */; };
 		B4A687C628DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */; };
-		B4BC3CD728D09A7A00FD368E /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */; };
 		B4C045E328CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */; };
 		B4CD9DAF28C63CFC0084EB65 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CD9DAE28C63CFC0084EB65 /* RefreshableScrollView.swift */; };
-		B4D7405128D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7405028D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift */; };
-		B4D7405328D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7405228D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift */; };
+		B4D7405128D864C80004CA1A /* DeterminateCircleProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7405028D864C80004CA1A /* DeterminateCircleProgressViewStyle.swift */; };
+		B4D7405328D867E70004CA1A /* IndeterminateCircleProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7405228D867E70004CA1A /* IndeterminateCircleProgressViewStyle.swift */; };
+		B4F523AF28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */; };
+		B4F523B128E4732D001A16BC /* DeterminateBarProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F523B028E4732D001A16BC /* DeterminateBarProgressViewStyle.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
@@ -2305,11 +2306,12 @@
 		B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItemMimeClassTests.swift; sourceTree = "<group>"; };
 		B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModelTests.swift; sourceTree = "<group>"; };
 		B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModelTests.swift; sourceTree = "<group>"; };
-		B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCompletedNotificationsSenderTests.swift; sourceTree = "<group>"; };
 		B4CD9DAE28C63CFC0084EB65 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
-		B4D7405028D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateCircularProgressViewStyle.swift; sourceTree = "<group>"; };
-		B4D7405228D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateCircularProgressViewStyle.swift; sourceTree = "<group>"; };
+		B4D7405028D864C80004CA1A /* DeterminateCircleProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateCircleProgressViewStyle.swift; sourceTree = "<group>"; };
+		B4D7405228D867E70004CA1A /* IndeterminateCircleProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateCircleProgressViewStyle.swift; sourceTree = "<group>"; };
+		B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateBarProgressViewStyle.swift; sourceTree = "<group>"; };
+		B4F523B028E4732D001A16BC /* DeterminateBarProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateBarProgressViewStyle.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
@@ -4677,8 +4679,10 @@
 		B4D7404F28D8636B0004CA1A /* ProgressViewStyle */ = {
 			isa = PBXGroup;
 			children = (
-				B4D7405028D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift */,
-				B4D7405228D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift */,
+				B4D7405028D864C80004CA1A /* DeterminateCircleProgressViewStyle.swift */,
+				B4D7405228D867E70004CA1A /* IndeterminateCircleProgressViewStyle.swift */,
+				B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */,
+				B4F523B028E4732D001A16BC /* DeterminateBarProgressViewStyle.swift */,
 			);
 			path = ProgressViewStyle;
 			sourceTree = "<group>";
@@ -6282,7 +6286,6 @@
 				E8A8FA8D24D328C3000B27DF /* SearchBar.swift */,
 				7DCA32112541DB8B00458651 /* WebSession.swift */,
 				7DCA31F72540835300458651 /* WebView.swift */,
-				B4BC3CD628D09A7A00FD368E /* ProgressBar.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -7408,7 +7411,7 @@
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */,
-				B4D7405328D867E70004CA1A /* IndeterminateCircularProgressViewStyle.swift in Sources */,
+				B4D7405328D867E70004CA1A /* IndeterminateCircleProgressViewStyle.swift in Sources */,
 				7DA260E023F72359005D2121 /* IconView.swift in Sources */,
 				EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */,
 				7D4B2740253CEE6800A98DE3 /* AudioPlayer.swift in Sources */,
@@ -7534,6 +7537,7 @@
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
 				CF575E3F26667AB700F8515F /* GetLatestAnnouncements.swift in Sources */,
 				7D5400B3252BD3D7003691F4 /* APIMock.swift in Sources */,
+				B4F523AF28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift in Sources */,
 				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
 				CF0075DA28746E3B00588E40 /* APIFormData.swift in Sources */,
@@ -7669,7 +7673,7 @@
 				CFCB0F7027CFC02A008DDEA4 /* ModulesPanda.swift in Sources */,
 				7DFD5F7B23FF158700D988E0 /* CalendarDaysViewController.swift in Sources */,
 				7DA2604E23F722D9005D2121 /* LatePolicyInterval.swift in Sources */,
-				B4D7405128D864C80004CA1A /* DeterminateCircularProgressViewStyle.swift in Sources */,
+				B4D7405128D864C80004CA1A /* DeterminateCircleProgressViewStyle.swift in Sources */,
 				CFDB620028AE46C80008C3F3 /* FileSubmissionAssembly.swift in Sources */,
 				7DA2600423F7227A005D2121 /* DateExtensions.swift in Sources */,
 				7DA25FDE23F72148005D2121 /* SessionDefaults.swift in Sources */,
@@ -7711,13 +7715,13 @@
 				7DA2610E23FCD907005D2121 /* CircleRefreshControl.swift in Sources */,
 				7DA2609723F72338005D2121 /* RouteHandler.swift in Sources */,
 				EBAF32F427AAC194000ACD32 /* APICommentLibraryResponse.swift in Sources */,
-				B4BC3CD728D09A7A00FD368E /* ProgressBar.swift in Sources */,
 				B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */,
 				CFEC7F3826B3F7F9008B9F77 /* K5ScheduleDayViewModel.swift in Sources */,
 				D9D7EBE427BC0A3000544339 /* CourseSettingsViewModel.swift in Sources */,
 				CF99CB1128D9D2CD001BBDF1 /* InterprocessNotificationCenter.swift in Sources */,
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
+				B4F523B128E4732D001A16BC /* DeterminateBarProgressViewStyle.swift in Sources */,
 				EB2A9BC62632E31F00A19A5A /* SideMenuFooterView.swift in Sources */,
 				7D1E856B2567356400D093C5 /* JustifiedGrid.swift in Sources */,
 				EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */,
