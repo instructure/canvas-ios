@@ -19,9 +19,13 @@
 import SwiftUI
 
 public struct IndeterminateCircularProgressViewStyle: ProgressViewStyle {
-    public static let size: CGFloat = 32
+    // MARK: - Dependencies
 
-    @State private var isVisible = false
+    private let size: CGFloat
+    private let lineWidth: CGFloat
+
+    // MARK: - Private properties
+
     @State private var fillWidth: CGFloat = 0.1
     @State private var fillRotate: Angle = .zero
     @State private var rotate: Angle = .zero
@@ -36,19 +40,29 @@ public struct IndeterminateCircularProgressViewStyle: ProgressViewStyle {
         in: .common
     ).autoconnect()
 
+    // MARK: - Init
+
+    init(
+        size: CGFloat,
+        lineWidth: CGFloat
+    ) {
+        self.size = size
+        self.lineWidth = lineWidth
+    }
+
     public func makeBody(configuration _: Configuration) -> some View {
         ZStack {
             Circle()
                 .stroke(
                     Color.accentColor,
-                    lineWidth: 3
+                    lineWidth: lineWidth
                 )
                 .opacity(0.2)
             Circle()
                 .trim(from: 0, to: fillWidth)
                 .stroke(
                     Color.accentColor,
-                    style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
+                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round)
                 )
                 .rotationEffect(fillRotate)
                 .onReceive(animationTimer) { _ in
@@ -59,7 +73,6 @@ public struct IndeterminateCircularProgressViewStyle: ProgressViewStyle {
                     fillWidth = 0.1
                     rotate = .zero
                     fillRotate = .zero
-                    isVisible = true
 
                     // Until the animation timer's first fire we still need to show some animation
                     progressAnimation()
@@ -76,7 +89,7 @@ public struct IndeterminateCircularProgressViewStyle: ProgressViewStyle {
                 }
                 .accessibility(label: Text("Loading", bundle: .core))
         }
-        .frame(width: Self.size, height: Self.size)
+        .frame(width: size, height: size)
     }
 
     private func progressAnimation() {
@@ -88,28 +101,36 @@ public struct IndeterminateCircularProgressViewStyle: ProgressViewStyle {
 }
 
 extension ProgressViewStyle where Self == IndeterminateCircularProgressViewStyle {
-    static var indeterminateCircular: IndeterminateCircularProgressViewStyle { .init() }
+    static func indeterminateCircular(
+        size: CGFloat = 32,
+        lineWidth: CGFloat = 3
+    ) -> IndeterminateCircularProgressViewStyle {
+        IndeterminateCircularProgressViewStyle(
+            size: size,
+            lineWidth: lineWidth
+        )
+    }
 }
 
 struct IndeterminateCircularProgressViewStyle_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView()
-            .progressViewStyle(.indeterminateCircular)
+            .progressViewStyle(.indeterminateCircular())
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView()
-            .progressViewStyle(.indeterminateCircular)
+            .progressViewStyle(.indeterminateCircular(size: 20, lineWidth: 2))
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView()
+            .progressViewStyle(.indeterminateCircular())
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
 
         ProgressView()
-            .progressViewStyle(.indeterminateCircular)
-            .preferredColorScheme(.light)
-            .previewLayout(.sizeThatFits)
-
-        ProgressView()
-            .progressViewStyle(.indeterminateCircular)
+            .progressViewStyle(.indeterminateCircular(size: 20, lineWidth: 2))
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }

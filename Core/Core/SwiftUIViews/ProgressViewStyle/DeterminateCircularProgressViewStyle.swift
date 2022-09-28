@@ -19,52 +19,95 @@
 import SwiftUI
 
 struct DeterminateCircularProgressViewStyle: ProgressViewStyle {
+    // MARK: - Dependencies
+
+    private let size: CGFloat
+    private let lineWidth: CGFloat
+
+    // MARK: - Init
+
+    init(
+        size: CGFloat,
+        lineWidth: CGFloat
+    ) {
+        self.size = size
+        self.lineWidth = lineWidth
+    }
+
     func makeBody(configuration: Configuration) -> some View {
         let progress = configuration.fractionCompleted ?? 0
         return ZStack {
             Circle()
                 .stroke(
                     Color.accentColor,
-                    lineWidth: 3
+                    lineWidth: lineWidth
                 )
                 .opacity(0.2)
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(
                     Color.accentColor,
-                    style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
+                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round)
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(.none, value: progress)
                 .transition(.scale)
         }
-        .frame(width: 32, height: 32)
+        .frame(width: size, height: size)
     }
 }
 
 extension ProgressViewStyle where Self == DeterminateCircularProgressViewStyle {
-    static var determinateCircular: DeterminateCircularProgressViewStyle { .init() }
+    static func determinateCircular(
+        size: CGFloat = 32,
+        lineWidth: CGFloat = 3
+    ) -> DeterminateCircularProgressViewStyle {
+        DeterminateCircularProgressViewStyle(
+            size: size,
+            lineWidth: lineWidth
+        )
+    }
 }
 
 struct DeterminateCircularProgressViewStyle_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView(value: 0.25)
-            .progressViewStyle(.determinateCircular)
+            .progressViewStyle(.determinateCircular())
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.75)
-            .progressViewStyle(.determinateCircular)
-            .preferredColorScheme(.dark)
+            .progressViewStyle(.determinateCircular())
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView(value: 0.75)
+            .progressViewStyle(
+                .determinateCircular(
+                    size: 20,
+                    lineWidth: 2
+                )
+            )
+            .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.25)
-            .progressViewStyle(.determinateCircular)
-            .preferredColorScheme(.light)
+            .progressViewStyle(.determinateCircular())
+            .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.75)
-            .progressViewStyle(.determinateCircular)
+            .progressViewStyle(.determinateCircular())
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+
+        ProgressView(value: 0.75)
+            .progressViewStyle(
+                .determinateCircular(
+                    size: 20,
+                    lineWidth: 2
+                )
+            )
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }
