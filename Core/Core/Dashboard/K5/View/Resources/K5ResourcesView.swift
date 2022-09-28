@@ -27,11 +27,7 @@ public struct K5ResourcesView: View {
     }
 
     public var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            CircleRefresh { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
-            }
-
+        RefreshableScrollView {
             VStack(alignment: .leading) {
                 if !viewModel.homeroomInfos.isEmpty {
                     importantInfo
@@ -46,6 +42,8 @@ public struct K5ResourcesView: View {
                 }
             }
             .padding(.vertical)
+        } refreshAction: { endRefreshing in
+            viewModel.refresh(completion: endRefreshing)
         }
         .padding(.horizontal, horizontalPadding)
         .onAppear {
@@ -115,19 +113,19 @@ public struct K5ResourcesView: View {
 
 #if DEBUG
 
-struct K5ResourcesView_Previews: PreviewProvider {
-    private static let env = AppEnvironment.shared
-    private static let context = env.globalDatabase.viewContext
+    struct K5ResourcesView_Previews: PreviewProvider {
+        private static let env = AppEnvironment.shared
+        private static let context = env.globalDatabase.viewContext
 
-    static var previews: some View {
-        let courses = [
-            APICourse.make(id: "1", name: "Homeroom 1", syllabus_body: "<h1>Infos</h1><p>This is a paragraph</p>", homeroom_course: true),
-            APICourse.make(id: "2", name: "Homeroom 2", syllabus_body: "<b>IMPORTANT</b><p>Read the previous note</p>", homeroom_course: true),
-        ]
-        Course.save(courses, in: context)
+        static var previews: some View {
+            let courses = [
+                APICourse.make(id: "1", name: "Homeroom 1", syllabus_body: "<h1>Infos</h1><p>This is a paragraph</p>", homeroom_course: true),
+                APICourse.make(id: "2", name: "Homeroom 2", syllabus_body: "<b>IMPORTANT</b><p>Read the previous note</p>", homeroom_course: true),
+            ]
+            Course.save(courses, in: context)
 
-        return K5ResourcesView(viewModel: K5ResourcesViewModel()).environment(\.horizontalPadding, 16)
+            return K5ResourcesView(viewModel: K5ResourcesViewModel()).environment(\.horizontalPadding, 16)
+        }
     }
-}
 
 #endif

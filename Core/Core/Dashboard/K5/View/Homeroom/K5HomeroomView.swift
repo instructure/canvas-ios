@@ -27,11 +27,7 @@ public struct K5HomeroomView: View {
     }
 
     public var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            CircleRefresh { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
-            }
-
+        RefreshableScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 conferences
                 invitations
@@ -52,6 +48,8 @@ public struct K5HomeroomView: View {
                     .padding(.top, 23)
             }
             .padding(.horizontal, horizontalPadding)
+        } refreshAction: { endRefreshing in
+            viewModel.refresh(completion: endRefreshing)
         }
     }
 
@@ -79,10 +77,10 @@ public struct K5HomeroomView: View {
 
 #if DEBUG
 
-struct K5HomeroomView_Previews: PreviewProvider {
-    static var previews: some View {
-        K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
+    struct K5HomeroomView_Previews: PreviewProvider {
+        static var previews: some View {
+            K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
+        }
     }
-}
 
 #endif

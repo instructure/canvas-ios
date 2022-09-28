@@ -18,28 +18,28 @@
 
 import SwiftUI
 
-public struct CircleRefresh: View {
-    let action: (@escaping () -> Void) -> Void
-
-    public init(action: @escaping (@escaping () -> Void) -> Void) {
-        self.action = action
-    }
-
-    public var body: some View {
-        Placeholder(view: self).frame(height: 0)
-    }
-
-    struct Placeholder: UIViewRepresentable {
-        let view: CircleRefresh
-
-        public func makeUIView(context: Self.Context) -> CircleRefreshControl {
-            let uiView = CircleRefreshControl()
-            uiView.selfAdding = true
-            return uiView
-        }
-
-        public func updateUIView(_ uiView: CircleRefreshControl, context: Self.Context) {
-            uiView.action = view.action
-        }
-    }
-}
+//public struct CircleRefresh: View {
+//    let action: (@escaping () -> Void) -> Void
+//
+//    public init(action: @escaping (@escaping () -> Void) -> Void) {
+//        self.action = action
+//    }
+//
+//    public var body: some View {
+//        Placeholder(view: self).frame(height: 0)
+//    }
+//
+//    struct Placeholder: UIViewRepresentable {
+//        let view: CircleRefresh
+//
+//        public func makeUIView(context: Self.Context) -> CircleRefreshControl {
+//            let uiView = CircleRefreshControl()
+//            uiView.selfAdding = true
+//            return uiView
+//        }
+//
+//        public func updateUIView(_ uiView: CircleRefreshControl, context: Self.Context) {
+//            uiView.action = view.action
+//        }
+//    }
+//}

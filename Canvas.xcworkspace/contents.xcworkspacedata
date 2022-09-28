@@ -81,9 +81,6 @@
          location = "group:NightlyTests.xctestplan">
       </FileRef>
       <FileRef
-         location = "group:PRTests.xctestplan">
-      </FileRef>
-      <FileRef
          location = "group:Beta.xctestplan">
       </FileRef>
       <FileRef
