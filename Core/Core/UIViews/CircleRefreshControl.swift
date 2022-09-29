@@ -20,13 +20,13 @@ import SwiftUI
 import UIKit
 
 public class CircleRefreshControl: UIRefreshControl {
-    var action: ((@escaping () -> Void) -> Void)?
-    var offsetObservation: NSKeyValueObservation?
-    let progressView = CircleProgressView()
-    let snappingPoint: CGFloat = -64
-    var selfAdding = false
-    var isAnimating = false
-    var triggerStartDate: Date?
+
+    public private(set) var offsetObservation: NSKeyValueObservation?
+    public let progressView = CircleProgressView()
+    private var selfAdding = false
+    private let snappingPoint: CGFloat = 112
+    public private(set) var isAnimating = false
+    private var triggerStartDate: Date?
 
     public var color: UIColor? {
         get { progressView.color }
@@ -51,33 +51,33 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     private func setupView() {
-        insertSubview(progressView, at: 0)
         tintColor = .clear
+        insertSubview(progressView, at: 0)
+        layer.zPosition = -1
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressView.widthAnchor.constraint(equalToConstant: 32),
+            progressView.heightAnchor.constraint(equalToConstant: 32),
+            progressView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            progressView.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
+        progressView.isHidden = true
     }
 
     override public func didMoveToSuperview() {
         offsetObservation = nil
         guard let scrollView = superview as? UIScrollView else { return }
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            progressView.widthAnchor.constraint(equalToConstant: 32),
-            progressView.heightAnchor.constraint(equalToConstant: 32),
-            progressView.centerXAnchor.constraint(equalTo: scrollView.frameLayoutGuide.centerXAnchor),
-            progressView.topAnchor.constraint(equalTo: scrollView.frameLayoutGuide.topAnchor, constant: 16),
-        ])
-        progressView.isHidden = true
         offsetObservation = scrollView.observe(\.contentOffset, options: .new) { [weak self] scrollView, _ in
             self?.updateProgress(scrollView)
         }
         super.didMoveToSuperview()
     }
 
-    func updateProgress(_ scrollView: UIScrollView) {
+    private func updateProgress(_ scrollView: UIScrollView) {
         guard !isAnimating, !isRefreshing, scrollView.isDragging else { return }
-        let inset = scrollView.adjustedContentInset.top
         let offset = scrollView.contentOffset.y
-        guard inset <= 0, offset <= 0 else { return }
-        let progress = min(abs((inset + offset) / snappingPoint), 1)
+        guard offset <= 0 else { return }
+        let progress = min(abs((offset) / snappingPoint), 1)
 
         progressView.progress = progress
         progressView.isHidden = progress == 0
