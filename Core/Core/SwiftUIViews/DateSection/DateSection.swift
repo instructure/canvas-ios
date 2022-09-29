@@ -87,3 +87,29 @@ struct DateSection<ViewModel: DateSectionViewModel>: View {
         viewModel.buttonTapped(router: env.router, viewController: controller)
     }
 }
+
+#if DEBUG
+
+struct DateSection_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+
+
+    static var previews: some View {
+        let dueAt = Date()
+        let lockAt = Date(timeIntervalSinceNow: 100)
+        let unlockAt = Date(timeIntervalSinceNow: -100)
+        let apiAssignment = APIAssignment.make(due_at: dueAt, lock_at: lockAt, unlock_at: unlockAt)
+        let assignment = Assignment.save(apiAssignment, in: context, updateSubmission: false, updateScoreStatistics: false)
+        let viewModel = AssignmentDateSectionViewModel(assignment: assignment)
+
+        DateSection(viewModel: viewModel)
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+        DateSection(viewModel: viewModel)
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif
