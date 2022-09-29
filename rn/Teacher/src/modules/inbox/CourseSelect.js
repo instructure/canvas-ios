@@ -127,6 +127,7 @@ export function mapStateToProps (state: AppState): CourseSelectDataProps {
     .map(id => state.entities.courses[id].course)
     .filter(App.current().filterCourse)
     .filter(course => course.workflow_state === 'available')
+    .filter(course => course.concluded === false)
   let pending = !!state.favoriteCourses.pending
 
   const favoriteCourses = courses.filter((course) => course.is_favorite)
