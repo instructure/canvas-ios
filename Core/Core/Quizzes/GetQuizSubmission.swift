@@ -70,7 +70,7 @@ public class GetAllQuizSubmissions: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
+        return .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.userID), ascending: false)
     }
 
     public func write(response: GetAllQuizSubmissionsRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
