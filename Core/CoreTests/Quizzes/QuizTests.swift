@@ -65,6 +65,23 @@ class QuizTests: CoreTestCase {
         XCTAssertEqual(Quiz.make(from: .make(time_limit: 10)).timeLimitText, "10min")
     }
 
+    func testScoringPolicy() {
+        XCTAssertEqual(Quiz.make(from: .make(scoring_policy: .keep_latest)).scoringPolicy?.text, "Latest")
+        XCTAssertEqual(Quiz.make(from: .make(scoring_policy: .keep_highest)).scoringPolicy?.text, "Highest")
+        XCTAssertEqual(Quiz.make(from: .make(scoring_policy: .keep_average)).scoringPolicy?.text, "Average")
+    }
+
+    func testHideResults() {
+        XCTAssertEqual(Quiz.make(from: .make(hide_results: .always)).hideResults?.text, "No")
+        XCTAssertEqual(Quiz.make(from: .make(hide_results: .until_after_last_attempt)).hideResults?.text, "After Last Attempt")
+    }
+
+    func testResultsPath() {
+        XCTAssertNil(Quiz.make(from: .make(hide_results: .always)).resultsPath(for:1))
+        XCTAssertNil(Quiz.make(from: .make(allowed_attempts: 2, hide_results: .always)).resultsPath(for:1))
+        XCTAssertEqual(Quiz.make().resultsPath(for:1), "/courses/1/quizzes/123/history?attempt=1")
+    }
+
     func testSave() {
         var quiz = Quiz.save(APIQuiz.make(), in: databaseClient)
         XCTAssertEqual(quiz.order, Date.distantFuture.isoString())
