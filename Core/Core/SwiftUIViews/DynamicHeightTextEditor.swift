@@ -27,6 +27,7 @@ public struct DynamicHeightTextEditor: View {
     @State private var height: CGFloat
     /** The measured available width. The initial value is just a placeholder until the view is actually rendered. */
     @State private var width: CGFloat = 300
+    @Environment(\.accessibilityShowButtonShapes) private var isButtonShapesEnabled
     private let maxHeight: CGFloat
     private let minHeight: CGFloat
     private let placeholder: String?
@@ -85,7 +86,9 @@ public struct DynamicHeightTextEditor: View {
         let sizeConstraint = CGSize(width: width, height: .greatestFiniteMagnitude)
         var measuredTextHeight = NSString(string: text).boundingRect(with: sizeConstraint, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).height
         measuredTextHeight += 2 * textEditorVerticalPadding
-        height = min(maxHeight, max(minHeight, measuredTextHeight))
+        // For some reason if button shapes are enabled then TextEditor is rendered below its original position like about 30 points.
+        // If we increase the height by 5 points it's rendered at its desired position. ¯\_(ツ)_/¯
+        height = (isButtonShapesEnabled ? 5 : 0) + min(maxHeight, max(minHeight, measuredTextHeight))
     }
 }
 
