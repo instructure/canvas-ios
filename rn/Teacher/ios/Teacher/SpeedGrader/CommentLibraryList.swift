@@ -29,7 +29,7 @@ struct CommentLibraryList: View {
         switch viewModel.state {
         case .loading:
             ProgressView()
-                .progressViewStyle(.indeterminateCircular)
+                .progressViewStyle(.indeterminateCircle())
                 .frame(maxHeight: .infinity)
         case .empty:
             emptyView

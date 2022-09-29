@@ -118,7 +118,7 @@ struct SubmissionViewer: View {
                 .frame(maxWidth: .infinity)
             case nil:
                 ProgressView()
-                    .progressViewStyle(.indeterminateCircular())
+                    .progressViewStyle(.indeterminateCircle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .onAppear {
                         studentAnnotationViewModel.viewDidAppear()

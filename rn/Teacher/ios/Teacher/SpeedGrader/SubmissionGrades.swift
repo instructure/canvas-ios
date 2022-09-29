@@ -78,7 +78,7 @@ struct SubmissionGrades: View {
                         Spacer()
                         if isSaving {
                             ProgressView()
-                                .progressViewStyle(.indeterminateCircular(size: 24))
+                                .progressViewStyle(.indeterminateCircle(size: 24))
                         } else if assignment.gradingType == .not_graded {
                             Text("Not Graded")
                         } else {

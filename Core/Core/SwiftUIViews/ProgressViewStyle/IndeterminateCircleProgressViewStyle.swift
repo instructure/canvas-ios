@@ -100,7 +100,7 @@ public struct IndeterminateCircleProgressViewStyle: ProgressViewStyle {
     }
 }
 
-extension ProgressViewStyle where Self == IndeterminateCircleProgressViewStyle {
+public extension ProgressViewStyle where Self == IndeterminateCircleProgressViewStyle {
     static func indeterminateCircle(
         size: CGFloat = 32,
         lineWidth: CGFloat = 3

@@ -46,7 +46,7 @@ struct RubricAssessor: View {
 
             if isSaving {
                 ProgressView()
-                    .progressViewStyle(.indeterminateCircular(size: 24))
+                    .progressViewStyle(.indeterminateCircle(size: 24))
             }
         }
         .padding(.horizontal, 16).padding(.vertical, 12)

@@ -65,7 +65,7 @@ struct URLSubmissionViewer: View {
                             .padding(.horizontal, -16)
                     } else {
                         ProgressView()
-                            .progressViewStyle(.indeterminateCircular())
+                            .progressViewStyle(.indeterminateCircle())
                             .padding(32)
                             .onAppear {
                             env.api.makeRequest(url) { (data, _, error) in
