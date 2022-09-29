@@ -84,6 +84,17 @@ public extension Date {
         Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month, .day], from: self)) ?? Date()
     }
 
+    func clamp(minDate: Date?, maxDate: Date?) -> Date {
+        var date = self
+        if let minDate = minDate, date < minDate {
+            date = minDate
+        }
+        if let maxDate = maxDate, date > maxDate {
+            date = maxDate
+        }
+        return date
+    }
+
     static var relativeDateOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.doesRelativeDateFormatting = true
