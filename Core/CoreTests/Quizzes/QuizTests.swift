@@ -74,4 +74,23 @@ class QuizTests: CoreTestCase {
         quiz = Quiz.save(APIQuiz.make(lock_at: date, quiz_type: .survey), in: databaseClient)
         XCTAssertEqual(quiz.order, date.isoString())
     }
+
+    func testSaveAssignmentDates() {
+        let id = ID("1234")
+        let base = true
+        let title = "test"
+        let dueAt = Date()
+        let unlockAt = Date(timeIntervalSinceNow: -100)
+        let lockAt = Date(timeIntervalSinceNow: 100)
+        let dates = [APIAssignmentDate.make(id: id, base: base, title: title, due_at: dueAt, unlock_at: unlockAt, lock_at: lockAt)]
+        let quiz = Quiz.save(APIQuiz.make(all_dates: dates), in: databaseClient)
+
+        XCTAssertNotNil(quiz.allDates)
+        XCTAssertEqual(quiz.allDates.first?.id, "1234")
+        XCTAssertEqual(quiz.allDates.first?.base, true)
+        XCTAssertEqual(quiz.allDates.first?.title, title)
+        XCTAssertEqual(quiz.allDates.first?.dueAt, dueAt)
+        XCTAssertEqual(quiz.allDates.first?.unlockAt, unlockAt)
+        XCTAssertEqual(quiz.allDates.first?.lockAt, lockAt)
+    }
 }
