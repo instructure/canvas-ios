@@ -74,6 +74,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "Rhaid rhoi disgrifiad";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -852,9 +855,6 @@
 
 /* No comment provided by engineer. */
 "Fail" = "Methiant";
-
-/* No comment provided by engineer. */
-"Failed to get file upload target." = "Wedi methu cael targed ffeil wedi'i llwytho i fyny.";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Wedi methu cadw delwedd";
@@ -1862,6 +1862,9 @@
 "Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
+"Select Grading Period" = "Dewis Cyfnod Graddio";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Dewiswch Effaith";
 
 /* No comment provided by engineer. */
@@ -1893,9 +1896,6 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Wedi anfon";
-
-/* No comment provided by engineer. */
-"Session completed without error or file ID." = "Sesiwn wedi dod i ben heb wall neu ID ffeil.";
 
 /* No comment provided by engineer. */
 "Set \"Home\" to..." = "Pennu \"Hafan” i...";

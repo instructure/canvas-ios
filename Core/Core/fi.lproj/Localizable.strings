@@ -74,6 +74,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "Kuvaus vaaditaan";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -852,9 +855,6 @@
 
 /* No comment provided by engineer. */
 "Fail" = "Hylätty";
-
-/* No comment provided by engineer. */
-"Failed to get file upload target." = "Tiedoston latauskohteen haku epäonnistui.";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Kuvan tallennus epäonnistui";
@@ -1862,6 +1862,9 @@
 "Select Course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
+"Select Grading Period" = "Valitse arvosanojen antojakso";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Valitse vaikutus";
 
 /* No comment provided by engineer. */
@@ -1893,9 +1896,6 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Lähetetty";
-
-/* No comment provided by engineer. */
-"Session completed without error or file ID." = "Istunto suoritettu ilman virhettä tai tiedostotunnusta.";
 
 /* No comment provided by engineer. */
 "Set \"Home\" to..." = "Määritä ”Etusivu” arvoon…";

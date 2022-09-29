@@ -74,6 +74,9 @@
 "86,5%" = "86.5%";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "描述為必填";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -852,9 +855,6 @@
 
 /* No comment provided by engineer. */
 "Fail" = "失敗";
-
-/* No comment provided by engineer. */
-"Failed to get file upload target." = "無法取得檔案上傳目標。";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "無法儲存影像";
@@ -1862,6 +1862,9 @@
 "Select Course" = "選擇課程";
 
 /* No comment provided by engineer. */
+"Select Grading Period" = "選擇評分期";
+
+/* No comment provided by engineer. */
 "Select Impact" = "選擇影響的種類";
 
 /* No comment provided by engineer. */
@@ -1893,9 +1896,6 @@
 
 /* No comment provided by engineer. */
 "Sent" = "已發送";
-
-/* No comment provided by engineer. */
-"Session completed without error or file ID." = "工作階段完成，沒有錯誤或檔案 ID。";
 
 /* No comment provided by engineer. */
 "Set \"Home\" to..." = "將「首頁」設為...";

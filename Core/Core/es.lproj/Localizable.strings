@@ -74,6 +74,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"99+" = "99 o +";
+
+/* No comment provided by engineer. */
 "A description is required" = "Se requiere una descripción";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -852,9 +855,6 @@
 
 /* No comment provided by engineer. */
 "Fail" = "Reprobado";
-
-/* No comment provided by engineer. */
-"Failed to get file upload target." = "No se pudo obtener el destino de carga de archivos.";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "No se pudo guardar la imagen";
@@ -1862,6 +1862,9 @@
 "Select Course" = "Seleccionar curso";
 
 /* No comment provided by engineer. */
+"Select Grading Period" = "Seleccionar Período de calificación";
+
+/* No comment provided by engineer. */
 "Select Impact" = "Seleccione el impacto";
 
 /* No comment provided by engineer. */
@@ -1893,9 +1896,6 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Enviado";
-
-/* No comment provided by engineer. */
-"Session completed without error or file ID." = "Sesión completa sin errores ni identificación de archivos.";
 
 /* No comment provided by engineer. */
 "Set \"Home\" to..." = "Configurar \"Home\" (\"Inicio\") a...";
