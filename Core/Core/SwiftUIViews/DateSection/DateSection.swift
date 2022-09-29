@@ -44,10 +44,7 @@ struct DateSection<ViewModel: DateSectionViewModel>: View {
                             .accessibility(label: Text("No due date set.", bundle: .core))
                     }
 
-                    Line(Text("For:", bundle: .core), viewModel.firstAssignmentDate?.base == true
-                        ? Text("Everyone", bundle: .core)
-                        : Text(viewModel.firstAssignmentDate?.title ?? "-")
-                    )
+                    Line(Text("For:", bundle: .core), Text(viewModel.forText))
 
                     let lockAt = viewModel.lockAt
                     if let to = lockAt, to < Clock.now {

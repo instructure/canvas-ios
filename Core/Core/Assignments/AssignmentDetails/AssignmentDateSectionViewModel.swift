@@ -21,12 +21,12 @@ import SwiftUI
 public class AssignmentDateSectionViewModel: DateSectionViewModel {
 
     @ObservedObject var assignment: Assignment
-    public var firstAssignmentDate: AssignmentDate?
     public var isButton = true
+    private var allDatesDate: AssignmentDate?
 
     public init(assignment: Assignment) {
         self.assignment = assignment
-        firstAssignmentDate = assignment.allDates.first
+        allDatesDate = assignment.allDates.first
     }
 
     public var hasMultipleDueDates: Bool {
@@ -34,15 +34,23 @@ public class AssignmentDateSectionViewModel: DateSectionViewModel {
     }
 
     public var dueAt: Date? {
-        assignment.dueAt ?? firstAssignmentDate?.dueAt
+        assignment.dueAt ?? allDatesDate?.dueAt
     }
 
     public var lockAt: Date? {
-        firstAssignmentDate?.lockAt ?? assignment.lockAt
+        allDatesDate?.lockAt ?? assignment.lockAt
     }
 
     public var unlockAt: Date? {
-        firstAssignmentDate?.unlockAt ?? assignment.unlockAt
+        allDatesDate?.unlockAt ?? assignment.unlockAt
+    }
+
+    public var forText: String {
+        if allDatesDate?.base == true {
+            return NSLocalizedString("Everyone", bundle: .core, comment: "")
+        } else {
+            return allDatesDate?.title ?? "-"
+        }
     }
 
     public func buttonTapped(router: Router, viewController: WeakViewController) {

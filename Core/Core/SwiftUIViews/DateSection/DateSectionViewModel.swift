@@ -21,10 +21,10 @@ import SwiftUI
 public protocol DateSectionViewModel: ObservableObject {
 
     var hasMultipleDueDates: Bool { get }
-    var firstAssignmentDate: AssignmentDate? { get }
     var dueAt: Date? { get }
     var lockAt: Date? { get }
     var unlockAt: Date? { get }
+    var forText: String { get }
     var isButton: Bool { get }
 
     func buttonTapped(router: Router, viewController: WeakViewController)
