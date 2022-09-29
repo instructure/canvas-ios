@@ -52,7 +52,7 @@ class CircleRefreshControlTests: CoreTestCase {
         refreshControl.endRefreshing()
         scrollView.contentOffset.y = 0
 
-        drainMainQueue()
+        RunLoop.main.run(until: Date().advanced(by: 1))
 
         XCTAssertEqual(refreshControl.progressView.isHidden, true)
         XCTAssertEqual(refreshControl.isRefreshing, false)
