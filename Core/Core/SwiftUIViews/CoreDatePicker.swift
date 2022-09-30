@@ -89,7 +89,8 @@ public struct CoreDatePickerActionSheetCard: View {
                 }
                 Spacer()
                 Button {
-                    doneButtonPressed()
+                    selectionDate = pickerDateRange.clamp(selectedDate)
+                    dismissPresentation()
                 } label: {
                     Text("Done", bundle: .core)
                         .font(.regular17)
@@ -128,12 +129,6 @@ public struct CoreDatePickerActionSheetCard: View {
         }
 
         return Clock.now.addYears(-1)...Clock.now.addYears(1)
-    }
-
-    private func doneButtonPressed() {
-        selectionDate = selectedDate.clamp(minDate: pickerDateRange.lowerBound,
-                                           maxDate: pickerDateRange.upperBound)
-        dismissPresentation()
     }
 
     private func dismissPresentation() {

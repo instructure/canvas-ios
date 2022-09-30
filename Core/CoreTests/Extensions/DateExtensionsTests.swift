@@ -102,21 +102,6 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.removeTime(), b)
     }
 
-    func testClampDate() {
-        var date = Clock.now
-        let minDate = Clock.now.addDays(-1)
-        let maxDate = Clock.now.addDays(1)
-        var clampedDate: Date { date.clamp(minDate: minDate, maxDate: maxDate) }
-        // date is within range, no date change
-        XCTAssertEqual(clampedDate, date)
-        date = Clock.now.addDays(-10)
-        // date is lower than range, clamped to minDate
-        XCTAssertEqual(clampedDate, minDate)
-        date = Clock.now.addDays(10)
-        // date is higher than range, clamped to maxDate
-        XCTAssertEqual(clampedDate, maxDate)
-    }
-
     func testAddSeconds() {
         let a = Date(fromISOString: "2020-02-21T06:59:59Z")!
         let b = Date(fromISOString: "2020-02-21T07:00:00Z")!
