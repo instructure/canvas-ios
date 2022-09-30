@@ -91,7 +91,7 @@ class FilePreviewProviderTests: XCTestCase {
             XCTAssertNotNil(data.image)
         }
         testee.load()
-        waitForExpectations(timeout: 0.5)
+        waitForExpectations(timeout: 5)
         subscription.cancel()
     }
 

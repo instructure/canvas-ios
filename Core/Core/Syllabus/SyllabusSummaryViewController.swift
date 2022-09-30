@@ -37,7 +37,12 @@ public class SyllabusSummaryViewController: UITableViewController {
     }
 
     public lazy var summary: Store<LocalUseCase<CalendarEvent>> = {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let notHiddenPredicate = NSPredicate(format: "%K == false", #keyPath(CalendarEvent.isHidden))
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            contextPredicate,
+            notHiddenPredicate,
+        ])
         let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEvent.hasStartAt), ascending: false)
         let startAt = NSSortDescriptor(key: #keyPath(CalendarEvent.startAt), ascending: true)
         let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)
