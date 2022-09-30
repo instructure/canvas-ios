@@ -43,6 +43,11 @@ public struct RefreshableScrollView<Content: View>: View {
     private let progressViewSize: CGFloat = 32
     private let snappingPoint: CGFloat = 64
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
+    private var totalProgressHeight: CGFloat { progressViewSize + topPadding + bottomPadding }
+    private var contentOffset: CGFloat {
+        guard isAnimating, offset < totalProgressHeight else { return 0 }
+        return totalProgressHeight - offset
+    }
 
     // MARK: - Init
 
@@ -59,35 +64,35 @@ public struct RefreshableScrollView<Content: View>: View {
     }
 
     public var body: some View {
-        ScrollView(
-            axes,
-            showsIndicators: showsIndicators,
-            content: {
-                VStack(spacing: 0) {
-                    switch viewState {
-                    case .animating:
-                        indeterminateProgressView()
-                    case let .progress(progress):
-                        determinateProgressView(progress)
-                    }
-                    content()
-                        .offset(x: 0, y: isAnimating ? 0 : -(progressViewSize + topPadding))
-                        .animation(.default, value: isAnimating)
-                }
-                .background(
-                    GeometryReader {
-                        Color.clear.preference(
-                            key: ViewOffsetKey.self,
-                            value: $0.frame(in: .named("frameLayer")).minY
-                        )
-                    }
-                )
-                .onPreferenceChange(ViewOffsetKey.self) { newValue in
-                    updateState(offset: newValue)
-                }
+        ZStack(alignment: .top) {
+            switch viewState {
+            case .animating:
+                indeterminateProgressView()
+            case let .progress(progress):
+                determinateProgressView(progress)
             }
-        )
-        .coordinateSpace(name: "frameLayer")
+            ScrollView(
+                axes,
+                showsIndicators: showsIndicators,
+                content: {
+                    content()
+                        .offset(x: 0, y: contentOffset)
+                        .animation(.default, value: isAnimating)
+                        .background(
+                            GeometryReader {
+                                Color.clear.preference(
+                                    key: ViewOffsetKey.self,
+                                    value: $0.frame(in: .named("frameLayer")).minY
+                                )
+                            }
+                        )
+                        .onPreferenceChange(ViewOffsetKey.self) { newValue in
+                            updateState(offset: newValue)
+                        }
+                }
+            )
+            .coordinateSpace(name: "frameLayer")
+        }
     }
 
     @ViewBuilder private func indeterminateProgressView() -> some View {
@@ -96,7 +101,6 @@ public struct RefreshableScrollView<Content: View>: View {
             .opacity(progress)
             .padding(.top, topPadding)
             .padding(.bottom, bottomPadding)
-            .offset(x: 0, y: -offset)
     }
 
     @ViewBuilder private func determinateProgressView(_ progress: CGFloat) -> some View {
@@ -105,7 +109,6 @@ public struct RefreshableScrollView<Content: View>: View {
             .opacity(progress)
             .padding(.top, topPadding)
             .padding(.bottom, bottomPadding)
-            .offset(x: 0, y: -offset)
     }
 
     private func updateState(offset newValue: ViewOffsetKey.Value) {
