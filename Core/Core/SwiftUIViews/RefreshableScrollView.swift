@@ -33,6 +33,7 @@ public struct RefreshableScrollView<Content: View>: View {
 
     // MARK: - Private properties
 
+    @State private var canStartNewRefresh = false
     @State private var isAnimating = false
     @State private var progress: CGFloat = 0
     @State private var viewState: ViewState = .animating
@@ -108,20 +109,26 @@ public struct RefreshableScrollView<Content: View>: View {
     }
 
     private func updateState(offset newValue: ViewOffsetKey.Value) {
+        if newValue == 0 {
+            canStartNewRefresh = true
+        }
+
         guard newValue >= 0 else {
             isAnimating = false
             offset = 0
             return
         }
+
         offset = newValue
 
-        guard !isAnimating else { return }
+        guard canStartNewRefresh, !isAnimating else { return }
         progress = min(abs(offset / snappingPoint), 1)
         viewState = .progress(progress)
         if progress == 1 {
             let triggerStartDate = Date()
             hapticGenerator.impactOccurred()
             isAnimating = true
+            canStartNewRefresh = false
             viewState = .animating
 
             refreshAction {
