@@ -146,18 +146,12 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         if let progress = value {
             ProgressView(value: progress)
                 .progressViewStyle(
-                    .determinateBar(
-                        foregroundColor: Color(Brand.shared.primary),
-                        backgroundColor: Color(Brand.shared.primary).opacity(0.2)
-                    )
+                    .determinateBar()
                 )
         } else {
             ProgressView()
                 .progressViewStyle(
-                    .indeterminateBar(
-                        foregroundColor: Color(Brand.shared.primary),
-                        backgroundColor: Color(Brand.shared.primary).opacity(0.2)
-                    )
+                    .indeterminateBar()
                 )
         }
     }
