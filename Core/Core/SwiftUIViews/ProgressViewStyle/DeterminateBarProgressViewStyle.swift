@@ -27,8 +27,6 @@ public struct DeterminateBarProgressViewStyle: ProgressViewStyle {
     // MARK: - Private properties
 
     private let barHeight: CGFloat = 4
-    private let barWidthPercentage: CGFloat = 0.4
-    private let maxOffset: Float = 1 / 0.4
 
     // MARK: - Init
 

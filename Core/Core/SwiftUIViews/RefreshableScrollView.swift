@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct RefreshableScrollView<Content: View>: View {
-    enum ViewState {
+    private enum ViewState {
         case progress(CGFloat)
         case animating
     }
@@ -27,7 +27,7 @@ public struct RefreshableScrollView<Content: View>: View {
     // MARK: - Dependencies
 
     private let axes: Axis.Set
-    private let showsIndicator: Bool
+    private let showsIndicators: Bool
     private let content: () -> Content
     private let refreshAction: (@escaping () -> Void) -> Void
 
@@ -37,6 +37,9 @@ public struct RefreshableScrollView<Content: View>: View {
     @State private var progress: CGFloat = 0
     @State private var viewState: ViewState = .animating
     @State private var offset: CGFloat = 0
+    private let topPadding: CGFloat = 16
+    private let bottomPadding: CGFloat = 8
+    private let progressViewSize: CGFloat = 32
     private let snappingPoint: CGFloat = 64
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
@@ -49,7 +52,7 @@ public struct RefreshableScrollView<Content: View>: View {
         refreshAction: @escaping (@escaping () -> Void) -> Void
     ) {
         self.axes = axes
-        showsIndicator = showsIndicators
+        self.showsIndicators = showsIndicators
         self.content = content
         self.refreshAction = refreshAction
     }
@@ -57,7 +60,7 @@ public struct RefreshableScrollView<Content: View>: View {
     public var body: some View {
         ScrollView(
             axes,
-            showsIndicators: showsIndicator,
+            showsIndicators: showsIndicators,
             content: {
                 VStack(spacing: 0) {
                     switch viewState {
@@ -67,7 +70,7 @@ public struct RefreshableScrollView<Content: View>: View {
                         determinateProgressView(progress)
                     }
                     content()
-                        .offset(x: 0, y: isAnimating ? 0 : -48)
+                        .offset(x: 0, y: isAnimating ? 0 : -(progressViewSize + topPadding))
                         .animation(.default, value: isAnimating)
                 }
                 .background(
@@ -88,9 +91,10 @@ public struct RefreshableScrollView<Content: View>: View {
 
     @ViewBuilder private func indeterminateProgressView() -> some View {
         ProgressView()
-            .progressViewStyle(.indeterminateCircle())
+            .progressViewStyle(.indeterminateCircle(size: progressViewSize))
             .opacity(progress)
-            .padding(.top, 16)
+            .padding(.top, topPadding)
+            .padding(.bottom, bottomPadding)
             .offset(x: 0, y: -offset)
     }
 
@@ -98,7 +102,8 @@ public struct RefreshableScrollView<Content: View>: View {
         ProgressView(value: progress)
             .progressViewStyle(.determinateCircle())
             .opacity(progress)
-            .padding(.top, 16)
+            .padding(.top, topPadding)
+            .padding(.bottom, bottomPadding)
             .offset(x: 0, y: -offset)
     }
 

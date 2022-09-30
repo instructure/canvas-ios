@@ -77,42 +77,52 @@ public struct K5ImportantDatesView: View {
 
 #if DEBUG
 
-    struct K5ImportantDates_Previews: PreviewProvider {
-        static var model: K5ImportantDatesViewModel {
-            let dates = [
-                K5ImportantDate(with: Date(fromISOString: "2022-01-03T08:00:00Z")!,
-                                events: [
-                                    K5ImportantDateItem(subject: "Math",
-                                                        title: "This important math assignment",
-                                                        color: .red,
-                                                        date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
-                                                        route: nil,
-                                                        type: .assignment),
-                                    K5ImportantDateItem(subject: "Music",
-                                                        title: "This important music assignment",
-                                                        color: .blue,
-                                                        date: Date(fromISOString: "2022-01-03T09:00:00Z")!,
-                                                        route: nil,
-                                                        type: .assignment),
-                                ]),
-                K5ImportantDate(with: Date(fromISOString: "2022-01-04T08:00:00Z")!,
-                                events: [
-                                    K5ImportantDateItem(subject: "History",
-                                                        title: "This important history event",
-                                                        color: .green,
-                                                        date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
-                                                        route: nil,
-                                                        type: .event),
-                                ]),
-            ]
-            return K5ImportantDatesViewModel(with: dates)
-        }
-
-        static var previews: some View {
-            // swiftlint:disable:next redundant_discardable_let
-            let _ = K5Preview.setupK5Mode()
-            K5ImportantDatesView(viewModel: model)
-        }
+struct K5ImportantDates_Previews: PreviewProvider {
+    static var model: K5ImportantDatesViewModel {
+        let dates = [
+            K5ImportantDate(
+                with: Date(fromISOString: "2022-01-03T08:00:00Z")!,
+                events: [
+                    K5ImportantDateItem(
+                        subject: "Math",
+                        title: "This important math assignment",
+                        color: .red,
+                        date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
+                        route: nil,
+                        type: .assignment
+                    ),
+                    K5ImportantDateItem(
+                        subject: "Music",
+                        title: "This important music assignment",
+                        color: .blue,
+                        date: Date(fromISOString: "2022-01-03T09:00:00Z")!,
+                        route: nil,
+                        type: .assignment
+                    ),
+                ]
+            ),
+            K5ImportantDate(
+                with: Date(fromISOString: "2022-01-04T08:00:00Z")!,
+                events: [
+                    K5ImportantDateItem(
+                        subject: "History",
+                        title: "This important history event",
+                        color: .green,
+                        date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
+                        route: nil,
+                        type: .event
+                    ),
+                ]
+            ),
+        ]
+        return K5ImportantDatesViewModel(with: dates)
     }
+
+    static var previews: some View {
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = K5Preview.setupK5Mode()
+        K5ImportantDatesView(viewModel: model)
+    }
+}
 
 #endif
