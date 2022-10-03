@@ -41,19 +41,31 @@ let template = {
 let c1 = template.course({
   is_favorite: true,
   id: '1',
+  concluded: false,
 })
 
 let c2 = template.course({
   is_favorite: false,
   id: '2',
+  concluded: false,
 })
 
 let c3 = template.course({
   is_favorite: false,
   id: '3',
+  concluded: false,
 })
 
-let c4 = template.course({ id: '4', workflow_state: 'completed' })
+let c4 = template.course({
+  id: '4',
+  workflow_state: 'completed',
+  concluded: false,
+})
+
+let c5 = template.course({
+  id: '5',
+  concluded: true,
+})
 
 let defaultProps = {
   navigator: template.navigator({
@@ -125,6 +137,9 @@ describe('CourseSelect', () => {
           },
           [c4.id]: {
             course: c4,
+          },
+          [c5.id]: {
+            course: c5,
           },
         },
       },

@@ -82,7 +82,7 @@ private struct Badge: View {
     }
 
     func clampedValueText() -> Text {
-        guard value < 100 else { return Text("99+") }
+        guard value < 100 else { return Text(verbatim: "99+") }
         return Text("\(value)")
     }
 }

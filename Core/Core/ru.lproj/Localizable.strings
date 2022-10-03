@@ -2303,9 +2303,6 @@
 "Uploading %@ of %@" = "Загрузка %1$@ из %2$@";
 
 /* No comment provided by engineer. */
-"Uploading submission" = "Загрузка отправки";
-
-/* No comment provided by engineer. */
 "Uploading..." = "Выполняется загрузка...";
 
 /* No comment provided by engineer. */
