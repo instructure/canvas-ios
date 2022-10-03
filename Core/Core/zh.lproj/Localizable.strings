@@ -2303,9 +2303,6 @@
 "Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
 
 /* No comment provided by engineer. */
-"Uploading submission" = "正在上传提交";
-
-/* No comment provided by engineer. */
 "Uploading..." = "正在上传...";
 
 /* No comment provided by engineer. */
