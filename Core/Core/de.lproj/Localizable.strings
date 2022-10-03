@@ -2303,9 +2303,6 @@
 "Uploading %@ of %@" = "%1$@ von [...] wird hochgeladen %2$@";
 
 /* No comment provided by engineer. */
-"Uploading submission" = "Abgabe wird hochgeladen";
-
-/* No comment provided by engineer. */
 "Uploading..." = "Wird hochgeladen ...";
 
 /* No comment provided by engineer. */

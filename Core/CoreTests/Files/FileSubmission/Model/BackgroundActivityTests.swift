@@ -19,6 +19,7 @@
 import Combine
 import Core
 import XCTest
+import TestsFoundation
 
 class BackgroundActivityTests: XCTestCase {
     let mockProcessManager = MockProcessManager()
@@ -91,8 +92,9 @@ class BackgroundActivityTests: XCTestCase {
         // MARK: - WHEN
         mockProcessManager.startActivity()
         waitForExpectations(timeout: 1)
-        RunLoop.main.run(until: Date() + 0.5)
-        XCTAssertTrue(mockProcessManager.isExecutingBackgroundBlock)
+        waitUntil(shouldFail: true) {
+            mockProcessManager.isExecutingBackgroundBlock
+        }
         mockProcessManager.expireActivity()
 
         // MARK: - THEN
@@ -115,8 +117,9 @@ class BackgroundActivityTests: XCTestCase {
         mockProcessManager.startActivity()
         waitForExpectations(timeout: 1)
 
-        RunLoop.main.run(until: Date() + 0.5)
-        XCTAssertTrue(mockProcessManager.isExecutingBackgroundBlock)
+        waitUntil(shouldFail: true) {
+            mockProcessManager.isExecutingBackgroundBlock
+        }
 
         let stopFinished = expectation(description: "Future finished")
         testee

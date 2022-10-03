@@ -2303,9 +2303,6 @@
 "Uploading %@ of %@" = "Envoi de %1$@ sur %2$@";
 
 /* No comment provided by engineer. */
-"Uploading submission" = "Envoi de la soumission...";
-
-/* No comment provided by engineer. */
 "Uploading..." = "Téléchargement en cours...";
 
 /* No comment provided by engineer. */
