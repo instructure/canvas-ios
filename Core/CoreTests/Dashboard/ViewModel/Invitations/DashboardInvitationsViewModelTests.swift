@@ -50,8 +50,9 @@ class DashboardInvitationsViewModelTests: CoreTestCase {
 
         invitation.accept()
         XCTAssertEqual(testee.items.count, 1)
-        RunLoop.main.run(until: Date() + 2)
-        XCTAssertEqual(testee.items.count, 0)
+        waitUntil(shouldFail: true) {
+            testee.items.count == 0
+        }
     }
 
     private func setupMocks() {
