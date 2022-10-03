@@ -40,6 +40,7 @@ extension AnnotationDragGestureViewModel {
         public func startDragGesture() -> DragInfo? {
             guard
                 let tappedAnnotation = tappedAnnotation(on: pageView),
+                tappedAnnotation.isEditable,
                 let annotationClone = tappedAnnotation.createCloneImage(frame: annotationFrame(tappedAnnotation, on: pageView), addTo: pageView)
             else {
                 gestureRecognizer.cancel()
