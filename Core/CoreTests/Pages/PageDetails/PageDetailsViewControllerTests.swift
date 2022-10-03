@@ -88,7 +88,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         controller.webView.scrollView.refreshControl?.beginRefreshing()
         controller.webView.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.webView.scrollView.refreshControl?.isRefreshing, true)
-        RunLoop.main.run(until: Date() + 1)
+        RunLoop.main.run(until: Date() + 1.5)
         XCTAssertEqual(controller.webView.scrollView.refreshControl?.isRefreshing, false)
         XCTAssertEqual(controller.titleSubtitleView.title, "Refreshed")
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
