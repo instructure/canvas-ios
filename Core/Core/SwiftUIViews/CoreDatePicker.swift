@@ -89,7 +89,7 @@ public struct CoreDatePickerActionSheetCard: View {
                 }
                 Spacer()
                 Button {
-                    selectionDate = selectedDate
+                    selectionDate = pickerDateRange.clamp(selectedDate)
                     dismissPresentation()
                 } label: {
                     Text("Done", bundle: .core)
