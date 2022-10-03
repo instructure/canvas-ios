@@ -18,6 +18,7 @@
 
 import Core
 import XCTest
+import TestsFoundation
 
 class CoreActivityViewControllerTests: CoreTestCase {
 
@@ -33,8 +34,9 @@ class CoreActivityViewControllerTests: CoreTestCase {
         NotificationCenter.default.post(name: UIApplication.willResignActiveNotification, object: nil)
 
         // MARK: - THEN
-        RunLoop.main.run(until: Date() + 1)
-        XCTAssertNil(host.presentedViewController)
+        waitUntil(shouldFail: true) {
+            host.presentedViewController == nil
+        }
     }
 
     func testDoNotDismissWhenAnotherViewControllerIsPresented() {
@@ -46,8 +48,9 @@ class CoreActivityViewControllerTests: CoreTestCase {
         host.present(testee, animated: false)
         testee.present(presentedOnTestee, animated: false)
         XCTAssertEqual(host.presentedViewController, testee)
-        RunLoop.main.run(until: Date() + 0.5)
-        XCTAssertEqual(testee.presentedViewController, presentedOnTestee)
+        waitUntil(shouldFail: true) {
+            testee.presentedViewController == presentedOnTestee
+        }
 
         // MARK: - WHEN
         NotificationCenter.default.post(name: UIApplication.willResignActiveNotification, object: nil)
