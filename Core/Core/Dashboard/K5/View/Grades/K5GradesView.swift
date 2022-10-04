@@ -30,14 +30,13 @@ struct K5GradesView: View {
         VStack(spacing: 0) {
             gradingPeriodSelector
             Spacer()
-            ScrollView(showsIndicators: false) {
-                CircleRefresh { endRefreshing in
-                    viewModel.refresh(completion: endRefreshing)
-                }
+            RefreshableScrollView(showsIndicators: false) {
                 ForEach(viewModel.grades) {
                     K5GradeCell(with: $0)
                     Divider()
                 }
+            } refreshAction: { endRefreshing in
+                viewModel.refresh(completion: endRefreshing)
             }
         }
         .padding(.horizontal)

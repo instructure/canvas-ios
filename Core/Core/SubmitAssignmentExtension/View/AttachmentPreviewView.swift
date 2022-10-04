@@ -36,7 +36,8 @@ public struct AttachmentPreviewView: View {
     }
 
     fileprivate var loadingView: some View {
-        CircleProgress()
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
             .background(Color.backgroundLightest)
             .frame(width: size, height: size)
     }

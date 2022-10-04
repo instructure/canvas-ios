@@ -39,8 +39,11 @@ struct DiscussionSectionsPicker: View {
                 case .data:
                     LazyVStack(alignment: .leading, spacing: 0) { list }
                 case .loading:
-                    ZStack { CircleProgress() }
-                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                    ZStack {
+                        ProgressView()
+                            .progressViewStyle(.indeterminateCircle())
+                    }
+                    .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
                 case .empty:
                     EmptyPanda(.NoRubric,
                         title: Text("No Sections", bundle: .core),

@@ -34,18 +34,24 @@ public struct K5ImportantDatesView: View {
                     .padding(EdgeInsets(top: 28, leading: 16, bottom: 9, trailing: 24))
             }
             GeometryReader { geometry in
-                ScrollView(showsIndicators: false) {
+                RefreshableScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
-                        CircleRefresh { endRefreshing in
-                            viewModel.refresh(completion: endRefreshing)
-                        }
                         if viewModel.importantDates.isEmpty {
-                            EmptyPanda(.NoImportantDates, message: Text("Waiting for important things to happen.", bundle: .core)).frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                            EmptyPanda(
+                                .NoImportantDates,
+                                message: Text("Waiting for important things to happen.", bundle: .core)
+                            )
+                            .frame(
+                                minWidth: geometry.size.width,
+                                minHeight: geometry.size.height
+                            )
                         } else {
                             importantDatesList
                         }
                         Spacer()
                     }
+                } refreshAction: { endRefreshing in
+                    viewModel.refresh(completion: endRefreshing)
                 }
             }
         }
@@ -72,29 +78,42 @@ public struct K5ImportantDatesView: View {
 #if DEBUG
 
 struct K5ImportantDates_Previews: PreviewProvider {
-
     static var model: K5ImportantDatesViewModel {
         let dates = [
-            K5ImportantDate(with: Date(fromISOString: "2022-01-03T08:00:00Z")!,
-                            events: [K5ImportantDateItem(subject: "Math",
-                                                         title: "This important math assignment",
-                                                         color: .red,
-                                                         date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
-                                                         route: nil,
-                                                         type: .assignment),
-                                     K5ImportantDateItem(subject: "Music",
-                                                         title: "This important music assignment",
-                                                         color: .blue,
-                                                         date: Date(fromISOString: "2022-01-03T09:00:00Z")!,
-                                                         route: nil,
-                                                         type: .assignment), ]),
-            K5ImportantDate(with: Date(fromISOString: "2022-01-04T08:00:00Z")!,
-                            events: [K5ImportantDateItem(subject: "History",
-                                                         title: "This important history event",
-                                                         color: .green,
-                                                         date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
-                                                         route: nil,
-                                                         type: .event), ]),
+            K5ImportantDate(
+                with: Date(fromISOString: "2022-01-03T08:00:00Z")!,
+                events: [
+                    K5ImportantDateItem(
+                        subject: "Math",
+                        title: "This important math assignment",
+                        color: .red,
+                        date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
+                        route: nil,
+                        type: .assignment
+                    ),
+                    K5ImportantDateItem(
+                        subject: "Music",
+                        title: "This important music assignment",
+                        color: .blue,
+                        date: Date(fromISOString: "2022-01-03T09:00:00Z")!,
+                        route: nil,
+                        type: .assignment
+                    ),
+                ]
+            ),
+            K5ImportantDate(
+                with: Date(fromISOString: "2022-01-04T08:00:00Z")!,
+                events: [
+                    K5ImportantDateItem(
+                        subject: "History",
+                        title: "This important history event",
+                        color: .green,
+                        date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
+                        route: nil,
+                        type: .event
+                    ),
+                ]
+            ),
         ]
         return K5ImportantDatesViewModel(with: dates)
     }

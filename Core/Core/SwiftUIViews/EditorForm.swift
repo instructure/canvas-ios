@@ -41,7 +41,8 @@ public struct EditorForm<Content: View>: View {
                 VStack {
                     HStack { Spacer() }
                     Spacer()
-                    CircleProgress()
+                    ProgressView()
+                        .progressViewStyle(.indeterminateCircle())
                     Spacer()
                 }
                     .background(Color.backgroundGrouped.opacity(0.5).edgesIgnoringSafeArea(.all))

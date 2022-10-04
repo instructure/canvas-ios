@@ -142,12 +142,18 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         }
     }
 
-    private func progressView(value: Float? = nil) -> some View {
-        ProgressBar(
-            progress: value,
-            foregroundColor: Color(Brand.shared.primary),
-            backgroundColor: Color(Brand.shared.primary).opacity(0.2)
-        )
+    @ViewBuilder private func progressView(value: Float? = nil) -> some View {
+        if let progress = value {
+            ProgressView(value: progress)
+                .progressViewStyle(
+                    .determinateBar()
+                )
+        } else {
+            ProgressView()
+                .progressViewStyle(
+                    .indeterminateBar()
+                )
+        }
     }
 
     private func showAlertDialog(message: String) {

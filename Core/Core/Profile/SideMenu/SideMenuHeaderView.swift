@@ -54,7 +54,12 @@ struct SideMenuHeaderView: View {
                     ])
                 }
                 .opacity(isUploadingImage ? 0.4 : 1)
-                .overlay(isUploadingImage ? CircleProgress().padding(.bottom, 12) : nil)
+                .overlay(isUploadingImage ?
+                    ProgressView()
+                        .progressViewStyle(.indeterminateCircle())
+                        .padding(.bottom, 12) :
+                    nil
+                )
             Text(userModel.name)
                 .font(.bold20)
                 .padding(.bottom, 2)

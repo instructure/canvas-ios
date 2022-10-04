@@ -132,4 +132,14 @@ public class CircleProgressView: UIView {
         super.didMoveToWindow()
         updateProgress() // Make sure animations are re-added once visible
     }
+
+    public func startAnimating() {
+        progress = nil
+        isHidden = false
+    }
+
+    public func stopAninating() {
+        progress = 0
+        isHidden = true
+    }
 }

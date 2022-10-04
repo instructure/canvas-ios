@@ -131,11 +131,12 @@ struct SubmissionBreakdown: View {
         var body: some View {
             Button(action: action, label: {
                 VStack(spacing: 8) {
-                    CircleProgress(
-                        progress: total == 0 ? 0 : CGFloat(count) / CGFloat(total),
-                        size: 70,
-                        thickness: 7
-                    )
+                    ProgressView(value: total == 0 ? 0 : CGFloat(count) / CGFloat(total))
+                        .progressViewStyle(
+                            .determinateCircle(
+                                size: 70,
+                                lineWidth: 7)
+                        )
                         .modifier(Counter(count: Double(count)))
                         .padding(.horizontal, 10).padding(.top, 4)
                     label

@@ -52,15 +52,15 @@ public struct DashboardCardView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            ScrollView {
+            RefreshableScrollView {
                 VStack(spacing: 0) {
-                    CircleRefresh { endRefreshing in
-                        refresh(force: true, onComplete: endRefreshing)
-                    }
                     fileUploadNotificationCards()
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
                 .padding(.horizontal, verticalSpacing)
+            }
+            refreshAction: { onComplete in
+                refresh(force: true, onComplete: onComplete)
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -149,8 +149,11 @@ public struct DashboardCardView: View {
     @ViewBuilder func courseCards(_ size: CGSize) -> some View {
         switch cards.state {
         case .loading:
-            ZStack { CircleProgress() }
-                .frame(minWidth: size.width, minHeight: size.height)
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+            }
+            .frame(minWidth: size.width, minHeight: size.height)
         case .data(let cards):
             coursesHeader(width: size.width)
 
