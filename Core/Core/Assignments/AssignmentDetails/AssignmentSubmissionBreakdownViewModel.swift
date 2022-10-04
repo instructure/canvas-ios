@@ -79,5 +79,4 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
         submissionCount = summary.first?.submissionCount ?? 0
         isReady = true
     }
-
 }
