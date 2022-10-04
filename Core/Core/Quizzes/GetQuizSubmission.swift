@@ -74,9 +74,8 @@ public class GetAllQuizSubmissions: CollectionUseCase {
     }
 
     public func write(response: GetAllQuizSubmissionsRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let item = response?.quiz_submissions.first else { return }
-        let submission = QuizSubmission.save(item, in: client)
-        let quiz: Quiz? = client.first(where: #keyPath(Quiz.id), equals: quizID)
-        quiz?.submission = submission
+        response?.quiz_submissions.forEach { item in
+            QuizSubmission.save(item, in: client)
+        }
     }
 }

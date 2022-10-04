@@ -36,9 +36,6 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
     private var submissions: Store<GetAllQuizSubmissions>
     private var enrollments: Store<GetEnrollments>
 
-    private var submissionsPath: String { "courses/\(courseID)/quizzes/\(quizID)/submissions"
-    }
-
     init(courseID: String, quizID: String) {
         self.quizID = quizID
         self.courseID = courseID

@@ -19,7 +19,6 @@
 import SwiftUI
 
 public protocol SubmissionBreakdownViewModel: ObservableObject {
-
     var isReady: Bool { get }
     var graded: Int { get }
     var ungraded: Int { get }

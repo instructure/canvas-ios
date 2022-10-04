@@ -77,9 +77,9 @@ class QuizTests: CoreTestCase {
     }
 
     func testResultsPath() {
-        XCTAssertNil(Quiz.make(from: .make(hide_results: .always)).resultsPath(for:1))
-        XCTAssertNil(Quiz.make(from: .make(allowed_attempts: 2, hide_results: .always)).resultsPath(for:1))
-        XCTAssertEqual(Quiz.make().resultsPath(for:1), "/courses/1/quizzes/123/history?attempt=1")
+        XCTAssertNil(Quiz.make(from: .make(hide_results: .always)).resultsPath(for: 1))
+        XCTAssertNil(Quiz.make(from: .make(allowed_attempts: 2, hide_results: .always)).resultsPath(for: 1))
+        XCTAssertEqual(Quiz.make().resultsPath(for: 1), "/courses/1/quizzes/123/history?attempt=1")
     }
 
     func testSave() {

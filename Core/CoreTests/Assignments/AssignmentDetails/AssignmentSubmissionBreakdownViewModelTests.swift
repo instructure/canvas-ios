@@ -46,9 +46,6 @@ class AssignmentSubmissionBreakdownViewModelTests: CoreTestCase {
     }
 
     func testRouting() {
-        let useCase = GetSubmissionSummary(context: .course("1"), assignmentID: "2")
-        let submissionSummary = APISubmissionSummary.make()
-        api.mock(useCase, value: submissionSummary)
         let testee = AssignmentSubmissionBreakdownViewModel(courseID: "1", assignmentID: "2", submissionTypes: [])
 
         testee.routeToAll(router: router, viewController: WeakViewController(UIViewController()))

@@ -42,9 +42,13 @@ class GetAllQuizSubmissionsTest: CoreTestCase {
         let id = ID(stringLiteral: quizID)
         Quiz.make(from: APIQuiz.make(id: id), courseID: courseID)
         let useCase = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
-        useCase.write(response: .init(quiz_submissions: [ .make(quiz_id: id) ], submissions: []), urlResponse: nil, to: databaseClient)
+        let quizSubmissions: [APIQuizSubmission] = [
+            .make(id: "1", quiz_id: ID(quizID), user_id: "1", workflow_state: .complete),
+            .make(id: "2", quiz_id: ID(quizID), user_id: "2", workflow_state: .pending_review),
+        ]
+        useCase.write(response: .init(quiz_submissions: quizSubmissions, submissions: nil), urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
         let submissions: [QuizSubmission] = databaseClient.fetch(scope: useCase.scope)
-        XCTAssertEqual(submissions.count, 1)
+        XCTAssertEqual(submissions.count, 2)
     }
 }

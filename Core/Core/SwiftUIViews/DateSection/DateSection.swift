@@ -94,7 +94,6 @@ struct DateSection_Previews: PreviewProvider {
     private static let env = PreviewEnvironment()
     private static let context = env.globalDatabase.viewContext
 
-
     static var previews: some View {
         let dueAt = Date()
         let lockAt = Date(timeIntervalSinceNow: 100)
