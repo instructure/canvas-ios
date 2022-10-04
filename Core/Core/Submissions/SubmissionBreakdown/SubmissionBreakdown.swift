@@ -153,3 +153,20 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
         viewModel.routeToUnsubmitted(router: env.router, viewController: controller)
     }
 }
+
+#if DEBUG
+
+struct SubmissionBreakdown_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = PreviewSubmissionBreakdownViewModel(graded: 1, ungraded: 2, unsubmitted: 3, submissionCount: 6)
+
+        SubmissionBreakdown(viewModel: viewModel)
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+        SubmissionBreakdown(viewModel: viewModel)
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif
