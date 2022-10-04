@@ -42,15 +42,23 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
             type: .event,
             context_code: "course_\(courseID)"
         )
-        let nilDate = APICalendarEvent.make(
+        let hiddenEvent = APICalendarEvent.make(
             id: "3",
+            title: "event",
+            start_at: date.addDays(1),
+            type: .event,
+            context_code: "course_\(courseID)",
+            hidden: true
+        )
+        let nilDate = APICalendarEvent.make(
+            id: "4",
             title: "nil date",
             start_at: nil,
             type: .assignment,
             context_code: "course_\(courseID)"
         )
         api.mock(controller.assignments, value: [assignment, nilDate])
-        api.mock(controller.events, value: [event])
+        api.mock(controller.events, value: [event, hiddenEvent])
         api.mock(controller.course, value: .make(id: ID(courseID)))
 
         controller.view.layoutIfNeeded()
