@@ -27,7 +27,7 @@ public struct K5ResourcesView: View {
     }
 
     public var body: some View {
-        RefreshableScrollView {
+        RefreshableScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 if !viewModel.homeroomInfos.isEmpty {
                     importantInfo
