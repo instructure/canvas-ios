@@ -1118,6 +1118,7 @@
 		D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */; };
 		D976C70D28EC329600E865D5 /* AssignmentSubmissionBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C70C28EC329600E865D5 /* AssignmentSubmissionBreakdownViewModelTests.swift */; };
 		D976C70F28EC3EA700E865D5 /* QuizSubmissionBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C70E28EC3EA700E865D5 /* QuizSubmissionBreakdownViewModelTests.swift */; };
+		D976C71128ECBC4000E865D5 /* QuizAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C71028ECBC4000E865D5 /* QuizAttributesTests.swift */; };
 		D97F991328C0F0A2002F3495 /* AssignmentDateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991228C0F0A2002F3495 /* AssignmentDateSectionViewModel.swift */; };
 		D97F991628C0F420002F3495 /* DateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991528C0F420002F3495 /* DateSectionViewModel.swift */; };
 		D97F991828C0FD8F002F3495 /* QuizDateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */; };
@@ -2563,6 +2564,7 @@
 		D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardHeaderView.swift; sourceTree = "<group>"; };
 		D976C70C28EC329600E865D5 /* AssignmentSubmissionBreakdownViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionBreakdownViewModelTests.swift; sourceTree = "<group>"; };
 		D976C70E28EC3EA700E865D5 /* QuizSubmissionBreakdownViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionBreakdownViewModelTests.swift; sourceTree = "<group>"; };
+		D976C71028ECBC4000E865D5 /* QuizAttributesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAttributesTests.swift; sourceTree = "<group>"; };
 		D97F991228C0F0A2002F3495 /* AssignmentDateSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDateSectionViewModel.swift; sourceTree = "<group>"; };
 		D97F991528C0F420002F3495 /* DateSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSectionViewModel.swift; sourceTree = "<group>"; };
 		D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDateSectionViewModel.swift; sourceTree = "<group>"; };
@@ -5973,6 +5975,7 @@
 			children = (
 				D99DA6D828E5985E005C5CD1 /* QuizDateSectionViewModelTests.swift */,
 				D976C70E28EC3EA700E865D5 /* QuizSubmissionBreakdownViewModelTests.swift */,
+				D976C71028ECBC4000E865D5 /* QuizAttributesTests.swift */,
 			);
 			path = QuizDetails;
 			sourceTree = "<group>";
@@ -6760,6 +6763,7 @@
 				7D54D6AF24646AF800409520 /* DiscussionParticipantTests.swift in Sources */,
 				CF6C100726C52F42002E7FE6 /* PlannerOverrideUpdaterTests.swift in Sources */,
 				7D288B04257589520013FF65 /* TransactionExtensionTests.swift in Sources */,
+				D976C71128ECBC4000E865D5 /* QuizAttributesTests.swift in Sources */,
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,
 				EB24231128521EF00058A100 /* UIWindowExtensionsTests.swift in Sources */,

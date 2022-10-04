@@ -30,9 +30,6 @@ public class QuizDetailsViewModel: ObservableObject {
     @Published public private(set) var state: ViewModelState<Quiz> = .loading
     @Published public private(set) var courseColor: UIColor?
 
-    public let quizID: String
-    public let courseID: String
-
     public var title: String { NSLocalizedString("Quiz Details", comment: "") }
     public var subtitle: String { course.first?.name ?? "" }
     public var showSubmissions: Bool { course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
@@ -41,6 +38,10 @@ public class QuizDetailsViewModel: ObservableObject {
     public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
     public var quizDateSectionViewModel: QuizDateSectionViewModel?
 
+    private let quizID: String
+    private let courseID: String
+    private var assignment: Assignment?
+    private var refreshCompletion: (() -> Void)?
     private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseDidUpdate()
     }
@@ -53,8 +54,7 @@ public class QuizDetailsViewModel: ObservableObject {
         self?.didUpdate()
     }
 
-    private var assignment: Assignment?
-    private var refreshCompletion: (() -> Void)?
+    // MARK: - Public Interface -
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -83,8 +83,10 @@ public class QuizDetailsViewModel: ObservableObject {
         )
     }
 
+    // MARK: - Private functions
+
     public var attributes: [QuizAttribute] {
-        guard let quiz = quiz.first, let assignment = assignment else { return [] }
+        guard let quiz = quiz.first else { return [] }
         return QuizAttributes(quiz: quiz, assignment: assignment).attributes
     }
 
@@ -119,7 +121,6 @@ public class QuizDetailsViewModel: ObservableObject {
 }
 
 extension QuizDetailsViewModel: Refreshable {
-
     public func refresh(completion: @escaping () -> Void) {
         refreshCompletion = completion
         quiz.refresh(force: true)

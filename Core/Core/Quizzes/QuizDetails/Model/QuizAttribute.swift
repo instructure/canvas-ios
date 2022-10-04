@@ -140,7 +140,7 @@ public struct QuizAttributes {
                 return NSLocalizedString("After Last Attempt", bundle: .core, comment: "")
             }
 
-          return quiz.hideResults != nil ? nil : NSLocalizedString("Always", bundle: .core, comment: "")
+            return quiz.hideResults != nil ? nil : NSLocalizedString("Always", bundle: .core, comment: "")
         }
 
         return quiz.hideResults != nil ? nil : NSLocalizedString("No", bundle: .core, comment: "")
