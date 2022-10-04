@@ -29,3 +29,28 @@ public protocol DateSectionViewModel: ObservableObject {
 
     func buttonTapped(router: Router, viewController: WeakViewController)
 }
+
+#if DEBUG
+// MARK: - Preview Support
+/**
+Use only for SwiftUI previews.
+*/
+public class PreviewDateSectionViewModel: DateSectionViewModel {
+    public var hasMultipleDueDates: Bool = false
+    public var dueAt: Date?
+    public var lockAt: Date?
+    public var unlockAt: Date?
+    public var forText: String
+    public var isButton: Bool = false
+
+    public init(dueAt: Date, lockAt: Date, unlockAt: Date, forText: String) {
+        self.dueAt = dueAt
+        self.lockAt = lockAt
+        self.unlockAt = unlockAt
+        self.forText = forText
+    }
+
+    public func buttonTapped(router: Router, viewController: WeakViewController) {}
+}
+// MARK: Preview Support -
+#endif

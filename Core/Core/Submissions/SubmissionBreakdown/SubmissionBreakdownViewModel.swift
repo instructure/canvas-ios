@@ -36,14 +36,11 @@ public protocol SubmissionBreakdownViewModel: ObservableObject {
     func routeToUnsubmitted(router: Router, viewController: WeakViewController)
 }
 
-
 #if DEBUG
-
-    // MARK: - Preview Support
-
-    /**
-     Use only for SwiftUI previews.
-    */
+// MARK: - Preview Support
+/**
+Use only for SwiftUI previews.
+*/
 public class PreviewSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
     public var isReady: Bool = true
     public var graded: Int
@@ -68,7 +65,5 @@ public class PreviewSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
         self.submissionCount = submissionCount
     }
 }
-    // MARK: Preview Support -
-
+// MARK: Preview Support -
 #endif
-

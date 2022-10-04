@@ -91,16 +91,12 @@ struct DateSection<ViewModel: DateSectionViewModel>: View {
 #if DEBUG
 
 struct DateSection_Previews: PreviewProvider {
-    private static let env = PreviewEnvironment()
-    private static let context = env.globalDatabase.viewContext
-
     static var previews: some View {
-        let dueAt = Date()
-        let lockAt = Date(timeIntervalSinceNow: 100)
-        let unlockAt = Date(timeIntervalSinceNow: -100)
-        let apiAssignment = APIAssignment.make(due_at: dueAt, lock_at: lockAt, unlock_at: unlockAt)
-        let assignment = Assignment.save(apiAssignment, in: context, updateSubmission: false, updateScoreStatistics: false)
-        let viewModel = AssignmentDateSectionViewModel(assignment: assignment)
+        let viewModel = PreviewDateSectionViewModel(
+            dueAt: Date(),
+            lockAt: Date(timeIntervalSinceNow: 100),
+            unlockAt: Date(timeIntervalSinceNow: 200),
+            forText: "Everybody")
 
         DateSection(viewModel: viewModel)
             .preferredColorScheme(.light)
