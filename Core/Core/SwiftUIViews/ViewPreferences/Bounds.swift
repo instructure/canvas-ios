@@ -64,11 +64,11 @@ public struct ViewBoundsKey: PreferenceKey {
  This key allows one to save a view's size to the preference store.
  */
 public struct ViewSizeKey: PreferenceKey {
-    public typealias Value = CGSize
+    public typealias Value = CGFloat
 
-    public static var defaultValue = CGSize.zero
+    public static var defaultValue: CGFloat = 0
 
-    public static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
-        value = nextValue()
+    public static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value += nextValue()
     }
 }
