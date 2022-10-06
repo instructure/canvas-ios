@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class QuizDateSectionViewModel: DateSectionViewModel {
+public class QuizDateSectionViewModel: DateSectionViewModelProtocol {
 
     @ObservedObject var quiz: Quiz
     public var isButton = false

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public protocol SubmissionBreakdownViewModel: ObservableObject {
+public protocol SubmissionBreakdownViewModelProtocol: ObservableObject {
     var isReady: Bool { get }
     var graded: Int { get }
     var ungraded: Int { get }
@@ -41,7 +41,7 @@ public protocol SubmissionBreakdownViewModel: ObservableObject {
 /**
 Use only for SwiftUI previews.
 */
-public class PreviewSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
+public class PreviewSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
     public var isReady: Bool = true
     public var graded: Int
     public var ungraded: Int

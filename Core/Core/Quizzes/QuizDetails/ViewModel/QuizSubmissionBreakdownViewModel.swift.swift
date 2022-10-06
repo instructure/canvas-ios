@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
+public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
 
     @Published public var isReady: Bool = false
     @Published public var showError: Bool = false

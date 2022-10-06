@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
+struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
 
     @Environment(\.appEnvironment) var env

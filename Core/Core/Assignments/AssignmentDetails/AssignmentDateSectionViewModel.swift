@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class AssignmentDateSectionViewModel: DateSectionViewModel {
+public class AssignmentDateSectionViewModel: DateSectionViewModelProtocol {
 
     @ObservedObject var assignment: Assignment
     public var isButton = true

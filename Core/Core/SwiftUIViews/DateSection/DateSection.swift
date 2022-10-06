@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct DateSection<ViewModel: DateSectionViewModel>: View {
+struct DateSection<ViewModel: DateSectionViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
 
     @Environment(\.appEnvironment) var env

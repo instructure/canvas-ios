@@ -1119,10 +1119,12 @@
 		D976C70D28EC329600E865D5 /* AssignmentSubmissionBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C70C28EC329600E865D5 /* AssignmentSubmissionBreakdownViewModelTests.swift */; };
 		D976C70F28EC3EA700E865D5 /* QuizSubmissionBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C70E28EC3EA700E865D5 /* QuizSubmissionBreakdownViewModelTests.swift */; };
 		D976C71128ECBC4000E865D5 /* QuizAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C71028ECBC4000E865D5 /* QuizAttributesTests.swift */; };
+		D976C71528EDD77200E865D5 /* QuizDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C71428EDD77200E865D5 /* QuizDetailViewModelProtocol.swift */; };
+		D976C71728EECD8900E865D5 /* PreviewQuizDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976C71628EECD8900E865D5 /* PreviewQuizDetailsViewModel.swift */; };
 		D97F991328C0F0A2002F3495 /* AssignmentDateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991228C0F0A2002F3495 /* AssignmentDateSectionViewModel.swift */; };
-		D97F991628C0F420002F3495 /* DateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991528C0F420002F3495 /* DateSectionViewModel.swift */; };
+		D97F991628C0F420002F3495 /* DateSectionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991528C0F420002F3495 /* DateSectionViewModelProtocol.swift */; };
 		D97F991828C0FD8F002F3495 /* QuizDateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */; };
-		D97F991B28C75C10002F3495 /* SubmissionBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModel.swift */; };
+		D97F991B28C75C10002F3495 /* SubmissionBreakdownViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModelProtocol.swift */; };
 		D97F991D28C75D88002F3495 /* AssignmentSubmissionBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991C28C75D88002F3495 /* AssignmentSubmissionBreakdownViewModel.swift */; };
 		D97F991F28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F991E28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift */; };
 		D99DA6D928E5985E005C5CD1 /* QuizDateSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DA6D828E5985E005C5CD1 /* QuizDateSectionViewModelTests.swift */; };
@@ -2565,10 +2567,12 @@
 		D976C70C28EC329600E865D5 /* AssignmentSubmissionBreakdownViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionBreakdownViewModelTests.swift; sourceTree = "<group>"; };
 		D976C70E28EC3EA700E865D5 /* QuizSubmissionBreakdownViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionBreakdownViewModelTests.swift; sourceTree = "<group>"; };
 		D976C71028ECBC4000E865D5 /* QuizAttributesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAttributesTests.swift; sourceTree = "<group>"; };
+		D976C71428EDD77200E865D5 /* QuizDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		D976C71628EECD8900E865D5 /* PreviewQuizDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQuizDetailsViewModel.swift; sourceTree = "<group>"; };
 		D97F991228C0F0A2002F3495 /* AssignmentDateSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDateSectionViewModel.swift; sourceTree = "<group>"; };
-		D97F991528C0F420002F3495 /* DateSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSectionViewModel.swift; sourceTree = "<group>"; };
+		D97F991528C0F420002F3495 /* DateSectionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSectionViewModelProtocol.swift; sourceTree = "<group>"; };
 		D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDateSectionViewModel.swift; sourceTree = "<group>"; };
-		D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewModel.swift; sourceTree = "<group>"; };
+		D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewModelProtocol.swift; sourceTree = "<group>"; };
 		D97F991C28C75D88002F3495 /* AssignmentSubmissionBreakdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionBreakdownViewModel.swift; sourceTree = "<group>"; };
 		D97F991E28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionBreakdownViewModel.swift.swift; sourceTree = "<group>"; };
 		D99DA6D828E5985E005C5CD1 /* QuizDateSectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDateSectionViewModelTests.swift; sourceTree = "<group>"; };
@@ -5956,7 +5960,7 @@
 			isa = PBXGroup;
 			children = (
 				7D2E812825631BEC008C568F /* DateSection.swift */,
-				D97F991528C0F420002F3495 /* DateSectionViewModel.swift */,
+				D97F991528C0F420002F3495 /* DateSectionViewModelProtocol.swift */,
 			);
 			path = DateSection;
 			sourceTree = "<group>";
@@ -5964,7 +5968,7 @@
 		D97F991928C75BDC002F3495 /* SubmissionBreakdown */ = {
 			isa = PBXGroup;
 			children = (
-				D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModel.swift */,
+				D97F991A28C75C10002F3495 /* SubmissionBreakdownViewModelProtocol.swift */,
 				7D2E812E25632C34008C568F /* SubmissionBreakdown.swift */,
 			);
 			path = SubmissionBreakdown;
@@ -6034,6 +6038,7 @@
 			isa = PBXGroup;
 			children = (
 				D9FE691C28B7A50600895930 /* QuizDetailsView.swift */,
+				D976C71428EDD77200E865D5 /* QuizDetailViewModelProtocol.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6044,6 +6049,7 @@
 				D9FE691828B7A4EC00895930 /* QuizDetailsViewModel.swift */,
 				D97F991728C0FD8F002F3495 /* QuizDateSectionViewModel.swift */,
 				D97F991E28C7AE5B002F3495 /* QuizSubmissionBreakdownViewModel.swift.swift */,
+				D976C71628EECD8900E865D5 /* PreviewQuizDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7097,6 +7103,7 @@
 				3BA649D7242530470047D8DC /* NotificationView.swift in Sources */,
 				7D4B2753253F65C600A98DE3 /* VideoRecorder.swift in Sources */,
 				CF6C7FCB26F8DED2002937E5 /* SubmitAssignmentExtensionViewModel.swift in Sources */,
+				D976C71528EDD77200E865D5 /* QuizDetailViewModelProtocol.swift in Sources */,
 				7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */,
 				7DA2601A23F7227A005D2121 /* UITableViewExtensions.swift in Sources */,
 				B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */,
@@ -7132,7 +7139,7 @@
 				B1A7848F24411F19001A2B50 /* BackgroundVideoPlayer.swift in Sources */,
 				7DA2606823F722D9005D2121 /* TabVisibility.swift in Sources */,
 				7DA2609923F7233D005D2121 /* Scope.swift in Sources */,
-				D97F991B28C75C10002F3495 /* SubmissionBreakdownViewModel.swift in Sources */,
+				D97F991B28C75C10002F3495 /* SubmissionBreakdownViewModelProtocol.swift in Sources */,
 				7D0A28DD251952A2004FB3B6 /* RemoteImage.swift in Sources */,
 				7DA2607C23F722FA005D2121 /* PageViewEventRequestManager.swift in Sources */,
 				CFA56E4728352AB0007C15D7 /* DashboardInvitationViewModel.swift in Sources */,
@@ -7381,7 +7388,7 @@
 				49428D5A24BA526F00EF3EAB /* GradeStatisticGraphView.swift in Sources */,
 				7DA260C923F72359005D2121 /* AlertAction.swift in Sources */,
 				CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */,
-				D97F991628C0F420002F3495 /* DateSectionViewModel.swift in Sources */,
+				D97F991628C0F420002F3495 /* DateSectionViewModelProtocol.swift in Sources */,
 				7DA2604B23F722D9005D2121 /* GradingPeriod.swift in Sources */,
 				7DA2603A23F722D9005D2121 /* Assignment.swift in Sources */,
 				7DA25FDF23F72148005D2121 /* UUID.swift in Sources */,
@@ -7563,6 +7570,7 @@
 				B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */,
 				7DA2600023F7226E005D2121 /* PSPDFAnnotationExtension.swift in Sources */,
 				CF53F745266FBE4F00FA58D7 /* GetMissingSubmissionsRequest.swift in Sources */,
+				D976C71728EECD8900E865D5 /* PreviewQuizDetailsViewModel.swift in Sources */,
 				EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */,
 				D9D7EBD227AD7A8D00544339 /* CourseDetailsViewModel.swift in Sources */,
 				CF598B35282552F20029BEBE /* UILabel.swift in Sources */,

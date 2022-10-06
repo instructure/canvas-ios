@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public protocol DateSectionViewModel: ObservableObject {
+public protocol DateSectionViewModelProtocol: ObservableObject {
 
     var hasMultipleDueDates: Bool { get }
     var dueAt: Date? { get }
@@ -35,7 +35,7 @@ public protocol DateSectionViewModel: ObservableObject {
 /**
 Use only for SwiftUI previews.
 */
-public class PreviewDateSectionViewModel: DateSectionViewModel {
+public class PreviewDateSectionViewModel: DateSectionViewModelProtocol {
     public var hasMultipleDueDates: Bool = false
     public var dueAt: Date?
     public var lockAt: Date?
