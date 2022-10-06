@@ -36,7 +36,7 @@ public protocol QuizDetailsViewModelProtocol: ObservableObject, Refreshable {
 
     func viewDidAppear()
     func editTapped(router: Router, viewController: WeakViewController)
-    func launchPreview(router: Router, viewController: WeakViewController)
+    func previewTapped(router: Router, viewController: WeakViewController)
 }
 
 public enum QuizDetailsViewModelState: Equatable {

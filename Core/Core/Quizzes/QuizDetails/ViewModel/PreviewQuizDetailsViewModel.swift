@@ -36,7 +36,17 @@ public class PreviewQuizDetailsViewModel: QuizDetailsViewModelProtocol {
     public var quizDateSectionViewModel: QuizDateSectionViewModel?
     public var attributes: [QuizAttribute]
 
-    public init(state: QuizDetailsViewModelState, courseColor: UIColor, title: String, subtitle: String, quizTitle: String, pointsPossibleText: String, published: Bool, quizDetailsHTML: String, attributes: [QuizAttribute]) {
+    public init(
+        state: QuizDetailsViewModelState,
+        courseColor: UIColor,
+        title: String,
+        subtitle: String,
+        quizTitle: String,
+        pointsPossibleText: String,
+        published: Bool,
+        quizDetailsHTML: String,
+        attributes: [QuizAttribute]
+    ) {
         self.state = state
         self.courseColor = courseColor
         self.title = title
@@ -51,7 +61,7 @@ public class PreviewQuizDetailsViewModel: QuizDetailsViewModelProtocol {
 
     public func viewDidAppear() {}
     public func editTapped(router: Router, viewController: WeakViewController) {}
-    public func launchPreview(router: Router, viewController: WeakViewController) {}
+    public func previewTapped(router: Router, viewController: WeakViewController) {}
     public func refresh(completion: @escaping () -> Void) {}
 }
 #endif

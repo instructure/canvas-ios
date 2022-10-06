@@ -164,7 +164,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
     }
 
     func previewQuiz() {
-        viewModel.launchPreview(router: env.router, viewController: controller)
+        viewModel.previewTapped(router: env.router, viewController: controller)
     }
 }
 
@@ -199,10 +199,19 @@ struct QuizDetails_Previews: PreviewProvider {
     static var previews: some View {
         let quizAttributes: [QuizAttribute] = [
             QuizAttribute("Quiz Type:", "Graded Quiz"),
-            QuizAttribute("Time Limit:", "30 minutes")
+            QuizAttribute("Time Limit:", "30 minutes"),
         ]
-        let viewModel = PreviewQuizDetailsViewModel(state: .ready, courseColor: .red, title: "Title", subtitle: "Subtitle", quizTitle: "Quiz Title", pointsPossibleText: "10 pts", published: true, quizDetailsHTML: "This is the description", attributes: quizAttributes)
-
+        let viewModel = PreviewQuizDetailsViewModel(
+            state: .ready,
+            courseColor: .red,
+            title: "Title",
+            subtitle: "Subtitle",
+            quizTitle: "Quiz Title",
+            pointsPossibleText: "10 pts",
+            published: true,
+            quizDetailsHTML: "This is the description",
+            attributes: quizAttributes
+        )
         QuizDetailsView(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
