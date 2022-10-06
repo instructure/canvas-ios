@@ -18,16 +18,9 @@
 
 import SwiftUI
 
-public class QuizDetailsViewModel: ObservableObject {
-
-    public enum ViewModelState<T: Equatable>: Equatable {
-        case loading
-        case error
-        case data(T)
-    }
-
+public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     @Environment(\.appEnvironment) private var env
-    @Published public private(set) var state: ViewModelState<Quiz> = .loading
+    @Published public private(set) var state: QuizDetailsViewModelState = .loading
     @Published public private(set) var courseColor: UIColor?
 
     public var title: String { NSLocalizedString("Quiz Details", comment: "") }
@@ -37,6 +30,15 @@ public class QuizDetailsViewModel: ObservableObject {
     public var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel?
     public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
     public var quizDateSectionViewModel: QuizDateSectionViewModel?
+
+    public var quizTitle: String { quiz.first?.title ?? "" }
+    public var pointsPossibleText: String { quiz.first?.pointsPossibleText ?? "" }
+    public var published: Bool { quiz.first?.published ?? false }
+    public var quizDetailsHTML: String? { quiz.first?.details }
+    public var attributes: [QuizAttribute] {
+        guard let quiz = quiz.first else { return [] }
+        return QuizAttributes(quiz: quiz, assignment: assignment).attributes
+    }
 
     private let quizID: String
     private let courseID: String
@@ -83,12 +85,15 @@ public class QuizDetailsViewModel: ObservableObject {
         )
     }
 
-    // MARK: - Private functions
+    // MARK: - Refreshable protocol
 
-    public var attributes: [QuizAttribute] {
-        guard let quiz = quiz.first else { return [] }
-        return QuizAttributes(quiz: quiz, assignment: assignment).attributes
+    public func refresh(completion: @escaping () -> Void) {
+        refreshCompletion = completion
+        quiz.refresh(force: true)
+        assignments.refresh(force: true)
     }
+
+    // MARK: - Private functions
 
     private func courseDidUpdate() {
         courseColor = course.first?.color
@@ -106,7 +111,7 @@ public class QuizDetailsViewModel: ObservableObject {
                 quizSubmissionBreakdownViewModel = QuizSubmissionBreakdownViewModel(courseID: courseID, quizID: quizID)
                 quizDateSectionViewModel = QuizDateSectionViewModel(quiz: quiz)
             }
-            state = .data(quiz)
+            state = .ready
         } else {
             state = .error
         }
@@ -117,13 +122,5 @@ public class QuizDetailsViewModel: ObservableObject {
             self.refreshCompletion?()
             self.refreshCompletion = nil
         }
-    }
-}
-
-extension QuizDetailsViewModel: Refreshable {
-    public func refresh(completion: @escaping () -> Void) {
-        refreshCompletion = completion
-        quiz.refresh(force: true)
-        assignments.refresh(force: true)
     }
 }
