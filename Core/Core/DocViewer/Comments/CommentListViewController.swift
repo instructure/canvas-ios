@@ -59,6 +59,7 @@ class CommentListViewController: UIViewController {
         replyTextView.font(.scaledNamedFont(.regular14), lineHeight: .body)
         replyTextView.adjustsFontForContentSizeCategory = true
         replyTextView.accessibilityLabel = NSLocalizedString("Reply to the annotation or previous comments", bundle: .core, comment: "")
+        replyTextView.textColor = .textDarkest
         replyButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .core, comment: "")
         replyView.backgroundColor = .backgroundLight
 
