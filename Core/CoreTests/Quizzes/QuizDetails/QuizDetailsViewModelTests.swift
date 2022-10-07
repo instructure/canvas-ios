@@ -82,6 +82,7 @@ class QuizDetailsViewModelTests: CoreTestCase {
         let getSubmission = GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
         let apiQuiz = APIQuiz.make(
             access_code: "TrustNo1",
+            assignment_id: "3",
             description: "test description",
             id: ID(quizID),
             points_possible: 5,
@@ -95,7 +96,7 @@ class QuizDetailsViewModelTests: CoreTestCase {
 
     private func mockAssignments() {
         api.mock(GetAssignmentsByGroup(courseID: courseID), value: [
-            .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")]),
+            .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "3", name: "test quiz")]),
         ])
     }
 }
