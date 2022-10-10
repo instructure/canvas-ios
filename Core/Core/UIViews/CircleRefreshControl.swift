@@ -71,18 +71,25 @@ public class CircleRefreshControl: UIRefreshControl {
             self?.updateProgress(scrollView)
         }
         super.didMoveToSuperview()
+        setNeedsLayout()
     }
 
     private func updateProgress(_ scrollView: UIScrollView) {
-        guard !isAnimating, !isRefreshing, scrollView.isDragging else { return }
         let offset = scrollView.contentOffset.y
         guard offset <= 0 else { return }
-        let progress = min(abs((offset) / snappingPoint), 1)
+        let progress = min(abs(offset / snappingPoint), 1)
+
+        guard !isAnimating, scrollView.isDragging else {
+            if progressView.progress != nil {
+                progressView.progress = progress
+            }
+            return
+        }
 
         progressView.progress = progress
         progressView.isHidden = progress == 0
-
-        if !isRefreshing, progress == 1 {
+        progressView.alpha = progress
+        if progress == 1 {
             sendActions(for: .valueChanged)
             beginRefreshing()
             triggerStartDate = Date()
