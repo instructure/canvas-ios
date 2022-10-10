@@ -29,7 +29,7 @@ class K5ResourcesViewModelTests: CoreTestCase {
             APICourse.make(id: "2", name: "Homeroom 2", syllabus_body: "<b>IMPORTANT</b><p>Read the previous note</p>", homeroom_course: true),
             APICourse.make(id: "3", name: "Math", homeroom_course: false),
         ]
-        api.mock(GetCourses(enrollmentState: nil), value: courses)
+        api.mock(GetCourses(enrollmentState: .active), value: courses)
     }
 
     func testHomeroomInfoFetch() {
