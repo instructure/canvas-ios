@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "Er is een beschrijving vereist";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Kan afbeelding niet Opslaan";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Kan upload niet starten.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload mislukt";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Help je cursisten met deze opdracht door instructies toe te voegen.";
+
+/* No comment provided by engineer. */
+"Hide" = "Verbergen";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Inhoud verbergen voor  %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Voorkeuren";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Bestanden voorbereiden om te uploaden";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Eerste vereiste: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Inleveringstypen";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Inlevering geüpload";
+
+/* No comment provided by engineer. */
 "Submissions" = "Inleveringen";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "De app moet opnieuw worden gestart om de nieuwe taalinstellingen te activeren. Start de app opnieuw.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Het inleveringsproces werd beëindigd door het besturingssysteem.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Er zijn geen actieve opdrachten in deze cursus.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Uploaden voltooid.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Uploaden mislukt om onbekende reden.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Uploaden mislukt.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Uploaden van %1$@ van %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Inlevering wordt geüpload";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Bezig met uploaden...";

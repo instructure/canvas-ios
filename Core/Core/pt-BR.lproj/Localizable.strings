@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "+99";
-
-/* No comment provided by engineer. */
 "A description is required" = "Uma descrição é necessária";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Falha ao salvar imagem";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Falha ao iniciar o upload.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Carregamento falhou";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Ajude os seus alunos com esta tarefa ao adicionar instruções.";
+
+/* No comment provided by engineer. */
+"Hide" = "Ocultar";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Ocultar conteúdo para %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Preferências";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Preparando arquivos para upload";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Pré-requisito: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Tipos de envio";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Envio carregado";
+
+/* No comment provided by engineer. */
 "Submissions" = "Envios";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "O aplicativo precisa ser reiniciado para usar as novas configurações de idioma. Reinicie o aplicativo.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "O processo de envio foi encerrado pelo sistema operacional.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Não há tarefas ativas neste curso.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Upload concluído";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Falha no upload devido a motivo desconhecido.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Falha no carregamento.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Carregando %1$@ de %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Realizando upload";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Carregando...";

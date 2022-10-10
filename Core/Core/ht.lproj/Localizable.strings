@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "Yon deskripsyon obligatwa";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Echèk anrejistreman imaj";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Echèk demaraj transfè a.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Chajman echwe";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Ajoute enstriksyon pou ede elèv ou yo ak sesyon sa a.";
+
+/* No comment provided by engineer. */
+"Hide" = "Kache";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Kache kontni pou %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Preferans";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Preparasyon Fichye pou Transfere";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Kondisyon Nesesè: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Tip Soumisyon";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Soumisyon Transfere";
+
+/* No comment provided by engineer. */
 "Submissions" = "Soumisyon";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikasyon an dwe redemare pou l ka itilize nouvo paramèt lang lan. Re lanse aplikasyon an.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Sistèm eksplwatasyon an te entèwonp pwosesis soumisyon an.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Pa gen devwa aktif nan kou sa a.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Transfè konplete.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Transfè a echwe pou yon rezon nou pa konnen.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Transfè echwe.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Chajman Soumisyon";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Chajman...";

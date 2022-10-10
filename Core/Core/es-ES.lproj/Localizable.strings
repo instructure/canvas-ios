@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "Se requiere una descripción";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "No se ha podido guardar la imagen";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Ha ocurrido un error al empezar la carga";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Ha habido un error al cargar";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Ayuda a tus estudiantes a realizar esta actividad añadiendo instrucciones.";
+
+/* No comment provided by engineer. */
+"Hide" = "Ocultar";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Ocultar contenido para %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Preferencias";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Preparando archivos para la carga";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Prerrequisito: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Tipos de entrega";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Entrega cargada";
+
+/* No comment provided by engineer. */
 "Submissions" = "Entregas";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "La aplicación debe reiniciarse para aplicar la nueva configuración de idioma. Vuelve a ejecutar la aplicación.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "El sistema operativo ha terminado el proceso de entrega.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "No hay actividades activas en esta asignatura.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Carga completa.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Ha ocurrido un error al cargar debido a un motivo desconocido.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "No se ha podido realizar la carga.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Cargando %1$@ de %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Cargando entrega";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Cargando...";

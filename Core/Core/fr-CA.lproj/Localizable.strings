@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "Plus de 99";
-
-/* No comment provided by engineer. */
 "A description is required" = "Description obligatoire";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Impossible d’enregistrer l’image";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Échec du démarrage du téléversement.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Échec du téléversement";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Aidez vos étudiants à cette tâche par l’ajout d’instructions.";
+
+/* No comment provided by engineer. */
+"Hide" = "Masquer";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Masquer le contenu de %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Préférences";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Préparation des fichiers pour le téléversement";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Prérequis : %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Types d’envoi";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Envois téléversés";
+
+/* No comment provided by engineer. */
 "Submissions" = "Envois";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "L'application doit redémarrer pour utiliser les nouveaux paramètres de langue. Veuillez relancer l'application.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Le processus d’envoi a été interrompu par le système d'exploitation.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Il n’y a aucune tâche active dans ce cours.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Téléversement terminé.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Le téléversement a échoué pour une raison inconnue";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Le téléversement a échoué";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Téléversement de %1$@ sur %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Téléversement de l’envoi";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Téléversement en cours...";
