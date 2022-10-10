@@ -25,7 +25,9 @@ class K5GradesE2ETests: K5UITestCase {
 
         K5CourseCard.courseCard(id: "21025").waitToExist()
         K5NavigationBar.grades.tap()
-        K5Grades.gradingPeriodSelectorCurrent.waitToExist()
+        K5Grades.gradingPeriodSelectorClosed.waitToExist()
+        K5Grades.gradingPeriodSelectorClosed.tap()
+        K5Grades.gradingPeriodSelectorOpen.waitToExist()
         app.find(labelContaining: "MATH").waitToExist()
         app.find(labelContaining: "MATH").tap()
         K5CourseGrades.emptyGradesForCourse.waitToExist()

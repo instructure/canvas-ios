@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct K5GradesView: View {
-
     @ObservedObject private var viewModel: K5GradesViewModel
     @State var gradeSelectorOpen = false
 
@@ -31,14 +30,13 @@ struct K5GradesView: View {
         VStack(spacing: 0) {
             gradingPeriodSelector
             Spacer()
-            ScrollView(showsIndicators: false) {
-                CircleRefresh { endRefreshing in
-                    viewModel.refresh(completion: endRefreshing)
-                }
+            RefreshableScrollView(showsIndicators: false) {
                 ForEach(viewModel.grades) {
                     K5GradeCell(with: $0)
                     Divider()
                 }
+            } refreshAction: { endRefreshing in
+                viewModel.refresh(completion: endRefreshing)
             }
         }
         .padding(.horizontal)
@@ -59,30 +57,8 @@ struct K5GradesView: View {
                     .foregroundColor(.textDark)
                     .padding(.top, 15)
                     .accessibility(hidden: true)
-                HStack(spacing: 7) {
-                    let selectorStateText = gradeSelectorOpen ? Text("Open", bundle: .core) : Text("Closed", bundle: .core)
-                    Button(action: {
-                        withAnimation {
-                            gradeSelectorOpen.toggle()
-                        }
-                    }, label: {
-                        Text(viewModel.currentGradingPeriod.title ?? "")
-                            .font(.bold24)
-                            .foregroundColor(.textDarkest)
-                    })
-                    .accessibility(label: Text("Select grading period", bundle: .core) + Text(verbatim: ", ") + selectorStateText)
-                    .accessibility(hint: Text(verbatim: ", \(viewModel.currentGradingPeriod.title ?? "") ,") + Text("Selected", bundle: .core))
-
-                    Image.arrowOpenDownLine
-                        .resizable()
-                        .frame(width: 12, height: 12)
-                        .foregroundColor(.textDarkest)
-                        .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
-                        .animation(.easeOut)
-                        .accessibility(hidden: true)
-                    Spacer()
-                }
-                .padding(.bottom, 13)
+                gradingPeriodSelection
+                    .padding(.bottom, 13)
                 Divider()
             }
             .zIndex(1)
@@ -107,13 +83,41 @@ struct K5GradesView: View {
         }
         .clipped()
     }
+
+    private var gradingPeriodSelection: some View {
+        HStack(spacing: 7) {
+            let selectorStateText: Text = gradeSelectorOpen ? Text("Open", bundle: .core) : Text("Closed", bundle: .core)
+            Button(
+                action: {
+                    withAnimation {
+                        gradeSelectorOpen.toggle()
+                    }
+                },
+                label: {
+                    Text(viewModel.currentGradingPeriod.title ?? "")
+                        .font(.bold24)
+                        .foregroundColor(.textDarkest)
+                })
+                .accessibility(label: Text("Select Grading Period", bundle: .core) + Text(verbatim: ", ") + selectorStateText)
+                .accessibility(hint: Text(verbatim: ", \(viewModel.currentGradingPeriod.title ?? "") ,") + Text("Selected", bundle: .core))
+
+            Image.arrowOpenDownLine
+                .resizable()
+                .frame(width: 12, height: 12)
+                .foregroundColor(.textDarkest)
+                .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
+                .animation(.easeOut)
+                .accessibility(hidden: true)
+            Spacer()
+        }
+    }
 }
 
 #if DEBUG
 
 struct K5GradesView_Previews: PreviewProvider {
     static var previews: some View {
-        K5GradesView(viewModel: K5GradesViewModel() )
+        K5GradesView(viewModel: K5GradesViewModel())
     }
 }
 

@@ -64,7 +64,7 @@ struct SideMenuBottomSection: View {
                 Button {
                     showHelpMenu()
                 } label: {
-                    SideMenuItem(id: "help", image: .questionLine, title: Text("\(root.text ?? "")", bundle: .core), badgeValue: 0)
+                    SideMenuItem(id: "help", image: .questionLine, title: Text("\(root.text ?? "")", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
@@ -73,7 +73,7 @@ struct SideMenuBottomSection: View {
                 Button {
                     self.route(to: "/act-as-user", options: .modal(embedInNav: true))
                 } label: {
-                    SideMenuItem(id: "actAsUser", image: .userLine, title: Text("Act as User", bundle: .core), badgeValue: 0)
+                    SideMenuItem(id: "actAsUser", image: .userLine, title: Text("Act as User", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
@@ -85,7 +85,7 @@ struct SideMenuBottomSection: View {
                         delegate.changeUser()
                     }
                 } label: {
-                    SideMenuItem(id: "changeUser", image: .userLine, title: Text("Change User", bundle: .core), badgeValue: 0)
+                    SideMenuItem(id: "changeUser", image: .userLine, title: Text("Change User", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
@@ -98,14 +98,14 @@ struct SideMenuBottomSection: View {
                 Button {
                     stopActing()
                 } label: {
-                    SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: logoutTitleText, badgeValue: 0)
+                    SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: logoutTitleText)
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             } else {
                 Button {
                     handleLogout()
                 } label: {
-                    SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core), badgeValue: 0)
+                    SideMenuItem(id: "logOut", image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }

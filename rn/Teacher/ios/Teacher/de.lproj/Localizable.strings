@@ -104,7 +104,7 @@
 "Everyone" = "Jeder";
 
 /* No comment provided by engineer. */
-"Excuse Student" = "Student entschuldigen";
+"Excuse Student" = "Studierende*n entschuldigen";
 
 /* No comment provided by engineer. */
 "Excused" = "Entschuldigt";
@@ -152,10 +152,10 @@
 "Grades" = "Noten";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "Noten werden für alle Studenten sichtbar gemacht";
+"Grades will be made visible to all students" = "Noten werden für alle Studierende sichtbar gemacht";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Noten werden nur für Studenten mit benotete Abgaben sichtbar gemacht";
+"Grades will be made visible to students with graded submissions" = "Noten werden nur für Studierende mit benotete Abgaben sichtbar gemacht";
 
 /* No comment provided by engineer. */
 "Group" = "Gruppe";
@@ -278,7 +278,7 @@
 "Send" = "Senden";
 
 /* No comment provided by engineer. */
-"Send message to users" = "Nachricht an Benutzer senden";
+"Send message to users" = "Nachricht an Benutzer*innen senden";
 
 /* No comment provided by engineer. */
 "Similarity Score" = "Similarity Score";
@@ -287,13 +287,13 @@
 "Specific Sections" = "Bestimmte Abschnitte";
 
 /* No comment provided by engineer. */
-"Student" = "Student";
+"Student" = "Studierende*r";
 
 /* No comment provided by engineer. */
 "Submissions" = "Abgaben";
 
 /* No comment provided by engineer. */
-"Test Student" = "Teststudent";
+"Test Student" = "Teststudierende*r";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Es gibt noch keine Nachrichten.";
@@ -314,10 +314,10 @@
 "This group does not have a submission for this assignment." = "Diese Gruppe hat keine Abgabe für diese Aufgabe.";
 
 /* No comment provided by engineer. */
-"This student does not have a submission for this assignment." = "Dieser Student hat für dieser Aufgabe keine Abgabe.";
+"This student does not have a submission for this assignment." = "Diese/r Student*r hat für dieser Aufgabe keine Abgabe.";
 
 /* No comment provided by engineer. */
-"This student's responses are hidden because this assignment is anonymous." = "Die Antworten des Studenten werden ausgeblendet, da diese Aufgabe anonym ist.";
+"This student's responses are hidden because this assignment is anonymous." = "Die Antworten der/des Studierenden werden ausgeblendet, da diese Aufgabe anonym ist.";
 
 /* No comment provided by engineer. */
 "This submission has no files." = "Diese Abgabe enthält keine Dateien.";
@@ -326,7 +326,7 @@
 "This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Diese Abgabe ist ein URL zu einer externen Seite. Ein angehängter Snapshot zeigt, wie die Seite zum Zeitpunkt der Abgabe ausgesehen hat.";
 
 /* No comment provided by engineer. */
-"To Do" = "To Do";
+"To Do" = "Zu erledigen";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Unbekannter Fehler";

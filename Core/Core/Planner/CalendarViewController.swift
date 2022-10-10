@@ -82,7 +82,7 @@ class CalendarViewController: UIViewController {
         view.addGestureRecognizer(panRecognizer)
         view.backgroundColor = .backgroundLightest
 
-        let isRTL = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
+        let isRTL: Bool = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
         monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
         monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", bundle: .core, comment: "")
 

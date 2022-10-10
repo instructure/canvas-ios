@@ -24,49 +24,47 @@ class FileProgressItemViewModelTests: CoreTestCase {
     func testStateIfFileHasIdAndError() {
         let file = makeFile()
         file.uploadError = "error"
-        file.id = "testId"
+        file.apiID = "testId"
 
-        let testee = FileProgressItemViewModel(file: file, onRemove: {})
-        XCTAssertEqual(testee.state, .completed)
+        let testee = FileProgressItemViewModel(file: file, onRemove: { _ in })
+        XCTAssertEqual(testee.state, .uploaded)
     }
 
     func testA11yLabelWhileWaiting() {
         let file = makeFile()
-        let testee = FileProgressItemViewModel(file: file, onRemove: {})
+        let testee = FileProgressItemViewModel(file: file, onRemove: { _ in })
         XCTAssertEqual(testee.accessibilityLabel, "File fileName.txt size 10 bytes. ")
     }
 
     func testA11yLabelDuringUpload() {
         let file = makeFile()
-        file.bytesSent = 3
-        file.taskID = ""
-        let testee = FileProgressItemViewModel(file: file, onRemove: {})
+        file.bytesUploaded = 3
+        file.bytesToUpload = 10
+        let testee = FileProgressItemViewModel(file: file, onRemove: { _ in })
         XCTAssertEqual(testee.accessibilityLabel, "File fileName.txt size 10 bytes. Upload in progress 30%")
     }
 
     func testA11yLabelOnError() {
         let file = makeFile()
         file.uploadError = "error"
-        let testee = FileProgressItemViewModel(file: file, onRemove: {})
+        let testee = FileProgressItemViewModel(file: file, onRemove: { _ in })
         XCTAssertEqual(testee.accessibilityLabel, "File fileName.txt size 10 bytes. Upload failed.")
     }
 
     func testA11yLabelWhenCompleted() {
         let file = makeFile()
-        file.id = "5"
-        let testee = FileProgressItemViewModel(file: file, onRemove: {})
+        file.apiID = "5"
+        let testee = FileProgressItemViewModel(file: file, onRemove: { _ in })
         XCTAssertEqual(testee.accessibilityLabel, "File fileName.txt size 10 bytes. Upload completed.")
     }
 
     // MARK: Helpers
 
     @discardableResult
-    private func makeFile() -> File {
-        let file = databaseClient.insert() as File
-        file.batchID = "testBatch"
-        file.size = 10
+    private func makeFile() -> FileUploadItem {
+        let file = databaseClient.insert() as FileUploadItem
+        file.fileSize = 10
         file.localFileURL = URL(string: "/fileName.txt")!
-        file.setUser(session: environment.currentSession!)
         return file
     }
 }

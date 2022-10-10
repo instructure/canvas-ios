@@ -497,9 +497,9 @@
 			<key>many</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>نوع الملف %2$@ الموجود في إرسالك غير متوافق مع المهمة المحددة.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>أنواع الملف %2$@ الموجودة في إرسالك غير متوافقة مع المهمة المحددة.</string>
 			<key>two</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>zero</key>
@@ -617,9 +617,9 @@
 			<key>many</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>تم تحميل ملفك بنجاح لكن الإرسال إلى المهمة فشل.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>تم تحميل ملفاتك بنجاح لكن الإرسال إلى المهمة فشل.</string>
 			<key>two</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>zero</key>
@@ -665,9 +665,9 @@
 			<key>many</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>يرجى استخدام ملحق الملف %2$@.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>يرجى استخدام ملحقات الملف %2$@.</string>
 			<key>two</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>zero</key>

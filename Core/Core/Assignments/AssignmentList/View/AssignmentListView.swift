@@ -122,7 +122,8 @@ public struct AssignmentListView: View {
     private var loadingView: some View {
         Divider()
         Spacer()
-        CircleProgress()
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
         Spacer()
     }
 

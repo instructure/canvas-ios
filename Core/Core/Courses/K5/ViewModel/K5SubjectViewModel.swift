@@ -26,13 +26,10 @@ public class K5SubjectViewModel: ObservableObject {
     @Published public private(set) var courseTitle: String?
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var currentPageURL: URL?
+    @Published public private(set) var courseBannerImageUrl: URL?
     @Published public private(set) var courseImageUrl: URL?
-    public var reloadWebView: AnyPublisher<Void, Never> {
-        NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted, object: nil)
-            .map { _ in () } // map received notification to Void
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
+    public private(set) lazy var reloadWebView: AnyPublisher<Void, Never> = makeWebViewReloadTrigger()
+
     /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
     public var config: WKWebViewConfiguration? { masqueradedSession.config }
 
@@ -99,6 +96,7 @@ public class K5SubjectViewModel: ObservableObject {
         guard let course = course.first else { return }
         courseTitle = course.name
         courseColor = course.color
+        courseBannerImageUrl = course.bannerImageDownloadURL
         courseImageUrl = course.imageDownloadURL
     }
 
@@ -117,6 +115,29 @@ public class K5SubjectViewModel: ObservableObject {
             .compactMap { topBarViewModel.items[$0].id }
             .sink { Analytics.shared.logScreenView(route: "/homeroom/subject/\($0)") }
             .store(in: &subscriptions)
+    }
+
+    private func makeWebViewReloadTrigger() -> AnyPublisher<Void, Never> {
+        let moduleRequirementCompletedPublisher =
+            NotificationCenter.default
+                .publisher(for: .moduleItemRequirementCompleted)
+                .map { _ in () } // map received notification to Void
+        let appWillEnterForegroundWhileModulesSelectedPublisher =
+            NotificationCenter.default
+                .publisher(for: UIApplication.willEnterForegroundNotification)
+                .compactMap { [weak self] _ -> Void? in
+                    guard let topBarViewModel = self?.topBarViewModel,
+                          topBarViewModel.selectedItemId == "modules"
+                    else {
+                        return nil
+                    }
+
+                    return ()
+                }
+
+        return Publishers.Merge(moduleRequirementCompletedPublisher, appWillEnterForegroundWhileModulesSelectedPublisher)
+                    .receive(on: DispatchQueue.main)
+                    .eraseToAnyPublisher()
     }
 }
 

@@ -56,13 +56,13 @@ public struct AssignmentEditorView: View {
                 }, label: {
                     Text("Cancel", bundle: .core).fontWeight(.regular)
                 })
-                    .identifier("screen.dismiss")
+                .identifier("screen.dismiss")
             }, trailing: {
                 Button(action: save, label: {
                     Text("Done", bundle: .core).bold()
                 })
-                    .disabled(isLoading || isSaving)
-                    .identifier("AssignmentEditor.doneButton")
+                .disabled(isLoading || isSaving)
+                .identifier("AssignmentEditor.doneButton")
             })
 
             .alert(item: $alert) { alert in
@@ -93,89 +93,106 @@ public struct AssignmentEditorView: View {
 
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
-            EditorSection(label: Text("Title", bundle: .core)) {
-                CustomTextField(placeholder: Text("Add Title", bundle: .core),
-                                text: $name,
-                                identifier: "AssignmentEditor.titleField",
-                                accessibilityLabel: Text("Title", bundle: .core))
-            }
+            titleEditorSection
+            descriptionEditorSection
+            optionsEditorSection
+            assignmentOverridesEditor
+        }
+    }
 
-            EditorSection(label: Text("Description", bundle: .core)) {
-                RichContentEditor(
-                    placeholder: NSLocalizedString("Add description", comment: ""),
-                    a11yLabel: NSLocalizedString("Description", comment: ""),
-                    html: $description,
-                    context: .course(courseID),
-                    uploadTo: .context(.course(courseID)),
-                    height: $rceHeight,
-                    canSubmit: $rceCanSubmit,
-                    error: Binding(get: {
-                        if case .error(let error) = alert { return error }
-                        return nil
-                    }, set: {
-                        if let error = $0 { alert = .error(error) }
-                    })
-                )
-                    .frame(height: max(200, rceHeight))
-            }
+    private var titleEditorSection: some View {
+        EditorSection(label: Text("Title", bundle: .core)) {
+            CustomTextField(placeholder: Text("Add Title", bundle: .core),
+                            text: $name,
+                            identifier: "AssignmentEditor.titleField",
+                            accessibilityLabel: Text("Title", bundle: .core))
+        }
+    }
 
-            EditorSection(label: Text("Options", bundle: .core)) {
-                DoubleFieldRow(
-                    label: Text("Points", bundle: .core),
-                    placeholder: "--",
-                    value: $pointsPossible
-                )
-                    .identifier("AssignmentEditor.pointsField")
-                Divider()
-                ButtonRow(action: {
-                    let options = GradingType.allCases
-                    self.env.router.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Display Grade as", comment: ""),
-                        sections: [ ItemPickerSection(items: options.map {
-                            ItemPickerItem(title: $0.string)
-                        }), ],
-                        selected: options.firstIndex(of: gradingType).flatMap {
-                            IndexPath(row: $0, section: 0)
-                        },
-                        didSelect: { gradingType = options[$0.row] }
-                    ), from: controller)
-                }, content: {
-                    Text("Display Grade as", bundle: .core)
-                    Spacer()
-                    Text(gradingType.string)
-                        .font(.medium16).foregroundColor(.textDark)
-                    Spacer().frame(width: 16)
-                    DisclosureIndicator()
-                })
-                    .identifier("AssignmentEditor.gradingTypeButton")
-                if !published || canUnpublish {
-                    Divider()
-                    Toggle(isOn: $published) { Text("Publish", bundle: .core) }
-                        .font(.semibold16).foregroundColor(.textDarkest)
-                        .padding(16)
-                        .identifier("AssignmentEditor.publishedToggle")
-                }
-            }
-
-            AssignmentOverridesEditor(
-                courseID: courseID,
-                groupCategoryID: assignment?.groupCategoryID,
-                overrides: $overrides,
-                toRemove: Binding(get: {
-                    if case .removeOverride(let override) = alert {
-                        return override
-                    }
+    private var descriptionEditorSection: some View {
+        EditorSection(label: Text("Description", bundle: .core)) {
+            RichContentEditor(
+                placeholder: NSLocalizedString("Add description", comment: ""),
+                a11yLabel: NSLocalizedString("Description", comment: ""),
+                html: $description,
+                context: .course(courseID),
+                uploadTo: .context(.course(courseID)),
+                height: $rceHeight,
+                canSubmit: $rceCanSubmit,
+                error: Binding(get: {
+                    if case .error(let error) = alert { return error }
                     return nil
                 }, set: {
-                    alert = $0.map { AlertItem.removeOverride($0) }
+                    if let error = $0 { alert = .error(error) }
                 })
             )
+            .frame(height: max(200, rceHeight))
         }
+    }
+
+    private var optionsEditorSection: some View {
+        EditorSection(label: Text("Options", bundle: .core)) {
+            DoubleFieldRow(
+                label: Text("Points", bundle: .core),
+                placeholder: "--",
+                value: $pointsPossible
+            )
+            .identifier("AssignmentEditor.pointsField")
+            Divider()
+            ButtonRow(action: {
+                let options: [GradingType] = GradingType.allCases
+                self.env.router.show(ItemPickerViewController.create(
+                    title: NSLocalizedString("Display Grade as", comment: ""),
+                    sections: [
+                        ItemPickerSection(
+                            items: options.map {
+                                ItemPickerItem(title: $0.string)
+                            }
+                        ),
+                    ],
+                    selected: options.firstIndex(of: gradingType).flatMap {
+                        IndexPath(row: $0, section: 0)
+                    },
+                    didSelect: { gradingType = options[$0.row] }
+                ), from: controller)
+            }, content: {
+                Text("Display Grade as", bundle: .core)
+                Spacer()
+                Text(gradingType.string)
+                    .font(.medium16).foregroundColor(.textDark)
+                Spacer().frame(width: 16)
+                DisclosureIndicator()
+            })
+            .identifier("AssignmentEditor.gradingTypeButton")
+            if !published || canUnpublish {
+                Divider()
+                Toggle(isOn: $published) { Text("Publish", bundle: .core) }
+                    .font(.semibold16).foregroundColor(.textDarkest)
+                    .padding(16)
+                    .identifier("AssignmentEditor.publishedToggle")
+            }
+        }
+    }
+
+    private var assignmentOverridesEditor: some View {
+        AssignmentOverridesEditor(
+            courseID: courseID,
+            groupCategoryID: assignment?.groupCategoryID,
+            overrides: $overrides,
+            toRemove: Binding(get: {
+                if case .removeOverride(let override) = alert {
+                    return override
+                }
+                return nil
+            }, set: {
+                alert = $0.map { AlertItem.removeOverride($0) }
+            })
+        )
     }
 
     func load() {
         guard !isLoaded else { return }
-        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
+        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.overrides])
         useCase.fetch(force: true) { _, _, fetchError in performUIUpdate {
             assignment = env.database.viewContext.fetch(scope: useCase.scope).first
             canUnpublish = assignment?.canUnpublish == true
@@ -217,6 +234,7 @@ public struct AssignmentEditorView: View {
             gradingType: gradingType,
             lockAt: lockAt,
             name: name,
+            onlyVisibleToOverrides: !overrides.contains { $0.isEveryone },
             overrides: originalOverrides == overrides ? nil : apiOverrides,
             pointsPossible: pointsPossible,
             published: published,
@@ -225,7 +243,7 @@ public struct AssignmentEditorView: View {
             alert = fetchError.map { .error($0) }
             isSaving = false
             if result != nil {
-                GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
+                GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.overrides])
                     .fetch(force: true) // updated overrides & allDates aren't in result
                 env.router.dismiss(controller)
             }

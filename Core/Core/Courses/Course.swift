@@ -23,6 +23,7 @@ final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
 
     @NSManaged public var accessRestrictedByDate: Bool
+    @NSManaged public var bannerImageDownloadURL: URL?
     @NSManaged public var canCreateAnnouncement: Bool
     @NSManaged public var canCreateDiscussionTopic: Bool
     @NSManaged var contextColor: ContextColor?
@@ -72,6 +73,7 @@ final public class Course: NSManagedObject, WriteableModel {
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
         model.courseColor = item.course_color
+        model.bannerImageDownloadURL = URL(string: item.banner_image_download_url ?? "")
         model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue

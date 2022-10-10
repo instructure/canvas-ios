@@ -41,7 +41,10 @@ class CoreWebViewTests: CoreTestCase {
 
     func testCustomUserAgentName() {
         let customeUserAgentName = "customUserAgent"
-        let view = CoreWebView(customUserAgentName: customeUserAgentName)
+        let view = CoreWebView(
+            customUserAgentName: customeUserAgentName,
+            pullToRefresh: .disabled
+        )
         XCTAssertEqual(view.configuration.applicationNameForUserAgent, customeUserAgentName)
     }
 

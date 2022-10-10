@@ -73,7 +73,7 @@ class CreateTodoViewControllerTests: CoreTestCase {
         XCTAssertEqual(vc.dateTitleLabel.text, "Date")
         XCTAssertEqual(vc.courseTitleLabel.text, "Course (optional)")
         XCTAssertEqual(vc.courseSelectionLabel.text, "None")
-        XCTAssertEqual(vc.dateTextField.text, vc.formattedDate)
+        XCTAssertEqual(vc.dateTextField.text, vc.selectedDate?.dateTimeString ?? "")
         XCTAssertEqual(vc.dateTitleLabel.text, "Date")
 
         XCTAssertEqual(vc.titleLabel.accessibilityLabel, "Title")

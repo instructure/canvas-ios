@@ -236,6 +236,9 @@ public extension Element {
     }
 }
 
+/**
+ This method blocks further test execution and runs the main runloop until the given predicate doesn't return true.
+ */
 public func waitUntil(
     _ timeout: TimeInterval = 10,
     shouldFail: Bool = false,

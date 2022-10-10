@@ -17,6 +17,8 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
 public class CreateTodoViewController: UIViewController, ErrorViewController {
 
@@ -32,17 +34,17 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
-    let datePicker = UIDatePicker()
     var createPlannerNote: Store<CreatePlannerNote>?
-    var selectedDate: Date = Clock.now
+    var selectedDate: Date? {
+        didSet {
+            self.dateTextField.text = selectedDate?.dateTimeString
+        }
+    }
     var selectedCourseName: String? {
         guard let c = selectedCourse else { return NSLocalizedString("None", bundle: .core, comment: "")  }
         return c.name
     }
     var selectedCourse: Course?
-    var formattedDate: String {
-        DateFormatter.localizedString(from: selectedDate, dateStyle: .medium, timeStyle: .short)
-    }
     var plannables: Store<GetPlannables>?
     private var keyboardListener: KeyboardTransitioning!
 
@@ -64,8 +66,9 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         descTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         descTextView.placeholder = NSLocalizedString("Description", bundle: .core, comment: "")
         descTextView.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
-        dateTextField.text = formattedDate
+        dateTextField.text = selectedDate?.dateTimeString
         dateTextField.accessibilityElementsHidden = true
+        dateTextField.textColor = .textDark
         selectDateButton.accessibilityLabel = NSLocalizedString("Date", bundle: .core, comment: "")
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDark
@@ -79,7 +82,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     }
 
     @objc func actionDone() {
-        let u = CreatePlannerNote(title: titleLabel.text, details: descTextView.text, todoDate: selectedDate, courseID: selectedCourse?.id)
+        let u = CreatePlannerNote(title: titleLabel.text, details: descTextView.text, todoDate: selectedDate ?? Clock.now, courseID: selectedCourse?.id)
         u.fetch(environment: env) { [weak self]  _, _, error in
             if let error = error {
                  self?.showError(error)
@@ -94,28 +97,9 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func showDatePicker(_ sender: Any) {
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.datePickerMode = .dateAndTime
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let done = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(didPickDate))
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancel = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelDatePicker))
-        toolbar.setItems([cancel, space, done], animated: false)
-
-        dateTextField.inputAccessoryView = toolbar
-        dateTextField.inputView = datePicker
-        dateTextField.becomeFirstResponder()
-    }
-
-    @objc func didPickDate() {
-        dateTextField.resignFirstResponder()
-        selectedDate = datePicker.date
-        dateTextField.text = formattedDate
-    }
-
-    @objc func cancelDatePicker() {
-        dateTextField.resignFirstResponder()
+        let dateBinding = Binding(get: { self.selectedDate },
+                                  set: { self.selectedDate = $0 })
+        CoreDatePicker.showDatePicker(for: dateBinding, from: self)
     }
 
     func refreshPlannables() {

@@ -189,7 +189,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         let pdf = controller.children.first as! PDFViewController
-        XCTAssertTrue(controller.pdfViewController(pdf, shouldShow: UIActivityViewController(activityItems: [""], applicationActivities: nil), animated: false))
+        XCTAssertTrue(controller.pdfViewController(pdf, shouldShow: CoreActivityViewController(activityItems: [""], applicationActivities: nil), animated: false))
         XCTAssertFalse(controller.pdfViewController(pdf, shouldShow: StampViewController(), animated: false))
 
         let items = [

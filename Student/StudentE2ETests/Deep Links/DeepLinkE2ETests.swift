@@ -24,9 +24,14 @@ class DeepLinkE2ETests: CoreUITestCase {
         super.setUp()
 
         Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.pages.tap()
+        Dashboard.courseCard(id: "263").tapUntil {
+            CourseNavigation.pages.exists()
+        }
+        CourseNavigation.pages.tapUntil {
+            PageList.page(index: 0).exists()
+        }
         PageList.page(index: 0).tap()
+        sleep(1)
     }
 
     func testDeepLinkToGroupAnnouncements() {

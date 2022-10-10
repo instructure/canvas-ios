@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import Core
+import SwiftUI
 
 struct RubricAssessor: View {
     let assignment: Assignment
@@ -45,21 +45,22 @@ struct RubricAssessor: View {
             Spacer()
 
             if isSaving {
-                CircleProgress(size: 24)
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle(size: 24))
             }
         }
-            .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, 16).padding(.vertical, 12)
 
         VStack(spacing: 12) {
             ForEach(assignment.rubric ?? [], id: \.id) { criteria in
                 RubricCriteriaAssessor(criteria: criteria)
             }
         }
-            .multilineTextAlignment(.leading)
-            .padding(.horizontal, 16)
-            .onChange(of: assessments) { _ in
-                rubricAssessmentDidChange()
-            }
+        .multilineTextAlignment(.leading)
+        .padding(.horizontal, 16)
+        .onChange(of: assessments) { _ in
+            rubricAssessmentDidChange()
+        }
     }
 
     private func RubricCriteriaAssessor(criteria: Rubric) -> some View { VStack(alignment: .leading, spacing: 0) {
@@ -92,78 +93,125 @@ struct RubricAssessor: View {
                     }), tooltip: tooltip, containerFrame: containerFrameInGlobal) {
                         value
                     }
-                        .accessibility(value: value)
-                        .accessibility(label: rating.desc.isEmpty ? value : Text(rating.desc))
-                        .alignmentGuide(.leading, computeValue: leading)
-                        .alignmentGuide(.top, computeValue: top)
+                    .accessibility(value: value)
+                    .accessibility(label: rating.desc.isEmpty ? value : Text(rating.desc))
+                    .alignmentGuide(.leading, computeValue: leading)
+                    .alignmentGuide(.top, computeValue: top)
                 }
             }
+            customGradeToggle(
+                criteria: criteria,
+                assessment: assessment,
+                leading: leading,
+                top: top
+            )
+        }
+        .padding(.top, 8)
 
-            let customGrade = (assignment.freeFormCriterionCommentsOnRubric || assessment?.rating_id == nil || assessment?.rating_id == "")
-                ? assessment?.points : nil
-            CircleToggle(isOn: Binding(get: { customGrade != nil }, set: { newValue in
+        let showAdd = assignment.freeFormCriterionCommentsOnRubric && assessment?.comments?.isEmpty != false
+        let showLong = criteria.longDesc.isEmpty == false
+        if showAdd || showLong {
+            addButtons(
+                criteria: criteria,
+                assessment: assessment,
+                showAdd: showAdd,
+                showLong: showLong
+            )
+        }
+    }
+    }
+
+    private func customGradeToggle(
+        criteria: Rubric,
+        assessment: APIRubricAssessment?,
+        leading: @escaping (ViewDimensions) -> CGFloat,
+        top: @escaping (ViewDimensions) -> CGFloat
+    ) -> some View {
+        let customGrade = (
+            assignment.freeFormCriterionCommentsOnRubric ||
+                assessment?.rating_id == nil ||
+                assessment?.rating_id == ""
+        )
+            ? assessment?.points : nil
+
+        let binding = Binding(
+            get: { customGrade != nil },
+            set: { newValue in
                 if newValue {
                     promptCustomGrade(criteria, assessment: assessment)
                 } else {
                     assessments[criteria.id] = APIRubricAssessment(comments: assessment?.comments)
                 }
-            })) {
-                if let grade = customGrade {
-                    Text(grade)
-                } else {
-                    Image.addSolid
-                }
             }
-                .accessibility(label: Text("Customize Grade"))
-                .alignmentGuide(.leading, computeValue: leading)
-                .alignmentGuide(.top, computeValue: top)
-        }
-            .padding(.top, 8)
+        )
 
-        let showAdd = assignment.freeFormCriterionCommentsOnRubric && assessment?.comments?.isEmpty != false
-        let showLong = criteria.longDesc.isEmpty == false
-        if showAdd || showLong {
-            HStack(spacing: 6) {
-                if showAdd {
-                    Button(action: { withAnimation(.default) {
-                        comment = ""
-                        commentID = criteria.id
-                    } }, label: {
+        return CircleToggle(isOn: binding) {
+            if let grade = customGrade {
+                Text(grade)
+            } else {
+                Image.addSolid
+            }
+        }
+        .accessibility(label: Text("Customize Grade"))
+        .alignmentGuide(.leading, computeValue: leading)
+        .alignmentGuide(.top, computeValue: top)
+    }
+
+    private func addButtons(
+        criteria: Rubric,
+        assessment: APIRubricAssessment?,
+        showAdd: Bool,
+        showLong: Bool
+    ) -> some View {
+        HStack(spacing: 6) {
+            if showAdd {
+                Button(
+                    action: {
+                        withAnimation(.default) {
+                            comment = ""
+                            commentID = criteria.id
+                        }
+                    },
+                    label: {
                         Text("Add Comment")
-                            .font(.medium14).foregroundColor(.accentColor)
-                    })
-                        .identifier("SpeedGrader.Rubric.\(criteria.id).addCommentButton")
-                }
-                if showAdd, showLong {
-                    Text(verbatim: "•")
-                        .font(.regular12).foregroundColor(.textDark)
-                }
-                if showLong {
-                    Button(action: {
+                            .font(.medium14)
+                            .foregroundColor(.accentColor)
+                    }
+                )
+                .identifier("SpeedGrader.Rubric.\(criteria.id).addCommentButton")
+            }
+            if showAdd, showLong {
+                Text(verbatim: "•")
+                    .font(.regular12)
+                    .foregroundColor(.textDark)
+            }
+            if showLong {
+                Button(
+                    action: {
                         let web = CoreWebViewController()
                         web.title = criteria.desc
                         web.webView.loadHTMLString(criteria.longDesc)
                         web.addDoneButton(side: .right)
                         env.router.show(web, from: controller, options: .modal(embedInNav: true))
-                    }, label: {
+                    },
+                    label: {
                         Text("View Long Description")
-                            .font(.medium14).foregroundColor(.accentColor)
-                    })
-                }
+                            .font(.medium14)
+                            .foregroundColor(.accentColor)
+                    }
+                )
             }
-                .padding(.top, 8)
         }
-
-        if let comments = assessment?.comments, !comments.isEmpty {
-            freeFormRubricCommentBubbleWithEditButton(comments, criteriaID: criteria.id)
-        }
-    } }
+        .padding(.top, 8)
+    }
 
     private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
         HStack {
             Text(comment)
-                .font(.regular14).foregroundColor(.textDarkest)
-                .padding(.horizontal, 12).padding(.vertical, 8)
+                .font(.regular14)
+                .foregroundColor(.textDarkest)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
                 .background(CommentBackground()
                     .fill(Color.backgroundLight)
                 )
@@ -176,7 +224,7 @@ struct RubricAssessor: View {
                     .font(.medium14).foregroundColor(.accentColor)
             })
         }
-            .padding(.top, 8)
+        .padding(.top, 8)
     }
 
     private struct CircleToggle<Content: View>: View {
@@ -207,7 +255,7 @@ struct RubricAssessor: View {
                     RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium) :
                     nil
                 )
-                .accessibility(addTraits: isOn ? [ .isButton, .isSelected ] : .isButton)
+                .accessibility(addTraits: isOn ? [.isButton, .isSelected] : .isButton)
                 .onTapGesture { isOn.toggle() }
                 .gesture(LongPressGesture(minimumDuration: .infinity)
                     .updating($showTooltip) { _, state, transation in
@@ -252,9 +300,8 @@ struct RubricAssessor: View {
                             // Alignment must match the guides we use above otherwise they don't get called
                             .frame(width: maxWidth, height: maxHeight, alignment: .bottomLeading)
                     }
-                        .transition(.scale),
-                    alignment: .bottomLeading
-                )
+                    .transition(.scale),
+                    alignment: .bottomLeading)
         }
     }
 

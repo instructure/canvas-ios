@@ -41,13 +41,24 @@ struct SubmissionViewer: View {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url, customUserAgentName: UserAgent.safariLTI.description, invertColorsInDarkMode: true).onLink(openInSafari)
+                WebView(
+                    url: url,
+                    customUserAgentName: UserAgent.safariLTI.description,
+                    pullToRefresh: .disabled,
+                    invertColorsInDarkMode: true
+                )
+                .onLink(openInSafari)
             }
         case .discussion_topic:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url, customUserAgentName: nil, invertColorsInDarkMode: true)
-                    .onLink(handleLink)
-                    .onNavigationFinished(handleRefresh)
+                WebView(
+                    url: url,
+                    customUserAgentName: nil,
+                    pullToRefresh: .disabled,
+                    invertColorsInDarkMode: true
+                )
+                .onLink(handleLink)
+                .onNavigationFinished(handleRefresh)
             }
         case .online_quiz:
             if assignment.anonymousSubmissions == true {
@@ -61,9 +72,14 @@ struct SubmissionViewer: View {
                 .multilineTextAlignment(.center)
             } else {
                 WebSession(url: submission.previewUrl) { url in
-                    WebView(url: url, customUserAgentName: nil, invertColorsInDarkMode: true)
-                        .onLink(handleLink)
-                        .onNavigationFinished(handleRefresh)
+                    WebView(
+                        url: url,
+                        customUserAgentName: nil,
+                        pullToRefresh: .disabled,
+                        invertColorsInDarkMode: true
+                    )
+                    .onLink(handleLink)
+                    .onNavigationFinished(handleRefresh)
                 }
             }
         case .media_recording:
@@ -101,7 +117,8 @@ struct SubmissionViewer: View {
                 .padding()
                 .frame(maxWidth: .infinity)
             case nil:
-                CircleProgress()
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .onAppear {
                         studentAnnotationViewModel.viewDidAppear()

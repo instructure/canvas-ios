@@ -27,7 +27,9 @@ public struct DashboardCardView: View {
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
     @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
+    @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardListViewModel()
 
+    @Environment(\.scenePhase) var scenePhase
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -39,7 +41,7 @@ public struct DashboardCardView: View {
     private let verticalSpacing: CGFloat = 16
 
     public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
-        self.cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
+        cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
         colors = env.subscribe(GetCustomColors())
@@ -50,14 +52,15 @@ public struct DashboardCardView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            ScrollView {
+            RefreshableScrollView {
                 VStack(spacing: 0) {
-                    CircleRefresh { endRefreshing in
-                        refresh(force: true, onComplete: endRefreshing)
-                    }
+                    fileUploadNotificationCards()
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
                 .padding(.horizontal, verticalSpacing)
+            }
+            refreshAction: { onComplete in
+                refresh(force: true, onComplete: onComplete)
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -66,10 +69,13 @@ public struct DashboardCardView: View {
         .onAppear {
             refresh(force: false) {
                 let env = AppEnvironment.shared
-                if env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false {
+                if env.userDefaults?.interfaceStyle == nil, env.currentSession?.isFakeStudent == false {
                     controller.value.showThemeSelectorAlert()
                 }
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            fileUploadNotificationCardViewModel.sceneDidBecomeActive.send(())
         }
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
             showGrade = env.userDefaults?.showGradesOnDashboard == true
@@ -108,6 +114,17 @@ public struct DashboardCardView: View {
         }
     }
 
+    @ViewBuilder func fileUploadNotificationCards() -> some View {
+        ForEach(fileUploadNotificationCardViewModel.items) { viewModel in
+            if !viewModel.isHiddenByUser {
+                FileUploadNotificationCard(viewModel: viewModel)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, verticalSpacing)
+                    .transition(.move(edge: .top))
+            }
+        }
+    }
+
     @ViewBuilder func list(_ size: CGSize) -> some View {
         ForEach(conferencesViewModel.conferences, id: \.entity.id) { conference in
             ConferenceCard(conference: conference.entity, contextName: conference.contextName)
@@ -132,8 +149,11 @@ public struct DashboardCardView: View {
     @ViewBuilder func courseCards(_ size: CGSize) -> some View {
         switch cards.state {
         case .loading:
-            ZStack { CircleProgress() }
-                .frame(minWidth: size.width, minHeight: size.height)
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+            }
+            .frame(minWidth: size.width, minHeight: size.height)
         case .data(let cards):
             coursesHeader(width: size.width)
 

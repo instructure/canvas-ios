@@ -23,8 +23,9 @@ class NewQuizzesE2ETests: CoreUITestCase {
     func testNewQuizzesE2E() {
         Dashboard.courseCard(id: "399").waitToExist()
         Dashboard.courseCard(id: "399").tap()
+        CourseNavigation.quizzes.waitToExist()
         CourseNavigation.quizzes.tap()
-        app.find(label: "Read-only Quiz").tap()
+        app.find(label: "Read-only Quiz").waitToExist().tap()
         QuizDetails.launchExternalToolButton.tap()
         app.find(labelContaining: "Return").waitToExist()
         app.find(labelContaining: "Toolbar").waitToExist()

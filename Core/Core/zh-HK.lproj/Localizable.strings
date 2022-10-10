@@ -74,6 +74,9 @@
 "86,5%" = "86.5%";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "描述為必填";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -372,6 +375,9 @@
 
 /* No comment provided by engineer. */
 "Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Cancel Submission?" = "取消提交項目？";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas 指南";
@@ -809,6 +815,9 @@
 "Error" = "錯誤";
 
 /* No comment provided by engineer. */
+"Error Details" = "錯誤詳細資料";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "儲存錯誤。點選以重試。";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "檔案";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "檔案 (fileName) 大小（大小）。";
 
 /* No comment provided by engineer. */
 "File Details" = "檔案詳情";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "收件匣";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "不相容的檔案類型";
 
 /* No comment provided by engineer. */
 "Incomplete" = "未完成";
@@ -1358,6 +1373,9 @@
 "Nickname" = "暱稱";
 
 /* No comment provided by engineer. */
+"No" = "否";
+
+/* No comment provided by engineer. */
 "No Announcements" = "沒有通告";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "您的其中一個提交項目仍在上傳中。登出可能會中斷上傳。\n是否確定登出？";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "上傳一個或多個檔案失敗。檢查您的網際網路連線並重試提交。";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "只有持有連結的學生方可使用";
@@ -1718,6 +1739,12 @@
 "Remove File" = "移除檔案";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "從提交項目中移除檔案。";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "從清單中移除？";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "已移除%1$@";
 
 /* No comment provided by engineer. */
@@ -1835,7 +1862,7 @@
 "Select Course" = "選擇課程";
 
 /* No comment provided by engineer. */
-"Select grading period" = "選擇評分期";
+"Select Grading Period" = "選擇評分期";
 
 /* No comment provided by engineer. */
 "Select Impact" = "選擇影響的種類";
@@ -1967,10 +1994,22 @@
 "Subject" = "主題";
 
 /* No comment provided by engineer. */
+"Submission" = "提交項目";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "提交項目 %1$@，%2$@，%3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "提交項目評論";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "提交項目失敗";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "提交項目因未知的錯誤失敗。";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "提交項目成功！";
 
 /* No comment provided by engineer. */
 "Submission Types" = "提交項目類型";
@@ -2019,6 +2058,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "拍攝照片";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "點選此處取得詳細資料";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "點按此處獲取支援。";
@@ -2159,6 +2201,9 @@
 "This page has been disabled for this course." = "已針對此課程停用此頁面。";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "這將取消並刪除您的上傳。";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "這會移除截止日期和所有相關獲配人。";
 
 /* No comment provided by engineer. */
@@ -2237,10 +2282,19 @@
 "Updating" = "正在更新";
 
 /* No comment provided by engineer. */
+"Upload completed." = "完成上傳。";
+
+/* No comment provided by engineer. */
+"Upload failed." = "上傳失敗。";
+
+/* No comment provided by engineer. */
 "Upload File" = "上傳檔案";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "正在上傳";
+
+/* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "上傳進度 (Int(100 * progress))%";
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "上傳 %1$@ 在 %2$@";
@@ -2394,6 +2448,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "您的電子郵件";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "成功提交您的檔案。\n祝您愉快！";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "您的待辦清單為空。是時候充一充電。";

@@ -198,6 +198,8 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.videoSolid, UIImage(named: "videoSolid", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.warningLine, UIImage(named: "warningLine", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.warningSolid, UIImage(named: "warningSolid", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.warningBorderlessLine, UIImage(named: "warningBorderlessLine", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.warningBorderlessSolid, UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.xLine, UIImage(named: "xLine", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.xSolid, UIImage(named: "xSolid", in: .core, compatibleWith: nil))
 
@@ -240,6 +242,7 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.k5schedule, UIImage(named: "k5schedule", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.logout, UIImage(named: "logout", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.qrCode, UIImage(named: "qrCode", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.share, UIImage(named: "share", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTab, UIImage(named: "todoTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTabActive, UIImage(named: "todoTabActive", in: .core, compatibleWith: nil))
     }
@@ -417,6 +420,8 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(Image.videoSolid, Image("videoSolid", bundle: .core))
         XCTAssertEqual(Image.warningLine, Image("warningLine", bundle: .core))
         XCTAssertEqual(Image.warningSolid, Image("warningSolid", bundle: .core))
+        XCTAssertEqual(Image.warningBorderlessLine, Image("warningBorderlessLine", bundle: .core))
+        XCTAssertEqual(Image.warningBorderlessSolid, Image("warningBorderlessSolid", bundle: .core))
         XCTAssertEqual(Image.xLine, Image("xLine", bundle: .core))
         XCTAssertEqual(Image.xSolid, Image("xSolid", bundle: .core))
     }

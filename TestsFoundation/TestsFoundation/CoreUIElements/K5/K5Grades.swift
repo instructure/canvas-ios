@@ -20,8 +20,16 @@ import XCTest
 
 public enum K5Grades: ElementWrapper {
 
-    public static var gradingPeriodSelectorCurrent: Element {
-        app.find(label: "Select, Current Grading Period")
+    public static var gradingPeriodSelectorClosed: Element {
+        app.find(label: "Select Grading Period, Closed")
+    }
+
+    public static var gradingPeriodSelectorOpen: Element {
+        app.find(label: "Select Grading Period, Open")
+    }
+
+    public static var currentGradingPeriod: Element {
+        app.find(label: "Current Grading Period")
     }
 }
 

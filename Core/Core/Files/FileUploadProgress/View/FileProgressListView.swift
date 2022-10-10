@@ -22,6 +22,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: ViewModel
+    @State private var confettiVisible = false
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -38,12 +39,12 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                         FileProgressItemView(viewModel: $0)
                         Divider()
                     }
+                    .animation(.default)
                     Spacer()
                 }
             }
         }
         .background(Color.backgroundLightest)
-        .animation(.default)
         .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
         .navigationTitle(viewModel.title)
         .onReceive(viewModel.presentDialog) {
@@ -74,25 +75,46 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
                 .padding(40)
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .accessibilityElement(children: .combine)
-            LottieView(name: "confetti", loopMode: .playOnce)
-                .allowsHitTesting(false)
-                .frame(width: geometry.size.width, height: geometry.size.height)
+
+            if confettiVisible {
+                LottieView(name: "confetti", loopMode: .playOnce)
+                    .allowsHitTesting(false)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.confettiVisible = true
+                let feedback = UIImpactFeedbackGenerator(style: .rigid)
+                feedback.impactOccurred()
+            }
+        }
+        .onDisappear {
+            confettiVisible = false
         }
     }
 
     @ViewBuilder
     private var statusBanner: some View {
         switch viewModel.state {
-        case .waiting, .success:
+        case .waiting:
+            VStack(spacing: 15) {
+                Text("Preparing Files For Upload")
+                    .font(.regular14)
+                    .foregroundColor(.textDarkest)
+                progressView()
+            }
+            .padding(Typography.Spacings.textCellIconLeadingPadding)
+            Divider()
+        case .success:
             SwiftUI.EmptyView()
         case .uploading(let progressText, let progress):
             VStack(spacing: 15) {
                 Text(progressText)
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
-                ProgressView(value: progress)
-                    .foregroundColor(Color(Brand.shared.primary))
-                    .background(Color(Brand.shared.primary).opacity(0.2))
+                    .animation(.none)
+                progressView(value: progress)
             }
             .padding(Typography.Spacings.textCellIconLeadingPadding)
             Divider()
@@ -117,6 +139,20 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             .padding(.bottom, 16)
             .accessibilityElement(children: .combine)
             Divider()
+        }
+    }
+
+    @ViewBuilder private func progressView(value: Float? = nil) -> some View {
+        if let progress = value {
+            ProgressView(value: progress)
+                .progressViewStyle(
+                    .determinateBar()
+                )
+        } else {
+            ProgressView()
+                .progressViewStyle(
+                    .indeterminateBar()
+                )
         }
     }
 

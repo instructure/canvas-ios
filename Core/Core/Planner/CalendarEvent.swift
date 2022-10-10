@@ -35,6 +35,7 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
     @NSManaged public var startAt: Date?
     @NSManaged public var endAt: Date?
     @NSManaged public var isAllDay: Bool
+    @NSManaged public var isHidden: Bool
     @NSManaged public var typeRaw: String
     @NSManaged public var htmlURL: URL?
     @NSManaged public var contextRaw: String
@@ -73,6 +74,7 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
         model.startAt = item.start_at
         model.endAt = item.end_at
         model.isAllDay = item.all_day
+        model.isHidden = item.isHidden
         model.type = item.type
         model.htmlURL = item.html_url
         model.contextRaw = item.context_code

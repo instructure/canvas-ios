@@ -333,9 +333,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>El tipus de fitxer %2$@ de l’entrega és incompatible amb l'activitat seleccionada.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>Els tipus de fitxers %2$@ de l’entrega són incompatibles amb l'activitat seleccionada.</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -413,9 +413,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>S’ha penjat correctament el fitxer, però no s’ha pogut fer l’entrega a l’activitat.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>S’han penjat correctament els fitxers, però no s’ha pogut fer l’entrega a l’activitat.</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>
@@ -445,9 +445,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>Feu servir %2$@ extensió de fitxer.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>Feu servir %2$@ extensions de fitxer.</string>
 		</dict>
 	</dict>
 </dict>

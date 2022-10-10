@@ -32,7 +32,8 @@ public struct CourseSettingsView: View {
         GeometryReader { geometry in
             switch viewModel.state {
             case .loading:
-                CircleProgress()
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             case .ready, .saving:
                 editor(width: geometry.size.width)

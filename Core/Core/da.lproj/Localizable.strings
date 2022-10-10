@@ -74,6 +74,9 @@
 "86,5%" = "86,5 %";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "En beskrivelse er påkrævet";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -372,6 +375,9 @@
 
 /* No comment provided by engineer. */
 "Cancel" = "Annullér";
+
+/* No comment provided by engineer. */
+"Cancel Submission?" = "Annuller indsendelse?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-vejledningerne";
@@ -809,6 +815,9 @@
 "Error" = "Fejl";
 
 /* No comment provided by engineer. */
+"Error Details" = "Oplysninger om fejl";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Fejl da der skulle gemmes. Tryk for at prøve igen.";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fil";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Filstørrelse (fileName) (størrelse).";
 
 /* No comment provided by engineer. */
 "File Details" = "Filoplysninger";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Indbakke";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Inkompatibel filtype";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ufuldstændig";
@@ -1358,6 +1373,9 @@
 "Nickname" = "Alias";
 
 /* No comment provided by engineer. */
+"No" = "Nej";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Ingen beskeder";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "En af dine afleveringer uploades stadig. Hvis du logger ud, kan processen blive afbrudt.\nEr du sikker på, du vil logge af?";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "En eller flere filer kunne ikke uploades. Kontroller din internetforbindelse, og prøv igen for at aflevere.";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Kun tilgængeligt for studerende med link";
@@ -1718,6 +1739,12 @@
 "Remove File" = "Fjern fil";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "Fjern fil fra indsendelse.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Fjern fra liste?";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Fjernet %1$@";
 
 /* No comment provided by engineer. */
@@ -1835,7 +1862,7 @@
 "Select Course" = "Vælg fag";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Vælg karakterperiode";
+"Select Grading Period" = "Vælg karakterperiode";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Vælg virkning";
@@ -1967,10 +1994,22 @@
 "Subject" = "Emne";
 
 /* No comment provided by engineer. */
+"Submission" = "Aflevering";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Aflevering %1$@, %2$@ %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Afleveringskommentar";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Aflevering mislykkedes";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Indsendelse mislykkedes på grund af ukendt fejl.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Aflevering lykkedes!";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Afleveringsformer";
@@ -2019,6 +2058,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Tag foto";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Tryk her for at få nærmere oplysninger";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tryk her for at få hjælp.";
@@ -2159,6 +2201,9 @@
 "This page has been disabled for this course." = "Denne side er blevet deaktiveret for dette fag.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Dette annullerer og sletter din upload.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Dette fjerner afleveringsdatoen og alle af de tilknyttede assignatarer.";
 
 /* No comment provided by engineer. */
@@ -2237,10 +2282,19 @@
 "Updating" = "Opdaterer";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Overførsel færdig.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Upload mislykkedes.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Overfør fil";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Overførsel i gang";
+
+/* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Upload i gang (Int(100 * fremskridt))%";
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uploaden af %1$@ er på %2$@";
@@ -2394,6 +2448,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Din e-mail";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Din fil blev indsendt.\nHav en god dag!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Din opgaveliste er tom. Tid til at tage den med ro.";

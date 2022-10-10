@@ -22,7 +22,7 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
     public var courseID = ""
     public let env = AppEnvironment.shared
     public let refreshControl = CircleRefreshControl()
-    public var webView = CoreWebView()
+    public var webView = CoreWebView(pullToRefresh: .disabled)
 
     public lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()

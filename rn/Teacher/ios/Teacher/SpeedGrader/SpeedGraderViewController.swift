@@ -117,7 +117,8 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
     }
 
     lazy var loadingView: UIViewController = CoreHostingController(
-        CircleProgress()
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
             .accessibility(label: Text("Loading"))
             .identifier("SpeedGrader.spinner")
     )

@@ -74,6 +74,9 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "ต้องระบุรายละเอียด";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -372,6 +375,9 @@
 
 /* No comment provided by engineer. */
 "Cancel" = "ยกเลิก";
+
+/* No comment provided by engineer. */
+"Cancel Submission?" = "ยกเลิกการจัดส่งหรือไม่";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "คู่มือ Canvas";
@@ -809,6 +815,9 @@
 "Error" = "ข้อผิดพลาด";
 
 /* No comment provided by engineer. */
+"Error Details" = "รายละเอียดข้อผิดพลาด";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "มีข้อผิดพลาดในการบันทึก กดเลือกเพื่อลองใหม่";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "ไฟล์";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "ขนาดไฟล์ (fileName) (ชนาด)";
 
 /* No comment provided by engineer. */
 "File Details" = "รายละเอียดไฟล์";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "กล่องจดหมาย";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "ประเภทไฟล์ไม่รองรับ";
 
 /* No comment provided by engineer. */
 "Incomplete" = "ไม่เสร็จสิ้น";
@@ -1358,6 +1373,9 @@
 "Nickname" = "ชื่อเล่น";
 
 /* No comment provided by engineer. */
+"No" = "ไม่";
+
+/* No comment provided by engineer. */
 "No Announcements" = "ไม่มีประกาศ";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "ผลงานจัดส่งบางส่วนของคุณยังอัพโหลดอยู่ การล็อกเอาท์อาจส่งผลกระทบต่อการทำงาน\nแน่ใจว่าต้องการล็อกเอาท์หรือไม่";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "ไฟล์บางส่วนไม่สามารถอัพโหลดได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองส่งใหม่อีกครั้ง";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "เฉพาะผู้เรียนที่มีลิงค์เท่านั้น";
@@ -1718,6 +1739,12 @@
 "Remove File" = "ลบไฟล์";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "ลบไฟล์จากการจัดส่ง";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "ลบจากรายการหรือไม่";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "ลบแล้ว %1$@";
 
 /* No comment provided by engineer. */
@@ -1835,7 +1862,7 @@
 "Select Course" = "เลือกบทเรียน";
 
 /* No comment provided by engineer. */
-"Select grading period" = "เลือกระยะเวลาการให้เกรด";
+"Select Grading Period" = "เลือกระยะเวลาการให้เกรด";
 
 /* No comment provided by engineer. */
 "Select Impact" = "เลือกผลกระทบ";
@@ -1967,10 +1994,22 @@
 "Subject" = "วิชา";
 
 /* No comment provided by engineer. */
+"Submission" = "ผลงานจัดส่ง";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "ผลงานจัดส่ง %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "ความเห็นผลงานจัดส่ง";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "จัดส่งล้มเหลว";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "การจัดส่งล้มเหลวเนื่องจากข้อผิดพลาดที่ไม่รู้จัก";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "จัดส่งเสร็จสิ้น!";
 
 /* No comment provided by engineer. */
 "Submission Types" = "ประเภทการจัดส่ง";
@@ -2019,6 +2058,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "ถ่ายภาพ";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "กดเลือกที่นี่เพื่อดูรายละเอียด";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "กดเลือกที่นี่เพื่อรับความช่วยเหลือ";
@@ -2159,6 +2201,9 @@
 "This page has been disabled for this course." = "เพจนี้ถูกปิดใช้งานสำหรับบทเรียนนี้";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "นี่จะเป็นการยกเลิกและลบผลงานอัพโหลดของคุณ";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "นี่เป็นการลบวันครบกำหนดและผู้รับมอบที่เกี่ยวข้องทั้งหมด";
 
 /* No comment provided by engineer. */
@@ -2237,10 +2282,19 @@
 "Updating" = "กำลังอัพเดต";
 
 /* No comment provided by engineer. */
+"Upload completed." = "อัพโหลดเสร็จสิ้น";
+
+/* No comment provided by engineer. */
+"Upload failed." = "อัพโหลดล้มเหลว";
+
+/* No comment provided by engineer. */
 "Upload File" = "อัพโหลดไฟล์";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "กำลังอัพโหลด";
+
+/* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "กำลังอัพโหลด (Int(100 * progress))%";
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "การอัพโหลด %1$@ อยู่ที่ %2$@";
@@ -2394,6 +2448,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "อีเมลของคุณ";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "จัดส่งไฟล์ของคุณเสร็จสิ้น\nขอให้มีความสุข!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "รายการสิ่งที่ต้องทำของคุณว่างเปล่า ถึงเวลารีชาร์จแล้ว";

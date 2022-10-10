@@ -74,6 +74,9 @@
 "86,5%" = "86,5 %";
 
 /* No comment provided by engineer. */
+"99+" = "99+";
+
+/* No comment provided by engineer. */
 "A description is required" = "Zahtevan je opis.";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -372,6 +375,9 @@
 
 /* No comment provided by engineer. */
 "Cancel" = "Prekliči";
+
+/* No comment provided by engineer. */
+"Cancel Submission?" = "Želite preklicati oddajo?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Vodniki po sistemu Canvas";
@@ -809,6 +815,9 @@
 "Error" = "Napaka";
 
 /* No comment provided by engineer. */
+"Error Details" = "Podrobnosti o napaki";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Napaka pri shranjevanju Tapnite za ponovni poskus.";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Datoteka";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Velikost datoteke (fileName) (velikost).";
 
 /* No comment provided by engineer. */
 "File Details" = "Podatki o datoteki";
@@ -1050,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Pošta";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Nezdružljiva vrsta datoteke";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Nezaključeno";
@@ -1358,6 +1373,9 @@
 "Nickname" = "Vzdevek";
 
 /* No comment provided by engineer. */
+"No" = "Ne";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Brez obvestil";
 
 /* No comment provided by engineer. */
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Ena vaših oddaj se še nalaga. Odjava bi lahko ta postopek prekinila.\nAli ste prepričani, da se želite odjaviti?";
+
+/* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Nalaganje ene ali več datotek ni uspelo. Preverite internetno povezavo in poskusite poslati znova.";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Na voljo je le študentom s povezavo";
@@ -1718,6 +1739,12 @@
 "Remove File" = "Odstrani datoteko";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "Odstrani datoteko iz oddaje.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Želite to odstraniti s seznama?";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Odstranjeno %1$@";
 
 /* No comment provided by engineer. */
@@ -1835,7 +1862,7 @@
 "Select Course" = "Izberi predmet";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Izberi ocenjevalno obdobje";
+"Select Grading Period" = "Izberi ocenjevalno obdobje";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Izberi vpliv";
@@ -1967,10 +1994,22 @@
 "Subject" = "Kratek opis predmeta";
 
 /* No comment provided by engineer. */
+"Submission" = "Oddaja";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Oddaja %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Komentar k oddaji";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Oddaja ni uspela.";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Oddaja ni uspela zaradi neznane napake.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Oddaja je bila uspešna!";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Vrste oddaj";
@@ -2019,6 +2058,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Posnemi fotografijo";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Za pomoč tapnite tukaj.";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Za pomoč tapnite tukaj.";
@@ -2159,6 +2201,9 @@
 "This page has been disabled for this course." = "Ta stran je za ta predmet onemogočena.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "S tem boste preklicali in izbrisali nalaganje.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "S tem bodo odstranjeni rok in vsi povezani prevzemniki.";
 
 /* No comment provided by engineer. */
@@ -2237,10 +2282,19 @@
 "Updating" = "Posodabljanje";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Nalaganje je zaključeno.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Nalaganje ni uspelo.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Naloži datoteko";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Poteka nalaganje";
+
+/* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Nalaganje je v teku (Int(napredek 100 *))%";
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Nalaganje %1$@ je ob %2$@";
@@ -2394,6 +2448,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Vaš e-poštni naslov";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Vaša datoteka je uspešno oddana.\nLep dan vam želimo.";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Čakajoča opravila je prazen. Čas za polnjenje z energijo.";

@@ -64,7 +64,10 @@ struct URLSubmissionViewer: View {
                         })
                             .padding(.horizontal, -16)
                     } else {
-                        CircleProgress().padding(32).onAppear {
+                        ProgressView()
+                            .progressViewStyle(.indeterminateCircle())
+                            .padding(32)
+                            .onAppear {
                             env.api.makeRequest(url) { (data, _, error) in
                                 image = data.flatMap { UIImage(data: $0) }
                                 self.error = error

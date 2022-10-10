@@ -13,11 +13,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Aktuell ausgeblendete Note</string>
+			<string>%d Kürzlich ausgeblendete Note</string>
 			<key>other</key>
-			<string>%d Aktuell ausgeblendete Noten</string>
+			<string>%d Kürzlich ausgeblendete Noten</string>
 			<key>zero</key>
-			<string>%d Aktuell ausgeblendete Noten</string>
+			<string>%d Kürzlich ausgeblendete Noten</string>
 		</dict>
 	</dict>
 	<key>grades_currently_posted</key>
@@ -31,11 +31,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Aktuell gepostete Note</string>
+			<string>%d Kürzlich veröffentlichte Note</string>
 			<key>other</key>
-			<string>%d Aktuell gepostete Noten</string>
+			<string>%d Kürzlich veröffentlichte Noten</string>
 			<key>zero</key>
-			<string>%d Aktuell gepostete Noten</string>
+			<string>%d Kürzlich veröffentlichte Noten</string>
 		</dict>
 	</dict>
 </dict>

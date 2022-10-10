@@ -29,51 +29,57 @@ public struct CourseListView: View {
     }
 
     public var body: some View {
-        GeometryReader { geometry in ScrollView { VStack(spacing: 0) {
-            CircleRefresh { endRefreshing in
+        GeometryReader { geometry in
+            RefreshableScrollView {
+                VStack(spacing: 0) {
+                    let width = geometry.size.width
+                    let height = geometry.size.height
+                    switch viewModel.state {
+                    case .loading:
+                        ZStack {
+                            ProgressView()
+                                .progressViewStyle(.indeterminateCircle())
+                        }
+                        .frame(minWidth: width, minHeight: height)
+                    case let .data(sections):
+                        ScrollViewReader { scrollView in
+                            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+                                SearchBar(
+                                    text: $viewModel.filter.animation(.default),
+                                    placeholder: NSLocalizedString("Search", comment: ""),
+                                    onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .bottom) } }
+                                )
+                                Divider().id(0) // target to scroll passed search
+                                list(height, sections: sections)
+                            }
+                            .onAppear { scrollView.scrollTo(0, anchor: .bottom) }
+                        }
+                    case .empty:
+                        EmptyPanda(.Teacher,
+                                   title: Text("No Courses", bundle: .core),
+                                   message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core))
+                        .frame(minWidth: width, minHeight: height)
+                    case let .error(message):
+                        ZStack {
+                            Text(message)
+                                .font(.regular16).foregroundColor(.textDanger)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(minWidth: width, minHeight: height)
+                    }
+                }
+            } refreshAction: { endRefreshing in
                 viewModel.refresh(completion: endRefreshing)
             }
-            let width = geometry.size.width
-            let height = geometry.size.height
-            switch viewModel.state {
-            case .loading:
-                ZStack { CircleProgress() }
-                    .frame(minWidth: width, minHeight: height)
-            case .data(let sections):
-                ScrollViewReader { scrollView in
-                    LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                        SearchBar(
-                            text: $viewModel.filter.animation(.default),
-                            placeholder: NSLocalizedString("Search", comment: ""),
-                            onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .top) } }
-                        )
-                        Divider().id(0) // target to scroll passed search
-                        list(height, sections: sections)
-                    }
-                        .onAppear { scrollView.scrollTo(0, anchor: .top) }
-                }
-            case .empty:
-                EmptyPanda(.Teacher,
-                    title: Text("No Courses", bundle: .core),
-                    message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core)
-                )
-                    .frame(minWidth: width, minHeight: height)
-            case .error(let message):
-                ZStack {
-                    Text(message)
-                        .font(.regular16).foregroundColor(.textDanger)
-                        .multilineTextAlignment(.center)
-                }
-                    .frame(minWidth: width, minHeight: height)
-            }
-        } } }
-            .avoidKeyboardArea()
-            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
 
-            .navigationBarStyle(.global)
-            .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
+        }
+        .avoidKeyboardArea()
+        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
 
-            .onAppear { viewModel.viewDidAppear() }
+        .navigationBarStyle(.global)
+        .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
+
+        .onAppear { viewModel.viewDidAppear() }
     }
 
     @ViewBuilder
@@ -143,7 +149,7 @@ struct CourseListView_Previews: PreviewProvider {
             past: [pastCourse],
             future: [futureCourse]
         )))
-        CourseListView(viewModel: viewModel)
+         CourseListView(viewModel: viewModel)
     }
 }
 #endif

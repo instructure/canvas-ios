@@ -121,21 +121,30 @@ public struct FileEditorView: View {
                     Spacer()
                     DisclosureIndicator()
                 })
-                    .identifier("FileEditor.accessButton")
-                    .accessibility(label: Text("Access", bundle: .core))
-                    .accessibility(value: Text(access.label))
+                .identifier("FileEditor.accessButton")
+                .accessibility(label: Text("Access", bundle: .core))
+                .accessibility(value: Text(access.label))
 
                 if access == .scheduled {
                     Divider()
-                    OptionalDatePicker(selection: $unlockAt, max: lockAt, initial: Clock.now.startOfDay()) {
+                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $unlockAt, maxDate: lockAt, from: controller) }, content: {
                         Text("Available from", bundle: .core)
-                    }
-                        .identifier("FileEditor.unlockAtButton")
+                        Spacer()
+                        if let unlockAt = unlockAt {
+                            Text(DateFormatter.localizedString(from: unlockAt, dateStyle: .medium, timeStyle: .short))
+                        }
+                    })
+                    .identifier("FileEditor.unlockAtButton")
+
                     Divider()
-                    OptionalDatePicker(selection: $lockAt, min: unlockAt, initial: Clock.now.endOfDay()) {
+                    ButtonRow(action: { CoreDatePicker.showDatePicker(for: $lockAt, minDate: unlockAt, from: controller) }, content: {
                         Text("Available until", bundle: .core)
-                    }
-                        .identifier("FileEditor.lockAtButton")
+                        Spacer()
+                        if let lockAt = lockAt {
+                            Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))
+                        }
+                    })
+                    .identifier("FileEditor.lockAtButton")
                 }
             }
 

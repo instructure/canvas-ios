@@ -59,6 +59,7 @@
         <attribute name="moderatedGrading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="needsGradingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="onlyVisibleToOverrides" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="published" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
@@ -119,6 +120,7 @@
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isAllDay" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="locationAddress" optional="YES" attributeType="String"/>
         <attribute name="locationName" optional="YES" attributeType="String"/>
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -214,6 +216,7 @@
         <attribute name="accessRestrictedByDate" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
+        <attribute name="bannerImageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canCreateDiscussionTopic" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>
@@ -369,7 +372,6 @@
         <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="observerEnrollments" inverseEntity="User"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="enrollments" inverseEntity="Submission"/>
     </entity>
-    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -431,6 +433,26 @@
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="usageRights" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UsageRights" inverseName="file" inverseEntity="UsageRights"/>
+    </entity>
+    <entity name="FileSubmission" representedClassName="Core.FileSubmission" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="assignmentName" attributeType="String" defaultValueString=""/>
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="isHiddenOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="submissionError" optional="YES" attributeType="String"/>
+        <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="FileUploadItem" inverseName="fileSubmission" inverseEntity="FileUploadItem"/>
+    </entity>
+    <entity name="FileUploadItem" representedClassName="Core.FileUploadItem" syncable="YES">
+        <attribute name="apiID" optional="YES" attributeType="String"/>
+        <attribute name="bytesToUpload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bytesUploaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fileSize" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="localFileURL" attributeType="URI"/>
+        <attribute name="uploadError" optional="YES" attributeType="String"/>
+        <attribute name="uploadTarget" optional="YES" attributeType="Transformable" valueTransformerName="FileUploadTargetTransformer" customClassName="Core.FileUploadTarget"/>
+        <relationship name="fileSubmission" maxCount="1" deletionRule="Nullify" destinationEntity="FileSubmission" inverseName="files" inverseEntity="FileSubmission"/>
     </entity>
     <entity name="Folder" representedClassName="Core.Folder" syncable="YES">
         <attribute name="canUpload" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -966,7 +988,7 @@
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="149"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="AssignmentOverride" positionX="-540" positionY="-18" width="128" height="193"/>
-        <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="253"/>
+        <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="254"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Conference" positionX="-540" positionY="-18" width="128" height="298"/>
@@ -975,7 +997,7 @@
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="434"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="449"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="254"/>
@@ -983,11 +1005,12 @@
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="404"/>
-        <element name="Entity" positionX="-549" positionY="-18" width="128" height="29"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="688"/>
+        <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="149"/>
+        <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="149"/>
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="328"/>
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="163"/>

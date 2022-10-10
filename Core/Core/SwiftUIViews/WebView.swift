@@ -27,6 +27,7 @@ public struct WebView: UIViewRepresentable {
     private let source: Source?
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
+    private var pullToRefresh: CoreWebView.PullToRefresh
     private var invertColorsInDarkMode: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration?
@@ -36,25 +37,43 @@ public struct WebView: UIViewRepresentable {
 
     // MARK: - Initializers
 
-    public init(url: URL?) {
+    public init(
+        url: URL?,
+        pullToRefresh: CoreWebView.PullToRefresh
+    ) {
         source = url.map { .request(URLRequest(url: $0)) }
+        self.pullToRefresh = pullToRefresh
     }
 
-    public init(url: URL?, customUserAgentName: String?, disableZoom: Bool = false, configuration: WKWebViewConfiguration? = nil, invertColorsInDarkMode: Bool = false) {
-        self.init(url: url)
+    public init(
+        url: URL?,
+        customUserAgentName: String?,
+        disableZoom: Bool = false,
+        pullToRefresh: CoreWebView.PullToRefresh,
+        configuration: WKWebViewConfiguration? = nil,
+        invertColorsInDarkMode: Bool = false
+    ) {
+        self.init(url: url, pullToRefresh: pullToRefresh)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
+        self.pullToRefresh = pullToRefresh
         self.invertColorsInDarkMode = invertColorsInDarkMode
         self.configuration = configuration
     }
 
     public init(html: String?) {
         source = html.map { .html($0) }
+        pullToRefresh = .disabled
     }
 
-    public init(request: URLRequest, disableZoom: Bool = false) {
-        self.source = .request(request)
+    public init(
+        request: URLRequest,
+        disableZoom: Bool = false,
+        pullToRefresh: CoreWebView.PullToRefresh
+    ) {
+        source = .request(request)
         self.disableZoom = disableZoom
+        self.pullToRefresh = pullToRefresh
     }
 
     // MARK: - View Modifiers
@@ -95,7 +114,13 @@ public struct WebView: UIViewRepresentable {
     // MARK: - UIViewRepresentable Protocol
 
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(customUserAgentName: customUserAgentName, disableZoom: disableZoom, configuration: configuration, invertColorsInDarkMode: invertColorsInDarkMode)
+        CoreWebView(
+            customUserAgentName: customUserAgentName,
+            disableZoom: disableZoom,
+            pullToRefresh: pullToRefresh,
+            configuration: configuration,
+            invertColorsInDarkMode: invertColorsInDarkMode
+        )
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {

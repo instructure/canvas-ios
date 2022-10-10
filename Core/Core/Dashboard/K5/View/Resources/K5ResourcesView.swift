@@ -27,11 +27,7 @@ public struct K5ResourcesView: View {
     }
 
     public var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            CircleRefresh { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
-            }
-
+        RefreshableScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 if !viewModel.homeroomInfos.isEmpty {
                     importantInfo
@@ -46,6 +42,8 @@ public struct K5ResourcesView: View {
                 }
             }
             .padding(.vertical)
+        } refreshAction: { endRefreshing in
+            viewModel.refresh(completion: endRefreshing)
         }
         .padding(.horizontal, horizontalPadding)
         .onAppear {

@@ -55,7 +55,7 @@ public class PreviewEnvironment: AppEnvironment {
 
 public class PreviewStore<U: APIUseCase>: Store<U> {
     required public init(env: AppEnvironment = PreviewEnvironment(), useCase: U, contents: U.Response) {
-        super.init(env: env, database: singleSharedPreviewDatabase, useCase: useCase) { }
+        super.init(env: env, context: singleSharedPreviewDatabase.viewContext, useCase: useCase) { }
         useCase.write(response: contents, urlResponse: nil, to: singleSharedPreviewDatabase.viewContext)
     }
 }

@@ -497,9 +497,9 @@
 			<key>many</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>Ko te momo kōnae %2$@ kei roto I to tukunga kaore I te hototahi ki te taumahi kua tohua.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>Ko nga momo kōnae %2$@ kei roto I to tukunga kaore I te hototahi ki te taumahi kua tohua.</string>
 			<key>two</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>zero</key>
@@ -617,9 +617,9 @@
 			<key>many</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>I tutuki pai to tukunga ake engari I rahua te tukunga ki te taumahi.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>I pai te tuku ake o au kōnae engari I rahua te tukunga ki te taumahi.</string>
 			<key>two</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>zero</key>
@@ -665,9 +665,9 @@
 			<key>many</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>Whakamahia koa %2$@ toronga kōnae.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>Whakamahia koa %2$@ toronga kōnae.</string>
 			<key>two</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>zero</key>

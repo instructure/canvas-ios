@@ -22,70 +22,59 @@ import SwiftUI
  This text editor starts as a one line height component, then as text is entered it grows until its maximum height is reached.
  */
 public struct DynamicHeightTextEditor: View {
+    // MARK: - Dependencies
+
     @Binding private var text: String
-    /** The height of the TextEditor. Calculated by manually measuring the text's rendered size and adding paddings.*/
-    @State private var height: CGFloat
-    /** The measured available width. The initial value is just a placeholder until the view is actually rendered. */
-    @State private var width: CGFloat = 300
-    private let maxHeight: CGFloat
-    private let minHeight: CGFloat
     private let placeholder: String?
-    /** This is required to measure the text's height with `NSString`'s `boundingRect` method. We can't use `Font` or get it from `Environment` because `SwiftUI.Font` cannot be converted into `UIFont.` */
-    private let font: UIFont
+
+    // MARK: - Private properties
+
+    /** The height of the TextEditor. Calculated by  measuring the text's rendered size and adding paddings. */
+    @State private var textEditorHeight: CGFloat = 33.5
     // These are estimated values. SwiftUI.TextEditor has some internal paddings which we cannot influence nor measure.
     private let textEditorVerticalPadding: CGFloat = 7
-    private let textEditorHorizontalPadding: CGFloat = 5
+    private let textEditorHorizontalPadding: CGFloat = 4
+    @State private var textToMeasureHeight: String = "Placeholder"
 
-    public init(text: Binding<String>, maxLines: Int, font: UIFont, placeholder: String? = nil) {
-        let minHeight = font.lineHeight + 2 * textEditorVerticalPadding
-        self._text = text
-        self.minHeight = minHeight
-        self.maxHeight = CGFloat(maxLines) * font.lineHeight + 2 * textEditorVerticalPadding
+    // MARK: - Init
+
+    public init(text: Binding<String>, placeholder: String? = nil) {
+        _text = text
         self.placeholder = placeholder
-        self.font = font
-        self.height = minHeight
-        updateHeight()
     }
 
     public var body: some View {
-        GeometryReader { geometry in // Just to measure the available width
+        ZStack(alignment: .leading) {
+            Text(textToMeasureHeight)
+                .padding(.vertical, textEditorVerticalPadding)
+                .background(GeometryReader {
+                    Color.clear.preference(
+                        key: ViewSizeKey.self,
+                        value: $0.frame(in: .local).size.height
+                    )
+                })
             TextEditor(text: $text)
-                .font(Font(font))
                 .foregroundColor(.textDarkest)
-                .frame(height: height)
-                .preference(key: ViewSizeKey.self, value: CGSize(width: geometry.size.width - 2 * textEditorHorizontalPadding, height: 0))
-                .overlay(placeholderView, alignment: .topLeading)
+                .frame(height: textEditorHeight)
+                .overlay(placeholderView, alignment: .leading)
         }
-        .frame(maxHeight: height) // height must be limited to the text height, otherwise the geometry reader fills all available space vertically
-        .onChange(of: text) { _ in updateHeight() }
-        .onAppear(perform: updateHeight)
-        .onPreferenceChange(ViewSizeKey.self, perform: { size in
-            self.width = size.width
-            updateHeight()
+        .onChange(of: text, perform: { newValue in
+            textToMeasureHeight = newValue.isEmpty ? "Placeholder" : newValue
         })
+        .onPreferenceChange(ViewSizeKey.self) {
+            textEditorHeight = $0
+        }
     }
 
     @ViewBuilder
     private var placeholderView: some View {
         if text.isEmpty, let placeholder = placeholder, #available(iOS 15, *) {
             Text(placeholder)
-                .font(Font(font))
                 .foregroundColor(.textDark)
-                .padding(.top, textEditorVerticalPadding)
                 .padding(.leading, textEditorHorizontalPadding)
                 .accessibility(hidden: true)
                 .allowsHitTesting(false) // Make sure taps go through to the TextEditor, doesn't work on iOS 14
         }
-    }
-
-    /**
-     This method renders the text offscreen to measure its height for the current width. This measured height will be the height of the TextEditor.
-     */
-    private func updateHeight() {
-        let sizeConstraint = CGSize(width: width, height: .greatestFiniteMagnitude)
-        var measuredTextHeight = NSString(string: text).boundingRect(with: sizeConstraint, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).height
-        measuredTextHeight += 2 * textEditorVerticalPadding
-        height = min(maxHeight, max(minHeight, measuredTextHeight))
     }
 }
 
@@ -93,29 +82,37 @@ public struct DynamicHeightTextEditor: View {
 
 struct DynamicHeightTextEditor_Previews: PreviewProvider {
     static var previews: some View {
-        DynamicHeightTextEditor(text: .constant(""), maxLines: 3, font: .scaledNamedFont(.regular14), placeholder: "Placeholder")
-        .previewLayout(.sizeThatFits)
-        .border(Color.red)
+        DynamicHeightTextEditor(text: .constant(""), placeholder: "Placeholder")
+            .font(.regular14)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
 
-        DynamicHeightTextEditor(text: .constant("Placeholder"), maxLines: 3, font: .scaledNamedFont(.regular14), placeholder: "Placeholder")
-        .previewLayout(.sizeThatFits)
-        .border(Color.red)
+        DynamicHeightTextEditor(text: .constant("Placeholder"), placeholder: "Placeholder")
+            .font(.regular14)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
 
-        DynamicHeightTextEditor(text: .constant("1"), maxLines: 3, font: .scaledNamedFont(.regular14))
-        .previewLayout(.sizeThatFits)
-        .border(Color.red)
+        DynamicHeightTextEditor(text: .constant("1"))
+            .font(.regular14)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
 
-        DynamicHeightTextEditor(text: .constant("1\n2"), maxLines: 3, font: .scaledNamedFont(.regular14))
-        .previewLayout(.sizeThatFits)
-        .border(Color.red)
+        DynamicHeightTextEditor(text: .constant("1\n2"))
+            .previewLayout(.sizeThatFits)
+            .font(.regular14)
+            .border(Color.red)
 
-        DynamicHeightTextEditor(text: .constant("1\n2\n3"), maxLines: 3, font: .scaledNamedFont(.regular14))
-        .previewLayout(.sizeThatFits)
-        .border(Color.red)
+        DynamicHeightTextEditor(text: .constant("1\n2\n3"))
+            .font(.regular14)
+            .lineLimit(2)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
 
-        DynamicHeightTextEditor(text: .constant("1\n2\n3\n4\n5\n6\n7\n8\n9"), maxLines: 3, font: .scaledNamedFont(.regular14))
-        .previewLayout(.sizeThatFits)
-        .border(Color.red)
+        DynamicHeightTextEditor(text: .constant("1\n2\n3\n4\n5\n6\n7\n8\n9"))
+            .font(.regular14)
+            .lineLimit(3)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
     }
 }
 

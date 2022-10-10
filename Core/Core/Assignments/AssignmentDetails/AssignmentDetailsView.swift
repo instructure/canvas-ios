@@ -61,18 +61,22 @@ public struct AssignmentDetailsView: View {
 
     @ViewBuilder var states: some View {
         if let assignment = assignment.first {
-            ScrollView { VStack(alignment: .leading, spacing: 0) {
-                CircleRefresh { endRefreshing in
-                    self.assignment.refresh(force: true) { _ in
-                        endRefreshing()
-                    }
+            RefreshableScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    details(assignment: assignment)
+                        .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
                 }
-
-                details(assignment: assignment)
-                    .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
-            } }
+            }
+            refreshAction: { endRefreshing in
+                self.assignment.refresh(force: true) { _ in
+                    endRefreshing()
+                }
+            }
         } else if assignment.state == .loading {
-            ZStack { CircleProgress() }
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+            }
         } else /* Assignment not found, perhaps recently deleted */ {
             Spacer().onAppear { env.router.dismiss(controller) }
         }
