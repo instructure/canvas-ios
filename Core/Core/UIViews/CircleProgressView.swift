@@ -135,11 +135,9 @@ public class CircleProgressView: UIView {
 
     public func startAnimating() {
         progress = nil
-        isHidden = false
     }
 
     public func stopAninating() {
         progress = 0
-        isHidden = true
     }
 }

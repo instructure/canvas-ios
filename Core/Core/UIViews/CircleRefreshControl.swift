@@ -24,7 +24,7 @@ public class CircleRefreshControl: UIRefreshControl {
     public private(set) var offsetObservation: NSKeyValueObservation?
     public let progressView = CircleProgressView()
     private var selfAdding = false
-    private let snappingPoint: CGFloat = 112
+    private let snappingPoint: CGFloat = 100
     public private(set) var isAnimating = false
     private var triggerStartDate: Date?
 
@@ -61,7 +61,7 @@ public class CircleRefreshControl: UIRefreshControl {
             progressView.centerXAnchor.constraint(equalTo: centerXAnchor),
             progressView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
-        progressView.isHidden = true
+        progressView.alpha = 0
     }
 
     override public func didMoveToSuperview() {
@@ -87,7 +87,6 @@ public class CircleRefreshControl: UIRefreshControl {
         }
 
         progressView.progress = progress
-        progressView.isHidden = progress == 0
         progressView.alpha = progress
         if progress == 1 {
             sendActions(for: .valueChanged)
