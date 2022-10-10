@@ -49,18 +49,23 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
     @ViewBuilder var states: some View {
         switch viewModel.state {
         case .loading:
-            ZStack { CircleProgress() }
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+            }
         case .error:
             // Quiz not found, perhaps recently deleted
             Spacer().onAppear { env.router.dismiss(controller) }
         case .ready:
-            ScrollView { VStack(alignment: .leading, spacing: 0) {
-                CircleRefresh { endRefreshing in
-                    viewModel.refresh(completion: endRefreshing)
-                }
+            RefreshableScrollView {
+                VStack(alignment: .leading, spacing: 0) {
                 details()
                     .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
-            } }
+                }
+            }
+            refreshAction: { onComplete in
+                viewModel.refresh(completion: onComplete)
+            }
         }
     }
 
