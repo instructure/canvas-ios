@@ -28,7 +28,9 @@ struct CommentEditor: View {
 
     var body: some View {
         HStack(alignment: .bottom) {
-            DynamicHeightTextEditor(text: $text, maxLines: 3, font: .scaledNamedFont(.regular16), placeholder: NSLocalizedString("Comment", bundle: .core, comment: ""))
+            DynamicHeightTextEditor(text: $text, placeholder: NSLocalizedString("Comment", bundle: .core, comment: ""))
+                .font(.regular16)
+                .lineLimit(3)
                 .accessibility(label: Text("Comment"))
                 .identifier("SubmissionComments.commentTextView")
             Button(action: {
