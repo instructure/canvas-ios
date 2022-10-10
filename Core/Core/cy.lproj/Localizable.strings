@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "Rhaid rhoi disgrifiad";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Wedi methu cadw delwedd";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Wedi methu dechrau llwytho i fyny.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Wedi methu llwytho i fyny";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Helpwch eich myfyrwyr gyda’r aseiniad hwn trwy ychwanegu cyfarwyddiadau.";
+
+/* No comment provided by engineer. */
+"Hide" = "Cuddio";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Cuddio cynnwys ar gyfer %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Blaenoriaethau";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Paratoi Ffeiliau i’w Llwytho i Fyny";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Rhagofyniad: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Mathau o Gyflwyniadau";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Cyflwyniad Wedi’i Lwytho i Fyny";
+
+/* No comment provided by engineer. */
 "Submissions" = "Cyflwyniadau";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Cafodd y broses gyflwyno ei therfynu gan y system weithredu.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Does dim aseiniadau gweithredol yn y cwrs hwn.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Proses llwytho i fyny wedi'i chwblhau.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Wedi methu llwytho i fyny oherwydd rheswm anhysbys.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Wedi methu llwytho i fyny.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Wrthi'n llwytho i fyny %1$@ o %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Llwytho cyflwyniad i fyny";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Wrthi’n llwytho i fyny...";

@@ -74,9 +74,6 @@
 "86,5%" = "86.5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "A description is required";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Failed to save image";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Failed to start upload.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Failed upload";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Help your students with this assignment by adding instructions.";
+
+/* No comment provided by engineer. */
+"Hide" = "Hide";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Hide content for %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Preferences";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Preparing Files For Upload";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Prerequisite: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Submission Types";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Submission Uploaded";
+
+/* No comment provided by engineer. */
 "Submissions" = "Submissions";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "The submission process was terminated by the operating system.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "There are no active assignments in this subject.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Upload completed.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Upload failed due to unknown reason.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Upload failed.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Uploading %1$@ of %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Uploading Submission";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Uploading...";

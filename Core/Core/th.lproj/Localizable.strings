@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "ต้องระบุรายละเอียด";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "ไม่สามารถบันทึกภาพได้";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "ไม่สามารถเริ่มการอัพโหลดได้";
+
+/* No comment provided by engineer. */
 "Failed upload" = "อัพโหลดล้มเหลว";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "ช่วยเหลือผู้เรียนของคุณสำหรับภารกิจนี้โดยการเพิ่มคำแนะนำเข้าไป";
+
+/* No comment provided by engineer. */
+"Hide" = "ซ่อน";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "ซ่อนเนื้อหาสำหรับ %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "ค่าปรับตั้ง";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "กำลังเตรียมไฟล์ที่จะอัพโหลด";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "เงื่อนไขเบื้องต้น: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "ประเภทการจัดส่ง";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "อัพโหลดผลงานจัดส่งแล้ว";
+
+/* No comment provided by engineer. */
 "Submissions" = "ผลงานจัดส่ง";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "แอพจะต้องรีสตาร์ทเพื่อใช้ค่าภาษาใหม่ กรุณาเปิดแอพขึ้นใหม่";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "กระบวนการจัดส่งถูกยกเลิกโดยระบบปฏิบัติการ";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "ไม่มีภารกิจที่เปิดใช้อยู่ในบทเรียนนี้";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "อัพโหลดเสร็จสิ้น";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "การอัพโหลดล้มเหลวเนื่องจากสาเหตุที่ไม่ทราบ";
+
+/* No comment provided by engineer. */
 "Upload failed." = "อัพโหลดล้มเหลว";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "กำลังอัพโหลด %1$@ จาก %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "กำลังอัพโหลดผลงานจัดส่ง";
 
 /* No comment provided by engineer. */
 "Uploading..." = "กำลังอัพโหลด...";
