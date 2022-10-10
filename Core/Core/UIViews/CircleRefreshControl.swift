@@ -109,8 +109,9 @@ public class CircleRefreshControl: UIRefreshControl {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + additionalDuration) {
             super.endRefreshing()
+            self.progressView.alpha = 0
             self.isAnimating = false
-            self.progressView.stopAninating()
+            self.progressView.stopAnimating()
             self.triggerStartDate = nil
         }
     }

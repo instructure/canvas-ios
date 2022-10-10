@@ -137,7 +137,7 @@ public class CircleProgressView: UIView {
         progress = nil
     }
 
-    public func stopAninating() {
+    public func stopAnimating() {
         progress = 0
     }
 }
