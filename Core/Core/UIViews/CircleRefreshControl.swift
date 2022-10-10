@@ -82,6 +82,7 @@ public class CircleRefreshControl: UIRefreshControl {
         guard !isAnimating, scrollView.isDragging else {
             if progressView.progress != nil {
                 progressView.progress = progress
+                progressView.alpha = progress
             }
             return
         }

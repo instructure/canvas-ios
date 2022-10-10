@@ -40,7 +40,7 @@ class CircleRefreshControlTests: CoreTestCase {
         XCTAssertEqual(refreshControl.isAnimating, false)
 
         scrollView.contentOffset.y = -5
-        XCTAssertEqual(refreshControl.progressView.alpha.rounded(), refreshControl.progressView.progress)
+        XCTAssertEqual(refreshControl.progressView.alpha, refreshControl.progressView.progress!, accuracy: 0.01)
         XCTAssertEqual(refreshControl.isRefreshing, false)
         XCTAssertEqual(refreshControl.isAnimating, false)
 
@@ -67,12 +67,5 @@ class CircleRefreshControlTests: CoreTestCase {
 
     class MockScrollView: UIScrollView {
         override var isDragging: Bool { true }
-    }
-}
-
-private extension CGFloat {
-    func rounded() -> CGFloat {
-        let divisor = pow(10.0, Double(2))
-        return (self * divisor).rounded() / divisor
     }
 }
