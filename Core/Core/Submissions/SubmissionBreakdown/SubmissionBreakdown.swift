@@ -88,7 +88,6 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: Vie
             .buttonStyle(ScaleButtonStyle(scale: 1))
             .accessibility(label: Text("View all submissions", bundle: .core))
             .identifier("AssignmentDetails.viewAllSubmissionsButton")
-            .animation(Animation.easeOut(duration: 0.5).delay(0.2))
             .onAppear {
                 viewModel.viewDidAppear()
             }
