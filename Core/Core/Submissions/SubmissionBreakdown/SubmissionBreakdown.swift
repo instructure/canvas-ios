@@ -113,6 +113,7 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: Vie
                         )
                         .modifier(Counter(count: Double(count)))
                         .padding(.horizontal, 10).padding(.top, 4)
+                        .animation(Animation.easeOut(duration: 0.5).delay(0.2), value: count)
                     label
                         .font(.medium12).foregroundColor(.textDarkest)
                 }
