@@ -130,7 +130,9 @@ public class CircleProgressView: UIView {
 
     public override func didMoveToWindow() {
         super.didMoveToWindow()
-        updateProgress() // Make sure animations are re-added once visible
+        fill.removeAnimation(forKey: morphKey)
+        layer.removeAnimation(forKey: rotateKey)
+        fill.strokeEnd = 0
     }
 
     public func startAnimating() {
