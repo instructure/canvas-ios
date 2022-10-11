@@ -79,12 +79,17 @@ class DocViewerSessionTests: CoreTestCase {
         XCTAssertNil(session.remoteURL)
     }
 
-    func testLoadAnnotations() {
+    func testLoadAnnotationsAndOrderByCreationDate() {
         let session = DocViewerSession { XCTFail("Must not notify") }
         session.metadata = .make()
-        api.mock(GetDocViewerAnnotationsRequest(sessionID: ""), value: APIDocViewerAnnotations(data: [.make()]))
+        api.mock(GetDocViewerAnnotationsRequest(sessionID: ""), value: APIDocViewerAnnotations(data: [
+            .make(id: "1", created_at: Date(timeIntervalSince1970: 1)),
+            .make(id: "2", created_at: Date(timeIntervalSince1970: 0)),
+        ]))
         session.loadAnnotations()
-        XCTAssertEqual(session.annotations?.count, 1)
+        XCTAssertEqual(session.annotations?.count, 2)
+        XCTAssertEqual(session.annotations?[0], .make(id: "2", created_at: Date(timeIntervalSince1970: 0)))
+        XCTAssertEqual(session.annotations?[1], .make(id: "1", created_at: Date(timeIntervalSince1970: 1)))
     }
 
     func testLoadAnnotationsAfterDoc() {

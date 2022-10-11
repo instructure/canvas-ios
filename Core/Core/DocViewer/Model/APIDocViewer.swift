@@ -55,7 +55,7 @@ struct APIDocViewerAnnotations: Codable, Equatable {
 }
 
 // https://canvadocs.instructure.com/docs/docs/annotationsApi.html#
-struct APIDocViewerAnnotation: Codable, Equatable {
+struct APIDocViewerAnnotation: Codable, Equatable, Comparable {
     let id: String
     let document_id: String?
     let user_id: String?
@@ -78,6 +78,14 @@ struct APIDocViewerAnnotation: Codable, Equatable {
     let font: String?
     let inklist: APIDocViewerInklist?
     let width: Double?
+
+    static func < (lhs: APIDocViewerAnnotation, rhs: APIDocViewerAnnotation) -> Bool {
+        guard let lhsCreationDate = lhs.created_at, let rhsCreationDate = rhs.created_at else {
+            return false
+        }
+
+        return lhsCreationDate < rhsCreationDate
+    }
 }
 
 public enum APIDocViewerAnnotationType: String, Codable {
