@@ -56,6 +56,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
         summary.eventHandler = update
         summary.refresh(force: true)
     }
+
     public func routeToAll(router: Router, viewController: WeakViewController) {
         router.route(to: submissionsPath, from: viewController)
     }
