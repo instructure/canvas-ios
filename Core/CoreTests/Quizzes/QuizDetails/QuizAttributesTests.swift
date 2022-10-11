@@ -100,40 +100,51 @@ class QuizAttributesTests: CoreTestCase {
     }
 
     func testShowCorrectAnswersShowAtOnly() {
+        let date = Date(fromISOString: "2022-01-03T08:00:00Z")!
         let apiQuiz = APIQuiz.make(
             show_correct_answers: true,
-            show_correct_answers_at: Date(fromISOString: "2022-01-03T08:00:00Z")!
+            show_correct_answers_at: date
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
         let testee = QuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
-        XCTAssertEqual(quizAttribute?.value, "After Jan 3, 2022 at 9:00 AM")
+        let template = NSLocalizedString("After %@", bundle: .core, comment: "e.g. After 01.02.2022")
+        let expected = String.localizedStringWithFormat(template, date.relativeDateTimeString)
+        XCTAssertEqual(quizAttribute?.value, expected)
     }
 
-    func testShowCorrectAnswersHidetOnly() {
+    func testShowCorrectAnswersHideAtOnly() {
+        let date = Date(fromISOString: "2022-01-03T08:00:00Z")!
         let apiQuiz = APIQuiz.make(
-            hide_correct_answers_at: Date(fromISOString: "2022-01-03T08:00:00Z")!,
+            hide_correct_answers_at: date,
             show_correct_answers: true
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
         let testee = QuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
-        XCTAssertEqual(quizAttribute?.value, "Until Jan 3, 2022 at 9:00 AM")
+        let template = NSLocalizedString("Until %@", bundle: .core, comment: "e.g. Until 01.02.2022")
+        let expected = String.localizedStringWithFormat(template, date.relativeDateTimeString)
+        XCTAssertEqual(quizAttribute?.value, expected)
     }
 
     func testShowCorrectAnswersShowAndHide() {
+        let date1 = Date(fromISOString: "2022-02-03T08:00:00Z")!
+        let date2 = Date(fromISOString: "2022-01-03T08:00:00Z")!
+
         let apiQuiz = APIQuiz.make(
-            hide_correct_answers_at: Date(fromISOString: "2022-02-03T08:00:00Z")!,
+            hide_correct_answers_at: date2,
             show_correct_answers: true,
-            show_correct_answers_at: Date(fromISOString: "2022-01-03T08:00:00Z")!
+            show_correct_answers_at: date1
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
         let testee = QuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
-        XCTAssertEqual(quizAttribute?.value, "Jan 3, 2022 at 9:00 AM to Feb 3, 2022 at 9:00 AM")
+        let template = NSLocalizedString("%@ to %@", bundle: .core, comment: "e.g 01.02.2022 to 01.03.2022")
+        let expected = String.localizedStringWithFormat(template, date1.relativeDateTimeString, date2.relativeDateTimeString)
+        XCTAssertEqual(quizAttribute?.value, expected)
     }
 
     func testShowCorrectAnswersLastAttempt() {
