@@ -20,7 +20,7 @@ import SwiftUI
 
 public class AssignmentDateSectionViewModel: DateSectionViewModelProtocol {
 
-    @ObservedObject var assignment: Assignment
+    @ObservedObject public private(set) var assignment: Assignment
     public let isButton = true
     private var allDatesDate: AssignmentDate?
 
