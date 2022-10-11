@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "描述必填";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "保存图像失败";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "无法开始上传。";
+
+/* No comment provided by engineer. */
 "Failed upload" = "上传失败";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "通过添加说明给您的学生提供完成此作业的帮助。";
+
+/* No comment provided by engineer. */
+"Hide" = "隐藏";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "隐藏...的内容%@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "首选项";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "正在准备文件上传";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "先决条件：%@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "提交项类型";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "提交项已上传";
+
+/* No comment provided by engineer. */
 "Submissions" = "提交项";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "需重启应用程序才能使用新语言设置。请重启该应用程序。";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "提交过程已经被操作系统终止。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "此课程中没有有效的作业。";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "上传已完成。";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "上传失败，原因未知。";
+
+/* No comment provided by engineer. */
 "Upload failed." = "上传失败。";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "正在上传提交作业";
 
 /* No comment provided by engineer. */
 "Uploading..." = "正在上传...";

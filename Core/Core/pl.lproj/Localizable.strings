@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "Wymagany jest opis";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Nie udało się zapisać obrazu";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Nie udało się wznowić przesyłania.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Nie udało się przesłać";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Pomóż uczestnikom w wykonaniu zadania, dodając instrukcje.";
+
+/* No comment provided by engineer. */
+"Hide" = "Ukryj";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Ukryj zawartość dla %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Preferencje";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Przygotowywanie plików do przesłania";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Wymóg wstępny: %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Typy przesłanych materiałów";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Przesłano materiały";
+
+/* No comment provided by engineer. */
 "Submissions" = "Przesłane zadania";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Przesyłanie zostało przerwane przez system operacyjny.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Obecnie nie ma aktywnych zadań w tym kursie.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Ukończono przesyłanie.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Nie udało się przesłać z nieznanego powodu.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Niepowodzenie przesłania.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Wysyłanie %1$@ z %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Trwa przesyłanie zadania";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Przesyłanie...";

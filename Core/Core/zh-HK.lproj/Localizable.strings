@@ -74,9 +74,6 @@
 "86,5%" = "86.5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "描述為必填";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "無法儲存影像";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "無法開始上傳。";
+
+/* No comment provided by engineer. */
 "Failed upload" = "上傳失敗";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "添加指引，協助學生完成作業。";
+
+/* No comment provided by engineer. */
+"Hide" = "隱藏";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "隱藏此項目的內容：%@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "偏好設定";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "準備要上傳的檔案";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "先決條件：%@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "提交項目類型";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "提交項目已上傳";
+
+/* No comment provided by engineer. */
 "Submissions" = "提交項目";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "提交程序由作業系統終止。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "此課程中沒有啟用的作業列表。";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "完成上傳。";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "上傳因未知的原因失敗。";
+
+/* No comment provided by engineer. */
 "Upload failed." = "上傳失敗。";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "正在上傳第 %1$@ / 個檔案%2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "上傳提交項目";
 
 /* No comment provided by engineer. */
 "Uploading..." = "正在上傳...";

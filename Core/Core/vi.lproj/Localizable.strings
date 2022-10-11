@@ -74,9 +74,6 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"99+" = "99+";
-
-/* No comment provided by engineer. */
 "A description is required" = "Bắt buộc phải có mô tả";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -860,6 +857,9 @@
 "Failed to save image" = "Lưu hình ảnh thất bại";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Bắt đầu tải lên không thành công.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Tải lên thất bại";
 
 /* No comment provided by engineer. */
@@ -1005,6 +1005,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Giúp sinh viên của bạn thực hiện bài tập này bằng cách thêm chỉ dẫn.";
+
+/* No comment provided by engineer. */
+"Hide" = "Ẩn";
 
 /* No comment provided by engineer. */
 "Hide content for %@" = "Ẩn nội dung cho %@";
@@ -1640,6 +1643,9 @@
 "Preferences" = "Cài Đặt Ưu Tiên";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Chuẩn Bị Các Tập Tin Để Tải Lên";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Điều Kiện Tiên Quyết %@";
 
 /* No comment provided by engineer. */
@@ -2015,6 +2021,9 @@
 "Submission Types" = "Loại Nộp";
 
 /* No comment provided by engineer. */
+"Submission Uploaded" = "Bài Nộp Được Tải Lên";
+
+/* No comment provided by engineer. */
 "Submissions" = "Nộp";
 
 /* No comment provided by engineer. */
@@ -2109,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Ứng dụng cần được khởi động lại để sử dụng cài đặt ngôn ngữ mới. Vui lòng khởi chạy lại ứng dụng.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Quá trình nộp bị hệ điều hành chấm dứt.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Không có bài tập đang hoạt động nào trong khóa học này.";
@@ -2285,6 +2297,9 @@
 "Upload completed." = "Tải lên hoàn thành.";
 
 /* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Tải lên không thành công do lỗi không xác định.";
+
+/* No comment provided by engineer. */
 "Upload failed." = "Tải lên thất bại.";
 
 /* No comment provided by engineer. */
@@ -2301,6 +2316,9 @@
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Đang tải lên %1$@ / %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Tải Lên Bài Nộp";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Đang tải lên...";
