@@ -130,9 +130,7 @@ public class CircleProgressView: UIView {
 
     public override func didMoveToWindow() {
         super.didMoveToWindow()
-        fill.removeAnimation(forKey: morphKey)
-        layer.removeAnimation(forKey: rotateKey)
-        fill.strokeEnd = 0
+        clearAnimation()
     }
 
     public func startAnimating() {
@@ -140,6 +138,12 @@ public class CircleProgressView: UIView {
     }
 
     public func stopAnimating() {
-        progress = 0
+        clearAnimation()
+    }
+
+    private func clearAnimation() {
+        fill.removeAnimation(forKey: morphKey)
+        layer.removeAnimation(forKey: rotateKey)
+        fill.strokeEnd = 0
     }
 }
