@@ -21,38 +21,41 @@ import SwiftUI
 public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     @Environment(\.appEnvironment) private var env
     @Published public private(set) var state: QuizDetailsViewModelState = .loading
-    @Published public private(set) var courseColor: UIColor?
 
+    public private(set) var courseColor: UIColor?
     public var title: String { NSLocalizedString("Quiz Details", comment: "") }
-    public var subtitle: String { course.first?.name ?? "" }
-    public var showSubmissions: Bool { course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
-    public var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
-    public var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel?
-    public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
-    public var quizDateSectionViewModel: QuizDateSectionViewModel?
+    public var subtitle: String { courseUseCase.first?.name ?? "" }
+    public var showSubmissions: Bool { courseUseCase.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
+    public private(set) var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
+    public private(set) var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel?
+    public private(set) var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
+    public private(set) var quizDateSectionViewModel: QuizDateSectionViewModel?
 
-    public var quizTitle: String { quiz.first?.title ?? "" }
-    public var pointsPossibleText: String { quiz.first?.pointsPossibleText ?? "" }
-    public var published: Bool { quiz.first?.published ?? false }
-    public var quizDetailsHTML: String? { quiz.first?.details }
+    public var quizTitle: String { quiz?.title ?? "" }
+    public var pointsPossibleText: String { quiz?.pointsPossibleText ?? "" }
+    public var published: Bool { quiz?.published ?? false }
+    public var quizDetailsHTML: String? { quiz?.details }
     public var attributes: [QuizAttribute] {
-        guard let quiz = quiz.first else { return [] }
+        guard let quiz = quiz else { return [] }
         return QuizAttributes(quiz: quiz, assignment: assignment).attributes
     }
 
+    @Published private var quiz: Quiz?
+    @Published private var assignment: Assignment?
+    @Published private var course: Course?
+
     private let quizID: String
     private let courseID: String
-    private var assignment: Assignment?
     private var refreshCompletion: (() -> Void)?
-    private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    private lazy var courseUseCase = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseDidUpdate()
     }
 
-    private lazy var quiz = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
+    private lazy var quizUseCase = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
         self?.didUpdate()
     }
 
-    private lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
+    private lazy var assignmentsUseCase = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.didUpdate()
     }
 
@@ -64,9 +67,9 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     }
 
     public func viewDidAppear() {
-        quiz.refresh(force: true)
-        assignments.refresh(force: true)
-        course.refresh()
+        quizUseCase.refresh(force: true)
+        assignmentsUseCase.refresh(force: true)
+        courseUseCase.refresh()
     }
 
     public func editTapped(router: Router, viewController: WeakViewController) {
@@ -89,21 +92,22 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
 
     public func refresh(completion: @escaping () -> Void) {
         refreshCompletion = completion
-        quiz.refresh(force: true)
-        assignments.refresh(force: true)
+        quizUseCase.refresh(force: true)
+        assignmentsUseCase.refresh(force: true)
     }
 
     // MARK: - Private functions
 
     private func courseDidUpdate() {
-        courseColor = course.first?.color
+        self.course = course
+        courseColor = courseUseCase.first?.color
     }
 
     private func didUpdate() {
-        if quiz.requested, quiz.pending, assignments.requested, assignments.pending, assignments.hasNextPage { return }
-        finishRefresh()
-        if let quiz = quiz.first {
-            if let assignmentID = quiz.assignmentID, let assignment = assignments.first(where: { $0.id == assignmentID }) {
+        if quizUseCase.requested, quizUseCase.pending, assignmentsUseCase.requested, assignmentsUseCase.pending, assignmentsUseCase.hasNextPage { return }
+        if let quiz = quizUseCase.first {
+            self.quiz = quiz
+            if let assignmentID = quiz.assignmentID, let assignment = assignmentsUseCase.first(where: { $0.id == assignmentID }) {
                 self.assignment = assignment
                 assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
                 assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
@@ -115,6 +119,7 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
         } else {
             state = .error
         }
+        finishRefresh()
     }
 
     private func finishRefresh() {

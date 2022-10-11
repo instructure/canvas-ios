@@ -59,8 +59,8 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
         case .ready:
             RefreshableScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                details()
-                    .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
+                    details()
+                        .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
                 }
             }
             refreshAction: { onComplete in

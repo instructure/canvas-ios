@@ -23,11 +23,11 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProto
     @Published public var isReady: Bool = false
     @Published public var showError: Bool = false
     @Published public private(set) var errorText: String?
+    @Published public var graded: Int = 0
+    @Published public var ungraded: Int = 0
+    @Published public var unsubmitted: Int = 0
+    @Published public var submissionCount: Int = 0
 
-    public var graded: Int = 0
-    public var ungraded: Int = 0
-    public var unsubmitted: Int = 0
-    public var submissionCount: Int = 0
     public var noSubmissionTypes = false
     public var paperSubmissionTypes = false
 

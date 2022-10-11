@@ -1176,7 +1176,7 @@
 		D9B6493028F452B40035CE14 /* QuizDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6492B28F452B40035CE14 /* QuizDetailsViewModel.swift */; };
 		D9B6493128F452B40035CE14 /* PreviewQuizDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6492C28F452B40035CE14 /* PreviewQuizDetailsViewModel.swift */; };
 		D9B6493228F452B40035CE14 /* QuizDateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6492D28F452B40035CE14 /* QuizDateSectionViewModel.swift */; };
-		D9B6493328F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6492E28F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift.swift */; };
+		D9B6493328F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6492E28F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift */; };
 		D9B6493428F452B40035CE14 /* QuizAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6492F28F452B40035CE14 /* QuizAttribute.swift */; };
 		D9B6493728F452D30035CE14 /* QuizDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6493528F452D30035CE14 /* QuizDetailsView.swift */; };
 		D9B6493828F452D30035CE14 /* QuizDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6493628F452D30035CE14 /* QuizDetailViewModelProtocol.swift */; };
@@ -2686,7 +2686,7 @@
 		D9B6492B28F452B40035CE14 /* QuizDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModel.swift; sourceTree = "<group>"; };
 		D9B6492C28F452B40035CE14 /* PreviewQuizDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewQuizDetailsViewModel.swift; sourceTree = "<group>"; };
 		D9B6492D28F452B40035CE14 /* QuizDateSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDateSectionViewModel.swift; sourceTree = "<group>"; };
-		D9B6492E28F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizSubmissionBreakdownViewModel.swift.swift; sourceTree = "<group>"; };
+		D9B6492E28F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizSubmissionBreakdownViewModel.swift; sourceTree = "<group>"; };
 		D9B6492F28F452B40035CE14 /* QuizAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizAttribute.swift; sourceTree = "<group>"; };
 		D9B6493528F452D30035CE14 /* QuizDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDetailsView.swift; sourceTree = "<group>"; };
 		D9B6493628F452D30035CE14 /* QuizDetailViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDetailViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -6247,7 +6247,7 @@
 			children = (
 				D9B6492F28F452B40035CE14 /* QuizAttribute.swift */,
 				D9B6492D28F452B40035CE14 /* QuizDateSectionViewModel.swift */,
-				D9B6492E28F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift.swift */,
+				D9B6492E28F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift */,
 				D9B6492C28F452B40035CE14 /* PreviewQuizDetailsViewModel.swift */,
 				D9B6492B28F452B40035CE14 /* QuizDetailsViewModel.swift */,
 			);
@@ -7580,7 +7580,7 @@
 				E8D20399250A723E009B2ABE /* InboxView.swift in Sources */,
 				D94FA2AE26CBE787007B9CA4 /* K5GradeProgressBar.swift in Sources */,
 				CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */,
-				D9B6493328F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift.swift in Sources */,
+				D9B6493328F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift in Sources */,
 				7DA260FA23F724D7005D2121 /* Database.xcdatamodeld in Sources */,
 				CFD987E028ACEB3E00905515 /* FileSubmission.swift in Sources */,
 				CF3E761928884C1C00276703 /* FileProgressItemViewModel.swift in Sources */,

@@ -21,12 +21,12 @@ import SwiftUI
 public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
 
     @Published public var isReady: Bool = false
-    public var graded: Int = 0
-    public var ungraded: Int = 0
-    public var unsubmitted: Int = 0
-    public var submissionCount: Int = 0
-    public var showError: Bool = false
-    public var errorText: String?
+    @Published public var graded: Int = 0
+    @Published public var ungraded: Int = 0
+    @Published public var unsubmitted: Int = 0
+    @Published public var submissionCount: Int = 0
+    @Published public var showError: Bool = false
+    @Published public var errorText: String?
 
     public var noSubmissionTypes: Bool {
         submissionTypes.contains(.not_graded) || submissionTypes.contains(.none)

@@ -20,8 +20,8 @@ import SwiftUI
 
 public class QuizDateSectionViewModel: DateSectionViewModelProtocol {
 
-    @ObservedObject var quiz: Quiz
-    public var isButton = false
+    public let isButton = false
+    @ObservedObject private var quiz: Quiz
     private var allDatesDate: AssignmentDate?
 
     public init(quiz: Quiz) {

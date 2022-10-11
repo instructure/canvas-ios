@@ -36,8 +36,6 @@ class QuizDetailsViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.title, "Quiz Details")
         XCTAssertEqual(testee.subtitle, "test course")
-        // XCTAssertTrue(testee.showSubmissions)
-
         XCTAssertEqual(testee.quizTitle, "test quiz")
         XCTAssertEqual(testee.pointsPossibleText, "5 pts")
         XCTAssertTrue(testee.published)
@@ -52,7 +50,6 @@ class QuizDetailsViewModelTests: CoreTestCase {
         testee.viewDidAppear()
         testee.editTapped(router: router, viewController: WeakViewController(UIViewController()))
         XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/edit")!))
-
     }
 
     func testPreviewTapped() {

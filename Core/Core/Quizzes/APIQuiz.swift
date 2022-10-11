@@ -203,7 +203,7 @@ extension APIQuiz {
         time_limit: Double? = nil,
         title: String = "What kind of pokemon are you?",
         unlock_at: Date? = nil,
-        unpublishable: Bool? = false
+        unpublishable: Bool = false
     ) -> APIQuiz {
         APIQuiz(
             access_code: access_code,
