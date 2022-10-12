@@ -60,11 +60,36 @@ public class PlannerViewController: UIViewController {
         todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
         todayButton.accessibilityLabel = NSLocalizedString("Go to today", bundle: .core, comment: "")
 
-        embed(listPageController, in: view) { listPageController, view in
-            listPageController.view.pin(inside: view, leading: nil, trailing: nil)
-            listPageController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        }
+        addChild(calendar)
+        view.addSubview(calendar.view)
+        calendar.didMove(toParent: self)
+        calendar.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            calendar.view.topAnchor.constraint(equalTo: view.topAnchor),
+            calendar.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            calendar.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+
+        let divider = DividerView()
+        view.addSubview(divider)
+        divider.tintColor = .borderMedium
+        divider.isOpaque = false
+        divider.pinToLeftAndRightOfSuperview()
+        divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        divider.topAnchor.constraint(equalTo: calendar.view.bottomAnchor).isActive = true
+
+        calendar.view.layoutIfNeeded()
+
+        addChild(listPageController)
+        view.addSubview(listPageController.view)
+        listPageController.didMove(toParent: self)
+        listPageController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            listPageController.view.topAnchor.constraint(equalTo: divider.bottomAnchor),
+            listPageController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            listPageController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
 
         listPageController.dataSource = self
         listPageController.delegate = self
@@ -74,22 +99,7 @@ public class PlannerViewController: UIViewController {
             delegate: self
         ))
 
-        embed(calendar, in: view) { child, container in
-            child.view.pinToLeftAndRightOfSuperview()
-            child.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-        }
-
-        let divider = DividerView()
-        divider.tintColor = .borderMedium
-        divider.isOpaque = false
-        view.addSubview(divider)
-        divider.pinToLeftAndRightOfSuperview()
-        divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        divider.topAnchor.constraint(equalTo: calendar.view.bottomAnchor).isActive = true
-
-        calendar.view.layoutIfNeeded()
-        list.tableView.verticalScrollIndicatorInsets.top = calendar.minHeight
-        list.tableView.contentInset.top = calendar.minHeight
+        view.setNeedsLayout()
 
         planners.refresh()
     }
@@ -153,8 +163,6 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     }
 
     func calendarDidResize(height: CGFloat, animated: Bool) {
-        list.tableView.verticalScrollIndicatorInsets.top = height
-        list.tableView.contentInset.top = height
         view.layoutIfNeeded()
     }
 
@@ -175,24 +183,6 @@ extension PlannerViewController: PlannerListDelegate {
     func plannerListWillRefresh() {
         calendar.refresh(force: true)
         list.refresh(force: true)
-    }
-
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        listContentOffsetY = scrollView.contentOffset.y
-        scrollView.contentInset.bottom = max(0, scrollView.frame.height - scrollView.contentSize.height - calendar.minHeight)
-    }
-
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.isDragging, scrollView.contentInset.top > calendar.minHeight else { return }
-        let topSpace = scrollView.contentInset.top + listContentOffsetY - scrollView.contentOffset.y
-        let height = max(calendar.minHeight, min(calendar.maxHeight, topSpace))
-        scrollView.verticalScrollIndicatorInsets.top = height
-        calendar.setHeight(height)
-    }
-
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        scrollView.contentInset.bottom = 0
-        calendar.setExpanded(calendar.isExpanded)
     }
 }
 
