@@ -78,17 +78,20 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
                 Text(viewModel.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)
                     .padding(.trailing, 12)
-                if viewModel.published {
-                    Image.publishSolid.foregroundColor(.textSuccess)
-                        .padding(.trailing, 4)
-                    Text("Published", bundle: .core)
-                        .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "QuizDetails.published")
-                } else {
-                    Image.noSolid.foregroundColor(.textDark)
-                        .padding(.trailing, 4)
-                    Text("Unpublished", bundle: .core)
-                        .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "QuizDetails.unpublished")
+                HStack {
+                    if viewModel.published {
+                        Image.publishSolid.foregroundColor(.textSuccess)
+                            .padding(.trailing, 4)
+                        Text("Published", bundle: .core)
+                            .font(.medium16).foregroundColor(.textSuccess)
+                    } else {
+                        Image.noSolid.foregroundColor(.textDark)
+                            .padding(.trailing, 4)
+                        Text("Unpublished", bundle: .core)
+                            .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "QuizDetails.unpublished")
+                    }
                 }
+                    .accessibilityElement(children: .combine)
                 Spacer()
             }
                 .padding(.top, 2)
@@ -163,6 +166,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
                     Text(attribute.id).font(.semibold16)
                     Text(attribute.value)
                 }
+                .accessibilityElement(children: .combine)
             }
         }
         .font(.regular16).foregroundColor(.textDarkest)
