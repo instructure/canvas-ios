@@ -35,17 +35,18 @@ class CircleRefreshControlTests: CoreTestCase {
         scrollView.refreshControl = refreshControl
         refreshControl.didMoveToSuperview()
 
-        XCTAssertEqual(refreshControl.progressView.isHidden, true)
+        XCTAssertEqual(refreshControl.progressView.alpha, 0)
         XCTAssertEqual(refreshControl.isRefreshing, false)
         XCTAssertEqual(refreshControl.isAnimating, false)
 
         scrollView.contentOffset.y = -5
-        XCTAssertEqual(refreshControl.progressView.isHidden, false)
+        XCTAssertEqual(refreshControl.progressView.alpha, refreshControl.progressView.progress!, accuracy: 0.01)
         XCTAssertEqual(refreshControl.isRefreshing, false)
         XCTAssertEqual(refreshControl.isAnimating, false)
 
-        scrollView.contentOffset.y = -112
+        scrollView.contentOffset.y = -100
         refreshControl.beginRefreshing()
+        XCTAssertEqual(refreshControl.progressView.alpha, 1)
         XCTAssertEqual(refreshControl.isRefreshing, true)
         XCTAssertEqual(refreshControl.isAnimating, true)
 
@@ -54,12 +55,12 @@ class CircleRefreshControlTests: CoreTestCase {
 
         RunLoop.main.run(until: Date().advanced(by: 1))
 
-        XCTAssertEqual(refreshControl.progressView.isHidden, true)
+        XCTAssertEqual(refreshControl.progressView.alpha, 0)
         XCTAssertEqual(refreshControl.isRefreshing, false)
         XCTAssertEqual(refreshControl.isAnimating, false)
 
         scrollView.contentOffset.y = 32
-        XCTAssertEqual(refreshControl.progressView.isHidden, true)
+        XCTAssertEqual(refreshControl.progressView.alpha, 0)
         XCTAssertEqual(refreshControl.isRefreshing, false)
         XCTAssertEqual(refreshControl.isAnimating, false)
     }

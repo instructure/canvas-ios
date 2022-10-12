@@ -24,7 +24,7 @@ public class CircleRefreshControl: UIRefreshControl {
     public private(set) var offsetObservation: NSKeyValueObservation?
     public let progressView = CircleProgressView()
     private var selfAdding = false
-    private let snappingPoint: CGFloat = 112
+    private let snappingPoint: CGFloat = 100
     public private(set) var isAnimating = false
     private var triggerStartDate: Date?
 
@@ -61,7 +61,7 @@ public class CircleRefreshControl: UIRefreshControl {
             progressView.centerXAnchor.constraint(equalTo: centerXAnchor),
             progressView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
-        progressView.isHidden = true
+        progressView.alpha = 0
     }
 
     override public func didMoveToSuperview() {
@@ -71,18 +71,25 @@ public class CircleRefreshControl: UIRefreshControl {
             self?.updateProgress(scrollView)
         }
         super.didMoveToSuperview()
+        setNeedsLayout()
     }
 
     private func updateProgress(_ scrollView: UIScrollView) {
-        guard !isAnimating, !isRefreshing, scrollView.isDragging else { return }
         let offset = scrollView.contentOffset.y
         guard offset <= 0 else { return }
-        let progress = min(abs((offset) / snappingPoint), 1)
+        let progress = min(abs(offset / snappingPoint), 1)
+
+        guard !isAnimating, scrollView.isDragging else {
+            if progressView.progress != nil {
+                progressView.progress = progress
+                progressView.alpha = progress
+            }
+            return
+        }
 
         progressView.progress = progress
-        progressView.isHidden = progress == 0
-
-        if !isRefreshing, progress == 1 {
+        progressView.alpha = progress
+        if progress == 1 {
             sendActions(for: .valueChanged)
             beginRefreshing()
             triggerStartDate = Date()
@@ -103,8 +110,9 @@ public class CircleRefreshControl: UIRefreshControl {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + additionalDuration) {
             super.endRefreshing()
+            self.progressView.alpha = 0
             self.isAnimating = false
-            self.progressView.stopAninating()
+            self.progressView.stopAnimating()
             self.triggerStartDate = nil
         }
     }
