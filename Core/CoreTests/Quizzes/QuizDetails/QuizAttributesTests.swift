@@ -24,7 +24,7 @@ class QuizAttributesTests: CoreTestCase {
         let apiQuiz = APIQuiz.make()
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
         let testee = QuizAttributes(quiz: quiz, assignment: nil)
-        XCTAssertEqual(testee.attributes.count, 8)
+        XCTAssertEqual(testee.attributes.count, 7)
 
         var quizAttribute = testee.attributes.first(where: {$0.id == "Time Limit:"})
         XCTAssertEqual(quizAttribute?.value, "No time Limit")
@@ -97,6 +97,21 @@ class QuizAttributesTests: CoreTestCase {
         let testee = QuizAttributes(quiz: quiz, assignment: assignment)
         let quizAttribute = testee.attributes.first(where: {$0.id == "Quiz Type:"})
         XCTAssertEqual(quizAttribute?.value, "Graded Quiz")
+    }
+
+    func testLockQuestionsAfterAnswering() {
+        let apiQuiz = APIQuiz.make(
+            cant_go_back: false,
+            one_question_at_a_time: false
+        )
+        let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
+        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+
+        var quizAttribute = testee.attributes.first(where: {$0.id == "One Question at a Time:"})
+        XCTAssertEqual(quizAttribute?.value, "No")
+
+        quizAttribute = testee.attributes.first(where: {$0.id == "Lock Questions After Answering:"})
+        XCTAssertNil(quizAttribute)
     }
 
     func testShowCorrectAnswersShowAtOnly() {

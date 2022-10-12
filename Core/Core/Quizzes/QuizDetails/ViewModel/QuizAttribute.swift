@@ -99,13 +99,15 @@ public struct QuizAttributes {
             oneQuestionAtATime
         ))
 
-        let lockQuestionsAfterAnswering = quiz.oneQuestionAtATime == true && quiz.cantGoBack ?
-            NSLocalizedString("Yes", bundle: .core, comment: "") :
-            NSLocalizedString("No", bundle: .core, comment: "")
-        attributes.append(QuizAttribute(
-            NSLocalizedString("Lock Questions After Answering:", bundle: .core, comment: ""),
-            lockQuestionsAfterAnswering
-        ))
+        if quiz.oneQuestionAtATime == true {
+            let lockQuestionsAfterAnswering = quiz.cantGoBack ?
+                NSLocalizedString("Yes", bundle: .core, comment: "") :
+                NSLocalizedString("No", bundle: .core, comment: "")
+            attributes.append(QuizAttribute(
+                NSLocalizedString("Lock Questions After Answering:", bundle: .core, comment: ""),
+                lockQuestionsAfterAnswering
+            ))
+        }
 
         if let scoringPolicy = quiz.scoringPolicy {
             attributes.append(QuizAttribute(
