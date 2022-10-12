@@ -49,9 +49,13 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProto
     }
 
     public func viewDidAppear() {
-        submissions.eventHandler = didUpdate
+        submissions.eventHandler = { [weak self] in
+            self?.didUpdate()
+        }
         submissions.exhaust(force: true)
-        enrollments.eventHandler = didUpdate
+        enrollments.eventHandler = { [weak self] in
+            self?.didUpdate()
+        }
         enrollments.exhaust(force: true)
     }
 
