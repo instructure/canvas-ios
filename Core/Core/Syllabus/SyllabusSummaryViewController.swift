@@ -25,8 +25,12 @@ public class SyllabusSummaryViewController: UITableViewController {
     public weak var colorDelegate: ColorDelegate?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    public lazy var assignments = env.subscribe(GetCalendarEvents(context: context, type: .assignment)) {}
-    public lazy var events = env.subscribe(GetCalendarEvents(context: context, type: .event)) {}
+    public lazy var assignments = env.subscribe(GetCalendarEvents(context: context, type: .assignment)) { [weak self] in
+        self?.update()
+    }
+    public lazy var events = env.subscribe(GetCalendarEvents(context: context, type: .event)) { [weak self] in
+        self?.update()
+    }
 
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()

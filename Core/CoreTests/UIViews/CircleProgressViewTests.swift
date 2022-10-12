@@ -74,7 +74,7 @@ class CircleProgressViewTests: CoreTestCase {
         view.layer.removeAllAnimations()
         view.fill.removeAllAnimations()
         view.didMoveToWindow()
-        XCTAssertNotNil(view.layer.animation(forKey: view.rotateKey))
-        XCTAssertNotNil(view.fill.animation(forKey: view.morphKey))
+        XCTAssertNil(view.layer.animation(forKey: view.rotateKey))
+        XCTAssertNil(view.fill.animation(forKey: view.morphKey))
     }
 }
