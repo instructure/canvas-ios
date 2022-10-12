@@ -53,7 +53,9 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     public func viewDidAppear() {
-        summary.eventHandler = update
+        summary.eventHandler = { [weak self] in
+            self?.update()
+        }
         summary.refresh(force: true)
     }
 
