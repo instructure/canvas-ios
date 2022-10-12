@@ -30,6 +30,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
 
     public var body: some View {
         states
+            .background(Color.backgroundLightest)
             .navigationBarStyle(.color(viewModel.courseColor))
             .navigationTitle(viewModel.title, subtitle: viewModel.subtitle)
             .navBarItems(trailing: {
