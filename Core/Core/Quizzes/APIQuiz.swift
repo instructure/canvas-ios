@@ -444,3 +444,37 @@ struct PostQuizSubmissionCompleteRequest: APIRequestable {
 
     let method = APIMethod.post
 }
+
+struct APIQuizParameters: Codable, Equatable {
+    let title: String?
+    let description: String?
+    let quiz_type: QuizType?
+    let time_limit: Double?
+    let shuffle_answers: Bool?
+    let show_correct_answers: Bool?
+    let scoring_policy: ScoringPolicy?
+    let allowed_attempts: Int?
+    let one_question_at_a_time: Bool?
+    let cant_go_back: Bool?
+    let access_code: String?
+    let published: Bool?
+    let hide_results: QuizHideResults?
+    let show_correct_answers_at: Date?
+    let hide_correct_answers_at: Date?
+    let assignment_group_id: String?
+    let overrides: [APIAssignmentOverride]?
+}
+
+// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
+struct PutQuizRequest: APIRequestable {
+    typealias Response = APIQuiz
+    struct Body: Codable, Equatable {
+        let quiz: APIQuizParameters
+    }
+    let courseID: String
+    let quizID: String
+
+    var method: APIMethod { .put }
+    var path: String { "courses/\(courseID)/quizzes/\(quizID)" }
+    let body: Body?
+}
