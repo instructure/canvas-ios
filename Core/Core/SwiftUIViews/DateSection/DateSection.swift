@@ -18,14 +18,14 @@
 
 import SwiftUI
 
-struct AssignmentDateSection: View {
-    @ObservedObject var assignment: Assignment
+struct DateSection<ViewModel: DateSectionViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     var body: some View {
-        Button(action: route, label: { HStack(spacing: 0) {
+        Button(action: buttonTapped, label: { HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 4) {
                     Image.calendarClockLine
@@ -34,27 +34,23 @@ struct AssignmentDateSection: View {
                     Spacer()
                 }
                     .foregroundColor(.textDark)
-                if assignment.allDates.count > 1 {
+                if viewModel.hasMultipleDueDates {
                     Text("Multiple Due Dates", bundle: .core)
                 } else {
-                    let first = assignment.allDates.first
-                    if let dueAt = assignment.dueAt ?? first?.dueAt {
+                    if let dueAt = viewModel.dueAt {
                         Line(Text("Due:", bundle: .core), Text(dueAt.dateTimeString))
                     } else {
                         Line(Text("Due:", bundle: .core), Text(verbatim: "--"))
                             .accessibility(label: Text("No due date set.", bundle: .core))
                     }
 
-                    Line(Text("For:", bundle: .core), first?.base == true
-                        ? Text("Everyone", bundle: .core)
-                        : Text(first?.title ?? "-")
-                    )
+                    Line(Text("For:", bundle: .core), Text(viewModel.forText))
 
-                    let lockAt = first?.lockAt ?? assignment.lockAt
+                    let lockAt = viewModel.lockAt
                     if let to = lockAt, to < Clock.now {
                         Line(Text("Availability:", bundle: .core), Text("Closed", bundle: .core))
                     } else {
-                        if let from = first?.unlockAt ?? assignment.unlockAt {
+                        if let from = viewModel.unlockAt {
                             Line(Text("Available From:", bundle: .core), Text(from.dateTimeString))
                         } else {
                             Line(Text("Available From:", bundle: .core), Text(verbatim: "--"))
@@ -72,7 +68,9 @@ struct AssignmentDateSection: View {
             }
                 .font(.regular16).foregroundColor(.textDarkest)
                 .padding(16)
-            DisclosureIndicator().padding(.trailing, 16)
+            if viewModel.isButton {
+                DisclosureIndicator().padding(.trailing, 16)
+            }
         } })
             .accessibility(hint: Text("Due Dates, Double tap for details.", bundle: .core))
     }
@@ -85,7 +83,28 @@ struct AssignmentDateSection: View {
         }
     }
 
-    func route() {
-        env.router.route(to: "courses/\(assignment.courseID)/assignments/\(assignment.id)/due_dates", from: controller)
+    func buttonTapped() {
+        viewModel.buttonTapped(router: env.router, viewController: controller)
     }
 }
+
+#if DEBUG
+
+struct DateSection_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = PreviewDateSectionViewModel(
+            dueAt: Date(),
+            lockAt: Date(timeIntervalSinceNow: 100),
+            unlockAt: Date(timeIntervalSinceNow: 200),
+            forText: "Everybody")
+
+        DateSection(viewModel: viewModel)
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+        DateSection(viewModel: viewModel)
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif

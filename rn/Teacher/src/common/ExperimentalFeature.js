@@ -49,3 +49,4 @@ export default class ExperimentalFeature {
 // There is no automatic syncing of individual flags, since they can't be async
 // and should be static.
 ExperimentalFeature.favoriteGroups = new ExperimentalFeature('favorite_groups')
+ExperimentalFeature.nativeTeacherQuiz = new ExperimentalFeature('native_teacher_quiz')

@@ -50,7 +50,6 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round)
                 )
                 .rotationEffect(.degrees(-90))
-                .animation(.none, value: progress)
                 .transition(.scale)
         }
         .frame(width: size, height: size)

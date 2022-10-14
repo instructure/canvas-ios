@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -89,6 +89,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="allDates" inverseEntity="Assignment"/>
+        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="allDates" inverseEntity="Quiz"/>
     </entity>
     <entity name="AssignmentGroup" representedClassName="Core.AssignmentGroup" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -754,6 +755,7 @@
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="hasAccessCode" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hideCorrectAnswersAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="hideResultsRaw" optional="YES" attributeType="String"/>
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
@@ -772,10 +774,16 @@
         <attribute name="quizTypeRaw" attributeType="String"/>
         <attribute name="requireLockdownBrowser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="requireLockdownBrowserForResults" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="scoringPolicyRaw" optional="YES" attributeType="String"/>
+        <attribute name="showCorrectAnswers" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="showCorrectAnswersAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="showCorrectAnswersLastAttempt" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="shuffleAnswers" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="timeLimitRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="unpublishable" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="allDates" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentDate" inverseName="quiz" inverseEntity="AssignmentDate"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QuizSubmission" inverseName="quiz" inverseEntity="QuizSubmission"/>
     </entity>
     <entity name="QuizSubmission" representedClassName="Core.QuizSubmission" syncable="YES">
@@ -977,7 +985,7 @@
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="824"/>
-        <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
+        <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="149"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="AssignmentOverride" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="254"/>
@@ -1026,8 +1034,8 @@
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1079"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
-        <element name="Planner" positionX="-540" positionY="-18" width="128" height="74"/>
-        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="508"/>
+        <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="599"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="178"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>

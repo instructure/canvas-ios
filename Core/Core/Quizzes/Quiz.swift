@@ -21,6 +21,7 @@ import CoreData
 
 public class Quiz: NSManagedObject {
     @NSManaged public var accessCode: String?
+    @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int
     @NSManaged public var assignmentID: String?
     @NSManaged public var cantGoBack: Bool
@@ -28,6 +29,7 @@ public class Quiz: NSManagedObject {
     @NSManaged public var details: String?
     @NSManaged public var dueAt: Date?
     @NSManaged public var hasAccessCode: Bool
+    @NSManaged public var hideCorrectAnswersAt: Date?
     @NSManaged var hideResultsRaw: String?
     @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
@@ -46,11 +48,16 @@ public class Quiz: NSManagedObject {
     @NSManaged var quizTypeRaw: String
     @NSManaged public var requireLockdownBrowser: Bool
     @NSManaged public var requireLockdownBrowserForResults: Bool
+    @NSManaged public var scoringPolicyRaw: String?
+    @NSManaged public var showCorrectAnswers: Bool
+    @NSManaged public var showCorrectAnswersAt: Date?
+    @NSManaged public var showCorrectAnswersLastAttempt: Bool
     @NSManaged public var shuffleAnswers: Bool
     @NSManaged public var submission: QuizSubmission?
     @NSManaged var timeLimitRaw: NSNumber? // minutes
     @NSManaged public var title: String
     @NSManaged public var unlockAt: Date?
+    @NSManaged public var unpublishable: Bool
 
     public var hideResults: QuizHideResults? {
         get { return hideResultsRaw.flatMap { QuizHideResults(rawValue: $0) } }
@@ -70,6 +77,11 @@ public class Quiz: NSManagedObject {
     public var quizType: QuizType {
         get { return QuizType(rawValue: quizTypeRaw) ?? .assignment }
         set { quizTypeRaw = newValue.rawValue }
+    }
+
+    public var scoringPolicy: ScoringPolicy? {
+        get { return scoringPolicyRaw.flatMap { ScoringPolicy(rawValue: $0) } }
+        set { scoringPolicyRaw = newValue?.rawValue }
     }
 
     public var timeLimit: Double? {
@@ -142,12 +154,20 @@ extension Quiz {
     static func save(_ item: APIQuiz, in context: NSManagedObjectContext) -> Quiz {
         let model: Quiz = context.first(where: #keyPath(Quiz.id), equals: item.id.value) ?? context.insert()
         model.accessCode = item.access_code
+
+        if let dates = item.all_dates {
+            model.allDates = Set(dates.map {
+                AssignmentDate.save($0, quizID: item.id.value, in: context)
+            })
+        }
+
         model.allowedAttempts = item.allowed_attempts ?? 0
         model.assignmentID = item.assignment_id?.value
         model.cantGoBack = item.cant_go_back ?? false
         model.details = item.description
         model.dueAt = item.due_at
         model.hasAccessCode = item.has_access_code ?? false
+        model.hideCorrectAnswersAt = item.hide_correct_answers_at
         model.hideResults = item.hide_results
         model.htmlURL = item.html_url
         model.id = item.id.value
@@ -165,10 +185,15 @@ extension Quiz {
         model.quizTypeOrder = QuizType.allCases.firstIndex(of: item.quiz_type) ?? QuizType.allCases.count
         model.requireLockdownBrowser = item.require_lockdown_browser
         model.requireLockdownBrowserForResults = item.require_lockdown_browser_for_results
+        model.scoringPolicy = item.scoring_policy
+        model.showCorrectAnswers = item.show_correct_answers == true
+        model.showCorrectAnswersAt = item.show_correct_answers_at
+        model.showCorrectAnswersLastAttempt = item.show_correct_answers_last_attempt == true
         model.shuffleAnswers = item.shuffle_answers ?? false
         model.timeLimit = item.time_limit
         model.title = item.title
         model.unlockAt = item.unlock_at
+        model.unpublishable = item.unpublishable == true
         let orderDate = (item.quiz_type == .assignment ? item.due_at : item.lock_at) ?? Date.distantFuture
         model.order = orderDate.isoString()
         return model
@@ -181,8 +206,18 @@ public enum QuizQuestionType: String, Codable, CaseIterable {
         numerical_question, short_answer_question, text_only_question, true_false_question
 }
 
+/** Dictates whether or not quiz results are hidden from students. If null, students can see their results after any attempt. If `always`, students can never see their results. If `until_after_last_attempt`, students can only see results after their last attempt. (Only valid if `allowed_attempts` > 1). */
 public enum QuizHideResults: String, Codable, CaseIterable {
     case always, until_after_last_attempt
+
+    public var text: String {
+        switch self {
+        case .always:
+            return NSLocalizedString("No", bundle: .core, comment: "")
+        case .until_after_last_attempt:
+            return NSLocalizedString("After Last Attempt", bundle: .core, comment: "")
+        }
+    }
 }
 
 public enum QuizType: String, Codable, CaseIterable {
@@ -200,6 +235,21 @@ public enum QuizType: String, Codable, CaseIterable {
             return NSLocalizedString("Surveys", bundle: .core, comment: "")
         case .quizzes_next:
             return NSLocalizedString("New Quizzes", bundle: .core, comment: "")
+        }
+    }
+}
+
+public enum ScoringPolicy: String, Codable, CaseIterable {
+    case keep_latest, keep_highest, keep_average
+
+    public var text: String {
+        switch self {
+        case .keep_latest:
+            return NSLocalizedString("Latest", bundle: .core, comment: "")
+        case .keep_highest:
+            return NSLocalizedString("Highest", bundle: .core, comment: "")
+        case .keep_average:
+            return NSLocalizedString("Average", bundle: .core, comment: "")
         }
     }
 }
