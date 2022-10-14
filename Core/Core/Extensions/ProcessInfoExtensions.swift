@@ -22,7 +22,7 @@ public protocol ProcessManager {
     /**
      Perform an expiring background task, which obtains an expiring task assertion on iOS. The block contains any work which needs to be completed as a background-priority task. The block will be scheduled on a system-provided concurrent queue. After a system-specified time, the block will be called with the `expired` parameter set to YES. The `expired` parameter will also be YES if the system decides to prematurely terminate a previous non-expiration invocation of the block.
      */
-    func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
+    func performExpiringActivity(withReason reason: String, using block: @escaping @Sendable (Bool) -> Void)
 }
 
 extension ProcessInfo: ProcessManager {}
