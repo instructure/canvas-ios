@@ -19,7 +19,7 @@
 import Foundation
 import SwiftUI
 
-public struct InboxView: View {
+public struct OldInboxView: View {
     enum Scope: CaseIterable, Hashable {
         case all, unread, starred, sent, archived
 
@@ -217,7 +217,7 @@ public struct InboxView: View {
 }
 
 #if DEBUG
-struct InboxView_Previews: PreviewProvider {
+struct OldInboxView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
     static let context = env.globalDatabase.viewContext
     static var previews: some View {
@@ -243,7 +243,7 @@ struct InboxView_Previews: PreviewProvider {
                 ]
             ),
         ])
-        return InboxView(conversations: conversations, courses: courses)
+        return OldInboxView(conversations: conversations, courses: courses)
             .previewLayout(.fixed(width: 375, height: 667))
             .accentColor(.red)
     }

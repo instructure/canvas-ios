@@ -867,6 +867,13 @@
 		CF37631D2837B98900F25B81 /* DashboardInvitationNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631C2837B98900F25B81 /* DashboardInvitationNameTests.swift */; };
 		CF37631F2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */; };
 		CF376323283B757600F25B81 /* AssignmentGroupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */; };
+		CF3A31D428F702B9002752D2 /* InboxMessageScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */; };
+		CF3A31D628F70307002752D2 /* InboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31D528F70307002752D2 /* InboxViewModel.swift */; };
+		CF3A31D928F70BD7002752D2 /* InboxMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */; };
+		CF3A31DB28F83D39002752D2 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31DA28F83D39002752D2 /* InboxView.swift */; };
+		CF3A31DD28F840DA002752D2 /* InboxMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */; };
+		CF3A31DF28F94FBF002752D2 /* InboxViewModelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31DE28F94FBF002752D2 /* InboxViewModelPreview.swift */; };
+		CF3A31E128F94FD7002752D2 /* InboxViewModelLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E028F94FD7002752D2 /* InboxViewModelLive.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
@@ -1211,7 +1218,7 @@
 		E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3124AE3A160053AA8A /* APIAlertThreshold.swift */; };
 		E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3324AE3A220053AA8A /* GetAlertThresholds.swift */; };
 		E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3624AE3A650053AA8A /* GetObservedStudents.swift */; };
-		E8D20399250A723E009B2ABE /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C71AA2509058700DEDA36 /* InboxView.swift */; };
+		E8D20399250A723E009B2ABE /* OldInboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C71AA2509058700DEDA36 /* OldInboxView.swift */; };
 		E8D6949824D46B1E0080D883 /* CoreHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949724D46B1E0080D883 /* CoreHostingController.swift */; };
 		E8D7E6EB24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */; };
 		E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */; };
@@ -2360,6 +2367,13 @@
 		CF37631C2837B98900F25B81 /* DashboardInvitationNameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationNameTests.swift; sourceTree = "<group>"; };
 		CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationViewModelTests.swift; sourceTree = "<group>"; };
 		CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroupViewModelTests.swift; sourceTree = "<group>"; };
+		CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScope.swift; sourceTree = "<group>"; };
+		CF3A31D528F70307002752D2 /* InboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModel.swift; sourceTree = "<group>"; };
+		CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageModel.swift; sourceTree = "<group>"; };
+		CF3A31DA28F83D39002752D2 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
+		CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageView.swift; sourceTree = "<group>"; };
+		CF3A31DE28F94FBF002752D2 /* InboxViewModelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModelPreview.swift; sourceTree = "<group>"; };
+		CF3A31E028F94FD7002752D2 /* InboxViewModelLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModelLive.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -2698,7 +2712,7 @@
 		DFE1FF39212F6D20003F27AA /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
 		E14A7FC270275DE4A9E9263F /* Pods-needs-pspdfkit-CoreTester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-CoreTester/Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; sourceTree = "<group>"; };
 		E83BB40525196E2B000E5B00 /* ConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
-		E86C71AA2509058700DEDA36 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
+		E86C71AA2509058700DEDA36 /* OldInboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldInboxView.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
 		E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStoreTests.swift; sourceTree = "<group>"; };
@@ -2848,6 +2862,7 @@
 				CF2F7E7827FF20D600942241 /* Fonts */,
 				3B4D86112329521F005126A5 /* Grades */,
 				7D1D5BE32492A5FA009EA317 /* Groups */,
+				CF3A31CF28F7023B002752D2 /* Inbox */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
 				5BF786A8218599B600471A5F /* InfoPlist.strings */,
 				7DCF1ECE216BFE5D003AF358 /* Localizable.strings */,
@@ -3568,7 +3583,7 @@
 				7DFDB43723A45A4A00B28DED /* ConversationMessage.swift */,
 				7DFDB43923A45A5A00B28DED /* ConversationParticipant.swift */,
 				9F73859D23C904D200A9C6FE /* CreateConversation.swift */,
-				E86C71AA2509058700DEDA36 /* InboxView.swift */,
+				E86C71AA2509058700DEDA36 /* OldInboxView.swift */,
 				3B4D89392450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard */,
 				3B4D89382450A8FC004ED120 /* EditComposeRecipientsViewController.swift */,
 				9FA690EF23C79489009D12D9 /* GetConversationCourses.swift */,
@@ -4784,6 +4799,44 @@
 				CF37631C2837B98900F25B81 /* DashboardInvitationNameTests.swift */,
 			);
 			path = Invitations;
+			sourceTree = "<group>";
+		};
+		CF3A31CF28F7023B002752D2 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A31D228F702A3002752D2 /* Model */,
+				CF3A31D028F70246002752D2 /* View */,
+				CF3A31D128F7024C002752D2 /* ViewModel */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		CF3A31D028F70246002752D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A31DA28F83D39002752D2 /* InboxView.swift */,
+				CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF3A31D128F7024C002752D2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A31D528F70307002752D2 /* InboxViewModel.swift */,
+				CF3A31DE28F94FBF002752D2 /* InboxViewModelPreview.swift */,
+				CF3A31E028F94FD7002752D2 /* InboxViewModelLive.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF3A31D228F702A3002752D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */,
+				CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CF3E76002885619800276703 /* Model */ = {
@@ -7461,7 +7514,7 @@
 				CF748D1D274D43B9000EA34E /* DashboardConferencesViewModel.swift in Sources */,
 				CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */,
 				CF5234EB28B8D11500D2D3B9 /* FileUploadProgressObserver.swift in Sources */,
-				E8D20399250A723E009B2ABE /* InboxView.swift in Sources */,
+				E8D20399250A723E009B2ABE /* OldInboxView.swift in Sources */,
 				D94FA2AE26CBE787007B9CA4 /* K5GradeProgressBar.swift in Sources */,
 				CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */,
 				7DA260FA23F724D7005D2121 /* Database.xcdatamodeld in Sources */,
@@ -7493,6 +7546,7 @@
 				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
 				CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */,
+				CF3A31D428F702B9002752D2 /* InboxMessageScope.swift in Sources */,
 				CF7C3691267A0B9B00ACAC79 /* UISegmentedControlExtensions.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* SideMenuTransitioning.swift in Sources */,
@@ -7573,7 +7627,9 @@
 				EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */,
 				7D7F71D6241C2A5A00D6F9CB /* ConferenceListViewController.swift in Sources */,
 				7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */,
+				CF3A31DD28F840DA002752D2 /* InboxMessageView.swift in Sources */,
 				D91BC855276B7B3C008371B0 /* AssignmentListViewModel.swift in Sources */,
+				CF3A31DB28F83D39002752D2 /* InboxView.swift in Sources */,
 				7DA25FC523F72136005D2121 /* APIPermissions.swift in Sources */,
 				7DA25FF023F721DE005D2121 /* SearchRecipient.swift in Sources */,
 				7D89A2CB250A6B3B009D0FD2 /* EditorForm.swift in Sources */,
@@ -7607,6 +7663,7 @@
 				7DA25FD923F72148005D2121 /* ExperimentalFeature.swift in Sources */,
 				7DA2601023F7227A005D2121 /* UIColorExtensions.swift in Sources */,
 				7DA25FD123F72136005D2121 /* APIURL.swift in Sources */,
+				CF3A31D928F70BD7002752D2 /* InboxMessageModel.swift in Sources */,
 				49428D5A24BA526F00EF3EAB /* GradeStatisticGraphView.swift in Sources */,
 				7DA260C923F72359005D2121 /* AlertAction.swift in Sources */,
 				CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */,
@@ -7672,6 +7729,7 @@
 				CFEC7F3B26B409D1008B9F77 /* K5ScheduleWeekView.swift in Sources */,
 				7D2E812925631BEC008C568F /* AssignmentDateSection.swift in Sources */,
 				EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */,
+				CF3A31D628F70307002752D2 /* InboxViewModel.swift in Sources */,
 				CF8D53532806FB490038B0B2 /* WebSitePreviewViewModel.swift in Sources */,
 				7DA25FAD23F72136005D2121 /* APIEnrollment.swift in Sources */,
 				CFCB0F7027CFC02A008DDEA4 /* ModulesPanda.swift in Sources */,
@@ -7729,6 +7787,7 @@
 				EB2A9BC62632E31F00A19A5A /* SideMenuFooterView.swift in Sources */,
 				7D1E856B2567356400D093C5 /* JustifiedGrid.swift in Sources */,
 				EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */,
+				CF3A31DF28F94FBF002752D2 /* InboxViewModelPreview.swift in Sources */,
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,
 				7DCA32072541C5F700458651 /* VideoPlayer.swift in Sources */,
 				B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */,
@@ -7835,6 +7894,7 @@
 				7DA2604923F722D9005D2121 /* Grade.swift in Sources */,
 				7DA25FAF23F72136005D2121 /* APIError.swift in Sources */,
 				97F5520424061AF1005D80FC /* PlannerNoteDetailViewController.swift in Sources */,
+				CF3A31E128F94FD7002752D2 /* InboxViewModelLive.swift in Sources */,
 				7DBD14E32547213F00750F52 /* QuizListViewController.swift in Sources */,
 				CF60CC332645524500C1C173 /* K5GradesView.swift in Sources */,
 				CFB06F9A28BE5D0600DAC40B /* FutureExtensions.swift in Sources */,
