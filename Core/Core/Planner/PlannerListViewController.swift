@@ -31,6 +31,7 @@ public class PlannerListViewController: UIViewController {
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBackgroundView: TableViewBackgroundView!
 
     weak var delegate: PlannerListDelegate?
     let env = AppEnvironment.shared
@@ -61,7 +62,8 @@ public class PlannerListViewController: UIViewController {
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
         self.view.backgroundColor = .backgroundLightest
-
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+        tableViewBackgroundView.add(to: tableView)
         refresh()
     }
 
