@@ -1051,8 +1051,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Teacher" */;
 			buildPhases = (
-				B4DE2AD028BCB33A000F8D4D /* SwiftLint */,
 				B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */,
+				B4DE2AD028BCB33A000F8D4D /* SwiftLint */,
 				4931EB6B1F731BD700715EF2 /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,

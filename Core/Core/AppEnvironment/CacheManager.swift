@@ -44,7 +44,7 @@ public class CacheManager {
 
         clear()
         LoginSession.clearAll()
-        clearDirectory(.documentsDirectory) // Also clear documents, which we normally keep around
+        clearDirectory(URL.directories.documents) // Also clear documents, which we normally keep around
     }
 
     public static func clearIfNeeded() {
@@ -63,21 +63,21 @@ public class CacheManager {
     }
 
     public static func clearAppGroup(_ id: String?) {
-        guard let id = id, let folder = URL.sharedContainer(id) else { return }
+        guard let id = id, let folder = URL.directories.sharedContainers(id) else { return }
         clearDirectory(folder)
     }
 
     public static func clearCaches() {
-        clearDirectory(.cachesDirectory(appGroup: nil))
-        clearDirectory(.cachesDirectory(appGroup: Bundle.main.appGroupID()))
+        clearDirectory(URL.directories.caches(appGroup: nil))
+        clearDirectory(URL.directories.caches(appGroup: Bundle.main.appGroupID()))
     }
 
     public static func clearLibrary() {
-        clearDirectory(.libraryDirectory)
+        clearDirectory(URL.directories.library)
     }
 
     public static func clearRNAsyncStorage() {
-        let asyncStorage = URL.documentsDirectory.appendingPathComponent("RCTAsyncLocalStorage_V1")
+        let asyncStorage = URL.directories.documents.appendingPathComponent("RCTAsyncLocalStorage_V1")
         let manifestURL = asyncStorage.appendingPathComponent("manifest.json")
         let json = (try? Data(contentsOf: manifestURL)).flatMap { try? JSONSerialization.jsonObject(with: $0) } as? [String: Any]
         clearDirectory(asyncStorage)

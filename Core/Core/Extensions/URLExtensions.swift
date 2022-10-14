@@ -28,58 +28,64 @@ extension Sequence where Element == URL {
     }
 }
 
-extension URL {
-    public static var temporaryDirectory: URL {
-        return URL(fileURLWithPath: NSTemporaryDirectory())
-    }
+public extension URL {
+    struct Directories {
+        fileprivate init() {}
 
-    public static var cachesDirectory: URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-    }
-
-    public static func cachesDirectory(appGroup: String?) -> URL {
-        var folder = URL.cachesDirectory
-        if let appGroup = appGroup, let group = sharedContainer(appGroup) {
-            folder = group.appendingPathComponent("caches", isDirectory: true)
-            try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+        public var temporary: URL {
+            return URL(fileURLWithPath: NSTemporaryDirectory())
         }
-        return folder
+
+        public var caches: URL {
+            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        }
+
+        public func caches(appGroup: String?) -> URL {
+            var folder = URL.directories.caches
+            if let appGroup = appGroup, let group = sharedContainers(appGroup) {
+                folder = group.appendingPathComponent("caches", isDirectory: true)
+                try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+            }
+            return folder
+        }
+
+        public var documents: URL {
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+
+        public var library: URL {
+            return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+        }
+
+        public func sharedContainers(_ identifier: String) -> URL? {
+            return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
+        }
     }
 
-    public static var documentsDirectory: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    }
+    static let directories = Directories()
 
-    public static var libraryDirectory: URL {
-        return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-    }
-
-    public static func sharedContainer(_ identifier: String) -> URL? {
-        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
-    }
-
-    public func lookupFileSize() -> Int {
+    func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)
         return attributes?[FileAttributeKey.size] as? Int ?? 0
     }
 
-    public func appendingQueryItems(_ items: URLQueryItem...) -> URL {
+    func appendingQueryItems(_ items: URLQueryItem...) -> URL {
         var components = URLComponents.parse(self)
         components.queryItems = (components.queryItems ?? []) + items
         return components.url ?? self
     }
 
-    public func containsQueryItem(named key: String) -> Bool {
+    func containsQueryItem(named key: String) -> Bool {
         let components = URLComponents.parse(self)
         return components.queryValue(for: key) != nil
     }
 
-    public func appendingOrigin(_ origin: String) -> URL {
+    func appendingOrigin(_ origin: String) -> URL {
         return appendingQueryItems(.init(name: "origin", value: origin))
     }
 
-    public func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
+    func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
         let manager = FileManager.default
         if destination.hasDirectoryPath {
             try manager.createDirectory(at: destination, withIntermediateDirectories: true, attributes: nil)
@@ -96,11 +102,11 @@ extension URL {
         }
     }
 
-    public func copy(to destination: URL, override: Bool = true) throws {
+    func copy(to destination: URL, override: Bool = true) throws {
         try move(to: destination, override: override, copy: true)
     }
 
-    public var withCanonicalQueryParams: URL? {
+    var withCanonicalQueryParams: URL? {
         return URLComponents(url: self, resolvingAgainstBaseURL: false)?.withCanonicalQueryParams.url
     }
 }

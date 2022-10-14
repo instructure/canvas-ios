@@ -2007,8 +2007,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4927049B1CF4AF7200C631C6 /* Build configuration list for PBXNativeTarget "Student" */;
 			buildPhases = (
-				B4DE2ACE28BCB18F000F8D4D /* SwiftLint */,
 				420D38066A53E2683A07A16C /* [CP] Check Pods Manifest.lock */,
+				B4DE2ACE28BCB18F000F8D4D /* SwiftLint */,
 				49383CF01F848F7D009C8F8E /* Start Packager */,
 				4927046F1CF4AF7100C631C6 /* Sources */,
 				492704701CF4AF7100C631C6 /* Frameworks */,
@@ -2025,8 +2025,6 @@
 				D9FD8F402546C3F500C6842B /* PBXTargetDependency */,
 			);
 			name = Student;
-			packageProductDependencies = (
-			);
 			productName = Canvas;
 			productReference = 492704731CF4AF7100C631C6 /* Student.app */;
 			productType = "com.apple.product-type.application";
@@ -2257,7 +2255,7 @@
 			);
 			mainGroup = 4927046A1CF4AF7100C631C6;
 			packageReferences = (
-				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
 			);
 			productRefGroup = 492704741CF4AF7100C631C6 /* Products */;
 			projectDirPath = "";
@@ -3814,7 +3812,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -3827,7 +3825,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -20,7 +20,7 @@ import XCTest
 import Core
 
 class FileSubmissionComposerTests: CoreTestCase {
-    private let tempFileURL = URL.temporaryDirectory.appendingPathComponent("FileSubmissionComposerTests.txt")
+    private let tempFileURL = URL.directories.temporary.appendingPathComponent("FileSubmissionComposerTests.txt")
 
     override func setUp() {
         super.setUp()

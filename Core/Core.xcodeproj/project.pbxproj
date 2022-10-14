@@ -6578,8 +6578,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C964842211E2F1A002C3255 /* Build configuration list for PBXNativeTarget "Core" */;
 			buildPhases = (
-				B4DE2AD128BCB4B1000F8D4D /* SwiftLint */,
 				D99BB92EECB794224AAACF8B /* [CP] Check Pods Manifest.lock */,
+				B4DE2AD128BCB4B1000F8D4D /* SwiftLint */,
 				2C96482B211E2F1A002C3255 /* Headers */,
 				7DA25F8923F720C7005D2121 /* Sources */,
 				2C96482A211E2F1A002C3255 /* Frameworks */,
@@ -6724,7 +6724,7 @@
 			);
 			mainGroup = 2C964824211E2F1A002C3255;
 			packageReferences = (
-				CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios.git" */,
 			);
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
 			projectDirPath = "";
@@ -8757,7 +8757,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -8770,7 +8770,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		CFD3EC36289422C0001E7D4E /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios.git" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */

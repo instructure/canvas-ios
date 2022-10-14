@@ -27,7 +27,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     override func setUp() {
         super.setUp()
 
-        let fileURL = URL.temporaryDirectory.appendingPathComponent("loadFileURL.txt", isDirectory: false)
+        let fileURL = URL.directories.temporary.appendingPathComponent("loadFileURL.txt", isDirectory: false)
         try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
         self.fileURL = fileURL
         mockAssembly = MockFileSubmissionAssembly(testCase: self)

@@ -52,8 +52,8 @@ public class MockHTTPResponse: Codable {
     public var error: Error? { errorMessage.map { NSError.instructureError($0) } }
 
     public lazy var dataSavedToTemporaryFileURL: URL? = {
-        guard let data = data else { return nil }
-        let url = URL.temporaryDirectory.appendingPathComponent(Foundation.UUID().uuidString, isDirectory: false)
+        guard let data = data else { return }
+        let url = URL.directories.temporary.appendingPathComponent(Foundation.UUID().uuidString, isDirectory: false)
         (try? data.write(to: url))!
         return url
     }()

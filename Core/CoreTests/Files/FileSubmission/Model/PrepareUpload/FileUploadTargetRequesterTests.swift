@@ -21,7 +21,7 @@ import CoreData
 import XCTest
 
 class FileUploadTargetRequesterTests: CoreTestCase {
-    private let tempFileURL = URL.temporaryDirectory.appendingPathComponent("FileUploadTargetRequesterTests.txt")
+    private let tempFileURL = URL.directories.temporary.appendingPathComponent("FileUploadTargetRequesterTests.txt")
 
     override func setUp() {
         super.setUp()
