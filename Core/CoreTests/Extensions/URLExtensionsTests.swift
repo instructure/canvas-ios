@@ -43,10 +43,12 @@ class URLExtensionsTests: XCTestCase {
         XCTAssertEqual(url?.absoluteString, "/api/v1/foo?a=b&c")
     }
 
+    @available(iOS 16.0, *)
     func testTemporaryDirectory() {
         XCTAssertEqual(URL.temporaryDirectory, URL(fileURLWithPath: NSTemporaryDirectory()))
     }
 
+    @available(iOS 16.0, *)
     func testCachesDirectory() {
         XCTAssertEqual(URL.cachesDirectory, fs.urls(for: .cachesDirectory, in: .userDomainMask)[0])
         XCTAssertEqual(URL.cachesDirectory, URL.cachesDirectory(appGroup: nil))
@@ -61,10 +63,12 @@ class URLExtensionsTests: XCTestCase {
         XCTAssertTrue(isDir.boolValue)
     }
 
+    @available(iOS 16.0, *)
     func testDocumentsDirectory() {
         XCTAssertEqual(URL.documentsDirectory, fs.urls(for: .documentDirectory, in: .userDomainMask)[0])
     }
 
+    @available(iOS 16.0, *)
     func testMove() throws {
         let url = URL.temporaryDirectory.appendingPathComponent("original.txt")
         try "data".write(to: url, atomically: true, encoding: .utf8)
@@ -77,6 +81,7 @@ class URLExtensionsTests: XCTestCase {
         try fs.removeItem(at: destination)
     }
 
+    @available(iOS 16.0, *)
     func testMoveOverride() throws {
         let existing = URL.temporaryDirectory.appendingPathComponent("file.txt")
         try "existing".write(to: existing, atomically: true, encoding: .utf8)
@@ -92,6 +97,7 @@ class URLExtensionsTests: XCTestCase {
         try fs.removeItem(at: existing)
     }
 
+    @available(iOS 16.0, *)
     func testMoveCopy() throws {
         let source = URL.temporaryDirectory.appendingPathComponent("source.txt")
         try? fs.removeItem(at: source)
@@ -106,6 +112,7 @@ class URLExtensionsTests: XCTestCase {
         try fs.removeItem(at: destination)
     }
 
+    @available(iOS 16.0, *)
     func testCopy() throws {
         let source = URL.temporaryDirectory.appendingPathComponent("source.txt")
         try? fs.removeItem(at: source)
