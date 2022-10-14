@@ -374,6 +374,9 @@
 "Cancel" = "キャンセル";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "提出をキャンセルしますか？";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas ガイド";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "エラー";
 
 /* No comment provided by engineer. */
+"Error Details" = "エラーの詳細";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "エラーの保存。タップして再試行してください。";
 
 /* No comment provided by engineer. */
@@ -851,6 +857,9 @@
 "Failed to save image" = "画像の保存に失敗しました";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "アップロード開始に失敗しました:";
+
+/* No comment provided by engineer. */
 "Failed upload" = "アップロード中に失敗";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "ファイル";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "ファイル (fileName) サイズ(サイズ)。";
 
 /* No comment provided by engineer. */
 "File Details" = "ファイル詳細";
@@ -995,6 +1007,9 @@
 "Help your students with this assignment by adding instructions." = "指示を追加して、この課題を受講者に分かりやすくしてください。";
 
 /* No comment provided by engineer. */
+"Hide" = "非表示にする";
+
+/* No comment provided by engineer. */
 "Hide content for %@" = "（）にコンテンツを非表示にする%@";
 
 /* No comment provided by engineer. */
@@ -1050,6 +1065,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "受信トレイ";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "互換性のないファイルタイプ";
 
 /* No comment provided by engineer. */
 "Incomplete" = "不完全";
@@ -1358,6 +1376,9 @@
 "Nickname" = "ニックネーム";
 
 /* No comment provided by engineer. */
+"No" = "いいえ";
+
+/* No comment provided by engineer. */
 "No Announcements" = "アナウンスメントなし";
 
 /* No comment provided by engineer. */
@@ -1490,6 +1511,9 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "提出物の1つがまだアップロード中です。ログアウトすると中断する場合があります。\nログアウトしてもよろしいですか？";
 
 /* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "1つ以上のファイルのアップロードに失敗しました。インターネット接続をチェックしてから、提出を再試行してください。";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "リンク付きの受講者のみ利用可能です";
 
 /* No comment provided by engineer. */
@@ -1619,6 +1643,9 @@
 "Preferences" = "優先設定";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "ファイルをアップロードする準備";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "前提条件:%@";
 
 /* No comment provided by engineer. */
@@ -1716,6 +1743,12 @@
 
 /* No comment provided by engineer. */
 "Remove File" = "ファイルを削除";
+
+/* No comment provided by engineer. */
+"Remove file from submission." = "投稿ファイルを削除します。";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "リストから外しますか？";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "除去済%1$@";
@@ -1835,7 +1868,7 @@
 "Select Course" = "コースの選択";
 
 /* No comment provided by engineer. */
-"Select grading period" = "評定期間を選択";
+"Select Grading Period" = "採点期間を選択";
 
 /* No comment provided by engineer. */
 "Select Impact" = "深刻度をお選びください";
@@ -1967,13 +2000,28 @@
 "Subject" = "件名";
 
 /* No comment provided by engineer. */
+"Submission" = "提出";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "%1$@、%2$@に提出。%3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "提出コメント";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "提出に失敗しました";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "不明なエラーが発生したため、提出に失敗しました。";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "正常に提出されました!";
+
+/* No comment provided by engineer. */
 "Submission Types" = "提出タイプ";
+
+/* No comment provided by engineer. */
+"Submission Uploaded" = "提出がアップロードされました";
 
 /* No comment provided by engineer. */
 "Submissions" = "提出物";
@@ -2019,6 +2067,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "写真を撮る";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "こちらをタップすると詳細が表示されます。";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
@@ -2067,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "OSにより提出プロセスが中止されました。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "このグループには、アクティブな課題はありません。";
@@ -2159,6 +2213,9 @@
 "This page has been disabled for this course." = "このページはこのコースでは無効になっています。";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "これにより、アップロードがキャンセルされ、削除されます。";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "これにより、期日と関連するすべての課題対象者が削除されます。";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2294,31 @@
 "Updating" = "更新しています";
 
 /* No comment provided by engineer. */
+"Upload completed." = "アップロードが完了しました。";
+
+/* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "不明な理由により、アップロードに失敗しました。";
+
+/* No comment provided by engineer. */
+"Upload failed." = "アップロードに失敗しました。";
+
+/* No comment provided by engineer. */
 "Upload File" = "ファイルアップロード";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "アップロード進行中";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "アップロード中 (Int(100 * 進捗))%。";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@のアップロードが%2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "提出物をアップロードしています";
 
 /* No comment provided by engineer. */
 "Uploading..." = "更新中...";
@@ -2394,6 +2466,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "あなたのメールアドレス";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "あなたのファイルは正常に提出されました。\nよい一日を！";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "あなたのタスクリストは空です。英気を養う時間です。";

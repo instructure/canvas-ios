@@ -31,7 +31,7 @@ public struct SuccessPanda: PandaScene {
 }
 
 private struct JumpingPanda: View {
-    @State private var jumpOffset: CGFloat = 30
+    @State private var jumpOffset: CGFloat = 40
     private let imageName: String
 
     public init(imageName: String) {
@@ -42,7 +42,7 @@ private struct JumpingPanda: View {
         BouncyImage(imageFileName: imageName)
             .offset(y: jumpOffset)
             .onAppear {
-                withAnimation(Animation.timingCurve(0.2, 1.07, 0.2, 0.94, duration: 1.5)) {
+                withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 1.5)) {
                     jumpOffset = 0
                 }
             }

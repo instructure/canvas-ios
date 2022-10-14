@@ -32,11 +32,20 @@ public struct K5SubjectView: View {
                 TopBarView(viewModel: topBarViewModel, horizontalInset: padding, itemSpacing: padding)
                 Divider()
                 if UIDevice.current.userInterfaceIdiom == .pad {
-                    K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
+                    K5SubjectHeaderView(title: viewModel.courseTitle,
+                                        imageUrl: viewModel.courseBannerImageUrl ?? viewModel.courseImageUrl,
+                                        backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
                 }
                 if let currentPageURL = viewModel.currentPageURL {
-                    WebView(url: currentPageURL, customUserAgentName: nil, disableZoom: true, configuration: viewModel.config, invertColorsInDarkMode: true)
-                        .reload(on: viewModel.reloadWebView)
+                    WebView(
+                        url: currentPageURL,
+                        customUserAgentName: nil,
+                        disableZoom: true,
+                        pullToRefresh: .enabled(color: viewModel.courseColor),
+                        configuration: viewModel.config,
+                        invertColorsInDarkMode: true
+                    )
+                    .reload(on: viewModel.reloadWebView)
                 }
                 Divider()
             }

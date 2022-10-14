@@ -61,18 +61,22 @@ public struct AssignmentDetailsView: View {
 
     @ViewBuilder var states: some View {
         if let assignment = assignment.first {
-            ScrollView { VStack(alignment: .leading, spacing: 0) {
-                CircleRefresh { endRefreshing in
-                    self.assignment.refresh(force: true) { _ in
-                        endRefreshing()
-                    }
+            RefreshableScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    details(assignment: assignment)
+                        .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
                 }
-
-                details(assignment: assignment)
-                    .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
-            } }
+            }
+            refreshAction: { endRefreshing in
+                self.assignment.refresh(force: true) { _ in
+                    endRefreshing()
+                }
+            }
         } else if assignment.state == .loading {
-            ZStack { CircleProgress() }
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+            }
         } else /* Assignment not found, perhaps recently deleted */ {
             Spacer().onAppear { env.router.dismiss(controller) }
         }
@@ -86,17 +90,20 @@ public struct AssignmentDetailsView: View {
                 Text(assignment.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)
                     .padding(.trailing, 12)
-                if assignment.published {
-                    Image.publishSolid.foregroundColor(.textSuccess)
-                        .padding(.trailing, 4)
-                    Text("Published", bundle: .core)
-                        .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
-                } else {
-                    Image.noSolid.foregroundColor(.textDark)
-                        .padding(.trailing, 4)
-                    Text("Unpublished", bundle: .core)
-                        .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
+                HStack {
+                    if assignment.published {
+                        Image.publishSolid.foregroundColor(.textSuccess)
+                            .padding(.trailing, 4)
+                        Text("Published", bundle: .core)
+                            .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
+                    } else {
+                        Image.noSolid.foregroundColor(.textDark)
+                            .padding(.trailing, 4)
+                        Text("Unpublished", bundle: .core)
+                            .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
+                    }
                 }
+                    .accessibilityElement(children: .combine)
                 Spacer()
             }
                 .padding(.top, 2)

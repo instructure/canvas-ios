@@ -34,15 +34,19 @@ enum PersonContextCard {
 class PeopleE2ETests: CoreUITestCase {
     func testCourseUsersAndUserContextCardDisplay() {
         // Dashboard
-        Dashboard.courseCard(id: "262").tap()
+        Dashboard.courseCard(id: "262").tapUntil {
+            CourseNavigation.people.exists()
+        }
 
-        CourseNavigation.people.tap()
+        CourseNavigation.people.tapUntil {
+            CoursePeople.person(name: "Student One").exists()
+        }
 
-        CoursePeople.person(name: "Student One").waitToExist()
-        CoursePeople.person(name: "Student Two").waitToExist()
-        CoursePeople.person(name: "Student One").tap()
+        XCTAssertTrue(CoursePeople.person(name: "Student Two").exists())
+        CoursePeople.person(name: "Student One").tapUntil {
+            PersonContextCard.text("Student One").exists()
+        }
 
-        PersonContextCard.text("Student One").waitToExist()
-        PersonContextCard.text("Announcments").waitToExist()
+        XCTAssertTrue(PersonContextCard.text("Announcments").exists())
     }
 }

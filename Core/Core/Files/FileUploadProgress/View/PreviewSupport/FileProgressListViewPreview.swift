@@ -25,7 +25,7 @@ class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {
         var dismiss: AnyPublisher<() -> Void, Never> = PassthroughSubject().eraseToAnyPublisher()
         var presentDialog: AnyPublisher<UIAlertController, Never> = PassthroughSubject().eraseToAnyPublisher()
-        @Published var items: [FileProgressItemViewModel] = FileProgressItemPreview.files.map { FileProgressItemViewModel(file: $0, onRemove: {}) }
+        @Published var items: [FileProgressItemViewModel] = FileProgressItemPreview.files.map { FileProgressItemViewModel(file: $0, onRemove: { _ in }) }
         @Published var state: FileProgressListViewState
         var leftBarButton: BarButtonItemViewModel?
         var rightBarButton: BarButtonItemViewModel?
@@ -52,7 +52,7 @@ class FileProgressListViewPreview {
         }
 
         private func scheduleUpdate() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + (state == .success ? 3 : 1)) { [weak self] in
                 self?.updateState()
             }
         }

@@ -46,6 +46,7 @@ public struct APIAssignment: Codable, Equatable {
     let moderated_grading: Bool?
     let name: String
     let needs_grading_count: Int?
+    let only_visible_to_overrides: Bool?
     let overrides: [APIAssignmentOverride]?
     let planner_override: APIPlannerOverride?
     let points_possible: Double?
@@ -129,6 +130,7 @@ extension APIAssignment {
         moderated_grading: Bool? = nil,
         name: String = "some assignment",
         needs_grading_count: Int = 1,
+        only_visible_to_overrides: Bool? = false,
         overrides: [APIAssignmentOverride]? = nil,
         planner_override: APIPlannerOverride? = nil,
         points_possible: Double? = 10,
@@ -181,6 +183,7 @@ extension APIAssignment {
             moderated_grading: moderated_grading,
             name: name,
             needs_grading_count: needs_grading_count,
+            only_visible_to_overrides: only_visible_to_overrides,
             overrides: overrides,
             planner_override: planner_override,
             points_possible: points_possible,
@@ -311,6 +314,7 @@ struct APIAssignmentParameters: Codable, Equatable {
     let grading_type: GradingType?
     let lock_at: Date?
     let name: String?
+    let only_visible_to_overrides: Bool?
     let points_possible: Double?
     let published: Bool?
     // let submission_types: [SubmissionType]?
@@ -324,6 +328,7 @@ struct APIAssignmentParameters: Codable, Equatable {
         try container.encodeIfPresent(grading_type, forKey: .grading_type)
         try container.encode(lock_at, forKey: .lock_at) // encode null to unset
         try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(only_visible_to_overrides, forKey: .only_visible_to_overrides)
         try container.encode(points_possible, forKey: .points_possible)
         try container.encodeIfPresent(published, forKey: .published)
         try container.encode(unlock_at, forKey: .unlock_at) // encode null to unset

@@ -93,4 +93,16 @@ extension NSManagedObjectContext {
         ))
         return copy
     }
+
+    public func saveAndNotify() throws {
+        try save()
+        InterprocessNotificationCenter.shared.post(name: NSPersistentStore.InterProcessNotifications.didWriteLocally)
+    }
+
+    /** This method force fetches all objects ignoring any cached data on the context. */
+    public func forceRefreshAllObjects() {
+        stalenessInterval = 0
+        refreshAllObjects()
+        stalenessInterval = -1
+    }
 }

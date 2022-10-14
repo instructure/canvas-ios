@@ -374,6 +374,9 @@
 "Cancel" = "Anuluj";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Anulować przesyłkę?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Przewodniki Canvas";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Błąd";
 
 /* No comment provided by engineer. */
+"Error Details" = "Informacje o błędzie";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Błąd podczas zapisywania. Stuknij, aby ponowić.";
 
 /* No comment provided by engineer. */
@@ -851,6 +857,9 @@
 "Failed to save image" = "Nie udało się zapisać obrazu";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Nie udało się wznowić przesyłania.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Nie udało się przesłać";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Plik";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Rozmiar pliku (fileName).";
 
 /* No comment provided by engineer. */
 "File Details" = "Szczegóły pliku";
@@ -995,6 +1007,9 @@
 "Help your students with this assignment by adding instructions." = "Pomóż uczestnikom w wykonaniu zadania, dodając instrukcje.";
 
 /* No comment provided by engineer. */
+"Hide" = "Ukryj";
+
+/* No comment provided by engineer. */
 "Hide content for %@" = "Ukryj zawartość dla %@";
 
 /* No comment provided by engineer. */
@@ -1050,6 +1065,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Skrzynka odbiorcza";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Niekompatybilny typ pliku";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Nie ukończono";
@@ -1358,6 +1376,9 @@
 "Nickname" = "Przydomek";
 
 /* No comment provided by engineer. */
+"No" = "Nie";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Brak ogłoszeń";
 
 /* No comment provided by engineer. */
@@ -1490,6 +1511,9 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Jedna z przesyłek jest nadal przesyłana. Wylogowanie mogłoby przerwać ten proces.\nCzy na pewno chcesz się wylogować?";
 
 /* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Nie udało się przesłać co najmniej jednego pliku. Sprawdź połączenie internetowe i ponów przesyłanie.";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Dostępne tylko dla uczestników z łączem";
 
 /* No comment provided by engineer. */
@@ -1619,6 +1643,9 @@
 "Preferences" = "Preferencje";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Przygotowywanie plików do przesłania";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Wymóg wstępny: %@";
 
 /* No comment provided by engineer. */
@@ -1716,6 +1743,12 @@
 
 /* No comment provided by engineer. */
 "Remove File" = "Usuń plik";
+
+/* No comment provided by engineer. */
+"Remove file from submission." = "Usuń plik z przesyłki.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Usunąć z listy?";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Usunięto %1$@";
@@ -1835,7 +1868,7 @@
 "Select Course" = "Wybierz kurs";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Wybierz okres oceniania";
+"Select Grading Period" = "Wybierz okres oceniania";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Wybierz rodzaj wpływu";
@@ -1967,13 +2000,28 @@
 "Subject" = "Temat";
 
 /* No comment provided by engineer. */
+"Submission" = "Podanie";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Przesyłanie zadania %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Komentarz do zgłoszenia";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Przesyłanie zadania nie powiodło się";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Nie udało się przesłać z powodu nieznanego błędu.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Przesłano pomyślnie";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Typy przesłanych materiałów";
+
+/* No comment provided by engineer. */
+"Submission Uploaded" = "Przesłano materiały";
 
 /* No comment provided by engineer. */
 "Submissions" = "Przesłane zadania";
@@ -2019,6 +2067,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Zrób zdjęcie";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Stuknij tutaj, aby uzyskać szczegóły";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Stuknij tutaj, aby uzyskać pomoc.";
@@ -2067,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Przesyłanie zostało przerwane przez system operacyjny.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Obecnie nie ma aktywnych zadań w tym kursie.";
@@ -2159,6 +2213,9 @@
 "This page has been disabled for this course." = "Strona została zablokowana dla tego kursu.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Spowoduje to anulowanie i usunięcie przesyłki.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Czynność ta spowoduje usunięcie terminu i wszystkich uczestników, którym został przypisany.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2294,31 @@
 "Updating" = "Trwa aktualizacja";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Ukończono przesyłanie.";
+
+/* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Nie udało się przesłać z nieznanego powodu.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Niepowodzenie przesłania.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Prześlij plik";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Przesyłanie w toku...";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Przesyłanie w toku (Int(100 * postęp))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Wysyłanie %1$@ ukończono w %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Wysyłanie %1$@ z %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Trwa przesyłanie zadania";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Przesyłanie...";
@@ -2394,6 +2466,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Twój adres e-mail";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Twój plik został pomyślnie przesłany.\nKorzystaj z dnia!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Twoja lista zadań jest pusta. Pora doładować.";

@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import Core
+import SwiftUI
 
 struct SubmissionGrades: View {
     let assignment: Assignment
@@ -48,16 +48,16 @@ struct SubmissionGrades: View {
 
     var hasLateDeduction: Bool {
         submission.late &&
-        (submission.pointsDeducted ?? 0) > 0 &&
-        submission.grade?.isEmpty == false
+            (submission.pointsDeducted ?? 0) > 0 &&
+            submission.grade?.isEmpty == false
     }
 
     var currentRubricScore: Double {
         let assessments = submission.rubricAssessments // create map only once
         var points = 0.0
         for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
-            points += rubricAssessments[criteria.id]?.points ??
-                assessments?[criteria.id]?.points ?? 0
+            points += rubricAssessments[criteria.id]?.points as? Double ??
+                assessments?[criteria.id]?.points as? Double ?? 0
         }
         return points
     }
@@ -77,7 +77,8 @@ struct SubmissionGrades: View {
                         Text("Grade")
                         Spacer()
                         if isSaving {
-                            CircleProgress(size: 24)
+                            ProgressView()
+                                .progressViewStyle(.indeterminateCircle(size: 24))
                         } else if assignment.gradingType == .not_graded {
                             Text("Not Graded")
                         } else {
@@ -95,32 +96,32 @@ struct SubmissionGrades: View {
                                     Image.addSolid.foregroundColor(Color(Brand.shared.linkColor))
                                 }
                             })
-                                .accessibility(hint: Text("Prompts for an updated grade"))
-                                .identifier("SpeedGrader.gradeButton")
+                            .accessibility(hint: Text("Prompts for an updated grade"))
+                            .identifier("SpeedGrader.gradeButton")
                         }
                         if submission.grade?.isEmpty == false, submission.postedAt == nil {
                             Image.offLine.foregroundColor(.textDanger)
                                 .padding(.leading, 12)
                         }
                     }
-                        .font(.heavy24)
-                        .foregroundColor(hasLateDeduction ? .textDark : .textDarkest)
-                        .padding(.horizontal, 16).padding(.vertical, 12)
+                    .font(.heavy24)
+                    .foregroundColor(hasLateDeduction ? .textDark : .textDarkest)
+                    .padding(.horizontal, 16).padding(.vertical, 12)
                     if hasLateDeduction, let deducted = submission.pointsDeducted {
                         HStack {
                             Text("Late")
                             Spacer()
                             Text("\(-deducted, specifier: "%g") pts", bundle: .core)
                         }
-                            .font(.medium14).foregroundColor(.textWarning)
-                            .padding(EdgeInsets(top: -10, leading: 16, bottom: -4, trailing: 16))
+                        .font(.medium14).foregroundColor(.textWarning)
+                        .padding(EdgeInsets(top: -10, leading: 16, bottom: -4, trailing: 16))
                         HStack {
                             Text("Final Grade")
                             Spacer()
                             Text(GradeFormatter.longString(for: assignment, submission: submission, final: true))
                         }
-                            .font(.heavy24).foregroundColor(.textDarkest)
-                            .padding(.horizontal, 16).padding(.vertical, 12)
+                        .font(.heavy24).foregroundColor(.textDarkest)
+                        .padding(.horizontal, 16).padding(.vertical, 12)
                     }
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
                         slider
@@ -141,25 +142,29 @@ struct SubmissionGrades: View {
                 }.padding(.bottom, 16)
             } }
             if let id = rubricCommentID {
-                CommentEditor(text: $rubricComment, action: {
-                    var points: Double?
-                    var ratingID = ""
-                    if let assessment = rubricAssessments[id] {
-                        points = assessment.points
-                        ratingID = assessment.rating_id ?? ""
-                    } else if let assessment = submission.rubricAssessments?[id] {
-                        points = assessment.points
-                        ratingID = assessment.ratingID
-                    }
-                    withAnimation(.default) {
-                        rubricCommentID = nil
-                        rubricAssessments[id] = .init(comments: rubricComment, points: points, rating_id: ratingID)
-                    }
-                }, containerHeight: containerHeight)
-                    .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-                    .background(Color.backgroundLight)
+                commentEditor(id: id)
             }
         }
+    }
+
+    private func commentEditor(id: String) -> some View {
+        CommentEditor(text: $rubricComment, action: {
+            var points: Double?
+            var ratingID = ""
+            if let assessment = rubricAssessments[id] {
+                points = assessment.points
+                ratingID = assessment.rating_id ?? ""
+            } else if let assessment = submission.rubricAssessments?[id] {
+                points = assessment.points
+                ratingID = assessment.ratingID
+            }
+            withAnimation(.default) {
+                rubricCommentID = nil
+                rubricAssessments[id] = .init(comments: rubricComment, points: points, rating_id: ratingID)
+            }
+        }, containerHeight: containerHeight)
+            .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+            .background(Color.backgroundLight)
     }
 
     // MARK: Slider
@@ -195,14 +200,14 @@ struct SubmissionGrades: View {
                     Rectangle()
                         .contentShape(Rectangle())
                         .foregroundColor(.clear)
-                        .gesture(DragGesture(minimumDistance: 0).onChanged {_ in})
+                        .gesture(DragGesture(minimumDistance: 0).onChanged { _ in })
                     GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
-                                   range: 0...(assignment.pointsPossible ?? 0),
-                                   showTooltip: showTooltip,
-                                   tooltipText: tooltipText,
-                                   score: score,
-                                   possible: possible,
-                                   onEditingChanged: sliderChangedState)
+                                range: 0 ... (assignment.pointsPossible ?? 0),
+                                showTooltip: showTooltip,
+                                tooltipText: tooltipText,
+                                score: score,
+                                possible: possible,
+                                onEditingChanged: sliderChangedState)
                 }
             }
             Text(maxScore)

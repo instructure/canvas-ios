@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum FileUploadContext: Codable {
+public enum FileUploadContext: Codable, Equatable {
     enum CodingKeys: String, CodingKey {
         case type, context, courseID, assignmentID, userID, comment
     }

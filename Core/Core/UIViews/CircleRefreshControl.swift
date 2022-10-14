@@ -16,99 +16,105 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 public class CircleRefreshControl: UIRefreshControl {
-    var action: ((@escaping () -> Void) -> Void)?
-    var offsetObservation: NSKeyValueObservation?
-    let progressView = CircleProgressView()
-    let snappingPoint: CGFloat = -64
-    var refreshState = RefreshState.ready
-    var selfAdding = false
-    public override var isRefreshing: Bool { refreshState == .refreshing }
 
-    enum RefreshState {
-        case ready, refreshing, complete
-    }
+    public private(set) var offsetObservation: NSKeyValueObservation?
+    public let progressView = CircleProgressView()
+    private var selfAdding = false
+    private let snappingPoint: CGFloat = 100
+    public private(set) var isAnimating = false
+    private var triggerStartDate: Date?
 
     public var color: UIColor? {
         get { progressView.color }
-        set {
-            tintColor = newValue
-            progressView.color = newValue
-        }
+        set { progressView.color = newValue }
     }
 
-    public override func didMoveToWindow() {
+    override public func didMoveToWindow() {
         if selfAdding {
             insertSelf()
         }
         super.didMoveToWindow()
     }
 
-    public override func didMoveToSuperview() {
-        // super.didMoveToSuperview() // don't allow UIRefreshControl set up
-        progressView.removeFromSuperview()
-        offsetObservation = nil
-        guard let scrollView = superview as? UIScrollView else { return }
-        scrollView.insertSubview(progressView, at: 0)
+    override public init() {
+        super.init()
+        setupView()
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupView() {
+        tintColor = .clear
+        insertSubview(progressView, at: 0)
+        layer.zPosition = -1
         progressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             progressView.widthAnchor.constraint(equalToConstant: 32),
             progressView.heightAnchor.constraint(equalToConstant: 32),
-            progressView.centerXAnchor.constraint(equalTo: scrollView.frameLayoutGuide.centerXAnchor),
-            progressView.topAnchor.constraint(equalTo: scrollView.frameLayoutGuide.topAnchor),
+            progressView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            progressView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
         progressView.alpha = 0
-        progressView.layer.zPosition = -1
-        progressView.progress = 0
+    }
+
+    override public func didMoveToSuperview() {
+        offsetObservation = nil
+        guard let scrollView = superview as? UIScrollView else { return }
         offsetObservation = scrollView.observe(\.contentOffset, options: .new) { [weak self] scrollView, _ in
             self?.updateProgress(scrollView)
         }
+        super.didMoveToSuperview()
+        setNeedsLayout()
     }
 
-    func updateProgress(_ scrollView: UIScrollView) {
-        let inset = scrollView.adjustedContentInset.top
-        let y = inset + scrollView.contentOffset.y
-        progressView.transform = CGAffineTransform(translationX: 0, y: inset + (-y / 2) - 16)
-        switch refreshState {
-        case .ready:
-            if scrollView.isDragging, y < snappingPoint {
-                beginRefreshing()
-                sendActions(for: .valueChanged)
-                action?({ [weak self] in self?.endRefreshing() })
-            } else {
-                let progress = min(1, max(0, y / snappingPoint))
-                progressView.alpha = min(1, progress * 2)
+    private func updateProgress(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y
+        guard offset <= 0 else { return }
+        let progress = min(abs(offset / snappingPoint), 1)
+
+        guard !isAnimating, scrollView.isDragging else {
+            if progressView.progress != nil {
                 progressView.progress = progress
+                progressView.alpha = progress
             }
-        case .refreshing:
-            break
-        case .complete:
-            if y > -1 {
-                refreshState = .ready
-            }
+            return
+        }
+
+        progressView.progress = progress
+        progressView.alpha = progress
+        if progress == 1 {
+            sendActions(for: .valueChanged)
+            beginRefreshing()
+            triggerStartDate = Date()
         }
     }
 
-    public override func beginRefreshing() {
-        if let scrollView = superview as? UIScrollView {
-            let inset = scrollView.adjustedContentInset.top
-            let y = inset + scrollView.contentOffset.y
-            if y > snappingPoint {
-                scrollView.setContentOffset(CGPoint(x: 0, y: floor(snappingPoint - inset)), animated: true)
-            }
-        }
-        refreshState = .refreshing
-        progressView.alpha = 1
-        progressView.progress = nil
+    override public func beginRefreshing() {
+        super.beginRefreshing()
+        isAnimating = true
+        progressView.startAnimating()
     }
 
-    public override func endRefreshing() {
-        guard refreshState == .refreshing else { return }
-        refreshState = .complete
-        UIView.animate(withDuration: 0.3, animations: { self.progressView.alpha = 0 })
+    override public func endRefreshing() {
+        let triggerStartDate = triggerStartDate ?? Date()
+        let triggerEndDate = Date()
+        let timeElapsed = triggerEndDate.timeIntervalSince1970 - triggerStartDate.timeIntervalSince1970
+        let additionalDuration = 1 - timeElapsed
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + additionalDuration) {
+            super.endRefreshing()
+            self.progressView.alpha = 0
+            self.isAnimating = false
+            self.progressView.stopAnimating()
+            self.triggerStartDate = nil
+        }
     }
 
     func insertSelf() {

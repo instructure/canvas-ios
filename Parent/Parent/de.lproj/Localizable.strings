@@ -8,13 +8,13 @@
 "Add" = "Hinzufügen";
 
 /* No comment provided by engineer. */
-"Add Student" = "Teilnehmer hinzufügen";
+"Add Student" = "Studierende*n hinzufügen";
 
 /* No comment provided by engineer. */
-"Add students at the top or visit the global menu to masquerade as a student." = "Fügen Sie Studenten oben hinzu oder besuchen Sie das globale Menü zur Maskierung als ein Student.";
+"Add students at the top or visit the global menu to masquerade as a student." = "Fügen Sie Studierende oben hinzu oder besuchen Sie das globale Menü zur Maskierung als ein Student.";
 
 /* No comment provided by engineer. */
-"Add students at the top." = "Studenten oben hinzufügen.";
+"Add students at the top." = "Studierende oben hinzufügen.";
 
 /* No comment provided by engineer. */
 "Alert me when:" = "Mich alarmieren wenn:";
@@ -44,7 +44,7 @@
 "Compose Message" = "Nachricht verfassen";
 
 /* No comment provided by engineer. */
-"Compose message to teachers" = "Nachricht an Lehrer verfassen";
+"Compose message to teachers" = "Nachricht an Lehrende verfassen";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Neue Nachricht verfassen";
@@ -59,7 +59,7 @@
 "Courses" = "Kurse";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Aktueller Student: %@. Antippen, um den Teilnehmer zu wechseln";
+"Current student: %@. Tap to switch students" = "Aktuelle/r Studierende*r: %@. Antippen, um den Studierenden zu wechseln";
 
 /* No comment provided by engineer. */
 "Date" = "Datum";
@@ -98,13 +98,13 @@
 "Inbox Zero" = "Posteingang Zero";
 
 /* No comment provided by engineer. */
-"Input the student pairing code provided to you." = "Geben Sie den Studenten-Pairing-Code ein, den Sie erhalten haben.";
+"Input the student pairing code provided to you." = "Geben Sie den Studierenden-Pairing-Code ein, den Sie erhalten haben.";
 
 /* No comment provided by engineer. */
 "Invalid Threshold" = "Ungültige Schwelle";
 
 /* No comment provided by engineer. */
-"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Es sieht so aus, als wollten Sie einen Studenten hinzufügen. Versuchen Sie, diesen Studenten hinzuzufügen, nachdem Sie sich eingeloggt haben";
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Es sieht so aus, als wollten Sie eine/n Studierende*n hinzufügen. Versuchen Sie, diese/n Studierende*n hinzuzufügen, nachdem Sie sich eingeloggt haben";
 
 /* No comment provided by engineer. */
 "Location" = "Standort";
@@ -116,7 +116,7 @@
 "Login required" = "Anmeldung erforderlich";
 
 /* No comment provided by engineer. */
-"Manage Students" = "Teilnehmer verwalten";
+"Manage Students" = "Studierende verwalten";
 
 /* No comment provided by engineer. */
 "n/a" = "n/a";
@@ -137,7 +137,7 @@
 "No Grade" = "Keine Noten";
 
 /* No comment provided by engineer. */
-"No Students" = "Keine Studenten";
+"No Students" = "Keine Studierende";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -172,19 +172,16 @@
 "Settings" = "Einstellungen";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "Einstellungen. %@";
-
-/* No comment provided by engineer. */
 "Summary" = "Übersicht";
 
 /* No comment provided by engineer. */
-"Syllabus" = "Lehrplan";
+"Syllabus" = "Kursplan";
 
 /* No comment provided by engineer. */
 "The linked item is no longer available." = "Das verknüpfte Element ist nicht mehr verfügbar.";
 
 /* No comment provided by engineer. */
-"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Der Student, den Sie hinzufügen möchten, befindet sich an einer anderen Canvas-Institution.\nMelden Sie sich an oder erstellen Sie ein Konto bei dieser Einrichtung, um diesen Studenten hinzuzufügen.";
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Die/der Studierende*r, die/den Sie hinzufügen möchten, befindet sich an einer anderen Canvas-Institution.\nMelden Sie sich an oder erstellen Sie ein Konto bei dieser Einrichtung, um diese/n Studierende*n hinzuzufügen.";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Der Wert muss eine Zahl zwischen 0 und 100. sein.";
@@ -196,7 +193,7 @@
 "There was an error loading courses. Pull to refresh to try again." = "Fehler beim Laden der Kurse. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
-"There was an error loading students. Pull to refresh to try again." = "Fehler beim Laden der Studenten. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
+"There was an error loading students. Pull to refresh to try again." = "Fehler beim Laden der Studierenden. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Es gibt noch nichts, worüber man benachrichtigt werden müsste.";

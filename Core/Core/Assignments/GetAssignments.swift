@@ -162,6 +162,7 @@ class UpdateAssignment: APIUseCase {
         gradingType: GradingType?,
         lockAt: Date?,
         name: String? = nil,
+        onlyVisibleToOverrides: Bool? = false,
         overrides: [APIAssignmentOverride]?,
         pointsPossible: Double?,
         published: Bool? = nil,
@@ -177,6 +178,7 @@ class UpdateAssignment: APIUseCase {
                 grading_type: gradingType,
                 lock_at: lockAt,
                 name: name,
+                only_visible_to_overrides: onlyVisibleToOverrides,
                 points_possible: pointsPossible,
                 published: published,
                 unlock_at: unlockAt

@@ -18,15 +18,15 @@
 
 import SwiftUI
 
-public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewModel {
+public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
 
     @Published public var isReady: Bool = false
-    public var graded: Int = 0
-    public var ungraded: Int = 0
-    public var unsubmitted: Int = 0
-    public var submissionCount: Int = 0
-    public var showError: Bool = false
-    public var errorText: String?
+    @Published public var graded: Int = 0
+    @Published public var ungraded: Int = 0
+    @Published public var unsubmitted: Int = 0
+    @Published public var submissionCount: Int = 0
+    @Published public var showError: Bool = false
+    @Published public var errorText: String?
 
     public var noSubmissionTypes: Bool {
         submissionTypes.contains(.not_graded) || submissionTypes.contains(.none)
@@ -53,9 +53,12 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     public func viewDidAppear() {
-        summary.eventHandler = update
+        summary.eventHandler = { [weak self] in
+            self?.update()
+        }
         summary.refresh(force: true)
     }
+
     public func routeToAll(router: Router, viewController: WeakViewController) {
         router.route(to: submissionsPath, from: viewController)
     }
@@ -79,5 +82,4 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
         submissionCount = summary.first?.submissionCount ?? 0
         isReady = true
     }
-
 }

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
+struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
 
     @Environment(\.appEnvironment) var env
@@ -88,7 +88,6 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
             .buttonStyle(ScaleButtonStyle(scale: 1))
             .accessibility(label: Text("View all submissions", bundle: .core))
             .identifier("AssignmentDetails.viewAllSubmissionsButton")
-            .animation(Animation.easeOut(duration: 0.5).delay(0.2))
             .onAppear {
                 viewModel.viewDidAppear()
             }
@@ -106,13 +105,15 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
         var body: some View {
             Button(action: action, label: {
                 VStack(spacing: 8) {
-                    CircleProgress(
-                        progress: total == 0 ? 0 : CGFloat(count) / CGFloat(total),
-                        size: 70,
-                        thickness: 7
-                    )
+                    ProgressView(value: total == 0 ? 0 : CGFloat(count) / CGFloat(total))
+                        .progressViewStyle(
+                            .determinateCircle(
+                                size: 70,
+                                lineWidth: 7)
+                        )
                         .modifier(Counter(count: Double(count)))
                         .padding(.horizontal, 10).padding(.top, 4)
+                        .animation(Animation.easeOut(duration: 0.5).delay(0.2), value: count)
                     label
                         .font(.medium12).foregroundColor(.textDarkest)
                 }
@@ -153,3 +154,20 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModel>: View {
         viewModel.routeToUnsubmitted(router: env.router, viewController: controller)
     }
 }
+
+#if DEBUG
+
+struct SubmissionBreakdown_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = PreviewSubmissionBreakdownViewModel(graded: 1, ungraded: 2, unsubmitted: 3, submissionCount: 6)
+
+        SubmissionBreakdown(viewModel: viewModel)
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+        SubmissionBreakdown(viewModel: viewModel)
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif

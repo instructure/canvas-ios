@@ -374,6 +374,9 @@
 "Cancel" = "Отменить";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Отменить отправку?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Руководства Canvas";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Ошибка";
 
 /* No comment provided by engineer. */
+"Error Details" = "Подробности ошибки";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Ошибка при сохранении. Нажмите, чтобы повторить попытку.";
 
 /* No comment provided by engineer. */
@@ -851,6 +857,9 @@
 "Failed to save image" = "Не удалось сохранить изображение";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Не удалось запустить загрузку.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Сбой загрузки";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Файл";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Размер (fileName) файла (размер).";
 
 /* No comment provided by engineer. */
 "File Details" = "Подробная информация о файле";
@@ -995,6 +1007,9 @@
 "Help your students with this assignment by adding instructions." = "Помогите своим студентам с этим заданием, добавив инструкции.";
 
 /* No comment provided by engineer. */
+"Hide" = "Скрыть";
+
+/* No comment provided by engineer. */
 "Hide content for %@" = "Скрыть контент для  %@";
 
 /* No comment provided by engineer. */
@@ -1050,6 +1065,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Входящие";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Несовместимый тип файла";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Не завершено";
@@ -1358,6 +1376,9 @@
 "Nickname" = "Ник";
 
 /* No comment provided by engineer. */
+"No" = "Нет";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Нет объявлений";
 
 /* No comment provided by engineer. */
@@ -1490,6 +1511,9 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Один из отправляемых ресурсов еще выгружается. При выходе выгрузка может быть прервана.\nВы уверены, что вы хотите выйти?";
 
 /* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Не удалось загрузить один или несколько файлов. Проверьте подключение к Интернету и повторите отправку.";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Доступно только студентам по ссылке";
 
 /* No comment provided by engineer. */
@@ -1619,6 +1643,9 @@
 "Preferences" = "Предпочтения";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Подготовка файлов к загрузке";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Предварительные условия: %@";
 
 /* No comment provided by engineer. */
@@ -1716,6 +1743,12 @@
 
 /* No comment provided by engineer. */
 "Remove File" = "Удалить файл";
+
+/* No comment provided by engineer. */
+"Remove file from submission." = "Удалить файл из отправки.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Удалить из списка?";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Удалено %1$@";
@@ -1835,7 +1868,7 @@
 "Select Course" = "Выбрать курс";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Выбрать академический период";
+"Select Grading Period" = "Выбрать период оценивания";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Выберите влияние";
@@ -1967,13 +2000,28 @@
 "Subject" = "Тема";
 
 /* No comment provided by engineer. */
+"Submission" = "Отправка";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Отправка %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Комментарий при отправке";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Ошибка отправки";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Отправка не выполнена из-за неизвестной ошибки.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Отправлено успешно!";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Типы сдаваемых работ";
+
+/* No comment provided by engineer. */
+"Submission Uploaded" = "Отправка загружена";
 
 /* No comment provided by engineer. */
 "Submissions" = "Отправки";
@@ -2019,6 +2067,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Сделать снимок";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Прикоснитесь здесь для получения подробных сведений";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Прикоснитесь здесь для получения помощи.";
@@ -2067,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Процесс отправки был прерван операционной системой.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "В этом курсе нет активных заданий.";
@@ -2159,6 +2213,9 @@
 "This page has been disabled for this course." = "Эта страница был деактивирована для этого курса.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Это приведет к отмене и удалению вашей загрузки.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Это приведет к удалению даты исполнения и всех связанных получателей.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2294,31 @@
 "Updating" = "Обновление";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Загрузка завершена.";
+
+/* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Сбой отправки по неизвестной причине.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Не удалось загрузить.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Загрузить файл";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Выполняется выгрузка";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Выполняется загрузка (Int(100 * прогресс))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Загрузка %1$@ из %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Загрузка отправки";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Выполняется загрузка...";
@@ -2394,6 +2466,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Ваша электронная почта";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Ваш файл был успешно отправлен.\nХорошего дня!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Ваш список задач пуст. Время подкрепиться.";

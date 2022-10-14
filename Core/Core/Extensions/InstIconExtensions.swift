@@ -194,6 +194,8 @@ public extension UIImage {
     static var videoSolid: UIImage { UIImage(named: "videoSolid", in: .core, compatibleWith: nil)! }
     static var warningLine: UIImage { UIImage(named: "warningLine", in: .core, compatibleWith: nil)! }
     static var warningSolid: UIImage { UIImage(named: "warningSolid", in: .core, compatibleWith: nil)! }
+    static var warningBorderlessLine: UIImage { UIImage(named: "warningBorderlessLine", in: .core, compatibleWith: nil)! }
+    static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
 
@@ -236,6 +238,7 @@ public extension UIImage {
     static var k5schedule: UIImage { UIImage(named: "k5schedule", in: .core, compatibleWith: nil)! }
     static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
+    static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
 }
@@ -413,6 +416,8 @@ public extension Image {
     static var videoSolid: Image { Image("videoSolid", bundle: .core) }
     static var warningLine: Image { Image("warningLine", bundle: .core) }
     static var warningSolid: Image { Image("warningSolid", bundle: .core) }
+    static var warningBorderlessLine: Image { Image("warningBorderlessLine", bundle: .core) }
+    static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
 
@@ -455,6 +460,7 @@ public extension Image {
     static var k5schedule: Image { Image("k5schedule", bundle: .core) }
     static var logout: Image { Image("logout", bundle: .core) }
     static var qrCode: Image { Image("qrCode", bundle: .core) }
+    static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
 }

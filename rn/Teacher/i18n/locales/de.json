@@ -180,7 +180,7 @@
     "message": "Aufnahme konnte nicht gestartet werden"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-    "message": "{ count, plural,\n     =0 {0 Studenten}\n    one {# Student}\n  other {# Studenten}\n}"
+    "message": "{ count, plural,\n     =0 {0 Studierende}\n    one {# Studierende*r}\n  other {# Studierenden}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {Muss benotet werden}\n other {Müssen benotet werden}\n}"
@@ -189,7 +189,7 @@
     "message": "{ count, plural,\n    one {# muss benotet werden}\n other {# müssen benotet werden}\n}"
   },
   "count_students_4ae780ca": {
-    "message": "{ count } Studenten"
+    "message": "{ count } Studierende"
   },
   "course_activity_stream_40091c17": {
     "message": "Kursaktivitätenliste"
@@ -411,7 +411,7 @@
     "message": "Den Teilnehmern die richtige Antwort zeigen"
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
-    "message": "Den Studenten die eigenen Quizantworten zeigen"
+    "message": "Den Studierenden die eigenen Quizantworten zeigen"
   },
   "light_blue_5374f600": {
     "message": "Hellblau"
@@ -441,7 +441,7 @@
     "message": "Gesendete Nachricht"
   },
   "message_students_who_778ce759": {
-    "message": "Benachrichtigen von Studenten, die"
+    "message": "Benachrichtigen Studierenden, die"
   },
   "minutes_4aee5a41": {
     "message": "Minuten"
@@ -462,7 +462,7 @@
     "message": "Name"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-    "message": "{ name } + { count, plural,\n    one {# Andere}\n  other {# Andere }\n}"
+    "message": "{ name } + { count, plural,\n    one {# Andere}\n  other {# Andere}\n}"
   },
   "name_profile_240f0967": {
     "message": "{ name }-Profil"
@@ -531,7 +531,7 @@
     "message": "Nicht veröffentlicht"
   },
   "not_submitted_7d05fdb4": {
-    "message": "Nicht eingereicht"
+    "message": "Nicht abgegeben"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n other {# Minuten}\n}"
@@ -570,7 +570,7 @@
     "message": "Nur einmal nach jedem Versuch"
   },
   "opens_in_canvas_student_5f299948": {
-    "message": "Öffnet in Canvas Student"
+    "message": "Öffnet in Canvas Studierenden"
   },
   "orange_81386a62": {
     "message": "Orange"
@@ -777,34 +777,34 @@
     "message": "Aufzeichnung stoppen"
   },
   "student_5da6bfd1": {
-    "message": "Student"
+    "message": "Studierende*r"
   },
   "student_view_ac9b672f": {
-    "message": "Studierendenansicht"
+    "message": "Studierendendenansicht"
   },
   "students_1b8cd07b": {
-    "message": "Studenten"
+    "message": "Studierende"
   },
   "subject_114b2e98": {
     "message": "Betreff"
   },
   "submissions_11e96106": {
-    "message": "Einsendungen"
+    "message": "Abgaben"
   },
   "submitted_318fad53": {
-    "message": "Eingereicht"
+    "message": "Abgegeben"
   },
   "submitted_late_3741af29": {
     "message": "Verspätet abgegeben"
   },
   "syllabus_f191f65b": {
-    "message": "Lehrplan"
+    "message": "Kursplan"
   },
   "tap_the_to_create_a_new_conversation_80f77725": {
     "message": "Tippen Sie auf das \"+\", um eine neue Konversation zu beginnen."
   },
   "teachers_52e2423f": {
-    "message": "Dozenten"
+    "message": "Lehrende"
   },
   "teal_f729a294": {
     "message": "Blaugrün"
@@ -864,7 +864,7 @@
     "message": "Verstrichene Zeit: { minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
-    "message": "Zeitlimit"
+    "message": "Zeitbeschränkung"
   },
   "title_ee03d132": {
     "message": "Titel"
@@ -909,10 +909,10 @@
     "message": "bis { date }"
   },
   "upload_8b403d05": {
-    "message": "Upload"
+    "message": "Hochladen"
   },
   "upload_cancelled_by_user_ca7723be": {
-    "message": "Hochladen durch Benutzer abgebrochen"
+    "message": "Hochladen durch Benutzer*in abgebrochen"
   },
   "upload_complete_46473c7b": {
     "message": "Upload abgeschlossen"

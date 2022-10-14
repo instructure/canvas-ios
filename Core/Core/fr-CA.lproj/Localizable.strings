@@ -374,6 +374,9 @@
 "Cancel" = "Annuler";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Annuler l’envoi?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Guides de Canvas";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Erreur";
 
 /* No comment provided by engineer. */
+"Error Details" = "Détails de l’erreur";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Erreur lors de l'enregistrement. Tapotez pour réessayer.";
 
 /* No comment provided by engineer. */
@@ -851,6 +857,9 @@
 "Failed to save image" = "Impossible d’enregistrer l’image";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Échec du démarrage du téléversement.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Échec du téléversement";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fichier";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Taille du fichier (fileName).";
 
 /* No comment provided by engineer. */
 "File Details" = "Détails du fichier";
@@ -995,6 +1007,9 @@
 "Help your students with this assignment by adding instructions." = "Aidez vos étudiants à cette tâche par l’ajout d’instructions.";
 
 /* No comment provided by engineer. */
+"Hide" = "Masquer";
+
+/* No comment provided by engineer. */
 "Hide content for %@" = "Masquer le contenu de %@";
 
 /* No comment provided by engineer. */
@@ -1050,6 +1065,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Boîte de réception";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Type de fichier incompatible";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incomplet";
@@ -1358,6 +1376,9 @@
 "Nickname" = "Pseudonyme :";
 
 /* No comment provided by engineer. */
+"No" = "Non";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Aucune annonce";
 
 /* No comment provided by engineer. */
@@ -1490,6 +1511,9 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Un de vos envois est toujours en cours de téléversement. Se déconnecter pourrait l’interrompre.\nVoulez-vous vraiment vous déconnecter?";
 
 /* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Le téléversement d’un ou de plusieurs fichiers a échoué. Vérifiez votre connexion Internet et réessayez l’envoi.";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Seulement disponible aux étudiants avec un lien";
 
 /* No comment provided by engineer. */
@@ -1619,6 +1643,9 @@
 "Preferences" = "Préférences";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Préparation des fichiers pour le téléversement";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Prérequis : %@";
 
 /* No comment provided by engineer. */
@@ -1716,6 +1743,12 @@
 
 /* No comment provided by engineer. */
 "Remove File" = "Retirer un fichier";
+
+/* No comment provided by engineer. */
+"Remove file from submission." = "Retirer le fichier de l’envoi.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Retirer de la liste?";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Retiré %1$@";
@@ -1835,7 +1868,7 @@
 "Select Course" = "Sélectionner un cours";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Sélectionner la période de notation";
+"Select Grading Period" = "Choisir la période de notation";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Choisir l'impact";
@@ -1967,13 +2000,28 @@
 "Subject" = "Objet";
 
 /* No comment provided by engineer. */
+"Submission" = "Envoi";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Envoi %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Commentaire de soumission";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Échec de l’envoi";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "L’envoi a échoué en raison d’une erreur inconnue.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Succès de l’envoi!";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Types d’envoi";
+
+/* No comment provided by engineer. */
+"Submission Uploaded" = "Envois téléversés";
 
 /* No comment provided by engineer. */
 "Submissions" = "Envois";
@@ -2019,6 +2067,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Prendre une photo";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Appuyez ici pour plus de détails";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Appuyer ici pour obtenir de l'aide.";
@@ -2067,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "L'application doit redémarrer pour utiliser les nouveaux paramètres de langue. Veuillez relancer l'application.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Le processus d’envoi a été interrompu par le système d'exploitation.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Il n’y a aucune tâche active dans ce cours.";
@@ -2159,6 +2213,9 @@
 "This page has been disabled for this course." = "Cette page a été désactivée pour ce cours.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Cela annulera et supprimera votre téléversement.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Cela va retirer la date d’échéance et tous les assignés associés.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2294,31 @@
 "Updating" = "Mise à jour en cours";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Téléversement terminé.";
+
+/* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Le téléversement a échoué pour une raison inconnue";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Le téléversement a échoué";
+
+/* No comment provided by engineer. */
 "Upload File" = "Téléverser le fichier";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Téléversement en cours";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Téléversement en cours (Int(100 * progress))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Le téléversement de %1$@ est à %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Téléversement de %1$@ sur %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Téléversement de l’envoi";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Téléversement en cours...";
@@ -2394,6 +2466,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Votre courriel";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Votre fichier a été envoyé avec succès.\nProfitez de votre journée!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Votre liste à faire est vide. Temps de recharger.";

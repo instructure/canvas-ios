@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct DateSection<ViewModel: DateSectionViewModel>: View {
+struct DateSection<ViewModel: DateSectionViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
 
     @Environment(\.appEnvironment) var env
@@ -44,10 +44,7 @@ struct DateSection<ViewModel: DateSectionViewModel>: View {
                             .accessibility(label: Text("No due date set.", bundle: .core))
                     }
 
-                    Line(Text("For:", bundle: .core), viewModel.firstAssignmentDate?.base == true
-                        ? Text("Everyone", bundle: .core)
-                        : Text(viewModel.firstAssignmentDate?.title ?? "-")
-                    )
+                    Line(Text("For:", bundle: .core), Text(viewModel.forText))
 
                     let lockAt = viewModel.lockAt
                     if let to = lockAt, to < Clock.now {
@@ -90,3 +87,24 @@ struct DateSection<ViewModel: DateSectionViewModel>: View {
         viewModel.buttonTapped(router: env.router, viewController: controller)
     }
 }
+
+#if DEBUG
+
+struct DateSection_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = PreviewDateSectionViewModel(
+            dueAt: Date(),
+            lockAt: Date(timeIntervalSinceNow: 100),
+            unlockAt: Date(timeIntervalSinceNow: 200),
+            forText: "Everybody")
+
+        DateSection(viewModel: viewModel)
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+        DateSection(viewModel: viewModel)
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif

@@ -20,11 +20,31 @@ import SwiftUI
 
 struct SideMenuItem: View {
     @Environment(\.colorScheme) var colorScheme
+    @Binding var badgeValue: UInt
+
     let id: String
     let image: Image
     let title: Text
+    var accessibilityHint: Text {
+        guard badgeValue > 0 else { return Text("") }
+        return Text(String.localizedStringWithFormat(
+            NSLocalizedString("conversation_unread_messages", bundle: .core, comment: ""),
+            badgeValue))
+    }
 
-    @State var badgeValue: UInt = 0
+    init(id: String, image: Image, title: Text, badgeValue: Binding<UInt>) {
+        self.id = id
+        self.image = image
+        self.title = title
+        _badgeValue = badgeValue
+    }
+
+    init(id: String, image: Image, title: Text) {
+        self.id = id
+        self.image = image
+        self.title = title
+        _badgeValue = .constant(0)
+    }
 
     var body: some View {
         HStack(spacing: 20) {
@@ -35,7 +55,8 @@ struct SideMenuItem: View {
             Spacer()
 
             if badgeValue > 0 {
-                Badge(value: badgeValue)
+                Badge(value: $badgeValue)
+                    .accessibilityHidden(true)
             }
         }
         .padding(20)
@@ -43,23 +64,26 @@ struct SideMenuItem: View {
         .contentShape(Rectangle())
         .accessibilityElement(children: .ignore)
         .accessibility(label: title)
+        .accessibilityHint(accessibilityHint)
         .identifier("Profile.\(id)Button")
     }
 }
 
 private struct Badge: View {
-    @State var value: UInt
+    @Binding var value: UInt
 
     var body: some View {
-        ZStack {
-            Capsule().fill(Color.crimson).frame(maxWidth: CGFloat(digitCount()) * 12, maxHeight: 18)
-            Text("\(value)").font(.regular12).foregroundColor(.white)
-        }
+        clampedValueText()
+            .font(.semibold12)
+            .padding(EdgeInsets(top: 2.5, leading: 6.5, bottom: 3, trailing: 6.5))
+            .foregroundColor(.white)
+            .background(Color.crimson)
+            .clipShape(Capsule())
     }
 
-    func digitCount() -> Double {
-        let count = Double("\(value)".count)
-        return count == 1 ? 1.5 : count
+    func clampedValueText() -> Text {
+        guard value < 100 else { return Text(verbatim: "99+") }
+        return Text("\(value)")
     }
 }
 
@@ -67,7 +91,7 @@ private struct Badge: View {
 
 struct SideMenuItem_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: 42).buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+        SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: .constant(123)).buttonStyle(ContextButton(contextColor: Brand.shared.primary))
     }
 }
 

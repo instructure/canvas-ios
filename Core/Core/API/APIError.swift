@@ -47,31 +47,37 @@ public enum APIError: LocalizedError {
     }
 
     private static func extractMessage(from json: [String: Any]) -> String? {
-        if let message = json["message"] as? String, !message.isEmpty {
+        if let message: String = json["message"] as? String, !message.isEmpty {
             return message
         }
-        if let list = json["errors"] as? [[String: Any]], !list.isEmpty {
-            let message = list.map { $0["message"] as? String ?? "" } .joined(separator: "\n")
+        if let list = json["errors"] as? [[String: String]], !list.isEmpty {
+            let message: String = list.map { $0["message"] ?? "" }.joined(separator: "\n")
             return message
         }
         if let dict = json["errors"] as? [String: Any], !dict.isEmpty {
-            let message = dict.map { _, error in
-                return error as? String ??
+            let message: String = dict.map { _, error in
+                error as? String ??
                     (error as? [String])?.first ??
                     (error as? [String: Any])?["message"] as? String ??
                     (error as? [[String: Any]])?.first?["message"] as? String ??
                     embeddedDict(error) ??
                     ""
-            } .joined(separator: "\n")
+            }.joined(separator: "\n")
             return message
         }
 
         return nil
     }
 
-    private static func embeddedDict( _ dict: Any?) -> String? {
-        guard let d = dict as? [String: Any], let arr = d.first?.value as? [[String: Any]], let embeddedDict = arr.first else { return nil }
-        guard let attr = embeddedDict["attribute"] as? String, let msg = embeddedDict["message"] as? String else { return nil}
+    private static func embeddedDict(_ dict: Any) -> String? {
+        guard
+            let d = dict as? [String: [[String: String]]],
+            let embeddedDict = d.first?.value.first,
+            let attr = embeddedDict["attribute"],
+            let msg = embeddedDict["message"]
+        else {
+            return nil
+        }
         return "\(attr): \(msg)"
     }
 }

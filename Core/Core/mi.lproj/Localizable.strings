@@ -374,6 +374,9 @@
 "Cancel" = "Whakakore";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Whakakorea te Tukunga?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Kaiārahi";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Hapa";
 
 /* No comment provided by engineer. */
+"Error Details" = "Ngā taipitopito hapa";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Hap i te wā e whakaora ana. Pātō ki te ngana anō.";
 
 /* No comment provided by engineer. */
@@ -851,6 +857,9 @@
 "Failed to save image" = "I rahua te tiaki i te āhua";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "I rahua te tiimata ki te tuku ake.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "I rahua ki te tukuake";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Kōnae";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Kōnae (fileName) rahi (rahi).";
 
 /* No comment provided by engineer. */
 "File Details" = "Ngā taipitopito o te kōnae";
@@ -995,6 +1007,9 @@
 "Help your students with this assignment by adding instructions." = "Āwhinatia ō ākonga i tēnei whakataunga me te tāpiri tohutohu atu.";
 
 /* No comment provided by engineer. */
+"Hide" = "Huna";
+
+/* No comment provided by engineer. */
 "Hide content for %@" = "Hunga ihirangi mō %@";
 
 /* No comment provided by engineer. */
@@ -1050,6 +1065,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Pouakauru";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Momo Kōnae Hotokore";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Kaore i te oti";
@@ -1358,6 +1376,9 @@
 "Nickname" = "Ingoakāinga";
 
 /* No comment provided by engineer. */
+"No" = "Kahore ";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Kaore ngā pānui";
 
 /* No comment provided by engineer. */
@@ -1490,6 +1511,9 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Ko tētahi o tō tāpaetanga kei te tikiake tonu tia. Takiuru ki waho ka whakararutia pea.\nKei te tino hiahia koe ki te takiuru atu?";
 
 /* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Kotahi me te nui atu o ngā kōnae i hapa te tukuake. Āta titro ki to hono ipurangi ka ngana anō ki te tuku.";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "E wātea ana anake ki ngā ākonga me ngā hononga";
 
 /* No comment provided by engineer. */
@@ -1619,6 +1643,9 @@
 "Preferences" = "Ngā manakohanga";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Te whakarite i nga konae mo te tuku ake";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Hiahiatanga: %@";
 
 /* No comment provided by engineer. */
@@ -1716,6 +1743,12 @@
 
 /* No comment provided by engineer. */
 "Remove File" = "Tango Kōnae";
+
+/* No comment provided by engineer. */
+"Remove file from submission." = "Tango kōnae mai I te tukunga.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Tango Mai I te Rarangi?";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Kua tangohia %1$@";
@@ -1835,7 +1868,7 @@
 "Select Course" = "Tīpako akoranga";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Tīpakohia māka rārangi kupu";
+"Select Grading Period" = "Tīpakohia te Kōeke Wā";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Tīpako Pānga";
@@ -1967,13 +2000,28 @@
 "Subject" = "Kaupapa";
 
 /* No comment provided by engineer. */
+"Submission" = "Tapaetanga";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Tāpaetanga: %1$@, %2$@ %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Tākupu Tāpaetanga";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "I rahua te tuku o te tāpaetanga";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "I rahua te tukunga na te hapa I mohiotia.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Oti pai te tukunga!";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Ngā momo tāpaetanga";
+
+/* No comment provided by engineer. */
+"Submission Uploaded" = "Tukunga Tukuna";
 
 /* No comment provided by engineer. */
 "Submissions" = "Tukunga";
@@ -2019,6 +2067,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Tangohia Whakāhua";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Pato ki konei mo nga taipitopito";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Pātō ki kōnei mo te awhina";
@@ -2067,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "I whakamutua te tukanga tuku e te punaha whakahaere.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Karekau he whakataunga e ora ana i roto i tēnei akoranga.";
@@ -2159,6 +2213,9 @@
 "This page has been disabled for this course." = "Kua monokia tē whārangi mō tēnei akoranga.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Ma tenei ka whakakore me te whakakore I to tukunga ake.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Ko tēnei ka tango i te rā tika me ngā rīwhi hoapā katoa.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2294,31 @@
 "Updating" = "Whakahōu ana";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Kua oti te tuku.";
+
+/* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "I rahua te tukuake na te mea kaore i mohiotia.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Rahua tukuake.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Tukuake Kōnae";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Kei te mahi te tukuake";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Tukua i te ahunga whakamua (Int(100 * te ahunga whakamua))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "E tukuake ana %1$@ ō %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Tukuake ana tāpaetanga";
 
 /* No comment provided by engineer. */
 "Uploading..." = "tukuake ...";
@@ -2394,6 +2466,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Tō īmēra";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "I pai te tuku I to konae.\nKia pai tō rā!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Kei te wātea tō hei – mahi rārangi. Kua tae te wā ki te whakahou.";

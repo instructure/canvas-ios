@@ -8,7 +8,7 @@
 "--:--" = "--:--";
 
 /* No comment provided by engineer. */
-"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "„Handeln als“ ist im Grunde die Anmeldung als dieser Benutzer ohne Kennwort. Sie können beliebige Aktionen durchführen, so, als wären Sie dieser Benutzer, und so, dass es für andere Benutzer so aussieht, als ob dieser Benutzer diese durchgeführt hat. Die Audit-Protokolle zeichnen auf, dass Sie die Aktionen im Namen des Benutzers durchgeführt haben.";
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "„Handeln als“ ist im Grunde die Anmeldung als diese/r Benutzer*in ohne Kennwort. Sie können beliebige Aktionen durchführen, so, als wären Sie diese/r Benutzer*in, und so, dass es für andere Benutzer*innen so aussieht, als ob diese/r Benutzer*in diese durchgeführt hat. Die Audit-Protokolle zeichnen auf, dass Sie die Aktionen im Namen des Benutzers durchgeführt haben.";
 
 /* number of likes next to the like button */
 "(%d)" = "(%d)";
@@ -80,10 +80,10 @@
 "a parent" = "ein Elternteil";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a student" = "ein Student";
+"a student" = "ein/e Studierende*r";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a teacher" = "ein Lehrer";
+"a teacher" = "ein/e Lehrende*r";
 
 /* No comment provided by engineer. */
 "Accept" = "Akzeptieren";
@@ -95,7 +95,7 @@
 "Account Group" = "Kontengruppe";
 
 /* No comment provided by engineer. */
-"Act as User" = "Handeln als Benutzer";
+"Act as User" = "Handeln als Benutzer*in";
 
 /* No comment provided by engineer. */
 "Add Assignee" = "Zugewiesenen hinzufügen";
@@ -221,7 +221,7 @@
 "Are you sure you want to delete this page?" = "Möchten Sie diese Seite wirklich löschen?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to exit Student View?" = "Sind Sie sicher, dass Sie die Studierendenansicht verlassen wollen?";
+"Are you sure you want to exit Student View?" = "Sind Sie sicher, dass Sie die Studierendendenansicht verlassen wollen?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to remove this file?" = "Möchten Sie diese Datei wirklich entfernen?";
@@ -308,7 +308,7 @@
 "Augment Reality" = "Erweitern der Realität";
 
 /* No comment provided by engineer. */
-"Authentication failed. Most likely the user denied the request for access." = "Authentifizierung fehlgeschlagen. Wahrscheinlich hat der Benutzer den Zugriff verweigert.";
+"Authentication failed. Most likely the user denied the request for access." = "Authentifizierung fehlgeschlagen. Wahrscheinlich hat der/die Benutzer*in den Zugriff verweigert.";
 
 /* No comment provided by engineer. */
 "Availability" = "Verfügbarkeit";
@@ -374,6 +374,9 @@
 "Cancel" = "Abbrechen";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Übermittlung abbrechen?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-Leitfäden";
 
 /* No comment provided by engineer. */
@@ -392,10 +395,10 @@
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas-Student";
+"Canvas Student" = "Canvas-Studierende*r";
 
 /* No comment provided by engineer. */
-"Canvas Teacher" = "Canvas-Lehrer";
+"Canvas Teacher" = "Canvas-Lehrende*r";
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Beiläufige Frage oder Vorschlag";
@@ -407,7 +410,7 @@
 "Change dashboard layout to list" = "Dashboard-Layout in Liste ändern";
 
 /* No comment provided by engineer. */
-"Change User" = "Benutzer wechseln";
+"Change User" = "Benutzer*in wechseln";
 
 /* Description for Chat communication channel */
 "Chat Notifications" = "Chat-Benachrichtigungen";
@@ -803,10 +806,13 @@
 "Enable Push Notifications" = "Push-Benachrichtigungen aktivieren";
 
 /* No comment provided by engineer. */
-"End Act as User" = "„Handeln als Benutzer“ beenden";
+"End Act as User" = "„Handeln als Benutzer*in“ beenden";
 
 /* No comment provided by engineer. */
 "Error" = "Fehler";
+
+/* No comment provided by engineer. */
+"Error Details" = "Fehlerdetails";
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Fehler beim Speichern. Tippen Sie zum Wiederholen.";
@@ -851,6 +857,9 @@
 "Failed to save image" = "Bild wurde nicht gespeichert";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Start des Hochladens fehlgeschlagen.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload fehlgeschlagen";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Datei";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Datei (fileName) Größe (Größe).";
 
 /* No comment provided by engineer. */
 "File Details" = "Dateidetails";
@@ -995,6 +1007,9 @@
 "Help your students with this assignment by adding instructions." = "Helfen Sie Ihren Studenten bei dieser Aufgabe mit zusätzlichen Anweisungen.";
 
 /* No comment provided by engineer. */
+"Hide" = "Ausblenden";
+
+/* No comment provided by engineer. */
 "Hide content for %@" = "Ausblenden des Inhalts für %@";
 
 /* No comment provided by engineer. */
@@ -1050,6 +1065,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Posteingang";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Inkompatibler Dateityp";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Unvollständig";
@@ -1238,7 +1256,7 @@
 "Make sure you enable camera permissions in Settings" = "Überprüfen Sie, dass die Kameraberechtigungen in den Einstellungen aktiviert sind";
 
 /* No comment provided by engineer. */
-"Manage Students" = "Studenten verwalten";
+"Manage Students" = "Studierende verwalten";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuelle OAuth-Anmeldung";
@@ -1358,6 +1376,9 @@
 "Nickname" = "Spitzname";
 
 /* No comment provided by engineer. */
+"No" = "Nein";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Keine Ankündigungen";
 
 /* No comment provided by engineer. */
@@ -1472,10 +1493,10 @@
 "Notify me right away" = "Benachrichtigen Sie mich sofort.";
 
 /* No comment provided by engineer. */
-"Observer" = "Beobachter";
+"Observer" = "Beobachter*in";
 
 /* No comment provided by engineer. */
-"Observers" = "Beobachter";
+"Observers" = "Beobachter*in";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1490,7 +1511,10 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Eine Ihrer Abgaben wird gerade hochgeladen. Abmelden führt möglicherweise zum Abbruch.\nMöchten Sie sich wirklich abmelden?";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Nur verfügbar für Studenten mit Link";
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Eine oder mehrere Dateien wurden nicht hochgeladen. Überprüfen Sie Ihre Internetverbindung, und versuchen Sie erneut sie zu senden.";
+
+/* No comment provided by engineer. */
+"Only available to students with link" = "Nur verfügbar für Studierende mit Link";
 
 /* No comment provided by engineer. */
 "Only graders can like" = "Nur Benoter können liken";
@@ -1499,7 +1523,7 @@
 "Only members" = "Nur Mitglieder";
 
 /* No comment provided by engineer. */
-"Only teachers" = "Nur Dozenten";
+"Only teachers" = "Nur Lehrende";
 
 /* No comment provided by engineer. */
 "Open" = "Offen";
@@ -1517,7 +1541,7 @@
 "Open item details" = "Objektdetails öffnen";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Öffnet in Canvas Student";
+"Opens in Canvas Student" = "Öffnet in Canvas Studierenden";
 
 /* No comment provided by engineer. */
 "Options" = "Optionen";
@@ -1556,7 +1580,7 @@
 "Pages Front Page" = "Seiten – Startseite";
 
 /* No comment provided by engineer. */
-"Pair with Observer" = "Pairing mit Beobachter";
+"Pair with Observer" = "Pairing mit Beobachter*in";
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Pairing-Code: ";
@@ -1574,7 +1598,7 @@
 "Pause" = "Pause";
 
 /* No comment provided by engineer. */
-"People" = "Teilnehmer";
+"People" = "Teilnehmer*innen";
 
 /* No comment provided by engineer. */
 "Percentage" = "Prozentsatz";
@@ -1617,6 +1641,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Präferenzen";
+
+/* No comment provided by engineer. */
+"Preparing Files For Upload" = "Dateien für Hochladen vorbereiten";
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Voraussetzung: %@";
@@ -1718,6 +1745,12 @@
 "Remove File" = "Datei entfernen";
 
 /* No comment provided by engineer. */
+"Remove file from submission." = "Datei aus der Sendung entfernen.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Aus Liste entfernen?";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Entfernt %1$@";
 
 /* No comment provided by engineer. */
@@ -1778,7 +1811,7 @@
 "Schedule" = "Zeitplan";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Studentenverfügbarkeit planen";
+"Schedule student availability" = "Studierendeverfügbarkeit planen";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Zeitplanung";
@@ -1835,7 +1868,7 @@
 "Select Course" = "Kurs auswählen";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Bewertungszeitraum auswählen";
+"Select Grading Period" = "Benotungszeitraum auswählen";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Auswirkung auswählen";
@@ -1934,31 +1967,31 @@
 "Started %@" = "Begonnen %@";
 
 /* No comment provided by engineer. */
-"Stop Act as User" = "Aufhören, als Benutzer [...] zu handeln";
+"Stop Act as User" = "Aufhören, als Benutzer*in [...] zu handeln";
 
 /* No comment provided by engineer. */
-"Stop acting as..." = "Aufhören, als Benutzer [...] zu handeln";
+"Stop acting as..." = "Aufhören, als Benutzer*in [...] zu handeln";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Aufzeichnung stoppen";
 
 /* No comment provided by engineer. */
-"Student" = "Student";
+"Student" = "Studierende*r";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Studentenanmerkung";
+"Student Annotation" = "Studierendenanmerkung";
 
 /* No comment provided by engineer. */
-"Student Applications" = "Anwendungen für Studenten";
+"Student Applications" = "Anwendungen für Studierende";
 
 /* No comment provided by engineer. */
-"Student Appointment Signups" = "Terminanmeldungen von Studenten";
+"Student Appointment Signups" = "Terminanmeldungen von Studierenden";
 
 /* No comment provided by engineer. */
-"Student View" = "Studierendenansicht";
+"Student View" = "Studierendendenansicht";
 
 /* No comment provided by engineer. */
-"Students" = "Studenten";
+"Students" = "Studierende";
 
 /* No comment provided by engineer. */
 "Style" = "Stil";
@@ -1967,13 +2000,28 @@
 "Subject" = "Betreff";
 
 /* No comment provided by engineer. */
+"Submission" = "Abgabe";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Abgabe %1$@, %2$@ %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Abgabekommentar";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Abgabe fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Die Übermittlung ist aufgrund eines unbekannten Fehlers fehlgeschlagen.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Abgabe erfolgreich!";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Abgabearten";
+
+/* No comment provided by engineer. */
+"Submission Uploaded" = "Abgabe hochgeladen";
 
 /* No comment provided by engineer. */
 "Submissions" = "Übermittlungen";
@@ -2015,10 +2063,13 @@
 "System Settings" = "Systemeinstellungen";
 
 /* Teacher's Assistant (abbreviated) */
-"TA" = "Lehrassistent";
+"TA" = "Lehrassistent*in";
 
 /* No comment provided by engineer. */
 "Take Photo" = "Foto machen";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Tippen Sie hier, um weitere Informationen zu erhalten.";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tippen Sie hier, um Hilfe zu erhalten.";
@@ -2033,16 +2084,16 @@
 "Tap to view submissions list." = "Zum Anzeigen der Abgabeliste tippen.";
 
 /* No comment provided by engineer. */
-"Teacher" = "Lehrer";
+"Teacher" = "Lehrende*r";
 
 /* No comment provided by engineer. */
-"Teacher's Assistant" = "Lehrerassistent";
+"Teacher's Assistant" = "Lehrassistent";
 
 /* No comment provided by engineer. */
-"Teachers" = "Dozenten";
+"Teachers" = "Lehrende";
 
 /* No comment provided by engineer. */
-"Teachers and students" = "Dozenten und Studenten";
+"Teachers and students" = "Lehrende und Studierende";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Lehrassistenten";
@@ -2067,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Die App muss neu gestartet werden, um die neuen Spracheinstellungen zu übernehmen. Bitte starten Sie die App neu.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Der Abgabeprozess wurde vom Betriebssystem abgebrochen.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Es gibt keine aktiven Aufgaben in diesem Kurs.";
@@ -2129,7 +2183,7 @@
 "There was an error while communicating with the server" = "Beim Kommunizieren mit dem Server ist ein Fehler aufgetreten.";
 
 /* No comment provided by engineer. */
-"There was an error with Act as User. Please try again later." = "Fehler beim Handeln als Benutzer Bitte versuchen Sie es später noch einmal.";
+"There was an error with Act as User. Please try again later." = "Fehler beim Handeln als Benutzer*in Versuchen Sie es später noch einmal.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Unerwarteter Fehler. Versuchen Sie es erneut.";
@@ -2159,6 +2213,9 @@
 "This page has been disabled for this course." = "Diese Seite wurde für diesen Kurs deaktiviert.";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Dadurch wird der Upload abgebrochen und gelöscht.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Dadurch werden das Fälligkeitsdatum und alle zugehörigen Aufgabenempfänger entfernt.";
 
 /* No comment provided by engineer. */
@@ -2177,7 +2234,7 @@
 "to %@" = "bis %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Um ein Konto zu erstellen, lassen Sie Ihren Studenten einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Canvas-Studenten-App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus.\nWenn Ihr Student die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Um ein Konto zu erstellen, lassen Sie Ihre/n Studierende*n einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Canvas-Studierenden-App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus.\nWenn Ihr/e Studierende*r die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.";
 
 /* No comment provided by engineer. */
 "To Do" = "Zu erledigen";
@@ -2237,16 +2294,31 @@
 "Updating" = "Wird aktualisiert";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Upload abgeschlossen.";
+
+/* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Hochladen aus unbekanntem Grund fehlgeschlagen.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Upload fehlgeschlagen.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Datei hochladen";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Upload in Arbeit";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Upload läuft (Int(100 * Fortschritt))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Hochladen %1$@ ist bei %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "%1$@ von [...] wird hochgeladen %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Abgabe wird hochgeladen";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Wird hochgeladen ...";
@@ -2267,7 +2339,7 @@
 "Use this code to pair with me in Canvas Parent: %@" = "Nutzen Sie diesen Code, um eine Paarung mit mir in Canvas Parent herzustellen: %@";
 
 /* No comment provided by engineer. */
-"User ID" = "Benutzer-ID";
+"User ID" = "Benutzer*in-ID";
 
 /* Name and pronouns - John (He/Him) */
 "User.displayName" = "%1$@ (%2$@)";
@@ -2276,7 +2348,7 @@
 "Username" = "Benutzername";
 
 /* No comment provided by engineer. */
-"Users must post before seeing replies" = "Benutzer müssen gepostet haben, bevor sie Antworten sehen können.";
+"Users must post before seeing replies" = "Benutzer*innen müssen gepostet haben, bevor sie Antworten sehen können.";
 
 /* No comment provided by engineer. */
 "Video" = "Video";
@@ -2381,7 +2453,7 @@
 "You will stop acting as %@ and return to your account." = "Sie hören auf, als %@ zu handeln, und kehren zu Ihrem Konto zurück.";
 
 /* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Sie hören auf, als dieser Benutzer zu handeln, und kehren zu Ihrem Konto zurück.";
+"You will stop acting as this user and return to your account." = "Sie hören auf, als diese/r Benutzer*in zu handeln, und kehren zu Ihrem Konto zurück.";
 
 /* No comment provided by engineer. */
 "You've marked it as done." = "Sie haben es als erledigt markiert.";
@@ -2394,6 +2466,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Ihre E-Mail";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Ihre Datei wurde erfolgreich gesendet.\nGenießen Sie Ihren Tag!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Ihre Aufgabenliste ist leer. Zeit zum Nachladen.";

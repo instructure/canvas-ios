@@ -25,8 +25,12 @@ public class SyllabusSummaryViewController: UITableViewController {
     public weak var colorDelegate: ColorDelegate?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    public lazy var assignments = env.subscribe(GetCalendarEvents(context: context, type: .assignment)) {}
-    public lazy var events = env.subscribe(GetCalendarEvents(context: context, type: .event)) {}
+    public lazy var assignments = env.subscribe(GetCalendarEvents(context: context, type: .assignment)) { [weak self] in
+        self?.update()
+    }
+    public lazy var events = env.subscribe(GetCalendarEvents(context: context, type: .event)) { [weak self] in
+        self?.update()
+    }
 
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
@@ -37,7 +41,12 @@ public class SyllabusSummaryViewController: UITableViewController {
     }
 
     public lazy var summary: Store<LocalUseCase<CalendarEvent>> = {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let notHiddenPredicate = NSPredicate(format: "%K == false", #keyPath(CalendarEvent.isHidden))
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            contextPredicate,
+            notHiddenPredicate,
+        ])
         let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEvent.hasStartAt), ascending: false)
         let startAt = NSSortDescriptor(key: #keyPath(CalendarEvent.startAt), ascending: true)
         let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)

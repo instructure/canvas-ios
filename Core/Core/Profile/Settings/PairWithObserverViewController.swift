@@ -119,7 +119,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         guard let code = pairingCode, !code.isEmpty else { return }
         let template = NSLocalizedString("Use this code to pair with me in Canvas Parent: %@", bundle: .core, comment: "")
         let message = String.localizedStringWithFormat(template, code)
-        let vc = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+        let vc = CoreActivityViewController(activityItems: [message], applicationActivities: nil)
         let popover = vc.popoverPresentationController
         popover?.barButtonItem = sender
         env.router.show(vc, from: self, options: .modal(isDismissable: false, embedInNav: false, addDoneButton: false))

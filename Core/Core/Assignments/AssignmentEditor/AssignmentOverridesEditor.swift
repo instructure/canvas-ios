@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct AssignmentOverridesEditor: View {
+struct AssignmentOverridesEditor: View {
     let courseID: String
     let groupCategoryID: String?
     @Binding var overrides: [Override]
@@ -27,18 +27,20 @@ public struct AssignmentOverridesEditor: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    public var body: some View {
-        let everyonesCount = overrides.filter { $0.isEveryone } .count
+    var body: some View {
         ForEach(overrides) { override in
+
+            let dueAt = Binding(get: { override.dueAt }, set: { set(override, \.dueAt, $0) })
+            let unlockAt = Binding(get: { override.unlockAt }, set: { set(override, \.unlockAt, $0) })
+            let lockAt = Binding(get: { override.lockAt }, set: { set(override, \.lockAt, $0) })
+
             EditorSection(label: HStack {
                 Text("Assign", bundle: .core)
                 Spacer()
-                if !override.isEveryone || everyonesCount != 1 {
-                    Button(action: { toRemove = override }, label: {
-                        Text("Remove", bundle: .core)
-                            .foregroundColor(Color(Brand.shared.linkColor))
-                    })
-                }
+                Button(action: { toRemove = override }, label: {
+                    Text("Remove", bundle: .core)
+                        .foregroundColor(Color(Brand.shared.linkColor))
+                })
             }) {
                 ButtonRow(action: { pickAssignee(for: override) }, content: {
                     Text("Assign to", bundle: .core)
@@ -49,28 +51,31 @@ public struct AssignmentOverridesEditor: View {
                     DisclosureIndicator()
                 })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.dueAt }, set: { set(override, \.dueAt, $0) }),
-                    initial: Clock.now.startOfDay()
-                ) {
+
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: dueAt, from: controller) }, content: {
                     Text("Due", bundle: .core)
-                }
+                    Spacer()
+                    if let dueAt = dueAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: dueAt, dateStyle: .medium, timeStyle: .short))
+                    }
+                })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.unlockAt }, set: { set(override, \.unlockAt, $0) }),
-                    max: override.lockAt,
-                    initial: Clock.now.startOfDay()
-                ) {
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: unlockAt, maxDate: lockAt.wrappedValue, from: controller) }, content: {
                     Text("Available from", bundle: .core)
-                }
+                    Spacer()
+                    if let unlockAt = unlockAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: unlockAt, dateStyle: .medium, timeStyle: .short))
+                    }
+                })
                 Divider()
-                OptionalDatePicker(
-                    selection: Binding(get: { override.lockAt }, set: { set(override, \.lockAt, $0) }),
-                    min: override.unlockAt,
-                    initial: Clock.now.endOfDay()
-                ) {
+                ButtonRow(action: { CoreDatePicker.showDatePicker(for: lockAt, minDate: unlockAt.wrappedValue, from: controller) }, content: {
                     Text("Available until", bundle: .core)
-                }
+                    Spacer()
+                    if let lockAt = lockAt.wrappedValue {
+                        Text(DateFormatter.localizedString(from: lockAt, dateStyle: .medium, timeStyle: .short))
+                    }
+                })
+                Divider()
             }
         }
         EditorSection {
@@ -147,17 +152,18 @@ public struct AssignmentOverridesEditor: View {
             )
         } .sorted { $0.id < $1.id }
         // Everyone
-        let base = assignment.allDates.first { $0.base }
-        overrides.append(Override(
-            dueAt: base?.dueAt,
-            id: "base",
-            groupID: nil,
-            lockAt: base?.lockAt,
-            sectionID: nil,
-            studentIDs: nil,
-            title: nil,
-            unlockAt: base?.unlockAt
-        ))
+        if assignment.onlyVisibleToOverrides == false, let base = assignment.allDates.first(where: { $0.base }) {
+            overrides.append(Override(
+                dueAt: base.dueAt,
+                id: "base",
+                groupID: nil,
+                lockAt: base.lockAt,
+                sectionID: nil,
+                studentIDs: nil,
+                title: nil,
+                unlockAt: base.unlockAt
+            ))
+        }
         return overrides
     }
 
@@ -185,9 +191,9 @@ public struct AssignmentOverridesEditor: View {
         return (dueAt: dueAt, unlockAt: unlockAt, lockAt: lockAt, overrides: overrides)
     }
 
-    public struct Override: Equatable, Identifiable {
+    struct Override: Equatable, Identifiable {
         var dueAt: Date?
-        public var id: String
+        var id: String
         let groupID: String?
         var lockAt: Date?
         let sectionID: String?

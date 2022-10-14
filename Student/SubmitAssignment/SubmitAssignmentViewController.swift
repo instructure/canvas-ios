@@ -23,6 +23,12 @@ import Social
 
 @objc(SubmitAssignmentViewController)
 class SubmitAssignmentViewController: UIViewController {
+    /**
+     The share extension process doesn't terminate in case we have a background upload and the user starts another one.
+     The system just creates a new instance of this viewcontroller so we shouldn't create a new assembly but re-use this
+     mainly because of the single background url session it manages.
+    */
+    private static let submissionAssembly: FileSubmissionAssembly = .makeShareExtensionAssembly()
     private var attachmentCopyService: AttachmentCopyService!
     private var attachmentSubmissionService: AttachmentSubmissionService!
     private var viewModel: SubmitAssignmentExtensionViewModel!
@@ -33,22 +39,34 @@ class SubmitAssignmentViewController: UIViewController {
         setupFirebaseServices()
         isModalInPresentation = true
 
-        if let session = LoginSession.mostRecent {
-            AppEnvironment.shared.userDidLogin(session: session)
+        let lastApplicationSession = LoginSession.mostRecent
+        let currentSession = AppEnvironment.shared.currentSession
+
+        /**
+         If we already logged in the user during a previous share but our process didn't terminate we skip logging in the user again,
+         otherwise the CoreData stack will be re-initialized resulting in strange errors.
+        */
+        if currentSession != lastApplicationSession {
+            if let lastApplicationSession = lastApplicationSession {
+                AppEnvironment.shared.userDidLogin(session: lastApplicationSession)
+            } else if let currentSession = currentSession {
+                AppEnvironment.shared.userDidLogout(session: currentSession)
+            }
+        }
+
+        let shareCompleted = { [weak self] in
+           performUIUpdate {
+               self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+           }
         }
 
         // extensionContext is nil in init so we have to initialize here
         attachmentCopyService = AttachmentCopyService(extensionContext: extensionContext)
-        attachmentSubmissionService = AttachmentSubmissionService()
+        attachmentSubmissionService = AttachmentSubmissionService(submissionAssembly: Self.submissionAssembly)
         viewModel = SubmitAssignmentExtensionViewModel(
             attachmentCopyService: attachmentCopyService,
             submissionService: attachmentSubmissionService,
-            shareCompleted: { [weak self] in
-                performUIUpdate {
-                    self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-                }
-            }
-        )
+            shareCompleted: shareCompleted)
 
         embed(CoreHostingController(SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
     }

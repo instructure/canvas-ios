@@ -31,15 +31,15 @@ public class GetQuizSubmission: APIUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-courses-\(courseID)-quizzes-\(quizID)-submission"
+        "get-courses-\(courseID)-quizzes-\(quizID)-submission"
     }
 
     public var request: GetQuizSubmissionRequest {
-        return GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
+        GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
     }
 
     public var scope: Scope {
-        return .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
+        .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
     }
 
     public func write(response: GetQuizSubmissionRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -62,21 +62,20 @@ public class GetAllQuizSubmissions: CollectionUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-courses-\(courseID)-quizzes-\(quizID)-submissions"
+        "get-courses-\(courseID)-quizzes-\(quizID)-submissions"
     }
 
     public var request: GetAllQuizSubmissionsRequest {
-        return GetAllQuizSubmissionsRequest(courseID: courseID, quizID: quizID, includes: [.submission], perPage: 100)
+        GetAllQuizSubmissionsRequest(courseID: courseID, quizID: quizID, includes: [.submission], perPage: 100)
     }
 
     public var scope: Scope {
-        return .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
+        .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.userID), ascending: false)
     }
 
     public func write(response: GetAllQuizSubmissionsRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let item = response?.quiz_submissions.first else { return }
-        let submission = QuizSubmission.save(item, in: client)
-        let quiz: Quiz? = client.first(where: #keyPath(Quiz.id), equals: quizID)
-        quiz?.submission = submission
+        response?.quiz_submissions.forEach { item in
+            QuizSubmission.save(item, in: client)
+        }
     }
 }

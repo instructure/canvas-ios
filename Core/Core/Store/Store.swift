@@ -92,17 +92,16 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         } }
     }
 
-    public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
+    public init(env: AppEnvironment, context: NSManagedObjectContext, useCase: U, eventHandler: @escaping EventHandler) {
         self.env = env
         self.useCase = useCase
-        let database = database ?? env.database
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
         let frc = NSFetchedResultsController<U.Model>(
             fetchRequest: request,
-            managedObjectContext: database.viewContext,
+            managedObjectContext: context,
             sectionNameKeyPath: scope.sectionNameKeyPath,
             cacheName: nil
         )
@@ -117,6 +116,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         } catch {
             assertionFailure("Failed to performFetch \(error)")
         }
+    }
+
+    public convenience init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
+        self.init(env: env, context: (database ?? env.database).viewContext, useCase: useCase, eventHandler: eventHandler)
     }
 
     /// Updates predicate & sortDescriptors, but not sectionNameKeyPath.
@@ -165,6 +168,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) -> Self {
         request(useCase, force: force, callback: callback)
         return self
+    }
+
+    public func forceFetchObjects() throws {
+        try frc.performFetch()
+        notify()
     }
 
     @discardableResult

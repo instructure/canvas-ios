@@ -27,7 +27,7 @@ public class K5ResourcesViewModel: ObservableObject {
         return homeroomInfos.count > 1
     }
 
-    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: .active)) { [weak self] in
         self?.coursesRefreshed()
     }
     private var applicationsRequest: APITask?

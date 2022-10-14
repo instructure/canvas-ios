@@ -2007,6 +2007,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4927049B1CF4AF7200C631C6 /* Build configuration list for PBXNativeTarget "Student" */;
 			buildPhases = (
+				B4DE2ACE28BCB18F000F8D4D /* SwiftLint */,
 				420D38066A53E2683A07A16C /* [CP] Check Pods Manifest.lock */,
 				49383CF01F848F7D009C8F8E /* Start Packager */,
 				4927046F1CF4AF7100C631C6 /* Sources */,
@@ -2699,6 +2700,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-Student/Pods-defaults-Student-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B4DE2ACE28BCB18F000F8D4D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/../scripts/swiftLint.sh\n";
 		};
 		EFAFC8B4503AAC5A1510EE56 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

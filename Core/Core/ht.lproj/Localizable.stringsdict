@@ -497,9 +497,9 @@
 			<key>many</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>one</key>
-			<string>The %2$@ file type in your submission is incompatible with the selected assignment.</string>
+			<string>%2$@ tip fichye ki nan soumisyon ou an pa konpatib ak devwa ou seleksyone a.</string>
 			<key>other</key>
-			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<string>%2$@ tip fichye ki nan soumisyon ou yo pa konpatib ak devwa ou seleksyone a.</string>
 			<key>two</key>
 			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
 			<key>zero</key>
@@ -617,9 +617,9 @@
 			<key>many</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>one</key>
-			<string>Your file was successfully uploaded but the submission to the assignment failed.</string>
+			<string>Fichye ou a transfere avèk siksè, men soumisyon nan devwa a echwe.</string>
 			<key>other</key>
-			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<string>Fichye ou yo transfere avèk siksè, men soumisyon nan devwa a echwe.</string>
 			<key>two</key>
 			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
 			<key>zero</key>
@@ -665,9 +665,9 @@
 			<key>many</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>one</key>
-			<string>Please use %2$@ file extension.</string>
+			<string>Tanpri itilize ekstansyon fichye %2$@.</string>
 			<key>other</key>
-			<string>Please use %2$@ file extensions.</string>
+			<string>Tanpri itilize ekstansyon fichye %2$@.</string>
 			<key>two</key>
 			<string>Please use %2$@ file extensions.</string>
 			<key>zero</key>

@@ -28,7 +28,9 @@ struct CommentLibraryList: View {
     var body: some View {
         switch viewModel.state {
         case .loading:
-            CircleProgress().frame(maxHeight: .infinity)
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
+                .frame(maxHeight: .infinity)
         case .empty:
             emptyView
         case .data(let comments):

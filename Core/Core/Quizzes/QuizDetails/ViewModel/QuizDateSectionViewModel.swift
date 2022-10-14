@@ -18,15 +18,15 @@
 
 import SwiftUI
 
-public class QuizDateSectionViewModel: DateSectionViewModel {
+public class QuizDateSectionViewModel: DateSectionViewModelProtocol {
 
-    @ObservedObject var quiz: Quiz
-    public var firstAssignmentDate: AssignmentDate?
-    public var isButton = false
+    public let isButton = false
+    @ObservedObject private var quiz: Quiz
+    private var allDatesDate: AssignmentDate?
 
     public init(quiz: Quiz) {
         self.quiz = quiz
-        firstAssignmentDate = quiz.allDates.first
+        allDatesDate = quiz.allDates.first
     }
 
     public var hasMultipleDueDates: Bool {
@@ -34,15 +34,23 @@ public class QuizDateSectionViewModel: DateSectionViewModel {
     }
 
     public var dueAt: Date? {
-        quiz.dueAt ?? firstAssignmentDate?.dueAt
+        quiz.dueAt ?? allDatesDate?.dueAt
     }
 
     public var lockAt: Date? {
-        firstAssignmentDate?.lockAt ?? quiz.lockAt
+        allDatesDate?.lockAt ?? quiz.lockAt
     }
 
     public var unlockAt: Date? {
-        firstAssignmentDate?.unlockAt ?? quiz.unlockAt
+        allDatesDate?.unlockAt ?? quiz.unlockAt
+    }
+
+    public var forText: String {
+        if allDatesDate?.base == true {
+            return NSLocalizedString("Everyone", bundle: .core, comment: "")
+        } else {
+            return allDatesDate?.title ?? "-"
+        }
     }
 
     public func buttonTapped(router: Router, viewController: WeakViewController) {}

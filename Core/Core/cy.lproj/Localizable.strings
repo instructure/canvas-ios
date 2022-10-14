@@ -374,6 +374,9 @@
 "Cancel" = "Canslo";
 
 /* No comment provided by engineer. */
+"Cancel Submission?" = "Canslo Cyflwyniad?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canllawiau Canvas";
 
 /* No comment provided by engineer. */
@@ -809,6 +812,9 @@
 "Error" = "Gwall";
 
 /* No comment provided by engineer. */
+"Error Details" = "Manylion y Gwall";
+
+/* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Gwall wrth gadw. Tapiwch i roi cynnig arall arni.";
 
 /* No comment provided by engineer. */
@@ -851,6 +857,9 @@
 "Failed to save image" = "Wedi methu cadw delwedd";
 
 /* No comment provided by engineer. */
+"Failed to start upload." = "Wedi methu dechrau llwytho i fyny.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Wedi methu llwytho i fyny";
 
 /* No comment provided by engineer. */
@@ -870,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Ffeil";
+
+/* No comment provided by engineer. */
+"File (fileName) size (size)." = "Maint ffeil (fileName) (maint).";
 
 /* No comment provided by engineer. */
 "File Details" = "Manylion y Ffeil";
@@ -995,6 +1007,9 @@
 "Help your students with this assignment by adding instructions." = "Helpwch eich myfyrwyr gyda’r aseiniad hwn trwy ychwanegu cyfarwyddiadau.";
 
 /* No comment provided by engineer. */
+"Hide" = "Cuddio";
+
+/* No comment provided by engineer. */
 "Hide content for %@" = "Cuddio cynnwys ar gyfer %@";
 
 /* No comment provided by engineer. */
@@ -1050,6 +1065,9 @@
 
 /* No comment provided by engineer. */
 "Inbox" = "Blwch Derbyn";
+
+/* No comment provided by engineer. */
+"Incompatible File Type" = "Math o Ffeil Anghydnaws";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Heb Gwblhau";
@@ -1358,6 +1376,9 @@
 "Nickname" = "Llysenw";
 
 /* No comment provided by engineer. */
+"No" = "Na";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Dim Cyhoeddiadau";
 
 /* No comment provided by engineer. */
@@ -1490,6 +1511,9 @@
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Mae un o’ch cyflwyniadau yn dal i gael ei lwytho i fyny. Gallai allgofnodi darfu ar hyn.\nYdych chi’n siŵr eich bod am allgofnodi?";
 
 /* No comment provided by engineer. */
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Wedi methu llwytho un neu ragor o ffeiliau i fyny. Gwiriwch eich cysylltiad rhyngrwyd a rhoi cynnig arall ar gyflwyno.";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Dim ond ar gael i fyfyrwyr sydd â dolen";
 
 /* No comment provided by engineer. */
@@ -1619,6 +1643,9 @@
 "Preferences" = "Blaenoriaethau";
 
 /* No comment provided by engineer. */
+"Preparing Files For Upload" = "Paratoi Ffeiliau i’w Llwytho i Fyny";
+
+/* No comment provided by engineer. */
 "Prerequisite: %@" = "Rhagofyniad: %@";
 
 /* No comment provided by engineer. */
@@ -1716,6 +1743,12 @@
 
 /* No comment provided by engineer. */
 "Remove File" = "Tynnu Ffeil";
+
+/* No comment provided by engineer. */
+"Remove file from submission." = "Tynnwch y ffeil o’r cyflwyniad.";
+
+/* No comment provided by engineer. */
+"Remove From List?" = "Tynnu o'r Rhestr?";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Wedi tynnu %1$@";
@@ -1835,7 +1868,7 @@
 "Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
-"Select grading period" = "Dewis cyfnod graddio";
+"Select Grading Period" = "Dewis Cyfnod Graddio";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Dewiswch Effaith";
@@ -1967,13 +2000,28 @@
 "Subject" = "Pwnc";
 
 /* No comment provided by engineer. */
+"Submission" = "Cyflwyniad";
+
+/* No comment provided by engineer. */
 "Submission %@, %@, %@" = "Cyflwyniad %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Sylw ar y cyflwyniad";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Cyflwyniad wedi methu";
+
+/* No comment provided by engineer. */
+"Submission failed due to unknown error." = "Cyflwyniad wedi methu oherwydd gwall anhysbys.";
+
+/* No comment provided by engineer. */
+"Submission Success!" = "Wedi Llwyddo i Gyflwyno!";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Mathau o Gyflwyniadau";
+
+/* No comment provided by engineer. */
+"Submission Uploaded" = "Cyflwyniad Wedi’i Lwytho i Fyny";
 
 /* No comment provided by engineer. */
 "Submissions" = "Cyflwyniadau";
@@ -2019,6 +2067,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "Tynnu llun gyda chamera";
+
+/* No comment provided by engineer. */
+"Tap here for details" = "Tapiwch yma i gael manylion.";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tapiwch yma i gael help.";
@@ -2067,6 +2118,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
+
+/* No comment provided by engineer. */
+"The submission process was terminated by the operating system." = "Cafodd y broses gyflwyno ei therfynu gan y system weithredu.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Does dim aseiniadau gweithredol yn y cwrs hwn.";
@@ -2159,6 +2213,9 @@
 "This page has been disabled for this course." = "Mae’r dudalen hon wedi’i hanalluogi ar gyfer y cwrs hwn";
 
 /* No comment provided by engineer. */
+"This will cancel and delete your upload." = "Bydd hyn yn canslo ac yn dileu eich ffeil sy’n cael ei llwytho i fyny.";
+
+/* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Bydd hyn yn tynnu'r dyddiad erbyn a phob aseinî cysylltiedig.";
 
 /* No comment provided by engineer. */
@@ -2237,16 +2294,31 @@
 "Updating" = "Diweddaru";
 
 /* No comment provided by engineer. */
+"Upload completed." = "Proses llwytho i fyny wedi'i chwblhau.";
+
+/* No comment provided by engineer. */
+"Upload failed due to unknown reason." = "Wedi methu llwytho i fyny oherwydd rheswm anhysbys.";
+
+/* No comment provided by engineer. */
+"Upload failed." = "Wedi methu llwytho i fyny.";
+
+/* No comment provided by engineer. */
 "Upload File" = "Llwytho Ffeil i Fyny";
 
 /* No comment provided by engineer. */
 "Upload in progress" = "Proses lwytho i fyny ar waith";
 
 /* No comment provided by engineer. */
+"Upload in progress (Int(100 * progress))%" = "Proses lwytho i fyny ar waith (Int(100 * ar waith))%";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Mae llwytho %1$@ i fyny ar %2$@";
 
 /* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Wrthi'n llwytho i fyny %1$@ o %2$@";
+
+/* No comment provided by engineer. */
+"Uploading Submission" = "Llwytho cyflwyniad i fyny";
 
 /* No comment provided by engineer. */
 "Uploading..." = "Wrthi’n llwytho i fyny...";
@@ -2394,6 +2466,9 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Eich E-bost";
+
+/* No comment provided by engineer. */
+"Your file was successfully submitted.\nEnjoy your day!" = "Wedi llwyddo i gyflwyno eich ffeil.\nMwynhewch eich diwrnod!";
 
 /* No comment provided by engineer. */
 "Your to do list is empty. Time to recharge." = "Mae eich rhestr tasgau i’w gwneud yn wag. Amser i ailwefru.";

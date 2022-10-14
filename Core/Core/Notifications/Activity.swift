@@ -83,7 +83,7 @@ extension Activity {
         case .submission:       return .assignmentLine
         case .conference:       return .conferences
         case .collaboration:    return .collaborations
-        case .assessmentRequest:return .quizLine
+        case .assessmentRequest: return .quizLine
         }
     }
 }
