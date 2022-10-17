@@ -24,7 +24,7 @@ public protocol InboxViewModel: ObservableObject {
     var topBarMenuViewModel: TopBarViewModel { get }
     var messages: [InboxMessageModel] { get }
     var emptyState: (scene: PandaScene, title: String, text: String) { get }
-    var errorState: (title: String, text: String) { get }
+    var errorState: (scene: PandaScene, title: String, text: String) { get }
 
     // MARK: - Inputs
     var refresh: PassthroughSubject<() -> Void, Never> { get }
@@ -37,8 +37,9 @@ public extension InboxViewModel {
          title: NSLocalizedString("No Messages", comment: ""),
          text: NSLocalizedString("Tap the \"+\" to create a new conversation", comment: ""))
     }
-    var errorState: (title: String, text: String) {
-        (title: NSLocalizedString("Something Went Wrong", comment: ""),
+    var errorState: (scene: PandaScene, title: String, text: String) {
+        (scene: NoResultsPanda() as PandaScene,
+         title: NSLocalizedString("Something Went Wrong", comment: ""),
          text: NSLocalizedString("Pull to refresh to try again", comment: ""))
     }
 }

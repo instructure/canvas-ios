@@ -37,8 +37,8 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
                     List {
                         switch model.state {
                         case .data: messagesList
-                        case .empty: emptyPanda(geometry: geometry)
-                        case .error: errorPanda(geometry: geometry)
+                        case .empty: panda(geometry: geometry, data: model.emptyState)
+                        case .error: panda(geometry: geometry, data: model.errorState)
                         case .loading: SwiftUI.EmptyView()
                         }
                     }.iOS15Refreshable { completion in
@@ -80,37 +80,19 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
             .iOS15ListRowSeparator(.hidden)
     }
 
-    private func emptyPanda(geometry: GeometryProxy) -> some View {
-        InteractivePanda(scene: model.emptyState.scene,
-                         title: Text(model.emptyState.title),
-                         subtitle: Text(model.emptyState.text))
+    private func panda(geometry: GeometryProxy,
+                       data: (scene: PandaScene,
+                              title: String,
+                              text: String))
+    -> some View {
+        InteractivePanda(scene: data.scene,
+                         title: Text(data.title),
+                         subtitle: Text(data.text))
             .frame(width: geometry.size.width,
                    height: geometry.size.height,
                    alignment: .center)
             .listRowInsets(EdgeInsets())
             .iOS15ListRowSeparator(.hidden)
-
-    }
-
-    private func errorPanda(geometry: GeometryProxy) -> some View {
-        VStack(spacing: 0) {
-            Image("PandaNoResults", bundle: .core)
-                .padding(.bottom, 25)
-            Text(model.errorState.title)
-                .font(.bold20)
-                .foregroundColor(.textDarkest)
-                .padding(.bottom, 8)
-            Text(model.errorState.text)
-                .font(.regular16)
-                .foregroundColor(.textDark)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 16)
-        }
-        .frame(width: geometry.size.width,
-               height: geometry.size.height,
-               alignment: .center)
-        .listRowInsets(EdgeInsets())
-        .iOS15ListRowSeparator(.hidden)
     }
 
     private var menuButton: some View {
