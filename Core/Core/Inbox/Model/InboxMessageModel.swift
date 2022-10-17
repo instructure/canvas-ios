@@ -19,13 +19,8 @@
 import Foundation
 
 public struct InboxMessageModel: Identifiable {
-    public enum ParticipantAvatar {
-        case individual(name: String, profileImageURL: URL?)
-        case group
-    }
-
     public let id: String
-    public let avatar: ParticipantAvatar
+    public let avatar: Avatar
     public let participantName: String
     public let title: String
     public let message: String
@@ -34,7 +29,7 @@ public struct InboxMessageModel: Identifiable {
     public let isUnread: Bool
 
     public init(id: String,
-                avatar: ParticipantAvatar,
+                avatar: Avatar,
                 participantName: String,
                 title: String,
                 message: String,
@@ -60,13 +55,7 @@ public struct InboxMessageModel: Identifiable {
             }
         }()
         self.id = conversation.id
-        self.avatar = {
-            if participants.count == 1, let participant = participants.first {
-                return .individual(name: participant.name, profileImageURL: participant.avatarURL)
-            } else {
-                return .group
-            }
-        }()
+        self.avatar = Avatar(participants: participants)
         self.participantName = participants.names
         self.title = conversation.subject
         self.message = conversation.lastMessage

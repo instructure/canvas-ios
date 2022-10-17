@@ -879,6 +879,8 @@
 		CF3A31E728FD8112002752D2 /* NoResultsPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E628FD8112002752D2 /* NoResultsPanda.swift */; };
 		CF3A31E928FD92C1002752D2 /* ConversationParticipantNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */; };
 		CF3A31ED28FD9396002752D2 /* ConversationParticipantNamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */; };
+		CF3A31EF28FDA5EB002752D2 /* InboxMessageModelAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31EE28FDA5EB002752D2 /* InboxMessageModelAvatar.swift */; };
+		CF3A31F128FDA64D002752D2 /* InboxMessageModelAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F028FDA64D002752D2 /* InboxMessageModelAvatarTests.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
@@ -2384,6 +2386,8 @@
 		CF3A31E628FD8112002752D2 /* NoResultsPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsPanda.swift; sourceTree = "<group>"; };
 		CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNames.swift; sourceTree = "<group>"; };
 		CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNamesTests.swift; sourceTree = "<group>"; };
+		CF3A31EE28FDA5EB002752D2 /* InboxMessageModelAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageModelAvatar.swift; sourceTree = "<group>"; };
+		CF3A31F028FDA64D002752D2 /* InboxMessageModelAvatarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageModelAvatarTests.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -4846,6 +4850,7 @@
 			children = (
 				CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */,
 				CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */,
+				CF3A31EE28FDA5EB002752D2 /* InboxMessageModelAvatar.swift */,
 				CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */,
 			);
 			path = Model;
@@ -4863,6 +4868,7 @@
 			isa = PBXGroup;
 			children = (
 				CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */,
+				CF3A31F028FDA64D002752D2 /* InboxMessageModelAvatarTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7188,6 +7194,7 @@
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
 				7D37BE9121C849D10063FAAC /* DocViewerViewControllerTests.swift in Sources */,
 				7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */,
+				CF3A31F128FDA64D002752D2 /* InboxMessageModelAvatarTests.swift in Sources */,
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
@@ -8023,6 +8030,7 @@
 				CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */,
 				CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */,
 				7DA2606123F722D9005D2121 /* Submission.swift in Sources */,
+				CF3A31EF28FDA5EB002752D2 /* InboxMessageModelAvatar.swift in Sources */,
 				7DA260BF23F72352005D2121 /* GetGroups.swift in Sources */,
 				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,
 				7DA2601C23F7227A005D2121 /* UIViewExtensions.swift in Sources */,
