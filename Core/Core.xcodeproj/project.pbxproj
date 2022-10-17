@@ -874,6 +874,8 @@
 		CF3A31DD28F840DA002752D2 /* InboxMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */; };
 		CF3A31DF28F94FBF002752D2 /* InboxViewModelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31DE28F94FBF002752D2 /* InboxViewModelPreview.swift */; };
 		CF3A31E128F94FD7002752D2 /* InboxViewModelLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E028F94FD7002752D2 /* InboxViewModelLive.swift */; };
+		CF3A31E328FD6EA0002752D2 /* iOS15SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E228FD6EA0002752D2 /* iOS15SwipeActions.swift */; };
+		CF3A31E528FD7A10002752D2 /* iOS15Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E428FD7A10002752D2 /* iOS15Tint.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
@@ -2374,6 +2376,8 @@
 		CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageView.swift; sourceTree = "<group>"; };
 		CF3A31DE28F94FBF002752D2 /* InboxViewModelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModelPreview.swift; sourceTree = "<group>"; };
 		CF3A31E028F94FD7002752D2 /* InboxViewModelLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModelLive.swift; sourceTree = "<group>"; };
+		CF3A31E228FD6EA0002752D2 /* iOS15SwipeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15SwipeActions.swift; sourceTree = "<group>"; };
+		CF3A31E428FD7A10002752D2 /* iOS15Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Tint.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -6364,6 +6368,8 @@
 				7DBD150525477CEB00750F52 /* Badge.swift */,
 				CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */,
 				CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */,
+				CF3A31E228FD6EA0002752D2 /* iOS15SwipeActions.swift */,
+				CF3A31E428FD7A10002752D2 /* iOS15Tint.swift */,
 				CF12DFC726D63937000BE452 /* NavBarItems.swift */,
 				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
 				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
@@ -6521,8 +6527,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C964842211E2F1A002C3255 /* Build configuration list for PBXNativeTarget "Core" */;
 			buildPhases = (
-				B4DE2AD128BCB4B1000F8D4D /* SwiftLint */,
 				D99BB92EECB794224AAACF8B /* [CP] Check Pods Manifest.lock */,
+				B4DE2AD128BCB4B1000F8D4D /* SwiftLint */,
 				2C96482B211E2F1A002C3255 /* Headers */,
 				7DA25F8923F720C7005D2121 /* Sources */,
 				2C96482A211E2F1A002C3255 /* Frameworks */,
@@ -7814,6 +7820,7 @@
 				7DA260BD23F72352005D2121 /* GetSubmissions.swift in Sources */,
 				CF43DE8B27CD0B6500015B6F /* PandaGallery.swift in Sources */,
 				B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */,
+				CF3A31E528FD7A10002752D2 /* iOS15Tint.swift in Sources */,
 				CFB06FA628C2AA7100DAC40B /* AllFileUploadFinishedCheck.swift in Sources */,
 				CFE7E362267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
@@ -7906,6 +7913,7 @@
 				EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */,
 				B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
+				CF3A31E328FD6EA0002752D2 /* iOS15SwipeActions.swift in Sources */,
 				CF43DE8227CCD6CF00015B6F /* MotionScene.swift in Sources */,
 				7DA260F823F723AB005D2121 /* FileDetailsViewController.swift in Sources */,
 				7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */,

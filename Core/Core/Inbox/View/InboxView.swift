@@ -34,16 +34,17 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
                 loadingIndicator
             } else {
                 GeometryReader { geometry in
-                    RefreshableScrollView {
+                    List {
                         switch model.state {
                         case .data: messagesList
                         case .empty: emptyPanda(geometry: geometry)
                         case .error: errorPanda(geometry: geometry)
                         case .loading: SwiftUI.EmptyView()
                         }
-                    } refreshAction: { endRefreshing in
-                        model.refresh.send(endRefreshing)
+                    }.iOS15Refreshable { completion in
+                        model.refresh.send(completion)
                     }
+                    .listStyle(PlainListStyle())
                 }
             }
         }
@@ -52,10 +53,20 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
     }
 
     private var messagesList: some View {
-        VStack(spacing: 0) {
-            ForEach(model.messages) { message in
+        ForEach(model.messages) { message in
+            VStack(spacing: 0) {
                 InboxMessageView(model: message)
                 Divider()
+            }
+            .listRowInsets(EdgeInsets())
+            .iOS15ListRowSeparator(.hidden)
+            .iOS15SwipeActions(allowsFullSwipe: false) {
+                Button {
+                }
+                label: {
+                    Text("Delete", bundle: .core)
+                }
+                .iOS15Tint(.crimson)
             }
         }
     }
@@ -65,6 +76,8 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
             .progressViewStyle(.indeterminateCircle())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .accentColor(Color(Brand.shared.primary))
+            .listRowInsets(EdgeInsets())
+            .iOS15ListRowSeparator(.hidden)
     }
 
     private func emptyPanda(geometry: GeometryProxy) -> some View {
@@ -74,6 +87,9 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
             .frame(width: geometry.size.width,
                    height: geometry.size.height,
                    alignment: .center)
+            .listRowInsets(EdgeInsets())
+            .iOS15ListRowSeparator(.hidden)
+
     }
 
     private func errorPanda(geometry: GeometryProxy) -> some View {
@@ -93,6 +109,8 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
         .frame(width: geometry.size.width,
                height: geometry.size.height,
                alignment: .center)
+        .listRowInsets(EdgeInsets())
+        .iOS15ListRowSeparator(.hidden)
     }
 
     private var menuButton: some View {
