@@ -67,14 +67,7 @@ public struct InboxMessageModel: Identifiable {
                 return .group
             }
         }()
-        self.participantName = {
-            if participants.count > 5 {
-                let sample = participants.prefix(5).map(\.displayName)
-                return NSLocalizedString("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core, comment: "")
-            } else {
-                return participants.map(\.displayName).joined(separator: ", ")
-            }
-        }()
+        self.participantName = participants.names
         self.title = conversation.subject
         self.message = conversation.lastMessage
         self.date = conversation.lastMessageAt?.relativeShortDateOnlyString ?? ""

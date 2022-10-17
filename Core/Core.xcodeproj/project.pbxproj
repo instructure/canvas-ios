@@ -877,6 +877,8 @@
 		CF3A31E328FD6EA0002752D2 /* iOS15SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E228FD6EA0002752D2 /* iOS15SwipeActions.swift */; };
 		CF3A31E528FD7A10002752D2 /* iOS15Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E428FD7A10002752D2 /* iOS15Tint.swift */; };
 		CF3A31E728FD8112002752D2 /* NoResultsPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E628FD8112002752D2 /* NoResultsPanda.swift */; };
+		CF3A31E928FD92C1002752D2 /* ConversationParticipantNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */; };
+		CF3A31ED28FD9396002752D2 /* ConversationParticipantNamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
@@ -2380,6 +2382,8 @@
 		CF3A31E228FD6EA0002752D2 /* iOS15SwipeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15SwipeActions.swift; sourceTree = "<group>"; };
 		CF3A31E428FD7A10002752D2 /* iOS15Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15Tint.swift; sourceTree = "<group>"; };
 		CF3A31E628FD8112002752D2 /* NoResultsPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsPanda.swift; sourceTree = "<group>"; };
+		CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNames.swift; sourceTree = "<group>"; };
+		CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNamesTests.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -2937,6 +2941,7 @@
 				3B6043A6232AB80500757B93 /* Grades */,
 				7D1D5BE42492A6B2009EA317 /* Groups */,
 				3B34675F2130554C00F9BC2E /* Helpers */,
+				CF3A31EA28FD9372002752D2 /* Inbox */,
 				B1E789B321B1AD720087FE4A /* Logger */,
 				3B3467512130527000F9BC2E /* Login */,
 				7D4C3D57222D9E22001B1198 /* LTI */,
@@ -4841,6 +4846,23 @@
 			children = (
 				CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */,
 				CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */,
+				CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF3A31EA28FD9372002752D2 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A31EB28FD938D002752D2 /* Model */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		CF3A31EB28FD938D002752D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7236,6 +7258,7 @@
 				3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */,
 				CFD9B44727EDC40A0099F173 /* TabToCellViewModelMappingTests.swift in Sources */,
 				3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */,
+				CF3A31ED28FD9396002752D2 /* ConversationParticipantNamesTests.swift in Sources */,
 				97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */,
 				D94FA2A826CA6A2B007B9CA4 /* K5GradeCellViewModelTests.swift in Sources */,
 				7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */,
@@ -8045,6 +8068,7 @@
 				7DA2602923F722C2005D2121 /* LoginManualOAuthViewController.swift in Sources */,
 				CF60CC3A2645525F00C1C173 /* K5ResourcesView.swift in Sources */,
 				7DA25FFE23F7226E005D2121 /* DocViewerSession.swift in Sources */,
+				CF3A31E928FD92C1002752D2 /* ConversationParticipantNames.swift in Sources */,
 				CFC2C2762733C9DA006CA3E0 /* IdentifiableName.swift in Sources */,
 				D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */,
 				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
