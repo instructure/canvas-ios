@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct InboxView<ViewModel: InboxViewModel>: View {
     @ObservedObject private var model: ViewModel
+    @Environment(\.viewController) private var controller
 
     public init(model: ViewModel) {
         self.model = model
@@ -41,12 +42,13 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
                         case .loading: SwiftUI.EmptyView()
                         }
                     } refreshAction: { endRefreshing in
-                        model.refresh(completion: endRefreshing)
+                        model.refresh.send(endRefreshing)
                     }
                 }
             }
         }
         .background(Color.backgroundLightest)
+        .navigationBarItems(leading: menuButton)
     }
 
     private var messagesList: some View {
@@ -91,6 +93,18 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
         .frame(width: geometry.size.width,
                height: geometry.size.height,
                alignment: .center)
+    }
+
+    private var menuButton: some View {
+        Button {
+            model.menuTapped.send(controller)
+        } label: {
+            Image.hamburgerSolid
+                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+        }
+        .frame(width: 44, height: 44).padding(.leading, -6)
+        .identifier("inbox.profileButton")
+        .accessibility(label: Text("Profile Menu", bundle: .core))
     }
 }
 

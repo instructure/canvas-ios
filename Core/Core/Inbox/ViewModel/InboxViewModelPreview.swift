@@ -28,17 +28,21 @@ public class InboxViewModelPreview: InboxViewModel {
     })
     @Published public private(set) var messages: [InboxMessageModel]
 
+    public private(set) var refresh = PassthroughSubject<() -> Void, Never>()
+    public private(set) var menuTapped = PassthroughSubject<WeakViewController, Never>()
+
     private var scope = InboxMessageScope.all
     private var subscriptions = Set<AnyCancellable>()
 
     public init(messages: [InboxMessageModel]) {
         self.messages = messages
-        topBarMenuViewModel.$selectedItemIndex
+        topBarMenuViewModel.selectedItemIndexPublisher
             .map { InboxMessageScope.allCases[$0] }
             .sink { [weak self] scope in
                 self?.scopeDidChange(to: scope)
             }
             .store(in: &subscriptions)
+        subscribeToRefreshEvents()
     }
 
     public func refresh(completion: @escaping () -> Void) {
@@ -61,6 +65,15 @@ public class InboxViewModelPreview: InboxViewModel {
                 state = .error
             }
         }
+    }
+
+    private func subscribeToRefreshEvents() {
+        refresh
+            .delay(for: 2, scheduler: RunLoop.main)
+            .sink { completion in
+                completion()
+            }
+            .store(in: &subscriptions)
     }
 }
 

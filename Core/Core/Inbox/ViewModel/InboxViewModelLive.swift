@@ -16,49 +16,87 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class InboxViewModelLive: InboxViewModel {
+    // MARK: - Outputs
     @Published public private(set) var state: InboxViewModelState = .loading
-    public var topBarMenuViewModel = TopBarViewModel(items: InboxMessageScope.allCases.map {
-        TopBarItemViewModel(id: $0.rawValue, icon: nil, label: Text($0.localizedName))
-    })
     @Published public private(set) var messages: [InboxMessageModel]
+    @Published public var topBarMenuViewModel: TopBarViewModel
 
+    // MARK: - Inputs
+    public private(set) var refresh = PassthroughSubject<() -> Void, Never>()
+    public private(set) var menuTapped = PassthroughSubject<WeakViewController, Never>()
+
+    // MARK: - Private State
     private let env: AppEnvironment
-    private var messagesStore: Store<GetConversations>
+    private var messagesStore: Store<GetConversations>?
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(env: AppEnvironment) {
         self.env = env
         self.messages = []
-        self.messagesStore = Self.messagesStore(env: env, scope: .all)
-        messagesStore.eventHandler = { [weak self] in
+        self.topBarMenuViewModel = TopBarViewModel(items: InboxMessageScope.allCases.map {
+            TopBarItemViewModel(id: $0.rawValue, icon: nil, label: Text($0.localizedName))
+        })
+        subscribeToTopMenuChanges()
+        subscribeToRefreshEvents()
+        subscribeToMenuTapEvents()
+    }
+
+    private func subscribeToMenuTapEvents() {
+        menuTapped
+            .sink { [weak router=env.router] source in
+                router?.route(to: "/profile", from: source, options: .modal())
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func subscribeToTopMenuChanges() {
+        topBarMenuViewModel.selectedItemIndexPublisher
+            .removeDuplicates()
+            .map { InboxMessageScope.allCases[$0] }
+            .sink { [weak self] scope in
+                self?.scopeDidChange(to: scope)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func subscribeToRefreshEvents() {
+        refresh
+            .sink { [weak self] completion in
+                self?.messagesStore?.refresh(force: true) { _ in
+                    completion()
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func scopeDidChange(to scope: InboxMessageScope) {
+        state = .loading
+        messages = []
+        messagesStore = env.subscribe(GetConversations(scope: scope.apiScope, filter: nil)) { [weak self] in
             self?.messagesStoreUpdated()
         }
-    }
-
-    public func refresh(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            completion()
-        }
-    }
-
-    public func scopeDidChange(to scope: InboxMessageScope) {
-//        @Published public var scope: InboxMessageScope = .all {
-//            didSet {
-//                messagesStore = Self.messagesStore(env: env, scope: .all)
-//                messagesStore.eventHandler = { [weak self] in
-//                    self?.messagesStoreUpdated()
-//                }
-//            }
-//        }
+        messagesStore?.refresh(force: true)
     }
 
     private func messagesStoreUpdated() {
-        messages = messagesStore.all.map { InboxMessageModel(conversation: $0) }
-    }
+        guard let messagesStore = messagesStore,
+              messagesStore.state != .loading
+        else {
+            return
+        }
 
-    private static func messagesStore(env: AppEnvironment, scope: InboxMessageScope) -> Store<GetConversations> {
-        env.subscribe(GetConversations(scope: scope.apiScope, filter: nil)).refresh()
+        switch messagesStore.state {
+        case .empty:
+            state = .empty
+        case .data:
+            messages = messagesStore.all.map { InboxMessageModel(conversation: $0) }
+            state = .data
+        case .error, .loading:
+            state = .error
+        }
     }
 }

@@ -16,14 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+
 public protocol InboxViewModel: ObservableObject {
+    // MARK: - Outputs
     var state: InboxViewModelState { get }
     var topBarMenuViewModel: TopBarViewModel { get }
     var messages: [InboxMessageModel] { get }
     var emptyState: (scene: PandaScene, title: String, text: String) { get }
     var errorState: (title: String, text: String) { get }
 
-    func refresh(completion: @escaping () -> Void)
+    // MARK: - Inputs
+    var refresh: PassthroughSubject<() -> Void, Never> { get }
+    var menuTapped: PassthroughSubject<WeakViewController, Never> { get }
 }
 
 public extension InboxViewModel {
