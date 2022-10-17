@@ -51,13 +51,33 @@ public struct InboxMessageModel: Identifiable {
         self.isUnread = isUnread
     }
 
-    public init(conversation: Conversation) {
+    public init(conversation: Conversation, currentUserID: String) {
+        let participants: [ConversationParticipant] = {
+            if conversation.participants.count > 1 {
+                return conversation.participants.filter { $0.id != currentUserID }
+            } else {
+                return Array(conversation.participants)
+            }
+        }()
         self.id = conversation.id
-        self.avatar = .group
-        self.participantName = "test name"
+        self.avatar = {
+            if participants.count == 1, let participant = participants.first {
+                return .individual(name: participant.name, profileImageURL: participant.avatarURL)
+            } else {
+                return .group
+            }
+        }()
+        self.participantName = {
+            if participants.count > 5 {
+                let sample = participants.prefix(5).map(\.displayName)
+                return NSLocalizedString("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core, comment: "")
+            } else {
+                return participants.map(\.displayName).joined(separator: ", ")
+            }
+        }()
         self.title = conversation.subject
         self.message = conversation.lastMessage
-        self.date = conversation.lastMessageAt?.dateTimeString ?? ""
+        self.date = conversation.lastMessageAt?.relativeShortDateOnlyString ?? ""
         self.isStarred = conversation.starred
         self.isUnread = conversation.workflowState == .unread
     }
@@ -73,13 +93,13 @@ extension InboxMessageModel: Equatable {
 
 public extension InboxMessageModel {
     static var mock: InboxMessageModel { mock() }
-    static func mock(id: String = "0") -> InboxMessageModel {
+    static func mock(id: String = "0", participantName: String = "Bob, Alice") -> InboxMessageModel {
         InboxMessageModel(id: id,
                           avatar: .group,
-                          participantName: "Bob, Alice",
+                          participantName: participantName,
                           title: "Homework Feedback. Please read this as soon as possible as it's very important.",
                           message: "Did you check my homework? It would be very iportant to get some feedback before the end of the week.",
-                          date: "2022/10/13",
+                          date: "22/10/13",
                           isStarred: true,
                           isUnread: true)
     }

@@ -93,7 +93,7 @@ public class InboxViewModelLive: InboxViewModel {
         case .empty:
             state = .empty
         case .data:
-            messages = messagesStore.all.map { InboxMessageModel(conversation: $0) }
+            messages = messagesStore.all.map { InboxMessageModel(conversation: $0, currentUserID: env.currentSession?.userID ?? "") }
             state = .data
         case .error, .loading:
             state = .error

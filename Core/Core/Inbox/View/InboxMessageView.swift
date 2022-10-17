@@ -52,11 +52,13 @@ public struct InboxMessageView: View {
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
                     .padding(.trailing, 16)
+                    .lineLimit(1)
                 Text(verbatim: model.message)
                     .font(.regular14)
                     .foregroundColor(.textDark)
                     .padding(.trailing, 16)
-            }.lineLimit(1)
+                    .lineLimit(1)
+            }
         }
         .padding(.top, 14)
         .padding(.bottom, 12)
@@ -113,6 +115,10 @@ struct InboxMessageView_Previews: PreviewProvider {
                 .preferredColorScheme($0)
                 .previewLayout(.sizeThatFits)
         }
+
+        InboxMessageView(model: .mock(participantName: "Bob Hunter, Tray B, Joe M, Alice Swanson, Marty + 3"))
+            .previewLayout(.sizeThatFits)
+            .previewDevice(PreviewDevice(stringLiteral: "iPhone 11"))
     }
 }
 
