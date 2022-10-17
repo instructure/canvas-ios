@@ -100,12 +100,12 @@ class APITests: XCTestCase {
         let expectation = XCTestExpectation(description: "request callback runs")
         let task = api.makeRequest(InvalidPath()) { value, response, error in
             XCTAssertNil(value)
-            XCTAssertNil(response)
+            XCTAssertNotNil(response)
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
-        XCTAssertNil(task)
+        XCTAssertNotNil(task)
     }
 
     func testMakeRequestUnsupported() {
