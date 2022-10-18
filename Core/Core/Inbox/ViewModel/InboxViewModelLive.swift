@@ -26,8 +26,9 @@ public class InboxViewModelLive: InboxViewModel {
     @Published public var topBarMenuViewModel: TopBarViewModel
 
     // MARK: - Inputs
-    public private(set) var refresh = PassthroughSubject<() -> Void, Never>()
-    public private(set) var menuTapped = PassthroughSubject<WeakViewController, Never>()
+    public let refresh = PassthroughSubject<() -> Void, Never>()
+    public let menuTapped = PassthroughSubject<WeakViewController, Never>()
+    public let filter = CurrentValueSubject<String?, Never>(nil)
 
     // MARK: - Private State
     private let env: AppEnvironment
@@ -40,7 +41,7 @@ public class InboxViewModelLive: InboxViewModel {
         self.topBarMenuViewModel = TopBarViewModel(items: InboxMessageScope.allCases.map {
             TopBarItemViewModel(id: $0.rawValue, icon: nil, label: Text($0.localizedName))
         })
-        subscribeToTopMenuChanges()
+        subscribeToScopeAndFilterChanges()
         subscribeToRefreshEvents()
         subscribeToMenuTapEvents()
     }
@@ -53,12 +54,16 @@ public class InboxViewModelLive: InboxViewModel {
             .store(in: &subscriptions)
     }
 
-    private func subscribeToTopMenuChanges() {
-        topBarMenuViewModel.selectedItemIndexPublisher
+    private func subscribeToScopeAndFilterChanges() {
+        let scopePublisher = topBarMenuViewModel
+            .selectedItemIndexPublisher
             .removeDuplicates()
             .map { InboxMessageScope.allCases[$0] }
-            .sink { [weak self] scope in
-                self?.scopeDidChange(to: scope)
+        let filterPublisher = filter
+            .removeDuplicates()
+        Publishers.CombineLatest(scopePublisher, filterPublisher)
+            .sink { [weak self] scope, filter in
+                self?.updateMessageList(scope: scope, filter: filter)
             }
             .store(in: &subscriptions)
     }
@@ -73,10 +78,10 @@ public class InboxViewModelLive: InboxViewModel {
             .store(in: &subscriptions)
     }
 
-    private func scopeDidChange(to scope: InboxMessageScope) {
+    private func updateMessageList(scope: InboxMessageScope, filter: String?) {
         state = .loading
         messages = []
-        messagesStore = env.subscribe(GetConversations(scope: scope.apiScope, filter: nil)) { [weak self] in
+        messagesStore = env.subscribe(GetConversations(scope: scope.apiScope, filter: filter)) { [weak self] in
             self?.messagesStoreUpdated()
         }
         messagesStore?.refresh(force: true)

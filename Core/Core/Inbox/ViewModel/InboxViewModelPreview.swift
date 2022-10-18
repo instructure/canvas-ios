@@ -28,8 +28,9 @@ public class InboxViewModelPreview: InboxViewModel {
     })
     @Published public private(set) var messages: [InboxMessageModel]
 
-    public private(set) var refresh = PassthroughSubject<() -> Void, Never>()
-    public private(set) var menuTapped = PassthroughSubject<WeakViewController, Never>()
+    public let refresh = PassthroughSubject<() -> Void, Never>()
+    public let menuTapped = PassthroughSubject<WeakViewController, Never>()
+    public let filter = CurrentValueSubject<String?, Never>(nil)
 
     private var scope = InboxMessageScope.all
     private var subscriptions = Set<AnyCancellable>()

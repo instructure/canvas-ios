@@ -29,6 +29,8 @@ public protocol InboxViewModel: ObservableObject {
     // MARK: - Inputs
     var refresh: PassthroughSubject<() -> Void, Never> { get }
     var menuTapped: PassthroughSubject<WeakViewController, Never> { get }
+    /** In the format of `course\_123`, `group\_123` or `user\_123`. */
+    var filter: CurrentValueSubject<String?, Never> { get }
 }
 
 public extension InboxViewModel {
