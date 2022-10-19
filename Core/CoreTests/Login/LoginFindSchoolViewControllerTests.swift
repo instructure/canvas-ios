@@ -97,6 +97,14 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         let shown = router.viewControllerCalls.first?.0 as? LoginWebViewController
         XCTAssertEqual(shown?.host, "asd.instructure.com")
     }
+
+    func testSaveAccount() {
+        let account = APIAccountResult(name: "", domain: "", authentication_provider: nil)
+        controller.saveAccount(account)
+        let data = UserDefaults.standard.data(forKey: "lastLoginAccount")
+        let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data!)
+        XCTAssertEqual(savedAccount, account)
+    }
 }
 
 extension LoginFindSchoolViewControllerTests: LoginDelegate {

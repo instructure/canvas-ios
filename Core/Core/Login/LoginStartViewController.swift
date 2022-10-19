@@ -94,6 +94,8 @@ class LoginStartViewController: UIViewController {
             let buttonTitle = savedAccount.name.isEmpty ? savedAccount.domain : loginText
             findSchoolButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
             lastLoginAccount = savedAccount
+        } else {
+            lastLoginAccount = nil
         }
         mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
             self?.update()
@@ -175,7 +177,7 @@ class LoginStartViewController: UIViewController {
         animatableLogo.alpha = 1
         view.layoutIfNeeded()
     }
-    
+
     private func animateLoginTopConstraint(_ hasOffset: Bool) {
         loginTopConstraint.constant = hasOffset ? 100 : 50
         UIView.animate(withDuration: 0.3) {

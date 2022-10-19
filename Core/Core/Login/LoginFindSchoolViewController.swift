@@ -158,7 +158,7 @@ class LoginFindSchoolViewController: UIViewController {
         }
     }
 
-    private func saveAccount(_ account: APIAccountResult?) {
+    func saveAccount(_ account: APIAccountResult?) {
         let data = try? APIJSONEncoder().encode(account)
         UserDefaults.standard.set(data, forKey: "lastLoginAccount")
     }
