@@ -24,8 +24,8 @@ public protocol InboxMessageDataSource {
     var messages: AnyPublisher<[InboxMessageModel], Never> { get }
 
     // MARK: - Inputs
-    var refresh: AnySubscriber<() -> Void, Never> { get }
+    var triggerRefresh: AnySubscriber<() -> Void, Never> { get }
     /** In the format of `course\_123`, `group\_123` or `user\_123`. */
-    var filter: AnySubscriber<String?, Never> { get }
-    var scope: AnySubscriber<InboxMessageScope, Never> { get }
+    var setFilter: AnySubscriber<String?, Never> { get }
+    var setScope: AnySubscriber<InboxMessageScope, Never> { get }
 }

@@ -24,16 +24,16 @@ public class InboxMessageDataSourceLive: InboxMessageDataSource {
     public private(set) lazy var messages = messagesSubject.eraseToAnyPublisher()
 
     // MARK: - Inputs
-    public private(set) lazy var refresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { [weak self] completion in
+    public private(set) lazy var triggerRefresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { [weak self] completion in
         self?.messagesStore?.refresh(force: true, callback: { _ in
             completion()
         })
     })
     /** In the format of `course\_123`, `group\_123` or `user\_123`. */
-    public private(set) lazy var filter = AnySubscriber(Subscribers.Sink<String?, Never>(receiveCompletion: { _ in }) { [weak self] filter in
+    public private(set) lazy var setFilter = AnySubscriber(Subscribers.Sink<String?, Never>(receiveCompletion: { _ in }) { [weak self] filter in
         self?.filterValue = filter
     })
-    public private(set) lazy var scope = AnySubscriber(Subscribers.Sink<InboxMessageScope, Never>(receiveCompletion: { _ in }) { [weak self] scope in
+    public private(set) lazy var setScope = AnySubscriber(Subscribers.Sink<InboxMessageScope, Never>(receiveCompletion: { _ in }) { [weak self] scope in
         self?.scopeValue = scope
     })
 

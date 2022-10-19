@@ -65,14 +65,14 @@ public class InboxViewModel: ObservableObject {
     private func bindInputsToDataSource() {
         filterDidChange
             .removeDuplicates()
-            .subscribe(dataSource.filter)
+            .subscribe(dataSource.setFilter)
         topBarMenuViewModel
             .selectedItemIndexPublisher
             .removeDuplicates()
             .map { InboxMessageScope.allCases[$0] }
-            .subscribe(dataSource.scope)
+            .subscribe(dataSource.setScope)
         refreshDidTrigger
-            .subscribe(dataSource.refresh)
+            .subscribe(dataSource.triggerRefresh)
     }
 
     private func subscribeToMenuTapEvents(router: Router) {

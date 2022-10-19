@@ -26,15 +26,15 @@ class InboxMessageDataSourcePreview: InboxMessageDataSource {
     public let messages: AnyPublisher<[InboxMessageModel], Never>
 
     // MARK: - Inputs
-    public private(set) lazy var refresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { completion in
+    public private(set) lazy var triggerRefresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { completion in
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             completion()
         }
     })
-    public private(set) lazy var filter = AnySubscriber(Subscribers.Sink<String?, Never>(receiveCompletion: { _ in }) { [weak self] filter in
+    public private(set) lazy var setFilter = AnySubscriber(Subscribers.Sink<String?, Never>(receiveCompletion: { _ in }) { [weak self] filter in
         self?.filterValue = filter
     })
-    public private(set) lazy var scope = AnySubscriber(Subscribers.Sink<InboxMessageScope, Never>(receiveCompletion: { _ in }) { [weak self] scope in
+    public private(set) lazy var setScope = AnySubscriber(Subscribers.Sink<InboxMessageScope, Never>(receiveCompletion: { _ in }) { [weak self] scope in
         self?.scopeValue = scope
     })
 
