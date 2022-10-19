@@ -18,11 +18,11 @@
 
 import SwiftUI
 
-public struct InboxView<ViewModel: InboxViewModel>: View {
-    @ObservedObject private var model: ViewModel
+public struct InboxView: View {
+    @ObservedObject private var model: InboxViewModel
     @Environment(\.viewController) private var controller
 
-    public init(model: ViewModel) {
+    public init(model: InboxViewModel) {
         self.model = model
     }
 
@@ -113,7 +113,9 @@ public struct InboxView<ViewModel: InboxViewModel>: View {
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
-            InboxView(model: InboxViewModelPreview(messages: .mock(count: 5)))
+            let dataSource = InboxMessageDataSourcePreview(messages: .mock(count: 5))
+            let viewModel = InboxViewModel(dataSource: dataSource, router: AppEnvironment.shared.router)
+            InboxView(model: viewModel)
                 .preferredColorScheme($0)
                 .previewLayout(.sizeThatFits)
         }

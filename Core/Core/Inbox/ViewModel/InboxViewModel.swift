@@ -17,38 +17,69 @@
 //
 
 import Combine
+import SwiftUI
 
-public protocol InboxViewModel: ObservableObject {
+public class InboxViewModel: ObservableObject {
     // MARK: - Outputs
-    var state: InboxViewModelState { get }
-    var topBarMenuViewModel: TopBarViewModel { get }
-    var messages: [InboxMessageModel] { get }
-    var emptyState: (scene: PandaScene, title: String, text: String) { get }
-    var errorState: (scene: PandaScene, title: String, text: String) { get }
-
-    // MARK: - Inputs
-    var refresh: PassthroughSubject<() -> Void, Never> { get }
-    var menuTapped: PassthroughSubject<WeakViewController, Never> { get }
-    /** In the format of `course\_123`, `group\_123` or `user\_123`. */
-    var filter: CurrentValueSubject<String?, Never> { get }
-}
-
-public extension InboxViewModel {
-    var emptyState: (scene: PandaScene, title: String, text: String) {
+    @Published public private(set) var state: StoreState = .loading
+    @Published public private(set) var messages: [InboxMessageModel] = []
+    @Published public private(set) var topBarMenuViewModel: TopBarViewModel
+    public var emptyState: (scene: PandaScene, title: String, text: String) {
         (scene: SpacePanda() as PandaScene,
          title: NSLocalizedString("No Messages", comment: ""),
          text: NSLocalizedString("Tap the \"+\" to create a new conversation", comment: ""))
     }
-    var errorState: (scene: PandaScene, title: String, text: String) {
+    public var errorState: (scene: PandaScene, title: String, text: String) {
         (scene: NoResultsPanda() as PandaScene,
          title: NSLocalizedString("Something Went Wrong", comment: ""),
          text: NSLocalizedString("Pull to refresh to try again", comment: ""))
     }
-}
 
-public enum InboxViewModelState {
-    case loading
-    case empty
-    case data
-    case error
+    // MARK: - Inputs
+    public let refresh = PassthroughSubject<() -> Void, Never>()
+    public let menuTapped = PassthroughSubject<WeakViewController, Never>()
+    public let filter = CurrentValueSubject<String?, Never>(nil)
+
+    // MARK: - Private State
+    private let dataSource: InboxMessageDataSource
+    private var subscriptions = Set<AnyCancellable>()
+
+    public init(dataSource: InboxMessageDataSource, router: Router) {
+        self.dataSource = dataSource
+        self.topBarMenuViewModel = TopBarViewModel(items: InboxMessageScope.allCases.map {
+            TopBarItemViewModel(id: $0.rawValue, icon: nil, label: Text($0.localizedName))
+        })
+        bindInputsToDataSource()
+        bindDataSourceOutputsToSelf()
+        bindDataSourceOutputsToSelf()
+        subscribeToMenuTapEvents(router: router)
+    }
+
+    private func bindDataSourceOutputsToSelf() {
+        dataSource.state
+            .assign(to: &$state)
+        dataSource.messages
+            .assign(to: &$messages)
+    }
+
+    private func bindInputsToDataSource() {
+        filter
+            .removeDuplicates()
+            .subscribe(dataSource.filter)
+        topBarMenuViewModel
+            .selectedItemIndexPublisher
+            .removeDuplicates()
+            .map { InboxMessageScope.allCases[$0] }
+            .subscribe(dataSource.scope)
+        refresh
+            .subscribe(dataSource.refresh)
+    }
+
+    private func subscribeToMenuTapEvents(router: Router) {
+        menuTapped
+            .sink { [weak router] source in
+                router?.route(to: "/profile", from: source, options: .modal())
+            }
+            .store(in: &subscriptions)
+    }
 }
