@@ -150,9 +150,9 @@ class LoginStartViewController: UIViewController {
     func update() {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
-        animateLoginTopConstraint(previousLoginsView.isHidden)
         previousLoginsTableView.reloadData()
         configureButtons()
+        animateLoginTopConstraint(previousLoginsView.isHidden)
     }
 
     override func viewWillAppear(_ animated: Bool) {
