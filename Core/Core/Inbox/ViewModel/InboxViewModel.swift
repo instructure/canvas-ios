@@ -36,9 +36,9 @@ public class InboxViewModel: ObservableObject {
     }
 
     // MARK: - Inputs
-    public let refresh = PassthroughSubject<() -> Void, Never>()
-    public let menuTapped = PassthroughSubject<WeakViewController, Never>()
-    public let filter = CurrentValueSubject<String?, Never>(nil)
+    public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
+    public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
+    public let filterDidChange = CurrentValueSubject<String?, Never>(nil)
 
     // MARK: - Private State
     private let dataSource: InboxMessageDataSource
@@ -63,7 +63,7 @@ public class InboxViewModel: ObservableObject {
     }
 
     private func bindInputsToDataSource() {
-        filter
+        filterDidChange
             .removeDuplicates()
             .subscribe(dataSource.filter)
         topBarMenuViewModel
@@ -71,12 +71,12 @@ public class InboxViewModel: ObservableObject {
             .removeDuplicates()
             .map { InboxMessageScope.allCases[$0] }
             .subscribe(dataSource.scope)
-        refresh
+        refreshDidTrigger
             .subscribe(dataSource.refresh)
     }
 
     private func subscribeToMenuTapEvents(router: Router) {
-        menuTapped
+        menuDidTap
             .sink { [weak router] source in
                 router?.route(to: "/profile", from: source, options: .modal())
             }

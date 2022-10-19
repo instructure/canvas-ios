@@ -42,7 +42,7 @@ public struct InboxView: View {
                         case .loading: SwiftUI.EmptyView()
                         }
                     }.iOS15Refreshable { completion in
-                        model.refresh.send(completion)
+                        model.refreshDidTrigger.send(completion)
                     }
                     .listStyle(PlainListStyle())
                 }
@@ -97,7 +97,7 @@ public struct InboxView: View {
 
     private var menuButton: some View {
         Button {
-            model.menuTapped.send(controller)
+            model.menuDidTap.send(controller)
         } label: {
             Image.hamburgerSolid
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
