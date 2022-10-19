@@ -86,7 +86,7 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
             return
         }
         _ = api.makeRequest(GetDocViewerAnnotationsRequest(sessionID: sessionID ?? "")) { [weak self] response, _, _ in
-            self?.annotations = response?.data ?? []
+            self?.annotations = response?.data.sorted() ?? []
             if self?.localURL != nil || self?.error != nil { self?.notify() }
         }
     }
