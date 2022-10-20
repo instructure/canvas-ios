@@ -72,9 +72,9 @@ class TeacherTabBarController: UITabBarController {
         let inboxNav: UINavigationController
         let inboxSplit = HelmSplitViewController()
 
-        if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            let dataSource = InboxMessageDataSourceLive(env: AppEnvironment.shared)
-            let viewModel = InboxViewModel(dataSource: dataSource, router: AppEnvironment.shared.router)
+        if ExperimentalFeature.nativeTeacherInbox.isEnabled {
+            let interactor = InboxMessageInteractorLive(env: AppEnvironment.shared)
+            let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
             inboxVC = CoreHostingController(InboxView(model: viewModel))
             inboxNav = HelmNavigationController(rootViewController: inboxVC)
         } else {

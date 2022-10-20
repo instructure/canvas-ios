@@ -16,21 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-
 import Combine
 
-class InboxMessageDataSourcePreview: InboxMessageDataSource {
+public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Outputs
     public private(set) lazy var state = stateSubject.eraseToAnyPublisher()
-    public let messages: AnyPublisher<[InboxMessageModel], Never>
+    public private(set) lazy var messages = messagesSubject.eraseToAnyPublisher()
 
     // MARK: - Inputs
-    public private(set) lazy var triggerRefresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { completion in
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+    public private(set) lazy var triggerRefresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { [weak self] completion in
+        self?.messagesStore?.refresh(force: true, callback: { _ in
             completion()
-        }
+        })
     })
+    /** In the format of `course\_123`, `group\_123` or `user\_123`. */
     public private(set) lazy var setFilter = AnySubscriber(Subscribers.Sink<String?, Never>(receiveCompletion: { _ in }) { [weak self] filter in
         self?.filterValue = filter
     })
@@ -40,6 +39,10 @@ class InboxMessageDataSourcePreview: InboxMessageDataSource {
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
+    private let messagesSubject = CurrentValueSubject<[InboxMessageModel], Never>([])
+    private var messagesStore: Store<GetConversations>?
+    private var subscriptions = Set<AnyCancellable>()
+    private let env: AppEnvironment
     private var filterValue: String? {
         didSet { update() }
     }
@@ -47,24 +50,35 @@ class InboxMessageDataSourcePreview: InboxMessageDataSource {
         didSet { update() }
     }
 
-    public init(messages: [InboxMessageModel]) {
-        self.messages = CurrentValueSubject<[InboxMessageModel], Never>(messages).eraseToAnyPublisher()
+    public init(env: AppEnvironment) {
+        self.env = env
     }
 
     private func update() {
         stateSubject.send(.loading)
+        messagesSubject.send([])
+        messagesStore = env.subscribe(GetConversations(scope: scopeValue.apiScope, filter: filterValue)) { [weak self] in
+            self?.messagesStoreUpdated()
+        }
+        messagesStore?.refresh(force: true)
+    }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-            switch scopeValue {
-            case .all, .sent, .archived:
-                stateSubject.send(.data)
-            case .unread:
-                stateSubject.send(.empty)
-            case .starred:
-                stateSubject.send(.error)
-            }
+    private func messagesStoreUpdated() {
+        guard let messagesStore = messagesStore,
+              messagesStore.state != .loading
+        else {
+            return
+        }
+
+        switch messagesStore.state {
+        case .empty:
+            stateSubject.send(.empty)
+        case .data:
+            let messages = messagesStore.all.map { InboxMessageModel(conversation: $0, currentUserID: env.currentSession?.userID ?? "") }
+            messagesSubject.send(messages)
+            stateSubject.send(.data)
+        case .error, .loading:
+            stateSubject.send(.error)
         }
     }
 }
-
-#endif

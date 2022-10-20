@@ -41,11 +41,11 @@ public class InboxViewModel: ObservableObject {
     public let filterDidChange = CurrentValueSubject<String?, Never>(nil)
 
     // MARK: - Private State
-    private let dataSource: InboxMessageDataSource
+    private let interactor: InboxMessageInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(dataSource: InboxMessageDataSource, router: Router) {
-        self.dataSource = dataSource
+    public init(interactor: InboxMessageInteractor, router: Router) {
+        self.interactor = interactor
         self.topBarMenuViewModel = TopBarViewModel(items: InboxMessageScope.allCases.map {
             TopBarItemViewModel(id: $0.rawValue, icon: nil, label: Text($0.localizedName))
         })
@@ -56,23 +56,23 @@ public class InboxViewModel: ObservableObject {
     }
 
     private func bindDataSourceOutputsToSelf() {
-        dataSource.state
+        interactor.state
             .assign(to: &$state)
-        dataSource.messages
+        interactor.messages
             .assign(to: &$messages)
     }
 
     private func bindInputsToDataSource() {
         filterDidChange
             .removeDuplicates()
-            .subscribe(dataSource.setFilter)
+            .subscribe(interactor.setFilter)
         topBarMenuViewModel
             .selectedItemIndexPublisher
             .removeDuplicates()
             .map { InboxMessageScope.allCases[$0] }
-            .subscribe(dataSource.setScope)
+            .subscribe(interactor.setScope)
         refreshDidTrigger
-            .subscribe(dataSource.triggerRefresh)
+            .subscribe(interactor.triggerRefresh)
     }
 
     private func subscribeToMenuTapEvents(router: Router) {

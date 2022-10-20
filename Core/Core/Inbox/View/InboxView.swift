@@ -113,8 +113,8 @@ public struct InboxView: View {
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
-            let dataSource = InboxMessageDataSourcePreview(messages: .mock(count: 5))
-            let viewModel = InboxViewModel(dataSource: dataSource, router: AppEnvironment.shared.router)
+            let interactor = InboxMessageInteractorPreview(messages: .mock(count: 5))
+            let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
             InboxView(model: viewModel)
                 .preferredColorScheme($0)
                 .previewLayout(.sizeThatFits)
