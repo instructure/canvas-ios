@@ -35,34 +35,38 @@ public struct InboxMessageView: View {
     }
 
     private var cellContent: some View {
-        HStack(alignment: .top, spacing: 12) {
+        HStack(alignment: .top, spacing: 14) {
             avatar
-            VStack(alignment: .leading, spacing: 1) {
+            VStack(alignment: .leading, spacing: 2) {
                 HStack(alignment: .firstTextBaseline, spacing: 2) {
-                    starredIndicator
                     Text(model.participantName)
                         .font(.semibold16)
                         .foregroundColor(.textDarkest)
                     Spacer()
                     Text(model.date)
                         .foregroundColor(.textDark)
-                        .font(.regular14)
+                        .font(.regular12)
                 }
-                Text(verbatim: model.title)
-                    .font(.regular14)
-                    .foregroundColor(.textDarkest)
-                    .padding(.trailing, 16)
-                    .lineLimit(1)
-                Text(verbatim: model.message)
-                    .font(.regular14)
-                    .foregroundColor(.textDark)
-                    .padding(.trailing, 16)
-                    .lineLimit(1)
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(verbatim: model.title)
+                            .font(.regular14)
+                            .foregroundColor(.textDarkest)
+                            .lineLimit(1)
+                        Text(verbatim: model.message)
+                            .font(.regular14)
+                            .foregroundColor(.textDark)
+                            .lineLimit(1)
+                    }
+                    Spacer()
+                    starredIndicator
+                }
             }
         }
         .padding(.top, 14)
         .padding(.bottom, 12)
-        .padding(.horizontal, 16)
+        .padding(.leading, 14)
+        .padding(.trailing, 16)
         .background(Color.clear)
         .overlay(unreadDot)
     }
@@ -75,10 +79,10 @@ public struct InboxMessageView: View {
                 .strokeBorder(lineWidth: 1 / UIScreen.main.scale)
                 .foregroundColor(.borderMedium)
                 .overlay(Image.groupLine.foregroundColor(.borderDark))
-                .frame(width: 40, height: 40)
+                .frame(width: 36, height: 36)
         case .individual(let name, let profileImageURL):
             Avatar(name: name, url: profileImageURL)
-                .frame(width: 40, height: 40)
+                .frame(width: 36, height: 36)
         }
     }
 
@@ -87,7 +91,7 @@ public struct InboxMessageView: View {
         if model.isStarred {
             Image
                 .starSolid
-                .size(14)
+                .size(18)
                 .foregroundColor(.accentColor)
         }
     }
@@ -97,9 +101,10 @@ public struct InboxMessageView: View {
         if model.isUnread {
             ZStack(alignment: .topLeading) {
                 Circle()
-                    .frame(width: 8, height: 8)
+                    .frame(width: 6, height: 6)
                     .foregroundColor(.electric)
-                    .padding(8)
+                    .padding(.leading, 8)
+                    .padding(.top, 13)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
