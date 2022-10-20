@@ -23,7 +23,7 @@ public class InboxViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var messages: [InboxMessageModel] = []
-    @Published public private(set) var topBarMenuViewModel: TopBarViewModel
+    @Published public private(set) var scope: InboxMessageScope = DefaultScope
     public var emptyState: (scene: PandaScene, title: String, text: String) {
         (scene: SpacePanda() as PandaScene,
          title: NSLocalizedString("No Messages", comment: ""),
@@ -39,16 +39,15 @@ public class InboxViewModel: ObservableObject {
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
     public let filterDidChange = CurrentValueSubject<String?, Never>(nil)
+    public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
 
     // MARK: - Private State
+    private static let DefaultScope: InboxMessageScope = .all
     private let interactor: InboxMessageInteractor
     private var subscriptions = Set<AnyCancellable>()
 
     public init(interactor: InboxMessageInteractor, router: Router) {
         self.interactor = interactor
-        self.topBarMenuViewModel = TopBarViewModel(items: InboxMessageScope.allCases.map {
-            TopBarItemViewModel(id: $0.rawValue, icon: nil, label: Text($0.localizedName))
-        })
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindDataSourceOutputsToSelf()
@@ -66,10 +65,8 @@ public class InboxViewModel: ObservableObject {
         filterDidChange
             .removeDuplicates()
             .subscribe(interactor.setFilter)
-        topBarMenuViewModel
-            .selectedItemIndexPublisher
+        scopeDidChange
             .removeDuplicates()
-            .map { InboxMessageScope.allCases[$0] }
             .subscribe(interactor.setScope)
         refreshDidTrigger
             .subscribe(interactor.triggerRefresh)

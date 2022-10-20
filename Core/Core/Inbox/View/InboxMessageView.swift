@@ -65,7 +65,7 @@ public struct InboxMessageView: View {
         }
         .padding(.top, 14)
         .padding(.bottom, 12)
-        .padding(.leading, 14)
+        .padding(.leading, 15)
         .padding(.trailing, 16)
         .background(Color.clear)
         .overlay(unreadDot)

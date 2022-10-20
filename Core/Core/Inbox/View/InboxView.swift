@@ -28,7 +28,7 @@ public struct InboxView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            TopBarView(viewModel: model.topBarMenuViewModel, horizontalInset: 16, itemSpacing: 25)
+            InboxFilterBar()
             Divider()
             if case .loading = model.state {
                 loadingIndicator
@@ -57,6 +57,7 @@ public struct InboxView: View {
             VStack(spacing: 0) {
                 InboxMessageView(model: message)
                 Divider()
+                    .padding(.leading, 64)
             }
             .listRowInsets(EdgeInsets())
             .iOS15ListRowSeparator(.hidden)
