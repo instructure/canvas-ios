@@ -24,18 +24,24 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public private(set) lazy var messages = messagesSubject.eraseToAnyPublisher()
 
     // MARK: - Inputs
-    public private(set) lazy var triggerRefresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { [weak self] completion in
-        self?.messagesStore?.refresh(force: true, callback: { _ in
-            completion()
-        })
-    })
+    public private(set) lazy var triggerRefresh = Subscribers
+        .Sink<() -> Void, Never> { [weak self] completion in
+            self?.messagesStore?.refresh(force: true) { _ in
+                completion()
+            }
+        }
+        .eraseToAnySubscriber()
     /** In the format of `course\_123`, `group\_123` or `user\_123`. */
-    public private(set) lazy var setFilter = AnySubscriber(Subscribers.Sink<String?, Never>(receiveCompletion: { _ in }) { [weak self] filter in
-        self?.filterValue = filter
-    })
-    public private(set) lazy var setScope = AnySubscriber(Subscribers.Sink<InboxMessageScope, Never>(receiveCompletion: { _ in }) { [weak self] scope in
-        self?.scopeValue = scope
-    })
+    public private(set) lazy var setFilter = Subscribers
+        .Sink<String?, Never> { [weak self] filter in
+            self?.filterValue = filter
+        }
+        .eraseToAnySubscriber()
+    public private(set) lazy var setScope = Subscribers
+        .Sink<InboxMessageScope, Never> { [weak self] scope in
+            self?.scopeValue = scope
+        }
+        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)

@@ -26,17 +26,23 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     public let messages: AnyPublisher<[InboxMessageModel], Never>
 
     // MARK: - Inputs
-    public private(set) lazy var triggerRefresh = AnySubscriber(Subscribers.Sink<() -> Void, Never>(receiveCompletion: { _ in }) { completion in
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            completion()
+    public private(set) lazy var triggerRefresh = Subscribers
+        .Sink<() -> Void, Never> { completion in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                completion()
+            }
         }
-    })
-    public private(set) lazy var setFilter = AnySubscriber(Subscribers.Sink<String?, Never>(receiveCompletion: { _ in }) { [weak self] filter in
-        self?.filterValue = filter
-    })
-    public private(set) lazy var setScope = AnySubscriber(Subscribers.Sink<InboxMessageScope, Never>(receiveCompletion: { _ in }) { [weak self] scope in
-        self?.scopeValue = scope
-    })
+        .eraseToAnySubscriber()
+    public private(set) lazy var setFilter = Subscribers
+        .Sink<String?, Never> { [weak self] filter in
+            self?.filterValue = filter
+        }
+        .eraseToAnySubscriber()
+    public private(set) lazy var setScope = Subscribers
+        .Sink<InboxMessageScope, Never> { [weak self] scope in
+            self?.scopeValue = scope
+        }
+        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)

@@ -882,6 +882,7 @@
 		CF3A31F328FEBE0B002752D2 /* InboxMessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F228FEBE0B002752D2 /* InboxMessageInteractor.swift */; };
 		CF3A31F528FEC5DA002752D2 /* InboxMessageInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F428FEC5DA002752D2 /* InboxMessageInteractorLive.swift */; };
 		CF3A31F728FEF566002752D2 /* InboxMessageInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F628FEF566002752D2 /* InboxMessageInteractorPreview.swift */; };
+		CF3A31FB29017784002752D2 /* SinkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31FA29017784002752D2 /* SinkExtensions.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
@@ -2390,6 +2391,7 @@
 		CF3A31F228FEBE0B002752D2 /* InboxMessageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageInteractor.swift; sourceTree = "<group>"; };
 		CF3A31F428FEC5DA002752D2 /* InboxMessageInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageInteractorLive.swift; sourceTree = "<group>"; };
 		CF3A31F628FEF566002752D2 /* InboxMessageInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageInteractorPreview.swift; sourceTree = "<group>"; };
+		CF3A31FA29017784002752D2 /* SinkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinkExtensions.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -3967,6 +3969,7 @@
 				CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */,
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
 				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
+				CF3A31FA29017784002752D2 /* SinkExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
 				7D742F3F25564CF200FD6CF1 /* SwiftUIExtensions.swift */,
 				7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */,
@@ -7566,6 +7569,7 @@
 				CFA3898828AE86F3006AF68F /* FileSubmissionComposer.swift in Sources */,
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
+				CF3A31FB29017784002752D2 /* SinkExtensions.swift in Sources */,
 				CF598B32282552150029BEBE /* View.swift in Sources */,
 				CFCB0F6627CE7E57008DDEA4 /* ImageBackground.swift in Sources */,
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
