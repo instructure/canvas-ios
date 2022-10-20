@@ -19,6 +19,11 @@
 import SwiftUI
 
 public struct InboxFilterBar: View {
+    @ObservedObject private var model: InboxViewModel
+
+    public init(model: InboxViewModel) {
+        self.model = model
+    }
 
     public var body: some View {
         HStack(spacing: 0) {
@@ -31,6 +36,9 @@ public struct InboxFilterBar: View {
         .padding(.leading, 16)
         .padding(.trailing, 19)
         .background(Color.backgroundLightest)
+        .actionSheet(isPresented: $model.isShowingScopeSelector) {
+            ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
+        }
     }
 
     private var courseFilterButton: some View {
@@ -54,10 +62,10 @@ public struct InboxFilterBar: View {
 
     private var scopeFilterButton: some View {
         Button {
-
+            model.isShowingScopeSelector = true
         } label: {
             HStack(spacing: 5) {
-                Text("All")
+                Text(model.scope.localizedName)
                     .lineLimit(1)
                     .font(.regular16)
                 Image
@@ -69,6 +77,16 @@ public struct InboxFilterBar: View {
             .foregroundColor(Color(Brand.shared.linkColor))
         }
     }
+
+    private var scopeFilterButtons: [ActionSheet.Button] {
+        let scopeButtons: [ActionSheet.Button] = model.scopes.map { scope in
+            .default(Text(scope.localizedName)) {
+                model.scopeDidChange.send(scope)
+            }
+        }
+        let cancelButton = ActionSheet.Button.destructive(Text("Cancel", bundle: .core))
+        return scopeButtons + [cancelButton]
+    }
 }
 
 #if DEBUG
@@ -76,7 +94,9 @@ public struct InboxFilterBar: View {
 struct InboxFilterBar_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
-            InboxFilterBar()
+            let interactor = InboxMessageInteractorPreview(messages: .mock(count: 5))
+            let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
+            InboxFilterBar(model: viewModel)
                 .preferredColorScheme($0)
                 .previewLayout(.sizeThatFits)
         }

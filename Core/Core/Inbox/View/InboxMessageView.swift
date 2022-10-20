@@ -69,6 +69,7 @@ public struct InboxMessageView: View {
         .padding(.trailing, 16)
         .background(Color.clear)
         .overlay(unreadDot)
+        .contentShape(Rectangle())
     }
 
     @ViewBuilder
@@ -91,8 +92,8 @@ public struct InboxMessageView: View {
         if model.isStarred {
             Image
                 .starSolid
-                .size(18)
-                .foregroundColor(.accentColor)
+                .size(15)
+                .foregroundColor(.textDark)
         }
     }
 

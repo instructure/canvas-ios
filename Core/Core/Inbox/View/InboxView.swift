@@ -28,7 +28,7 @@ public struct InboxView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            InboxFilterBar()
+            InboxFilterBar(model: model)
             Divider()
             if case .loading = model.state {
                 loadingIndicator

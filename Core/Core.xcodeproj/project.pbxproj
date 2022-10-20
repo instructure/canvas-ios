@@ -883,6 +883,7 @@
 		CF3A31F528FEC5DA002752D2 /* InboxMessageInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F428FEC5DA002752D2 /* InboxMessageInteractorLive.swift */; };
 		CF3A31F728FEF566002752D2 /* InboxMessageInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F628FEF566002752D2 /* InboxMessageInteractorPreview.swift */; };
 		CF3A31FB29017784002752D2 /* SinkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31FA29017784002752D2 /* SinkExtensions.swift */; };
+		CF3A31FD290182B6002752D2 /* InboxFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31FC290182B6002752D2 /* InboxFilterBar.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
@@ -2392,6 +2393,7 @@
 		CF3A31F428FEC5DA002752D2 /* InboxMessageInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageInteractorLive.swift; sourceTree = "<group>"; };
 		CF3A31F628FEF566002752D2 /* InboxMessageInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageInteractorPreview.swift; sourceTree = "<group>"; };
 		CF3A31FA29017784002752D2 /* SinkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinkExtensions.swift; sourceTree = "<group>"; };
+		CF3A31FC290182B6002752D2 /* InboxFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterBar.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -4834,6 +4836,7 @@
 		CF3A31D028F70246002752D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF3A31FC290182B6002752D2 /* InboxFilterBar.swift */,
 				CF3A31DA28F83D39002752D2 /* InboxView.swift */,
 				CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */,
 			);
@@ -7849,6 +7852,7 @@
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
 				B4F523B128E4732D001A16BC /* DeterminateBarProgressViewStyle.swift in Sources */,
 				EB2A9BC62632E31F00A19A5A /* SideMenuFooterView.swift in Sources */,
+				CF3A31FD290182B6002752D2 /* InboxFilterBar.swift in Sources */,
 				7D1E856B2567356400D093C5 /* JustifiedGrid.swift in Sources */,
 				EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */,
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,

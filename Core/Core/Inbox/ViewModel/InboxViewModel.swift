@@ -24,16 +24,15 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var messages: [InboxMessageModel] = []
     @Published public private(set) var scope: InboxMessageScope = DefaultScope
-    public var emptyState: (scene: PandaScene, title: String, text: String) {
-        (scene: SpacePanda() as PandaScene,
-         title: NSLocalizedString("No Messages", comment: ""),
-         text: NSLocalizedString("Tap the \"+\" to create a new conversation", comment: ""))
-    }
-    public var errorState: (scene: PandaScene, title: String, text: String) {
-        (scene: NoResultsPanda() as PandaScene,
-         title: NSLocalizedString("Something Went Wrong", comment: ""),
-         text: NSLocalizedString("Pull to refresh to try again", comment: ""))
-    }
+    @Published public var isShowingScopeSelector = false
+    public let scopes = InboxMessageScope.allCases
+    public let emptyState = (scene: SpacePanda() as PandaScene,
+                             title: NSLocalizedString("No Messages", comment: ""),
+                             text: NSLocalizedString("Tap the \"+\" to create a new conversation", comment: ""))
+
+    public let errorState = (scene: NoResultsPanda() as PandaScene,
+                             title: NSLocalizedString("Something Went Wrong", comment: ""),
+                             text: NSLocalizedString("Pull to refresh to try again", comment: ""))
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
@@ -51,7 +50,12 @@ public class InboxViewModel: ObservableObject {
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindDataSourceOutputsToSelf()
+        bindUserActionsToOutputs()
         subscribeToMenuTapEvents(router: router)
+    }
+
+    private func bindUserActionsToOutputs() {
+        scopeDidChange.assign(to: &$scope)
     }
 
     private func bindDataSourceOutputsToSelf() {
