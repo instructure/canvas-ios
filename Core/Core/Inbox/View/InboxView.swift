@@ -61,15 +61,39 @@ public struct InboxView: View {
             }
             .listRowInsets(EdgeInsets())
             .iOS15ListRowSeparator(.hidden)
-            .iOS15SwipeActions(allowsFullSwipe: false) {
-                Button {
-                }
-                label: {
-                    Text("Delete", bundle: .core)
-                }
-                .iOS15Tint(.crimson)
-            }
+            .iOS15SwipeActions(edge: .trailing) { archiveButton }
+            .iOS15SwipeActions(edge: .leading) { markReadOrUnreadButton }
         }
+    }
+
+    private var archiveButton: some View {
+        Button {
+        }
+        label: {
+            Label {
+                Text("Archive", bundle: .core)
+            } icon: {
+                Image.archiveLine
+                    .foregroundColor(.textLightest)
+            }
+            .labelStyle(.iconOnly)
+        }
+        .iOS15Tint(.ash)
+    }
+
+    private var markReadOrUnreadButton: some View {
+        Button {
+        }
+        label: {
+            Label {
+                Text("Mark as read", bundle: .core)
+            } icon: {
+                Image.markReadLine
+                    .foregroundColor(.textLightest)
+            }
+            .labelStyle(.iconOnly)
+        }
+        .iOS15Tint(.electric)
     }
 
     private var loadingIndicator: some View {

@@ -206,6 +206,7 @@ public extension UIImage {
     static var addVideoCameraLine: UIImage { UIImage(named: "addVideoCameraLine", in: .core, compatibleWith: nil)! }
     static var alertsTab: UIImage { UIImage(named: "alertsTab", in: .core, compatibleWith: nil)! }
     static var alertsTabActive: UIImage { UIImage(named: "alertsTabActive", in: .core, compatibleWith: nil)! }
+    static var archiveLine: UIImage { UIImage(named: "archiveLine", in: .core, compatibleWith: nil)! }
     static var attendance: UIImage { UIImage(named: "attendance", in: .core, compatibleWith: nil)! }
     static var calendarEmptyLine: UIImage { UIImage(named: "calendarEmptyLine", in: .core, compatibleWith: nil)! }
     static var calendarEmptySolid: UIImage { UIImage(named: "calendarEmptySolid", in: .core, compatibleWith: nil)! }
@@ -237,6 +238,7 @@ public extension UIImage {
     static var k5resources: UIImage { UIImage(named: "k5resources", in: .core, compatibleWith: nil)! }
     static var k5schedule: UIImage { UIImage(named: "k5schedule", in: .core, compatibleWith: nil)! }
     static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
+    static var markReadLine: UIImage { UIImage(named: "markReadLine", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
@@ -428,6 +430,7 @@ public extension Image {
     static var addVideoCameraLine: Image { Image("addVideoCameraLine", bundle: .core) }
     static var alertsTab: Image { Image("alertsTab", bundle: .core) }
     static var alertsTabActive: Image { Image("alertsTabActive", bundle: .core) }
+    static var archiveLine: Image { Image("archiveLine", bundle: .core) }
     static var attendance: Image { Image("attendance", bundle: .core) }
     static var calendarEmptyLine: Image { Image("calendarEmptyLine", bundle: .core) }
     static var calendarEmptySolid: Image { Image("calendarEmptySolid", bundle: .core) }
@@ -459,6 +462,7 @@ public extension Image {
     static var k5resources: Image { Image("k5resources", bundle: .core) }
     static var k5schedule: Image { Image("k5schedule", bundle: .core) }
     static var logout: Image { Image("logout", bundle: .core) }
+    static var markReadLine: Image { Image("markReadLine", bundle: .core) }
     static var qrCode: Image { Image("qrCode", bundle: .core) }
     static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
