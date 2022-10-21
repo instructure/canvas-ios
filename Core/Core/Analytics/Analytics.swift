@@ -30,7 +30,7 @@ public class Analytics: NSObject {
 
     @objc
     public func initialize() {
-        guard let heapID = Secret.heapID.string else { return }
+        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
         let options = HeapOptions()
         options.disableAdvertiserIdCapture = true
         Heap.initialize(heapID, with: options)
