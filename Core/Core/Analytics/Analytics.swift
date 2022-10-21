@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Heap
 
 public protocol AnalyticsHandler: AnyObject {
     func handleEvent(_ name: String, parameters: [String: Any]?)
@@ -26,6 +27,14 @@ public protocol AnalyticsHandler: AnyObject {
 public class Analytics: NSObject {
     @objc public static var shared: Analytics = Analytics()
     public weak var handler: AnalyticsHandler?
+
+    @objc
+    public func initialize() {
+        guard let heapID = Secret.heapID.string else { return }
+        let options = HeapOptions()
+        options.disableAdvertiserIdCapture = true
+        Heap.initialize(heapID, with: options)
+    }
 
     @objc
     public func logEvent(_ name: String, parameters: [String: Any]? = nil) {
