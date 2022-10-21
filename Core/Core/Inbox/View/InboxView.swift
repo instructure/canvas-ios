@@ -63,7 +63,7 @@ public struct InboxView: View {
             .iOS15ListRowSeparator(.hidden)
             .iOS15SwipeActions(edge: .trailing) { archiveButton }
             .iOS15SwipeActions(edge: .leading) {
-                readStatusToggleButton(messageId: message.id)
+                readStatusToggleButton(messageId: message.id, isUnRead: message.isUnread)
             }
         }
     }
@@ -83,15 +83,17 @@ public struct InboxView: View {
         .iOS15Tint(.ash)
     }
 
-    private func readStatusToggleButton(messageId: String) -> some View {
+    private func readStatusToggleButton(messageId: String, isUnRead: Bool) -> some View {
         Button {
             model.readStatusDidChange.send(messageId)
         }
         label: {
             Label {
-                Text("Mark as read", bundle: .core)
+                isUnRead
+                ? Text("Mark as read", bundle: .core)
+                : Text("Mark as unread", bundle: .core)
             } icon: {
-                Image.markReadLine
+                (isUnRead ? Image.markReadLine : Image.emailLine)
                     .foregroundColor(.textLightest)
             }
             .labelStyle(.iconOnly)
