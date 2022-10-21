@@ -30,6 +30,14 @@ open class AppEnvironment {
         case parent, student, teacher
     }
 
+    public var isDebug: Bool {
+        #if DEBUG
+            return true
+        #else
+            return false
+        #endif
+    }
+
     public var app: App?
     public var api: API
     public var database: NSPersistentContainer

@@ -29,7 +29,8 @@ public enum Secret {
     case studentPSPDFKitLicense, teacherPSPDFKitLicense
 
     /// The value passed to `Heap.initialize`
-    case heapID
+    case heapProductionID
+    case heapStagingID
 
     /// Users for UI tests
     case testReadAdmin1, testReadStudent1, testReadStudent2, testReadStudentK5, testReadTeacher1, testReadParent1
