@@ -42,28 +42,28 @@ public struct InboxMessageView: View {
                     Text(model.participantName)
                         .font(.semibold16)
                         .foregroundColor(.textDarkest)
+                        .lineLimit(1)
                     Spacer()
                     Text(model.date)
                         .foregroundColor(.textDark)
                         .font(.regular12)
                 }
+                Text(verbatim: model.title)
+                    .font(.regular14)
+                    .foregroundColor(.textDarkest)
+                    .lineLimit(1)
                 HStack(alignment: .bottom) {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: model.title)
-                            .font(.regular14)
-                            .foregroundColor(.textDarkest)
-                            .lineLimit(1)
                         Text(verbatim: model.message)
                             .font(.regular14)
                             .foregroundColor(.textDark)
                             .lineLimit(1)
                     }
-                    Spacer()
                     starredIndicator
                 }
             }
         }
-        .padding(.top, 14)
+        .padding(.top, 12)
         .padding(.bottom, 12)
         .padding(.leading, 15)
         .padding(.trailing, 16)
@@ -81,15 +81,18 @@ public struct InboxMessageView: View {
                 .foregroundColor(.borderMedium)
                 .overlay(Image.groupLine.foregroundColor(.borderDark))
                 .frame(width: 36, height: 36)
+                .padding(.top, 5)
         case .individual(let name, let profileImageURL):
             Avatar(name: name, url: profileImageURL)
                 .frame(width: 36, height: 36)
+                .padding(.top, 5)
         }
     }
 
     @ViewBuilder
     private var starredIndicator: some View {
         if model.isStarred {
+            Spacer()
             Image
                 .starSolid
                 .size(15)
@@ -102,7 +105,7 @@ public struct InboxMessageView: View {
         if model.isUnread {
             ZStack(alignment: .topLeading) {
                 Circle()
-                    .frame(width: 6, height: 6)
+                    .frame(width: 7, height: 7)
                     .foregroundColor(.electric)
                     .padding(.leading, 8)
                     .padding(.top, 13)
