@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct InboxMessageModel: Identifiable {
+public struct InboxMessageModel: Identifiable, Equatable {
     public let id: String
     public let avatar: Avatar
     public let participantName: String
@@ -62,12 +62,6 @@ public struct InboxMessageModel: Identifiable {
         self.date = conversation.lastMessageAt?.relativeShortDateOnlyString ?? ""
         self.isStarred = conversation.starred
         self.isUnread = conversation.workflowState == .unread
-    }
-}
-
-extension InboxMessageModel: Equatable {
-    public static func == (lhs: InboxMessageModel, rhs: InboxMessageModel) -> Bool {
-        lhs.id == rhs.id
     }
 }
 

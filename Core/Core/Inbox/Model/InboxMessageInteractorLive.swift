@@ -42,6 +42,11 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             self?.scopeValue = scope
         }
         .eraseToAnySubscriber()
+    public private(set) lazy var toggleReadStatus = Subscribers
+        .Sink<String, Never> { [weak self] messageId in
+            self?.sendToggledReadStatusToAPI(messageId: messageId)
+        }
+        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
@@ -86,5 +91,15 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         case .error, .loading:
             stateSubject.send(.error)
         }
+    }
+
+    private func sendToggledReadStatusToAPI(messageId: String) {
+        guard let message = messagesStore?.all.first(where: { $0.id == messageId}) else {
+            return
+        }
+        let newReadStatus: ConversationWorkflowState = message.workflowState == .unread ? .read : .unread
+        message.workflowState = newReadStatus
+        let useCase = UpdateConversation(id: messageId, state: newReadStatus)
+        env.subscribe(useCase).refresh()
     }
 }

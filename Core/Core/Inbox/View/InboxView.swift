@@ -62,7 +62,9 @@ public struct InboxView: View {
             .listRowInsets(EdgeInsets())
             .iOS15ListRowSeparator(.hidden)
             .iOS15SwipeActions(edge: .trailing) { archiveButton }
-            .iOS15SwipeActions(edge: .leading) { markReadOrUnreadButton }
+            .iOS15SwipeActions(edge: .leading) {
+                readStatusToggleButton(messageId: message.id)
+            }
         }
     }
 
@@ -81,8 +83,9 @@ public struct InboxView: View {
         .iOS15Tint(.ash)
     }
 
-    private var markReadOrUnreadButton: some View {
+    private func readStatusToggleButton(messageId: String) -> some View {
         Button {
+            model.readStatusDidChange.send(messageId)
         }
         label: {
             Label {

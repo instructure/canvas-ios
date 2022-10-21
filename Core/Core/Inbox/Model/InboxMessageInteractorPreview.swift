@@ -43,6 +43,9 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
             self?.scopeValue = scope
         }
         .eraseToAnySubscriber()
+    public private(set) lazy var toggleReadStatus = Subscribers
+        .Sink<String, Never> { _ in }
+        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)

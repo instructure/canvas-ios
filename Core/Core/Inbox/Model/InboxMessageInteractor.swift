@@ -28,4 +28,6 @@ public protocol InboxMessageInteractor {
     /** In the format of `course\_123`, `group\_123` or `user\_123`. */
     var setFilter: AnySubscriber<String?, Never> { get }
     var setScope: AnySubscriber<InboxMessageScope, Never> { get }
+    /** Send the message(conversation)'s id. */
+    var toggleReadStatus: AnySubscriber<String, Never> { get }
 }

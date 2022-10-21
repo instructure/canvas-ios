@@ -39,6 +39,7 @@ public class InboxViewModel: ObservableObject {
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
     public let filterDidChange = CurrentValueSubject<String?, Never>(nil)
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
+    public let readStatusDidChange = PassthroughSubject<String, Never>()
 
     // MARK: - Private State
     private static let DefaultScope: InboxMessageScope = .all
@@ -74,6 +75,8 @@ public class InboxViewModel: ObservableObject {
             .subscribe(interactor.setScope)
         refreshDidTrigger
             .subscribe(interactor.triggerRefresh)
+        readStatusDidChange
+            .subscribe(interactor.toggleReadStatus)
     }
 
     private func subscribeToMenuTapEvents(router: Router) {
