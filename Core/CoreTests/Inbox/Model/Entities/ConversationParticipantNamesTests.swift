@@ -43,9 +43,7 @@ class ConversationParticipantNamesTests: CoreTestCase {
         XCTAssertEqual(Array(allNames.prefix(8)).names, "Bob, Alice, Ray, Trudy, Jay + 3 more")
     }
 
-    private func makeParticipant(name: String) -> ConversationParticipant {
-        let p = ConversationParticipant(context: databaseClient)
-        p.name = name
-        return p
+    private func makeParticipant(name: String) -> APIConversationParticipant {
+        APIConversationParticipant.make(name: name)
     }
 }

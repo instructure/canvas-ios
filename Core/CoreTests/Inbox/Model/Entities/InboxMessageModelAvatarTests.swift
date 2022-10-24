@@ -16,21 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import XCTest
 
 class InboxMessageModelAvatarTests: CoreTestCase {
 
     func testGroupInitializer() {
-        let p1 = ConversationParticipant(context: databaseClient)
-        let p2 = ConversationParticipant(context: databaseClient)
+        let p1 = APIConversationParticipant.make()
+        let p2 = APIConversationParticipant.make()
         XCTAssertEqual(InboxMessageModel.Avatar(participants: [p1, p2]), .group)
     }
 
     func testIndividualInitializer() {
-        let p = ConversationParticipant(context: databaseClient)
-        p.avatarURL = URL(string: "/test/url")!
-        p.name = "Test Name"
+        let p = APIConversationParticipant.make(name: "Test Name", avatar_url: URL(string: "/test/url")!)
         XCTAssertEqual(InboxMessageModel.Avatar(participants: [p]), .individual(name: "Test Name", profileImageURL: URL(string: "/test/url")!))
     }
 }
