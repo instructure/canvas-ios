@@ -36,15 +36,20 @@ public struct InboxView: View {
                 GeometryReader { geometry in
                     List {
                         switch model.state {
-                        case .data: messagesList
-                        case .empty: panda(geometry: geometry, data: model.emptyState)
-                        case .error: panda(geometry: geometry, data: model.errorState)
-                        case .loading: SwiftUI.EmptyView()
+                        case .data:
+                            messagesList
+                        case .empty:
+                            panda(geometry: geometry, data: model.emptyState)
+                        case .error:
+                            panda(geometry: geometry, data: model.errorState)
+                        case .loading:
+                            SwiftUI.EmptyView()
                         }
                     }.iOS15Refreshable { completion in
                         model.refreshDidTrigger.send(completion)
                     }
                     .listStyle(PlainListStyle())
+                    .animation(.default, value: model.messages)
                 }
             }
         }
@@ -61,31 +66,42 @@ public struct InboxView: View {
             }
             .listRowInsets(EdgeInsets())
             .iOS15ListRowSeparator(.hidden)
-            .iOS15SwipeActions(edge: .trailing) { archiveButton }
+            .iOS15SwipeActions(edge: .trailing) {
+                archiveButton(message: message)
+            }
             .iOS15SwipeActions(edge: .leading) {
                 readStatusToggleButton(message: message)
             }
         }
     }
 
-    private var archiveButton: some View {
-        Button {
-        }
-        label: {
-            Label {
-                Text("Archive", bundle: .core)
-            } icon: {
-                Image.archiveLine
-                    .foregroundColor(.textLightest)
+    @ViewBuilder
+    private func archiveButton(message: InboxMessageModel) -> some View {
+        if message.isArchiveActionAvailable {
+            Button {
+                model.markAsArchived.send(message)
             }
-            .labelStyle(.iconOnly)
+            label: {
+                Label {
+                    Text("Archive", bundle: .core)
+                } icon: {
+                    Image.archiveLine
+                        .foregroundColor(.textLightest)
+                }
+                .labelStyle(.iconOnly)
+            }
+            .iOS15Tint(.ash)
+        } else {
+            SwiftUI.EmptyView()
         }
-        .iOS15Tint(.ash)
     }
 
+    @ViewBuilder
     private func readStatusToggleButton(message: InboxMessageModel) -> some View {
+        let isMarkAsReadAction = message.isMarkAsReadActionAvailable
+
         Button {
-            if message.isUnread {
+            if isMarkAsReadAction {
                 model.markAsRead.send(message)
             } else {
                 model.markAsUnread.send(message)
@@ -93,11 +109,11 @@ public struct InboxView: View {
         }
         label: {
             Label {
-                message.isUnread
+                isMarkAsReadAction
                 ? Text("Mark as read", bundle: .core)
                 : Text("Mark as unread", bundle: .core)
             } icon: {
-                (message.isUnread ? Image.markReadLine : Image.emailLine)
+                (isMarkAsReadAction ? Image.markReadLine : Image.emailLine)
                     .foregroundColor(.textLightest)
             }
             .labelStyle(.iconOnly)

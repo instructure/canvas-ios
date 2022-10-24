@@ -49,6 +49,9 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     public private(set) lazy var markAsUnread = Subscribers
         .Sink<InboxMessageModel, Never> { _ in }
         .eraseToAnySubscriber()
+    public private(set) lazy var markAsArchived = Subscribers
+        .Sink<InboxMessageModel, Never> { _ in }
+        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)

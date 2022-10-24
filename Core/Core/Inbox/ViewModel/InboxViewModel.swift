@@ -41,6 +41,7 @@ public class InboxViewModel: ObservableObject {
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
     public let markAsRead = PassthroughSubject<InboxMessageModel, Never>()
     public let markAsUnread = PassthroughSubject<InboxMessageModel, Never>()
+    public let markAsArchived = PassthroughSubject<InboxMessageModel, Never>()
 
     // MARK: - Private State
     private static let DefaultScope: InboxMessageScope = .all
@@ -80,6 +81,8 @@ public class InboxViewModel: ObservableObject {
             .subscribe(interactor.markAsRead)
         markAsUnread
             .subscribe(interactor.markAsUnread)
+        markAsArchived
+            .subscribe(interactor.markAsArchived)
     }
 
     private func subscribeToMenuTapEvents(router: Router) {

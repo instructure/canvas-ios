@@ -52,6 +52,12 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             self?.sendReadStateToAPI(messageId: message.id, state: .unread)
         }
         .eraseToAnySubscriber()
+    public private(set) lazy var markAsArchived = Subscribers
+        .Sink<InboxMessageModel, Never> { [weak self] message in
+            self?.updateWorkflowStateLocally(message: message, state: .archived)
+            self?.sendReadStateToAPI(messageId: message.id, state: .archived)
+        }
+        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
@@ -113,7 +119,17 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private func updateWorkflowStateLocally(message: InboxMessageModel, state: ConversationWorkflowState) {
         guard let index = messagesSubject.value.firstIndex(of: message) else { return }
         var newMessages = messagesSubject.value
-        newMessages[index] = message.makeCopy(isUnread: state == .unread ? true : false)
+
+        if message.state == .archived || state == .archived {
+            newMessages.remove(at: index)
+        } else {
+            newMessages[index] = message.makeCopy(withState: state)
+        }
+
         messagesSubject.send(newMessages)
+
+        if newMessages.isEmpty {
+            stateSubject.send(.empty)
+        }
     }
 }

@@ -26,7 +26,14 @@ public struct InboxMessageModel: Identifiable, Equatable {
     public let message: String
     public let date: String
     public let isStarred: Bool
-    public let isUnread: Bool
+    public let state: ConversationWorkflowState
+
+    public var isMarkAsReadActionAvailable: Bool {
+        state == .unread || state == .archived
+    }
+    public var isArchiveActionAvailable: Bool {
+        state != .archived
+    }
 
     public init(id: String,
                 avatar: Avatar,
@@ -35,7 +42,7 @@ public struct InboxMessageModel: Identifiable, Equatable {
                 message: String,
                 date: String,
                 isStarred: Bool,
-                isUnread: Bool) {
+                state: ConversationWorkflowState) {
         self.id = id
         self.avatar = avatar
         self.participantName = participantName
@@ -43,7 +50,7 @@ public struct InboxMessageModel: Identifiable, Equatable {
         self.message = message
         self.date = date
         self.isStarred = isStarred
-        self.isUnread = isUnread
+        self.state = state
     }
 
     public init(conversation: APIConversation, currentUserID: String) {
@@ -61,10 +68,10 @@ public struct InboxMessageModel: Identifiable, Equatable {
         self.message = conversation.last_message ?? conversation.last_authored_message ?? ""
         self.date = (conversation.last_message_at ?? conversation.last_authored_message_at ?? Date()).relativeDateOnlyString
         self.isStarred = conversation.starred
-        self.isUnread = conversation.workflow_state == .unread
+        self.state = conversation.workflow_state
     }
 
-    public func makeCopy(isUnread: Bool) -> InboxMessageModel {
+    public func makeCopy(withState: ConversationWorkflowState) -> InboxMessageModel {
         InboxMessageModel(id: id,
                           avatar: avatar,
                           participantName: participantName,
@@ -72,7 +79,7 @@ public struct InboxMessageModel: Identifiable, Equatable {
                           message: message,
                           date: date,
                           isStarred: isStarred,
-                          isUnread: isUnread)
+                          state: withState)
     }
 }
 
@@ -88,7 +95,7 @@ public extension InboxMessageModel {
                           message: "Did you check my homework? It would be very iportant to get some feedback before the end of the week.",
                           date: "22/10/13",
                           isStarred: true,
-                          isUnread: true)
+                          state: .unread)
     }
 }
 

@@ -102,7 +102,7 @@ public struct InboxMessageView: View {
 
     @ViewBuilder
     private var unreadDot: some View {
-        if model.isUnread {
+        if model.state == .unread {
             ZStack(alignment: .topLeading) {
                 Circle()
                     .frame(width: 7, height: 7)
