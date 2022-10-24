@@ -26,9 +26,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Inputs
     public private(set) lazy var triggerRefresh = Subscribers
         .Sink<() -> Void, Never> { [weak self] completion in
-            self?.messagesStore?.refresh(force: true) { _ in
-                completion()
-            }
+            self?.sendRequestToAPI(completion)
         }
         .eraseToAnySubscriber()
     /** In the format of `course\_123`, `group\_123` or `user\_123`. */
@@ -42,16 +40,22 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             self?.scopeValue = scope
         }
         .eraseToAnySubscriber()
-    public private(set) lazy var toggleReadStatus = Subscribers
-        .Sink<String, Never> { [weak self] messageId in
-            self?.sendToggledReadStatusToAPI(messageId: messageId)
+    public private(set) lazy var markAsRead = Subscribers
+        .Sink<InboxMessageModel, Never> { [weak self] message in
+            self?.updateWorkflowStateLocally(message: message, state: .read)
+            self?.sendReadStateToAPI(messageId: message.id, state: .read)
+        }
+        .eraseToAnySubscriber()
+    public private(set) lazy var markAsUnread = Subscribers
+        .Sink<InboxMessageModel, Never> { [weak self] message in
+            self?.updateWorkflowStateLocally(message: message, state: .unread)
+            self?.sendReadStateToAPI(messageId: message.id, state: .unread)
         }
         .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private let messagesSubject = CurrentValueSubject<[InboxMessageModel], Never>([])
-    private var messagesStore: Store<GetConversations>?
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
     private var filterValue: String? {
@@ -68,38 +72,48 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private func update() {
         stateSubject.send(.loading)
         messagesSubject.send([])
-        messagesStore = env.subscribe(GetConversations(scope: scopeValue.apiScope, filter: filterValue)) { [weak self] in
-            self?.messagesStoreUpdated()
-        }
-        messagesStore?.refresh(force: true)
+        sendRequestToAPI()
     }
 
-    private func messagesStoreUpdated() {
-        guard let messagesStore = messagesStore,
-              messagesStore.state != .loading
-        else {
-            return
-        }
+    private func sendRequestToAPI(_ completion: (() -> Void)? = nil) {
+        let request = GetConversationsRequest(include: [.participant_avatars],
+                                              perPage: 100,
+                                              scope: scopeValue.apiScope,
+                                              filter: filterValue)
+        env.api.makeRequest(request) { [weak self] messages, _, error in
+            guard let self = self else { return }
+            let currentUserID = self.env.currentSession?.userID ?? ""
+            let messages = (messages ?? []).map {
+                InboxMessageModel(conversation: $0, currentUserID: currentUserID)
+            }
+            performUIUpdate {
+                self.handleMessagesResponse(messages: messages, error: error)
+                completion?()
+            }
 
-        switch messagesStore.state {
-        case .empty:
+        }
+    }
+
+    private func handleMessagesResponse(messages: [InboxMessageModel], error: Error?) {
+        if error != nil {
+            stateSubject.send(.error)
+        } else if messages.isEmpty {
             stateSubject.send(.empty)
-        case .data:
-            let messages = messagesStore.all.map { InboxMessageModel(conversation: $0, currentUserID: env.currentSession?.userID ?? "") }
+        } else {
             messagesSubject.send(messages)
             stateSubject.send(.data)
-        case .error, .loading:
-            stateSubject.send(.error)
         }
     }
 
-    private func sendToggledReadStatusToAPI(messageId: String) {
-        guard let message = messagesStore?.all.first(where: { $0.id == messageId}) else {
-            return
-        }
-        let newReadStatus: ConversationWorkflowState = message.workflowState == .unread ? .read : .unread
-        message.workflowState = newReadStatus
-        let useCase = UpdateConversation(id: messageId, state: newReadStatus)
-        env.subscribe(useCase).refresh()
+    private func sendReadStateToAPI(messageId: String, state: ConversationWorkflowState) {
+        let request = PutConversationRequest(id: messageId, workflowState: state)
+        env.api.makeRequest(request, callback: { _, _, _ in })
+    }
+
+    private func updateWorkflowStateLocally(message: InboxMessageModel, state: ConversationWorkflowState) {
+        guard let index = messagesSubject.value.firstIndex(of: message) else { return }
+        var newMessages = messagesSubject.value
+        newMessages[index] = message.makeCopy(isUnread: state == .unread ? true : false)
+        messagesSubject.send(newMessages)
     }
 }

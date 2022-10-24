@@ -29,5 +29,7 @@ public protocol InboxMessageInteractor {
     var setFilter: AnySubscriber<String?, Never> { get }
     var setScope: AnySubscriber<InboxMessageScope, Never> { get }
     /** Send the message(conversation)'s id. */
-    var toggleReadStatus: AnySubscriber<String, Never> { get }
+    var markAsRead: AnySubscriber<InboxMessageModel, Never> { get }
+    /** Send the message(conversation)'s id. */
+    var markAsUnread: AnySubscriber<InboxMessageModel, Never> { get }
 }

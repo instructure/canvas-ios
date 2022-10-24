@@ -18,7 +18,7 @@
 
 import Foundation
 
-public extension Array where Element == ConversationParticipant {
+public extension Array where Element == APIConversationParticipant {
 
     var names: String {
         if count > 6 {

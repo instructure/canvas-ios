@@ -43,8 +43,11 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
             self?.scopeValue = scope
         }
         .eraseToAnySubscriber()
-    public private(set) lazy var toggleReadStatus = Subscribers
-        .Sink<String, Never> { _ in }
+    public private(set) lazy var markAsRead = Subscribers
+        .Sink<InboxMessageModel, Never> { _ in }
+        .eraseToAnySubscriber()
+    public private(set) lazy var markAsUnread = Subscribers
+        .Sink<InboxMessageModel, Never> { _ in }
         .eraseToAnySubscriber()
 
     // MARK: - Private State
