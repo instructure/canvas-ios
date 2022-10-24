@@ -26,7 +26,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Inputs
     public private(set) lazy var triggerRefresh = Subscribers
         .Sink<() -> Void, Never> { [weak self] completion in
-            self?.sendRequestToAPI(completion)
+            self?.fetchMessagesFromAPI(completion)
         }
         .eraseToAnySubscriber()
     /** In the format of `course\_123`, `group\_123` or `user\_123`. */
@@ -70,6 +70,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private var scopeValue: InboxMessageScope = .all {
         didSet { update() }
     }
+    private var messagesRequest: APITask?
 
     public init(env: AppEnvironment) {
         self.env = env
@@ -78,16 +79,18 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private func update() {
         stateSubject.send(.loading)
         messagesSubject.send([])
-        sendRequestToAPI()
+        fetchMessagesFromAPI()
     }
 
-    private func sendRequestToAPI(_ completion: (() -> Void)? = nil) {
+    private func fetchMessagesFromAPI(_ completion: (() -> Void)? = nil) {
         let request = GetConversationsRequest(include: [.participant_avatars],
                                               perPage: 100,
                                               scope: scopeValue.apiScope,
                                               filter: filterValue)
-        env.api.makeRequest(request) { [weak self] messages, _, error in
+        messagesRequest?.cancel()
+        messagesRequest = env.api.makeRequest(request) { [weak self] messages, _, error in
             guard let self = self else { return }
+            self.messagesRequest = nil
             let currentUserID = self.env.currentSession?.userID ?? ""
             let messages = (messages ?? []).map {
                 InboxMessageModel(conversation: $0, currentUserID: currentUserID)
