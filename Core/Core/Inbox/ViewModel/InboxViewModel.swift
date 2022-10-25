@@ -79,7 +79,7 @@ public class InboxViewModel: ObservableObject {
 
     private func bindInputsToDataSource() {
         courseDidChange
-            .map { $0?.context.canvasContextID }
+            .map { $0?.context }
             .removeDuplicates()
             .subscribe(interactor.setFilter)
         scopeDidChange

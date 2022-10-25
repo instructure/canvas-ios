@@ -26,8 +26,7 @@ public protocol InboxMessageInteractor {
 
     // MARK: - Inputs
     var triggerRefresh: AnySubscriber<() -> Void, Never> { get }
-    /** In the format of `course\_123`, `group\_123` or `user\_123`. */
-    var setFilter: AnySubscriber<String?, Never> { get }
+    var setFilter: AnySubscriber<Context?, Never> { get }
     var setScope: AnySubscriber<InboxMessageScope, Never> { get }
     var markAsRead: AnySubscriber<InboxMessageModel, Never> { get }
     var markAsUnread: AnySubscriber<InboxMessageModel, Never> { get }

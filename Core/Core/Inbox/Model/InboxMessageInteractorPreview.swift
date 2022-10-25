@@ -36,8 +36,8 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
         }
         .eraseToAnySubscriber()
     public private(set) lazy var setFilter = Subscribers
-        .Sink<String?, Never> { [weak self] filter in
-            self?.filterValue = filter
+        .Sink<Context?, Never> { [weak self] filter in
+            self?.update()
         }
         .eraseToAnySubscriber()
     public private(set) lazy var setScope = Subscribers
@@ -57,9 +57,6 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
-    private var filterValue: String? {
-        didSet { update() }
-    }
     private var scopeValue: InboxMessageScope = .all {
         didSet { update() }
     }

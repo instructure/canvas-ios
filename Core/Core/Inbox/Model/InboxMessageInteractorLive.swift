@@ -31,9 +31,8 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             self?.fetchMessagesFromAPI(completion)
         }
         .eraseToAnySubscriber()
-    /** In the format of `course\_123`, `group\_123` or `user\_123`. */
     public private(set) lazy var setFilter = Subscribers
-        .Sink<String?, Never> { [weak self] filter in
+        .Sink<Context?, Never> { [weak self] filter in
             self?.filterValue = filter
         }
         .eraseToAnySubscriber()
@@ -67,7 +66,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private let coursesSubject = CurrentValueSubject<[GetCurrentUserCoursesRequest.CourseEntry], Never>([])
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
-    private var filterValue: String? {
+    private var filterValue: Context? {
         didSet { update() }
     }
     private var scopeValue: InboxMessageScope = .all {
@@ -101,7 +100,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         let request = GetConversationsRequest(include: [.participant_avatars],
                                               perPage: 100,
                                               scope: scopeValue.apiScope,
-                                              filter: filterValue)
+                                              filter: filterValue?.canvasContextID)
         messagesRequest?.cancel()
         messagesRequest = env.api.makeRequest(request) { [weak self] messages, _, error in
             guard let self = self else { return }
