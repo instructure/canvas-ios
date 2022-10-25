@@ -24,7 +24,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     // MARK: - Outputs
     public private(set) lazy var state = stateSubject.eraseToAnyPublisher()
     public let messages: AnyPublisher<[InboxMessageModel], Never>
-    public let courses = Just([GetCurrentUserCoursesRequest.CourseEntry(id: "1", name: "Test Course")])
+    public let courses = Just([APICourse.make(id: "1", name: "Test Course")])
         .eraseToAnyPublisher()
 
     // MARK: - Inputs
@@ -36,7 +36,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
         }
         .eraseToAnySubscriber()
     public private(set) lazy var setFilter = Subscribers
-        .Sink<Context?, Never> { [weak self] filter in
+        .Sink<Context?, Never> { [weak self] _ in
             self?.update()
         }
         .eraseToAnySubscriber()

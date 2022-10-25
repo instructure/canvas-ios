@@ -17,16 +17,9 @@
 //
 
 public struct GetCurrentUserCoursesRequest: APIRequestable {
-    public struct CourseEntry: Codable {
-        public let id: ID
-        public let name: String?
-        public var context: Context { Context(.course, id: id.rawValue) }
-    }
-
-    public typealias Response = [CourseEntry]
+    public typealias Response = [APICourse]
 
     public let path = "courses"
-
     public var query: [APIQueryItem] {
         [
             .perPage(perPage),

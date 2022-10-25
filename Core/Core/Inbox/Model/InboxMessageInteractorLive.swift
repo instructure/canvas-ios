@@ -63,7 +63,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private let messagesSubject = CurrentValueSubject<[InboxMessageModel], Never>([])
-    private let coursesSubject = CurrentValueSubject<[GetCurrentUserCoursesRequest.CourseEntry], Never>([])
+    private let coursesSubject = CurrentValueSubject<[APICourse], Never>([])
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
     private var filterValue: Context? {
