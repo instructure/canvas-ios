@@ -36,17 +36,16 @@ public struct InboxFilterBar: View {
         .padding(.leading, 16)
         .padding(.trailing, 19)
         .background(Color.backgroundLightest)
-        .actionSheet(isPresented: $model.isShowingScopeSelector) {
-            ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
-        }
     }
 
     private var courseFilterButton: some View {
         Button {
-
+            if !model.courses.isEmpty {
+                model.isShowingCourseSelector = true
+            }
         } label: {
             HStack(spacing: 6) {
-                Text("All Courses")
+                Text(model.course)
                     .lineLimit(1)
                     .font(.semibold22)
                     .foregroundColor(.textDarkest)
@@ -57,6 +56,9 @@ public struct InboxFilterBar: View {
                     .frame(width: 17)
             }
             .foregroundColor(.textDarkest)
+        }
+        .actionSheet(isPresented: $model.isShowingCourseSelector) {
+            ActionSheet(title: Text("Filter by", bundle: .core), buttons: courseFilterButtons)
         }
     }
 
@@ -76,6 +78,9 @@ public struct InboxFilterBar: View {
             }
             .foregroundColor(Color(Brand.shared.linkColor))
         }
+        .actionSheet(isPresented: $model.isShowingScopeSelector) {
+            ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
+        }
     }
 
     private var scopeFilterButtons: [ActionSheet.Button] {
@@ -84,8 +89,23 @@ public struct InboxFilterBar: View {
                 model.scopeDidChange.send(scope)
             }
         }
-        let cancelButton = ActionSheet.Button.destructive(Text("Cancel", bundle: .core))
+        let cancelButton = ActionSheet.Button.cancel(Text("Cancel", bundle: .core))
         return scopeButtons + [cancelButton]
+    }
+
+    private var courseFilterButtons: [ActionSheet.Button] {
+        var buttons: [ActionSheet.Button] = [
+            .default(Text("All Courses", bundle: .core)) {
+                model.courseDidChange.send(nil)
+            },
+        ]
+        buttons.append(contentsOf: model.courses.map { course in
+            .default(Text(course.name ?? "")) {
+                model.courseDidChange.send(course)
+            }
+        })
+        buttons.append(.cancel(Text("Cancel", bundle: .core)))
+        return buttons
     }
 }
 

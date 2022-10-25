@@ -22,10 +22,12 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Outputs
     public private(set) lazy var state = stateSubject.eraseToAnyPublisher()
     public private(set) lazy var messages = messagesSubject.eraseToAnyPublisher()
+    public private(set) lazy var courses = coursesSubject.eraseToAnyPublisher()
 
     // MARK: - Inputs
     public private(set) lazy var triggerRefresh = Subscribers
         .Sink<() -> Void, Never> { [weak self] completion in
+            self?.fetchCoursesFromAPI()
             self?.fetchMessagesFromAPI(completion)
         }
         .eraseToAnySubscriber()
@@ -43,25 +45,26 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public private(set) lazy var markAsRead = Subscribers
         .Sink<InboxMessageModel, Never> { [weak self] message in
             self?.updateWorkflowStateLocally(message: message, state: .read)
-            self?.sendReadStateToAPI(messageId: message.id, state: .read)
+            self?.uploadWorkflowStateToAPI(messageId: message.id, state: .read)
         }
         .eraseToAnySubscriber()
     public private(set) lazy var markAsUnread = Subscribers
         .Sink<InboxMessageModel, Never> { [weak self] message in
             self?.updateWorkflowStateLocally(message: message, state: .unread)
-            self?.sendReadStateToAPI(messageId: message.id, state: .unread)
+            self?.uploadWorkflowStateToAPI(messageId: message.id, state: .unread)
         }
         .eraseToAnySubscriber()
     public private(set) lazy var markAsArchived = Subscribers
         .Sink<InboxMessageModel, Never> { [weak self] message in
             self?.updateWorkflowStateLocally(message: message, state: .archived)
-            self?.sendReadStateToAPI(messageId: message.id, state: .archived)
+            self?.uploadWorkflowStateToAPI(messageId: message.id, state: .archived)
         }
         .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private let messagesSubject = CurrentValueSubject<[InboxMessageModel], Never>([])
+    private let coursesSubject = CurrentValueSubject<[GetCurrentUserCoursesRequest.CourseEntry], Never>([])
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
     private var filterValue: String? {
@@ -74,12 +77,24 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
 
     public init(env: AppEnvironment) {
         self.env = env
+        fetchCoursesFromAPI()
     }
 
     private func update() {
         stateSubject.send(.loading)
         messagesSubject.send([])
         fetchMessagesFromAPI()
+    }
+
+    private func fetchCoursesFromAPI() {
+        let request = GetCurrentUserCoursesRequest(enrollmentState: .active, state: [.current_and_concluded], perPage: 100)
+        env.api
+            .makeRequest(request)
+            .replaceNil(with: [])
+            .replaceError(with: [])
+            .map { $0.sorted { ($0.name ?? "") < ($1.name ?? "") }}
+            .subscribe(coursesSubject)
+            .store(in: &subscriptions)
     }
 
     private func fetchMessagesFromAPI(_ completion: (() -> Void)? = nil) {
@@ -114,7 +129,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         }
     }
 
-    private func sendReadStateToAPI(messageId: String, state: ConversationWorkflowState) {
+    private func uploadWorkflowStateToAPI(messageId: String, state: ConversationWorkflowState) {
         let request = PutConversationRequest(id: messageId, workflowState: state)
         env.api.makeRequest(request, callback: { _, _, _ in })
     }

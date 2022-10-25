@@ -22,6 +22,7 @@ public protocol InboxMessageInteractor {
     // MARK: - Outputs
     var state: AnyPublisher<StoreState, Never> { get }
     var messages: AnyPublisher<[InboxMessageModel], Never> { get }
+    var courses: AnyPublisher<[GetCurrentUserCoursesRequest.CourseEntry], Never> { get }
 
     // MARK: - Inputs
     var triggerRefresh: AnySubscriber<() -> Void, Never> { get }

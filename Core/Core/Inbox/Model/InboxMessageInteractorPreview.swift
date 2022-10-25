@@ -24,6 +24,8 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     // MARK: - Outputs
     public private(set) lazy var state = stateSubject.eraseToAnyPublisher()
     public let messages: AnyPublisher<[InboxMessageModel], Never>
+    public let courses = Just([GetCurrentUserCoursesRequest.CourseEntry(id: "1", name: "Test Course")])
+        .eraseToAnyPublisher()
 
     // MARK: - Inputs
     public private(set) lazy var triggerRefresh = Subscribers

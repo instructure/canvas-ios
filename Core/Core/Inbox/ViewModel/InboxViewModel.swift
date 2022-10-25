@@ -24,7 +24,10 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var messages: [InboxMessageModel] = []
     @Published public private(set) var scope: InboxMessageScope = DefaultScope
+    @Published public private(set) var course: String = NSLocalizedString("All Courses", comment: "")
+    @Published public private(set) var courses: [GetCurrentUserCoursesRequest.CourseEntry] = []
     @Published public var isShowingScopeSelector = false
+    @Published public var isShowingCourseSelector = false
     public let scopes = InboxMessageScope.allCases
     public let emptyState = (scene: SpacePanda() as PandaScene,
                              title: NSLocalizedString("No Messages", comment: ""),
@@ -37,8 +40,8 @@ public class InboxViewModel: ObservableObject {
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
-    public let filterDidChange = CurrentValueSubject<String?, Never>(nil)
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
+    public let courseDidChange = CurrentValueSubject<GetCurrentUserCoursesRequest.CourseEntry?, Never>(nil)
     public let markAsRead = PassthroughSubject<InboxMessageModel, Never>()
     public let markAsUnread = PassthroughSubject<InboxMessageModel, Never>()
     public let markAsArchived = PassthroughSubject<InboxMessageModel, Never>()
@@ -59,6 +62,10 @@ public class InboxViewModel: ObservableObject {
 
     private func bindUserActionsToOutputs() {
         scopeDidChange.assign(to: &$scope)
+        courseDidChange
+            .map { $0?.name }
+            .replaceNil(with: NSLocalizedString("All Courses", comment: ""))
+            .assign(to: &$course)
     }
 
     private func bindDataSourceOutputsToSelf() {
@@ -66,10 +73,13 @@ public class InboxViewModel: ObservableObject {
             .assign(to: &$state)
         interactor.messages
             .assign(to: &$messages)
+        interactor.courses
+            .assign(to: &$courses)
     }
 
     private func bindInputsToDataSource() {
-        filterDidChange
+        courseDidChange
+            .map { $0?.context.canvasContextID }
             .removeDuplicates()
             .subscribe(interactor.setFilter)
         scopeDidChange
