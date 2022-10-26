@@ -42,7 +42,6 @@ class DSAnnouncementsE2ETests: E2ETestCase {
         XCTAssertTrue(app.find(label: announcementMessage).exists())
     }
 
-    @available(iOS 15, *)
     func testAnnouncementToggleE2E() {
         let student = seeder.createUser()
         let teacher = seeder.createUser()
@@ -53,8 +52,8 @@ class DSAnnouncementsE2ETests: E2ETestCase {
         let dateFormatter = ISO8601DateFormatter()
         let globalAnnouncementSubject = "This is a GA"
         let globalAnnouncementMessage = "This will disappear in 4 minutes"
-        let globalAnnouncementStartAt = dateFormatter.string(from: Date.now.addMinutes(-1))
-        let globalAnnouncementEndAt = dateFormatter.string(from: Date.now.addMinutes(3))
+        let globalAnnouncementStartAt = dateFormatter.string(from: Date().addMinutes(-1))
+        let globalAnnouncementEndAt = dateFormatter.string(from: Date().addMinutes(3))
 
         let globalAnnouncement = seeder.postAccountNotifications(requestBody:
                 .init(subject: globalAnnouncementSubject, message: globalAnnouncementMessage,
