@@ -29,19 +29,18 @@ extension Sequence where Element == URL {
 }
 
 public extension URL {
-    struct Directories {
-        fileprivate init() {}
+    enum Directories {
 
-        public var temporary: URL {
-            return URL(fileURLWithPath: NSTemporaryDirectory())
+        public static var temporary: URL {
+            URL(fileURLWithPath: NSTemporaryDirectory())
         }
 
-        public var caches: URL {
-            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        public static var caches: URL {
+            FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         }
 
-        public func caches(appGroup: String?) -> URL {
-            var folder = URL.directories.caches
+        public static func caches(appGroup: String?) -> URL {
+            var folder = caches
             if let appGroup = appGroup, let group = sharedContainers(appGroup) {
                 folder = group.appendingPathComponent("caches", isDirectory: true)
                 try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
@@ -49,20 +48,18 @@ public extension URL {
             return folder
         }
 
-        public var documents: URL {
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        public static var documents: URL {
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
 
-        public var library: URL {
-            return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+        public static var library: URL {
+            FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
         }
 
-        public func sharedContainers(_ identifier: String) -> URL? {
-            return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
+        public static func sharedContainers(_ identifier: String) -> URL? {
+            FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
         }
     }
-
-    static let directories = Directories()
 
     func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }

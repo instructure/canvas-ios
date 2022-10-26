@@ -287,7 +287,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
             do {
                 if let videoURL = info[.mediaURL] as? URL {
                     let destination = URL
-                        .directories
+                        .Directories
                         .temporary
                         .appendingPathComponent("videos", isDirectory: true)
                         .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
