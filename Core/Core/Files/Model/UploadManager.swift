@@ -36,7 +36,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     var process: ProcessManager = ProcessInfo.processInfo
     var environment: AppEnvironment { .shared }
     private var validSession: URLSession?
-    private var task: APITask?
     private let submissionsStatus = FileSubmissionsStatus()
     var backgroundSession: URLSession {
         if let validSession = validSession {
@@ -303,15 +302,16 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         let fileIDs = files.compactMap { $0.id }
         let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, submission_type: .online_upload, file_ids: fileIDs)
         let requestable = CreateSubmissionRequest(context: .course(courseID), assignmentID: assignmentID, body: .init(submission: submission))
+        var task: APITask?
         // This is to make the background task wait until we receive the submission response from the API.
         let semaphore = DispatchSemaphore(value: 0)
         let objectID = file.objectID
-        process.performExpiringActivity(withReason: "submit assignment") { expired in
+        process.performExpiringActivity(reason: "submit assignment") { expired in
             if expired {
-                self.task?.cancel()
+                task?.cancel()
             }
             self.submissionsStatus.addTasks(fileIDs: fileIDs)
-            self.task = API(session).makeRequest(requestable) { response, _, error in
+            task = API(session).makeRequest(requestable) { response, _, error in
                 self.context.performAndWait {
                     defer {
                         self.submissionsStatus.removeTasks(fileIDs: fileIDs)
