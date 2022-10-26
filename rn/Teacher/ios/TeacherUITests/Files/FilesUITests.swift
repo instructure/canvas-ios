@@ -114,6 +114,7 @@ class FilesUITests: MiniCanvasUITestCase {
         NavBar.backButton(label: "Edit File").tap()
         let picker = app.datePickers.firstElement
         FileEditor.unlockAtButton.tapUntil { picker.exists }
+        app.find(label: "Done", type: .button).tap().waitToVanish()
         FileEditor.doneButton.tap().waitToVanish()
 
         XCTAssertNotNil(firstFile!.api.unlock_at)

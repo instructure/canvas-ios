@@ -41,4 +41,37 @@ class DSAnnouncementsE2ETests: E2ETestCase {
         XCTAssertEqual(DiscussionDetails.title.label(), announcementTitle)
         XCTAssertTrue(app.find(label: announcementMessage).exists())
     }
+
+    func testAnnouncementToggleE2E() {
+        let student = seeder.createUser()
+        let teacher = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollTeacher(teacher, in: course)
+        seeder.enrollStudent(student, in: course)
+
+        let dateFormatter = ISO8601DateFormatter()
+        let globalAnnouncementSubject = "This is a GA"
+        let globalAnnouncementMessage = "This will disappear in 4 minutes"
+        let globalAnnouncementStartAt = dateFormatter.string(from: Date().addMinutes(-1))
+        let globalAnnouncementEndAt = dateFormatter.string(from: Date().addMinutes(3))
+
+        let globalAnnouncement = seeder.postAccountNotifications(requestBody:
+                .init(subject: globalAnnouncementSubject, message: globalAnnouncementMessage,
+                      start_at: globalAnnouncementStartAt, end_at: globalAnnouncementEndAt)
+        )
+
+        logInDSUser(student)
+        Dashboard.courseCard(id: course.id).waitToExist()
+        app.find(label: globalAnnouncement.subject).waitToExist()
+
+        AccountNotifications.toggleButton(id: globalAnnouncement.id).waitToExist()
+        XCTAssertFalse(AccountNotifications.dismissButton(id: globalAnnouncement.id).isVisible)
+
+        AccountNotifications.toggleButton(id: globalAnnouncement.id).tap()
+        AccountNotifications.dismissButton(id: globalAnnouncement.id).waitToExist()
+        app.find(label: globalAnnouncement.message).waitToExist()
+
+        AccountNotifications.dismissButton(id: globalAnnouncement.id).tap()
+        AccountNotifications.dismissButton(id: globalAnnouncement.id).waitToVanish()
+    }
 }

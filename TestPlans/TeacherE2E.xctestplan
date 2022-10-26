@@ -32,6 +32,7 @@
         "DashboardE2ETests\/testDashboardE2E()",
         "PagesE2ETests\/testCreateAndDeletePage()",
         "PeopleE2ETests\/testPeopleE2E()",
+        "SubmissionsE2ETests\/testSubmissionsE2E()",
         "TodosE2ETests\/testTodosE2E()"
       ],
       "target" : {
