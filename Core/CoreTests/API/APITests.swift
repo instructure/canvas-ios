@@ -184,7 +184,7 @@ class APITests: XCTestCase {
         let url = URL(fileURLWithPath: "/file.png")
         let request = UploadFile(body: url)
         try! api.uploadTask(request)
-        let file = URL.directories.temporary.appendingPathComponent(UUID.string)
+        let file = URL.Directories.temporary.appendingPathComponent(UUID.string)
         XCTAssert(FileManager.default.fileExists(atPath: file.path))
         let value = try? String(contentsOf: file, encoding: .utf8)
         XCTAssertEqual(value, "/file.png")

@@ -24,8 +24,8 @@ import CoreData
 
 class UploadManagerTests: CoreTestCase {
     struct TestProcess: ProcessManager {
-        func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void) {
-            block(false)
+        func performExpiringActivity(reason: String, completion: @escaping (Bool) -> Void) {
+            completion(false)
         }
     }
 
