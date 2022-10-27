@@ -179,7 +179,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
 
         api.mock(GetMediaServiceRequest(), error: NSError.internalError())
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [ .mediaURL: url ])
-        let copiedTo = URL.temporaryDirectory
+        let copiedTo = URL.Directories.temporary
             .appendingPathComponent("uploads", isDirectory: true)
             .appendingPathComponent(UUID.string, isDirectory: true)
             .appendingPathComponent("instructure.pdf")

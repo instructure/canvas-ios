@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class CacheManagerTests: CoreTestCase {
-    let rnManifestURL = URL.documentsDirectory
+    let rnManifestURL = URL.Directories.documents
         .appendingPathComponent("RCTAsyncLocalStorage_V1")
         .appendingPathComponent("manifest.json")
 
@@ -56,7 +56,7 @@ class CacheManagerTests: CoreTestCase {
 
     func testResetAppNecessary() {
         UserDefaults.standard.setValue(true, forKey: "reset_cache_on_next_launch")
-        let doc = write("doc", in: .documentsDirectory)
+        let doc = write("doc", in: URL.Directories.documents)
         LoginSession.add(LoginSession.make())
         CacheManager.resetAppIfNecessary()
         XCTAssertNil(UserDefaults.standard.dictionaryRepresentation()["reset_cache_on_next_launch"])
@@ -66,7 +66,7 @@ class CacheManagerTests: CoreTestCase {
 
     func testClearNoNeeded() {
         UserDefaults.standard.set(CacheManager.bundleVersion, forKey: "lastDeletedAt")
-        let cache = write("cache", in: .cachesDirectory)
+        let cache = write("cache", in: URL.Directories.caches)
         CacheManager.clearIfNeeded()
         XCTAssertTrue(FileManager.default.fileExists(atPath: cache.path))
         try? FileManager.default.removeItem(at: cache)
@@ -75,8 +75,8 @@ class CacheManagerTests: CoreTestCase {
     func testClearNeeded() {
         UserDefaults.standard.set(-1, forKey: "lastDeletedAt")
         environment.userDefaults?.showGradesOnDashboard = true
-        let cache = write("cache", in: .cachesDirectory)
-        let doc = write("doc", in: .documentsDirectory)
+        let cache = write("cache", in: URL.Directories.caches)
+        let doc = write("doc", in: URL.Directories.documents)
         CacheManager.clearIfNeeded()
         XCTAssertFalse(FileManager.default.fileExists(atPath: cache.path))
         XCTAssertTrue(FileManager.default.fileExists(atPath: doc.path))
@@ -86,7 +86,7 @@ class CacheManagerTests: CoreTestCase {
     }
 
     func testClearRNAsyncStorage() {
-        let asyncStorage = URL.documentsDirectory.appendingPathComponent("RCTAsyncLocalStorage_V1")
+        let asyncStorage = URL.Directories.documents.appendingPathComponent("RCTAsyncLocalStorage_V1")
         try? FileManager.default.createDirectory(at: asyncStorage, withIntermediateDirectories: true)
         try! """
             { "speed-grader-tutorial": "preserved", "something-else": "removed" }

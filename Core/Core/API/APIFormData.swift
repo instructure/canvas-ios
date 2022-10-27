@@ -40,7 +40,7 @@ extension APIFormData {
      - returns: The URL of the file where form data was written to.
      */
     public func encode(using boundary: String) throws -> URL {
-        let tempFileURL = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+        let tempFileURL = URL.Directories.temporary.appendingPathComponent(UUID.string)
         guard FileManager.default.createFile(atPath: tempFileURL.path, contents: nil),
               var outputStream = OutputStream(toFileAtPath: tempFileURL.path, append: false)
         else {

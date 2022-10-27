@@ -45,7 +45,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
     let player = AudioPlayerViewController.create()
     var recorder: AVAudioRecorder?
     var timer: CADisplayLink?
-    public lazy var url = URL.temporaryDirectory.appendingPathComponent("\(UUID.string).m4a")
+    public lazy var url = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
 
     public static func create() -> AudioRecorderViewController {
         let controller = loadFromStoryboard()

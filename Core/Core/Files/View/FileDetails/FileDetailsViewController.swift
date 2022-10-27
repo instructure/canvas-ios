@@ -264,11 +264,11 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
 
         if files.first?.mimeClass == "pdf" {
             //  check docs directory first if they have already added/modified annotations on an existing pdf
-            let docsURL = URL.documentsDirectory.appendingPathComponent(filePathComponent)
+            let docsURL = URL.Directories.documents.appendingPathComponent(filePathComponent)
             if FileManager.default.fileExists(atPath: docsURL.path) { return docsURL }
         }
 
-        return URL.temporaryDirectory.appendingPathComponent(filePathComponent)
+        return URL.Directories.temporary.appendingPathComponent(filePathComponent)
     }
 
     func downloadFile(at url: URL) {
@@ -464,7 +464,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
 
     public func pdfViewController(_ pdfController: PDFViewController, didSave document: Document, error: Error?) {
         if pdfAnnotationsMutatedMoveToDocsDirectory, let filePathComponent = filePathComponent {
-            let to = URL.documentsDirectory.appendingPathComponent(filePathComponent)
+            let to = URL.Directories.documents.appendingPathComponent(filePathComponent)
             if !FileManager.default.fileExists(atPath: to.path), let from = document.fileURL {
                 do {
                     try FileManager.default.createDirectory(at: to.deletingLastPathComponent(), withIntermediateDirectories: true)

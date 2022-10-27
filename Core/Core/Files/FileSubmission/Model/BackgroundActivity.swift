@@ -63,7 +63,7 @@ public class BackgroundActivity {
     }
 
     private func requestBackgroundActivity(_ promise: @escaping Future<Void, ActivityError>.Promise) {
-        processManager.performExpiringActivity(withReason: "File Submission") { [self] expired in
+        processManager.performExpiringActivity(reason: "File Submission") { [self] expired in
             if expired {
                 if isStarted {
                     abortHandler()
