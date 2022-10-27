@@ -30,17 +30,12 @@ public class Analytics: NSObject {
 
     @objc
     public func initialize() {
-        guard !ProcessInfo.isUITest, let heapID = getHeapID() else { return }
+        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
         let options = HeapOptions()
         options.disableAdvertiserIdCapture = true
         Heap.initialize(heapID, with: options)
     }
 
-    private func getHeapID() -> String? {
-        AppEnvironment.shared.isDebug ?
-            Secret.heapStagingID.string :
-            Secret.heapProductionID.string
-    }
     @objc
     public func logEvent(_ name: String, parameters: [String: Any]? = nil) {
         handler?.handleEvent(name, parameters: parameters)
