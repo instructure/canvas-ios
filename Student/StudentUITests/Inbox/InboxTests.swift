@@ -78,6 +78,7 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageEntireClass() {
+        mockCourse()
         mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [])
         mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true, send_messages_all: true))
@@ -112,6 +113,7 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageMultiple() {
+        mockCourse()
         mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 100), value: [
             .make(id: 1, name: "Recepient One"),
             .make(id: 2, name: "Recepient Two"),
@@ -191,5 +193,27 @@ class InboxTests: CoreUITestCase {
         mockEncodableRequest("conversations", value: APIConversation.make())
 
         NewMessage.sendButton.tap().waitToVanish()
+    }
+
+    private func mockCourse() {
+        guard var baseCourseDict = baseCourse.dictionary else {
+            return XCTFail("Couldn't cast baseCourse as dictionary")
+        }
+        baseCourseDict["concluded"] = false
+        let baseCourseEncoded = try! JSONSerialization.data(withJSONObject: [baseCourseDict])
+        // swiftlint:disable:next line_length
+        let courseUrl = URL(string: "https://canvas.instructure.com/api/v1/courses?include%5B%5D=banner_image&include%5B%5D=concluded&include%5B%5D=course_image&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&include%5B%5D=grading_periods&include%5B%5D=needs_grading_count&include%5B%5D=observed_users&include%5B%5D=sections&include%5B%5D=syllabus_body&include%5B%5D=tabs&include%5B%5D=term&include%5B%5D=total_scores&per_page=10&state%5B%5D=available&state%5B%5D=completed")!
+        mockURL(courseUrl, data: baseCourseEncoded)
+    }
+}
+
+private extension Encodable {
+    var dictionary: [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self) else {
+            return nil
+        }
+        return (try? JSONSerialization
+            .jsonObject(with: data, options: []))
+            .flatMap { $0 as? [String: Any] }
     }
 }
