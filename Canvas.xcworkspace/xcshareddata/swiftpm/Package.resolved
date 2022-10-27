@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "heap-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heap/heap-ios-sdk.git",
+      "state" : {
+        "revision" : "5fa35d4fef6314de2226d070f6dac427901816d9",
+        "version" : "9.0.1"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
