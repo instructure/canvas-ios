@@ -53,7 +53,7 @@ public class MockHTTPResponse: Codable {
 
     public lazy var dataSavedToTemporaryFileURL: URL? = {
         guard let data = data else { return nil }
-        let url = URL.temporaryDirectory.appendingPathComponent(Foundation.UUID().uuidString, isDirectory: false)
+        let url = URL.Directories.temporary.appendingPathComponent(Foundation.UUID().uuidString, isDirectory: false)
         (try? data.write(to: url))!
         return url
     }()

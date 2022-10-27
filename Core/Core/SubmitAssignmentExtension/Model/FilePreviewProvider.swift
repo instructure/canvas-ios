@@ -18,6 +18,7 @@
 
 import AVFoundation
 import Combine
+import PDFKit
 
 public class FilePreviewProvider {
     public struct FailedToGeneratePreview: Error {}
@@ -50,6 +51,8 @@ public class FilePreviewProvider {
     private func generatePreview() -> PreviewData? {
         if let image = image() {
             return PreviewData(image: image, duration: nil)
+        } else if let pdf = pdf() {
+            return PreviewData(image: pdf, duration: nil)
         } else if let movieData = movieData() {
             return PreviewData(image: movieData.firstFrame, duration: movieData.movieLength)
         } else {
@@ -67,7 +70,7 @@ public class FilePreviewProvider {
         return (firstFrame: UIImage(cgImage: cgImage), movieLength: asset.duration.seconds)
     }
 
-    /** Creates a thumbnail from the given URL if it's an image or PDF without reading the whole file into memory. */
+    /** Creates a thumbnail from the given URL if it's an image without reading the whole file into memory. */
     private func image() -> UIImage? {
         let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
         let maxDimensionInPixels: CGFloat = 200 * UIScreen.main.scale
@@ -86,5 +89,20 @@ public class FilePreviewProvider {
         }
 
         return UIImage(cgImage: downsampledImage)
+    }
+
+    private func pdf() -> UIImage? {
+        guard
+            let pdf = PDFDocument(url: url),
+            let page = pdf.page(at: 0)
+        else {
+            return nil
+        }
+        let bounds = page.bounds(for: .mediaBox)
+
+        return page.thumbnail(
+            of: bounds.size,
+            for: .mediaBox
+        )
     }
 }

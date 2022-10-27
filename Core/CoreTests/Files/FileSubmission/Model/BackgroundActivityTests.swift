@@ -188,8 +188,8 @@ class MockProcessManager: ProcessManager {
     public private(set) var isExecutingBackgroundBlock = false
     public private(set) var backgroundActivityRequestCount = 0
 
-    func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void) {
-        activityBlock = block
+    func performExpiringActivity(reason: String, completion: @escaping (Bool) -> Void) {
+        activityBlock = completion
         backgroundActivityRequestCount += 1
     }
 

@@ -260,7 +260,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func testCanSubmitFilePicker() throws {
         XCTAssertFalse(presenter.canSubmit(filePicker))
-        let url = URL.temporaryDirectory.appendingPathComponent("SubmissionButtonPresenterTests-submit-files.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("SubmissionButtonPresenterTests-submit-files.txt")
         FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
         try UploadManager.shared.add(url: url, batchID: presenter.batchID)
         let filePicker = FilePickerViewController.create(batchID: presenter.batchID)

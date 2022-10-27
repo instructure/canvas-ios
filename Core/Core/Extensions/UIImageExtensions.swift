@@ -37,7 +37,7 @@ extension UIImage {
      */
     @discardableResult
     public func write(to url: URL? = nil, nameIt name: String? = nil) throws -> URL {
-        let directory = url ?? URL.temporaryDirectory.appendingPathComponent("images", isDirectory: true)
+        let directory = url ?? URL.Directories.temporary.appendingPathComponent("images", isDirectory: true)
         let name = name ?? String(Clock.now.timeIntervalSince1970)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
         let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("jpg")

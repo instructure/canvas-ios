@@ -26,10 +26,11 @@ extension UploadManager {
      */
     public func copyFileToSharedContainer(_ url: URL) throws -> URL {
         let dir: URL
-        if let containerID = backgroundSession.configuration.sharedContainerIdentifier, let container = URL.sharedContainer(containerID) {
+        if let containerID = backgroundSession.configuration.sharedContainerIdentifier,
+           let container = URL.Directories.sharedContainers(containerID) {
             dir = container
         } else {
-            dir = URL.temporaryDirectory
+            dir = URL.Directories.temporary
         }
         let newURL = dir
             .appendingPathComponent("uploads", isDirectory: true)

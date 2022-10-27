@@ -35,7 +35,7 @@ class InputStreamExtensionsTests: XCTestCase {
 
     private func copyStreamToFile(streamSize: Int, bufferSize: Int) {
         // Create temp file to where stream content will be written
-        let targetFilePath = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+        let targetFilePath = URL.Directories.temporary.appendingPathComponent(UUID.string)
         guard FileManager.default.createFile(atPath: targetFilePath.path, contents: nil) else {
             XCTFail("Failed to create temp file.")
             return
