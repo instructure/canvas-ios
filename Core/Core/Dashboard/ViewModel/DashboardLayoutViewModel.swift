@@ -25,9 +25,15 @@ class DashboardLayoutViewModel: ObservableObject {
 
     @Published public private(set) var buttonImage: Image = .dashboardLayoutGrid
     @Published public private(set) var buttonA11yLabel: String = ""
+    @Published public private(set) var isCardLayout = false
+    @Published public private(set) var isListLayout = false
     @Environment(\.appEnvironment) private var env
     private var isDashboardLayoutGrid: Bool = false {
         didSet {
+            withAnimation {
+                isCardLayout = isDashboardLayoutGrid
+                isListLayout = !isCardLayout
+            }
             updateButton()
             saveStateToUserdefaults()
         }
@@ -35,12 +41,24 @@ class DashboardLayoutViewModel: ObservableObject {
 
     public init() {
         isDashboardLayoutGrid = env.userDefaults?.isDashboardLayoutGrid ?? true
+        isCardLayout = isDashboardLayoutGrid
+        isListLayout = !isCardLayout
         updateButton()
         logAnalytics()
     }
 
     public func toggle() {
         isDashboardLayoutGrid.toggle()
+    }
+
+    public func setCardLayout() {
+        guard !isDashboardLayoutGrid else { return }
+        isDashboardLayoutGrid = true
+    }
+
+    public func setListLayout() {
+        guard isDashboardLayoutGrid else { return }
+        isDashboardLayoutGrid = false
     }
 
     public func layoutInfo(for width: CGFloat) -> LayoutInfo {

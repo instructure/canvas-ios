@@ -1067,6 +1067,7 @@
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
+		CFB9B2F5289C10D500C18C79 /* DashboardSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9B2F4289C10D500C18C79 /* DashboardSettingsView.swift */; };
 		CFB9B2F728A12DB000C18C79 /* FilePreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9B2F628A12DB000C18C79 /* FilePreviewProvider.swift */; };
 		CFB9B2F928A2460600C18C79 /* AttachmentPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9B2F828A2460600C18C79 /* AttachmentPreviewViewModel.swift */; };
 		CFB9B2FB28A29FF900C18C79 /* AttachmentPreviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9B2FA28A29FF900C18C79 /* AttachmentPreviewViewModelTests.swift */; };
@@ -2579,6 +2580,7 @@
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
+		CFB9B2F4289C10D500C18C79 /* DashboardSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsView.swift; sourceTree = "<group>"; };
 		CFB9B2F628A12DB000C18C79 /* FilePreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePreviewProvider.swift; sourceTree = "<group>"; };
 		CFB9B2F828A2460600C18C79 /* AttachmentPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPreviewViewModel.swift; sourceTree = "<group>"; };
 		CFB9B2FA28A29FF900C18C79 /* AttachmentPreviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPreviewViewModelTests.swift; sourceTree = "<group>"; };
@@ -5080,6 +5082,7 @@
 				7D70869825699AAA00647D37 /* CourseInvitationCard.swift */,
 				7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */,
 				7D7086862568755300647D37 /* DashboardCardView.swift */,
+				CFB9B2F4289C10D500C18C79 /* DashboardSettingsView.swift */,
 				7D70868E2568D6CA00647D37 /* GroupCard.swift */,
 				7D7086922569607D00647D37 /* NotificationCard.swift */,
 				CF2091A9275E6553003E8EA6 /* DashboardGrid.swift */,
@@ -7499,6 +7502,7 @@
 				7DA4DA2B2440C94D009CA964 /* GetPages.swift in Sources */,
 				7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */,
 				CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */,
+				CFB9B2F5289C10D500C18C79 /* DashboardSettingsView.swift in Sources */,
 				7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */,
 				CFFE285E27AABCC20029A408 /* CourseSectionStatus.swift in Sources */,
 				CF490F2E28575B4F0065D242 /* DocumentExtensions.swift in Sources */,

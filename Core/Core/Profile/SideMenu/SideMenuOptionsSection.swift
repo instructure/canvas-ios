@@ -30,17 +30,23 @@ struct SideMenuOptionsSection: View {
                 .accessibility(addTraits: .isHeader)
             if enrollment == .student {
                 SideMenuToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: $viewModel.showGrades).onTapGesture {
-                    viewModel.showGrades.toggle()
+                    withAnimation {
+                        viewModel.showGrades.toggle()
+                    }
                 }
             }
 
             if enrollment == .student || enrollment == .teacher {
                 SideMenuToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay).onTapGesture {
-                    viewModel.colorOverlay.toggle()
+                    withAnimation {
+                        viewModel.colorOverlay.toggle()
+                    }
                 }
             } else {
                 SideMenuToggleItem(id: "darkMode", image: .imageLine, title: Text("Dark Mode", bundle: .core), isOn: $viewModel.darkMode).onTapGesture {
-                    viewModel.darkMode.toggle()
+                    withAnimation {
+                        viewModel.darkMode.toggle()
+                    }
                 }
             }
         }
@@ -81,9 +87,7 @@ extension SideMenuOptionsSection {
         }
 
         private let env = AppEnvironment.shared
-        private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
-            self?.colorOverlay = self?.settings.first?.hideDashcardColorOverlays != true
-        }
+        private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self"))
 
         init() {
             showGrades = env.userDefaults?.showGradesOnDashboard == true

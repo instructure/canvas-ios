@@ -105,8 +105,25 @@ public struct DashboardCardView: View {
     @ViewBuilder
     private var layoutToggleButton: some View {
         if cards.shouldShowLayoutToggleButton {
-            Button(action: layoutViewModel.toggle) {
-                layoutViewModel.buttonImage
+            Button(action: {
+                guard controller.value.presentedViewController == nil else {
+                    controller.value.presentedViewController?.dismiss(animated: true)
+                    return
+                }
+                let dashboard = CoreHostingController(DashboardSettingsView(viewModel: layoutViewModel))
+                dashboard.addDoneButton(side: .right)
+                let container = HelmNavigationController(rootViewController: dashboard)
+                container.preferredContentSize = CGSize(width: 400, height: 450)
+                container.modalPresentationStyle = .popover
+                container.popoverPresentationController?.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
+                env.router.show(
+                    container,
+                    from: controller,
+                    options: .modal(.popover),
+                    analyticsRoute: "/dashboard/settings"
+                )
+            }) {
+                Image.settingsLine
                     .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
                     .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
             }
