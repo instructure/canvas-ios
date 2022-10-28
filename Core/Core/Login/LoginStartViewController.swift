@@ -91,12 +91,11 @@ class LoginStartViewController: UIViewController {
             findSchoolButton.setTitle(loginText, for: .normal)
         } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
                     let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
-            let buttonTitle = savedAccount.name.isEmpty ? savedAccount.domain : loginText
+            let buttonTitle = savedAccount.name.isEmpty ? savedAccount.domain : savedAccount.name
             findSchoolButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
             lastLoginAccount = savedAccount
-        } else {
-            lastLoginAccount = nil
         }
+
         mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
             self?.update()
         })
@@ -239,7 +238,7 @@ class LoginStartViewController: UIViewController {
             }
         } else if let host = lastLoginAccount?.domain {
             controller = LoginWebViewController.create(
-                authenticationProvider: nil,
+                authenticationProvider: lastLoginAccount?.authentication_provider,
                 host: host,
                 loginDelegate: loginDelegate,
                 method: method

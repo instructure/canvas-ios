@@ -146,7 +146,7 @@ class LoginFindSchoolViewController: UIViewController {
             host = "\(host).instructure.com"
         }
         searchField.resignFirstResponder()
-        saveAccount(APIAccountResult(name: "", domain: host, authentication_provider: nil))
+        env.lastLoginAccount = APIAccountResult(name: "", domain: host, authentication_provider: nil)
         showLoginForHost(host)
     }
 
@@ -156,11 +156,6 @@ class LoginFindSchoolViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = nil
         }
-    }
-
-    func saveAccount(_ account: APIAccountResult?) {
-        let data = try? APIJSONEncoder().encode(account)
-        UserDefaults.standard.set(data, forKey: "lastLoginAccount")
     }
 }
 
@@ -204,7 +199,7 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
             loginDelegate?.openExternalURL(url)
         } else {
             let account = accounts[indexPath.row]
-            saveAccount(account)
+            env.lastLoginAccount = account
             showLoginForHost(account.domain, authenticationProvider: account.authentication_provider)
         }
     }

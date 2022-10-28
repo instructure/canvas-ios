@@ -20,6 +20,12 @@ import XCTest
 @testable import Core
 
 class AppEnvironmentTests: CoreTestCase {
+
+    override func tearDown() {
+        UserDefaults.standard.removeObject(forKey: "lastLoginAccount")
+        super.tearDown()
+    }
+
     func testUserDidLogin() {
         let env = AppEnvironment()
         env.userDidLogin(session: LoginSession.make(accessToken: "token"))
@@ -86,5 +92,20 @@ class AppEnvironmentTests: CoreTestCase {
 
         env.userDidLogout(session: session)
         XCTAssertNil(env.k5.sessionDefaults)
+    }
+
+    func testSaveAccount() {
+        let env = AppEnvironment()
+        let session = LoginSession.make()
+        env.lastLoginAccount = nil
+        env.saveAccount(for: session)
+        var data = UserDefaults.standard.data(forKey: "lastLoginAccount")
+        XCTAssertNil(data)
+
+        env.lastLoginAccount = APIAccountResult(name: "", domain: "canvas.instructure.com", authentication_provider: nil)
+        env.saveAccount(for: session)
+        data = UserDefaults.standard.data(forKey: "lastLoginAccount")
+        let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data!)
+        XCTAssertEqual(env.lastLoginAccount, savedAccount)
     }
 }
