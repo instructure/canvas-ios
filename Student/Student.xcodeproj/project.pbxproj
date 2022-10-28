@@ -2018,7 +2018,6 @@
 				492704711CF4AF7100C631C6 /* Resources */,
 				492704B71CF4B6D700C631C6 /* Embed Frameworks */,
 				B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */,
-				B49725CA290C00720067B91E /* FixFrameworks */,
 				3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -2705,24 +2704,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-Student/Pods-defaults-Student-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		B49725CA290C00720067B91E /* FixFrameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = FixFrameworks;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Populate a variable with the current code signing identity if it's available in the environment.\nSIGNING_IDENTITY=\"${EXPANDED_CODE_SIGN_IDENTITY:-$CODE_SIGN_IDENTITY}\"\n\n# Populate a variable with the current code signing flags and options in the environment.\nOTHER_CODE_SIGN_FLAGS=${OTHER_CODE_SIGN_FLAGS:-}\n \n# Re-sign the SwiftPM packaged frameworks using the application's details.\nif [ -n \"${SIGNING_IDENTITY}\" ]; then\n    find \"${CONFIGURATION_BUILD_DIR}/PackageFrameworks\" \\\n        -name \"*.framework\" \\\n        -type d \\\n        -exec codesign ${OTHER_CODE_SIGN_FLAGS} \\\n            --force \\\n            --sign \"${SIGNING_IDENTITY}\" \\\n            --options runtime \\\n            --deep \\\n            {} \\;\nfi\n";
 		};
 		B4DE2ACE28BCB18F000F8D4D /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
