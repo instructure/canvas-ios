@@ -248,13 +248,13 @@
 "Assignment grade above" = "Assignment mark above";
 
 /* No comment provided by engineer. */
-"Assignment Grade Above %d" = "Assignment Grade Above %d";
+"Assignment Grade Above %d" = "Assignment Mark Above %d";
 
 /* No comment provided by engineer. */
 "Assignment grade below" = "Assignment mark below";
 
 /* No comment provided by engineer. */
-"Assignment Grade Below %d" = "Assignment Grade Below %d";
+"Assignment Grade Below %d" = "Assignment Mark Below %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Assignment missing";
@@ -563,13 +563,13 @@
 "Course grade above" = "Course mark above";
 
 /* No comment provided by engineer. */
-"Course Grade Above %d" = "Course Grade Above %d";
+"Course Grade Above %d" = "Course Mark Above %d";
 
 /* No comment provided by engineer. */
 "Course grade below" = "Course mark below";
 
 /* No comment provided by engineer. */
-"Course Grade Below %d" = "Course Grade Below %d";
+"Course Grade Below %d" = "Course Mark Below %d";
 
 /* No comment provided by engineer. */
 "Course Modules" = "Course Modules";
@@ -599,10 +599,10 @@
 "Current Enrollments" = "Current Enrolments";
 
 /* No comment provided by engineer. */
-"Current Grade" = "Current Grade";
+"Current Grade" = "Current Mark";
 
 /* No comment provided by engineer. */
-"Current Grading Period" = "Current Grading Period";
+"Current Grading Period" = "Current Marking Period";
 
 /* No comment provided by engineer. */
 "Current position" = "Current position";
@@ -950,22 +950,22 @@
 "GPA Scale" = "GPA Scale";
 
 /* No comment provided by engineer. */
-"grade" = "grade";
+"grade" = "mark";
 
 /* No comment provided by engineer. */
 "Grade" = "Mark";
 
 /* No comment provided by engineer. */
-"Grade after posting" = "Grade after posting";
+"Grade after posting" = "Mark after posting";
 
 /* No comment provided by engineer. */
-"Grade before posting" = "Grade before posting";
+"Grade before posting" = "Mark before posting";
 
 /* No comment provided by engineer. */
-"Grade override" = "Grade override";
+"Grade override" = "Mark override";
 
 /* No comment provided by engineer. */
-"Grade Override" = "Grade Override";
+"Grade Override" = "Mark Override";
 
 /* No comment provided by engineer. */
 "Graded" = "Marked";
@@ -977,10 +977,10 @@
 "Grades" = "Marks";
 
 /* No comment provided by engineer. */
-"Grading" = "Grading";
+"Grading" = "Marking";
 
 /* No comment provided by engineer. */
-"Grading Policies" = "Grading Policies";
+"Grading Policies" = "Marking Policies";
 
 /* No comment provided by engineer. */
 "green" = "green";
@@ -1145,7 +1145,7 @@
 "Late" = "Late";
 
 /* No comment provided by engineer. */
-"Late Grading" = "Late Grading";
+"Late Grading" = "Late Marking";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Launch External Tool";
@@ -1331,10 +1331,10 @@
 "Name" = "Name";
 
 /* No comment provided by engineer. */
-"Needs Grading" = "Needs Grading";
+"Needs Grading" = "Needs Marking";
 
 /* No comment provided by engineer. */
-"NEEDS GRADING" = "NEEDS GRADING";
+"NEEDS GRADING" = "NEEDS MARKING";
 
 /* No comment provided by engineer. */
 "Network Error" = "Network Error";
@@ -1454,7 +1454,7 @@
 "Not enrolled" = "Not enrolled";
 
 /* No comment provided by engineer. */
-"Not Graded" = "Not Graded";
+"Not Graded" = "Not Marked";
 
 /* No comment provided by engineer. */
 "Not Published" = "Not Published";
@@ -1865,7 +1865,7 @@
 "Select Course" = "Select Course";
 
 /* No comment provided by engineer. */
-"Select Grading Period" = "Select Grading Period";
+"Select Grading Period" = "Select Marking Period";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Select Impact";
@@ -2159,7 +2159,7 @@
 "There was an error loading files. Pull to refresh to try again." = "There was an error loading files. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "There was an error loading grades. Pull to refresh to try again.";
+"There was an error loading grades. Pull to refresh to try again." = "There was an error loading marks. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error loading items to do. Pull to refresh to try again." = "There was an error loading items to do. Pull to refresh to try again.";

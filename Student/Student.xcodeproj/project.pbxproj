@@ -2255,7 +2255,7 @@
 			);
 			mainGroup = 4927046A1CF4AF7100C631C6;
 			packageReferences = (
-				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 492704741CF4AF7100C631C6 /* Products */;
 			projectDirPath = "";
@@ -3812,7 +3812,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -3825,7 +3825,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
