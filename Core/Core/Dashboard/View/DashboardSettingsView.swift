@@ -55,6 +55,7 @@ struct DashboardSettingsView: View {
                        isOn: $viewModel.colorOverlay)
             }
             separator
+            Spacer()
         }
         .background(Color.backgroundLightest)
         .padding(.horizontal, horizontalPadding)
