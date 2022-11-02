@@ -114,7 +114,7 @@ public struct DashboardCardView: View {
                 let interactor = DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults!)
                 let viewModel = DashboardSettingsViewModel(interactor: interactor)
                 let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
-                dashboard.addDoneButton(side: .right)
+                dashboard.addDoneButton(side: .left)
                 let container = HelmNavigationController(rootViewController: dashboard)
                 container.preferredContentSize = CGSize(width: 350, height: 450)
                 container.modalPresentationStyle = .popover
