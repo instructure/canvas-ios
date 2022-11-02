@@ -25,6 +25,10 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     public let showGrades: CurrentValueSubject<Bool, Never>
     public let colorOverlay: CurrentValueSubject<Bool, Never>
 
+    // MARK: - Outputs
+    public let isGradesSwitchVisible: Bool
+    public let isColorOverlaySwitchVisible: Bool
+
     // MARK: - Private
     private var defaults: SessionDefaults
     private var subscriptions = Set<AnyCancellable>()
@@ -36,6 +40,8 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
         self.layout = CurrentValueSubject<DashboardLayout, Never>(storedLayout)
         self.showGrades = CurrentValueSubject<Bool, Never>(defaults.showGradesOnDashboard ?? false)
         self.colorOverlay = CurrentValueSubject<Bool, Never>(storedColorOverlay)
+        self.isGradesSwitchVisible = (environment.app == .student)
+        self.isColorOverlaySwitchVisible = (environment.app == .student || environment.app == .teacher)
 
         saveLayoutToDefaultsOnChange()
         saveGradesToDefaultsOnChange()

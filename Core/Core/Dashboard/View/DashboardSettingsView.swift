@@ -45,11 +45,15 @@ struct DashboardSettingsView: View {
             .padding(.bottom, 32)
             header(label: Text("Options", bundle: .core))
             separator
-            toggle(text: Text("Show Grades", bundle: .core),
-                   isOn: $viewModel.showGrades)
-            separator
-            toggle(text: Text("Color Overlay", bundle: .core),
-                   isOn: $viewModel.colorOverlay)
+            if viewModel.isGradesSwitchVisible {
+                toggle(text: Text("Show Grades", bundle: .core),
+                       isOn: $viewModel.showGrades)
+                separator
+            }
+            if viewModel.isColorOverlaySwitchVisible {
+                toggle(text: Text("Color Overlay", bundle: .core),
+                       isOn: $viewModel.colorOverlay)
+            }
             separator
         }
         .background(Color.backgroundLightest)
@@ -123,11 +127,19 @@ struct DashboardSettingsView: View {
 
 struct DashboardSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        let interactor = DashboardSettingsInteractorPreview()
-        let viewModel = DashboardSettingsViewModel(interactor: interactor)
-        DashboardSettingsView(viewModel: viewModel)
+        let interactor1 = DashboardSettingsInteractorPreview()
+        let viewModel1 = DashboardSettingsViewModel(interactor: interactor1)
+        DashboardSettingsView(viewModel: viewModel1)
             .frame(width: 400)
             .previewLayout(.sizeThatFits)
+            .previewDisplayName("Both Switches")
+
+        let interactor2 = DashboardSettingsInteractorPreview(isGradesSwitchVisible: false)
+        let viewModel2 = DashboardSettingsViewModel(interactor: interactor2)
+        DashboardSettingsView(viewModel: viewModel2)
+            .frame(width: 400)
+            .previewLayout(.sizeThatFits)
+            .previewDisplayName("Color Switche Only")
     }
 }
 

@@ -25,6 +25,8 @@ public class DashboardSettingsViewModel: ObservableObject {
 
     // MARK: - Outputs
     @Published public private(set) var layout: DashboardLayout
+    public let isGradesSwitchVisible: Bool
+    public let isColorOverlaySwitchVisible: Bool
 
     // MARK: - Inputs
     public let setCardLayout = PassthroughSubject<Void, Never>()
@@ -39,6 +41,8 @@ public class DashboardSettingsViewModel: ObservableObject {
         self.layout = interactor.layout.value
         self.showGrades = interactor.showGrades.value
         self.colorOverlay = interactor.colorOverlay.value
+        self.isGradesSwitchVisible = interactor.isGradesSwitchVisible
+        self.isColorOverlaySwitchVisible = interactor.isColorOverlaySwitchVisible
         bindInteractorOutputsToSelf()
         bindUserInputsToInteractor()
     }

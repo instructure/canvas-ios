@@ -18,10 +18,20 @@
 
 import Combine
 
-public class DashboardSettingsInteractorPreview: DashboardSettingsInteractor {
+class DashboardSettingsInteractorPreview: DashboardSettingsInteractor {
 
     // MARK: - Inputs & Outputs
     public let layout = CurrentValueSubject<DashboardLayout, Never>(.card)
     public let showGrades = CurrentValueSubject<Bool, Never>(false)
     public let colorOverlay = CurrentValueSubject<Bool, Never>(false)
+
+    // MARK: - Outputs
+    public let isGradesSwitchVisible: Bool
+    public let isColorOverlaySwitchVisible: Bool
+
+    public init(isGradesSwitchVisible: Bool = true,
+                isColorOverlaySwitchVisible: Bool = true) {
+        self.isGradesSwitchVisible = isGradesSwitchVisible
+        self.isColorOverlaySwitchVisible = isColorOverlaySwitchVisible
+    }
 }
