@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Combine
 
 class DashboardSettingsInteractorPreview: DashboardSettingsInteractor {
@@ -35,3 +37,5 @@ class DashboardSettingsInteractorPreview: DashboardSettingsInteractor {
         self.isColorOverlaySwitchVisible = isColorOverlaySwitchVisible
     }
 }
+
+#endif

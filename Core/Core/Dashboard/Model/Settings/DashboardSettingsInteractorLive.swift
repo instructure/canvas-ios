@@ -30,18 +30,23 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     public let isColorOverlaySwitchVisible: Bool
 
     // MARK: - Private
+    private let environment: AppEnvironment
     private var defaults: SessionDefaults
     private var subscriptions = Set<AnyCancellable>()
+    private lazy var userSettings = environment.subscribe(GetUserSettings(userID: "self")) { [weak self] in
+        self?.updateColorOverlay()
+    }
 
     public init(environment: AppEnvironment, defaults: SessionDefaults) {
         let storedLayout: DashboardLayout = defaults.isDashboardLayoutGrid ? .card : .list
-        let storedColorOverlay = !(environment.subscribe(GetUserSettings(userID: "self")).first?.hideDashcardColorOverlays ?? false)
+        self.environment = environment
         self.defaults = defaults
         self.layout = CurrentValueSubject<DashboardLayout, Never>(storedLayout)
         self.showGrades = CurrentValueSubject<Bool, Never>(defaults.showGradesOnDashboard ?? false)
-        self.colorOverlay = CurrentValueSubject<Bool, Never>(storedColorOverlay)
+        self.colorOverlay = CurrentValueSubject<Bool, Never>(true)
         self.isGradesSwitchVisible = (environment.app == .student)
         self.isColorOverlaySwitchVisible = (environment.app == .student || environment.app == .teacher)
+        userSettings.refresh()
 
         saveLayoutToDefaultsOnChange()
         saveGradesToDefaultsOnChange()
@@ -51,12 +56,20 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
         logAnalytics()
     }
 
+    private func updateColorOverlay() {
+        let colorOverlay = userSettings
+            .first?
+            .hideDashcardColorOverlays ?? false
+
+        if self.colorOverlay.value != !colorOverlay {
+            self.colorOverlay.send(!colorOverlay)
+        }
+    }
+
     private func saveLayoutToDefaultsOnChange() {
         layout
+            .dropFirst()
             .map { $0 == .card ? true : false }
-            .filter { [defaults] isCard in
-                defaults.isDashboardLayoutGrid != isCard
-            }
             .sink { [weak self] isCard in
                 self?.defaults.isDashboardLayoutGrid = isCard
             }
@@ -65,6 +78,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
 
     private func saveGradesToDefaultsOnChange() {
         showGrades
+            .dropFirst()
             .removeDuplicates()
             .sink { [weak self] showGrades in
                 self?.defaults.showGradesOnDashboard = showGrades
@@ -74,6 +88,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
 
     private func saveOverlayOnChange() {
         colorOverlay
+            .dropFirst()
             .removeDuplicates()
             .sink { colorOverlay in
                 UpdateUserSettings(hide_dashcard_color_overlays: !colorOverlay).fetch()
