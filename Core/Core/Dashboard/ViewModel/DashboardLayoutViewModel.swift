@@ -23,48 +23,18 @@ class DashboardLayoutViewModel: ObservableObject {
     public typealias LayoutInfo = (columns: Int, cardWidth: CGFloat, spacing: CGFloat)
     public static let Spacing: CGFloat = 16
 
-    @Published public private(set) var buttonImage: Image = .dashboardLayoutGrid
-    @Published public private(set) var buttonA11yLabel: String = ""
-    @Published public private(set) var isCardLayout = false
-    @Published public private(set) var isListLayout = false
-    @Environment(\.appEnvironment) private var env
-    private var isDashboardLayoutGrid: Bool = false {
-        didSet {
-            withAnimation {
-                isCardLayout = isDashboardLayoutGrid
-                isListLayout = !isCardLayout
-            }
-            updateButton()
-            saveStateToUserdefaults()
-        }
-    }
+    private let interactor: DashboardSettingsInteractor
+    private var subscriptions = Set<AnyCancellable>()
 
-    public init() {
-        isDashboardLayoutGrid = env.userDefaults?.isDashboardLayoutGrid ?? true
-        isCardLayout = isDashboardLayoutGrid
-        isListLayout = !isCardLayout
-        updateButton()
-        logAnalytics()
-    }
-
-    public func toggle() {
-        isDashboardLayoutGrid.toggle()
-    }
-
-    public func setCardLayout() {
-        guard !isDashboardLayoutGrid else { return }
-        isDashboardLayoutGrid = true
-    }
-
-    public func setListLayout() {
-        guard isDashboardLayoutGrid else { return }
-        isDashboardLayoutGrid = false
+    public init(interactor: DashboardSettingsInteractor) {
+        self.interactor = interactor
+        triggerUIRefreshOnLayoutChange()
     }
 
     public func layoutInfo(for width: CGFloat) -> LayoutInfo {
         let isWideLayout = (width >= 635)
         let columns: CGFloat = {
-            if isDashboardLayoutGrid {
+            if interactor.layout.value == .card {
                 return isWideLayout ? 4 : 2
             } else {
                 return 1
@@ -77,19 +47,15 @@ class DashboardLayoutViewModel: ObservableObject {
         return (columns: Int(columns), cardWidth: cardWidth, spacing: Self.Spacing)
     }
 
-    private func updateButton() {
-        withAnimation {
-            buttonImage = (isDashboardLayoutGrid ? .dashboardLayoutList : .dashboardLayoutGrid)
-            buttonA11yLabel = isDashboardLayoutGrid ? NSLocalizedString("Change dashboard layout to list", comment: "") : NSLocalizedString("Change dashboard layout to grid", comment: "")
-        }
-    }
-
-    private func saveStateToUserdefaults() {
-        env.userDefaults?.isDashboardLayoutGrid = isDashboardLayoutGrid
-    }
-
-    private func logAnalytics() {
-        let type = isDashboardLayoutGrid ? "grid" : "list"
-        Analytics.shared.logEvent("dashboard_layout", parameters: ["type": type])
+    private func triggerUIRefreshOnLayoutChange() {
+        interactor
+            .layout
+            .removeDuplicates()
+            .sink { [objectWillChange] _ in
+                withAnimation {
+                    objectWillChange.send()
+                }
+            }
+            .store(in: &subscriptions)
     }
 }

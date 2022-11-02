@@ -26,7 +26,7 @@ public struct DashboardCardView: View {
     @ObservedObject var settings: Store<GetUserSettings>
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
-    @ObservedObject var layoutViewModel = DashboardLayoutViewModel()
+    @ObservedObject var layoutViewModel: DashboardLayoutViewModel
     @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardListViewModel()
 
     @Environment(\.scenePhase) var scenePhase
@@ -44,6 +44,7 @@ public struct DashboardCardView: View {
         cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
+        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults!))
         colors = env.subscribe(GetCustomColors())
         groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
@@ -105,15 +106,17 @@ public struct DashboardCardView: View {
     @ViewBuilder
     private var layoutToggleButton: some View {
         if cards.shouldShowLayoutToggleButton {
-            Button(action: {
+            Button {
                 guard controller.value.presentedViewController == nil else {
                     controller.value.presentedViewController?.dismiss(animated: true)
                     return
                 }
-                let dashboard = CoreHostingController(DashboardSettingsView(viewModel: layoutViewModel))
+                let interactor = DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults!)
+                let viewModel = DashboardSettingsViewModel(interactor: interactor)
+                let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
                 dashboard.addDoneButton(side: .right)
                 let container = HelmNavigationController(rootViewController: dashboard)
-                container.preferredContentSize = CGSize(width: 400, height: 450)
+                container.preferredContentSize = CGSize(width: 350, height: 450)
                 container.modalPresentationStyle = .popover
                 container.popoverPresentationController?.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
                 env.router.show(
@@ -122,10 +125,9 @@ public struct DashboardCardView: View {
                     options: .modal(.popover),
                     analyticsRoute: "/dashboard/settings"
                 )
-            }) {
+            } label: {
                 Image.settingsLine
                     .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
-                    .accessibility(label: Text(layoutViewModel.buttonA11yLabel))
             }
             .frame(width: 44, height: 44).padding(.trailing, -6)
         }

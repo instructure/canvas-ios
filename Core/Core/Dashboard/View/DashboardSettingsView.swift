@@ -19,122 +19,113 @@
 import SwiftUI
 
 struct DashboardSettingsView: View {
-    @ObservedObject private var viewModel: DashboardLayoutViewModel
+    @ObservedObject private var viewModel: DashboardSettingsViewModel
+    private let horizontalPadding: CGFloat = 16
+    private let verticalPadding: CGFloat = 24
 
-    init(viewModel: DashboardLayoutViewModel) {
+    init(viewModel: DashboardSettingsViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            SideMenuSubHeaderView(title: Text("LAYOUT", bundle: .core))
-                .accessibility(addTraits: .isHeader)
-                .padding(.top, 10)
+        VStack(alignment: .leading, spacing: 0) {
+            header(label: Text("Display As", bundle: .core))
             HStack(spacing: 0) {
                 Spacer()
-                gridButton
+                cardsButton
                 Spacer()
                 listButton
                 Spacer()
             }
-            .padding(.top, 20)
-            .padding(.bottom, 20)
-            .padding(.horizontal, 20)
-            SideMenuOptionsSection(enrollment: .student)
-            SideMenuSubHeaderView(title: Text("HINT", bundle: .core))
-                .accessibility(addTraits: .isHeader)
-                .padding(.top, 5)
-            HStack(alignment: .top, spacing: 20) {
-                Image.infoLine
-                    .foregroundColor(.textDarkest)
-                Text("To re-order your courses tap and hold on a card then drag to its new position.")
-                    .font(.regular16)
-                    .foregroundColor(.textDarkest)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .padding(.horizontal, 20)
-            .padding(.top, 15)
-            .padding(.bottom, 10)
+            .padding(EdgeInsets(top: 32, leading: 16, bottom: 24, trailing: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.borderMedium, lineWidth: 0.5)
+            )
+            .padding(.bottom, 32)
+            header(label: Text("Options", bundle: .core))
+            separator
+            toggle(text: Text("Show Grades", bundle: .core),
+                   isOn: $viewModel.showGrades)
+            separator
+            toggle(text: Text("Color Overlay", bundle: .core),
+                   isOn: $viewModel.colorOverlay)
+            separator
         }
         .background(Color.backgroundLightest)
+        .padding(.horizontal, horizontalPadding)
+        .padding(.vertical, verticalPadding)
         .navigationBarStyle(.modal)
         .navigationTitle(Text("Dashboard Settings", bundle: .core))
     }
 
-    private var gridButton: some View {
-        Button(action: viewModel.setCardLayout) {
-            VStack(spacing: 3) {
-                cardLayoutPhone
-                    .frame(width: 100)
-                Text("Card", bundle: .core)
-                    .foregroundColor(.textDarkest)
-                    .padding(.top, 2)
-                    .padding(.bottom, 8)
-                    .font(.regular16)
-                (viewModel.isCardLayout ? Image.publishSolid : Image.emptyLine)
-                    .foregroundColor(Color(Brand.shared.primary))
-            }
+    private func header(label: Text) -> some View {
+        label
+            .font(.semibold14)
+            .foregroundColor(.textDark)
+            .accessibility(addTraits: .isHeader)
+            .padding(.bottom, 8)
+    }
+
+    private var separator: some View {
+        Color.borderMedium
+            .frame(height: 0.5)
+            .padding(.horizontal, -horizontalPadding)
+    }
+
+    private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
+        Toggle(isOn: isOn) {
+            text
+                .font(.semibold16)
+                .foregroundColor(.textDarkest)
         }
+        .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+        .padding(.vertical, 8)
+    }
+
+    private var cardsButton: some View {
+        layoutButton(label: Text("Card", bundle: .core),
+                     icon: .dashboardLayoutCard,
+                     isSelected: viewModel.layout == .card,
+                     action: { viewModel.setCardLayout.send(()) })
     }
 
     private var listButton: some View {
-        Button(action: viewModel.setListLayout) {
+        layoutButton(label: Text("List", bundle: .core),
+                     icon: .dashboardLayoutList,
+                     isSelected: viewModel.layout == .list,
+                     action: { viewModel.setListLayout.send(()) })
+    }
+
+    private func layoutButton(label: Text,
+                              icon: Image,
+                              isSelected: Bool,
+                              action: @escaping () -> Void)
+    -> some View {
+        Button {
+            action()
+        } label: {
             VStack(spacing: 3) {
-                listLayoutPhone
-                    .frame(width: 100)
-                Text("List", bundle: .core)
-                    .foregroundColor(.textDarkest)
-                    .padding(.top, 2)
-                    .padding(.bottom, 8)
-                    .font(.regular16)
-                (viewModel.isListLayout ? Image.publishSolid : Image.emptyLine)
+                icon
+                label
+                    .padding(.top, 8)
+                    .padding(.bottom, 10)
+                    .font(.regular14)
+                (isSelected ? Image.publishSolid : Image.emptyLine)
                     .foregroundColor(Color(Brand.shared.primary))
             }
+            .foregroundColor(.textDarkest)
         }
     }
-
-    private var cardLayoutPhone: some View {
-        VStack {
-            ForEach(0..<5) { _ in
-                HStack {
-                    Rectangle()
-                    Rectangle()
-                }
-            }
-        }
-        .padding(20)
-        .background(Color.backgroundLight)
-        .foregroundColor(.borderMedium)
-        .aspectRatio(0.6, contentMode: .fit)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.textDark, lineWidth: 3)
-        )
-    }
-
-    private var listLayoutPhone: some View {
-        VStack {
-            ForEach(0..<5) { _ in
-                Rectangle()
-            }
-        }
-        .padding(20)
-        .background(Color.backgroundLight.cornerRadius(15))
-        .foregroundColor(.borderMedium)
-        .aspectRatio(0.6, contentMode: .fit)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.textDark, lineWidth: 3)
-        )
-    }
-
 }
 
 #if DEBUG
 
 struct DashboardSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardSettingsView(viewModel: DashboardLayoutViewModel())
+        let interactor = DashboardSettingsInteractorPreview()
+        let viewModel = DashboardSettingsViewModel(interactor: interactor)
+        DashboardSettingsView(viewModel: viewModel)
             .frame(width: 400)
             .previewLayout(.sizeThatFits)
     }

@@ -860,6 +860,10 @@
 		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
 		CF34180B28AF79370087433B /* FileSubmissionComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */; };
 		CF34180F28B02F260087433B /* BackgroundURLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */; };
+		CF350F66290BFBA700ED656E /* DashboardSettingsInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF350F65290BFBA700ED656E /* DashboardSettingsInteractorLive.swift */; };
+		CF350F69290C07EC00ED656E /* DashboardSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF350F68290C07EC00ED656E /* DashboardSettingsViewModel.swift */; };
+		CF350F6B290C0F2C00ED656E /* DashboardSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF350F6A290C0F2C00ED656E /* DashboardSettingsInteractor.swift */; };
+		CF350F6D290C0F5500ED656E /* DashboardSettingsInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF350F6C290C0F5500ED656E /* DashboardSettingsInteractorPreview.swift */; };
 		CF3763152837A30D00F25B81 /* DashboardInvitationAPIItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3763142837A30D00F25B81 /* DashboardInvitationAPIItem.swift */; };
 		CF3763192837A7D200F25B81 /* DashboardInvitationAPIItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3763182837A7D200F25B81 /* DashboardInvitationAPIItemTests.swift */; };
 		CF37631B2837AB6300F25B81 /* DashboardInvitationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631A2837AB6300F25B81 /* DashboardInvitationName.swift */; };
@@ -2372,6 +2376,10 @@
 		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CF34180A28AF79370087433B /* FileSubmissionComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionComposerTests.swift; sourceTree = "<group>"; };
 		CF34180E28B02F260087433B /* BackgroundURLSessionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundURLSessionProvider.swift; sourceTree = "<group>"; };
+		CF350F65290BFBA700ED656E /* DashboardSettingsInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsInteractorLive.swift; sourceTree = "<group>"; };
+		CF350F68290C07EC00ED656E /* DashboardSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsViewModel.swift; sourceTree = "<group>"; };
+		CF350F6A290C0F2C00ED656E /* DashboardSettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsInteractor.swift; sourceTree = "<group>"; };
+		CF350F6C290C0F5500ED656E /* DashboardSettingsInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsInteractorPreview.swift; sourceTree = "<group>"; };
 		CF3763142837A30D00F25B81 /* DashboardInvitationAPIItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationAPIItem.swift; sourceTree = "<group>"; };
 		CF3763182837A7D200F25B81 /* DashboardInvitationAPIItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationAPIItemTests.swift; sourceTree = "<group>"; };
 		CF37631A2837AB6300F25B81 /* DashboardInvitationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationName.swift; sourceTree = "<group>"; };
@@ -4813,6 +4821,24 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		CF350F64290BFAD900ED656E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CF350F6A290C0F2C00ED656E /* DashboardSettingsInteractor.swift */,
+				CF350F65290BFBA700ED656E /* DashboardSettingsInteractorLive.swift */,
+				CF350F6C290C0F5500ED656E /* DashboardSettingsInteractorPreview.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		CF350F67290C07DE00ED656E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CF350F68290C07EC00ED656E /* DashboardSettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		CF3763162837A67900F25B81 /* Invitations */ = {
 			isa = PBXGroup;
 			children = (
@@ -5065,6 +5091,7 @@
 		CF4BDB53264530A000A91952 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF350F64290BFAD900ED656E /* Settings */,
 				CF3763162837A67900F25B81 /* Invitations */,
 				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
@@ -5392,6 +5419,7 @@
 		CF748D1E274D5283000EA34E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF350F67290C07DE00ED656E /* Settings */,
 				CFA56E4428352A7F007C15D7 /* Invitations */,
 				CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */,
 				CF748D1C274D43B9000EA34E /* DashboardConferencesViewModel.swift */,
@@ -7582,6 +7610,7 @@
 				CFA3898828AE86F3006AF68F /* FileSubmissionComposer.swift in Sources */,
 				7DBD150625477CEB00750F52 /* Badge.swift in Sources */,
 				7D7086932569607D00647D37 /* NotificationCard.swift in Sources */,
+				CF350F6D290C0F5500ED656E /* DashboardSettingsInteractorPreview.swift in Sources */,
 				CF598B32282552150029BEBE /* View.swift in Sources */,
 				CFCB0F6627CE7E57008DDEA4 /* ImageBackground.swift in Sources */,
 				7DA2605623F722D9005D2121 /* ModuleItemType.swift in Sources */,
@@ -7976,6 +8005,7 @@
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
 				CF21E75928D3068300F73066 /* BackgroundActivity.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
+				CF350F6B290C0F2C00ED656E /* DashboardSettingsInteractor.swift in Sources */,
 				EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */,
 				B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
@@ -8131,6 +8161,7 @@
 				7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */,
 				CFC2C27827344053006CA3E0 /* ViewModelState.swift in Sources */,
 				CFFE285927AA9D380029A408 /* CourseListView.swift in Sources */,
+				CF350F69290C07EC00ED656E /* DashboardSettingsViewModel.swift in Sources */,
 				7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */,
 				CFD6F6C526C13E3C00F5C445 /* K5ScheduleSubject.swift in Sources */,
 				3B4D892C2450A8E9004ED120 /* AttachmentCardsViewController.swift in Sources */,
@@ -8148,6 +8179,7 @@
 				CF53F734266F836000FA58D7 /* K5HomeroomDueItemCount.swift in Sources */,
 				CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */,
 				7D531D3B2549CF0500CBFCA6 /* AssignmentOverridesEditor.swift in Sources */,
+				CF350F66290BFBA700ED656E /* DashboardSettingsInteractorLive.swift in Sources */,
 				7DA260EA23F72359005D2121 /* TitleSubtitleView.swift in Sources */,
 				7DA25FF823F7226E005D2121 /* DocViewerAnnotationToolbar.swift in Sources */,
 				CF2091A8275A5B4E003E8EA6 /* AssignmentPickerListResponse.swift in Sources */,
