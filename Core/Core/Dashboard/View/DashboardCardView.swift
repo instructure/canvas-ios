@@ -66,7 +66,7 @@ public struct DashboardCardView: View {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarGlobal()
-        .navigationBarItems(leading: menuButton, trailing: layoutToggleButton)
+        .navigationBarItems(leading: menuButton, trailing: settingsButton)
         .onAppear {
             refresh(force: false) {
                 let env = AppEnvironment.shared
@@ -104,8 +104,8 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder
-    private var layoutToggleButton: some View {
-        if cards.shouldShowLayoutToggleButton {
+    private var settingsButton: some View {
+        if cards.shouldShowSettingsButton {
             Button {
                 guard controller.value.presentedViewController == nil else {
                     controller.value.presentedViewController?.dismiss(animated: true)
