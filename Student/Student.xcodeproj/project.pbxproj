@@ -139,6 +139,7 @@
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
+		B49725D0290C04D50067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725CF290C04D50067B91E /* Heap */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		C9299FE528102A62003A47C2 /* DSAnnouncementsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FE428102A62003A47C2 /* DSAnnouncementsE2ETests.swift */; };
 		C9299FEC2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FEB2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift */; };
@@ -814,6 +815,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
+				B49725D0290C04D50067B91E /* Heap in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
@@ -2025,6 +2027,9 @@
 				D9FD8F402546C3F500C6842B /* PBXTargetDependency */,
 			);
 			name = Student;
+			packageProductDependencies = (
+				B49725CF290C04D50067B91E /* Heap */,
+			);
 			productName = Canvas;
 			productReference = 492704731CF4AF7100C631C6 /* Student.app */;
 			productType = "com.apple.product-type.application";
@@ -2255,7 +2260,8 @@
 			);
 			mainGroup = 4927046A1CF4AF7100C631C6;
 			packageReferences = (
-				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B49725CE290C04D50067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 			);
 			productRefGroup = 492704741CF4AF7100C631C6 /* Products */;
 			projectDirPath = "";
@@ -3812,7 +3818,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		B49725CE290C04D50067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heap/heap-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.1;
+			};
+		};
+		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -3823,9 +3837,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B49725CF290C04D50067B91E /* Heap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49725CE290C04D50067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */;
+			productName = Heap;
+		};
 		CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
