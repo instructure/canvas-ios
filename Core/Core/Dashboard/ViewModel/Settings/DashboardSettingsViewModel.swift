@@ -27,6 +27,7 @@ public class DashboardSettingsViewModel: ObservableObject {
     @Published public private(set) var layout: DashboardLayout
     public let isGradesSwitchVisible: Bool
     public let isColorOverlaySwitchVisible: Bool
+    public let popoverSize: CGSize
 
     // MARK: - Inputs
     public let setCardLayout = PassthroughSubject<Void, Never>()
@@ -43,6 +44,10 @@ public class DashboardSettingsViewModel: ObservableObject {
         self.colorOverlay = interactor.colorOverlay.value
         self.isGradesSwitchVisible = interactor.isGradesSwitchVisible
         self.isColorOverlaySwitchVisible = interactor.isColorOverlaySwitchVisible
+        self.popoverSize = {
+            let largeLayout = interactor.isGradesSwitchVisible && interactor.isColorOverlaySwitchVisible
+            return CGSize(width: 350, height: largeLayout ? 440 : 390)
+        }()
         bindInteractorOutputsToSelf()
         bindUserInputsToInteractor()
     }

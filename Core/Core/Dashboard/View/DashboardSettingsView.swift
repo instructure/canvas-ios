@@ -28,40 +28,42 @@ struct DashboardSettingsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            header(label: Text("Display As", bundle: .core))
-            HStack(spacing: 0) {
-                Spacer()
-                cardsButton
-                Spacer()
-                listButton
-                Spacer()
-            }
-            .padding(EdgeInsets(top: 32, leading: 16, bottom: 24, trailing: 16))
-            .overlay(
-                RoundedRectangle(cornerRadius: 6)
-                    .stroke(Color.borderMedium, lineWidth: 0.5)
-            )
-            .padding(.bottom, 32)
-            header(label: Text("Options", bundle: .core))
-            separator
-            if viewModel.isGradesSwitchVisible {
-                toggle(text: Text("Show Grades", bundle: .core),
-                       isOn: $viewModel.showGrades,
-                       a11yID: "DashboardSettings.Switch.Grades")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                header(label: Text("Display As", bundle: .core))
+                HStack(spacing: 0) {
+                    Spacer()
+                    cardsButton
+                    Spacer()
+                    listButton
+                    Spacer()
+                }
+                .padding(EdgeInsets(top: 32, leading: 16, bottom: 24, trailing: 16))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color.borderMedium, lineWidth: 0.5)
+                )
+                .padding(.bottom, 32)
+                header(label: Text("Options", bundle: .core))
                 separator
+                if viewModel.isGradesSwitchVisible {
+                    toggle(text: Text("Show Grades", bundle: .core),
+                           isOn: $viewModel.showGrades,
+                           a11yID: "DashboardSettings.Switch.Grades")
+                    separator
+                }
+                if viewModel.isColorOverlaySwitchVisible {
+                    toggle(text: Text("Color Overlay", bundle: .core),
+                           isOn: $viewModel.colorOverlay,
+                           a11yID: "DashboardSettings.Switch.ColorOverlay")
+                }
+                separator
+                Spacer()
             }
-            if viewModel.isColorOverlaySwitchVisible {
-                toggle(text: Text("Color Overlay", bundle: .core),
-                       isOn: $viewModel.colorOverlay,
-                       a11yID: "DashboardSettings.Switch.ColorOverlay")
-            }
-            separator
-            Spacer()
+            .background(Color.backgroundLightest)
+            .padding(.horizontal, horizontalPadding)
+            .padding(.vertical, verticalPadding)
         }
-        .background(Color.backgroundLightest)
-        .padding(.horizontal, horizontalPadding)
-        .padding(.vertical, verticalPadding)
         .navigationBarStyle(.modal)
         .navigationTitle(Text("Dashboard Settings", bundle: .core))
     }

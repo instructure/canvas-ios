@@ -116,7 +116,7 @@ public struct DashboardCardView: View {
                 let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
                 dashboard.addDoneButton(side: .left)
                 let container = HelmNavigationController(rootViewController: dashboard)
-                container.preferredContentSize = CGSize(width: 350, height: 450)
+                container.preferredContentSize = viewModel.popoverSize
                 container.modalPresentationStyle = .popover
                 container.popoverPresentationController?.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
                 env.router.show(
