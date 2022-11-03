@@ -33,7 +33,7 @@ struct DashboardSettingsView: View {
                 header(label: Text("Display As", bundle: .core))
                 HStack(spacing: 0) {
                     Spacer()
-                    cardsButton
+                    gridButton
                     Spacer()
                     listButton
                     Spacer()
@@ -93,11 +93,11 @@ struct DashboardSettingsView: View {
         .testID(a11yID, info: ["selected": isOn.wrappedValue])
     }
 
-    private var cardsButton: some View {
-        layoutButton(label: Text("Card", bundle: .core),
-                     icon: .dashboardLayoutCard,
-                     isSelected: viewModel.layout == .card,
-                     action: { viewModel.setCardLayout.send(()) })
+    private var gridButton: some View {
+        layoutButton(label: Text("Grid", bundle: .core),
+                     icon: .dashboardLayoutGrid,
+                     isSelected: viewModel.layout == .grid,
+                     action: { viewModel.setGridLayout.send(()) })
     }
 
     private var listButton: some View {

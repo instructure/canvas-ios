@@ -223,7 +223,7 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.conferences, UIImage(named: "conferences", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.coursesTab, UIImage(named: "coursesTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.coursesTabActive, UIImage(named: "coursesTabActive", in: .core, compatibleWith: nil))
-        XCTAssertEqual(UIImage.dashboardLayoutCard, UIImage(named: "dashboardLayoutCard", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.dashboardLayoutGrid, UIImage(named: "dashboardLayoutGrid", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.dashboardLayoutList, UIImage(named: "dashboardLayoutList", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.dashboardTab, UIImage(named: "dashboardTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.dashboardTabActive, UIImage(named: "dashboardTabActive", in: .core, compatibleWith: nil))

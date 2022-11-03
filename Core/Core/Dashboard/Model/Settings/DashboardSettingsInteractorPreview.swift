@@ -23,7 +23,7 @@ import Combine
 class DashboardSettingsInteractorPreview: DashboardSettingsInteractor {
 
     // MARK: - Inputs & Outputs
-    public let layout = CurrentValueSubject<DashboardLayout, Never>(.card)
+    public let layout = CurrentValueSubject<DashboardLayout, Never>(.grid)
     public let showGrades = CurrentValueSubject<Bool, Never>(false)
     public let colorOverlay = CurrentValueSubject<Bool, Never>(false)
 

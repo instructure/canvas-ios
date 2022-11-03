@@ -219,7 +219,7 @@ public extension UIImage {
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }
     static var coursesTabActive: UIImage { UIImage(named: "coursesTabActive", in: .core, compatibleWith: nil)! }
-    static var dashboardLayoutCard: UIImage { UIImage(named: "dashboardLayoutCard", in: .core, compatibleWith: nil)! }
+    static var dashboardLayoutGrid: UIImage { UIImage(named: "dashboardLayoutGrid", in: .core, compatibleWith: nil)! }
     static var dashboardLayoutList: UIImage { UIImage(named: "dashboardLayoutList", in: .core, compatibleWith: nil)! }
     static var dashboardTab: UIImage { UIImage(named: "dashboardTab", in: .core, compatibleWith: nil)! }
     static var dashboardTabActive: UIImage { UIImage(named: "dashboardTabActive", in: .core, compatibleWith: nil)! }
@@ -441,7 +441,7 @@ public extension Image {
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
     static var coursesTabActive: Image { Image("coursesTabActive", bundle: .core) }
-    static var dashboardLayoutCard: Image { Image("dashboardLayoutCard", bundle: .core) }
+    static var dashboardLayoutGrid: Image { Image("dashboardLayoutGrid", bundle: .core) }
     static var dashboardLayoutList: Image { Image("dashboardLayoutList", bundle: .core) }
     static var dashboardTab: Image { Image("dashboardTab", bundle: .core) }
     static var dashboardTabActive: Image { Image("dashboardTabActive", bundle: .core) }

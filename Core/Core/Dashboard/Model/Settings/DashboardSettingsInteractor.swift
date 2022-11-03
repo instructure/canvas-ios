@@ -30,5 +30,5 @@ public protocol DashboardSettingsInteractor: AnyObject {
 }
 
 public enum DashboardLayout: Equatable {
-    case card, list
+    case grid, list
 }

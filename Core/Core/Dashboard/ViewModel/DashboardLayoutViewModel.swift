@@ -34,7 +34,7 @@ class DashboardLayoutViewModel: ObservableObject {
     public func layoutInfo(for width: CGFloat) -> LayoutInfo {
         let isWideLayout = (width >= 635)
         let columns: CGFloat = {
-            if interactor.layout.value == .card {
+            if interactor.layout.value == .grid {
                 return isWideLayout ? 4 : 2
             } else {
                 return 1

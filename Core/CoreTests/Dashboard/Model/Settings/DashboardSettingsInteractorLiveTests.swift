@@ -24,10 +24,10 @@ class DashboardSettingsInteractorLiveTests: CoreTestCase {
 
     // MARK: - Initial Values
 
-    func testCardLayoutAfterInit() {
+    func testGridLayoutAfterInit() {
         defaults.isDashboardLayoutGrid = true
         let testee = DashboardSettingsInteractorLive(environment: environment, defaults: defaults)
-        XCTAssertEqual(testee.layout.value, .card)
+        XCTAssertEqual(testee.layout.value, .grid)
     }
 
     func testListLayoutAfterInit() {
@@ -92,7 +92,7 @@ class DashboardSettingsInteractorLiveTests: CoreTestCase {
     func testSavesLayoutState() {
         defaults.isDashboardLayoutGrid = false
         let testee = DashboardSettingsInteractorLive(environment: environment, defaults: defaults)
-        testee.layout.send(.card)
+        testee.layout.send(.grid)
         XCTAssertTrue(defaults.isDashboardLayoutGrid)
     }
 
@@ -121,7 +121,7 @@ class DashboardSettingsInteractorLiveTests: CoreTestCase {
     func testUpdatesLayoutWhenUserDefaultsChanges() {
         defaults.isDashboardLayoutGrid = true
         let testee = DashboardSettingsInteractorLive(environment: environment, defaults: defaults)
-        XCTAssertEqual(testee.layout.value, .card)
+        XCTAssertEqual(testee.layout.value, .grid)
         defaults.isDashboardLayoutGrid = false
         XCTAssertEqual(testee.layout.value, .list)
     }

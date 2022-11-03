@@ -38,7 +38,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     }
 
     public init(environment: AppEnvironment, defaults: SessionDefaults) {
-        let storedLayout: DashboardLayout = defaults.isDashboardLayoutGrid ? .card : .list
+        let storedLayout: DashboardLayout = defaults.isDashboardLayoutGrid ? .grid : .list
         self.environment = environment
         self.defaults = defaults
         self.layout = CurrentValueSubject<DashboardLayout, Never>(storedLayout)
@@ -69,9 +69,9 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     private func saveLayoutToDefaultsOnChange() {
         layout
             .dropFirst()
-            .map { $0 == .card ? true : false }
-            .sink { [weak self] isCard in
-                self?.defaults.isDashboardLayoutGrid = isCard
+            .map { $0 == .grid ? true : false }
+            .sink { [weak self] isGrid in
+                self?.defaults.isDashboardLayoutGrid = isGrid
             }
             .store(in: &subscriptions)
     }
@@ -101,7 +101,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
             .default
             .publisher(for: UserDefaults.didChangeNotification)
             .map { [defaults] _ in
-                defaults.isDashboardLayoutGrid ? DashboardLayout.card : DashboardLayout.list
+                defaults.isDashboardLayoutGrid ? DashboardLayout.grid : DashboardLayout.list
             }
             .filter { [layout] in
                 $0 != layout.value
@@ -111,7 +111,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     }
 
     private func logAnalytics() {
-        let type = layout.value == .card ? "grid" : "list"
+        let type = layout.value == .grid ? "grid" : "list"
         Analytics.shared.logEvent("dashboard_layout", parameters: ["type": type])
     }
 }
