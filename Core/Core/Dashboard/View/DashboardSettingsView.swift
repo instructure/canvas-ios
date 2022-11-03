@@ -47,12 +47,14 @@ struct DashboardSettingsView: View {
             separator
             if viewModel.isGradesSwitchVisible {
                 toggle(text: Text("Show Grades", bundle: .core),
-                       isOn: $viewModel.showGrades)
+                       isOn: $viewModel.showGrades,
+                       a11yID: "DashboardSettings.Switch.Grades")
                 separator
             }
             if viewModel.isColorOverlaySwitchVisible {
                 toggle(text: Text("Color Overlay", bundle: .core),
-                       isOn: $viewModel.colorOverlay)
+                       isOn: $viewModel.colorOverlay,
+                       a11yID: "DashboardSettings.Switch.ColorOverlay")
             }
             separator
             Spacer()
@@ -78,7 +80,7 @@ struct DashboardSettingsView: View {
             .padding(.horizontal, -horizontalPadding)
     }
 
-    private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
+    private func toggle(text: Text, isOn: Binding<Bool>, a11yID: String) -> some View {
         Toggle(isOn: isOn) {
             text
                 .font(.semibold16)
@@ -86,6 +88,7 @@ struct DashboardSettingsView: View {
         }
         .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
         .padding(.vertical, 8)
+        .testID(a11yID, info: ["selected": isOn.wrappedValue])
     }
 
     private var cardsButton: some View {
