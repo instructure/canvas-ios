@@ -51,6 +51,9 @@ class LoginStartViewController: UIViewController {
         didSet {
             findAnotherSchoolButton.isHidden = lastLoginAccount == nil
             animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
+            guard let lastLoginAccount = lastLoginAccount else { return }
+            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
+            findSchoolButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
         }
     }
 
@@ -92,8 +95,6 @@ class LoginStartViewController: UIViewController {
             findSchoolButton.setTitle(loginText, for: .normal)
         } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
                     let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
-            let buttonTitle = savedAccount.name.isEmpty ? savedAccount.domain : savedAccount.name
-            findSchoolButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
             lastLoginAccount = savedAccount
         }
 

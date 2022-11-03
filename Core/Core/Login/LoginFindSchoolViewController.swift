@@ -146,7 +146,11 @@ class LoginFindSchoolViewController: UIViewController {
             host = "\(host).instructure.com"
         }
         searchField.resignFirstResponder()
-        env.lastLoginAccount = APIAccountResult(name: "", domain: host, authentication_provider: nil)
+        if let account = accounts.first(where: { $0.domain == host }) {
+            env.lastLoginAccount = account
+        } else {
+            env.lastLoginAccount = APIAccountResult(name: "", domain: host, authentication_provider: nil)
+        }
         showLoginForHost(host)
     }
 
