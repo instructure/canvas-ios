@@ -76,6 +76,7 @@ class LoginStartViewController: UIViewController {
         logoView.tintColor = .currentLogoColor()
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
+        self.lastLoginAccount = nil
         previousLoginsLabel.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
         whatsNewLabel.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
         whatsNewLink.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
@@ -151,7 +152,7 @@ class LoginStartViewController: UIViewController {
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
         configureButtons()
-        animateLoginTopConstraint(previousLoginsView.isHidden)
+        animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
     }
 
     override func viewWillAppear(_ animated: Bool) {
