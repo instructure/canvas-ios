@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -82,6 +82,7 @@
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */; };
 		B1BAD29523FEEB40004ED99E /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAD29423FEEB40004ED99E /* InboxTests.swift */; };
+		B49725D3290C06050067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725D2290C06050067B91E /* Heap */; };
 		CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */; };
 		DEC576CA6283206E676C040D /* Pods_needs_pspdfkit_ParentE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ADE1FABAE4719F27DCCF9A /* Pods_needs_pspdfkit_ParentE2ETests.framework */; };
 		E80763E223E08F420085DAFB /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80763E123E08F420085DAFB /* InboxTests.swift */; };
@@ -394,6 +395,7 @@
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
+				B49725D3290C06050067B91E /* Heap in Frameworks */,
 				6603B81D43D1722F21CA35E8 /* Pods_parent_defaults_Parent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,6 +836,9 @@
 			dependencies = (
 			);
 			name = Parent;
+			packageProductDependencies = (
+				B49725D2290C06050067B91E /* Heap */,
+			);
 			productName = Parent;
 			productReference = 5E6441871C3EE2E0003D7397 /* Parent.app */;
 			productType = "com.apple.product-type.application";
@@ -974,6 +979,9 @@
 				vi,
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
+			packageReferences = (
+				B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
+			);
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1500,7 +1508,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUnitTests;
@@ -1527,7 +1539,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1638,7 +1654,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1661,7 +1678,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
@@ -1691,7 +1711,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
@@ -1719,7 +1742,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentE2ETests;
@@ -1746,7 +1773,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1769,7 +1800,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUITests;
@@ -1794,7 +1829,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1852,6 +1891,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heap/heap-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B49725D2290C06050067B91E /* Heap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */;
+			productName = Heap;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5E64417F1C3EE2E0003D7397 /* Project object */;
 }
