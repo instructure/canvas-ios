@@ -130,6 +130,7 @@ public struct DashboardCardView: View {
                     .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
             }
             .frame(width: 44, height: 44).padding(.trailing, -6)
+            .accessibilityLabel(Text("Dashboard settings", bundle: .core))
         }
     }
 

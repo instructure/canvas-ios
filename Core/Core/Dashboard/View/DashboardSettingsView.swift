@@ -123,7 +123,10 @@ struct DashboardSettingsView: View {
                     .foregroundColor(Color(Brand.shared.primary))
             }
             .foregroundColor(.textDarkest)
+            .accessibilityHidden(true)
         }
+        .accessibilityLabel(label)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 
