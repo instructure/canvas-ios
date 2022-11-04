@@ -79,7 +79,9 @@ public struct DashboardCardView: View {
             fileUploadNotificationCardViewModel.sceneDidBecomeActive.send(())
         }
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
-            showGrade = env.userDefaults?.showGradesOnDashboard == true
+            withAnimation {
+                showGrade = env.userDefaults?.showGradesOnDashboard == true
+            }
         }
         .onReceive(invitationsViewModel.coursesChanged) { _ in refresh(force: true) }
     }
