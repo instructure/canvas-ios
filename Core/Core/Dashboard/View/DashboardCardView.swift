@@ -120,7 +120,13 @@ public struct DashboardCardView: View {
                 let container = HelmNavigationController(rootViewController: dashboard)
                 container.preferredContentSize = viewModel.popoverSize
                 container.modalPresentationStyle = .popover
-                container.popoverPresentationController?.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
+
+                // Position the popover's arrow to point to the settings button
+                if let popoverController = container.popoverPresentationController {
+                    popoverController.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
+                    popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
+                }
+
                 env.router.show(
                     container,
                     from: controller,
