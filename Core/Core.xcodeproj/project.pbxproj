@@ -983,7 +983,7 @@
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */; };
 		CF867F1E29151030006D52AF /* lato_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF867F1D2915102B006D52AF /* lato_semibold.ttf */; };
-		CF867F2029151382006D52AF /* lato-semibolditalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF867F1F29151382006D52AF /* lato-semibolditalic.ttf */; };
+		CF867F2029151382006D52AF /* lato_semibolditalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF867F1F29151382006D52AF /* lato_semibolditalic.ttf */; };
 		CF86C2B4267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */; };
 		CF88FCDF2756171C004F2202 /* DashboardInvitationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88FCDE2756171C004F2202 /* DashboardInvitationsViewModel.swift */; };
 		CF88FCE127562DB1004F2202 /* DashboardInvitationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88FCE027562DB1004F2202 /* DashboardInvitationsViewModelTests.swift */; };
@@ -2504,7 +2504,7 @@
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15ListRowSeparator.swift; sourceTree = "<group>"; };
 		CF867F1D2915102B006D52AF /* lato_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_semibold.ttf; sourceTree = "<group>"; };
-		CF867F1F29151382006D52AF /* lato-semibolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lato-semibolditalic.ttf"; sourceTree = "<group>"; };
+		CF867F1F29151382006D52AF /* lato_semibolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_semibolditalic.ttf; sourceTree = "<group>"; };
 		CF86C2B3267CEDA5006FB6F5 /* UISplitViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		CF88FCDE2756171C004F2202 /* DashboardInvitationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationsViewModel.swift; sourceTree = "<group>"; };
 		CF88FCE027562DB1004F2202 /* DashboardInvitationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationsViewModelTests.swift; sourceTree = "<group>"; };
@@ -5482,7 +5482,7 @@
 				CFE307BC27FC72D00075F1CB /* lato_bold.ttf */,
 				CF25022027FC26C9005D187C /* lato_regular.ttf */,
 				CF867F1D2915102B006D52AF /* lato_semibold.ttf */,
-				CF867F1F29151382006D52AF /* lato-semibolditalic.ttf */,
+				CF867F1F29151382006D52AF /* lato_semibolditalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -6876,7 +6876,7 @@
 				7DA260FD23F77281005D2121 /* SyllabusSummaryItemCell.xib in Resources */,
 				9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */,
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
-				CF867F2029151382006D52AF /* lato-semibolditalic.ttf in Resources */,
+				CF867F2029151382006D52AF /* lato_semibolditalic.ttf in Resources */,
 				CF7C368C2678AF1300ACAC79 /* balsamiq_bold.ttf in Resources */,
 				7DAC16F624FD8AE6001F48A1 /* FileListViewController.storyboard in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
