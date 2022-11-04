@@ -60,10 +60,10 @@ struct DashboardSettingsView: View {
                 separator
                 Spacer()
             }
-            .background(Color.backgroundLightest)
             .padding(.horizontal, horizontalPadding)
             .padding(.vertical, verticalPadding)
         }
+        .background(Color.backgroundLightest)
         .navigationBarStyle(.modal)
         .navigationTitle(Text("Dashboard Settings", bundle: .core))
     }
@@ -148,7 +148,7 @@ struct DashboardSettingsView_Previews: PreviewProvider {
         DashboardSettingsView(viewModel: viewModel2)
             .frame(width: 400)
             .previewLayout(.sizeThatFits)
-            .previewDisplayName("Color Switche Only")
+            .previewDisplayName("Color Switch Only")
     }
 }
 
