@@ -63,6 +63,18 @@ open class DynamicButton: UIButton {
         }
     }
 
+    @IBInspectable
+    public var borderColorName: String = "" {
+        didSet {
+            guard let color = Brand.shared.color(borderColorName) else {
+                layer.borderWidth = 0
+                return
+            }
+            layer.borderWidth = 0.5
+            layer.borderColor = color.cgColor
+        }
+    }
+
     open override var isHighlighted: Bool {
         didSet {
             tintColor = titleColor(for: state)
