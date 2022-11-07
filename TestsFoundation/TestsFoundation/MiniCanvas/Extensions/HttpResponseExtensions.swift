@@ -27,7 +27,7 @@ extension HttpResponse {
             data = try APIJSONEncoder().encode(encodable)
         } catch let e {
             print("internal server error: encoding \(E.self) failed: \(e)")
-            return .internalServerError
+            return .internalServerError(nil)
         }
         return .json(data: data)
     }

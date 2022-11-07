@@ -23,9 +23,9 @@ import Swifter
 enum ServerError: Error {
     case responseError(HttpResponse)
 
-    public static var internalServerError: ServerError { .responseError(.internalServerError) }
-    public static var notFound: ServerError { .responseError(.notFound) }
-    public static var unauthorized: ServerError { .responseError(.unauthorized) }
+    public static var internalServerError: ServerError { .responseError(.internalServerError(nil)) }
+    public static var notFound: ServerError { .responseError(.notFound(nil)) }
+    public static var unauthorized: ServerError { .responseError(.unauthorized(nil)) }
     public static var badRequest: ServerError { .responseError(.badRequest(nil)) }
 }
 
@@ -96,7 +96,7 @@ public class MiniCanvasServer {
             return .rest(urlRequest.url!.path, method: routeRequest.method) { request in
                 let request = request.mapBody { try? APIJSONDecoder().decode(R.Body.self, from: $0) }
                 guard let response = try handler(request) else {
-                    return .notFound
+                    return .notFound(nil)
                 }
                 return .json(data: try routeRequest.encode(response: response))
             }
@@ -163,7 +163,7 @@ public class MiniCanvasServer {
             case .put: methodRoute = server.PUT
             }
             methodRoute[routeTemplate] = { [weak self] httpRequest in
-                guard let self = self else { return .internalServerError }
+                guard let self = self else { return .internalServerError(nil) }
                 do {
                     let body = Data(httpRequest.body)
                     return try handler(APIRequest(server: self, httpRequest: httpRequest, rawBody: body, body: body))
@@ -172,7 +172,7 @@ public class MiniCanvasServer {
                     return response
                 } catch let error {
                     print("internal server error: \(error)")
-                    return HttpResponse.internalServerError
+                    return HttpResponse.internalServerError(nil)
                 }
             }
         }

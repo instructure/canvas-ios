@@ -1,0 +1,71 @@
+---
+name: Core
+options:
+  bundleIdPrefix: com.instructure.icanvas
+  deploymentTarget:
+    iOS: 14.0
+  createIntermediateGroups: true
+settings:
+  CODE_SIGN_STYLE: Automatic
+  DEVELOPMENT_TEAM: B6333T4PXQ
+  platform: iOS
+packages:
+  Lottie:
+    url: https://github.com/airbnb/lottie-ios.git
+    from: 3.1.8
+  Heap:
+    url: https://github.com/heap/heap-ios-sdk.git
+    from: 9.0.0
+  PSPDFKit:
+    url: https://github.com/PSPDFKit/PSPDFKit-SP
+    from: 11.5.2
+projectReferences:
+  TestsFoundation:
+    path: ../TestsFoundation/TestsFoundation.xcodeproj
+targets:
+  Core:    
+    type: framework
+    platform: iOS
+    sources:
+      - path: Core
+    dependencies:
+        - package: Heap
+        - package: Lottie
+        - package: PSPDFKit
+  CoreTests:    
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      ENABLE_TESTABILITY: true
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester
+    sources:
+      - path: CoreTests
+    dependencies:
+      - target: Core
+      - target: TestsFoundation/TestsFoundation
+  CoreTester:
+    type: application
+    platform: iOS
+    transitivelyLinkDependencies: true
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.CoreTester
+      CODE_SIGN_ENTITLEMENTS: CoreTester/CoreTester.entitlements
+    sources:
+      - path: CoreTester
+    dependencies:
+      - target: Core
+schemes:
+  Core:
+    build:
+      targets:
+        Core: all
+  CoreTests:
+    build:
+      targets:
+        CoreTester: all
+    test:
+      testPlans:
+        - path: ../TestPlans/CoreTests.xctestplan
+          defaultPlan: true
+      
+    
