@@ -185,14 +185,14 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7D630B6A24A5003E0039A45D /* Embed App Extensions */ = {
+		7D630B6A24A5003E0039A45D /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7DBF923A226978FC00710D0F /* Embed Frameworks */ = {
@@ -1062,7 +1062,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
-				7D630B6A24A5003E0039A45D /* Embed App Extensions */,
+				7D630B6A24A5003E0039A45D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1163,7 +1163,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
@@ -2145,7 +2145,6 @@
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

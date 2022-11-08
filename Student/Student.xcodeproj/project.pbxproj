@@ -137,7 +137,7 @@
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
-		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B49725D0290C04D50067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725CF290C04D50067B91E /* Heap */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
@@ -179,7 +179,7 @@
 		D9FD8F382546C3F300C6842B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F372546C3F300C6842B /* SwiftUI.framework */; };
 		D9FD8F3B2546C3F300C6842B /* AnnouncementsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F3A2546C3F300C6842B /* AnnouncementsWidget.swift */; };
 		D9FD8F3D2546C3F500C6842B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9FD8F3C2546C3F500C6842B /* Assets.xcassets */; };
-		D9FD8F412546C3F500C6842B /* Widgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FD8F342546C3F300C6842B /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D9FD8F412546C3F500C6842B /* Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9FD8F342546C3F300C6842B /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FD8F552546C7BB00C6842B /* AnnouncementsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F542546C7BB00C6842B /* AnnouncementsEntry.swift */; };
 		D9FD8F5C2546C93A00C6842B /* AnnouncementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F5B2546C93A00C6842B /* AnnouncementsProvider.swift */; };
 		D9FD90102546CB4C00C6842B /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD900F2546CB4C00C6842B /* Core.framework */; };
@@ -261,16 +261,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */ = {
+		3B6DCCB51FB502CE005EE8D2 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */,
-				D9FD8F412546C3F500C6842B /* Widgets.appex in Embed App Extensions */,
+				B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed Foundation Extensions */,
+				D9FD8F412546C3F500C6842B /* Widgets.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		492704B71CF4B6D700C631C6 /* Embed Frameworks */ = {
@@ -2018,7 +2018,7 @@
 				492704711CF4AF7100C631C6 /* Resources */,
 				492704B71CF4B6D700C631C6 /* Embed Frameworks */,
 				B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */,
-				3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */,
+				3B6DCCB51FB502CE005EE8D2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -2140,7 +2140,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					492704721CF4AF7100C631C6 = {
