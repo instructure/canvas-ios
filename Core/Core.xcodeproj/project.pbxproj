@@ -1261,6 +1261,7 @@
 		EBAF32F227AAC147000ACD32 /* APICommentLibraryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */; };
 		EBAF32F427AAC194000ACD32 /* APICommentLibraryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F327AAC194000ACD32 /* APICommentLibraryResponse.swift */; };
 		EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */; };
+		EBC9E4BE291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */; };
 		EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */; };
 		EBE92ED3279AD7ED0053C9A4 /* K5ImportantDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75D495278F155A00AA273C /* K5ImportantDatesView.swift */; };
 		EBE92ED5279AF27A0053C9A4 /* K5ImportantDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED4279AF27A0053C9A4 /* K5ImportantDateCell.swift */; };
@@ -2782,6 +2783,7 @@
 		EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryRequest.swift; sourceTree = "<group>"; };
 		EBAF32F327AAC194000ACD32 /* APICommentLibraryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryResponse.swift; sourceTree = "<group>"; };
 		EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModelTests.swift; sourceTree = "<group>"; };
+		EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS16HideListScrollContentBackground.swift; sourceTree = "<group>"; };
 		EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItem.swift; sourceTree = "<group>"; };
 		EBE92ED4279AF27A0053C9A4 /* K5ImportantDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateCell.swift; sourceTree = "<group>"; };
 		EBEA637627A17DB800EA0B2D /* K5ImportantDateItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItemTests.swift; sourceTree = "<group>"; };
@@ -6423,6 +6425,7 @@
 				7DBD150525477CEB00750F52 /* Badge.swift */,
 				CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */,
 				CF911BA527A29B1800E1EECB /* iOS15Refreshable.swift */,
+				EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */,
 				CF12DFC726D63937000BE452 /* NavBarItems.swift */,
 				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
 				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
@@ -7471,6 +7474,7 @@
 				7DA2600323F7227A005D2121 /* BundleExtensions.swift in Sources */,
 				3B4D89412450AD58004ED120 /* UITextViewExtensions.swift in Sources */,
 				CF3763152837A30D00F25B81 /* DashboardInvitationAPIItem.swift in Sources */,
+				EBC9E4BE291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift in Sources */,
 				7D742F3D25563EFD00FD6CF1 /* FlowStack.swift in Sources */,
 				D9B6493828F452D30035CE14 /* QuizDetailViewModelProtocol.swift in Sources */,
 				B1A7848F24411F19001A2B50 /* BackgroundVideoPlayer.swift in Sources */,
