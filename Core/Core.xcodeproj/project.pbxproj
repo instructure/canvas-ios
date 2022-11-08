@@ -811,7 +811,6 @@
 		B453728828B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */; };
 		B453C8B328CA351200327A13 /* FileUploadItemMimeClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453C8B228CA351200327A13 /* FileUploadItemMimeClassTests.swift */; };
 		B472C7DD28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */; };
-		B49725CD290C04B80067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725CC290C04B80067B91E /* Heap */; };
 		B49A3C1F28F6C8AE007E14AB /* TableViewBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49A3C1E28F6C8AE007E14AB /* TableViewBackgroundView.swift */; };
 		B4A687C628DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */; };
 		B4C045E328CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C045E228CB2BE60011A19F /* SubmissionCompletedNotificationsSenderTests.swift */; };
@@ -2805,7 +2804,6 @@
 			files = (
 				E87A5E4024D4B51C0065B2AA /* SwiftUI.framework in Frameworks */,
 				EFDD68BFDD537830A59DAC8D /* Pods_needs_pspdfkit_Core.framework in Frameworks */,
-				B49725CD290C04B80067B91E /* Heap in Frameworks */,
 				CFD3EC37289422C0001E7D4E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6594,7 +6592,6 @@
 			name = Core;
 			packageProductDependencies = (
 				CFD3EC36289422C0001E7D4E /* Lottie */,
-				B49725CC290C04B80067B91E /* Heap */,
 			);
 			productName = Core;
 			productReference = 2C96482E211E2F1A002C3255 /* Core.framework */;
@@ -6728,7 +6725,6 @@
 			mainGroup = 2C964824211E2F1A002C3255;
 			packageReferences = (
 				CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				B49725CB290C04B80067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 			);
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
 			projectDirPath = "";
@@ -8761,14 +8757,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B49725CB290C04B80067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/heap/heap-ios-sdk.git";
-			requirement = {
-				kind = exactVersion;
-				version = 9.0.1;
-			};
-		};
 		CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -8780,11 +8768,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B49725CC290C04B80067B91E /* Heap */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B49725CB290C04B80067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */;
-			productName = Heap;
-		};
 		CFD3EC36289422C0001E7D4E /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CFD3EC35289422C0001E7D4E /* XCRemoteSwiftPackageReference "lottie-ios" */;
