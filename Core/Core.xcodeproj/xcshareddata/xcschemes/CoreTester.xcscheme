@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1200"
-   version = "1.7">
+   LastUpgradeVersion = "1400"
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,38 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "492704721CF4AF7100C631C6"
-               BuildableName = "Student.app"
-               BlueprintName = "Student"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Teacher.app"
-               BlueprintName = "Teacher"
-               ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E81918E3230348440039616A"
-               BuildableName = "CoreUITests.framework"
-               BlueprintName = "CoreUITests"
-               ReferencedContainer = "container:../Core/Core.xcodeproj">
+               BlueprintIdentifier = "DFE1FF24212F69B3003F27AA"
+               BuildableName = "CoreTester.app"
+               BlueprintName = "CoreTester"
+               ReferencedContainer = "container:Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -55,12 +27,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <TestPlans>
-         <TestPlanReference
-            reference = "container:../TestPlans/IPadTests.xctestplan"
-            default = "YES">
-         </TestPlanReference>
-      </TestPlans>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -76,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492704721CF4AF7100C631C6"
-            BuildableName = "Student.app"
-            BlueprintName = "Student"
-            ReferencedContainer = "container:Student.xcodeproj">
+            BlueprintIdentifier = "DFE1FF24212F69B3003F27AA"
+            BuildableName = "CoreTester.app"
+            BlueprintName = "CoreTester"
+            ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -93,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492704721CF4AF7100C631C6"
-            BuildableName = "Student.app"
-            BlueprintName = "Student"
-            ReferencedContainer = "container:Student.xcodeproj">
+            BlueprintIdentifier = "DFE1FF24212F69B3003F27AA"
+            BuildableName = "CoreTester.app"
+            BlueprintName = "CoreTester"
+            ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
