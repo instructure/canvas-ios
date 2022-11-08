@@ -358,7 +358,7 @@ extension SubmissionButtonPresenter {
         let modallyPresentedViewWindow = viewController?.presentedViewController?.view.window
 
         guard let view = hostViewWindow ?? modallyPresentedViewWindow else { return }
-        let animation = AnimationView(name: "confetti", bundle: .core)
+        let animation = LottieAnimationView(name: "confetti", bundle: .core)
         view.addSubview(animation)
         animation.pin(inside: view)
         animation.contentMode = .scaleAspectFill
