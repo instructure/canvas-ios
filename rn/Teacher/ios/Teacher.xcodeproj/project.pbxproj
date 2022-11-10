@@ -1366,6 +1366,7 @@
 		};
 		4931EB6B1F731BD700715EF2 /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1381,6 +1382,7 @@
 		};
 		49AD4F601F730CB000BEDB8E /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
