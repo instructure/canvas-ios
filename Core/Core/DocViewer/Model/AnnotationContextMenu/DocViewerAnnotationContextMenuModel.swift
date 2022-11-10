@@ -21,30 +21,29 @@ import PSPDFKitUI
 
 struct DocViewerAnnotationContextMenuModel {
     private let metadata: APIDocViewerMetadata?
-    private let pageView: PDFPageView
     private let document: Document
     private let annotationProvider: DocViewerAnnotationProvider?
-    private let container: UIViewController
     private let router: Router
     private let canAnnotate: Bool
 
     public init(isAnnotationEnabled: Bool,
                 metadata: APIDocViewerMetadata?,
-                pageView: PDFPageView,
                 document: Document,
                 annotationProvider: DocViewerAnnotationProvider?,
-                container: UIViewController,
                 router: Router) {
         self.metadata = metadata
-        self.pageView = pageView
         self.document = document
         self.annotationProvider = annotationProvider
-        self.container = container
         self.router = router
         self.canAnnotate = isAnnotationEnabled && metadata?.annotations?.enabled == true
     }
 
-    public func menu(for annotations: [Annotation], basedOn oldMenu: UIMenu) -> UIMenu {
+    public func menu(for annotations: [Annotation],
+                     pageView: PDFPageView,
+                     basedOn oldMenu: UIMenu,
+                     container: UIViewController
+    )
+    -> UIMenu {
         // We only know what menu items to show if we receive a single tapped annotation
         guard annotations.count == 1,
               let annotation = annotations.first,
@@ -56,10 +55,10 @@ struct DocViewerAnnotationContextMenuModel {
 
         var newMenuElements: [UIMenuElement] = []
 
-        disableRotationOnFreeTextAnnotations(annotations)
+        disableRotationOnFreeTextAnnotations(annotations, pageView: pageView)
 
         if canAnnotate {
-            let commentMenu = makeCommentMenu(for: annotation, annotationMetadata: annotationMetadata)
+            let commentMenu = makeCommentMenu(for: annotation, annotationMetadata: annotationMetadata, container: container)
             newMenuElements.appendUnwrapped(commentMenu)
 
             switch annotation {
@@ -79,7 +78,7 @@ struct DocViewerAnnotationContextMenuModel {
         } else if annotation.hasReplies == true {
             // Even if we can't annotate but the annotation has a comment added we should show the
             // comment menu so the user can view previous comments and add new ones to the thread
-            let commentMenu = makeCommentMenu(for: annotation, annotationMetadata: annotationMetadata)
+            let commentMenu = makeCommentMenu(for: annotation, annotationMetadata: annotationMetadata, container: container)
             newMenuElements.appendUnwrapped(commentMenu)
         }
 
@@ -87,7 +86,8 @@ struct DocViewerAnnotationContextMenuModel {
     }
 
     private func makeCommentMenu(for annotation: Annotation,
-                                 annotationMetadata: APIDocViewerAnnotationsMetadata)
+                                 annotationMetadata: APIDocViewerAnnotationsMetadata,
+                                 container: UIViewController)
     -> UIMenuElement? {
         guard let annotationProvider = annotationProvider else {
             return nil
@@ -101,7 +101,8 @@ struct DocViewerAnnotationContextMenuModel {
                                      router: router)
     }
 
-    private func disableRotationOnFreeTextAnnotations(_ annotations: [Annotation]) {
+    private func disableRotationOnFreeTextAnnotations(_ annotations: [Annotation],
+                                                      pageView: PDFPageView) {
         annotations.forEach {
             (pageView.annotationView(for: $0) as? FreeTextAnnotationView)?.resizableView?.allowRotating = false
         }

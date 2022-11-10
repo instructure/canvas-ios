@@ -43,6 +43,7 @@ public class DocViewerViewController: UIViewController {
     }
     private var dragGestureViewModel: AnnotationDragGestureViewModel?
     private var subscriptions = Set<AnyCancellable>()
+    private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -177,6 +178,12 @@ public class DocViewerViewController: UIViewController {
             contentView.layoutIfNeeded()
         }
 
+        annotationContextMenuModel = DocViewerAnnotationContextMenuModel(isAnnotationEnabled: isAnnotatable,
+                                                                         metadata: metadata,
+                                                                         document: document,
+                                                                         annotationProvider: annotationProvider,
+                                                                         router: env.router)
+
         pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
     }
 
@@ -203,18 +210,11 @@ extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateMan
                                   appearance: EditMenuAppearance,
                                   suggestedMenu: UIMenu)
     -> UIMenu {
-        guard let document = sender.document else {
-            return suggestedMenu.replacingChildren([])
-        }
-
-        let model = DocViewerAnnotationContextMenuModel(isAnnotationEnabled: isAnnotatable,
-                                                        metadata: metadata,
-                                                        pageView: pageView,
-                                                        document: document,
-                                                        annotationProvider: annotationProvider,
-                                                        container: sender,
-                                                        router: env.router)
-        return model.menu(for: annotations, basedOn: suggestedMenu)
+        annotationContextMenuModel?.menu(for: annotations,
+                                         pageView: pageView,
+                                         basedOn: suggestedMenu,
+                                         container: sender)
+        ?? suggestedMenu
     }
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
