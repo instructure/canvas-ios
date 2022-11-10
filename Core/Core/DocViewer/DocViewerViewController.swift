@@ -195,43 +195,26 @@ public class DocViewerViewController: UIViewController {
 }
 
 extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateManagerDelegate {
-    // swiftlint:disable function_parameter_count
-    public func pdfViewController(
-        _ pdfController: PDFViewController,
-        shouldShow menuItems: [MenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        forSelectedText selectedText: String,
-        in textRect: CGRect, on pageView: PDFPageView
-    ) -> [MenuItem] {
-        return menuItems.filter {
-            $0.identifier != TextMenu.annotationMenuHighlight.rawValue
-        }
-    }
 
-    public func pdfViewController(
-        _ pdfController: PDFViewController,
-        shouldShow menuItems: [MenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        for annotations: [Annotation]?,
-        in annotationRect: CGRect,
-        on pageView: PDFPageView
-    ) -> [MenuItem] {
-        let commentTapHandler: DocViewerAnnotationContextMenuModel.CommentTapHandler = { [weak self] annotation, document, metadata in
-            let comments = self?.annotationProvider?.getReplies(to: annotation) ?? []
-            let view = CommentListViewController.create(comments: comments, inReplyTo: annotation, document: document, metadata: metadata)
-            self?.env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
+    /** Menu for tapping on an annotation. */
+    public func pdfViewController(_ sender: PDFViewController,
+                                  menuForAnnotations annotations: [Annotation],
+                                  onPageView pageView: PDFPageView,
+                                  appearance: EditMenuAppearance,
+                                  suggestedMenu: UIMenu)
+    -> UIMenu {
+        guard let document = sender.document else {
+            return suggestedMenu.replacingChildren([])
         }
-        let deleteTapHandler: DocViewerAnnotationContextMenuModel.DeleteTapHandler = { annotation, document in
-            document.remove(annotations: [annotation], options: nil)
-        }
-        let model = DocViewerAnnotationContextMenuModel(env: env,
-                                                        isAnnotationEnabled: isAnnotatable,
+
+        let model = DocViewerAnnotationContextMenuModel(isAnnotationEnabled: isAnnotatable,
                                                         metadata: metadata,
                                                         pageView: pageView,
-                                                        pdfController: pdfController,
-                                                        commentTapHandler: commentTapHandler,
-                                                        deleteTapHandler: deleteTapHandler)
-        return model.shouldShow(menuItems, for: annotations ?? [])
+                                                        document: document,
+                                                        annotationProvider: annotationProvider,
+                                                        container: sender,
+                                                        router: env.router)
+        return model.menu(for: annotations, basedOn: suggestedMenu)
     }
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {

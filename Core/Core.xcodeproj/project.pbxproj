@@ -831,6 +831,9 @@
 		CF0075E22875E4AF00588E40 /* OutputStreamExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */; };
 		CF0075E428772E9E00588E40 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E328772E9E00588E40 /* URLRequestExtensions.swift */; };
 		CF0075E628772ECA00588E40 /* URLRequestExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E528772ECA00588E40 /* URLRequestExtensionsTests.swift */; };
+		CF086072291D40500013BDCE /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086071291D40500013BDCE /* MenuItems.swift */; };
+		CF086074291D40960013BDCE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086073291D40960013BDCE /* ArrayExtensions.swift */; };
+		CF086076291D40CD0013BDCE /* UIMenuExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086075291D40CD0013BDCE /* UIMenuExtensions.swift */; };
 		CF0894FB26FA218C0051A1BA /* AssignmentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */; };
 		CF0894FD26FA2CD30051A1BA /* AssignmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */; };
 		CF09E6A32840FB13000C72D0 /* UTIFromNSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */; };
@@ -2342,6 +2345,9 @@
 		CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputStreamExtensions.swift; sourceTree = "<group>"; };
 		CF0075E328772E9E00588E40 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		CF0075E528772ECA00588E40 /* URLRequestExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensionsTests.swift; sourceTree = "<group>"; };
+		CF086071291D40500013BDCE /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
+		CF086073291D40960013BDCE /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		CF086075291D40CD0013BDCE /* UIMenuExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuExtensions.swift; sourceTree = "<group>"; };
 		CF0894FA26FA218C0051A1BA /* AssignmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModel.swift; sourceTree = "<group>"; };
 		CF0894FC26FA2CD30051A1BA /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
 		CF09E6A22840FB13000C72D0 /* UTIFromNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProvider.swift; sourceTree = "<group>"; };
@@ -3956,6 +3962,7 @@
 		7D80AC06212B46D500C40ECE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CF086073291D40960013BDCE /* ArrayExtensions.swift */,
 				7DF9BF03215191840099026B /* BundleExtensions.swift */,
 				49C56C9C24BECA7400E96799 /* ClosedRangeExtensions.swift */,
 				CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */,
@@ -3989,6 +3996,7 @@
 				7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */,
 				7D4D5EB1213F2A200080AC14 /* UIImageViewExtensions.swift */,
 				7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */,
+				CF086075291D40CD0013BDCE /* UIMenuExtensions.swift */,
 				B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */,
 				CF8D53632812D3340038B0B2 /* UISearchTextFieldExtensions.swift */,
 				CFE7E361267CD47A00F8EB7B /* UISplitViewControllerExtensions.swift */,
@@ -4731,6 +4739,15 @@
 				B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */,
 			);
 			path = ProgressViewStyle;
+			sourceTree = "<group>";
+		};
+		CF086070291D403C0013BDCE /* AnnotationContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				CF086071291D40500013BDCE /* MenuItems.swift */,
+				CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */,
+			);
+			path = AnnotationContextMenu;
 			sourceTree = "<group>";
 		};
 		CF11564E26FB566D00DE25B6 /* Model */ = {
@@ -5741,12 +5758,12 @@
 		CFAD0D0D2817D91A0017D07B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF086070291D403C0013BDCE /* AnnotationContextMenu */,
 				CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */,
 				CFAD0D0E2817D9570017D07B /* AnnotationTypes */,
 				7D29D308218A5E810036437C /* APIDocViewer.swift */,
 				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
 				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
-				CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7555,6 +7572,7 @@
 				CF53F73C266FBB6000FA58D7 /* GetK5HomeroomMissingSubmissionsCount.swift in Sources */,
 				7DA2607123F722E9005D2121 /* NotificationCategory.swift in Sources */,
 				97DDE0DA24119D6800A05B55 /* CreateTodoViewController.swift in Sources */,
+				CF086072291D40500013BDCE /* MenuItems.swift in Sources */,
 				B14D993524BE65A9006DFF12 /* CommonCourse.swift in Sources */,
 				CF3E761D2889610300276703 /* FileProgressListViewModel.swift in Sources */,
 				7DA260D123F72359005D2121 /* CoreWebView.swift in Sources */,
@@ -7564,6 +7582,7 @@
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				CF9A0F3927EA100400762228 /* TabFilter.swift in Sources */,
 				CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */,
+				CF086074291D40960013BDCE /* ArrayExtensions.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
 				7DA2600223F72272005D2121 /* ErrorReportViewController.swift in Sources */,
 				CF8CB54626CD17F8008361E2 /* K5ResourcesHomeroomInfoViewModel.swift in Sources */,
@@ -7810,6 +7829,7 @@
 				7DA2600723F7227A005D2121 /* LoggerExtensions.swift in Sources */,
 				7DA2602023F7227A005D2121 /* WKWebViewExtensions.swift in Sources */,
 				CF8CB52726CBEE0C008361E2 /* StaffContactInfoService.swift in Sources */,
+				CF086076291D40CD0013BDCE /* UIMenuExtensions.swift in Sources */,
 				EB4368B328CA07A0004B3D39 /* CoreDatePicker.swift in Sources */,
 				7DA260EE23F72391005D2121 /* APIFile.swift in Sources */,
 				7DA2603823F722D9005D2121 /* AlertThreshold.swift in Sources */,
