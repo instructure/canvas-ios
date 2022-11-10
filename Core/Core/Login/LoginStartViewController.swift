@@ -22,6 +22,7 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var authenticationMethodLabel: UILabel!
     @IBOutlet weak var canvasNetworkButton: UIButton!
     @IBOutlet weak var findSchoolButton: UIButton!
+    @IBOutlet weak var findAnotherSchoolButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var previousLoginsLabel: UILabel!
@@ -37,6 +38,7 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var animatableLogo: UIImageView!
     @IBOutlet weak var animatableLogoPosX: NSLayoutConstraint!
     @IBOutlet weak var animatableLogoPosY: NSLayoutConstraint!
+    @IBOutlet weak var loginTopConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -45,6 +47,15 @@ class LoginStartViewController: UIViewController {
     var sessions: [LoginSession] = []
     var shouldAnimateFromLaunchScreen = false
     var app: App = .student
+    var lastLoginAccount: APIAccountResult? {
+        didSet {
+            findAnotherSchoolButton.isHidden = lastLoginAccount == nil
+            animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
+            guard let lastLoginAccount = lastLoginAccount else { return }
+            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
+            findSchoolButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
+        }
+    }
 
     static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool, app: App) -> LoginStartViewController {
         let controller = loadFromStoryboard()
@@ -68,6 +79,7 @@ class LoginStartViewController: UIViewController {
         logoView.tintColor = .currentLogoColor()
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
+        self.lastLoginAccount = nil
         previousLoginsLabel.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
         whatsNewLabel.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
         whatsNewLink.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
@@ -78,10 +90,14 @@ class LoginStartViewController: UIViewController {
             : "STUDENT"
         ), attributes: [.kern: 2])
         wordmarkLabel.textColor = .currentLogoColor()
-
+        let loginText = NSLocalizedString("Log In", bundle: .core, comment: "")
         if MDMManager.shared.host != nil {
-            findSchoolButton.setTitle(NSLocalizedString("Log In", bundle: .core, comment: ""), for: .normal)
+            findSchoolButton.setTitle(loginText, for: .normal)
+        } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
+                    let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
+            lastLoginAccount = savedAccount
         }
+
         mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
             self?.update()
         })
@@ -137,6 +153,7 @@ class LoginStartViewController: UIViewController {
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
         configureButtons()
+        animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -160,6 +177,13 @@ class LoginStartViewController: UIViewController {
         }
         animatableLogo.alpha = 1
         view.layoutIfNeeded()
+    }
+
+    private func animateLoginTopConstraint(_ hasOffset: Bool) {
+        loginTopConstraint.constant = hasOffset ? 100 : 50
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
 
     private func animateLogoFromCenterToFinalPosition() {
@@ -214,9 +238,22 @@ class LoginStartViewController: UIViewController {
                 )
                 analyticsRoute = "/login/weblogin"
             }
+        } else if let host = lastLoginAccount?.domain {
+            controller = LoginWebViewController.create(
+                authenticationProvider: lastLoginAccount?.authentication_provider,
+                host: host,
+                loginDelegate: loginDelegate,
+                method: method
+            )
+            analyticsRoute = "/login/weblogin"
         }
 
         env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
+    }
+
+    @IBAction func findAnotherTapped(_ sender: UIButton) {
+        let controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
+        env.router.show(controller, from: self, analyticsRoute: "/login/find")
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {

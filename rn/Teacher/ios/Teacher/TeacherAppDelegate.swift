@@ -44,6 +44,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupFirebase()
+        Core.Analytics.shared.initialize()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
         #if DEBUG

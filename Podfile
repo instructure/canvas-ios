@@ -18,7 +18,7 @@ def canvas_crashlytics_rn_firebase_pods
 end
 
 def pspdfkit
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/11.0.0.podspec'
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/11.5.2.podspec'
 end
 
 def react_native_pods
@@ -144,6 +144,15 @@ post_install do |installer|
     puts "*** Setting #{target.name} target to APPLICATION_EXTENSION_API_ONLY = NO ***"
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+    end
+  end
+
+  # Xcode 13 CODE_SIGNING_ALLOWED was set to NO by default. In Xcode 14 it defaults to YES. 
+  installer.pods_project.targets.each do |target|
+    if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+      target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      end
     end
   end
 end

@@ -80,7 +80,7 @@ public struct SubmitAssignmentExtensionView: View {
             .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar
             .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
             .overlay(placeholder, alignment: .topLeading)
-
+            .accessibilityLabel(NSLocalizedString("Add optional comment", comment: ""))
         if #available(iOS 15, *) {
             editor.toolbar { hideKeyboardButton }
         } else {
@@ -96,6 +96,7 @@ public struct SubmitAssignmentExtensionView: View {
                 .font(.regular16)
                 .padding(.top, 21)
                 .allowsHitTesting(false)
+                .accessibilityHidden(true)
         }
     }
 

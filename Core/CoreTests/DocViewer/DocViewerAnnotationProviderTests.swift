@@ -53,13 +53,13 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         }
     }
 
-    func getProvider(
+    func getProviders(
         annotations: [APIDocViewerAnnotation] = [ APIDocViewerAnnotation.make() ],
         enabled: Bool = true,
         permissions: APIDocViewerPermissions = .readwritemanage,
         isAnnotationEditingDisabled: Bool = false,
         useMockFileAnnotationProvider: Bool = false
-    ) -> DocViewerAnnotationProvider {
+    ) -> (annotationProvider: DocViewerAnnotationProvider, documentProvider: PDFDocumentProvider) {
         let document = Document(url: Bundle(for: DocViewerAnnotationProviderTests.self).url(forResource: "instructure", withExtension: "pdf")!)
         let metadata = APIDocViewerAnnotationsMetadata(enabled: enabled, user_id: "1", user_name: "a", permissions: permissions)
         let documentProvider = document.documentProviders.first!
@@ -79,159 +79,161 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
             isAnnotationEditingDisabled: isAnnotationEditingDisabled
         )
         documentProvider.annotationManager.annotationProviders.append(provider)
-        return provider
+
+        // Annotation provider only keeps a weak reference to the PDFDocumentProvider so we have to return it to be kept alive
+        return (annotationProvider: provider, documentProvider: documentProvider)
     }
 
     func testInit() {
-        XCTAssertEqual(getProvider().allAnnotations.count, 1)
-        XCTAssertEqual(getProvider(enabled: false).allAnnotations.count, 0)
+        XCTAssertEqual(getProviders().annotationProvider.allAnnotations.count, 1)
+        XCTAssertEqual(getProviders(enabled: false).annotationProvider.allAnnotations.count, 0)
     }
 
     func testGetReplies() {
-        let provider = getProvider(annotations: [
+        let provider = getProviders(annotations: [
             APIDocViewerAnnotation.make(id: "2", type: .commentReply, inreplyto: "1"),
             APIDocViewerAnnotation.make(id: "3", type: .commentReply, inreplyto: "1"),
         ])
-        XCTAssertEqual(provider.getReplies(to: try Annotation(dictionary: ["name": "1"])).count, 2)
+        XCTAssertEqual(provider.annotationProvider.getReplies(to: try Annotation(dictionary: ["name": "1"])).count, 2)
     }
 
     func testAddNoData() {
-        let provider = getProvider()
+        let providers = getProviders()
         let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), error: APIDocViewerError.noData)
-        XCTAssertEqual(provider.add([ annotation ])?.count, 1)
+        XCTAssertEqual(providers.annotationProvider.add([ annotation ])?.count, 1)
         XCTAssertEqual(delegate.error as? APIDocViewerError, APIDocViewerError.noData)
     }
 
     func testAddTooBig() {
-        let provider = getProvider()
+        let providers = getProviders()
         let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), error: APIDocViewerError.tooBig)
-        XCTAssertEqual(provider.add([ annotation ])?.count, 1)
+        XCTAssertEqual(providers.annotationProvider.add([ annotation ])?.count, 1)
         XCTAssertEqual(delegate.annotation, annotation.apiAnnotation())
     }
 
     func testAddEmpty() {
-        let provider = getProvider()
+        let providers = getProviders()
         let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = DocViewerCommentReplyAnnotation(contents: "")
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
-        XCTAssertEqual(provider.add([ annotation ])?.count, 1)
+        XCTAssertEqual(providers.annotationProvider.add([ annotation ])?.count, 1)
         XCTAssertNil(delegate.error)
     }
 
     func testAddUnsupported() {
-        let provider = getProvider()
+        let provider = getProviders()
         let annotation = try! SoundAnnotation(dictionary: nil)
-        XCTAssertEqual(provider.add([ annotation ])?.count, 0)
+        XCTAssertEqual(provider.annotationProvider.add([ annotation ])?.count, 0)
     }
 
     func testAddSuccess() {
         let delegate = MockDelegate()
-        let provider = getProvider()
-        provider.docViewerDelegate = delegate
+        let providers = getProviders()
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation(image: nil)
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: annotation.apiAnnotation())
-        XCTAssertEqual(provider.add([ annotation ])?.count, 1)
+        XCTAssertEqual(providers.annotationProvider.add([ annotation ])?.count, 1)
         XCTAssertNil(delegate.error)
     }
 
     func testRemoveError() {
-        let provider = getProvider()
+        let providers = getProviders()
         let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = try! DocViewerPointAnnotation(dictionary: [ "name": "1" ])
         api.mock(DeleteDocViewerAnnotationRequest(annotationID: "1", sessionID: "a"), error: APIDocViewerError.noData)
-        XCTAssertEqual(provider.remove([ annotation ])?.count, 1)
+        XCTAssertEqual(providers.annotationProvider.remove([ annotation ])?.count, 1)
         XCTAssertEqual(delegate.error as? APIDocViewerError, APIDocViewerError.noData)
     }
 
     func testRemoveUnknown() {
-        let provider = getProvider()
+        let providers = getProviders()
         let annotation = try! DocViewerPointAnnotation(dictionary: [ "name": "bogus" ])
-        XCTAssertEqual(provider.remove([ annotation ])?.count, 1)
+        XCTAssertEqual(providers.annotationProvider.remove([ annotation ])?.count, 1)
     }
 
     func testRemoveSuccess() {
-        let provider = getProvider()
+        let providers = getProviders()
         let annotation = try! DocViewerPointAnnotation(dictionary: [ "name": "1" ])
         api.mock(DeleteDocViewerAnnotationRequest(annotationID: "1", sessionID: "a"), value: nil)
-        XCTAssertEqual(provider.remove([ annotation ])?.count, 1)
+        XCTAssertEqual(providers.annotationProvider.remove([ annotation ])?.count, 1)
     }
 
     func testChangeNoData() {
-        let provider = getProvider()
+        let providers = getProviders()
         let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
-        provider.didChange(annotation, keyPaths: [])
+        providers.annotationProvider.didChange(annotation, keyPaths: [])
         XCTAssertEqual(delegate.error as? APIDocViewerError, APIDocViewerError.noData)
     }
 
     func testChangeEmpty() {
-        let provider = getProvider()
+        let providers = getProviders()
         let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = DocViewerCommentReplyAnnotation(contents: "")
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
-        provider.didChange(annotation, keyPaths: [])
+        providers.annotationProvider.didChange(annotation, keyPaths: [])
         XCTAssertNil(delegate.error)
     }
 
     func testChangeUnsupported() {
-        let provider = getProvider()
+        let providers = getProviders()
         let delegate = MockDelegate()
-        provider.docViewerDelegate = delegate
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = try! SoundAnnotation(dictionary: nil)
-        provider.didChange(annotation, keyPaths: [])
+        providers.annotationProvider.didChange(annotation, keyPaths: [])
         XCTAssertNil(delegate.error)
     }
 
     func testChangeSuccess() {
         let delegate = MockDelegate()
-        let provider = getProvider()
-        provider.docViewerDelegate = delegate
+        let providers = getProviders()
+        providers.annotationProvider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation(image: nil)
         api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: annotation.apiAnnotation())
-        provider.didChange(annotation, keyPaths: [])
+        providers.annotationProvider.didChange(annotation, keyPaths: [])
         XCTAssertEqual(delegate.callStack, [.saveStateChanged(isSaving: true), .saveStateChanged(isSaving: false)])
         XCTAssertNil(delegate.error)
     }
 
     func testUserAnnotationIsReadOnlyWhenAnnotationIsDisabled() {
-        let provider = getProvider(isAnnotationEditingDisabled: true)
+        let providers = getProviders(isAnnotationEditingDisabled: true)
 
-        guard let annotation = provider.allAnnotations.first else { XCTFail("No annotations to test"); return }
+        guard let annotation = providers.annotationProvider.allAnnotations.first else { XCTFail("No annotations to test"); return }
 
         XCTAssertTrue(annotation.flags.contains(.readOnly))
     }
 
     func testAnnotationFromPDFIsReadOnlyWhenAnnotatingIsEnabled() {
-        let provider = getProvider(annotations: [], isAnnotationEditingDisabled: false, useMockFileAnnotationProvider: true)
+        let providers = getProviders(annotations: [], isAnnotationEditingDisabled: false, useMockFileAnnotationProvider: true)
 
-        guard let annotation = provider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
+        guard let annotation = providers.annotationProvider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
 
         XCTAssertTrue(annotation.flags.contains(.readOnly))
     }
 
     func testAnnotationFromPDFIsReadOnlyWhenAnnotatingIsDisabled() {
-        let provider = getProvider(annotations: [], isAnnotationEditingDisabled: true, useMockFileAnnotationProvider: true)
+        let providers = getProviders(annotations: [], isAnnotationEditingDisabled: true, useMockFileAnnotationProvider: true)
 
-        guard let annotation = provider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
+        guard let annotation = providers.annotationProvider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
 
         XCTAssertTrue(annotation.flags.contains(.readOnly))
     }
 
     func testAnnotationFromPDFIsFlagged() {
-        let provider = getProvider(annotations: [], isAnnotationEditingDisabled: true, useMockFileAnnotationProvider: true)
+        let providers = getProviders(annotations: [], isAnnotationEditingDisabled: true, useMockFileAnnotationProvider: true)
 
-        guard let fileAnnotation = provider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
+        guard let fileAnnotation = providers.annotationProvider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
 
         XCTExpectFailure("Will work when pspdfkit releases an update.") {
             XCTAssertTrue(fileAnnotation.isFileAnnotation)

@@ -56,7 +56,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
     }
 
     func testDocument() {
-        let url = URL.temporaryDirectory.appendingPathComponent("FilePickerViewControllerTests-document.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("FilePickerViewControllerTests-document.txt")
         XCTAssertTrue(FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8)))
 
         controller.delegate = self
@@ -126,7 +126,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         XCTAssertEqual(row?.subtitleLabel.text?.contains(" KB"), true)
 
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
-            .mediaURL: URL.temporaryDirectory.appendingPathComponent("bogus"),
+            .mediaURL: URL.Directories.temporary.appendingPathComponent("bogus"),
         ])
         XCTAssert(router.presented is UIAlertController)
 
@@ -151,7 +151,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
     }
 
     func testRemoveFile() {
-        let url = URL.temporaryDirectory.appendingPathComponent("FilePickerViewControllerTests-document.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("FilePickerViewControllerTests-document.txt")
         controller.view.layoutIfNeeded()
 
         controller.add(url)

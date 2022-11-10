@@ -38,30 +38,30 @@ class UIImageExtensionsTests: XCTestCase {
         let now = Date.isoDateFromString("2018-11-15T17:44:54Z")!
         Clock.mockNow(now)
         XCTAssertNoThrow(try image.write())
-        let file = URL.temporaryDirectory.appendingPathComponent("images/1542303894.0.jpg")
+        let file = URL.Directories.temporary.appendingPathComponent("images/1542303894.0.jpg")
         XCTAssertTrue(FileManager.default.fileExists(atPath: file.path))
     }
 
     func testWriteToURL() {
-        let url = URL.temporaryDirectory.appendingPathComponent("my-images", isDirectory: true)
+        let url = URL.Directories.temporary.appendingPathComponent("my-images", isDirectory: true)
         try! image.write(to: url)
         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
     }
 
     func testWriteWithName() {
         try! image.write(nameIt: "poop")
-        let file = URL.temporaryDirectory.appendingPathComponent("images/poop.jpg")
+        let file = URL.Directories.temporary.appendingPathComponent("images/poop.jpg")
         XCTAssertTrue(FileManager.default.fileExists(atPath: file.path))
     }
 
     func testWriteToURLWithName() {
-        let url = URL.temporaryDirectory.appendingPathComponent("my-images/poop.jpg")
+        let url = URL.Directories.temporary.appendingPathComponent("my-images/poop.jpg")
         try! image.write(to: url, nameIt: "poop")
         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
     }
 
     func testWriteOverwritesExistingFile() {
-        let tmp = URL.temporaryDirectory
+        let tmp = URL.Directories.temporary
         let file = tmp.appendingPathComponent("hey.jpg")
         try! "hey".write(to: file, atomically: true, encoding: .utf8)
         try! image.write(to: tmp, nameIt: "hey")

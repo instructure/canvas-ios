@@ -118,9 +118,7 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestInvalidPath() {
-        XCTAssertThrowsError(try InvalidPath().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)) { error in
-            XCTAssertEqual(error as! APIRequestableError, APIRequestableError.invalidPath("<>"))
-        }
+        XCTAssertNoThrow(try InvalidPath().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil))
     }
 
     func testUrlRequestQuery() {

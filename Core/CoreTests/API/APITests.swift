@@ -100,12 +100,12 @@ class APITests: XCTestCase {
         let expectation = XCTestExpectation(description: "request callback runs")
         let task = api.makeRequest(InvalidPath()) { value, response, error in
             XCTAssertNil(value)
-            XCTAssertNil(response)
+            XCTAssertNotNil(response)
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
-        XCTAssertNil(task)
+        XCTAssertNotNil(task)
     }
 
     func testMakeRequestUnsupported() {
@@ -184,7 +184,7 @@ class APITests: XCTestCase {
         let url = URL(fileURLWithPath: "/file.png")
         let request = UploadFile(body: url)
         try! api.uploadTask(request)
-        let file = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+        let file = URL.Directories.temporary.appendingPathComponent(UUID.string)
         XCTAssert(FileManager.default.fileExists(atPath: file.path))
         let value = try? String(contentsOf: file, encoding: .utf8)
         XCTAssertEqual(value, "/file.png")

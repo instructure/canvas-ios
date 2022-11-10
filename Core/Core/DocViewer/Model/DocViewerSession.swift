@@ -86,7 +86,7 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
             return
         }
         _ = api.makeRequest(GetDocViewerAnnotationsRequest(sessionID: sessionID ?? "")) { [weak self] response, _, _ in
-            self?.annotations = response?.data ?? []
+            self?.annotations = response?.data.sorted() ?? []
             if self?.localURL != nil || self?.error != nil { self?.notify() }
         }
     }
@@ -97,7 +97,7 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
             self?.error = error
             if let temp = url, let self = self {
                 let fs = FileManager.default
-                let perm = URL.temporaryDirectory.appendingPathComponent("\(UUID.string).pdf")
+                let perm = URL.Directories.temporary.appendingPathComponent("\(UUID.string).pdf")
                 do {
                     if fs.fileExists(atPath: perm.path) {
                         try fs.removeItem(at: perm)

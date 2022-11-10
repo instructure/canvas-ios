@@ -90,7 +90,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
     }
 
     private func createTestFile() {
-        let url = URL.temporaryDirectory.appendingPathComponent("\(UUID.string)/test.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("\(UUID.string)/test.txt")
         testFileURL = url
         XCTAssertNoThrow(try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true))
         FileManager.default.createFile(atPath: url.path, contents: "testfile".data(using: .utf8)!)
