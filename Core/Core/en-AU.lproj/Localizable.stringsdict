@@ -173,7 +173,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d needs grading</string>
+			<string>%d needs marking</string>
 			<key>other</key>
 			<string>%d need marking</string>
 		</dict>
@@ -245,7 +245,7 @@
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Final Grade: %#@points@</string>
+		<string>Final Mark: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
