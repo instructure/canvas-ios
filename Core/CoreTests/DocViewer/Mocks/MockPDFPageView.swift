@@ -27,7 +27,7 @@ class MockPDFPageView: PDFPageView {
     }
 
     override func presentInspector(for annotations: [Annotation],
-                                   options: [PresentationOption : Any] = [:],
+                                   options: [PresentationOption: Any] = [:],
                                    animated: Bool = true,
                                    completion: (() -> Void)? = nil)
     -> UIViewController? {

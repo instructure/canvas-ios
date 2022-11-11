@@ -196,5 +196,3 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.syncAnnotationsButton.title(for: .normal), "All annotations saved.")
     }
 }
-
-
