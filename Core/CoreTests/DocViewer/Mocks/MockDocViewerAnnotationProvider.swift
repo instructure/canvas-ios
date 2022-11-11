@@ -21,6 +21,7 @@ import PSPDFKit
 
 class MockDocViewerAnnotationProvider: DocViewerAnnotationProvider {
     let document: Document
+    var mockGetRepliesToAnnotationMethodResult: [DocViewerCommentReplyAnnotation] = []
 
     init(isAnnotatingDisabledInApp: Bool, isAPIEnabledAnnotations: Bool) {
         let bundle = Bundle(for: DocViewerAnnotationProviderTests.self)
@@ -34,5 +35,9 @@ class MockDocViewerAnnotationProvider: DocViewerAnnotationProvider {
                    api: API(),
                    sessionID: "",
                    isAnnotationEditingDisabled: isAnnotatingDisabledInApp)
+    }
+
+    override func getReplies(to: Annotation) -> [DocViewerCommentReplyAnnotation] {
+        mockGetRepliesToAnnotationMethodResult
     }
 }

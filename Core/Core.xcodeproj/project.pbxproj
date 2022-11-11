@@ -905,6 +905,7 @@
 		CF4A5A5127A96AE000948E14 /* DashboardCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */; };
 		CF4BDB5C26453A3000A91952 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */; };
 		CF4BDB6026453BD900A91952 /* K5DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */; };
+		CF4C1E3F291EA241003E455D /* MockPDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4C1E3E291EA241003E455D /* MockPDFDocument.swift */; };
 		CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */; };
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
 		CF5123DB26BA922E00C1EB27 /* HorizontalPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */; };
@@ -1135,6 +1136,8 @@
 		CFDB61FE28AD3B650008C3F3 /* FileSubmissionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */; };
 		CFDB620028AE46C80008C3F3 /* FileSubmissionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */; };
 		CFDCF956291E912E0023E111 /* MockFileTextAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDCF955291E912E0023E111 /* MockFileTextAnnotation.swift */; };
+		CFDCF958291E92AC0023E111 /* MenuItemsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDCF957291E92AC0023E111 /* MenuItemsTests.swift */; };
+		CFDCF95A291E93650023E111 /* MockPDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDCF959291E93650023E111 /* MockPDFPageView.swift */; };
 		CFE307BD27FC72D00075F1CB /* lato_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE307BC27FC72D00075F1CB /* lato_bold.ttf */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */; };
@@ -2423,6 +2426,7 @@
 		CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardsViewModel.swift; sourceTree = "<group>"; };
 		CF4BDB5B26453A3000A91952 /* K5DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardView.swift; sourceTree = "<group>"; };
 		CF4BDB5F26453BD900A91952 /* K5DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModel.swift; sourceTree = "<group>"; };
+		CF4C1E3E291EA241003E455D /* MockPDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPDFDocument.swift; sourceTree = "<group>"; };
 		CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
 		CF5123DA26BA922E00C1EB27 /* HorizontalPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPager.swift; sourceTree = "<group>"; };
@@ -2653,6 +2657,8 @@
 		CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionStateTests.swift; sourceTree = "<group>"; };
 		CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionAssembly.swift; sourceTree = "<group>"; };
 		CFDCF955291E912E0023E111 /* MockFileTextAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileTextAnnotation.swift; sourceTree = "<group>"; };
+		CFDCF957291E92AC0023E111 /* MenuItemsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsTests.swift; sourceTree = "<group>"; };
+		CFDCF959291E93650023E111 /* MockPDFPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPDFPageView.swift; sourceTree = "<group>"; };
 		CFE307BC27FC72D00075F1CB /* lato_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_bold.ttf; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModelTests.swift; sourceTree = "<group>"; };
@@ -5768,6 +5774,7 @@
 			isa = PBXGroup;
 			children = (
 				CFA9A180291E43FB00462495 /* DocViewerAnnotationContextMenuModelTests.swift */,
+				CFDCF957291E92AC0023E111 /* MenuItemsTests.swift */,
 			);
 			path = AnnotationContextMenu;
 			sourceTree = "<group>";
@@ -5777,6 +5784,8 @@
 			children = (
 				CFA9A183291E5D3C00462495 /* MockDocViewerAnnotationProvider.swift */,
 				CFDCF955291E912E0023E111 /* MockFileTextAnnotation.swift */,
+				CFDCF959291E93650023E111 /* MockPDFPageView.swift */,
+				CF4C1E3E291EA241003E455D /* MockPDFDocument.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -7045,6 +7054,7 @@
 				7D264DD12538E20C007CDD90 /* CoreHostingControllerTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
 				7D26B84B23A8266800262380 /* ConversationMessageTests.swift in Sources */,
+				CFDCF958291E92AC0023E111 /* MenuItemsTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWebTests.swift in Sources */,
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
 				CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */,
@@ -7315,6 +7325,7 @@
 				3B3FCA2D238026D00011F11A /* ActivityTests.swift in Sources */,
 				7DF4AADA2489430C00B07BB8 /* AppStoreReviewTests.swift in Sources */,
 				CFB06F9828BDF64500DAC40B /* FileSubmissionSubmitterTests.swift in Sources */,
+				CFDCF95A291E93650023E111 /* MockPDFPageView.swift in Sources */,
 				7D26B84923A81E5700262380 /* ConversationTests.swift in Sources */,
 				CFFA9D782668BF1700C1648E /* K5HomeroomViewModelTests.swift in Sources */,
 				B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */,
@@ -7327,6 +7338,7 @@
 				CFB06FB628C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
+				CF4C1E3F291EA241003E455D /* MockPDFDocument.swift in Sources */,
 				CF6C101026CA4F00002E7FE6 /* K5ScheduleItemInfoTests.swift in Sources */,
 				3BEA6CCB24588D1400BE4589 /* AttachmentCardsViewControllerTests.swift in Sources */,
 				7D7F71DC241FD90600D6F9CB /* APIDateTests.swift in Sources */,

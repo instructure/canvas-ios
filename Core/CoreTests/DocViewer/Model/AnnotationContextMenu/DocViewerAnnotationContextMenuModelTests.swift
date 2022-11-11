@@ -189,7 +189,7 @@ class DocViewerAnnotationContextMenuModelTests: CoreTestCase {
         let annotationView = FreeTextAnnotationView()
         annotationView.resizableView = resizableView
         let pageView = MockPDFPageView(frame: .zero)
-        pageView.annotationView = annotationView
+        pageView.mockAnnotationView = annotationView
         XCTAssertTrue(resizableView.allowRotating)
 
         let testee = makeTestee(isAnnotatingEnabledInApp: true, isAPIEnabledAnnotations: true)

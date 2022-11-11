@@ -197,23 +197,4 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 }
 
-class MockPDFDocument: Document {
-    var added: [Annotation]?
-    override func add(annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> Bool {
-        added = annotations
-        return false
-    }
 
-    var removed: [Annotation]?
-    override func remove(annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> Bool {
-        removed = annotations
-        return false
-    }
-}
-
-class MockPDFPageView: PDFPageView {
-    var annotationView: (UIView & AnnotationPresenting)?
-    override func annotationView(for annotation: Annotation) -> (UIView & AnnotationPresenting)? {
-        return annotationView
-    }
-}
