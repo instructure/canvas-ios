@@ -126,11 +126,18 @@ post_install do |installer|
     end
   end
 
+  # https://github.com/CocoaPods/CocoaPods/issues/11553
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings['DEAD_CODE_STRIPPING'] = 'YES'
+  end
+
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
       config.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
       config.build_settings.delete('ONLY_ACTIVE_ARCH')
+      # Remove ARCHS settings from Pods, let them inherit from workspace / https://github.com/CocoaPods/CocoaPods/issues/10189
+      config.build_settings.delete 'ARCHS'
       # This was added to work around an Xcode 13.3 bug when deploying to iOS 14 devices. https://developer.apple.com/forums/thread/702028?answerId=708408022
       config.build_settings['OTHER_LDFLAGS'] = '$(inherited) -Xlinker -no_fixup_chains'
     end
