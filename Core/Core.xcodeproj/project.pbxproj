@@ -1046,6 +1046,8 @@
 		CFA20BD927FC805B009A6DDA /* lato_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFA20BD727FC805B009A6DDA /* lato_italic.ttf */; };
 		CFA3898828AE86F3006AF68F /* FileSubmissionComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */; };
 		CFA56E4728352AB0007C15D7 /* DashboardInvitationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA56E4628352AB0007C15D7 /* DashboardInvitationViewModel.swift */; };
+		CFA9A181291E43FB00462495 /* DocViewerAnnotationContextMenuModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9A180291E43FB00462495 /* DocViewerAnnotationContextMenuModelTests.swift */; };
+		CFA9A184291E5D3C00462495 /* MockDocViewerAnnotationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9A183291E5D3C00462495 /* MockDocViewerAnnotationProvider.swift */; };
 		CFABA2502742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */; };
 		CFAD0D102817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */; };
 		CFAD0D1328181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */; };
@@ -1132,6 +1134,7 @@
 		CFDB61FC28AD2FC70008C3F3 /* FileSubmissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */; };
 		CFDB61FE28AD3B650008C3F3 /* FileSubmissionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */; };
 		CFDB620028AE46C80008C3F3 /* FileSubmissionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */; };
+		CFDCF956291E912E0023E111 /* MockFileTextAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDCF955291E912E0023E111 /* MockFileTextAnnotation.swift */; };
 		CFE307BD27FC72D00075F1CB /* lato_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE307BC27FC72D00075F1CB /* lato_bold.ttf */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */; };
@@ -2562,6 +2565,8 @@
 		CFA20BD727FC805B009A6DDA /* lato_italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_italic.ttf; sourceTree = "<group>"; };
 		CFA3898728AE86F3006AF68F /* FileSubmissionComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionComposer.swift; sourceTree = "<group>"; };
 		CFA56E4628352AB0007C15D7 /* DashboardInvitationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationViewModel.swift; sourceTree = "<group>"; };
+		CFA9A180291E43FB00462495 /* DocViewerAnnotationContextMenuModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationContextMenuModelTests.swift; sourceTree = "<group>"; };
+		CFA9A183291E5D3C00462495 /* MockDocViewerAnnotationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProvider.swift; sourceTree = "<group>"; };
 		CFABA24F2742B8AE0096948F /* DocViewerAnnotationContextMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationContextMenuModel.swift; sourceTree = "<group>"; };
 		CFAD0D0F2817EC050017D07B /* DocViewerAnnotationUploaderQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderQueue.swift; sourceTree = "<group>"; };
 		CFAD0D1228181E010017D07B /* DocViewerAnnotationUploaderQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderQueueTests.swift; sourceTree = "<group>"; };
@@ -2647,6 +2652,7 @@
 		CFDB61FB28AD2FC70008C3F3 /* FileSubmissionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionState.swift; sourceTree = "<group>"; };
 		CFDB61FD28AD3B650008C3F3 /* FileSubmissionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionStateTests.swift; sourceTree = "<group>"; };
 		CFDB61FF28AE46C80008C3F3 /* FileSubmissionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionAssembly.swift; sourceTree = "<group>"; };
+		CFDCF955291E912E0023E111 /* MockFileTextAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileTextAnnotation.swift; sourceTree = "<group>"; };
 		CFE307BC27FC72D00075F1CB /* lato_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_bold.ttf; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModelTests.swift; sourceTree = "<group>"; };
@@ -3907,6 +3913,7 @@
 		7D7472D7218CD73D00CE1430 /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9A182291E5D3200462495 /* Mocks */,
 				CF490F1E28538F830065D242 /* ViewModel */,
 				CFAD0D1128181DF40017D07B /* Model */,
 				7D2DC2F92199FD47008FE29A /* Fixtures */,
@@ -5757,6 +5764,23 @@
 			path = Invitations;
 			sourceTree = "<group>";
 		};
+		CFA9A17F291E43EA00462495 /* AnnotationContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				CFA9A180291E43FB00462495 /* DocViewerAnnotationContextMenuModelTests.swift */,
+			);
+			path = AnnotationContextMenu;
+			sourceTree = "<group>";
+		};
+		CFA9A182291E5D3200462495 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				CFA9A183291E5D3C00462495 /* MockDocViewerAnnotationProvider.swift */,
+				CFDCF955291E912E0023E111 /* MockFileTextAnnotation.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		CFAD0D0D2817D91A0017D07B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5783,6 +5807,7 @@
 		CFAD0D1128181DF40017D07B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9A17F291E43EA00462495 /* AnnotationContextMenu */,
 				CFBF1DF5281FDC0100DA99F7 /* AnnotationUpload */,
 			);
 			path = Model;
@@ -7075,6 +7100,7 @@
 				7D70DEA2233EADBB00F5C3D4 /* CommunicationChannelTests.swift in Sources */,
 				7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */,
 				7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */,
+				CFDCF956291E912E0023E111 /* MockFileTextAnnotation.swift in Sources */,
 				B1487F93243E333200013404 /* ModuleItemDetailsViewControllerTests.swift in Sources */,
 				B1D5EF602358D93100B3ACD3 /* LoginWebViewControllerTests.swift in Sources */,
 				D9BFFC7325921C04001B5E7B /* ContextCardTests.swift in Sources */,
@@ -7297,6 +7323,7 @@
 				7D80AC56212CF41900C40ECE /* APIRequestableTests.swift in Sources */,
 				7D6E580A2551F0510068D3C3 /* AnnouncementListViewControllerTests.swift in Sources */,
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
+				CFA9A184291E5D3C00462495 /* MockDocViewerAnnotationProvider.swift in Sources */,
 				CFB06FB628C4F5BC00DAC40B /* AllFileUploadFinishedCheckTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
@@ -7435,6 +7462,7 @@
 				CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */,
 				EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */,
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
+				CFA9A181291E43FB00462495 /* DocViewerAnnotationContextMenuModelTests.swift in Sources */,
 				7DD4763C23FF21B600AB045C /* CalendarDaysViewControllerTests.swift in Sources */,
 				7D54D6B32464705100409520 /* DiscussionDetailsViewControllerTests.swift in Sources */,
 				CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */,
