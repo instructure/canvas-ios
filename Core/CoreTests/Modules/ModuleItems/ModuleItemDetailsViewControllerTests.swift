@@ -25,13 +25,12 @@ import Combine
 class ModuleItemDetailsViewControllerTests: CoreTestCase {
     class DetailViewController: UIViewController {}
 
-    private var observer: NSObjectProtocol?
-
+    var subscriptions = Set<AnyCancellable>()
     lazy var controller = ModuleItemDetailsViewController.create(courseID: "1", moduleID: "2", itemID: "3")
 
     override func tearDown() {
         super.tearDown()
-        observer = nil
+        subscriptions.removeAll()
     }
 
     func testLayout() {
@@ -177,10 +176,12 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
 
     func testMarkAsDone() {
         let expectation = XCTestExpectation(description: "notification sent")
-        observer = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [self] _ in
-            NotificationCenter.default.removeObserver(self.observer!)
-            expectation.fulfill()
-        }
+
+        NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted)
+            .first()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+
         api.mock(controller.store, value: .make(
             id: "3",
             completion_requirement: .make(type: .must_mark_done, completed: false)
@@ -205,10 +206,11 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     func testMarkAsViewed() {
         router.mock("/?origin=module_item_details") { DetailViewController() }
         let expectation = XCTestExpectation(description: "notification sent")
-        observer = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [self] _ in
-            NotificationCenter.default.removeObserver(self.observer!)
-            expectation.fulfill()
-        }
+
+        NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted)
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+
         api.mock(controller.store, value: .make(
             id: "3",
             url: URL(string: "/")!,
@@ -223,12 +225,9 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         let expectation = XCTestExpectation(description: "notification was sent when it should not have been")
         expectation.isInverted = true
 
-        var cancellable: AnyCancellable?
-        cancellable = NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted)
-            .sink { _ in
-                cancellable?.cancel()
-                expectation.fulfill()
-            }
+        NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted)
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
 
         api.mock(controller.store, value: .make(
             id: "3",
