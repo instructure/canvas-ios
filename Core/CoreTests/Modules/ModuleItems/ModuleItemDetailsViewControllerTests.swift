@@ -20,6 +20,7 @@ import Foundation
 @testable import Core
 import XCTest
 @testable import TestsFoundation
+import Combine
 
 class ModuleItemDetailsViewControllerTests: CoreTestCase {
     class DetailViewController: UIViewController {}
@@ -221,10 +222,14 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         router.mock("/?origin=module_item_details") { DetailViewController() }
         let expectation = XCTestExpectation(description: "notification was sent when it should not have been")
         expectation.isInverted = true
-        observer = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [self] _ in
-            NotificationCenter.default.removeObserver(self.observer!)
-            expectation.fulfill()
-        }
+
+        var cancellable: AnyCancellable?
+        cancellable = NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted)
+            .sink { _ in
+                cancellable?.cancel()
+                expectation.fulfill()
+            }
+
         api.mock(controller.store, value: .make(
             id: "3",
             url: URL(string: "/")!,
