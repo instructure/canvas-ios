@@ -1041,6 +1041,8 @@
 		CF9A0F4727EA2FFC00762228 /* LTICellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */; };
 		CF9A0F4B27ECA3CF00762228 /* DefaultViewProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4A27ECA3CE00762228 /* DefaultViewProviderTests.swift */; };
 		CF9A0F4D27ECAA5900762228 /* GenericCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A0F4C27ECAA5900762228 /* GenericCellViewModelTests.swift */; };
+		CF9D2262291EB12000B19EF0 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9D2261291EB12000B19EF0 /* DashboardViewModel.swift */; };
+		CF9D2264291EB64600B19EF0 /* DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9D2263291EB64600B19EF0 /* DashboardViewModelTests.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CF9FE7FF2673B770004BDE58 /* font_balsamiq_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */; };
 		CFA078B02791D35B0078B27B /* TopBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */; };
@@ -2563,6 +2565,8 @@
 		CF9A0F4627EA2FFC00762228 /* LTICellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTICellViewModelTests.swift; sourceTree = "<group>"; };
 		CF9A0F4A27ECA3CE00762228 /* DefaultViewProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewProviderTests.swift; sourceTree = "<group>"; };
 		CF9A0F4C27ECAA5900762228 /* GenericCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellViewModelTests.swift; sourceTree = "<group>"; };
+		CF9D2261291EB12000B19EF0 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		CF9D2263291EB64600B19EF0 /* DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelTests.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CF9FE7FE2673B770004BDE58 /* font_balsamiq_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_balsamiq_regular.css; sourceTree = "<group>"; };
 		CFA078AF2791D35B0078B27B /* TopBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModelTests.swift; sourceTree = "<group>"; };
@@ -5450,6 +5454,7 @@
 				CF4A5A5027A96AE000948E14 /* DashboardCardsViewModel.swift */,
 				CF748D1C274D43B9000EA34E /* DashboardConferencesViewModel.swift */,
 				CF43DE7C27BE3C8200015B6F /* DashboardLayoutViewModel.swift */,
+				CF9D2261291EB12000B19EF0 /* DashboardViewModel.swift */,
 				B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */,
 				B453728728B3B25C00B65BE1 /* FileUploadNotificationCardItemViewModel.swift */,
 			);
@@ -5463,6 +5468,7 @@
 				CFFE286127ABA4DF0029A408 /* DashboardCardsViewModelTests.swift */,
 				CF748D20274D52C6000EA34E /* DashboardConferencesViewModelTests.swift */,
 				CF43DE7E27BE6B9100015B6F /* DashboardLayoutViewModelTests.swift */,
+				CF9D2263291EB64600B19EF0 /* DashboardViewModelTests.swift */,
 				B472C7DC28D9D68300C3B6CA /* FileUploadNotificationCardListViewModelTests.swift */,
 				B4A687C528DA190800CCCD5C /* FileUploadNotificationCardItemViewModelTests.swift */,
 			);
@@ -7303,6 +7309,7 @@
 				3B1988B524256CE7004ADCC6 /* PairWithObserverViewControllerTests.swift in Sources */,
 				3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */,
 				CF0075E02875C56500588E40 /* InputStreamExtensionsTests.swift in Sources */,
+				CF9D2264291EB64600B19EF0 /* DashboardViewModelTests.swift in Sources */,
 				D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */,
 				D9B6495028F454A30035CE14 /* QuizDetailsViewModelTests.swift in Sources */,
 				7D8B78F8215EC74A005E08F1 /* UIImageExtensionsTests.swift in Sources */,
@@ -8018,6 +8025,7 @@
 				CF6C7FC626F8D106002937E5 /* SubmitAssignmentExtensionView.swift in Sources */,
 				E83BB40625196E2C000E5B00 /* ConversationListCell.swift in Sources */,
 				CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */,
+				CF9D2262291EB12000B19EF0 /* DashboardViewModel.swift in Sources */,
 				7DA2602223F7227A005D2121 /* UIButtonExtensions.swift in Sources */,
 				7DA2609A23F7233D005D2121 /* Store.swift in Sources */,
 				7DA2601523F7227A005D2121 /* UIImageViewExtensions.swift in Sources */,

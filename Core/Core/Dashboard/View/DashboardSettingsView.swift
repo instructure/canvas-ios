@@ -18,16 +18,16 @@
 
 import SwiftUI
 
-struct DashboardSettingsView: View {
+public struct DashboardSettingsView: View {
     @ObservedObject private var viewModel: DashboardSettingsViewModel
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 24
 
-    init(viewModel: DashboardSettingsViewModel) {
+    public init(viewModel: DashboardSettingsViewModel) {
         self.viewModel = viewModel
     }
 
-    var body: some View {
+    public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 header(label: Text("Display As", bundle: .core))

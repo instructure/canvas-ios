@@ -19,6 +19,7 @@
 import SwiftUI
 
 public struct DashboardCardView: View {
+    @StateObject var viewModel: DashboardViewModel
     @ObservedObject var cards: DashboardCardsViewModel
     @ObservedObject var colors: Store<GetCustomColors>
     @ObservedObject var groups: Store<GetDashboardGroups>
@@ -49,6 +50,7 @@ public struct DashboardCardView: View {
         groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
+        _viewModel = StateObject(wrappedValue: DashboardViewModel(environment: env))
     }
 
     public var body: some View {
@@ -84,6 +86,27 @@ public struct DashboardCardView: View {
             }
         }
         .onReceive(invitationsViewModel.coursesChanged) { _ in refresh(force: true) }
+        .onReceive(viewModel.showSettings) { event in
+            showSettings(event.view, viewSize: event.viewSize)
+        }
+    }
+
+    private func showSettings(_ settingsViewController: UIViewController, viewSize: CGSize) {
+        settingsViewController.preferredContentSize = viewSize
+        settingsViewController.modalPresentationStyle = .popover
+
+        // Position the popover's arrow to point to the settings button
+        if let popoverController = settingsViewController.popoverPresentationController {
+            popoverController.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
+            popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
+        }
+
+        env.router.show(
+            settingsViewController,
+            from: controller,
+            options: .modal(.popover),
+            analyticsRoute: "/dashboard/settings"
+        )
     }
 
     private func setStyle(style: UIUserInterfaceStyle?) {
@@ -113,26 +136,8 @@ public struct DashboardCardView: View {
                     controller.value.presentedViewController?.dismiss(animated: true)
                     return
                 }
-                let interactor = DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults!)
-                let viewModel = DashboardSettingsViewModel(interactor: interactor)
-                let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
-                dashboard.addDoneButton(side: .left)
-                let container = HelmNavigationController(rootViewController: dashboard)
-                container.preferredContentSize = viewModel.popoverSize
-                container.modalPresentationStyle = .popover
 
-                // Position the popover's arrow to point to the settings button
-                if let popoverController = container.popoverPresentationController {
-                    popoverController.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
-                    popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
-                }
-
-                env.router.show(
-                    container,
-                    from: controller,
-                    options: .modal(.popover),
-                    analyticsRoute: "/dashboard/settings"
-                )
+                viewModel.settingsButtonTapped.send(())
             } label: {
                 Image.settingsLine
                     .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
