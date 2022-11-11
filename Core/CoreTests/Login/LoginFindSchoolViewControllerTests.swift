@@ -27,6 +27,11 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
 
     lazy var controller = LoginFindSchoolViewController.create(loginDelegate: self, method: .normalLogin)
 
+    override func tearDown() {
+        UserDefaults.standard.removeObject(forKey: "lastLoginAccount")
+        super.tearDown()
+    }
+
     func testResults() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)

@@ -146,6 +146,11 @@ class LoginFindSchoolViewController: UIViewController {
             host = "\(host).instructure.com"
         }
         searchField.resignFirstResponder()
+        if let account = accounts.first(where: { $0.domain == host }) {
+            env.lastLoginAccount = account
+        } else {
+            env.lastLoginAccount = APIAccountResult(name: "", domain: host, authentication_provider: nil)
+        }
         showLoginForHost(host)
     }
 
@@ -198,6 +203,7 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
             loginDelegate?.openExternalURL(url)
         } else {
             let account = accounts[indexPath.row]
+            env.lastLoginAccount = account
             showLoginForHost(account.domain, authenticationProvider: account.authentication_provider)
         }
     }
