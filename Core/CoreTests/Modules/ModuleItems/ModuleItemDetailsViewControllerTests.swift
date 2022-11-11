@@ -24,7 +24,14 @@ import XCTest
 class ModuleItemDetailsViewControllerTests: CoreTestCase {
     class DetailViewController: UIViewController {}
 
+    private var observer: NSObjectProtocol?
+
     lazy var controller = ModuleItemDetailsViewController.create(courseID: "1", moduleID: "2", itemID: "3")
+
+    override func tearDown() {
+        super.tearDown()
+        observer = nil
+    }
 
     func testLayout() {
         router.mock("/courses/1/files/2?origin=module_item_details") {
@@ -169,9 +176,8 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
 
     func testMarkAsDone() {
         let expectation = XCTestExpectation(description: "notification sent")
-        var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { _ in
-            NotificationCenter.default.removeObserver(token!)
+        observer = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [self] _ in
+            NotificationCenter.default.removeObserver(self.observer!)
             expectation.fulfill()
         }
         api.mock(controller.store, value: .make(
@@ -198,9 +204,8 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     func testMarkAsViewed() {
         router.mock("/?origin=module_item_details") { DetailViewController() }
         let expectation = XCTestExpectation(description: "notification sent")
-        var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { _ in
-            NotificationCenter.default.removeObserver(token!)
+        observer = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [self] _ in
+            NotificationCenter.default.removeObserver(self.observer!)
             expectation.fulfill()
         }
         api.mock(controller.store, value: .make(
@@ -216,9 +221,8 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         router.mock("/?origin=module_item_details") { DetailViewController() }
         let expectation = XCTestExpectation(description: "notification was sent when it should not have been")
         expectation.isInverted = true
-        var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { _ in
-            NotificationCenter.default.removeObserver(token!)
+        observer = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { [self] _ in
+            NotificationCenter.default.removeObserver(self.observer!)
             expectation.fulfill()
         }
         api.mock(controller.store, value: .make(

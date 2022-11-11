@@ -31,6 +31,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     var navigation: UINavigationController!
     var saveWasCalled = false
     var didSaveExpectation: XCTestExpectation!
+    var observer: NSObjectProtocol?
 
     override func setUp() {
         super.setUp()
@@ -46,6 +47,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         if let url = controller.localURL, FileManager.default.fileExists(atPath: url.path) {
             XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
         }
+        observer = nil
     }
 
     func testLayout() {
@@ -166,9 +168,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
     func testModel() {
         mock(APIFile.make(filename: "File.usdz", contentType: "model/vnd.usdz+zip", mime_class: "file"))
         let done = expectation(description: "done")
-        var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
-            NotificationCenter.default.removeObserver(token!)
+        observer = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { [self] _ in
+            NotificationCenter.default.removeObserver(self.observer!)
             done.fulfill()
         }
         controller.view.layoutIfNeeded()
