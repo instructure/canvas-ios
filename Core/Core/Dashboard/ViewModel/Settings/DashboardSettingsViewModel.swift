@@ -30,8 +30,7 @@ public class DashboardSettingsViewModel: ObservableObject {
     public let popoverSize: CGSize
 
     // MARK: - Inputs
-    public let setGridLayout = PassthroughSubject<Void, Never>()
-    public let setListLayout = PassthroughSubject<Void, Never>()
+    public let setLayout = PassthroughSubject<DashboardLayout, Never>()
 
     // MARK: - Private
     private let interactor: DashboardSettingsInteractor
@@ -60,9 +59,7 @@ public class DashboardSettingsViewModel: ObservableObject {
     }
 
     private func bindUserInputsToInteractor() {
-        let gridPublisher = setGridLayout.map { DashboardLayout.grid }
-        let listPublisher = setListLayout.map { DashboardLayout.list }
-        Publishers.Merge(gridPublisher, listPublisher)
+        setLayout
             .subscribe(interactor.layout)
             .store(in: &subscriptions)
 

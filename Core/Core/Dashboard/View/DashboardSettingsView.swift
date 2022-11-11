@@ -97,14 +97,14 @@ struct DashboardSettingsView: View {
         layoutButton(label: Text("Grid", bundle: .core),
                      icon: .dashboardLayoutGrid,
                      isSelected: viewModel.layout == .grid,
-                     action: { viewModel.setGridLayout.send(()) })
+                     action: { viewModel.setLayout.send(.grid) })
     }
 
     private var listButton: some View {
         layoutButton(label: Text("List", bundle: .core),
                      icon: .dashboardLayoutList,
                      isSelected: viewModel.layout == .list,
-                     action: { viewModel.setListLayout.send(()) })
+                     action: { viewModel.setLayout.send(.list) })
     }
 
     private func layoutButton(label: Text,
