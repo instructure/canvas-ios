@@ -70,14 +70,14 @@ public struct IndeterminateCircleProgressViewStyle: ProgressViewStyle {
                 }
                 .rotationEffect(rotate)
                 .onAppear {
-                    fillWidth = 0.1
-                    rotate = .zero
-                    fillRotate = .zero
-
-                    // Until the animation timer's first fire we still need to show some animation
-                    progressAnimation()
-
                     DispatchQueue.main.async {
+                        fillWidth = 0.1
+                        rotate = .zero
+                        fillRotate = .zero
+
+                        // Until the animation timer's first fire we still need to show some animation
+                        progressAnimation()
+
                         withAnimation(.linear(duration: 2.25).repeatForever(autoreverses: false)) {
                             rotate = Angle(radians: 2 * .pi)
                         }
