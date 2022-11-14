@@ -125,9 +125,11 @@ extension UIColor {
     ///
     /// If the user asked for more contrast, and there isn't enough, return a high enough contrasting color.
     /// This is intended to be used with branding colors
-    public func ensureContrast(against: UIColor, inHighContrast: Bool = UIAccessibility.isDarkerSystemColorsEnabled) -> UIColor {
+    public func ensureContrast(against: UIColor) -> UIColor {
         let minRatio: CGFloat = 4.5
-        guard inHighContrast && contrast(against: against) < minRatio else { return self }
+        guard contrast(against: against) < minRatio else {
+            return self
+        }
 
         // This can iterate up to 200ish times, if performance becomes a problem we can instead
         // return against.luminance < 0.5 ? .white : .black
