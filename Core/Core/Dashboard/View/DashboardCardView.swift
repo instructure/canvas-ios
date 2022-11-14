@@ -97,8 +97,21 @@ public struct DashboardCardView: View {
 
         // Position the popover's arrow to point to the settings button
         if let popoverController = settingsViewController.popoverPresentationController {
-            popoverController.sourceView = controller.value.navigationItem.rightBarButtonItem?.customView
+            var navButtonView = controller.value.navigationItem.rightBarButtonItem?.customView
+
+            if navButtonView == nil,
+               #available(iOS 16.0, *),
+               let trailingView = controller.value.navigationItem.trailingItemGroups.first?.barButtonItems.first?.customView {
+                navButtonView = trailingView
+            }
+
+            popoverController.sourceView = navButtonView
             popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
+
+            if #unavailable(iOS 15) {
+                // Center the arrow on iOS 14
+                popoverController.sourceRect = popoverController.sourceRect.offsetBy(dx: -4, dy: 0)
+            }
         }
 
         env.router.show(
