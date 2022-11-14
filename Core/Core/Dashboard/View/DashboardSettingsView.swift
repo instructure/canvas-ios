@@ -63,7 +63,7 @@ public struct DashboardSettingsView: View {
             .padding(.horizontal, horizontalPadding)
             .padding(.vertical, verticalPadding)
         }
-        .background(Color.backgroundLightest)
+        .background(Color.backgroundLightest.ignoresSafeArea())
         .navigationBarStyle(.modalLight)
         .navigationTitle(Text("Dashboard Settings", bundle: .core))
     }
