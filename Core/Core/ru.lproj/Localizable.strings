@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ отправлено";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ до %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, в %2$@, последнее сообщение было %3$@ %4$@";
 
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d элементов";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d мин.";
 
 /* Number of missing submissions */
 "%d missing" = "%d отсутствует";
@@ -87,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Доступ";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Код доступа:";
 
 /* No comment provided by engineer. */
 "Account Group" = "Рабочая группа клиента";
@@ -145,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Административные предупреждения";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "После %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "После последней попытки";
+
 /* No comment provided by engineer. */
 "Alerts" = "Предупреждения";
 
@@ -177,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Разрешить пользователям комментирование";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Разрешенные попытки:";
+
+/* No comment provided by engineer. */
+"Always" = "Всегда";
 
 /* No comment provided by engineer. */
 "Announcement" = "Объявление";
@@ -257,6 +278,9 @@
 "Assignment Grade Below %d" = "Оценка за задание ниже %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Группа заданий:";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "Задание отсутствует";
 
 /* No comment provided by engineer. */
@@ -327,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "Доступно до:";
+
+/* No comment provided by engineer. */
+"Average" = "Среднее значение";
 
 /* No comment provided by engineer. */
 "Back" = "Назад";
@@ -971,6 +998,9 @@
 "Graded" = "С оценкой";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Оцененное тестирование";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Оцениваемые опросы";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Высокий: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "Самая высокая";
 
 /* No comment provided by engineer. */
 "Homeroom" = "«Домашняя комната»";
@@ -1148,6 +1181,9 @@
 "Late Grading" = "Несвоевременное выставление оценок";
 
 /* No comment provided by engineer. */
+"Latest" = "Последняя";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Запуск внешнего инструмента";
 
 /* No comment provided by engineer. */
@@ -1212,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Определить местонахождение кода QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Заблокировать вопросы после ответа на них:";
 
 /* No comment provided by engineer. */
 "locked" = "заблокировано";
@@ -1448,6 +1487,9 @@
 "No supported files to submit" = "Нет поддерживаемых файлов для отправки";
 
 /* No comment provided by engineer. */
+"No time Limit" = "Без ограничения по времени";
+
+/* No comment provided by engineer. */
 "None" = "Нет";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Не удалось загрузить один или несколько файлов. Проверьте подключение к Интернету и повторите отправку.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "По одному вопросу за раз:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Доступно только студентам по ссылке";
@@ -1637,6 +1682,9 @@
 "Practice Quizzes" = "Практические тесты";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Практические тесты и опросы не имеют подробного представления.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Предпочтения";
 
 /* No comment provided by engineer. */
@@ -1644,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Предварительные условия: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Просмотреть контрольную работу";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Предыдущие идентификаторы";
@@ -1692,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Сведения о тесте";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Тип теста:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Тесты";
@@ -1820,6 +1874,9 @@
 "Score at least %@" = "Набрать по меньшей мере %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Оценка для сохранения:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Оценены выше %g";
 
 /* No comment provided by engineer. */
@@ -1916,6 +1973,9 @@
 "Show a month at a time" = "Показывать месяц за раз";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Показать правильные ответы:";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Показать сводные данные по курсу";
 
 /* No comment provided by engineer. */
@@ -1923,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Показать больше вариантов";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Перемешать ответы:";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Поскольку это групповое обсуждение, у каждой группы есть свой разговор на эту тему. Вот обсуждения, к которым у вас есть доступ.";
@@ -2219,6 +2282,9 @@
 "Time elapsed" = "Время истекло";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Ограничение по времени:";
+
+/* No comment provided by engineer. */
 "Title" = "Заголовок";
 
 /* No comment provided by engineer. */
@@ -2283,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Неподдерживаемый элемент";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "До %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Обновленные языковые настройки";
@@ -2370,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Просмотреть предыдущие объявления";
+
+/* No comment provided by engineer. */
+"View Responses:" = "Просмотреть ответы:";
 
 /* No comment provided by engineer. */
 "Viewed" = "Просмотрено";

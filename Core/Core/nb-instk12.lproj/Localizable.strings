@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ levert";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ til %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@, den siste meldingen var %3$@ %4$@";
 
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d elementer";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d minutter";
 
 /* Number of missing submissions */
 "%d missing" = "%d mangler";
@@ -87,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Tilgang";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Tilgangskode:";
 
 /* No comment provided by engineer. */
 "Account Group" = "Gruppe konto";
@@ -145,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Administrative varslinger";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "Etter %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "Etter siste forsøk";
+
 /* No comment provided by engineer. */
 "Alerts" = "Varsler";
 
@@ -177,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Lar brukere kommentere";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Tillatte forsøk:";
+
+/* No comment provided by engineer. */
+"Always" = "Alltid";
 
 /* No comment provided by engineer. */
 "Announcement" = "Beskjed";
@@ -257,6 +278,9 @@
 "Assignment Grade Below %d" = "Oppgavevurdering under %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Oppgavegruppe:";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "Oppgave mangler";
 
 /* No comment provided by engineer. */
@@ -327,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tilgjengelig til:";
+
+/* No comment provided by engineer. */
+"Average" = "Gjennomsnittlig";
 
 /* No comment provided by engineer. */
 "Back" = "Tilbake";
@@ -971,6 +998,9 @@
 "Graded" = "Vurdert";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Vurdert quiz";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Vurderingsgivende spørreundersøkelser";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Høy: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "Høyest";
 
 /* No comment provided by engineer. */
 "Homeroom" = "Hjem";
@@ -1148,6 +1181,9 @@
 "Late Grading" = "Forsinket vurdering";
 
 /* No comment provided by engineer. */
+"Latest" = "Siste";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Åpne eksternt verktøy";
 
 /* No comment provided by engineer. */
@@ -1212,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Lokalisere QR-kode";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Lås spørsmål etter svar:";
 
 /* No comment provided by engineer. */
 "locked" = "låst";
@@ -1448,6 +1487,9 @@
 "No supported files to submit" = "Ingen støttede filer å sende inn";
 
 /* No comment provided by engineer. */
+"No time Limit" = "Ingen tidsbegrensing";
+
+/* No comment provided by engineer. */
 "None" = "Ingen";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "En eller flere filer kunne ikke lastes opp. Sjekk internettforbindelsen din og prøv å lever på nytt.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "Ett spørsmål av gangen:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Kun tilgjengelig for elever med lenken.";
@@ -1637,6 +1682,9 @@
 "Practice Quizzes" = "Øvelsesquizer";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Øvelsesquizer og spørreundersøkelser har ikke detaljvisning.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferanser";
 
 /* No comment provided by engineer. */
@@ -1644,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Forutsetning: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Forhåndsvis quiz";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Tidligere innlogginger";
@@ -1692,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Quizdetaljer";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Quiz-type:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quizer";
@@ -1820,6 +1874,9 @@
 "Score at least %@" = "Oppnå et minimumsresultat på %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Resutat å beholde:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Fikk mer enn %g";
 
 /* No comment provided by engineer. */
@@ -1916,6 +1973,9 @@
 "Show a month at a time" = "Vis ett måned om gangen";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Vis korrekte svar:";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Vis fagsammendrag";
 
 /* No comment provided by engineer. */
@@ -1923,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Vis flere alternativer";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Stokk svar:";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Siden dette er en gruppe diskusjon, har hver gruppe en egen samtale for dette fag. Her er diskusjonene du har tilgang til.";
@@ -2219,6 +2282,9 @@
 "Time elapsed" = "Brukt tid";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Tidsbegrensning:";
+
+/* No comment provided by engineer. */
 "Title" = "Tittel";
 
 /* No comment provided by engineer. */
@@ -2283,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Ikke-støttet element";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "Til %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Oppdatert språkinnstillinger";
@@ -2370,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Vis tidligere beskjeder";
+
+/* No comment provided by engineer. */
+"View Responses:" = "Vis svar:";
 
 /* No comment provided by engineer. */
 "Viewed" = "Vist";

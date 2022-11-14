@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@提出済み";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@～まで%2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@、%2$@での最終メッセージ日：%3$@%4$@";
 
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%dアイテム";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d分";
 
 /* Number of missing submissions */
 "%d missing" = "%d 欠如";
@@ -87,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "アクセス";
+
+/* No comment provided by engineer. */
+"Access Code:" = "アクセスコード：";
 
 /* No comment provided by engineer. */
 "Account Group" = "アカウントグループ";
@@ -145,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "管理のお知らせ";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "後%@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "前回の試行以降";
+
 /* No comment provided by engineer. */
 "Alerts" = "アラート";
 
@@ -177,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "ユーザーにコメントを許可する";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "許可回数:";
+
+/* No comment provided by engineer. */
+"Always" = "常に";
 
 /* No comment provided by engineer. */
 "Announcement" = "発表";
@@ -257,6 +278,9 @@
 "Assignment Grade Below %d" = "以下の課題の評定 %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "課題グループ：";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "課題がありません";
 
 /* No comment provided by engineer. */
@@ -327,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "最終利用可能日：";
+
+/* No comment provided by engineer. */
+"Average" = "平均";
 
 /* No comment provided by engineer. */
 "Back" = "戻る";
@@ -971,6 +998,9 @@
 "Graded" = "採点済み";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "採点済みの小テスト";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "採点されたアンケート";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
+
+/* No comment provided by engineer. */
+"Highest" = "最高";
 
 /* No comment provided by engineer. */
 "Homeroom" = "ホームルーム";
@@ -1148,6 +1181,9 @@
 "Late Grading" = "遅れた採点";
 
 /* No comment provided by engineer. */
+"Latest" = "最新";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "外部ツールを起動する";
 
 /* No comment provided by engineer. */
@@ -1212,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "QR コードを探す";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "回答後質問をロック：";
 
 /* No comment provided by engineer. */
 "locked" = "ロックされています";
@@ -1448,6 +1487,9 @@
 "No supported files to submit" = "サポートされているファイルはありません";
 
 /* No comment provided by engineer. */
+"No time Limit" = "時間制限なし";
+
+/* No comment provided by engineer. */
 "None" = "なし";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "1つ以上のファイルのアップロードに失敗しました。インターネット接続をチェックしてから、提出を再試行してください。";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "一度に1つの質問：";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "リンク付きの受講者のみ利用可能です";
@@ -1637,6 +1682,9 @@
 "Practice Quizzes" = "練習小テスト";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "演習小テストと調査には詳細ビューはありません。";
+
+/* No comment provided by engineer. */
 "Preferences" = "優先設定";
 
 /* No comment provided by engineer. */
@@ -1644,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "前提条件:%@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "プレビュー小テスト";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "以前のログイン";
@@ -1692,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "小テストの詳細情報";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "保留中のレビュー";
 
 /* No comment provided by engineer. */
 "Quizzes" = "小テスト";
@@ -1820,6 +1874,9 @@
 "Score at least %@" = "最低得点%@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "保存するスコア：";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "（）超えのスコア%g";
 
 /* No comment provided by engineer. */
@@ -1916,6 +1973,9 @@
 "Show a month at a time" = "一度に 1 か月表示する";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "正解を表示する：";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "コースサマリーを表示";
 
 /* No comment provided by engineer. */
@@ -1923,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "オプションを多く表示する";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "回答のシャッフル：";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "これはグループディスカッションのため、各グループはこのトピックについてそれぞれの会話を行います。利用するディスカッションは以下のとおりです。";
@@ -2219,6 +2282,9 @@
 "Time elapsed" = "経過時間";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "制限時間：";
+
+/* No comment provided by engineer. */
 "Title" = "タイトル";
 
 /* No comment provided by engineer. */
@@ -2283,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "サポートされていない項目";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "次の日時から%@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "更新された言語設定";
@@ -2370,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "前の通知を表示する";
+
+/* No comment provided by engineer. */
+"View Responses:" = "レスポンスを表示する：";
 
 /* No comment provided by engineer. */
 "Viewed" = "表示しました";
