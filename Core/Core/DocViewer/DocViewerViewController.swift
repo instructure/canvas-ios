@@ -161,6 +161,7 @@ public class DocViewerViewController: UIViewController {
 
             pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
+            annotationToolbar.tintColor = Brand.shared.primary
             annotationToolbar.isDragButtonSelected
                 .sink { [weak self] isDragEnabled in
                     self?.dragGestureViewModel?.isEnabled = isDragEnabled

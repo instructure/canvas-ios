@@ -136,20 +136,20 @@ public struct Brand: Equatable {
         self.navTextColorActiveLight = navTextColorActive ?? .electric
         self.primaryLight = primary ?? .electric
 
-        self.buttonPrimaryBackgroundDark = buttonPrimaryBackground ?? .electric
-        self.buttonPrimaryTextDark = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: .backgroundLightest) : .white
-        self.buttonSecondaryBackgroundDark = buttonSecondaryBackground ?? .licorice
-        self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: .backgroundLightest) : .white
+        self.buttonPrimaryBackgroundDark = buttonPrimaryBackground != nil ? buttonPrimaryBackground!.ensureContrast(against: .backgroundLightest) : .electric
+        self.buttonPrimaryTextDark = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundDark) : .white
+        self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .licorice
+        self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundDark) : .white
         self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .licorice
         self.headerImageBackgroundDark = headerImageBackground ?? .oxford
         self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .electric
         self.navBackgroundDark = navBackground ?? .oxford
-        self.navBadgeBackgroundDark = navBadgeBackground ?? .electric
-        self.navBadgeTextDark = navBadgeText != nil ? navBadgeText!.ensureContrast(against: .backgroundLightest) : .white
-        self.navIconFillDark = navIconFill != nil ? navIconFill!.ensureContrast(against: .backgroundLightest) : .white
-        self.navIconFillActiveDark = navIconFillActive != nil ? navIconFillActive!.ensureContrast(against: .backgroundLightest) : .electric
-        self.navTextColorDark = navTextColor != nil ? navTextColor!.ensureContrast(against: .backgroundLightest) : .white
-        self.navTextColorActiveDark = navTextColorActive != nil ? navTextColorActive!.ensureContrast(against: .backgroundLightest) : .electric
+        self.navBadgeBackgroundDark = navBadgeBackground != nil ? buttonPrimaryBackground!.ensureContrast(against: self.navBackgroundDark) : .electric
+        self.navBadgeTextDark = navBadgeText != nil ? navBadgeText!.ensureContrast(against: self.navBadgeBackgroundDark) : .white
+        self.navIconFillDark = navIconFill != nil ? navIconFill!.ensureContrast(against: self.navBackgroundDark) : .white
+        self.navIconFillActiveDark = navIconFillActive != nil ? navIconFillActive!.ensureContrast(against: self.navBackgroundDark) : .electric
+        self.navTextColorDark = navTextColor != nil ? navTextColor!.ensureContrast(against: self.navBackgroundDark) : .white
+        self.navTextColorActiveDark = navTextColorActive != nil ? navTextColorActive!.ensureContrast(against: self.navBackgroundDark) : .electric
         self.primaryDark = primary != nil ? primary!.ensureContrast(against: .backgroundLightest) : .electric
     }
 
