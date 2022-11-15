@@ -107,6 +107,8 @@
 		<string>Frameworks/Core.framework/lato_regular.ttf</string>
 		<string>Frameworks/Core.framework/balsamiq_regular.ttf</string>
 		<string>Frameworks/Core.framework/balsamiq_bold.ttf</string>
+		<string>Frameworks/Core.framework/lato_semibold.ttf</string>
+		<string>Frameworks/Core.framework/lato-semibolditalic.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

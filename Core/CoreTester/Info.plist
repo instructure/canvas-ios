@@ -41,6 +41,8 @@
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Frameworks/Core.framework/lato_semibold.ttf</string>
+		<string>Frameworks/Core.framework/lato_semibolditalic.ttf</string>
 		<string>Frameworks/Core.framework/lato_regular.ttf</string>
 		<string>Frameworks/Core.framework/lato_bold.ttf</string>
 		<string>Frameworks/Core.framework/lato_black.ttf</string>
