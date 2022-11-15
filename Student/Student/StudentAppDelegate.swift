@@ -43,7 +43,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
-        initializeHeap()
+        // initializeHeap()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
 
