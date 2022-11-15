@@ -479,24 +479,35 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         }
     }
 
-    public func pdfViewController(
-        _ pdfController: PDFViewController,
-        shouldShow menuItems: [MenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        for annotations: [Annotation]?,
-        in annotationRect: CGRect,
-        on pageView: PDFPageView
-    ) -> [MenuItem] {
-        return menuItems.compactMap { item in
-            guard item.identifier != TextMenu.annotationMenuNote.rawValue else { return nil }
-            if item.identifier == TextMenu.annotationMenuInspector.rawValue {
-                item.title = NSLocalizedString("Style", bundle: .core, comment: "")
-            }
-            if item.identifier == TextMenu.annotationMenuRemove.rawValue {
-                return MenuItem(title: item.title, image: .trashLine, block: item.actionBlock, identifier: item.identifier)
-            }
-            return item
+    /** Menu for tapping on an annotation. */
+    public func pdfViewController(_ sender: PDFViewController,
+                                  menuForAnnotations annotations: [Annotation],
+                                  onPageView pageView: PDFPageView,
+                                  appearance: EditMenuAppearance,
+                                  suggestedMenu: UIMenu)
+    -> UIMenu {
+        guard let annotation = annotations.first else {
+            return suggestedMenu.replacingChildren([])
         }
+
+        let menuActions = suggestedMenu.allActions.compactMap {
+            // Rename Inspector menu to Style
+            if $0.identifier == .PSPDFKit.inspector {
+                return UIAction.style(annotation: annotation, pageView: pageView)
+            }
+            // Replace default red Trash icon menu with custom one
+            if $0.identifier == .PSPDFKit.delete, let document = sender.document {
+                return UIAction.deleteAnnotation(document: document, annotation: annotation)
+            }
+            // Remove Note menu
+            if $0.identifier == .PSPDFKit.comments {
+                return nil
+            }
+
+            return $0
+        }
+
+        return suggestedMenu.replacingChildren(menuActions)
     }
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
