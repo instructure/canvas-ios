@@ -72,6 +72,7 @@ struct CourseCard: View {
             gradePill
                 .accessibility(hidden: true) // handled in the button label
                 .offset(x: 8, y: 8)
+                .zIndex(1)
 
             customizeButton
                 .offset(x: width - 44, y: 0)
