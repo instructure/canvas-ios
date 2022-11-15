@@ -80,7 +80,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testUpdate() {
         Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 2, user_id: "1"))
-        presenter.update()
+        presenter.viewIsReady()
         XCTAssertTrue(view.didEmbed)
         XCTAssertTrue(view.didEmbedInDrawer)
 
@@ -112,6 +112,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testSelectAttempt() {
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1") ], attempt: 1, user_id: "1"))
         Submission.make(from: .make(assignment_id: "1", attempt: 2, user_id: "1"))
+        presenter.viewIsReady()
         presenter.select(attempt: 1)
         XCTAssertEqual(presenter.selectedAttempt, 1)
         XCTAssertEqual(presenter.selectedFileID, "1")
@@ -120,6 +121,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testSelectFileID() {
         Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 2, user_id: "1"))
+        presenter.viewIsReady()
         presenter.select(fileID: "2")
         XCTAssertEqual(presenter.selectedFileID, "2")
         presenter.select(fileID: "bogus")
@@ -129,7 +131,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testSelectDrawerTabComments() {
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 1, user_id: "1"))
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "3"), .make(id: "4") ], attempt: 2, user_id: "1"))
-        presenter.update()
+        presenter.viewIsReady()
         presenter.select(drawerTab: nil)
         XCTAssertEqual(presenter.selectedDrawerTab, .comments)
         XCTAssert(view.embeddedInDrawer is SubmissionCommentsViewController)
@@ -143,7 +145,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testSelectDrawerTabFiles() {
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 1, user_id: "1"))
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "3"), .make(id: "4") ], attempt: 2, user_id: "1"))
-        presenter.update()
+        presenter.viewIsReady()
         presenter.select(drawerTab: .files)
         XCTAssertEqual(presenter.selectedDrawerTab, .files)
         XCTAssert(view.embeddedInDrawer is SubmissionFilesViewController)
@@ -156,6 +158,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
     func testSelectDrawerTabRubric() {
         Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 1, user_id: "1"))
+        presenter.viewIsReady()
         presenter.select(drawerTab: .rubric)
         XCTAssertEqual(presenter.selectedDrawerTab, .rubric)
         XCTAssert(view.embeddedInDrawer is RubricViewController)
@@ -164,7 +167,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedExternalTool() {
         Assignment.make(from: .make(submission_types: [ .external_tool ]))
         Submission.make(from: .make(submission_type: .external_tool))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is LTIViewController)
     }
@@ -174,7 +177,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Submission.make(from: .make(
             attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ], submission_type: .online_upload
         ))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is DocViewerViewController)
     }
@@ -182,7 +185,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedQuiz() throws {
         Assignment.make(from: .make(quiz_id: "1"))
         Submission.make(from: .make(submission_type: .online_quiz))
-        presenter.update()
+        presenter.viewIsReady()
 
         let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)
         XCTAssertEqual(embedded.webView.accessibilityIdentifier, "SubmissionDetails.onlineQuizWebView")
@@ -191,7 +194,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedTextEntry() throws {
         Assignment.make()
         Submission.make(from: .make(submission_type: .online_text_entry))
-        presenter.update()
+        presenter.viewIsReady()
 
         let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)
         XCTAssertEqual(embedded.webView.accessibilityIdentifier, "SubmissionDetails.onlineTextEntryWebView")
@@ -202,7 +205,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Submission.make(from: .make(
             attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ], submission_type: .online_upload
         ))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is DocViewerViewController)
     }
@@ -213,7 +216,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
             attachments: [ .make(mime_class: "video") ],
             submission_type: .online_upload
         ))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is AVPlayerViewController)
     }
@@ -224,7 +227,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
             attachments: [ .make(mime_class: "file") ],
             submission_type: .online_upload
         ))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is CoreWebViewController)
     }
@@ -235,7 +238,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
             attachments: [ .make(contentType: "image/heic", mime_class: "file") ],
             submission_type: .online_upload
         ))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssertNotNil(view.embedded)
         XCTAssert(view.embedded?.view is UIImageView)
@@ -244,7 +247,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedDiscussion() throws {
         Assignment.make()
         Submission.make(from: .make(preview_url: URL(string: "preview"), submission_type: .discussion_topic))
-        presenter.update()
+        presenter.viewIsReady()
 
         let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)
         XCTAssertEqual(embedded.webView.accessibilityIdentifier, "SubmissionDetails.discussionWebView")
@@ -253,7 +256,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedURL() {
         Assignment.make()
         Submission.make(from: .make(submission_type: .online_url))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is UrlSubmissionContentViewController)
     }
@@ -261,7 +264,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedMediaSubmission() {
         Assignment.make()
         Submission.make(from: .make(media_comment: .make(), submission_type: .media_recording ))
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is AVPlayerViewController)
     }
@@ -272,7 +275,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
             external_tool_url: .make(),
             submission_type: .basic_lti_launch
         ))
-        presenter.update()
+        presenter.viewIsReady()
 
         let ltiController = try XCTUnwrap(view.embedded as? LTIViewController)
         XCTAssertEqual(ltiController.tools.url, submission.externalToolURL!)
@@ -286,7 +289,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         let response = CanvaDocsSessionRequest.Response(annotation_context_launch_id: nil, canvadocs_session_url: APIURL(rawValue: URL(string: "https://instructure.com")!))
         api.mock(request, value: response)
 
-        presenter.update()
+        presenter.viewIsReady()
 
         XCTAssert(view.embedded is DocViewerViewController)
 
