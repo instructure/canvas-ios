@@ -33,7 +33,6 @@ struct SideMenuToggleItem: View {
                 title
             }
         })
-        .animation(.default)
         .font(.regular16)
         .foregroundColor(colorScheme == .dark ? .white : .licorice)
         .padding(20)

@@ -161,6 +161,7 @@ public struct CourseDetailsView: View {
                 }
             }
             .listStyle(.plain)
+            .iOS16HideListScrollContentBackground()
             .iOS15Refreshable { completion in
                 viewModel.refresh(completion: completion)
             }

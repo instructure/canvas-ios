@@ -31,7 +31,7 @@ public struct LottieView: UIViewRepresentable {
     }
 
     public func makeUIView(context: Self.Context) -> UIView {
-        let animationView = AnimationView(name: name, bundle: bundle)
+        let animationView = LottieAnimationView(name: name, bundle: bundle)
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = loopMode
         animationView.backgroundBehavior = .pauseAndRestore

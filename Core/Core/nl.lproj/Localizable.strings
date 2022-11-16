@@ -1,6 +1,3 @@
-/* No comment provided by engineer. */
-"-" = "-";
-
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -43,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ ingeleverd";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ tot %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, was het laatste bericht op %3$@ %4$@";
 
@@ -60,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d items";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d Minuten";
 
 /* Number of missing submissions */
 "%d missing" = "%d ontbreekt";
@@ -90,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Toegang";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Toegangscode:";
 
 /* No comment provided by engineer. */
 "Account Group" = "Accountgroep";
@@ -148,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Administratieve meldingen";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "Na %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "Na laatste poging";
+
 /* No comment provided by engineer. */
 "Alerts" = "Waarschuwingen";
 
@@ -180,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Geef gebruikers de mogelijkheid om opmerkingen te geven";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Toegestaan aantal pogingen:";
+
+/* No comment provided by engineer. */
+"Always" = "Altijd";
 
 /* No comment provided by engineer. */
 "Announcement" = "Aankondiging";
@@ -260,6 +278,9 @@
 "Assignment Grade Below %d" = "Opdrachtcijfer lager dan %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Opdrachtgroep:";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "Opdracht ontbreekt";
 
 /* No comment provided by engineer. */
@@ -330,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "Beschikbaar tot:";
+
+/* No comment provided by engineer. */
+"Average" = "Gemiddeld";
 
 /* No comment provided by engineer. */
 "Back" = "Terug";
@@ -974,6 +998,9 @@
 "Graded" = "Beoordeeld";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Beoordeelde toets";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Beoordeelde onderzoeken";
 
 /* No comment provided by engineer. */
@@ -1014,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Hoog: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "Hoogste";
 
 /* No comment provided by engineer. */
 "Homeroom" = "Klas";
@@ -1151,6 +1181,9 @@
 "Late Grading" = "Beoordeling te laat";
 
 /* No comment provided by engineer. */
+"Latest" = "Laatste";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Extern hulpmiddel lanceren";
 
 /* No comment provided by engineer. */
@@ -1215,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "QR-code zoeken";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Vragen na beantwoording vergrendelen:";
 
 /* No comment provided by engineer. */
 "locked" = "vergrendeld";
@@ -1451,6 +1487,9 @@
 "No supported files to submit" = "Geen ondersteunde bestanden om in te leveren";
 
 /* No comment provided by engineer. */
+"No time Limit" = "Geen tijdslimiet";
+
+/* No comment provided by engineer. */
 "None" = "Geen";
 
 /* No comment provided by engineer. */
@@ -1512,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Er kunnen een of meer bestanden niet worden geüpload. Controleer je internetverbinding en probeer opnieuw in te leveren.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "Eén vraag tegelijk:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Alleen beschikbaar voor cursisten met koppeling";
@@ -1640,6 +1682,9 @@
 "Practice Quizzes" = "Oefentoetsen";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Practicumtoetsen en enquêtes hebben geen detailweergaven.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Voorkeuren";
 
 /* No comment provided by engineer. */
@@ -1647,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Eerste vereiste: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Voorbeeld toets weergeven";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Eerdere aanmeldingen";
@@ -1695,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Toetsdetails";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Toetstype:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Toetsen";
@@ -1823,6 +1874,9 @@
 "Score at least %@" = "Minimaal scoren %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Te behouden score:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Hoger gescoord %g";
 
 /* No comment provided by engineer. */
@@ -1919,6 +1973,9 @@
 "Show a month at a time" = "Een maand tegelijk tonen";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Correcte antwoorden tonen:";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Cursusoverzicht weergeven";
 
 /* No comment provided by engineer. */
@@ -1926,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Meer opties weergeven";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Antwoorden schudden:";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Aangezien dit een groepsdiscussie is, voert elke groep zijn eigen gesprek over dit onderwerp. Hier zijn de discussies waartoe je toegang tot hebt.";
@@ -2222,6 +2282,9 @@
 "Time elapsed" = "Verstreken tijd";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Tijdslimiet:";
+
+/* No comment provided by engineer. */
 "Title" = "Titel";
 
 /* No comment provided by engineer. */
@@ -2286,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Niet-ondersteund item";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "Tot %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Bijgewerkte taalinstellingen";
@@ -2373,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Vorige aankondigingen bekijken";
+
+/* No comment provided by engineer. */
+"View Responses:" = "Antwoorden bekijken:";
 
 /* No comment provided by engineer. */
 "Viewed" = "Bekeken";

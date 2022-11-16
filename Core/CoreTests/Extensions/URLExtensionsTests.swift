@@ -44,17 +44,17 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testTemporaryDirectory() {
-        XCTAssertEqual(URL.temporaryDirectory, URL(fileURLWithPath: NSTemporaryDirectory()))
+        XCTAssertEqual(URL.Directories.temporary, URL(fileURLWithPath: NSTemporaryDirectory()))
     }
 
     func testCachesDirectory() {
-        XCTAssertEqual(URL.cachesDirectory, fs.urls(for: .cachesDirectory, in: .userDomainMask)[0])
-        XCTAssertEqual(URL.cachesDirectory, URL.cachesDirectory(appGroup: nil))
+        XCTAssertEqual(URL.Directories.caches, fs.urls(for: .cachesDirectory, in: .userDomainMask)[0])
+        XCTAssertEqual(URL.Directories.caches, URL.Directories.caches(appGroup: nil))
     }
 
     func testAppGroupCachesDirectory() {
-        let expected = URL.sharedContainer("group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
-        let url = URL.cachesDirectory(appGroup: "group.instructure.shared")
+        let expected = URL.Directories.sharedContainers("group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
+        let url = URL.Directories.caches(appGroup: "group.instructure.shared")
         XCTAssertEqual(url, expected)
         var isDir: ObjCBool = false
         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir))
@@ -62,13 +62,13 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testDocumentsDirectory() {
-        XCTAssertEqual(URL.documentsDirectory, fs.urls(for: .documentDirectory, in: .userDomainMask)[0])
+        XCTAssertEqual(URL.Directories.documents, fs.urls(for: .documentDirectory, in: .userDomainMask)[0])
     }
 
     func testMove() throws {
-        let url = URL.temporaryDirectory.appendingPathComponent("original.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("original.txt")
         try "data".write(to: url, atomically: true, encoding: .utf8)
-        let destination = URL.temporaryDirectory.appendingPathComponent("somewhere/over/the/rainbow/other.txt")
+        let destination = URL.Directories.temporary.appendingPathComponent("somewhere/over/the/rainbow/other.txt")
         try? fs.removeItem(at: destination)
         try url.move(to: destination)
         XCTAssertTrue(fs.fileExists(atPath: destination.path))
@@ -78,9 +78,9 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testMoveOverride() throws {
-        let existing = URL.temporaryDirectory.appendingPathComponent("file.txt")
+        let existing = URL.Directories.temporary.appendingPathComponent("file.txt")
         try "existing".write(to: existing, atomically: true, encoding: .utf8)
-        let new = URL.cachesDirectory.appendingPathComponent("file.txt") // same name will cause error w/o override: true
+        let new = URL.Directories.caches.appendingPathComponent("file.txt") // same name will cause error w/o override: true
         try "new".write(to: new, atomically: true, encoding: .utf8)
         XCTAssertThrowsError(try new.move(to: existing, override: false))
         XCTAssertNoThrow(try new.move(to: existing, override: true))
@@ -93,10 +93,10 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testMoveCopy() throws {
-        let source = URL.temporaryDirectory.appendingPathComponent("source.txt")
+        let source = URL.Directories.temporary.appendingPathComponent("source.txt")
         try? fs.removeItem(at: source)
         try "source".write(to: source, atomically: true, encoding: .utf8)
-        let destination = URL.temporaryDirectory.appendingPathComponent("destination.txt")
+        let destination = URL.Directories.temporary.appendingPathComponent("destination.txt")
         try source.move(to: destination, copy: true)
         XCTAssertTrue(fs.fileExists(atPath: source.path))
         XCTAssertTrue(fs.fileExists(atPath: destination.path))
@@ -107,10 +107,10 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testCopy() throws {
-        let source = URL.temporaryDirectory.appendingPathComponent("source.txt")
+        let source = URL.Directories.temporary.appendingPathComponent("source.txt")
         try? fs.removeItem(at: source)
         try "source".write(to: source, atomically: true, encoding: .utf8)
-        let destination = URL.temporaryDirectory.appendingPathComponent("destination.txt")
+        let destination = URL.Directories.temporary.appendingPathComponent("destination.txt")
         try source.copy(to: destination)
         XCTAssertTrue(fs.fileExists(atPath: source.path))
         XCTAssertTrue(fs.fileExists(atPath: destination.path))

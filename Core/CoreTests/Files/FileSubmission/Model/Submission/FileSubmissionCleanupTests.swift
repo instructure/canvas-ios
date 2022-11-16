@@ -21,7 +21,7 @@ import TestsFoundation
 import XCTest
 
 class FileSubmissionCleanupTests: CoreTestCase {
-    private let tempFileURL = URL.temporaryDirectory.appendingPathComponent("FileUploadTargetRequesterTests.txt")
+    private let tempFileURL = URL.Directories.temporary.appendingPathComponent("FileUploadTargetRequesterTests.txt")
 
     override func setUp() {
         super.setUp()

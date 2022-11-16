@@ -122,7 +122,8 @@ extension FilePicker: UIImagePickerControllerDelegate, UINavigationControllerDel
                 delegate?.filePicker(didPick: try image.write())
             } else if let videoURL = info[.mediaURL] as? URL {
                 let destination = URL
-                    .temporaryDirectory
+                    .Directories
+                    .temporary
                     .appendingPathComponent("videos", isDirectory: true)
                     .appendingPathComponent(String(Clock.now.timeIntervalSince1970), isDirectory: true)
                     .appendingPathExtension(videoURL.pathExtension)

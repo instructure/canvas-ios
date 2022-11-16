@@ -17,11 +17,12 @@
 //
 
 import AVKit
-import UIKit
-import Firebase
-import UserNotifications
 import Core
+import Firebase
+import Heap
 import SafariServices
+import UIKit
+import UserNotifications
 
 var currentStudentID: String?
 
@@ -45,6 +46,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             UITestHelpers.setup(self)
         #endif
         setupDefaultErrorHandling()
+        // initializeHeap()
         Analytics.shared.handler = self
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -90,7 +92,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         currentStudentID = environment.userDefaults?.parentCurrentStudentID
         if currentStudentID == nil {
             // UX requires that students are given color schemes in a specific order.
-            // The method call below ensures that we always start with the first color scheme.    
+            // The method call below ensures that we always start with the first color scheme.
             ColorScheme.clear()
         }
         Analytics.shared.logSession(session)
@@ -265,6 +267,13 @@ extension ParentAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         // Google Analytics needs to be disabled for now
 //        Analytics.logEvent(name, parameters: parameters)
+    }
+
+    private func initializeHeap() {
+        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
+        let options = HeapOptions()
+        options.disableAdvertiserIdCapture = true
+        Heap.initialize(heapID, with: options)
     }
 }
 

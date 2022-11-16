@@ -18,7 +18,7 @@ def canvas_crashlytics_rn_firebase_pods
 end
 
 def pspdfkit
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/11.0.0.podspec'
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/12.0.0.podspec'
 end
 
 def react_native_pods
@@ -126,11 +126,18 @@ post_install do |installer|
     end
   end
 
+  # https://github.com/CocoaPods/CocoaPods/issues/11553
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings['DEAD_CODE_STRIPPING'] = 'YES'
+  end
+
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
       config.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
       config.build_settings.delete('ONLY_ACTIVE_ARCH')
+      # Remove ARCHS settings from Pods, let them inherit from workspace / https://github.com/CocoaPods/CocoaPods/issues/10189
+      config.build_settings.delete 'ARCHS'
       # This was added to work around an Xcode 13.3 bug when deploying to iOS 14 devices. https://developer.apple.com/forums/thread/702028?answerId=708408022
       config.build_settings['OTHER_LDFLAGS'] = '$(inherited) -Xlinker -no_fixup_chains'
     end
@@ -144,6 +151,15 @@ post_install do |installer|
     puts "*** Setting #{target.name} target to APPLICATION_EXTENSION_API_ONLY = NO ***"
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+    end
+  end
+
+  # Xcode 13 CODE_SIGNING_ALLOWED was set to NO by default. In Xcode 14 it defaults to YES. 
+  installer.pods_project.targets.each do |target|
+    if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+      target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      end
     end
   end
 end

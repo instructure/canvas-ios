@@ -98,6 +98,9 @@
 		C9A3C046269D7D3100DAE8E1 /* K5UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */; };
 		C9A3C049269D8A2700DAE8E1 /* K5NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C048269D8A2700DAE8E1 /* K5NavigationBar.swift */; };
 		C9A3C09026A8050A00DAE8E1 /* K5CourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */; };
+		C9B4F0A728C1EDDB0085DF28 /* DSAccountNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4F0A628C1EDDB0085DF28 /* DSAccountNotification.swift */; };
+		C9B4F0A928C1EDF30085DF28 /* CreateDSAccountNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4F0A828C1EDF30085DF28 /* CreateDSAccountNotificationRequest.swift */; };
+		C9B4F0AB28C1EE040085DF28 /* DataSeeder+AccountNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4F0AA28C1EE040085DF28 /* DataSeeder+AccountNotification.swift */; };
 		C9BCCA0B27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */; };
 		C9BCCA0D27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */; };
 		C9E9C2F727609B8E00FC60CB /* K5CourseBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */; };
@@ -261,6 +264,9 @@
 		C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5UITestCase.swift; sourceTree = "<group>"; };
 		C9A3C048269D8A2700DAE8E1 /* K5NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5NavigationBar.swift; sourceTree = "<group>"; };
 		C9A3C08F26A8050A00DAE8E1 /* K5CourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseCard.swift; sourceTree = "<group>"; };
+		C9B4F0A628C1EDDB0085DF28 /* DSAccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAccountNotification.swift; sourceTree = "<group>"; };
+		C9B4F0A828C1EDF30085DF28 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
+		C9B4F0AA28C1EE040085DF28 /* DataSeeder+AccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+AccountNotification.swift"; sourceTree = "<group>"; };
 		C9BCCA0A27D5F0B6003E9CB0 /* CreateDSGradesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSGradesRequest.swift; sourceTree = "<group>"; };
 		C9BCCA0C27D5F0C8003E9CB0 /* DataSeeder+DSGrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSGrades.swift"; sourceTree = "<group>"; };
 		C9E9C2F627609B8E00FC60CB /* K5CourseBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseBrowser.swift; sourceTree = "<group>"; };
@@ -648,6 +654,16 @@
 			path = K5;
 			sourceTree = "<group>";
 		};
+		C9B4F0A528C1EDBB0085DF28 /* AccountNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				C9B4F0A628C1EDDB0085DF28 /* DSAccountNotification.swift */,
+				C9B4F0A828C1EDF30085DF28 /* CreateDSAccountNotificationRequest.swift */,
+				C9B4F0AA28C1EE040085DF28 /* DataSeeder+AccountNotification.swift */,
+			);
+			path = AccountNotifications;
+			sourceTree = "<group>";
+		};
 		C9BCCA0727D5F06A003E9CB0 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,6 +685,7 @@
 		CFA078B327981B790078B27B /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				C9B4F0A528C1EDBB0085DF28 /* AccountNotifications */,
 				C9299FDD281020A9003A47C2 /* Discussions */,
 				C909F7CD27C37C2A00CB89DE /* Submissions */,
 				C909F7C627BA7E8600CB89DE /* Pages */,
@@ -1096,6 +1113,7 @@
 				E80936C524C2480B00D15E9A /* ConferenceDetails.swift in Sources */,
 				E80936C624C2480B00D15E9A /* ConferencesList.swift in Sources */,
 				CFA078B8279861500078B27B /* DSUser.swift in Sources */,
+				C9B4F0AB28C1EE040085DF28 /* DataSeeder+AccountNotification.swift in Sources */,
 				E818EF21234652A20035613A /* XCTestCaseExtensions.swift in Sources */,
 				B1CA334423393FEC0015CBB4 /* UserFixture.swift in Sources */,
 				E80936DD24C2480B00D15E9A /* SpringBoard.swift in Sources */,
@@ -1210,6 +1228,7 @@
 				E80936CF24C2480B00D15E9A /* FileDetails.swift in Sources */,
 				585958355F4CBCAFED71C28A /* MiniCanvasEndpoints.swift in Sources */,
 				E80936E024C2480B00D15E9A /* Syllabus.swift in Sources */,
+				C9B4F0A928C1EDF30085DF28 /* CreateDSAccountNotificationRequest.swift in Sources */,
 				5859533CCC74E4410F3A4DE1 /* HttpResponseExtensions.swift in Sources */,
 				58595A4F59ADDF88417FB368 /* LoggingHttpServer.swift in Sources */,
 				58595E93BC97CDFF3A1ECF2F /* MiniCanvasState.swift in Sources */,
@@ -1219,6 +1238,7 @@
 				585951A0E753164D3759B783 /* MiniAssignment.swift in Sources */,
 				C9299FE128102238003A47C2 /* CreateDSDiscussionRequest.swift in Sources */,
 				E80936D224C2480B00D15E9A /* ItemPickerItem.swift in Sources */,
+				C9B4F0A728C1EDDB0085DF28 /* DSAccountNotification.swift in Sources */,
 				CFA078BF2799A7800078B27B /* DSCourse.swift in Sources */,
 				C909F7D327C3831F00CB89DE /* DataSeeder+DSSubmission.swift in Sources */,
 				C909F7C827BA7E9A00CB89DE /* DSPage.swift in Sources */,
@@ -1463,8 +1483,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/httpswift/swifter";
 			requirement = {
-				branch = stable;
-				kind = branch;
+				kind = exactVersion;
+				version = 1.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

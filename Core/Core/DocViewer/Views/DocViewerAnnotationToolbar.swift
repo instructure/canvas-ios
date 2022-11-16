@@ -35,7 +35,7 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
         dragButton.image = .grab
         dragButton.isCollapsible = false
         dragButton.accessibilityLabel = NSLocalizedString("Move Annotation", comment: "")
-        dragButton.selectionPadding = 5
+        dragButton.selectionPadding = 4
         dragButtonStateUpdater = DragButtonStateViewModel(dragButton: dragButton, annotationStateManager: annotationStateManager)
 
         super.init(annotationStateManager: annotationStateManager)
@@ -45,6 +45,10 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
         self.supportedToolbarPositions = .inTopBar
         self.isDragEnabled = false
         self.showDoneButton = false
+
+        // Only at this point is when the button is fully set up
+        // so we override the default corner radius to match toolbar buttons
+        dragButton.layer.sublayers?.first?.cornerRadius = 13
     }
 
     private static func makeToolbarConfiguration() -> AnnotationToolConfiguration {

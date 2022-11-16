@@ -31,15 +31,15 @@ public class GetQuizSubmission: APIUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-courses-\(courseID)-quizzes-\(quizID)-submission"
+        "get-courses-\(courseID)-quizzes-\(quizID)-submission"
     }
 
     public var request: GetQuizSubmissionRequest {
-        return GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
+        GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
     }
 
     public var scope: Scope {
-        return .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
+        .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
     }
 
     public func write(response: GetQuizSubmissionRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -47,5 +47,35 @@ public class GetQuizSubmission: APIUseCase {
         let submission = QuizSubmission.save(item, in: client)
         let quiz: Quiz? = client.first(where: #keyPath(Quiz.id), equals: quizID)
         quiz?.submission = submission
+    }
+}
+
+public class GetAllQuizSubmissions: CollectionUseCase {
+    public typealias Model = QuizSubmission
+
+    public let courseID: String
+    public let quizID: String
+
+    public init(courseID: String, quizID: String) {
+        self.courseID = courseID
+        self.quizID = quizID
+    }
+
+    public var cacheKey: String? {
+        "get-courses-\(courseID)-quizzes-\(quizID)-submissions"
+    }
+
+    public var request: GetAllQuizSubmissionsRequest {
+        GetAllQuizSubmissionsRequest(courseID: courseID, quizID: quizID, includes: [.submission], perPage: 100)
+    }
+
+    public var scope: Scope {
+        .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.userID), ascending: false)
+    }
+
+    public func write(response: GetAllQuizSubmissionsRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        response?.quiz_submissions.forEach { item in
+            QuizSubmission.save(item, in: client)
+        }
     }
 }

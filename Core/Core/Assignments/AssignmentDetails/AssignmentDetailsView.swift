@@ -90,17 +90,20 @@ public struct AssignmentDetailsView: View {
                 Text(assignment.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)
                     .padding(.trailing, 12)
-                if assignment.published {
-                    Image.publishSolid.foregroundColor(.textSuccess)
-                        .padding(.trailing, 4)
-                    Text("Published", bundle: .core)
-                        .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
-                } else {
-                    Image.noSolid.foregroundColor(.textDark)
-                        .padding(.trailing, 4)
-                    Text("Unpublished", bundle: .core)
-                        .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
+                HStack {
+                    if assignment.published {
+                        Image.publishSolid.foregroundColor(.textSuccess)
+                            .padding(.trailing, 4)
+                        Text("Published", bundle: .core)
+                            .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
+                    } else {
+                        Image.noSolid.foregroundColor(.textDark)
+                            .padding(.trailing, 4)
+                        Text("Unpublished", bundle: .core)
+                            .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
+                    }
                 }
+                    .accessibilityElement(children: .combine)
                 Spacer()
             }
                 .padding(.top, 2)
@@ -108,7 +111,7 @@ public struct AssignmentDetailsView: View {
 
         Divider().padding(.horizontal, 16)
 
-        AssignmentDateSection(assignment: assignment)
+        DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
 
         Divider().padding(.horizontal, 16)
 
@@ -133,8 +136,8 @@ public struct AssignmentDetailsView: View {
         Divider().padding(.horizontal, 16)
 
         if course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true {
-            SubmissionBreakdown(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
-
+            let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+            SubmissionBreakdown(viewModel: viewModel)
             Divider().padding(.horizontal, 16)
         }
 

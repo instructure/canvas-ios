@@ -1,6 +1,3 @@
-/* No comment provided by engineer. */
-"-" = "-";
-
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -43,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ จัดส่งแล้ว";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ เป็น %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@,ใน %2$@ ข้อความสุดท้ายเมื่อ %3$@ %4$@";
 
@@ -60,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d รายการ";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d นาที";
 
 /* Number of missing submissions */
 "%d missing" = "%d ขาดหายไป";
@@ -90,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "การใช้งาน";
+
+/* No comment provided by engineer. */
+"Access Code:" = "รหัสใช้งาน:";
 
 /* No comment provided by engineer. */
 "Account Group" = "กลุ่มบัญชีผู้ใช้";
@@ -148,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "การแจ้งข้อมูลเพื่อการบริหารจัดการ";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "หลังจาก %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "หลังจากการดำเนินการล่าสุด";
+
 /* No comment provided by engineer. */
 "Alerts" = "แจ้งเตือน";
 
@@ -180,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "อนุญาตให้ผู้ใช้แสดงความเห็น";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "การดำเนินการที่อนุญาต:";
+
+/* No comment provided by engineer. */
+"Always" = "ทุกครั้ง";
 
 /* No comment provided by engineer. */
 "Announcement" = "ประกาศ";
@@ -260,6 +278,9 @@
 "Assignment Grade Below %d" = "เกรดภารกิจน้อยกว่า %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "กลุ่มภารกิจ:";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "ไม่มีภารกิจ";
 
 /* No comment provided by engineer. */
@@ -330,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "ใช้ได้จนถึง:";
+
+/* No comment provided by engineer. */
+"Average" = "เฉลี่ย";
 
 /* No comment provided by engineer. */
 "Back" = "ย้อนกลับ";
@@ -974,6 +998,9 @@
 "Graded" = "ให้เกรดแล้ว";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "แบบทดสอบที่ลงเกรดแล้ว";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "แบบสำรวจที่ลงเกรดแล้ว";
 
 /* No comment provided by engineer. */
@@ -1014,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "สูง: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "สูงสุด";
 
 /* No comment provided by engineer. */
 "Homeroom" = "โฮมรูม";
@@ -1151,6 +1181,9 @@
 "Late Grading" = "การให้เกรดล่าช้า";
 
 /* No comment provided by engineer. */
+"Latest" = "ล่าสุด";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "เรียกใช้ชุดเครื่องมือจากภายนอก";
 
 /* No comment provided by engineer. */
@@ -1215,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "ระบุตำแหน่งรหัส QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "ล็อคคำถามหลังตอบ:";
 
 /* No comment provided by engineer. */
 "locked" = "ล็อคแล้ว";
@@ -1451,6 +1487,9 @@
 "No supported files to submit" = "ไม่มีไฟล์ที่รองรับสำหรับส่ง";
 
 /* No comment provided by engineer. */
+"No time Limit" = "ไม่มีจำกัดเวลา";
+
+/* No comment provided by engineer. */
 "None" = "ไม่มี";
 
 /* No comment provided by engineer. */
@@ -1512,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "ไฟล์บางส่วนไม่สามารถอัพโหลดได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองส่งใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "ทีละคำถาม:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "เฉพาะผู้เรียนที่มีลิงค์เท่านั้น";
@@ -1640,6 +1682,9 @@
 "Practice Quizzes" = "แบบทดสอบฝึกหัด";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "แบบทดสอบและแบบสอบถามฝึกหัดไม่มีมุมมองอย่างละเอียด";
+
+/* No comment provided by engineer. */
 "Preferences" = "ค่าปรับตั้ง";
 
 /* No comment provided by engineer. */
@@ -1647,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "เงื่อนไขเบื้องต้น: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "แสดงตัวอย่างแบบทดสอบ";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "การล็อกอินก่อนหน้า";
@@ -1695,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "รายละเอียดแบบทดสอบ";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "ประเภทแบบทดสอบ:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "คำถาม";
@@ -1823,6 +1874,9 @@
 "Score at least %@" = "คะแนนอย่างน้อย %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "คะแนนที่จะเก็บ:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "ทำคะแนนมากกว่า %g";
 
 /* No comment provided by engineer. */
@@ -1919,6 +1973,9 @@
 "Show a month at a time" = "แสดงทีละเดือน";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "แสดงคำตอบที่ถูกต้อง:";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "แสดงสรุปบทเรียน";
 
 /* No comment provided by engineer. */
@@ -1926,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "แสดงตัวเลือกเพิ่มเติม";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "สลับคำตอบ:";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "เนื่องจากนี้เป็นการพูดคุยเป็นกลุ่ม แต่ละกลุ่มจะมีการพูดคุยของตนเองสำหรับหัวข้อนี้ ต่อไปนี้เป็นการพูดคุยที่คุณสามารถเข้าถึงได้";
@@ -2222,6 +2282,9 @@
 "Time elapsed" = "เวลาที่ผ่านไป";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "เกณฑ์เวลา:";
+
+/* No comment provided by engineer. */
 "Title" = "ชื่อ";
 
 /* No comment provided by engineer. */
@@ -2286,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "รายการที่ไม่รองรับ";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "จนถึง %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "ค่าภาษาที่อัพเดต";
@@ -2373,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "ดูประกาศก่อนหน้า";
+
+/* No comment provided by engineer. */
+"View Responses:" = "ดูคำตอบ:";
 
 /* No comment provided by engineer. */
 "Viewed" = "ที่ดู";

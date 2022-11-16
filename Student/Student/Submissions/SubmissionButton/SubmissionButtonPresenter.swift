@@ -287,7 +287,8 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
             do {
                 if let videoURL = info[.mediaURL] as? URL {
                     let destination = URL
-                        .temporaryDirectory
+                        .Directories
+                        .temporary
                         .appendingPathComponent("videos", isDirectory: true)
                         .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
                         .appendingPathExtension(videoURL.pathExtension)
@@ -357,7 +358,7 @@ extension SubmissionButtonPresenter {
         let modallyPresentedViewWindow = viewController?.presentedViewController?.view.window
 
         guard let view = hostViewWindow ?? modallyPresentedViewWindow else { return }
-        let animation = AnimationView(name: "confetti", bundle: .core)
+        let animation = LottieAnimationView(name: "confetti", bundle: .core)
         view.addSubview(animation)
         animation.pin(inside: view)
         animation.contentMode = .scaleAspectFill

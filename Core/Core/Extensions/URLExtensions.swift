@@ -28,58 +28,61 @@ extension Sequence where Element == URL {
     }
 }
 
-extension URL {
-    public static var temporaryDirectory: URL {
-        return URL(fileURLWithPath: NSTemporaryDirectory())
-    }
+public extension URL {
+    enum Directories {
 
-    public static var cachesDirectory: URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-    }
-
-    public static func cachesDirectory(appGroup: String?) -> URL {
-        var folder = URL.cachesDirectory
-        if let appGroup = appGroup, let group = sharedContainer(appGroup) {
-            folder = group.appendingPathComponent("caches", isDirectory: true)
-            try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+        public static var temporary: URL {
+            URL(fileURLWithPath: NSTemporaryDirectory())
         }
-        return folder
+
+        public static var caches: URL {
+            FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        }
+
+        public static func caches(appGroup: String?) -> URL {
+            var folder = caches
+            if let appGroup = appGroup, let group = sharedContainers(appGroup) {
+                folder = group.appendingPathComponent("caches", isDirectory: true)
+                try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+            }
+            return folder
+        }
+
+        public static var documents: URL {
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+
+        public static var library: URL {
+            FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+        }
+
+        public static func sharedContainers(_ identifier: String) -> URL? {
+            FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
+        }
     }
 
-    public static var documentsDirectory: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    }
-
-    public static var libraryDirectory: URL {
-        return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-    }
-
-    public static func sharedContainer(_ identifier: String) -> URL? {
-        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
-    }
-
-    public func lookupFileSize() -> Int {
+    func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)
         return attributes?[FileAttributeKey.size] as? Int ?? 0
     }
 
-    public func appendingQueryItems(_ items: URLQueryItem...) -> URL {
+    func appendingQueryItems(_ items: URLQueryItem...) -> URL {
         var components = URLComponents.parse(self)
         components.queryItems = (components.queryItems ?? []) + items
         return components.url ?? self
     }
 
-    public func containsQueryItem(named key: String) -> Bool {
+    func containsQueryItem(named key: String) -> Bool {
         let components = URLComponents.parse(self)
         return components.queryValue(for: key) != nil
     }
 
-    public func appendingOrigin(_ origin: String) -> URL {
+    func appendingOrigin(_ origin: String) -> URL {
         return appendingQueryItems(.init(name: "origin", value: origin))
     }
 
-    public func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
+    func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
         let manager = FileManager.default
         if destination.hasDirectoryPath {
             try manager.createDirectory(at: destination, withIntermediateDirectories: true, attributes: nil)
@@ -96,11 +99,11 @@ extension URL {
         }
     }
 
-    public func copy(to destination: URL, override: Bool = true) throws {
+    func copy(to destination: URL, override: Bool = true) throws {
         try move(to: destination, override: override, copy: true)
     }
 
-    public var withCanonicalQueryParams: URL? {
+    var withCanonicalQueryParams: URL? {
         return URLComponents(url: self, resolvingAgainstBaseURL: false)?.withCanonicalQueryParams.url
     }
 }

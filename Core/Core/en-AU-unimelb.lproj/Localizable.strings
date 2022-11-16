@@ -1,6 +1,3 @@
-/* No comment provided by engineer. */
-"-" = "-";
-
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -43,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ submitted";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ to %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, the last message was on %3$@ %4$@";
 
@@ -60,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d items";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d Minutes";
 
 /* Number of missing submissions */
 "%d missing" = "%d missing";
@@ -90,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Access";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Access Code:";
 
 /* No comment provided by engineer. */
 "Account Group" = "Account Group";
@@ -148,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Administrative Notifications";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "After %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "After Last Attempt";
+
 /* No comment provided by engineer. */
 "Alerts" = "Alerts";
 
@@ -180,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Allow users to comment";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Allowed Attempts:";
+
+/* No comment provided by engineer. */
+"Always" = "Always";
 
 /* No comment provided by engineer. */
 "Announcement" = "Announcement";
@@ -260,6 +278,9 @@
 "Assignment Grade Below %d" = "Assignment Grade Below %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Assignment Group:";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "Assignment missing";
 
 /* No comment provided by engineer. */
@@ -330,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "Available Until:";
+
+/* No comment provided by engineer. */
+"Average" = "Average";
 
 /* No comment provided by engineer. */
 "Back" = "Back";
@@ -974,6 +998,9 @@
 "Graded" = "Graded";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Graded Quiz";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Graded Surveys";
 
 /* No comment provided by engineer. */
@@ -1014,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "High: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "Highest";
 
 /* No comment provided by engineer. */
 "Homeroom" = "Homeroom";
@@ -1151,6 +1181,9 @@
 "Late Grading" = "Late Grading";
 
 /* No comment provided by engineer. */
+"Latest" = "Latest";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Launch External Tool";
 
 /* No comment provided by engineer. */
@@ -1215,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Locate QR Code";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Lock Questions After Answering:";
 
 /* No comment provided by engineer. */
 "locked" = "locked";
@@ -1451,6 +1487,9 @@
 "No supported files to submit" = "No supported files to submit";
 
 /* No comment provided by engineer. */
+"No time Limit" = "No time Limit";
+
+/* No comment provided by engineer. */
 "None" = "None";
 
 /* No comment provided by engineer. */
@@ -1512,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "One or more files failed to upload. Check your internet connection and retry to submit.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "One Question at a Time:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Only available to students with link";
@@ -1640,6 +1682,9 @@
 "Practice Quizzes" = "Practice Quizzes";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Practice quizzes & surveys do not have detail views.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferences";
 
 /* No comment provided by engineer. */
@@ -1647,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Prerequisite: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Preview Quiz";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Previous Logins";
@@ -1695,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Quiz Details";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Quiz Type:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Quizzes";
@@ -1823,6 +1874,9 @@
 "Score at least %@" = "Score at least %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Score to Keep:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Scored above %g";
 
 /* No comment provided by engineer. */
@@ -1919,6 +1973,9 @@
 "Show a month at a time" = "Show a month at a time";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Show Correct Answers:";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Show Subject Summary";
 
 /* No comment provided by engineer. */
@@ -1926,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Show more options";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Shuffle Answers:";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.";
@@ -2222,6 +2282,9 @@
 "Time elapsed" = "Time elapsed";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Time Limit:";
+
+/* No comment provided by engineer. */
 "Title" = "Title";
 
 /* No comment provided by engineer. */
@@ -2286,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Unsupported Item";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "Until %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Updated Language Settings";
@@ -2373,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "View Previous Announcements";
+
+/* No comment provided by engineer. */
+"View Responses:" = "View Responses:";
 
 /* No comment provided by engineer. */
 "Viewed" = "Viewed";

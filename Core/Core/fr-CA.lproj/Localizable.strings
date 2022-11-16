@@ -1,6 +1,3 @@
-/* No comment provided by engineer. */
-"-" = "-";
-
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -43,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ envoyé";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ à %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, dans %2$@, le dernier message était sur %3$@ %4$@";
 
@@ -60,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d éléments";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d Minutes";
 
 /* Number of missing submissions */
 "%d missing" = "%d manquant";
@@ -90,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Accès";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Code d’accès :";
 
 /* No comment provided by engineer. */
 "Account Group" = "Groupe de comptes";
@@ -148,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Notifications administratives";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "Après %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "Après la dernière tentative";
+
 /* No comment provided by engineer. */
 "Alerts" = "Alertes";
 
@@ -180,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Autoriser les utilisateurs à commenter";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Tentatives autorisées :";
+
+/* No comment provided by engineer. */
+"Always" = "Toujours";
 
 /* No comment provided by engineer. */
 "Announcement" = "Annonce";
@@ -260,6 +278,9 @@
 "Assignment Grade Below %d" = "Note de la tâche inférieure à %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Groupe de tâches :";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "Tâche manquante";
 
 /* No comment provided by engineer. */
@@ -330,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponibles jusqu’au :";
+
+/* No comment provided by engineer. */
+"Average" = "Moyenne";
 
 /* No comment provided by engineer. */
 "Back" = "Retour";
@@ -974,6 +998,9 @@
 "Graded" = "Noté";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Questionnaire noté";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Enquêtes notées";
 
 /* No comment provided by engineer. */
@@ -1014,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Élevé : %@";
+
+/* No comment provided by engineer. */
+"Highest" = "La plus élevée";
 
 /* No comment provided by engineer. */
 "Homeroom" = "Classe titulaire";
@@ -1151,6 +1181,9 @@
 "Late Grading" = "Notation tardive";
 
 /* No comment provided by engineer. */
+"Latest" = "Le plus récent";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Lancer l'outil externe";
 
 /* No comment provided by engineer. */
@@ -1215,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Trouver le code QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Verrouiller les questions après avoir répondu :";
 
 /* No comment provided by engineer. */
 "locked" = "verrouillé";
@@ -1451,6 +1487,9 @@
 "No supported files to submit" = "Aucun fichier pris en charge à soumettre";
 
 /* No comment provided by engineer. */
+"No time Limit" = "Pas de limite de temps";
+
+/* No comment provided by engineer. */
 "None" = "Aucun";
 
 /* No comment provided by engineer. */
@@ -1512,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Le téléversement d’un ou de plusieurs fichiers a échoué. Vérifiez votre connexion Internet et réessayez l’envoi.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "Une question à la fois :";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Seulement disponible aux étudiants avec un lien";
@@ -1640,6 +1682,9 @@
 "Practice Quizzes" = "Questionnaires d'entraînement";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Les questionnaires pratiques et les sondages n'ont pas de vues détaillées.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Préférences";
 
 /* No comment provided by engineer. */
@@ -1647,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Prérequis : %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Prévisualiser le questionnaire";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Connexions précédentes";
@@ -1695,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Détails sur le questionnaire";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Type de questionnaire :";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Questionnaires";
@@ -1823,6 +1874,9 @@
 "Score at least %@" = "Obtenir une note minimale de  %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Score à conserver :";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Note supérieure à %g";
 
 /* No comment provided by engineer. */
@@ -1919,6 +1973,9 @@
 "Show a month at a time" = "Montrer un mois à la fois";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Afficher les bonnes réponses :";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Afficher le résumé du cours";
 
 /* No comment provided by engineer. */
@@ -1926,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Afficher plus d’options";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Réponses mélangées :";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Puisqu’il s’agit d’une discussion de groupe, chaque groupe a sa propre conversation pour ce sujet. Voici les discussions auxquelles vous avez accès.";
@@ -2222,6 +2282,9 @@
 "Time elapsed" = "Temps écoulé";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Limite de temps :";
+
+/* No comment provided by engineer. */
 "Title" = "Titre";
 
 /* No comment provided by engineer. */
@@ -2286,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Élément non pris en charge";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "Jusqu’au %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Paramètres de langue mis à jour";
@@ -2373,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Voir les annonces précédentes";
+
+/* No comment provided by engineer. */
+"View Responses:" = "Voir les réponses :";
 
 /* No comment provided by engineer. */
 "Viewed" = "Visualisé";

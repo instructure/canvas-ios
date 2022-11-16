@@ -130,7 +130,7 @@ public class API {
             let bodyFileURL: URL = try form.encode(using: boundary) // TODO: delete this file after upload completes
             return urlSession.uploadTask(with: request, fromFile: bodyFileURL)
         } else {
-            let url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+            let url = URL.Directories.temporary.appendingPathComponent(UUID.string)
             try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
             return urlSession.uploadTask(with: request, fromFile: url)
         }

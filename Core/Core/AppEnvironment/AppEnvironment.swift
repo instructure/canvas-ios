@@ -43,6 +43,7 @@ open class AppEnvironment {
             k5.sessionDefaults = userDefaults
         }
     }
+    public var lastLoginAccount: APIAccountResult?
     public let k5 = K5State()
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?
@@ -62,6 +63,7 @@ open class AppEnvironment {
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
         Logger.shared.database = database
         refreshWidgets()
+        saveAccount(for: session)
     }
 
     public func userDidLogout(session: LoginSession) {
@@ -118,5 +120,11 @@ open class AppEnvironment {
 
     public func refreshWidgets() {
         WidgetCenter.shared.reloadAllTimelines()
+    }
+
+    public func saveAccount(for session: LoginSession) {
+        guard let lastLoginAccount = lastLoginAccount, session.baseURL.host == lastLoginAccount.domain else { return }
+        let data = try? APIJSONEncoder().encode(lastLoginAccount)
+        UserDefaults.standard.set(data, forKey: "lastLoginAccount")
     }
 }

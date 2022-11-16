@@ -31,6 +31,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     var navigation: UINavigationController!
     var saveWasCalled = false
     var didSaveExpectation: XCTestExpectation!
+    var observer: NSObjectProtocol?
 
     override func setUp() {
         super.setUp()
@@ -46,6 +47,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         if let url = controller.localURL, FileManager.default.fileExists(atPath: url.path) {
             XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
         }
+        observer = nil
     }
 
     func testLayout() {
@@ -87,7 +89,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 
     func testDownload() {
-        let url = URL.temporaryDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.jpg")
+        let url = URL.Directories.temporary.appendingPathComponent("\(currentSession.uniqueID)/1/File.jpg")
         XCTAssertNoThrow(try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true))
         FileManager.default.createFile(atPath: url.path, contents: Data())
         controller.view.layoutIfNeeded()
@@ -104,7 +106,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
         // Overwrites existing file
         FileManager.default.createFile(atPath: url.path, contents: Data())
-        let temp = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+        let temp = URL.Directories.temporary.appendingPathComponent(UUID.string)
         FileManager.default.createFile(atPath: temp.path, contents: "hi".data(using: .utf8))
         mock.download(didFinishDownloadingTo: temp)
         XCTAssertNil(router.presented) // no error
@@ -138,7 +140,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func mock(_ file: APIFile, isExistingPDFFileWithAnnotations: Bool = false) {
         api.mock(controller.files, value: file)
-        let base = isExistingPDFFileWithAnnotations ? URL.documentsDirectory : URL.temporaryDirectory
+        let base = isExistingPDFFileWithAnnotations ? URL.Directories.documents : URL.Directories.temporary
         let url = base.appendingPathComponent("\(currentSession.uniqueID)/1/\(file.filename)")
         XCTAssertNoThrow(try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true))
         XCTAssertTrue(FileManager.default.createFile(atPath: url.path, contents: Data()))
@@ -166,9 +168,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
     func testModel() {
         mock(APIFile.make(filename: "File.usdz", contentType: "model/vnd.usdz+zip", mime_class: "file"))
         let done = expectation(description: "done")
-        var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
-            NotificationCenter.default.removeObserver(token!)
+        observer = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { [self] _ in
+            NotificationCenter.default.removeObserver(self.observer!)
             done.fulfill()
         }
         controller.view.layoutIfNeeded()
@@ -192,15 +193,23 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.pdfViewController(pdf, shouldShow: CoreActivityViewController(activityItems: [""], applicationActivities: nil), animated: false))
         XCTAssertFalse(controller.pdfViewController(pdf, shouldShow: StampViewController(), animated: false))
 
-        let items = [
-            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuNote.rawValue),
-            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuInspector.rawValue),
-            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuRemove.rawValue),
-        ]
-        let results = controller.pdfViewController(pdf, shouldShow: items, atSuggestedTargetRect: .zero, for: [], in: .zero, on: PDFPageView(frame: .zero))
+        let items = UIMenu(children: [
+            UIAction(title: "", identifier: .PSPDFKit.comments) { _ in },
+            UIAction(title: "", identifier: .PSPDFKit.inspector) { _ in },
+            UIAction(title: "", identifier: .PSPDFKit.delete) { _ in },
+        ])
+        let results = controller.pdfViewController(pdf,
+                                                   menuForAnnotations: [Annotation()],
+                                                   onPageView: PDFPageView(frame: .zero),
+                                                   appearance: .contextMenu,
+                                                   suggestedMenu: items)
+            .children
+        // Comment/Notes menu is removed
         XCTAssertEqual(results.count, 2)
+        // Inspector's title modified to Style
         XCTAssertEqual(results[0].title, "Style")
-        XCTAssertNotNil(results[1].ps_image)
+        // Delete got an icon
+        XCTAssertNotNil(results[1].image)
         pdf.document?.delegate = self
         _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
         XCTAssert(router.presented is UIActivityViewController)
@@ -211,7 +220,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 
     func testPrepLocalURL() {
-        let tempUrl = URL.temporaryDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let tempUrl = URL.Directories.temporary.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"))
         controller.view.layoutIfNeeded()
         let result = controller.prepLocalURL()
@@ -219,7 +228,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 
     func testPrepLocalURLWithExistingPDFFile() {
-        let docsUrl = URL.documentsDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let docsUrl = URL.Directories.documents.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"), isExistingPDFFileWithAnnotations: true)
         controller.view.layoutIfNeeded()
         let result = controller.prepLocalURL()
@@ -227,7 +236,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 
     func testMutatedPdfFileSavesToDocumentsDirectory() {
-        let expectedURL = URL.documentsDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let expectedURL = URL.Directories.documents.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
         try? FileManager.default.removeItem(atPath: expectedURL.path)
         XCTAssertFalse( FileManager.default.fileExists(atPath: expectedURL.path) )
         DocViewerViewController.hasPSPDFKitLicense = true
@@ -241,8 +250,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 
     func testNonMutatedPdfFileStaysInTempDirectory() {
-        let expectedURL = URL.temporaryDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
-        let docsURL = URL.documentsDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let expectedURL = URL.Directories.temporary.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let docsURL = URL.Directories.documents.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
         try? FileManager.default.removeItem(atPath: docsURL.path)
         DocViewerViewController.hasPSPDFKitLicense = true
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"))

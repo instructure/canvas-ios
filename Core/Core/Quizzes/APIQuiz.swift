@@ -21,6 +21,7 @@ import Foundation
 // https://canvas.instructure.com/doc/api/quizzes.html#Quiz
 public struct APIQuiz: Codable, Equatable {
     let access_code: String?
+    let all_dates: [APIAssignmentDate]?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let allowed_attempts: Int?
     let assignment_id: ID?
@@ -29,6 +30,7 @@ public struct APIQuiz: Codable, Equatable {
     let due_at: Date?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let has_access_code: Bool?
+    let hide_correct_answers_at: Date?
     let hide_results: QuizHideResults?
     let html_url: URL
     let id: ID
@@ -48,26 +50,24 @@ public struct APIQuiz: Codable, Equatable {
     let quiz_type: QuizType
     let require_lockdown_browser_for_results: Bool
     let require_lockdown_browser: Bool
+    let scoring_policy: ScoringPolicy?
+    let show_correct_answers: Bool?
+    let show_correct_answers_at: Date?
+    let show_correct_answers_last_attempt: Bool?
     /** Nil when `quiz_type` is `quizzes.next`. */
     let shuffle_answers: Bool?
     let time_limit: Double? // minutes
     let title: String
     let unlock_at: Date?
-    // let all_dates: [Date]?
+    let unpublishable: Bool?
     // let anonymous_submissions: Bool?
     // let assignment_group_id: String?
-    // let hide_correct_answers_at: Date?
     // let lock_info: LockInfoModel?
     // let one_time_results: Bool
     // let permissions: APIQuizPermissions?
     // let preview_url: URL
     // let quiz_extensions_url: URL?
-    // let scoring_policy: ScoringPolicy?
-    // let show_correct_answers_at: Date?
-    // let show_correct_answers_last_attempt: Bool?
-    // let show_correct_answers: Bool?
     // let speedgrader_url: URL?
-    // let unpublishable: Bool
     // let version_number: Int
 }
 
@@ -171,12 +171,14 @@ public enum APIQuizAnswerValue: Codable, Equatable {
 extension APIQuiz {
     public static func make(
         access_code: String? = nil,
+        all_dates: [APIAssignmentDate]? = nil,
         allowed_attempts: Int = 1,
         assignment_id: ID? = nil,
         cant_go_back: Bool? = nil,
         description: String? = nil,
         due_at: Date? = nil,
         has_access_code: Bool = false,
+        hide_correct_answers_at: Date? = nil,
         hide_results: QuizHideResults? = nil,
         html_url: URL = URL(string: "/courses/1/quizzes/123")!,
         id: ID = "123",
@@ -193,19 +195,26 @@ extension APIQuiz {
         quiz_type: QuizType = .survey,
         require_lockdown_browser_for_results: Bool = false,
         require_lockdown_browser: Bool = false,
+        scoring_policy: ScoringPolicy? = nil,
+        show_correct_answers: Bool? = nil,
+        show_correct_answers_at: Date? = nil,
+        show_correct_answers_last_attempt: Bool? = nil,
         shuffle_answers: Bool = false,
         time_limit: Double? = nil,
         title: String = "What kind of pokemon are you?",
-        unlock_at: Date? = nil
+        unlock_at: Date? = nil,
+        unpublishable: Bool = false
     ) -> APIQuiz {
         APIQuiz(
             access_code: access_code,
+            all_dates: all_dates,
             allowed_attempts: allowed_attempts,
             assignment_id: assignment_id,
             cant_go_back: cant_go_back,
             description: description,
             due_at: due_at,
             has_access_code: has_access_code,
+            hide_correct_answers_at: hide_correct_answers_at,
             hide_results: hide_results,
             html_url: html_url,
             id: id,
@@ -222,10 +231,15 @@ extension APIQuiz {
             quiz_type: quiz_type,
             require_lockdown_browser_for_results: require_lockdown_browser_for_results,
             require_lockdown_browser: require_lockdown_browser,
+            scoring_policy: scoring_policy,
+            show_correct_answers: show_correct_answers,
+            show_correct_answers_at: show_correct_answers_at,
+            show_correct_answers_last_attempt: show_correct_answers_last_attempt,
             shuffle_answers: shuffle_answers,
             time_limit: time_limit,
             title: title,
-            unlock_at: unlock_at
+            unlock_at: unlock_at,
+            unpublishable: unpublishable
         )
     }
 }

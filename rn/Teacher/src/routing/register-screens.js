@@ -25,6 +25,7 @@ import AddressBook from '../modules/address-book/AddressBook'
 import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import DeveloperMenu from '../modules/developer-menu/DeveloperMenu'
+import ExperimentalFeature from '../common/ExperimentalFeature'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
@@ -131,7 +132,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/assignments/:assignmentID/post_policy')
     registerScreen('/courses/:courseID/attendance/:toolID')
     registerScreen('/courses/:courseID/quizzes', null, store, { canBecomeMaster: true, deepLink: true })
-    registerScreen('/courses/:courseID/quizzes/:quizID', QuizDetails, store, { deepLink: true })
+    registerScreen('/courses/:courseID/quizzes/:quizID', ExperimentalFeature.nativeTeacherQuiz.isEnabled ? null : QuizDetails, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', QuizPreview, store)
     registerScreen('/courses/:courseID/quizzes/:quizID/edit', QuizEdit, store)
     registerScreen('/courses/:courseID/quizzes/:quizID/submissions', QuizSubmissions, store, { deepLink: true })

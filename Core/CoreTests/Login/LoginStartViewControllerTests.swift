@@ -214,6 +214,24 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertFalse(controller.useQRCodeButton.isHidden)
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
     }
+
+    func testSavedLoginLayout() {
+        controller.viewDidLoad()
+
+        controller.previousLoginsView.isHidden = true
+        controller.lastLoginAccount = nil
+        XCTAssertTrue(controller.findAnotherSchoolButton.isHidden)
+        XCTAssertEqual(controller.loginTopConstraint.constant, 100)
+
+        controller.previousLoginsView.isHidden = false
+        controller.lastLoginAccount = nil
+        XCTAssertTrue(controller.findAnotherSchoolButton.isHidden)
+        XCTAssertEqual(controller.loginTopConstraint.constant, 50)
+
+        controller.lastLoginAccount = APIAccountResult(name: "", domain: "", authentication_provider: nil)
+        XCTAssertFalse(controller.findAnotherSchoolButton.isHidden)
+        XCTAssertEqual(controller.loginTopConstraint.constant, 50)
+    }
 }
 
 extension LoginStartViewControllerTests: LoginDelegate {

@@ -96,7 +96,7 @@ workflows:
                 -scheme CITests \
                 -sdk iphonesimulator \
                 -configuration Debug \
-                -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
+                -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=latest' \
                 COMPILER_INDEX_STORE_ENABLE=NO \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |

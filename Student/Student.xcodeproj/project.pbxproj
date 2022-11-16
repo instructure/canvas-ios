@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -137,8 +137,9 @@
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
-		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
+		B49725D0290C04D50067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725CF290C04D50067B91E /* Heap */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		C9299FE528102A62003A47C2 /* DSAnnouncementsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FE428102A62003A47C2 /* DSAnnouncementsE2ETests.swift */; };
 		C9299FEC2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9299FEB2817CCF2003A47C2 /* DSDiscussionsE2ETest.swift */; };
@@ -178,7 +179,7 @@
 		D9FD8F382546C3F300C6842B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F372546C3F300C6842B /* SwiftUI.framework */; };
 		D9FD8F3B2546C3F300C6842B /* AnnouncementsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F3A2546C3F300C6842B /* AnnouncementsWidget.swift */; };
 		D9FD8F3D2546C3F500C6842B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9FD8F3C2546C3F500C6842B /* Assets.xcassets */; };
-		D9FD8F412546C3F500C6842B /* Widgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FD8F342546C3F300C6842B /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D9FD8F412546C3F500C6842B /* Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9FD8F342546C3F300C6842B /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FD8F552546C7BB00C6842B /* AnnouncementsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F542546C7BB00C6842B /* AnnouncementsEntry.swift */; };
 		D9FD8F5C2546C93A00C6842B /* AnnouncementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F5B2546C93A00C6842B /* AnnouncementsProvider.swift */; };
 		D9FD90102546CB4C00C6842B /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD900F2546CB4C00C6842B /* Core.framework */; };
@@ -260,16 +261,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */ = {
+		3B6DCCB51FB502CE005EE8D2 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */,
-				D9FD8F412546C3F500C6842B /* Widgets.appex in Embed App Extensions */,
+				B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed Foundation Extensions */,
+				D9FD8F412546C3F500C6842B /* Widgets.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		492704B71CF4B6D700C631C6 /* Embed Frameworks */ = {
@@ -814,6 +815,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
+				B49725D0290C04D50067B91E /* Heap in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
@@ -2007,8 +2009,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4927049B1CF4AF7200C631C6 /* Build configuration list for PBXNativeTarget "Student" */;
 			buildPhases = (
-				B4DE2ACE28BCB18F000F8D4D /* SwiftLint */,
 				420D38066A53E2683A07A16C /* [CP] Check Pods Manifest.lock */,
+				B4DE2ACE28BCB18F000F8D4D /* SwiftLint */,
 				49383CF01F848F7D009C8F8E /* Start Packager */,
 				4927046F1CF4AF7100C631C6 /* Sources */,
 				492704701CF4AF7100C631C6 /* Frameworks */,
@@ -2016,7 +2018,7 @@
 				492704711CF4AF7100C631C6 /* Resources */,
 				492704B71CF4B6D700C631C6 /* Embed Frameworks */,
 				B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */,
-				3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */,
+				3B6DCCB51FB502CE005EE8D2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -2026,6 +2028,7 @@
 			);
 			name = Student;
 			packageProductDependencies = (
+				B49725CF290C04D50067B91E /* Heap */,
 			);
 			productName = Canvas;
 			productReference = 492704731CF4AF7100C631C6 /* Student.app */;
@@ -2137,7 +2140,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					492704721CF4AF7100C631C6 = {
@@ -2258,6 +2261,7 @@
 			mainGroup = 4927046A1CF4AF7100C631C6;
 			packageReferences = (
 				CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B49725CE290C04D50067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 			);
 			productRefGroup = 492704741CF4AF7100C631C6 /* Products */;
 			projectDirPath = "";
@@ -2523,6 +2527,7 @@
 		};
 		49383CF01F848F7D009C8F8E /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2537,6 +2542,7 @@
 		};
 		49383CF11F848FCD009C8F8E /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2703,6 +2709,7 @@
 		};
 		B4DE2ACE28BCB18F000F8D4D /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -3814,6 +3821,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B49725CE290C04D50067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heap/heap-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.1;
+			};
+		};
 		CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -3825,6 +3840,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B49725CF290C04D50067B91E /* Heap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49725CE290C04D50067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */;
+			productName = Heap;
+		};
 		CF09E6A0283FB861000C72D0 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF09E69D283FB861000C72D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -14,10 +14,10 @@
 "Add Comment" = "Add Comment";
 
 /* No comment provided by engineer. */
-"All grades are currently hidden." = "All grades are currently hidden.";
+"All grades are currently hidden." = "All marks are currently hidden.";
 
 /* No comment provided by engineer. */
-"All grades are currently posted." = "All grades are currently posted.";
+"All grades are currently posted." = "All marks are currently posted.";
 
 /* No comment provided by engineer. */
 "All Hidden" = "All Hidden";
@@ -140,10 +140,10 @@
 "Grade" = "Mark";
 
 /* No comment provided by engineer. */
-"Grade post policy" = "Grade post policy";
+"Grade post policy" = "Mark post policy";
 
 /* No comment provided by engineer. */
-"Grade Slider" = "Grade Slider";
+"Grade Slider" = "Mark Slider";
 
 /* No comment provided by engineer. */
 "Graded" = "Marked";
@@ -170,7 +170,7 @@
 "Incomplete" = "Incomplete";
 
 /* No comment provided by engineer. */
-"It seems there aren't any valid submissions to grade." = "It seems there aren't any valid submissions to grade.";
+"It seems there aren't any valid submissions to grade." = "It seems there aren't any valid submissions to mark.";
 
 /* No comment provided by engineer. */
 "Late" = "Late";
@@ -188,10 +188,10 @@
 "Mark Remaining as Present" = "Mark Remaining as Present";
 
 /* No comment provided by engineer. */
-"Moderated Grading Unsupported" = "Moderated Grading Unsupported";
+"Moderated Grading Unsupported" = "Moderated Marking Unsupported";
 
 /* No comment provided by engineer. */
-"Needs Grading" = "Needs Grading";
+"Needs Grading" = "Needs Marking";
 
 /* No comment provided by engineer. */
 "No Grade" = "No Mark";
@@ -248,7 +248,7 @@
 "Preview Unavailable" = "Preview Unavailable";
 
 /* No comment provided by engineer. */
-"Prompts for an updated grade" = "Prompts for an updated grade";
+"Prompts for an updated grade" = "Prompts for an updated mark";
 
 /* No comment provided by engineer. */
 "Record Audio" = "Record Audio";

@@ -1,6 +1,3 @@
-/* No comment provided by engineer. */
-"-" = "-";
-
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -43,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ entregat";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ fins al %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, a %2$@, l'últim missatge va ser el %3$@ %4$@";
 
@@ -60,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d elements";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d Minuts";
 
 /* Number of missing submissions */
 "%d missing" = "%d no presentat";
@@ -90,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Accés";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Codi d'accés:";
 
 /* No comment provided by engineer. */
 "Account Group" = "Grup de l'usuari";
@@ -148,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Notificacions administratives";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "Després %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "Després del darrer intent";
+
 /* No comment provided by engineer. */
 "Alerts" = "Avisos";
 
@@ -180,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Permet que els usuaris facin comentaris";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Intents permesos:";
+
+/* No comment provided by engineer. */
+"Always" = "Sempre";
 
 /* No comment provided by engineer. */
 "Announcement" = "Anunci";
@@ -260,6 +278,9 @@
 "Assignment Grade Below %d" = "Nota de l'activitat per sota de %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Grup d'activitats:";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "Activitat no presentada";
 
 /* No comment provided by engineer. */
@@ -330,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponible fins a:";
+
+/* No comment provided by engineer. */
+"Average" = "Mitjà";
 
 /* No comment provided by engineer. */
 "Back" = "Enrere";
@@ -974,6 +998,9 @@
 "Graded" = "Amb nota";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Prova qualificada";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Estudis amb nota";
 
 /* No comment provided by engineer. */
@@ -1014,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Alta: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "Superior";
 
 /* No comment provided by engineer. */
 "Homeroom" = "Tutoria";
@@ -1151,6 +1181,9 @@
 "Late Grading" = "Nota endarrerida";
 
 /* No comment provided by engineer. */
+"Latest" = "El més recent";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Inicieu l'eina externa";
 
 /* No comment provided by engineer. */
@@ -1215,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Localitzeu el codi QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Bloqueja les preguntes un cop respostes:";
 
 /* No comment provided by engineer. */
 "locked" = "bloquejat";
@@ -1451,6 +1487,9 @@
 "No supported files to submit" = "No hi ha cap fitxer admès per enviar";
 
 /* No comment provided by engineer. */
+"No time Limit" = "Sense límit de temps";
+
+/* No comment provided by engineer. */
 "None" = "Cap";
 
 /* No comment provided by engineer. */
@@ -1512,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "No s'han pogut penjar un o més fitxers. Reviseu la connexió a Internet i torneu a provar de fer l'entrega.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "Una pregunta cada vegada:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Només està disponible per als estudiants a través d'un enllaç";
@@ -1640,6 +1682,9 @@
 "Practice Quizzes" = "Proves de pràctica";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Les proves i els estudis sobre pràctiques no tenen cap vista detallada.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferències";
 
 /* No comment provided by engineer. */
@@ -1647,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Prerequisit: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Feu una visualització prèvia de la prova";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Inicis de sessió anteriors";
@@ -1695,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Informació de la prova";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Tipus de prova:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Proves";
@@ -1823,6 +1874,9 @@
 "Score at least %@" = "Puntuació mínima: %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Puntuació que s'ha de mantenir:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Puntuat per sobre %g";
 
 /* No comment provided by engineer. */
@@ -1919,6 +1973,9 @@
 "Show a month at a time" = "Mostra un mes a la vegada";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Mostreu les respostes correctes:";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Mostra el resum de l'assignatura";
 
 /* No comment provided by engineer. */
@@ -1926,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Mostra més opcions";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Reorganitzeu les respostes:";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Atès que aquest és un fòrum de grup, cada grup té la seva conversa per a aquest tema. Aquests són els fòrums als quals teniu accés.";
@@ -2222,6 +2282,9 @@
 "Time elapsed" = "Temps transcorregut";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Límit de temps:";
+
+/* No comment provided by engineer. */
 "Title" = "Títol";
 
 /* No comment provided by engineer. */
@@ -2286,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Element no admès";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "Fins a %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "S'ha actualitzat la configuració d'idioma";
@@ -2373,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Visualitza els anuncis anteriors";
+
+/* No comment provided by engineer. */
+"View Responses:" = "Mostreu les respostes:";
 
 /* No comment provided by engineer. */
 "Viewed" = "Vist";
