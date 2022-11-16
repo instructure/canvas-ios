@@ -46,7 +46,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             UITestHelpers.setup(self)
         #endif
         setupDefaultErrorHandling()
-        initializeHeap()
+        // initializeHeap()
         Analytics.shared.handler = self
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)

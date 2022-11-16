@@ -22,52 +22,25 @@ struct SideMenuOptionsSection: View {
     @Environment(\.appEnvironment) var env
     @ObservedObject private var viewModel = OptionsViewModel()
 
-    let enrollment: HelpLinkEnrollment
-
     var body: some View {
         VStack(spacing: 0) {
             SideMenuSubHeaderView(title: Text("OPTIONS", bundle: .core))
                 .accessibility(addTraits: .isHeader)
-            if enrollment == .student {
-                SideMenuToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: $viewModel.showGrades).onTapGesture {
-                    viewModel.showGrades.toggle()
-                }
-            }
-
-            if enrollment == .student || enrollment == .teacher {
-                SideMenuToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay).onTapGesture {
-                    viewModel.colorOverlay.toggle()
-                }
-            } else {
-                SideMenuToggleItem(id: "darkMode", image: .imageLine, title: Text("Dark Mode", bundle: .core), isOn: $viewModel.darkMode).onTapGesture {
+            SideMenuToggleItem(id: "darkMode",
+                               image: .imageLine,
+                               title: Text("Dark Mode", bundle: .core),
+                               isOn: $viewModel.darkMode)
+            .onTapGesture {
+                withAnimation {
                     viewModel.darkMode.toggle()
                 }
             }
-        }
-        .onAppear {
-            viewModel.viewDidAppear()
         }
     }
 }
 
 extension SideMenuOptionsSection {
     final class OptionsViewModel: ObservableObject {
-        @Published var showGrades: Bool = false {
-            willSet {
-                if newValue != showGrades {
-                    env.userDefaults?.showGradesOnDashboard = newValue
-                }
-            }
-        }
-
-        @Published var colorOverlay: Bool = false {
-            willSet {
-                if newValue != colorOverlay {
-                    UpdateUserSettings(hide_dashcard_color_overlays: !newValue).fetch()
-                }
-            }
-        }
-
         @Published var darkMode: Bool = false {
             willSet {
                 if newValue != darkMode {
@@ -81,18 +54,9 @@ extension SideMenuOptionsSection {
         }
 
         private let env = AppEnvironment.shared
-        private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
-            self?.colorOverlay = self?.settings.first?.hideDashcardColorOverlays != true
-        }
 
         init() {
-            showGrades = env.userDefaults?.showGradesOnDashboard == true
-            colorOverlay = settings.first?.hideDashcardColorOverlays != true
             darkMode = env.userDefaults?.interfaceStyle == .dark
-        }
-
-        func viewDidAppear() {
-            settings.refresh()
         }
     }
 }
@@ -101,7 +65,7 @@ extension SideMenuOptionsSection {
 
 struct SideMenuOptionsSection_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuOptionsSection(enrollment: .student)
+        SideMenuOptionsSection()
     }
 }
 

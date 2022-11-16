@@ -64,6 +64,8 @@ func docViewerConfigurationBuilder(_ builder: PDFConfigurationBuilder) {
     builder.shouldHideStatusBarWithUserInterface = false
     builder.spreadFitting = .fill
     builder.userInterfaceViewMode = .never
+    // No menu should be shown when long tapping on empty space
+    builder.isCreateAnnotationMenuEnabled = false
 
     let properties: [Annotation.Tool: [[AnnotationStyle.Key]]] = [
         .stamp: [[.color]],

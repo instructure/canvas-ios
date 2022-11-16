@@ -130,7 +130,6 @@ public class CircleProgressView: UIView {
 
     public override func didMoveToWindow() {
         super.didMoveToWindow()
-        clearAnimation()
     }
 
     public func startAnimating() {

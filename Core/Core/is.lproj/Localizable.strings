@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ skilað";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ til %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, í %2$@, síðustu skilaboðin voru þann %3$@ %4$@";
 
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d atriði";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d Mínútur";
 
 /* Number of missing submissions */
 "%d missing" = "%d vantar";
@@ -87,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Aðgangur";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Aðgangskóði:";
 
 /* No comment provided by engineer. */
 "Account Group" = "Hópreikningur";
@@ -145,6 +154,12 @@
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Tilkynningar stjórnenda";
 
+/* e.g. After 01.02.2022 */
+"After %@" = "Eftir %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "Eftir síðustu tilraun";
+
 /* No comment provided by engineer. */
 "Alerts" = "Viðvaranir";
 
@@ -177,6 +192,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Leyfa notendum að gera athugasemdir";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Heimilaðar tilraunir:";
+
+/* No comment provided by engineer. */
+"Always" = "Alltaf";
 
 /* No comment provided by engineer. */
 "Announcement" = "Tilkynning";
@@ -257,6 +278,9 @@
 "Assignment Grade Below %d" = "Verkefnaeinkunn að neðan %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Verkefnahópur:";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "Verkefni vantar";
 
 /* No comment provided by engineer. */
@@ -327,6 +351,9 @@
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tiltækt til:";
+
+/* No comment provided by engineer. */
+"Average" = "Meðaltal";
 
 /* No comment provided by engineer. */
 "Back" = "Til baka";
@@ -971,6 +998,9 @@
 "Graded" = "Metið";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Metið próf";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Kannanir með einkunn";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Hátt: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "Hæst";
 
 /* No comment provided by engineer. */
 "Homeroom" = "Námssalur";
@@ -1148,6 +1181,9 @@
 "Late Grading" = "Síðbúin einkunnagjöf";
 
 /* No comment provided by engineer. */
+"Latest" = "Nýjast";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Nota ytra verkfæri";
 
 /* No comment provided by engineer. */
@@ -1212,6 +1248,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Finna QR kóða";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Læsa spurningum eftir svör:";
 
 /* No comment provided by engineer. */
 "locked" = "læst";
@@ -1448,6 +1487,9 @@
 "No supported files to submit" = "Engar studdar skrár til að skila";
 
 /* No comment provided by engineer. */
+"No time Limit" = "Engin tímamörk";
+
+/* No comment provided by engineer. */
 "None" = "Ekkert";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Ekki tókst að hlaða upp einni eða fleiri skrám. Athugaðu nettenginguna þína og reyndu aftur að skila.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "Ein spurning í einu:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "Aðeins aðgengilegt nemendum með tengil";
@@ -1637,6 +1682,9 @@
 "Practice Quizzes" = "Æfingapróf";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Æfingarpróf og kannanir eru ekki með upplýsingaskjá.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Kjörstillingar";
 
 /* No comment provided by engineer. */
@@ -1644,6 +1692,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Forsenda: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Forskoða próf";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Fyrri innskráningar";
@@ -1692,6 +1743,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Prófupplýsingar";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Tegund prófs:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Próf";
@@ -1820,6 +1874,9 @@
 "Score at least %@" = "Ná minnst %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Varðveita einkunn:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Einkunn gefin fyrir ofan %g";
 
 /* No comment provided by engineer. */
@@ -1916,6 +1973,9 @@
 "Show a month at a time" = "Sýna mánuð í einu";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Sýna rétt svör:";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Sýna námskeiðsyfirlit";
 
 /* No comment provided by engineer. */
@@ -1923,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Sýna fleiri möguleika";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Stokka svör:";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Þar sem þetta er hópumræða, hefur hver hópur eigið samtal um þetta efni. Þetta er það sem þú hefur aðgang að.";
@@ -2219,6 +2282,9 @@
 "Time elapsed" = "Liðinn tími";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Tímamörk:";
+
+/* No comment provided by engineer. */
 "Title" = "Titill";
 
 /* No comment provided by engineer. */
@@ -2283,6 +2349,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Óstutt atriði";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "Þar til %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Uppfærðar tungumálastillingar";
@@ -2370,6 +2439,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Skoða fyrri tilkynningar";
+
+/* No comment provided by engineer. */
+"View Responses:" = "Skoða svör:";
 
 /* No comment provided by engineer. */
 "Viewed" = "Skoðað";
