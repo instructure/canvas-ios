@@ -29,7 +29,8 @@ public struct InboxView: View {
     public var body: some View {
         VStack(spacing: 0) {
             InboxFilterBar(model: model)
-            Divider()
+            Color.borderMedium
+                .frame(height: 0.5)
             if case .loading = model.state {
                 loadingIndicator
             } else {
@@ -45,7 +46,8 @@ public struct InboxView: View {
                         case .loading:
                             SwiftUI.EmptyView()
                         }
-                    }.iOS15Refreshable { completion in
+                    }
+                    .iOS15Refreshable { completion in
                         model.refreshDidTrigger.send(completion)
                     }
                     .listStyle(PlainListStyle())
@@ -61,8 +63,9 @@ public struct InboxView: View {
         ForEach(model.messages) { message in
             VStack(spacing: 0) {
                 InboxMessageView(model: message)
-                Divider()
-                    .padding(.leading, 64)
+                Color.borderMedium
+                    .frame(height: 0.5)
+                    .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
             }
             .listRowInsets(EdgeInsets())
             .iOS15ListRowSeparator(.hidden)
@@ -162,13 +165,10 @@ public struct InboxView: View {
 
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            let interactor = InboxMessageInteractorPreview(messages: .mock(count: 5))
-            let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
-            InboxView(model: viewModel)
-                .preferredColorScheme($0)
-                .previewLayout(.sizeThatFits)
-        }
+        let interactor = InboxMessageInteractorPreview(messages: .mock(count: 5))
+        let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
+        InboxView(model: viewModel)
+            .previewLayout(.sizeThatFits)
     }
 }
 

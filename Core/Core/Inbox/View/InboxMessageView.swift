@@ -67,7 +67,7 @@ public struct InboxMessageView: View {
         .padding(.bottom, 12)
         .padding(.leading, 15)
         .padding(.trailing, 16)
-        .background(Color.clear)
+        .background(Color.backgroundLightest)
         .overlay(unreadDot)
         .contentShape(Rectangle())
     }
@@ -119,15 +119,11 @@ public struct InboxMessageView: View {
 
 struct InboxMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            InboxMessageView(model: .mock)
-                .preferredColorScheme($0)
-                .previewLayout(.sizeThatFits)
-        }
+        InboxMessageView(model: .mock)
+            .previewLayout(.sizeThatFits)
 
         InboxMessageView(model: .mock(participantName: "Bob Hunter, Tray B, Joe M, Alice Swanson, Marty + 3"))
             .previewLayout(.sizeThatFits)
-            .previewDevice(PreviewDevice(stringLiteral: "iPhone 11"))
     }
 }
 
