@@ -143,11 +143,15 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             newMessages[index] = message.makeCopy(withState: state)
         }
 
+        var messageCount = TabBarBadgeCounts.unreadMessageCount
+
         if state == .unread {
-            TabBarBadgeCounts.unreadMessageCount += 1
-        } else if message.state == .unread {
-            TabBarBadgeCounts.unreadMessageCount -= 1
+            messageCount += 1
+        } else if messageCount > 0 {
+            messageCount -= 1
         }
+
+        TabBarBadgeCounts.unreadMessageCount = messageCount
 
         messagesSubject.send(newMessages)
 
