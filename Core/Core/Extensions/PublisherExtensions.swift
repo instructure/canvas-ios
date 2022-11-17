@@ -18,15 +18,8 @@
 
 import Combine
 
-public protocol InboxMessageInteractor {
-    // MARK: - Outputs
-    var state: AnyPublisher<StoreState, Never> { get }
-    var messages: AnyPublisher<[InboxMessageModel], Never> { get }
-    var courses: AnyPublisher<[APICourse], Never> { get }
-
-    // MARK: - Inputs
-    var triggerRefresh: AnySubscriber<() -> Void, Never> { get }
-    var setFilter: AnySubscriber<Context?, Never> { get }
-    var setScope: AnySubscriber<InboxMessageScope, Never> { get }
-    func updateState(message: InboxMessageModel, state: ConversationWorkflowState) -> Future<Void, Never>
+public extension Publisher {
+    func sink() -> AnyCancellable {
+        sink { _ in } receiveValue: { _ in }
+    }
 }

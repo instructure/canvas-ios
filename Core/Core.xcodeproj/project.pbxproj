@@ -1179,6 +1179,7 @@
 		CFEC7F4226B42E50008B9F77 /* K5Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4126B42E50008B9F77 /* K5Preview.swift */; };
 		CFEC7F4826B7E853008B9F77 /* K5ScheduleWeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */; };
 		CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */; };
+		CFF3423329267FFD007CC67C /* PublisherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3423229267FFD007CC67C /* PublisherExtensions.swift */; };
 		CFF64FDA27D9EB1B00653573 /* CourseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FD927D9EB1B00653573 /* CourseDetailsHeaderView.swift */; };
 		CFF64FDC27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FDB27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift */; };
 		CFF64FE027DA05C300653573 /* ContextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FDF27DA05C300653573 /* ContextButton.swift */; };
@@ -2730,6 +2731,7 @@
 		CFEC7F4126B42E50008B9F77 /* K5Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Preview.swift; sourceTree = "<group>"; };
 		CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModel.swift; sourceTree = "<group>"; };
 		CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
+		CFF3423229267FFD007CC67C /* PublisherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherExtensions.swift; sourceTree = "<group>"; };
 		CFF64FD927D9EB1B00653573 /* CourseDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		CFF64FDB27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsHeaderViewModel.swift; sourceTree = "<group>"; };
 		CFF64FDF27DA05C300653573 /* ContextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextButton.swift; sourceTree = "<group>"; };
@@ -4059,6 +4061,7 @@
 				B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */,
 				CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */,
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
+				CFF3423229267FFD007CC67C /* PublisherExtensions.swift */,
 				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
 				CF3A31FA29017784002752D2 /* SinkExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
@@ -6669,7 +6672,6 @@
 				CF3A31E228FD6EA0002752D2 /* iOS15SwipeActions.swift */,
 				CF3A31E428FD7A10002752D2 /* iOS15Tint.swift */,
 				EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */,
-
 				CF12DFC726D63937000BE452 /* NavBarItems.swift */,
 				CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */,
 				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
@@ -8069,6 +8071,7 @@
 				7DA260F023F72391005D2121 /* FileUploadContext.swift in Sources */,
 				CF43DE7927B5611400015B6F /* SafeURL.swift in Sources */,
 				CFEC7F3B26B409D1008B9F77 /* K5ScheduleWeekView.swift in Sources */,
+				CFF3423329267FFD007CC67C /* PublisherExtensions.swift in Sources */,
 				EB66DB9526451CAE002D3325 /* CustomTextField.swift in Sources */,
 				CF8D53532806FB490038B0B2 /* WebSitePreviewViewModel.swift in Sources */,
 				7DA25FAD23F72136005D2121 /* APIEnrollment.swift in Sources */,

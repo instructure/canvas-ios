@@ -41,24 +41,6 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             self?.scopeValue = scope
         }
         .eraseToAnySubscriber()
-    public private(set) lazy var markAsRead = Subscribers
-        .Sink<InboxMessageModel, Never> { [weak self] message in
-            self?.updateWorkflowStateLocally(message: message, state: .read)
-            self?.uploadWorkflowStateToAPI(messageId: message.id, state: .read)
-        }
-        .eraseToAnySubscriber()
-    public private(set) lazy var markAsUnread = Subscribers
-        .Sink<InboxMessageModel, Never> { [weak self] message in
-            self?.updateWorkflowStateLocally(message: message, state: .unread)
-            self?.uploadWorkflowStateToAPI(messageId: message.id, state: .unread)
-        }
-        .eraseToAnySubscriber()
-    public private(set) lazy var markAsArchived = Subscribers
-        .Sink<InboxMessageModel, Never> { [weak self] message in
-            self?.updateWorkflowStateLocally(message: message, state: .archived)
-            self?.uploadWorkflowStateToAPI(messageId: message.id, state: .archived)
-        }
-        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
@@ -74,10 +56,24 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
     private var messagesRequest: APITask?
 
+    // MARK: - Inputs
+
     public init(env: AppEnvironment) {
         self.env = env
         fetchCoursesFromAPI()
     }
+
+    public func updateState(message: InboxMessageModel,
+                            state: ConversationWorkflowState)
+    -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            self.updateWorkflowStateLocally(message: message, state: state)
+            self.uploadWorkflowStateToAPI(messageId: message.id, state: state)
+            promise(.success(()))
+        }
+    }
+
+    // MARK: - Private Helpers
 
     private func update() {
         stateSubject.send(.loading)

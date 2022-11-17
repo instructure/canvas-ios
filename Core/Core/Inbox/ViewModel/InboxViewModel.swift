@@ -42,9 +42,7 @@ public class InboxViewModel: ObservableObject {
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
     public let courseDidChange = CurrentValueSubject<APICourse?, Never>(nil)
-    public let markAsRead = PassthroughSubject<InboxMessageModel, Never>()
-    public let markAsUnread = PassthroughSubject<InboxMessageModel, Never>()
-    public let markAsArchived = PassthroughSubject<InboxMessageModel, Never>()
+    public let updateState = PassthroughSubject<(message: InboxMessageModel, state: ConversationWorkflowState), Never>()
 
     // MARK: - Private State
     private static let DefaultScope: InboxMessageScope = .all
@@ -78,6 +76,7 @@ public class InboxViewModel: ObservableObject {
     }
 
     private func bindInputsToDataSource() {
+        let interactor = self.interactor
         courseDidChange
             .map { $0?.context }
             .removeDuplicates()
@@ -87,12 +86,10 @@ public class InboxViewModel: ObservableObject {
             .subscribe(interactor.setScope)
         refreshDidTrigger
             .subscribe(interactor.triggerRefresh)
-        markAsRead
-            .subscribe(interactor.markAsRead)
-        markAsUnread
-            .subscribe(interactor.markAsUnread)
-        markAsArchived
-            .subscribe(interactor.markAsArchived)
+        updateState
+            .map { interactor.updateState(message: $0.message, state: $0.state) }
+            .sink()
+            .store(in: &subscriptions)
     }
 
     private func subscribeToMenuTapEvents(router: Router) {

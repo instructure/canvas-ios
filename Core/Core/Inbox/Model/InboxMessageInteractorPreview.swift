@@ -45,15 +45,6 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
             self?.scopeValue = scope
         }
         .eraseToAnySubscriber()
-    public private(set) lazy var markAsRead = Subscribers
-        .Sink<InboxMessageModel, Never> { _ in }
-        .eraseToAnySubscriber()
-    public private(set) lazy var markAsUnread = Subscribers
-        .Sink<InboxMessageModel, Never> { _ in }
-        .eraseToAnySubscriber()
-    public private(set) lazy var markAsArchived = Subscribers
-        .Sink<InboxMessageModel, Never> { _ in }
-        .eraseToAnySubscriber()
 
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
@@ -63,6 +54,12 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
 
     public init(messages: [InboxMessageModel]) {
         self.messages = CurrentValueSubject<[InboxMessageModel], Never>(messages).eraseToAnyPublisher()
+    }
+
+    public func updateState(message: InboxMessageModel,
+                            state: ConversationWorkflowState)
+    -> Future<Void, Never> {
+        Future<Void, Never> { $0(.success(())) }
     }
 
     private func update() {

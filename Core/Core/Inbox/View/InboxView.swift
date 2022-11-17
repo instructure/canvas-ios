@@ -82,7 +82,7 @@ public struct InboxView: View {
     private func archiveButton(message: InboxMessageModel) -> some View {
         if message.isArchiveActionAvailable {
             Button {
-                model.markAsArchived.send(message)
+                model.updateState.send((message: message, state: .archived))
             }
             label: {
                 Label {
@@ -104,11 +104,8 @@ public struct InboxView: View {
         let isMarkAsReadAction = message.isMarkAsReadActionAvailable
 
         Button {
-            if isMarkAsReadAction {
-                model.markAsRead.send(message)
-            } else {
-                model.markAsUnread.send(message)
-            }
+            model.updateState.send((message: message,
+                                    state: isMarkAsReadAction ? .read : .unread))
         }
         label: {
             Label {
