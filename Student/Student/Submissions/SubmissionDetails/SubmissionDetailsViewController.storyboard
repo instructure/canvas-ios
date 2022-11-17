@@ -32,7 +32,6 @@
                                     <constraint firstAttribute="height" constant="38" id="4ET-91-dZS"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="4"/>
-                                <state key="normal" title="Mar 3 at 11:58pm"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
