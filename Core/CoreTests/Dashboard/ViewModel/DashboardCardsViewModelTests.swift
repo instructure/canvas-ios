@@ -56,14 +56,14 @@ class DashboardCardsViewModelTests: CoreTestCase {
 
     func testLayoutSelectionFlagOnEmptyCourses() {
         let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
-        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+        XCTAssertFalse(testee.shouldShowSettingsButton)
 
         testee.refresh()
         drainMainQueue()
 
         guard case .empty = testee.state else { XCTFail("View model should be empty"); return }
 
-        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+        XCTAssertFalse(testee.shouldShowSettingsButton)
     }
 
     func testLayoutSelectionFlagWhenCoursesAvailable() {
@@ -71,13 +71,13 @@ class DashboardCardsViewModelTests: CoreTestCase {
         api.mock(GetDashboardCards(), value: [.make(id: 1, shortName: "card 1")])
 
         let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
-        XCTAssertFalse(testee.shouldShowLayoutToggleButton)
+        XCTAssertFalse(testee.shouldShowSettingsButton)
 
         testee.refresh()
         drainMainQueue()
 
         guard case .data = testee.state else { XCTFail("No data in view model"); return }
 
-        XCTAssertTrue(testee.shouldShowLayoutToggleButton)
+        XCTAssertTrue(testee.shouldShowSettingsButton)
     }
 }

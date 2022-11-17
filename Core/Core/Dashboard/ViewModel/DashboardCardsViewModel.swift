@@ -28,7 +28,7 @@ class DashboardCardsViewModel: ObservableObject {
     }
 
     @Published public private(set) var state = ViewModelState<[DashboardCard]>.loading
-    @Published public private(set) var shouldShowLayoutToggleButton = false
+    @Published public private(set) var shouldShowSettingsButton = false
     private let env = AppEnvironment.shared
     private lazy var cards: Store<GetDashboardCards> = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.update()
@@ -81,7 +81,7 @@ class DashboardCardsViewModel: ObservableObject {
 
         let cards = filteredCards()
         state = cards.isEmpty ? .empty : .data(cards)
-        shouldShowLayoutToggleButton = !cards.isEmpty
+        shouldShowSettingsButton = !cards.isEmpty
     }
 
     private func filteredCards() -> [DashboardCard] {
