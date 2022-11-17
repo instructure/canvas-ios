@@ -83,7 +83,7 @@ public struct SubmitAssignmentExtensionView: View {
 
     @ViewBuilder
     private var commentBox: some View {
-        let editor = TextEditor(text: $viewModel.comment)
+        TextEditor(text: $viewModel.comment)
             .foregroundColor(.textDarkest)
             .style(.body)
             .frame(height: 100)
@@ -92,11 +92,7 @@ public struct SubmitAssignmentExtensionView: View {
             .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
             .overlay(placeholder, alignment: .topLeading)
             .accessibilityLabel(NSLocalizedString("Add optional comment", comment: ""))
-        if #available(iOS 15, *) {
-            editor.toolbar { hideKeyboardButton }
-        } else {
-            editor
-        }
+            .toolbar { hideKeyboardButton }
     }
 
     @ViewBuilder
