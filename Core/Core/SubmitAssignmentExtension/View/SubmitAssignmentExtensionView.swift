@@ -16,9 +16,219 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
+@available(iOSApplicationExtension 15.0, *)
 public struct SubmitAssignmentExtensionView: View {
+    private enum AccessibilityFocusArea: Hashable, Equatable {
+        case course, assignment
+    }
+
+    @Environment(\.viewController) private var viewController
+    @Environment(\.appEnvironment) private var env
+    @ObservedObject private var viewModel: SubmitAssignmentExtensionViewModel
+
+    @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
+
+    public init(viewModel: SubmitAssignmentExtensionViewModel) {
+        self.viewModel = viewModel
+    }
+
+    public var body: some View {
+        NavigationView {
+            if viewModel.isUserLoggedIn {
+                contentView
+            } else {
+                notLoggedInView
+            }
+        }
+        .navigationViewStyle(.stack)
+        .onReceive(viewModel.showUploadStateView, perform: showFileProgressView)
+    }
+
+    private var notLoggedInView: some View {
+        Text("Please log in via the application")
+            .foregroundColor(.textDarkest)
+            .font(.regular16)
+            .navigationBarGlobal()
+            .navigationBarTitleView(titleView, displayMode: .inline)
+            .navBarItems(trailing: cancelButton)
+    }
+
+    private var contentView: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                selectCourseButton
+                divider
+                selectAssignmentButton
+                commentBox
+                divider
+                filesSection
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+        }
+        .navigationBarGlobal()
+        .navigationBarTitleView(titleView, displayMode: .inline)
+        .navBarItems(leading: cancelButton, trailing: submitButton)
+        .onDisappear {
+            accessibilityFocus = nil
+        }
+    }
+
+    private var titleView: some View {
+        Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
+    }
+
+    @ViewBuilder
+    private var commentBox: some View {
+        let editor = TextEditor(text: $viewModel.comment)
+            .foregroundColor(.textDarkest)
+            .style(.body)
+            .frame(height: 100)
+            .padding(.vertical, 13) // TextEditor has a default 7 point padding so 20 - 7
+            .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar
+            .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
+            .overlay(placeholder, alignment: .topLeading)
+            .accessibilityLabel(NSLocalizedString("Add optional comment", comment: ""))
+        if #available(iOS 15, *) {
+            editor.toolbar { hideKeyboardButton }
+        } else {
+            editor
+        }
+    }
+
+    @ViewBuilder
+    private var placeholder: some View {
+        if viewModel.comment.isEmpty {
+            Text("Add comment (optional)", comment: "")
+                .foregroundColor(.textDark)
+                .font(.regular16)
+                .padding(.top, 21)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+    }
+
+    @available(iOS 15.0, *)
+    private var hideKeyboardButton: some ToolbarContent {
+        ToolbarItem(placement: .keyboard) {
+            HStack {
+                Spacer()
+                Button(action: {
+                    viewController.view.endEditing(true)
+                }) {
+                    Text("Done", bundle: .core)
+                        .font(.bold17)
+                }
+            }
+        }
+    }
+
+    private var selectCourseButton: some View {
+        NavigationLink(destination: CoursePickerView(viewModel: viewModel.coursePickerViewModel)) {
+            HStack {
+                viewModel.selectCourseButtonTitle
+                    .foregroundColor(viewModel.coursePickerViewModel.selectedCourse == nil ? .textDark : .textDarkest)
+                    .font(.regular16)
+                    .multilineTextAlignment(.leading)
+                Spacer()
+                InstDisclosureIndicator().padding(.leading, 10)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityFocused($accessibilityFocus, equals: .course)
+        .onReceive(viewModel.coursePickerViewModel.dismissView) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                accessibilityFocus = .course
+            }
+        }
+        .frame(height: 54)
+    }
+
+    private var divider: some View {
+        Divider().padding(.horizontal, -20)
+    }
+
+    @ViewBuilder
+    private var selectAssignmentButton: some View {
+        if viewModel.assignmentPickerViewModel.courseID != nil {
+            let viewToPush = AssignmentPickerView(viewModel: viewModel.assignmentPickerViewModel)
+            NavigationLink(destination: viewToPush) {
+                VStack(spacing: 0) {
+                    HStack {
+                        viewModel.selectAssignmentButtonTitle
+                            .foregroundColor(viewModel.assignmentPickerViewModel.selectedAssignment == nil ? .textDark : .textDarkest)
+                            .font(.regular16)
+                            .multilineTextAlignment(.leading)
+                        Spacer()
+                        InstDisclosureIndicator().padding(.leading, 10)
+                    }
+                        .frame(height: 54)
+                }
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityFocused($accessibilityFocus, equals: .assignment)
+            .onReceive(viewModel.assignmentPickerViewModel.dismissView) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    accessibilityFocus = .assignment
+                }
+            }
+            divider
+        }
+    }
+
+    private var cancelButton: some View {
+        Button(action: viewModel.cancelTapped) {
+            Text("Cancel", bundle: .core)
+                .foregroundColor(.crimson)
+                .font(.regular17)
+        }
+    }
+
+    @ViewBuilder
+    private var submitButton: some View {
+        if viewModel.isProcessingFiles {
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle(size: 20))
+        } else {
+            Button(action: viewModel.submitTapped) {
+                Text("Submit", bundle: .core)
+                    .font(.semibold17)
+            }
+            .disabled(viewModel.isSubmitButtonDisabled)
+        }
+    }
+
+    private var filesSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(String.localizedStringWithFormat(NSLocalizedString("d_items", comment: ""), viewModel.previews.count))
+                .font(.regular12)
+                .foregroundColor(.textDark)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    Spacer().frame(width: 20)
+                    ForEach(viewModel.previews) {
+                        AttachmentPreviewView(viewModel: $0)
+                    }
+                    Spacer().frame(width: 20)
+                }
+            }
+                .padding(.top, 10)
+                .padding(.horizontal, -20)
+        }
+        .padding(.top, 20)
+    }
+
+    private func showFileProgressView(_ viewModel: FileProgressListViewModel) {
+        let listView = FileProgressListView(viewModel: viewModel)
+        let listViewController = CoreHostingController(listView)
+        env.router.show(listViewController, from: viewController, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: false), analyticsRoute: "/file_progress")
+    }
+}
+
+public struct IOS14SubmitAssignmentExtensionView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
     @ObservedObject private var viewModel: SubmitAssignmentExtensionViewModel
@@ -216,7 +426,11 @@ struct SubmitAssignmentExtensionView_Previews: PreviewProvider {
         ]))
 
         let viewModel = SubmitAssignmentExtensionViewModel(coursePickerViewModel: coursePickerViewModel)
-        SubmitAssignmentExtensionView(viewModel: viewModel)
+        if #available(iOSApplicationExtension 15.0, *) {
+            SubmitAssignmentExtensionView(viewModel: viewModel)
+        } else {
+            IOS14SubmitAssignmentExtensionView(viewModel: viewModel)
+        }
     }
 }
 

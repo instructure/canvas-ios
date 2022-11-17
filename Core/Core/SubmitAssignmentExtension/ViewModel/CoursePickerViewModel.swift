@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class CoursePickerViewModel: ObservableObject {
@@ -23,6 +24,8 @@ public class CoursePickerViewModel: ObservableObject {
 
     @Published public var selectedCourse: CoursePickerViewModel.Course?
     @Published public var state: ViewModelState<[Course]> = .loading
+    public private(set) lazy var dismissView: AnyPublisher<Void, Never> = dismissViewSubject.eraseToAnyPublisher()
+    private let dismissViewSubject = PassthroughSubject<Void, Never>()
 
     #if DEBUG
 
@@ -64,6 +67,7 @@ public class CoursePickerViewModel: ObservableObject {
     public func courseSelected(_ course: CoursePickerViewModel.Course) {
         Analytics.shared.logEvent("course_selected")
         selectedCourse = course
+        dismissViewSubject.send(())
     }
 
     private func selectDefaultCourse() {
