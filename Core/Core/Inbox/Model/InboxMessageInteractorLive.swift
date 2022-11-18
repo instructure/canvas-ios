@@ -20,14 +20,11 @@ import Combine
 
 public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Outputs
-    public private(set) lazy var state = stateSubject.eraseToAnyPublisher()
-    public private(set) lazy var messages = messagesSubject.eraseToAnyPublisher()
-    public private(set) lazy var courses = coursesSubject.eraseToAnyPublisher()
+    public let state = CurrentValueSubject<StoreState, Never>(.loading)
+    public let messages = CurrentValueSubject<[InboxMessageModel], Never>([])
+    public let courses = CurrentValueSubject<[APICourse], Never>([])
 
     // MARK: - Private State
-    private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
-    private let messagesSubject = CurrentValueSubject<[InboxMessageModel], Never>([])
-    private let coursesSubject = CurrentValueSubject<[APICourse], Never>([])
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
     private var filterValue: Context? {
@@ -79,8 +76,8 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Private Helpers
 
     private func update() {
-        stateSubject.send(.loading)
-        messagesSubject.send([])
+        state.send(.loading)
+        messages.send([])
         fetchMessagesFromAPI()
     }
 
@@ -91,7 +88,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .replaceNil(with: [])
             .replaceError(with: [])
             .map { $0.sorted { ($0.name ?? "") < ($1.name ?? "") }}
-            .subscribe(coursesSubject)
+            .subscribe(courses)
             .store(in: &subscriptions)
     }
 
@@ -118,12 +115,12 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
 
     private func handleMessagesResponse(messages: [InboxMessageModel], error: Error?) {
         if error != nil {
-            stateSubject.send(.error)
+            state.send(.error)
         } else if messages.isEmpty {
-            stateSubject.send(.empty)
+            state.send(.empty)
         } else {
-            messagesSubject.send(messages)
-            stateSubject.send(.data)
+            self.messages.send(messages)
+            state.send(.data)
         }
     }
 
@@ -133,8 +130,8 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
 
     private func updateWorkflowStateLocally(message: InboxMessageModel, state: ConversationWorkflowState) {
-        guard let index = messagesSubject.value.firstIndex(of: message) else { return }
-        var newMessages = messagesSubject.value
+        guard let index = messages.value.firstIndex(of: message) else { return }
+        var newMessages = messages.value
 
         if message.state == .archived || state == .archived {
             newMessages.remove(at: index)
@@ -152,10 +149,10 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
 
         TabBarBadgeCounts.unreadMessageCount = messageCount
 
-        messagesSubject.send(newMessages)
+        messages.send(newMessages)
 
         if newMessages.isEmpty {
-            stateSubject.send(.empty)
+            self.state.send(.empty)
         }
     }
 }

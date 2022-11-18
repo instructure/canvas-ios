@@ -20,9 +20,9 @@ import Combine
 
 public protocol InboxMessageInteractor {
     // MARK: - Outputs
-    var state: AnyPublisher<StoreState, Never> { get }
-    var messages: AnyPublisher<[InboxMessageModel], Never> { get }
-    var courses: AnyPublisher<[APICourse], Never> { get }
+    var state: CurrentValueSubject<StoreState, Never> { get }
+    var messages: CurrentValueSubject<[InboxMessageModel], Never> { get }
+    var courses: CurrentValueSubject<[APICourse], Never> { get }
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>

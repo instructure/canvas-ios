@@ -22,19 +22,17 @@ import Combine
 
 class InboxMessageInteractorPreview: InboxMessageInteractor {
     // MARK: - Outputs
-    public private(set) lazy var state = stateSubject.eraseToAnyPublisher()
-    public let messages: AnyPublisher<[InboxMessageModel], Never>
-    public let courses = Just([APICourse.make(id: "1", name: "Test Course")])
-        .eraseToAnyPublisher()
+    public let state = CurrentValueSubject<StoreState, Never>(.loading)
+    public let messages: CurrentValueSubject<[InboxMessageModel], Never>
+    public let courses = CurrentValueSubject<[APICourse], Never>([.make(id: "1", name: "Test Course")])
 
     // MARK: - Private State
-    private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private var scopeValue: InboxMessageScope = .all {
         didSet { update() }
     }
 
     public init(messages: [InboxMessageModel]) {
-        self.messages = CurrentValueSubject<[InboxMessageModel], Never>(messages).eraseToAnyPublisher()
+        self.messages = CurrentValueSubject<[InboxMessageModel], Never>(messages)
     }
 
     public func refresh() -> Future<Void, Never> {
@@ -66,16 +64,16 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     }
 
     private func update() {
-        stateSubject.send(.loading)
+        state.send(.loading)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             switch scopeValue {
             case .all, .sent, .archived:
-                stateSubject.send(.data)
+                state.send(.data)
             case .unread:
-                stateSubject.send(.empty)
+                state.send(.empty)
             case .starred:
-                stateSubject.send(.error)
+                state.send(.error)
             }
         }
     }
