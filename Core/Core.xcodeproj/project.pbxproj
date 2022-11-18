@@ -1180,6 +1180,7 @@
 		CFEC7F4826B7E853008B9F77 /* K5ScheduleWeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */; };
 		CFEC7F5026B92FBB008B9F77 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */; };
 		CFF3423329267FFD007CC67C /* PublisherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3423229267FFD007CC67C /* PublisherExtensions.swift */; };
+		CFF342392927E83A007CC67C /* InboxMessageListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF342382927E83A007CC67C /* InboxMessageListItemTests.swift */; };
 		CFF64FDA27D9EB1B00653573 /* CourseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FD927D9EB1B00653573 /* CourseDetailsHeaderView.swift */; };
 		CFF64FDC27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FDB27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift */; };
 		CFF64FE027DA05C300653573 /* ContextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF64FDF27DA05C300653573 /* ContextButton.swift */; };
@@ -2732,6 +2733,7 @@
 		CFEC7F4726B7E853008B9F77 /* K5ScheduleWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModel.swift; sourceTree = "<group>"; };
 		CFEC7F4F26B92FBB008B9F77 /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 		CFF3423229267FFD007CC67C /* PublisherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherExtensions.swift; sourceTree = "<group>"; };
+		CFF342382927E83A007CC67C /* InboxMessageListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageListItemTests.swift; sourceTree = "<group>"; };
 		CFF64FD927D9EB1B00653573 /* CourseDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		CFF64FDB27D9EBDD00653573 /* CourseDetailsHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsHeaderViewModel.swift; sourceTree = "<group>"; };
 		CFF64FDF27DA05C300653573 /* ContextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextButton.swift; sourceTree = "<group>"; };
@@ -5032,6 +5034,7 @@
 			isa = PBXGroup;
 			children = (
 				CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */,
+				CFF342382927E83A007CC67C /* InboxMessageListItemTests.swift */,
 				CF3A31F028FDA64D002752D2 /* InboxMessageModelAvatarTests.swift */,
 			);
 			path = Entities;
@@ -7496,6 +7499,7 @@
 				3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */,
 				CF0075E02875C56500588E40 /* InputStreamExtensionsTests.swift in Sources */,
 				CF9D2264291EB64600B19EF0 /* DashboardViewModelTests.swift in Sources */,
+				CFF342392927E83A007CC67C /* InboxMessageListItemTests.swift in Sources */,
 				D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */,
 				D9B6495028F454A30035CE14 /* QuizDetailsViewModelTests.swift in Sources */,
 				7D8B78F8215EC74A005E08F1 /* UIImageExtensionsTests.swift in Sources */,

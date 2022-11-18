@@ -16,7 +16,44 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import CoreData
+
+public class InboxMessageListItem2: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged public var participantName: String
+    @NSManaged public var title: String
+    @NSManaged public var message: String
+    @NSManaged public var isStarred: Bool
+
+    // MARK: Convertible Raw Properties
+
+    @NSManaged public var dateRaw: Date
+    @NSManaged public var stateRaw: String
+    @NSManaged public var avatarNameRaw: String?
+    @NSManaged public var avatarURLRaw: URL?
+
+    // MARK: - Helper Properties
+
+    public var state: ConversationWorkflowState {
+        ConversationWorkflowState(rawValue: stateRaw) ?? .unread
+    }
+    public var isMarkAsReadActionAvailable: Bool {
+        state == .unread || state == .archived
+    }
+    public var isArchiveActionAvailable: Bool {
+        state != .archived
+    }
+    public var date: String {
+        dateRaw.relativeDateOnlyString
+    }
+    public var avatar: InboxMessageAvatar {
+        if let name = avatarNameRaw {
+            return .individual(name: name, profileImageURL: avatarURLRaw)
+        } else {
+            return .group
+        }
+    }
+}
 
 public struct InboxMessageListItem: Identifiable, Equatable {
     public let id: String
