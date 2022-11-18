@@ -97,6 +97,10 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func update() {
+        guard submissions.requested, !submissions.pending else {
+            return
+        }
+
         if quizzes?.useCase.quizID != assignment.first?.quizID {
             quizzes = assignment.first?.quizID.flatMap { quizID in env.subscribe(GetQuiz(courseID: context.id, quizID: quizID)) { [weak self] in
                 self?.update()
