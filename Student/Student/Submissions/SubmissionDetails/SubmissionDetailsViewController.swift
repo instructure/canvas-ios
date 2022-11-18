@@ -62,6 +62,9 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         picker?.backgroundColor = .backgroundLightest
         pickerButton?.setTitleColor(.textDark, for: .disabled)
 
+        pickerButtonArrow?.isHidden = true
+        pickerButtonDivider?.isHidden = true
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         presenter?.viewIsReady()
