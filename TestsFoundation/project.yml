@@ -11,7 +11,7 @@ settings:
 packages:
   Swifter:
     url: https://github.com/httpswift/swifter
-    branch: stable
+    version: 1.5.0
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
