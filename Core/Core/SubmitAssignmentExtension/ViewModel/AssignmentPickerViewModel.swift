@@ -25,10 +25,12 @@ public class AssignmentPickerViewModel: ObservableObject {
         public let message: String
     }
     public typealias State = ViewModelState<[AssignmentPickerItem]>
+
+    // MARK: - Outputs
     @Published public private(set) var state: State = .loading
     @Published public private(set) var selectedAssignment: AssignmentPickerItem?
     @Published public var incompatibleFilesMessage: AlertMessage?
-    public private(set) lazy var dismissView: AnyPublisher<Void, Never> = dismissViewSubject.eraseToAnyPublisher()
+    public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
     /** Modify this to trigger the assignment list fetch for the given course ID. */
     public var courseID: String? {
         willSet { courseIdWillChange(to: newValue) }
@@ -36,9 +38,9 @@ public class AssignmentPickerViewModel: ObservableObject {
     /** Until we know what files the user wants to share we don't allow assignment selection so we can correctly filter out incompatible assignments. */
     public let sharedFileExtensions = CurrentValueSubject<Set<String>?, Never>(nil)
 
+    // MARK: - Properties
     private let service: AssignmentPickerListServiceProtocol
     private var serviceSubscription: AnyCancellable?
-    private let dismissViewSubject = PassthroughSubject<Void, Never>()
 
     #if DEBUG
 
@@ -80,7 +82,7 @@ public class AssignmentPickerViewModel: ObservableObject {
         } else {
             selectedAssignment = assignment
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.dismissViewSubject.send()
+                self.dismissViewDidTrigger.send()
             }
         }
     }

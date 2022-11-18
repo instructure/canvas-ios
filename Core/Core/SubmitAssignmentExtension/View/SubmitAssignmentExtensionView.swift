@@ -135,7 +135,7 @@ public struct SubmitAssignmentExtensionView: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityFocused($accessibilityFocus, equals: .course)
-        .onReceive(viewModel.coursePickerViewModel.dismissView) {
+        .onReceive(viewModel.coursePickerViewModel.dismissViewDidTrigger) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 accessibilityFocus = .course
             }
@@ -166,7 +166,7 @@ public struct SubmitAssignmentExtensionView: View {
             }
             .accessibilityElement(children: .combine)
             .accessibilityFocused($accessibilityFocus, equals: .assignment)
-            .onReceive(viewModel.assignmentPickerViewModel.dismissView) {
+            .onReceive(viewModel.assignmentPickerViewModel.dismissViewDidTrigger) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     accessibilityFocus = .assignment
                 }
@@ -224,6 +224,12 @@ public struct SubmitAssignmentExtensionView: View {
     }
 }
 
+@available(
+    iOSApplicationExtension,
+    deprecated: 14,
+    obsoleted: 15,
+    message: "Use SubmitAssignmentExtensionView instead"
+)
 public struct IOS14SubmitAssignmentExtensionView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
