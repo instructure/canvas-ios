@@ -19,9 +19,9 @@
 import SwiftUI
 
 public struct InboxMessageView: View {
-    private let model: InboxMessageModel
+    private let model: InboxMessageListItem
 
-    public init(model: InboxMessageModel) {
+    public init(model: InboxMessageListItem) {
         self.model = model
     }
 

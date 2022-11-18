@@ -23,7 +23,7 @@ import Combine
 class InboxMessageInteractorPreview: InboxMessageInteractor {
     // MARK: - Outputs
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
-    public let messages: CurrentValueSubject<[InboxMessageModel], Never>
+    public let messages: CurrentValueSubject<[InboxMessageListItem], Never>
     public let courses = CurrentValueSubject<[APICourse], Never>([.make(id: "1", name: "Test Course")])
 
     // MARK: - Private State
@@ -31,8 +31,8 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
         didSet { update() }
     }
 
-    public init(messages: [InboxMessageModel]) {
-        self.messages = CurrentValueSubject<[InboxMessageModel], Never>(messages)
+    public init(messages: [InboxMessageListItem]) {
+        self.messages = CurrentValueSubject<[InboxMessageListItem], Never>(messages)
     }
 
     public func refresh() -> Future<Void, Never> {
@@ -57,7 +57,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
         }
     }
 
-    public func updateState(message: InboxMessageModel,
+    public func updateState(message: InboxMessageListItem,
                             state: ConversationWorkflowState)
     -> Future<Void, Never> {
         Future<Void, Never> { $0(.success(())) }

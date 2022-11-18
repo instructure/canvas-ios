@@ -21,7 +21,7 @@ import Combine
 public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Outputs
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
-    public let messages = CurrentValueSubject<[InboxMessageModel], Never>([])
+    public let messages = CurrentValueSubject<[InboxMessageListItem], Never>([])
     public let courses = CurrentValueSubject<[APICourse], Never>([])
 
     // MARK: - Private State
@@ -63,7 +63,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         }
     }
 
-    public func updateState(message: InboxMessageModel,
+    public func updateState(message: InboxMessageListItem,
                             state: ConversationWorkflowState)
     -> Future<Void, Never> {
         Future<Void, Never> { promise in
@@ -103,7 +103,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             self.messagesRequest = nil
             let currentUserID = self.env.currentSession?.userID ?? ""
             let messages = (messages ?? []).map {
-                InboxMessageModel(conversation: $0, currentUserID: currentUserID)
+                InboxMessageListItem(conversation: $0, currentUserID: currentUserID)
             }
             performUIUpdate {
                 self.handleMessagesResponse(messages: messages, error: error)
@@ -113,7 +113,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         }
     }
 
-    private func handleMessagesResponse(messages: [InboxMessageModel], error: Error?) {
+    private func handleMessagesResponse(messages: [InboxMessageListItem], error: Error?) {
         if error != nil {
             state.send(.error)
         } else if messages.isEmpty {
@@ -129,7 +129,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         env.api.makeRequest(request, callback: { _, _, _ in })
     }
 
-    private func updateWorkflowStateLocally(message: InboxMessageModel, state: ConversationWorkflowState) {
+    private func updateWorkflowStateLocally(message: InboxMessageListItem, state: ConversationWorkflowState) {
         guard let index = messages.value.firstIndex(of: message) else { return }
         var newMessages = messages.value
 

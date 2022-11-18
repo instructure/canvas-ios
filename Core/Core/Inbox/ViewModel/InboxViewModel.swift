@@ -22,7 +22,7 @@ import SwiftUI
 public class InboxViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var messages: [InboxMessageModel] = []
+    @Published public private(set) var messages: [InboxMessageListItem] = []
     @Published public private(set) var scope: InboxMessageScope = DefaultScope
     @Published public private(set) var course: String = NSLocalizedString("All Courses", comment: "")
     @Published public private(set) var courses: [APICourse] = []
@@ -42,7 +42,7 @@ public class InboxViewModel: ObservableObject {
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
     public let courseDidChange = CurrentValueSubject<APICourse?, Never>(nil)
-    public let updateState = PassthroughSubject<(message: InboxMessageModel, state: ConversationWorkflowState), Never>()
+    public let updateState = PassthroughSubject<(message: InboxMessageListItem, state: ConversationWorkflowState), Never>()
 
     // MARK: - Private State
     private static let DefaultScope: InboxMessageScope = .all

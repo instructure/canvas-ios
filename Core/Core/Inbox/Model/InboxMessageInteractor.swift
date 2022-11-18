@@ -21,12 +21,12 @@ import Combine
 public protocol InboxMessageInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
-    var messages: CurrentValueSubject<[InboxMessageModel], Never> { get }
+    var messages: CurrentValueSubject<[InboxMessageListItem], Never> { get }
     var courses: CurrentValueSubject<[APICourse], Never> { get }
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>
     func setFilter(_ context: Context?) -> Future<Void, Never>
     func setScope(_ scope: InboxMessageScope) -> Future<Void, Never>
-    func updateState(message: InboxMessageModel, state: ConversationWorkflowState) -> Future<Void, Never>
+    func updateState(message: InboxMessageListItem, state: ConversationWorkflowState) -> Future<Void, Never>
 }

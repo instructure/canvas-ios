@@ -24,11 +24,11 @@ class InboxMessageModelAvatarTests: CoreTestCase {
     func testGroupInitializer() {
         let p1 = APIConversationParticipant.make()
         let p2 = APIConversationParticipant.make()
-        XCTAssertEqual(InboxMessageModel.Avatar(participants: [p1, p2]), .group)
+        XCTAssertEqual(InboxMessageAvatar(participants: [p1, p2]), .group)
     }
 
     func testIndividualInitializer() {
         let p = APIConversationParticipant.make(name: "Test Name", avatar_url: URL(string: "/test/url")!)
-        XCTAssertEqual(InboxMessageModel.Avatar(participants: [p]), .individual(name: "Test Name", profileImageURL: URL(string: "/test/url")!))
+        XCTAssertEqual(InboxMessageAvatar(participants: [p]), .individual(name: "Test Name", profileImageURL: URL(string: "/test/url")!))
     }
 }

@@ -875,7 +875,7 @@
 		CF37631F2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */; };
 		CF376323283B757600F25B81 /* AssignmentGroupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */; };
 		CF3A31D428F702B9002752D2 /* InboxMessageScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */; };
-		CF3A31D928F70BD7002752D2 /* InboxMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */; };
+		CF3A31D928F70BD7002752D2 /* InboxMessageListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31D828F70BD7002752D2 /* InboxMessageListItem.swift */; };
 		CF3A31DB28F83D39002752D2 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31DA28F83D39002752D2 /* InboxView.swift */; };
 		CF3A31DD28F840DA002752D2 /* InboxMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */; };
 		CF3A31E128F94FD7002752D2 /* InboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E028F94FD7002752D2 /* InboxViewModel.swift */; };
@@ -884,7 +884,7 @@
 		CF3A31E728FD8112002752D2 /* NoResultsPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E628FD8112002752D2 /* NoResultsPanda.swift */; };
 		CF3A31E928FD92C1002752D2 /* ConversationParticipantNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */; };
 		CF3A31ED28FD9396002752D2 /* ConversationParticipantNamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */; };
-		CF3A31EF28FDA5EB002752D2 /* InboxMessageModelAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31EE28FDA5EB002752D2 /* InboxMessageModelAvatar.swift */; };
+		CF3A31EF28FDA5EB002752D2 /* InboxMessageAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31EE28FDA5EB002752D2 /* InboxMessageAvatar.swift */; };
 		CF3A31F128FDA64D002752D2 /* InboxMessageModelAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F028FDA64D002752D2 /* InboxMessageModelAvatarTests.swift */; };
 		CF3A31F328FEBE0B002752D2 /* InboxMessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F228FEBE0B002752D2 /* InboxMessageInteractor.swift */; };
 		CF3A31F528FEC5DA002752D2 /* InboxMessageInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31F428FEC5DA002752D2 /* InboxMessageInteractorLive.swift */; };
@@ -2427,7 +2427,7 @@
 		CF37631E2837BDB300F25B81 /* DashboardInvitationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationViewModelTests.swift; sourceTree = "<group>"; };
 		CF376322283B757600F25B81 /* AssignmentGroupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroupViewModelTests.swift; sourceTree = "<group>"; };
 		CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScope.swift; sourceTree = "<group>"; };
-		CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageModel.swift; sourceTree = "<group>"; };
+		CF3A31D828F70BD7002752D2 /* InboxMessageListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageListItem.swift; sourceTree = "<group>"; };
 		CF3A31DA28F83D39002752D2 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		CF3A31DC28F840DA002752D2 /* InboxMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageView.swift; sourceTree = "<group>"; };
 		CF3A31E028F94FD7002752D2 /* InboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModel.swift; sourceTree = "<group>"; };
@@ -2436,7 +2436,7 @@
 		CF3A31E628FD8112002752D2 /* NoResultsPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsPanda.swift; sourceTree = "<group>"; };
 		CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNames.swift; sourceTree = "<group>"; };
 		CF3A31EC28FD9396002752D2 /* ConversationParticipantNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNamesTests.swift; sourceTree = "<group>"; };
-		CF3A31EE28FDA5EB002752D2 /* InboxMessageModelAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageModelAvatar.swift; sourceTree = "<group>"; };
+		CF3A31EE28FDA5EB002752D2 /* InboxMessageAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageAvatar.swift; sourceTree = "<group>"; };
 		CF3A31F028FDA64D002752D2 /* InboxMessageModelAvatarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageModelAvatarTests.swift; sourceTree = "<group>"; };
 		CF3A31F228FEBE0B002752D2 /* InboxMessageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageInteractor.swift; sourceTree = "<group>"; };
 		CF3A31F428FEC5DA002752D2 /* InboxMessageInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageInteractorLive.swift; sourceTree = "<group>"; };
@@ -5021,8 +5021,8 @@
 			isa = PBXGroup;
 			children = (
 				CF3A31D328F702B9002752D2 /* InboxMessageScope.swift */,
-				CF3A31D828F70BD7002752D2 /* InboxMessageModel.swift */,
-				CF3A31EE28FDA5EB002752D2 /* InboxMessageModelAvatar.swift */,
+				CF3A31D828F70BD7002752D2 /* InboxMessageListItem.swift */,
+				CF3A31EE28FDA5EB002752D2 /* InboxMessageAvatar.swift */,
 				CF3A31E828FD92C1002752D2 /* ConversationParticipantNames.swift */,
 			);
 			path = Entities;
@@ -8007,7 +8007,7 @@
 				D9B6494228F453990035CE14 /* DateSection.swift in Sources */,
 				7DA2601023F7227A005D2121 /* UIColorExtensions.swift in Sources */,
 				7DA25FD123F72136005D2121 /* APIURL.swift in Sources */,
-				CF3A31D928F70BD7002752D2 /* InboxMessageModel.swift in Sources */,
+				CF3A31D928F70BD7002752D2 /* InboxMessageListItem.swift in Sources */,
 				49428D5A24BA526F00EF3EAB /* GradeStatisticGraphView.swift in Sources */,
 				7DA260C923F72359005D2121 /* AlertAction.swift in Sources */,
 				CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */,
@@ -8344,7 +8344,7 @@
 				CF490F1D285243F30065D242 /* AnnotationDragGestureDelegate.swift in Sources */,
 				7DA2606123F722D9005D2121 /* Submission.swift in Sources */,
 				CF3A31F728FEF566002752D2 /* InboxMessageInteractorPreview.swift in Sources */,
-				CF3A31EF28FDA5EB002752D2 /* InboxMessageModelAvatar.swift in Sources */,
+				CF3A31EF28FDA5EB002752D2 /* InboxMessageAvatar.swift in Sources */,
 				7DA260BF23F72352005D2121 /* GetGroups.swift in Sources */,
 				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,
 				7DA2601C23F7227A005D2121 /* UIViewExtensions.swift in Sources */,

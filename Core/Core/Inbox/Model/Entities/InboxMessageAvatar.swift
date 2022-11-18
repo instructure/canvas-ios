@@ -18,17 +18,15 @@
 
 import Foundation
 
-public extension InboxMessageModel {
-    enum Avatar: Equatable {
-        case individual(name: String, profileImageURL: URL?)
-        case group
+public enum InboxMessageAvatar: Equatable {
+    case individual(name: String, profileImageURL: URL?)
+    case group
 
-        public init(participants: [APIConversationParticipant]) {
-            if participants.count == 1, let participant = participants.first {
-                self = .individual(name: participant.name, profileImageURL: participant.avatar_url?.rawValue)
-            } else {
-                self = .group
-            }
+    public init(participants: [APIConversationParticipant]) {
+        if participants.count == 1, let participant = participants.first {
+            self = .individual(name: participant.name, profileImageURL: participant.avatar_url?.rawValue)
+        } else {
+            self = .group
         }
     }
 }

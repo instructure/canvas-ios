@@ -18,9 +18,9 @@
 
 import Foundation
 
-public struct InboxMessageModel: Identifiable, Equatable {
+public struct InboxMessageListItem: Identifiable, Equatable {
     public let id: String
-    public let avatar: Avatar
+    public let avatar: InboxMessageAvatar
     public let participantName: String
     public let title: String
     public let message: String
@@ -36,7 +36,7 @@ public struct InboxMessageModel: Identifiable, Equatable {
     }
 
     public init(id: String,
-                avatar: Avatar,
+                avatar: InboxMessageAvatar,
                 participantName: String,
                 title: String,
                 message: String,
@@ -62,7 +62,7 @@ public struct InboxMessageModel: Identifiable, Equatable {
             }
         }()
         self.id = conversation.id.value
-        self.avatar = Avatar(participants: participants)
+        self.avatar = InboxMessageAvatar(participants: participants)
         self.participantName = participants.names
         self.title = conversation.subject ?? ""
         self.message = conversation.last_message ?? conversation.last_authored_message ?? ""
@@ -71,8 +71,8 @@ public struct InboxMessageModel: Identifiable, Equatable {
         self.state = conversation.workflow_state
     }
 
-    public func makeCopy(withState: ConversationWorkflowState) -> InboxMessageModel {
-        InboxMessageModel(id: id,
+    public func makeCopy(withState: ConversationWorkflowState) -> InboxMessageListItem {
+        InboxMessageListItem(id: id,
                           avatar: avatar,
                           participantName: participantName,
                           title: title,
@@ -85,10 +85,10 @@ public struct InboxMessageModel: Identifiable, Equatable {
 
 #if DEBUG
 
-public extension InboxMessageModel {
-    static var mock: InboxMessageModel { mock() }
-    static func mock(id: String = "0", participantName: String = "Bob, Alice") -> InboxMessageModel {
-        InboxMessageModel(id: id,
+public extension InboxMessageListItem {
+    static var mock: InboxMessageListItem { mock() }
+    static func mock(id: String = "0", participantName: String = "Bob, Alice") -> InboxMessageListItem {
+        InboxMessageListItem(id: id,
                           avatar: .group,
                           participantName: participantName,
                           title: "Homework Feedback. Please read this as soon as possible as it's very important.",
@@ -99,9 +99,9 @@ public extension InboxMessageModel {
     }
 }
 
-public extension Array where Element == InboxMessageModel {
+public extension Array where Element == InboxMessageListItem {
 
-    static func mock(count: Int) -> [InboxMessageModel] {
+    static func mock(count: Int) -> [InboxMessageListItem] {
         (0..<count).reduce(into: [], { partialResult, index in
             partialResult.append(.mock(id: "\(index)"))
         })
