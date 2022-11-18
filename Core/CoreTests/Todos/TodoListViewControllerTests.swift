@@ -44,7 +44,7 @@ class TodoListViewControllerTests: CoreTestCase {
         let navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(navigation.navigationBar.barTintColor, Brand.shared.navBackground)
+        XCTAssertEqual(navigation.navigationBar.barTintColor?.difference(to: Brand.shared.navBackground), 0)
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(controller.tableView.backgroundColor, .backgroundLightest)
         XCTAssertNoThrow(controller.viewWillDisappear(false))

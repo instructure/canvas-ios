@@ -298,9 +298,9 @@ open class CoreWebView: WKWebView {
      The font-size property of the body tag is overriden by the OS so that's why we set the p tag's font-size.
      */
     var css: String {
-        let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
-        let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
-        let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
+        let buttonBack = Brand.shared.buttonPrimaryBackground
+        let buttonText = Brand.shared.buttonPrimaryText
+        let link = Brand.shared.linkColor
         let font: String
         let fontCSS: String
         let style = Typography.Style.body

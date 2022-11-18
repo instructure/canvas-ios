@@ -134,7 +134,7 @@ public struct DashboardCardView: View {
             env.router.route(to: "/profile", from: controller, options: .modal())
         }) {
             Image.hamburgerSolid
-                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                .foregroundColor(Color(Brand.shared.navTextColor))
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
@@ -153,7 +153,7 @@ public struct DashboardCardView: View {
                 viewModel.settingsButtonTapped.send(())
             } label: {
                 Image.settingsLine
-                    .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                    .foregroundColor(Color(Brand.shared.navTextColor))
             }
             .frame(width: 44, height: 44).padding(.trailing, -6)
             .accessibilityLabel(Text("Dashboard settings", bundle: .core))

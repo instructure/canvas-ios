@@ -34,7 +34,7 @@ extension ColoredNavViewProtocol {
     }
 
     public func updateNavBar(subtitle: String?, color: UIColor?) {
-        self.color = color?.ensureContrast(against: .white)
+        self.color = color
         titleSubtitleView.subtitle = subtitle
         navigationController?.navigationBar.useContextColor(color)
     }

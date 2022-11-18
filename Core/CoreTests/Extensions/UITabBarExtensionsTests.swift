@@ -29,7 +29,7 @@ class UITabBarExtensionsTests: XCTestCase {
         let tabBar = UITabBar()
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
         tabBar.useGlobalNavStyle()
-        XCTAssertEqual(tabBar.tintColor, Brand.shared.primary)
+        XCTAssertEqual(tabBar.tintColor.difference(to: Brand.shared.primary), 0)
         XCTAssertEqual(tabBar.barTintColor, UIColor.backgroundLightest)
         XCTAssertEqual(tabBar.unselectedItemTintColor, UIColor.textDark)
         XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.crimson)
@@ -40,6 +40,6 @@ class UITabBarExtensionsTests: XCTestCase {
             primary: "#ffffff"
         ), baseURL: URL(string: "https://canvas.instructure.com")!)
         tabBar.useGlobalNavStyle(brand: shiny)
-        XCTAssertEqual(tabBar.tintColor, shiny.navTextColor)
+        XCTAssertEqual(tabBar.tintColor.difference(to: shiny.navTextColor), 0)
     }
 }

@@ -61,7 +61,7 @@ public class GradeStatisticGraphView: UIView {
         super.init(coder: aDecoder)
         loadFromXib()
 
-        yourScoreView.backgroundColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
+        yourScoreView.backgroundColor = Brand.shared.primary
         yourScoreView.layer.cornerRadius = 8.0
         for line in lines {
             line.layer.cornerRadius = 1.0

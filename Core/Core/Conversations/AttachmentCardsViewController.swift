@@ -190,7 +190,7 @@ class AttachmentCardView: UIView {
         button.accessibilityLabel = name
         stack.isHidden = false
         iconView?.image = icon
-        iconView?.tintColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
+        iconView?.tintColor = Brand.shared.primary
         nameLabel?.text = name
     }
 

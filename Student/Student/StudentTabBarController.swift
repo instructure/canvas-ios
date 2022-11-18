@@ -87,7 +87,7 @@ class StudentTabBarController: UITabBarController {
             HelmNavigationController(rootViewController: PlannerViewController.create()),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
-        split.view.tintColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
+        split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
         split.tabBarItem.image = .calendarTab
         split.tabBarItem.selectedImage = .calendarTabActive

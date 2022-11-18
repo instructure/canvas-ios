@@ -109,7 +109,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         // Loading
         scrollView?.isHidden = true
         scrollView?.backgroundColor = .backgroundLightest
-        loadingView.color = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
+        loadingView.color = Brand.shared.primary
         loadingView.startAnimating()
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
