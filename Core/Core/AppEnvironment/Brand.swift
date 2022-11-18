@@ -23,49 +23,49 @@ public struct Brand: Equatable {
     public var headerImageUrl: URL?
 
     public var buttonPrimaryBackground: UIColor {
-       return getColor(dark: buttonPrimaryBackgroundDark, light: buttonPrimaryBackgroundLight)
+        UIColor.getColor(dark: buttonPrimaryBackgroundDark, light: buttonPrimaryBackgroundLight)
     }
     public var buttonPrimaryText: UIColor {
-        getColor(dark: buttonPrimaryTextDark, light: buttonPrimaryTextLight)
+        UIColor.getColor(dark: buttonPrimaryTextDark, light: buttonPrimaryTextLight)
     }
     public var buttonSecondaryBackground: UIColor {
-        getColor(dark: buttonSecondaryBackgroundDark, light: buttonSecondaryBackgroundLight)
+        UIColor.getColor(dark: buttonSecondaryBackgroundDark, light: buttonSecondaryBackgroundLight)
     }
     public var buttonSecondaryText: UIColor {
-        getColor(dark: buttonSecondaryTextDark, light: buttonSecondaryTextLight)
+        UIColor.getColor(dark: buttonSecondaryTextDark, light: buttonSecondaryTextLight)
     }
     public var fontColorDark: UIColor {
-        getColor(dark: fontColorDarkDark, light: fontColorDarkLight)
+        UIColor.getColor(dark: fontColorDarkDark, light: fontColorDarkLight)
     }
     public var headerImageBackground: UIColor {
-        getColor(dark: headerImageBackgroundDark, light: headerImageBackgroundLight)
+        UIColor.getColor(dark: headerImageBackgroundDark, light: headerImageBackgroundLight)
     }
     public var linkColor: UIColor {
-        getColor(dark: linkColorDark, light: linkColorLight)
+        UIColor.getColor(dark: linkColorDark, light: linkColorLight)
     }
     public var navBackground: UIColor {
-        getColor(dark: navBackgroundDark, light: navBackgroundLight)
+        UIColor.getColor(dark: navBackgroundDark, light: navBackgroundLight)
     }
     public var navBadgeBackground: UIColor {
-        getColor(dark: navBadgeBackgroundDark, light: navBadgeBackgroundLight)
+        UIColor.getColor(dark: navBadgeBackgroundDark, light: navBadgeBackgroundLight)
     }
     public var navBadgeText: UIColor {
-        getColor(dark: navBadgeTextDark, light: navBadgeTextLight)
+        UIColor.getColor(dark: navBadgeTextDark, light: navBadgeTextLight)
     }
     public var navIconFill: UIColor {
-        getColor(dark: navIconFillDark, light: navIconFillLight)
+        UIColor.getColor(dark: navIconFillDark, light: navIconFillLight)
     }
     public var navIconFillActive: UIColor {
-        getColor(dark: navIconFillActiveDark, light: navIconFillActiveLight)
+        UIColor.getColor(dark: navIconFillActiveDark, light: navIconFillActiveLight)
     }
     public var navTextColor: UIColor {
-        getColor(dark: navTextColorDark, light: navTextColorLight)
+        UIColor.getColor(dark: navTextColorDark, light: navTextColorLight)
     }
     public var navTextColorActive: UIColor {
-        getColor(dark: navTextColorActiveDark, light: navTextColorActiveLight)
+        UIColor.getColor(dark: navTextColorActiveDark, light: navTextColorActiveLight)
     }
     public var primary: UIColor {
-        getColor(dark: primaryDark, light: primaryLight)
+        UIColor.getColor(dark: primaryDark, light: primaryLight)
     }
 
     private var buttonPrimaryBackgroundDark: UIColor = .black
@@ -238,11 +238,5 @@ public struct Brand: Equatable {
         logoView.load(url: Brand.shared.headerImageUrl)
         logoView.backgroundColor = Brand.shared.headerImageBackground
         return logoView
-    }
-
-    public func getColor(dark: UIColor, light: UIColor) -> UIColor {
-        return UIColor { traitCollection  in
-            return traitCollection.userInterfaceStyle == .dark ? dark : light
-        }
     }
 }

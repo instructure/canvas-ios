@@ -60,6 +60,18 @@ extension UIColor {
         )
     }
 
+    /** Returns enhanced contrast colors against different light and dark counter-colors. */
+    public func ensureContrast(_ forLightAgainst: UIColor = .backgroundLightest, forDarkAgainst: UIColor = .backgroundLightest) -> UIColor {
+        UIColor.getColor(dark: self.ensureContrast(against: forDarkAgainst), light: self.ensureContrast(against: forLightAgainst))
+    }
+
+    /** Returns the given color for the current interface style. */
+    public static func getColor(dark: UIColor, light: UIColor) -> UIColor {
+        return UIColor { traitCollection  in
+            return traitCollection.userInterfaceStyle == .dark ? dark : light
+        }
+    }
+
     public func difference(to other: UIColor) -> CGFloat {
         var ared: CGFloat = 0, agreen: CGFloat = 0, ablue: CGFloat = 0, aalpha: CGFloat = 1
         interfaceStyleColor.getRed(&ared, green: &agreen, blue: &ablue, alpha: &aalpha) // assume success
