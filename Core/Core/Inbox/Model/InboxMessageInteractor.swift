@@ -25,8 +25,8 @@ public protocol InboxMessageInteractor {
     var courses: AnyPublisher<[APICourse], Never> { get }
 
     // MARK: - Inputs
-    var triggerRefresh: AnySubscriber<() -> Void, Never> { get }
-    var setFilter: AnySubscriber<Context?, Never> { get }
-    var setScope: AnySubscriber<InboxMessageScope, Never> { get }
+    func refresh() -> Future<Void, Never>
+    func setFilter(_ context: Context?) -> Future<Void, Never>
+    func setScope(_ scope: InboxMessageScope) -> Future<Void, Never>
     func updateState(message: InboxMessageModel, state: ConversationWorkflowState) -> Future<Void, Never>
 }

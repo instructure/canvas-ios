@@ -24,24 +24,6 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public private(set) lazy var messages = messagesSubject.eraseToAnyPublisher()
     public private(set) lazy var courses = coursesSubject.eraseToAnyPublisher()
 
-    // MARK: - Inputs
-    public private(set) lazy var triggerRefresh = Subscribers
-        .Sink<() -> Void, Never> { [weak self] completion in
-            self?.fetchCoursesFromAPI()
-            self?.fetchMessagesFromAPI(completion)
-        }
-        .eraseToAnySubscriber()
-    public private(set) lazy var setFilter = Subscribers
-        .Sink<Context?, Never> { [weak self] filter in
-            self?.filterValue = filter
-        }
-        .eraseToAnySubscriber()
-    public private(set) lazy var setScope = Subscribers
-        .Sink<InboxMessageScope, Never> { [weak self] scope in
-            self?.scopeValue = scope
-        }
-        .eraseToAnySubscriber()
-
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private let messagesSubject = CurrentValueSubject<[InboxMessageModel], Never>([])
@@ -56,11 +38,32 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
     private var messagesRequest: APITask?
 
-    // MARK: - Inputs
-
     public init(env: AppEnvironment) {
         self.env = env
         fetchCoursesFromAPI()
+    }
+
+    // MARK: - Inputs
+
+    public func refresh() -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            self?.fetchCoursesFromAPI()
+            self?.fetchMessagesFromAPI(promise: promise)
+        }
+    }
+
+    public func setFilter(_ context: Context?) -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            self?.filterValue = context
+            promise(.success(()))
+        }
+    }
+
+    public func setScope(_ scope: InboxMessageScope) -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            self?.scopeValue = scope
+            promise(.success(()))
+        }
     }
 
     public func updateState(message: InboxMessageModel,
@@ -92,7 +95,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .store(in: &subscriptions)
     }
 
-    private func fetchMessagesFromAPI(_ completion: (() -> Void)? = nil) {
+    private func fetchMessagesFromAPI(promise: ((Result<Void, Never>) -> Void)? = nil) {
         let request = GetConversationsRequest(include: [.participant_avatars],
                                               perPage: 100,
                                               scope: scopeValue.apiScope,
@@ -107,7 +110,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             }
             performUIUpdate {
                 self.handleMessagesResponse(messages: messages, error: error)
-                completion?()
+                promise?(.success(()))
             }
 
         }

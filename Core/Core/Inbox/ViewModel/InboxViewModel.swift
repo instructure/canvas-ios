@@ -80,12 +80,23 @@ public class InboxViewModel: ObservableObject {
         courseDidChange
             .map { $0?.context }
             .removeDuplicates()
-            .subscribe(interactor.setFilter)
+            .map { interactor.setFilter($0) }
+            .sink()
+            .store(in: &subscriptions)
         scopeDidChange
             .removeDuplicates()
-            .subscribe(interactor.setScope)
+            .map { interactor.setScope($0) }
+            .sink()
+            .store(in: &subscriptions)
         refreshDidTrigger
-            .subscribe(interactor.triggerRefresh)
+            .flatMap { refreshCompletion in
+                interactor
+                    .refresh()
+                    .receive(on: DispatchQueue.main)
+                    .handleEvents(receiveOutput: { refreshCompletion() })
+            }
+            .sink()
+            .store(in: &subscriptions)
         updateState
             .map { interactor.updateState(message: $0.message, state: $0.state) }
             .sink()

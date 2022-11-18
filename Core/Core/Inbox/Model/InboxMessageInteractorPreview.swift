@@ -27,25 +27,6 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     public let courses = Just([APICourse.make(id: "1", name: "Test Course")])
         .eraseToAnyPublisher()
 
-    // MARK: - Inputs
-    public private(set) lazy var triggerRefresh = Subscribers
-        .Sink<() -> Void, Never> { completion in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                completion()
-            }
-        }
-        .eraseToAnySubscriber()
-    public private(set) lazy var setFilter = Subscribers
-        .Sink<Context?, Never> { [weak self] _ in
-            self?.update()
-        }
-        .eraseToAnySubscriber()
-    public private(set) lazy var setScope = Subscribers
-        .Sink<InboxMessageScope, Never> { [weak self] scope in
-            self?.scopeValue = scope
-        }
-        .eraseToAnySubscriber()
-
     // MARK: - Private State
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private var scopeValue: InboxMessageScope = .all {
@@ -54,6 +35,28 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
 
     public init(messages: [InboxMessageModel]) {
         self.messages = CurrentValueSubject<[InboxMessageModel], Never>(messages).eraseToAnyPublisher()
+    }
+
+    public func refresh() -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                promise(.success(()))
+            }
+        }
+    }
+
+    public func setFilter(_ context: Context?) -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            self?.update()
+            promise(.success(()))
+        }
+    }
+
+    public func setScope(_ scope: InboxMessageScope) -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            self.scopeValue = scope
+            promise(.success(()))
+        }
     }
 
     public func updateState(message: InboxMessageModel,
