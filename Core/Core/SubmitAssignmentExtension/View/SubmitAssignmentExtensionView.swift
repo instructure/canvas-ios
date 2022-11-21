@@ -226,7 +226,6 @@ public struct SubmitAssignmentExtensionView: View {
 
 @available(
     iOSApplicationExtension,
-    deprecated: 14,
     obsoleted: 15,
     message: "Use SubmitAssignmentExtensionView instead"
 )
