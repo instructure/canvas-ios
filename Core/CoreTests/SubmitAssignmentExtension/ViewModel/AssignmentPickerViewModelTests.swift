@@ -128,7 +128,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     func testDismissesViewDelayedAfterAssignmentSelection() {
         let viewDismissed = expectation(description: "View dismissed")
         var isDismissCalled = false
-        let dismissSubscription = testee.dismissView.sink {
+        let dismissSubscription = testee.dismissViewDidTrigger.sink {
             viewDismissed.fulfill()
             isDismissCalled = true
         }

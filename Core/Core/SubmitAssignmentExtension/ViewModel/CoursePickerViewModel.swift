@@ -23,7 +23,7 @@ public class CoursePickerViewModel: ObservableObject {
     public typealias Course = IdentifiableName
 
     // MARK: - Outputs
-    @Published public private(set) var selectedCourse: CoursePickerViewModel.Course?
+    @Published public var selectedCourse: CoursePickerViewModel.Course?
     @Published public private(set) var state: ViewModelState<[Course]> = .loading
     public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
 
