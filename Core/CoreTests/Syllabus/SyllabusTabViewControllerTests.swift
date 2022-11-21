@@ -35,7 +35,7 @@ class SyllabusTabViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#ff0000")
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#ed0000")
         let titleView = controller.navigationItem.titleView as? TitleSubtitleView
         XCTAssertEqual(titleView?.title, "Course Syllabus")
         XCTAssertEqual(titleView?.subtitle, "Course One")

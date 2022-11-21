@@ -144,7 +144,7 @@ public struct Brand: Equatable {
         self.headerImageBackgroundDark = headerImageBackground ?? .oxford
         self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .electric
         self.navBackgroundDark = navBackground ?? .oxford
-        self.navBadgeBackgroundDark = navBadgeBackground != nil ? buttonPrimaryBackground!.ensureContrast(against: self.navBackgroundDark) : .electric
+        self.navBadgeBackgroundDark = navBadgeBackground != nil ? navBadgeBackground!.ensureContrast(against: self.navBackgroundDark) : .electric
         self.navBadgeTextDark = navBadgeText != nil ? navBadgeText!.ensureContrast(against: self.navBadgeBackgroundDark) : .white
         self.navIconFillDark = navIconFill != nil ? navIconFill!.ensureContrast(against: self.navBackgroundDark) : .white
         self.navIconFillActiveDark = navIconFillActive != nil ? navIconFillActive!.ensureContrast(against: self.navBackgroundDark) : .electric

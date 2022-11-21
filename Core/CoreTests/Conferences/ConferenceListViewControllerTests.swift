@@ -44,7 +44,7 @@ class ConferenceListViewControllerTests: CoreTestCase {
 
         XCTAssertEqual(controller.titleSubtitleView.title, "Conferences")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
-        XCTAssertEqual(nav.navigationBar.barTintColor, UIColor(hexString: "#f00"))
+        XCTAssertEqual(nav.navigationBar.barTintColor?.difference(to: UIColor(hexString: "#f00")!.ensureContrast()), 0)
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 1)
