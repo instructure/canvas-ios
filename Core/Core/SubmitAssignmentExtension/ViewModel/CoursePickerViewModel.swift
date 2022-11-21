@@ -16,13 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class CoursePickerViewModel: ObservableObject {
     public typealias Course = IdentifiableName
 
+    // MARK: - Outputs
     @Published public var selectedCourse: CoursePickerViewModel.Course?
-    @Published public var state: ViewModelState<[Course]> = .loading
+    @Published public private(set) var state: ViewModelState<[Course]> = .loading
+    public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
 
     #if DEBUG
 
@@ -64,6 +67,7 @@ public class CoursePickerViewModel: ObservableObject {
     public func courseSelected(_ course: CoursePickerViewModel.Course) {
         Analytics.shared.logEvent("course_selected")
         selectedCourse = course
+        dismissViewDidTrigger.send()
     }
 
     private func selectDefaultCourse() {
