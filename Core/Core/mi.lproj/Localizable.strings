@@ -143,6 +143,9 @@
 "Add message" = "Tāpiri karere";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Tāpirihia he korero whiriwhiri";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Tāpiri Mahere Tuhipoka";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Pātai tūao whakāro puaki rānei";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Hurihia te tahora papatohu ki te matiti";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Hurihia te tahora papatohu ki te raarangi";
 
 /* No comment provided by engineer. */
 "Change User" = "Huri Kaiwhakamahi";

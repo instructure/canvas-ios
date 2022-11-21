@@ -143,6 +143,9 @@
 "Add message" = "メッセージを追加";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "オプションのコメントを追加";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "プランナーメモを追加する";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "気軽なご質問または提案";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "ダッシュボードレイアウトをグリッドに変更する";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "ダッシュボードレイアウトをリストに変更する";
 
 /* No comment provided by engineer. */
 "Change User" = "ユーザーを変更する";

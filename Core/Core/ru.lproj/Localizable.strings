@@ -143,6 +143,9 @@
 "Add message" = "Добавить сообщение";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Добавить опциональный комментарий";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Добавьте примечание планировщика";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Обычный вопрос или предложение";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Изменить формат панели управления на сетку";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Изменить формат панели управления на список";
 
 /* No comment provided by engineer. */
 "Change User" = "Сменить пользователя";

@@ -143,6 +143,9 @@
 "Add message" = "添加訊息";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "添加選用的評論";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加規劃筆記";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "隨意的問題或建議";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "切換控制面板版面為網格";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "切換控制面板版面為清單";
 
 /* No comment provided by engineer. */
 "Change User" = "變更使用者";

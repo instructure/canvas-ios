@@ -143,6 +143,9 @@
 "Add message" = "Aggiungi messaggio";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Aggiungi commento opzionale";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Aggiungi nota all’agenda";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Domanda casuale o suggerimento";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Cambia layout dashboard in griglia";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Cambia layout dashboard in elenco";
 
 /* No comment provided by engineer. */
 "Change User" = "Cambia utente";
@@ -815,7 +812,7 @@
 "Edit Recipients" = "Modifica destinatari";
 
 /* No comment provided by engineer. */
-"Edit Syllabus" = "Modifica Programma Piano di studio";
+"Edit Syllabus" = "Modifica syllabus";
 
 /* No comment provided by engineer. */
 "Email address" = "Indirizzo e-mail";
@@ -2114,7 +2111,7 @@
 "Syllabus" = "Piano di studio";
 
 /* No comment provided by engineer. */
-"Syllabus content" = "Contenuto Programma Piano di studio";
+"Syllabus content" = "Contenuto syllabus";
 
 /* No comment provided by engineer. */
 "System settings" = "Impostazioni sistema";
