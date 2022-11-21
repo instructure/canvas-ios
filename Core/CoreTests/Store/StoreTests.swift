@@ -99,6 +99,91 @@ class StoreTests: CoreTestCase {
         self.eventsExpectation.fulfill()
     }
 
+    // MARK: - Reactive Properties Tests
+
+    func testInitialObjectsPublished() {
+        Course.save(.make(id: "0"), in: databaseClient)
+        try! databaseClient.save()
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent initial value")
+        let subscription = testee
+            .allObjects
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["0"])
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testPublishesObjectsFromUseCase() {
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .allObjects
+            .dropFirst()
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["1"])
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testPublishesObjectsAddedToContext() {
+        let useCase = TestUseCase(courses: [])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .allObjects
+            .dropFirst()
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["3rdpartyinsert"])
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        Course.save(.make(id: "3rdpartyinsert"), in: databaseClient)
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testPublishesChangesMadeOnContextObject() {
+        let course = Course.save(.make(id: "1"), in: databaseClient)
+        try! databaseClient.save()
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .allObjects
+            .dropFirst()
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["1"])
+                XCTAssertEqual(objects.first?.name, "updatedName")
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        course.name = "updatedName"
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    // MARK: Reactive Properties Tests -
+
     func testSubscribeWithoutCache() {
         let course = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course])
@@ -300,7 +385,6 @@ class StoreTests: CoreTestCase {
         )
         try? frc.performFetch()
         let frc2 = frc as! NSFetchedResultsController<NSFetchRequestResult>
-        store.changes = [.insertSection(0)]
         store.controllerDidChangeContent(frc2)
         wait(for: [notified], timeout: 1)
         XCTAssertEqual(store.changes, [])
