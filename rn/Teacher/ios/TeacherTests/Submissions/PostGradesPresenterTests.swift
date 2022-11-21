@@ -163,7 +163,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         presenter.viewIsReady()
         wait(for: [colorExpectation], timeout: 0.5)
 
-        XCTAssertEqual(resultingColor, expectedColor.color)
+        XCTAssertEqual(resultingColor?.difference(to: expectedColor.color.ensureContrast()), 0)
     }
 
     func testAllGradesPosted() {

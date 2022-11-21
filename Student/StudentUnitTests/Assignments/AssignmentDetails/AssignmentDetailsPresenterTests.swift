@@ -82,7 +82,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         ContextColor.make(canvasContextID: c.canvasContextID)
 
         presenter.colors.eventHandler()
-        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+        XCTAssertEqual(resultingBackgroundColor?.difference(to: UIColor.red.ensureContrast()), 0)
     }
 
     func testLoadAssignment() {

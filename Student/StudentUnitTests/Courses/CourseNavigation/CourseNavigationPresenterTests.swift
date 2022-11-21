@@ -52,7 +52,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
         ContextColor.make()
 
         presenter.color.eventHandler()
-        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+        XCTAssertEqual(resultingBackgroundColor?.difference(to: UIColor.red.ensureContrast()), 0)
     }
 
     func testLoadCourse() {
