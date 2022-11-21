@@ -143,6 +143,9 @@
 "Add message" = "Lägg till meddelande";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Lägg till ytterligare kommentar";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lägg till planeraranteckning";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Informell fråga eller förslag";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Ändra layouten för översikten till rutnät";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Ändra layouten för översikten till lista";
 
 /* No comment provided by engineer. */
 "Change User" = "Byt användare";

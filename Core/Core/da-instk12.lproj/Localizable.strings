@@ -143,6 +143,9 @@
 "Add message" = "Tilføj besked";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Tilføj valgfri kommentar";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Tilføj en planlægger-note";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Uformelt spørgsmål eller forslag";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Skift oversigtslayout til gitter";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Skift oversigtslayout til liste";
 
 /* No comment provided by engineer. */
 "Change User" = "Skift bruger";

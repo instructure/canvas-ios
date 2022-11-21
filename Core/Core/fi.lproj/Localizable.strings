@@ -143,6 +143,9 @@
 "Add message" = "Lisää viesti";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Lisää valinnainen kommentti";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lisää muistokirjoituksen merkintä";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Huoleton kysymys tai ehdotus";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Muuta koontinäytön asettelu ristikoksi";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Muuta koontinäytön asettelu luetteloksi";
 
 /* No comment provided by engineer. */
 "Change User" = "Vaihda käyttäjää";

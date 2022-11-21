@@ -143,6 +143,9 @@
 "Add message" = "Ajoute mesaj";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Ajoute kòmantè opsyonèl";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ajoute Mòd Panifikatè";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Kesyon oswa sijesyon pa aza";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Chanje dispozisyon tablo a an griy";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Chanje dispozisyon tablo a an lis";
 
 /* No comment provided by engineer. */
 "Change User" = "Chanje Itilizatè";

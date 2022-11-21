@@ -143,6 +143,9 @@
 "Add message" = "Bæta við skilaboðum";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Bæta við valkvæðri athugasemd";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Bæta við skipuleggjara athugasemd";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Almenn spurning eða uppástunga";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Breyta skipulagi skjáborðs í net";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Breyta skipulagi skjáborðs í lista";
 
 /* No comment provided by engineer. */
 "Change User" = "Breyta notanda";
