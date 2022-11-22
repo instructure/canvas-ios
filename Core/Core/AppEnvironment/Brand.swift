@@ -121,9 +121,9 @@ public struct Brand: Equatable {
         self.headerImageUrl = headerImageUrl ?? Bundle.core.url(forResource: "defaultHeaderImage", withExtension: "png")
 
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .electric
-        self.buttonPrimaryTextLight = buttonPrimaryText ?? .white
+        self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .white
         self.buttonSecondaryBackgroundLight = buttonSecondaryBackground ?? .licorice
-        self.buttonSecondaryTextLight = buttonSecondaryText ?? .white
+        self.buttonSecondaryTextLight = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundLight) : .white
         self.fontColorDarkLight = fontColorDark ?? .licorice
         self.headerImageBackgroundLight = headerImageBackground ?? .oxford
         self.linkColorLight = linkColor ?? .electric
@@ -132,7 +132,7 @@ public struct Brand: Equatable {
         self.navBadgeTextLight = navBadgeText ?? .white
         self.navIconFillLight = navIconFill ?? .white
         self.navIconFillActiveLight = navIconFillActive ?? .electric
-        self.navTextColorLight = navTextColor ?? .white
+        self.navTextColorLight = navTextColor != nil ? navTextColor!.ensureContrast(against: navBackgroundLight) : .white
         self.navTextColorActiveLight = navTextColorActive ?? .electric
         self.primaryLight = primary ?? .electric
 
