@@ -92,7 +92,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         environmentFeatureFlags?.refresh(force: true) { _ in
             self.initializeHeap()
         }
-   
+
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         currentStudentID = environment.userDefaults?.parentCurrentStudentID
