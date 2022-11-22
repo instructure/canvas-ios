@@ -531,6 +531,7 @@
         <attribute name="avatarURLRaw" optional="YES" attributeType="URI"/>
         <attribute name="dateRaw" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="isSent" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isStarred" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="message" attributeType="String" defaultValueString=""/>
         <attribute name="participantName" attributeType="String" defaultValueString=""/>

@@ -18,16 +18,21 @@
 
 import CoreData
 
-public class InboxMessageListItem2: NSManagedObject {
+public final class InboxMessageListItem2: NSManagedObject {
+    public typealias JSON = APIConversation
+
     @NSManaged public var id: String
     @NSManaged public var participantName: String
     @NSManaged public var title: String
     @NSManaged public var message: String
     @NSManaged public var isStarred: Bool
+    /** Local helper, not present on the API. */
+    @NSManaged public var isSent: Bool
 
     // MARK: Convertible Raw Properties
 
     @NSManaged public var dateRaw: Date
+    /** String value of `ConversationWorkflowState` cases. */
     @NSManaged public var stateRaw: String
     @NSManaged public var avatarNameRaw: String?
     @NSManaged public var avatarURLRaw: URL?
@@ -35,7 +40,12 @@ public class InboxMessageListItem2: NSManagedObject {
     // MARK: - Helper Properties
 
     public var state: ConversationWorkflowState {
-        ConversationWorkflowState(rawValue: stateRaw) ?? .unread
+        get {
+            ConversationWorkflowState(rawValue: stateRaw) ?? .unread
+        }
+        set {
+            stateRaw = newValue.rawValue
+        }
     }
     public var isMarkAsReadActionAvailable: Bool {
         state == .unread || state == .archived
@@ -52,6 +62,42 @@ public class InboxMessageListItem2: NSManagedObject {
         } else {
             return .group
         }
+    }
+
+    // MARK: - CoreData Save
+
+    @discardableResult
+    public static func save(_ apiEntity: APIConversation,
+                            currentUserID: String,
+                            isSent: Bool,
+                            in context: NSManagedObjectContext)
+    -> InboxMessageListItem2 {
+        let participants: [APIConversationParticipant] = {
+            if apiEntity.participants.count > 1 {
+                return apiEntity.participants.filter { $0.id.value != currentUserID }
+            } else {
+                return Array(apiEntity.participants)
+            }
+        }()
+        let avatar = InboxMessageAvatar(participants: participants)
+
+        let dbEntity: InboxMessageListItem2 = context.first(where: #keyPath(InboxMessageListItem2.id),
+                                                            equals: apiEntity.id.value) ?? context.insert()
+        dbEntity.id = apiEntity.id.rawValue
+        dbEntity.participantName = participants.names
+        dbEntity.title = apiEntity.subject ?? ""
+        dbEntity.message = apiEntity.last_message ?? apiEntity.last_authored_message ?? ""
+        dbEntity.isStarred = apiEntity.starred
+        dbEntity.dateRaw = (apiEntity.last_message_at ?? apiEntity.last_authored_message_at ?? Date())
+        dbEntity.stateRaw = apiEntity.workflow_state.rawValue
+        dbEntity.isSent = isSent
+
+        if case .individual(let name, let profileImageURL) = avatar {
+            dbEntity.avatarNameRaw = name
+            dbEntity.avatarURLRaw = profileImageURL
+        }
+
+        return dbEntity
     }
 }
 
