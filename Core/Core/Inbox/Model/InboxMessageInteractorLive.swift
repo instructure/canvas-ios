@@ -27,17 +27,26 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Private State
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
-    private var filterValue: Context? {
-        didSet { update() }
-    }
-    private var scopeValue: InboxMessageScope = .all {
-        didSet { update() }
-    }
+
     private var messagesRequest: APITask?
+    private let useCase: GetInboxMessageList
+    private let messageListStore: Store<GetInboxMessageList>
 
     public init(env: AppEnvironment) {
+        let currentUserId = env.currentSession?.userID ?? ""
         self.env = env
-        fetchCoursesFromAPI()
+        self.useCase = GetInboxMessageList(currentUserId: currentUserId)
+        self.messageListStore = env.subscribe(useCase)
+
+        messageListStore
+            .allObjects
+            .subscribe(messages)
+            .store(in: &subscriptions)
+
+        messageListStore
+            .statePublisher
+            .subscribe(state)
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -45,20 +54,30 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public func refresh() -> Future<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             self?.fetchCoursesFromAPI()
-            self?.fetchMessagesFromAPI(promise: promise)
+            self?.messageListStore.refresh(force: true) { _ in
+                promise(.success(()))
+            }
         }
     }
 
     public func setFilter(_ context: Context?) -> Future<Void, Never> {
-        Future<Void, Never> { [weak self] promise in
-            self?.filterValue = context
+        Future<Void, Never> { [useCase, messageListStore, messages, state] promise in
+            messages.send([])
+            state.send(.loading)
+            useCase.contextCode = context?.canvasContextID
+            messageListStore.setScope(useCase.scope)
+            messageListStore.refresh()
             promise(.success(()))
         }
     }
 
     public func setScope(_ scope: InboxMessageScope) -> Future<Void, Never> {
-        Future<Void, Never> { [weak self] promise in
-            self?.scopeValue = scope
+        Future<Void, Never> { [useCase, messageListStore, messages, state] promise in
+            messages.send([])
+            state.send(.loading)
+            useCase.messageScope = scope
+            messageListStore.setScope(useCase.scope)
+            messageListStore.refresh()
             promise(.success(()))
         }
     }
@@ -68,18 +87,12 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     -> Future<Void, Never> {
         Future<Void, Never> { promise in
             self.updateWorkflowStateLocally(message: message, state: state)
-            self.uploadWorkflowStateToAPI(messageId: message.id, state: state)
+            self.uploadWorkflowStateToAPI(messageId: message.messageId, state: state)
             promise(.success(()))
         }
     }
 
     // MARK: - Private Helpers
-
-    private func update() {
-        state.send(.loading)
-        messages.send([])
-        fetchMessagesFromAPI()
-    }
 
     private func fetchCoursesFromAPI() {
         let request = GetCurrentUserCoursesRequest(enrollmentState: .active, state: [.current_and_concluded], perPage: 100)
@@ -92,67 +105,35 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .store(in: &subscriptions)
     }
 
-    private func fetchMessagesFromAPI(promise: ((Result<Void, Never>) -> Void)? = nil) {
-        let request = GetConversationsRequest(include: [.participant_avatars],
-                                              perPage: 100,
-                                              scope: scopeValue.apiScope,
-                                              filter: filterValue?.canvasContextID)
-        messagesRequest?.cancel()
-        messagesRequest = env.api.makeRequest(request) { [weak self] messages, _, error in
-            guard let self = self else { return }
-            self.messagesRequest = nil
-            let currentUserID = self.env.currentSession?.userID ?? ""
-            let messages = (messages ?? []).map {
-                InboxMessageListItem(conversation: $0, currentUserID: currentUserID)
-            }
-            performUIUpdate {
-                self.handleMessagesResponse(messages: messages, error: error)
-                promise?(.success(()))
-            }
-
-        }
-    }
-
-    private func handleMessagesResponse(messages: [InboxMessageListItem], error: Error?) {
-        if error != nil {
-            state.send(.error)
-        } else if messages.isEmpty {
-            state.send(.empty)
-        } else {
-            self.messages.send(messages)
-            state.send(.data)
-        }
-    }
-
     private func uploadWorkflowStateToAPI(messageId: String, state: ConversationWorkflowState) {
         let request = PutConversationRequest(id: messageId, workflowState: state)
         env.api.makeRequest(request, callback: { _, _, _ in })
     }
 
     private func updateWorkflowStateLocally(message: InboxMessageListItem, state: ConversationWorkflowState) {
-        guard let index = messages.value.firstIndex(of: message) else { return }
-        var newMessages = messages.value
-
-        if message.state == .archived || state == .archived {
-            newMessages.remove(at: index)
-        } else {
-            newMessages[index] = message.makeCopy(withState: state)
-        }
-
-        var messageCount = TabBarBadgeCounts.unreadMessageCount
-
-        if state == .unread {
-            messageCount += 1
-        } else if messageCount > 0 {
-            messageCount -= 1
-        }
-
-        TabBarBadgeCounts.unreadMessageCount = messageCount
-
-        messages.send(newMessages)
-
-        if newMessages.isEmpty {
-            self.state.send(.empty)
-        }
+//        guard let index = messages.value.firstIndex(of: message) else { return }
+//        var newMessages = messages.value
+//
+//        if message.state == .archived || state == .archived {
+//            newMessages.remove(at: index)
+//        } else {
+//            newMessages[index] = message.makeCopy(withState: state)
+//        }
+//
+//        var messageCount = TabBarBadgeCounts.unreadMessageCount
+//
+//        if state == .unread {
+//            messageCount += 1
+//        } else if messageCount > 0 {
+//            messageCount -= 1
+//        }
+//
+//        TabBarBadgeCounts.unreadMessageCount = messageCount
+//
+//        messages.send(newMessages)
+//
+//        if newMessages.isEmpty {
+//            self.state.send(.empty)
+//        }
     }
 }

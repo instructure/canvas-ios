@@ -161,8 +161,11 @@ public struct InboxView: View {
 #if DEBUG
 
 struct InboxView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+    static let context = env.globalDatabase.viewContext
+
     static var previews: some View {
-        let interactor = InboxMessageInteractorPreview(messages: .mock(count: 5))
+        let interactor = InboxMessageInteractorPreview(messages: .make(count: 5, in: context))
         let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
         InboxView(model: viewModel)
             .previewLayout(.sizeThatFits)

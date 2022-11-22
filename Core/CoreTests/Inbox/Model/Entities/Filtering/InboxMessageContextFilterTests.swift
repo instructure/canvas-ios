@@ -20,37 +20,37 @@ import Core
 import XCTest
 
 class InboxMessageContextFilterTests: CoreTestCase {
-    private var noCourseMessage: InboxMessageListItem2!
-    private var course1Message: InboxMessageListItem2!
-    private var course2Message: InboxMessageListItem2!
+    private var noCourseMessage: InboxMessageListItem!
+    private var course1Message: InboxMessageListItem!
+    private var course2Message: InboxMessageListItem!
 
     override public func setUp() {
         super.setUp()
 
-        noCourseMessage = databaseClient.insert() as InboxMessageListItem2
-        noCourseMessage.id = "1"
+        noCourseMessage = databaseClient.insert() as InboxMessageListItem
+        noCourseMessage.messageId = "1"
         noCourseMessage.contextCode = nil
 
-        course1Message = databaseClient.insert() as InboxMessageListItem2
-        course1Message.id = "2"
+        course1Message = databaseClient.insert() as InboxMessageListItem
+        course1Message.messageId = "2"
         course1Message.contextCode = "course_1"
 
-        course2Message = databaseClient.insert() as InboxMessageListItem2
-        course2Message.id = "3"
+        course2Message = databaseClient.insert() as InboxMessageListItem
+        course2Message.messageId = "3"
         course2Message.contextCode = "course_2"
     }
 
     func testContextFilterAll() {
         let scope = Scope(predicate: .inboxMessageContextFilter(contextCode: nil), order: [])
-        let messages: [InboxMessageListItem2] = databaseClient.fetch(scope: scope)
-        let messageIds = Set(messages.map { $0.id })
+        let messages: [InboxMessageListItem] = databaseClient.fetch(scope: scope)
+        let messageIds = Set(messages.map { $0.messageId })
         XCTAssertEqual(messageIds, Set(["1", "2", "3"]))
     }
 
     func testContextFilterCourse1() {
         let scope = Scope(predicate: .inboxMessageContextFilter(contextCode: "course_1"), order: [])
-        let messages: [InboxMessageListItem2] = databaseClient.fetch(scope: scope)
-        let messageIds = Set(messages.map { $0.id })
+        let messages: [InboxMessageListItem] = databaseClient.fetch(scope: scope)
+        let messageIds = Set(messages.map { $0.messageId })
         XCTAssertEqual(messageIds, Set(["2"]))
     }
 }

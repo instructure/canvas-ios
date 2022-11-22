@@ -118,11 +118,15 @@ public struct InboxMessageView: View {
 #if DEBUG
 
 struct InboxMessageView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+    static let context = env.globalDatabase.viewContext
+
     static var previews: some View {
-        InboxMessageView(model: .mock)
+        InboxMessageView(model: .make(in: context))
             .previewLayout(.sizeThatFits)
 
-        InboxMessageView(model: .mock(participantName: "Bob Hunter, Tray B, Joe M, Alice Swanson, Marty + 3"))
+        InboxMessageView(model: .make(participantName: "Bob Hunter, Tray B, Joe M, Alice Swanson, Marty + 3",
+                                      in: context))
             .previewLayout(.sizeThatFits)
     }
 }

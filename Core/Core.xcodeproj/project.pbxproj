@@ -1194,6 +1194,7 @@
 		CFFA6CF42656478A00B47380 /* TopBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */; };
 		CFFA9D782668BF1700C1648E /* K5HomeroomViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA9D772668BF1700C1648E /* K5HomeroomViewModelTests.swift */; };
 		CFFA9D7C2668DEFD00C1648E /* K5DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */; };
+		CFFB3AC2292BCB530093437D /* GetInboxMessageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB3AC1292BCB530093437D /* GetInboxMessageList.swift */; };
 		CFFB3AC6292CBFFC0093437D /* InboxMessageScopeFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB3AC5292CBFFC0093437D /* InboxMessageScopeFilterTests.swift */; };
 		CFFB3AC9292CE8650093437D /* InboxMessageScopeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB3AC8292CE8650093437D /* InboxMessageScopeFilter.swift */; };
 		CFFB3ACC292CEA0B0093437D /* InboxMessageContextFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB3ACB292CEA0B0093437D /* InboxMessageContextFilter.swift */; };
@@ -2751,6 +2752,7 @@
 		CFFA6CF32656478A00B47380 /* TopBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarViewModel.swift; sourceTree = "<group>"; };
 		CFFA9D772668BF1700C1648E /* K5HomeroomViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomViewModelTests.swift; sourceTree = "<group>"; };
 		CFFA9D7B2668DEFD00C1648E /* K5DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5DashboardViewModelTests.swift; sourceTree = "<group>"; };
+		CFFB3AC1292BCB530093437D /* GetInboxMessageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInboxMessageList.swift; sourceTree = "<group>"; };
 		CFFB3AC5292CBFFC0093437D /* InboxMessageScopeFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilterTests.swift; sourceTree = "<group>"; };
 		CFFB3AC8292CE8650093437D /* InboxMessageScopeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilter.swift; sourceTree = "<group>"; };
 		CFFB3ACB292CEA0B0093437D /* InboxMessageContextFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageContextFilter.swift; sourceTree = "<group>"; };
@@ -5004,6 +5006,7 @@
 			children = (
 				CF3A32002907E32A002752D2 /* API */,
 				CF3A31F828FFE75F002752D2 /* Entities */,
+				CFFB3AC0292BC8940093437D /* UseCase */,
 				CF3A31F228FEBE0B002752D2 /* InboxMessageInteractor.swift */,
 				CF3A31F428FEC5DA002752D2 /* InboxMessageInteractorLive.swift */,
 				CF3A31F628FEF566002752D2 /* InboxMessageInteractorPreview.swift */,
@@ -7838,6 +7841,7 @@
 				CF43DE8927CD036D00015B6F /* InteractivePanda.swift in Sources */,
 				7DA2606F23F722E9005D2121 /* APINotificationPreferences.swift in Sources */,
 				CF575E4226667AD700F8515F /* LatestAnnouncement.swift in Sources */,
+				CFFB3AC2292BCB530093437D /* GetInboxMessageList.swift in Sources */,
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				CF60CC3D2645526B00C1C173 /* K5ScheduleView.swift in Sources */,

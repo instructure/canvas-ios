@@ -24,7 +24,7 @@ public extension NSPredicate {
         if contextCode == nil {
             return .all
         } else {
-            return NSPredicate(key: #keyPath(InboxMessageListItem2.contextCode), equals: contextCode)
+            return NSPredicate(key: #keyPath(InboxMessageListItem.contextCode), equals: contextCode)
         }
     }
 }

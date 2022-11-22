@@ -24,29 +24,29 @@ public extension InboxMessageScope {
         switch self {
         case .all:
             let readAndUnread = NSPredicate(format: "%K IN %@",
-                                            #keyPath(InboxMessageListItem2.stateRaw),
+                                            #keyPath(InboxMessageListItem.stateRaw),
                                             [
                                                 ConversationWorkflowState.read.rawValue,
                                                 ConversationWorkflowState.unread.rawValue,
                                             ])
-            let notSent = NSPredicate(format: "%K == false", #keyPath(InboxMessageListItem2.isSent))
+            let notSent = NSPredicate(format: "%K == false", #keyPath(InboxMessageListItem.isSent))
             return NSCompoundPredicate(andPredicateWithSubpredicates: [
                 readAndUnread,
                 notSent,
             ])
         case .unread:
             return NSPredicate(format: "%K == %@",
-                               #keyPath(InboxMessageListItem2.stateRaw),
+                               #keyPath(InboxMessageListItem.stateRaw),
                                ConversationWorkflowState.unread.rawValue)
         case .starred:
-            return NSPredicate(key: #keyPath(InboxMessageListItem2.isStarred),
+            return NSPredicate(key: #keyPath(InboxMessageListItem.isStarred),
                                equals: true)
         case .sent:
-            return NSPredicate(key: #keyPath(InboxMessageListItem2.isSent),
+            return NSPredicate(key: #keyPath(InboxMessageListItem.isSent),
                                equals: true)
         case .archived:
             return NSPredicate(format: "%K == %@",
-                               #keyPath(InboxMessageListItem2.stateRaw),
+                               #keyPath(InboxMessageListItem.stateRaw),
                                ConversationWorkflowState.archived.rawValue)
         }
     }

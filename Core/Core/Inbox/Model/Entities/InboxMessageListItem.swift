@@ -18,10 +18,10 @@
 
 import CoreData
 
-public final class InboxMessageListItem2: NSManagedObject {
+public final class InboxMessageListItem: NSManagedObject {
     public typealias JSON = APIConversation
 
-    @NSManaged public var id: String
+    @NSManaged public var messageId: String
     @NSManaged public var contextCode: String?
     @NSManaged public var participantName: String
     @NSManaged public var title: String
@@ -72,7 +72,7 @@ public final class InboxMessageListItem2: NSManagedObject {
                             currentUserID: String,
                             isSent: Bool,
                             in context: NSManagedObjectContext)
-    -> InboxMessageListItem2 {
+    -> InboxMessageListItem {
         let participants: [APIConversationParticipant] = {
             if apiEntity.participants.count > 1 {
                 return apiEntity.participants.filter { $0.id.value != currentUserID }
@@ -82,9 +82,9 @@ public final class InboxMessageListItem2: NSManagedObject {
         }()
         let avatar = InboxMessageAvatar(participants: participants)
 
-        let dbEntity: InboxMessageListItem2 = context.first(where: #keyPath(InboxMessageListItem2.id),
-                                                            equals: apiEntity.id.value) ?? context.insert()
-        dbEntity.id = apiEntity.id.rawValue
+        let dbEntity: InboxMessageListItem = context.first(where: #keyPath(InboxMessageListItem.messageId),
+                                                           equals: apiEntity.id.value) ?? context.insert()
+        dbEntity.messageId = apiEntity.id.rawValue
         dbEntity.contextCode = apiEntity.context_code
         dbEntity.participantName = participants.names
         dbEntity.title = apiEntity.subject ?? ""
@@ -103,92 +103,36 @@ public final class InboxMessageListItem2: NSManagedObject {
     }
 }
 
-public struct InboxMessageListItem: Identifiable, Equatable {
-    public let id: String
-    public let avatar: InboxMessageAvatar
-    public let participantName: String
-    public let title: String
-    public let message: String
-    public let date: String
-    public let isStarred: Bool
-    public let state: ConversationWorkflowState
-
-    public var isMarkAsReadActionAvailable: Bool {
-        state == .unread || state == .archived
-    }
-    public var isArchiveActionAvailable: Bool {
-        state != .archived
-    }
-
-    public init(id: String,
-                avatar: InboxMessageAvatar,
-                participantName: String,
-                title: String,
-                message: String,
-                date: String,
-                isStarred: Bool,
-                state: ConversationWorkflowState) {
-        self.id = id
-        self.avatar = avatar
-        self.participantName = participantName
-        self.title = title
-        self.message = message
-        self.date = date
-        self.isStarred = isStarred
-        self.state = state
-    }
-
-    public init(conversation: APIConversation, currentUserID: String) {
-        let participants: [APIConversationParticipant] = {
-            if conversation.participants.count > 1 {
-                return conversation.participants.filter { $0.id.value != currentUserID }
-            } else {
-                return Array(conversation.participants)
-            }
-        }()
-        self.id = conversation.id.value
-        self.avatar = InboxMessageAvatar(participants: participants)
-        self.participantName = participants.names
-        self.title = conversation.subject ?? ""
-        self.message = conversation.last_message ?? conversation.last_authored_message ?? ""
-        self.date = (conversation.last_message_at ?? conversation.last_authored_message_at ?? Date()).relativeDateOnlyString
-        self.isStarred = conversation.starred
-        self.state = conversation.workflow_state
-    }
-
-    public func makeCopy(withState: ConversationWorkflowState) -> InboxMessageListItem {
-        InboxMessageListItem(id: id,
-                          avatar: avatar,
-                          participantName: participantName,
-                          title: title,
-                          message: message,
-                          date: date,
-                          isStarred: isStarred,
-                          state: withState)
-    }
+extension InboxMessageListItem: Identifiable {
+    public var id: String { messageId }
 }
 
 #if DEBUG
 
 public extension InboxMessageListItem {
-    static var mock: InboxMessageListItem { mock() }
-    static func mock(id: String = "0", participantName: String = "Bob, Alice") -> InboxMessageListItem {
-        InboxMessageListItem(id: id,
-                          avatar: .group,
-                          participantName: participantName,
-                          title: "Homework Feedback. Please read this as soon as possible as it's very important.",
-                          message: "Did you check my homework? It would be very iportant to get some feedback before the end of the week.",
-                          date: "22/10/13",
-                          isStarred: true,
-                          state: .unread)
+    static func make(id: String = "0",
+                     participantName: String = "Bob, Alice",
+                     in context: NSManagedObjectContext)
+    -> InboxMessageListItem {
+        let mockObject: InboxMessageListItem = context.insert()
+        mockObject.messageId = id
+        mockObject.participantName = participantName
+        mockObject.title = "Homework Feedback. Please read this as soon as possible as it's very important."
+        mockObject.message = "Did you check my homework? It would be very iportant to get some feedback before the end of the week."
+        mockObject.dateRaw = Date()
+        mockObject.isStarred = true
+        mockObject.stateRaw = ConversationWorkflowState.unread.rawValue
+        return mockObject
     }
 }
 
 public extension Array where Element == InboxMessageListItem {
 
-    static func mock(count: Int) -> [InboxMessageListItem] {
+    static func make(count: Int,
+                     in context: NSManagedObjectContext)
+    -> [InboxMessageListItem] {
         (0..<count).reduce(into: [], { partialResult, index in
-            partialResult.append(.mock(id: "\(index)"))
+            partialResult.append(.make(id: "\(index)", in: context))
         })
     }
 }

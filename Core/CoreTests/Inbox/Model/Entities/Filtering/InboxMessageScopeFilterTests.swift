@@ -20,66 +20,66 @@ import Core
 import XCTest
 
 class InboxMessageScopeFilterTests: CoreTestCase {
-    private var readMessage: InboxMessageListItem2!
-    private var unreadMessage: InboxMessageListItem2!
-    private var archivedMessage: InboxMessageListItem2!
-    private var starredReadMessage: InboxMessageListItem2!
-    private var sentReadMessage: InboxMessageListItem2!
+    private var readMessage: InboxMessageListItem!
+    private var unreadMessage: InboxMessageListItem!
+    private var archivedMessage: InboxMessageListItem!
+    private var starredReadMessage: InboxMessageListItem!
+    private var sentReadMessage: InboxMessageListItem!
 
     override public func setUp() {
         super.setUp()
 
-        readMessage = databaseClient.insert() as InboxMessageListItem2
-        readMessage.id = "1"
+        readMessage = databaseClient.insert() as InboxMessageListItem
+        readMessage.messageId = "1"
         readMessage.state = .read
-        unreadMessage = databaseClient.insert() as InboxMessageListItem2
-        unreadMessage.id = "2"
+        unreadMessage = databaseClient.insert() as InboxMessageListItem
+        unreadMessage.messageId = "2"
         unreadMessage.state = .unread
-        archivedMessage = databaseClient.insert() as InboxMessageListItem2
-        archivedMessage.id = "3"
+        archivedMessage = databaseClient.insert() as InboxMessageListItem
+        archivedMessage.messageId = "3"
         archivedMessage.state = .archived
-        starredReadMessage = databaseClient.insert() as InboxMessageListItem2
-        starredReadMessage.id = "4"
+        starredReadMessage = databaseClient.insert() as InboxMessageListItem
+        starredReadMessage.messageId = "4"
         starredReadMessage.state = .read
         starredReadMessage.isStarred = true
-        sentReadMessage = databaseClient.insert() as InboxMessageListItem2
-        sentReadMessage.id = "5"
+        sentReadMessage = databaseClient.insert() as InboxMessageListItem
+        sentReadMessage.messageId = "5"
         sentReadMessage.state = .read
         sentReadMessage.isSent = true
     }
 
     func testMessageFilterAll() {
         let messageIds = messageIds(for: .all)
-        XCTAssertEqual(messageIds, Set([readMessage.id,
-                                        unreadMessage.id,
-                                        starredReadMessage.id,
+        XCTAssertEqual(messageIds, Set([readMessage.messageId,
+                                        unreadMessage.messageId,
+                                        starredReadMessage.messageId,
                                        ]))
     }
 
     func testMessageFilterUnread() {
         let messageIds = messageIds(for: .unread)
-        XCTAssertEqual(messageIds, Set([unreadMessage.id]))
+        XCTAssertEqual(messageIds, Set([unreadMessage.messageId]))
     }
 
     func testMessageFilterArchived() {
         let messageIds = messageIds(for: .archived)
-        XCTAssertEqual(messageIds, Set([archivedMessage.id]))
+        XCTAssertEqual(messageIds, Set([archivedMessage.messageId]))
     }
 
     func testMessageFilterSent() {
         let messageIds = messageIds(for: .sent)
-        XCTAssertEqual(messageIds, Set([sentReadMessage.id]))
+        XCTAssertEqual(messageIds, Set([sentReadMessage.messageId]))
     }
 
     func testMessageFilterStarred() {
         let messageIds = messageIds(for: .starred)
-        XCTAssertEqual(messageIds, Set([starredReadMessage.id]))
+        XCTAssertEqual(messageIds, Set([starredReadMessage.messageId]))
     }
 
     private func messageIds(for scope: InboxMessageScope) -> Set<String> {
         let scope = Scope(predicate: scope.messageFilter, order: [])
-        let messages: [InboxMessageListItem2] = databaseClient.fetch(scope: scope)
-        let messageIds = Set(messages.map { $0.id })
+        let messages: [InboxMessageListItem] = databaseClient.fetch(scope: scope)
+        let messageIds = Set(messages.map { $0.messageId })
         return messageIds
     }
 }

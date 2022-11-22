@@ -99,7 +99,9 @@ class StoreTests: CoreTestCase {
         self.eventsExpectation.fulfill()
     }
 
-    // MARK: - Reactive Properties Tests
+    // MARK: - Reactive Properties Tests -
+
+    // MARK: All Objects
 
     func testInitialObjectsPublished() {
         Course.save(.make(id: "0"), in: databaseClient)
@@ -182,7 +184,83 @@ class StoreTests: CoreTestCase {
         subscription.cancel()
     }
 
-    // MARK: Reactive Properties Tests -
+    // MARK: State
+
+    func testLoadingState() {
+        let useCase = TestUseCase(courses: [])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .sink { state in
+                XCTAssertEqual(state, .loading)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testEmptyState() {
+        let useCase = TestUseCase(courses: [])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst()
+            .sink { state in
+                XCTAssertEqual(state, .empty)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testDataState() {
+        let useCase = TestUseCase(courses: [.make()])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst()
+            .sink { state in
+                XCTAssertEqual(state, .data)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testErrorState() {
+        let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst()
+            .sink { state in
+                XCTAssertEqual(state, .error)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    // MARK: -
 
     func testSubscribeWithoutCache() {
         let course = APICourse.make(id: "1")

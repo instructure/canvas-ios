@@ -81,8 +81,16 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
      Publisher for all objects in this store. Changes are sent on the main thread with CoreData objects from the view context.
      */
     public private(set) lazy var allObjects: AnyPublisher<[U.Model], Never> = allObjectsSubject
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    /**
+     Returns `.loading` until `refresh()` is called. After refresh completes the published state can be either `.data`, `.empty` or `.error`.
+     */
+    public private(set) lazy var statePublisher: AnyPublisher<StoreState, Never> = stateSubject
+        .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     private let allObjectsSubject = CurrentValueSubject<[U.Model], Never>([])
+    private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
 
     // MARK: -
 
@@ -216,10 +224,23 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
                 self?.next = self?.useCase.getNext(from: urlResponse)
             }
             self?.notify()
+            self?.publishState()
             performUIUpdate {
                 callback?(response)
             }
         }
+    }
+
+    private func publishState() {
+        var state: StoreState = .data
+
+        if error != nil {
+            state = .error
+        } else if isEmpty {
+            state = .empty
+        }
+
+        stateSubject.send(state)
     }
 
     // MARK: - NSFetchedResultsControllerDelegate

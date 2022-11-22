@@ -22,7 +22,7 @@ import XCTest
 class InboxMessageListItemTests: CoreTestCase {
 
     func testState() {
-        let testee: InboxMessageListItem2 = databaseClient.insert()
+        let testee: InboxMessageListItem = databaseClient.insert()
 
         testee.stateRaw = "read"
         XCTAssertEqual(testee.state, .read)
@@ -38,7 +38,7 @@ class InboxMessageListItemTests: CoreTestCase {
     }
 
     func testIsMarkAsReadActionAvaiable() {
-        let testee: InboxMessageListItem2 = databaseClient.insert()
+        let testee: InboxMessageListItem = databaseClient.insert()
 
         testee.stateRaw = "read"
         XCTAssertEqual(testee.isMarkAsReadActionAvailable, false)
@@ -51,7 +51,7 @@ class InboxMessageListItemTests: CoreTestCase {
     }
 
     func testIsArchiveActionAvailable() {
-        let testee: InboxMessageListItem2 = databaseClient.insert()
+        let testee: InboxMessageListItem = databaseClient.insert()
 
         testee.stateRaw = "read"
         XCTAssertEqual(testee.isArchiveActionAvailable, true)
@@ -64,13 +64,13 @@ class InboxMessageListItemTests: CoreTestCase {
     }
 
     func testDate() {
-        let testee: InboxMessageListItem2 = databaseClient.insert()
+        let testee: InboxMessageListItem = databaseClient.insert()
         testee.dateRaw = Date(timeIntervalSince1970: 42)
         XCTAssertEqual(testee.date, Date(timeIntervalSince1970: 42).relativeDateOnlyString)
     }
 
     func testAvatar() {
-        let testee: InboxMessageListItem2 = databaseClient.insert()
+        let testee: InboxMessageListItem = databaseClient.insert()
 
         testee.avatarNameRaw = nil
         testee.avatarURLRaw = nil
