@@ -37,13 +37,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         env.window = window
         return env
     }()
-
+    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
-        // initializeHeap()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
 
@@ -86,6 +85,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
+        environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+        environmentFeatureFlags?.refresh(force: true) { _ in
+            self.initializeHeap()
+        }
+
         updateInterfaceStyle(for: window)
 
         CoreWebView.keepCookieAlive(for: environment)
@@ -239,7 +243,14 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
     }
 
     private func initializeHeap() {
-        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
+        guard
+            let environmentFeatureFlags,
+            environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics),
+            !ProcessInfo.isUITest,
+            let heapID = Secret.heapID.string
+        else {
+            return
+        }
         let options = HeapOptions()
         options.disableAdvertiserIdCapture = true
         Heap.initialize(heapID, with: options)

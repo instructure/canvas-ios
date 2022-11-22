@@ -39,6 +39,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return env
     }()
 
+    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
         CacheManager.resetAppIfNecessary()
@@ -46,7 +48,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             UITestHelpers.setup(self)
         #endif
         setupDefaultErrorHandling()
-        // initializeHeap()
         Analytics.shared.handler = self
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -87,6 +88,11 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
+        environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+        environmentFeatureFlags?.refresh(force: true) { _ in
+            self.initializeHeap()
+        }
+   
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         currentStudentID = environment.userDefaults?.parentCurrentStudentID
@@ -270,7 +276,14 @@ extension ParentAppDelegate: AnalyticsHandler {
     }
 
     private func initializeHeap() {
-        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
+        guard
+            let environmentFeatureFlags,
+            environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics),
+            !ProcessInfo.isUITest,
+            let heapID = Secret.heapID.string
+        else {
+            return
+        }
         let options = HeapOptions()
         options.disableAdvertiserIdCapture = true
         Heap.initialize(heapID, with: options)

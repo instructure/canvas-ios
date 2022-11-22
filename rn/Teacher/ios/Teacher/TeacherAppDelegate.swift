@@ -39,13 +39,12 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         env.window = window
         return env
     }()
-
+    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var isK5User = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupFirebase()
-        // initializeHeap()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
         #if DEBUG
@@ -77,6 +76,10 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
+        environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+        environmentFeatureFlags?.refresh(force: true) { _ in
+            self.initializeHeap()
+        }
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         NotificationManager.shared.subscribeToPushChannel()
@@ -214,7 +217,14 @@ extension TeacherAppDelegate: AnalyticsHandler {
     }
 
     private func initializeHeap() {
-        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
+        guard
+            let environmentFeatureFlags,
+            environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics),
+            !ProcessInfo.isUITest,
+            let heapID = Secret.heapID.string
+        else {
+            return
+        }
         let options = HeapOptions()
         options.disableAdvertiserIdCapture = true
         Heap.initialize(heapID, with: options)
