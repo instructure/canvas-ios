@@ -18,26 +18,13 @@
 
 import Foundation
 
-public enum InboxMessageScope: String, CaseIterable, Hashable {
-    case all, unread, starred, sent, archived
+public extension NSPredicate {
 
-    public var localizedName: String {
-        switch self {
-        case .all: return NSLocalizedString("All", comment: "")
-        case .unread: return NSLocalizedString("Unread", comment: "")
-        case .starred: return NSLocalizedString("Starred", comment: "")
-        case .sent: return NSLocalizedString("Sent", comment: "")
-        case .archived: return NSLocalizedString("Archived", comment: "")
-        }
-    }
-
-    public var apiScope: GetConversationsRequest.Scope? {
-        switch self {
-        case .all: return nil
-        case .unread: return .unread
-        case .starred: return .starred
-        case .sent: return .sent
-        case .archived: return .archived
+    static func inboxMessageContextFilter(contextCode: String?) -> NSPredicate {
+        if contextCode == nil {
+            return .all
+        } else {
+            return NSPredicate(key: #keyPath(InboxMessageListItem2.contextCode), equals: contextCode)
         }
     }
 }

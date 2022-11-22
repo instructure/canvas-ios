@@ -19,7 +19,7 @@
 import Core
 import XCTest
 
-class InboxMessageScopeTests: CoreTestCase {
+class InboxMessageScopeFilterTests: CoreTestCase {
     private var readMessage: InboxMessageListItem2!
     private var unreadMessage: InboxMessageListItem2!
     private var archivedMessage: InboxMessageListItem2!
@@ -27,6 +27,8 @@ class InboxMessageScopeTests: CoreTestCase {
     private var sentReadMessage: InboxMessageListItem2!
 
     override public func setUp() {
+        super.setUp()
+
         readMessage = databaseClient.insert() as InboxMessageListItem2
         readMessage.id = "1"
         readMessage.state = .read

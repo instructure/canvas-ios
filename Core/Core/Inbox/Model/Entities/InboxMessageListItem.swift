@@ -22,6 +22,7 @@ public final class InboxMessageListItem2: NSManagedObject {
     public typealias JSON = APIConversation
 
     @NSManaged public var id: String
+    @NSManaged public var contextCode: String?
     @NSManaged public var participantName: String
     @NSManaged public var title: String
     @NSManaged public var message: String
@@ -84,6 +85,7 @@ public final class InboxMessageListItem2: NSManagedObject {
         let dbEntity: InboxMessageListItem2 = context.first(where: #keyPath(InboxMessageListItem2.id),
                                                             equals: apiEntity.id.value) ?? context.insert()
         dbEntity.id = apiEntity.id.rawValue
+        dbEntity.contextCode = apiEntity.context_code
         dbEntity.participantName = participants.names
         dbEntity.title = apiEntity.subject ?? ""
         dbEntity.message = apiEntity.last_message ?? apiEntity.last_authored_message ?? ""
