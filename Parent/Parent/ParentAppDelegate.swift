@@ -278,15 +278,17 @@ extension ParentAppDelegate: AnalyticsHandler {
     private func initializeHeap() {
         guard
             let environmentFeatureFlags,
-            environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics),
             !ProcessInfo.isUITest,
             let heapID = Secret.heapID.string
         else {
             return
         }
+
+        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
         let options = HeapOptions()
-        options.disableAdvertiserIdCapture = true
+        options.disableTracking = !isSendUsageMetricsEnabled
         Heap.initialize(heapID, with: options)
+        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
     }
 }
 
