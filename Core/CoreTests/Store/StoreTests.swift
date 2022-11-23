@@ -587,4 +587,30 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(store.numberOfObjects(inSection: 0), 1)
         XCTAssertNil(store[0])
     }
+
+    // MARK: - Cache Related Property Tests
+
+    func testIsCachedDataExpired() {
+        let testUseCase = TestUseCase()
+        let cache: TTL = databaseClient.insert()
+        cache.key = testUseCase.cacheKey ?? ""
+        cache.lastRefresh = Date.distantPast
+        try! databaseClient.save()
+
+        let testee = environment.subscribe(testUseCase)
+
+        XCTAssertTrue(testee.isCachedDataExpired)
+    }
+
+    func testIsCachedDataAvailable() {
+        let testUseCase = TestUseCase()
+        let cache: TTL = databaseClient.insert()
+        cache.key = testUseCase.cacheKey ?? ""
+        cache.lastRefresh = Date()
+        try! databaseClient.save()
+
+        let testee = environment.subscribe(testUseCase)
+
+        XCTAssertTrue(testee.isCachedDataAvailable)
+    }
 }

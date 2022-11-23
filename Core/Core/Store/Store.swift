@@ -56,6 +56,19 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         .empty
     }
 
+    /**
+     `true` if the `refresh(force: false)` method will return data from the permanent store without any API calls.
+
+     Use this to decide if a loading screen should be shown or not. Objects from the permanent store are available very quickly
+     so no lodaing indicator is necessary, on the other hand if the store will fetch data from the API it could be a lenghty operation.
+     */
+    public var isCachedDataAvailable: Bool { !isCachedDataExpired }
+    /**
+     The opposite of `isCachedDataAvailable`.
+     */
+    public var isCachedDataExpired: Bool { useCase.hasExpired(in: frc.managedObjectContext) }
+
+
     public private(set) var pending: Bool = false
     public private(set) var requested: Bool = false
     public private(set) var error: Error?

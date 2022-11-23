@@ -72,11 +72,11 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
 
     public func setContext(_ context: Context?) -> Future<Void, Never> {
-        Future<Void, Never> { [messageListUseCase, messageListStore, messages, state, env] promise in
+        Future<Void, Never> { [messageListUseCase, messageListStore, messages, state] promise in
             messageListUseCase.contextCode = context?.canvasContextID
             messageListStore.setScope(messageListUseCase.scope)
 
-            if messageListUseCase.hasExpired(in: env.database.viewContext) {
+            if messageListStore.isCachedDataExpired {
                 messages.send([])
                 state.send(.loading)
             }
@@ -87,11 +87,11 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
 
     public func setScope(_ scope: InboxMessageScope) -> Future<Void, Never> {
-        Future<Void, Never> { [messageListUseCase, messageListStore, messages, state, env] promise in
+        Future<Void, Never> { [messageListUseCase, messageListStore, messages, state] promise in
             messageListUseCase.messageScope = scope
             messageListStore.setScope(messageListUseCase.scope)
 
-            if messageListUseCase.hasExpired(in: env.database.viewContext) {
+            if messageListStore.isCachedDataExpired {
                 messages.send([])
                 state.send(.loading)
             }
