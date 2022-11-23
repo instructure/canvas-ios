@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public class GetEnabledFeatureFlags: CollectionUseCase {
+public class GetEnabledFeatureFlags: APIUseCase {
     public typealias Model = FeatureFlag
     public let context: Context
 
@@ -44,15 +44,13 @@ public class GetEnabledFeatureFlags: CollectionUseCase {
 
     public func write(response: [String]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        for name in response {
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), context.canvasContextID),
-                NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.name), name),
-            ])
-            let flag: FeatureFlag = client.fetch(predicate).first ?? client.insert()
-            flag.name = name
-            flag.context = context
-            flag.enabled = true
+        for key in response {
+            let apiFeatureFlag = APIFeatureFlag(
+                key: key,
+                isEnabled: true,
+                canvasContextID: context.canvasContextID
+            )
+            FeatureFlag.save(apiFeatureFlag, in: client)
         }
     }
 }

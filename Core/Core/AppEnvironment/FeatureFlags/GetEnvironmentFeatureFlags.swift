@@ -28,9 +28,7 @@ public class GetEnvironmentFeatureFlags: APIUseCase {
     public let context: Context
 
     public var scope: Scope {
-        let context = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
-        let enabled = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.enabled))
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [context, enabled])
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
         return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])
     }
 
@@ -46,21 +44,15 @@ public class GetEnvironmentFeatureFlags: APIUseCase {
         self.context = context
     }
 
-    public func write(
-        response: [String: Bool]?,
-        urlResponse: URLResponse?,
-        to client: NSManagedObjectContext
-    ) {
+    public func write(response: [String: Bool]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for (key, isEnabled) in response {
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), context.canvasContextID),
-                NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.name), key),
-            ])
-            let flag: FeatureFlag = client.fetch(predicate).first ?? client.insert()
-            flag.name = key
-            flag.context = context
-            flag.enabled = isEnabled
+            let apiFeatureFlag = APIFeatureFlag(
+                key: key,
+                isEnabled: isEnabled,
+                canvasContextID: context.canvasContextID
+            )
+            FeatureFlag.save(apiFeatureFlag, in: client)
         }
     }
 }
