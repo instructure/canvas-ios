@@ -133,6 +133,25 @@ extension UIColor {
         return lum1 > lum2 ? lum1 / lum2 : lum2 / lum1
     }
 
+    public func darken(against: UIColor) -> UIColor {
+        let minRatio: CGFloat = 4.5
+        guard contrast(against: against) < minRatio else {
+            return self
+        }
+        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 1
+        self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        var color = self
+        while color.contrast(against: against) < minRatio, saturation >= 0.0, saturation <= 1.0 {
+            if brightness >= 0.0, brightness <= 1.0 {
+                brightness += -0.01
+            } else {
+                saturation += 0.01
+            }
+            color = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
+        }
+        return color
+    }
+
     /// Get a sufficiently contrasting color based on the current color.
     ///
     /// If the user asked for more contrast, and there isn't enough, return a high enough contrasting color.

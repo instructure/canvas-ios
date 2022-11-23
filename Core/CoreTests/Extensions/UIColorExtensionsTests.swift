@@ -51,6 +51,12 @@ class UIColorExtensionsTests: XCTestCase {
         XCTAssertEqual(UIColor.blue.contrast(against: .white), 8.59, accuracy: 0.01)
     }
 
+    func testDarken() {
+        XCTAssertEqual(UIColor.white.darken(against: .white).hexString, "#757575")
+        XCTAssertEqual(UIColor.white.darken(against: UIColor(hexString: "#c0fefe")!).hexString, "#6d6d6d")
+        XCTAssertEqual(UIColor.black.darken(against: .white).hexString, UIColor.black.hexString)
+    }
+
     func testEnsureContrast() {
         XCTAssertEqual(UIColor.black.ensureContrast(against: .blue).hexString, "#bcbcbc")
         XCTAssertEqual(UIColor.blue.ensureContrast(against: .black).hexString, "#5f5fff")
