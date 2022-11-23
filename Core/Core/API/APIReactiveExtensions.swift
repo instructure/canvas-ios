@@ -24,10 +24,12 @@ public extension API {
     -> Future<(response: Request.Response?, urlResponse: URLResponse?), Error> {
         Future { promise in
             self.makeRequest(requestable) { response, urlResponse, error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success((response: response, urlResponse: urlResponse)))
+                performUIUpdate {
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success((response: response, urlResponse: urlResponse)))
+                    }
                 }
             }
         }
@@ -38,10 +40,12 @@ public extension API {
     -> Future<Request.Response?, Error> {
         Future { promise in
             self.makeRequest(requestable) { response, _, error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success(response))
+                performUIUpdate {
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(response))
+                    }
                 }
             }
         }
