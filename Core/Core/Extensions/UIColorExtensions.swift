@@ -133,7 +133,8 @@ extension UIColor {
         return lum1 > lum2 ? lum1 / lum2 : lum2 / lum1
     }
 
-    public func darken(against: UIColor) -> UIColor {
+    /// Ensures contrast against the given parameter by darkening the source color even if the parameter color is lighter.
+    public func darkenToEnsureContrast(against: UIColor) -> UIColor {
         let minRatio: CGFloat = 4.5
         guard contrast(against: against) < minRatio else {
             return self
