@@ -111,29 +111,17 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
 
     private func updateWorkflowStateLocally(message: InboxMessageListItem, state: ConversationWorkflowState) {
-//        guard let index = messages.value.firstIndex(of: message) else { return }
-//        var newMessages = messages.value
-//
-//        if message.state == .archived || state == .archived {
-//            newMessages.remove(at: index)
-//        } else {
-//            newMessages[index] = message.makeCopy(withState: state)
-//        }
-//
-//        var messageCount = TabBarBadgeCounts.unreadMessageCount
-//
-//        if state == .unread {
-//            messageCount += 1
-//        } else if messageCount > 0 {
-//            messageCount -= 1
-//        }
-//
-//        TabBarBadgeCounts.unreadMessageCount = messageCount
-//
-//        messages.send(newMessages)
-//
-//        if newMessages.isEmpty {
-//            self.state.send(.empty)
-//        }
+        var messageCount = TabBarBadgeCounts.unreadMessageCount
+
+        if state == .unread {
+            messageCount += 1
+        } else if message.isUnread, messageCount > 0 {
+            messageCount -= 1
+        }
+
+        TabBarBadgeCounts.unreadMessageCount = messageCount
+
+        message.state = state
+        try? message.managedObjectContext?.save()
     }
 }

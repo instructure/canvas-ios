@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct InboxMessageView: View {
-    private let model: InboxMessageListItem
+    @ObservedObject private var model: InboxMessageListItem
 
     public init(model: InboxMessageListItem) {
         self.model = model

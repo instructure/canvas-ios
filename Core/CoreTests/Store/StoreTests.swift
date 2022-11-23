@@ -260,6 +260,53 @@ class StoreTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testStateUpdatesToEmptyIfEntityRemovedFromContext() {
+        let course = Course.save(.make(id: "1"), in: databaseClient)
+        try! databaseClient.save()
+
+        let useCase = TestUseCase()
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst(2)
+            .sink { state in
+                XCTAssertEqual(state, .empty)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        databaseClient.delete(course)
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testStateDontChangeUntilRefreshCalled() {
+        // We have an entity in the DB
+        let course = Course.save(.make(id: "1"), in: databaseClient)
+        try! databaseClient.save()
+
+        let useCase = TestUseCase()
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .sink { state in
+                XCTAssertEqual(state, .loading)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        // We delete the entity
+        databaseClient.delete(course)
+        // We only receive a single state update the initial one: .loading
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
     // MARK: -
 
     func testSubscribeWithoutCache() {

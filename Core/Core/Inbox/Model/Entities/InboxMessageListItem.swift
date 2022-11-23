@@ -48,15 +48,9 @@ public final class InboxMessageListItem: NSManagedObject {
             stateRaw = newValue.rawValue
         }
     }
-    public var isMarkAsReadActionAvailable: Bool {
-        state == .unread || state == .archived
-    }
-    public var isArchiveActionAvailable: Bool {
-        state != .archived
-    }
-    public var date: String {
-        dateRaw.relativeDateOnlyString
-    }
+    public var isMarkAsReadActionAvailable: Bool { state == .unread || state == .archived }
+    public var isArchiveActionAvailable: Bool { state != .archived }
+    public var date: String { dateRaw.relativeDateOnlyString }
     public var avatar: InboxMessageAvatar {
         if let name = avatarNameRaw {
             return .individual(name: name, profileImageURL: avatarURLRaw)
@@ -64,6 +58,7 @@ public final class InboxMessageListItem: NSManagedObject {
             return .group
         }
     }
+    public var isUnread: Bool { state == .unread }
 
     // MARK: - CoreData Save
 

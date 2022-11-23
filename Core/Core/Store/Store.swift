@@ -232,6 +232,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     }
 
     private func publishState() {
+        guard requested, !pending else { return }
         var state: StoreState = .data
 
         if error != nil {
@@ -284,6 +285,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         notify()
         allObjectsSubject.send(all)
+        publishState()
     }
 
     // MARK: -
