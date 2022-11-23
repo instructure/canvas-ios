@@ -39,7 +39,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.courseName, "Test Course")
-        XCTAssertEqual(testee.courseColor?.difference(to: .red.ensureContrast()), 0)
+        XCTAssertEqual(testee.courseColor!.hexString, UIColor.red.ensureContrast().hexString)
     }
 
     func testFilterButtonVisibleWhenTwoGradingPeriodsAvailable() {

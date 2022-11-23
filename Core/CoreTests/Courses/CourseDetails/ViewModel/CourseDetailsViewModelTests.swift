@@ -33,7 +33,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
         testee.viewDidAppear()
 
-        XCTAssertEqual(testee.courseColor.difference(to: UIColor(hexString: "#FF0000")!.ensureContrast()), 0)
+        XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast().hexString)
         XCTAssertEqual(testee.homeLabel, nil)
         XCTAssertEqual(testee.homeSubLabel, nil)
         XCTAssertEqual(testee.homeRoute, URL(string: "/empty?contextColor=ed0000")!)
@@ -59,7 +59,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
         testee.viewDidAppear()
         drainMainQueue()
 
-        XCTAssertEqual(testee.courseColor.difference(to: UIColor(hexString: "#FF0000")!.ensureContrast()), 0)
+        XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast().hexString)
         XCTAssertEqual(testee.homeLabel, nil)
         XCTAssertEqual(testee.homeSubLabel, "Syllabus")
         XCTAssertEqual(testee.homeRoute, URL(string: "courses/1/syllabus")!)

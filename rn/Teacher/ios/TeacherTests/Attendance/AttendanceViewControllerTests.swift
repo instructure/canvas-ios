@@ -62,7 +62,7 @@ class AttendanceViewControllerTests: TeacherTestCase {
     func testStatusDisplay() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor?.difference(to: UIColor(hexString: "#008EE2")!.ensureContrast()), 0)
+        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor!.hexString, UIColor(hexString: "#008EE2")!.ensureContrast().hexString)
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1)

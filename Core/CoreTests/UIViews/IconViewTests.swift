@@ -36,6 +36,6 @@ class IconViewTests: XCTestCase {
         XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.iconColorName = "primary"
         tinter.tintColor = Brand.shared.primary
-        XCTAssertEqual(view.tintColor.difference(to: tinter.tintColor), 0)
+        XCTAssertEqual(view.tintColor.hexString, tinter.tintColor.hexString)
     }
 }
