@@ -16,17 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import Foundation
 
-public protocol InboxMessageInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var messages: CurrentValueSubject<[InboxMessageListItem], Never> { get }
-    var courses: CurrentValueSubject<[InboxCourse], Never> { get }
+public class GetInboxCourseList: CollectionUseCase {
+    public typealias Model = InboxCourse
 
-    // MARK: - Inputs
-    func refresh() -> Future<Void, Never>
-    func setContext(_ context: Context?) -> Future<Void, Never>
-    func setScope(_ scope: InboxMessageScope) -> Future<Void, Never>
-    func updateState(message: InboxMessageListItem, state: ConversationWorkflowState) -> Future<Void, Never>
+    public var cacheKey: String? { "inboxCourseList" }
+    public var request: GetCurrentUserCoursesRequest {
+        GetCurrentUserCoursesRequest(enrollmentState: .active, state: [.current_and_concluded], perPage: 100)
+    }
+    public var scope: Scope {
+        let order = [
+            NSSortDescriptor(key: #keyPath(InboxCourse.name), ascending: true),
+        ]
+        return Scope(predicate: .all, order: order)
+    }
 }

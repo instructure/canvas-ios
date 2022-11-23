@@ -24,15 +24,18 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     // MARK: - Outputs
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let messages: CurrentValueSubject<[InboxMessageListItem], Never>
-    public let courses = CurrentValueSubject<[APICourse], Never>([.make(id: "1", name: "Test Course")])
+    public let courses: CurrentValueSubject<[InboxCourse], Never>
 
     // MARK: - Private State
     private var scopeValue: InboxMessageScope = .all {
         didSet { update() }
     }
 
-    public init(messages: [InboxMessageListItem]) {
+    public init(environment: AppEnvironment, messages: [InboxMessageListItem]) {
         self.messages = CurrentValueSubject<[InboxMessageListItem], Never>(messages)
+        self.courses = CurrentValueSubject<[InboxCourse], Never>([
+            .save(.make(id: "1", name: "Test Course"), in: environment.database.viewContext),
+        ])
     }
 
     public func refresh() -> Future<Void, Never> {

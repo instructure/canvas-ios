@@ -22,7 +22,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     // MARK: - Outputs
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let messages = CurrentValueSubject<[InboxMessageListItem], Never>([])
-    public let courses = CurrentValueSubject<[APICourse], Never>([])
+    public let courses = CurrentValueSubject<[InboxCourse], Never>([])
 
     // MARK: - Private State
     private var subscriptions = Set<AnyCancellable>()
@@ -31,12 +31,14 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private var messagesRequest: APITask?
     private let useCase: GetInboxMessageList
     private let messageListStore: Store<GetInboxMessageList>
+    private let courseListStore: Store<GetInboxCourseList>
 
     public init(env: AppEnvironment) {
         let currentUserId = env.currentSession?.userID ?? ""
         self.env = env
         self.useCase = GetInboxMessageList(currentUserId: currentUserId)
         self.messageListStore = env.subscribe(useCase)
+        self.courseListStore = env.subscribe(GetInboxCourseList())
 
         messageListStore
             .allObjects
@@ -47,16 +49,25 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .statePublisher
             .subscribe(state)
             .store(in: &subscriptions)
+
+        courseListStore
+            .allObjects
+            .subscribe(courses)
+            .store(in: &subscriptions)
+
+        messageListStore.refresh()
+        courseListStore.refresh()
     }
 
     // MARK: - Inputs
 
     public func refresh() -> Future<Void, Never> {
-        Future<Void, Never> { [weak self] promise in
-            self?.fetchCoursesFromAPI()
-            self?.messageListStore.refresh(force: true) { _ in
-                promise(.success(()))
-            }
+        Future<Void, Never> { [self] promise in
+            Publishers.Merge(self.messageListStore.refreshWithFuture(force: true),
+                             self.courseListStore.refreshWithFuture(force: true))
+            .collect()
+            .sink { _ in promise(.success(())) }
+            .store(in: &self.subscriptions)
         }
     }
 
@@ -93,17 +104,6 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
 
     // MARK: - Private Helpers
-
-    private func fetchCoursesFromAPI() {
-        let request = GetCurrentUserCoursesRequest(enrollmentState: .active, state: [.current_and_concluded], perPage: 100)
-        env.api
-            .makeRequest(request)
-            .replaceNil(with: [])
-            .replaceError(with: [])
-            .map { $0.sorted { ($0.name ?? "") < ($1.name ?? "") }}
-            .subscribe(courses)
-            .store(in: &subscriptions)
-    }
 
     private func uploadWorkflowStateToAPI(messageId: String, state: ConversationWorkflowState) {
         let request = PutConversationRequest(id: messageId, workflowState: state)

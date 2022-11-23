@@ -75,7 +75,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         } }
     }
 
-    // MARK: - Reactive Extension
+    // MARK: - Reactive Property Extensions
 
     /**
      Publisher for all objects in this store. Changes are sent on the main thread with CoreData objects from the view context.
@@ -192,6 +192,20 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         self.next = nil
         let useCase = GetNextUseCase(parent: self.useCase, request: next)
         request(useCase, force: true, callback: callback)
+    }
+
+    // MARK: - Reactive Functions
+
+    public func refreshWithFuture(force: Bool = false) -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            guard let self = self else {
+                promise(.success(()))
+                return
+            }
+            self.request(self.useCase, force: force) { _ in
+                promise(.success(()))
+            }
+        }
     }
 
     // MARK: - Private Methods

@@ -526,6 +526,10 @@
         <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
     </entity>
+    <entity name="InboxCourse" representedClassName="Core.InboxCourse" syncable="YES">
+        <attribute name="courseId" attributeType="String" defaultValueString=""/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+    </entity>
     <entity name="InboxMessageListItem" representedClassName="Core.InboxMessageListItem" syncable="YES">
         <attribute name="avatarNameRaw" optional="YES" attributeType="String"/>
         <attribute name="avatarURLRaw" optional="YES" attributeType="URI"/>

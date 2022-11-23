@@ -19,8 +19,6 @@
 import CoreData
 
 public final class InboxMessageListItem: NSManagedObject {
-    public typealias JSON = APIConversation
-
     @NSManaged public var messageId: String
     @NSManaged public var contextCode: String?
     @NSManaged public var participantName: String
