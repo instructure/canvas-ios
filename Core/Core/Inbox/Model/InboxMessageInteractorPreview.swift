@@ -43,7 +43,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
         }
     }
 
-    public func setFilter(_ context: Context?) -> Future<Void, Never> {
+    public func setContext(_ context: Context?) -> Future<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             self?.update()
             promise(.success(()))

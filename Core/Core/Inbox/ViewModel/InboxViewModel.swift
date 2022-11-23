@@ -80,7 +80,7 @@ public class InboxViewModel: ObservableObject {
         courseDidChange
             .map { $0?.context }
             .removeDuplicates()
-            .map { interactor.setFilter($0) }
+            .map { interactor.setContext($0) }
             .sink()
             .store(in: &subscriptions)
         scopeDidChange

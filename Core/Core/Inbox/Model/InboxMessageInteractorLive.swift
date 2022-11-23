@@ -60,7 +60,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         }
     }
 
-    public func setFilter(_ context: Context?) -> Future<Void, Never> {
+    public func setContext(_ context: Context?) -> Future<Void, Never> {
         Future<Void, Never> { [useCase, messageListStore, messages, state] promise in
             messages.send([])
             state.send(.loading)

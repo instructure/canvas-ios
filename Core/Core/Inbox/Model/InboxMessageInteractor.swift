@@ -26,7 +26,7 @@ public protocol InboxMessageInteractor {
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>
-    func setFilter(_ context: Context?) -> Future<Void, Never>
+    func setContext(_ context: Context?) -> Future<Void, Never>
     func setScope(_ scope: InboxMessageScope) -> Future<Void, Never>
     func updateState(message: InboxMessageListItem, state: ConversationWorkflowState) -> Future<Void, Never>
 }
