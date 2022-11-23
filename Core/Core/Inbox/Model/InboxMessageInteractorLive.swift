@@ -29,15 +29,15 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private let env: AppEnvironment
 
     private var messagesRequest: APITask?
-    private let useCase: GetInboxMessageList
+    private let messageListUseCase: GetInboxMessageList
     private let messageListStore: Store<GetInboxMessageList>
     private let courseListStore: Store<GetInboxCourseList>
 
     public init(env: AppEnvironment) {
         let currentUserId = env.currentSession?.userID ?? ""
         self.env = env
-        self.useCase = GetInboxMessageList(currentUserId: currentUserId)
-        self.messageListStore = env.subscribe(useCase)
+        self.messageListUseCase = GetInboxMessageList(currentUserId: currentUserId)
+        self.messageListStore = env.subscribe(messageListUseCase)
         self.courseListStore = env.subscribe(GetInboxCourseList())
 
         messageListStore
@@ -72,22 +72,30 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
 
     public func setContext(_ context: Context?) -> Future<Void, Never> {
-        Future<Void, Never> { [useCase, messageListStore, messages, state] promise in
-            messages.send([])
-            state.send(.loading)
-            useCase.contextCode = context?.canvasContextID
-            messageListStore.setScope(useCase.scope)
+        Future<Void, Never> { [messageListUseCase, messageListStore, messages, state, env] promise in
+            messageListUseCase.contextCode = context?.canvasContextID
+            messageListStore.setScope(messageListUseCase.scope)
+
+            if messageListUseCase.hasExpired(in: env.database.viewContext) {
+                messages.send([])
+                state.send(.loading)
+            }
+
             messageListStore.refresh()
             promise(.success(()))
         }
     }
 
     public func setScope(_ scope: InboxMessageScope) -> Future<Void, Never> {
-        Future<Void, Never> { [useCase, messageListStore, messages, state] promise in
-            messages.send([])
-            state.send(.loading)
-            useCase.messageScope = scope
-            messageListStore.setScope(useCase.scope)
+        Future<Void, Never> { [messageListUseCase, messageListStore, messages, state, env] promise in
+            messageListUseCase.messageScope = scope
+            messageListStore.setScope(messageListUseCase.scope)
+
+            if messageListUseCase.hasExpired(in: env.database.viewContext) {
+                messages.send([])
+                state.send(.loading)
+            }
+
             messageListStore.refresh()
             promise(.success(()))
         }

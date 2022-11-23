@@ -100,7 +100,7 @@ public struct InboxFilterBar: View {
             },
         ]
         buttons.append(contentsOf: model.courses.map { course in
-            .default(Text(course.name ?? "")) {
+            .default(Text(course.name)) {
                 model.courseDidChange.send(course)
             }
         })
