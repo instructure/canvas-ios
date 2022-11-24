@@ -143,6 +143,9 @@
 "Add message" = "Bericht toevoegen";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Optionele opmerking toevoegen";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Planneraantekening toevoegen";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Informele vraag of suggestie";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Lay-out van dashboard veranderen naar rooster";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Lay-out van dashboard veranderen naar lijst";
 
 /* No comment provided by engineer. */
 "Change User" = "Gebruiker wijzigen";

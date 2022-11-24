@@ -143,6 +143,9 @@
 "Add message" = "Dodaj wiadomość";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Dodaj opcjonalny komentarz";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Dodaj notatkę planera";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Nieformalne pytanie lub sugestia";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Zmień układ panelu nawigacyjnego na siatkę";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Zmień układ panelu nawigacyjnego na listę";
 
 /* No comment provided by engineer. */
 "Change User" = "Zmień użytkownika";

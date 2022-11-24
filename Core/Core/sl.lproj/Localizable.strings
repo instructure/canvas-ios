@@ -143,6 +143,9 @@
 "Add message" = "Dodaj sporočilo";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Dodaj komentar po izbiri";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Dodaj opombo orodja Planner";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Naključno vprašanje ali predlog";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Spremeni postavitev nadzorne plošče v mrežo";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Spremeni postavitev nadzorne plošče v seznam";
 
 /* No comment provided by engineer. */
 "Change User" = "Spremeni uporabnika";

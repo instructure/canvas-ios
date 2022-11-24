@@ -417,7 +417,7 @@
 "Couldn't Load Submission" = "Impossibile caricare consegna";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Piano di studio corso";
+"Course Syllabus" = "Syllabus corso";
 
 /* Courses page title */
 "Courses" = "Corsi";
@@ -1314,7 +1314,7 @@
 
 /* Syllabus screen name
    Title for Syllabus view controller */
-"Syllabus" = "Piano di studio";
+"Syllabus" = "Syllabus";
 
 /* Short name for TA enrollment */
 "TA" = "Assistente";

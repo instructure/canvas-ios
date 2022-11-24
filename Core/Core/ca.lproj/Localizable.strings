@@ -143,6 +143,9 @@
 "Add message" = "Afegeix un missatge";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Afegiu un comentari opcional";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Afegeix una nota al planificador";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Pregunta o suggeriment informals";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Canvia el disseny del panell de control a quadrícula";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Canvia el disseny del panell de control a llista";
 
 /* No comment provided by engineer. */
 "Change User" = "Canvia l'usuari";

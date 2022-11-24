@@ -44,13 +44,13 @@ class TodoListViewControllerTests: CoreTestCase {
         let navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(navigation.navigationBar.barTintColor, Brand.shared.navBackground)
+        XCTAssertEqual(navigation.navigationBar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(controller.tableView.backgroundColor, .backgroundLightest)
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TodoListCell
-        XCTAssertEqual(cell?.contextLabel.textColor, UIColor(hexString: "#f00"))
+        XCTAssertEqual(cell?.contextLabel.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast().hexString)
         XCTAssertEqual(cell?.contextLabel.text, "Course One")
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TodoListCell
         XCTAssertEqual(cell?.contextLabel.textColor, UIColor(hexString: "#0f0"))

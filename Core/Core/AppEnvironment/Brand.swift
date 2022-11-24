@@ -19,22 +19,86 @@
 import UIKit
 
 public struct Brand: Equatable {
-    public let buttonPrimaryBackground: UIColor
-    public let buttonPrimaryText: UIColor
-    public let buttonSecondaryBackground: UIColor
-    public let buttonSecondaryText: UIColor
-    public let fontColorDark: UIColor
-    public let headerImageBackground: UIColor
-    public let headerImageUrl: URL?
-    public let linkColor: UIColor
-    public let navBackground: UIColor
-    public let navBadgeBackground: UIColor
-    public let navBadgeText: UIColor
-    public let navIconFill: UIColor
-    public let navIconFillActive: UIColor
-    public let navTextColor: UIColor
-    public let navTextColorActive: UIColor
-    public let primary: UIColor
+
+    public var headerImageUrl: URL?
+
+    public var buttonPrimaryBackground: UIColor {
+        UIColor.getColor(dark: buttonPrimaryBackgroundDark, light: buttonPrimaryBackgroundLight)
+    }
+    public var buttonPrimaryText: UIColor {
+        UIColor.getColor(dark: buttonPrimaryTextDark, light: buttonPrimaryTextLight)
+    }
+    public var buttonSecondaryBackground: UIColor {
+        UIColor.getColor(dark: buttonSecondaryBackgroundDark, light: buttonSecondaryBackgroundLight)
+    }
+    public var buttonSecondaryText: UIColor {
+        UIColor.getColor(dark: buttonSecondaryTextDark, light: buttonSecondaryTextLight)
+    }
+    public var fontColorDark: UIColor {
+        UIColor.getColor(dark: fontColorDarkDark, light: fontColorDarkLight)
+    }
+    public var headerImageBackground: UIColor {
+        UIColor.getColor(dark: headerImageBackgroundDark, light: headerImageBackgroundLight)
+    }
+    public var linkColor: UIColor {
+        UIColor.getColor(dark: linkColorDark, light: linkColorLight)
+    }
+    public var navBackground: UIColor {
+        UIColor.getColor(dark: navBackgroundDark, light: navBackgroundLight)
+    }
+    public var navBadgeBackground: UIColor {
+        UIColor.getColor(dark: navBadgeBackgroundDark, light: navBadgeBackgroundLight)
+    }
+    public var navBadgeText: UIColor {
+        UIColor.getColor(dark: navBadgeTextDark, light: navBadgeTextLight)
+    }
+    public var navIconFill: UIColor {
+        UIColor.getColor(dark: navIconFillDark, light: navIconFillLight)
+    }
+    public var navIconFillActive: UIColor {
+        UIColor.getColor(dark: navIconFillActiveDark, light: navIconFillActiveLight)
+    }
+    public var navTextColor: UIColor {
+        UIColor.getColor(dark: navTextColorDark, light: navTextColorLight)
+    }
+    public var navTextColorActive: UIColor {
+        UIColor.getColor(dark: navTextColorActiveDark, light: navTextColorActiveLight)
+    }
+    public var primary: UIColor {
+        UIColor.getColor(dark: primaryDark, light: primaryLight)
+    }
+
+    private var buttonPrimaryBackgroundDark: UIColor = .black
+    private var buttonPrimaryTextDark: UIColor = .black
+    private var buttonSecondaryBackgroundDark: UIColor = .black
+    private var buttonSecondaryTextDark: UIColor = .black
+    private var fontColorDarkDark: UIColor = .black
+    private var headerImageBackgroundDark: UIColor = .black
+    private var linkColorDark: UIColor = .black
+    private var navBackgroundDark: UIColor = .black
+    private var navBadgeBackgroundDark: UIColor = .black
+    private var navBadgeTextDark: UIColor = .black
+    private var navIconFillDark: UIColor = .black
+    private var navIconFillActiveDark: UIColor = .black
+    private var navTextColorDark: UIColor = .black
+    private var navTextColorActiveDark: UIColor = .black
+    private var primaryDark: UIColor = .black
+
+    private var buttonPrimaryBackgroundLight: UIColor = .white
+    private var buttonPrimaryTextLight: UIColor = .white
+    private var buttonSecondaryBackgroundLight: UIColor = .white
+    private var buttonSecondaryTextLight: UIColor = .white
+    private var fontColorDarkLight: UIColor = .white
+    private var headerImageBackgroundLight: UIColor = .white
+    private var linkColorLight: UIColor = .white
+    private var navBackgroundLight: UIColor = .white
+    private var navBadgeBackgroundLight: UIColor = .white
+    private var navBadgeTextLight: UIColor = .white
+    private var navIconFillLight: UIColor = .white
+    private var navIconFillActiveLight: UIColor = .white
+    private var navTextColorLight: UIColor = .white
+    private var navTextColorActiveLight: UIColor = .white
+    private var primaryLight: UIColor = .white
 
     public init(
         buttonPrimaryBackground: UIColor?,
@@ -54,22 +118,39 @@ public struct Brand: Equatable {
         navTextColorActive: UIColor?,
         primary: UIColor?
     ) {
-        self.buttonPrimaryBackground = buttonPrimaryBackground ?? .electric
-        self.buttonPrimaryText = buttonPrimaryText ?? .white
-        self.buttonSecondaryBackground = buttonSecondaryBackground ?? .licorice
-        self.buttonSecondaryText = buttonSecondaryText ?? .white
-        self.fontColorDark = fontColorDark ?? .licorice
-        self.headerImageBackground = headerImageBackground ?? .oxford
         self.headerImageUrl = headerImageUrl ?? Bundle.core.url(forResource: "defaultHeaderImage", withExtension: "png")
-        self.linkColor = linkColor ?? .electric
-        self.navBackground = navBackground ?? .oxford
-        self.navBadgeBackground = navBadgeBackground ?? .electric
-        self.navBadgeText = navBadgeText ?? .white
-        self.navIconFill = navIconFill ?? .white
-        self.navIconFillActive = navIconFillActive ?? .electric
-        self.navTextColor = navTextColor ?? .white
-        self.navTextColorActive = navTextColorActive ?? .electric
-        self.primary = primary ?? .electric
+
+        self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .electric
+        self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .white
+        self.buttonSecondaryBackgroundLight = buttonSecondaryBackground ?? .licorice
+        self.buttonSecondaryTextLight = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundLight) : .white
+        self.fontColorDarkLight = fontColorDark ?? .licorice
+        self.headerImageBackgroundLight = headerImageBackground ?? .oxford
+        self.linkColorLight = linkColor ?? .electric
+        self.navBackgroundLight = navBackground ?? .oxford
+        self.navBadgeBackgroundLight = navBadgeBackground ?? .electric
+        self.navBadgeTextLight = navBadgeText ?? .white
+        self.navIconFillLight = navIconFill ?? .white
+        self.navIconFillActiveLight = navIconFillActive ?? .electric
+        self.navTextColorLight = navTextColor != nil ? navTextColor!.ensureContrast(against: navBackgroundLight) : .white
+        self.navTextColorActiveLight = navTextColorActive ?? .electric
+        self.primaryLight = primary ?? .electric
+
+        self.buttonPrimaryBackgroundDark = buttonPrimaryBackground != nil ? buttonPrimaryBackground!.ensureContrast(against: .backgroundLightest) : .electric
+        self.buttonPrimaryTextDark = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundDark) : .white
+        self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .licorice
+        self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundDark) : .white
+        self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .licorice
+        self.headerImageBackgroundDark = headerImageBackground ?? .oxford
+        self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .electric
+        self.navBackgroundDark = navBackground ?? .oxford
+        self.navBadgeBackgroundDark = navBadgeBackground != nil ? navBadgeBackground!.ensureContrast(against: self.navBackgroundDark) : .electric
+        self.navBadgeTextDark = navBadgeText != nil ? navBadgeText!.ensureContrast(against: self.navBadgeBackgroundDark) : .white
+        self.navIconFillDark = navIconFill != nil ? navIconFill!.ensureContrast(against: self.navBackgroundDark) : .white
+        self.navIconFillActiveDark = navIconFillActive != nil ? navIconFillActive!.ensureContrast(against: self.navBackgroundDark) : .electric
+        self.navTextColorDark = navTextColor != nil ? navTextColor!.ensureContrast(against: self.navBackgroundDark) : .white
+        self.navTextColorActiveDark = navTextColorActive != nil ? navTextColorActive!.ensureContrast(against: self.navBackgroundDark) : .electric
+        self.primaryDark = primary != nil ? primary!.ensureContrast(against: .backgroundLightest) : .electric
     }
 
     public init(response: APIBrandVariables, baseURL: URL) {

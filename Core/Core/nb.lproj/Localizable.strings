@@ -143,6 +143,9 @@
 "Add message" = "Legg til melding";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Legg til valgfri kommentar";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Legg til merknad";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Tilfeldig spørsmål eller forslag";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Endre dashbordlayout til rutenett";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Endre dashbordlayout til liste";
 
 /* No comment provided by engineer. */
 "Change User" = "Endre bruker";

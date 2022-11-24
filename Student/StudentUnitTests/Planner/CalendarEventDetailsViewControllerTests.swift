@@ -41,7 +41,7 @@ class CalendarEventDetailsViewControllerTests: StudentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor(hexString: "#0000ff")!.darkenToEnsureContrast(against: .white).hexString)
         XCTAssertEqual(controller.titleSubtitleView.title, "Event Details")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
         XCTAssertEqual(controller.titleLabel.text, "calendar event #1")
@@ -57,7 +57,7 @@ class CalendarEventDetailsViewControllerTests: StudentTestCase {
             location_address: "place"
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#ff0000")
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor(hexString: "#ff0000")!.darkenToEnsureContrast(against: .white).hexString)
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Bob")
         XCTAssertEqual(controller.locationView.isHidden, false)
         XCTAssertEqual(controller.dateLabel.text, "Jun 24, 2020, 11:00 AM – 1:00 PM")

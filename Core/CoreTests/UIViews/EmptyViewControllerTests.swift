@@ -27,7 +27,7 @@ class EmptyViewControllerTests: CoreTestCase {
         nav.view.layoutIfNeeded()
         nav.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor, Brand.shared.navBackground)
+        XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
 
         XCTAssertEqual(controller.view.subviews.count, 1)
         XCTAssert(controller.view.subviews.first is UIImageView)

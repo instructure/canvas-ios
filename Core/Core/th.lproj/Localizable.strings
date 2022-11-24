@@ -143,6 +143,9 @@
 "Add message" = "เพิ่มข้อความ";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "เพิ่มความเห็นเผื่อเลือก";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "เพิ่มหมายเหตุแผนงาน";
 
 /* No comment provided by engineer. */
@@ -426,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "คำถามหรือข้อเสนอแนะทั่วไป";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "แก้ไขเค้าโครงแผงข้อมูลเป็นตาราง";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "แก้ไขเค้าโครงแผงข้อมูลเป็นรายการ";
 
 /* No comment provided by engineer. */
 "Change User" = "เปลี่ยนผู้ใช้";

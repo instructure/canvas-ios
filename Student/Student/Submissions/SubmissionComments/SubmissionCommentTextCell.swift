@@ -49,7 +49,7 @@ class SubmissionCommentTextCell: UITableViewCell {
             subview.removeFromSuperview()
         }
         comment.attachments?.sorted(by: File.idCompare).enumerated().forEach { index, attachment in
-            let color = Brand.shared.linkColor.ensureContrast(against: .white)
+            let color = Brand.shared.linkColor
             let button = UIButton(type: .system)
             button.setImage(UIImage.paperclipLine.withRenderingMode(.alwaysTemplate), for: .normal)
             button.tintColor = color

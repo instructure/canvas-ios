@@ -51,11 +51,16 @@ class UIColorExtensionsTests: XCTestCase {
         XCTAssertEqual(UIColor.blue.contrast(against: .white), 8.59, accuracy: 0.01)
     }
 
+    func testDarken() {
+        XCTAssertEqual(UIColor.white.darkenToEnsureContrast(against: .white).hexString, "#757575")
+        XCTAssertEqual(UIColor.white.darkenToEnsureContrast(against: UIColor(hexString: "#c0fefe")!).hexString, "#6d6d6d")
+        XCTAssertEqual(UIColor.black.darkenToEnsureContrast(against: .white).hexString, UIColor.black.hexString)
+    }
+
     func testEnsureContrast() {
-        XCTAssertEqual(UIColor.black.ensureContrast(against: .blue, inHighContrast: false).hexString, "#000000")
-        XCTAssertEqual(UIColor.black.ensureContrast(against: .blue, inHighContrast: true).hexString, "#bcbcbc")
-        XCTAssertEqual(UIColor.blue.ensureContrast(against: .black, inHighContrast: true).hexString, "#5f5fff")
-        XCTAssertEqual(UIColor.yellow.ensureContrast(against: .white, inHighContrast: true).hexString, "#7a7a00")
+        XCTAssertEqual(UIColor.black.ensureContrast(against: .blue).hexString, "#bcbcbc")
+        XCTAssertEqual(UIColor.blue.ensureContrast(against: .black).hexString, "#5f5fff")
+        XCTAssertEqual(UIColor.yellow.ensureContrast(against: .white).hexString, "#7a7a00")
     }
 
     func testCurrentLogoColor() {

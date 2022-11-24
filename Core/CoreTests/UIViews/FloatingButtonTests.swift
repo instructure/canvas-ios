@@ -25,7 +25,7 @@ class FloatingButtonTests: XCTestCase {
         view.backgroundColorName = "not a color name"
         XCTAssertEqual(view.backgroundColor, .backgroundInfo)
         view.backgroundColorName = "buttonSecondaryBackground"
-        XCTAssertEqual(view.backgroundColor, Brand.shared.buttonSecondaryBackground)
+        XCTAssertEqual(view.backgroundColor!.hexString, Brand.shared.buttonSecondaryBackground.hexString)
     }
 
     func testIconName() {
@@ -44,6 +44,6 @@ class FloatingButtonTests: XCTestCase {
         XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.iconColorName = "buttonSecondaryText"
         tinter.tintColor = Brand.shared.buttonSecondaryText
-        XCTAssertEqual(view.tintColor, tinter.tintColor)
+        XCTAssertEqual(view.tintColor.hexString, tinter.tintColor.hexString)
     }
 }

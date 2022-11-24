@@ -47,7 +47,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.titleSubtitleView.title, "Conference Details")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
-        XCTAssertEqual(nav.navigationBar.barTintColor, UIColor(hexString: "#f00"))
+        XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, UIColor(hexString: "#f00")!.darkenToEnsureContrast(against: .white).hexString)
 
         XCTAssertEqual(controller.titleLabel.text, "Pandemic playthrough")
         XCTAssertEqual(controller.statusLabel.text, "Not Started")

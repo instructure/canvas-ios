@@ -60,6 +60,18 @@ extension UIColor {
         )
     }
 
+    /** Returns enhanced contrast colors against different light and dark counter-colors. */
+    public func ensureContrast(_ forLightAgainst: UIColor = .backgroundLightest, forDarkAgainst: UIColor = .backgroundLightest) -> UIColor {
+        UIColor.getColor(dark: self.ensureContrast(against: forDarkAgainst), light: self.ensureContrast(against: forLightAgainst))
+    }
+
+    /** Returns the given color for the current interface style. */
+    public static func getColor(dark: UIColor, light: UIColor) -> UIColor {
+        return UIColor { traitCollection  in
+            return traitCollection.userInterfaceStyle == .dark ? dark : light
+        }
+    }
+
     public func difference(to other: UIColor) -> CGFloat {
         var ared: CGFloat = 0, agreen: CGFloat = 0, ablue: CGFloat = 0, aalpha: CGFloat = 1
         interfaceStyleColor.getRed(&ared, green: &agreen, blue: &ablue, alpha: &aalpha) // assume success
@@ -121,13 +133,35 @@ extension UIColor {
         return lum1 > lum2 ? lum1 / lum2 : lum2 / lum1
     }
 
+    /// Ensures contrast against the given parameter by darkening the source color even if the parameter color is lighter.
+    public func darkenToEnsureContrast(against: UIColor) -> UIColor {
+        let minRatio: CGFloat = 4.5
+        guard contrast(against: against) < minRatio else {
+            return self
+        }
+        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 1
+        self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        var color = self
+        while color.contrast(against: against) < minRatio, saturation >= 0.0, saturation <= 1.0 {
+            if brightness >= 0.0, brightness <= 1.0 {
+                brightness += -0.01
+            } else {
+                saturation += 0.01
+            }
+            color = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
+        }
+        return color
+    }
+
     /// Get a sufficiently contrasting color based on the current color.
     ///
     /// If the user asked for more contrast, and there isn't enough, return a high enough contrasting color.
     /// This is intended to be used with branding colors
-    public func ensureContrast(against: UIColor, inHighContrast: Bool = UIAccessibility.isDarkerSystemColorsEnabled) -> UIColor {
+    public func ensureContrast(against: UIColor) -> UIColor {
         let minRatio: CGFloat = 4.5
-        guard inHighContrast && contrast(against: against) < minRatio else { return self }
+        guard contrast(against: against) < minRatio else {
+            return self
+        }
 
         // This can iterate up to 200ish times, if performance becomes a problem we can instead
         // return against.luminance < 0.5 ? .white : .black
