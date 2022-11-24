@@ -70,10 +70,27 @@
                                 <rect key="frame" x="0.0" y="641" width="1024" height="705"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Pt8-iU-cki">
-                                        <rect key="frame" x="420" y="16" width="184" height="116"/>
+                                        <rect key="frame" x="436.5" y="16" width="151" height="116"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqF-GH-4HQ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="151" height="50"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.lastLoginButton"/>
+                                                <inset key="contentEdgeInsets" minX="24" minY="16" maxX="24" maxY="16"/>
+                                                <state key="normal" title="Log In"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="lastLoginTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="OEO-3a-cpJ"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3D-iK-gpK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
+                                                <rect key="frame" x="0.0" y="66" width="151" height="50"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.findSchoolButton"/>
                                                 <inset key="contentEdgeInsets" minX="24" minY="16" maxX="24" maxY="16"/>
                                                 <state key="normal" title="Find my school"/>
@@ -87,24 +104,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="findTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="YLM-cq-b7C"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqF-GH-4HQ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66" width="184" height="50"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.findSchoolButton"/>
-                                                <inset key="contentEdgeInsets" minX="24" minY="16" maxX="24" maxY="16"/>
-                                                <state key="normal" title="Find another school"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="white"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="oxford"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="borderColorName" value="oxford"/>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="findAnotherTapped:" destination="QZA-SV-u24" eventType="touchUpInside" id="tdy-8O-OId"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -476,9 +475,9 @@
                         <outlet property="animatableLogoPosY" destination="Foj-WX-Jvg" id="zzI-bj-Sey"/>
                         <outlet property="authenticationMethodLabel" destination="1pX-Al-xWp" id="WFH-4T-x3J"/>
                         <outlet property="canvasNetworkButton" destination="9EW-4z-2Mo" id="88M-G9-xRu"/>
-                        <outlet property="findAnotherSchoolButton" destination="QqF-GH-4HQ" id="3cp-0V-JS3"/>
                         <outlet property="findSchoolButton" destination="K3D-iK-gpK" id="egj-nA-DEx"/>
                         <outlet property="helpButton" destination="Al6-ev-ond" id="E14-Lq-o5v"/>
+                        <outlet property="lastLoginButton" destination="QqF-GH-4HQ" id="3cp-0V-JS3"/>
                         <outlet property="loginTopConstraint" destination="1bY-nP-oVY" id="xaL-RQ-vno"/>
                         <outlet property="logoView" destination="YBX-Gr-kI6" id="pbw-zU-yIW"/>
                         <outlet property="previousLoginsLabel" destination="Op3-kc-wqp" id="gYt-Ij-vCu"/>
@@ -499,7 +498,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-185" y="70"/>
+            <point key="canvasLocation" x="-185.15625" y="69.838945827232791"/>
         </scene>
     </scenes>
     <designables>
@@ -525,7 +524,7 @@
             <size key="intrinsicContentSize" width="117.5" height="19.5"/>
         </designable>
         <designable name="QqF-GH-4HQ">
-            <size key="intrinsicContentSize" width="184" height="50"/>
+            <size key="intrinsicContentSize" width="90" height="50"/>
         </designable>
         <designable name="Qqe-IM-OtI">
             <size key="intrinsicContentSize" width="8" height="29"/>

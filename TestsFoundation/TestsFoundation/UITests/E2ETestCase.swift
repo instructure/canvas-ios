@@ -33,8 +33,10 @@ open class E2ETestCase: CoreUITestCase {
 
     open func logInDSUser(_ dsUser: DSUser) {
         // Test retries can work with last logged in instance
-        LoginStart.findSchoolButton.tap()
-        if (LoginFindSchool.searchField.waitToExist(10, shouldFail: false).exists()) {
+        if LoginStart.lastLoginButton.exists() {
+            LoginStart.lastLoginButton.tap()
+        } else {
+            LoginStart.findSchoolButton.tap()
             LoginFindSchool.searchField.pasteText("\(user.host)")
             LoginFindSchool.searchField.typeText("\r")
         }
