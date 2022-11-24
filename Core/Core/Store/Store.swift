@@ -68,7 +68,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
      */
     public var isCachedDataExpired: Bool { useCase.hasExpired(in: frc.managedObjectContext) }
 
-
     public private(set) var pending: Bool = false
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
@@ -92,14 +91,24 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
     /**
      Publisher for all objects in this store. Changes are sent on the main thread with CoreData objects from the view context.
+     When subscribing to this publisher the `refresh()` method on the `Store` is automatically called.
      */
     public private(set) lazy var allObjects: AnyPublisher<[U.Model], Never> = allObjectsSubject
+        .handleEvents(receiveSubscription: { [weak self] _ in
+            guard let self = self, !self.requested else { return }
+            self.refresh()
+        })
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     /**
      Returns `.loading` until `refresh()` is called. After refresh completes the published state can be either `.data`, `.empty` or `.error`.
+     When subscribing to this publisher the `refresh()` method on the `Store` is automatically called.
      */
     public private(set) lazy var statePublisher: AnyPublisher<StoreState, Never> = stateSubject
+        .handleEvents(receiveSubscription: { [weak self] _ in
+            guard let self = self, !self.requested else { return }
+            self.refresh()
+        })
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     private let allObjectsSubject = CurrentValueSubject<[U.Model], Never>([])

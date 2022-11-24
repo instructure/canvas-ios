@@ -28,11 +28,16 @@ class StoreTests: CoreTestCase {
         let courses: [APICourse]?
         let requestError: Error?
         let urlResponse: URLResponse?
+        let delayRequestCompletion: Bool
 
-        init(courses: [APICourse]? = nil, requestError: Error? = nil, urlResponse: URLResponse? = nil) {
+        init(courses: [APICourse]? = nil,
+             requestError: Error? = nil,
+             urlResponse: URLResponse? = nil,
+             delayRequestCompletion: Bool = false) {
             self.courses = courses
             self.requestError = requestError
             self.urlResponse = urlResponse
+            self.delayRequestCompletion = delayRequestCompletion
         }
 
         var scope: Scope {
@@ -44,7 +49,13 @@ class StoreTests: CoreTestCase {
         }
 
         func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APICourse]?, URLResponse?, Error?) -> Void) {
-            completionHandler(courses, urlResponse, requestError)
+            if delayRequestCompletion {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    completionHandler(courses, urlResponse, requestError)
+                }
+            } else {
+                completionHandler(courses, urlResponse, requestError)
+            }
         }
 
         func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -106,7 +117,7 @@ class StoreTests: CoreTestCase {
     func testInitialObjectsPublished() {
         Course.save(.make(id: "0"), in: databaseClient)
         try! databaseClient.save()
-        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let useCase = TestUseCase()
         let testee = environment.subscribe(useCase)
 
         let publishExpectation = expectation(description: "Publisher should have sent initial value")
@@ -129,14 +140,11 @@ class StoreTests: CoreTestCase {
         let publishExpectation = expectation(description: "Publisher should have sent value")
         let subscription = testee
             .allObjects
-            .dropFirst()
             .sink { objects in
                 XCTAssertEqual(objects.map { $0.id }, ["1"])
                 publishExpectation.fulfill()
                 XCTAssertTrue(Thread.isMainThread)
             }
-
-        testee.refresh()
 
         waitForExpectations(timeout: 1)
         subscription.cancel()
@@ -187,7 +195,7 @@ class StoreTests: CoreTestCase {
     // MARK: State
 
     func testLoadingState() {
-        let useCase = TestUseCase(courses: [])
+        let useCase = TestUseCase(courses: [], delayRequestCompletion: true)
         let testee = environment.subscribe(useCase)
 
         let publishExpectation = expectation(description: "Publisher should have sent value")
@@ -279,30 +287,6 @@ class StoreTests: CoreTestCase {
 
         testee.refresh()
         databaseClient.delete(course)
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
-    }
-
-    func testStateDontChangeUntilRefreshCalled() {
-        // We have an entity in the DB
-        let course = Course.save(.make(id: "1"), in: databaseClient)
-        try! databaseClient.save()
-
-        let useCase = TestUseCase()
-        let testee = environment.subscribe(useCase)
-
-        let publishExpectation = expectation(description: "Publisher should have sent value")
-        let subscription = testee
-            .statePublisher
-            .sink { state in
-                XCTAssertEqual(state, .loading)
-                publishExpectation.fulfill()
-                XCTAssertTrue(Thread.isMainThread)
-            }
-
-        // We delete the entity
-        databaseClient.delete(course)
-        // We only receive a single state update the initial one: .loading
         waitForExpectations(timeout: 1)
         subscription.cancel()
     }
