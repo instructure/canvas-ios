@@ -81,7 +81,7 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         course?.refresh(force: true)
         group?.refresh { [context, weak group, weak env] _ in
             guard context.contextType == .group, let courseID = group?.first?.courseID else { return }
-            _ = env?.subscribe(GetEnabledFeatureFlags(context: Context.group(courseID)))
+            _ = env?.subscribe(GetEnabledFeatureFlags(context: Context.course(courseID)))
         }
         topics.exhaust()
         featureFlags.refresh()
