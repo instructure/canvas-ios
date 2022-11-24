@@ -141,6 +141,7 @@ public struct InboxView: View {
             .frame(width: geometry.size.width,
                    height: geometry.size.height,
                    alignment: .center)
+            .background(Color.backgroundLightest)
             .listRowInsets(EdgeInsets())
             .iOS15ListRowSeparator(.hidden)
     }
@@ -169,6 +170,12 @@ struct InboxView_Previews: PreviewProvider {
         let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
         InboxView(model: viewModel)
             .previewLayout(.sizeThatFits)
+
+        let emptyInteractor = InboxMessageInteractorPreview(environment: env, messages: [])
+        let emptyViewModel = InboxViewModel(interactor: emptyInteractor, router: AppEnvironment.shared.router)
+        InboxView(model: emptyViewModel)
+            .previewLayout(.sizeThatFits)
+            .previewDisplayName("Empty State")
     }
 }
 

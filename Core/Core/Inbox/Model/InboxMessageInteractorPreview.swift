@@ -72,7 +72,11 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             switch scopeValue {
             case .all, .sent, .archived:
-                state.send(.data)
+                if messages.value.isEmpty {
+                    state.send(.empty)
+                } else {
+                    state.send(.data)
+                }
             case .unread:
                 state.send(.empty)
             case .starred:
