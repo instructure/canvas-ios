@@ -68,7 +68,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
      */
     public var isCachedDataExpired: Bool { useCase.hasExpired(in: frc.managedObjectContext) }
 
-
     public private(set) var pending: Bool = false
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
