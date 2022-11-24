@@ -54,6 +54,9 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .allObjects
             .subscribe(courses)
             .store(in: &subscriptions)
+
+        messageListStore.refresh()
+        courseListStore.refresh()
     }
 
     // MARK: - Inputs
