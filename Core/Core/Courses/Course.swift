@@ -59,9 +59,9 @@ final public class Course: NSManagedObject, WriteableModel {
 
     public var color: UIColor {
         if AppEnvironment.shared.k5.isK5Enabled {
-            return UIColor(hexString: courseColor) ?? .oxford
+            return UIColor(hexString: courseColor)?.ensureContrast() ?? .oxford
         } else {
-            return contextColor?.color ?? .ash
+            return contextColor?.color.ensureContrast() ?? .ash
         }
     }
 

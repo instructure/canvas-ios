@@ -87,8 +87,8 @@ public class RichContentEditorViewController: UIViewController {
         webView.loadHTMLString("""
             <style>
             :root {
-                --brand-linkColor: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
-                --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
+                --brand-linkColor: \(Brand.shared.linkColor.hexString);
+                --brand-primary: \(Brand.shared.primary.hexString);
                 --color-backgroundDanger: \(UIColor.backgroundDanger.hexString);
                 --color-backgroundDarkest: \(UIColor.backgroundDarkest.hexString);
                 --color-backgroundLightest: \(UIColor.backgroundLightest.hexString);

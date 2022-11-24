@@ -63,8 +63,9 @@ class K5ScheduleItemInfoTests: CoreTestCase {
                              navTextColorActive: nil,
                              primary: .red)
         XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil, isHomeroom: false)]).color, .green)
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: [:]).color, Color(.red))
-        XCTAssertEqual(APIPlannable.make(course_id: ID("testID_2")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil, isHomeroom: false)]).color, Color(.red))
+        XCTAssertEqual(UIColor(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: [:]).color).cgColor.components, UIColor.red.cgColor.components)
+        let subject = APIPlannable.make(course_id: ID("testID_2")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green, image: nil, isHomeroom: false)])
+        XCTAssertEqual(UIColor(subject.color).cgColor.components, UIColor.red.cgColor.components)
     }
 
     func testDueText() {

@@ -39,7 +39,7 @@ class ColoredNavViewProtocolTests: XCTestCase, ColoredNavViewProtocol {
     }
 
     func testUpdateNavBar() {
-        let expectedColor: UIColor = .red
+        let expectedColor: UIColor = .red.darkenToEnsureContrast(against: .white)
         updateNavBar(subtitle: subtitle, color: expectedColor)
 
         XCTAssertEqual(color, expectedColor)

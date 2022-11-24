@@ -33,7 +33,7 @@ class DashboardCardTests: CoreTestCase {
         ), ])
         useCase.fetch()
         let card: DashboardCard? = databaseClient.fetch(scope: useCase.scope).first
-        XCTAssertEqual(card?.color, .red)
+        XCTAssertEqual(card?.color.hexString, UIColor.red.ensureContrast().hexString)
         XCTAssertEqual(card?.course?.id, "1")
         XCTAssertEqual(card?.shortName, "Course One")
         XCTAssertEqual(card?.isK5Subject, true)

@@ -54,7 +54,7 @@ public struct K5DashboardView: View {
                 viewModel.profileButtonPressed(router: env.router, viewController: controller)
             }, label: {
                 Image.hamburgerSolid
-                    .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                    .foregroundColor(Color(Brand.shared.navTextColor))
             })
                 .identifier("Dashboard.profileButton")
                 .accessibility(label: Text("Profile Menu", bundle: .core))
