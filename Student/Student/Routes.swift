@@ -203,6 +203,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/:context/:contextID/discussions/:discussionID": discussionViewController,
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
 
+    "/groups/:groupID/discussions/:discussionID": discussionViewController,
+    "/groups/:groupID/discussion_topics/:discussionID": discussionViewController,
+
     "/courses/:courseID/external_tools/:toolID": { _, params, _ in
         guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
         guard let vc = HelmManager.shared.topMostViewController() else { return nil }
