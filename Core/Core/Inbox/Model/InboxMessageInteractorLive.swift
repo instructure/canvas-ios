@@ -56,18 +56,17 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .store(in: &subscriptions)
 
         messageListStore.refresh()
-        courseListStore.refresh()
+        courseListStore.exhaust()
     }
 
     // MARK: - Inputs
 
     public func refresh() -> Future<Void, Never> {
         Future<Void, Never> { [self] promise in
-            Publishers.Merge(self.messageListStore.refreshWithFuture(force: true),
-                             self.courseListStore.refreshWithFuture(force: true))
-            .collect()
-            .sink { _ in promise(.success(())) }
-            .store(in: &self.subscriptions)
+            self.courseListStore.exhaust(force: true)
+            self.messageListStore.refreshWithFuture(force: true)
+                .sink { _ in promise(.success(())) }
+                .store(in: &self.subscriptions)
         }
     }
 

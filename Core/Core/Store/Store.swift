@@ -174,7 +174,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     }
 
     @discardableResult
-    public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) -> Self {
+    public func refresh(force: Bool = false,
+                        callback: ((U.Response?) -> Void)? = nil)
+    -> Self {
         request(useCase, force: force, callback: callback)
         return self
     }
@@ -186,7 +188,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     }
 
     @discardableResult
-    public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) -> Self {
+    public func exhaust(force: Bool = true,
+                        while condition: @escaping (U.Response) -> Bool = { _ in true }
+    ) -> Self {
         refresh(force: force) { [weak self] response in
             if let response = response, condition(response) {
                 self?.exhaustNext(while: condition)
