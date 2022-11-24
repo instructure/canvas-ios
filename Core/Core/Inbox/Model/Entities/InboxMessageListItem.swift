@@ -81,9 +81,9 @@ public final class InboxMessageListItem: NSManagedObject {
         dbEntity.contextCode = apiEntity.context_code
         dbEntity.participantName = participants.names
         dbEntity.title = apiEntity.subject ?? ""
-        dbEntity.message = apiEntity.last_message ?? apiEntity.last_authored_message ?? ""
+        dbEntity.message = apiEntity.last_authored_message ?? apiEntity.last_message ?? ""
         dbEntity.isStarred = apiEntity.starred
-        dbEntity.dateRaw = (apiEntity.last_message_at ?? apiEntity.last_authored_message_at ?? Date())
+        dbEntity.dateRaw = (apiEntity.last_authored_message_at ?? apiEntity.last_message_at ?? Date())
         dbEntity.stateRaw = apiEntity.workflow_state.rawValue
         dbEntity.isSent = isSent
 
