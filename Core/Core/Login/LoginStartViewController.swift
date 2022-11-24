@@ -366,7 +366,7 @@ class LoginStartViewController: UIViewController {
             message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
         )
     }
-    
+
     private func alternateFindSchoolButton() {
         findSchoolButton.setTitle(NSLocalizedString("Find another school", bundle: .core, comment: ""), for: .normal)
         findSchoolButton.backgroundColorName = "white"
