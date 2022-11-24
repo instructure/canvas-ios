@@ -116,10 +116,10 @@ class RoutesTests: XCTestCase {
         flag.enabled = true
         flag.context = .course("2")
 
-        let group: Group = AppEnvironment.shared.database.viewContext.insert()
+        let group = Group(context: AppEnvironment.shared.database.viewContext)
         group.id = "2"
         group.courseID = "2"
-        try? AppEnvironment.shared.database.viewContext.save()
+
         XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
         XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
     }
