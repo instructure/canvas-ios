@@ -90,7 +90,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         environment.userDidLogin(session: session)
         environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
         environmentFeatureFlags?.refresh(force: true) { _ in
-            self.initializeHeap()
+            self.initializeTracking()
         }
 
         updateInterfaceStyle(for: window)
@@ -202,6 +202,7 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func userDidStopActing(as session: LoginSession) {
+        disableTracking()
         LoginSession.remove(session)
         // TODO: Deregister push notifications?
         guard environment.currentSession == session else { return }
@@ -210,6 +211,7 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        disableTracking()
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
@@ -275,7 +277,7 @@ extension ParentAppDelegate: AnalyticsHandler {
 //        Analytics.logEvent(name, parameters: parameters)
     }
 
-    private func initializeHeap() {
+    private func initializeTracking() {
         guard
             let environmentFeatureFlags,
             !ProcessInfo.isUITest,
@@ -289,6 +291,10 @@ extension ParentAppDelegate: AnalyticsHandler {
         options.disableTracking = !isSendUsageMetricsEnabled
         Heap.initialize(heapID, with: options)
         Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+    }
+
+    private func disableTracking() {
+        Heap.setTrackingEnabled(false)
     }
 }
 

@@ -78,7 +78,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         environment.userDidLogin(session: session)
         environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
         environmentFeatureFlags?.refresh(force: true) { _ in
-            self.initializeHeap()
+            self.initializeTracking()
         }
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
@@ -216,7 +216,7 @@ extension TeacherAppDelegate: AnalyticsHandler {
 //        Analytics.logEvent(name, parameters: parameters)
     }
 
-    private func initializeHeap() {
+    private func initializeTracking() {
         guard
             let environmentFeatureFlags,
             !ProcessInfo.isUITest,
@@ -230,6 +230,10 @@ extension TeacherAppDelegate: AnalyticsHandler {
         options.disableTracking = !isSendUsageMetricsEnabled
         Heap.initialize(heapID, with: options)
         Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+    }
+
+    private func disableTracking() {
+        Heap.setTrackingEnabled(false)
     }
 }
 
@@ -280,6 +284,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidStopActing(as session: LoginSession) {
+        disableTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         NotificationManager.shared.unsubscribeFromPushChannel()
@@ -289,6 +294,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        disableTracking()
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
