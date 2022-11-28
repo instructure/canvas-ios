@@ -307,6 +307,38 @@ class StoreTests: CoreTestCase {
         subscription.cancel()
     }
 
+    // MARK: Paging
+
+    func testHasNextPagePublisher() {
+        let curr = "https://test.edu/api/v1/date"
+        let next = "https://test.edu/api/v1/date?page=2"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(next)>; rel=\"next\"; count=1",
+        ]
+        let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        let useCase = TestUseCase(courses: [], urlResponse: response)
+        var invocationCount = 0
+        let testee = environment.subscribe(useCase)
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        publishExpectation.expectedFulfillmentCount = 2
+        let subscription = testee
+            .hasNextPagePublisher
+            .sink { hasNextPage in
+                if invocationCount == 0 {
+                    XCTAssertFalse(hasNextPage)
+                } else {
+                    XCTAssertTrue(hasNextPage)
+                }
+                invocationCount += 1
+                publishExpectation.fulfill()
+            }
+
+        testee.refresh()
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
     // MARK: -
 
     func testSubscribeWithoutCache() {

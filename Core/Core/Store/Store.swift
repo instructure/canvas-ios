@@ -72,7 +72,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
 
-    private var next: GetNextRequest<U.Response>?
+    private var next: GetNextRequest<U.Response>? {
+        didSet {
+            hasNextPageSubject.send(next != nil)
+        }
+    }
     private let frc: NSFetchedResultsController<U.Model>
 
     // MARK: - ObservableObject
@@ -101,8 +105,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     public private(set) lazy var statePublisher: AnyPublisher<StoreState, Never> = stateSubject
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
+    public private(set) lazy var hasNextPagePublisher: AnyPublisher<Bool, Never> = hasNextPageSubject
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
     private let allObjectsSubject = CurrentValueSubject<[U.Model], Never>([])
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
+    private let hasNextPageSubject = CurrentValueSubject<Bool, Never>(false)
 
     // MARK: -
 
