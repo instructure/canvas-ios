@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ kua tukuna";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@ kī %2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, i roto %2$@, te karere whakamutunga i runga %3$@ %4$@";
 
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d ngā tūemi";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d Ngā Meneti";
 
 /* Number of missing submissions */
 "%d missing" = "%d e ngaro ana";
@@ -87,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "Uru";
+
+/* No comment provided by engineer. */
+"Access Code:" = "Waehere uru";
 
 /* No comment provided by engineer. */
 "Account Group" = "Rōpū Pūkete";
@@ -134,6 +143,9 @@
 "Add message" = "Tāpiri karere";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "Tāpirihia he korero whiriwhiri";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Tāpiri Mahere Tuhipoka";
 
 /* No comment provided by engineer. */
@@ -144,6 +156,12 @@
 
 /* No comment provided by engineer. */
 "Administrative Notifications" = "whakamōhiotanga whakahaere";
+
+/* e.g. After 01.02.2022 */
+"After %@" = "I muri %@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "I muri i Whakamātau Mutunga";
 
 /* No comment provided by engineer. */
 "Alerts" = "He whakamataara";
@@ -177,6 +195,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Tukua ngā kaimahi ki te kōrero";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Ngā ngane whakāetia ana:";
+
+/* No comment provided by engineer. */
+"Always" = "tonu";
 
 /* No comment provided by engineer. */
 "Announcement" = "Pānui";
@@ -257,6 +281,9 @@
 "Assignment Grade Below %d" = "Kōeke Whakataunga Raro %d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "Rōpū whakataunga";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "E ngaro ana whakataunga";
 
 /* No comment provided by engineer. */
@@ -329,6 +356,9 @@
 "Available Until:" = "Wātea kī:";
 
 /* No comment provided by engineer. */
+"Average" = "toharite";
+
+/* No comment provided by engineer. */
 "Back" = "Hoki";
 
 /* No comment provided by engineer. */
@@ -399,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Pātai tūao whakāro puaki rānei";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "Hurihia te tahora papatohu ki te matiti";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "Hurihia te tahora papatohu ki te raarangi";
 
 /* No comment provided by engineer. */
 "Change User" = "Huri Kaiwhakamahi";
@@ -971,6 +995,9 @@
 "Graded" = "Kōekehia";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "Whakatau Quiz";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "Ngā Rangahau Kua Kōeketia";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1038,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "Tiketike: %@";
+
+/* No comment provided by engineer. */
+"Highest" = "teitei";
 
 /* No comment provided by engineer. */
 "Homeroom" = "Kainga rūma";
@@ -1148,6 +1178,9 @@
 "Late Grading" = "kōeke tūreiti";
 
 /* No comment provided by engineer. */
+"Latest" = "hou";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "Neke Taputapu Waho";
 
 /* No comment provided by engineer. */
@@ -1212,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Kimihia QR Waehere";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "Rakaina ngā pātai i muri o te whakautu";
 
 /* No comment provided by engineer. */
 "locked" = " Kua rakaina";
@@ -1448,6 +1484,9 @@
 "No supported files to submit" = "Kaore he kōnae tautoko hei tuku";
 
 /* No comment provided by engineer. */
+"No time Limit" = "Karekau he Tepe wa";
+
+/* No comment provided by engineer. */
 "None" = "Kaore";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1548,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Kotahi me te nui atu o ngā kōnae i hapa te tukuake. Āta titro ki to hono ipurangi ka ngana anō ki te tuku.";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "Kotahi te patai i te wa kotahi:";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "E wātea ana anake ki ngā ākonga me ngā hononga";
@@ -1637,6 +1679,9 @@
 "Practice Quizzes" = "Mahi Quizzes";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Mahi Quizzes & kaore ngā rūri he taipitopito Tirohanga.";
+
+/* No comment provided by engineer. */
 "Preferences" = "Ngā manakohanga";
 
 /* No comment provided by engineer. */
@@ -1644,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Hiahiatanga: %@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "Arokite Quiz";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Ngā takiurunga o mua";
@@ -1692,6 +1740,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Ngā Quiz Taipitopito";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "Momo Quiz:";
 
 /* No comment provided by engineer. */
 "Quizzes" = "Ngā Quizzes";
@@ -1820,6 +1871,9 @@
 "Score at least %@" = "Kaute i te iti rawa  %@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "Kaute hei mau:";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "Kaute runga ake %g";
 
 /* No comment provided by engineer. */
@@ -1916,6 +1970,9 @@
 "Show a month at a time" = "Whakāturia he marama i te wā";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "Whakātu ngā whakautu tika";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "Whakātu Akoranga Whakarāpopotanga";
 
 /* No comment provided by engineer. */
@@ -1923,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Whakātu  kōwhiringa nui atu";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "Tohatoha whakautu";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Mai te mea he kōrero rōpū tēnei, kei ia rōpū ngā kōrerorero mō tēnei kaupapa. Anei ngā kōrero hei whakauru atu mau.";
@@ -2219,6 +2279,9 @@
 "Time elapsed" = "Kua mutu te wā";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "Wā whāiti:";
+
+/* No comment provided by engineer. */
 "Title" = "Taitara";
 
 /* No comment provided by engineer. */
@@ -2283,6 +2346,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Kaore i te tautokotia te tūemi";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "tae noa ki %@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";
@@ -2370,6 +2436,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Titiro ngā Pānuitanga o muri";
+
+/* No comment provided by engineer. */
+"View Responses:" = "Tiro ngā whakautu";
 
 /* No comment provided by engineer. */
 "Viewed" = "Kua Tirohia";

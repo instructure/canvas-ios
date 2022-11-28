@@ -21,8 +21,8 @@ import UIKit
 class LoginStartViewController: UIViewController {
     @IBOutlet weak var authenticationMethodLabel: UILabel!
     @IBOutlet weak var canvasNetworkButton: UIButton!
-    @IBOutlet weak var findSchoolButton: UIButton!
-    @IBOutlet weak var findAnotherSchoolButton: UIButton!
+    @IBOutlet weak var findSchoolButton: DynamicButton!
+    @IBOutlet weak var lastLoginButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var previousLoginsLabel: UILabel!
@@ -49,11 +49,12 @@ class LoginStartViewController: UIViewController {
     var app: App = .student
     var lastLoginAccount: APIAccountResult? {
         didSet {
-            findAnotherSchoolButton.isHidden = lastLoginAccount == nil
+            lastLoginButton.isHidden = lastLoginAccount == nil
             animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
             guard let lastLoginAccount = lastLoginAccount else { return }
             let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
-            findSchoolButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
+            lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
+            alternateFindSchoolButton()
         }
     }
 
@@ -92,7 +93,9 @@ class LoginStartViewController: UIViewController {
         wordmarkLabel.textColor = .currentLogoColor()
         let loginText = NSLocalizedString("Log In", bundle: .core, comment: "")
         if MDMManager.shared.host != nil {
-            findSchoolButton.setTitle(loginText, for: .normal)
+            findSchoolButton.isHidden = true
+            lastLoginButton.setTitle(loginText, for: .normal)
+            lastLoginButton.isHidden = false
         } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
                     let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
             lastLoginAccount = savedAccount
@@ -217,6 +220,11 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func findTapped(_ sender: UIButton) {
+        let controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
+        env.router.show(controller, from: self, analyticsRoute: "/login/find")
+    }
+
+    @IBAction func lastLoginTapped(_ sender: UIButton) {
         var controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
         var analyticsRoute = "/login/find"
 
@@ -249,11 +257,6 @@ class LoginStartViewController: UIViewController {
         }
 
         env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
-    }
-
-    @IBAction func findAnotherTapped(_ sender: UIButton) {
-        let controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
-        env.router.show(controller, from: self, analyticsRoute: "/login/find")
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {
@@ -362,6 +365,13 @@ class LoginStartViewController: UIViewController {
             title: NSLocalizedString("Login Error", bundle: .core, comment: ""),
             message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
         )
+    }
+
+    private func alternateFindSchoolButton() {
+        findSchoolButton.setTitle(NSLocalizedString("Find another school", bundle: .core, comment: ""), for: .normal)
+        findSchoolButton.backgroundColorName = "white"
+        findSchoolButton.textColorName = "oxford"
+        findSchoolButton.borderColorName = "oxford"
     }
 }
 

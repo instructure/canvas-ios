@@ -29,7 +29,7 @@ public struct AssignmentPickerView: View {
     public var body: some View {
         content
             .navigationBarTitleView(Text("Select Assignment", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
-            .onReceive(viewModel.dismissView) {
+            .onReceive(viewModel.dismissViewDidTrigger) {
                 presentationMode.wrappedValue.dismiss()
             }
             .alert(item: $viewModel.incompatibleFilesMessage, content: { item in

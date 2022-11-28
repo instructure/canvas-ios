@@ -31,6 +31,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     var navigation: UINavigationController!
     var saveWasCalled = false
     var didSaveExpectation: XCTestExpectation!
+    var observer: NSObjectProtocol?
 
     override func setUp() {
         super.setUp()
@@ -46,6 +47,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         if let url = controller.localURL, FileManager.default.fileExists(atPath: url.path) {
             XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
         }
+        observer = nil
     }
 
     func testLayout() {
@@ -166,9 +168,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
     func testModel() {
         mock(APIFile.make(filename: "File.usdz", contentType: "model/vnd.usdz+zip", mime_class: "file"))
         let done = expectation(description: "done")
-        var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
-            NotificationCenter.default.removeObserver(token!)
+        observer = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { [self] _ in
+            NotificationCenter.default.removeObserver(self.observer!)
             done.fulfill()
         }
         controller.view.layoutIfNeeded()
@@ -192,15 +193,23 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.pdfViewController(pdf, shouldShow: CoreActivityViewController(activityItems: [""], applicationActivities: nil), animated: false))
         XCTAssertFalse(controller.pdfViewController(pdf, shouldShow: StampViewController(), animated: false))
 
-        let items = [
-            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuNote.rawValue),
-            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuInspector.rawValue),
-            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuRemove.rawValue),
-        ]
-        let results = controller.pdfViewController(pdf, shouldShow: items, atSuggestedTargetRect: .zero, for: [], in: .zero, on: PDFPageView(frame: .zero))
+        let items = UIMenu(children: [
+            UIAction(title: "", identifier: .PSPDFKit.comments) { _ in },
+            UIAction(title: "", identifier: .PSPDFKit.inspector) { _ in },
+            UIAction(title: "", identifier: .PSPDFKit.delete) { _ in },
+        ])
+        let results = controller.pdfViewController(pdf,
+                                                   menuForAnnotations: [Annotation()],
+                                                   onPageView: PDFPageView(frame: .zero),
+                                                   appearance: .contextMenu,
+                                                   suggestedMenu: items)
+            .children
+        // Comment/Notes menu is removed
         XCTAssertEqual(results.count, 2)
+        // Inspector's title modified to Style
         XCTAssertEqual(results[0].title, "Style")
-        XCTAssertNotNil(results[1].ps_image)
+        // Delete got an icon
+        XCTAssertNotNil(results[1].image)
         pdf.document?.delegate = self
         _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
         XCTAssert(router.presented is UIActivityViewController)

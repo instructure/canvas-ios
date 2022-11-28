@@ -63,7 +63,7 @@
     "message": "An error occurred"
   },
   "anonymous_grading_3083dc0": {
-    "message": "Anonymous grading"
+    "message": "Anonymous marking"
   },
   "archived_de543437": {
     "message": "Archived"
@@ -183,10 +183,10 @@
     "message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-    "message": "{ count, plural,\n    one {Needs Grading}\n other {Need Grading}\n}"
+    "message": "{ count, plural,\n    one {Needs Marking}\n other {Need Marking}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-    "message": "{ count, plural,\n    one {# Needs Grading}\n other {# Need Grading}\n}"
+    "message": "{ count, plural,\n    one {# Needs Marking}\n other {# Need Marking}\n}"
   },
   "count_students_4ae780ca": {
     "message": "{ count } students"
@@ -360,7 +360,7 @@
     "message": "Groups"
   },
   "haven_t_been_graded_1fbfda56": {
-    "message": "Haven''t been graded"
+    "message": "Haven''t been marked"
   },
   "haven_t_submitted_yet_3a127a27": {
     "message": "Haven''t submitted yet"
@@ -474,7 +474,7 @@
     "message": "{ names } + { count } more"
   },
   "needs_grading_9143d47c": {
-    "message": "Needs Grading"
+    "message": "Needs Marking"
   },
   "new_message_f9bbd1c0": {
     "message": "New Message"
@@ -819,7 +819,7 @@
     "message": "There was a problem loading the assignment submissions."
   },
   "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
-    "message": "There was a problem loading the grading periods."
+    "message": "There was a problem loading the marking periods."
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "There was a problem loading the groups."
@@ -882,7 +882,7 @@
     "message": "to { name }"
   },
   "total_grade_568e719f": {
-    "message": "Total Grade:"
+    "message": "Total Mark:"
   },
   "un_starred_8fef021f": {
     "message": "Un-starred"

@@ -70,15 +70,14 @@ public struct IndeterminateCircleProgressViewStyle: ProgressViewStyle {
                 }
                 .rotationEffect(rotate)
                 .onAppear {
-                    fillWidth = 0.1
-                    rotate = .zero
-                    fillRotate = .zero
+                    DispatchQueue.main.async {
+                        fillWidth = 0.1
+                        rotate = .zero
+                        fillRotate = .zero
 
-                    // Until the animation timer's first fire we still need to show some animation
-                    progressAnimation()
+                        // Until the animation timer's first fire we still need to show some animation
+                        progressAnimation()
 
-                    // This repeating animation caused other parts of the UI to animate their appearance repeatedly on iOS 14.0 and below.
-                    if #available(iOS 14.1, *) {
                         withAnimation(.linear(duration: 2.25).repeatForever(autoreverses: false)) {
                             rotate = Angle(radians: 2 * .pi)
                         }

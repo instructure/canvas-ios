@@ -29,7 +29,7 @@ public class CircleProgressView: UIView {
     let rotateKey = "rotate"
 
     @IBInspectable
-    public var color: UIColor? = Brand.shared.primary.ensureContrast(against: .backgroundLightest) {
+    public var color: UIColor? = Brand.shared.primary {
         didSet { tintColorDidChange() }
     }
 
@@ -130,7 +130,6 @@ public class CircleProgressView: UIView {
 
     public override func didMoveToWindow() {
         super.didMoveToWindow()
-        clearAnimation()
     }
 
     public func startAnimating() {

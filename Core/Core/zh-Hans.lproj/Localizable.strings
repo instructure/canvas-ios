@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "%@ submitted" = "%@已提交";
 
+/* e.g 01.02.2022 to 01.03.2022 */
+"%@ to %@" = "%1$@至%2$@";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@，在 %2$@，上一条消息位于%3$@%4$@";
 
@@ -57,6 +60,9 @@
 
 /* No comment provided by engineer. */
 "%d items" = "%d 个项目";
+
+/* No comment provided by engineer. */
+"%d Minutes" = "%d分钟";
 
 /* Number of missing submissions */
 "%d missing" = "%d个缺失";
@@ -87,6 +93,9 @@
 
 /* No comment provided by engineer. */
 "Access" = "访问";
+
+/* No comment provided by engineer. */
+"Access Code:" = "访问代码：";
 
 /* No comment provided by engineer. */
 "Account Group" = "账户组";
@@ -134,6 +143,9 @@
 "Add message" = "添加消息";
 
 /* No comment provided by engineer. */
+"Add optional comment" = "添加可选注释";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加规划器备注";
 
 /* No comment provided by engineer. */
@@ -144,6 +156,12 @@
 
 /* No comment provided by engineer. */
 "Administrative Notifications" = "管理通知";
+
+/* e.g. After 01.02.2022 */
+"After %@" = "之后%@";
+
+/* No comment provided by engineer. */
+"After Last Attempt" = "在上次尝试后";
 
 /* No comment provided by engineer. */
 "Alerts" = "警告";
@@ -177,6 +195,12 @@
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "允许用户评论";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "允许的尝试次数：";
+
+/* No comment provided by engineer. */
+"Always" = "始终";
 
 /* No comment provided by engineer. */
 "Announcement" = "公告";
@@ -257,6 +281,9 @@
 "Assignment Grade Below %d" = "作业评分低于%d";
 
 /* No comment provided by engineer. */
+"Assignment Group:" = "作业组：";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "缺少作业";
 
 /* No comment provided by engineer. */
@@ -329,6 +356,9 @@
 "Available Until:" = "截止可用日期：";
 
 /* No comment provided by engineer. */
+"Average" = "平均";
+
+/* No comment provided by engineer. */
 "Back" = "返回";
 
 /* No comment provided by engineer. */
@@ -399,12 +429,6 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "简单问题或建议";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to grid" = "将控制面板布局更改为网格";
-
-/* No comment provided by engineer. */
-"Change dashboard layout to list" = "将控制面板布局更改为列表";
 
 /* No comment provided by engineer. */
 "Change User" = "更改用户";
@@ -971,6 +995,9 @@
 "Graded" = "已评分";
 
 /* No comment provided by engineer. */
+"Graded Quiz" = "评分测验";
+
+/* No comment provided by engineer. */
 "Graded Surveys" = "评分调查";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1038,9 @@
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
+
+/* No comment provided by engineer. */
+"Highest" = "最高";
 
 /* No comment provided by engineer. */
 "Homeroom" = "指导教室";
@@ -1148,6 +1178,9 @@
 "Late Grading" = "最近评分";
 
 /* No comment provided by engineer. */
+"Latest" = "最近";
+
+/* No comment provided by engineer. */
 "Launch External Tool" = "启动外部工具";
 
 /* No comment provided by engineer. */
@@ -1212,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "查找二维码";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering:" = "回答后锁定问题：";
 
 /* No comment provided by engineer. */
 "locked" = "已锁定";
@@ -1448,6 +1484,9 @@
 "No supported files to submit" = "要提交的文件不受支持";
 
 /* No comment provided by engineer. */
+"No time Limit" = "无时间限制";
+
+/* No comment provided by engineer. */
 "None" = "无";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1548,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "一份或多个文件上传失败。请检查网络连接，并再次尝试提交。";
+
+/* No comment provided by engineer. */
+"One Question at a Time:" = "一次一个问题：";
 
 /* No comment provided by engineer. */
 "Only available to students with link" = "仅面向有链接的学生";
@@ -1637,6 +1679,9 @@
 "Practice Quizzes" = "练习测验";
 
 /* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "练习测验和调查没有详情视图。";
+
+/* No comment provided by engineer. */
 "Preferences" = "首选项";
 
 /* No comment provided by engineer. */
@@ -1644,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "先决条件：%@";
+
+/* No comment provided by engineer. */
+"Preview Quiz" = "预览测验";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "历史登录记录";
@@ -1692,6 +1740,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "测验详情";
+
+/* No comment provided by engineer. */
+"Quiz Type:" = "测验类型：";
 
 /* No comment provided by engineer. */
 "Quizzes" = "测验";
@@ -1820,6 +1871,9 @@
 "Score at least %@" = "最低评分%@";
 
 /* No comment provided by engineer. */
+"Score to Keep:" = "要保留的分数：";
+
+/* No comment provided by engineer. */
 "Scored above %g" = "分数高于%g";
 
 /* No comment provided by engineer. */
@@ -1916,6 +1970,9 @@
 "Show a month at a time" = "一次显示一个月";
 
 /* No comment provided by engineer. */
+"Show Correct Answers:" = "显示正确答案：";
+
+/* No comment provided by engineer. */
 "Show Course Summary" = "显示课程摘要";
 
 /* No comment provided by engineer. */
@@ -1923,6 +1980,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "显示更多的选项";
+
+/* No comment provided by engineer. */
+"Shuffle Answers:" = "切换答案：";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "这是一项小组讨论，每个小组都有关于这个主题的会话。这些是您可以参与的讨论。";
@@ -2219,6 +2279,9 @@
 "Time elapsed" = "经过的时间";
 
 /* No comment provided by engineer. */
+"Time Limit:" = "时间限制：";
+
+/* No comment provided by engineer. */
 "Title" = "标题";
 
 /* No comment provided by engineer. */
@@ -2283,6 +2346,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "不受支持的项目";
+
+/* e.g. Until 01.02.2022 */
+"Until %@" = "直至%@";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "已更新语言设置";
@@ -2370,6 +2436,9 @@
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "查看以前的公告";
+
+/* No comment provided by engineer. */
+"View Responses:" = "查看回答：";
 
 /* No comment provided by engineer. */
 "Viewed" = "已查看";

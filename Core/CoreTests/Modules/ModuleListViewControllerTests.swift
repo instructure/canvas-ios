@@ -114,7 +114,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertNotNil(nav.viewControllers.first)
         XCTAssertEqual(viewController.titleSubtitleView.title, "Modules")
         XCTAssertEqual(viewController.titleSubtitleView.subtitle, "Course 1")
-        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor, UIColor(hexString: "#fff"))
+        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor!.hexString, UIColor(hexString: "#fff")!.darkenToEnsureContrast(against: .white).hexString)
     }
 
     func testLockedForUserDoesNotApplyToTeachers() {

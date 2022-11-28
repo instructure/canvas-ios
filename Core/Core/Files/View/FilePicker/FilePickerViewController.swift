@@ -117,7 +117,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             tabBarItems.append(item)
         }
         sourcesTabBar.items = tabBarItems
-        let linkColor = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
+        let linkColor = Brand.shared.linkColor
         sourcesTabBar.tintColor = linkColor
         sourcesTabBar.unselectedItemTintColor = linkColor
         update()

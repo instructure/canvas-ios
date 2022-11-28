@@ -27,6 +27,7 @@ private var fontSizeTransform: CGFloat = 0.85
 
 extension Annotation {
     /** Returns true if the annotation is loaded from the pdf file. */
+    @objc // For mocking purposes
     var isFileAnnotation: Bool {
         let annotationProvider: DocViewerAnnotationProvider? = {
             let result = documentProvider?.annotationManager.annotationProviders.first { $0 is DocViewerAnnotationProvider }

@@ -43,6 +43,7 @@ public class DocViewerViewController: UIViewController {
     }
     private var dragGestureViewModel: AnnotationDragGestureViewModel?
     private var subscriptions = Set<AnyCancellable>()
+    private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -161,6 +162,7 @@ public class DocViewerViewController: UIViewController {
 
             pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
+            annotationToolbar.tintColor = Brand.shared.primary
             annotationToolbar.isDragButtonSelected
                 .sink { [weak self] isDragEnabled in
                     self?.dragGestureViewModel?.isEnabled = isDragEnabled
@@ -176,6 +178,12 @@ public class DocViewerViewController: UIViewController {
 
             contentView.layoutIfNeeded()
         }
+
+        annotationContextMenuModel = DocViewerAnnotationContextMenuModel(isAnnotationEnabled: isAnnotatable,
+                                                                         metadata: metadata,
+                                                                         document: document,
+                                                                         annotationProvider: annotationProvider,
+                                                                         router: env.router)
 
         pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
     }
@@ -195,43 +203,19 @@ public class DocViewerViewController: UIViewController {
 }
 
 extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateManagerDelegate {
-    // swiftlint:disable function_parameter_count
-    public func pdfViewController(
-        _ pdfController: PDFViewController,
-        shouldShow menuItems: [MenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        forSelectedText selectedText: String,
-        in textRect: CGRect, on pageView: PDFPageView
-    ) -> [MenuItem] {
-        return menuItems.filter {
-            $0.identifier != TextMenu.annotationMenuHighlight.rawValue
-        }
-    }
 
-    public func pdfViewController(
-        _ pdfController: PDFViewController,
-        shouldShow menuItems: [MenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        for annotations: [Annotation]?,
-        in annotationRect: CGRect,
-        on pageView: PDFPageView
-    ) -> [MenuItem] {
-        let commentTapHandler: DocViewerAnnotationContextMenuModel.CommentTapHandler = { [weak self] annotation, document, metadata in
-            let comments = self?.annotationProvider?.getReplies(to: annotation) ?? []
-            let view = CommentListViewController.create(comments: comments, inReplyTo: annotation, document: document, metadata: metadata)
-            self?.env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
-        }
-        let deleteTapHandler: DocViewerAnnotationContextMenuModel.DeleteTapHandler = { annotation, document in
-            document.remove(annotations: [annotation], options: nil)
-        }
-        let model = DocViewerAnnotationContextMenuModel(env: env,
-                                                        isAnnotationEnabled: isAnnotatable,
-                                                        metadata: metadata,
-                                                        pageView: pageView,
-                                                        pdfController: pdfController,
-                                                        commentTapHandler: commentTapHandler,
-                                                        deleteTapHandler: deleteTapHandler)
-        return model.shouldShow(menuItems, for: annotations ?? [])
+    /** Menu for tapping on an annotation. */
+    public func pdfViewController(_ sender: PDFViewController,
+                                  menuForAnnotations annotations: [Annotation],
+                                  onPageView pageView: PDFPageView,
+                                  appearance: EditMenuAppearance,
+                                  suggestedMenu: UIMenu)
+    -> UIMenu {
+        annotationContextMenuModel?.menu(for: annotations,
+                                         pageView: pageView,
+                                         basedOn: suggestedMenu,
+                                         container: sender)
+        ?? suggestedMenu
     }
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {

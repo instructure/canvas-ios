@@ -40,7 +40,7 @@ public struct RemoteImage: View {
 
     public var body: some View {
         if let image = image?.image.images?[currentFrameIndex] ?? image?.image {
-            let isURLChanged = (url != loadedURL)
+            let isURLChanged = (url.pathComponents != loadedURL?.pathComponents)
 
             if isURLChanged {
                 emptyState.onAppear {

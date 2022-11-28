@@ -109,7 +109,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         // Loading
         scrollView?.isHidden = true
         scrollView?.backgroundColor = .backgroundLightest
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
+        loadingView.color = Brand.shared.primary
+        loadingView.startAnimating()
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
@@ -317,7 +318,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
-        loadingView.isHidden = true
+        loadingView.stopAnimating()
         refreshControl?.endRefreshing()
         UIAccessibility.post(notification: .screenChanged, argument: view)
     }

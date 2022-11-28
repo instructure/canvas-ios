@@ -145,8 +145,10 @@ public extension UIFont {
                 switch weight {
                 case .black, .heavy:
                     suffix = "Black"
-                case .bold, .semibold, .medium:
+                case .bold, .medium:
                     suffix = isItalic ? "BoldItalic" : "Bold"
+                case .semibold:
+                    suffix = isItalic ? "SemiBoldItalic" : "SemiBold"
                 case .regular, .light, .thin, .ultraLight:
                     suffix = isItalic ? "Italic" : "Regular"
                 default:

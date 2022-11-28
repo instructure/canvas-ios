@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,20 +19,19 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNE-3D-zl2" customClass="SubmissionDetailsEmptyView" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAM-Lb-Jft" customClass="SubmissionDetailsLockedEmptyView" customModule="Student" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAM-Lb-Jft" customClass="SubmissionDetailsLockedEmptyView" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-d9-7i7">
                                 <rect key="frame" x="0.0" y="39" width="375" height="534"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPickerToggle"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="4ET-91-dZS"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="4"/>
-                                <state key="normal" title="Mar 3 at 11:58pm"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
@@ -70,6 +69,7 @@
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bea-4p-X3b"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="u5L-w3-mKu" secondAttribute="trailing" constant="16" id="576-kH-3Z0"/>
@@ -100,7 +100,6 @@
                             <constraint firstItem="EAM-Lb-Jft" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="qCv-OG-ra3"/>
                             <constraint firstItem="9Iq-2N-D4G" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="r2S-Du-uhE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Bea-4p-X3b"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
@@ -119,4 +118,9 @@
             <point key="canvasLocation" x="205.59999999999999" y="-266.71664167916043"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="9Iq-2N-D4G">
+            <size key="intrinsicContentSize" width="151" height="38"/>
+        </designable>
+    </designables>
 </document>

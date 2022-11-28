@@ -149,7 +149,7 @@
 "1 month ago" = "1 month ago";
 
 /* Label indicating a submission need grading */
-"1 needs grading" = "1 needs grading";
+"1 needs grading" = "1 needs marking";
 
 /* time since creation */
 "1 year ago" = "1 year ago";
@@ -660,7 +660,7 @@
 "Grade %@" = "Mark %@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "Grade in SpeedGrader";
+"Grade in SpeedGrader" = "Mark in SpeedGrader";
 
 /* No comment provided by engineer. */
 "Grade: %@" = "Mark: %@";
@@ -1642,5 +1642,5 @@
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Your school's configuration does not allow the type of submission selected for this assignment.";
 
 /* No comment provided by engineer. */
-"Your submission is now waiting to be graded." = "Your submission is now waiting to be graded.";
+"Your submission is now waiting to be graded." = "Your submission is now waiting to be marked.";
 

@@ -17,14 +17,15 @@
 //
 
 import AVKit
-import UIKit
-import UserNotifications
-import PSPDFKit
-import Firebase
 import CanvasCore
 import Core
+import Firebase
+import Heap
+import PSPDFKit
 import React
 import SafariServices
+import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -44,7 +45,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupFirebase()
-        Core.Analytics.shared.initialize()
+        // initializeHeap()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
         #if DEBUG
@@ -210,6 +211,13 @@ extension TeacherAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         // Google Analytics needs to be disabled for now
 //        Analytics.logEvent(name, parameters: parameters)
+    }
+
+    private func initializeHeap() {
+        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
+        let options = HeapOptions()
+        options.disableAdvertiserIdCapture = true
+        Heap.initialize(heapID, with: options)
     }
 }
 
