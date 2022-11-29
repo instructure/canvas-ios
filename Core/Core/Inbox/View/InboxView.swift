@@ -39,6 +39,10 @@ public struct InboxView: View {
                         switch model.state {
                         case .data:
                             messagesList
+                            nextPageLoadingIndicator(geometry: geometry)
+                                .onAppear {
+                                    model.contentDidScrollToBottom.send(())
+                                }
                         case .empty:
                             panda(geometry: geometry, data: model.emptyState)
                         case .error:
@@ -156,6 +160,20 @@ public struct InboxView: View {
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("inbox.profileButton")
         .accessibility(label: Text("Profile Menu", bundle: .core))
+    }
+
+    @ViewBuilder
+    private func nextPageLoadingIndicator(geometry: GeometryProxy) -> some View {
+        if model.hasNextPage {
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle(size: 20, lineWidth: 2))
+                .listRowInsets(EdgeInsets())
+                .frame(height: 44)
+                .frame(maxWidth: .infinity)
+                .accentColor(Color(Brand.shared.primary))
+                .iOS15ListRowSeparator(.hidden)
+                .background(Color.backgroundLightest)
+        }
     }
 }
 

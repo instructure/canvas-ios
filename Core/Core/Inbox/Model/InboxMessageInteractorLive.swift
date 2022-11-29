@@ -23,6 +23,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let messages = CurrentValueSubject<[InboxMessageListItem], Never>([])
     public let courses = CurrentValueSubject<[InboxCourse], Never>([])
+    public let hasNextPage = CurrentValueSubject<Bool, Never>(false)
 
     // MARK: - Private State
     private var subscriptions = Set<AnyCancellable>()
@@ -50,6 +51,11 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .subscribe(state)
             .store(in: &subscriptions)
 
+        messageListStore
+            .hasNextPagePublisher
+            .subscribe(hasNextPage)
+            .store(in: &subscriptions)
+
         courseListStore
             .allObjects
             .subscribe(courses)
@@ -73,6 +79,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public func setContext(_ context: Context?) -> Future<Void, Never> {
         Future<Void, Never> { [messageListUseCase, messageListStore, messages, state] promise in
             messageListUseCase.contextCode = context?.canvasContextID
+            messageListStore.resetNextPage()
             messageListStore.setScope(messageListUseCase.scope)
 
             if messageListStore.isCachedDataExpired {
@@ -88,6 +95,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public func setScope(_ scope: InboxMessageScope) -> Future<Void, Never> {
         Future<Void, Never> { [messageListUseCase, messageListStore, messages, state] promise in
             messageListUseCase.messageScope = scope
+            messageListStore.resetNextPage()
             messageListStore.setScope(messageListUseCase.scope)
 
             if messageListStore.isCachedDataExpired {
@@ -107,6 +115,14 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             self.updateWorkflowStateLocally(message: message, state: state)
             self.uploadWorkflowStateToAPI(messageId: message.messageId, state: state)
             promise(.success(()))
+        }
+    }
+
+    public func loadNextPage() -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            self.messageListStore.getNextPage { _ in
+                promise(.success(()))
+            }
         }
     }
 

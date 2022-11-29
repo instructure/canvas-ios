@@ -218,6 +218,13 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         request(useCase, force: true, callback: callback)
     }
 
+    /**
+     Dismisses the stored UseCase of the next page.
+     */
+    public func resetNextPage() {
+        next = nil
+    }
+
     // MARK: - Reactive Functions
 
     public func refreshWithFuture(force: Bool = false) -> Future<Void, Never> {

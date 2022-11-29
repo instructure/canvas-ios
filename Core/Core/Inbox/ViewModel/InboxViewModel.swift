@@ -26,6 +26,7 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var scope: InboxMessageScope = DefaultScope
     @Published public private(set) var course: String = NSLocalizedString("All Courses", comment: "")
     @Published public private(set) var courses: [InboxCourse] = []
+    @Published public private(set) var hasNextPage = false
     @Published public var isShowingScopeSelector = false
     @Published public var isShowingCourseSelector = false
     public let scopes = InboxMessageScope.allCases
@@ -43,11 +44,13 @@ public class InboxViewModel: ObservableObject {
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
     public let courseDidChange = CurrentValueSubject<InboxCourse?, Never>(nil)
     public let updateState = PassthroughSubject<(message: InboxMessageListItem, state: ConversationWorkflowState), Never>()
+    public let contentDidScrollToBottom = PassthroughSubject<Void, Never>()
 
     // MARK: - Private State
     private static let DefaultScope: InboxMessageScope = .all
     private let interactor: InboxMessageInteractor
     private var subscriptions = Set<AnyCancellable>()
+    private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
 
     public init(interactor: InboxMessageInteractor, router: Router) {
         self.interactor = interactor
@@ -59,11 +62,23 @@ public class InboxViewModel: ObservableObject {
     }
 
     private func bindUserActionsToOutputs() {
-        scopeDidChange.assign(to: &$scope)
+        scopeDidChange
+            .assign(to: &$scope)
         courseDidChange
             .map { $0?.name }
             .replaceNil(with: NSLocalizedString("All Courses", comment: ""))
             .assign(to: &$course)
+
+        let interactor = self.interactor
+        let isLoadingNextPage = self.isLoadingNextPage
+
+        contentDidScrollToBottom
+            .filter { interactor.hasNextPage.value && !isLoadingNextPage.value }
+            .handleEvents(receiveOutput: { isLoadingNextPage.send(true) })
+            .delay(for: .seconds(1), scheduler: RunLoop.main)
+            .flatMap { interactor.loadNextPage() }
+            .sink { isLoadingNextPage.send(false) }
+            .store(in: &subscriptions)
     }
 
     private func bindDataSourceOutputsToSelf() {
@@ -73,6 +88,8 @@ public class InboxViewModel: ObservableObject {
             .assign(to: &$messages)
         interactor.courses
             .assign(to: &$courses)
+        interactor.hasNextPage
+            .assign(to: &$hasNextPage)
     }
 
     private func bindInputsToDataSource() {

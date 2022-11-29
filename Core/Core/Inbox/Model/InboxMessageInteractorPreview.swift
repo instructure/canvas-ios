@@ -25,6 +25,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let messages: CurrentValueSubject<[InboxMessageListItem], Never>
     public let courses: CurrentValueSubject<[InboxCourse], Never>
+    public let hasNextPage = CurrentValueSubject<Bool, Never>(true)
 
     // MARK: - Private State
     private var scopeValue: InboxMessageScope = .all {
@@ -64,6 +65,15 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
                             state: ConversationWorkflowState)
     -> Future<Void, Never> {
         Future<Void, Never> { $0(.success(())) }
+    }
+
+    public func loadNextPage() -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.hasNextPage.send(false)
+                promise(.success(()))
+            }
+        }
     }
 
     private func update() {

@@ -24,7 +24,7 @@ public class GetInboxMessageList: CollectionUseCase {
     public var cacheKey: String? { "inbox/\(messageScope.rawValue)?contextCode=\(contextCode ?? "")" }
     public var request: GetConversationsRequest {
         GetConversationsRequest(include: [.participant_avatars],
-                                perPage: 100,
+                                perPage: 20,
                                 scope: messageScope.apiScope,
                                 filter: contextCode)
     }
