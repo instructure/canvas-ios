@@ -184,14 +184,12 @@ struct InboxView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        let interactor = InboxMessageInteractorPreview(environment: env, messages: .make(count: 5, in: context))
-        let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
-        InboxView(model: viewModel)
+        InboxAssembly.makePreview(environment: env,
+                                  messages: .make(count: 5, in: context))
             .previewLayout(.sizeThatFits)
 
-        let emptyInteractor = InboxMessageInteractorPreview(environment: env, messages: [])
-        let emptyViewModel = InboxViewModel(interactor: emptyInteractor, router: AppEnvironment.shared.router)
-        InboxView(model: emptyViewModel)
+        InboxAssembly.makePreview(environment: env,
+                                  messages: [])
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Empty State")
     }

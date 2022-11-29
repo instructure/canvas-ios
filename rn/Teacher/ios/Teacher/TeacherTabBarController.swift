@@ -68,27 +68,23 @@ class TeacherTabBarController: UITabBarController {
     }
 
     func inboxTab() -> UIViewController {
-        let inboxVC: UIViewController
-        let inboxNav: UINavigationController
+        let inboxController: UIViewController
         let inboxSplit = HelmSplitViewController()
 
         if ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            let interactor = InboxMessageInteractorLive(env: AppEnvironment.shared)
-            let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
-            inboxVC = CoreHostingController(InboxView(model: viewModel))
-            inboxNav = HelmNavigationController(rootViewController: inboxVC)
+            inboxController = InboxAssembly.makeViewController()
         } else {
-            inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-            inboxNav = HelmNavigationController(rootViewController: inboxVC)
+            let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
+            inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
+            let inboxNav = HelmNavigationController(rootViewController: inboxVC)
+            inboxNav.navigationBar.useGlobalNavStyle()
+            inboxController = inboxNav
         }
-
-        inboxNav.navigationBar.useGlobalNavStyle()
-        inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
 
         let empty = HelmNavigationController()
         empty.navigationBar.useGlobalNavStyle()
 
-        inboxSplit.viewControllers = [inboxNav, empty]
+        inboxSplit.viewControllers = [inboxController, empty]
         let title = NSLocalizedString("Inbox", comment: "Inbox tab title")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
