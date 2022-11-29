@@ -23,12 +23,19 @@ public enum EnvironmentFeatureFlags: String {
     case send_usage_metrics
 }
 
-public class GetEnvironmentFeatureFlags: APIUseCase {
+public class GetEnvironmentFeatureFlags: CollectionUseCase {
     public typealias Model = FeatureFlag
     public let context: Context
 
     public var scope: Scope {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
+        let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
+        let environmentFlagPredicate = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.isEnvironmentFlag))
+        let predicate = NSCompoundPredicate(
+            andPredicateWithSubpredicates: [
+                contextPredicate,
+                environmentFlagPredicate,
+            ]
+        )
         return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])
     }
 
@@ -50,7 +57,8 @@ public class GetEnvironmentFeatureFlags: APIUseCase {
             let apiFeatureFlag = APIFeatureFlag(
                 key: key,
                 isEnabled: isEnabled,
-                canvasContextID: context.canvasContextID
+                canvasContextID: context.canvasContextID,
+                isEnvironmentFlag: true
             )
             FeatureFlag.save(apiFeatureFlag, in: client)
         }

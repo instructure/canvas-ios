@@ -90,6 +90,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         environment.userDidLogin(session: session)
         environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
         environmentFeatureFlags?.refresh(force: true) { _ in
+            guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
             self.initializeTracking()
         }
 
@@ -164,6 +165,7 @@ extension ParentAppDelegate: LoginDelegate {
 
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        disableTracking()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
             Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)

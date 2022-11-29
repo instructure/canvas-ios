@@ -87,6 +87,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
         environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
         environmentFeatureFlags?.refresh(force: true) { _ in
+            guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
             self.initializeTracking()
         }
 
@@ -371,6 +372,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        disableTracking()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
             Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)

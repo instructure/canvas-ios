@@ -24,11 +24,13 @@ import TestsFoundation
 class GetEnvironmentFeatureFlagsTests: CoreTestCase {
     func testScope() {
         let context = Context(.course, id: "1")
-        let yes = FeatureFlag.make(context: context)
+        let yes = FeatureFlag.make(context: context, isEnvironmentFlag: true)
         let notContext = FeatureFlag.make(context: .course("2"))
+        let environmentFlag = FeatureFlag.make(context: context, isEnvironmentFlag: true)
         let useCase = GetEnvironmentFeatureFlags(context: context)
         XCTAssertTrue(useCase.scope.predicate.evaluate(with: yes))
         XCTAssertFalse(useCase.scope.predicate.evaluate(with: notContext))
+        XCTAssertTrue(useCase.scope.predicate.evaluate(with: environmentFlag))
     }
 
     func testCacheKey() {

@@ -19,14 +19,21 @@
 import Foundation
 import CoreData
 
-public class GetEnabledFeatureFlags: APIUseCase {
+public class GetEnabledFeatureFlags: CollectionUseCase {
     public typealias Model = FeatureFlag
     public let context: Context
 
     public var scope: Scope {
-        let context = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
-        let enabled = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.enabled))
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [context, enabled])
+        let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
+        let enabledPredicate = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.enabled))
+        let environmentFlagPredicate = NSPredicate(format: "%K == false", #keyPath(FeatureFlag.isEnvironmentFlag))
+        let predicate = NSCompoundPredicate(
+            andPredicateWithSubpredicates: [
+                contextPredicate,
+                enabledPredicate,
+                environmentFlagPredicate,
+            ]
+        )
         return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])
     }
 
@@ -48,7 +55,8 @@ public class GetEnabledFeatureFlags: APIUseCase {
             let apiFeatureFlag = APIFeatureFlag(
                 key: key,
                 isEnabled: true,
-                canvasContextID: context.canvasContextID
+                canvasContextID: context.canvasContextID,
+                isEnvironmentFlag: false
             )
             FeatureFlag.save(apiFeatureFlag, in: client)
         }
