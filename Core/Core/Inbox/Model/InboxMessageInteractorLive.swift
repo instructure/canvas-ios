@@ -78,7 +78,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
 
     public func setContext(_ context: Context?) -> Future<Void, Never> {
         Future<Void, Never> { [messageListUseCase, messageListStore, messages, state] promise in
-            messageListUseCase.contextCode = context?.canvasContextID
+            messageListUseCase.context = context
             messageListStore.resetNextPage()
             messageListStore.setScope(messageListUseCase.scope)
 

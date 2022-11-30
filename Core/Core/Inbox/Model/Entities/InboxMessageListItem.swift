@@ -25,8 +25,11 @@ public final class InboxMessageListItem: NSManagedObject {
     @NSManaged public var title: String
     @NSManaged public var message: String
     @NSManaged public var isStarred: Bool
-    /** Local helper, not present on the API. */
+
+    // MARK: Local Helper Properties
     @NSManaged public var isSent: Bool
+    @NSManaged public var contextFilter: String?
+    @NSManaged public var scopeFilter: String
 
     // MARK: Convertible Raw Properties
 
@@ -64,6 +67,8 @@ public final class InboxMessageListItem: NSManagedObject {
     public static func save(_ apiEntity: APIConversation,
                             currentUserID: String,
                             isSent: Bool,
+                            contextFilter: Context?,
+                            scopeFilter: InboxMessageScope,
                             in context: NSManagedObjectContext)
     -> InboxMessageListItem {
         let participants: [APIConversationParticipant] = {
@@ -75,8 +80,17 @@ public final class InboxMessageListItem: NSManagedObject {
         }()
         let avatar = InboxMessageAvatar(participants: participants)
 
-        let dbEntity: InboxMessageListItem = context.first(where: #keyPath(InboxMessageListItem.messageId),
-                                                           equals: apiEntity.id.value) ?? context.insert()
+        let idPredicate = NSPredicate(format: "%K == %@", #keyPath(InboxMessageListItem.messageId), apiEntity.id.value)
+        let contextPredicate = contextFilter.inboxMessageFilter
+        let scopePredicate = scopeFilter.messageFilter
+        let uniqueObjectPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            idPredicate,
+            contextPredicate,
+            scopePredicate,
+        ])
+        let scope = Scope(predicate: uniqueObjectPredicate, order: [])
+
+        let dbEntity: InboxMessageListItem = context.first(scope: scope) ?? context.insert()
         dbEntity.messageId = apiEntity.id.rawValue
         dbEntity.contextCode = apiEntity.context_code
         dbEntity.participantName = participants.names
@@ -86,6 +100,8 @@ public final class InboxMessageListItem: NSManagedObject {
         dbEntity.dateRaw = (apiEntity.last_authored_message_at ?? apiEntity.last_message_at ?? Date())
         dbEntity.stateRaw = apiEntity.workflow_state.rawValue
         dbEntity.isSent = isSent
+        dbEntity.contextFilter = contextFilter?.canvasContextID
+        dbEntity.scopeFilter = scopeFilter.rawValue
 
         if case .individual(let name, let profileImageURL) = avatar {
             dbEntity.avatarNameRaw = name

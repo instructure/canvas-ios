@@ -29,26 +29,28 @@ class InboxMessageContextFilterTests: CoreTestCase {
 
         noCourseMessage = databaseClient.insert() as InboxMessageListItem
         noCourseMessage.messageId = "1"
-        noCourseMessage.contextCode = nil
+        noCourseMessage.contextFilter = nil
 
         course1Message = databaseClient.insert() as InboxMessageListItem
         course1Message.messageId = "2"
-        course1Message.contextCode = "course_1"
+        course1Message.contextFilter = "course_1"
 
         course2Message = databaseClient.insert() as InboxMessageListItem
         course2Message.messageId = "3"
-        course2Message.contextCode = "course_2"
+        course2Message.contextFilter = "course_2"
     }
 
     func testContextFilterAll() {
-        let scope = Scope(predicate: .inboxMessageContextFilter(contextCode: nil), order: [])
+        let context: Context? = nil
+        let scope = Scope(predicate: context.inboxMessageFilter, order: [])
         let messages: [InboxMessageListItem] = databaseClient.fetch(scope: scope)
         let messageIds = Set(messages.map { $0.messageId })
-        XCTAssertEqual(messageIds, Set(["1", "2", "3"]))
+        XCTAssertEqual(messageIds, Set(["1"]))
     }
 
     func testContextFilterCourse1() {
-        let scope = Scope(predicate: .inboxMessageContextFilter(contextCode: "course_1"), order: [])
+        let context: Context? = Context(.course, id: "1")
+        let scope = Scope(predicate: context.inboxMessageFilter, order: [])
         let messages: [InboxMessageListItem] = databaseClient.fetch(scope: scope)
         let messageIds = Set(messages.map { $0.messageId })
         XCTAssertEqual(messageIds, Set(["2"]))

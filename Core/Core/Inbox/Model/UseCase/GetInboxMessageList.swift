@@ -21,17 +21,17 @@ import CoreData
 public class GetInboxMessageList: CollectionUseCase {
     public typealias Model = InboxMessageListItem
 
-    public var cacheKey: String? { "inbox/\(messageScope.rawValue)?contextCode=\(contextCode ?? "")" }
+    public var cacheKey: String? { "inbox/\(messageScope.rawValue)?contextCode=\(context?.canvasContextID ?? "all")" }
     public var request: GetConversationsRequest {
         GetConversationsRequest(include: [.participant_avatars],
                                 perPage: 20,
                                 scope: messageScope.apiScope,
-                                filter: contextCode)
+                                filter: context?.canvasContextID)
     }
     public var scope: Scope {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             messageScope.messageFilter,
-            .inboxMessageContextFilter(contextCode: contextCode),
+            context.inboxMessageFilter,
         ])
         let order = [
             NSSortDescriptor(key: #keyPath(InboxMessageListItem.dateRaw), ascending: false),
@@ -40,7 +40,7 @@ public class GetInboxMessageList: CollectionUseCase {
     }
 
     public var messageScope: InboxMessageScope = .all
-    public var contextCode: String?
+    public var context: Context?
     private let currentUserId: String
 
     public init(currentUserId: String) {
@@ -52,9 +52,11 @@ public class GetInboxMessageList: CollectionUseCase {
 
         for apiEntity in response {
             InboxMessageListItem.save(apiEntity,
-                                       currentUserID: currentUserId,
-                                       isSent: messageScope == .sent,
-                                       in: client)
+                                      currentUserID: currentUserId,
+                                      isSent: messageScope == .sent,
+                                      contextFilter: context,
+                                      scopeFilter: messageScope,
+                                      in: client)
         }
     }
 }

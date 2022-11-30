@@ -18,13 +18,10 @@
 
 import Foundation
 
-public extension NSPredicate {
+public extension Optional where Wrapped == Context {
 
-    static func inboxMessageContextFilter(contextCode: String?) -> NSPredicate {
-        if contextCode == nil {
-            return .all
-        } else {
-            return NSPredicate(key: #keyPath(InboxMessageListItem.contextCode), equals: contextCode)
-        }
+    var inboxMessageFilter: NSPredicate {
+        NSPredicate(key: #keyPath(InboxMessageListItem.contextFilter),
+                    equals: self?.canvasContextID)
     }
 }

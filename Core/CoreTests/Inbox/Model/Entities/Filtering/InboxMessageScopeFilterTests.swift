@@ -23,37 +23,32 @@ class InboxMessageScopeFilterTests: CoreTestCase {
     private var readMessage: InboxMessageListItem!
     private var unreadMessage: InboxMessageListItem!
     private var archivedMessage: InboxMessageListItem!
-    private var starredReadMessage: InboxMessageListItem!
-    private var sentReadMessage: InboxMessageListItem!
+    private var starredMessage: InboxMessageListItem!
+    private var sentMessage: InboxMessageListItem!
 
     override public func setUp() {
         super.setUp()
 
         readMessage = databaseClient.insert() as InboxMessageListItem
         readMessage.messageId = "1"
-        readMessage.state = .read
+        readMessage.scopeFilter = InboxMessageScope.all.rawValue
         unreadMessage = databaseClient.insert() as InboxMessageListItem
         unreadMessage.messageId = "2"
-        unreadMessage.state = .unread
+        unreadMessage.scopeFilter = InboxMessageScope.unread.rawValue
         archivedMessage = databaseClient.insert() as InboxMessageListItem
         archivedMessage.messageId = "3"
-        archivedMessage.state = .archived
-        starredReadMessage = databaseClient.insert() as InboxMessageListItem
-        starredReadMessage.messageId = "4"
-        starredReadMessage.state = .read
-        starredReadMessage.isStarred = true
-        sentReadMessage = databaseClient.insert() as InboxMessageListItem
-        sentReadMessage.messageId = "5"
-        sentReadMessage.state = .read
-        sentReadMessage.isSent = true
+        archivedMessage.scopeFilter = InboxMessageScope.archived.rawValue
+        starredMessage = databaseClient.insert() as InboxMessageListItem
+        starredMessage.messageId = "4"
+        starredMessage.scopeFilter = InboxMessageScope.starred.rawValue
+        sentMessage = databaseClient.insert() as InboxMessageListItem
+        sentMessage.messageId = "5"
+        sentMessage.scopeFilter = InboxMessageScope.sent.rawValue
     }
 
     func testMessageFilterAll() {
         let messageIds = messageIds(for: .all)
-        XCTAssertEqual(messageIds, Set([readMessage.messageId,
-                                        unreadMessage.messageId,
-                                        starredReadMessage.messageId,
-                                       ]))
+        XCTAssertEqual(messageIds, Set([readMessage.messageId]))
     }
 
     func testMessageFilterUnread() {
@@ -68,12 +63,12 @@ class InboxMessageScopeFilterTests: CoreTestCase {
 
     func testMessageFilterSent() {
         let messageIds = messageIds(for: .sent)
-        XCTAssertEqual(messageIds, Set([sentReadMessage.messageId]))
+        XCTAssertEqual(messageIds, Set([sentMessage.messageId]))
     }
 
     func testMessageFilterStarred() {
         let messageIds = messageIds(for: .starred)
-        XCTAssertEqual(messageIds, Set([starredReadMessage.messageId]))
+        XCTAssertEqual(messageIds, Set([starredMessage.messageId]))
     }
 
     private func messageIds(for scope: InboxMessageScope) -> Set<String> {
