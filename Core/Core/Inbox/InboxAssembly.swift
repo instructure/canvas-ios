@@ -22,7 +22,9 @@ public enum InboxAssembly {
 
     public static func makeViewController() -> UIViewController {
         let env = AppEnvironment.shared
-        let interactor = InboxMessageInteractorLive(env: env)
+        let interactor = InboxMessageInteractorLive(env: env,
+                                                    tabBarCountUpdater: .init(),
+                                                    messageListStateUpdater: .init())
         let viewModel = InboxViewModel(interactor: interactor, router: env.router)
 
         let inboxVC = CoreHostingController(InboxView(model: viewModel))

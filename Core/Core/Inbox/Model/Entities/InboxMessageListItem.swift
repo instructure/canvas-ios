@@ -26,11 +26,6 @@ public final class InboxMessageListItem: NSManagedObject {
     @NSManaged public var message: String
     @NSManaged public var isStarred: Bool
 
-    // MARK: Local Helper Properties
-    @NSManaged public var isSent: Bool
-    @NSManaged public var contextFilter: String?
-    @NSManaged public var scopeFilter: String
-
     // MARK: Convertible Raw Properties
 
     @NSManaged public var dateRaw: Date
@@ -38,6 +33,14 @@ public final class InboxMessageListItem: NSManagedObject {
     @NSManaged public var stateRaw: String
     @NSManaged public var avatarNameRaw: String?
     @NSManaged public var avatarURLRaw: URL?
+
+    // MARK: Local Helper Properties
+
+    @NSManaged public var isSent: Bool
+    /** The context (course) filter that was used to download the message from API. */
+    @NSManaged public var contextFilter: String?
+    /** The scope (all, unread, starred...) filter that was used to download the message from API. */
+    @NSManaged public var scopeFilter: String
 
     // MARK: - Helper Properties
 

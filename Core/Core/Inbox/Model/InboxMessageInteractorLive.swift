@@ -33,10 +33,16 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     private let messageListUseCase: GetInboxMessageList
     private let messageListStore: Store<GetInboxMessageList>
     private let courseListStore: Store<GetInboxCourseList>
+    private let tabBarCountUpdater: TabBarMessageCountUpdater
+    private let messageListStateUpdater: MessageListStateUpdater
 
-    public init(env: AppEnvironment) {
+    public init(env: AppEnvironment,
+                tabBarCountUpdater: TabBarMessageCountUpdater,
+                messageListStateUpdater: MessageListStateUpdater) {
         let currentUserId = env.currentSession?.userID ?? ""
         self.env = env
+        self.tabBarCountUpdater = tabBarCountUpdater
+        self.messageListStateUpdater = messageListStateUpdater
         self.messageListUseCase = GetInboxMessageList(currentUserId: currentUserId)
         self.messageListStore = env.subscribe(messageListUseCase)
         self.courseListStore = env.subscribe(GetInboxCourseList())
@@ -112,8 +118,8 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
                             state: ConversationWorkflowState)
     -> Future<Void, Never> {
         Future<Void, Never> { promise in
-            self.updateWorkflowStateLocally(message: message, state: state)
             self.uploadWorkflowStateToAPI(messageId: message.messageId, state: state)
+            self.updateWorkflowStateLocally(message: message, newState: state)
             promise(.success(()))
         }
     }
@@ -133,18 +139,8 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         env.api.makeRequest(request, callback: { _, _, _ in })
     }
 
-    private func updateWorkflowStateLocally(message: InboxMessageListItem, state: ConversationWorkflowState) {
-        var messageCount = TabBarBadgeCounts.unreadMessageCount
-
-        if state == .unread {
-            messageCount += 1
-        } else if message.isUnread, messageCount > 0 {
-            messageCount -= 1
-        }
-
-        TabBarBadgeCounts.unreadMessageCount = messageCount
-
-        message.state = state
-        try? message.managedObjectContext?.save()
+    private func updateWorkflowStateLocally(message: InboxMessageListItem, newState: ConversationWorkflowState) {
+        tabBarCountUpdater.updateBadgeCount(oldState: message.state, newState: newState)
+        messageListStateUpdater.update(message: message, newState: newState)
     }
 }
