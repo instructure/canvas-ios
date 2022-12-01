@@ -25,19 +25,19 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
 
     func testURLWithoutSession() {
         AppEnvironment.shared.currentSession = nil
-        let testee = DiscussionWebPageViewModel(context: .course("1"), topicID: "123")
+        let testee = EmbeddedWebPageViewModelLive(context: .course("1"), webPageType: .discussion(id: "123"))
         XCTAssertEqual(testee.url, URL(string: "/")!)
     }
 
     func testCourseURL() {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
-        let testee = DiscussionWebPageViewModel(context: .course("1"), topicID: "123")
+        let testee = EmbeddedWebPageViewModelLive(context: .course("1"), webPageType: .discussion(id: "123"))
         XCTAssertEqual(testee.url, URL(string: "https://instructure.com/courses/1/discussion_topics/123?embed=true&session_timezone=\(timezoneName)&session_locale=\(locale)")!)
     }
 
     func testGroupURL() {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
-        let testee = DiscussionWebPageViewModel(context: .group("1"), topicID: "123")
+        let testee = EmbeddedWebPageViewModelLive(context: .group("1"), webPageType: .discussion(id: "123"))
         XCTAssertEqual(testee.url, URL(string: "https://instructure.com/groups/1/discussion_topics/123?embed=true&session_timezone=\(timezoneName)&session_locale=\(locale)")!)
     }
 
@@ -46,7 +46,7 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
         api.mock(GetCourse(courseID: "1"), value: .make(name: "Test Name"))
 
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
-        let testee = DiscussionWebPageViewModel(context: .course("1"), topicID: "123")
+        let testee = EmbeddedWebPageViewModelLive(context: .course("1"), webPageType: .discussion(id: "123"))
 
         XCTAssertEqual(testee.navTitle, "Discussion Details")
         XCTAssertEqual(testee.subTitle, "Test Name")
@@ -58,7 +58,7 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
         api.mock(GetGroup(groupID: "1"), value: .make(name: "Test Group Name"))
 
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
-        let testee = DiscussionWebPageViewModel(context: .group("1"), topicID: "123")
+        let testee = EmbeddedWebPageViewModelLive(context: .group("1"), webPageType: .discussion(id: "123"))
 
         XCTAssertEqual(testee.navTitle, "Discussion Details")
         XCTAssertEqual(testee.subTitle, "Test Group Name")
@@ -71,7 +71,7 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
         flag.enabled = true
         flag.context = .course("1")
 
-        XCTAssertTrue(DiscussionWebPageViewModel.isRedesignEnabled(in: .course("1")))
+        XCTAssertTrue(EmbeddedWebPageViewModelLive.isRedesignEnabled(in: .course("1")))
     }
 
     func testDisabledRedesignFeatureFlag() {
@@ -80,7 +80,7 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
         flag.enabled = false
         flag.context = .course("1")
 
-        XCTAssertFalse(DiscussionWebPageViewModel.isRedesignEnabled(in: .course("1")))
+        XCTAssertFalse(EmbeddedWebPageViewModelLive.isRedesignEnabled(in: .course("1")))
     }
 
     func testMissingRedesignFeatureFlag() {
@@ -89,6 +89,6 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
         flag.enabled = true
         flag.context = .course("1")
 
-        XCTAssertFalse(DiscussionWebPageViewModel.isRedesignEnabled(in: .course("1")))
+        XCTAssertFalse(EmbeddedWebPageViewModelLive.isRedesignEnabled(in: .course("1")))
     }
 }

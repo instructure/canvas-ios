@@ -90,10 +90,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
     },
 
-    "/:context/:contextID/announcements/:announcementID": { url, params, _ in
-        guard let context = Context(path: url.path), let announcementID = params["announcementID"] else { return nil }
-        return DiscussionDetailsViewController.create(context: context, topicID: announcementID, isAnnouncement: true)
-    },
+    "/:context/:contextID/announcements/:announcementID": discussionViewController,
 
     "/courses/:courseID/assignments": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -450,21 +447,31 @@ private func pageViewController(url: URLComponents, params: [String: String], us
 }
 
 private func discussionViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    guard let context = Context(path: url.path), let discussionID = params["discussionID"] else { return nil }
+    guard let context = Context(path: url.path) else { return nil }
+
+    var webPageType: EmbeddedWebPageViewModelLive.EmbeddedWebPageType
+    if let discussionID = params["discussionID"] {
+        webPageType = .discussion(id: discussionID)
+    } else if let announcementID = params["announcementID"] {
+        webPageType = .announcement(id: announcementID)
+    } else {
+        return nil
+    }
+
     if context.contextType == .course, !url.originIsModuleItemDetails {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
             assetType: .discussion,
-            assetID: discussionID,
+            assetID: webPageType.assetID,
             url: url
         )
     }
 
     if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
-       DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
-        let viewModel = DiscussionWebPageViewModel(
+       EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+        let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
-            topicID: discussionID
+            webPageType: webPageType
         )
         return CoreHostingController(
             EmbeddedWebPageView(
@@ -473,7 +480,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
             )
         )
     } else {
-        return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
+        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
     }
 }
 

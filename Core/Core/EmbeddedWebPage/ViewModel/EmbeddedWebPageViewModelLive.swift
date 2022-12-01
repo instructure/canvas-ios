@@ -18,7 +18,19 @@
 
 import Foundation
 
-public class DiscussionWebPageViewModel: EmbeddedWebPageViewModel {
+public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
+    public enum EmbeddedWebPageType {
+        case announcement(id: String)
+        case discussion(id: String)
+
+        public var assetID: String {
+            switch self {
+            case .announcement(let id): return id
+            case .discussion(let id): return id
+            }
+        }
+    }
+
     public static func isRedesignEnabled(in context: Context) -> Bool {
         var featureFlagContext = context
 
@@ -32,7 +44,8 @@ public class DiscussionWebPageViewModel: EmbeddedWebPageViewModel {
     }
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
-    public let navTitle = NSLocalizedString("Discussion Details", comment: "")
+
+    public let navTitle: String
     public let url: URL
 
     private let context: Context
@@ -47,14 +60,26 @@ public class DiscussionWebPageViewModel: EmbeddedWebPageViewModel {
         self?.update()
     }
 
-    public init(context: Context, topicID: String) {
+    public init(context: Context, webPageType: EmbeddedWebPageType) {
+        self.context = context
+
+        var urlPathComponent: String
+        switch webPageType {
+        case .announcement(let id):
+            urlPathComponent = "announcements/\(id)"
+            navTitle = NSLocalizedString("Announcement Details", comment: "")
+        case .discussion(let id):
+            urlPathComponent = "discussion_topics/\(id)"
+            navTitle = NSLocalizedString("Discussion Details", comment: "")
+        }
+
         self.url = {
             guard var baseURL = AppEnvironment.shared.currentSession?.baseURL else {
                 return URL(string: "/")! // should never happen
             }
 
             baseURL.appendPathComponent(context.pathComponent)
-            baseURL.appendPathComponent("discussion_topics/\(topicID)")
+            baseURL.appendPathComponent(urlPathComponent)
             baseURL = baseURL.appendingQueryItems(
                 URLQueryItem(name: "embed", value: "true"),
                 URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
@@ -63,7 +88,6 @@ public class DiscussionWebPageViewModel: EmbeddedWebPageViewModel {
 
             return baseURL
         }()
-        self.context = context
 
         colors.refresh()
 
