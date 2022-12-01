@@ -19,9 +19,9 @@
 import SwiftUI
 
 public struct InboxMessageView: View {
-    @ObservedObject private var model: InboxMessageListItem
+    private var model: InboxMessageListItemViewModel
 
-    public init(model: InboxMessageListItem) {
+    public init(model: InboxMessageListItemViewModel) {
         self.model = model
     }
 
@@ -122,11 +122,11 @@ struct InboxMessageView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        InboxMessageView(model: .make(in: context))
+        InboxMessageView(model: .init(message: .make(in: context)))
             .previewLayout(.sizeThatFits)
 
-        InboxMessageView(model: .make(participantName: "Bob Hunter, Tray B, Joe M, Alice Swanson, Marty + 3",
-                                      in: context))
+        InboxMessageView(model: .init(message: .make(participantName: "Bob Hunter, Tray B, Joe M, Alice Swanson, Marty + 3",
+                                      in: context)))
             .previewLayout(.sizeThatFits)
     }
 }

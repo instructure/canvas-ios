@@ -22,7 +22,7 @@ import SwiftUI
 public class InboxViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var messages: [InboxMessageListItem] = []
+    @Published public private(set) var messages: [InboxMessageListItemViewModel] = []
     @Published public private(set) var scope: InboxMessageScope = DefaultScope
     @Published public private(set) var course: String = NSLocalizedString("All Courses", comment: "")
     @Published public private(set) var courses: [InboxCourse] = []
@@ -43,7 +43,7 @@ public class InboxViewModel: ObservableObject {
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
     public let courseDidChange = CurrentValueSubject<InboxCourse?, Never>(nil)
-    public let updateState = PassthroughSubject<(message: InboxMessageListItem, state: ConversationWorkflowState), Never>()
+    public let updateState = PassthroughSubject<(messageId: String, state: ConversationWorkflowState), Never>()
     public let contentDidScrollToBottom = PassthroughSubject<Void, Never>()
 
     // MARK: - Private State
@@ -85,6 +85,11 @@ public class InboxViewModel: ObservableObject {
         interactor.state
             .assign(to: &$state)
         interactor.messages
+            .map { messages in
+                messages.map {
+                    InboxMessageListItemViewModel(message: $0)
+                }
+            }
             .assign(to: &$messages)
         interactor.courses
             .assign(to: &$courses)
@@ -115,6 +120,16 @@ public class InboxViewModel: ObservableObject {
             .sink()
             .store(in: &subscriptions)
         updateState
+            .compactMap { (messageId, state) -> (message: InboxMessageListItem, state: ConversationWorkflowState)? in
+                // Since the UI doesn't work directly with CoreData objects we must retreive it by its id
+                let message = interactor.messages.value.first {
+                    $0.messageId == messageId
+                }
+                guard let message = message else {
+                    return nil
+                }
+                return (message: message, state: state)
+            }
             .map { interactor.updateState(message: $0.message, state: $0.state) }
             .sink()
             .store(in: &subscriptions)

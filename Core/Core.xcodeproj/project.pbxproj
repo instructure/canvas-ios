@@ -1006,6 +1006,7 @@
 		CF7D4A8B2937798C00463FBD /* TabBarMessageCountUpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D4A8A2937798C00463FBD /* TabBarMessageCountUpdaterTests.swift */; };
 		CF7D4A8D29377F9500463FBD /* MessageListStateUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D4A8C29377F9500463FBD /* MessageListStateUpdater.swift */; };
 		CF7D4A8F2937826300463FBD /* MessageListStateUpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D4A8E2937826300463FBD /* MessageListStateUpdaterTests.swift */; };
+		CF7D4A912938E99F00463FBD /* InboxMessageListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D4A902938E99F00463FBD /* InboxMessageListItemViewModel.swift */; };
 		CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */; };
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */; };
@@ -2572,6 +2573,7 @@
 		CF7D4A8A2937798C00463FBD /* TabBarMessageCountUpdaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMessageCountUpdaterTests.swift; sourceTree = "<group>"; };
 		CF7D4A8C29377F9500463FBD /* MessageListStateUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListStateUpdater.swift; sourceTree = "<group>"; };
 		CF7D4A8E2937826300463FBD /* MessageListStateUpdaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListStateUpdaterTests.swift; sourceTree = "<group>"; };
+		CF7D4A902938E99F00463FBD /* InboxMessageListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageListItemViewModel.swift; sourceTree = "<group>"; };
 		CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensionsTests.swift; sourceTree = "<group>"; };
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF854B192721A49700AACDC8 /* iOS15ListRowSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS15ListRowSeparator.swift; sourceTree = "<group>"; };
@@ -5012,6 +5014,7 @@
 			isa = PBXGroup;
 			children = (
 				CF3A31E028F94FD7002752D2 /* InboxViewModel.swift */,
+				CF7D4A902938E99F00463FBD /* InboxMessageListItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -8053,6 +8056,7 @@
 				7DA2608923F72315005D2121 /* ProfileSettingsViewController.swift in Sources */,
 				7DA25FEC23F721DE005D2121 /* ConversationParticipant.swift in Sources */,
 				CF490F182850F2960065D242 /* DragButtonStateViewModel.swift in Sources */,
+				CF7D4A912938E99F00463FBD /* InboxMessageListItemViewModel.swift in Sources */,
 				7D7D6D5025100D11002B1485 /* EmptyPanda.swift in Sources */,
 				7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */,
 				7DDE6E0B2476DF15006523D4 /* DiscussionHTML.swift in Sources */,
