@@ -24,6 +24,7 @@ public enum LoginStart: String, ElementWrapper {
     case canvasNetworkButton
     case findSchoolButton
     case helpButton
+    case lastLoginButton
     case logoView
     case whatsNewLabel
     case whatsNewLink

@@ -18,7 +18,7 @@
 
 import TestsFoundation
 
-class DSAnnouncementsE2ETests: E2ETestCase {
+class DSTeacherAnnouncementsE2ETests: E2ETestCase {
     func testAnnouncementsE2E() {
         // Seed the usual stuff with an announcement
         let student = seeder.createUser()
@@ -40,8 +40,8 @@ class DSAnnouncementsE2ETests: E2ETestCase {
         CourseNavigation.announcements.tap()
         AnnouncementList.announcement(index: 0).waitToExist()
         AnnouncementList.announcement(index: 0).tap()
+        XCTAssertTrue(app.find(label: announcementMessage).waitToExist(5).exists())
         XCTAssertEqual(DiscussionDetails.title.label(), announcementTitle)
-        XCTAssertTrue(app.find(label: announcementMessage).exists())
         NavBar.backButton.tap()
 
         // Add a new announcement from the app
