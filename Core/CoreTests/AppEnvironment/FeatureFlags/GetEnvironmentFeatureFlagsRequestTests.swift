@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,23 +17,15 @@
 //
 
 import Foundation
-import CoreData
+import TestsFoundation
 @testable import Core
+import XCTest
 
-extension FeatureFlag {
-    @discardableResult
-    public static func make(
-        context: Context = Context(.course, id: "1"),
-        name: String = "feature_flag",
-        enabled: Bool = true,
-        isEnvironmentFlag: Bool = false,
-        in managedContext: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> FeatureFlag {
-        let model: FeatureFlag = managedContext.insert()
-        model.context = context
-        model.name = name
-        model.enabled = enabled
-        model.isEnvironmentFlag = isEnvironmentFlag
-        return model
+class GetEnvironmentFeatureFlagsRequestTests: CoreTestCase {
+    func testEnvironmentFeatureFlags() {
+        XCTAssertEqual(
+            GetEnvironmentFeatureFlagsRequest(context: .currentUser).path,
+            "features/environment.json"
+        )
     }
 }

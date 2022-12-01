@@ -21,7 +21,7 @@ import TestsFoundation
 @testable import Core
 import XCTest
 
-class APIFeatureFlagTests: CoreTestCase {
+class GetFeatureFlagsRequestTests: CoreTestCase {
     func testGetEnabledFeatureFlagsRequest() {
         XCTAssertEqual(GetEnabledFeatureFlagsRequest(context: .course("1")).path, "courses/1/features/enabled")
     }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-public class GetEnabledFeatureFlags: CollectionUseCase {
+public enum EnvironmentFeatureFlags: String {
+    case send_usage_metrics
+}
+
+public class GetEnvironmentFeatureFlags: CollectionUseCase {
     public typealias Model = FeatureFlag
     public let context: Context
 
     public var scope: Scope {
         let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
-        let enabledPredicate = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.enabled))
-        let environmentFlagPredicate = NSPredicate(format: "%K == false", #keyPath(FeatureFlag.isEnvironmentFlag))
+        let environmentFlagPredicate = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.isEnvironmentFlag))
         let predicate = NSCompoundPredicate(
             andPredicateWithSubpredicates: [
                 contextPredicate,
-                enabledPredicate,
                 environmentFlagPredicate,
             ]
         )
@@ -38,27 +40,37 @@ public class GetEnabledFeatureFlags: CollectionUseCase {
     }
 
     public var cacheKey: String? {
-        return "\(context.canvasContextID)-enabled-feature-flags"
+        "\(context.canvasContextID)-features-environment-json"
     }
 
-    public var request: GetEnabledFeatureFlagsRequest {
-        return GetEnabledFeatureFlagsRequest(context: context)
+    public var request: GetEnvironmentFeatureFlagsRequest {
+        GetEnvironmentFeatureFlagsRequest(context: context)
     }
 
     public init(context: Context) {
         self.context = context
     }
 
-    public func write(response: [String]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: [String: Bool]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        for key in response {
+        for (key, isEnabled) in response {
             let apiFeatureFlag = APIFeatureFlag(
                 key: key,
-                isEnabled: true,
+                isEnabled: isEnabled,
                 canvasContextID: context.canvasContextID,
-                isEnvironmentFlag: false
+                isEnvironmentFlag: true
             )
             FeatureFlag.save(apiFeatureFlag, in: client)
         }
+    }
+}
+
+extension Store where U == GetEnvironmentFeatureFlags {
+    public func isFeatureEnabled(_ featureFlag: EnvironmentFeatureFlags) -> Bool {
+        let featureFlagToFind = all
+            .filter { $0.name == featureFlag.rawValue}
+            .first
+
+        return featureFlagToFind?.enabled ?? false
     }
 }
