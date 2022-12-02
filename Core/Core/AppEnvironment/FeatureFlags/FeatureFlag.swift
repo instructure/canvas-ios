@@ -19,10 +19,20 @@
 import Foundation
 import CoreData
 
-public class FeatureFlag: NSManagedObject {
+public struct APIFeatureFlag {
+    public let key: String
+    public let isEnabled: Bool
+    public let canvasContextID: String
+    public let isEnvironmentFlag: Bool
+}
+
+public final class FeatureFlag: NSManagedObject, WriteableModel {
+    public typealias JSON = APIFeatureFlag
+
     @NSManaged public private(set) var canvasContextID: String?
     @NSManaged public var name: String
     @NSManaged public var enabled: Bool
+    @NSManaged public var isEnvironmentFlag: Bool
 
     public var context: Context? {
         get { return canvasContextID.flatMap { Context(canvasContextID: $0) } }
@@ -31,5 +41,19 @@ public class FeatureFlag: NSManagedObject {
 
     public var isDiscussionAndAnnouncementRedesign: Bool {
         name == "react_discussions_post"
+    }
+
+    @discardableResult
+    public static func save(_ item: APIFeatureFlag, in context: NSManagedObjectContext) -> FeatureFlag {
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), item.canvasContextID),
+            NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.name), item.key),
+        ])
+        let flag: FeatureFlag = context.fetch(predicate).first ?? context.insert()
+        flag.name = item.key
+        flag.enabled = item.isEnabled
+        flag.canvasContextID = item.canvasContextID
+        flag.isEnvironmentFlag = item.isEnvironmentFlag
+        return flag
     }
 }

@@ -37,13 +37,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         env.window = window
         return env
     }()
-
+    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
-        // initializeHeap()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
 
@@ -86,6 +85,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
+        environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+        environmentFeatureFlags?.refresh(force: true) { _ in
+            guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
+            self.initializeTracking()
+        }
+
         updateInterfaceStyle(for: window)
 
         CoreWebView.keepCookieAlive(for: environment)
@@ -238,11 +243,24 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
 //        Analytics.logEvent(name, parameters: parameters)
     }
 
-    private func initializeHeap() {
-        guard !ProcessInfo.isUITest, let heapID = Secret.heapID.string else { return }
+    private func initializeTracking() {
+        guard
+            let environmentFeatureFlags,
+            !ProcessInfo.isUITest,
+            let heapID = Secret.heapID.string
+        else {
+            return
+        }
+
+        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
         let options = HeapOptions()
-        options.disableAdvertiserIdCapture = true
+        options.disableTracking = !isSendUsageMetricsEnabled
         Heap.initialize(heapID, with: options)
+        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+    }
+
+    private func disableTracking() {
+        Heap.setTrackingEnabled(false)
     }
 }
 
@@ -354,6 +372,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        disableTracking()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
             Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
@@ -386,6 +405,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidStopActing(as session: LoginSession) {
+        disableTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
@@ -396,6 +416,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        disableTracking()
         shouldSetK5StudentView = false
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }

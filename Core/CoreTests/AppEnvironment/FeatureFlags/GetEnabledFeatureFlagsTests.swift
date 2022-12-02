@@ -27,10 +27,12 @@ class GetEnabledFeatureFlagsTests: CoreTestCase {
         let yes = FeatureFlag.make(context: context)
         let notContext = FeatureFlag.make(context: .course("2"))
         let notEnabled = FeatureFlag.make(context: context, enabled: false)
+        let notEnvironmentFlag = FeatureFlag.make(context: context, isEnvironmentFlag: false)
         let useCase = GetEnabledFeatureFlags(context: context)
         XCTAssertTrue(useCase.scope.predicate.evaluate(with: yes))
         XCTAssertFalse(useCase.scope.predicate.evaluate(with: notContext))
         XCTAssertFalse(useCase.scope.predicate.evaluate(with: notEnabled))
+        XCTAssertTrue(useCase.scope.predicate.evaluate(with: notEnvironmentFlag))
     }
 
     func testCacheKey() {

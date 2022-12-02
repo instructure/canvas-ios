@@ -79,9 +79,14 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
         course?.refresh(force: true)
-        group?.refresh()
+        group?.refresh { [context, weak group, weak env] _ in
+            guard context.contextType == .group, let courseID = group?.first?.courseID else { return }
+            _ = env?.subscribe(GetEnabledFeatureFlags(context: Context.course(courseID))).refresh()
+        }
         topics.exhaust()
-        featureFlags.refresh()
+        if context.contextType != .group {
+            featureFlags.refresh()
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
