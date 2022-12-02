@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.create
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.create
 public struct CreateDSDiscussionRequest: APIRequestable {
     public typealias Response = DSDiscussionTopic
 

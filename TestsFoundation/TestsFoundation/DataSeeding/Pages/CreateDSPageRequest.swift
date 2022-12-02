@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
+// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
 public struct CreateDSPageRequest: APIRequestable {
     public typealias Response = DSPage
 
