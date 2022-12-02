@@ -1283,7 +1283,6 @@
 		E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3124AE3A160053AA8A /* APIAlertThreshold.swift */; };
 		E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3324AE3A220053AA8A /* GetAlertThresholds.swift */; };
 		E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3624AE3A650053AA8A /* GetObservedStudents.swift */; };
-		E8D20399250A723E009B2ABE /* OldInboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C71AA2509058700DEDA36 /* OldInboxView.swift */; };
 		E8D6949824D46B1E0080D883 /* CoreHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949724D46B1E0080D883 /* CoreHostingController.swift */; };
 		E8D7E6EB24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */; };
 		E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */; };
@@ -2843,7 +2842,6 @@
 		DFE1FF39212F6D20003F27AA /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
 		E14A7FC270275DE4A9E9263F /* Pods-needs-pspdfkit-CoreTester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-CoreTester/Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; sourceTree = "<group>"; };
 		E83BB40525196E2B000E5B00 /* ConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
-		E86C71AA2509058700DEDA36 /* OldInboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldInboxView.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
 		E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStoreTests.swift; sourceTree = "<group>"; };
@@ -3720,7 +3718,6 @@
 				7DFDB43723A45A4A00B28DED /* ConversationMessage.swift */,
 				7DFDB43923A45A5A00B28DED /* ConversationParticipant.swift */,
 				9F73859D23C904D200A9C6FE /* CreateConversation.swift */,
-				E86C71AA2509058700DEDA36 /* OldInboxView.swift */,
 				3B4D89392450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard */,
 				3B4D89382450A8FC004ED120 /* EditComposeRecipientsViewController.swift */,
 				9FA690EF23C79489009D12D9 /* GetConversationCourses.swift */,
@@ -7935,7 +7932,6 @@
 				CF748D1D274D43B9000EA34E /* DashboardConferencesViewModel.swift in Sources */,
 				CF60CC5F26496EDE00C1C173 /* K5GradesViewModel.swift in Sources */,
 				CF5234EB28B8D11500D2D3B9 /* FileUploadProgressObserver.swift in Sources */,
-				E8D20399250A723E009B2ABE /* OldInboxView.swift in Sources */,
 				D94FA2AE26CBE787007B9CA4 /* K5GradeProgressBar.swift in Sources */,
 				CF3A31E728FD8112002752D2 /* NoResultsPanda.swift in Sources */,
 				CF12DFC026CE9BE7000BE452 /* K5ScheduleMissingItemsView.swift in Sources */,
