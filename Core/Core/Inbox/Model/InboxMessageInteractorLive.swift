@@ -140,6 +140,8 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     }
 
     private func updateWorkflowStateLocally(message: InboxMessageListItem, newState: ConversationWorkflowState) {
+        guard let context = message.managedObjectContext else { return }
+        messageListUseCase.invalidateCaches(in: context)
         tabBarCountUpdater.updateBadgeCount(oldState: message.state, newState: newState)
         messageListStateUpdater.update(message: message, newState: newState)
     }

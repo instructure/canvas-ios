@@ -59,4 +59,11 @@ public class GetInboxMessageList: CollectionUseCase {
                                       in: client)
         }
     }
+
+    public func invalidateCaches(in context: NSManagedObjectContext) {
+        let predicate = NSPredicate(format: "%K BEGINSWITH 'inbox/'", #keyPath(TTL.key))
+        let cacheEntries: [TTL] = context.fetch(predicate)
+        context.delete(cacheEntries)
+        try? context.save()
+    }
 }
