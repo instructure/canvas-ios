@@ -35,6 +35,7 @@ public final class InboxMessageListItem: NSManagedObject {
 
     // MARK: Local Helper Properties
 
+    @NSManaged public var hasAttachment: Bool
     @NSManaged public var isSent: Bool
     /** The context (course) filter that was used to download the message from API. */
     @NSManaged public var contextFilter: String?
@@ -103,6 +104,7 @@ public final class InboxMessageListItem: NSManagedObject {
         dbEntity.isSent = isSent
         dbEntity.contextFilter = contextFilter?.canvasContextID
         dbEntity.scopeFilter = scopeFilter.rawValue
+        dbEntity.hasAttachment = apiEntity.properties?.contains(.attachments) ?? false
 
         if case .individual(let name, let profileImageURL) = avatar {
             dbEntity.avatarNameRaw = name
@@ -132,6 +134,7 @@ public extension InboxMessageListItem {
         mockObject.dateRaw = Date()
         mockObject.isStarred = true
         mockObject.stateRaw = ConversationWorkflowState.unread.rawValue
+        mockObject.hasAttachment = true
         return mockObject
     }
 }

@@ -52,13 +52,14 @@ public struct InboxMessageView: View {
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
                     .lineLimit(1)
-                HStack(alignment: .bottom) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: model.message)
-                            .font(.regular14)
-                            .foregroundColor(.textDark)
-                            .lineLimit(1)
-                    }
+                HStack(alignment: .bottom, spacing: 0) {
+                    Text(verbatim: model.message)
+                        .font(.regular14)
+                        .foregroundColor(.textDark)
+                        .lineLimit(1)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer(minLength: 0)
+                    attachmentIndicator
                     starredIndicator
                 }
             }
@@ -92,11 +93,22 @@ public struct InboxMessageView: View {
     @ViewBuilder
     private var starredIndicator: some View {
         if model.isStarred {
-            Spacer()
             Image
                 .starSolid
                 .size(15)
                 .foregroundColor(.textDark)
+                .padding(.leading, 6)
+        }
+    }
+
+    @ViewBuilder
+    private var attachmentIndicator: some View {
+        if model.hasAttachment {
+            Image
+                .paperclipLine
+                .size(15)
+                .foregroundColor(.textDarkest)
+                .padding(.leading, 6)
         }
     }
 

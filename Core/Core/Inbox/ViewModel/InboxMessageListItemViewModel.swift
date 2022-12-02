@@ -29,6 +29,7 @@ public struct InboxMessageListItemViewModel: Identifiable, Equatable {
     public let state: ConversationWorkflowState
     public let isMarkAsReadActionAvailable: Bool
     public let isArchiveActionAvailable: Bool
+    public let hasAttachment: Bool
 
     public init(message: InboxMessageListItem) {
         self.id = message.id
@@ -41,5 +42,6 @@ public struct InboxMessageListItemViewModel: Identifiable, Equatable {
         self.state = message.state
         self.isMarkAsReadActionAvailable = message.isMarkAsReadActionAvailable
         self.isArchiveActionAvailable = message.isArchiveActionAvailable
+        self.hasAttachment = message.hasAttachment
     }
 }

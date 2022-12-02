@@ -536,6 +536,7 @@
         <attribute name="avatarURLRaw" optional="YES" attributeType="URI"/>
         <attribute name="contextFilter" optional="YES" attributeType="String"/>
         <attribute name="dateRaw" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO"/>
+        <attribute name="hasAttachment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isSent" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isStarred" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="message" attributeType="String" defaultValueString=""/>
