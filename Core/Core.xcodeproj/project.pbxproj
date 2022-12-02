@@ -892,7 +892,6 @@
 		CF3A31FB29017784002752D2 /* SinkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31FA29017784002752D2 /* SinkExtensions.swift */; };
 		CF3A31FD290182B6002752D2 /* InboxFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A31FC290182B6002752D2 /* InboxFilterBar.swift */; };
 		CF3A32022907E333002752D2 /* GetCurrentUserCoursesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A32012907E333002752D2 /* GetCurrentUserCoursesRequest.swift */; };
-		CF3A32042907E371002752D2 /* APIReactiveExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A32032907E371002752D2 /* APIReactiveExtensions.swift */; };
 		CF3E76092885967B00276703 /* FileUploadObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E76082885967B00276703 /* FileUploadObservation.swift */; };
 		CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */; };
 		CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E760C2885AE6F00276703 /* LocalNotifications.swift */; };
@@ -2459,7 +2458,6 @@
 		CF3A31FA29017784002752D2 /* SinkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinkExtensions.swift; sourceTree = "<group>"; };
 		CF3A31FC290182B6002752D2 /* InboxFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterBar.swift; sourceTree = "<group>"; };
 		CF3A32012907E333002752D2 /* GetCurrentUserCoursesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserCoursesRequest.swift; sourceTree = "<group>"; };
-		CF3A32032907E371002752D2 /* APIReactiveExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIReactiveExtensions.swift; sourceTree = "<group>"; };
 		CF3E76082885967B00276703 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		CF3E760A2885A91B00276703 /* ComposeBatchUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeBatchUpload.swift; sourceTree = "<group>"; };
 		CF3E760C2885AE6F00276703 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -4209,7 +4207,6 @@
 			isa = PBXGroup;
 			children = (
 				7D80AC11212B4F8E00C40ECE /* API.swift */,
-				CF3A32032907E371002752D2 /* APIReactiveExtensions.swift */,
 				7D7F71D9241C41BC00D6F9CB /* APIDate.swift */,
 				7D819FF6228C7C7E00C61EDD /* APIError.swift */,
 				CF0075D928746E3B00588E40 /* APIFormData.swift */,
@@ -8403,7 +8400,6 @@
 				D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */,
 				EB35FA5526B0085B00AA8C22 /* K5GradeCell.swift in Sources */,
 				7DA2606C23F722D9005D2121 /* Activity.swift in Sources */,
-				CF3A32042907E371002752D2 /* APIReactiveExtensions.swift in Sources */,
 				3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */,
 				7DA260F123F72391005D2121 /* FileUploadTarget.swift in Sources */,
 				CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */,
