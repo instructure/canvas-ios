@@ -127,7 +127,6 @@ extension Submission: WriteableModel {
     public typealias JSON = APISubmission
 
     @discardableResult
-    // swiftlint:disable:next function_body_length
     static public func save(_ item: APISubmission, in client: NSManagedObjectContext) -> Submission {
         let predicate = NSPredicate(
             format: "%K == %@ AND %K == %@ AND %K == %d",
