@@ -534,7 +534,6 @@
     <entity name="InboxMessageListItem" representedClassName="Core.InboxMessageListItem" syncable="YES">
         <attribute name="avatarNameRaw" optional="YES" attributeType="String"/>
         <attribute name="avatarURLRaw" optional="YES" attributeType="URI"/>
-        <attribute name="contextCode" optional="YES" attributeType="String"/>
         <attribute name="contextFilter" optional="YES" attributeType="String"/>
         <attribute name="dateRaw" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO"/>
         <attribute name="isSent" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

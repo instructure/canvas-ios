@@ -20,7 +20,6 @@ import CoreData
 
 public final class InboxMessageListItem: NSManagedObject {
     @NSManaged public var messageId: String
-    @NSManaged public var contextCode: String?
     @NSManaged public var participantName: String
     @NSManaged public var title: String
     @NSManaged public var message: String
@@ -95,7 +94,6 @@ public final class InboxMessageListItem: NSManagedObject {
 
         let dbEntity: InboxMessageListItem = context.first(scope: scope) ?? context.insert()
         dbEntity.messageId = apiEntity.id.rawValue
-        dbEntity.contextCode = apiEntity.context_code
         dbEntity.participantName = participants.names
         dbEntity.title = apiEntity.subject ?? ""
         dbEntity.message = apiEntity.last_authored_message ?? apiEntity.last_message ?? ""
