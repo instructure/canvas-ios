@@ -39,7 +39,7 @@ class DSAnnouncementsE2ETests: E2ETestCase {
         XCTAssert(AnnouncementList.cell(index: 0).label().contains(announcementTitle))
         AnnouncementList.cell(index: 0).tap()
         XCTAssertEqual(DiscussionDetails.title.label(), announcementTitle)
-        XCTAssertTrue(app.find(label: announcementMessage).exists())
+        XCTAssertTrue(app.find(label: announcementMessage).waitToExist(10).exists())
     }
 
     func testAnnouncementToggleE2E() {
