@@ -21,8 +21,10 @@ import Foundation
 public extension Array where Element == APIConversationParticipant {
 
     var names: String {
-        if count > 6 {
-            let sample = prefix(5).map(\.displayName)
+        let maxNamesCount = 3
+
+        if count > maxNamesCount {
+            let sample = prefix(maxNamesCount - 1).map { $0.displayName.trimmingCharacters(in: .whitespacesAndNewlines) }
             let sampledNames = sample.joined(separator: ", ")
             let remainingNamesCount = count - sample.count
             return NSLocalizedString("\(sampledNames) + \(remainingNamesCount) more", bundle: .core, comment: "(Alice, Bob) + (2) more")
