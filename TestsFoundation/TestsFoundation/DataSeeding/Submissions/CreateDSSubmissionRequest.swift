@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
+// https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
 public struct CreateDSSubmissionRequest: APIRequestable {
     public typealias Response = DSSubmission
 

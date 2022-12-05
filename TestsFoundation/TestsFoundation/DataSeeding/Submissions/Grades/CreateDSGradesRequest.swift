@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.update
+// https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.update
 public struct CreateDSGradesRequest: APIRequestable {
     public typealias Response = APINoContent
 

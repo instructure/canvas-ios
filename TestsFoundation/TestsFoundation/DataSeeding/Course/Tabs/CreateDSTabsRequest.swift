@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/tabs.html#method.tabs.update
+// https://canvas.instructure.com/doc/api/tabs.html#method.tabs.update
 public struct CreateDSTabsRequest: APIRequestable {
     public typealias Response = APINoContent
 
