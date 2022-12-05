@@ -32,6 +32,7 @@ public struct InboxMessageView: View {
             cellContent
         }
         .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel(model.a11yLabel)
     }
 
     private var cellContent: some View {
@@ -98,6 +99,7 @@ public struct InboxMessageView: View {
                 .size(15)
                 .foregroundColor(.textDark)
                 .padding(.leading, 6)
+                .accessibilityHidden(true)
         }
     }
 
@@ -109,6 +111,7 @@ public struct InboxMessageView: View {
                 .size(15)
                 .foregroundColor(.textDarkest)
                 .padding(.leading, 6)
+                .accessibilityHidden(true)
         }
     }
 

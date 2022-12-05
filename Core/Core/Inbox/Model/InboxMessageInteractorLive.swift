@@ -49,6 +49,12 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
 
         messageListStore
             .allObjects
+            // This will filter out items already removed from CoreData
+            .compactMap { messages in
+                messages.compactMap {
+                    $0.managedObjectContext == nil ? nil : $0
+                }
+            }
             .subscribe(messages)
             .store(in: &subscriptions)
 

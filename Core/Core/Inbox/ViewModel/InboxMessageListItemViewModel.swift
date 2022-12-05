@@ -30,6 +30,7 @@ public struct InboxMessageListItemViewModel: Identifiable, Equatable {
     public let isMarkAsReadActionAvailable: Bool
     public let isArchiveActionAvailable: Bool
     public let hasAttachment: Bool
+    public let a11yLabel: String
 
     public init(message: InboxMessageListItem) {
         self.id = message.id
@@ -43,5 +44,15 @@ public struct InboxMessageListItemViewModel: Identifiable, Equatable {
         self.isMarkAsReadActionAvailable = message.isMarkAsReadActionAvailable
         self.isArchiveActionAvailable = message.isArchiveActionAvailable
         self.hasAttachment = message.hasAttachment
+        self.a11yLabel = {
+            String([message.title,
+                    message.message,
+                    message.participantName,
+                    message.date,
+                    message.isStarred ? NSLocalizedString("Starred", comment: "") : "",
+                    message.state == .unread ? NSLocalizedString("Unread", comment: "") : "",
+                    message.hasAttachment ? NSLocalizedString("Attachments available", comment: "") : "",
+                   ].joined(separator: ","))
+        }()
     }
 }

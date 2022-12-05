@@ -60,6 +60,8 @@ public struct InboxFilterBar: View {
         .actionSheet(isPresented: $model.isShowingCourseSelector) {
             ActionSheet(title: Text("Filter by", bundle: .core), buttons: courseFilterButtons)
         }
+        .accessibilityLabel(Text("Filter messages by course", bundle: .core))
+        .accessibilityHint(Text(model.course))
     }
 
     private var scopeFilterButton: some View {
@@ -75,12 +77,15 @@ public struct InboxFilterBar: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 13)
+                    .accessibilityHidden(true)
             }
             .foregroundColor(Color(Brand.shared.linkColor))
         }
         .actionSheet(isPresented: $model.isShowingScopeSelector) {
             ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
         }
+        .accessibilityLabel(Text("Filter messages by type", bundle: .core))
+        .accessibilityHint(Text(model.scope.localizedName))
     }
 
     private var scopeFilterButtons: [ActionSheet.Button] {
