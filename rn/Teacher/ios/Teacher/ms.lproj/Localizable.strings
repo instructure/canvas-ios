@@ -1,0 +1,348 @@
+/* No comment provided by engineer. */
+"%g out of %g" = "%1$g daripada %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g mata";
+
+/* No comment provided by engineer. */
+"Absent" = "Tidak Hadir";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Tambah Lampiran";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Tambah Komen";
+
+/* No comment provided by engineer. */
+"All grades are currently hidden." = "Semua gred disembunyikan pada masa ini.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Semua gred disiarkan pada masa ini.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Semua disembunyikan";
+
+/* No comment provided by engineer. */
+"All Posted" = "Semua Disiarkan";
+
+/* No comment provided by engineer. */
+"All submissions" = "Semua serahan";
+
+/* No comment provided by engineer. */
+"Attendance" = "Kehadiran";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Ralat Kehadiran";
+
+/* No comment provided by engineer. */
+"Back" = "Kembali";
+
+/* No comment provided by engineer. */
+"Cancel" = "Batal";
+
+/* No comment provided by engineer. */
+"Change Section" = "Tukar Seksyen";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Pilih Seksyen";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Pilih Tarikh";
+
+/* No comment provided by engineer. */
+"Choose Files" = "Pilih Fail";
+
+/* No comment provided by engineer. */
+"Close" = "Tutup";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Tutup Laci";
+
+/* No comment provided by engineer. */
+"Comment" = "Komen";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Pustaka Komen";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Pustaka komen tidak tersedia";
+
+/* No comment provided by engineer. */
+"Comments" = "Komen";
+
+/* No comment provided by engineer. */
+"Complete" = "Lengkap";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Tidak dapat menyimpan komen.";
+
+/* No comment provided by engineer. */
+"Courses" = "Kursus";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Sesuaikan Gred";
+
+/* No comment provided by engineer. */
+"Date picker" = "Pemilih tarikh";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Tolak";
+
+/* No comment provided by engineer. */
+"Done" = "Siap";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
+"Error" = "Ralat";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Ralat: Tiada data dikembalikan daripada api panggil nama.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Semua orang";
+
+/* No comment provided by engineer. */
+"Excuse Student" = "Maafkan Pelajar";
+
+/* No comment provided by engineer. */
+"Excused" = "Dimaafkan";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Gagal melancarkan alat LTI panggil nama.";
+
+/* No comment provided by engineer. */
+"Failed to load submission data!" = "Gagal memuatkan data serahan!";
+
+/* No comment provided by engineer. */
+"Files" = "Fail";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Fail (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Tapis";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Tapis (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Tapis mengikut";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Gred Akhir";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
+
+/* No comment provided by engineer. */
+"Grade" = "Gred";
+
+/* No comment provided by engineer. */
+"Grade post policy" = "Dasar siaran gred";
+
+/* No comment provided by engineer. */
+"Grade Slider" = "Penggelongsor Gred";
+
+/* No comment provided by engineer. */
+"Graded" = "Digredkan";
+
+/* No comment provided by engineer. */
+"Grades" = "Gred";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Gred akan boleh dilihat oleh semua pelajar";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Gred akan boleh dilihat oleh semua pelajar dengan serahan bergred";
+
+/* No comment provided by engineer. */
+"Group" = "Kumpulan";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Sembunyikan Gred";
+
+/* Inbox tab title */
+"Inbox" = "Peti masuk";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Tidak lengkap";
+
+/* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Nampaknya tidak terdapat sebarang serahan yang sah untuk digredkan.";
+
+/* No comment provided by engineer. */
+"Late" = "Lewat";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Gred huruf";
+
+/* No comment provided by engineer. */
+"Loading" = "Memuatkan";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Tandakan Semua sebagai Hadir";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Tandakan yang Berbaki sebagai Hadir";
+
+/* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Penggredan Dikendalikan Tidak Disokong";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Perlu Digredkan";
+
+/* No comment provided by engineer. */
+"No Grade" = "Tiada gred";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Tiada Serahan";
+
+/* No comment provided by engineer. */
+"No suggestions available" = "Tiada cadangan tersedia";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Tidak Bergred";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Buka pustaka komen";
+
+/* No comment provided by engineer. */
+"Open Drawer full screen" = "Buka Laci skrin penuh";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Buka Laci skrin separa";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pending" = "Belum Selesai";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Peratus (%)";
+
+/* No comment provided by engineer. */
+"Points" = "Mata";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Siar Gred";
+
+/* No comment provided by engineer. */
+"Post settings" = "Tetapan siaran";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Tetapan Siaran";
+
+/* No comment provided by engineer. */
+"Post to..." = "Siar ke...";
+
+/* No comment provided by engineer. */
+"Present" = "Hadir";
+
+/* No comment provided by engineer. */
+"Preview Unavailable" = "Pratonton Tidak Tersdia";
+
+/* No comment provided by engineer. */
+"Prompts for an updated grade" = "Menggesa untuk gred dikemas kini";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Rakam Audio";
+
+/* No comment provided by engineer. */
+"Record Video" = "Rakam Video";
+
+/* No comment provided by engineer. */
+"Reset" = "Tetap Semula";
+
+/* No comment provided by engineer. */
+"Retry" = "Cuba semula";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubrik";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Mendapat skor atas...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Mendapat skor bawah...";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Pilih untuk mengubah tarikh panggil nama";
+
+/* No comment provided by engineer. */
+"Send" = "Hantar";
+
+/* No comment provided by engineer. */
+"Send message to users" = "Hantar mesej kepada pengguna";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Skor Keserupaan";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Seksyen Tertentu";
+
+/* No comment provided by engineer. */
+"Student" = "Pelajar";
+
+/* No comment provided by engineer. */
+"Submissions" = "Serahan";
+
+/* No comment provided by engineer. */
+"Test Student" = "Pelajar Percubaan";
+
+/* No comment provided by engineer. */
+"There are no messages yet." = "Belum ada mesej.";
+
+/* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Terdapat ralat memuatkan serahan. Tarik untuk segar semula untuk mencuba lagi.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Tugasan ini tidak membenarkan serahan.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Tugasan ini hanya membenarkan serahan atas kertas.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Kriteria ini tidak akan memberikan impak kepada skor.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Kumpulan ini tidak mempunyai serahan untuk tugasan ini.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Pelajar ini tidak mempunyai serahan untuk tugasan ini.";
+
+/* No comment provided by engineer. */
+"This student's responses are hidden because this assignment is anonymous." = "Maklum balas pelajar ini disembunyikan kerana serahan ini dibuat tanpa nama.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Serahan ini tidak mempunyai fail.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Serahan ini ialah URL ke halaman luar. Kami menyertakan petikan rupa halaman ketika ia diserahkan.";
+
+/* No comment provided by engineer. */
+"To Do" = "Untuk Dilakukan";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Ralat tidak diketahui";
+
+/* No comment provided by engineer. */
+"Unmark" = "Nyahtanda";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "Imej Pratonton Fail";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Lihat fail %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Lihat Penerangan Panjang";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Lihat percubaan serahan %1$@. %2$@";
+
