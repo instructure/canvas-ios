@@ -136,8 +136,30 @@ public class QuizEditorViewModel: ObservableObject {
         assignmentOverrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
     }
 
+    func validate() -> Bool {
+        if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            state = .error(NSLocalizedString("A title is required", comment: ""))
+            return false
+        }
+
+        if showCorrectAnswers, let show = showCorrectAnswersAt, let hide = hideCorrectAnswersAt, hide < show {
+            state = .error(NSLocalizedString("'Hide Date' cannot be before 'Show Date'", comment: ""))
+            return false
+        }
+
+        if requireAccessCode, accessCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            state = .error(NSLocalizedString("You must enter an access code", comment: ""))
+            return false
+        }
+        //TODO assignmentOverridesEditor
+
+        return true
+    }
+
     public func doneTapped(router: Router, viewController: WeakViewController) {
         state = .saving
+
+        guard validate() else { return }
 
         var allowedAttempts: Int?
         if allowMultipleAttempts {
