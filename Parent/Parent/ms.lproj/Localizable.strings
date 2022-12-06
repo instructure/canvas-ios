@@ -1,0 +1,221 @@
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ cukup tempoh pada %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ akan bermula pada %2$@";
+
+/* No comment provided by engineer. */
+"Add" = "Tambah";
+
+/* No comment provided by engineer. */
+"Add Student" = "Tambah Pelajar";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Tambah pelajar di bahagian atas atau lawati menu global untuk menyamar sebagai pelajar.";
+
+/* No comment provided by engineer. */
+"Add students at the top." = "Tambah pelajar di bahagian atas.";
+
+/* No comment provided by engineer. */
+"Alert me when:" = "Beri isyarat kepada saya apabila:";
+
+/* Alerts Tab */
+"Alerts" = "Isyarat";
+
+/* No comment provided by engineer. */
+"Announcement" = "Pengumuman";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Butiran Tugasan";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Peringatan tugasan";
+
+/* No comment provided by engineer. */
+"Back" = "Kembali";
+
+/* Calendar Tab */
+"Calendar" = "Kalendar";
+
+/* No comment provided by engineer. */
+"Cancel" = "Batal";
+
+/* No comment provided by engineer. */
+"Compose Message" = "Karang mesej";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Karang mesej kepada guru";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Karang mesej baharu";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Tidak dapat mengurai kod QR, kod QR tidak sah";
+
+/* Courses Tab */
+"Courses" = "Kursus";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Pelajar semasa: %@. Ketik untuk menukar pelajar";
+
+/* No comment provided by engineer. */
+"Date" = "Tarikh";
+
+/* No comment provided by engineer. */
+"Description" = "Penerangan";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Tolak";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "Domain tidak sepadan";
+
+/* No comment provided by engineer. */
+"Due" = "Cukup tempoh";
+
+/* No comment provided by engineer. */
+"Event Details" = "Butiran Acara";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Peringatan acara";
+
+/* No comment provided by engineer. */
+"Find School" = "Cari Sekolah";
+
+/* No comment provided by engineer. */
+"Front Page" = "Halaman Depan";
+
+/* No comment provided by engineer. */
+"Grades" = "Gred";
+
+/* No comment provided by engineer. */
+"Inbox" = "Peti masuk";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Peti Masuk Kosong";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Masukkan kod berpasangan pelajar yang diberikan kepada anda.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Ambang Tidak Sah";
+
+/* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Nampaknya anda cuba menambah pelajar. Cuba tambah pelajar ini setelah anda log masuk.";
+
+/* No comment provided by engineer. */
+"Location" = "Lokasi";
+
+/* No comment provided by engineer. */
+"Locked" = "Berkunci";
+
+/* No comment provided by engineer. */
+"Login required" = "Log masuk diperlukan";
+
+/* No comment provided by engineer. */
+"Manage Students" = "Urus Pelajar";
+
+/* No comment provided by engineer. */
+"n/a" = "t/b";
+
+/* No comment provided by engineer. */
+"N/A" = "T/B";
+
+/* No comment provided by engineer. */
+"No Alerts" = "Tiada Isyarat";
+
+/* No comment provided by engineer. */
+"No Courses" = "Tiada Kursus";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Tiada Tarikh Siap";
+
+/* No comment provided by engineer. */
+"No Grade" = "Tiada gred";
+
+/* No comment provided by engineer. */
+"No Students" = "Tiada Pelajar";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Pairing Code" = "Kod Berpasangan";
+
+/* No comment provided by engineer. */
+"QR Code" = "Kod QR";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Berkenaan: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
+"Regarding: %@, %@" = "Berkenaan: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Berkenaan: %1$@, Tugasan - %2$@";
+
+/* No comment provided by engineer. */
+"Remind Me" = "Ingatkan Saya";
+
+/* No comment provided by engineer. */
+"Retry" = "Cuba semula";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Tetapkan tarikh dan masa untuk diberitahu mengenai acara ini.";
+
+/* No comment provided by engineer. */
+"Settings" = "Tetapan";
+
+/* No comment provided by engineer. */
+"Summary" = "Rumusan";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Silibus";
+
+/* No comment provided by engineer. */
+"The linked item is no longer available." = "Item yang dipautkan tidak lagi tersedia.";
+
+/* No comment provided by engineer. */
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "Pelajar yang anda cuba tambah berada di institusi Canvas yang berbeza.\nLog masuk atau cipta akuan dengan institusi tersebut untuk menambah pelajar ini.";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Nilai mestilah satu nombor antara 0 dan 100.";
+
+/* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "Terdapat ralat memuatkan isyarat. Tarik untuk segar semula untuk mencuba lagi.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan kursus. Tarik untuk segar semula untuk mencuba lagi.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Terdapat ralat memuatkan pelajar. Tarik untuk segar semula untuk mencuba lagi.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Belum ada apa-apa lagi untuk diberitahu.";
+
+/* No comment provided by engineer. */
+"Trouble logging in" = "Menghadapi masalah log masuk";
+
+/* No comment provided by engineer. */
+"Unread" = "Belum dibaca";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Selamat datang, Pentadbir!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Anda tidak boleh menetapkan ambang tinggi yang lebih rendah atau sama dengan ambang rendah yang ditetapkan sebelumnya.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Anda tidak boleh menetapkan ambang rendah yang lebih tinggi atau sama dengan ambang tinggi yang ditetapkan sebelumnya.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Anda telah mengetahui semua maklumat terkini";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Kursus anak anda mungkin belum diterbitkan.";
+
