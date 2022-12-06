@@ -66,7 +66,9 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         var urlPathComponent: String
         switch webPageType {
         case .announcement(let id):
-            urlPathComponent = "announcements/\(id)"
+            // announcements/\(id) shows a navigation bar at the top
+            // so we need to use discussion topics
+            urlPathComponent = "discussion_topics/\(id)"
             navTitle = NSLocalizedString("Announcement Details", comment: "")
         case .discussion(let id):
             urlPathComponent = "discussion_topics/\(id)"
