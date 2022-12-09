@@ -116,6 +116,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         if !activities.pending && activities.isEmpty {
             emptyStateContainer.isHidden = false
         } else {
+            emptyStateContainer.isHidden = true
             tableView.reloadData()
         }
     }
