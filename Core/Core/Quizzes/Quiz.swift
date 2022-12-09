@@ -237,6 +237,21 @@ public enum QuizType: String, Codable, CaseIterable {
             return NSLocalizedString("New Quizzes", bundle: .core, comment: "")
         }
     }
+
+    public var name: String {
+        switch self {
+        case .assignment:
+            return NSLocalizedString("Graded Quiz", bundle: .core, comment: "")
+        case .practice_quiz:
+            return NSLocalizedString("Practice Quiz", bundle: .core, comment: "")
+        case .graded_survey:
+            return NSLocalizedString("Graded Survey", bundle: .core, comment: "")
+        case .survey:
+            return NSLocalizedString("Ungraded Survey", bundle: .core, comment: "")
+        case .quizzes_next:
+            return NSLocalizedString("New Quiz", bundle: .core, comment: "")
+        }
+    }
 }
 
 public enum ScoringPolicy: String, Codable, CaseIterable {

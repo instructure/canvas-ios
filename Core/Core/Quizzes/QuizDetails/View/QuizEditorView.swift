@@ -55,7 +55,7 @@ public struct QuizEditorView: View {
                 })
                 .disabled(viewModel.state != .ready)
             })
-
+            //TODO error handling from viewModel (validator)
             .alert(item: $alert) { alert in
                 switch alert {
                 case .error(let error):
@@ -256,11 +256,11 @@ public struct QuizEditorView: View {
     @ViewBuilder
     private var quizTypeRow: some View {
         ButtonRow(action: {
-            let options = QuizType.allCases
+            let options = viewModel.availableQuizTypes
             self.env.router.show(ItemPickerViewController.create(
                 title: NSLocalizedString("Quiz Type", comment: ""),
                 sections: [ ItemPickerSection(items: options.map {
-                    ItemPickerItem(title: $0.sectionTitle)
+                    ItemPickerItem(title: $0.name)
                 }), ],
                 selected: options.firstIndex(of: viewModel.quizType).flatMap {
                     IndexPath(row: $0, section: 0)
@@ -270,7 +270,7 @@ public struct QuizEditorView: View {
         }, content: {
             Text("Quiz Type", bundle: .core)
             Spacer()
-            Text(viewModel.quizType.sectionTitle)
+            Text(viewModel.quizType.name)
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
             DisclosureIndicator()
@@ -286,7 +286,7 @@ public struct QuizEditorView: View {
             self.env.router.show(ItemPickerViewController.create(
                 title: NSLocalizedString("Quiz Type", comment: ""),
                 sections: [ ItemPickerSection(items: options.map {
-                    ItemPickerItem(title: $0.sectionTitle)
+                    ItemPickerItem(title: $0.name)
                 }), ],
                 selected: options.firstIndex(of: viewModel.quizType).flatMap {
                     IndexPath(row: $0, section: 0)
@@ -296,7 +296,7 @@ public struct QuizEditorView: View {
         }, content: {
             Text("Quiz Type", bundle: .core)
             Spacer()
-            Text(viewModel.quizType.sectionTitle)
+            Text(viewModel.quizType.name)
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
             DisclosureIndicator()

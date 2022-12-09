@@ -34,31 +34,33 @@ public class QuizEditorViewModel: ObservableObject {
     public let courseID: String
 
     // Quiz attributes
-    public var title: String = ""
-    public var description: String = ""
+    @Published public var title: String = ""
+    @Published public var description: String = ""
     @Published public var quizType: QuizType = .assignment
-    public var published: Bool = false
+    @Published public var published: Bool = false
     public var shouldShowPublishedToggle: Bool {
         quiz?.published == false || quiz?.unpublishable == true
     }
 
-    public var assignmentGroup: String = ""
-    public var shuffleAnswers: Bool = false
+    @Published public var assignmentGroup: String = ""
+    @Published public var shuffleAnswers: Bool = false
     @Published public var timeLimit: Bool = false
-    public var lengthInMinutes: Double?
+    @Published public var lengthInMinutes: Double?
     @Published public var allowMultipleAttempts: Bool = false
     @Published public var scoreToKeep: ScoringPolicy?
-    public var allowedAttempts: Int?
+    @Published public var allowedAttempts: Int?
     @Published public var seeResponses: Bool = false
-    public var onlyOnceAfterEachAttempt: Bool = false
+    @Published public var onlyOnceAfterEachAttempt: Bool = false
     @Published public var showCorrectAnswers: Bool = false
-    public var showCorrectAnswersAt: Date?
-    public var hideCorrectAnswersAt: Date?
+    @Published public var showCorrectAnswersAt: Date?
+    @Published public var hideCorrectAnswersAt: Date?
     @Published public var oneQuestionAtaTime: Bool = false
-    public var lockQuestionAfterViewing: Bool = false
+    @Published public var lockQuestionAfterViewing: Bool = false
     @Published public var requireAccessCode: Bool = false
     @Published public var accessCode: String = ""
     @Published public var assignmentOverrides: [AssignmentOverridesEditor.Override] = []
+
+    public var availableQuizTypes = [QuizType.assignment, QuizType.practice_quiz, QuizType.graded_survey, QuizType.survey]
 
     private let quizID: String
     private var assignmentID: String?
@@ -122,7 +124,7 @@ public class QuizEditorViewModel: ObservableObject {
 
         allowMultipleAttempts = ![0, 1].contains(quiz.allowedAttempts)
         scoreToKeep = quiz.scoringPolicy
-        allowedAttempts = quiz.allowedAttempts
+        allowedAttempts = quiz.allowedAttempts < 2 ? nil : quiz.allowedAttempts
 
         seeResponses = quiz.hideResults != .always
         onlyOnceAfterEachAttempt = quiz.hideResults == .until_after_last_attempt
@@ -163,7 +165,11 @@ public class QuizEditorViewModel: ObservableObject {
 
         var allowedAttempts: Int?
         if allowMultipleAttempts {
-            allowedAttempts = self.allowedAttempts ?? -1 // default is unlimited (-1)
+            if let attempts = self.allowedAttempts, attempts > 1 {
+                allowedAttempts = attempts
+            } else {
+                allowedAttempts = -1 // default is unlimited (-1)
+            }
         } else {
             allowedAttempts = 0
         }
