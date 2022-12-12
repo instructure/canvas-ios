@@ -653,6 +653,12 @@
 "Dashboard" = "แผงข้อมูล";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "ค่าปรับตั้งแผงข้อมูล";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "ค่าปรับตั้งแผงข้อมูล";
+
+/* No comment provided by engineer. */
 "Date" = "วันที่";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "ยกเลิก %@";
+
+/* No comment provided by engineer. */
+"Display As" = "แสดงเป็น";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "แสดงเกรดเป็น";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "ค้นหารหัสเพื่อสแกน";
 
 /* No comment provided by engineer. */
+"Find another school" = "ค้นหาสถานศึกษาอื่น";
+
+/* No comment provided by engineer. */
 "Find my school" = "ค้นหาสถานศึกษาของฉัน";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "เทา";
+
+/* No comment provided by engineer. */
+"Grid" = "ตาราง";
 
 /* No comment provided by engineer. */
 "Groups" = "กลุ่ม";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "ลิงค์ไปยัง URL เว็บไซต์";
+
+/* No comment provided by engineer. */
+"List" = "รายการ";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@และ %2$@";
