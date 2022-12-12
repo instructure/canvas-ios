@@ -46,6 +46,8 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
     lazy var topics = env.subscribe(GetAnnouncements(context: context)) { [weak self] in
         self?.update()
     }
+    /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
+    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context))
 
     public static func create(context: Context) -> AnnouncementListViewController {
         let controller = loadFromStoryboard()
@@ -75,8 +77,14 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
         course?.refresh(force: true)
-        group?.refresh()
+        group?.refresh { [context, weak group, weak env] _ in
+            guard context.contextType == .group, let courseID = group?.first?.courseID else { return }
+            _ = env?.subscribe(GetEnabledFeatureFlags(context: Context.course(courseID))).refresh()
+        }
         topics.exhaust()
+        if context.contextType != .group {
+            featureFlags.refresh()
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
