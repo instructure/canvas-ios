@@ -653,6 +653,12 @@
 "Dashboard" = "Painel de controlo";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Definições do painel de instrumentos";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Definições do painel de instrumentos";
+
+/* No comment provided by engineer. */
 "Date" = "Data";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ignorar %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Mostrar como";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Mostrar nota como";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Encontre um código para digitalizar";
 
 /* No comment provided by engineer. */
+"Find another school" = "Encontrar outra escola";
+
+/* No comment provided by engineer. */
 "Find my school" = "Encontrar minha escola";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "cinza";
+
+/* No comment provided by engineer. */
+"Grid" = "Grelha";
 
 /* No comment provided by engineer. */
 "Groups" = "Grupos";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Ligação para URL do sitio web";
+
+/* No comment provided by engineer. */
+"List" = "Lista";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, e %2$@";

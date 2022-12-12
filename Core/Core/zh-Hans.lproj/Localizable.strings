@@ -653,6 +653,12 @@
 "Dashboard" = "控制面板";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "控制面板设置";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "控制面板设置";
+
+/* No comment provided by engineer. */
 "Date" = "日期";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "撤销%@";
+
+/* No comment provided by engineer. */
+"Display As" = "显示为";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "计分显示为";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "查找要扫描的代码";
 
 /* No comment provided by engineer. */
+"Find another school" = "查找其他学校";
+
+/* No comment provided by engineer. */
 "Find my school" = "查找我的学校";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "灰色";
+
+/* No comment provided by engineer. */
+"Grid" = "网格";
 
 /* No comment provided by engineer. */
 "Groups" = "小组";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "链接至网站URL";
+
+/* No comment provided by engineer. */
+"List" = "清单";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@，和%2$@";

@@ -653,6 +653,12 @@
 "Dashboard" = "Информационная панель";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Настройки панели управления";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Настройки панели управления";
+
+/* No comment provided by engineer. */
 "Date" = "Дата";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Исключить %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Отобразить как";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Отобразить оценку в виде";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Поиск кода для сканирования";
 
 /* No comment provided by engineer. */
+"Find another school" = "Найти другую школу";
+
+/* No comment provided by engineer. */
 "Find my school" = "Найти мою школу";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "серый";
+
+/* No comment provided by engineer. */
+"Grid" = "Сетка";
 
 /* No comment provided by engineer. */
 "Groups" = "Группы";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Ссылка на URL веб-сайта";
+
+/* No comment provided by engineer. */
+"List" = "Список";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, и %2$@";

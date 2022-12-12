@@ -653,6 +653,12 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Dashboard settings";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Dashboard Settings";
+
+/* No comment provided by engineer. */
 "Date" = "Date";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Dismiss %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Display As";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Display Grade as";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Find a code to scan";
 
 /* No comment provided by engineer. */
+"Find another school" = "Find another school";
+
+/* No comment provided by engineer. */
 "Find my school" = "Find my school";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "grey";
+
+/* No comment provided by engineer. */
+"Grid" = "Grid";
 
 /* No comment provided by engineer. */
 "Groups" = "Groups";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Link to Website URL";
+
+/* No comment provided by engineer. */
+"List" = "List";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, and %2$@";

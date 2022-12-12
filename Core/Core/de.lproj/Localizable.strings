@@ -653,6 +653,12 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Dashboard-Einstellungen";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Dashboard-Einstellungen";
+
+/* No comment provided by engineer. */
 "Date" = "Datum";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Verwerfen %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Anzeigen als";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Note anzeigen als";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Einen Code zum Scannen finden";
 
 /* No comment provided by engineer. */
+"Find another school" = "Eine andere Schule finden";
+
+/* No comment provided by engineer. */
 "Find my school" = "Meine Schule suchen";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "grau";
+
+/* No comment provided by engineer. */
+"Grid" = "Raster";
 
 /* No comment provided by engineer. */
 "Groups" = "Gruppen";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Link zu Website-URL";
+
+/* No comment provided by engineer. */
+"List" = "Auflisten";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, und %2$@";
