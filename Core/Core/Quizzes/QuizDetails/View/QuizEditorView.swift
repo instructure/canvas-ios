@@ -131,9 +131,11 @@ public struct QuizEditorView: View {
                     label: Text("Publish", bundle: .core),
                     value: $viewModel.published)
             }
+            if let assignmentGroup = viewModel.assignmentGroup {
+                Divider()
+                assignmentGroupRow(assignmentGroup:assignmentGroup)
+            }
             Divider()
-            // assignmentGroupRow
-            // Divider()
             ToggleRow(
                 label: Text("Shuffle Answers", bundle: .core),
                 value: $viewModel.shuffleAnswers)
@@ -278,29 +280,29 @@ public struct QuizEditorView: View {
     }
 
     @ViewBuilder
-    private var assignmentGroupRow: some View {
+    private func assignmentGroupRow(assignmentGroup: AssignmentGroup) -> some View {
         Text("Assignment Group", bundle: .core)
 
-       /* ButtonRow(action: {
+        ButtonRow(action: {
             let options = viewModel.assignmentGroups
             self.env.router.show(ItemPickerViewController.create(
-                title: NSLocalizedString("Quiz Type", comment: ""),
+                title: NSLocalizedString("Assignment Group", comment: ""),
                 sections: [ ItemPickerSection(items: options.map {
                     ItemPickerItem(title: $0.name)
                 }), ],
-                selected: options.firstIndex(of: viewModel.quizType).flatMap {
+                selected: options.firstIndex(of: assignmentGroup).flatMap {
                     IndexPath(row: $0, section: 0)
                 },
-                didSelect: { viewModel.quizType = options[$0.row] }
+                didSelect: { viewModel.assignmentGroup = options[$0.row] }
             ), from: controller)
         }, content: {
-            Text("Quiz Type", bundle: .core)
+            Text("Assignment Group", bundle: .core)
             Spacer()
-            Text(viewModel.quizType.name)
+            Text(viewModel.assignmentGroup?.name ?? "")
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
             DisclosureIndicator()
-        })*/
+        })
     }
 
     @ViewBuilder

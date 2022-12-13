@@ -42,7 +42,8 @@ public class QuizEditorViewModel: ObservableObject {
         quiz?.published == false || quiz?.unpublishable == true
     }
 
-    @Published public var assignmentGroup: String = ""
+    @Published public var assignmentGroup: AssignmentGroup?
+    @Published public var assignmentGroups: [AssignmentGroup] = []
     @Published public var shuffleAnswers: Bool = false
     @Published public var timeLimit: Bool = false
     @Published public var lengthInMinutes: Double?
@@ -74,11 +75,14 @@ public class QuizEditorViewModel: ObservableObject {
 
     func fetchQuiz() {
         let useCase = GetQuiz(courseID: courseID, quizID: quizID)
-        useCase.fetch(force: true) { [weak self] _, _, _ in
+        useCase.fetch(force: true) { [weak self] _, _, fetchError in
             guard let self = self else { return }
+            if fetchError != nil {
+                self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+            }
+
             self.quiz = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.assignmentID = self.quiz?.assignmentID
-            // alert = fetchError.map { .error($0) }
             self.fetchAssignment()
         }
     }
@@ -86,24 +90,27 @@ public class QuizEditorViewModel: ObservableObject {
     func fetchAssignment() {
         guard let assignmentID = assignmentID else { return }
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
-        useCase.fetch(force: true) { [weak self] _, _, _ in
+        useCase.fetch(force: true) { [weak self] _, _, fetchError in
             guard let self = self else { return }
+            if fetchError != nil {
+                self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+            }
+
             self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.loadAttributes()
+            self.fetchAssignmentGroups()
             self.state = .ready
-            // alert = fetchError.map { .error($0) }
         }
     }
 
     func fetchAssignmentGroups() {
-        guard let assignmentID = assignmentID else { return }
-        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
-        useCase.fetch(force: true) { [weak self] _, _, _ in
+        let useCase = GetAssignmentGroups(courseID: courseID)
+        useCase.fetch(force: true) { [weak self] _, _, fetchError in
             guard let self = self else { return }
-            self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
-            self.loadAttributes()
-            self.state = .ready
-            // alert = fetchError.map { .error($0) }
+            if fetchError != nil {
+                self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+            }
+            self.assignmentGroups = self.env.database.viewContext.fetch(scope: useCase.scope)
         }
     }
 
@@ -112,7 +119,7 @@ public class QuizEditorViewModel: ObservableObject {
 
         title = quiz.title
         description = quiz.details ?? ""
-        // TODO assignment group
+        assignmentGroup = assignment?.assignmentGroup
         quizType = quiz.quizType
         published = quiz.published
 
@@ -188,11 +195,11 @@ public class QuizEditorViewModel: ObservableObject {
             access_code: requireAccessCode ? accessCode : nil,
             published: published,
             hide_results: seeResponses ?
-                (onlyOnceAfterEachAttempt ? .until_after_last_attempt : nil)
-                : .always,
+            (onlyOnceAfterEachAttempt ? .until_after_last_attempt : nil)
+            : .always,
             show_correct_answers_at: seeResponses && showCorrectAnswers ? showCorrectAnswersAt : nil,
             hide_correct_answers_at: seeResponses && showCorrectAnswers ? hideCorrectAnswersAt : nil,
-            assignment_group_id: assignmentGroup,
+            assignment_group_id: assignmentGroup?.id,
             overrides: nil
         )
 
@@ -200,17 +207,47 @@ public class QuizEditorViewModel: ObservableObject {
             .fetch { [weak self] result, _, error in performUIUpdate {
                 guard let self = self else { return }
                 self.state = .ready
-
-                // alert = fetchError.map { .error($0) }
                 if error != nil {
                     self.state = .error(error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
                 }
                 if result != nil {
-                    // TODO Get Quiz and Assingment
-                    // GetAssignment(courseID: self.courseID, assignmentID: self.assignmentID, include: [ .overrides ])
-                       // .fetch(force: true) // updated overrides & allDates aren't in result
-                    router.dismiss(viewController)
+                    GetQuiz(courseID: self.courseID, quizID: self.quizID)
+                        .fetch(force: true)
+                    self.saveAssignment(router: router, viewController: viewController)
                 }
-            } }
+            }
+        }
+    }
+    func saveAssignment(router: Router, viewController: WeakViewController) {
+        guard let assignmentID = assignmentID, let assignment = assignment else {
+            router.dismiss(viewController)
+            return
+        }
+        let (dueAt, unlockAt, lockAt, apiOverrides) = AssignmentOverridesEditor.apiOverrides(for: assignmentID, from: assignmentOverrides)
+
+        UpdateAssignment(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            description: description,
+            dueAt: dueAt,
+            gradingType: assignment.gradingType,
+            lockAt: lockAt,
+            name: title,
+            onlyVisibleToOverrides: !assignmentOverrides.contains { $0.isEveryone },
+            overrides: apiOverrides,
+            pointsPossible: assignment.pointsPossible,
+            published: published,
+            unlockAt: unlockAt
+        ).fetch { [weak self] result, _, error in performUIUpdate {
+            guard let self = self else { return }
+            if error != nil {
+                self.state = .error(error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+            }
+            if result != nil {
+                GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: [.overrides])
+                    .fetch(force: true)
+                router.dismiss(viewController)
+            }
+        } }
     }
 }
