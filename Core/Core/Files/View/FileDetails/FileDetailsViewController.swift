@@ -185,7 +185,11 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
             invertColorsInDarkMode: true
         )
         contentView.addSubview(webView)
-        webView.pin(inside: contentView)
+        if traitCollection.userInterfaceStyle == .dark {
+            webView.pinWithThemeSwitchButton(inside: contentView)
+        } else {
+            webView.pin(inside: contentView)
+        }
         webView.linkDelegate = self
         webView.accessibilityLabel = "FileDetails.webView"
         progressView.progress = 0

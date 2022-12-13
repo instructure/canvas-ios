@@ -77,8 +77,11 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         settingsHeadingLabel.text = NSLocalizedString("Settings", comment: "")
         timeLimitLabel.text = NSLocalizedString("Time Limit:", comment: "")
 
-        instructionsContainer.addSubview(instructionsWebView)
-        instructionsWebView.pin(inside: instructionsContainer)
+        if traitCollection.userInterfaceStyle == .dark {
+            instructionsWebView.pinWithThemeSwitchButton(inside: instructionsContainer)
+        } else {
+            instructionsWebView.pin(inside: instructionsContainer)
+        }
         instructionsWebView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         instructionsWebView.autoresizesHeight = true
         instructionsWebView.scrollView.showsVerticalScrollIndicator = false
