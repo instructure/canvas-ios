@@ -653,6 +653,12 @@
 "Dashboard" = "لوحة المعلومات";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "إعدادات لوحة المعلومات";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "إعدادات لوحة المعلومات";
+
+/* No comment provided by engineer. */
 "Date" = "التاريخ";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "تجاهل %@";
+
+/* No comment provided by engineer. */
+"Display As" = "عرض كـ";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "عرض التقدير كأنه";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "ابحث عن رمز للمسح الضوئي";
 
 /* No comment provided by engineer. */
+"Find another school" = "ابحث عن مدرسة أخرى";
+
+/* No comment provided by engineer. */
 "Find my school" = "ابحث عن مدرستي";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "رمادي";
+
+/* No comment provided by engineer. */
+"Grid" = "شبكة";
 
 /* No comment provided by engineer. */
 "Groups" = "المجموعات";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "ارتباط إلى عنوان URL لموقع الويب";
+
+/* No comment provided by engineer. */
+"List" = "قائمة";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@، و %2$@";

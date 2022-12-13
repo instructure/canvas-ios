@@ -653,6 +653,12 @@
 "Dashboard" = "Översikt";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Inställningar för översikt";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Inställningar för översikt";
+
+/* No comment provided by engineer. */
 "Date" = "Datum";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Avvisa %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Visa som";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Visa bedömning som";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Sök efter en kod att skanna";
 
 /* No comment provided by engineer. */
+"Find another school" = "Hitta en annan skola";
+
+/* No comment provided by engineer. */
 "Find my school" = "Hitta min skola";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "grå";
+
+/* No comment provided by engineer. */
+"Grid" = "Rutnät";
 
 /* No comment provided by engineer. */
 "Groups" = "Grupper";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Länk till webbplatsens URL";
+
+/* No comment provided by engineer. */
+"List" = "Lista";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@ och %2$@";

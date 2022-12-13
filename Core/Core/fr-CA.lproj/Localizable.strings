@@ -653,6 +653,12 @@
 "Dashboard" = "Tableau de bord";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Paramètres du tableau de bord";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Paramètres du tableau de bord";
+
+/* No comment provided by engineer. */
 "Date" = "Date";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ignorer %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Afficher comme";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Afficher la note en tant que";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Trouver un code à numériser";
 
 /* No comment provided by engineer. */
+"Find another school" = "Chercher une autre école";
+
+/* No comment provided by engineer. */
 "Find my school" = "Trouver mon école";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "gris";
+
+/* No comment provided by engineer. */
+"Grid" = "Grille";
 
 /* No comment provided by engineer. */
 "Groups" = "Groupes";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Lien à l’URL du site Web";
+
+/* No comment provided by engineer. */
+"List" = "Liste";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, et %2$@";

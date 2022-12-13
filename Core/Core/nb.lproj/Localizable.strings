@@ -653,6 +653,12 @@
 "Dashboard" = "Dashbord";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Dashbord-innstillinger";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Dashbord-innstillinger";
+
+/* No comment provided by engineer. */
 "Date" = "Dato";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Avvise %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Vis som";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Vis vurderingen som";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Finn en skanningkode";
 
 /* No comment provided by engineer. */
+"Find another school" = "Finn en annen skole";
+
+/* No comment provided by engineer. */
 "Find my school" = "Finne skolen min";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "grå";
+
+/* No comment provided by engineer. */
+"Grid" = "Rutenett";
 
 /* No comment provided by engineer. */
 "Groups" = "Grupper";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Lenke til nettside-URL";
+
+/* No comment provided by engineer. */
+"List" = "Liste";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, og %2$@";
