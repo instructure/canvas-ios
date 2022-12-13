@@ -74,7 +74,12 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         view.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Assignment Details", comment: "")
         webViewContainer.addSubview(webView)
-        webView.pin(inside: webViewContainer)
+        if traitCollection.userInterfaceStyle == .dark {
+            webView.pinWithThemeSwitchButton(inside: webViewContainer)
+        } else {
+            webView.pin(inside: webViewContainer)
+        }
+
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self

@@ -150,7 +150,11 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
         contentHeightObs = contentHeight.observe(\.constant) { [weak self] _, _ in
             self?.heightChanged()
         }
-        webView.pin(inside: webViewContainer)
+        if traitCollection.userInterfaceStyle == .dark {
+            webView.pinWithThemeSwitchButton(inside: webViewContainer)
+        } else {
+            webView.pin(inside: webViewContainer)
+        }
 
         updateButtons()
 

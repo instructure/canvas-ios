@@ -84,11 +84,20 @@ open class CoreWebView: WKWebView {
     private let pullToRefresh: PullToRefresh
     private var pullToRefreshNavigation: WKNavigation?
 
+    private var htmlString: String?
+    private var baseURL: URL?
+
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
 
     public var isLinkNavigationEnabled = true
+    public var inverted = false {
+        didSet {
+            guard let htmlString = htmlString, let baseURL = baseURL else { return }
+            super.loadHTMLString(self.html(for: htmlString), baseURL: baseURL)
+        }
+    }
 
     public static let processPool = WKProcessPool()
 
@@ -196,6 +205,8 @@ open class CoreWebView: WKWebView {
 
     @discardableResult
     open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
+        self.htmlString = string
+        self.baseURL = baseURL
         return super.loadHTMLString(html(for: string), baseURL: baseURL)
     }
 
@@ -222,7 +233,7 @@ open class CoreWebView: WKWebView {
             >
             <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <style>\(css)</style>
-            <style>\(darkModeCss)</style>
+            <style>\(darkModeCss())</style>
             \(jquery)
             \(content)
             </html>
@@ -259,11 +270,14 @@ open class CoreWebView: WKWebView {
     }
 
     /** Enables simple dark mode support for unsupported webview pages. */
-    private var darkModeCss: String {
-        let background = UIColor.backgroundLightest.hexString(userInterfaceStyle: .light)
-        let backgroundDark = UIColor.backgroundLightest.hexString(userInterfaceStyle: .dark)
-        let foreground = UIColor.textDarkest.hexString(userInterfaceStyle: .light)
-        let foregroundDark = UIColor.textDarkest.hexString(userInterfaceStyle: .dark)
+    public func darkModeCss() -> String {
+
+        let light: UIUserInterfaceStyle = inverted ? .dark : .light
+        let dark: UIUserInterfaceStyle = inverted ? .light : .dark
+        let background = UIColor.backgroundLightest.hexString(userInterfaceStyle: light)
+        let backgroundDark = UIColor.backgroundLightest.hexString(userInterfaceStyle: dark)
+        let foreground = UIColor.textDarkest.hexString(userInterfaceStyle: light)
+        let foregroundDark = UIColor.textDarkest.hexString(userInterfaceStyle: dark)
 
            return """
                 body.dark-theme {
@@ -708,5 +722,64 @@ extension CoreWebView {
             .replacingOccurrences(of: "\"", with: "&quot;")
             .replacingOccurrences(of: "<", with: "&lt;")
             .replacingOccurrences(of: ">", with: "&gt;")
+    }
+}
+
+extension CoreWebView {
+    public func pinWithThemeSwitchButton(inside parent: UIView?, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
+
+        guard let parent = parent else { return }
+
+        let button = UIButton()
+        button.addAction(UIAction(title: "", handler: { _ in
+            button.isSelected.toggle()
+            self.inverted = button.isSelected
+        }), for: .primaryActionTriggered)
+
+        button.setTitle(NSLocalizedString("Switch To Light Mode", bundle: .core, comment: ""), for: .normal)
+        button.setTitle(NSLocalizedString("Switch To Dark Mode", bundle: .core, comment: ""), for: .selected)
+        if #available(iOS 15.0, *) {
+            var config = UIButton.Configuration.borderedProminent()
+            config.cornerStyle = .capsule
+            config.background.strokeWidth = 1.0
+            config.image = UIImage(named: "unionLine", in: .core, with: .none)
+            config.imagePadding = 9.5
+            config.imagePlacement = .leading
+            config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .medium)
+            button.configuration = config
+            button.configurationUpdateHandler = { button in
+                var config = button.configuration
+                let style: UIUserInterfaceStyle = button.isSelected ? .light : .dark
+                let traitCollection = UITraitCollection(userInterfaceStyle: style)
+                config?.background.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
+                config?.background.strokeColor = .borderDarkest.resolvedColor(with: traitCollection)
+                config?.baseForegroundColor = .textDarkest.resolvedColor(with: traitCollection)
+                button.configuration = config
+                button.superview?.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
+            }
+        }
+
+        button.heightAnchor.constraint(equalToConstant: 38).isActive = true
+        parent.addSubview(button)
+
+        translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: 16).isActive = true
+        button.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -16).isActive = true
+        button.topAnchor.constraint(equalTo: parent.topAnchor, constant: 16).isActive = true
+        button.bottomAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+
+        if let leading = leading {
+            leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: leading).isActive = true
+        }
+        if let trailing = trailing {
+            parent.trailingAnchor.constraint(equalTo: trailingAnchor, constant: trailing).isActive = true
+        }
+        if let top = top {
+            topAnchor.constraint(equalTo: button.bottomAnchor, constant: top).isActive = true
+        }
+        if let bottom = bottom {
+            parent.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bottom).isActive = true
+        }
     }
 }

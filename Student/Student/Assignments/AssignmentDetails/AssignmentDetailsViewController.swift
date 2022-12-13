@@ -26,7 +26,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var statusLabel: UILabel?
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
-    @IBOutlet weak var descriptionView: CoreWebView?
+    @IBOutlet weak var descriptionView: UIView?
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var submissionButtonView: UIView?
@@ -86,6 +86,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
+    private let webView = CoreWebView(pullToRefresh: .disabled)
 
     static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
@@ -145,7 +146,16 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         lockedIconImageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
 
         // Routing from description
-        descriptionView?.linkDelegate = self
+        webView.linkDelegate = self
+        webView.autoresizesHeight = true
+        webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        webView.configuration.mediaTypesRequiringUserActionForPlayback = .all
+        descriptionView?.addSubview(webView)
+        if traitCollection.userInterfaceStyle == .dark {
+            webView.pinWithThemeSwitchButton(inside: descriptionView)
+        } else {
+            webView.pin(inside: descriptionView)
+        }
 
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
@@ -293,7 +303,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
-        descriptionView?.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
+        webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
         updateGradeCell(assignment)
 
         guard let presenter = presenter else { return }

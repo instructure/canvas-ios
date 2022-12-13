@@ -67,7 +67,11 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
         updateNavBar(subtitle: nil, color: ColorScheme.observee(studentID).color)
         webViewContainer.addSubview(webView)
-        webView.pin(inside: webViewContainer)
+        if traitCollection.userInterfaceStyle == .dark {
+            webView.pinWithThemeSwitchButton(inside: webViewContainer)
+        } else {
+            webView.pin(inside: webViewContainer)
+        }
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self

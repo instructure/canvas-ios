@@ -51,7 +51,11 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         webViewContainer.addSubview(webView)
-        webView.pin(inside: webViewContainer)
+        if traitCollection.userInterfaceStyle == .dark {
+            webView.pinWithThemeSwitchButton(inside: webViewContainer)
+        } else {
+            webView.pin(inside: webViewContainer)
+        }
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self
