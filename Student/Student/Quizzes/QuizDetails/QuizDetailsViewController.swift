@@ -77,6 +77,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         settingsHeadingLabel.text = NSLocalizedString("Settings", comment: "")
         timeLimitLabel.text = NSLocalizedString("Time Limit:", comment: "")
 
+        instructionsContainer.addSubview(instructionsWebView)
         if traitCollection.userInterfaceStyle == .dark {
             instructionsWebView.pinWithThemeSwitchButton(inside: instructionsContainer)
         } else {
