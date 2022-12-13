@@ -2724,6 +2724,7 @@
 /* Begin PBXFileReference section */
 <<<<<<< master
 <<<<<<< master
+<<<<<<< master
 		180BC2536A70738540E5EE74 /* Pods_needs_pspdfkit_CoreTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_CoreTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD6D7F6C2DD1E2A87C8C4B3 /* Pods-needs-pspdfkit-Core.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.debug.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.debug.xcconfig"; sourceTree = "<group>"; };
 		2C96482E211E2F1A002C3255 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4293,6 +4294,8 @@
 =======
 =======
 >>>>>>> fix: rebase
+=======
+>>>>>>> fix: rebase
 		00140FF35A92E3E70B878F54 /* IndeterminateBarProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateBarProgressViewStyle.swift; sourceTree = "<group>"; };
 		006230529F7A3678612DF75F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00721EAAEFDE8E7878ACF807 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -4540,6 +4543,7 @@
 		283FD1E3FABC64568EF817A5 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		28546C710BBAC69F915807FE /* PagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewController.swift; sourceTree = "<group>"; };
 		2858B24252EB6316A27D3CD9 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		287348DA38B689B65682D50F /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Main.strings; sourceTree = "<group>"; };
 		28F6A7D7490A3EF76B8248B5 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		291D11D1AD4CCB7DC634A56C /* GetContextUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsers.swift; sourceTree = "<group>"; };
 		29312F9AEDF8DDC977CF3A7D /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
@@ -4962,6 +4966,7 @@
 		6E6CB3450750735DA3EE36AE /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
 		6E723604B2E372EEC1CF6547 /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
 		6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardGradesView.swift; sourceTree = "<group>"; };
+		6EC38E89E0E732498859023F /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ms; path = ms.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		6F6012DE1B09168E3F4EEEF3 /* GetCalendarEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEventsTests.swift; sourceTree = "<group>"; };
 		7025C4156CC99A1BF6E168DF /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
@@ -5712,6 +5717,7 @@
 		F1D13F31C6A0DC4363C33803 /* DeveloperMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperMenuViewController.swift; sourceTree = "<group>"; };
 		F1F0DD981A30F2F8DEF4E68D /* CommentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentListViewController.storyboard; sourceTree = "<group>"; };
 		F204DF58FFDBC693122A6A87 /* ContextCardSubmissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardSubmissionRow.swift; sourceTree = "<group>"; };
+		F2154C41361DA907FDA44279 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F242FFBE0F4CBB937176251E /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		F250FE3ADF40066E7F02A8BF /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Main.strings; sourceTree = "<group>"; };
 		F2A7BDC4BF5DDF876A39BBC7 /* AssignmentCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -5754,6 +5760,7 @@
 		F91E3331B95E2CDBFED041C9 /* ConferenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCard.swift; sourceTree = "<group>"; };
 		F94D19A71DAE64D32998FA3B /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		FA09177DD49B46FB2B46FDFF /* APIAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignment.swift; sourceTree = "<group>"; };
+		FA4B351B91F936B70CB8EB19 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FB0A8E53BEBDDB1DA898D4C7 /* DeterminateBarProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateBarProgressViewStyle.swift; sourceTree = "<group>"; };
 		FB1A0625655D64F9D05DD9B7 /* GetModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetModules.swift; sourceTree = "<group>"; };
 		FB2F588163EE891A3EB74237 /* AppEnvironmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironmentTests.swift; sourceTree = "<group>"; };
@@ -10288,6 +10295,7 @@
 				it,
 				ja,
 				mi,
+				ms,
 				nb,
 				"nb-instk12",
 				nl,
@@ -10304,12 +10312,6 @@
 				"zh-HK",
 				"zh-Hans",
 				"zh-Hant",
-<<<<<<< master
-				"es-ES",
-				vi,
-				ms,
-=======
->>>>>>> wip: xcodegen for Core and TestsFoundation
 			);
 			mainGroup = 62824534F75515F48E8114A7;
 			packageReferences = (
@@ -12971,6 +12973,7 @@
 				FD6040583FD9FF89CCCCAE26 /* it */,
 				842B2B755A34B223BD4A59D3 /* ja */,
 				1A1E5AEF05ACD756DFF27C43 /* mi */,
+				287348DA38B689B65682D50F /* ms */,
 				3EF03DDFE0AB4DD470B66062 /* nb */,
 				02E876C2D84A36BB23B370C3 /* nb-instk12 */,
 				DC225C7C033080FC29539791 /* nl */,
@@ -12994,49 +12997,7 @@
 		404A0ABC030ED95340B0F8AB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-<<<<<<< master
-				5BA4695A261AEDBA00A3BFF6 /* ar */,
-				5BE56B4B261AEDBE0013BAD0 /* ca */,
-				5B0AC7FA261AEDC100B207D1 /* cy */,
-				5B189D71261AEDC400306249 /* da-instk12 */,
-				5B1DDCE9261AEDC800319AAF /* da */,
-				5B22A078261AEDCB00700284 /* de */,
-				5B27A7DC261AEDCE009916AD /* en-AU-unimelb */,
-				5B2C33D9261AEDD2009E2471 /* en-AU */,
-				5B31E12C261AEDD500D53767 /* en-CA */,
-				5B3667FF261AEDD900320A4C /* en-CY */,
-				5B3BA8E6261AEDDC00082406 /* en-GB */,
-				5B40A835261AEDE000FA65E1 /* es */,
-				5B457783261AEDE3005A40A0 /* fi */,
-				5B4A3B3A261AEDE600005BDC /* fr-CA */,
-				5B4F0E0B261AEDEA00B88972 /* fr */,
-				5B540F80261AEDED00BA7D51 /* ht */,
-				5B5A2CDE261AEDF00086B3B2 /* is */,
-				5B5F016C261AEDF40057557B /* it */,
-				5B64E1E9261AEDF7008A0DEA /* ja */,
-				5B6934DB261AEDFA000B05E7 /* mi */,
-				5B6EDA83261AEDFE00D5F231 /* nb-instk12 */,
-				5B73CA75261AEE0100FC6987 /* nb */,
-				5B786AC1261AEE04002AACD6 /* nl */,
-				5B7DC84B261AEE08000E6291 /* pl */,
-				5B82DA19261AEE0B0068F0C0 /* pt-BR */,
-				5B87AA5F261AEE0E00FA2BB6 /* pt */,
-				5B8C577A261AEE120055FE62 /* ru */,
-				5B91FE44261AEE1500421AB8 /* sl */,
-				5B96A1A4261AEE1800D657B2 /* sv-instk12 */,
-				5B9BAA7D261AEE1B0001676C /* sv */,
-				5BA069CC261AEE1F006FBFAA /* zh-HK */,
-				5BA5F7E5261AEE23009F0930 /* zh */,
-				5BA548742689AC1A00091EB3 /* th */,
-				5B58009C271D53AC00A70F30 /* en-GB-instukhe */,
-				5B1C45BD271D53E300656E9E /* zh-Hans */,
-				5B215645271D53E500BFBB1F /* zh-Hant */,
-				5B198D49272FC8F900EF0863 /* es-ES */,
-				5B4F6D1927B0FC7A00F96A05 /* vi */,
-				5BCDC659293DCFDF00E5663E /* ms */,
-=======
 				268E2B0799616F62392B4369 /* Base */,
->>>>>>> wip: xcodegen for Core and TestsFoundation
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -13052,48 +13013,6 @@
 		5BE256058EE88ED0B3E34BC4 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
-<<<<<<< master
-				7DCF1ECD216BFE5D003AF358 /* en */,
-				5BF786B1218599B700471A5F /* ar */,
-				5B03050D218599BF00B3C13E /* cy */,
-				5B0FFB0E218599C7009BBCB5 /* da */,
-				5B1B7E93218599CF00B89833 /* de */,
-				5B27C4DA218599D700AE6206 /* en-AU */,
-				5B330398218599E000BCBE02 /* en-GB */,
-				5B3FC6B0218599E9005E5BEC /* es */,
-				5B4B0DB0218599F30050DB08 /* fr */,
-				5B57FEDE218599FD00569E4C /* fr-CA */,
-				5B6308D721859A080035CFF0 /* ht */,
-				5B6FB7FE21859A12008AAA76 /* ja */,
-				5B7B202121859A1D009B0ACE /* mi */,
-				5B877F3021859A27001EC446 /* nb */,
-				5B93DA1D21859A3400143950 /* nl */,
-				5B9F3E1621859A3E007CADA8 /* pl */,
-				5BAB30BD21859A4B0054CBFE /* pt */,
-				5BB8312B21859A58006FA5F1 /* pt-BR */,
-				5BC4968B21859A640016387F /* ru */,
-				5BD00C2E21859A7100C3B471 /* sv */,
-				5BDC1EBB21859A7F0043462D /* zh */,
-				5BE8A1C721859A8C00D6247B /* zh-HK */,
-				5BFDE65421BCF6CA00040DF2 /* en-CY */,
-				5B7090E322193FC900DBD2C6 /* da-instk12 */,
-				5BF5F6B122194009000805EE /* nb-instk12 */,
-				5B4DBA5B221940340047F3A2 /* sv-instk12 */,
-				5B8769F422ACE7AE005AE7A0 /* fi */,
-				5BCDCB5122BD69AF00638ED0 /* sl */,
-				7D846E1F22BD775200B7FA62 /* en-AU-unimelb */,
-				5B82DB1E240B95F3000625B7 /* is */,
-				5B4761B92427451D00FDD381 /* en-CA */,
-				5BDEF95724307FE50095367F /* ca */,
-				5BAE7FF5243080420020997A /* it */,
-				5BA548772689AC1A00091EB3 /* th */,
-				5B58009A271D53AC00A70F30 /* en-GB-instukhe */,
-				5B1C45BA271D53E300656E9E /* zh-Hans */,
-				5B215642271D53E500BFBB1F /* zh-Hant */,
-				5B198D46272FC8F900EF0863 /* es-ES */,
-				5B4F6D1627B0FC7A00F96A05 /* vi */,
-				5BCDC656293DCFDF00E5663E /* ms */,
-=======
 				3F5F8A824539B9C937DC4DD6 /* ar */,
 				9A417B8725ADFEF6B2BC06FD /* Base */,
 				3E6A923226385094747AF5EB /* ca */,
@@ -13118,6 +13037,7 @@
 				D4729074DFC6B765A51A3379 /* it */,
 				1A6C43CF1411D1E789AC0A82 /* ja */,
 				8D0C45EE324856BC40A37C1F /* mi */,
+				6EC38E89E0E732498859023F /* ms */,
 				7989255C622B088A033E5F2E /* nb */,
 				6C5597E039A9ED8337294E82 /* nb-instk12 */,
 				757F1DE3CF0FFF2EF5067328 /* nl */,
@@ -13134,7 +13054,6 @@
 				2D3018A2A850C1B54ED3BF7C /* zh-Hans */,
 				05D9A2CB10A764459F85F1B9 /* zh-Hant */,
 				315AACA83D08A8D216329F65 /* zh-HK */,
->>>>>>> wip: xcodegen for Core and TestsFoundation
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -13175,48 +13094,6 @@
 		A2FFA255DB904475F0E202DE /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-<<<<<<< master
-				7DCF1ED0216BFE61003AF358 /* en */,
-				5BF786AA218599B600471A5F /* ar */,
-				5B03050C218599BE00B3C13E /* cy */,
-				5B0FFB0C218599C6009BBCB5 /* da */,
-				5B1B7E91218599CF00B89833 /* de */,
-				5B27C4DD218599D700AE6206 /* en-AU */,
-				5B330397218599E000BCBE02 /* en-GB */,
-				5B3FC6B3218599EA005E5BEC /* es */,
-				5B4B0DAF218599F30050DB08 /* fr */,
-				5B57FEE1218599FD00569E4C /* fr-CA */,
-				5B6308D521859A080035CFF0 /* ht */,
-				5B6FB7FD21859A12008AAA76 /* ja */,
-				5B7B201E21859A1C009B0ACE /* mi */,
-				5B877F2F21859A27001EC446 /* nb */,
-				5B93DA1A21859A3300143950 /* nl */,
-				5B9F3E1921859A3F007CADA8 /* pl */,
-				5BAB30BA21859A4B0054CBFE /* pt */,
-				5BB8312821859A57006FA5F1 /* pt-BR */,
-				5BC4968921859A640016387F /* ru */,
-				5BD00C2B21859A7100C3B471 /* sv */,
-				5BDC1EB821859A7E0043462D /* zh */,
-				5BE8A1C421859A8B00D6247B /* zh-HK */,
-				5BFDE65521BCF6CA00040DF2 /* en-CY */,
-				5B7090E422193FC900DBD2C6 /* da-instk12 */,
-				5BF5F6B222194009000805EE /* nb-instk12 */,
-				5B4DBA5C221940340047F3A2 /* sv-instk12 */,
-				5B8769F322ACE7AE005AE7A0 /* fi */,
-				5BCDCB5022BD69AF00638ED0 /* sl */,
-				7D846E1E22BD775200B7FA62 /* en-AU-unimelb */,
-				5B82DB1D240B95F3000625B7 /* is */,
-				5B4761B82427451D00FDD381 /* en-CA */,
-				5BDEF95624307FE50095367F /* ca */,
-				5BAE7FF4243080420020997A /* it */,
-				5BA548762689AC1A00091EB3 /* th */,
-				5B58009B271D53AC00A70F30 /* en-GB-instukhe */,
-				5B1C45BB271D53E300656E9E /* zh-Hans */,
-				5B215643271D53E500BFBB1F /* zh-Hant */,
-				5B198D47272FC8F900EF0863 /* es-ES */,
-				5B4F6D1727B0FC7A00F96A05 /* vi */,
-				5BCDC657293DCFDF00E5663E /* ms */,
-=======
 				EF326E8AEEA118B7E35216A8 /* ar */,
 				1E938E6861DC2E7B3BFC0BC7 /* Base */,
 				E8536FDDD5379C0707E3F19B /* ca */,
@@ -13240,6 +13117,7 @@
 				7BCDBE9CFE40C51505056A3C /* it */,
 				B72BF0759F4E4DB36EEB870C /* ja */,
 				2601F05DDC36951B500F4A8D /* mi */,
+				F2154C41361DA907FDA44279 /* ms */,
 				A4EE905F8704D81DC37F88CA /* nb */,
 				4A0E5276888D4098DA61AF12 /* nb-instk12 */,
 				29965D7D3CDB207AC040384D /* nl */,
@@ -13256,7 +13134,6 @@
 				6480F6D4D36DE9BF300EEBEA /* zh-Hans */,
 				63F33040E7334745D828964F /* zh-Hant */,
 				CAA7C8E5CF80AE39D0AF070D /* zh-HK */,
->>>>>>> wip: xcodegen for Core and TestsFoundation
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -13264,48 +13141,6 @@
 		ECB8396D83CAFEFE2E18CBB7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-<<<<<<< master
-				DFE1FF2C212F69B3003F27AA /* Base */,
-				7D349C352143090C004C1074 /* da-instk12 */,
-				7D349C3721430929004C1074 /* en-GB-instukhe */,
-				7D349C3921430937004C1074 /* nb-instk12 */,
-				7D349C3B21430948004C1074 /* sv-instk12 */,
-				5BF786AB218599B600471A5F /* ar */,
-				5B03050B218599BE00B3C13E /* cy */,
-				5B0FFB0B218599C6009BBCB5 /* da */,
-				5B1B7E90218599CE00B89833 /* de */,
-				5B27C4DE218599D800AE6206 /* en-AU */,
-				5B330399218599E000BCBE02 /* en-GB */,
-				5B3FC6B4218599EA005E5BEC /* es */,
-				5B4B0DB1218599F30050DB08 /* fr */,
-				5B57FEE2218599FE00569E4C /* fr-CA */,
-				5B6308D421859A070035CFF0 /* ht */,
-				5B6FB7FF21859A12008AAA76 /* ja */,
-				5B7B201F21859A1D009B0ACE /* mi */,
-				5B877F3121859A28001EC446 /* nb */,
-				5B93DA1B21859A3300143950 /* nl */,
-				5B9F3E1A21859A3F007CADA8 /* pl */,
-				5BAB30BB21859A4B0054CBFE /* pt */,
-				5BB8312921859A57006FA5F1 /* pt-BR */,
-				5BC4968721859A630016387F /* ru */,
-				5BD00C2C21859A7100C3B471 /* sv */,
-				5BDC1EB921859A7E0043462D /* zh */,
-				5BE8A1C521859A8C00D6247B /* zh-HK */,
-				5BFDE65621BCF6CA00040DF2 /* en-CY */,
-				5B8769F522ACE7AE005AE7A0 /* fi */,
-				5BCDCB5222BD69AF00638ED0 /* sl */,
-				7D846E2022BD775200B7FA62 /* en-AU-unimelb */,
-				5B82DB1F240B95F3000625B7 /* is */,
-				5B4761BA2427451D00FDD381 /* en-CA */,
-				5BDEF95824307FE50095367F /* ca */,
-				5BAE7FF6243080420020997A /* it */,
-				5BA548752689AC1A00091EB3 /* th */,
-				5B1C45BC271D53E300656E9E /* zh-Hans */,
-				5B215644271D53E500BFBB1F /* zh-Hant */,
-				5B198D48272FC8F900EF0863 /* es-ES */,
-				5B4F6D1827B0FC7A00F96A05 /* vi */,
-				5BCDC658293DCFDF00E5663E /* ms */,
-=======
 				EFC72702F5DD2B44CA0D92C8 /* ar */,
 				08CB3C69BA4A0A2AAA25F0C3 /* Base */,
 				1926552C706DD697F6BBB148 /* cy */,
@@ -13328,7 +13163,6 @@
 				97DE9A64E121A137BDD35711 /* sv */,
 				342C00F72AA3B57C19B51CC2 /* zh */,
 				E544A3145A9D3918FB567CB8 /* zh-HK */,
->>>>>>> wip: xcodegen for Core and TestsFoundation
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -13360,6 +13194,7 @@
 				4BF8139D888212DC95299155 /* it */,
 				5B878EA66F93E010B99D7726 /* ja */,
 				EE651D15B6DEC8842D401109 /* mi */,
+				FA4B351B91F936B70CB8EB19 /* ms */,
 				60C445EEE70BB5EB4E417AF5 /* nb */,
 				759681D7A08414DDA0ECE61F /* nb-instk12 */,
 				2CC98BEC46F5FCBCC5ED85DC /* nl */,
