@@ -653,6 +653,12 @@
 "Dashboard" = "ダッシュボード";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "ダッシュボードの設定";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "ダッシュボードの設定";
+
+/* No comment provided by engineer. */
 "Date" = "日付";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "取り下げる%@";
+
+/* No comment provided by engineer. */
+"Display As" = "表示方法";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "評定の表示方法";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "スキャンするコードを探す";
 
 /* No comment provided by engineer. */
+"Find another school" = "別の学校を探す";
+
+/* No comment provided by engineer. */
 "Find my school" = "私の学校を探す";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "グレー";
+
+/* No comment provided by engineer. */
+"Grid" = "グリッド";
 
 /* No comment provided by engineer. */
 "Groups" = "グループ";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "ウェブURLへのリンク";
+
+/* No comment provided by engineer. */
+"List" = "リスト";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@と%2$@";

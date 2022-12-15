@@ -103,6 +103,27 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
     }
 
+    func testNativeGroupDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is DiscussionDetailsViewController)
+    }
+
+    func testHybridGroupDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        let group = Group(context: AppEnvironment.shared.database.viewContext)
+        group.id = "2"
+        group.courseID = "2"
+
+        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
+        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
+    }
+
     // MARK: - K5 / non-K5 course detail route logic tests
 
     func testK5SubjectViewRoute() {

@@ -1,0 +1,15 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Kepilkan foto dan video pada mesej dan siaran perbincangan atau hantar sebagai serahan tugasan.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Kepilkan rakaman video pada mesej dan siaran perbincangan atau hantar sebagai serahan tugasan.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Kepilkan foto dan video pada mesej dan siaran perbincangan atau hantar sebagai serahan tugasan.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Kepilkan foto dan video pada mesej dan siaran perbincangan atau hantar sebagai serahan tugasan.";
+

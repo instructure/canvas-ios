@@ -653,6 +653,12 @@
 "Dashboard" = "Skjáborð";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Stillingar Skjáborðs";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Stillingar Skjáborðs";
+
+/* No comment provided by engineer. */
 "Date" = "Dagsetning";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Sleppa %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Sýna sem";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Sýna einkunn sem";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Finndu kóða til að skanna";
 
 /* No comment provided by engineer. */
+"Find another school" = "Finna annan skóla";
+
+/* No comment provided by engineer. */
 "Find my school" = "Finna skólann minn";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "grátt";
+
+/* No comment provided by engineer. */
+"Grid" = "Hnitanet";
 
 /* No comment provided by engineer. */
 "Groups" = "Hópar";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Tengill á vefslóð vefsíðu";
+
+/* No comment provided by engineer. */
+"List" = "Listi";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, og %2$@";

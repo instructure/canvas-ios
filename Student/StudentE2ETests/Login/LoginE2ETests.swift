@@ -136,10 +136,10 @@ class LoginE2ETests: CoreUITestCase {
             ])
         }
 
-        LoginStart.findSchoolButton.waitToExist()
-        XCTAssertEqual(LoginStart.findSchoolButton.label(), "Log In")
+        LoginStart.lastLoginButton.waitToExist()
+        XCTAssertEqual(LoginStart.lastLoginButton.label(), "Log In")
         XCTAssertFalse(LoginStart.canvasNetworkButton.isVisible)
-        LoginStart.findSchoolButton.tap()
+        LoginStart.lastLoginButton.tap()
 
         LoginWeb.emailField.typeText(user.username)
         LoginWeb.passwordField.typeText(user.password)

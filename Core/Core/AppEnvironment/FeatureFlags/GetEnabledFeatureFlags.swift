@@ -24,9 +24,16 @@ public class GetEnabledFeatureFlags: CollectionUseCase {
     public let context: Context
 
     public var scope: Scope {
-        let context = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
-        let enabled = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.enabled))
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [context, enabled])
+        let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
+        let enabledPredicate = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.enabled))
+        let environmentFlagPredicate = NSPredicate(format: "%K == false", #keyPath(FeatureFlag.isEnvironmentFlag))
+        let predicate = NSCompoundPredicate(
+            andPredicateWithSubpredicates: [
+                contextPredicate,
+                enabledPredicate,
+                environmentFlagPredicate,
+            ]
+        )
         return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])
     }
 
@@ -44,15 +51,14 @@ public class GetEnabledFeatureFlags: CollectionUseCase {
 
     public func write(response: [String]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        for name in response {
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), context.canvasContextID),
-                NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.name), name),
-            ])
-            let flag: FeatureFlag = client.fetch(predicate).first ?? client.insert()
-            flag.name = name
-            flag.context = context
-            flag.enabled = true
+        for key in response {
+            let apiFeatureFlag = APIFeatureFlag(
+                key: key,
+                isEnabled: true,
+                canvasContextID: context.canvasContextID,
+                isEnvironmentFlag: false
+            )
+            FeatureFlag.save(apiFeatureFlag, in: client)
         }
     }
 }

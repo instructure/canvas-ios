@@ -387,6 +387,7 @@
     <entity name="FeatureFlag" representedClassName="Core.FeatureFlag" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
         <attribute name="enabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isEnvironmentFlag" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="File" representedClassName="Core.File" syncable="YES">

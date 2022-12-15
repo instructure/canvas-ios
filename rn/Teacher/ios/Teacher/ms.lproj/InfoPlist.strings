@@ -1,0 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Guru";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Kepilkan foto dan video pada komen serahan.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Kepilkan rakaman audio pada komen serahan.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Kepilkan foto dan video pada komen serahan.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Muat naik kandungan ke kursus.";
+

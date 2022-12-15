@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d Replies</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@replies@</string>
+		<key>replies</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d Balasan</string>
+		</dict>
+	</dict>
+	<key>%d Unread</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@unread@</string>
+		<key>unread</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d Belum dibaca</string>
+		</dict>
+	</dict>
+	<key>%d sections</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@sections@</string>
+		<key>sections</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d seksyen</string>
+		</dict>
+	</dict>
+	<key>%d students</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@students@</string>
+		<key>students</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d pelajar</string>
+		</dict>
+	</dict>
+	<key>%g pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>%g mata</string>
+		</dict>
+	</dict>
+	<key>conversation_recipients_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@audience_size@</string>
+		<key>audience_size</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d yang lain</string>
+		</dict>
+	</dict>
+	<key>conversation_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@message_count@</string>
+		<key>message_count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d perbualan belum dibaca</string>
+		</dict>
+	</dict>
+	<key>d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@events@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d acara</string>
+		</dict>
+	</dict>
+	<key>d_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d item</string>
+		</dict>
+	</dict>
+	<key>d_likes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@likes@</string>
+		<key>likes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d like</string>
+		</dict>
+	</dict>
+	<key>d_needs_grading</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@needs_grading@</string>
+		<key>needs_grading</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d memerlukan penggredan</string>
+		</dict>
+	</dict>
+	<key>d_options</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@options@</string>
+		<key>options</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d Pilihan</string>
+		</dict>
+	</dict>
+	<key>d_questions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@questions@</string>
+		<key>questions</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d Soalan</string>
+		</dict>
+	</dict>
+	<key>date_d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@, %#@events@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d acara</string>
+		</dict>
+	</dict>
+	<key>filter_events_d_calendars_selected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Tapis acara, %#@calendars@</string>
+		<key>calendars</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d kalendar dipilih</string>
+		</dict>
+	</dict>
+	<key>final_grade_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Gred Akhir: %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>%g mata</string>
+		</dict>
+	</dict>
+	<key>g_out_of_g_points_possible</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Memperoleh skor %g daripada %#@points@ mungkin</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>%g mata</string>
+		</dict>
+	</dict>
+	<key>g_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>%g mata</string>
+		</dict>
+	</dict>
+	<key>g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>%g mata</string>
+		</dict>
+	</dict>
+	<key>hide_%d_missing_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@hide_missing_items@</string>
+		<key>hide_missing_items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Sembunyikan %d item yang tiada</string>
+		</dict>
+	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+		</dict>
+	</dict>
+	<key>late_penalty_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Denda lewat (%#@points@)</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>%g mata</string>
+		</dict>
+	</dict>
+	<key>out_of_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Daripada %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>%g mata</string>
+		</dict>
+	</dict>
+	<key>plural_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>other</key>
+			<string>Mata</string>
+		</dict>
+	</dict>
+	<key>show_%d_missing_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@show_missing_items@</string>
+		<key>show_missing_items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Tunjukkan %d item yang tiada</string>
+		</dict>
+	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+		</dict>
+	</dict>
+	<key>there_are_d_assignees_without_grades</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@without_grades@</string>
+		<key>without_grades</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Terdapat %d penerima tugasan tanpa gred.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Please use %2$@ file extensions.</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
