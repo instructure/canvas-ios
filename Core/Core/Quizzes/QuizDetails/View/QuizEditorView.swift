@@ -75,13 +75,15 @@ public struct QuizEditorView: View {
 
     var form: some View {
         EditorForm(isSpinning: viewModel.state != .ready) {
-            titleSection
-            basicSettingsSection
-            attemptsSection
-            responsesSection
-            oneQuestionSection
-            accessCodeSection
-            assignmentOverridesSection
+            if viewModel.state != .loading {
+                titleSection
+                basicSettingsSection
+                attemptsSection
+                responsesSection
+                oneQuestionSection
+                accessCodeSection
+                assignmentOverridesSection
+            }des
         }
     }
 
