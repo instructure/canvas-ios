@@ -83,7 +83,7 @@ public struct QuizEditorView: View {
                 oneQuestionSection
                 accessCodeSection
                 assignmentOverridesSection
-            }des
+            }
         }
     }
 
