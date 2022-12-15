@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -765,6 +765,7 @@
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
         <attribute name="mobileURL" attributeType="URI"/>
         <attribute name="oneQuestionAtATime" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="oneTimeResults" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="order" optional="YES" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="published" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -980,79 +981,4 @@
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <elements>
-        <element name="AccountNotification" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
-        <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="824"/>
-        <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="149"/>
-        <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="AssignmentOverride" positionX="-540" positionY="-18" width="128" height="193"/>
-        <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="254"/>
-        <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Conference" positionX="-540" positionY="-18" width="128" height="298"/>
-        <element name="ConferenceRecording" positionX="-531" positionY="-9" width="128" height="148"/>
-        <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="118"/>
-        <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
-        <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
-        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="449"/>
-        <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="163"/>
-        <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
-        <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="254"/>
-        <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
-        <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
-        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="404"/>
-        <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
-        <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="688"/>
-        <element name="FileSubmission" positionX="-549" positionY="-18" width="128" height="149"/>
-        <element name="FileUploadItem" positionX="160" positionY="192" width="128" height="149"/>
-        <element name="Folder" positionX="-540" positionY="-18" width="128" height="328"/>
-        <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
-        <element name="Grade" positionX="-540" positionY="-18" width="128" height="163"/>
-        <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="148"/>
-        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="224"/>
-        <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
-        <element name="K5HomeroomDueItemCount" positionX="-540" positionY="-18" width="128" height="73"/>
-        <element name="K5HomeroomMissingSubmissionsCount" positionX="-531" positionY="-9" width="128" height="73"/>
-        <element name="LatestAnnouncement" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
-        <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="148"/>
-        <element name="MasteryPathAssignmentSet" positionX="-531" positionY="-9" width="128" height="103"/>
-        <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="178"/>
-        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="358"/>
-        <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="ModuleItemSequenceNode" positionX="-540" positionY="-18" width="128" height="118"/>
-        <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
-        <element name="ObserverAlert" positionX="-540" positionY="-18" width="128" height="209"/>
-        <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
-        <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1079"/>
-        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
-        <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
-        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="599"/>
-        <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
-        <element name="Rubric" positionX="-540" positionY="-27" width="128" height="178"/>
-        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
-        <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="133"/>
-        <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="628"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="283"/>
-        <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
-        <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
-        <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="179"/>
-        <element name="Todo" positionX="-540" positionY="-18" width="128" height="164"/>
-        <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
-        <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
-        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="28"/>
-        <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-    </elements>
 </model>

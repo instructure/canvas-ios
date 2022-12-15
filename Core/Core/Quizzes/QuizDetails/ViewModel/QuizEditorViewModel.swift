@@ -52,7 +52,9 @@ public class QuizEditorViewModel: ObservableObject {
     @Published public var allowedAttempts: Int?
     @Published public var seeResponses: Bool = false
     @Published public var onlyOnceAfterEachAttempt: Bool = false
+    @Published public var onlyAfterLastAttempt: Bool = false
     @Published public var showCorrectAnswers: Bool = false
+    @Published public var showCorrectAnswersLastAttempt: Bool = false
     @Published public var showCorrectAnswersAt: Date?
     @Published public var hideCorrectAnswersAt: Date?
     @Published public var oneQuestionAtaTime: Bool = false
@@ -65,7 +67,7 @@ public class QuizEditorViewModel: ObservableObject {
 
     private let quizID: String
     private var assignmentID: String?
-    public var quiz: Quiz?
+    private var quiz: Quiz?
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -129,16 +131,19 @@ public class QuizEditorViewModel: ObservableObject {
             lengthInMinutes = timeLimit
         }
 
+        /* Scoring policy only registers on the API, if alloweed attempts > 1 */
         allowMultipleAttempts = ![0, 1].contains(quiz.allowedAttempts)
         scoreToKeep = quiz.scoringPolicy
         allowedAttempts = quiz.allowedAttempts < 2 ? nil : quiz.allowedAttempts
 
         seeResponses = quiz.hideResults != .always
-        onlyOnceAfterEachAttempt = quiz.hideResults == .until_after_last_attempt
+        onlyAfterLastAttempt = quiz.hideResults == .until_after_last_attempt
         showCorrectAnswers = quiz.showCorrectAnswers
+        showCorrectAnswersLastAttempt = quiz.showCorrectAnswersLastAttempt
         showCorrectAnswersAt = quiz.showCorrectAnswersAt
         hideCorrectAnswersAt = quiz.hideCorrectAnswersAt
         oneQuestionAtaTime = quiz.oneQuestionAtATime
+        onlyOnceAfterEachAttempt = quiz.oneTimeResults
         lockQuestionAfterViewing = quiz.cantGoBack
         requireAccessCode = quiz.hasAccessCode
         accessCode = quiz.accessCode ?? ""
@@ -160,8 +165,6 @@ public class QuizEditorViewModel: ObservableObject {
             state = .error(NSLocalizedString("You must enter an access code", comment: ""))
             return false
         }
-        //TODO assignmentOverridesEditor
-
         return true
     }
 
@@ -182,25 +185,24 @@ public class QuizEditorViewModel: ObservableObject {
         }
 
         let quizParams = APIQuizParameters(
-            title: title,
-            description: description,
-            quiz_type: quizType,
-            time_limit: timeLimit ? lengthInMinutes : nil,
-            shuffle_answers: shuffleAnswers,
-            show_correct_answers: seeResponses ? showCorrectAnswers : nil,
-            scoring_policy: allowMultipleAttempts ? scoreToKeep : nil,
+            access_code: requireAccessCode ? accessCode: nil,
             allowed_attempts: allowedAttempts,
-            one_question_at_a_time: oneQuestionAtaTime, // TODO
-            cant_go_back: oneQuestionAtaTime ? lockQuestionAfterViewing : nil,
-            access_code: requireAccessCode ? accessCode : nil,
-            published: published,
-            hide_results: seeResponses ?
-            (onlyOnceAfterEachAttempt ? .until_after_last_attempt : nil)
-            : .always,
-            show_correct_answers_at: seeResponses && showCorrectAnswers ? showCorrectAnswersAt : nil,
-            hide_correct_answers_at: seeResponses && showCorrectAnswers ? hideCorrectAnswersAt : nil,
             assignment_group_id: assignmentGroup?.id,
-            overrides: nil
+            cant_go_back: oneQuestionAtaTime ? lockQuestionAfterViewing : nil,
+            description: description,
+            hide_correct_answers_at: seeResponses && showCorrectAnswers && onlyOnceAfterEachAttempt ? hideCorrectAnswersAt : nil,
+            hide_results: seeResponses ? (onlyAfterLastAttempt ? .until_after_last_attempt : nil) : .always,
+            one_question_at_a_time: oneQuestionAtaTime,
+            one_time_results: onlyOnceAfterEachAttempt,
+            published: published,
+            quiz_type: quizType,
+            scoring_policy: allowMultipleAttempts ? scoreToKeep : nil,
+            show_correct_answers: seeResponses ? showCorrectAnswers : false,
+            show_correct_answers_at: seeResponses && showCorrectAnswers && onlyOnceAfterEachAttempt ? showCorrectAnswersAt : nil,
+            show_correct_answers_last_attempt: showCorrectAnswersLastAttempt,
+            shuffle_answers: shuffleAnswers,
+            time_limit: timeLimit ? lengthInMinutes : nil,
+            title: title
         )
 
         UpdateQuiz(courseID: courseID, quizID: quizID, quiz: quizParams)
@@ -218,6 +220,7 @@ public class QuizEditorViewModel: ObservableObject {
             }
         }
     }
+
     func saveAssignment(router: Router, viewController: WeakViewController) {
         guard let assignmentID = assignmentID, let assignment = assignment else {
             router.dismiss(viewController)
@@ -228,7 +231,7 @@ public class QuizEditorViewModel: ObservableObject {
         UpdateAssignment(
             courseID: courseID,
             assignmentID: assignmentID,
-            description: description,
+            description: nil,
             dueAt: dueAt,
             gradingType: assignment.gradingType,
             lockAt: lockAt,

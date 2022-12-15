@@ -25,13 +25,6 @@ public struct QuizEditorView: View {
 
     @ObservedObject private var viewModel: QuizEditorViewModel
 
-    @State var canUnpublish: Bool = true
-    @State var description: String = ""
-    @State var gradingType: GradingType = .points
-    @State var title: String = ""
-    @State var pointsPossible: Double?
-    @State var published: Bool = false
-
     @State var rceHeight: CGFloat = 60
     @State var rceCanSubmit = false
     @State var alert: AlertItem?
@@ -133,7 +126,7 @@ public struct QuizEditorView: View {
             }
             if let assignmentGroup = viewModel.assignmentGroup {
                 Divider()
-                assignmentGroupRow(assignmentGroup:assignmentGroup)
+                assignmentGroupRow(assignmentGroup: assignmentGroup)
             }
             Divider()
             ToggleRow(
@@ -183,24 +176,35 @@ public struct QuizEditorView: View {
             if viewModel.seeResponses {
                 Divider()
                 ToggleRow(
+                    label: Text("Only After Their Last Attempt", bundle: .core),
+                    value: $viewModel.onlyAfterLastAttempt)
+                Divider()
+                ToggleRow(
                     label: Text("Only Once After Each Attempt", bundle: .core),
                     value: $viewModel.onlyOnceAfterEachAttempt)
+                Divider()
                 ToggleRow(
                     label: Text("Let Students See the Correct Answer", bundle: .core),
                     value: $viewModel.showCorrectAnswers)
                 if viewModel.showCorrectAnswers {
-                    OptionalDatePicker(
-                        selection: $viewModel.showCorrectAnswersAt,
-                        max: nil,
-                        initial: Clock.now.startOfDay()) {
-                            Text("Show Correct Answers At", bundle: .core)
-                        }
-                    OptionalDatePicker(
-                        selection: $viewModel.hideCorrectAnswersAt,
-                        max: nil,
-                        initial: Clock.now.startOfDay()) {
-                            Text("Hide Correct Answers At", bundle: .core)
-                        }
+                    Divider()
+                    ToggleRow(
+                        label: Text("Only After Their Last Attempt", bundle: .core),
+                        value: $viewModel.showCorrectAnswersLastAttempt)
+                    if !viewModel.onlyOnceAfterEachAttempt {
+                        OptionalDatePicker(
+                            selection: $viewModel.showCorrectAnswersAt,
+                            max: nil,
+                            initial: Clock.now.startOfDay()) {
+                                Text("Show Correct Answers At", bundle: .core)
+                            }
+                        OptionalDatePicker(
+                            selection: $viewModel.hideCorrectAnswersAt,
+                            max: nil,
+                            initial: Clock.now.startOfDay()) {
+                                Text("Hide Correct Answers At", bundle: .core)
+                            }
+                    }
                 }
             }
         }
@@ -281,8 +285,6 @@ public struct QuizEditorView: View {
 
     @ViewBuilder
     private func assignmentGroupRow(assignmentGroup: AssignmentGroup) -> some View {
-        Text("Assignment Group", bundle: .core)
-
         ButtonRow(action: {
             let options = viewModel.assignmentGroups
             self.env.router.show(ItemPickerViewController.create(

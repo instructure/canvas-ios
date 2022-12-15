@@ -42,6 +42,7 @@ public struct APIQuiz: Codable, Equatable {
     let mobile_url: URL
     /** Nil when `quiz_type` is `quizzes.next`. */
     let one_question_at_a_time: Bool?
+    let one_time_results: Bool?
     let points_possible: Double?
     let published: Bool?
     /** Nil when `quiz_type` is `quizzes.next`. */
@@ -63,7 +64,6 @@ public struct APIQuiz: Codable, Equatable {
     // let anonymous_submissions: Bool?
     // let assignment_group_id: String?
     // let lock_info: LockInfoModel?
-    // let one_time_results: Bool
     // let permissions: APIQuizPermissions?
     // let preview_url: URL
     // let quiz_extensions_url: URL?
@@ -188,6 +188,7 @@ extension APIQuiz {
         locked_for_user: Bool = false,
         mobile_url: URL = URL(string: "/courses/1/quizzes/123")!,
         one_question_at_a_time: Bool = false,
+        one_time_results: Bool = false,
         points_possible: Double? = 11.1,
         published: Bool? = true,
         question_count: Int = 5,
@@ -224,6 +225,7 @@ extension APIQuiz {
             locked_for_user: locked_for_user,
             mobile_url: mobile_url,
             one_question_at_a_time: one_question_at_a_time,
+            one_time_results: one_time_results,
             points_possible: points_possible,
             published: published,
             question_count: question_count,
@@ -446,23 +448,46 @@ struct PostQuizSubmissionCompleteRequest: APIRequestable {
 }
 
 struct APIQuizParameters: Codable, Equatable {
-    let title: String?
-    let description: String?
-    let quiz_type: QuizType?
-    let time_limit: Double?
-    let shuffle_answers: Bool?
-    let show_correct_answers: Bool?
-    let scoring_policy: ScoringPolicy?
-    let allowed_attempts: Int?
-    let one_question_at_a_time: Bool?
-    let cant_go_back: Bool?
     let access_code: String?
-    let published: Bool?
-    let hide_results: QuizHideResults?
-    let show_correct_answers_at: Date?
-    let hide_correct_answers_at: Date?
+    let allowed_attempts: Int?
     let assignment_group_id: String?
-    let overrides: [APIAssignmentOverride]?
+    let cant_go_back: Bool?
+    let description: String?
+    let hide_correct_answers_at: Date?
+    let hide_results: QuizHideResults?
+    let one_question_at_a_time: Bool?
+    let one_time_results: Bool
+    let published: Bool?
+    let quiz_type: QuizType?
+    let scoring_policy: ScoringPolicy?
+    let show_correct_answers: Bool
+    let show_correct_answers_at: Date?
+    let show_correct_answers_last_attempt: Bool
+    let shuffle_answers: Bool?
+    let time_limit: Double?
+    let title: String?
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(access_code, forKey: .access_code)
+        try container.encodeIfPresent(allowed_attempts, forKey: .allowed_attempts)
+        try container.encodeIfPresent(assignment_group_id, forKey: .assignment_group_id)
+        try container.encodeIfPresent(cant_go_back, forKey: .cant_go_back)
+        try container.encodeIfPresent(description, forKey: .description)
+        try container.encode(hide_correct_answers_at, forKey: .hide_correct_answers_at)
+        try container.encode(hide_results, forKey: .hide_results)
+        try container.encodeIfPresent(one_question_at_a_time, forKey: .one_question_at_a_time)
+        try container.encode(one_time_results, forKey: .one_time_results)
+        try container.encodeIfPresent(published, forKey: .published)
+        try container.encodeIfPresent(quiz_type, forKey: .quiz_type)
+        try container.encodeIfPresent(scoring_policy, forKey: .scoring_policy)
+        try container.encode(show_correct_answers, forKey: .show_correct_answers)
+        try container.encode(show_correct_answers_at, forKey: .show_correct_answers_at)
+        try container.encode(show_correct_answers_last_attempt, forKey: .show_correct_answers_last_attempt)
+        try container.encodeIfPresent(shuffle_answers, forKey: .shuffle_answers)
+        try container.encode(time_limit, forKey: .time_limit)
+        try container.encodeIfPresent(title, forKey: .title)
+    }
 }
 
 // https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
