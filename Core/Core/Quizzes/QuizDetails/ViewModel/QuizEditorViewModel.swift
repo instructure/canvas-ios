@@ -168,18 +168,6 @@ public class QuizEditorViewModel: ObservableObject {
         return true
     }
 
-    func hideResultsValue() -> TypeSafeCodable<String, QuizHideResultsParameterNever> {
-        if seeResponses {
-            if onlyAfterLastAttempt {
-                return TypeSafeCodable(value1: "until_after_last_attempt", value2: nil)
-            } else {
-                return TypeSafeCodable(value1: nil, value2: QuizHideResultsParameterNever(never: "1"))
-            }
-        } else {
-            return TypeSafeCodable(value1: "always", value2: nil)
-        }
-    }
-
     public func doneTapped(router: Router, viewController: WeakViewController) {
         state = .saving
 
@@ -203,7 +191,8 @@ public class QuizEditorViewModel: ObservableObject {
             cant_go_back: oneQuestionAtaTime ? lockQuestionAfterViewing : nil,
             description: description,
             hide_correct_answers_at: seeResponses && showCorrectAnswers && onlyOnceAfterEachAttempt ? hideCorrectAnswersAt : nil,
-            hide_results: hideResultsValue(),
+            // this is not working, won't be fixed on the API
+            hide_results: seeResponses ? (onlyAfterLastAttempt ? .until_after_last_attempt : nil) : .always,
             one_question_at_a_time: oneQuestionAtaTime,
             one_time_results: onlyOnceAfterEachAttempt,
             published: published,

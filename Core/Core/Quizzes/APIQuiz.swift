@@ -447,10 +447,6 @@ struct PostQuizSubmissionCompleteRequest: APIRequestable {
     let method = APIMethod.post
 }
 
-struct QuizHideResultsParameterNever: Codable, Equatable {
-    let never: String
-}
-
 struct APIQuizParameters: Codable, Equatable {
     let access_code: String?
     let allowed_attempts: Int?
@@ -458,7 +454,7 @@ struct APIQuizParameters: Codable, Equatable {
     let cant_go_back: Bool?
     let description: String?
     let hide_correct_answers_at: Date?
-    let hide_results: TypeSafeCodable<String, QuizHideResultsParameterNever>?
+    let hide_results: QuizHideResults?
     let one_question_at_a_time: Bool?
     let one_time_results: Bool
     let published: Bool?
