@@ -40,8 +40,12 @@ public struct InboxFilterBar: View {
 
     private var courseFilterButton: some View {
         Button {
+            if model.isShowingScopeSelector {
+                return
+            }
+
             if !model.courses.isEmpty {
-                model.isShowingCourseSelector = true
+                model.isShowingCourseSelector.toggle()
             }
         } label: {
             HStack(spacing: 6) {
@@ -66,7 +70,11 @@ public struct InboxFilterBar: View {
 
     private var scopeFilterButton: some View {
         Button {
-            model.isShowingScopeSelector = true
+            if model.isShowingCourseSelector {
+                return
+            }
+
+            model.isShowingScopeSelector.toggle()
         } label: {
             HStack(spacing: 5) {
                 Text(model.scope.localizedName)
