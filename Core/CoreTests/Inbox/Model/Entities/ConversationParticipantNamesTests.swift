@@ -27,17 +27,14 @@ class ConversationParticipantNamesTests: CoreTestCase {
         let ray = makeParticipant(name: "Ray")
         let trudy = makeParticipant(name: "Trudy")
         let jay = makeParticipant(name: "Jay")
-        let leeloo = makeParticipant(name: "Leeloo")
-        let jim = makeParticipant(name: "Jim")
-        let nina = makeParticipant(name: "Nina")
-        let allNames = [bob, alice, ray, trudy, jay, leeloo, jim, nina]
+        let allNames = [bob, alice, ray, trudy, jay]
 
         XCTAssertEqual(Array(allNames.prefix(0)).names, "")
         XCTAssertEqual(Array(allNames.prefix(1)).names, "Bob")
         XCTAssertEqual(Array(allNames.prefix(2)).names, "Bob, Alice")
         XCTAssertEqual(Array(allNames.prefix(3)).names, "Bob, Alice, Ray")
-        XCTAssertEqual(Array(allNames.prefix(4)).names, "Bob + 1 more")
-        XCTAssertEqual(Array(allNames.prefix(5)).names, "Bob + 2 more")
+        XCTAssertEqual(Array(allNames.prefix(4)).names, "Bob, Alice + 2 more")
+        XCTAssertEqual(Array(allNames.prefix(5)).names, "Bob, Alice + 3 more")
     }
 
     private func makeParticipant(name: String) -> APIConversationParticipant {
