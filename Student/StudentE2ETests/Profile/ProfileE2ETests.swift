@@ -27,22 +27,6 @@ class ProfileE2ETests: CoreUITestCase {
         super.setUp()
     }
 
-    func testCourseCardGrades() {
-        Profile.open()
-        Profile.showGradesToggle.waitToExist()
-        if !Profile.showGradesToggle.isSelected {
-            Profile.showGradesToggle.tap()
-        }
-        Profile.close()
-        app.swipeDown()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments 72.73%")
-
-        Profile.open()
-        Profile.showGradesToggle.tap()
-        Profile.close()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label().trimmingCharacters(in: .whitespacesAndNewlines), "Assignments assignments")
-    }
-
     func testProfileDisplaysUsername() {
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Student One")

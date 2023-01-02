@@ -306,22 +306,30 @@ extension StudentAppDelegate {
 extension StudentAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
+
+            let queue = DispatchQueue(label: "com.instructure.icanvas.app-background-helper", attributes: .concurrent)
             var tasks: [String: UIBackgroundTaskIdentifier] = [:]
+
             func startBackgroundTask(taskName: String) {
-                tasks[taskName] = UIApplication.shared.beginBackgroundTask(
-                    withName: taskName,
-                    expirationHandler: { [weak self] in
-                        self?.tasks[taskName] = .invalid
-                        self?.endBackgroundTask(taskName: taskName)
-                })
+                queue.async(flags: .barrier) { [weak self] in
+                    self?.tasks[taskName] = UIApplication.shared.beginBackgroundTask(
+                        withName: taskName,
+                        expirationHandler: { [weak self] in
+                            self?.endBackgroundTask(taskName: taskName)
+                    })
+                }
             }
 
             func endBackgroundTask(taskName: String) {
-                if let task = tasks[taskName] {
-                    UIApplication.shared.endBackgroundTask(task)
+                queue.async(flags: .barrier) { [weak self] in
+                    if let task = self?.tasks[taskName] {
+                        self?.tasks[taskName] = .invalid
+                        UIApplication.shared.endBackgroundTask(task)
+                    }
                 }
             }
         }
+
         let helper = BackgroundAppHelper()
         PageViewEventController.instance.configure(backgroundAppHelper: helper)
     }

@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.create
+// https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.create
 public struct CreateDSAssignmentRequest: APIRequestable {
     public typealias Response = DSAssignment
 

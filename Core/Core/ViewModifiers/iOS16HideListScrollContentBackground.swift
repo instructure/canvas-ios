@@ -18,15 +18,21 @@
 
 import SwiftUI
 
-extension View {
+@available(iOS, introduced: 16.0, obsoleted: 16.1)
+struct IOS16HideListScrollContentBackgroundModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.scrollContentBackground(.hidden)
+    }
+}
+
+public extension View {
     /**
      This view modifier fixes the iOS 16.0 only bug where the List scroll content background is not hidden by default.
      */
-    @available(iOS, obsoleted: 16.1)
     @ViewBuilder
-    public func iOS16HideListScrollContentBackground() -> some View {
+    func iOS16HideListScrollContentBackground() -> some View {
         if #available(iOS 16, *) {
-            self.scrollContentBackground(.hidden)
+            self.modifier(IOS16HideListScrollContentBackgroundModifier())
         } else {
             self
         }

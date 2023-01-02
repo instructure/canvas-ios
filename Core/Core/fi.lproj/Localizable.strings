@@ -653,6 +653,12 @@
 "Dashboard" = "Koontinäyttö";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Koontinäytön asetukset";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Koontinäytön asetukset";
+
+/* No comment provided by engineer. */
 "Date" = "Päivämäärä";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ohita %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Näytä muodossa";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Näytä arvosana seuraavasti";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Etsi skannattava koodi";
 
 /* No comment provided by engineer. */
+"Find another school" = "Etsi muu koulu";
+
+/* No comment provided by engineer. */
 "Find my school" = "Etsi kouluni";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "harmaa";
+
+/* No comment provided by engineer. */
+"Grid" = "Gitter";
 
 /* No comment provided by engineer. */
 "Groups" = "Ryhmät";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Linkki verkkosivuston URL:ään";
+
+/* No comment provided by engineer. */
+"List" = "Lista";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, ja %2$@";

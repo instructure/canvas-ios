@@ -653,6 +653,12 @@
 "Dashboard" = "Bảng Điều Khiển";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Cài đặt bảng điều khiển";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Cài Đặt Bảng Điều Khiển";
+
+/* No comment provided by engineer. */
 "Date" = "Ngày";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Bỏ %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Hiển Thị Dưới Dạng";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Hiển thị Điểm dưới dạng";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Tìm mã để quét";
 
 /* No comment provided by engineer. */
+"Find another school" = "Tìm trường khác";
+
+/* No comment provided by engineer. */
 "Find my school" = "Tìm trường của tôi";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "xám";
+
+/* No comment provided by engineer. */
+"Grid" = "Ô";
 
 /* No comment provided by engineer. */
 "Groups" = "Nhóm";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Liên Kết Đến URL Trang Web";
+
+/* No comment provided by engineer. */
+"List" = "Danh Sách";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, và %2$@";

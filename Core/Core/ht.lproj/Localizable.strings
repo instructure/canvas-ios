@@ -653,6 +653,12 @@
 "Dashboard" = "Tablo";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Paramèt tablodbò";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Paramèt Tablodbò";
+
+/* No comment provided by engineer. */
 "Date" = "Dat";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Rejte %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Afiche Tankou";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Afiche Klas tankou";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Jwenn yon kòd pou eskane";
 
 /* No comment provided by engineer. */
+"Find another school" = "Jwenn yon lòt lekòl";
+
+/* No comment provided by engineer. */
 "Find my school" = "Jwenn lekòl mwen an";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "gri";
+
+/* No comment provided by engineer. */
+"Grid" = "Griy";
 
 /* No comment provided by engineer. */
 "Groups" = "Gwoup";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Lyen a URL sit entènèt";
+
+/* No comment provided by engineer. */
+"List" = "Lis";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, epi %2$@";

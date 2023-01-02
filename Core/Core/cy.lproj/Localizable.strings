@@ -653,6 +653,12 @@
 "Dashboard" = "Dangosfwrdd";
 
 /* No comment provided by engineer. */
+"Dashboard settings" = "Gosodiadau dangosfwrdd";
+
+/* No comment provided by engineer. */
+"Dashboard Settings" = "Gosodiadau Dangosfwrdd";
+
+/* No comment provided by engineer. */
 "Date" = "Dyddiad";
 
 /* No comment provided by engineer. */
@@ -744,6 +750,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Gwrthod %@";
+
+/* No comment provided by engineer. */
+"Display As" = "Dangos Fel";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Dangos Gradd fel";
@@ -938,6 +947,9 @@
 "Find a code to scan" = "Dod o hyd i god i’w sganio";
 
 /* No comment provided by engineer. */
+"Find another school" = "Dod o hyd i ysgol arall";
+
+/* No comment provided by engineer. */
 "Find my school" = "Dod o hyd i fy ysgol";
 
 /* No comment provided by engineer. */
@@ -1017,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "grey" = "llwyd";
+
+/* No comment provided by engineer. */
+"Grid" = "Grid";
 
 /* No comment provided by engineer. */
 "Groups" = "Grwpiau";
@@ -1212,6 +1227,9 @@
 
 /* No comment provided by engineer. */
 "Link to Website URL" = "Dolen i URL y wefan";
+
+/* No comment provided by engineer. */
+"List" = "Rhest";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, a %2$@";
