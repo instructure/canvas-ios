@@ -873,6 +873,7 @@
 		CF350F702912C17E00ED656E /* DashboardSettingsInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF350F6F2912C17E00ED656E /* DashboardSettingsInteractorLiveTests.swift */; };
 		CF350F732913AF1000ED656E /* DashboardSettingsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF350F722913AF1000ED656E /* DashboardSettingsViewTests.swift */; };
 		CF35F4FB296422400021B0D7 /* InboxMessageListItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF35F4FA296422400021B0D7 /* InboxMessageListItemViewModelTests.swift */; };
+		CF35F4FD29643DBE0021B0D7 /* InboxViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF35F4FC29643DBE0021B0D7 /* InboxViewModelTests.swift */; };
 		CF3763152837A30D00F25B81 /* DashboardInvitationAPIItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3763142837A30D00F25B81 /* DashboardInvitationAPIItem.swift */; };
 		CF3763192837A7D200F25B81 /* DashboardInvitationAPIItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3763182837A7D200F25B81 /* DashboardInvitationAPIItemTests.swift */; };
 		CF37631B2837AB6300F25B81 /* DashboardInvitationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF37631A2837AB6300F25B81 /* DashboardInvitationName.swift */; };
@@ -2446,6 +2447,7 @@
 		CF350F6F2912C17E00ED656E /* DashboardSettingsInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsInteractorLiveTests.swift; sourceTree = "<group>"; };
 		CF350F722913AF1000ED656E /* DashboardSettingsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsViewTests.swift; sourceTree = "<group>"; };
 		CF35F4FA296422400021B0D7 /* InboxMessageListItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageListItemViewModelTests.swift; sourceTree = "<group>"; };
+		CF35F4FC29643DBE0021B0D7 /* InboxViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModelTests.swift; sourceTree = "<group>"; };
 		CF3763142837A30D00F25B81 /* DashboardInvitationAPIItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationAPIItem.swift; sourceTree = "<group>"; };
 		CF3763182837A7D200F25B81 /* DashboardInvitationAPIItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationAPIItemTests.swift; sourceTree = "<group>"; };
 		CF37631A2837AB6300F25B81 /* DashboardInvitationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationName.swift; sourceTree = "<group>"; };
@@ -4986,6 +4988,7 @@
 			isa = PBXGroup;
 			children = (
 				CF35F4FA296422400021B0D7 /* InboxMessageListItemViewModelTests.swift */,
+				CF35F4FC29643DBE0021B0D7 /* InboxViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7351,6 +7354,7 @@
 				3B3467DA2136FFBA00F9BC2E /* APILoginWebTests.swift in Sources */,
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
 				CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */,
+				CF35F4FD29643DBE0021B0D7 /* InboxViewModelTests.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
 				CF490F2C285742EF0065D242 /* AnnotationExtensionsTests.swift in Sources */,
