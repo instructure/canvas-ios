@@ -25,7 +25,8 @@
     "Core\/Typography\/",
     "UIGestureRecognizerExtensions.swift",
     "DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
-    "Core\/Files\/FileUploadProgress\/View\/PreviewSupport\/"
+    "Core\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
+    ".*Assembly\.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

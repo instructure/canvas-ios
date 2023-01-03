@@ -129,7 +129,7 @@ class StudentTabBarController: UITabBarController {
         let inboxSplit = HelmSplitViewController()
 
         if ExperimentalFeature.nativeStudentInbox.isEnabled {
-            inboxController = InboxAssembly.makeViewController()
+            inboxController = InboxAssembly.makeInboxViewController()
         } else {
             let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
             inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()

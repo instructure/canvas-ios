@@ -20,7 +20,7 @@ import UIKit
 
 public enum InboxAssembly {
 
-    public static func makeViewController() -> UIViewController {
+    public static func makeInboxViewController() -> UIViewController {
         let env = AppEnvironment.shared
         let interactor = InboxMessageInteractorLive(env: env,
                                                     tabBarCountUpdater: .init(),
