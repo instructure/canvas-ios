@@ -151,11 +151,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.configuration.mediaTypesRequiringUserActionForPlayback = .all
         descriptionView?.addSubview(webView)
-        if traitCollection.userInterfaceStyle == .dark {
-            webView.pinWithThemeSwitchButton(inside: descriptionView)
-        } else {
-            webView.pin(inside: descriptionView)
-        }
+        webView.pinWithThemeSwitchButton(inside: descriptionView)
 
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)

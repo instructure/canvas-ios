@@ -44,12 +44,7 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
         webView.linkDelegate = self
 
         view.addSubview(webView)
-        if traitCollection.userInterfaceStyle == .dark {
-            webView.pinWithThemeSwitchButton(inside: view)
-        } else {
-            webView.pin(inside: view)
-        }
-
+        webView.pinWithThemeSwitchButton(inside: view)
         courses.refresh()
     }
 
