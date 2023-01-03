@@ -66,6 +66,7 @@ public class QuizEditorViewModel: ObservableObject {
         self.quizID = quizID
         self.courseID = courseID
         fetchQuiz()
+        fetchAssignmentGroups()
     }
 
     func fetchQuiz() {
@@ -83,7 +84,11 @@ public class QuizEditorViewModel: ObservableObject {
     }
 
     func fetchAssignment() {
-        guard let assignmentID = assignmentID else { return }
+        guard let assignmentID = assignmentID else {
+            loadAttributes()
+            return
+        }
+
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
         useCase.fetch(force: true) { [weak self] _, _, fetchError in
             guard let self = self else { return }
@@ -93,8 +98,6 @@ public class QuizEditorViewModel: ObservableObject {
 
             self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.loadAttributes()
-            self.fetchAssignmentGroups()
-            self.state = .ready
         }
     }
 
@@ -134,6 +137,8 @@ public class QuizEditorViewModel: ObservableObject {
         requireAccessCode = quiz.hasAccessCode
         accessCode = quiz.accessCode ?? ""
         assignmentOverrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
+
+        self.state = .ready
     }
 
     func validate() -> Bool {
