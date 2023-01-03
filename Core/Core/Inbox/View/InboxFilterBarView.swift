@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct InboxFilterBar: View {
+public struct InboxFilterBarView: View {
     @ObservedObject private var model: InboxViewModel
 
     public init(model: InboxViewModel) {
@@ -132,7 +132,7 @@ struct InboxFilterBar_Previews: PreviewProvider {
         ForEach(ColorScheme.allCases, id: \.self) {
             let interactor = InboxMessageInteractorPreview(environment: env, messages: .make(count: 5, in: context))
             let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
-            InboxFilterBar(model: viewModel)
+            InboxFilterBarView(model: viewModel)
                 .preferredColorScheme($0)
                 .previewLayout(.sizeThatFits)
         }

@@ -28,7 +28,7 @@ public struct InboxView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            InboxFilterBar(model: model)
+            InboxFilterBarView(model: model)
             Color.borderMedium
                 .frame(height: 0.5)
             if case .loading = model.state {
