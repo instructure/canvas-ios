@@ -50,13 +50,6 @@ public class QuizEditorViewModel: ObservableObject {
     @Published public var allowMultipleAttempts: Bool = false
     @Published public var scoreToKeep: ScoringPolicy?
     @Published public var allowedAttempts: Int?
-    @Published public var seeResponses: Bool = false
-    @Published public var onlyOnceAfterEachAttempt: Bool = false
-    @Published public var onlyAfterLastAttempt: Bool = false
-    @Published public var showCorrectAnswers: Bool = false
-    @Published public var showCorrectAnswersLastAttempt: Bool = false
-    @Published public var showCorrectAnswersAt: Date?
-    @Published public var hideCorrectAnswersAt: Date?
     @Published public var oneQuestionAtaTime: Bool = false
     @Published public var lockQuestionAfterViewing: Bool = false
     @Published public var requireAccessCode: Bool = false
@@ -136,14 +129,7 @@ public class QuizEditorViewModel: ObservableObject {
         scoreToKeep = quiz.scoringPolicy
         allowedAttempts = quiz.allowedAttempts < 2 ? nil : quiz.allowedAttempts
 
-        seeResponses = quiz.hideResults != .always
-        onlyAfterLastAttempt = quiz.hideResults == .until_after_last_attempt
-        showCorrectAnswers = quiz.showCorrectAnswers
-        showCorrectAnswersLastAttempt = quiz.showCorrectAnswersLastAttempt
-        showCorrectAnswersAt = quiz.showCorrectAnswersAt
-        hideCorrectAnswersAt = quiz.hideCorrectAnswersAt
         oneQuestionAtaTime = quiz.oneQuestionAtATime
-        onlyOnceAfterEachAttempt = quiz.oneTimeResults
         lockQuestionAfterViewing = quiz.cantGoBack
         requireAccessCode = quiz.hasAccessCode
         accessCode = quiz.accessCode ?? ""
@@ -153,11 +139,6 @@ public class QuizEditorViewModel: ObservableObject {
     func validate() -> Bool {
         if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             state = .error(NSLocalizedString("A title is required", comment: ""))
-            return false
-        }
-
-        if showCorrectAnswers, let show = showCorrectAnswersAt, let hide = hideCorrectAnswersAt, hide < show {
-            state = .error(NSLocalizedString("'Hide Date' cannot be before 'Show Date'", comment: ""))
             return false
         }
 
@@ -190,17 +171,10 @@ public class QuizEditorViewModel: ObservableObject {
             assignment_group_id: assignmentGroup?.id,
             cant_go_back: oneQuestionAtaTime ? lockQuestionAfterViewing : nil,
             description: description,
-            hide_correct_answers_at: seeResponses && showCorrectAnswers && onlyOnceAfterEachAttempt ? hideCorrectAnswersAt : nil,
-            // this is not working, won't be fixed on the API
-            hide_results: seeResponses ? (onlyAfterLastAttempt ? .until_after_last_attempt : nil) : .always,
             one_question_at_a_time: oneQuestionAtaTime,
-            one_time_results: onlyOnceAfterEachAttempt,
             published: published,
             quiz_type: quizType,
             scoring_policy: allowMultipleAttempts ? scoreToKeep : nil,
-            show_correct_answers: seeResponses ? showCorrectAnswers : false,
-            show_correct_answers_at: seeResponses && showCorrectAnswers && onlyOnceAfterEachAttempt ? showCorrectAnswersAt : nil,
-            show_correct_answers_last_attempt: showCorrectAnswersLastAttempt,
             shuffle_answers: shuffleAnswers,
             time_limit: timeLimit ? lengthInMinutes : nil,
             title: title

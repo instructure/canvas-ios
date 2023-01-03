@@ -79,7 +79,6 @@ public struct QuizEditorView: View {
                 titleSection
                 basicSettingsSection
                 attemptsSection
-                responsesSection
                 oneQuestionSection
                 accessCodeSection
                 assignmentOverridesSection
@@ -165,49 +164,6 @@ public struct QuizEditorView: View {
                     placeholder: NSLocalizedString("Unlimited", bundle: .core, comment: ""),
                     value: $viewModel.allowedAttempts
                 )
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var responsesSection: some View {
-        EditorSection {
-            ToggleRow(
-                label: Text("Let Students See Their Quiz Responses", bundle: .core),
-                value: $viewModel.seeResponses)
-            if viewModel.seeResponses {
-                Divider()
-                ToggleRow(
-                    label: Text("Only After Their Last Attempt", bundle: .core),
-                    value: $viewModel.onlyAfterLastAttempt)
-                Divider()
-                ToggleRow(
-                    label: Text("Only Once After Each Attempt", bundle: .core),
-                    value: $viewModel.onlyOnceAfterEachAttempt)
-                Divider()
-                ToggleRow(
-                    label: Text("Let Students See the Correct Answer", bundle: .core),
-                    value: $viewModel.showCorrectAnswers)
-                if viewModel.showCorrectAnswers {
-                    Divider()
-                    ToggleRow(
-                        label: Text("Only After Their Last Attempt", bundle: .core),
-                        value: $viewModel.showCorrectAnswersLastAttempt)
-                    if !viewModel.onlyOnceAfterEachAttempt {
-                        OptionalDatePicker(
-                            selection: $viewModel.showCorrectAnswersAt,
-                            max: nil,
-                            initial: Clock.now.startOfDay()) {
-                                Text("Show Correct Answers At", bundle: .core)
-                            }
-                        OptionalDatePicker(
-                            selection: $viewModel.hideCorrectAnswersAt,
-                            max: nil,
-                            initial: Clock.now.startOfDay()) {
-                                Text("Hide Correct Answers At", bundle: .core)
-                            }
-                    }
-                }
             }
         }
     }

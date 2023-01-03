@@ -453,37 +453,25 @@ struct APIQuizParameters: Codable, Equatable {
     let assignment_group_id: String?
     let cant_go_back: Bool?
     let description: String?
-    let hide_correct_answers_at: Date?
-    let hide_results: QuizHideResults?
     let one_question_at_a_time: Bool?
-    let one_time_results: Bool
     let published: Bool?
     let quiz_type: QuizType?
     let scoring_policy: ScoringPolicy?
-    let show_correct_answers: Bool
-    let show_correct_answers_at: Date?
-    let show_correct_answers_last_attempt: Bool
     let shuffle_answers: Bool?
     let time_limit: Double?
     let title: String?
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(access_code, forKey: .access_code)
+        try container.encode(access_code, forKey: .access_code)
         try container.encodeIfPresent(allowed_attempts, forKey: .allowed_attempts)
         try container.encodeIfPresent(assignment_group_id, forKey: .assignment_group_id)
         try container.encodeIfPresent(cant_go_back, forKey: .cant_go_back)
         try container.encodeIfPresent(description, forKey: .description)
-        try container.encode(hide_correct_answers_at, forKey: .hide_correct_answers_at)
-        try container.encode(hide_results, forKey: .hide_results)
         try container.encodeIfPresent(one_question_at_a_time, forKey: .one_question_at_a_time)
-        try container.encode(one_time_results, forKey: .one_time_results)
         try container.encodeIfPresent(published, forKey: .published)
         try container.encodeIfPresent(quiz_type, forKey: .quiz_type)
         try container.encodeIfPresent(scoring_policy, forKey: .scoring_policy)
-        try container.encode(show_correct_answers, forKey: .show_correct_answers)
-        try container.encode(show_correct_answers_at, forKey: .show_correct_answers_at)
-        try container.encode(show_correct_answers_last_attempt, forKey: .show_correct_answers_last_attempt)
         try container.encodeIfPresent(shuffle_answers, forKey: .shuffle_answers)
         try container.encode(time_limit, forKey: .time_limit)
         try container.encodeIfPresent(title, forKey: .title)
