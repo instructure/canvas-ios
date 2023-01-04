@@ -48,7 +48,6 @@ public struct QuizEditorView: View {
                 })
                 .disabled(viewModel.state != .ready)
             })
-            //TODO error handling from viewModel (validator)
             .alert(item: $alert) { alert in
                 switch alert {
                 case .error(let error):
@@ -56,6 +55,9 @@ public struct QuizEditorView: View {
                 case .removeOverride(let override):
                     return AssignmentOverridesEditor.alert(toRemove: override, from: $viewModel.assignmentOverrides)
                 }
+            }
+            .onReceive(viewModel.showErrorPopup) {
+                env.router.show($0, from: controller, options: .modal())
             }
     }
 

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class QuizEditorViewModel: ObservableObject {
@@ -32,16 +33,13 @@ public class QuizEditorViewModel: ObservableObject {
     @Published public private(set) var state: ViewModelState = .loading
     public var assignment: Assignment?
     public let courseID: String
+    public private(set) lazy var showErrorPopup: AnyPublisher<UIAlertController, Never> = showErrorPopupSubject.eraseToAnyPublisher()
 
     // Quiz attributes
     @Published public var title: String = ""
     @Published public var description: String = ""
     @Published public var quizType: QuizType = .assignment
     @Published public var published: Bool = false
-    public var shouldShowPublishedToggle: Bool {
-        quiz?.published == false || quiz?.unpublishable == true
-    }
-
     @Published public var assignmentGroup: AssignmentGroup?
     @Published public var assignmentGroups: [AssignmentGroup] = []
     @Published public var shuffleAnswers: Bool = false
@@ -56,11 +54,16 @@ public class QuizEditorViewModel: ObservableObject {
     @Published public var accessCode: String = ""
     @Published public var assignmentOverrides: [AssignmentOverridesEditor.Override] = []
 
+    public var shouldShowPublishedToggle: Bool {
+        quiz?.published == false || quiz?.unpublishable == true
+    }
+
     public var availableQuizTypes = [QuizType.assignment, QuizType.practice_quiz, QuizType.graded_survey, QuizType.survey]
 
     private let quizID: String
     private var assignmentID: String?
     private var quiz: Quiz?
+    private let showErrorPopupSubject = PassthroughSubject<UIAlertController, Never>()
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -143,22 +146,29 @@ public class QuizEditorViewModel: ObservableObject {
 
     func validate() -> Bool {
         if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            state = .error(NSLocalizedString("A title is required", comment: ""))
+            let errorMessage = NSLocalizedString("A title is required", comment: "")
+            showError(title: errorMessage)
             return false
         }
 
         if requireAccessCode, accessCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            state = .error(NSLocalizedString("You must enter an access code", comment: ""))
+            let errorMessage = NSLocalizedString("You must enter an access code", comment: "")
+            showError(title: errorMessage)
             return false
         }
         return true
     }
 
-    public func doneTapped(router: Router, viewController: WeakViewController) {
-        state = .saving
+    private func showError(title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .cancel))
+        showErrorPopupSubject.send(alert)
+    }
 
+    public func doneTapped(router: Router, viewController: WeakViewController) {
         guard validate() else { return }
 
+        state = .saving
         var allowedAttempts: Int?
         if allowMultipleAttempts {
             if let attempts = self.allowedAttempts, attempts > 1 {
@@ -188,9 +198,10 @@ public class QuizEditorViewModel: ObservableObject {
         UpdateQuiz(courseID: courseID, quizID: quizID, quiz: quizParams)
             .fetch { [weak self] result, _, error in performUIUpdate {
                 guard let self = self else { return }
-                self.state = .ready
                 if error != nil {
-                    self.state = .error(error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                    self.state = .ready
+                    let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
+                    self.showError(title: errorMessage)
                 }
                 if result != nil {
                     GetQuiz(courseID: self.courseID, quizID: self.quizID)
@@ -224,7 +235,9 @@ public class QuizEditorViewModel: ObservableObject {
         ).fetch { [weak self] result, _, error in performUIUpdate {
             guard let self = self else { return }
             if error != nil {
-                self.state = .error(error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                // Practice quizzes don't necessary have assignments
+                router.dismiss(viewController)
+                return
             }
             if result != nil {
                 GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: [.overrides])
