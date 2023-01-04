@@ -42,7 +42,6 @@ public struct APIQuiz: Codable, Equatable {
     let mobile_url: URL
     /** Nil when `quiz_type` is `quizzes.next`. */
     let one_question_at_a_time: Bool?
-    let one_time_results: Bool?
     let points_possible: Double?
     let published: Bool?
     /** Nil when `quiz_type` is `quizzes.next`. */
@@ -64,6 +63,7 @@ public struct APIQuiz: Codable, Equatable {
     // let anonymous_submissions: Bool?
     // let assignment_group_id: String?
     // let lock_info: LockInfoModel?
+    // let one_time_results: Bool
     // let permissions: APIQuizPermissions?
     // let preview_url: URL
     // let quiz_extensions_url: URL?
@@ -188,7 +188,6 @@ extension APIQuiz {
         locked_for_user: Bool = false,
         mobile_url: URL = URL(string: "/courses/1/quizzes/123")!,
         one_question_at_a_time: Bool = false,
-        one_time_results: Bool = false,
         points_possible: Double? = 11.1,
         published: Bool? = true,
         question_count: Int = 5,
@@ -225,7 +224,6 @@ extension APIQuiz {
             locked_for_user: locked_for_user,
             mobile_url: mobile_url,
             one_question_at_a_time: one_question_at_a_time,
-            one_time_results: one_time_results,
             points_possible: points_possible,
             published: published,
             question_count: question_count,

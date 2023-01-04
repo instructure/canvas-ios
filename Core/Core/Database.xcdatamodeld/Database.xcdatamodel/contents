@@ -766,7 +766,6 @@
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
         <attribute name="mobileURL" attributeType="URI"/>
         <attribute name="oneQuestionAtATime" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="oneTimeResults" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="order" optional="YES" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="published" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

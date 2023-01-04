@@ -66,7 +66,6 @@ public class GetQuiz: UseCase {
 
 class UpdateQuiz: APIUseCase {
     typealias Model = Quiz
-
     let request: PutQuizRequest
 
     init(

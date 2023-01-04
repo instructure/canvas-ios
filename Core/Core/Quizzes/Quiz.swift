@@ -39,7 +39,6 @@ public class Quiz: NSManagedObject {
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var mobileURL: URL?
     @NSManaged public var oneQuestionAtATime: Bool
-    @NSManaged public var oneTimeResults: Bool
     @NSManaged public var order: String?
     @NSManaged var pointsPossibleRaw: NSNumber?
     @NSManaged public var published: Bool
@@ -178,7 +177,6 @@ extension Quiz {
         model.lockedForUser = item.locked_for_user ?? false
         model.mobileURL = item.mobile_url
         model.oneQuestionAtATime = item.one_question_at_a_time ?? false
-        model.oneTimeResults = item.one_time_results ?? false
         model.pointsPossible = item.points_possible
         model.published = item.published == true
         model.questionCount = item.question_count ?? 0
