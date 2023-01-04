@@ -19,14 +19,13 @@
     "\/Teacher\/SpeedGrader\/",
     "SubmissionButtonPresenter.swift",
     "NSPersistentContainerExtensions.swift",
-    "K5Preview.swift",
     "Core\/WebSitePreview\/",
-    "FontPreview.swift",
     "Core\/Typography\/",
     "UIGestureRecognizerExtensions.swift",
     "DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
     "Core\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
-    ".*Assembly[.]swift"
+    ".*Assembly[.]swift",
+    ".*Preview[.]swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

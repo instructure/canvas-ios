@@ -35,6 +35,5 @@ public final class InboxCourse: NSManagedObject, WriteableModel {
         dbEntity.name = apiEntity.name ?? apiEntity.course_code ?? ""
         dbEntity.courseId = apiEntity.id.value
         return dbEntity
-
     }
 }
