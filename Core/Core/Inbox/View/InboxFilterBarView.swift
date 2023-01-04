@@ -129,13 +129,10 @@ struct InboxFilterBar_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            let interactor = InboxMessageInteractorPreview(environment: env, messages: .make(count: 5, in: context))
-            let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
-            InboxFilterBarView(model: viewModel)
-                .preferredColorScheme($0)
-                .previewLayout(.sizeThatFits)
-        }
+        let interactor = InboxMessageInteractorPreview(environment: env, messages: .make(count: 5, in: context))
+        let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
+        InboxFilterBarView(model: viewModel)
+            .previewLayout(.sizeThatFits)
     }
 }
 
