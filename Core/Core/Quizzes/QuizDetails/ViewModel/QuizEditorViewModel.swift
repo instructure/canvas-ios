@@ -19,18 +19,10 @@
 import Combine
 import SwiftUI
 
-public class QuizEditorViewModel: ObservableObject {
-
-    public enum ViewModelState: Equatable {
-        case loading
-        case saving
-        case error(String)
-        case ready
-    }
-
+public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     @Environment(\.appEnvironment) var env
+    @Published public private(set) var state: QuizEditorViewModelState = .loading
 
-    @Published public private(set) var state: ViewModelState = .loading
     public var assignment: Assignment?
     public let courseID: String
     public private(set) lazy var showErrorPopup: AnyPublisher<UIAlertController, Never> = showErrorPopupSubject.eraseToAnyPublisher()

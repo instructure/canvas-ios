@@ -18,18 +18,18 @@
 
 import SwiftUI
 
-public struct QuizEditorView: View {
+public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @ObservedObject private var viewModel: QuizEditorViewModel
+    @ObservedObject private var viewModel: ViewModel
 
     @State var rceHeight: CGFloat = 60
     @State var rceCanSubmit = false
     @State var alert: AlertItem?
 
-    public init(viewModel: QuizEditorViewModel) {
+    public init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
 
@@ -296,3 +296,32 @@ public struct QuizEditorView: View {
         viewModel.doneTapped(router: env.router, viewController: controller)
     }
 }
+
+#if DEBUG
+
+struct QuizEditor_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = PreviewQuizEditorViewModel(
+            state: .ready,
+            courseID: "1",
+            title: "Preview Quiz",
+            description: "This is the quiz description",
+            quizType: .practice_quiz,
+            published: true,
+            shuffleAnswers: false,
+            timeLimit: true,
+            lengthInMinutes: 123,
+            allowMultipleAttempts: true,
+            scoreToKeep: .keep_highest,
+            allowedAttempts: 0,
+            oneQuestionAtaTime: true,
+            lockQuestionAfterViewing: true,
+            requireAccessCode: true,
+            accessCode: "Code"
+        )
+        QuizEditorView(viewModel: viewModel)
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif

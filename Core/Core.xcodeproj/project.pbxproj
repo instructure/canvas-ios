@@ -1233,6 +1233,8 @@
 		D9E1BABD258163DC0034C01E /* ContextCardSubmissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */; };
 		D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */; };
 		D9E625482967097500D9D24B /* GetAssignmentGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E625472967097500D9D24B /* GetAssignmentGroupsTests.swift */; };
+		D9E6254A296710C300D9D24B /* QuizEditorViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E62549296710C300D9D24B /* QuizEditorViewModelProtocol.swift */; };
+		D9E625502967116400D9D24B /* PreviewQuizEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E6254F2967116400D9D24B /* PreviewQuizEditorViewModel.swift */; };
 		D9E68BB828F9AB48007490C3 /* QuizEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E68BB728F9AB47007490C3 /* QuizEditorView.swift */; };
 		D9E68BBA28F9AB6A007490C3 /* QuizEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E68BB928F9AB69007490C3 /* QuizEditorViewModel.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
@@ -2777,6 +2779,8 @@
 		D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardSubmissionsView.swift; sourceTree = "<group>"; };
 		D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardSubmissionRow.swift; sourceTree = "<group>"; };
 		D9E625472967097500D9D24B /* GetAssignmentGroupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupsTests.swift; sourceTree = "<group>"; };
+		D9E62549296710C300D9D24B /* QuizEditorViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizEditorViewModelProtocol.swift; sourceTree = "<group>"; };
+		D9E6254F2967116400D9D24B /* PreviewQuizEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQuizEditorViewModel.swift; sourceTree = "<group>"; };
 		D9E68BB728F9AB47007490C3 /* QuizEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizEditorView.swift; sourceTree = "<group>"; };
 		D9E68BB928F9AB69007490C3 /* QuizEditorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizEditorViewModel.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
@@ -6392,12 +6396,12 @@
 		D9B6492928F452640035CE14 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D9E6254E2967114B00D9D24B /* Preview */,
+				D9B6492B28F452B40035CE14 /* QuizDetailsViewModel.swift */,
 				D9E68BB928F9AB69007490C3 /* QuizEditorViewModel.swift */,
 				D9B6492F28F452B40035CE14 /* QuizAttribute.swift */,
 				D9B6492D28F452B40035CE14 /* QuizDateSectionViewModel.swift */,
 				D9B6492E28F452B40035CE14 /* QuizSubmissionBreakdownViewModel.swift */,
-				D9B6492C28F452B40035CE14 /* PreviewQuizDetailsViewModel.swift */,
-				D9B6492B28F452B40035CE14 /* QuizDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6407,6 +6411,7 @@
 			children = (
 				D9B6493628F452D30035CE14 /* QuizDetailViewModelProtocol.swift */,
 				D9B6493528F452D30035CE14 /* QuizDetailsView.swift */,
+				D9E62549296710C300D9D24B /* QuizEditorViewModelProtocol.swift */,
 				D9E68BB728F9AB47007490C3 /* QuizEditorView.swift */,
 			);
 			path = View;
@@ -6480,6 +6485,15 @@
 				D9D7EBE327BC0A3000544339 /* CourseSettingsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D9E6254E2967114B00D9D24B /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				D9B6492C28F452B40035CE14 /* PreviewQuizDetailsViewModel.swift */,
+				D9E6254F2967116400D9D24B /* PreviewQuizEditorViewModel.swift */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 		DFE1FF26212F69B3003F27AA /* CoreTester */ = {
@@ -8088,6 +8102,7 @@
 				CF598B302825290E0029BEBE /* TypographyTestViews.swift in Sources */,
 				D9E1BABA25811BD70034C01E /* ContextCardBoxView.swift in Sources */,
 				CF60CC43264589AF00C1C173 /* K5HomeroomAnnouncementView.swift in Sources */,
+				D9E6254A296710C300D9D24B /* QuizEditorViewModelProtocol.swift in Sources */,
 				7DA25FFC23F7226E005D2121 /* DocViewerPointAnnotation.swift in Sources */,
 				7DC7045A24AA8B2600CD1C46 /* ObserverAlert.swift in Sources */,
 				7DA25FD723F72148005D2121 /* CacheManager.swift in Sources */,
@@ -8186,6 +8201,7 @@
 				CFB06FA428C0E62400DAC40B /* FileUploadProgressObserversCache.swift in Sources */,
 				7D1E85622566E80100D093C5 /* CustomizeCourseView.swift in Sources */,
 				EB2A9BCF2632E40600A19A5A /* SideMenuItem.swift in Sources */,
+				D9E625502967116400D9D24B /* PreviewQuizEditorViewModel.swift in Sources */,
 				7DA25FF223F7225D005D2121 /* APIAccountNotification.swift in Sources */,
 				7DA260BC23F72352005D2121 /* GetSSOLogin.swift in Sources */,
 				7DA25FBB23F72136005D2121 /* APIList.swift in Sources */,
