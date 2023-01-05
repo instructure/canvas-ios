@@ -84,7 +84,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             return
         }
 
-        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [ .overrides ])
+        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
         useCase.fetch(force: true) { [weak self] _, _, fetchError in
             guard let self = self else { return }
             if fetchError != nil {
@@ -232,7 +232,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
                 return
             }
             if result != nil {
-                GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: [.overrides])
+                GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
                     .fetch(force: true)
                 router.dismiss(viewController)
             }

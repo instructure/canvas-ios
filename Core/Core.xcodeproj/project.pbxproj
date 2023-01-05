@@ -1235,6 +1235,7 @@
 		D9E625482967097500D9D24B /* GetAssignmentGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E625472967097500D9D24B /* GetAssignmentGroupsTests.swift */; };
 		D9E6254A296710C300D9D24B /* QuizEditorViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E62549296710C300D9D24B /* QuizEditorViewModelProtocol.swift */; };
 		D9E625502967116400D9D24B /* PreviewQuizEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E6254F2967116400D9D24B /* PreviewQuizEditorViewModel.swift */; };
+		D9E625522967348B00D9D24B /* QuizEditorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E625512967348B00D9D24B /* QuizEditorViewModelTests.swift */; };
 		D9E68BB828F9AB48007490C3 /* QuizEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E68BB728F9AB47007490C3 /* QuizEditorView.swift */; };
 		D9E68BBA28F9AB6A007490C3 /* QuizEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E68BB928F9AB69007490C3 /* QuizEditorViewModel.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
@@ -2781,6 +2782,7 @@
 		D9E625472967097500D9D24B /* GetAssignmentGroupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupsTests.swift; sourceTree = "<group>"; };
 		D9E62549296710C300D9D24B /* QuizEditorViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizEditorViewModelProtocol.swift; sourceTree = "<group>"; };
 		D9E6254F2967116400D9D24B /* PreviewQuizEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQuizEditorViewModel.swift; sourceTree = "<group>"; };
+		D9E625512967348B00D9D24B /* QuizEditorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizEditorViewModelTests.swift; sourceTree = "<group>"; };
 		D9E68BB728F9AB47007490C3 /* QuizEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizEditorView.swift; sourceTree = "<group>"; };
 		D9E68BB928F9AB69007490C3 /* QuizEditorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizEditorViewModel.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
@@ -6450,6 +6452,7 @@
 				D9B6494D28F454A30035CE14 /* QuizAttributesTests.swift */,
 				D9B6494B28F454A30035CE14 /* QuizDateSectionViewModelTests.swift */,
 				D9B6494C28F454A30035CE14 /* QuizDetailsViewModelTests.swift */,
+				D9E625512967348B00D9D24B /* QuizEditorViewModelTests.swift */,
 				D9B6494E28F454A30035CE14 /* QuizSubmissionBreakdownViewModelTests.swift */,
 			);
 			path = QuizDetails;
@@ -7291,6 +7294,7 @@
 				CFDB61FA28AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift in Sources */,
 				CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */,
 				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
+				D9E625522967348B00D9D24B /* QuizEditorViewModelTests.swift in Sources */,
 				B1487F99243E43C400013404 /* GetModuleItemTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
 				7DEAD09E22790B720030C28A /* RichContentEditorViewControllerTests.swift in Sources */,
