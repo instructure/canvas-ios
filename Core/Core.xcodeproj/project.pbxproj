@@ -1012,7 +1012,7 @@
 		CF8D53532806FB490038B0B2 /* WebSitePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D53522806FB490038B0B2 /* WebSitePreviewViewModel.swift */; };
 		CF8D5356280851A70038B0B2 /* EmbeddedWebPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5355280851A70038B0B2 /* EmbeddedWebPageView.swift */; };
 		CF8D535A280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */; };
-		CF8D535C280869820038B0B2 /* DiscussionWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */; };
+		CF8D535C280869820038B0B2 /* EmbeddedWebPageViewModelLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D535B280869820038B0B2 /* EmbeddedWebPageViewModelLive.swift */; };
 		CF8D536028086C110038B0B2 /* DiscussionWebPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D535F28086C110038B0B2 /* DiscussionWebPageViewModelTests.swift */; };
 		CF8D5362280EC41B0038B0B2 /* FeatureFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */; };
 		CF8D53642812D3340038B0B2 /* UISearchTextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D53632812D3340038B0B2 /* UISearchTextFieldExtensions.swift */; };
@@ -2553,7 +2553,7 @@
 		CF8D53522806FB490038B0B2 /* WebSitePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSitePreviewViewModel.swift; sourceTree = "<group>"; };
 		CF8D5355280851A70038B0B2 /* EmbeddedWebPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedWebPageView.swift; sourceTree = "<group>"; };
 		CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedWebPageViewModel.swift; sourceTree = "<group>"; };
-		CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionWebPageViewModel.swift; sourceTree = "<group>"; };
+		CF8D535B280869820038B0B2 /* EmbeddedWebPageViewModelLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedWebPageViewModelLive.swift; sourceTree = "<group>"; };
 		CF8D535F28086C110038B0B2 /* DiscussionWebPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionWebPageViewModelTests.swift; sourceTree = "<group>"; };
 		CF8D5361280EC41B0038B0B2 /* FeatureFlagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagTests.swift; sourceTree = "<group>"; };
 		CF8D53632812D3340038B0B2 /* UISearchTextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchTextFieldExtensions.swift; sourceTree = "<group>"; };
@@ -5650,7 +5650,7 @@
 			isa = PBXGroup;
 			children = (
 				CF8D5359280866CD0038B0B2 /* EmbeddedWebPageViewModel.swift */,
-				CF8D535B280869820038B0B2 /* DiscussionWebPageViewModel.swift */,
+				CF8D535B280869820038B0B2 /* EmbeddedWebPageViewModelLive.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7778,7 +7778,7 @@
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
 				CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */,
-				CF8D535C280869820038B0B2 /* DiscussionWebPageViewModel.swift in Sources */,
+				CF8D535C280869820038B0B2 /* EmbeddedWebPageViewModelLive.swift in Sources */,
 				3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */,
 				CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,

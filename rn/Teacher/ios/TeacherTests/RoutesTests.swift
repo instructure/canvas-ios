@@ -112,7 +112,22 @@ class RoutesTests: XCTestCase {
         flag.enabled = true
         flag.context = .course("2")
 
-        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
-        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
+        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testNativeAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
+    }
+
+    func testHybridAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        XCTAssert(router.match("/courses/2/announcements/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 }
