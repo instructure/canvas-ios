@@ -64,4 +64,35 @@ class GetQuizTest: CoreTestCase {
         XCTAssertEqual(quizzes.first?.htmlURL?.path, "/courses/1/quizzes/123")
         XCTAssertNotNil(quizzes.first?.submission)
     }
+
+    func testUpdateQuiz() {
+        let quiz = APIQuizParameters(
+            access_code: nil,
+            allowed_attempts: 5,
+            assignment_group_id: nil,
+            cant_go_back: nil,
+            description: "desc",
+            one_question_at_a_time: false,
+            published: true,
+            quiz_type: .graded_survey,
+            scoring_policy: .keep_highest,
+            shuffle_answers: false,
+            time_limit: 55.0,
+            title: "Quiz"
+        )
+
+        let useCase = UpdateQuiz(courseID: courseID, quizID: quizID, quiz: quiz)
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.courseID, "1")
+        XCTAssertEqual(useCase.request.quizID, "2")
+
+        api.mock(PutQuizRequest(courseID: courseID, quizID: quizID, body: PutQuizRequest.Body(quiz: quiz)), value: .make())
+        let expectation = XCTestExpectation(description: "completion handler was called")
+        useCase.makeRequest(environment: environment) { response, _, error in
+            XCTAssertNotNil(response)
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+    }
 }

@@ -68,11 +68,7 @@ class UpdateQuiz: APIUseCase {
     typealias Model = Quiz
     let request: PutQuizRequest
 
-    init(
-        courseID: String,
-        quizID: String,
-        quiz: APIQuizParameters
-    ) {
+    init(courseID: String, quizID: String, quiz: APIQuizParameters) {
         request = PutQuizRequest(
             courseID: courseID,
             quizID: quizID,

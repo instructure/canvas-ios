@@ -47,7 +47,7 @@ extension APIAssignmentGroup {
 public struct GetAssignmentGroupsRequest: APIRequestable {
     public typealias Response = [APIAssignmentGroup]
 
-    public enum Include: String {
+    public enum Include: String, CaseIterable {
         case assignments, discussion_topic, observed_users, submission, score_statistics, all_dates
     }
 
