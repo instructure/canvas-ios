@@ -111,6 +111,7 @@ public class InboxViewModel: ObservableObject {
             .sink()
             .store(in: &subscriptions)
         refreshDidTrigger
+            .delay(for: .seconds(1), scheduler: RunLoop.main)
             .flatMap { refreshCompletion in
                 interactor
                     .refresh()
