@@ -27,8 +27,7 @@ class QuizEditorViewModelTests: CoreTestCase {
     let assignmentID = "3"
     let assignmentGroupID = "15"
 
-    override func setUp() {
-        super.setUp()
+    func testAttributes() {
         let apiQuiz = APIQuiz.make(
             access_code: "TrustNo1",
             allowed_attempts: 10,
@@ -44,14 +43,13 @@ class QuizEditorViewModelTests: CoreTestCase {
             scoring_policy: .keep_highest,
             shuffle_answers: true,
             time_limit: 10,
-            title: "test quiz"
+            title: "test quiz",
+            unpublishable: true
         )
         api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: apiQuiz)
-        api.mock(GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: .make())
+        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: .make())
         api.mock(GetAssignmentGroups(courseID: courseID), value: [.make()])
-    }
 
-    func testAttributes() {
         let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
 
         XCTAssertEqual(testee.title, "test quiz")
@@ -68,12 +66,143 @@ class QuizEditorViewModelTests: CoreTestCase {
         XCTAssertTrue(testee.lockQuestionAfterViewing)
         XCTAssertTrue(testee.requireAccessCode)
         XCTAssertEqual(testee.accessCode, "TrustNo1")
+        XCTAssertTrue(testee.shouldShowPublishedToggle)
+    }
+
+    func testFetchQuizError() {
+        api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: nil, error: NSError.internalError())
+
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        XCTAssertEqual(testee.state, .error("Internal Error"))
+    }
+
+    func testFetchAssignmentError() {
+        api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: .make(assignment_id: ID(assignmentID), id: ID(quizID)))
+        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: nil, error: NSError.internalError())
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        XCTAssertEqual(testee.state, .error("Internal Error"))
+    }
+
+    func testFetchAssignmentGroupError() {
+        api.mock(GetAssignmentGroups(courseID: courseID), value: nil, error: NSError.internalError())
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        XCTAssertEqual(testee.state, .error("Internal Error"))
+    }
+
+    func testValidate() {
+        mockData()
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        XCTAssertTrue(testee.validate())
+        testee.title = ""
+        XCTAssertFalse(testee.validate())
+        testee.title = " "
+        XCTAssertFalse(testee.validate())
+        testee.title = "Title"
+        testee.accessCode = ""
+        XCTAssertFalse(testee.validate())
+        testee.accessCode = " "
+        XCTAssertFalse(testee.validate())
+        testee.requireAccessCode = false
+        XCTAssertTrue(testee.validate())
     }
 
     func testDoneTapped() {
+        mockData()
+        let expectedBody = PutQuizRequest.Body(quiz: APIQuizParameters(
+            access_code: "NewAccesCode",
+            allowed_attempts: 99,
+            assignment_group_id: nil,
+            cant_go_back: true,
+            description: "New Description",
+            one_question_at_a_time: true,
+            published: false,
+            quiz_type: .assignment,
+            scoring_policy: .keep_average,
+            shuffle_answers: true,
+            time_limit: 100.0,
+            title: "New Title"
+        ))
+        let apiExpectation = expectation(description: "Quiz Updated")
         let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
-        testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
-        // TODO expectations
 
+        testee.accessCode = "NewAccesCode"
+        testee.allowedAttempts = 99
+        testee.oneQuestionAtaTime = true
+        testee.lockQuestionAfterViewing = true
+        testee.description = "New Description"
+        testee.oneQuestionAtaTime = true
+        testee.published = false
+        testee.quizType = .assignment
+        testee.allowMultipleAttempts = true
+        testee.scoreToKeep = .keep_average
+        testee.shuffleAnswers = true
+        testee.timeLimit = true
+        testee.lengthInMinutes = 100
+        testee.title = "New Title"
+
+        let request = PutQuizRequest(courseID: courseID, quizID: quizID, body: nil)
+        api.mock(request) { urlRequest in
+            if let httpBody = urlRequest.httpBody {
+                let body = try? JSONDecoder().decode(PutQuizRequest.Body.self, from: httpBody)
+                XCTAssertEqual(expectedBody, body)
+                apiExpectation.fulfill()
+            } else {
+                XCTFail("Body missing from request")
+            }
+            return (nil, nil, nil)
+        }
+
+        testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
+
+        waitForExpectations(timeout: 1)
+    }
+
+    func testSaveAssignmentCalled() {
+        mockData()
+        let expectedBody = PutAssignmentRequest.Body(assignment: APIAssignmentParameters(
+            assignment_overrides: nil,
+            description: "Description",
+            due_at: nil,
+            grading_type: .points,
+            lock_at: nil,
+            name: "Quiz",
+            only_visible_to_overrides: true,
+            points_possible: 10,
+            published: true,
+            unlock_at: nil
+        ))
+        let apiExpectation = expectation(description: "Assignment Updated")
+
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let request = PutAssignmentRequest(courseID: courseID, assignmentID: assignmentID, body: nil)
+        api.mock(request) { urlRequest in
+            if let httpBody = urlRequest.httpBody {
+                let body = try? JSONDecoder().decode(PutAssignmentRequest.Body.self, from: httpBody)
+                XCTAssertEqual(expectedBody, body)
+                apiExpectation.fulfill()
+            } else {
+                XCTFail("Body missing from request")
+            }
+            return (nil, nil, nil)
+        }
+        testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
+        waitForExpectations(timeout: 1)
+    }
+
+    private func mockData() {
+        let apiQuiz = APIQuiz.make(
+            access_code: "TrustNo1",
+            assignment_id: "3",
+            description: "test description",
+            has_access_code: true,
+            id: ID(quizID),
+            points_possible: 5,
+            published: true,
+            time_limit: 10,
+            title: "test quiz"
+        )
+        api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: apiQuiz)
+        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: .make())
+        api.mock(GetAssignmentGroups(courseID: courseID), value: [.make()])
     }
 }

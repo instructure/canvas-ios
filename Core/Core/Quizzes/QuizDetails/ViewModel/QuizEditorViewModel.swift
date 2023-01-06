@@ -70,6 +70,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             guard let self = self else { return }
             if fetchError != nil {
                 self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                return
             }
 
             self.quiz = self.env.database.viewContext.fetch(scope: useCase.scope).first
@@ -89,6 +90,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             guard let self = self else { return }
             if fetchError != nil {
                 self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                return
             }
 
             self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
@@ -102,6 +104,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             guard let self = self else { return }
             if fetchError != nil {
                 self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                return
             }
             self.assignmentGroups = self.env.database.viewContext.fetch(scope: useCase.scope)
         }
@@ -143,7 +146,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             return false
         }
 
-        if requireAccessCode, accessCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        if requireAccessCode && accessCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             let errorMessage = NSLocalizedString("You must enter an access code", comment: "")
             showError(title: errorMessage)
             return false
@@ -194,6 +197,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
                     self.state = .ready
                     let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
                     self.showError(title: errorMessage)
+                    return
                 }
                 if result != nil {
                     GetQuiz(courseID: self.courseID, quizID: self.quizID)
