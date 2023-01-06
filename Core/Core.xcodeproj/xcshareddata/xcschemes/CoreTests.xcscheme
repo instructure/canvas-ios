@@ -28,23 +28,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-<<<<<<< master
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CAF1B131F72AEDB007225DF"
-            BuildableName = "CanvasCore.framework"
-            BlueprintName = "CanvasCore"
-            ReferencedContainer = "container:../CanvasCore/CanvasCore.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C96482D211E2F1A002C3255"
-            BuildableName = "Core.framework"
-            BlueprintName = "Core"
-=======
       onlyGenerateCoverageForSpecifiedTargets = "NO">
       <TestPlans>
          <TestPlanReference
@@ -58,7 +41,6 @@
             BlueprintIdentifier = "3C9856EABA187C2715A3B3E4"
             BuildableName = "CoreTester.app"
             BlueprintName = "CoreTester"
->>>>>>> wip: xcodegen for Core and TestsFoundation
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

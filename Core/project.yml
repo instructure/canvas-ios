@@ -12,10 +12,10 @@ settings:
 packages:
   Lottie:
     url: https://github.com/airbnb/lottie-ios.git
-    from: 3.1.8
+    exactVersion: 3.5.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    from: 12.0.0
+    exactVersion: 12.0.2
 projectReferences:
   TestsFoundation:
     path: ../TestsFoundation/TestsFoundation.xcodeproj
@@ -42,7 +42,7 @@ targets:
   CoreTester:
     type: application
     platform: iOS
-    transitivelyLinkDependencies: true
+    transitivelyLinkDependencies: false
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.instructure.CoreTester
       CODE_SIGN_ENTITLEMENTS: CoreTester/CoreTester.entitlements
