@@ -42,6 +42,20 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B15CA25C221DDB820014FB02"
+               BuildableName = "TeacherTests.xctest"
+               BlueprintName = "TeacherTests"
+               ReferencedContainer = "container:Teacher.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "E8315D3522FC9E60003CD27C"
                BuildableName = "TeacherUITests.xctest"
                BlueprintName = "TeacherUITests"
@@ -81,16 +95,6 @@
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B15CA25C221DDB820014FB02"
-               BuildableName = "TeacherTests.xctest"
-               BlueprintName = "TeacherTests"
-               ReferencedContainer = "container:Teacher.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
