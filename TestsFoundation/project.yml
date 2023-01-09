@@ -31,5 +31,3 @@ schemes:
     build:
       targets:
         TestsFoundation: all
-      
-    

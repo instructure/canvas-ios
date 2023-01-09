@@ -45,8 +45,6 @@ end
 abstract_target 'needs-pspdfkit' do
   use_frameworks!
   pspdfkit
-  #target 'CoreTests' do project 'Core/Core.xcodeproj' end
-  #target 'CoreTester' do project 'Core/Core.xcodeproj' end
   target 'StudentUITests' do project 'Student/Student.xcodeproj' end
   target 'StudentE2ETests' do project 'Student/Student.xcodeproj' end
   target 'TeacherUITests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end

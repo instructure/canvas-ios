@@ -63,5 +63,3 @@ schemes:
       testPlans:
         - path: ../TestPlans/CoreTests.xctestplan
           defaultPlan: true
-      
-    
