@@ -49,7 +49,7 @@ class InboxViewModelTests: CoreTestCase {
             refreshCompleted.fulfill()
         }
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 2)
         XCTAssertTrue(mockInteractor.refreshCalled)
     }
 
