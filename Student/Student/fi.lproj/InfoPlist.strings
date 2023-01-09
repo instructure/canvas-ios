@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Opiskelija";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Liitä valokuvia ja videoita viesteihin ja keskustelua koskeviin lähetyksiin tai luovuta ne tehtävän lähetyksissä.";
 

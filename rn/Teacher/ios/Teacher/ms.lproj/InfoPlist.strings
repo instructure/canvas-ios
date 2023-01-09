@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Guru";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Kepilkan foto dan video pada komen serahan.";
 

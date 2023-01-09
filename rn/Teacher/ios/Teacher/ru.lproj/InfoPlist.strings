@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Преподаватель";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Прикрепить фотографии и видеоматериалы к комментариям к отправке.";
 
