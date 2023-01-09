@@ -28,7 +28,7 @@ public enum DiscussionHTML {
 
     public static func string(for topic: DiscussionTopic) -> String {
         """
-        <style>\(css + darkCss)</style>
+        <style>\(css)</style>
         \(entryHeader(author: topic.author, date: topic.postedAt, attachment: topic.attachments?.first, isTopic: true))
         \(topic.message ?? "")
         """
@@ -36,7 +36,7 @@ public enum DiscussionHTML {
 
     static func string(for entry: DiscussionEntry) -> String {
         """
-        <style>\(css + darkCss)</style>
+        <style>\(css)</style>
         <div class="\(Styles.entry)">
             \(entryHeader(author: entry.author, date: entry.updatedAt, attachment: entry.isRemoved ? nil : entry.attachment, isTopic: true))
             \(message(for: entry))
