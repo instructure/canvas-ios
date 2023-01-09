@@ -2,8 +2,7 @@ provision: ## Environment setup
 	@git config commit.template .gitcommit
 	@brew config && brew update
 	@brew bundle
-	@gem install cocoapods
-	@yarn global add react-native-cli --prefix /usr/local
+	@yarn global add react-native-cli --prefix ~/.local
 
 provision-ci: ## CI environment setup
 	@brew install "xcodegen"
