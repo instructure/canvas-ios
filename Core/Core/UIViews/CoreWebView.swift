@@ -100,7 +100,9 @@ open class CoreWebView: WKWebView {
     }
     private var isThemeDark = false {
         didSet {
-            isInverted = false
+            if !isThemeDark {
+                isInverted = false
+            }
         }
     }
 
@@ -238,11 +240,19 @@ open class CoreWebView: WKWebView {
             >
             <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <style>\(css)</style>
-            <style>\(darkModeCss())</style>
+            \(optionalDarkModeCssStyle(for: content))
             \(jquery)
             \(content)
             </html>
         """
+    }
+
+    /** Only inject dark theme css if there's none present yet.  */
+    private func optionalDarkModeCssStyle(for content: String) -> String {
+        guard content.contains("prefers-color-scheme:dark") else {
+            return "<style>\(darkModeCss())</style>"
+        }
+        return ""
     }
 
     var zoomScript: String {
@@ -738,21 +748,34 @@ extension CoreWebView {
             themeSwitcherButton.setNeedsUpdateConfiguration()
         }
         guard let htmlString = htmlString, let baseURL = baseURL else { return }
-        super.loadHTMLString(self.html(for: htmlString), baseURL: baseURL)
+        if htmlString.contains("prefers-color-scheme:dark") {
+            super.overrideUserInterfaceStyle = isInverted ? .light : .unspecified
+        } else {
+            super.loadHTMLString(self.html(for: htmlString), baseURL: baseURL)
+        }
     }
 
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        isThemeDark = previousTraitCollection?.userInterfaceStyle != .dark
+        isThemeDark = self.viewController?.traitCollection.userInterfaceStyle == .dark
     }
 
     public func pinWithThemeSwitchButton(inside parent: UIView?, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
 
         guard let parent = parent else { return }
 
-        let buttonHeight: CGFloat = isThemeDark ? 38 : 0
+        let padding: CGFloat = 16
+
+        var buttonHeight: CGFloat {
+            isThemeDark ? 38 : 0
+        }
+
+        var buttonTopPadding: CGFloat {
+            isThemeDark ? 16 : 0
+        }
+
         themeSwitcherButton.isHidden = !isThemeDark
         let buttonHeightConstraint = self.themeSwitcherButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-        buttonHeightConstraint.isActive = true
+        let buttonTopConstraint = self.themeSwitcherButton.topAnchor.constraint(equalTo: parent.topAnchor, constant: buttonTopPadding)
 
         isThemeDark = parent.viewController?.traitCollection.userInterfaceStyle == .dark
         let buttonTitle = NSLocalizedString("Switch To Light Mode", bundle: .core, comment: "")
@@ -774,19 +797,20 @@ extension CoreWebView {
             config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .medium)
             themeSwitcherButton.configuration = config
             themeSwitcherButton.configurationUpdateHandler = { button in
-                var config = button.configuration
                 var style: UIUserInterfaceStyle = self.isInverted ? .light : .dark
                 if !self.isThemeDark {
                     style = .light
                 }
                 let traitCollection = UITraitCollection(userInterfaceStyle: style)
+                var config = button.configuration
                 config?.title = self.isInverted ? invertedTitle : buttonTitle
                 config?.background.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
                 config?.background.strokeColor = .borderDarkest.resolvedColor(with: traitCollection)
                 config?.baseForegroundColor = .textDarkest.resolvedColor(with: traitCollection)
                 button.configuration = config
                 button.isHidden = !self.isThemeDark
-                buttonHeightConstraint.constant = self.isThemeDark ? 38 : 0
+                buttonHeightConstraint.constant = buttonHeight
+                buttonTopConstraint.constant = buttonTopPadding
                 button.superview?.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
             }
         }
@@ -795,9 +819,10 @@ extension CoreWebView {
 
         translatesAutoresizingMaskIntoConstraints = false
         themeSwitcherButton.translatesAutoresizingMaskIntoConstraints = false
-        themeSwitcherButton.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: 16).isActive = true
-        themeSwitcherButton.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -16).isActive = true
-        themeSwitcherButton.topAnchor.constraint(equalTo: parent.topAnchor, constant: 16).isActive = true
+        buttonHeightConstraint.isActive = true
+        buttonTopConstraint.isActive = true
+        themeSwitcherButton.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: padding).isActive = true
+        themeSwitcherButton.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -padding).isActive = true
         themeSwitcherButton.bottomAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
 
         if let leading = leading {
