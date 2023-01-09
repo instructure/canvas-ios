@@ -1,6 +1,7 @@
 ---
 name: Core
 options:
+  groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
   deploymentTarget:
     iOS: 14.0

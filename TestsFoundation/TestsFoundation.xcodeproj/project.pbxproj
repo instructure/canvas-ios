@@ -411,7 +411,6 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
-				233DF034B90E6CB94E45AB67 /* DataSeeder.swift */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
 				E9C31C8EF04AEA0B22366489 /* Course */,
@@ -420,6 +419,7 @@
 				A855441AA117850373316827 /* Pages */,
 				2BE1E842796043B68977B95A /* Submissions */,
 				04A5599E788D08E7D2E6531C /* User */,
+				233DF034B90E6CB94E45AB67 /* DataSeeder.swift */,
 			);
 			path = DataSeeding;
 			sourceTree = "<group>";
@@ -522,10 +522,10 @@
 		2BE1E842796043B68977B95A /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				67863E3B9D66867627816760 /* Grades */,
 				2F0802341FC04F9C6AD34B8D /* CreateDSSubmissionRequest.swift */,
 				94B8A22810620838412A5123 /* DataSeeder+DSSubmission.swift */,
 				8E52A6F60DF961A9FB652399 /* DSSubmission.swift */,
-				67863E3B9D66867627816760 /* Grades */,
 			);
 			path = Submissions;
 			sourceTree = "<group>";
@@ -576,8 +576,8 @@
 		3AC6CC87F9F0E9FE10B41E3C /* ParentUIElements */ = {
 			isa = PBXGroup;
 			children = (
-				3D75521B2DB34EF2BA6B9923 /* Courses.swift */,
 				ACB1C81C03C8581C51DD94E7 /* Conversations */,
+				3D75521B2DB34EF2BA6B9923 /* Courses.swift */,
 			);
 			path = ParentUIElements;
 			sourceTree = "<group>";
@@ -624,9 +624,6 @@
 		5CC2F98814D9D94E9D1CC0DE /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				BFB783F173DCDF41164E0396 /* .swiftlint.yml */,
-				D8DD6D030A52A99DEFB88BB1 /* Info.plist */,
-				AFADD33878B51583D45DEFDC /* TestsFoundation.h */,
 				5F341065F80F5BDB7D69CC5D /* CoreUIElements */,
 				03ABD99D034A87793F537440 /* Database */,
 				039CF14263C4180E857200CA /* DataSeeding */,
@@ -643,6 +640,9 @@
 				E2A728FA8E2ABEAAC05DEF04 /* Presenter */,
 				DF5F4FEE8DED1BA9DC96F2F3 /* Router */,
 				0C43145148800CF40159C345 /* UITests */,
+				BFB783F173DCDF41164E0396 /* .swiftlint.yml */,
+				D8DD6D030A52A99DEFB88BB1 /* Info.plist */,
+				AFADD33878B51583D45DEFDC /* TestsFoundation.h */,
 			);
 			path = TestsFoundation;
 			sourceTree = "<group>";
@@ -708,9 +708,9 @@
 		67863E3B9D66867627816760 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
+				3019ABC19492E0EC2B2B767B /* GradingStandard */,
 				51606BE1BCF00575840790B4 /* CreateDSGradesRequest.swift */,
 				06069BF81EF75ADAD665ED65 /* DataSeeder+DSGrades.swift */,
-				3019ABC19492E0EC2B2B767B /* GradingStandard */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -935,11 +935,11 @@
 		C3A6D9814C6CA29291092026 /* MiniCanvas */ = {
 			isa = PBXGroup;
 			children = (
+				6184DD21326F8F20CFE21B2E /* Extensions */,
+				514560983DD09CE1201192EF /* State */,
 				79698DEE6B302B99C04D10D9 /* LoggingHttpServer.swift */,
 				853FF26543B7A1A331156E77 /* MiniCanvasEndpoints.swift */,
 				BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */,
-				6184DD21326F8F20CFE21B2E /* Extensions */,
-				514560983DD09CE1201192EF /* State */,
 			);
 			path = MiniCanvas;
 			sourceTree = "<group>";
@@ -1011,11 +1011,11 @@
 		E9C31C8EF04AEA0B22366489 /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				9A7561DA742A2C1B232DFA62 /* Tabs */,
 				3258B341703AB94A86D1CD4C /* CreateDSCourseRequest.swift */,
 				7696666C5B013125861D6568 /* DataSeeder+DSCourse.swift */,
 				36F4DB85C49C47721883E34F /* DSCourse.swift */,
 				AB2AB5C640DE9A874C8DB52C /* UpdateDSCourseRequest.swift */,
-				9A7561DA742A2C1B232DFA62 /* Tabs */,
 			);
 			path = Course;
 			sourceTree = "<group>";
