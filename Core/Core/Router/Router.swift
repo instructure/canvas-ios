@@ -299,7 +299,7 @@ open class Router {
         webController.webView.load(URLRequest(url: url))
         show(webController,
              from: from,
-             options: .modal(.formSheet, isDismissable: false, embedInNav: true, addDoneButton: true),
+             options: .modal(.pageSheet, isDismissable: false, embedInNav: true, addDoneButton: true),
              analyticsRoute: "/external_url")
         return true
     }
