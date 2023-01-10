@@ -169,8 +169,13 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
     }
 
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        heightChanged()
+    }
+
     func heightChanged() {
-        let contentHeight = self.contentHeight.constant
+        let themeSwitchButtonOffset: CGFloat = traitCollection.userInterfaceStyle == .dark ? 38 : 0
+        let contentHeight = self.contentHeight.constant + themeSwitchButtonOffset
         webViewHeight.constant = isExpanded || contentHeight <= collapsedHeight ? contentHeight : collapsedHeight
         viewMoreButton.isHidden = contentHeight <= collapsedHeight
     }
