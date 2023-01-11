@@ -35,7 +35,7 @@ public class CourseSettingsViewModel: ObservableObject {
     @Published public private(set) var imageURL: URL?
     @Published public private(set) var hideColorOverlay: Bool?
 
-    @Environment(\.appEnvironment) private var env
+    private let env = AppEnvironment.shared
     private var isFirstAppearance = true
     private var context: Context
     private lazy var colors = env.subscribe(GetCustomColors())

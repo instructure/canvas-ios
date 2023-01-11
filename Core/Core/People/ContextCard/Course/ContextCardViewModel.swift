@@ -37,7 +37,7 @@ public class ContextCardViewModel: ObservableObject {
     public let isModal: Bool
     public var enrollment: Enrollment?
 
-    @Environment(\.appEnvironment) private var env
+    private let env = AppEnvironment.shared
     private var isFirstAppear = true
     private let courseID: String
     private let userID: String

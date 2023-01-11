@@ -45,8 +45,7 @@ public class CourseDetailsViewModel: ObservableObject {
         return URL(string: "courses/\(course.id)/settings")
     }
 
-    @Environment(\.appEnvironment) private var env
-
+    private let env = AppEnvironment.shared
     private var isTeacher: Bool { env.app == .teacher }
     private let context: Context
     private var attendanceToolID: String?

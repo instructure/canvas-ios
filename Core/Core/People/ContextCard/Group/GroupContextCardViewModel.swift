@@ -29,7 +29,7 @@ public class GroupContextCardViewModel: ObservableObject {
     public var shouldShowMessageButton: Bool { isViewingAnotherUser && permissions.first?.sendMessages == true }
     public let context: Context
 
-    @Environment(\.appEnvironment) private var env
+    private let env = AppEnvironment.shared
     private let isViewingAnotherUser: Bool
     private var isFirstAppear = true
     private let groupID: String

@@ -27,7 +27,6 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
         case data(T)
     }
 
-    @Environment(\.appEnvironment) var env
     @Published public private(set) var state: ViewModelState<[LibraryComment]> = .loading
     private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
     public var shouldShow: Bool {
@@ -38,6 +37,7 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
             updateFilteredComments()
         }
     }
+    private let env = AppEnvironment.shared
     private var filteredComments: [LibraryComment] = [] {
         didSet {
             withAnimation {
