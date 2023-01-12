@@ -44,8 +44,7 @@ extension ViewLoader where Self: UIView {
 extension UIView {
     /** This property returns the View's ViewController if there's one. */
     var viewController: UIViewController? {
-        guard let viewController = findNextResponder(type: UIViewController.self, nextResponder: self) else { return nil }
-        return viewController
+        findNextResponder(type: UIViewController.self, nextResponder: self)
     }
 
     func findNextResponder<T>(type: T.Type, nextResponder: UIResponder?) -> T? {
