@@ -210,7 +210,8 @@ extension WebView {
         public var routeLinksFrom: UIViewController { view.controller.value }
 
         public func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat) {
-            view.handleSize?(height)
+            let buttonHeight: CGFloat = (view.controller.value.traitCollection.userInterfaceStyle == .dark && view.canToggleTheme) ? 38 : 0
+            view.handleSize?(height + buttonHeight + 16)
         }
 
         public func finishedNavigation() {

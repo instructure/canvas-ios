@@ -146,7 +146,7 @@ public struct AssignmentDetailsView: View {
                 .font(.medium16).foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
             WebView(html: html, canToggleTheme: true)
-                .frame(minHeight: 100)
+                .frameToFit()
         } else {
             Section(label: Text("Description", bundle: .core)) {
                 HStack {
