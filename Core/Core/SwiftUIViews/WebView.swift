@@ -29,6 +29,7 @@ public struct WebView: UIViewRepresentable {
     private var disableZoom: Bool = false
     private var pullToRefresh: CoreWebView.PullToRefresh
     private var invertColorsInDarkMode: Bool = false
+    private var canToggleTheme: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration?
 
@@ -39,9 +40,11 @@ public struct WebView: UIViewRepresentable {
 
     public init(
         url: URL?,
+        canToggleTheme: Bool = false,
         pullToRefresh: CoreWebView.PullToRefresh
     ) {
         source = url.map { .request(URLRequest(url: $0)) }
+        self.canToggleTheme = canToggleTheme
         self.pullToRefresh = pullToRefresh
     }
 
@@ -49,6 +52,7 @@ public struct WebView: UIViewRepresentable {
         url: URL?,
         customUserAgentName: String?,
         disableZoom: Bool = false,
+        canToggleTheme: Bool = false,
         pullToRefresh: CoreWebView.PullToRefresh,
         configuration: WKWebViewConfiguration? = nil,
         invertColorsInDarkMode: Bool = false
@@ -56,23 +60,27 @@ public struct WebView: UIViewRepresentable {
         self.init(url: url, pullToRefresh: pullToRefresh)
         self.customUserAgentName = customUserAgentName
         self.disableZoom = disableZoom
+        self.canToggleTheme = canToggleTheme
         self.pullToRefresh = pullToRefresh
         self.invertColorsInDarkMode = invertColorsInDarkMode
         self.configuration = configuration
     }
 
-    public init(html: String?) {
+    public init(html: String?, canToggleTheme: Bool = false) {
         source = html.map { .html($0) }
+        self.canToggleTheme = canToggleTheme
         pullToRefresh = .disabled
     }
 
     public init(
         request: URLRequest,
         disableZoom: Bool = false,
+        canToggleTheme: Bool = false,
         pullToRefresh: CoreWebView.PullToRefresh
     ) {
         source = .request(request)
         self.disableZoom = disableZoom
+        self.canToggleTheme = canToggleTheme
         self.pullToRefresh = pullToRefresh
     }
 
@@ -113,28 +121,42 @@ public struct WebView: UIViewRepresentable {
 
     // MARK: - UIViewRepresentable Protocol
 
-    public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView(
+    public func makeUIView(context: Self.Context) -> UIView {
+        let webViewContainer = UIView()
+        let webView = CoreWebView(
             customUserAgentName: customUserAgentName,
             disableZoom: disableZoom,
             pullToRefresh: pullToRefresh,
             configuration: configuration,
             invertColorsInDarkMode: invertColorsInDarkMode
         )
+        webViewContainer.addSubview(webView)
+        if canToggleTheme {
+            webView.pinWithThemeSwitchButton(inside: webViewContainer)
+        } else {
+            webView.pin(inside: webViewContainer)
+        }
+        webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        webView.autoresizesHeight = true
+        webView.scrollView.showsVerticalScrollIndicator = false
+        webView.scrollView.alwaysBounceVertical = false
+        webView.backgroundColor = .backgroundLightest
+        return webViewContainer
     }
 
-    public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
-        uiView.linkDelegate = context.coordinator
-        uiView.sizeDelegate = context.coordinator
-        context.coordinator.reload(webView: uiView, on: reloadTrigger)
+    public func updateUIView(_ uiView: UIView, context: Self.Context) {
+        guard let webView: CoreWebView = uiView.subviews.first(where: { $0 is CoreWebView }) as? CoreWebView else { return }
+        webView.linkDelegate = context.coordinator
+        webView.sizeDelegate = context.coordinator
+        context.coordinator.reload(webView: webView, on: reloadTrigger)
 
         if context.coordinator.loaded != source {
             context.coordinator.loaded = source
             switch source {
             case .html(let html):
-                uiView.loadHTMLString(html)
+                webView.loadHTMLString(html)
             case .request(let request):
-                uiView.load(request)
+                webView.load(request)
             case nil:
                 break
             }
