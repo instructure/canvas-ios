@@ -78,7 +78,7 @@ public struct DashboardCardView: View {
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-            fileUploadNotificationCardViewModel.sceneDidBecomeActive.send(())
+            fileUploadNotificationCardViewModel.sceneDidBecomeActive.send()
         }
         .onReceive(NotificationCenter.default.publisher(for: .showGradesOnDashboardDidChange).receive(on: DispatchQueue.main)) { _ in
             withAnimation {
@@ -150,7 +150,7 @@ public struct DashboardCardView: View {
                     return
                 }
 
-                viewModel.settingsButtonTapped.send(())
+                viewModel.settingsButtonTapped.send()
             } label: {
                 Image.settingsLine
                     .foregroundColor(Color(Brand.shared.navTextColor))

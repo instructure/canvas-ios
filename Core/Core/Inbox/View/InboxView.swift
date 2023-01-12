@@ -41,7 +41,7 @@ public struct InboxView: View {
                             messagesList
                             nextPageLoadingIndicator(geometry: geometry)
                                 .onAppear {
-                                    model.contentDidScrollToBottom.send(())
+                                    model.contentDidScrollToBottom.send()
                                 }
                         case .empty:
                             panda(geometry: geometry, data: model.emptyState)

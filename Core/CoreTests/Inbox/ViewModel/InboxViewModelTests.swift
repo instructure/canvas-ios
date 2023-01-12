@@ -94,7 +94,7 @@ class InboxViewModelTests: CoreTestCase {
     func testScrollToBottomEventForwardedToInteractor() {
         XCTAssertFalse(mockInteractor.loadNextPageCalled)
 
-        testee.contentDidScrollToBottom.send(())
+        testee.contentDidScrollToBottom.send()
         RunLoop.main.run(until: Date() + 2)
 
         XCTAssertTrue(mockInteractor.loadNextPageCalled)
