@@ -35,7 +35,7 @@ public class AssignmentListViewModel: ObservableObject {
         self?.gradingPeriodsDidUpdate()
     }
 
-    @Environment(\.appEnvironment) private var env
+    private let env = AppEnvironment.shared
     private let courseID: String
     private lazy var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()

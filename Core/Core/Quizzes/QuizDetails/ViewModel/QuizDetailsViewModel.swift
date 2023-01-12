@@ -19,7 +19,6 @@
 import SwiftUI
 
 public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
-    @Environment(\.appEnvironment) private var env
     @Published public private(set) var state: QuizDetailsViewModelState = .loading
 
     public private(set) var courseColor: UIColor?
@@ -44,6 +43,7 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     @Published private var assignment: Assignment?
     @Published private var course: Course?
 
+    private let env = AppEnvironment.shared
     private let quizID: String
     private let courseID: String
     private var refreshCompletion: (() -> Void)?

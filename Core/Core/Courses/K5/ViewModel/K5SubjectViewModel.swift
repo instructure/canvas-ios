@@ -33,7 +33,7 @@ public class K5SubjectViewModel: ObservableObject {
     /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
     public var config: WKWebViewConfiguration? { masqueradedSession.config }
 
-    @Environment(\.appEnvironment) private var env
+    private let env = AppEnvironment.shared
     private let context: Context
     private let selectedTabId: String?
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in self?.tabsUpdated() }

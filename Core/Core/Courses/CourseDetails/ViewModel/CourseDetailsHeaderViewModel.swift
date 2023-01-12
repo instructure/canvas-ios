@@ -31,7 +31,7 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
 
     public let height: CGFloat = 235
 
-    @Environment(\.appEnvironment) private var env
+    private let env = AppEnvironment.shared
     private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }

@@ -19,7 +19,7 @@
 import SwiftUI
 
 class StudentViewCellViewModel: CourseDetailsCellViewModel {
-    @Environment(\.appEnvironment) private var env
+    private let env = AppEnvironment.shared
     private var studentViewStudentRequest: APITask?
     private let courseID: String
 
