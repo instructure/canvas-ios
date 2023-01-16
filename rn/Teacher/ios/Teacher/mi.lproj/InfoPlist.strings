@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Kaiako";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā tukunga kōrero.";
 

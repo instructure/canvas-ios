@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Myfyriwr";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Atodwch luniau a fideos ar gyfer negeseuon a phostiadau trafodaeth, neu eu cyflwyno fel aseiniadau.";
 

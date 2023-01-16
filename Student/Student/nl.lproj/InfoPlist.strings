@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Cursist";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Koppel foto's en video's aan berichten en gespreksposts of lever ze in als onderdeel van de opdracht.";
 

@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Študent";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Fotografije in videoposnetke dodajte sporočilom in objavam v razpravi ali pa jih oddajte v obliki oddaj nalog.";
 

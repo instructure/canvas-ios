@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Elev";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 

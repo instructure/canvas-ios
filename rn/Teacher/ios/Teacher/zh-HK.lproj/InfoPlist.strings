@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "教師";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "將照片和影片附加至提交項目評論。";
 

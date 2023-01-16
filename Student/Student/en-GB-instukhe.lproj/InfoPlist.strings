@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Student";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Attach photos and videos to messages and discussion posts, or turn them in as assignment submissions.";
 
