@@ -465,11 +465,11 @@ public enum DiscussionHTML {
 
         var description: String { "-i\(String(rawValue, radix: 36))" }
 
-        static func color(_ path: KeyPath<Brand, UIColor>) -> String {
-            Brand.shared[keyPath: path].hexString
+        static func color(_ path: KeyPath<Brand, UIColor>, style: UIUserInterfaceStyle = .light) -> String {
+            Brand.shared[keyPath: path].hexString(userInterfaceStyle: style)
         }
-        static func color(_ color: UIColor) -> String {
-            color.hexString
+        static func color(_ color: UIColor, style: UIUserInterfaceStyle = .light) -> String {
+            color.hexString(userInterfaceStyle: style)
         }
 
         enum Weight: String {
@@ -483,8 +483,236 @@ public enum DiscussionHTML {
         }
     }
 
-    static let css = """
+    static let css = (lightCss + darkCss).replacingOccurrences(of: "\\s*([{}:;,])\\s*", with: "$1", options: .regularExpression)
+
+    static let darkCss = """
+    @media (prefers-color-scheme: dark) {
     body {
+        color: \(Styles.color(.textDarkest, style: .dark));
+        \(Styles.font(.medium, 14))
+        --max-lines: none;
+    }
+
+    .\(Styles.authorName) {
+        color: \(Styles.color(.textDarkest, style: .dark));
+        \(Styles.font(.semibold, 14))
+        --max-lines: 2;
+    }
+    .\(Styles.date) {
+        color: \(Styles.color(.textDark, style: .dark));
+        \(Styles.font(.semibold, 12))
+        margin-top: 2px;
+        --max-lines: 2;
+    }
+    \(""/* 2 lines then ellipsis */)
+    .\(Styles.authorName),
+    .\(Styles.date) {
+        overflow: hidden;
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--max-lines);
+    }
+    .\(Styles.entryHeader) {
+        align-items: center;
+        display: flex;
+        margin: 12px 0;
+    }
+    .\(Styles.topicHeader) {
+        margin: 16px 0;
+    }
+
+    .\(Styles.avatar) {
+        background: \(Styles.color(.backgroundLightest, style: .dark));
+        background-size: cover;
+        border-radius: 50%;
+        box-sizing: border-box;
+        color: \(Styles.color(.textDark, style: .dark));
+        font-size: 14px;
+        font-weight: 600;
+        height: 32px;
+        line-height: 32px;
+        -webkit-margin-end: 8px;
+        text-align: center;
+        width: 32px;
+    }
+    .\(Styles.avatarInitials) {
+        border: 1px solid \(Styles.color(.borderMedium, style: .dark));
+        overflow: hidden;
+    }
+    .\(Styles.avatarTopic) {
+        font-size: 18px;
+        height: 40px;
+        line-height: 40px;
+        -webkit-margin-end: 12px;
+        -webkit-margin-start: -2px;
+        width: 40px;
+    }
+
+    .\(Styles.groupTopicChildren) {
+        border-radius: 8px;
+        display: flex;
+        flex-flow: column;
+        margin: 12px 0;
+        padding-bottom: 12px;
+    }
+    .\(Styles.groupTopicChildren) > p {
+        \(Styles.font(.medium, 14))
+        margin: 12px;
+    }
+    .\(Styles.groupTopicChild) {
+        color: \(Styles.color(.textDarkest, style: .dark));
+        \(Styles.font(.semibold, 16))
+        display: flex;
+        margin: 12px 8px 12px 12px;
+        text-decoration: none;
+    }
+
+    .\(Styles.deleted) {
+        color: \(Styles.color(.textDark, style: .dark));
+        font-style: italic;
+    }
+    .\(Styles.entry) {
+        margin: 12px 0;
+        position: relative;
+    }
+    .\(Styles.entry)::before {
+        bottom: -8px;
+        border-left: 1px solid \(Styles.color(.borderMedium, style: .dark));
+        content: "";
+        display: block;
+        margin: 0 16px;
+        position: absolute;
+        top: 40px;
+    }
+    .\(Styles.entry):last-child::before {
+        content: none;
+    }
+    .\(Styles.entryContent) {
+        -webkit-margin-start: 40px;
+    }
+    .\(Styles.moreReplies) {
+        background: none;
+        border: 0.5px solid \(Styles.color(.borderMedium, style: .dark));
+        border-radius: 4px;
+        color: \(Styles.color(.textDark, style: .dark));
+        display: block;
+        font-size: 12px;
+        margin: 12px 0;
+        padding: 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .\(Styles.read),
+    .\(Styles.unread) {
+        background: \(Styles.color(.backgroundInfo, style: .dark));
+        border-radius: 3px;
+        color: \(Styles.color(.backgroundInfo, style: .dark));
+        height: 6px;
+        -webkit-margin-start: -8px;
+        overflow: hidden;
+        position: absolute;
+        width: 6px;
+    }
+    .\(Styles.unread) {
+        transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0s;
+    }
+    .\(Styles.read) {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0);
+        transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
+    }
+
+    .\(Styles.actions) {
+        align-items: center;
+        color: \(Styles.color(.textDark, style: .dark));
+        display: flex;
+        margin: 12px 0;
+    }
+    .\(Styles.like) {
+        align-items: center;
+        display: flex;
+        margin: -2px 0;
+        transition: color 0.2s ease;
+    }
+    .\(Styles.liked) {
+        color: \(Styles.color(\.linkColor, style: .dark));
+    }
+    .\(Styles.likeIcon) {
+        display: flex;
+        -webkit-margin-start: 6px;
+        position: relative;
+    }
+    .\(Styles.likeIcon) path {
+        transition: opacity 0.2s ease;
+    }
+    .\(Styles.moreOptions) {
+        background: none;
+        border: 0 none;
+        color: inherit;
+        display: flex;
+        margin: -2px 0;
+        padding: 0;
+    }
+    .\(Styles.reply) {
+        color: \(Styles.color(.textDark, style: .dark));
+        text-decoration: none;
+    }
+    .\(Styles.replyPipe) {
+        border-left: 1px solid \(Styles.color(.borderMedium, style: .dark));
+        height: 16px;
+        margin: 0 12px;
+        width: 0;
+    }
+
+    .\(Styles.blockLink) {
+        color: \(Styles.color(.textDark, style: .dark));
+        display: flex;
+        text-decoration: none;
+    }
+    .\(Styles.divider) {
+        border-top: 0.3px solid \(Styles.color(.borderMedium, style: .dark));
+        margin: 16px -16px;
+    }
+    .\(Styles.heading) {
+        border-top: 0.3px solid \(Styles.color(.borderMedium, style: .dark));
+        border-bottom: 0.3px solid \(Styles.color(.borderMedium, style: .dark));
+        \(Styles.font(.bold, 20))
+        margin: 16px -16px;
+        padding: 16px 16px 8px 16px;
+    }
+    .\(Styles.hiddenCheck) {
+        height: 100%;
+        left: 0;
+        margin: 0;
+        opacity: 0.001;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    .\(Styles.icon) {
+        fill: currentcolor;
+        height: 20px;
+        padding: 2px;
+        width: 20px;
+    }
+    [dir=rtl] .\(Styles.mirrorRTL) {
+        transform: scaleX(-1);
+    }
+    .\(Styles.screenreader) {
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        width: 1px;
+    }
+    }
+    """
+
+    static let lightCss = """
+    @media (prefers-color-scheme: light) {
+    body {
+        color: \(Styles.color(.textDarkest));
         \(Styles.font(.medium, 14))
         --max-lines: none;
     }
@@ -702,6 +930,6 @@ public enum DiscussionHTML {
         overflow: hidden;
         width: 1px;
     }
+    }
     """
-        .replacingOccurrences(of: "\\s*([{}:;,])\\s*", with: "$1", options: .regularExpression)
 }

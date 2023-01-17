@@ -71,7 +71,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Page Details", bundle: .core, comment: ""))
         webViewContainer.addSubview(webView)
-        webView.pin(inside: webViewContainer)
+        webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
         if context.contextType == .course {
             webView.addScript("window.ENV={COURSE:{id:\(CoreWebView.jsString(context.id))}}")

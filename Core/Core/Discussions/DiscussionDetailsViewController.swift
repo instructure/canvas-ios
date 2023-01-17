@@ -130,7 +130,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         // Can't put in storyboard because that breaks cookie sharing
         // & discussion view is cached without verifiers on images
         webViewPlaceholder.addSubview(webView)
-        webView.pin(inside: webViewPlaceholder)
+        webView.pinWithThemeSwitchButton(inside: webViewPlaceholder)
         webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
 
         webView.autoresizesHeight = true // will update the height constraint
