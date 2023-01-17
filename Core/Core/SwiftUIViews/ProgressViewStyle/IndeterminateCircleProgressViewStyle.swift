@@ -115,22 +115,10 @@ struct IndeterminateCircularProgressViewStyle_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
-            .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
         ProgressView()
             .progressViewStyle(.indeterminateCircle(size: 20, lineWidth: 2))
-            .preferredColorScheme(.light)
-            .previewLayout(.sizeThatFits)
-
-        ProgressView()
-            .progressViewStyle(.indeterminateCircle())
-            .preferredColorScheme(.dark)
-            .previewLayout(.sizeThatFits)
-
-        ProgressView()
-            .progressViewStyle(.indeterminateCircle(size: 20, lineWidth: 2))
-            .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }
 }

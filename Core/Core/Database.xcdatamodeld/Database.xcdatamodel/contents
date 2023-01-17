@@ -527,6 +527,25 @@
         <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
     </entity>
+    <entity name="InboxCourse" representedClassName="Core.InboxCourse" syncable="YES">
+        <attribute name="courseId" attributeType="String" defaultValueString=""/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+    </entity>
+    <entity name="InboxMessageListItem" representedClassName="Core.InboxMessageListItem" syncable="YES">
+        <attribute name="avatarNameRaw" optional="YES" attributeType="String"/>
+        <attribute name="avatarURLRaw" optional="YES" attributeType="URI"/>
+        <attribute name="contextFilter" optional="YES" attributeType="String"/>
+        <attribute name="dateRaw" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO"/>
+        <attribute name="hasAttachment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSent" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isStarred" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="message" attributeType="String" defaultValueString=""/>
+        <attribute name="messageId" attributeType="String" defaultValueString=""/>
+        <attribute name="participantName" attributeType="String" defaultValueString=""/>
+        <attribute name="scopeFilter" attributeType="String" defaultValueString=""/>
+        <attribute name="stateRaw" attributeType="String" defaultValueString=""/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+    </entity>
     <entity name="K5HomeroomDueItemCount" representedClassName="Core.K5HomeroomDueItemCount" syncable="YES">
         <attribute name="courseId" attributeType="String"/>
         <attribute name="due" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

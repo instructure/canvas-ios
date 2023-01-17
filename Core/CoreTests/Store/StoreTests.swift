@@ -99,6 +99,248 @@ class StoreTests: CoreTestCase {
         self.eventsExpectation.fulfill()
     }
 
+    // MARK: - Reactive Properties Tests -
+
+    // MARK: All Objects
+
+    func testInitialObjectsPublished() {
+        Course.save(.make(id: "0"), in: databaseClient)
+        try! databaseClient.save()
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent initial value")
+        let subscription = testee
+            .allObjects
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["0"])
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testPublishesObjectsFromUseCase() {
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .allObjects
+            .dropFirst()
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["1"])
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testPublishesObjectsAddedToContext() {
+        let useCase = TestUseCase(courses: [])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .allObjects
+            .dropFirst()
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["3rdpartyinsert"])
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        Course.save(.make(id: "3rdpartyinsert"), in: databaseClient)
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testPublishesChangesMadeOnContextObject() {
+        let course = Course.save(.make(id: "1"), in: databaseClient)
+        try! databaseClient.save()
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .allObjects
+            .dropFirst()
+            .sink { objects in
+                XCTAssertEqual(objects.map { $0.id }, ["1"])
+                XCTAssertEqual(objects.first?.name, "updatedName")
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        course.name = "updatedName"
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    // MARK: State
+
+    func testLoadingState() {
+        let useCase = TestUseCase(courses: [])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .sink { state in
+                XCTAssertEqual(state, .loading)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testEmptyState() {
+        let useCase = TestUseCase(courses: [])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst()
+            .sink { state in
+                XCTAssertEqual(state, .empty)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testDataState() {
+        let useCase = TestUseCase(courses: [.make()])
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst()
+            .sink { state in
+                XCTAssertEqual(state, .data)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testErrorState() {
+        let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst()
+            .sink { state in
+                XCTAssertEqual(state, .error)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testStateUpdatesToEmptyIfEntityRemovedFromContext() {
+        let course = Course.save(.make(id: "1"), in: databaseClient)
+        try! databaseClient.save()
+
+        let useCase = TestUseCase()
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .dropFirst(2)
+            .sink { state in
+                XCTAssertEqual(state, .empty)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        testee.refresh()
+        databaseClient.delete(course)
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testStateDontChangeUntilRefreshCalled() {
+        // We have an entity in the DB
+        let course = Course.save(.make(id: "1"), in: databaseClient)
+        try! databaseClient.save()
+
+        let useCase = TestUseCase()
+        let testee = environment.subscribe(useCase)
+
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        let subscription = testee
+            .statePublisher
+            .sink { state in
+                XCTAssertEqual(state, .loading)
+                publishExpectation.fulfill()
+                XCTAssertTrue(Thread.isMainThread)
+            }
+
+        // We delete the entity
+        databaseClient.delete(course)
+        // We only receive a single state update the initial one: .loading
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    // MARK: Paging
+
+    func testHasNextPagePublisher() {
+        let curr = "https://test.edu/api/v1/date"
+        let next = "https://test.edu/api/v1/date?page=2"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(next)>; rel=\"next\"; count=1",
+        ]
+        let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        let useCase = TestUseCase(courses: [], urlResponse: response)
+        var invocationCount = 0
+        let testee = environment.subscribe(useCase)
+        let publishExpectation = expectation(description: "Publisher should have sent value")
+        publishExpectation.expectedFulfillmentCount = 2
+        let subscription = testee
+            .hasNextPagePublisher
+            .sink { hasNextPage in
+                if invocationCount == 0 {
+                    XCTAssertFalse(hasNextPage)
+                } else {
+                    XCTAssertTrue(hasNextPage)
+                }
+                invocationCount += 1
+                publishExpectation.fulfill()
+            }
+
+        testee.refresh()
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    // MARK: -
+
     func testSubscribeWithoutCache() {
         let course = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course])
@@ -300,7 +542,6 @@ class StoreTests: CoreTestCase {
         )
         try? frc.performFetch()
         let frc2 = frc as! NSFetchedResultsController<NSFetchRequestResult>
-        store.changes = [.insertSection(0)]
         store.controllerDidChangeContent(frc2)
         wait(for: [notified], timeout: 1)
         XCTAssertEqual(store.changes, [])
@@ -377,5 +618,31 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(store.numberOfSections, 1)
         XCTAssertEqual(store.numberOfObjects(inSection: 0), 1)
         XCTAssertNil(store[0])
+    }
+
+    // MARK: - Cache Related Property Tests
+
+    func testIsCachedDataExpired() {
+        let testUseCase = TestUseCase()
+        let cache: TTL = databaseClient.insert()
+        cache.key = testUseCase.cacheKey ?? ""
+        cache.lastRefresh = Date.distantPast
+        try! databaseClient.save()
+
+        let testee = environment.subscribe(testUseCase)
+
+        XCTAssertTrue(testee.isCachedDataExpired)
+    }
+
+    func testIsCachedDataAvailable() {
+        let testUseCase = TestUseCase()
+        let cache: TTL = databaseClient.insert()
+        cache.key = testUseCase.cacheKey ?? ""
+        cache.lastRefresh = Date()
+        try! databaseClient.save()
+
+        let testee = environment.subscribe(testUseCase)
+
+        XCTAssertTrue(testee.isCachedDataAvailable)
     }
 }

@@ -72,10 +72,9 @@ private struct AstronautPanda: View {
             .offset(x: 30, y: 0)
             .rotationEffect(.degrees(rotation))
             .allowsHitTesting(false)
+            .animation(.easeOut(duration: 360), value: rotation)
             .onAppear {
-                withAnimation(.easeOut(duration: 360)) {
-                    rotation = 3600
-                }
+                rotation = 3600
             }
     }
 }
