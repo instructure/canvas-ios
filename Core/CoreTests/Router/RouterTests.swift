@@ -376,7 +376,7 @@ class RouterTests: CoreTestCase {
 
     func testOpen() {
         var url = URL(string: "https://canvas.instructure.com/relative/url")!
-        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url))
+        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url, requires_terms_acceptance: false))
         Router.open(url: .parse("relative/url"))
         XCTAssertEqual(login.externalURL?.absoluteURL, url)
 

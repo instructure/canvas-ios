@@ -353,6 +353,25 @@ struct PutUserAvatarRequest: APIRequestable {
     }
 }
 
+struct PutUserAcceptedTermsRequest: APIRequestable {
+    typealias Response = APIUser
+
+    let hasAccepted: Bool
+
+    struct Body: Encodable {
+        let user: User
+    }
+    struct User: Encodable {
+        let terms_of_use: String
+    }
+
+    let method = APIMethod.put
+    let path = "users/self"
+    var body: Body? {
+        return Body(user: User(terms_of_use: hasAccepted ? "1" : "0"))
+    }
+}
+
 // https://canvas.instructure.com/doc/api/users.html#method.users.set_custom_color
 struct UpdateCustomColorRequest: APIRequestable {
     struct Response: Codable {
