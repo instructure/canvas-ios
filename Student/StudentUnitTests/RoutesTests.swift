@@ -264,7 +264,7 @@ class RoutesTests: XCTestCase {
                                                             userID: "",
                                                             userName: "")
         let expected = URL(string: "https://instructure.com")!
-        api.mock(GetWebSessionRequest(to: URL(string: "https://canvas.com")!), value: .init(session_url: expected, requires_terms_acceptance: false)))
+        api.mock(GetWebSessionRequest(to: URL(string: "https://canvas.com")!), value: .init(session_url: expected, requires_terms_acceptance: false))
         router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
