@@ -1272,6 +1272,7 @@
 		EB35FA5526B0085B00AA8C22 /* K5GradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */; };
 		EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */; };
 		EB368AB427BFD0B500A9F1C1 /* APICommentLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */; };
+		EB3A4E3029716AE200A22FF3 /* LoginUsePolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A4E2F29716AE200A22FF3 /* LoginUsePolicyView.swift */; };
 		EB4368B328CA07A0004B3D39 /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */; };
 		EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */; };
 		EB60D0FC2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */; };
@@ -1283,6 +1284,7 @@
 		EB9BF7D5282E907B0025F6D0 /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9BF7D4282E907B0025F6D0 /* UIWindowExtensions.swift */; };
 		EBAF32F227AAC147000ACD32 /* APICommentLibraryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */; };
 		EBAF32F427AAC194000ACD32 /* APICommentLibraryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F327AAC194000ACD32 /* APICommentLibraryResponse.swift */; };
+		EBB025AF2979809500E6A3B2 /* LoginUsePolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB025AE2979809500E6A3B2 /* LoginUsePolicyViewModel.swift */; };
 		EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */; };
 		EBC9E4BE291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */; };
 		EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */; };
@@ -2821,6 +2823,7 @@
 		EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCell.swift; sourceTree = "<group>"; };
 		EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModel.swift; sourceTree = "<group>"; };
 		EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryTests.swift; sourceTree = "<group>"; };
+		EB3A4E2F29716AE200A22FF3 /* LoginUsePolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyView.swift; sourceTree = "<group>"; };
 		EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePicker.swift; sourceTree = "<group>"; };
 		EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerTests.swift; sourceTree = "<group>"; };
 		EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationDelegateExtensionTests.swift; sourceTree = "<group>"; };
@@ -2833,6 +2836,7 @@
 		EB9BF7D4282E907B0025F6D0 /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
 		EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryRequest.swift; sourceTree = "<group>"; };
 		EBAF32F327AAC194000ACD32 /* APICommentLibraryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryResponse.swift; sourceTree = "<group>"; };
+		EBB025AE2979809500E6A3B2 /* LoginUsePolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyViewModel.swift; sourceTree = "<group>"; };
 		EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModelTests.swift; sourceTree = "<group>"; };
 		EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS16HideListScrollContentBackground.swift; sourceTree = "<group>"; };
 		EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItem.swift; sourceTree = "<group>"; };
@@ -3148,6 +3152,7 @@
 				7D0215AD21BB2D68009A8E69 /* LoginStartSessionCell.swift */,
 				7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */,
 				7D0215A821BB1762009A8E69 /* LoginStartViewController.swift */,
+				EBB025B02979903B00E6A3B2 /* LoginUsePolicy */,
 				3B346749213051FD00F9BC2E /* LoginWebViewController.swift */,
 				3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */,
 				3BC84267247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift */,
@@ -6615,6 +6620,15 @@
 			path = ImportantDates;
 			sourceTree = "<group>";
 		};
+		EBB025B02979903B00E6A3B2 /* LoginUsePolicy */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A4E2F29716AE200A22FF3 /* LoginUsePolicyView.swift */,
+				EBB025AE2979809500E6A3B2 /* LoginUsePolicyViewModel.swift */,
+			);
+			path = LoginUsePolicy;
+			sourceTree = "<group>";
+		};
 		EBE92ED0279864080053C9A4 /* ImportantDates */ = {
 			isa = PBXGroup;
 			children = (
@@ -7776,6 +7790,7 @@
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
+				EB3A4E3029716AE200A22FF3 /* LoginUsePolicyView.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
 				CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */,
 				CF8D535C280869820038B0B2 /* EmbeddedWebPageViewModelLive.swift in Sources */,
@@ -7866,6 +7881,7 @@
 				7DA2609523F72327005D2121 /* RichContentToolbarView.swift in Sources */,
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,
+				EBB025AF2979809500E6A3B2 /* LoginUsePolicyViewModel.swift in Sources */,
 				CFCB0F6327CE7B58008DDEA4 /* PandaScene.swift in Sources */,
 				7D531D48254C606800CBFCA6 /* AssignmentAssigneeList.swift in Sources */,
 				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
