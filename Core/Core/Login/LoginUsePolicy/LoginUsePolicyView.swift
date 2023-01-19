@@ -24,11 +24,9 @@ struct LoginUsePolicyView: View {
     @Environment(\.viewController) var controller
     @Environment(\.appEnvironment) var env
 
-    let bodyText = Text("Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue.", bundle: .core)
-
     var body: some View {
         VStack(spacing: 0) {
-            bodyText
+            Text("Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue.", bundle: .core)
                 .font(.regular16).foregroundColor(.textDarkest)
                 .padding(EdgeInsets(top: 24, leading: 16, bottom: 16, trailing: 16))
             Divider().padding(.zero)
