@@ -44,8 +44,7 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
         webView.linkDelegate = self
 
         view.addSubview(webView)
-        webView.pin(inside: view)
-
+        webView.pinWithThemeSwitchButton(inside: view)
         courses.refresh()
     }
 

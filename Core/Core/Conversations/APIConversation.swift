@@ -56,6 +56,10 @@ public struct APIConversationParticipant: Codable, Equatable {
     let avatar_url: APIURL?
     let pronouns: String?
     let common_courses: [String: [String]]?
+
+    public var displayName: String {
+        User.displayName(name, pronouns: pronouns)
+    }
 }
 
 public struct APIConversationMessage: Codable, Equatable {

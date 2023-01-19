@@ -19,6 +19,7 @@
 import SwiftUI
 
 public protocol PandaScene {
+    /** The name of the scene is used to look up default background and foreground images. */
     var name: String { get }
     /** The offset of the background and foreground views from the center of the view. */
     var offset: (background: CGSize, foreground: CGSize) { get }

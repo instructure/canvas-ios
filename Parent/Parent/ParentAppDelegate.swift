@@ -275,8 +275,14 @@ extension ParentAppDelegate {
 
 extension ParentAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        // Google Analytics needs to be disabled for now
-//        Analytics.logEvent(name, parameters: parameters)
+        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
+            return
+        }
+
+        if let screenName = parameters?["screen_name"] as? String,
+           let screenClass = parameters?["screen_class"] as? String {
+            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+        }
     }
 
     private func initializeTracking() {

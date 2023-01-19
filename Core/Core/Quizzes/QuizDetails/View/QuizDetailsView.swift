@@ -120,7 +120,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
             Text("Description", bundle: .core)
                 .font(.medium16).foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
-            WebView(html: html)
+            WebView(html: html, canToggleTheme: true)
                 .frameToFit()
         } else {
             QuizDetailsSection(label: Text("Description", bundle: .core)) {

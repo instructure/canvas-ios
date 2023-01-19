@@ -75,6 +75,8 @@ public struct APICourse: Codable, Equatable {
     var is_favorite: Bool? // include[]=favorites
     let sections: [SectionRef]? // include[]=sections
 
+    public var context: Context { Context(.course, id: id.rawValue) }
+
     // https://canvas.instructure.com/doc/api/courses.html#Term
     public struct Term: Codable, Equatable {
         let id: ID

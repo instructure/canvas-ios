@@ -260,9 +260,12 @@ class RoutesTests: XCTestCase {
     }
 
     func testFallbackAbsoluteHTTPs() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
         let expected = URL(string: "https://instructure.com")!
-        api.mock(GetWebSessionRequest(to: URL(string: "https://google.com")!), value: .init(session_url: expected, requires_terms_acceptance: false))
-        router.route(to: "https://google.com", from: UIViewController())
+        api.mock(GetWebSessionRequest(to: URL(string: "https://canvas.com")!), value: .init(session_url: expected, requires_terms_acceptance: false)))
+        router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 
@@ -277,9 +280,12 @@ class RoutesTests: XCTestCase {
     }
 
     func testFallbackAuthenticatedError() {
-        let expected = URL(string: "https://google.com")!
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
+        let expected = URL(string: "https://canvas.com")!
         api.mock(GetWebSessionRequest(to: expected), error: NSError.internalError())
-        router.route(to: "https://google.com", from: UIViewController())
+        router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 }
