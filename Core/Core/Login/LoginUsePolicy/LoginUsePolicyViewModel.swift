@@ -20,8 +20,9 @@ import Foundation
 
 public class LoginUsePolicyViewModel: ObservableObject {
 
-    @Published var isAccepted: Bool = false
-    @Published var requestError: Error?
+    @Published public private(set)var isAccepted = false
+    @Published public private(set) var errorText: String?
+    @Published public var showError: Bool = false
 
     private let accepted: (() -> Void)
     private let cancelled: (() -> Void)
@@ -35,7 +36,8 @@ public class LoginUsePolicyViewModel: ObservableObject {
         acceptUsePolicy { result in
             switch result {
             case let .failure(error):
-                self.requestError = error
+                self.errorText = error.localizedDescription
+                self.showError = true
             case .success:
                 self.accepted()
             }

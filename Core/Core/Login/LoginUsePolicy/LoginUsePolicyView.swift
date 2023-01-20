@@ -82,6 +82,9 @@ struct LoginUsePolicyView: View {
                     .opacity(viewModel.isAccepted ? 1 : 0.4)
             }).disabled(!viewModel.isAccepted)
         )
+        .alert(isPresented: $viewModel.showError) {
+            Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
+        }
     }
 }
 
