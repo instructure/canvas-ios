@@ -20,7 +20,7 @@ import Foundation
 
 public class LoginUsePolicyViewModel: ObservableObject {
 
-    @Published public private(set)var isAccepted = false
+    @Published public var isAccepted = false
     @Published public private(set) var errorText: String?
     @Published public var showError: Bool = false
 
@@ -48,7 +48,7 @@ public class LoginUsePolicyViewModel: ObservableObject {
         cancelled()
     }
 
-    private func acceptUsePolicy(_ callback: @escaping (Result<Void, Error>) -> Void) {
+    public func acceptUsePolicy(_ callback: @escaping (Result<Void, Error>) -> Void) {
         AppEnvironment.shared.api.makeRequest(PutUserAcceptedTermsRequest(hasAccepted: true)) { _, _, error in
             guard error == nil else {
                 return callback(.failure(error ?? NSError.internalError()))
