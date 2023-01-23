@@ -11895,6 +11895,7 @@
 		2CADB9708E4C94F94F0653FA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = CoreTests/Info.plist;
@@ -11913,6 +11914,7 @@
 		7E41C2E24C55494B821B7E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = CoreTests/Info.plist;
