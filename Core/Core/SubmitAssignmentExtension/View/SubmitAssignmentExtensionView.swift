@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-@available(iOS 15.0, *)
+@available(iOSApplicationExtension 15.0, *)
 public struct SubmitAssignmentExtensionView: View {
     private enum AccessibilityFocusArea: Hashable, Equatable {
         case course, assignment
@@ -416,7 +416,6 @@ public struct IOS14SubmitAssignmentExtensionView: View {
 
 #if DEBUG
 
-@available(iOS 15.0, *)
 struct SubmitAssignmentExtensionView_Previews: PreviewProvider {
 
     static var previews: some View {
