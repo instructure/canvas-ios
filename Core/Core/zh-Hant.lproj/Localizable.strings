@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@%2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@+ %2$@ 更多";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "所有注釋已儲存。";
-
-/* No comment provided by engineer. */
-"All courses" = "所有課程";
 
 /* No comment provided by engineer. */
 "All Courses" = "所有課程";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "清除篩選器";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "清除篩選器收件匣";
 
 /* No comment provided by engineer. */
 "Clear recording" = "清除錄製";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "篩選活動";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "篩選器收件匣";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";

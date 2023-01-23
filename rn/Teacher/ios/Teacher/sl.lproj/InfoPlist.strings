@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Izvajalec";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Komentarjem k oddaji dodajte fotografije in videoposnetke.";
 

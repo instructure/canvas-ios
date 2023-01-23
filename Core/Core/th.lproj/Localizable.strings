@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ รายการเพิ่มเติม";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "หมายเหตุกำกับทั้งหมดที่บันทึกไว้";
-
-/* No comment provided by engineer. */
-"All courses" = "บทเรียนทั้งหมด";
 
 /* No comment provided by engineer. */
 "All Courses" = "บทเรียนทั้งหมด";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "ล้างตัวกรอง";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "ล้างกล่องจดหมายตัวกรอง";
 
 /* No comment provided by engineer. */
 "Clear recording" = "ล้างข้อมูลบันทึก";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "กรองกิจกรรม";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "กล่องจดหมายตัวกรอง";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "เกรดสรุป: %@";

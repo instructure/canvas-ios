@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Estudiante";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de los foros de discusión o entréguelos como entregas de tareas.";
 

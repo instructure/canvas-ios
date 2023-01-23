@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ lisää";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Kaikki huomautukset tallennettiin.";
-
-/* No comment provided by engineer. */
-"All courses" = "Kaikki kurssit";
 
 /* No comment provided by engineer. */
 "All Courses" = "Kaikki kurssit";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Tyhjennä suodatin";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Tyhjennä suodattimen saapuneet";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Tyhjennä nauhoitus";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Suodata tapahtumia";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Suodata saapuneet";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Lopullinen arvosana: %@";

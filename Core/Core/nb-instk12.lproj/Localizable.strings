@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ mer";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Alle merknader er lagret.";
-
-/* No comment provided by engineer. */
-"All courses" = "Alle åpne fag";
 
 /* No comment provided by engineer. */
 "All Courses" = "Alle åpne fag";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Tøm filter";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Rydd filter innboks";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Fjern opptak";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Filtrer hendelser";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Filtrere innboksen";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Avsluttende vurdering: %@";

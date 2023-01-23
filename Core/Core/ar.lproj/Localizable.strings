@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ المزيد";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "تم حفظ جميع التعليقات التوضيحية.";
-
-/* No comment provided by engineer. */
-"All courses" = "جميع المساقات";
 
 /* No comment provided by engineer. */
 "All Courses" = "جميع المساقات";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "مسح عامل التصفية";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "مسح عامل تصفية صندوق الوارد";
 
 /* No comment provided by engineer. */
 "Clear recording" = "مسح التسجيل";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "تصفية الأحداث";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "تصفية علبة الوارد";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";

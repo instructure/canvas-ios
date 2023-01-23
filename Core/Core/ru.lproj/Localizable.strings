@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ дополнительно";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Все аннотации сохранены.";
-
-/* No comment provided by engineer. */
-"All courses" = "Все курсы";
 
 /* No comment provided by engineer. */
 "All Courses" = "Все курсы";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Очистить фильтр";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Очистить фильтр Входящие";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Удалить запись";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Фильтровать события";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Фильтровать Входящие";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Итоговая оценка: %@";

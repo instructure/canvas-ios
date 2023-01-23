@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ arall";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Mae’r holl anodiadau wedi’u cadw.";
-
-/* No comment provided by engineer. */
-"All courses" = "Pob cwrs";
 
 /* No comment provided by engineer. */
 "All Courses" = "Pob Cwrs";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Clirio’r Hidlydd";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Clirio Mewnflwch yr Hidlydd";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Clirio’r recordiad";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Hidlo digwyddiadau";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Mewnflwch yr Hidlydd";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Gradd Derfynol: %@";

@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ meira";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ Meðaleinkunn";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Allar textaskýringar voru vistaðar.";
-
-/* No comment provided by engineer. */
-"All courses" = "Öll námskeið";
 
 /* No comment provided by engineer. */
 "All Courses" = "Öll námskeið";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Hreinsa síu";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Hreinsa síu innhólfs";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Hreinsa skrár";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Sía viðburði";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Sía innhólf";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Lokaeinkunn: %@";

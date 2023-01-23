@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ et encore %2$@";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ Moyenne cumulative";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Toutes les annotations sont sauvegardées.";
-
-/* No comment provided by engineer. */
-"All courses" = "Tous les cours";
 
 /* No comment provided by engineer. */
 "All Courses" = "Tous les cours";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Effacer les filtres";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Effacer le filtre de la boîte de réception";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Effacer l’enregistrement";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Filtrer les événements";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Filtrer la boîte de réception";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Note finale : %@";

@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ mer";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ Genomsnittsbetyg";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Alla noteringar har sparats.";
-
-/* No comment provided by engineer. */
-"All courses" = "Alla kurser";
 
 /* No comment provided by engineer. */
 "All Courses" = "Alla kurser";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Rensa filter";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Rensa filter inkorg";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Rensa inspelning";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Filterhändelser";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Filtrera inkorg";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Totalt omdöme: %@";

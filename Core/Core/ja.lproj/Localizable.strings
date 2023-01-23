@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@%2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@+ %2$@ より多く";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "すべての注釈が保存されました。";
-
-/* No comment provided by engineer. */
-"All courses" = "全コース";
 
 /* No comment provided by engineer. */
 "All Courses" = "すべてのコース";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "フィルターをクリアする";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "クリアフィルター受信トレイ";
 
 /* No comment provided by engineer. */
 "Clear recording" = "録音をクリアする";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "イベントをフィルタする";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "受信トレイをフィルタリングする";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な評定：%@";

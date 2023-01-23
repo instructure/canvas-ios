@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ ētahi atu";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Ngā tuhinga katoa kua tiakina.";
-
-/* No comment provided by engineer. */
-"All courses" = "Ngā akoranga katoa";
 
 /* No comment provided by engineer. */
 "All Courses" = "Ngā akoranga katoa";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Whakawātea tātari";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Whakawātea pouaka tātari";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Mukua te tāhopu";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Tātari Tauwhainga";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Tātari pouaka roto";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Kōeke whakamutunga: %@";

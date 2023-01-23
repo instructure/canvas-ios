@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Sinh Viên";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Đính kèm ảnh và video vào tin nhắn và bài đăng thảo luận để biến các nội dung này thành mục nộp bài tập.";
 

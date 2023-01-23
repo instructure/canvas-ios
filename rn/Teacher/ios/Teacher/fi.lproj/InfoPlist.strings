@@ -1,6 +1,3 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "Opettaja";
-
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Liitä valokuvat ja videot lähetyksen kommentteihin.";
 

@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "Thêm %1$@ + %2$@";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Đã lưu tất cả chú thích.";
-
-/* No comment provided by engineer. */
-"All courses" = "Tất cả khóa học";
 
 /* No comment provided by engineer. */
 "All Courses" = "Tất Cả Khóa Học";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Bỏ Bộ Lọc";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Bỏ Bộ Lọc Hộp Thư Đến";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Xóa bản ghi";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Lọc sự kiện";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Lọc Hộp Thư Đến";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Điểm Cuối Cùng: %@";

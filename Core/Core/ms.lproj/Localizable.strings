@@ -20,9 +20,6 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ lagi";
-
-/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -171,9 +168,6 @@
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Semua anotasi disimpan.";
-
-/* No comment provided by engineer. */
-"All courses" = "Semua kursus";
 
 /* No comment provided by engineer. */
 "All Courses" = "Semua Kursus";
@@ -465,9 +459,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Buang Penapis";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Buang Peti Masuk Penapis";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Buang rakaman";
@@ -936,9 +927,6 @@
 
 /* No comment provided by engineer. */
 "Filter events" = "Tapis acara";
-
-/* No comment provided by engineer. */
-"Filter Inbox" = "Tapis Peti Masuk";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Gred Akhir: %@";
