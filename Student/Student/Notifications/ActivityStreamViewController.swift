@@ -94,31 +94,33 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     func setupTableView() {
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        let refresh = CircleRefreshControl()
-        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        tableView?.refreshControl = refresh
+        let refreshControl = CircleRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView?.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
     }
 
-    @objc func refresh(_ control: CircleRefreshControl) {
-        control.endRefreshing()
+    @objc func refresh() {
         refreshData(force: true)
-     }
+    }
+
+    private func isDataLoading() -> Bool {
+        activities.pending || courses.pending || colors.pending
+    }
 
     func refreshData(force: Bool = false) {
-        courses.exhaust(while: { _ in true })
+        guard !isDataLoading() else { return }
+        courses.exhaust { _ in true }
         activities.refresh(force: force)
         colors.refresh(force: force)
     }
 
     func update() {
-        if !activities.pending && activities.isEmpty {
-            emptyStateContainer.isHidden = false
-        } else {
-            emptyStateContainer.isHidden = true
-            tableView.reloadData()
-        }
+        guard !isDataLoading() else { return }
+        tableView.refreshControl?.endRefreshing()
+        tableView.reloadData()
+        emptyStateContainer.isHidden = !activities.isEmpty
     }
 
     func cacheCourses() {
