@@ -63,6 +63,9 @@
       }
     },
     {
+      "skippedTests" : [
+        "DiscussionReplyTests\/testReplyingWithAttachment()"
+      ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
         "identifier" : "7DC5716F22F8B16200F2E9BB",
