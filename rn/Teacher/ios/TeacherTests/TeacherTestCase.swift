@@ -64,7 +64,7 @@ class TeacherTestCase: XCTestCase {
 }
 
 extension TeacherTestCase {
-    open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
+    public func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
         let controller = CoreHostingController(view)
         window.rootViewController = controller
         var count = 0
@@ -76,7 +76,8 @@ extension TeacherTestCase {
         }
         return controller
     }
-    open func hostSwiftUI<V: View>(_ view: V) -> V {
+
+    public func hostSwiftUI<V: View>(_ view: V) -> V {
         return hostSwiftUIController(view).rootView.content
     }
 }

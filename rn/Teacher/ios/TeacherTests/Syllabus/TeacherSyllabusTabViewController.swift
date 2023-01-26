@@ -24,14 +24,24 @@ import XCTest
 class TeacherSyllabusTabViewControllerTests: TeacherTestCase {
     lazy var controller = TeacherSyllabusTabViewController.create(context: .course("1"), courseID: "1")
 
-    func testEditAvailable() {
-        api.mock(controller.permissions, value: .make(manage_content: false))
+    func testEditNotAvailableWithoutPermission() {
+        api.mock(controller.permissions, value: .make(manage_content: false, manage_course_content_edit: false))
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
-        api.mock(controller.permissions, value: .make(manage_content: true))
-        controller.permissions.refresh(force: true)
+    }
+
+    func testEditAvailableForManageContentPermission() {
+        api.mock(controller.permissions, value: .make(manage_content: true, manage_course_content_edit: false))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.title, "Edit")
+    }
+
+    func testEditAvailableForManageCourseContentPermission() {
+        api.mock(controller.permissions, value: .make(manage_content: false, manage_course_content_edit: true))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.title, "Edit")
     }
 

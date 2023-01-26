@@ -22,7 +22,7 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
 
     var context: Context?
 
-    lazy var permissions = env.subscribe(GetContextPermissions(context: .course(courseID), permissions: [.manageContent])) { [weak self] in
+    lazy var permissions = env.subscribe(GetContextPermissions(context: .course(courseID), permissions: [.manageContent, .manageCourseContentEdit])) { [weak self] in
         self?.updateNavBar()
     }
 
@@ -44,7 +44,7 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
     }
 
     func updateNavBar() {
-        guard permissions.first?.manageContent == true else { return }
+        guard permissions.first?.manageContent == true || permissions.first?.manageCourseContentEdit == true else { return }
         editButton.accessibilityIdentifier = "Syllabus.editButton"
         navigationItem.rightBarButtonItem = editButton
     }
