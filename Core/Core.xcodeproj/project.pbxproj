@@ -2996,6 +2996,7 @@
 				7D1D5BEB2492AFAA009EA317 /* Contexts */,
 				7D26B84423A7F27E00262380 /* Conversations */,
 				2C964831211E2F1A002C3255 /* Core.h */,
+				CFBC10522983D89B00338136 /* CoreWebView */,
 				7D5F10352429722300803324 /* Courses */,
 				7D14863C230B43AE003944A2 /* Dashboard */,
 				B14452FF212E5B6E0009D848 /* Database.xcdatamodeld */,
@@ -3066,6 +3067,7 @@
 				7D37BE8421C81C700063FAAC /* Constants */,
 				7D1D5BEA2492AD7F009EA317 /* Contexts */,
 				7D26B84523A8043900262380 /* Conversations */,
+				CFBC10532983D8CC00338136 /* CoreWebView */,
 				7D724263242A5616007ED42F /* Courses */,
 				7D148642230B48E7003944A2 /* Dashboard */,
 				7D627168245B347A00FC1798 /* Discussions */,
@@ -3511,8 +3513,6 @@
 				7D85FFEB23E2314B0055851D /* CircleProgressView.swift */,
 				7DA2610D23FCD907005D2121 /* CircleRefreshControl.swift */,
 				CF99CB1F28E2E41F001BBDF1 /* CoreActivityViewController.swift */,
-				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
-				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				7D765023215AEDDD00BB4F38 /* DividerView.swift */,
 				7D63F77C215D31A600151E49 /* DynamicButton.swift */,
 				7D765025215AEDE300BB4F38 /* DynamicLabel.swift */,
@@ -3567,8 +3567,6 @@
 				7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */,
 				7DA2610B23FCD8E6005D2121 /* CircleRefreshControlTests.swift */,
 				CF99CB2128E2EDAD001BBDF1 /* CoreActivityViewControllerTests.swift */,
-				B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */,
-				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
 				7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */,
 				7DDC450C215BF14A003F3209 /* DynamicLabelTests.swift */,
@@ -6192,6 +6190,24 @@
 				CFB9B30528A2B13500C18C79 /* preview_test.bin */,
 			);
 			path = TestAssets;
+			sourceTree = "<group>";
+		};
+		CFBC10522983D89B00338136 /* CoreWebView */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
+				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
+			);
+			path = CoreWebView;
+			sourceTree = "<group>";
+		};
+		CFBC10532983D8CC00338136 /* CoreWebView */ = {
+			isa = PBXGroup;
+			children = (
+				B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */,
+				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
+			);
+			path = CoreWebView;
 			sourceTree = "<group>";
 		};
 		CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */ = {

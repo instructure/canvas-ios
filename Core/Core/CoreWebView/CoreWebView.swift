@@ -580,6 +580,8 @@ extension CoreWebView: WKNavigationDelegate {
     }
 }
 
+// MARK: - WKUIDelegate Delegate
+
 extension CoreWebView: WKUIDelegate {
     public func webView(
         _ webView: WKWebView,
@@ -656,6 +658,8 @@ extension CoreWebView: WKUIDelegate {
     }
 }
 
+// MARK: - Cookie Keep-Alive
+
 extension CoreWebView {
     static var cookieKeepAliveTimer: Timer?
     static var cookieKeepAliveWebView = CoreWebView()
@@ -683,6 +687,8 @@ extension CoreWebView {
         }
     }
 }
+
+// MARK: - Input Accessory View For RCE Editor
 
 extension CoreWebView {
     private func addContentInputAccessoryView() {
@@ -716,6 +722,8 @@ extension CoreWebView {
     }
 }
 
+// MARK: - String Conversion
+
 extension CoreWebView {
     public static func jsString(_ string: String?) -> String {
         guard let string = string else { return "null" }
@@ -739,6 +747,8 @@ extension CoreWebView {
             .replacingOccurrences(of: ">", with: "&gt;")
     }
 }
+
+// MARK: - Color Scheme Switching
 
 extension CoreWebView {
 
