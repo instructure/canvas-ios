@@ -134,7 +134,6 @@ open class CoreWebView: WKWebView {
         customUserAgentName: String? = nil,
         disableZoom: Bool = false,
         pullToRefresh: PullToRefresh,
-        pullToRefreshColor: UIColor? = nil,
         configuration: WKWebViewConfiguration? = nil,
         invertColorsInDarkMode: Bool = false
     ) {
