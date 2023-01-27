@@ -267,7 +267,6 @@ public struct DashboardCardView: View {
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
-        checkAcceptablePolicy {
             invitationsViewModel.refresh()
             colors.refresh(force: force)
             conferencesViewModel.refresh(force: force)
@@ -275,29 +274,9 @@ public struct DashboardCardView: View {
             notifications.exhaust(force: force)
             settings.refresh(force: force)
             cards.refresh(onComplete: onComplete)
-        } cancelled: {
-            guard let session = env.currentSession else { return }
-            self.env.loginDelegate?.userDidLogout(session: session)
-        }
     }
 
     func showAllCourses() {
         env.router.route(to: "/courses", from: controller)
-    }
-
-    private func checkAcceptablePolicy(accepted: @escaping  () -> Void, cancelled: @escaping () -> Void) {
-
-        let request = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
-        env.api.makeRequest(request) { data, _, _ in performUIUpdate {
-            guard data?.requires_terms_acceptance == true else {
-                accepted()
-                return
-            }
-            let usePolicyViewModel = LoginUsePolicyViewModel(accepted: accepted, cancelled: cancelled)
-            let usePolicyView = LoginUsePolicyView(viewModel: usePolicyViewModel)
-            self.env.router.show(CoreHostingController(usePolicyView),
-                                 from: self.controller,
-                                 options: .modal(.formSheet, isDismissable: false, embedInNav: true))
-        } }
     }
 }

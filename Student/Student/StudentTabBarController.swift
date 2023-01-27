@@ -40,8 +40,13 @@ class StudentTabBarController: UITabBarController {
         selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
             .flatMap { paths.firstIndex(of: $0) } ?? 0
         tabBar.useGlobalNavStyle()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkForPolicyChanges()
     }
 
     func dashboardTab() -> UIViewController {
@@ -167,5 +172,12 @@ extension StudentTabBarController: UITabBarControllerDelegate {
         }
 
         return true
+    }
+
+    @objc private func checkForPolicyChanges() {
+        let env = AppEnvironment.shared
+        env.checkAcceptablePolicy(from: self, cancelled: {
+                AppEnvironment.shared.loginDelegate?.changeUser()
+        })
     }
 }

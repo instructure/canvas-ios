@@ -24,10 +24,10 @@ public class LoginUsePolicyViewModel: ObservableObject {
     @Published public private(set) var errorText: String?
     @Published public var showError: Bool = false
 
-    private let accepted: (() -> Void)
-    private let cancelled: (() -> Void)
+    private let accepted: (() -> Void)?
+    private let cancelled: (() -> Void)?
 
-    init(accepted: @escaping (() -> Void), cancelled: @escaping (() -> Void)) {
+    init(accepted: (() -> Void)? = nil, cancelled: (() -> Void)? = nil) {
         self.accepted = accepted
         self.cancelled = cancelled
     }
@@ -39,19 +39,21 @@ public class LoginUsePolicyViewModel: ObservableObject {
                 self.errorText = error.localizedDescription
                 self.showError = true
             case .success:
-                self.accepted()
+                guard let accepted = self.accepted else { return }
+                accepted()
             }
         }
     }
 
     public func cancelAcceptance() {
+        guard let cancelled = self.cancelled else { return }
         cancelled()
     }
 
     public func acceptUsePolicy(_ callback: @escaping (Result<Void, Error>) -> Void) {
         AppEnvironment.shared.api.makeRequest(PutUserAcceptedTermsRequest(hasAccepted: true)) { _, _, error in
-            guard error == nil else {
-                return callback(.failure(error ?? NSError.internalError()))
+            if let error = error {
+                return callback(.failure(error))
             }
             callback(.success(()))
         }

@@ -127,4 +127,25 @@ open class AppEnvironment {
         let data = try? APIJSONEncoder().encode(lastLoginAccount)
         UserDefaults.standard.set(data, forKey: "lastLoginAccount")
     }
+
+    public func checkAcceptablePolicy(from controller: UIViewController? = nil, accepted: (() -> Void)? = nil, cancelled: (() -> Void)? = nil) {
+
+        let request = GetWebSessionRequest(to: api.baseURL.appendingPathComponent("users/self"))
+        api.makeRequest(request) { data, _, error in performUIUpdate {
+            if data?.requires_terms_acceptance == true && error == nil, let accepted = accepted {
+                accepted()
+                return
+            }
+            if let error = error {
+                (controller as? ErrorViewController)?.showAlert(title: nil, message: error.localizedDescription)
+                return
+            }
+            let usePolicyViewModel = LoginUsePolicyViewModel(accepted: accepted, cancelled: cancelled)
+            let usePolicyView = LoginUsePolicyView(viewModel: usePolicyViewModel)
+            guard let viewController = controller ?? self.topViewController else { return }
+            self.router.show(CoreHostingController(usePolicyView),
+                             from: viewController,
+                             options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+        } }
+    }
 }

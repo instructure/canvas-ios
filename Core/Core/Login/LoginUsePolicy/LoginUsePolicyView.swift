@@ -88,9 +88,13 @@ struct LoginUsePolicyView: View {
     }
 }
 
+#if DEBUG
+
 struct LoginUsePolicyView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = LoginUsePolicyViewModel(accepted: {}, cancelled: {})
         LoginUsePolicyView(viewModel: viewModel)
     }
 }
+
+#endif
