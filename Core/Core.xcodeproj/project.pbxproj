@@ -1123,6 +1123,7 @@
 		CFB9B30228A2B03300C18C79 /* preview_test.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30128A2B03300C18C79 /* preview_test.png */; };
 		CFB9B30428A2B03E00C18C79 /* preview_test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30328A2B03E00C18C79 /* preview_test.pdf */; };
 		CFB9B30628A2B13500C18C79 /* preview_test.bin in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30528A2B13500C18C79 /* preview_test.bin */; };
+		CFBC10552983DBF900338136 /* CoreWebViewJSInjections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */; };
 		CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */; };
 		CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */; };
 		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
@@ -2700,6 +2701,7 @@
 		CFB9B30128A2B03300C18C79 /* preview_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_test.png; sourceTree = "<group>"; };
 		CFB9B30328A2B03E00C18C79 /* preview_test.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = preview_test.pdf; sourceTree = "<group>"; };
 		CFB9B30528A2B13500C18C79 /* preview_test.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = preview_test.bin; sourceTree = "<group>"; };
+		CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewJSInjections.swift; sourceTree = "<group>"; };
 		CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
@@ -6197,6 +6199,7 @@
 			children = (
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
+				CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */,
 			);
 			path = CoreWebView;
 			sourceTree = "<group>";
@@ -8393,6 +8396,7 @@
 				CFD9B44527EDBECD0099F173 /* TabToCellViewModelMapping.swift in Sources */,
 				CF8CB51E26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
+				CFBC10552983DBF900338136 /* CoreWebViewJSInjections.swift in Sources */,
 				CF21E75928D3068300F73066 /* BackgroundActivity.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				CF350F6B290C0F2C00ED656E /* DashboardSettingsInteractor.swift in Sources */,
