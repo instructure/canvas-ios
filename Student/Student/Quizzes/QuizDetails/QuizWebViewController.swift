@@ -29,7 +29,6 @@ class QuizWebViewController: UIViewController {
         customUserAgentName: nil,
         disableZoom: false,
         pullToRefresh: .disabled,
-        configuration: nil,
         invertColorsInDarkMode: true
     )
 

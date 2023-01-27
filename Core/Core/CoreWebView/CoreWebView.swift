@@ -40,25 +40,11 @@ public protocol CoreWebViewSizeDelegate: AnyObject {
     func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat)
 }
 
-private extension WKWebViewConfiguration {
-
-    func applyDefaultSettings() {
-        allowsInlineMediaPlayback = true
-        processPool = CoreWebView.processPool
-    }
-}
-
 @IBDesignable
 open class CoreWebView: WKWebView {
     public enum PullToRefresh {
         case disabled
         case enabled(color: UIColor?)
-    }
-
-    public static var defaultConfiguration: WKWebViewConfiguration {
-        let configuration = WKWebViewConfiguration()
-        configuration.applyDefaultSettings()
-        return configuration
     }
 
     private static var BalsamiqRegularCSSFontFace: String = {
@@ -134,19 +120,17 @@ open class CoreWebView: WKWebView {
         customUserAgentName: String? = nil,
         disableZoom: Bool = false,
         pullToRefresh: PullToRefresh,
-        configuration: WKWebViewConfiguration? = nil,
+        configuration: WKWebViewConfiguration = .defaultConfiguration,
         invertColorsInDarkMode: Bool = false
     ) {
         self.pullToRefresh = pullToRefresh
-
-        let config = configuration ?? Self.defaultConfiguration
-        config.applyDefaultSettings()
+        configuration.applyDefaultSettings()
 
         if let customUserAgentName = customUserAgentName {
-            config.applicationNameForUserAgent = customUserAgentName
+            configuration.applicationNameForUserAgent = customUserAgentName
         }
 
-        super.init(frame: .zero, configuration: config)
+        super.init(frame: .zero, configuration: configuration)
 
         if disableZoom {
             addScript(disableZoomJS)

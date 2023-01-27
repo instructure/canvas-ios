@@ -977,6 +977,7 @@
 		CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF60CC6126497BC100C1C173 /* Refreshable.swift */; };
 		CF61834728D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61834628D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift */; };
 		CF61834928D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61834828D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift */; };
+		CF61FF8729841A70001797B8 /* DefaultWKWebViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61FF8629841A70001797B8 /* DefaultWKWebViewConfiguration.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF67B29226EBA12F00E51F13 /* HorizontalPagerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */; };
 		CF67B29626EBA19700E51F13 /* HorizontalPagerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */; };
@@ -2555,6 +2556,7 @@
 		CF60CC6126497BC100C1C173 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		CF61834628D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTerminationHandler.swift; sourceTree = "<group>"; };
 		CF61834828D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTerminationHandlerTests.swift; sourceTree = "<group>"; };
+		CF61FF8629841A70001797B8 /* DefaultWKWebViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWKWebViewConfiguration.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerProxy.swift; sourceTree = "<group>"; };
 		CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerCoordinator.swift; sourceTree = "<group>"; };
@@ -6200,6 +6202,7 @@
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */,
+				CF61FF8629841A70001797B8 /* DefaultWKWebViewConfiguration.swift */,
 			);
 			path = CoreWebView;
 			sourceTree = "<group>";
@@ -7967,6 +7970,7 @@
 				7D89A2C92509326B009D0FD2 /* DisclosureIndicator.swift in Sources */,
 				CFAD79DB26AEFBCC0000A90D /* K5ScheduleEntryView.swift in Sources */,
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
+				CF61FF8729841A70001797B8 /* DefaultWKWebViewConfiguration.swift in Sources */,
 				CF9A0F3927EA100400762228 /* TabFilter.swift in Sources */,
 				CF490F1B285242D40065D242 /* UIGestureRecognizerExtensions.swift in Sources */,
 				CF086074291D40960013BDCE /* ArrayExtensions.swift in Sources */,

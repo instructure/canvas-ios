@@ -31,7 +31,7 @@ public struct WebView: UIViewRepresentable {
     private var invertColorsInDarkMode: Bool = false
     private var canToggleTheme: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
-    private var configuration: WKWebViewConfiguration?
+    private var configuration: WKWebViewConfiguration
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
@@ -46,6 +46,7 @@ public struct WebView: UIViewRepresentable {
         source = url.map { .request(URLRequest(url: $0)) }
         self.canToggleTheme = canToggleTheme
         self.pullToRefresh = pullToRefresh
+        self.configuration = .defaultConfiguration
     }
 
     public init(
@@ -54,7 +55,7 @@ public struct WebView: UIViewRepresentable {
         disableZoom: Bool = false,
         canToggleTheme: Bool = false,
         pullToRefresh: CoreWebView.PullToRefresh,
-        configuration: WKWebViewConfiguration? = nil,
+        configuration: WKWebViewConfiguration = .defaultConfiguration,
         invertColorsInDarkMode: Bool = false
     ) {
         self.init(url: url, pullToRefresh: pullToRefresh)
@@ -70,6 +71,7 @@ public struct WebView: UIViewRepresentable {
         source = html.map { .html($0) }
         self.canToggleTheme = canToggleTheme
         pullToRefresh = .disabled
+        self.configuration = .defaultConfiguration
     }
 
     public init(
@@ -82,6 +84,7 @@ public struct WebView: UIViewRepresentable {
         self.disableZoom = disableZoom
         self.canToggleTheme = canToggleTheme
         self.pullToRefresh = pullToRefresh
+        self.configuration = .defaultConfiguration
     }
 
     // MARK: - View Modifiers
