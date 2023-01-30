@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Tiada subjek)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) yang lain";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ lagi";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Semua anotasi disimpan.";
 
 /* No comment provided by engineer. */
-"All courses" = "Semua kursus";
-
-/* No comment provided by engineer. */
 "All Courses" = "Semua Kursus";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Pendaftaran Janji Temu";
+
+/* No comment provided by engineer. */
+"Archive" = "Arkib";
 
 /* No comment provided by engineer. */
 "Archived" = "Diarkibkan";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Lampiran";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Kepilan tersedia";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Percubaan %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Buang Penapis";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Buang Peti Masuk Penapis";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Buang rakaman";
@@ -938,7 +938,10 @@
 "Filter events" = "Tapis acara";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Tapis Peti Masuk";
+"Filter messages by course" = "Tapis mesej mengikut kursus";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Tapis mesej mengikut jenis";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Gred Akhir: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Tanda sebagai Siap";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Tandakan sebagai telah dibaca";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Tanda sebagai Telah Dibaca";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Tanda sebagai Belum Siap";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Tandakan sebagai belum dibaca";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Tanda sebagai Belum Dibaca";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Tiada imej ditemui dari pemilih imej";
+
+/* No comment provided by engineer. */
+"No Messages" = "Tiada Mesej";
 
 /* No comment provided by engineer. */
 "No Modules" = "Tiada Modul";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Telah diterbitkan";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Tarik untuk segar semula bagi mencuba semula";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Labu";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Sesuatu tidak kena";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Sesuatu Tidak Kena";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Isih mengikut like";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Tinjauan";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Tukar kepada Mod Gelap";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Tukar kepada Mod Terang";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Silibus";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Ketik di sini untuk mendapatkan bantuan.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Ketik \"+\" untuk mencipta perbualan baharu";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Ketik untuk memilih kursus yang ingin anda lihat pada kalendar.";

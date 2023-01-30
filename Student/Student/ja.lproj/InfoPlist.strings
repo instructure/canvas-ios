@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "受講者";
+"CFBundleDisplayName" = "Canvas 受講者";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。";

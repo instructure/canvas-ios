@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Intet emne)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) flere";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ mere";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Alle anmærkninger gemmes.";
 
 /* No comment provided by engineer. */
-"All courses" = "Alle fag";
-
-/* No comment provided by engineer. */
 "All Courses" = "Alle fag";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Tilmeldinger til aftaler";
+
+/* No comment provided by engineer. */
+"Archive" = "Arkiv";
 
 /* No comment provided by engineer. */
 "Archived" = "Arkiveret";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Vedhæftede filer";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Vedhæftede filer er tilgængelige";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Forsøg %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Nulstil filter";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Slet indbakkefilter";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Ryd optagelse";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtrer begivenheder";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filtrér indbakke";
+"Filter messages by course" = "Filtrer beskeder efter fag";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtrer beskeder efter type";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Endelig vurdering: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Marker som gjort";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Marker som læst";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Marker som læst";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Marker som ikke gjort";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Marker som ulæst";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Marker som ulæst";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Intet billede fundet i billedvælgeren";
+
+/* No comment provided by engineer. */
+"No Messages" = "Ingen beskeder";
 
 /* No comment provided by engineer. */
 "No Modules" = "Ingen forløb";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Offentliggjort";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Træk for at opdatere for at prøve igen";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Græskar";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Noget gik galt";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Noget gik galt";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sorter efter 'synes godt om'";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Spørgeundersøgelser";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Skift til mørk tilstand";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Skift til lys tilstand";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Fagplan";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tryk her for at få hjælp.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tryk på \"+\" for at oprette en ny samtale";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tryk for at vælge de fag, du vil se i kalenderen.";

@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Нет субъекта)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + еще (remainingNamesCount)";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ дополнительно";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Все аннотации сохранены.";
 
 /* No comment provided by engineer. */
-"All courses" = "Все курсы";
-
-/* No comment provided by engineer. */
 "All Courses" = "Все курсы";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Заявления о регистрации";
+
+/* No comment provided by engineer. */
+"Archive" = "Архив";
 
 /* No comment provided by engineer. */
 "Archived" = "Архивировано";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Вложения";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Имеются вложения";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Попытка %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Очистить фильтр";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Очистить фильтр Входящие";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Удалить запись";
@@ -938,7 +938,10 @@
 "Filter events" = "Фильтровать события";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Фильтровать Входящие";
+"Filter messages by course" = "Фильтровать сообщения по курсам";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Фильтровать сообщения по типам";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Итоговая оценка: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Отметить как выполненное";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Отметить как прочитанное";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Отметить как прочитанное";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Пометить как невыполненное";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Отметить как непрочитанное";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Отметить как непрочитанное";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Средству сбора изображений не удалось найти ни одного изображения";
+
+/* No comment provided by engineer. */
+"No Messages" = "Нет сообщений";
 
 /* No comment provided by engineer. */
 "No Modules" = "Модули отсутствуют";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Размещено";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Потяните для обновления, чтобы попробовать еще раз";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Цвет тыквы";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Что-то пошло не так";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Что-то пошло не так";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Сортировать по лайкам";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Опросы";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Перейти в темный режим";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Перейти в светлый режим";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Содержание курса";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Прикоснитесь здесь для получения помощи.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Прикоснитесь к \"+\" для создания новой дискуссии";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Прикоснитесь для выбора курсов, которые вы хотите видеть в календаре.";

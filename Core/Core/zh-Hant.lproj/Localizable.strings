@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "（無主題）";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) 以上";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@%2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@+ %2$@ 更多";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "所有注釋已儲存。";
 
 /* No comment provided by engineer. */
-"All courses" = "所有課程";
-
-/* No comment provided by engineer. */
 "All Courses" = "所有課程";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "登記預約";
+
+/* No comment provided by engineer. */
+"Archive" = "存檔";
 
 /* No comment provided by engineer. */
 "Archived" = "已存檔";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "附件";
+
+/* No comment provided by engineer. */
+"Attachments available" = "可用附件";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "嘗試%d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "清除篩選器";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "清除篩選器收件匣";
 
 /* No comment provided by engineer. */
 "Clear recording" = "清除錄製";
@@ -938,7 +938,10 @@
 "Filter events" = "篩選活動";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "篩選器收件匣";
+"Filter messages by course" = "按課程篩選訊息";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "按類型篩選郵件";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "標記為完成";
 
 /* No comment provided by engineer. */
+"Mark as read" = "標記為已讀";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "標記為已讀";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "標記為未完成";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "標記為未讀";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "標記為未讀";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "從影像選擇器中找不到影像";
+
+/* No comment provided by engineer. */
+"No Messages" = "無訊息";
 
 /* No comment provided by engineer. */
 "No Modules" = "無單元";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "已發佈";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "請下拉以重新整理並再試一次";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "南瓜色";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "似乎出問題了";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "發生問題";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "按點讚分類";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "調查";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "轉換到暗色模式";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "轉換到淡色模式";
+
+/* No comment provided by engineer. */
 "Syllabus" = "課程大綱";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "點按此處獲取支援。";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "按下「+」建立新交談";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "點選以選擇您要在行事曆上看到的課程。";

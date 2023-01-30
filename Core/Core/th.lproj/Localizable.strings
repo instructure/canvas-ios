@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(ไม่มีหัวเรื่อง)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + อีก (remainingNamesCount)";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ รายการเพิ่มเติม";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "หมายเหตุกำกับทั้งหมดที่บันทึกไว้";
 
 /* No comment provided by engineer. */
-"All courses" = "บทเรียนทั้งหมด";
-
-/* No comment provided by engineer. */
 "All Courses" = "บทเรียนทั้งหมด";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "การรับนัดหมาย";
+
+/* No comment provided by engineer. */
+"Archive" = "จัดเก็บแยก";
 
 /* No comment provided by engineer. */
 "Archived" = "จัดเก็บแยกแล้ว";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "เอกสารแนบ";
+
+/* No comment provided by engineer. */
+"Attachments available" = "มีเอกสารแนบ";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "การดำเนินการ %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "ล้างตัวกรอง";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "ล้างกล่องจดหมายตัวกรอง";
 
 /* No comment provided by engineer. */
 "Clear recording" = "ล้างข้อมูลบันทึก";
@@ -938,7 +938,10 @@
 "Filter events" = "กรองกิจกรรม";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "กล่องจดหมายตัวกรอง";
+"Filter messages by course" = "กรองข้อความจากบทเรียน";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "กรอกข้อความตามประเภท";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "เกรดสรุป: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "กำกับว่าเสร็จสิ้นแล้ว";
 
 /* No comment provided by engineer. */
+"Mark as read" = "กำกับว่าอ่านแล้ว";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "กำกับว่าอ่านแล้ว";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "กำลังว่าไม่เสร็จสิ้น";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "กำกับว่ายังไม่ได้อ่าน";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "กำลังว่าไม่ได้อ่าน";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "ไม่พบภาพจากตัวเลือกภาพ";
+
+/* No comment provided by engineer. */
+"No Messages" = "ไม่มีข้อความ";
 
 /* No comment provided by engineer. */
 "No Modules" = "ไม่มีหน่วยการเรียน";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "เผยแพร่แล้ว";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "ดึงเพื่อรีเฟรชเพื่อลองใหม่อีกครั้ง";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "ฟักทอง";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "มีบางอย่างผิดปกติ";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "มีบางอย่างผิดปกติ";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "เรียงจากไลค์";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "แบบสอบถาม";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "สลับไปที่โหมดมืด";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "สลับไปที่โหมดสว่าง";
+
+/* No comment provided by engineer. */
 "Syllabus" = "หลักสูตร";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "กดเลือกที่นี่เพื่อรับความช่วยเหลือ";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "กดที่ ”+” เพื่อจัดทำการพูดคุยใหม่";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "กดเพื่อเลือกบทเรียนที่คุณต้องการเห็นในปฏิทิน";

@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Opettaja";
+"CFBundleDisplayName" = "Canvas-opettaja";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Liitä valokuvat ja videot lähetyksen kommentteihin.";

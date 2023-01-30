@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Kaore he kaupapa)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) atu";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ ētahi atu";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Ngā tuhinga katoa kua tiakina.";
 
 /* No comment provided by engineer. */
-"All courses" = "Ngā akoranga katoa";
-
-/* No comment provided by engineer. */
 "All Courses" = "Ngā akoranga katoa";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Haina runga Wāhui";
+
+/* No comment provided by engineer. */
+"Archive" = "Pūranga";
 
 /* No comment provided by engineer. */
 "Archived" = "Kua pūrangatia";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Āpitihanga";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Kei te waatea nga taapiri";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Whakamātau %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Whakawātea tātari";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Whakawātea pouaka tātari";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Mukua te tāhopu";
@@ -938,7 +938,10 @@
 "Filter events" = "Tātari Tauwhainga";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Tātari pouaka roto";
+"Filter messages by course" = "Tātari ngā karere i te akoranga";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Tātari karere ma te momo";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Kōeke whakamutunga: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Tohu kua Oti";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Mākā kua pānuitia";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Tohua kua pānuitia";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Tohua kua whakakoretia";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Mākā kua Pānuitia";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Tohu  rite kaore i Pānuitia";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Kaore i kitea he āhua mai i te  āhua kaiwhiwhi";
+
+/* No comment provided by engineer. */
+"No Messages" = "Kāore he Karere";
 
 /* No comment provided by engineer. */
 "No Modules" = "Kaore ngā kōwae";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "I whakaputaina";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Toia ki te tāmata ki te ngana anō";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Paukena";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "I raruraru tētahi mea";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "I raruraru tētahi mea";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Kōmaka mā te momo";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Rangahau";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Huri ki te Aratau pouri";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Huri ki te Aratau Maama";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Pātō ki kōnei mo te awhina";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Patohia te \"+\" hei hanga korero hou";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Pātō ki te tīpako ngā akoranga e hiahia ana koe ki te kite i runga i te maramataka.";

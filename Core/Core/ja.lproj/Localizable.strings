@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "（件名なし）";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) より多く";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@%2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@+ %2$@ より多く";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "すべての注釈が保存されました。";
 
 /* No comment provided by engineer. */
-"All courses" = "全コース";
-
-/* No comment provided by engineer. */
 "All Courses" = "すべてのコース";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "受講者予約サインアップ";
+
+/* No comment provided by engineer. */
+"Archive" = "アーカイブ";
 
 /* No comment provided by engineer. */
 "Archived" = "アーカイブ済み";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "添付ファイル";
+
+/* No comment provided by engineer. */
+"Attachments available" = "別添が利用できます";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "試行%d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "フィルターをクリアする";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "クリアフィルター受信トレイ";
 
 /* No comment provided by engineer. */
 "Clear recording" = "録音をクリアする";
@@ -938,7 +938,10 @@
 "Filter events" = "イベントをフィルタする";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "受信トレイをフィルタリングする";
+"Filter messages by course" = "コースでメッセージをフィルタ";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "タイプでメッセージをフィルタ";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な評定：%@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "完了としてマークする";
 
 /* No comment provided by engineer. */
+"Mark as read" = "既読にする";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "既読にする";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "未了としてマークする";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "未読にする";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "未読にする";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "画像ピッカーに画像が見つかりませんでした";
+
+/* No comment provided by engineer. */
+"No Messages" = "メッセージはありません";
 
 /* No comment provided by engineer. */
 "No Modules" = "モジュールなし";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "公開済み";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "プルして更新し、再試行してください";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "かぼちゃ";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "なにかが失敗しました";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "なにかが失敗しました";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "いいね順";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "調査";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "ダークモードに切り替える";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "ライトモードに切り替える";
+
+/* No comment provided by engineer. */
 "Syllabus" = "シラバス";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "\\\"+\\\" をタップして新しい会話を作成する";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "タップしてカレンダーに表示したいコースを選択してください。";
