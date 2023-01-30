@@ -94,11 +94,6 @@ open class CoreWebView: WKWebView {
 
     public static let processPool = WKProcessPool()
 
-    public init(pullToRefresh: PullToRefresh) {
-        self.pullToRefresh = pullToRefresh
-        super.init(frame: .zero)
-    }
-
     public required init?(coder: NSCoder) {
         pullToRefresh = .disabled
         super.init(coder: coder)

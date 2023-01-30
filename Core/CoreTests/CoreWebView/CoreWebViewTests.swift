@@ -243,4 +243,9 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertNotNil(webView)
         XCTAssert(router.presented is CoreWebViewController)
     }
+
+    func testEmptyInitializerCallsSetup() {
+        let testee = CoreWebView()
+        XCTAssertEqual(testee.customUserAgent, UserAgent.safari.description)
+    }
 }

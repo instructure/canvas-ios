@@ -19,7 +19,7 @@
 import UIKit
 
 public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
-    public var webView = CoreWebView(pullToRefresh: .disabled)
+    public var webView = CoreWebView()
 
     var limitedInteractionView: NotificationView?
 
