@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Kein Betreff)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) mehr";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ mehr";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Alle Anmerkungen gespeichert.";
 
 /* No comment provided by engineer. */
-"All courses" = "Alle Kurse";
-
-/* No comment provided by engineer. */
 "All Courses" = "Alle Kurse";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Terminanmeldungen";
+
+/* No comment provided by engineer. */
+"Archive" = "Archivieren";
 
 /* No comment provided by engineer. */
 "Archived" = "Archiviert";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Anhänge";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Anhänge verfügbar";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Versuch %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Filter löschen";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Filterfeld löschen";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Aufzeichnung löschen";
@@ -938,7 +938,10 @@
 "Filter events" = "Ereignisse filtern";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Posteingang filtern";
+"Filter messages by course" = "Nachrichten nach Kurs filtern";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Nachrichten nach Typ filtern";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Gesamtnote: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Als fertig markieren";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Als gelesen markieren";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Als gelesen markieren";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Als unerledigt markieren";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Als ungelesen markieren";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Als ungelesen markieren";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Kein Bild von Image-Picker gefunden";
+
+/* No comment provided by engineer. */
+"No Messages" = "Keine Nachrichten";
 
 /* No comment provided by engineer. */
 "No Modules" = "Keine Module";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Veröffentlicht";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Zum Neuladen ziehen, um es erneut zu versuchen";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Kürbis";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Etwas ging schief.";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Etwas ging schief";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Nach Likes sortieren";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Befragungen";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "In den dunklen Modus wechseln";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "In den hellen Modus wechseln";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Kursplan";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tippen Sie hier, um Hilfe zu erhalten.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Auf „+“ tippen, um neue Conversation zu beginnen";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tippen Sie hier, um die Kurse auszuwählen, die Sie auf dem Kalender sehen möchten.";

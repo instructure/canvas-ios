@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Dim pwnc)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) mwy";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ arall";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Mae’r holl anodiadau wedi’u cadw.";
 
 /* No comment provided by engineer. */
-"All courses" = "Pob cwrs";
-
-/* No comment provided by engineer. */
 "All Courses" = "Pob Cwrs";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Archebu Apwyntiadau";
+
+/* No comment provided by engineer. */
+"Archive" = "Archifo";
 
 /* No comment provided by engineer. */
 "Archived" = "Archifwyd";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Atodiadau";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Atodiadau ar gael";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Ymgais %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Clirio’r Hidlydd";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Clirio Mewnflwch yr Hidlydd";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Clirio’r recordiad";
@@ -938,7 +938,10 @@
 "Filter events" = "Hidlo digwyddiadau";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Mewnflwch yr Hidlydd";
+"Filter messages by course" = "Hidlo negeseuon yn ôl cwrs";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Hidlo negeseuon yn ôl math";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Gradd Derfynol: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Marcio eu bod wedi’u gwneud";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Marcio eu bod wedi’u darllen";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Marcio eu bod wedi’u darllen";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Marcio eu bod wedi’u dadwneud";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Marcio eu bod heb eu darllen";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Marcio eu bod heb eu darllen";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Heb ddod o hyd i ddelwedd o'r dewisydd delwedd";
+
+/* No comment provided by engineer. */
+"No Messages" = "Dim Negeseuon";
 
 /* No comment provided by engineer. */
 "No Modules" = "Dim Modiwlau";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Wedi Cyhoeddi";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Tynnwch i adnewyddu a rhoi cynnig arall arni";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Pumpkin";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Aeth rhywbeth o’i le";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Aeth rhywbeth o’i le";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Trefnu yn ôl y nifer sydd wedi’i hoffi";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Arolygon";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Newid i’r Modd Tywyll";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Newid i’r Modd Golau";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Maes Llafur";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tapiwch yma i gael help.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tapiwch \"+\" i greu sgwrs newydd";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tapiwch i ddewis y cyrsiau rydych chi am eu gweld ar y calendr.";

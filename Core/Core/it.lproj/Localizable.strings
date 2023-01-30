@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Nessun oggetto)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) altro";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + altri %2$@";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Tutte le annotazioni sono state salvate.";
 
 /* No comment provided by engineer. */
-"All courses" = "Tutti i corsi";
-
-/* No comment provided by engineer. */
 "All Courses" = "Tutti i corsi";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Registrazioni appuntamento";
+
+/* No comment provided by engineer. */
+"Archive" = "Archivia";
 
 /* No comment provided by engineer. */
 "Archived" = "Archiviato";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Allegati";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Allegati disponibili";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentativo %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Cancella filtro";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Cancella posta in arrivo con filtro";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Cancella registrazione";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtra eventi";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Posta in arrivo con filtro";
+"Filter messages by course" = "Filtra messaggi per corso";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtra messaggi per tipo";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Voto finale: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Contrassegna come fatto";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Contrassegna come letto";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Contrassegna come letto";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Contrassegna come non letto";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Contrassegna come non letto";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Contrassegna come non letto";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nessuna immagine trovata dalla selezione immagine";
+
+/* No comment provided by engineer. */
+"No Messages" = "Nessun messaggio";
 
 /* No comment provided by engineer. */
 "No Modules" = "Nessun modulo";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Pubblicato";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Trascinare verso il basso per aggiornare e riprovare";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Zucca";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Si è verificato un problema";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Si è verificato un problema";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Ordina per Mi piace";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Sondaggi";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Passa a Modalità scura";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Passa a Modalità chiara";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Piano di studio";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tocca qui per assistenza.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tocca \"+\" per creare una nuova conversazione";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tocca per selezionare i corsi che vuoi vedere sul calendario.";

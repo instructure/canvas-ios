@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(sans objet)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) plus";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ %2$@ de plus";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Moyenne cumulative";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Toutes les annotations enregistrées.";
 
 /* No comment provided by engineer. */
-"All courses" = "Toutes les formations";
-
-/* No comment provided by engineer. */
 "All Courses" = "Tous les cours";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Inscriptions de rendez-vous";
+
+/* No comment provided by engineer. */
+"Archive" = "Archiver";
 
 /* No comment provided by engineer. */
 "Archived" = "Archivé";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Pièces jointes";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Pièces jointes disponibles";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Essai %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Effacer le filtre";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Effacer le filtre Boîte de réception";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Effacer l'enregistrement";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtrer les événements";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filtrer Boîte de réception";
+"Filter messages by course" = "Filtrer les messages par cours";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtrer les messages par type";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Note finale : %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Marquer comme terminé";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Marquer comme lues";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Marquer comme lu";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Marqué comme non terminé";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Marquer comme non lues";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Marquer comme non-lu";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Aucune image trouvée du sélecteur d’images";
+
+/* No comment provided by engineer. */
+"No Messages" = "Aucun message";
 
 /* No comment provided by engineer. */
 "No Modules" = "Aucun module";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Publié";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Tirez pour actualiser pour réessayer";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Citrouille";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Une erreur est survenue";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Une erreur est survenue";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Classer par nombre de rétroactions de type « J’aime »";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Enquêtes";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Basculer en mode sombre";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Basculer en mode lumière";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Programme";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Appuyer ici pour obtenir de l'aide.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tapoter sur le « + » pour créer une nouvelle conversation";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Appuyez pour sélectionner les cours que vous souhaitez voir sur le calendrier.";

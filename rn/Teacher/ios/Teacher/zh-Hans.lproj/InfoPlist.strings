@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "教师";
+"CFBundleDisplayName" = "Canvas 教师";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "把照片和视讯附加至提交评论。";

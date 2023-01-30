@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Okenn Sijè)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) plis";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ plis";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Tout anotasyon anrejistre.";
 
 /* No comment provided by engineer. */
-"All courses" = "Tout kpi";
-
-/* No comment provided by engineer. */
 "All Courses" = "Tout Kou";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Randevou Enskripsyon";
+
+/* No comment provided by engineer. */
+"Archive" = "Achiv";
 
 /* No comment provided by engineer. */
 "Archived" = "Achive";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Atachman";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Atachman disponib";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tantativ %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Efase Filtrasyon";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Elimine Filtè Bwat resepsyon";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Efase anrejistreman";
@@ -938,7 +938,10 @@
 "Filter events" = "Flitre aktivite";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filtè Bwat resepsyon";
+"Filter messages by course" = "Filtre mesaj yo pa kou";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtre mesaj yo pa tip";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Nòt Final: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Make kòm Fini";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Make tankou li";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Make tankou Li";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Make kòm Poko fini";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Make tankou poko li";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Make tankou Poko Li";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nou pa jwenn okenn imaj apati de selektè imaj la";
+
+/* No comment provided by engineer. */
+"No Messages" = "Pa gen Mesaj";
 
 /* No comment provided by engineer. */
 "No Modules" = "Okenn Modil";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Pibliye";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Rale pou aktyalize epi eseye ankò";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Pumpkin";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Gen yon bagay ki pase mal";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Gen yon Bagay ki Pase Mal";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Klase pa Jèm";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Ankèt";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Pase a Mòd Sonm";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Pase a Mòd Klè";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Pwogram";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tape la pou èd.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tape sou \"+\" la pou ka kreye yon nouvo konvèsasyon";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tape pou ka seleksyone kou ou vle wè nan kalandriye a.";
