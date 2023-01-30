@@ -27,7 +27,7 @@ public struct WebView: UIViewRepresentable {
     private let source: Source?
     private var customUserAgentName: String?
     private var disableZoom: Bool = false
-    private var pullToRefresh: CoreWebView.PullToRefresh
+    private var pullToRefresh: PullToRefresh.State
     private var invertColorsInDarkMode: Bool = false
     private var canToggleTheme: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
@@ -41,7 +41,7 @@ public struct WebView: UIViewRepresentable {
     public init(
         url: URL?,
         canToggleTheme: Bool = false,
-        pullToRefresh: CoreWebView.PullToRefresh
+        pullToRefresh: PullToRefresh.State
     ) {
         source = url.map { .request(URLRequest(url: $0)) }
         self.canToggleTheme = canToggleTheme
@@ -54,7 +54,7 @@ public struct WebView: UIViewRepresentable {
         customUserAgentName: String?,
         disableZoom: Bool = false,
         canToggleTheme: Bool = false,
-        pullToRefresh: CoreWebView.PullToRefresh,
+        pullToRefresh: PullToRefresh.State,
         configuration: WKWebViewConfiguration = .defaultConfiguration,
         invertColorsInDarkMode: Bool = false
     ) {
@@ -78,7 +78,7 @@ public struct WebView: UIViewRepresentable {
         request: URLRequest,
         disableZoom: Bool = false,
         canToggleTheme: Bool = false,
-        pullToRefresh: CoreWebView.PullToRefresh
+        pullToRefresh: PullToRefresh.State
     ) {
         source = .request(request)
         self.disableZoom = disableZoom

@@ -42,11 +42,6 @@ public protocol CoreWebViewSizeDelegate: AnyObject {
 
 @IBDesignable
 open class CoreWebView: WKWebView {
-    public enum PullToRefresh {
-        case disabled
-        case enabled(color: UIColor?)
-    }
-
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
@@ -58,27 +53,17 @@ open class CoreWebView: WKWebView {
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
-    private lazy var refreshControl: CircleRefreshControl = {
-        let refreshControl = CircleRefreshControl()
-        refreshControl.addTarget(
-            self,
-            action: #selector(refreshWebView(_:)),
-            for: .valueChanged
-        )
-        return refreshControl
-    }()
-    private let pullToRefresh: PullToRefresh
-    private var pullToRefreshNavigation: WKNavigation?
-
-    private var htmlString: String?
-    private var baseURL: URL?
-    private let themeSwitcherButton = UIButton()
+    public static let processPool = WKProcessPool()
 
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
-
     public var isLinkNavigationEnabled = true
+
+    private var features: [CoreWebViewFeature] = []
+    private var htmlString: String?
+    private var baseURL: URL?
+    private let themeSwitcherButton = UIButton()
     private var isInverted = false {
         didSet {
             updateHtmlContentView()
@@ -92,58 +77,52 @@ open class CoreWebView: WKWebView {
         }
     }
 
-    public static let processPool = WKProcessPool()
-
     public required init?(coder: NSCoder) {
-        pullToRefresh = .disabled
         super.init(coder: coder)
         setup()
     }
 
     override public init(frame: CGRect, configuration: WKWebViewConfiguration) {
-        pullToRefresh = .disabled
         configuration.applyDefaultSettings()
         super.init(frame: frame, configuration: configuration)
         setup()
     }
 
-    /**
-     - parameters:
-        - invertColorsInDarkMode: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
-     */
-    public init(
-        customUserAgentName: String? = nil,
-        disableZoom: Bool = false,
-        pullToRefresh: PullToRefresh,
-        configuration: WKWebViewConfiguration = .defaultConfiguration,
-        invertColorsInDarkMode: Bool = false
-    ) {
-        self.pullToRefresh = pullToRefresh
+    public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration) {
         configuration.applyDefaultSettings()
-
-        if let customUserAgentName = customUserAgentName {
-            configuration.applicationNameForUserAgent = customUserAgentName
-        }
+        features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
 
-        if disableZoom {
-            addScript(disableZoomJS)
-        }
-
-        if invertColorsInDarkMode {
-            addScript(colorInvertInDarkModeScript)
-        }
-
-        if case let .enabled(color) = pullToRefresh {
-            addRefreshControl(color: color)
-        }
-
+        features.forEach { $0.apply(on: self) }
+        self.features = features
         setup()
     }
 
+    public convenience init(customUserAgentName: String? = nil,
+                            disableZoom: Bool = false,
+                            pullToRefresh: PullToRefresh.State,
+                            configuration: WKWebViewConfiguration = .defaultConfiguration,
+                            invertColorsInDarkMode: Bool = false
+    ) {
+        var features: [CoreWebViewFeature] = [PullToRefresh(state: pullToRefresh)]
+
+        if let customUserAgentName = customUserAgentName {
+            features.append(CustomUserAgent(customUserAgentName))
+        }
+
+        if disableZoom {
+            features.append(DisableZoom())
+        }
+
+        if invertColorsInDarkMode {
+            features.append(InvertColorsInDarkMode())
+        }
+
+        self.init(features: features, configuration: configuration)
+    }
+
     private init(externalConfiguration: WKWebViewConfiguration) {
-        self.pullToRefresh = .disabled
         super.init(frame: .zero, configuration: externalConfiguration)
         navigationDelegate = self
         uiDelegate = self
@@ -169,17 +148,6 @@ open class CoreWebView: WKWebView {
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
         }
-    }
-
-    private func addRefreshControl(color: UIColor?) {
-        scrollView.addSubview(refreshControl)
-        scrollView.bounces = true
-        refreshControl.color = color
-    }
-
-    @objc func refreshWebView(_ sender: UIRefreshControl) {
-        guard pullToRefreshNavigation == nil else { return }
-        pullToRefreshNavigation = reload()
     }
 
     public var contentInputAccessoryView: UIView? {
@@ -231,28 +199,6 @@ open class CoreWebView: WKWebView {
             return "<style>\(darkModeCss())</style>"
         }
         return ""
-    }
-
-    // Forces dark mode on webview pages.
-
-    public var colorInvertInDarkModeScript: String {
-        let darkCss = """
-        @media (prefers-color-scheme: dark) {
-            html {
-                filter: invert(100%) hue-rotate(180deg);
-            }
-            img:not(.ignore-color-scheme), video:not(.ignore-color-scheme), .ignore-color-scheme {
-                filter: invert(100%) hue-rotate(180deg) !important;
-            }
-        }
-        """
-
-        let cssString = darkCss.components(separatedBy: .newlines).joined()
-        return """
-           var element = document.createElement('style');
-           element.innerHTML = '\(cssString)';
-           document.head.appendChild(element);
-        """
     }
 
     /** Enables simple dark mode support for unsupported webview pages. */
@@ -422,10 +368,7 @@ extension CoreWebView: WKNavigationDelegate {
             scrollIntoView(fragment: fragment)
         }
 
-        if navigation == pullToRefreshNavigation {
-            refreshControl.endRefreshing()
-            pullToRefreshNavigation = nil
-        }
+        features.forEach { $0.webView(webView, didFinish: navigation) }
     }
 
     public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {

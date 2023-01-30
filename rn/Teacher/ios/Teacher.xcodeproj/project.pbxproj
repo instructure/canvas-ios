@@ -75,7 +75,6 @@
 		7D742F382554D01400FD6CF1 /* RubricAssessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D742F372554D01400FD6CF1 /* RubricAssessor.swift */; };
 		7D742F452556566F00FD6CF1 /* CommentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D742F442556566F00FD6CF1 /* CommentEditor.swift */; };
 		7D7D6D5225102052002B1485 /* SubmissionGrader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D6D5125102052002B1485 /* SubmissionGrader.swift */; };
-		7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC7047A24ABFD4800CD1C46 /* GetRootFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */; };
 		7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */; };
@@ -534,7 +533,6 @@
 		7D742F372554D01400FD6CF1 /* RubricAssessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricAssessor.swift; sourceTree = "<group>"; };
 		7D742F442556566F00FD6CF1 /* CommentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEditor.swift; sourceTree = "<group>"; };
 		7D7D6D5125102052002B1485 /* SubmissionGrader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionGrader.swift; sourceTree = "<group>"; };
-		7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRootFolders.swift; sourceTree = "<group>"; };
 		7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmissionViewer.swift; sourceTree = "<group>"; };
 		7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewController.swift; sourceTree = "<group>"; };
@@ -671,7 +669,6 @@
 				13B07FB51A68108700A75B9A /* Assets.xcassets */,
 				7D64A95B2362092B004EAEDF /* Attendance */,
 				B15CA241221DC4DA0014FB02 /* Extensions */,
-				B15CA293221E0F890014FB02 /* IBDesignables */,
 				7D0A28E0251A8104004FB3B6 /* SpeedGrader */,
 				3B55FEC522FC861F00FCB7B2 /* Submissions */,
 				D9DE56C82550309600CF8B22 /* Syllabus */,
@@ -881,14 +878,6 @@
 				B1FF02D1240435B0004B7B1C /* KeychainTests.swift */,
 			);
 			path = TeacherTests;
-			sourceTree = "<group>";
-		};
-		B15CA293221E0F890014FB02 /* IBDesignables */ = {
-			isa = PBXGroup;
-			children = (
-				7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */,
-			);
-			path = IBDesignables;
 			sourceTree = "<group>";
 		};
 		B17E1DB3238DA8290022EE0E /* SpeedGrader */ = {
@@ -1756,7 +1745,6 @@
 				7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
-				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */,
 				7D7126C725374469000DEDE4 /* SubmissionFileList.swift in Sources */,

@@ -978,6 +978,11 @@
 		CF61834728D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61834628D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift */; };
 		CF61834928D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61834828D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift */; };
 		CF61FF8729841A70001797B8 /* DefaultWKWebViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61FF8629841A70001797B8 /* DefaultWKWebViewConfiguration.swift */; };
+		CF61FF8A2987D74E001797B8 /* CoreWebViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61FF892987D74E001797B8 /* CoreWebViewFeature.swift */; };
+		CF61FF8C2987D8C7001797B8 /* DisableZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61FF8B2987D8C7001797B8 /* DisableZoom.swift */; };
+		CF61FF8E2987D99A001797B8 /* CustomUserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61FF8D2987D99A001797B8 /* CustomUserAgent.swift */; };
+		CF61FF902987DA39001797B8 /* InvertColorsInDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61FF8F2987DA39001797B8 /* InvertColorsInDarkMode.swift */; };
+		CF61FF922987DA72001797B8 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61FF912987DA72001797B8 /* PullToRefresh.swift */; };
 		CF62AE472640539E004F062D /* FileSubmissionsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */; };
 		CF67B29226EBA12F00E51F13 /* HorizontalPagerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */; };
 		CF67B29626EBA19700E51F13 /* HorizontalPagerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */; };
@@ -2557,6 +2562,11 @@
 		CF61834628D3C35B004CA4EA /* BackgroundActivityTerminationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTerminationHandler.swift; sourceTree = "<group>"; };
 		CF61834828D3C6B5004CA4EA /* BackgroundActivityTerminationHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTerminationHandlerTests.swift; sourceTree = "<group>"; };
 		CF61FF8629841A70001797B8 /* DefaultWKWebViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWKWebViewConfiguration.swift; sourceTree = "<group>"; };
+		CF61FF892987D74E001797B8 /* CoreWebViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewFeature.swift; sourceTree = "<group>"; };
+		CF61FF8B2987D8C7001797B8 /* DisableZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableZoom.swift; sourceTree = "<group>"; };
+		CF61FF8D2987D99A001797B8 /* CustomUserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserAgent.swift; sourceTree = "<group>"; };
+		CF61FF8F2987DA39001797B8 /* InvertColorsInDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvertColorsInDarkMode.swift; sourceTree = "<group>"; };
+		CF61FF912987DA72001797B8 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		CF62AE462640539E004F062D /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		CF67B29126EBA12F00E51F13 /* HorizontalPagerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerProxy.swift; sourceTree = "<group>"; };
 		CF67B29526EBA19700E51F13 /* HorizontalPagerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPagerCoordinator.swift; sourceTree = "<group>"; };
@@ -5615,6 +5625,18 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		CF61FF882987D718001797B8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				CF61FF892987D74E001797B8 /* CoreWebViewFeature.swift */,
+				CF61FF8B2987D8C7001797B8 /* DisableZoom.swift */,
+				CF61FF8D2987D99A001797B8 /* CustomUserAgent.swift */,
+				CF61FF8F2987DA39001797B8 /* InvertColorsInDarkMode.swift */,
+				CF61FF912987DA72001797B8 /* PullToRefresh.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		CF67B29026EBA10A00E51F13 /* HorizontalPager */ = {
 			isa = PBXGroup;
 			children = (
@@ -6199,6 +6221,7 @@
 		CFBC10522983D89B00338136 /* CoreWebView */ = {
 			isa = PBXGroup;
 			children = (
+				CF61FF882987D718001797B8 /* Features */,
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */,
@@ -7879,6 +7902,7 @@
 				B1A7848F24411F19001A2B50 /* BackgroundVideoPlayer.swift in Sources */,
 				7DA2606823F722D9005D2121 /* TabVisibility.swift in Sources */,
 				7DA2609923F7233D005D2121 /* Scope.swift in Sources */,
+				CF61FF8A2987D74E001797B8 /* CoreWebViewFeature.swift in Sources */,
 				7D0A28DD251952A2004FB3B6 /* RemoteImage.swift in Sources */,
 				7DA2607C23F722FA005D2121 /* PageViewEventRequestManager.swift in Sources */,
 				CFA56E4728352AB0007C15D7 /* DashboardInvitationViewModel.swift in Sources */,
@@ -8026,6 +8050,7 @@
 				CF0075E22875E4AF00588E40 /* OutputStreamExtensions.swift in Sources */,
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
+				CF61FF922987DA72001797B8 /* PullToRefresh.swift in Sources */,
 				CF53F73F266FBB8E00FA58D7 /* K5HomeroomMissingSubmissionsCount.swift in Sources */,
 				CF3E760B2885A91B00276703 /* ComposeBatchUpload.swift in Sources */,
 				CF3A31D428F702B9002752D2 /* InboxMessageScope.swift in Sources */,
@@ -8090,6 +8115,7 @@
 				7DA260E423F72359005D2121 /* LoadingViewController.swift in Sources */,
 				7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */,
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
+				CF61FF8E2987D99A001797B8 /* CustomUserAgent.swift in Sources */,
 				CFB06FAA28C3FA6D00DAC40B /* FileSubmissionErrors.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
 				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
@@ -8293,6 +8319,7 @@
 				D91BC858276B9679008371B0 /* AssignmentCellView.swift in Sources */,
 				7DD6FB3625081CD900DB5286 /* OptionalDatePicker.swift in Sources */,
 				CF8D53512806E1160038B0B2 /* WebSitePreviewView.swift in Sources */,
+				CF61FF902987DA39001797B8 /* InvertColorsInDarkMode.swift in Sources */,
 				7DA2601423F7227A005D2121 /* InstIconExtensions.swift in Sources */,
 				CF8CB54326CD17CE008361E2 /* K5ResourcesApplicationViewModel.swift in Sources */,
 				CF3E7623288AB07700276703 /* FileProgressListViewModelProtocol.swift in Sources */,
@@ -8381,6 +8408,7 @@
 				CF7C36742677B0D200ACAC79 /* UIBarButtonItemExtensions.swift in Sources */,
 				CF9D2262291EB12000B19EF0 /* DashboardViewModel.swift in Sources */,
 				7DA2602223F7227A005D2121 /* UIButtonExtensions.swift in Sources */,
+				CF61FF8C2987D8C7001797B8 /* DisableZoom.swift in Sources */,
 				7DA2609A23F7233D005D2121 /* Store.swift in Sources */,
 				7DA2601523F7227A005D2121 /* UIImageViewExtensions.swift in Sources */,
 				7DA25FE923F721DE005D2121 /* APISearchRecipient.swift in Sources */,

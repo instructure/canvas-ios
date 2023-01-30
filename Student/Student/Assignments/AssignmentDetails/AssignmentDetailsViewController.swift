@@ -86,7 +86,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
-    private let webView = CoreWebView(pullToRefresh: .disabled)
+    private let webView = CoreWebView()
 
     static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()

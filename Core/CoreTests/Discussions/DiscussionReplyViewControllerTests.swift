@@ -27,9 +27,18 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
     lazy var controller = DiscussionReplyViewController.create(context: context, topicID: "1")
 
     var baseURL: URL { environment.api.baseURL }
-    let webView = MockWebView(pullToRefresh: .disabled)
+    let webView = MockWebView()
     class MockWebView: CoreWebView {
         var html: String = ""
+
+        init() {
+            super.init(frame: .zero, configuration: .defaultConfiguration)
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
         open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
             html = string
             return nil
@@ -41,7 +50,7 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        controller.editor.webView = MockWebView(pullToRefresh: .disabled)
+        controller.editor.webView = MockWebView()
         controller.webView = webView
         api.mock(controller.course, value: .make())
         api.mock(GetDiscussionEntry(context: context, topicID: "1", entryID: "1"), value: .make(
