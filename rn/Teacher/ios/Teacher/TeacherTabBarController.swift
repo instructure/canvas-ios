@@ -43,6 +43,11 @@ class TeacherTabBarController: UITabBarController {
         checkForPolicyChanges()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
     func coursesTab() -> UIViewController {
         let split = HelmSplitViewController()
         split.viewControllers = [

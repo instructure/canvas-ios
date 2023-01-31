@@ -49,6 +49,11 @@ class StudentTabBarController: UITabBarController {
         checkForPolicyChanges()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
     func dashboardTab() -> UIViewController {
         let result: UIViewController
         let tabBarTitle: String
@@ -164,7 +169,6 @@ class StudentTabBarController: UITabBarController {
 
     @objc private func checkForPolicyChanges() {
         UsePolicy.checkAcceptablePolicy(from: self, cancelled: {
-            NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
             AppEnvironment.shared.loginDelegate?.changeUser()
         })
     }

@@ -43,8 +43,7 @@ public class LoginUsePolicyViewModel: ObservableObject {
     }
 
     public func cancelAcceptance() {
-        guard let cancelled = self.cancelled else { return }
-        cancelled()
+        cancelled?()
     }
 
     public func acceptUsePolicy(_ callback: @escaping (Result<Void, Error>) -> Void) {

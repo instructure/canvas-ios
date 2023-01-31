@@ -3164,7 +3164,6 @@
 				B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */,
 				7D8E20C92450A372000F826B /* TabBarBadgeCounts.swift */,
 				B1C783EC2241E39B00DD89A9 /* UUID.swift */,
-				EBB9262C2989159600025752 /* UsePolicy.swift */,
 			);
 			path = AppEnvironment;
 			sourceTree = "<group>";
@@ -6849,6 +6848,7 @@
 		EBB025B02979903B00E6A3B2 /* LoginUsePolicy */ = {
 			isa = PBXGroup;
 			children = (
+				EBB9262C2989159600025752 /* UsePolicy.swift */,
 				EB3A4E2F29716AE200A22FF3 /* LoginUsePolicyView.swift */,
 				EBB025AE2979809500E6A3B2 /* LoginUsePolicyViewModel.swift */,
 			);
