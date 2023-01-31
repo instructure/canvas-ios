@@ -267,13 +267,13 @@ public struct DashboardCardView: View {
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
-            invitationsViewModel.refresh()
-            colors.refresh(force: force)
-            conferencesViewModel.refresh(force: force)
-            groups.exhaust(force: force)
-            notifications.exhaust(force: force)
-            settings.refresh(force: force)
-            cards.refresh(onComplete: onComplete)
+        invitationsViewModel.refresh()
+        colors.refresh(force: force)
+        conferencesViewModel.refresh(force: force)
+        groups.exhaust(force: force)
+        notifications.exhaust(force: force)
+        settings.refresh(force: force)
+        cards.refresh(onComplete: onComplete)
     }
 
     func showAllCourses() {

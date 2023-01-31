@@ -72,8 +72,8 @@ struct LoginUsePolicyView: View {
                     .foregroundColor(.textLightest)
             }),
             trailing: Button(action: {
-                controller.value.dismiss(animated: true) {
-                    viewModel.submitAcceptance()
+                viewModel.submitAcceptance {
+                    controller.value.dismiss(animated: true)
                 }
             }, label: {
                 Text("Submit", bundle: .core)
@@ -92,7 +92,7 @@ struct LoginUsePolicyView: View {
 
 struct LoginUsePolicyView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = LoginUsePolicyViewModel(accepted: {}, cancelled: {})
+        let viewModel = LoginUsePolicyViewModel(cancelled: {})
         LoginUsePolicyView(viewModel: viewModel)
     }
 }

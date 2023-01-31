@@ -104,6 +104,13 @@ class TeacherTabBarController: UITabBarController {
         let event = map[tabIndex]
         Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
     }
+
+    @objc private func checkForPolicyChanges() {
+        UsePolicy.checkAcceptablePolicy(from: self, cancelled: {
+            NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+            AppEnvironment.shared.loginDelegate?.changeUser()
+        })
+    }
 }
 
 extension TeacherTabBarController: UITabBarControllerDelegate {
@@ -114,12 +121,5 @@ extension TeacherTabBarController: UITabBarControllerDelegate {
         }
 
         return true
-    }
-
-    @objc private func checkForPolicyChanges() {
-        let env = AppEnvironment.shared
-        env.checkAcceptablePolicy(from: self, cancelled: {
-                AppEnvironment.shared.loginDelegate?.changeUser()
-        })
     }
 }
