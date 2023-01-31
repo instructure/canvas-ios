@@ -1123,6 +1123,8 @@
 		CFB9B30228A2B03300C18C79 /* preview_test.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30128A2B03300C18C79 /* preview_test.png */; };
 		CFB9B30428A2B03E00C18C79 /* preview_test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30328A2B03E00C18C79 /* preview_test.pdf */; };
 		CFB9B30628A2B13500C18C79 /* preview_test.bin in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30528A2B13500C18C79 /* preview_test.bin */; };
+		CFBC104E2982819E00338136 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC104D2982819E00338136 /* LoginViewModel.swift */; };
+		CFBC10512982AA5700338136 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC10502982AA5700338136 /* LoginViewModelTests.swift */; };
 		CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */; };
 		CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */; };
 		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
@@ -2700,6 +2702,8 @@
 		CFB9B30128A2B03300C18C79 /* preview_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_test.png; sourceTree = "<group>"; };
 		CFB9B30328A2B03E00C18C79 /* preview_test.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = preview_test.pdf; sourceTree = "<group>"; };
 		CFB9B30528A2B13500C18C79 /* preview_test.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = preview_test.bin; sourceTree = "<group>"; };
+		CFBC104D2982819E00338136 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		CFBC10502982AA5700338136 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
@@ -3205,6 +3209,7 @@
 		3B346747213051CC00F9BC2E /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CFBC104C2982818E00338136 /* ViewModel */,
 				7D80AC22212B8A2100C40ECE /* APIAccount.swift */,
 				3B3467D721360A7C00F9BC2E /* APILoginWeb.swift */,
 				7D80AC2A212C77C600C40ECE /* APIOAuth.swift */,
@@ -3232,6 +3237,7 @@
 		3B3467512130527000F9BC2E /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CFBC104F2982AA4B00338136 /* ViewModel */,
 				B164DC1E22DE2AB30037FA86 /* APIAccountTests.swift */,
 				3B3467D92136FFBA00F9BC2E /* APILoginWebTests.swift */,
 				7D80AC2C212C801600C40ECE /* APIOAuthTests.swift */,
@@ -6194,6 +6200,22 @@
 			path = TestAssets;
 			sourceTree = "<group>";
 		};
+		CFBC104C2982818E00338136 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFBC104D2982819E00338136 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CFBC104F2982AA4B00338136 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFBC10502982AA5700338136 /* LoginViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */ = {
 			isa = PBXGroup;
 			children = (
@@ -7384,6 +7406,7 @@
 				CF941B14267B427300700DE9 /* K5GradesViewModelTests.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
+				CFBC10512982AA5700338136 /* LoginViewModelTests.swift in Sources */,
 				CF5234ED28B9019500D2D3B9 /* FileUploadProgressObserverTests.swift in Sources */,
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
@@ -8000,6 +8023,7 @@
 				7DA2600A23F7227A005D2121 /* NSManagedObjectContextExtensions.swift in Sources */,
 				7DA260CD23F72359005D2121 /* BottomSheetTransitioning.swift in Sources */,
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
+				CFBC104E2982819E00338136 /* LoginViewModel.swift in Sources */,
 				CF0075E22875E4AF00588E40 /* OutputStreamExtensions.swift in Sources */,
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				CFAD0D15281839FC0017D07B /* DocViewerAnnotationUploader.swift in Sources */,
