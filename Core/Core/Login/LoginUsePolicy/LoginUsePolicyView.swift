@@ -52,6 +52,7 @@ struct LoginUsePolicyView: View {
                         .fixedSize()
                         .lineLimit(1)
                 }
+                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
             }
             .padding()
             .frame(height: 47)

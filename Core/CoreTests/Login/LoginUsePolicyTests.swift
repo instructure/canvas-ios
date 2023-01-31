@@ -22,6 +22,19 @@ import TestsFoundation
 
 class LoginUsePolicyTests: CoreTestCase {
 
+    func testCheckAcceptablePolicy() {
+        let controller = UITabBarController()
+        controller.viewDidLoad()
+        controller.view.layoutIfNeeded()
+        let env = AppEnvironment.shared
+        api.mock(GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self")),
+                 value: GetWebSessionRequest.Response(session_url: URL(string: "https://canvas.instructure.com/")!,
+                                                      requires_terms_acceptance: true))
+        LoginUsePolicy.checkAcceptablePolicy(from: controller)
+        wait(for: [router.showExpectation], timeout: 5)
+        XCTAssert(router.presented is CoreHostingController<LoginUsePolicyView>)
+    }
+
     func testAcceptUsePolicy() {
         let successExpectation = XCTestExpectation(description: "API call should succeed")
         api.mock(PutUserAcceptedTermsRequest(hasAccepted: true), value: .makeUser(role: "Student", id: 123))
