@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Sense assumpte)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) més";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ més";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "S'han desat totes les anotacions.";
 
 /* No comment provided by engineer. */
-"All courses" = "Totes les assignatures";
-
-/* No comment provided by engineer. */
 "All Courses" = "Totes les assignatures";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Registres de cites";
+
+/* No comment provided by engineer. */
+"Archive" = "Arxiva";
 
 /* No comment provided by engineer. */
 "Archived" = "Arxivat";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Fitxers adjunts";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Hi ha fitxers adjunts disponibles";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Intent %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Esborra el filtre";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Esborra la safata d'entrada del filtre";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Esborra l'enregistrament";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtra els esdeveniments";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filtra la safata d'entrada";
+"Filter messages by course" = "Filtra els missatges per assignatura";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtra els missatges per tipus";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Nota final: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Marca-ho com fet";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Marca-ho com a llegit";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Marca-ho com a llegit";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Marca-ho com a desfet";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Marca-ho com a no llegit";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Marca-ho com a no llegit";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No s'ha trobat cap imatge al selector d'imatges";
+
+/* No comment provided by engineer. */
+"No Messages" = "No hi ha cap missatge";
 
 /* No comment provided by engineer. */
 "No Modules" = "No hi ha cap contingut";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Publicat";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Estireu per actualitzar per tornar-ho a provar";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Carabassa";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Alguna cosa no ha anat bé";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "S’ha produït un error";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Ordena per número de M'agrada";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Enquestes";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Canvia al mode fosc";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Canvia al mode clar";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Temari";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Toqueu aquí per obtenir ajuda.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Toqueu el signe \"+\" per crear una conversa nova";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Toqueu per seleccionar les assignatures que voleu veure al calendari.";

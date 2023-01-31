@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Ekkert efnisheiti)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) í viðbót";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ meira";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Meðaleinkunn";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Allar textaskýringar voru vistaðar.";
 
 /* No comment provided by engineer. */
-"All courses" = "Öll námskeið";
-
-/* No comment provided by engineer. */
 "All Courses" = "Öll námskeið";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Skráningar á fund";
+
+/* No comment provided by engineer. */
+"Archive" = "Safn";
 
 /* No comment provided by engineer. */
 "Archived" = "Sett í safn";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Viðhengi";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Viðhengi í boði";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tilraun %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Hreinsa síu";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Hreinsa síu innhólfs";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Hreinsa skrár";
@@ -938,7 +938,10 @@
 "Filter events" = "Sía viðburði";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Sía innhólf";
+"Filter messages by course" = "Sía skilaboð eftir námskeiðum";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Sía skilaboð eftir tegund";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Lokaeinkunn: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Merkja sem lokið";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Merkja sem lesið";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Merkja sem lesið";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Merkja sem ólokið";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Merkja sem ólesið";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Merkja sem ólesið";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Engin mynd fannst í myndavali okkar";
+
+/* No comment provided by engineer. */
+"No Messages" = "Engin skilaboð";
 
 /* No comment provided by engineer. */
 "No Modules" = "Engar einingar";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Birt";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Dragðu til að endurnýja til að reyna aftur";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Grasker";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Eitthvað mistókst";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Eitthvað fór úrskeiðis";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Raða eftir „líkar við“";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Kannanir";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Skipta í dökkt þema";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Skipta í ljóst þema";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Kennsluáætlun";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Smelltu hér til að fá hjálp.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Ýttu á „+“ til að búa til nýja samræðu";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Smelltu til að velja námskeiðin sem þú vilt sjá á dagatalinu.";

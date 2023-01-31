@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(无标题)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "还有 (sampledNames) + (remainingNamesCount)";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@%2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@+ 另外 %2$@";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "所有注释已保存。";
 
 /* No comment provided by engineer. */
-"All courses" = "所有课程";
-
-/* No comment provided by engineer. */
 "All Courses" = "所有课程";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "预约注册";
+
+/* No comment provided by engineer. */
+"Archive" = "归档";
 
 /* No comment provided by engineer. */
 "Archived" = "已归档";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "附件";
+
+/* No comment provided by engineer. */
+"Attachments available" = "可用附件";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "尝试%d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "清除筛选器";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "清除筛选收件箱";
 
 /* No comment provided by engineer. */
 "Clear recording" = "清除录制";
@@ -938,7 +938,10 @@
 "Filter events" = "筛选活动";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "筛选收件箱";
+"Filter messages by course" = "按课程过滤消息";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "按类型过滤消息";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "最终评分：%@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "标记为已完成";
 
 /* No comment provided by engineer. */
+"Mark as read" = "标记为已读";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "标记为已读";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "标记为未完成";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "标记为未读";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "标记为未读";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "从图像选择器找不到图像";
+
+/* No comment provided by engineer. */
+"No Messages" = "无消息";
 
 /* No comment provided by engineer. */
 "No Modules" = "无模块";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "已发布";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "拖拽以刷新重试";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "南瓜";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "出了些问题";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "遇到错误";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "按赞数排序";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "调查";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "切换到深色模式";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "切换到浅色模式";
+
+/* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "轻击此处获取帮助。";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "点击“+”以创建新对话 ";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "点击以选择您要在日历上看到的课程。";

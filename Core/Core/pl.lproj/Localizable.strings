@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Brak tematu)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) więcej";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ więcej";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Średnia ocen";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Zapisano wszystkie adnotacje.";
 
 /* No comment provided by engineer. */
-"All courses" = "Wszystkie kursy";
-
-/* No comment provided by engineer. */
 "All Courses" = "Wszystkie kursy";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Rejestracje na spotkania";
+
+/* No comment provided by engineer. */
+"Archive" = "Archiwum";
 
 /* No comment provided by engineer. */
 "Archived" = "Zarchiwizowane";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Załączniki";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Dostępne załączniki";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Próba %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Wyczyść filtr";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Wyczyść filtrowaną skrzynkę odbiorczą";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Wyczyść nagranie";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtruj wydarzenia";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filtruj skrzynkę odbiorczą";
+"Filter messages by course" = "Filtruj wiadomości wg kursów";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtruj wiadomości wg typu";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Ocena końcowa: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Oznacz jako gotowe";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Oznacz jako przeczytane";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Oznacz jako przeczytane";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Oznacz jako niegotowe";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Oznacz jako nieprzeczytane";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Oznacz jako nieprzeczytane";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nie odnaleziono obrazu z narzędzia wyboru obrazów";
+
+/* No comment provided by engineer. */
+"No Messages" = "Brak wiadomości";
 
 /* No comment provided by engineer. */
 "No Modules" = "Brak modułów";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Opublikowane";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Dynia";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Coś poszło nie tak";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Coś poszło nie tak";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sortuj według polubień";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Ankiety";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Przełącz na tryb ciemny";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Przełącz na tryb jasny";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Program";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Stuknij tutaj, aby uzyskać pomoc.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Stuknij „+”, aby utworzyć nową rozmowę";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Stuknij, aby wybrać kursy, które chcesz zobaczyć w kalendarzu.";

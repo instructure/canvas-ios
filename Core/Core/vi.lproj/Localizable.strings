@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Không có tiêu đề)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "thêm (sampledNames) + (remainingNamesCount)";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "Thêm %1$@ + %2$@";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Đã lưu tất cả chú thích.";
 
 /* No comment provided by engineer. */
-"All courses" = "Tất cả khóa học";
-
-/* No comment provided by engineer. */
 "All Courses" = "Tất Cả Khóa Học";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Mục Đăng Ký Cuộc Họp Theo Lịch";
+
+/* No comment provided by engineer. */
+"Archive" = "Lưu Trữ";
 
 /* No comment provided by engineer. */
 "Archived" = "Được Lưu Trữ";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Tập Tin Đính Kèm";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Tệp đính kèm có sẵn";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Lần Làm %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Bỏ Bộ Lọc";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Bỏ Bộ Lọc Hộp Thư Đến";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Xóa bản ghi";
@@ -938,7 +938,10 @@
 "Filter events" = "Lọc sự kiện";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Lọc Hộp Thư Đến";
+"Filter messages by course" = "Lọc tin nhắn bằng khóa học";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Lọc tin nhắn theo loại";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Điểm Cuối Cùng: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Đánh Dấu Là Đã Xong";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Đánh dấu là đã đọc";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Đánh Dấu Là Đã Dọc";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Đánh Dấu Là Chưa Xong";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Đánh dấu là chưa đọc";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Đánh Dấu Là Chưa Đọc";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Không tìm thấy hình ảnh từ bộ chọn hình ảnh";
+
+/* No comment provided by engineer. */
+"No Messages" = "Không Có Tin Nhắn";
 
 /* No comment provided by engineer. */
 "No Modules" = "Không Có Học Phần";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Đã Phát Hành";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Hãy kéo để làm mới rồi thử lại";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Bí Ngô";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Đã xảy ra vấn đề";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Đã Xảy Ra Vấn Đề";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sắp xếp theo lượt thích";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Khảo Sát";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Chuyển Sang Chế Độ Tối";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Chuyển Sang Chế Độ Sáng";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Chương Trình Học";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Nhấn vào đây để được trợ giúp.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Nhấn vào dấu \"+\" để tạo cuộc trò chuyện mới";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Hãy nhấn vào để chọn khóa học bạn muốn thấy trên lịch.";

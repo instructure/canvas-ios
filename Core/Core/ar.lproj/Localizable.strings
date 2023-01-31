@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(لا يوجد موضوع)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) أكثر";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ المزيد";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
@@ -173,9 +173,6 @@
 "All annotations saved." = "تم حفظ جميع التعليقات التوضيحية.";
 
 /* No comment provided by engineer. */
-"All courses" = "جميع المساقات";
-
-/* No comment provided by engineer. */
 "All Courses" = "جميع المساقات";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "مواعيد التسجيل";
+
+/* No comment provided by engineer. */
+"Archive" = "أرشفة";
 
 /* No comment provided by engineer. */
 "Archived" = "مؤرشف";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "المرفقات";
+
+/* No comment provided by engineer. */
+"Attachments available" = "المرفقات متاحة";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "المحاولة %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "مسح عامل التصفية";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "مسح عامل تصفية صندوق الوارد";
 
 /* No comment provided by engineer. */
 "Clear recording" = "مسح التسجيل";
@@ -938,7 +938,10 @@
 "Filter events" = "تصفية الأحداث";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "تصفية علبة الوارد";
+"Filter messages by course" = "تصفية الرسائل حسب المساق";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "تصفية الرسائل حسب النوع";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "وضع علامة تم";
 
 /* No comment provided by engineer. */
+"Mark as read" = "وضع علامة كمقروء";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "وضع علامة كمقروء";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "وضع علامة تم التراجع عنه";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "وضع علامة غير مقروء";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "وضع علامة كغير مقروء";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "لم يتم العثور على صورة من منتقي الصور";
+
+/* No comment provided by engineer. */
+"No Messages" = "لا توجد رسائل";
 
 /* No comment provided by engineer. */
 "No Modules" = "لا توجد وحدات نمطية";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "منشور";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "اسحب للتحديث لإعادة المحاولة";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "يقطين";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "حدث خطأ ما";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "حدث خطأ ما";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "الترتيب حسب الإعجابات";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "الاستطلاعات";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "التبديل إلى الوضع الداكن";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "التبديل إلى الوضع الفاتح";
+
+/* No comment provided by engineer. */
 "Syllabus" = "المنهج الدراسي";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "اضغط هنا للحصول على المساعدة.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "اضغط على \"+\" لإنشاء محادثة جديدة";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "اضغط لتحديد المساقات التي ترغب في رؤيتها على التقويم.";
