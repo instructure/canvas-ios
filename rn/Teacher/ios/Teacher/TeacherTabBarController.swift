@@ -111,8 +111,7 @@ class TeacherTabBarController: UITabBarController {
     }
 
     @objc private func checkForPolicyChanges() {
-        UsePolicy.checkAcceptablePolicy(from: self, cancelled: {
-            NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
             AppEnvironment.shared.loginDelegate?.changeUser()
         })
     }

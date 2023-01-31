@@ -18,7 +18,8 @@
 
 import Foundation
 
-public class UsePolicy {
+public class LoginUsePolicy {
+
     public static func checkAcceptablePolicy(from controller: UIViewController? = nil, cancelled: (() -> Void)? = nil) {
 
         let env = AppEnvironment.shared
@@ -38,6 +39,15 @@ public class UsePolicy {
             env.router.show(CoreHostingController(usePolicyView),
                             from: viewController,
                             options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+        } }
+    }
+
+    public static func acceptUsePolicy(_ callback: @escaping (Result<Void, Error>) -> Void) {
+        AppEnvironment.shared.api.makeRequest(PutUserAcceptedTermsRequest(hasAccepted: true)) { _, _, error in performUIUpdate {
+            if let error = error {
+                return callback(.failure(error))
+            }
+            callback(.success(()))
         } }
     }
 }

@@ -168,7 +168,7 @@ class StudentTabBarController: UITabBarController {
     }
 
     @objc private func checkForPolicyChanges() {
-        UsePolicy.checkAcceptablePolicy(from: self, cancelled: {
+        LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
             AppEnvironment.shared.loginDelegate?.changeUser()
         })
     }

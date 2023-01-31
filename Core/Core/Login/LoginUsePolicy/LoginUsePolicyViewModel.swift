@@ -31,7 +31,7 @@ public class LoginUsePolicyViewModel: ObservableObject {
     }
 
     public func submitAcceptance(_ success: @escaping () -> Void) {
-        acceptUsePolicy { result in
+        LoginUsePolicy.acceptUsePolicy { result in
             switch result {
             case let .failure(error):
                 self.errorText = error.localizedDescription
@@ -44,14 +44,5 @@ public class LoginUsePolicyViewModel: ObservableObject {
 
     public func cancelAcceptance() {
         cancelled?()
-    }
-
-    public func acceptUsePolicy(_ callback: @escaping (Result<Void, Error>) -> Void) {
-        AppEnvironment.shared.api.makeRequest(PutUserAcceptedTermsRequest(hasAccepted: true)) { _, _, error in performUIUpdate {
-            if let error = error {
-                return callback(.failure(error))
-            }
-            callback(.success(()))
-        } }
     }
 }

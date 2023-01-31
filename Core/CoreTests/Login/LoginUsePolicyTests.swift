@@ -20,24 +20,28 @@
 import XCTest
 import TestsFoundation
 
-class LoginUsePolicyViewModelTests: CoreTestCase {
+class LoginUsePolicyTests: CoreTestCase {
 
-    func testSubmitAcceptance() {
-        let successExpectation = XCTestExpectation(description: "accepted callback should be called")
-        let testee = LoginUsePolicyViewModel {
-            XCTFail()
-        }
+    func testAcceptUsePolicy() {
+        let successExpectation = XCTestExpectation(description: "API call should succeed")
         api.mock(PutUserAcceptedTermsRequest(hasAccepted: true), value: .makeUser(role: "Student", id: 123))
-        testee.submitAcceptance {
-            successExpectation.fulfill()
+        LoginUsePolicy.acceptUsePolicy { result in
+            switch result {
+            case let .failure(error):
+                XCTFail(error.localizedDescription)
+            case .success(()):
+                successExpectation.fulfill()
+            }
         }
-    }
-
-    func testCancelAcceptance() {
-        let cancelExpectation = XCTestExpectation(description: "accepted callback should be called")
-        let testee = LoginUsePolicyViewModel {
-            cancelExpectation.fulfill()
+        let expectedError = NSError.internalError()
+        api.mock(PutUserAcceptedTermsRequest(hasAccepted: true), value: nil, error: expectedError)
+        LoginUsePolicy.acceptUsePolicy { result in
+            switch result {
+            case let .failure(error):
+                XCTAssertEqual(error as NSError, expectedError)
+            case .success(()):
+                XCTFail()
+            }
         }
-        testee.cancelAcceptance()
     }
 }
