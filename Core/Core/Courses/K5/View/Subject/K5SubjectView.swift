@@ -37,14 +37,13 @@ public struct K5SubjectView: View {
                                         backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
                 }
                 if let currentPageURL = viewModel.currentPageURL {
-                    WebView(
-                        url: currentPageURL,
-                        customUserAgentName: nil,
-                        disableZoom: true,
-                        pullToRefresh: .enabled(color: viewModel.courseColor),
-                        configuration: viewModel.config,
-                        invertColorsInDarkMode: true
-                    )
+                    WebView(url: currentPageURL,
+                            features: [
+                                .disableZoom,
+                                .pullToRefresh(.enabled(color: viewModel.courseColor)),
+                                .invertColorsInDarkMode,
+                            ],
+                            configuration: viewModel.config)
                     .reload(on: viewModel.reloadWebView)
                 }
                 Divider()

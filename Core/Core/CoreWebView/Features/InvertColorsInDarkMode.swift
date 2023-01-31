@@ -47,3 +47,8 @@ public class InvertColorsInDarkMode: CoreWebViewFeature {
         webView.addScript(script)
     }
 }
+
+public extension CoreWebViewFeature {
+
+    static var invertColorsInDarkMode: InvertColorsInDarkMode { InvertColorsInDarkMode() }
+}

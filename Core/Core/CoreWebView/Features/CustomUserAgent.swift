@@ -29,3 +29,10 @@ public class CustomUserAgent: CoreWebViewFeature {
         configuration.applicationNameForUserAgent = customUserAgentName
     }
 }
+
+public extension CoreWebViewFeature {
+
+    static func userAgent(_ userAgent: String) -> CustomUserAgent {
+        CustomUserAgent(userAgent)
+    }
+}

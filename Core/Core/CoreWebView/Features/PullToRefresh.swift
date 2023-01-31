@@ -70,3 +70,10 @@ public class PullToRefresh: CoreWebViewFeature {
         pullToRefreshNavigation = webView?.reload()
     }
 }
+
+public extension CoreWebViewFeature {
+
+    static func pullToRefresh(_ state: PullToRefresh.State) -> PullToRefresh {
+        PullToRefresh(state: state)
+    }
+}

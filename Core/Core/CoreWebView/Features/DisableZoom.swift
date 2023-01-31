@@ -30,3 +30,8 @@ public class DisableZoom: CoreWebViewFeature {
         webView.addScript(script)
     }
 }
+
+public extension CoreWebViewFeature {
+
+    static var disableZoom: DisableZoom { DisableZoom() }
+}

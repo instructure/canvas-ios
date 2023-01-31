@@ -99,29 +99,6 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public convenience init(customUserAgentName: String? = nil,
-                            disableZoom: Bool = false,
-                            pullToRefresh: PullToRefresh.State,
-                            configuration: WKWebViewConfiguration = .defaultConfiguration,
-                            invertColorsInDarkMode: Bool = false
-    ) {
-        var features: [CoreWebViewFeature] = [PullToRefresh(state: pullToRefresh)]
-
-        if let customUserAgentName = customUserAgentName {
-            features.append(CustomUserAgent(customUserAgentName))
-        }
-
-        if disableZoom {
-            features.append(DisableZoom())
-        }
-
-        if invertColorsInDarkMode {
-            features.append(InvertColorsInDarkMode())
-        }
-
-        self.init(features: features, configuration: configuration)
-    }
-
     private init(externalConfiguration: WKWebViewConfiguration) {
         super.init(frame: .zero, configuration: externalConfiguration)
         navigationDelegate = self

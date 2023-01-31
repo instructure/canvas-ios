@@ -18,6 +18,9 @@
 
 import Foundation
 
+/**
+ This extension contains all JavaScripts that are always injected into CoreWebView contents when the `setup()` method is called.
+ */
 extension CoreWebView {
 
     public static func jsString(_ string: String?) -> String {
