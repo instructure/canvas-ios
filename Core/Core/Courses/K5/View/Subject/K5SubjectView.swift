@@ -40,7 +40,7 @@ public struct K5SubjectView: View {
                     WebView(url: currentPageURL,
                             features: [
                                 .disableZoom,
-                                .pullToRefresh(.enabled(color: viewModel.courseColor)),
+                                .pullToRefresh(color: viewModel.courseColor),
                                 .invertColorsInDarkMode,
                             ],
                             configuration: viewModel.config)

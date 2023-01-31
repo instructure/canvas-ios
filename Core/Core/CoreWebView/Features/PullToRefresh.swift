@@ -19,11 +19,6 @@
 import WebKit
 
 public class PullToRefresh: CoreWebViewFeature {
-    public enum State {
-        case disabled
-        case enabled(color: UIColor?)
-    }
-
     private lazy var refreshControl: CircleRefreshControl = {
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(
@@ -33,21 +28,19 @@ public class PullToRefresh: CoreWebViewFeature {
         )
         return refreshControl
     }()
-    private let state: State
+    private let color: UIColor?
     private weak var webView: CoreWebView?
     private var pullToRefreshNavigation: WKNavigation?
 
     // MARK: - Public Methods
 
-    public init(state: State) {
-        self.state = state
+    public init(color: UIColor?) {
+        self.color = color
     }
 
     public override func apply(on webView: CoreWebView) {
-        if case let .enabled(color) = state {
-            addRefreshControl(color: color, to: webView)
-            self.webView = webView
-        }
+        addRefreshControl(color: color, to: webView)
+        self.webView = webView
     }
 
     override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -73,7 +66,7 @@ public class PullToRefresh: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static func pullToRefresh(_ state: PullToRefresh.State) -> PullToRefresh {
-        PullToRefresh(state: state)
+    static func pullToRefresh(color: UIColor?) -> PullToRefresh {
+        PullToRefresh(color: color)
     }
 }

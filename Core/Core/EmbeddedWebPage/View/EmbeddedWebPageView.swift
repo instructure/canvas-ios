@@ -29,7 +29,7 @@ public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
         self.viewModel = viewModel
 
         if isPullToRefreshEnabled {
-            features.append(.pullToRefresh(.enabled(color: viewModel.contextColor)))
+            features.append(.pullToRefresh(color: viewModel.contextColor))
         }
     }
 
