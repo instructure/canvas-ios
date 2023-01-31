@@ -38,7 +38,7 @@ public class PullToRefresh: CoreWebViewFeature {
         self.color = color
     }
 
-    public override func apply(on webView: CoreWebView) {
+    override func apply(on webView: CoreWebView) {
         addRefreshControl(color: color, to: webView)
         self.webView = webView
     }

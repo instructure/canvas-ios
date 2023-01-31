@@ -23,15 +23,6 @@ import WebKit
 class SyllabusViewControllerTests: CoreTestCase {
     class MockWebView: CoreWebView {
         var html: String = ""
-
-        init() {
-            super.init(frame: .zero, configuration: .defaultConfiguration)
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
         open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
             html = string
             return super.loadHTMLString(string, baseURL: baseURL)
@@ -42,7 +33,7 @@ class SyllabusViewControllerTests: CoreTestCase {
 
     func testLayout() {
         let html = "<body>hello world</body>"
-        let webView = MockWebView()
+        let webView = MockWebView(features: [])
         api.mock(controller.courses, value: .make(syllabus_body: html))
 
         controller.webView = webView

@@ -29,18 +29,9 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
     let unread = "class=\"\(DiscussionHTML.Styles.unread)\""
 
     var baseURL: URL { environment.api.baseURL }
-    let webView = MockWebView()
+    let webView = MockWebView(features: [])
     class MockWebView: CoreWebView {
         @objc var runningCount = 0
-
-        init() {
-            super.init(frame: .zero, configuration: .defaultConfiguration)
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
         override func evaluateJavaScript(_ javaScriptString: String, completionHandler: ((Any?, Error?) -> Void)? = nil) {
             runningCount += 1
             super.evaluateJavaScript(javaScriptString) { result, error in

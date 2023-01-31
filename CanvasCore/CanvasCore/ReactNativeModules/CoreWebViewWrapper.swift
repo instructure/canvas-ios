@@ -36,7 +36,7 @@ public class CoreWebViewWrapper: UIView, RCTAutoInsetsProtocol {
             } else if let url = source?["uri"].flatMap({ URL(string: $0) }) {
                 webView.load(URLRequest(url: url))
                 if url.host == AppEnvironment.shared.currentSession?.baseURL.host {
-                    InvertColorsInDarkMode().apply(on: webView)
+                    webView.addFeature(.invertColorsInDarkMode)
                 }
             } else {
                 webView.loadHTMLString("")

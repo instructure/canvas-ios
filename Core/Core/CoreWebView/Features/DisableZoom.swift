@@ -26,12 +26,14 @@ public class DisableZoom: CoreWebViewFeature {
         head.appendChild(meta);
     """
 
-    public override func apply(on webView: CoreWebView) {
+    override func apply(on webView: CoreWebView) {
         webView.addScript(script)
     }
 }
 
 public extension CoreWebViewFeature {
 
-    static var disableZoom: DisableZoom { DisableZoom() }
+    static var disableZoom: DisableZoom {
+        DisableZoom()
+    }
 }

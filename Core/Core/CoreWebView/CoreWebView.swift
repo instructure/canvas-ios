@@ -59,6 +59,11 @@ open class CoreWebView: WKWebView {
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
     public var isLinkNavigationEnabled = true
+    public var contentInputAccessoryView: UIView? {
+        didSet {
+            addContentInputAccessoryView()
+        }
+    }
 
     private var features: [CoreWebViewFeature] = []
     private var htmlString: String?
@@ -99,6 +104,15 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
+    /**
+     This method is to add support for CanvasCore project. Can be removed when that project is removed
+     as this method isn't safe for features modifying `WKWebViewConfiguration`.
+     */
+    public func addFeature(_ feature: CoreWebViewFeature) {
+        features.append(feature)
+        feature.apply(on: self)
+    }
+
     private init(externalConfiguration: WKWebViewConfiguration) {
         super.init(frame: .zero, configuration: externalConfiguration)
         navigationDelegate = self
@@ -124,12 +138,6 @@ open class CoreWebView: WKWebView {
         handle("loadFrameSource") { [weak self] message in
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
-        }
-    }
-
-    public var contentInputAccessoryView: UIView? {
-        didSet {
-            addContentInputAccessoryView()
         }
     }
 

@@ -43,12 +43,14 @@ public class InvertColorsInDarkMode: CoreWebViewFeature {
 
     public override init() {}
 
-    public override func apply(on webView: CoreWebView) {
+    override func apply(on webView: CoreWebView) {
         webView.addScript(script)
     }
 }
 
 public extension CoreWebViewFeature {
 
-    static var invertColorsInDarkMode: InvertColorsInDarkMode { InvertColorsInDarkMode() }
+    static var invertColorsInDarkMode: InvertColorsInDarkMode {
+        InvertColorsInDarkMode()
+    }
 }

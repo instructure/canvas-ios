@@ -25,7 +25,7 @@ public class CustomUserAgent: CoreWebViewFeature {
         self.customUserAgentName = customUserAgentName
     }
 
-    public override func apply(on configuration: WKWebViewConfiguration) {
+    override func apply(on configuration: WKWebViewConfiguration) {
         configuration.applicationNameForUserAgent = customUserAgentName
     }
 }
