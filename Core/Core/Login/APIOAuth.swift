@@ -205,6 +205,7 @@ public struct DeleteLoginOAuthRequest: APIRequestable {
 public struct GetWebSessionRequest: APIRequestable {
     public struct Response: Codable {
         public let session_url: URL
+        public let requires_terms_acceptance: Bool
     }
 
     public let to: URL?

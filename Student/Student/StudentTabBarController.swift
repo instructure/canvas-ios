@@ -40,8 +40,18 @@ class StudentTabBarController: UITabBarController {
         selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
             .flatMap { paths.firstIndex(of: $0) } ?? 0
         tabBar.useGlobalNavStyle()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkForPolicyChanges()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     func dashboardTab() -> UIViewController {
@@ -155,6 +165,12 @@ class StudentTabBarController: UITabBarController {
         let map = [AppEnvironment.shared.k5.isK5Enabled ? "homeroom": "dashboard", "calendar", "todo", "notifications", "conversations"]
         let event = map[tabIndex]
         Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
+
+    @objc private func checkForPolicyChanges() {
+        LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
+            AppEnvironment.shared.loginDelegate?.changeUser()
+        })
     }
 }
 

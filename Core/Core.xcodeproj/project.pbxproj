@@ -1313,6 +1313,7 @@
 		E8E070F424E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */; };
 		EB24231128521EF00058A100 /* UIWindowExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24231028521EF00058A100 /* UIWindowExtensionsTests.swift */; };
 		EB2460262728380E00E4F331 /* K5SubjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2460252728380E00E4F331 /* K5SubjectHeaderView.swift */; };
+		EB24672F297AC68300091B04 /* LoginUsePolicyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24672E297AC68300091B04 /* LoginUsePolicyViewModelTests.swift */; };
 		EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */; };
 		EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */; };
 		EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */; };
@@ -1324,6 +1325,7 @@
 		EB35FA5526B0085B00AA8C22 /* K5GradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */; };
 		EB35FA6626B0414E00AA8C22 /* K5GradeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */; };
 		EB368AB427BFD0B500A9F1C1 /* APICommentLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */; };
+		EB3A4E3029716AE200A22FF3 /* LoginUsePolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A4E2F29716AE200A22FF3 /* LoginUsePolicyView.swift */; };
 		EB4368B328CA07A0004B3D39 /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */; };
 		EB4368B528CB5D1B004B3D39 /* CoreDatePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */; };
 		EB60D0FC2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */; };
@@ -1335,6 +1337,9 @@
 		EB9BF7D5282E907B0025F6D0 /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9BF7D4282E907B0025F6D0 /* UIWindowExtensions.swift */; };
 		EBAF32F227AAC147000ACD32 /* APICommentLibraryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */; };
 		EBAF32F427AAC194000ACD32 /* APICommentLibraryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F327AAC194000ACD32 /* APICommentLibraryResponse.swift */; };
+		EBB025AF2979809500E6A3B2 /* LoginUsePolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB025AE2979809500E6A3B2 /* LoginUsePolicyViewModel.swift */; };
+		EBB9262D2989159600025752 /* LoginUsePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB9262C2989159600025752 /* LoginUsePolicy.swift */; };
+		EBB9262F2989225200025752 /* LoginUsePolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB9262E2989225200025752 /* LoginUsePolicyTests.swift */; };
 		EBBE5359272AD3390088CBAD /* K5SubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */; };
 		EBC9E4BE291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */; };
 		EBE92ED2279864380053C9A4 /* K5ImportantDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */; };
@@ -2914,6 +2919,7 @@
 		E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
 		EB24231028521EF00058A100 /* UIWindowExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensionsTests.swift; sourceTree = "<group>"; };
 		EB2460252728380E00E4F331 /* K5SubjectHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectHeaderView.swift; sourceTree = "<group>"; };
+		EB24672E297AC68300091B04 /* LoginUsePolicyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyViewModelTests.swift; sourceTree = "<group>"; };
 		EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainSection.swift; sourceTree = "<group>"; };
 		EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionsSection.swift; sourceTree = "<group>"; };
 		EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuBottomSection.swift; sourceTree = "<group>"; };
@@ -2925,6 +2931,7 @@
 		EB35FA5426B0085B00AA8C22 /* K5GradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCell.swift; sourceTree = "<group>"; };
 		EB35FA6526B0414E00AA8C22 /* K5GradeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModel.swift; sourceTree = "<group>"; };
 		EB368AB327BFD0B500A9F1C1 /* APICommentLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryTests.swift; sourceTree = "<group>"; };
+		EB3A4E2F29716AE200A22FF3 /* LoginUsePolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyView.swift; sourceTree = "<group>"; };
 		EB4368B228CA07A0004B3D39 /* CoreDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePicker.swift; sourceTree = "<group>"; };
 		EB4368B428CB5D1B004B3D39 /* CoreDatePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatePickerTests.swift; sourceTree = "<group>"; };
 		EB60D0FB2862018C00AE2B2B /* UIApplicationDelegateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationDelegateExtensionTests.swift; sourceTree = "<group>"; };
@@ -2937,6 +2944,9 @@
 		EB9BF7D4282E907B0025F6D0 /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
 		EBAF32F127AAC147000ACD32 /* APICommentLibraryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryRequest.swift; sourceTree = "<group>"; };
 		EBAF32F327AAC194000ACD32 /* APICommentLibraryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryResponse.swift; sourceTree = "<group>"; };
+		EBB025AE2979809500E6A3B2 /* LoginUsePolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyViewModel.swift; sourceTree = "<group>"; };
+		EBB9262C2989159600025752 /* LoginUsePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicy.swift; sourceTree = "<group>"; };
+		EBB9262E2989225200025752 /* LoginUsePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyTests.swift; sourceTree = "<group>"; };
 		EBBE5358272AD3390088CBAD /* K5SubjectViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModelTests.swift; sourceTree = "<group>"; };
 		EBC9E4BD291A98EE00C8BD9B /* iOS16HideListScrollContentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS16HideListScrollContentBackground.swift; sourceTree = "<group>"; };
 		EBE92ED1279864380053C9A4 /* K5ImportantDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDateItem.swift; sourceTree = "<group>"; };
@@ -3257,6 +3267,7 @@
 				7D0215AD21BB2D68009A8E69 /* LoginStartSessionCell.swift */,
 				7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */,
 				7D0215A821BB1762009A8E69 /* LoginStartViewController.swift */,
+				EBB025B02979903B00E6A3B2 /* LoginUsePolicy */,
 				3B346749213051FD00F9BC2E /* LoginWebViewController.swift */,
 				3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */,
 				3BC84267247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift */,
@@ -3278,6 +3289,8 @@
 				7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */,
 				DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */,
 				7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */,
+				EBB9262E2989225200025752 /* LoginUsePolicyTests.swift */,
+				EB24672E297AC68300091B04 /* LoginUsePolicyViewModelTests.swift */,
 				B1D5EF5F2358D93100B3ACD3 /* LoginWebViewControllerTests.swift */,
 			);
 			path = Login;
@@ -6931,6 +6944,16 @@
 			path = ImportantDates;
 			sourceTree = "<group>";
 		};
+		EBB025B02979903B00E6A3B2 /* LoginUsePolicy */ = {
+			isa = PBXGroup;
+			children = (
+				EBB9262C2989159600025752 /* LoginUsePolicy.swift */,
+				EB3A4E2F29716AE200A22FF3 /* LoginUsePolicyView.swift */,
+				EBB025AE2979809500E6A3B2 /* LoginUsePolicyViewModel.swift */,
+			);
+			path = LoginUsePolicy;
+			sourceTree = "<group>";
+		};
 		EBE92ED0279864080053C9A4 /* ImportantDates */ = {
 			isa = PBXGroup;
 			children = (
@@ -7491,6 +7514,7 @@
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
+				EBB9262F2989225200025752 /* LoginUsePolicyTests.swift in Sources */,
 				CF24634828CA3C5E00A77A88 /* FileUploadProgressObserversCacheTests.swift in Sources */,
 				B127C0F0245B56BE008DB716 /* MasteryPathViewControllerTests.swift in Sources */,
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
@@ -7556,6 +7580,7 @@
 				3BA9FF752332B05700196A06 /* APIGradingPeriodTests.swift in Sources */,
 				B1846D1322EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift in Sources */,
 				CFB9B2FD28A2ADAA00C18C79 /* FilePreviewProviderTests.swift in Sources */,
+				EB24672F297AC68300091B04 /* LoginUsePolicyViewModelTests.swift in Sources */,
 				7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */,
 				78151DCF21AE7E0500692862 /* APIDiscussionTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
@@ -8098,6 +8123,7 @@
 				CF60CC6226497BC100C1C173 /* Refreshable.swift in Sources */,
 				7DA260DD23F72359005D2121 /* GroupedSectionHeaderView.swift in Sources */,
 				7DA25FB523F72136005D2121 /* APIGradingPeriod.swift in Sources */,
+				EBB9262D2989159600025752 /* LoginUsePolicy.swift in Sources */,
 				7D742F4025564CF200FD6CF1 /* SwiftUIExtensions.swift in Sources */,
 				7DA25FB623F72136005D2121 /* APIGraphQLRequestable.swift in Sources */,
 				7DA2600F23F7227A005D2121 /* UICollectionViewExtensions.swift in Sources */,
@@ -8121,6 +8147,7 @@
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
+				EB3A4E3029716AE200A22FF3 /* LoginUsePolicyView.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
 				CFCBB891266A27150026CEDF /* K5HomeroomSubjectCardViewModel.swift in Sources */,
 				CF8D535C280869820038B0B2 /* EmbeddedWebPageViewModelLive.swift in Sources */,
@@ -8218,6 +8245,7 @@
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,
 				CF7D4A8D29377F9500463FBD /* MessageListStateUpdater.swift in Sources */,
+				EBB025AF2979809500E6A3B2 /* LoginUsePolicyViewModel.swift in Sources */,
 				CFCB0F6327CE7B58008DDEA4 /* PandaScene.swift in Sources */,
 				7D531D48254C606800CBFCA6 /* AssignmentAssigneeList.swift in Sources */,
 				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
