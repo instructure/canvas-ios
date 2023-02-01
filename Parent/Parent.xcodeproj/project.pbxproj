@@ -68,6 +68,7 @@
 		7DC7046F24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */; };
 		7DC7047124ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */; };
 		7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */; };
+		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
 		7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */; };
 		7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */; };
@@ -329,6 +330,7 @@
 		7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarEventDetailsViewController.storyboard; sourceTree = "<group>"; };
 		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewControllerTests.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				5E0F9A4E1C739E6A00BB7707 /* Dashboard */,
 				9F5A3D3C2048745B00F6EDCE /* Discussions */,
 				5E4104871C99E06D0021567C /* Extensions */,
+				7DEE3E3E2335793B0009D8DC /* IBDesignables */,
 				7DC7045B24AA8EA400CD1C46 /* ObserverAlerts */,
 				7DF398C724BE16D4003FBA7F /* Planner */,
 				7D33976A24534CA20074ED71 /* Students */,
@@ -675,6 +678,14 @@
 				7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */,
 			);
 			path = ObserverAlerts;
+			sourceTree = "<group>";
+		};
+		7DEE3E3E2335793B0009D8DC /* IBDesignables */ = {
+			isa = PBXGroup;
+			children = (
+				7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */,
+			);
+			path = IBDesignables;
 			sourceTree = "<group>";
 		};
 		7DF398C724BE16D4003FBA7F /* Planner */ = {
@@ -1299,6 +1310,7 @@
 				3BEA6CC1245887F000BE4589 /* ParentConversationListViewController.swift in Sources */,
 				97F69BA523F1C682009622E3 /* AddStudentController.swift in Sources */,
 				7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */,
+				7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */,
 				7DB92CB424C62071004A6C16 /* CourseListViewController.swift in Sources */,
 				7DB92CA524C5FD26004A6C16 /* AccountNotificationDetailsViewController.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,

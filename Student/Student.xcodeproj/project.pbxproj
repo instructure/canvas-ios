@@ -41,6 +41,7 @@
 		7D46624124D0C7C900C74DB4 /* QuizDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D46624024D0C7C900C74DB4 /* QuizDetailsViewControllerTests.swift */; };
 		7D46624324D0C82D00C74DB4 /* QuizWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D46624224D0C82D00C74DB4 /* QuizWebViewControllerTests.swift */; };
 		7D57398924350CC7000073BE /* PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57398824350CC7000073BE /* PlannerTests.swift */; };
+		7DA4DA2E2440EF70009CA964 /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4DA2D2440EF6F009CA964 /* IBDesignables.swift */; };
 		7DB3C83F24AA613B00B85D35 /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3C83D24AA613B00B85D35 /* CalendarEventDetailsViewController.swift */; };
 		7DB3C84024AA613B00B85D35 /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB3C83E24AA613B00B85D35 /* CalendarEventDetailsViewController.storyboard */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
@@ -564,6 +565,7 @@
 		7D62F50322BD75B90060DE4C /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D62F50522BD75B90060DE4C /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D864FFF22B2A432006B0127 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DA4DA2D2440EF6F009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		7DB3C83D24AA613B00B85D35 /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		7DB3C83E24AA613B00B85D35 /* CalendarEventDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarEventDetailsViewController.storyboard; sourceTree = "<group>"; };
 		7DC4A0BC24BE5024007A7EAD /* CalendarEventDetailsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -941,6 +943,7 @@
 				7DCF0EB122F89FC2000AACCE /* Courses */,
 				7DCF0EBD22F8A001000AACCE /* Extensions */,
 				7DCF0EC122F8A00D000AACCE /* Groups */,
+				7DCF0ECA22F8A01C000AACCE /* IBDesignables */,
 				9767F2A02383C741006633CA /* Notifications */,
 				7DB3C83C24AA613B00B85D35 /* Planner */,
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
@@ -1117,6 +1120,14 @@
 				7DCF0EC022F8A00D000AACCE /* GroupNavigation */,
 			);
 			path = Groups;
+			sourceTree = "<group>";
+		};
+		7DCF0ECA22F8A01C000AACCE /* IBDesignables */ = {
+			isa = PBXGroup;
+			children = (
+				7DA4DA2D2440EF6F009CA964 /* IBDesignables.swift */,
+			);
+			path = IBDesignables;
 			sourceTree = "<group>";
 		};
 		7DCF0ED522F8A03D000AACCE /* Quizzes */ = {
@@ -2789,6 +2800,7 @@
 				7DCF0FB922F8A8D7000AACCE /* SubmissionCommentsViewController.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				CFC7AE3927157DC50077F9D5 /* StudentAnnotationSubmissionView.swift in Sources */,
+				7DA4DA2E2440EF70009CA964 /* IBDesignables.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,

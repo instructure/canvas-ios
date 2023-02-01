@@ -87,6 +87,11 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
+    public init() {
+        super.init(frame: .zero, configuration: .defaultConfiguration)
+        setup()
+    }
+
     override public init(frame: CGRect, configuration: WKWebViewConfiguration) {
         configuration.applyDefaultSettings()
         super.init(frame: frame, configuration: configuration)
