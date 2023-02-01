@@ -206,7 +206,7 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertNil(CoreWebView.cookieKeepAliveTimer)
 
         environment.api = API(.make(accessToken: "a"))
-        let value = GetWebSessionRequest.Response(session_url: URL(string: "data:text/html,")!)
+        let value = GetWebSessionRequest.Response(session_url: URL(string: "data:text/html,")!, requires_terms_acceptance: false)
         api.mock(GetWebSessionRequest(to: environment.api.baseURL.appendingPathComponent("users/self")), value: value)
         CoreWebView.keepCookieAlive(for: environment)
         wait(for: [expectation(for: .all, evaluatedWith: api) { CoreWebView.cookieKeepAliveWebView.url != nil }], timeout: 10)
