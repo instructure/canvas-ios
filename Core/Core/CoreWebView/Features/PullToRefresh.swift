@@ -34,7 +34,7 @@ public class PullToRefresh: CoreWebViewFeature {
 
     // MARK: - Public Methods
 
-    public init(color: UIColor?) {
+    public init(color: UIColor? = nil) {
         self.color = color
     }
 
@@ -66,7 +66,7 @@ public class PullToRefresh: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static func pullToRefresh(color: UIColor?) -> PullToRefresh {
+    static func pullToRefresh(color: UIColor? = nil) -> PullToRefresh {
         PullToRefresh(color: color)
     }
 }

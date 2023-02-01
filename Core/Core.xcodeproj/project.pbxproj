@@ -835,6 +835,12 @@
 		CF0075E428772E9E00588E40 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E328772E9E00588E40 /* URLRequestExtensions.swift */; };
 		CF0075E628772ECA00588E40 /* URLRequestExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E528772ECA00588E40 /* URLRequestExtensionsTests.swift */; };
 		CF00B045298A572400A38B05 /* SkipJSInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B044298A572400A38B05 /* SkipJSInjection.swift */; };
+		CF00B048298A771900A38B05 /* DisableZoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B047298A771900A38B05 /* DisableZoomTests.swift */; };
+		CF00B04A298A773800A38B05 /* CustomUserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B049298A773800A38B05 /* CustomUserAgentTests.swift */; };
+		CF00B04C298A775A00A38B05 /* InvertColorsInDarkModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B04B298A775A00A38B05 /* InvertColorsInDarkModeTests.swift */; };
+		CF00B04E298A776500A38B05 /* PullToRefreshTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B04D298A776500A38B05 /* PullToRefreshTests.swift */; };
+		CF00B050298A777200A38B05 /* SkipJSInjectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B04F298A777200A38B05 /* SkipJSInjectionTests.swift */; };
+		CF00B052298A7F7900A38B05 /* MockCoreWebViewLinkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B051298A7F7900A38B05 /* MockCoreWebViewLinkDelegate.swift */; };
 		CF086072291D40500013BDCE /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086071291D40500013BDCE /* MenuItems.swift */; };
 		CF086074291D40960013BDCE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086073291D40960013BDCE /* ArrayExtensions.swift */; };
 		CF086076291D40CD0013BDCE /* UIMenuExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086075291D40CD0013BDCE /* UIMenuExtensions.swift */; };
@@ -2421,6 +2427,12 @@
 		CF0075E328772E9E00588E40 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		CF0075E528772ECA00588E40 /* URLRequestExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensionsTests.swift; sourceTree = "<group>"; };
 		CF00B044298A572400A38B05 /* SkipJSInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipJSInjection.swift; sourceTree = "<group>"; };
+		CF00B047298A771900A38B05 /* DisableZoomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableZoomTests.swift; sourceTree = "<group>"; };
+		CF00B049298A773800A38B05 /* CustomUserAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserAgentTests.swift; sourceTree = "<group>"; };
+		CF00B04B298A775A00A38B05 /* InvertColorsInDarkModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvertColorsInDarkModeTests.swift; sourceTree = "<group>"; };
+		CF00B04D298A776500A38B05 /* PullToRefreshTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshTests.swift; sourceTree = "<group>"; };
+		CF00B04F298A777200A38B05 /* SkipJSInjectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipJSInjectionTests.swift; sourceTree = "<group>"; };
+		CF00B051298A7F7900A38B05 /* MockCoreWebViewLinkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreWebViewLinkDelegate.swift; sourceTree = "<group>"; };
 		CF086071291D40500013BDCE /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		CF086073291D40960013BDCE /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		CF086075291D40CD0013BDCE /* UIMenuExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuExtensions.swift; sourceTree = "<group>"; };
@@ -4887,6 +4899,19 @@
 			path = ProgressViewStyle;
 			sourceTree = "<group>";
 		};
+		CF00B046298A770500A38B05 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				CF00B047298A771900A38B05 /* DisableZoomTests.swift */,
+				CF00B049298A773800A38B05 /* CustomUserAgentTests.swift */,
+				CF00B04B298A775A00A38B05 /* InvertColorsInDarkModeTests.swift */,
+				CF00B04D298A776500A38B05 /* PullToRefreshTests.swift */,
+				CF00B04F298A777200A38B05 /* SkipJSInjectionTests.swift */,
+				CF00B051298A7F7900A38B05 /* MockCoreWebViewLinkDelegate.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		CF086070291D403C0013BDCE /* AnnotationContextMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -6258,6 +6283,7 @@
 		CFBC10532983D8CC00338136 /* CoreWebView */ = {
 			isa = PBXGroup;
 			children = (
+				CF00B046298A770500A38B05 /* Features */,
 				B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 			);
@@ -7421,6 +7447,7 @@
 				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
 				CFB9B2FB28A29FF900C18C79 /* AttachmentPreviewViewModelTests.swift in Sources */,
 				CFFB3ACE292CF6800093437D /* InboxMessageContextFilterTests.swift in Sources */,
+				CF00B052298A7F7900A38B05 /* MockCoreWebViewLinkDelegate.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentTests.swift in Sources */,
 				7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */,
 				7D264DD12538E20C007CDD90 /* CoreHostingControllerTests.swift in Sources */,
@@ -7559,6 +7586,7 @@
 				CF24634C28D065D100A77A88 /* FileUploadTargetTests.swift in Sources */,
 				CFDB61FA28AD27CA0008C3F3 /* FileSubmissionStateEnumTests.swift in Sources */,
 				CF9A0EE827E4BDBD00762228 /* SplitViewModeObserverTests.swift in Sources */,
+				CF00B04E298A776500A38B05 /* PullToRefreshTests.swift in Sources */,
 				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
 				B1487F99243E43C400013404 /* GetModuleItemTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
@@ -7572,6 +7600,7 @@
 				7D64A96A23622D3A004EAEDF /* CalendarDayIconViewTests.swift in Sources */,
 				CF941B0F267B3F1000700DE9 /* FontExtensionTests.swift in Sources */,
 				7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */,
+				CF00B050298A777200A38B05 /* SkipJSInjectionTests.swift in Sources */,
 				3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */,
 				B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */,
 				7D37BE8D21C837840063FAAC /* SubmissionTests.swift in Sources */,
@@ -7675,6 +7704,7 @@
 				CF7D4A8B2937798C00463FBD /* TabBarMessageCountUpdaterTests.swift in Sources */,
 				CF9A0F3227E8AD8900762228 /* CourseSettingsViewModelTests.swift in Sources */,
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
+				CF00B04A298A773800A38B05 /* CustomUserAgentTests.swift in Sources */,
 				CFD9B43F27ECBDCA0099F173 /* AttendanceCellViewModelTests.swift in Sources */,
 				E887275F24E1F85B00798DCA /* SequenceExtensionsTests.swift in Sources */,
 				3B1988B524256CE7004ADCC6 /* PairWithObserverViewControllerTests.swift in Sources */,
@@ -7712,6 +7742,7 @@
 				7DF4AADA2489430C00B07BB8 /* AppStoreReviewTests.swift in Sources */,
 				CFB06F9828BDF64500DAC40B /* FileSubmissionSubmitterTests.swift in Sources */,
 				CFDCF95A291E93650023E111 /* MockPDFPageView.swift in Sources */,
+				CF00B048298A771900A38B05 /* DisableZoomTests.swift in Sources */,
 				7D26B84923A81E5700262380 /* ConversationTests.swift in Sources */,
 				CFFA9D782668BF1700C1648E /* K5HomeroomViewModelTests.swift in Sources */,
 				B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */,
@@ -7849,6 +7880,7 @@
 				7DCF1EC0216BC97F003AF358 /* TabVisibilityTests.swift in Sources */,
 				7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */,
 				CF6F91D32892ACE6009F147E /* AssignmentPickerItemTests.swift in Sources */,
+				CF00B04C298A775A00A38B05 /* InvertColorsInDarkModeTests.swift in Sources */,
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
 				B109249423CE81C400796903 /* RoleTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
