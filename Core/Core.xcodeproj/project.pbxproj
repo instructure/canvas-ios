@@ -834,6 +834,7 @@
 		CF0075E22875E4AF00588E40 /* OutputStreamExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */; };
 		CF0075E428772E9E00588E40 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E328772E9E00588E40 /* URLRequestExtensions.swift */; };
 		CF0075E628772ECA00588E40 /* URLRequestExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0075E528772ECA00588E40 /* URLRequestExtensionsTests.swift */; };
+		CF00B045298A572400A38B05 /* SkipJSInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B044298A572400A38B05 /* SkipJSInjection.swift */; };
 		CF086072291D40500013BDCE /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086071291D40500013BDCE /* MenuItems.swift */; };
 		CF086074291D40960013BDCE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086073291D40960013BDCE /* ArrayExtensions.swift */; };
 		CF086076291D40CD0013BDCE /* UIMenuExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF086075291D40CD0013BDCE /* UIMenuExtensions.swift */; };
@@ -1129,9 +1130,9 @@
 		CFB9B30228A2B03300C18C79 /* preview_test.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30128A2B03300C18C79 /* preview_test.png */; };
 		CFB9B30428A2B03E00C18C79 /* preview_test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30328A2B03E00C18C79 /* preview_test.pdf */; };
 		CFB9B30628A2B13500C18C79 /* preview_test.bin in Resources */ = {isa = PBXBuildFile; fileRef = CFB9B30528A2B13500C18C79 /* preview_test.bin */; };
-		CFBC10552983DBF900338136 /* CoreWebViewJSInjections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */; };
 		CFBC104E2982819E00338136 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC104D2982819E00338136 /* LoginViewModel.swift */; };
 		CFBC10512982AA5700338136 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC10502982AA5700338136 /* LoginViewModelTests.swift */; };
+		CFBC10552983DBF900338136 /* CoreWebViewJSInjections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */; };
 		CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */; };
 		CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */; };
 		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
@@ -2419,6 +2420,7 @@
 		CF0075E12875E4AF00588E40 /* OutputStreamExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputStreamExtensions.swift; sourceTree = "<group>"; };
 		CF0075E328772E9E00588E40 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		CF0075E528772ECA00588E40 /* URLRequestExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensionsTests.swift; sourceTree = "<group>"; };
+		CF00B044298A572400A38B05 /* SkipJSInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipJSInjection.swift; sourceTree = "<group>"; };
 		CF086071291D40500013BDCE /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		CF086073291D40960013BDCE /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		CF086075291D40CD0013BDCE /* UIMenuExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuExtensions.swift; sourceTree = "<group>"; };
@@ -2715,9 +2717,9 @@
 		CFB9B30128A2B03300C18C79 /* preview_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_test.png; sourceTree = "<group>"; };
 		CFB9B30328A2B03E00C18C79 /* preview_test.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = preview_test.pdf; sourceTree = "<group>"; };
 		CFB9B30528A2B13500C18C79 /* preview_test.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = preview_test.bin; sourceTree = "<group>"; };
-		CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewJSInjections.swift; sourceTree = "<group>"; };
 		CFBC104D2982819E00338136 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CFBC10502982AA5700338136 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewJSInjections.swift; sourceTree = "<group>"; };
 		CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
@@ -5634,11 +5636,11 @@
 		CF61FF882987D718001797B8 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				CF61FF892987D74E001797B8 /* CoreWebViewFeature.swift */,
 				CF61FF8B2987D8C7001797B8 /* DisableZoom.swift */,
 				CF61FF8D2987D99A001797B8 /* CustomUserAgent.swift */,
 				CF61FF8F2987DA39001797B8 /* InvertColorsInDarkMode.swift */,
 				CF61FF912987DA72001797B8 /* PullToRefresh.swift */,
+				CF00B044298A572400A38B05 /* SkipJSInjection.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -6224,27 +6226,6 @@
 			path = TestAssets;
 			sourceTree = "<group>";
 		};
-		CFBC10522983D89B00338136 /* CoreWebView */ = {
-			isa = PBXGroup;
-			children = (
-				CF61FF882987D718001797B8 /* Features */,
-				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
-				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
-				CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */,
-				CF61FF8629841A70001797B8 /* DefaultWKWebViewConfiguration.swift */,
-			);
-			path = CoreWebView;
-			sourceTree = "<group>";
-		};
-		CFBC10532983D8CC00338136 /* CoreWebView */ = {
-			isa = PBXGroup;
-			children = (
-				B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */,
-				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
-			);
-			path = CoreWebView;
-			sourceTree = "<group>";
-		};
 		CFBC104C2982818E00338136 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -6259,6 +6240,28 @@
 				CFBC10502982AA5700338136 /* LoginViewModelTests.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CFBC10522983D89B00338136 /* CoreWebView */ = {
+			isa = PBXGroup;
+			children = (
+				CF61FF882987D718001797B8 /* Features */,
+				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
+				CF61FF892987D74E001797B8 /* CoreWebViewFeature.swift */,
+				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
+				CFBC10542983DBF900338136 /* CoreWebViewJSInjections.swift */,
+				CF61FF8629841A70001797B8 /* DefaultWKWebViewConfiguration.swift */,
+			);
+			path = CoreWebView;
+			sourceTree = "<group>";
+		};
+		CFBC10532983D8CC00338136 /* CoreWebView */ = {
+			isa = PBXGroup;
+			children = (
+				B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */,
+				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
+			);
+			path = CoreWebView;
 			sourceTree = "<group>";
 		};
 		CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */ = {
@@ -8463,6 +8466,7 @@
 				CF43DE8227CCD6CF00015B6F /* MotionScene.swift in Sources */,
 				7DA260F823F723AB005D2121 /* FileDetailsViewController.swift in Sources */,
 				7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */,
+				CF00B045298A572400A38B05 /* SkipJSInjection.swift in Sources */,
 				CFAD79D826AEC02A0000A90D /* K5ScheduleEntryViewModel.swift in Sources */,
 				E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */,
 				B17F27652459EDF100CD47A1 /* MasteryPathViewController.swift in Sources */,

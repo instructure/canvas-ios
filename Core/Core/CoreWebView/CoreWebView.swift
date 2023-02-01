@@ -65,7 +65,7 @@ open class CoreWebView: WKWebView {
         }
     }
 
-    private var features: [CoreWebViewFeature] = []
+    private(set) var features: [CoreWebViewFeature] = []
     private var htmlString: String?
     private var baseURL: URL?
     private let themeSwitcherButton = UIButton()

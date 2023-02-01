@@ -36,19 +36,22 @@ extension CoreWebView {
     }
 
     var js: String {
-        let scripts = [
-            mathJaxJS,
-            LTIToolButtonJS,
-            fileContentJS,
-            contentSizeJS,
+        let defaultScripts = [
+            Self.mathJaxJS,
+            Self.LTIToolButtonJS,
+            Self.fileContentJS,
+            Self.contentSizeJS,
         ]
-        return scripts.joined(separator: "\n")
+        let scriptsToInject = defaultScripts.filter {
+            features.shouldInjectJS($0)
+        }
+        return scriptsToInject.joined(separator: "\n")
     }
 
     /**
      Searches for math equations and if any is found then MathJax is injected to properly format it.
      */
-    private var mathJaxJS: String {
+    public static var mathJaxJS: String {
         """
         // Handle Math Equations
         function loadMathJaxIfNecessary() {
@@ -78,7 +81,7 @@ extension CoreWebView {
     /**
      Replaces all LTI tool iframes with a button that opens the tool in a popup.
      */
-    private var LTIToolButtonJS: String {
+    public static var LTIToolButtonJS: String {
         let buttonText = NSLocalizedString("Launch External Tool", bundle: .core, comment: "")
         return """
         function fixLTITools() {
@@ -117,7 +120,7 @@ extension CoreWebView {
     /**
      Sends a message to the native code to reload the webview with the authenticated version of the iframe's src.
      */
-    private var fileContentJS: String {
+    public static var fileContentJS: String {
         """
         // If there is only one iframe
         // and id="cnvs_content"
@@ -134,7 +137,7 @@ extension CoreWebView {
     /**
      Notifies native code about the size of the rendered html page.
      */
-    private var contentSizeJS: String {
+    public static var contentSizeJS: String {
         """
         // Send content height whenever it changes
         let lastHeight = 0
