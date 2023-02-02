@@ -163,7 +163,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     public func doneTapped(router: Router, viewController: WeakViewController) {
         guard validate() else { return }
 
-        state = .saving
+        state = .loading
         var allowedAttempts: Int?
         if allowMultipleAttempts {
             if let attempts = self.allowedAttempts, attempts > 1 {

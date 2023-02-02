@@ -50,7 +50,6 @@ public protocol QuizEditorViewModelProtocol: ObservableObject {
 
 public enum QuizEditorViewModelState: Equatable {
     case loading
-    case saving
     case error(String)
     case ready
 }

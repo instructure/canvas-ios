@@ -76,14 +76,19 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
     }
 
     var form: some View {
-        EditorForm(isSpinning: viewModel.state != .ready) {
-            if viewModel.state != .loading {
+        EditorForm(isSpinning: viewModel.state == .loading) {
+            switch viewModel.state {
+            case .ready:
                 titleSection
                 basicSettingsSection
                 attemptsSection
                 oneQuestionSection
                 accessCodeSection
                 assignmentOverridesSection
+            case .error(let errorMessage):
+                EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text(errorMessage))
+            default:
+                Spacer()
             }
         }
     }
@@ -320,6 +325,9 @@ struct QuizEditor_Previews: PreviewProvider {
             accessCode: "Code"
         )
         QuizEditorView(viewModel: viewModel)
+            .previewLayout(.sizeThatFits)
+
+        QuizEditorView(viewModel: PreviewQuizEditorViewModel(state: .error("Error")))
             .previewLayout(.sizeThatFits)
     }
 }

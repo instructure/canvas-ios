@@ -26,24 +26,24 @@ Use only for SwiftUI previews.
 public class PreviewQuizEditorViewModel: QuizEditorViewModelProtocol {
     public var state: QuizEditorViewModelState
     public var assignment: Assignment?
-    public var courseID: String
+    public var courseID: String = ""
     public var showErrorPopup: AnyPublisher<UIAlertController, Never> = PassthroughSubject().eraseToAnyPublisher()
-    public var title: String
-    public var description: String
-    public var quizType: QuizType
-    public var published: Bool
+    public var title: String = ""
+    public var description: String = ""
+    public var quizType: QuizType = .assignment
+    public var published: Bool = false
     public var assignmentGroup: AssignmentGroup?
     public var assignmentGroups: [AssignmentGroup] = []
-    public var shuffleAnswers: Bool
-    public var timeLimit: Bool
+    public var shuffleAnswers: Bool = false
+    public var timeLimit: Bool = false
     public var lengthInMinutes: Double?
-    public var allowMultipleAttempts: Bool
+    public var allowMultipleAttempts: Bool = false
     public var scoreToKeep: ScoringPolicy?
     public var allowedAttempts: Int?
-    public var oneQuestionAtaTime: Bool
-    public var lockQuestionAfterViewing: Bool
-    public var requireAccessCode: Bool
-    public var accessCode: String
+    public var oneQuestionAtaTime: Bool = false
+    public var lockQuestionAfterViewing: Bool = false
+    public var requireAccessCode: Bool = false
+    public var accessCode: String = ""
     public var assignmentOverrides: [AssignmentOverridesEditor.Override] = []
     public var shouldShowPublishedToggle: Bool = true
     public var availableQuizTypes: [QuizType] = []
@@ -83,6 +83,11 @@ public class PreviewQuizEditorViewModel: QuizEditorViewModelProtocol {
         self.lockQuestionAfterViewing = lockQuestionAfterViewing
         self.requireAccessCode = requireAccessCode
         self.accessCode = accessCode
+    }
+
+    public init(state: QuizEditorViewModelState) {
+        self.state = state
+        self.assignment = Assignment.save(.make(), in: PreviewEnvironment().globalDatabase.viewContext, updateSubmission: false, updateScoreStatistics: false)
     }
 
     public func doneTapped(router: Router, viewController: WeakViewController) {}
