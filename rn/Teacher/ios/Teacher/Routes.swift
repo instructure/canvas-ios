@@ -65,10 +65,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
     },
 
-    "/:context/:contextID/announcements/:announcementID": { url, params, _ in
-        guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
-        return DiscussionDetailsViewController.create(context: context, topicID: topicID, isAnnouncement: true)
-    },
+    "/:context/:contextID/announcements/:announcementID": discussionDetails,
 
     "/courses/:courseID/assignments": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -337,13 +334,22 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 ]))
 
 private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
+    guard let context = Context(path: url.path) else { return nil }
+
+    var webPageType: EmbeddedWebPageViewModelLive.EmbeddedWebPageType
+    if let discussionID = params["discussionID"] {
+        webPageType = .discussion(id: discussionID)
+    } else if let announcementID = params["announcementID"] {
+        webPageType = .announcement(id: announcementID)
+    } else {
+        return nil
+    }
 
     if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
-       DiscussionWebPageViewModel.isRedesignEnabled(in: context) {
-        let viewModel = DiscussionWebPageViewModel(
+       EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+        let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
-            topicID: topicID
+            webPageType: webPageType
         )
         return CoreHostingController(
             EmbeddedWebPageView(
@@ -352,7 +358,7 @@ private func discussionDetails(url: URLComponents, params: [String: String], use
             )
         )
     } else {
-        return DiscussionDetailsViewController.create(context: context, topicID: topicID)
+        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
     }
 }
 

@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Geen onderwerp)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) more";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ meer";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Alle aantekeningen opgeslagen.";
 
 /* No comment provided by engineer. */
-"All courses" = "Alle cursussen";
-
-/* No comment provided by engineer. */
 "All Courses" = "Alle cursussen";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Aanmeldingen voor afspraak";
+
+/* No comment provided by engineer. */
+"Archive" = "Archiveren";
 
 /* No comment provided by engineer. */
 "Archived" = "Gearchiveerd";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Bijlagen";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Bijlagen beschikbaar";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poging %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Filter wissen";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Filter voor inbox wissen";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Opname wissen";
@@ -938,7 +938,10 @@
 "Filter events" = "Gebeurtenissen filteren";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Inbox filteren";
+"Filter messages by course" = "Berichten filteren per cursus";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Berichten filteren per type";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Eindcijfer: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Als gereed markeren";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Markeren als gelezen";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Markeren als gelezen";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Als ongedaan markeren";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Markeren als ongelezen";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Markeren als ongelezen";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
+
+/* No comment provided by engineer. */
+"No Messages" = "Geen berichten";
 
 /* No comment provided by engineer. */
 "No Modules" = "Geen modules";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Gepubliceerd";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Pull om te vernieuwen en het opnieuw te proberen";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Pompoen";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Er is iets misgegaan";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Er is iets misgegaan";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Op likes sorteren";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Enquêtes";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Naar Donkere modus";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Naar Lichte modus";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tik hier voor hulp.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tik op de \"+\\\" om een nieuw gesprek te maken.";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tik om de cursussen te selecteren die je in de kalender wilt zien.";

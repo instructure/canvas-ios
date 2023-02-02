@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Sem assunto)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) mais";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ mais";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Todas as observações salvas.";
 
 /* No comment provided by engineer. */
-"All courses" = "Todos os cursos";
-
-/* No comment provided by engineer. */
 "All Courses" = "Todos os cursos";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Inscrições em compromissos";
+
+/* No comment provided by engineer. */
+"Archive" = "Arquivar";
 
 /* No comment provided by engineer. */
 "Archived" = "Arquivada";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Anexos";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Anexos disponíveis";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentativa %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Limpar filtro";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Limpar caixa de entrada do filtro";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Limpar gravação";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtrar eventos";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Caixa de entrada do filtro";
+"Filter messages by course" = "Filtrar mensagens por curso";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtrar mensagens por tipo";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Nota final: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Marcar como Feito";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Marcar como lido";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Marcar como lido";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Marcar como não feito";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Marcar como não lido";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Marcar como não lido";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nenhuma imagem encontrada no seletor de imagens";
+
+/* No comment provided by engineer. */
+"No Messages" = "Não há mensagens";
 
 /* No comment provided by engineer. */
 "No Modules" = "Sem módulos";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Publicado";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Puxe para atualizar para tentar novamente";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Abóbora";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Algo deu errado";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Algo deu errado";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Ordenar por curtidas";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Pesquisas";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Mudar para o modo escuro";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Mudar para o modo claro";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Programa";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Toque aqui para ajuda.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Toque no “+” para criar uma nova conversa";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Toque para selecionar os cursos que você deseja ver no calendário.";

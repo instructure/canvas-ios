@@ -69,6 +69,7 @@ public class Permissions: NSManagedObject {
     @NSManaged public var manageAssignments: Bool
     @NSManaged public var manageCalendar: Bool
     @NSManaged public var manageContent: Bool
+    @NSManaged public var manageCourseContentEdit: Bool
     @NSManaged public var manageFiles: Bool
     @NSManaged public var manageGrades: Bool
     @NSManaged public var manageGroups: Bool
@@ -144,6 +145,7 @@ public class Permissions: NSManagedObject {
         model.manageAssignments = item.manage_assignments ?? model.manageAssignments
         model.manageCalendar = item.manage_calendar ?? model.manageCalendar
         model.manageContent = item.manage_content ?? model.manageContent
+        model.manageCourseContentEdit = item.manage_course_content_edit ?? model.manageCourseContentEdit
         model.manageFiles = item.manage_files ?? model.manageFiles
         model.manageGrades = item.manage_grades ?? model.manageGrades
         model.manageGroups = item.manage_groups ?? model.manageGroups

@@ -68,7 +68,7 @@ public struct K5ResourcesView: View {
                             .font(.bold17)
                     }
                 }
-                WebView(html: info.htmlContent)
+                WebView(html: info.htmlContent, canToggleTheme: true)
                     .frameToFit()
                     .padding(.horizontal, -16) // Removes padding in CSS
 

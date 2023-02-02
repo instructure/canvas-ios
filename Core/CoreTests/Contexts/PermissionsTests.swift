@@ -64,6 +64,7 @@ class PermissionsTests: CoreTestCase {
         XCTAssertFalse(model.manageAssignments)
         XCTAssertFalse(model.manageCalendar)
         XCTAssertFalse(model.manageContent)
+        XCTAssertFalse(model.manageCourseContentEdit)
         XCTAssertFalse(model.manageFiles)
         XCTAssertFalse(model.manageGrades)
         XCTAssertFalse(model.manageGroups)
@@ -103,7 +104,7 @@ class PermissionsTests: CoreTestCase {
             view_error_reports: true, view_grade_changes: true, view_jobs: true, view_notifications: true, view_statistics: true,
             undelete_courses: true, change_course_state: true, comment_on_others_submissions: true, create_collaborations: true,
             create_conferences: true, create_forum: true, generate_observer_pairing_code: true, import_outcomes: true, lti_add_edit: true,
-            manage_admin_users: true, manage_assignments: true, manage_calendar: true, manage_content: true, manage_files: true,
+            manage_admin_users: true, manage_assignments: true, manage_calendar: true, manage_content: true, manage_course_content_edit: true, manage_files: true,
             manage_grades: true, manage_groups: true, manage_interaction_alerts: true, manage_outcomes: true, manage_sections: true,
             manage_students: true, manage_user_notes: true, manage_rubrics: true, manage_wiki: true, moderate_forum: true,
             post_to_forum: true, read_announcements: true, read_email_addresses: true, read_forum: true, read_question_banks: true,
@@ -160,6 +161,7 @@ class PermissionsTests: CoreTestCase {
         XCTAssertTrue(permissions.manageAssignments)
         XCTAssertTrue(permissions.manageCalendar)
         XCTAssertTrue(permissions.manageContent)
+        XCTAssertTrue(permissions.manageCourseContentEdit)
         XCTAssertTrue(permissions.manageFiles)
         XCTAssertTrue(permissions.manageGrades)
         XCTAssertTrue(permissions.manageGroups)

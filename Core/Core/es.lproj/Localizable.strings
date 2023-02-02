@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Sin asunto)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) más";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ más";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Promedio general de calificaciones";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Se guardaron todas las anotaciones.";
 
 /* No comment provided by engineer. */
-"All courses" = "Todos los cursos";
-
-/* No comment provided by engineer. */
 "All Courses" = "Todos los cursos";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Registros para citas";
+
+/* No comment provided by engineer. */
+"Archive" = "Archivar";
 
 /* No comment provided by engineer. */
 "Archived" = "Archivado";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Adjuntos";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Archivos adjuntos disponibles";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Intento %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Borrar filtro";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Borrar filtro de la bandeja de entrada";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Borrar grabación";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtrar eventos";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filtrar bandeja de entrada";
+"Filter messages by course" = "Filtrar mensajes por curso";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtrar mensajes por tipo";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Calificación final: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Marcar como hecho";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Marcar como leído";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Marcar como leído";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Marcar como sin terminar";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Marcar como no leído";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Marcar como no leído";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No se encontraron imágenes en el selector de imágenes";
+
+/* No comment provided by engineer. */
+"No Messages" = "No hay mensajes";
 
 /* No comment provided by engineer. */
 "No Modules" = "No hay módulos";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Publicado";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Presione para actualizar e intentar nuevamente";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Calabaza";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Se produjo un error.";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Algo salió mal";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Ordenar por \"me gusta\"";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Encuestas";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Cambiar a modo oscuro";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Cambiar a modo claro";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Programa del curso";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Presione aquí para obtener ayuda.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Toque el “+” para crear una nueva conversación";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Pulse para seleccionar los cursos que desea ver en el calendario.";

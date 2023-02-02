@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(No subject)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) more";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ more";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Class";
@@ -173,9 +173,6 @@
 "All annotations saved." = "All annotations saved.";
 
 /* No comment provided by engineer. */
-"All courses" = "All modules";
-
-/* No comment provided by engineer. */
 "All Courses" = "All modules";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Appointment signups";
+
+/* No comment provided by engineer. */
+"Archive" = "Archive";
 
 /* No comment provided by engineer. */
 "Archived" = "Archived";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Attachments";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Attachments available";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Clear Filter";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Clear Filter Inbox";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Clear recording";
@@ -938,7 +938,10 @@
 "Filter events" = "Filter events";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filter inbox";
+"Filter messages by course" = "Filter messages by module";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filter messages by type";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Final grade: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Mark as done";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Mark as read";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Mark as read";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Mark as Undone";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Mark as unread";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Mark as unread";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No image found from image picker";
+
+/* No comment provided by engineer. */
+"No Messages" = "No Messages";
 
 /* No comment provided by engineer. */
 "No Modules" = "No units";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Published";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Pull to refresh to try again";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Pumpkin";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Something went wrong";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Something Went Wrong";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sort by 'likes'";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Surveys";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Switch To Dark Mode";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Switch To Light Mode";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tap here for help.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tap the \"+\" to create a new conversation";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tap to select the modules you want to see on the calendar.";

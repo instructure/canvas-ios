@@ -76,34 +76,36 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
-        environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
-        environmentFeatureFlags?.refresh(force: true) { _ in
-            guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-            self.initializeTracking()
-        }
-        updateInterfaceStyle(for: window)
-        CoreWebView.keepCookieAlive(for: environment)
-        NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { apiProfile, urlResponse, error in
+        environment.api.makeRequest(getProfile) { apiProfile, urlResponse, error in performUIUpdate {
             guard let apiProfile = apiProfile, error == nil else {
                 if urlResponse?.isUnauthorized == true {
-                    DispatchQueue.main.async { self.userDidLogout(session: session) }
+                    self.userDidLogout(session: session)
+                    LoginViewModel().showLoginView(on: self.window!, loginDelegate: self, app: .teacher)
                 }
                 return
             }
-            self.isK5User = apiProfile.k5_user == true
 
-            DispatchQueue.main.async {
-                LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
-                    GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
-                        NativeLoginManager.login(as: session)
-                    }}
-                }
+            self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+            self.environmentFeatureFlags?.refresh(force: true) { _ in
+                guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
+                self.initializeTracking()
             }
-        }
-        Analytics.shared.logSession(session)
+
+            self.updateInterfaceStyle(for: self.window)
+            CoreWebView.keepCookieAlive(for: self.environment)
+            NotificationManager.shared.subscribeToPushChannel()
+
+            self.isK5User = apiProfile.k5_user == true
+            Analytics.shared.logSession(session)
+
+            LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
+                GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                    NativeLoginManager.login(as: session)
+                }}
+            }
+        }}
     }
 
     @objc func prepareReactNative() {
@@ -204,7 +206,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }
@@ -213,8 +214,14 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
 extension TeacherAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        // Google Analytics needs to be disabled for now
-//        Analytics.logEvent(name, parameters: parameters)
+        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
+            return
+        }
+
+        if let screenName = parameters?["screen_name"] as? String,
+           let screenClass = parameters?["screen_class"] as? String {
+            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+        }
     }
 
     private func initializeTracking() {
@@ -249,10 +256,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         disableTracking()
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .teacher)
-            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
-        }, completion: nil)
+        LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .teacher)
     }
 
     func stopActing() {

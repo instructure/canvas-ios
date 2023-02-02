@@ -376,7 +376,7 @@ class RouterTests: CoreTestCase {
 
     func testOpen() {
         var url = URL(string: "https://canvas.instructure.com/relative/url")!
-        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url))
+        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url, requires_terms_acceptance: false))
         Router.open(url: .parse("relative/url"))
         XCTAssertEqual(login.externalURL?.absoluteURL, url)
 
@@ -471,5 +471,43 @@ class RouterTests: CoreTestCase {
         XCTAssertEqual(testee.isRegisteredRoute(URLComponents(string: "/courses/1234/assignments/4321")!), false)
         XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments")!), true)
         XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments/4321")!), false)
+    }
+
+    func testExternalWebsiteURLsOpenedInPopup() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
+        let mockViewController = MockViewController()
+        let externalURL = URL(string: "https://example.com/courses")!
+        let testee = Router(routes: [
+            RouteHandler("/courses") { _, _, _ in UIViewController() },
+        ])
+
+        testee.route(to: externalURL, from: mockViewController)
+
+        guard let navController = mockViewController.presented as? HelmNavigationController else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(navController.children.count, 1)
+        XCTAssertTrue(navController.children.first is CoreWebViewController)
+    }
+
+    func testExternalWebsitePopupReportedToAnalytics() {
+        let mockViewController = MockViewController()
+        let testee = Router(routes: []) { _, _, _, _ in }
+        let externalURL = URL(string: "https://example.com/courses")!
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        testee.route(to: externalURL, from: mockViewController)
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
+            "application": "student",
+            "screen_name": "/external_url",
+            "screen_class": "CoreWebViewController",
+        ])
     }
 }

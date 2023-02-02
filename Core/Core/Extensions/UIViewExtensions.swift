@@ -42,6 +42,21 @@ extension ViewLoader where Self: UIView {
 }
 
 extension UIView {
+    /** This property returns the View's ViewController if there's one. */
+    var viewController: UIViewController? {
+        findNextResponder(type: UIViewController.self, nextResponder: self)
+    }
+
+    func findNextResponder<T>(type: T.Type, nextResponder: UIResponder?) -> T? {
+        guard nextResponder != nil else {
+            return nil
+        }
+        guard let nextResponder = nextResponder as? T else {
+            return findNextResponder(type: type, nextResponder: nextResponder?.next)
+        }
+        return nextResponder
+    }
+
     /** This method will update the receiver view's frame to fully keep it inside its parent view. */
     public func restrictFrameInsideSuperview() {
         guard let parentSize = superview?.frame.size else { return }

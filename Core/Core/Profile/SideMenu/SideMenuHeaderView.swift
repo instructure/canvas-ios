@@ -120,7 +120,7 @@ extension SideMenuHeaderView {
     }
 
     final class UserModel: ObservableObject {
-        @Environment(\.appEnvironment) var env
+        private let env = AppEnvironment.shared
 
         lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
             self?.profileUpdated()

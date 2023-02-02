@@ -65,6 +65,7 @@ public enum PermissionName: String {
     case manageAssignments = "manage_assignments"
     case manageCalendar = "manage_calendar"
     case manageContent = "manage_content"
+    case manageCourseContentEdit = "manage_course_content_edit"
     case manageFiles = "manage_files"
     case manageGrades = "manage_grades"
     case manageGroups = "manage_groups"

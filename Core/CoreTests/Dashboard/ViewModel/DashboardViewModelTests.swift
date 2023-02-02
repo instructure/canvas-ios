@@ -40,7 +40,7 @@ class DashboardViewModelTests: CoreTestCase {
             .store(in: &subscriptions)
 
         // MARK: - WHEN
-        testee.settingsButtonTapped.send(())
+        testee.settingsButtonTapped.send()
 
         // MARK: - THEN
         waitForExpectations(timeout: 1)

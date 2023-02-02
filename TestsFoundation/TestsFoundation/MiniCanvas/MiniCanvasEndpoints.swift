@@ -439,7 +439,7 @@ enum MiniCanvasEndpoints {
         },
         .apiRequest(DeleteLoginOAuthRequest()) { _ in .init() },
         .apiRequest(GetWebSessionRequest(to: nil)) { request in
-            .init(session_url: request["return_to"].flatMap { URL(string: $0) } ?? request.baseUrl)
+                .init(session_url: request["return_to"].flatMap { URL(string: $0) } ?? request.baseUrl, requires_terms_acceptance: false)
         },
 
         // MARK: Pages

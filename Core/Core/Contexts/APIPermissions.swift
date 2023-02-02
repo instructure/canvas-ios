@@ -64,6 +64,7 @@ public struct APIPermissions: Codable, Equatable {
     let manage_assignments: Bool?
     let manage_calendar: Bool?
     let manage_content: Bool?
+    let manage_course_content_edit: Bool?
     let manage_files: Bool?
     let manage_grades: Bool?
     let manage_groups: Bool?
@@ -138,6 +139,7 @@ extension APIPermissions {
         manage_assignments: Bool? = nil,
         manage_calendar: Bool? = nil,
         manage_content: Bool? = nil,
+        manage_course_content_edit: Bool? = nil,
         manage_files: Bool? = nil,
         manage_grades: Bool? = nil,
         manage_groups: Bool? = nil,
@@ -209,6 +211,7 @@ extension APIPermissions {
             manage_assignments: manage_assignments,
             manage_calendar: manage_calendar,
             manage_content: manage_content,
+            manage_course_content_edit: manage_course_content_edit,
             manage_files: manage_files,
             manage_grades: manage_grades,
             manage_groups: manage_groups,

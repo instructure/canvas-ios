@@ -99,8 +99,8 @@ class RoutesTests: XCTestCase {
         flag.enabled = true
         flag.context = .course("2")
 
-        XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
-        XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
+        XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 
     func testNativeGroupDiscussionDetailsRoute() {
@@ -120,8 +120,42 @@ class RoutesTests: XCTestCase {
         group.id = "2"
         group.courseID = "2"
 
-        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
-        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<DiscussionWebPageViewModel>>)
+        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testNativeAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is DiscussionDetailsViewController)
+    }
+
+    func testHybridAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testNativeGroupAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/groups/2/announcements/3") is DiscussionDetailsViewController)
+    }
+
+    func testHybridGroupAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        let group = Group(context: AppEnvironment.shared.database.viewContext)
+        group.id = "2"
+        group.courseID = "2"
+
+        XCTAssert(router.match("/groups/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 
     // MARK: - K5 / non-K5 course detail route logic tests
@@ -212,23 +246,26 @@ class RoutesTests: XCTestCase {
 
     func testFallbackNonHTTP() {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route")!
-        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
+        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected, requires_terms_acceptance: false))
         router.route(to: "canvas-courses://canvas.instructure.com/not-a-native-route", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 
     func testFallbackRelative() {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route")!
-        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
+        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected, requires_terms_acceptance: false))
         AppEnvironment.shared.currentSession = LoginSession.make(baseURL: URL(string: "https://canvas.instructure.com")!)
         router.route(to: "not-a-native-route", from: UIViewController())
         XCTAssertEqual(login.opened?.absoluteURL, expected)
     }
 
     func testFallbackAbsoluteHTTPs() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
         let expected = URL(string: "https://instructure.com")!
-        api.mock(GetWebSessionRequest(to: URL(string: "https://google.com")!), value: .init(session_url: expected))
-        router.route(to: "https://google.com", from: UIViewController())
+        api.mock(GetWebSessionRequest(to: URL(string: "https://canvas.com")!), value: .init(session_url: expected, requires_terms_acceptance: false))
+        router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 
@@ -236,16 +273,19 @@ class RoutesTests: XCTestCase {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route?token=abcdefg")!
         api.mock(
             GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/not-a-native-route")),
-            value: .init(session_url: expected)
+            value: .init(session_url: expected, requires_terms_acceptance: false)
         )
         router.route(to: "canvas-courses://canvas.instructure.com/not-a-native-route", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 
     func testFallbackAuthenticatedError() {
-        let expected = URL(string: "https://google.com")!
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
+        let expected = URL(string: "https://canvas.com")!
         api.mock(GetWebSessionRequest(to: expected), error: NSError.internalError())
-        router.route(to: "https://google.com", from: UIViewController())
+        router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 }

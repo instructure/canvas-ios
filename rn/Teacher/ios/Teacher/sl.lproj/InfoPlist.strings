@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Izvajalec";
+"CFBundleDisplayName" = "Izvajalec v sistemu Canvas";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Komentarjem k oddaji dodajte fotografije in videoposnetke.";

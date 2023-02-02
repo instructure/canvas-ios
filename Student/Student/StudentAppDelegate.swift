@@ -84,44 +84,42 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
-        environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
-        environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
-        environmentFeatureFlags?.refresh(force: true) { _ in
-            guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-            self.initializeTracking()
-        }
 
-        updateInterfaceStyle(for: window)
+        GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
+            PageViewEventController.instance.userDidChange()
 
-        CoreWebView.keepCookieAlive(for: environment)
+            if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
+                self.userDidLogout(session: session)
+                LoginViewModel().showLoginView(on: self.window!, loginDelegate: self, app: .student)
+                return
+            }
 
-//        Analytics.setUserID(session.userID)
-//        Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
-        NotificationManager.shared.subscribeToPushChannel()
+            self.environment.userDefaults?.isK5StudentView = self.shouldSetK5StudentView
+            self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+            self.environmentFeatureFlags?.refresh(force: true) { _ in
+                guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
+                self.initializeTracking()
+            }
 
-        GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
+            self.updateInterfaceStyle(for: self.window)
+            CoreWebView.keepCookieAlive(for: self.environment)
+            NotificationManager.shared.subscribeToPushChannel()
+
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
             if isK5StudentView {
                 ExperimentalFeature.K5Dashboard.isEnabled = true
                 self.environment.userDefaults?.isElementaryViewEnabled = true
             }
             self.environment.k5.userDidLogin(profile: apiProfile, isK5StudentView: isK5StudentView)
+            Analytics.shared.logSession(session)
 
-            if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
-                DispatchQueue.main.async { self.userDidLogout(session: session) }
+            self.refreshNotificationTab()
+            LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile?.locale ?? session.locale) {
+                GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                    NativeLoginManager.login(as: session)
+                }}
             }
-
-            PageViewEventController.instance.userDidChange()
-            DispatchQueue.main.async {
-                self.refreshNotificationTab()
-                LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile?.locale ?? session.locale) {
-                    GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
-                        NativeLoginManager.login(as: session)
-                    }}
-                }
-            }
-        }
-        Analytics.shared.logSession(session)
+        }}
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -196,7 +194,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }
@@ -239,8 +236,14 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        // Google Analytics needs to be disabled for now
-//        Analytics.logEvent(name, parameters: parameters)
+        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
+            return
+        }
+
+        if let screenName = parameters?["screen_name"] as? String,
+           let screenClass = parameters?["screen_class"] as? String {
+            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+        }
     }
 
     private func initializeTracking() {
@@ -381,10 +384,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         environment.k5.userDidLogout()
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         disableTracking()
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
-            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
-        }, completion: nil)
+        LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .student)
     }
 
     func stopActing() {

@@ -13,14 +13,14 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Ni zadeve)";
 
+/* (Alice, Bob) + (2) more */
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) več";
+
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
-
-/* No comment provided by engineer. */
-"%@ + %@ more" = "%1$@ + %2$@ več";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Lestvica GPA";
@@ -173,9 +173,6 @@
 "All annotations saved." = "Vse opombe so shranjene.";
 
 /* No comment provided by engineer. */
-"All courses" = "Vsi predmeti";
-
-/* No comment provided by engineer. */
 "All Courses" = "Vsi predmeti";
 
 /* No comment provided by engineer. */
@@ -231,6 +228,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Prijave na sestanke";
+
+/* No comment provided by engineer. */
+"Archive" = "Arhiviraj";
 
 /* No comment provided by engineer. */
 "Archived" = "Arhivirano";
@@ -303,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Priloge";
+
+/* No comment provided by engineer. */
+"Attachments available" = "Na voljo so priloge";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poskus %d";
@@ -465,9 +468,6 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Počisti filter";
-
-/* No comment provided by engineer. */
-"Clear Filter Inbox" = "Počisti filtriranje pošte";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Počisti snemanje";
@@ -938,7 +938,10 @@
 "Filter events" = "Filtriraj dogodke";
 
 /* No comment provided by engineer. */
-"Filter Inbox" = "Filtriraj pošto";
+"Filter messages by course" = "Filtriraj sporočila glede na predmet";
+
+/* No comment provided by engineer. */
+"Filter messages by type" = "Filtriraj sporočil glede na vrsto";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Končna ocena: %@";
@@ -1322,10 +1325,16 @@
 "Mark as Done" = "Označi kot dokončano";
 
 /* No comment provided by engineer. */
+"Mark as read" = "Označi kot prebrano";
+
+/* No comment provided by engineer. */
 "Mark as Read" = "Označi kot prebrano";
 
 /* No comment provided by engineer. */
 "Mark as Undone" = "Označi kot nedokončano";
+
+/* No comment provided by engineer. */
+"Mark as unread" = "Označi kot neprebrano";
 
 /* No comment provided by engineer. */
 "Mark as Unread" = "Označi kot neprebrano";
@@ -1473,6 +1482,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Izbirnik slik ni našel nobene slike";
+
+/* No comment provided by engineer. */
+"No Messages" = "Ni sporočil";
 
 /* No comment provided by engineer. */
 "No Modules" = "Ni modulov.";
@@ -1737,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Published" = "Objavljeno";
+
+/* No comment provided by engineer. */
+"Pull to refresh to try again" = "Povlecite za osvežitev, da poskusite znova";
 
 /* No comment provided by engineer. */
 "Pumpkin" = "Buča";
@@ -2027,6 +2042,9 @@
 "Something went wrong" = "Prišlo je do težav";
 
 /* No comment provided by engineer. */
+"Something Went Wrong" = "Prišlo je do težav";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Razvrsti po všečkih";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2144,12 @@
 "Surveys" = "Ankete";
 
 /* No comment provided by engineer. */
+"Switch To Dark Mode" = "Preklopi v temni način";
+
+/* No comment provided by engineer. */
+"Switch To Light Mode" = "Preklopi v svetli način";
+
+/* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
 
 /* No comment provided by engineer. */
@@ -2148,6 +2172,9 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Za pomoč tapnite tukaj.";
+
+/* No comment provided by engineer. */
+"Tap the \"+\" to create a new conversation" = "Tapnite »+«, da ustvarite nov pogovor.";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tapnite za izbiro predmetov, ki jih želite prikazane na koledarju.";

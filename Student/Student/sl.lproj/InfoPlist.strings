@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Študent";
+"CFBundleDisplayName" = "Študent v sistemu Canvas";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Fotografije in videoposnetke dodajte sporočilom in objavam v razpravi ali pa jih oddajte v obliki oddaj nalog.";
