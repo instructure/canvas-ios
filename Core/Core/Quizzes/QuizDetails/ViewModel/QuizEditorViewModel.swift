@@ -20,7 +20,6 @@ import Combine
 import SwiftUI
 
 public class QuizEditorViewModel: QuizEditorViewModelProtocol {
-    @Environment(\.appEnvironment) var env
     @Published public private(set) var state: QuizEditorViewModelState = .loading
 
     public var assignment: Assignment?
@@ -56,6 +55,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     private var assignmentID: String?
     private var quiz: Quiz?
     private let showErrorPopupSubject = PassthroughSubject<UIAlertController, Never>()
+    private let env = AppEnvironment.shared
 
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -218,7 +218,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
         UpdateAssignment(
             courseID: courseID,
             assignmentID: assignmentID,
-            description: nil,
+            description: description,
             dueAt: dueAt,
             gradingType: assignment.gradingType,
             lockAt: lockAt,

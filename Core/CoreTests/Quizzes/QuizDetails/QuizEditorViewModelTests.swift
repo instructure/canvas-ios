@@ -146,10 +146,8 @@ class QuizEditorViewModelTests: CoreTestCase {
                 let body = try? JSONDecoder().decode(PutQuizRequest.Body.self, from: httpBody)
                 XCTAssertEqual(expectedBody, body)
                 apiExpectation.fulfill()
-            } else {
-                XCTFail("Body missing from request")
             }
-            return (nil, nil, nil)
+            return (APIQuiz.make(), nil, nil)
         }
 
         testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
@@ -157,15 +155,34 @@ class QuizEditorViewModelTests: CoreTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    func testSaveAssignmentCalled() {
+    func testQuizUpdateError() {
+        mockData()
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let request = PutQuizRequest(courseID: courseID, quizID: quizID, body: nil)
+        api.mock(request, value: nil, error: NSError.internalError())
+
+        let expectation = self.expectation(description: "error received")
+
+        let errorListener = testee.showErrorPopup.sink { alert in
+            XCTAssertEqual(alert.title, "Internal Error")
+            expectation.fulfill()
+        }
+
+        testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
+
+        waitForExpectations(timeout: 1)
+        errorListener.cancel()
+    }
+
+    func testSaveAssignment() {
         mockData()
         let expectedBody = PutAssignmentRequest.Body(assignment: APIAssignmentParameters(
-            assignment_overrides: nil,
-            description: "Description",
+            assignment_overrides: [],
+            description: "New Description",
             due_at: nil,
             grading_type: .points,
             lock_at: nil,
-            name: "Quiz",
+            name: "New Name",
             only_visible_to_overrides: true,
             points_possible: 10,
             published: true,
@@ -174,19 +191,36 @@ class QuizEditorViewModelTests: CoreTestCase {
         let apiExpectation = expectation(description: "Assignment Updated")
 
         let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        testee.description = "New Description"
+        testee.published = true
+        testee.title = "New Name"
+
         let request = PutAssignmentRequest(courseID: courseID, assignmentID: assignmentID, body: nil)
         api.mock(request) { urlRequest in
             if let httpBody = urlRequest.httpBody {
                 let body = try? JSONDecoder().decode(PutAssignmentRequest.Body.self, from: httpBody)
                 XCTAssertEqual(expectedBody, body)
                 apiExpectation.fulfill()
-            } else {
-                XCTFail("Body missing from request")
             }
-            return (nil, nil, nil)
+            return (APIAssignment.make(), nil, nil)
         }
-        testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
+        testee.assignment = Assignment.make()
+        testee.saveAssignment(router: router, viewController: WeakViewController(UIViewController()))
         waitForExpectations(timeout: 1)
+    }
+
+    func testAssignmentUpdateError() {
+        mockData()
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let request = PutAssignmentRequest(courseID: courseID, assignmentID: assignmentID, body: nil)
+        api.mock(request, value: nil, error: NSError.internalError())
+        testee.assignment = Assignment.make()
+
+        XCTAssertNil(router.dismissed)
+
+        testee.saveAssignment(router: router, viewController: WeakViewController(UIViewController()))
+
+        XCTAssertNotNil(router.dismissed)
     }
 
     private func mockData() {

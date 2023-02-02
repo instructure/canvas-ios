@@ -77,9 +77,5 @@ class UpdateQuiz: APIUseCase {
     }
 
     var cacheKey: String? { nil }
-
-    func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let item = response else { return }
-        Quiz.save(item, in: client)
-    }
+    func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {}
 }
