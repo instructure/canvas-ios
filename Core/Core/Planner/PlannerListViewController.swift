@@ -166,8 +166,8 @@ class PlannerListCell: UITableViewCell {
         points.setText(pointsText, style: .textCellSupportingText)
         pointsDivider.isHidden = dueDate.text == nil || pointsText == nil
         if !Bundle.main.isParentApp, let color = p?.color {
-            courseCode.textColor = color.ensureContrast( .white, forDarkAgainst: .backgroundLightest)
-            icon.tintColor = color.ensureContrast( .white, forDarkAgainst: .backgroundLightest)
+            courseCode.textColor = color.ensureContrast(.white, forDarkAgainst: .backgroundLightest)
+            icon.tintColor = color.ensureContrast(.white, forDarkAgainst: .backgroundLightest)
         }
         accessoryType = .disclosureIndicator
     }
