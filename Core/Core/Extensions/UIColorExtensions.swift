@@ -60,11 +60,6 @@ extension UIColor {
         )
     }
 
-    /** Returns enhanced contrast colors against different light and dark counter-colors. */
-    public func ensureContrast(_ forLightAgainst: UIColor = .backgroundLightest, forDarkAgainst: UIColor = .backgroundLightest) -> UIColor {
-        UIColor.getColor(dark: self.ensureContrast(against: forDarkAgainst), light: self.ensureContrast(against: forLightAgainst))
-    }
-
     /** Returns the given color for the current interface style. */
     public static func getColor(dark: UIColor, light: UIColor) -> UIColor {
         return UIColor { traitCollection  in
@@ -155,9 +150,18 @@ extension UIColor {
 
     /// Get a sufficiently contrasting color based on the current color.
     ///
+    /// This ensures that the corresponding interface style color is being used as an against color.
+    public func ensureContrast(against: UIColor) -> UIColor {
+        let light = UITraitCollection(userInterfaceStyle: .light)
+        let dark = UITraitCollection(userInterfaceStyle: .dark)
+        return UIColor.getColor(dark: self.ensureStyleContrast(against: against.resolvedColor(with: dark)), light: self.ensureStyleContrast(against: against.resolvedColor(with: light)))
+    }
+
+    /// Get a sufficiently contrasting color based on the current color.
+    ///
     /// If the user asked for more contrast, and there isn't enough, return a high enough contrasting color.
     /// This is intended to be used with branding colors
-    public func ensureContrast(against: UIColor) -> UIColor {
+    private func ensureStyleContrast(against: UIColor) -> UIColor {
         let minRatio: CGFloat = 4.5
         guard contrast(against: against) < minRatio else {
             return self

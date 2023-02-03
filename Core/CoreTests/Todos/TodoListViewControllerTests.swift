@@ -50,7 +50,7 @@ class TodoListViewControllerTests: CoreTestCase {
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TodoListCell
-        XCTAssertEqual(cell?.contextLabel.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast().hexString)
+        XCTAssertEqual(cell?.contextLabel.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.contextLabel.text, "Course One")
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TodoListCell
         XCTAssertEqual(cell?.contextLabel.textColor, UIColor(hexString: "#0f0"))
