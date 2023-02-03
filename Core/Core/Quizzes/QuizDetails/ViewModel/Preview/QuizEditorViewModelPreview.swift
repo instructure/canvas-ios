@@ -23,7 +23,7 @@ import Combine
 /**
 Use only for SwiftUI previews.
 */
-public class PreviewQuizEditorViewModel: QuizEditorViewModelProtocol {
+public class QuizEditorViewModelPreview: QuizEditorViewModelProtocol {
     public var state: QuizEditorViewModelState
     public var assignment: Assignment?
     public var courseID: String = ""

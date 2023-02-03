@@ -306,7 +306,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
 
 struct QuizEditor_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = PreviewQuizEditorViewModel(
+        let viewModel = QuizEditorViewModelPreview(
             state: .ready,
             courseID: "1",
             title: "Preview Quiz",
@@ -327,7 +327,7 @@ struct QuizEditor_Previews: PreviewProvider {
         QuizEditorView(viewModel: viewModel)
             .previewLayout(.sizeThatFits)
 
-        QuizEditorView(viewModel: PreviewQuizEditorViewModel(state: .error("Error")))
+        QuizEditorView(viewModel: QuizEditorViewModelPreview(state: .error("Error")))
             .previewLayout(.sizeThatFits)
     }
 }

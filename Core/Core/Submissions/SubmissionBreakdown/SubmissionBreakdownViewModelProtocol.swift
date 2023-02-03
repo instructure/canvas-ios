@@ -35,35 +35,3 @@ public protocol SubmissionBreakdownViewModelProtocol: ObservableObject {
     func routeToUngraded(router: Router, viewController: WeakViewController)
     func routeToUnsubmitted(router: Router, viewController: WeakViewController)
 }
-
-#if DEBUG
-// MARK: - Preview Support
-/**
-Use only for SwiftUI previews.
-*/
-public class PreviewSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
-    public var isReady: Bool = true
-    public var graded: Int
-    public var ungraded: Int
-    public var unsubmitted: Int
-    public var submissionCount: Int
-    public var noSubmissionTypes: Bool = false
-    public var paperSubmissionTypes: Bool = false
-    public var showError: Bool = false
-    public var errorText: String?
-
-    public func viewDidAppear() {}
-    public func routeToAll(router: Router, viewController: WeakViewController) {}
-    public func routeToGraded(router: Router, viewController: WeakViewController) {}
-    public func routeToUngraded(router: Router, viewController: WeakViewController) {}
-    public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {}
-
-    public init(graded: Int, ungraded: Int, unsubmitted: Int, submissionCount: Int) {
-        self.graded = graded
-        self.ungraded = ungraded
-        self.unsubmitted = unsubmitted
-        self.submissionCount = submissionCount
-    }
-}
-// MARK: Preview Support -
-#endif
