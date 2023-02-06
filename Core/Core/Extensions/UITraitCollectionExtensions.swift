@@ -20,15 +20,15 @@ import UIKit
 
 extension UITraitCollection {
 
-    static var light: UITraitCollection {
+    public static var light: UITraitCollection {
         return UITraitCollection(userInterfaceStyle: .light)
     }
 
-    static var dark: UITraitCollection {
+    public static var dark: UITraitCollection {
         return UITraitCollection(userInterfaceStyle: .dark)
     }
 
-    static var current: UITraitCollection {
+    public static var current: UITraitCollection {
         return UITraitCollection(userInterfaceStyle: .current)
     }
 }
