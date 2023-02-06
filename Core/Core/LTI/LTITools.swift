@@ -104,7 +104,7 @@ public class LTITools: NSObject {
         }()
         let resourceLinkUUID = components.queryValue(for: "resource_link_lookup_uuid")
 
-        guard url != nil || resourceLinkUUID != nil else {
+        if url == nil, resourceLinkUUID == nil {
             return nil
         }
 
