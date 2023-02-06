@@ -18,17 +18,17 @@
 
 import UIKit
 
-extension UITraitCollection {
+public extension UITraitCollection {
 
-    public static var light: UITraitCollection {
-        return UITraitCollection(userInterfaceStyle: .light)
+    static var light: UITraitCollection {
+        UITraitCollection(userInterfaceStyle: .light)
     }
 
-    public static var dark: UITraitCollection {
-        return UITraitCollection(userInterfaceStyle: .dark)
+    static var dark: UITraitCollection {
+        UITraitCollection(userInterfaceStyle: .dark)
     }
 
-    public static var current: UITraitCollection {
-        return UITraitCollection(userInterfaceStyle: .current)
+    static var current: UITraitCollection {
+        UITraitCollection(userInterfaceStyle: .current)
     }
 }
