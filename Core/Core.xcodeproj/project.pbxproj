@@ -1300,6 +1300,7 @@
 		EB24231128521EF00058A100 /* UIWindowExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24231028521EF00058A100 /* UIWindowExtensionsTests.swift */; };
 		EB2460262728380E00E4F331 /* K5SubjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2460252728380E00E4F331 /* K5SubjectHeaderView.swift */; };
 		EB24672F297AC68300091B04 /* LoginUsePolicyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24672E297AC68300091B04 /* LoginUsePolicyViewModelTests.swift */; };
+		EB28D7052990F44E00653998 /* UITraitCollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28D7042990F44E00653998 /* UITraitCollectionExtensions.swift */; };
 		EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */; };
 		EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */; };
 		EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */; };
@@ -2892,6 +2893,7 @@
 		EB24231028521EF00058A100 /* UIWindowExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensionsTests.swift; sourceTree = "<group>"; };
 		EB2460252728380E00E4F331 /* K5SubjectHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectHeaderView.swift; sourceTree = "<group>"; };
 		EB24672E297AC68300091B04 /* LoginUsePolicyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyViewModelTests.swift; sourceTree = "<group>"; };
+		EB28D7042990F44E00653998 /* UITraitCollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitCollectionExtensions.swift; sourceTree = "<group>"; };
 		EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainSection.swift; sourceTree = "<group>"; };
 		EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionsSection.swift; sourceTree = "<group>"; };
 		EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuBottomSection.swift; sourceTree = "<group>"; };
@@ -4151,6 +4153,7 @@
 				7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */,
 				E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */,
 				3B4D89402450AD58004ED120 /* UITextViewExtensions.swift */,
+				EB28D7042990F44E00653998 /* UITraitCollectionExtensions.swift */,
 				CF490F31285CAA790065D242 /* UIUserInterfaceStyleExtensions.swift */,
 				3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */,
 				7DD6948421951FD700BA4984 /* UIViewExtensions.swift */,
@@ -7894,6 +7897,7 @@
 				7DA260CE23F72359005D2121 /* CalendarDayIconView.swift in Sources */,
 				7DA25FEA23F721DE005D2121 /* Conversation.swift in Sources */,
 				CF60CC372645525400C1C173 /* K5HomeroomView.swift in Sources */,
+				EB28D7052990F44E00653998 /* UITraitCollectionExtensions.swift in Sources */,
 				CF7D4A892937678100463FBD /* TabBarMessageCountUpdater.swift in Sources */,
 				CF0894FB26FA218C0051A1BA /* AssignmentPickerViewModel.swift in Sources */,
 				7DA2600323F7227A005D2121 /* BundleExtensions.swift in Sources */,
