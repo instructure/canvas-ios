@@ -35,6 +35,19 @@ class LoginUsePolicyTests: CoreTestCase {
         XCTAssert(router.presented is CoreHostingController<LoginUsePolicyView>)
     }
 
+    func testCheckAcceptablePolicyEmptyResponse() {
+        let controller = UITabBarController()
+        controller.viewDidLoad()
+        controller.view.layoutIfNeeded()
+        let env = AppEnvironment.shared
+        api.mock(GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self")),
+                 value: nil)
+        LoginUsePolicy.checkAcceptablePolicy(from: controller) {
+            XCTFail()
+        }
+        XCTAssertEqual(router.last, nil)
+    }
+
     func testAcceptUsePolicy() {
         let successExpectation = XCTestExpectation(description: "API call should succeed")
         api.mock(PutUserAcceptedTermsRequest(hasAccepted: true), value: .makeUser(role: "Student", id: 123))

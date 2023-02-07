@@ -26,19 +26,20 @@ public class LoginUsePolicy {
 
         let request = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
         env.api.makeRequest(request) { data, _, error in performUIUpdate {
-            if data?.requires_terms_acceptance == false, error == nil {
-                return
-            }
+
             if let error = error {
                 (controller as? ErrorViewController)?.showAlert(title: nil, message: error.localizedDescription)
                 return
             }
-            let usePolicyViewModel = LoginUsePolicyViewModel(cancelled: cancelled)
-            let usePolicyView = LoginUsePolicyView(viewModel: usePolicyViewModel)
-            guard let viewController = controller ?? env.topViewController else { return }
-            env.router.show(CoreHostingController(usePolicyView),
-                            from: viewController,
-                            options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+
+            if data?.requires_terms_acceptance == true {
+                let usePolicyViewModel = LoginUsePolicyViewModel(cancelled: cancelled)
+                let usePolicyView = LoginUsePolicyView(viewModel: usePolicyViewModel)
+                guard let viewController = controller ?? env.topViewController else { return }
+                env.router.show(CoreHostingController(usePolicyView),
+                                from: viewController,
+                                options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            }
         } }
     }
 

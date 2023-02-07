@@ -166,6 +166,10 @@ extension UIViewController {
     }
 
     public func showThemeSelectorAlert() {
+
+        // Don't show the theme selector popup for UI Tests
+        guard !ProcessInfo.isUITest else { return }
+
         let alert = UIAlertController(title: NSLocalizedString("Canvas is now available in dark theme", bundle: .core, comment: ""),
                                       message: NSLocalizedString("Choose your app appearance!\nYou can change it later in the settings menu.", bundle: .core, comment: ""),
                                       preferredStyle: .alert)

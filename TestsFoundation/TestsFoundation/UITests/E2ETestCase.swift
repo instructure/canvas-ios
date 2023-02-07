@@ -50,4 +50,15 @@ open class E2ETestCase: CoreUITestCase {
         user.session = currentSession()
         setAppThemeToSystem()
     }
+
+    // Workaround to handle app theme prompt
+    open func setAppThemeToSystem() {
+        let canvasThemePromptTitle = app.find(label: "Canvas is now available in dark theme")
+        let systemSettingsButton = app.find(label: "System settings", type: .button)
+        if canvasThemePromptTitle.waitToExist(5, shouldFail: false).exists() {
+            systemSettingsButton.tapUntil {
+                !canvasThemePromptTitle.exists()
+            }
+        }
+    }
 }
