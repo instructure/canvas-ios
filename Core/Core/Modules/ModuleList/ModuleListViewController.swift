@@ -19,7 +19,7 @@
 import Foundation
 import SafariServices
 
-public class ModuleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public class ModuleListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -98,6 +98,8 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         colors.refresh()
         modules.refresh()
         tabs.refresh()
+        guard let courseID = courses.first?.id else { return }
+        trackScreenTime(eventName: "/courses/\(courseID)/modules")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

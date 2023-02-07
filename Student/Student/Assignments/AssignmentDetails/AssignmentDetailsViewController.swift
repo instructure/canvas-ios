@@ -19,7 +19,7 @@
 import Core
 import UIKit
 
-class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol {
+class AssignmentDetailsViewController: ScreenViewLoggerViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
@@ -156,6 +156,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
 
+        trackScreenTime(eventName: "/courses/\(courseID)/assignments/\(assignmentID)")
         presenter?.viewIsReady()
     }
 
@@ -166,13 +167,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter?.viewDidAppear()
         AppStoreReview.handleNavigateToAssignment()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter?.viewDidDisappear()
     }
 
     deinit {

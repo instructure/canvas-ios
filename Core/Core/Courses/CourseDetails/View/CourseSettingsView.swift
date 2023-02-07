@@ -57,6 +57,7 @@ public struct CourseSettingsView: View {
         .alert(isPresented: $viewModel.showError) {
             Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
         }
+        .trackScreenTime(eventName: "/courses/\(viewModel.courseID))/settings")
     }
 
     private func editor(width: CGFloat) -> some View {

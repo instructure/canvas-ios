@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class AnnouncementListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public class AnnouncementListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(add))
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -85,18 +85,18 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
         if context.contextType != .group {
             featureFlags.refresh()
         }
+        print(context.pathComponent)
+        trackScreenTime(eventName: "\(context.pathComponent)/announcements")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
-        env.pageViewLogger.startTrackingTimeOnViewController()
         navigationController?.navigationBar.useContextColor(color)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/announcements", attributes: [:])
     }
 
     @objc func refresh() {

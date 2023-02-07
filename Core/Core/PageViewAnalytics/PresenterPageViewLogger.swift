@@ -19,25 +19,3 @@
 import Foundation
 
 class PresenterPageViewLogger: PageViewEventViewControllerLoggingProtocol {}
-
-public protocol PageViewLoggerPresenterProtocol {
-    var env: AppEnvironment { get }
-    var pageViewEventName: String { get }
-    var pageViewAttributes: [String: String]? { get }
-    func viewDidAppear()
-    func viewDidDisappear()
-}
-
-public extension PageViewLoggerPresenterProtocol {
-    var pageViewAttributes: [String: String]? {
-        return nil
-    }
-
-    func viewDidAppear() {
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    func viewDidDisappear() {
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: pageViewEventName, attributes: pageViewAttributes ?? [:])
-    }
-}

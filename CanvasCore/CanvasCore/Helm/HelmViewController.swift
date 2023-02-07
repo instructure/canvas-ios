@@ -77,7 +77,7 @@ public class HelmNavigationItem: UINavigationItem {
     }
 }
 
-public final class HelmViewController: UIViewController, HelmScreen, PageViewEventViewControllerLoggingProtocol {
+public final class HelmViewController: ScreenViewLoggerViewController, HelmScreen {
     
     @objc public let moduleName: String
     @objc let screenInstanceID: String
@@ -183,7 +183,14 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         super.viewWillAppear(animated)
         isVisible = true
         handleStyles()
-        startTrackingTimeOnViewController()
+        var attributes: [String: String] = [:]
+        for (key, value) in props {
+            attributes[key] = value as? String
+        }
+        if let customPageViewPath = screenConfig[PageViewEventController.Constants.customPageViewPath] as? String {
+            attributes[PageViewEventController.Constants.customPageViewPath] = customPageViewPath
+        }
+        trackScreenTime(eventName: moduleName, attributes: attributes)
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -194,15 +201,6 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isVisible = false
-        
-        var attributes: [String: String] = [:]
-        for (key, value) in props {
-            attributes[key] = value as? String
-        }
-        if let customPageViewPath = screenConfig[PageViewEventController.Constants.customPageViewPath] as? String {
-            attributes[PageViewEventController.Constants.customPageViewPath] = customPageViewPath
-        }
-        stopTrackingTimeOnViewController(eventName: moduleName, attributes: attributes)
     }
     
     public override func accessibilityPerformEscape() -> Bool {

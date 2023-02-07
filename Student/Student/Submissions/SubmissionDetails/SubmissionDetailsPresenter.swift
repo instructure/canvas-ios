@@ -28,7 +28,7 @@ protocol SubmissionDetailsViewProtocol: ColoredNavViewProtocol, SubmissionButton
     var navigationItem: UINavigationItem { get }
 }
 
-class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
+class SubmissionDetailsPresenter {
     let context: Context
     let assignmentID: String
     let userID: String

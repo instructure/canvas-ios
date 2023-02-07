@@ -20,7 +20,7 @@ import Foundation
 import QuickLook
 import UIKit
 
-public class DiscussionReplyViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
+public class DiscussionReplyViewController: ScreenViewLoggerViewController, ErrorViewController, RichContentEditorDelegate {
     lazy var contentHeight = webView.heightAnchor.constraint(equalToConstant: 0)
     var contentHeightObs: NSKeyValueObservation?
     @IBOutlet weak var editorContainer: UIView!
@@ -161,6 +161,7 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
         }
         replyToEntry?.refresh()
         topic.refresh()
+        trackScreenTime(eventName: "\(context.pathComponent)/discussion_topics/\(topicID)/reply")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

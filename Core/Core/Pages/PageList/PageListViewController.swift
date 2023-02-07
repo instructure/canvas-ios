@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PageListViewController: UIViewController, ColoredNavViewProtocol {
+public class PageListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -87,6 +87,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
             course.refresh()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(pageCreated), name: Notification.Name("page-created"), object: nil)
+        trackScreenTime(eventName: "\(context.pathComponent)/pages")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -95,12 +96,6 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
             tableView.deselectRow(at: selected, animated: true)
         }
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/pages", attributes: [:])
     }
 
     func updateNavBar() {

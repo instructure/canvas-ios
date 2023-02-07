@@ -19,7 +19,7 @@
 import UIKit
 import WebKit
 
-public class DiscussionDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public class DiscussionDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
     @IBOutlet weak var courseSectionsView: UIView!
     @IBOutlet weak var courseSectionsLabel: UILabel!
     @IBOutlet weak var dueSection: UIView!
@@ -165,17 +165,12 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         entries.refresh()
         permissions.refresh()
         groups.exhaust(force: true)
+        trackScreenTime(eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)", attributes: [:])
     }
 
     deinit {

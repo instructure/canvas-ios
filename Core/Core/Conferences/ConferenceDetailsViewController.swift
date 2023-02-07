@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class ConferenceDetailsViewController: UIViewController, ColoredNavViewProtocol {
+public class ConferenceDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
     @IBOutlet weak var detailsHeadingLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
@@ -89,6 +89,7 @@ public class ConferenceDetailsViewController: UIViewController, ColoredNavViewPr
             group.refresh()
         }
         refresh()
+        trackScreenTime(eventName: "\(context.pathComponent)/conferences/\(conferenceID)")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

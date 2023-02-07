@@ -35,6 +35,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     var navigationController: UINavigationController?
     var pageViewLogger: MockPageViewLogger = MockPageViewLogger()
     var onUpdate: (() -> Void)?
+    var viewController: AssignmentDetailsViewController!
 
     class MockButton: SubmissionButtonPresenter {
         var submitted = false
@@ -56,6 +57,8 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         env.pageViewLogger = pageViewLogger
         presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton
+        viewController = AssignmentDetailsViewController.create(courseID: "1", assignmentID: "1")
+        viewController.presenter = presenter
     }
 
     func testUseCasesSetupProperly() {
@@ -456,8 +459,15 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 
     func testPageViewLogging() {
-        presenter.viewDidAppear()
-        presenter.viewDidDisappear()
+        Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
+        let course = Course.make()
+        course.id = "1"
+        let assignment = Assignment.make()
+        assignment.id = "1"
+
+        viewController.loadViewIfNeeded()
+        viewController.viewWillAppear(false)
+        viewController.viewWillDisappear(false)
 
         XCTAssertEqual(pageViewLogger.eventName, "/courses/\(presenter.courseID)/assignments/\(presenter.assignmentID)")
     }

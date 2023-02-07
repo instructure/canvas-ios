@@ -51,6 +51,7 @@ public struct K5SubjectView: View {
         }
         .navigationBarStyle(.color(self.viewModel.courseColor))
         .navigationTitle(self.viewModel.courseTitle ?? "", subtitle: nil)
+        .trackScreenTime(eventName: "/courses/\(viewModel.courseID)")
     }
 
     public init(context: Context, selectedTabId: String? = nil) {

@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
+class SubmissionListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -97,21 +97,13 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
         enrollments.exhaust()
         sections.exhaust()
         submissions.exhaust()
+        trackScreenTime(eventName: "\(context.pathComponent)/assignments/\(assignmentID)/submissions")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(
-            eventName: "\(context.pathComponent)/assignments/\(assignmentID)/submissions",
-            attributes: [:]
-        )
     }
 
     func updateNavBar() {

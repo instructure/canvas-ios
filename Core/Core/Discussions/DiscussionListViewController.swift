@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class DiscussionListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public class DiscussionListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(add))
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -87,18 +87,13 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         if context.contextType != .group {
             featureFlags.refresh()
         }
+        trackScreenTime(eventName: "\(context.pathComponent)/discussion_topics")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
-        env.pageViewLogger.startTrackingTimeOnViewController()
         navigationController?.navigationBar.useContextColor(color)
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/discussion_topics", attributes: [:])
     }
 
     @objc func refresh() {

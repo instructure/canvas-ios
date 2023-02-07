@@ -36,7 +36,7 @@ protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
     func showSubmitAssignmentButton(title: String?)
 }
 
-class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
+class AssignmentDetailsPresenter {
 
     var pageViewEventName: String {
         return "/courses/\(courseID)/assignments/\(assignmentID)"

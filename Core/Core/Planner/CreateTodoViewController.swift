@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-public class CreateTodoViewController: UIViewController, ErrorViewController {
+public class CreateTodoViewController: ScreenViewLoggerViewController, ErrorViewController {
 
     @IBOutlet weak var titleLabel: DynamicTextField!
     @IBOutlet weak var dateTitleLabel: DynamicLabel!
@@ -79,6 +79,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
         keyboardListener = KeyboardTransitioning(view: view, space: scrollViewBottomConstraint)
+        trackScreenTime(eventName: "/calendar/new")
     }
 
     @objc func actionDone() {

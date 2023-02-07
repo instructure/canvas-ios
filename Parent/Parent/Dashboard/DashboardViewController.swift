@@ -20,7 +20,7 @@ import UIKit
 import CoreData
 import Core
 
-class DashboardViewController: UIViewController, ErrorViewController {
+class DashboardViewController: ScreenViewLoggerViewController, ErrorViewController {
     @IBOutlet weak var addStudentView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var studentListStack: UIStackView!
@@ -91,19 +91,14 @@ class DashboardViewController: UIViewController, ErrorViewController {
         }
 
         reportScreenView(for: 0, viewController: self)
+        trackScreenTime(eventName: "/")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(currentColor)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        env.pageViewLogger.startTrackingTimeOnViewController()
         updateBadge()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "/", attributes: [:])
     }
 
     @IBAction func showProfile() {

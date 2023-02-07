@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import Core
 
-class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class CalendarEventDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationAddressLabel: UILabel!
     @IBOutlet weak var locationHeadingLabel: UILabel!
@@ -70,6 +70,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
         colors.refresh()
         events.refresh()
+        trackScreenTime(eventName: "/calendar")
     }
 
     override func viewWillAppear(_ animated: Bool) {

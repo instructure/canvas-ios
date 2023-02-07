@@ -28,6 +28,7 @@ struct HelpView: View {
                 }
             }.padding(.bottom)
         }
+        .trackScreenTime(eventName: "/profile/help")
     }
 
     private var helpLinks: [HelpLink]

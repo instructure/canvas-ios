@@ -44,6 +44,7 @@ public struct SideMenuView: View {
             }.clipped()
             SideMenuFooterView()
         }
+        .trackScreenTime(eventName: "/profile")
     }
 }
 

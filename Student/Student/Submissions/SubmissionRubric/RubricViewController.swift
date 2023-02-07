@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class RubricViewController: UIViewController {
+class RubricViewController: ScreenViewLoggerViewController {
 
     let ratingContainerTag = 100
     let ratingTitleTag = 200
@@ -56,6 +56,8 @@ class RubricViewController: UIViewController {
 
         emptyImageView.image = UIImage(named: Panda.NoRubric.name, in: .core, compatibleWith: nil)
         presenter.viewIsReady()
+        // TODO: route? 
+        trackScreenTime(eventName: "")
     }
 
     override func viewWillLayoutSubviews() {

@@ -54,6 +54,7 @@ open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavVi
         settings.refresh()
         colors.refresh()
         course.refresh()
+        trackScreenTime(eventName: "coursers/\(courseID)/assignments/syllabus")
     }
 
     open override func viewWillAppear(_ animated: Bool) {

@@ -80,6 +80,7 @@ public struct CourseListView: View {
         .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
 
         .onAppear { viewModel.viewDidAppear() }
+        .trackScreenTime(eventName: "/courses")
     }
 
     @ViewBuilder

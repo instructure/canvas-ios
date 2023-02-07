@@ -53,6 +53,7 @@ public struct AssignmentListView: View {
         .navigationBarGenericBackButton()
         .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+        .trackScreenTime(eventName: "/courses/\(viewModel.courseID))/assignments")
     }
 
     private var gradingPeriodTitle: some View {

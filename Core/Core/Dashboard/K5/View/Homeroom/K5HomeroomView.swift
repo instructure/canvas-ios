@@ -51,6 +51,7 @@ public struct K5HomeroomView: View {
         } refreshAction: { endRefreshing in
             viewModel.refresh(completion: endRefreshing)
         }
+        .trackScreenTime(eventName: "/courses")
     }
 
     private var conferences: some View {

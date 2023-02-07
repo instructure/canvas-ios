@@ -28,7 +28,7 @@ protocol CalendarViewControllerDelegate: AnyObject {
     func numberOfCalendars() -> Int? // nil = all
 }
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: ScreenViewLoggerViewController {
     @IBOutlet weak var dropdownView: UIImageView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
@@ -109,6 +109,7 @@ class CalendarViewController: UIViewController {
         daysPageController.setCurrentPage(CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate))
 
         updateSelectedDate(selectedDate)
+        trackScreenTime(eventName: "/calendar")
     }
 
     @objc func didPan(_ recognizer: UIPanGestureRecognizer) {

@@ -46,6 +46,7 @@ struct K5GradesView: View {
                 gradeSelectorOpen = false
             }
         }
+        .trackScreenTime(eventName: "/grades")
     }
 
     private var gradingPeriodSelector: some View {

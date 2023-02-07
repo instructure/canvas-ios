@@ -62,6 +62,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     var presenter: SubmissionDetailsPresenter!
     var view: SubmissionDetailsView!
     var pageViewLogger: MockPageViewLogger!
+    var viewController: SubmissionDetailsViewController!
 
     override func setUp() {
         super.setUp()
@@ -70,6 +71,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
         view = SubmissionDetailsView()
         presenter = SubmissionDetailsPresenter(env: env, view: view, context: .course("1"), assignmentID: "1", userID: "1")
+        viewController = SubmissionDetailsViewController.loadFromStoryboard()
+        viewController.presenter = presenter
     }
 
     func testViewIsReady() {
@@ -341,11 +344,14 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
     func testPageViewLogging() {
         Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
-        presenter.viewIsReady()
+        let course = Course.make()
+        course.id = "1"
+        let assignment = Assignment.make()
+        assignment.id = "1"
 
-        presenter.viewDidAppear()
-        presenter.viewDidDisappear()
-
+        viewController.loadViewIfNeeded()
+        viewController.viewWillAppear(false)
+        viewController.viewWillDisappear(false)
         XCTAssertEqual(pageViewLogger.eventName, "/courses/1/assignments/1/submissions/1")
     }
 

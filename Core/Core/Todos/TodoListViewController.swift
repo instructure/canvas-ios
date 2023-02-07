@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public class TodoListViewController: UIViewController, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
+public class TodoListViewController: ScreenViewLoggerViewController, ErrorViewController {
     @IBOutlet weak var emptyDescLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -73,6 +73,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         courses.exhaust()
         groups.exhaust()
         todos.exhaust(force: true)
+        trackScreenTime(eventName: "/to-do", attributes: ["customPageViewPath": "/"])
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -80,12 +81,6 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         navigationController?.navigationBar.useGlobalNavStyle()
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         refresh()
-        startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/to-do", attributes: ["customPageViewPath": "/"])
     }
 
     func update() {

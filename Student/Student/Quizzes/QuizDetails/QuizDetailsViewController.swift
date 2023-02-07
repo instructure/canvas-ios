@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import Core
 
-class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class QuizDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var attemptsValueLabel: UILabel!
     @IBOutlet weak var dueHeadingLabel: UILabel!
@@ -99,17 +99,12 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         courses.refresh()
         // We need to force refresh because the list deletes (& kills the submission association)
         quizzes.refresh(force: true)
+        trackScreenTime(eventName: "courses/\(courseID)/quizzes/\(quizID)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/quizzes/\(quizID)", attributes: [:])
     }
 
     @objc func refresh() {

@@ -62,6 +62,7 @@ public struct CourseDetailsView: View {
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
         .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
+        .trackScreenTime(eventName: "/courses/\(viewModel.courseID))")
     }
 
     @ViewBuilder

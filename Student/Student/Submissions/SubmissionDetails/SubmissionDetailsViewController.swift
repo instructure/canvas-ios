@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import Core
 
-class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol {
+class SubmissionDetailsViewController: ScreenViewLoggerViewController, SubmissionDetailsViewProtocol {
     var color: UIColor?
     var presenter: SubmissionDetailsPresenter?
     var titleSubtitleView = TitleSubtitleView.create()
@@ -67,17 +67,15 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
+        guard
+            let courseID = presenter?.course.first?.id,
+            let assignmentID = presenter?.assignmentID,
+            let submissionID = presenter?.submissions.first?.id else {
+            presenter?.viewIsReady()
+            return
+        }
+        trackScreenTime(eventName: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(submissionID)")
         presenter?.viewIsReady()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter?.viewDidAppear()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter?.viewDidDisappear()
     }
 
     override func viewDidLayoutSubviews() {

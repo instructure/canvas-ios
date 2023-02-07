@@ -38,6 +38,7 @@ public struct K5ScheduleView: View {
             Divider()
             pageSwitcherButtons
         }
+        .trackScreenTime(eventName: "/schedule")
     }
 
     private var pageSwitcherButtons: some View {

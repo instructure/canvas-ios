@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentDetailsViewController: UIViewController, ErrorViewController {
+class StudentDetailsViewController: ScreenViewLoggerViewController, ErrorViewController {
     @IBOutlet var alertFields: [UITextField]!
     @IBOutlet weak var alertHeaderLabel: UILabel!
     @IBOutlet var alertLabels: [UILabel]!
@@ -86,6 +86,7 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
 
         student.refresh()
         thresholds.exhaust()
+        trackScreenTime(eventName: "/profile/observees/\(studentID)/thresholds")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -94,12 +95,6 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
         let color = ColorScheme.observee(studentID).color
         view.tintColor = color
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "/profile/observees/\(studentID)/thresholds", attributes: [:])
     }
 
     @objc func refresh() {

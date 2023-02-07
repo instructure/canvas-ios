@@ -23,7 +23,7 @@ import QuickLook
 import QuickLookThumbnailing
 import UIKit
 
-public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegate, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
+public class FileDetailsViewController: ScreenViewLoggerViewController, CoreWebViewLinkDelegate, ErrorViewController {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var arButton: UIButton!
     @IBOutlet weak var arImageView: UIImageView!
@@ -102,11 +102,11 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
         view.layoutIfNeeded()
         files.refresh()
+        trackScreenTime(eventName: "\(context?.pathComponent ?? "")/files/\(fileID)")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startTrackingTimeOnViewController()
         env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
     }
@@ -115,7 +115,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         super.viewWillDisappear(animated)
         saveAnnotations()
         downloadTask?.cancel()
-        stopTrackingTimeOnViewController(eventName: "\(context?.pathComponent ?? "")/files/\(fileID)")
     }
 
     @objc func fileEdited(_ notification: NSNotification) {

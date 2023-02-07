@@ -49,6 +49,7 @@ public struct K5ResourcesView: View {
         .onAppear {
             viewModel.viewDidAppear()
         }
+        .trackScreenTime(eventName: "/resources")
     }
 
     private var importantInfo: some View {

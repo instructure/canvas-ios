@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class FileListViewController: UIViewController, ColoredNavViewProtocol {
+public class FileListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -106,6 +106,13 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
         course?.refresh()
         group?.refresh()
         folder.refresh()
+
+        var eventName = "\(context == .currentUser ? "" : context.pathComponent)/files"
+        if !path.isEmpty {
+            eventName += "/folder/\(path)"
+        }
+        trackScreenTime(eventName: eventName)
+
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -117,16 +124,6 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
         } else {
             navigationController?.navigationBar.useContextColor(color)
         }
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        var eventName = "\(context == .currentUser ? "" : context.pathComponent)/files"
-        if !path.isEmpty {
-            eventName += "/folder/\(path)"
-        }
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: eventName, attributes: [:])
     }
 
     func updateNavBar() {

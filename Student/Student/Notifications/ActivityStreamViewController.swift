@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ActivityStreamViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
+class ActivityStreamViewController: ScreenViewLoggerViewController {
 
     struct Info {
         let name: String?
@@ -71,20 +71,15 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")
         emptyStateSubHeader.text = NSLocalizedString("There's nothing to be notified of yet.", comment: "")
         refreshData()
+        trackScreenTime(eventName: "/notifications", attributes: ["customPageViewPath": "/"])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startTrackingTimeOnViewController()
         if navigationController?.navigationBar.backItem == nil {
             navigationItem.leftBarButtonItem = profileButton
             navigationController?.navigationBar.useGlobalNavStyle()
         }
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/notifications", attributes: ["customPageViewPath": "/"])
     }
 
     override func viewDidAppear(_ animated: Bool) {

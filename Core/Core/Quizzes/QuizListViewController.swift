@@ -19,7 +19,7 @@
 import UIKit
 import CoreData
 
-public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
+public class QuizListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -71,18 +71,13 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         colors.refresh()
         course.refresh()
         quizzes.exhaust()
+        trackScreenTime(eventName: "courses/\(courseID)/quizzes")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
-        env.pageViewLogger.startTrackingTimeOnViewController()
         navigationController?.navigationBar.useContextColor(color)
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/quizzes", attributes: [:])
     }
 
     @objc func refresh() {

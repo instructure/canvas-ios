@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class ProfileSettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
+public class ProfileSettingsViewController: ScreenViewLoggerViewController {
     let env = AppEnvironment.shared
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
@@ -73,18 +73,13 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         tableView.sectionFooterHeight = 0
         tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
+        trackScreenTime(eventName: "/profile/settings")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
         refresh()
-        startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/profile/settings")
     }
 
     @objc func refresh(sender: Any? = nil) {

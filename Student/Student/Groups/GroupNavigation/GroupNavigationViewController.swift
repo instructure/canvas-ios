@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class GroupNavigationViewController: UITableViewController, ColoredNavViewProtocol, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
+class GroupNavigationViewController: ScreenViewLoggerTableViewController, ColoredNavViewProtocol, ErrorViewController {
     let env = AppEnvironment.shared
     var context = Context.currentUser
     var color: UIColor?
@@ -56,6 +56,7 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
         groups.refresh()
         tabs.exhaust()
         update()
+        trackScreenTime(eventName: "/\(context.pathComponent)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -64,12 +65,6 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
         }
-        startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)")
     }
 
     func update() {

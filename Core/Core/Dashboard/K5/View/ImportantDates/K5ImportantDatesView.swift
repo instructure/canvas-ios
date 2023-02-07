@@ -55,6 +55,7 @@ public struct K5ImportantDatesView: View {
                 }
             }
         }
+        .trackScreenTime(eventName: "/important-dates")
     }
 
     @ViewBuilder var importantDatesList: some View {
