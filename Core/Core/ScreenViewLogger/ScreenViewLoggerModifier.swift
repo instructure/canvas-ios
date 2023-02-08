@@ -34,17 +34,15 @@ public extension View {
 
 private struct ScrenViewLoggerModifier: ViewModifier {
     private let pageViewLogger = AppEnvironment.shared.pageViewLogger
-    var eventName: String?
-    var attributes: [String: String] = [:]
+    let eventName: String
+    let attributes: [String: String]
 
     func body(content: Content) -> some View {
         content
             .onAppear {
-                guard eventName != nil else { return }
                 pageViewLogger.startTrackingTimeOnViewController()
             }
             .onDisappear {
-                guard let eventName else { return }
                 pageViewLogger.stopTrackingTimeOnViewController(
                     eventName: eventName,
                     attributes: attributes
