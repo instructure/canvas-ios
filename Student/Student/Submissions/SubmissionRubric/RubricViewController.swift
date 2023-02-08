@@ -56,8 +56,6 @@ class RubricViewController: ScreenViewLoggerViewController {
 
         emptyImageView.image = UIImage(named: Panda.NoRubric.name, in: .core, compatibleWith: nil)
         presenter.viewIsReady()
-        // TODO: route? 
-        trackScreenTime(eventName: "")
     }
 
     override func viewWillLayoutSubviews() {

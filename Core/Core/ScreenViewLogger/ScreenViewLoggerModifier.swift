@@ -18,6 +18,20 @@
 
 import SwiftUI
 
+public extension View {
+    func trackScreenTime(
+        eventName: String,
+        attributes: [String: String] = [:]
+    ) -> some View {
+        modifier(
+            ScrenViewLoggerModifier(
+                eventName: eventName,
+                attributes: attributes
+            )
+        )
+    }
+}
+
 private struct ScrenViewLoggerModifier: ViewModifier {
     private let pageViewLogger = AppEnvironment.shared.pageViewLogger
     var eventName: String?
@@ -36,19 +50,5 @@ private struct ScrenViewLoggerModifier: ViewModifier {
                     attributes: attributes
                 )
             }
-    }
-}
-
-extension View {
-    func trackScreenTime(
-        eventName: String?,
-        attributes: [String: String] = [:]
-    ) -> some View {
-        modifier(
-            ScrenViewLoggerModifier(
-                eventName: eventName,
-                attributes: attributes
-            )
-        )
     }
 }

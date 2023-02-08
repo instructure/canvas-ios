@@ -85,7 +85,6 @@ public class AnnouncementListViewController: ScreenViewLoggerViewController, Col
         if context.contextType != .group {
             featureFlags.refresh()
         }
-        print(context.pathComponent)
         trackScreenTime(eventName: "\(context.pathComponent)/announcements")
     }
 

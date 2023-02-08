@@ -5947,6 +5947,7 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+<<<<<<< refs/remotes/origin/master
 		00857883DA6408C1F8369129 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -5964,6 +5965,79 @@
 				8334333D30A57AFA571D1983 /* LoginUsePolicyTests.swift */,
 				1C5FC54CF02DFD4D7F91B380 /* LoginUsePolicyViewModelTests.swift */,
 				B32483F46D3D8B32F2CC5623 /* LoginWebViewControllerTests.swift */,
+=======
+		2C964830211E2F1A002C3255 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CF22C94125F286E000C2E012 /* Accessibility */,
+				7DB92CA824C5FD4A004A6C16 /* AccountNotifications */,
+				9FBFE6D122412B71002B3796 /* ActAsUser */,
+				3BC3E01B2315A0B300E15C6D /* Analytics */,
+				7D8262E9212B1A4F00BD268D /* API */,
+				2C96485C211E36FF002C3255 /* AppEnvironment */,
+				7D101948215E8E5F0058FDD1 /* Assets.xcassets */,
+				CFD3EC33289420C3001E7D4E /* confetti.json */,
+				7DF4AACD2486A37400B07BB8 /* Assignments */,
+				7DDC81422242E269000DD25A /* AudioVideo */,
+				7D4F44F8241BF24200233B92 /* Conferences */,
+				3B3467C52134953800F9BC2E /* Constants */,
+				7D1D5BEB2492AFAA009EA317 /* Contexts */,
+				7D26B84423A7F27E00262380 /* Conversations */,
+				2C964831211E2F1A002C3255 /* Core.h */,
+				CFBC10522983D89B00338136 /* CoreWebView */,
+				7D5F10352429722300803324 /* Courses */,
+				7D14863C230B43AE003944A2 /* Dashboard */,
+				B14452FF212E5B6E0009D848 /* Database.xcdatamodeld */,
+				9FBE5354223AD16F001EC40C /* DeveloperMenu */,
+				7D627167245B341800FC1798 /* Discussions */,
+				7D29D2F5218A29B10036437C /* DocViewer */,
+				CF8D53542808518B0038B0B2 /* EmbeddedWebPage */,
+				7D76C336243CF0F300F481BF /* Enrollments */,
+				7DAFBE6E2318567300E9A37D /* ErrorReports */,
+				7D80AC06212B46D500C40ECE /* Extensions */,
+				7D08B1D02371E9C70075623A /* Files */,
+				CF2F7E7827FF20D600942241 /* Fonts */,
+				3B4D86112329521F005126A5 /* Grades */,
+				7D1D5BE32492A5FA009EA317 /* Groups */,
+				CF3A31CF28F7023B002752D2 /* Inbox */,
+				2C964832211E2F1A002C3255 /* Info.plist */,
+				5BF786A8218599B600471A5F /* InfoPlist.strings */,
+				7DCF1ECE216BFE5D003AF358 /* Localizable.strings */,
+				7DCF1ED1216BFE61003AF358 /* Localizable.stringsdict */,
+				B1E789B221B1AD380087FE4A /* Logger */,
+				3B346747213051CC00F9BC2E /* Login */,
+				9FAE410821B6D09100FE7F58 /* LTI */,
+				7D062AF02124968200677F66 /* Models */,
+				7D159CE9242E553900A77A15 /* Modules */,
+				B1911CE721C845E700F42F91 /* Notifications */,
+				7DC7045824AA8B0F00CD1C46 /* ObserverAlerts */,
+				E8AC2D3524AE3A3B0053AA8A /* ObservedStudents */,
+				EE584C7822F2043300D1E201 /* Pages */,
+				3B13D45922E1060300D23007 /* PageViewAnalytics */,
+				7D8E820C23C8E09500A8DA2C /* People */,
+				97F69C3A23F1FD94009622E3 /* Planner */,
+				3B3467CE2135022E00F9BC2E /* Presenter */,
+				9FAA58FE223A987600FEC3F8 /* Profile */,
+				7D1D5BE62492AB96009EA317 /* Quizzes */,
+				7D101945215E87B80058FDD1 /* Resources */,
+				7D2FADBC225BA4BC00BCE19E /* RichContentEditor */,
+				2C964858211E3049002C3255 /* Router */,
+				B4F8142F2993CEE900A54954 /* ScreenViewLogger */,
+				B11D321521E4649B00F37ABF /* Store */,
+				CF6C7FC326F8CD3A002937E5 /* SubmitAssignmentExtension */,
+				7DCB2E97247D95FA0071F172 /* Submissions */,
+				E8A8FA8C24D3289D000B27DF /* SwiftUIViews */,
+				3BF34288233D2C7F0095D0D3 /* Syllabus */,
+				9FBE5359223ADA4D001EC40C /* TermsOfService */,
+				7DA667F023835C500062F7B9 /* Todos */,
+				CF598B2E282528E10029BEBE /* Typography */,
+				7D13C52822B9566F00345253 /* UITestHelpers */,
+				7D1758B12159894C00F88613 /* UIViews */,
+				CF9A0EEA27E4EC2600762228 /* ViewModel */,
+				E8D7E6E824D9D0B400D6CCD0 /* ViewModifiers */,
+				CF8D534D2806DFF30038B0B2 /* WebSitePreview */,
+				9FBFE6DD22428966002B3796 /* WrongApp */,
+>>>>>>> fix: review findings
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -7527,7 +7601,20 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+<<<<<<< refs/remotes/origin/master
 		62703D070FFE3DFF7152CC6A /* Utils */ = {
+=======
+		B4F8142F2993CEE900A54954 /* ScreenViewLogger */ = {
+			isa = PBXGroup;
+			children = (
+				B41E37B2298AA8F600C93966 /* ScreenViewLoggerModifier.swift */,
+				B41E37B4298AB3AA00C93966 /* ScreenViewLoggerViewController.swift */,
+			);
+			path = ScreenViewLogger;
+			sourceTree = "<group>";
+		};
+		CF086070291D403C0013BDCE /* AnnotationContextMenu */ = {
+>>>>>>> fix: review findings
 			isa = PBXGroup;
 			children = (
 				15154DB2F9F5F7C5F78DF5EB /* MockAnalyticsHandler.swift */,
@@ -9721,9 +9808,12 @@
 				D9D7EBCF27AD7A8D00544339 /* CourseDetailsView.swift */,
 				D9D7EBD627B2B0A900544339 /* CourseDetailsCellView.swift */,
 				D9D7EBE127BC0A1D00544339 /* CourseSettingsView.swift */,
+<<<<<<< refs/remotes/origin/master
 				B41E37B2298AA8F600C93966 /* ScreenViewLoggerModifier.swift */,
 				B41E37B4298AB3AA00C93966 /* ScreenViewLoggerViewController.swift */,
 >>>>>>> Student Pandata tracking
+=======
+>>>>>>> fix: review findings
 			);
 			path = K5;
 			sourceTree = "<group>";

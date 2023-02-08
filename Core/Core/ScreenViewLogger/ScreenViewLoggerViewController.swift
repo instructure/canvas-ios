@@ -39,7 +39,7 @@ open class ScreenViewLoggerViewController: UIViewController {
     }
 
     public func trackScreenTime(
-        eventName: String?,
+        eventName: String,
         attributes: [String: String] = [:]
     ) {
         self.eventName = eventName
@@ -68,7 +68,7 @@ open class ScreenViewLoggerTableViewController: UITableViewController {
     }
 
     public func trackScreenTime(
-        eventName: String?,
+        eventName: String,
         attributes: [String: String] = [:]
     ) {
         self.eventName = eventName

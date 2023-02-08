@@ -67,14 +67,11 @@ class SubmissionDetailsViewController: ScreenViewLoggerViewController, Submissio
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
-        guard
-            let courseID = presenter?.course.first?.id,
-            let assignmentID = presenter?.assignmentID,
-            let submissionID = presenter?.submissions.first?.id else {
-            presenter?.viewIsReady()
-            return
+        if let courseID = presenter?.course.first?.id,
+           let assignmentID = presenter?.assignmentID,
+           let submissionID = presenter?.submissions.first?.id {
+            trackScreenTime(eventName: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(submissionID)")
         }
-        trackScreenTime(eventName: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(submissionID)")
         presenter?.viewIsReady()
     }
 

@@ -98,8 +98,7 @@ public class ModuleListViewController: ScreenViewLoggerViewController, ColoredNa
         colors.refresh()
         modules.refresh()
         tabs.refresh()
-        guard let courseID = courses.first?.id else { return }
-        trackScreenTime(eventName: "/courses/\(courseID)/modules")
+        trackScreenTime(eventName: "/courses/\(courses.first?.id ?? "")/modules")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
