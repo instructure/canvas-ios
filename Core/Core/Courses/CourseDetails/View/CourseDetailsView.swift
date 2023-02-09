@@ -43,11 +43,7 @@ public struct CourseDetailsView: View {
                     imageHeader(geometry: geometry)
                     loadingView
                 case .data(let tabViewModels):
-                    if #available(iOS 15.0, *) {
-                        tabList(tabViewModels, geometry: geometry)
-                    } else {
-                        legacyTabList(tabViewModels, geometry: geometry)
-                    }
+                    tabList(tabViewModels, geometry: geometry)
                 }
             }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -120,7 +116,9 @@ public struct CourseDetailsView: View {
         .foregroundColor(.textDarkest)
         .padding(.horizontal, 16)
         .padding(.vertical, 5)
-        Button(action: viewModel.retryAfterError) {
+        Button {
+            viewModel.retryAfterError()
+        } label: {
             Text("Retry", bundle: .core)
                 .padding(.top, 15)
                 .foregroundColor(Color(Brand.shared.linkColor))
@@ -152,7 +150,7 @@ public struct CourseDetailsView: View {
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
-                .iOS15ListRowSeparator(.hidden)
+                .listRowSeparator(.hidden)
                 .background(Color.backgroundLightest)
                 .padding(.top, headerViewModel.shouldShowHeader(for: geometry.size.height) ? headerViewModel.height : 0)
                 // Save the frame of the content so we can inspect its y position and move course image based on that
@@ -162,8 +160,8 @@ public struct CourseDetailsView: View {
             }
             .listStyle(.plain)
             .iOS16HideListScrollContentBackground()
-            .iOS15Refreshable { completion in
-                viewModel.refresh(completion: completion)
+            .refreshable {
+                await viewModel.refresh()
             }
         }
     }

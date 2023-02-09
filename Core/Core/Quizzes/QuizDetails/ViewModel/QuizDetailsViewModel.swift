@@ -90,10 +90,22 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
 
     // MARK: - Refreshable protocol
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        refreshCompletion = completion
-        quizUseCase.refresh(force: true)
-        assignmentsUseCase.refresh(force: true)
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
+        return await withCheckedContinuation { continuation in
+            refreshCompletion = {
+                continuation.resume(returning: ())
+            }
+            quizUseCase.refresh(force: true)
+            assignmentsUseCase.refresh(force: true)
+        }
     }
 
     // MARK: - Private functions

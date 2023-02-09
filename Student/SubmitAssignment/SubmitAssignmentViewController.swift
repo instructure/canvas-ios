@@ -67,12 +67,7 @@ class SubmitAssignmentViewController: UIViewController {
             attachmentCopyService: attachmentCopyService,
             submissionService: attachmentSubmissionService,
             shareCompleted: shareCompleted)
-
-        if #available(iOSApplicationExtension 15.0, *) {
-            embed(CoreHostingController(SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
-        } else {
-            embed(CoreHostingController(IOS14SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
-        }
+        embed(CoreHostingController(SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
     }
 
     private func setupFirebaseServices() {

@@ -119,12 +119,22 @@ public class AssignmentListViewModel: ObservableObject {
 
 extension AssignmentListViewModel: Refreshable {
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        apiAssignments.exhaust(force: true) { [weak self] _ in
-            if self?.apiAssignments.hasNextPage == false {
-                completion()
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
+        return await withCheckedContinuation { continuation in
+            apiAssignments.exhaust(force: true) { [weak self] _ in
+                if self?.apiAssignments.hasNextPage == false {
+                    continuation.resume(returning: ())
+                }
+                return true
             }
-            return true
         }
     }
 }

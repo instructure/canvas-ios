@@ -24,7 +24,6 @@ public extension Text {
     }
 }
 
-@available(iOS 15, *)
 public extension Text {
     init(_ string: String, configure: ((inout AttributedString) -> Void)) {
         var attributedString = AttributedString(string)

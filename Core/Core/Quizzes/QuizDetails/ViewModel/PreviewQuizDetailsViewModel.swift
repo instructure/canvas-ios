@@ -62,6 +62,7 @@ public class PreviewQuizDetailsViewModel: QuizDetailsViewModelProtocol {
     public func viewDidAppear() {}
     public func editTapped(router: Router, viewController: WeakViewController) {}
     public func previewTapped(router: Router, viewController: WeakViewController) {}
+    public func refresh() async {}
     public func refresh(completion: @escaping () -> Void) {}
 }
 #endif
