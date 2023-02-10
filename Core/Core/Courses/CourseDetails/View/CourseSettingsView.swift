@@ -18,14 +18,19 @@
 
 import SwiftUI
 
-public struct CourseSettingsView: View {
+public struct CourseSettingsView: View, ScreenViewTrackable {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel: CourseSettingsViewModel
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     public init(viewModel: CourseSettingsViewModel) {
         self.viewModel = viewModel
+        self.screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(viewModel.courseID)/settings"
+        )
+
     }
 
     public var body: some View {
@@ -57,7 +62,6 @@ public struct CourseSettingsView: View {
         .alert(isPresented: $viewModel.showError) {
             Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
         }
-        .trackScreenTime(eventName: "/courses/\(viewModel.courseID))/settings")
     }
 
     private func editor(width: CGFloat) -> some View {

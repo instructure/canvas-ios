@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import Core
 
-class QuizDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var attemptsValueLabel: UILabel!
     @IBOutlet weak var dueHeadingLabel: UILabel!
@@ -47,6 +47,9 @@ class QuizDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewP
     var courseID = ""
     let env = AppEnvironment.shared
     var quizID = ""
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "courses/\(courseID)/quizzes/\(quizID)"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -99,7 +102,6 @@ class QuizDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewP
         courses.refresh()
         // We need to force refresh because the list deletes (& kills the submission association)
         quizzes.refresh(force: true)
-        trackScreenTime(eventName: "courses/\(courseID)/quizzes/\(quizID)")
     }
 
     override func viewWillAppear(_ animated: Bool) {

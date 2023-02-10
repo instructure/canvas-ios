@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct CourseDetailsView: View {
+public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
@@ -26,10 +26,16 @@ public struct CourseDetailsView: View {
     @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
     @ObservedObject private var selectionViewModel: ListSelectionViewModel
 
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
     public init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
         self.headerViewModel = viewModel.headerViewModel
         self.selectionViewModel = viewModel.selectionViewModel
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(viewModel.courseID)"
+        )
     }
 
     public var body: some View {
@@ -62,7 +68,6 @@ public struct CourseDetailsView: View {
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
         .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
-        .trackScreenTime(eventName: "/courses/\(viewModel.courseID))")
     }
 
     @ViewBuilder

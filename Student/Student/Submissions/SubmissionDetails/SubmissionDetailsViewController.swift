@@ -20,13 +20,21 @@ import Foundation
 import UIKit
 import Core
 
-class SubmissionDetailsViewController: ScreenViewLoggerViewController, SubmissionDetailsViewProtocol {
+class SubmissionDetailsViewController: ScreenViewTrackableViewController, SubmissionDetailsViewProtocol {
     var color: UIColor?
     var presenter: SubmissionDetailsPresenter?
     var titleSubtitleView = TitleSubtitleView.create()
     var contentViewController: UIViewController?
     var drawerContentViewController: UIViewController?
     var env: AppEnvironment?
+    public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
+        let courseID = presenter?.course.first?.id ?? ""
+        let assignmentID = presenter?.assignmentID ?? ""
+        let submissionID = presenter?.submissions.first?.id ?? ""
+        return ScreenViewTrackingParameters(
+            eventName: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(submissionID)"
+        )
+    }()
 
     private lazy var setDrawerPositionOnce: () = {
         drawer?.setMiddle()
@@ -67,11 +75,6 @@ class SubmissionDetailsViewController: ScreenViewLoggerViewController, Submissio
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
-        if let courseID = presenter?.course.first?.id,
-           let assignmentID = presenter?.assignmentID,
-           let submissionID = presenter?.submissions.first?.id {
-            trackScreenTime(eventName: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(submissionID)")
-        }
         presenter?.viewIsReady()
     }
 

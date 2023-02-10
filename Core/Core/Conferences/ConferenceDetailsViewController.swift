@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class ConferenceDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
+public class ConferenceDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var detailsHeadingLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
@@ -36,6 +36,9 @@ public class ConferenceDetailsViewController: ScreenViewLoggerViewController, Co
     public var color: UIColor?
     var conferenceID: String = ""
     var context = Context.currentUser
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/conferences/\(conferenceID)"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -89,7 +92,6 @@ public class ConferenceDetailsViewController: ScreenViewLoggerViewController, Co
             group.refresh()
         }
         refresh()
-        trackScreenTime(eventName: "\(context.pathComponent)/conferences/\(conferenceID)")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

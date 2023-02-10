@@ -22,7 +22,7 @@ public enum ErrorReportType: String {
     case problem, feature
 }
 
-public class ErrorReportViewController: ScreenViewLoggerViewController {
+public class ErrorReportViewController: ScreenViewTrackableViewController {
     @IBOutlet weak var backgroundColorView: UIView?
     @IBOutlet weak var commentsField: UITextView?
     weak var commentsMinHeight: NSLayoutConstraint?
@@ -42,6 +42,7 @@ public class ErrorReportViewController: ScreenViewLoggerViewController {
     var keyboard: KeyboardTransitioning?
     var initialSubject: String?
     var type: ErrorReportType = .problem
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/support/problem")
 
     var selectedImpact: IndexPath?
     let impacts = [ ItemPickerSection(items: [
@@ -123,7 +124,6 @@ public class ErrorReportViewController: ScreenViewLoggerViewController {
 
         commentsMinHeight = commentsField?.heightAnchor.constraint(greaterThanOrEqualTo: scrollView!.heightAnchor)
         commentsMinHeight?.isActive = true
-        trackScreenTime(eventName: "/support/problem")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

@@ -18,4 +18,28 @@
 
 import Foundation
 
-class PresenterPageViewLogger: PageViewEventViewControllerLoggingProtocol {}
+class PresenterPageViewLogger: PageViewEventViewControllerLoggingProtocol {
+    private let parameters: ScreenViewTrackingParameters
+    private var startDate: Date?
+
+    public init(parameters: ScreenViewTrackingParameters) {
+        self.parameters = parameters
+    }
+
+    func startTrackingTimeOnViewController() {
+        startDate = Clock.now
+        print("✴️ starting: \(parameters.eventName)", startDate, Unmanaged.passUnretained(self).toOpaque())
+        print("==")
+    }
+
+    func stopTrackingTimeOnViewController() {
+        guard let startDate else {
+            print("✴️ not found: \(parameters.eventName)", Unmanaged.passUnretained(self).toOpaque())
+            return
+        }
+        let duration = Clock.now.timeIntervalSince(startDate)
+        print("✴️ ScreenTime logged: \(parameters.eventName), duration: \(duration)")
+        PageViewEventController.instance.logPageView(parameters.eventName, attributes: parameters.attributes, eventDurationInSeconds: duration)
+    }
+
+}

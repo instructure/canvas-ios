@@ -18,8 +18,10 @@
 
 import UIKit
 
-public class ProfileSettingsViewController: ScreenViewLoggerViewController {
+public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     let env = AppEnvironment.shared
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/profile/settings")
+
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
 
@@ -73,7 +75,6 @@ public class ProfileSettingsViewController: ScreenViewLoggerViewController {
         tableView.sectionFooterHeight = 0
         tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
-        trackScreenTime(eventName: "/profile/settings")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

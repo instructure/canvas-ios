@@ -19,7 +19,7 @@
 import UIKit
 import CoreData
 
-public class QuizListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
+public class QuizListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -33,6 +33,9 @@ public class QuizListViewController: ScreenViewLoggerViewController, ColoredNavV
     var courseID = ""
     let env = AppEnvironment.shared
     var selectedFirstQuiz: Bool = false
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "courses/\(courseID)/quizzes"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -71,7 +74,6 @@ public class QuizListViewController: ScreenViewLoggerViewController, ColoredNavV
         colors.refresh()
         course.refresh()
         quizzes.exhaust()
-        trackScreenTime(eventName: "courses/\(courseID)/quizzes")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

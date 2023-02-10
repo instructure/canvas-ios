@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-public class CreateTodoViewController: ScreenViewLoggerViewController, ErrorViewController {
+public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorViewController {
 
     @IBOutlet weak var titleLabel: DynamicTextField!
     @IBOutlet weak var dateTitleLabel: DynamicLabel!
@@ -34,6 +34,8 @@ public class CreateTodoViewController: ScreenViewLoggerViewController, ErrorView
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/calendar/new")
+
     var createPlannerNote: Store<CreatePlannerNote>?
     var selectedDate: Date? {
         didSet {
@@ -79,7 +81,6 @@ public class CreateTodoViewController: ScreenViewLoggerViewController, ErrorView
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
         keyboardListener = KeyboardTransitioning(view: view, space: scrollViewBottomConstraint)
-        trackScreenTime(eventName: "/calendar/new")
     }
 
     @objc func actionDone() {

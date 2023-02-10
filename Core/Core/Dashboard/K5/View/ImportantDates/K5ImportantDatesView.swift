@@ -18,8 +18,9 @@
 
 import SwiftUI
 
-public struct K5ImportantDatesView: View {
+public struct K5ImportantDatesView: View, ScreenViewTrackable {
     @ObservedObject var viewModel: K5ImportantDatesViewModel
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/important-dates")
 
     public init(viewModel: K5ImportantDatesViewModel) {
         self.viewModel = viewModel
@@ -55,7 +56,6 @@ public struct K5ImportantDatesView: View {
                 }
             }
         }
-        .trackScreenTime(eventName: "/important-dates")
     }
 
     @ViewBuilder var importantDatesList: some View {

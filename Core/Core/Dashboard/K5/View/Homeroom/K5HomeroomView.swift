@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct K5HomeroomView: View {
+public struct K5HomeroomView: View, ScreenViewTrackable {
     @Environment(\.horizontalPadding) private var horizontalPadding
     @ObservedObject private var viewModel: K5HomeroomViewModel
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/courses")
 
     public init(viewModel: K5HomeroomViewModel) {
         self.viewModel = viewModel
@@ -51,7 +52,6 @@ public struct K5HomeroomView: View {
         } refreshAction: { endRefreshing in
             viewModel.refresh(completion: endRefreshing)
         }
-        .trackScreenTime(eventName: "/courses")
     }
 
     private var conferences: some View {

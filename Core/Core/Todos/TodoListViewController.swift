@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public class TodoListViewController: ScreenViewLoggerViewController, ErrorViewController {
+public class TodoListViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet weak var emptyDescLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -30,7 +30,10 @@ public class TodoListViewController: ScreenViewLoggerViewController, ErrorViewCo
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
 
     let env = AppEnvironment.shared
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/to-do",
+        attributes: ["customPageViewPath": "/"]
+    )
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
        self?.update()
     }
@@ -73,7 +76,6 @@ public class TodoListViewController: ScreenViewLoggerViewController, ErrorViewCo
         courses.exhaust()
         groups.exhaust()
         todos.exhaust(force: true)
-        trackScreenTime(eventName: "/to-do", attributes: ["customPageViewPath": "/"])
     }
 
     public override func viewWillAppear(_ animated: Bool) {

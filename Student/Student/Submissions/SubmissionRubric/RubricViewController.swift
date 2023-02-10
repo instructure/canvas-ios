@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class RubricViewController: ScreenViewLoggerViewController {
+class RubricViewController: UIViewController {
 
     let ratingContainerTag = 100
     let ratingTitleTag = 200

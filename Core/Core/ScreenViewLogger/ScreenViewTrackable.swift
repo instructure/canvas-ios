@@ -16,37 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-public extension View {
-    func trackScreenTime(
-        eventName: String,
-        attributes: [String: String] = [:]
-    ) -> some View {
-        modifier(
-            ScrenViewLoggerModifier(
-                eventName: eventName,
-                attributes: attributes
-            )
-        )
-    }
+public protocol ScreenViewTrackable {
+    var screenViewTrackingParameters: ScreenViewTrackingParameters { get }
 }
 
-private struct ScrenViewLoggerModifier: ViewModifier {
-    private let pageViewLogger = AppEnvironment.shared.pageViewLogger
+public struct ScreenViewTrackingParameters {
     let eventName: String
     let attributes: [String: String]
 
-    func body(content: Content) -> some View {
-        content
-            .onAppear {
-                pageViewLogger.startTrackingTimeOnViewController()
-            }
-            .onDisappear {
-                pageViewLogger.stopTrackingTimeOnViewController(
-                    eventName: eventName,
-                    attributes: attributes
-                )
-            }
+    public init(eventName: String, attributes: [String: String] = [:]) {
+        self.eventName = eventName
+        self.attributes = attributes
     }
 }

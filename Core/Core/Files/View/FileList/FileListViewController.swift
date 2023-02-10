@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class FileListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
+public class FileListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -46,6 +46,14 @@ public class FileListViewController: ScreenViewLoggerViewController, ColoredNavV
     var path = ""
     var searchTerm: String?
     var results: [APIFile] = []
+
+    public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
+        var eventName = "\(context == .currentUser ? "" : context.pathComponent)/files"
+        if !path.isEmpty {
+            eventName += "/folder/\(path)"
+        }
+        return ScreenViewTrackingParameters(eventName: eventName)
+    }()
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -106,13 +114,6 @@ public class FileListViewController: ScreenViewLoggerViewController, ColoredNavV
         course?.refresh()
         group?.refresh()
         folder.refresh()
-
-        var eventName = "\(context == .currentUser ? "" : context.pathComponent)/files"
-        if !path.isEmpty {
-            eventName += "/folder/\(path)"
-        }
-        trackScreenTime(eventName: eventName)
-
     }
 
     public override func viewWillAppear(_ animated: Bool) {

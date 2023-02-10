@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentDetailsViewController: ScreenViewLoggerViewController, ErrorViewController {
+class StudentDetailsViewController: ScreenViewTrackerViewController, ErrorViewController {
     @IBOutlet var alertFields: [UITextField]!
     @IBOutlet weak var alertHeaderLabel: UILabel!
     @IBOutlet var alertLabels: [UILabel]!

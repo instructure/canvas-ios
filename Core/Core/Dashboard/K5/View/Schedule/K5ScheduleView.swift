@@ -18,9 +18,11 @@
 
 import SwiftUI
 
-public struct K5ScheduleView: View {
+public struct K5ScheduleView: View, ScreenViewTrackable {
     @ObservedObject var viewModel: K5ScheduleViewModel
     @Environment(\.horizontalPadding) private var horizontalPadding
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/schedule")
+
     @State private var currentPageIndex: Int = 0
     @State private var pagerProxy = HorizontalPagerProxy()
     private let animation = Animation.easeOut(duration: 0.2)
@@ -38,7 +40,6 @@ public struct K5ScheduleView: View {
             Divider()
             pageSwitcherButtons
         }
-        .trackScreenTime(eventName: "/schedule")
     }
 
     private var pageSwitcherButtons: some View {

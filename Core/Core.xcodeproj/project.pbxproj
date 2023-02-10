@@ -2162,8 +2162,7 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
-		B41E37B3298AA8F600C93966 /* ScreenViewLoggerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E37B2298AA8F600C93966 /* ScreenViewLoggerModifier.swift */; };
-		B41E37B5298AB3AA00C93966 /* ScreenViewLoggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E37B4298AB3AA00C93966 /* ScreenViewLoggerViewController.swift */; };
+		B41E37B5298AB3AA00C93966 /* ScreenViewTrackableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E37B4298AB3AA00C93966 /* ScreenViewTrackableViewController.swift */; };
 		B434277228CB65070015D597 /* FileSubmissionCleanupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */; };
 		B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */; };
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
@@ -2182,6 +2181,7 @@
 		B4F0B08C292D01F000A3B41B /* GetEnvironmentFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0B08B292D01F000A3B41B /* GetEnvironmentFeatureFlagsTests.swift */; };
 		B4F523AF28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */; };
 		B4F523B128E4732D001A16BC /* DeterminateBarProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F523B028E4732D001A16BC /* DeterminateBarProgressViewStyle.swift */; };
+		B4FE941B29951E5F009B1703 /* ScreenViewTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FE941A29951E5F009B1703 /* ScreenViewTrackable.swift */; };
 		CEB57AE8286B32BB00F4BFC8 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */; };
 		CEF0D1462837D571005867EF /* ContextCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */; };
 		CEF0D1472837D571005867EF /* ContextCellBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */; };
@@ -5331,8 +5331,7 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
-		B41E37B2298AA8F600C93966 /* ScreenViewLoggerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewLoggerModifier.swift; sourceTree = "<group>"; };
-		B41E37B4298AB3AA00C93966 /* ScreenViewLoggerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewLoggerViewController.swift; sourceTree = "<group>"; };
+		B41E37B4298AB3AA00C93966 /* ScreenViewTrackableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewTrackableViewController.swift; sourceTree = "<group>"; };
 		B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionCleanupTests.swift; sourceTree = "<group>"; };
 		B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModel.swift; sourceTree = "<group>"; };
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
@@ -5351,6 +5350,7 @@
 		B4F0B08B292D01F000A3B41B /* GetEnvironmentFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnvironmentFeatureFlagsTests.swift; sourceTree = "<group>"; };
 		B4F523AE28E47323001A16BC /* IndeterminateBarProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateBarProgressViewStyle.swift; sourceTree = "<group>"; };
 		B4F523B028E4732D001A16BC /* DeterminateBarProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateBarProgressViewStyle.swift; sourceTree = "<group>"; };
+		B4FE941A29951E5F009B1703 /* ScreenViewTrackable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewTrackable.swift; sourceTree = "<group>"; };
 		CEB57AE7286B32BB00F4BFC8 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		CEF0D1442837D571005867EF /* ContextCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCellBackgroundView.swift; sourceTree = "<group>"; };
 		CEF0D1452837D571005867EF /* ContextCellBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextCellBackgroundView.xib; sourceTree = "<group>"; };
@@ -7607,8 +7607,8 @@
 		B4F8142F2993CEE900A54954 /* ScreenViewLogger */ = {
 			isa = PBXGroup;
 			children = (
-				B41E37B2298AA8F600C93966 /* ScreenViewLoggerModifier.swift */,
-				B41E37B4298AB3AA00C93966 /* ScreenViewLoggerViewController.swift */,
+				B41E37B4298AB3AA00C93966 /* ScreenViewTrackableViewController.swift */,
+				B4FE941A29951E5F009B1703 /* ScreenViewTrackable.swift */,
 			);
 			path = ScreenViewLogger;
 			sourceTree = "<group>";
@@ -11633,7 +11633,6 @@
 				7D7F71D6241C2A5A00D6F9CB /* ConferenceListViewController.swift in Sources */,
 				7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */,
 				CF3A31DD28F840DA002752D2 /* InboxMessageView.swift in Sources */,
-				B41E37B3298AA8F600C93966 /* ScreenViewLoggerModifier.swift in Sources */,
 				D91BC855276B7B3C008371B0 /* AssignmentListViewModel.swift in Sources */,
 				CF3A31DB28F83D39002752D2 /* InboxView.swift in Sources */,
 				7DA25FC523F72136005D2121 /* APIPermissions.swift in Sources */,
@@ -11987,6 +11986,7 @@
 				3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */,
 				7DA260F123F72391005D2121 /* FileUploadTarget.swift in Sources */,
 				CF854B1A2721A49700AACDC8 /* iOS15ListRowSeparator.swift in Sources */,
+				B4FE941B29951E5F009B1703 /* ScreenViewTrackable.swift in Sources */,
 				7DA25F9D23F72136005D2121 /* APIAssignmentGroup.swift in Sources */,
 				7DA2602E23F722C2005D2121 /* LoginStartViewController.swift in Sources */,
 				7DA2606223F722D9005D2121 /* SubmissionComment.swift in Sources */,
@@ -11999,7 +11999,7 @@
 				EB75D49627903BA600AA273C /* K5ImportantDatesViewModel.swift in Sources */,
 				7DA25FF623F72268005D2121 /* CommentListViewController.swift in Sources */,
 				7DA25FB023F72136005D2121 /* APIExternalTool.swift in Sources */,
-				B41E37B5298AB3AA00C93966 /* ScreenViewLoggerViewController.swift in Sources */,
+				B41E37B5298AB3AA00C93966 /* ScreenViewTrackableViewController.swift in Sources */,
 				7DA2608F23F72315005D2121 /* HelpLink.swift in Sources */,
 				7DA260ED23F7235F005D2121 /* WrongAppViewController.swift in Sources */,
 				7DA260D923F72359005D2121 /* FilterHeaderView.swift in Sources */,

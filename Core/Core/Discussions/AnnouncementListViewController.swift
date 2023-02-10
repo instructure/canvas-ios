@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class AnnouncementListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
+public class AnnouncementListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(add))
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -32,6 +32,8 @@ public class AnnouncementListViewController: ScreenViewLoggerViewController, Col
     public var color: UIColor?
     var context = Context.currentUser
     let env = AppEnvironment.shared
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "\(context.pathComponent)/announcements")
+
     var selectedFirstTopic: Bool = false
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -85,7 +87,6 @@ public class AnnouncementListViewController: ScreenViewLoggerViewController, Col
         if context.contextType != .group {
             featureFlags.refresh()
         }
-        trackScreenTime(eventName: "\(context.pathComponent)/announcements")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

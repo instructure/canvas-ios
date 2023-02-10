@@ -19,7 +19,7 @@
 import Core
 import UIKit
 
-class AssignmentDetailsViewController: ScreenViewLoggerViewController, AssignmentDetailsViewProtocol {
+class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
@@ -82,7 +82,9 @@ class AssignmentDetailsViewController: ScreenViewLoggerViewController, Assignmen
     var courseID = ""
     let env = AppEnvironment.shared
     var fragment: String?
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
+    )
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
@@ -156,7 +158,6 @@ class AssignmentDetailsViewController: ScreenViewLoggerViewController, Assignmen
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
 
-        trackScreenTime(eventName: "/courses/\(courseID)/assignments/\(assignmentID)")
         presenter?.viewIsReady()
     }
 

@@ -37,7 +37,6 @@ open class AppEnvironment {
     public var logger: LoggerProtocol
     public var router: Router
     public var currentSession: LoginSession?
-    public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults? {
         didSet {
             k5.sessionDefaults = userDefaults

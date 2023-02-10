@@ -23,7 +23,7 @@ import QuickLook
 import QuickLookThumbnailing
 import UIKit
 
-public class FileDetailsViewController: ScreenViewLoggerViewController, CoreWebViewLinkDelegate, ErrorViewController {
+public class FileDetailsViewController: ScreenViewTrackableViewController, CoreWebViewLinkDelegate, ErrorViewController {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var arButton: UIButton!
     @IBOutlet weak var arImageView: UIImageView!
@@ -51,7 +51,9 @@ public class FileDetailsViewController: ScreenViewLoggerViewController, CoreWebV
     var localURL: URL?
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
     var originURL: URLComponents?
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context?.pathComponent ?? "")/files/\(fileID)"
+    )
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
@@ -102,7 +104,6 @@ public class FileDetailsViewController: ScreenViewLoggerViewController, CoreWebV
 
         view.layoutIfNeeded()
         files.refresh()
-        trackScreenTime(eventName: "\(context?.pathComponent ?? "")/files/\(fileID)")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

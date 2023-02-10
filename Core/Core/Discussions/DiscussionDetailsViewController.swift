@@ -19,7 +19,7 @@
 import UIKit
 import WebKit
 
-public class DiscussionDetailsViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
+public class DiscussionDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
     @IBOutlet weak var courseSectionsView: UIView!
     @IBOutlet weak var courseSectionsLabel: UILabel!
     @IBOutlet weak var dueSection: UIView!
@@ -54,6 +54,10 @@ public class DiscussionDetailsViewController: ScreenViewLoggerViewController, Co
     var topicID = ""
     private var newReplyIDFromCurrentUser: String?
     private var isContentLargerThanView: Bool { webView.scrollView.contentSize.height > view.frame.size.height }
+
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)"
+    )
 
     var assignment: Store<GetAssignment>?
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -165,7 +169,6 @@ public class DiscussionDetailsViewController: ScreenViewLoggerViewController, Co
         entries.refresh()
         permissions.refresh()
         groups.exhaust(force: true)
-        trackScreenTime(eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

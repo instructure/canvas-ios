@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PageListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
+public class PageListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -34,6 +34,9 @@ public class PageListViewController: ScreenViewLoggerViewController, ColoredNavV
     var context = Context.currentUser
     let env = AppEnvironment.shared
     var selectedFirstPage: Bool = false
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/pages"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -87,7 +90,6 @@ public class PageListViewController: ScreenViewLoggerViewController, ColoredNavV
             course.refresh()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(pageCreated), name: Notification.Name("page-created"), object: nil)
-        trackScreenTime(eventName: "\(context.pathComponent)/pages")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

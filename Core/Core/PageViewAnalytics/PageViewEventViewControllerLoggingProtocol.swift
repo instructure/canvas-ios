@@ -22,41 +22,44 @@ private var tagAssociationStartKey: UInt8 = 0
 private var tagAssociationEndKey: UInt8 = 0
 
 public protocol PageViewEventViewControllerLoggingProtocol: AnyObject {
-    var timeOnViewControllerStart: Date? { get set }
-    var timeOnViewControllerEnd: Date? { get set }
+//    var timeOnViewControllerStart: Date? { get set }
+//    var timeOnViewControllerEnd: Date? { get set }
     func startTrackingTimeOnViewController()
-    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String])
+    func stopTrackingTimeOnViewController()
 }
 
 public extension PageViewEventViewControllerLoggingProtocol {
 
-    var timeOnViewControllerStart: Date? {
-        get {
-            return objc_getAssociatedObject(self, &tagAssociationStartKey) as? Date
-        }
-        set(newValue) {
-            objc_setAssociatedObject(self, &tagAssociationStartKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-        }
-    }
-
-    var timeOnViewControllerEnd: Date? {
-        get {
-            return objc_getAssociatedObject(self, &tagAssociationEndKey) as? Date
-        }
-        set(newValue) {
-            objc_setAssociatedObject(self, &tagAssociationEndKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-        }
-    }
-
-    // MARK: - Measure time spent on view controller
-    func startTrackingTimeOnViewController() {
-        timeOnViewControllerStart = Clock.now
-    }
-
-    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String] = [:]) {
-        timeOnViewControllerEnd = Clock.now
-        guard let start = timeOnViewControllerStart, let end = timeOnViewControllerEnd else { return }
-        let duration = end.timeIntervalSince(start)
-        PageViewEventController.instance.logPageView(eventName, attributes: attributes, eventDurationInSeconds: duration)
-    }
+//    var timeOnViewControllerStart: Date? {
+//        get {
+//            return objc_getAssociatedObject(self, &tagAssociationStartKey) as? Date
+//        }
+//        set(newValue) {
+//            objc_setAssociatedObject(self, &tagAssociationStartKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+//        }
+//    }
+//
+//    var timeOnViewControllerEnd: Date? {
+//        get {
+//            return objc_getAssociatedObject(self, &tagAssociationEndKey) as? Date
+//        }
+//        set(newValue) {
+//            objc_setAssociatedObject(self, &tagAssociationEndKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+//        }
+//    }
+//
+//    // MARK: - Measure time spent on view controller
+//    func startTrackingTimeOnViewController() {
+//        timeOnViewControllerStart = Clock.now
+//        print("💚", timeOnViewControllerStart)
+//    }
+//
+//    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String] = [:]) {
+//        timeOnViewControllerEnd = Clock.now
+//        guard let start = timeOnViewControllerStart, let end = timeOnViewControllerEnd else { return }
+//        let duration = end.timeIntervalSince(start)
+//        print("💙 ", duration)
+//
+//        PageViewEventController.instance.logPageView(eventName, attributes: attributes, eventDurationInSeconds: duration)
+//    }
 }

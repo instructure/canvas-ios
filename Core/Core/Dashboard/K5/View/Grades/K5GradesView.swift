@@ -18,8 +18,10 @@
 
 import SwiftUI
 
-struct K5GradesView: View {
+struct K5GradesView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: K5GradesViewModel
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/grades")
+
     @State var gradeSelectorOpen = false
 
     init(viewModel: K5GradesViewModel) {
@@ -46,7 +48,6 @@ struct K5GradesView: View {
                 gradeSelectorOpen = false
             }
         }
-        .trackScreenTime(eventName: "/grades")
     }
 
     private var gradingPeriodSelector: some View {

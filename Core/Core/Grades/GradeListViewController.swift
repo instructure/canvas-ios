@@ -22,7 +22,7 @@ public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
 }
 
-public class GradeListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
+public class GradeListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -60,6 +60,9 @@ public class GradeListViewController: ScreenViewLoggerViewController, ColoredNav
     var gradingPeriodID: String?
     var gradingPeriodLoaded = false
     var userID: String?
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courseID)/grades"
+    )
 
     lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
         self?.update()
@@ -121,7 +124,6 @@ public class GradeListViewController: ScreenViewLoggerViewController, ColoredNav
         courses.refresh()
         enrollments.refresh()
         gradingPeriods.refresh(force: true)
-        trackScreenTime(eventName: "/courses/\(courseID)/grades")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

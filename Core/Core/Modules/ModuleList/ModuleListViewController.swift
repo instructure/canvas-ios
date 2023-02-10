@@ -19,7 +19,7 @@
 import Foundation
 import SafariServices
 
-public class ModuleListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
+public class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -33,6 +33,9 @@ public class ModuleListViewController: ScreenViewLoggerViewController, ColoredNa
     public var color: UIColor?
     var courseID = ""
     var moduleID: String?
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courses.first?.id ?? "")/modules"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.reloadCourse()
@@ -98,7 +101,6 @@ public class ModuleListViewController: ScreenViewLoggerViewController, ColoredNa
         colors.refresh()
         modules.refresh()
         tabs.refresh()
-        trackScreenTime(eventName: "/courses/\(courses.first?.id ?? "")/modules")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

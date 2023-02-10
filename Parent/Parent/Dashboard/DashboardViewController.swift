@@ -20,7 +20,7 @@ import UIKit
 import CoreData
 import Core
 
-class DashboardViewController: ScreenViewLoggerViewController, ErrorViewController {
+class DashboardViewController: ScreenViewTrackerViewController, ErrorViewController {
     @IBOutlet weak var addStudentView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var studentListStack: UIStackView!

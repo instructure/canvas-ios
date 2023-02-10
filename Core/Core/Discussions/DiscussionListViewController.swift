@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class DiscussionListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol, ErrorViewController {
+public class DiscussionListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(add))
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -33,6 +33,9 @@ public class DiscussionListViewController: ScreenViewLoggerViewController, Color
     var context = Context.currentUser
     let env = AppEnvironment.shared
     var selectedFirstTopic: Bool = false
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/discussion_topics"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -87,7 +90,6 @@ public class DiscussionListViewController: ScreenViewLoggerViewController, Color
         if context.contextType != .group {
             featureFlags.refresh()
         }
-        trackScreenTime(eventName: "\(context.pathComponent)/discussion_topics")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

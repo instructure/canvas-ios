@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentListViewController: ScreenViewLoggerViewController {
+class StudentListViewController: ScreenViewTrackerViewController {
     lazy var addStudentButton = UIBarButtonItem(
         image: .addSolid,
         style: .plain,

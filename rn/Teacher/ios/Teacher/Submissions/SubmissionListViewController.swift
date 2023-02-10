@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class SubmissionListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
+class SubmissionListViewController: ScreenViewTrackerViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!

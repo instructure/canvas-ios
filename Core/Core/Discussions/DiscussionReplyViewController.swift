@@ -20,7 +20,7 @@ import Foundation
 import QuickLook
 import UIKit
 
-public class DiscussionReplyViewController: ScreenViewLoggerViewController, ErrorViewController, RichContentEditorDelegate {
+public class DiscussionReplyViewController: ScreenViewTrackableViewController, ErrorViewController, RichContentEditorDelegate {
     lazy var contentHeight = webView.heightAnchor.constraint(equalToConstant: 0)
     var contentHeightObs: NSKeyValueObservation?
     @IBOutlet weak var editorContainer: UIView!
@@ -83,7 +83,9 @@ public class DiscussionReplyViewController: ScreenViewLoggerViewController, Erro
     var replyToEntryID: String?
     var rceCanSubmit = false
     var topicID = ""
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/discussion_topics/\(topicID)/reply"
+    )
     lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
@@ -161,7 +163,6 @@ public class DiscussionReplyViewController: ScreenViewLoggerViewController, Erro
         }
         replyToEntry?.refresh()
         topic.refresh()
-        trackScreenTime(eventName: "\(context.pathComponent)/discussion_topics/\(topicID)/reply")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

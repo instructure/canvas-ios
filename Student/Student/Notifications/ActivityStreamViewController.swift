@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ActivityStreamViewController: ScreenViewLoggerViewController {
+class ActivityStreamViewController: ScreenViewTrackableViewController {
 
     struct Info {
         let name: String?
@@ -55,6 +55,9 @@ class ActivityStreamViewController: ScreenViewLoggerViewController {
 
     var courseCache: [String: Info] = [:]
     var context: Context?
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/notifications", attributes: ["customPageViewPath": "/"]
+    )
 
     static func create(context: Context? = nil) -> ActivityStreamViewController {
         let vc = loadFromStoryboard()
@@ -71,7 +74,6 @@ class ActivityStreamViewController: ScreenViewLoggerViewController {
         emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")
         emptyStateSubHeader.text = NSLocalizedString("There's nothing to be notified of yet.", comment: "")
         refreshData()
-        trackScreenTime(eventName: "/notifications", attributes: ["customPageViewPath": "/"])
     }
 
     override func viewWillAppear(_ animated: Bool) {

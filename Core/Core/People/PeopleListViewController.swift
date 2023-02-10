@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PeopleListViewController: ScreenViewLoggerViewController, ColoredNavViewProtocol {
+public class PeopleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -39,6 +39,9 @@ public class PeopleListViewController: ScreenViewLoggerViewController, ColoredNa
     }
     var keyboard: KeyboardTransitioning?
     var search: String?
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/users"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -95,8 +98,6 @@ public class PeopleListViewController: ScreenViewLoggerViewController, ColoredNa
                     .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
             }
         }
-
-        trackScreenTime(eventName: "\(context.pathComponent)/users")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

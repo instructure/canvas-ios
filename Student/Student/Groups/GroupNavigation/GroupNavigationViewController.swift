@@ -19,11 +19,12 @@
 import UIKit
 import Core
 
-class GroupNavigationViewController: ScreenViewLoggerTableViewController, ColoredNavViewProtocol, ErrorViewController {
+class GroupNavigationViewController: ScreenViewTrackableTableViewController, ColoredNavViewProtocol, ErrorViewController {
     let env = AppEnvironment.shared
     var context = Context.currentUser
     var color: UIColor?
     let titleSubtitleView = TitleSubtitleView.create()
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/\(context.pathComponent)")
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -56,7 +57,6 @@ class GroupNavigationViewController: ScreenViewLoggerTableViewController, Colore
         groups.refresh()
         tabs.exhaust()
         update()
-        trackScreenTime(eventName: "/\(context.pathComponent)")
     }
 
     override func viewWillAppear(_ animated: Bool) {

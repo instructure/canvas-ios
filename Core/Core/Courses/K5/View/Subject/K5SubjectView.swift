@@ -19,11 +19,13 @@
 import SwiftUI
 import WebKit
 
-public struct K5SubjectView: View {
+public struct K5SubjectView: View, ScreenViewTrackable {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel: K5SubjectViewModel
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
     private var padding: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
@@ -51,11 +53,11 @@ public struct K5SubjectView: View {
         }
         .navigationBarStyle(.color(self.viewModel.courseColor))
         .navigationTitle(self.viewModel.courseTitle ?? "", subtitle: nil)
-        .trackScreenTime(eventName: "/courses/\(viewModel.courseID)")
     }
 
     public init(context: Context, selectedTabId: String? = nil) {
         self.viewModel = K5SubjectViewModel(context: context, selectedTabId: selectedTabId)
+        self.screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "\(context.pathComponent)")
         self.controller.value.navigationController?.navigationBar.tintColor = self.viewModel.courseColor
     }
 }
