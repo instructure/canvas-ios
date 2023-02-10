@@ -324,7 +324,8 @@ class SubmissionDetailsTests: CoreUITestCase {
                 url: nil,
                 assignmentID: assignment.id.value,
                 moduleItemID: nil,
-                launchType: .assessment
+                launchType: .assessment,
+                resourceLinkLookupUUID: nil
             ),
             value: .make()
         )

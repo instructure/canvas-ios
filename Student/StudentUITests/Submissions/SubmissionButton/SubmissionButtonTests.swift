@@ -53,7 +53,8 @@ class SubmissionButtonTests: CoreUITestCase {
             url: nil,
             assignmentID: assignment.id.value,
             moduleItemID: nil,
-            launchType: .assessment
+            launchType: .assessment,
+            resourceLinkLookupUUID: nil
         ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -70,7 +71,8 @@ class SubmissionButtonTests: CoreUITestCase {
             url: nil,
             assignmentID: assignment.id.value,
             moduleItemID: nil,
-            launchType: .assessment
+            launchType: .assessment,
+            resourceLinkLookupUUID: nil
         ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
