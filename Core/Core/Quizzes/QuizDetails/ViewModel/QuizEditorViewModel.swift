@@ -32,7 +32,6 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     @Published public var quizType: QuizType = .assignment
     @Published public var published: Bool = false
     @Published public var assignmentGroup: AssignmentGroup?
-    @Published public var assignmentGroups: [AssignmentGroup] = []
     @Published public var shuffleAnswers: Bool = false
     @Published public var timeLimit: Bool = false
     @Published public var lengthInMinutes: Double?
@@ -49,11 +48,11 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
         quiz?.published == false || quiz?.unpublishable == true
     }
 
-    public var availableQuizTypes = [QuizType.assignment, QuizType.practice_quiz, QuizType.graded_survey, QuizType.survey]
-
     private let quizID: String
     private var assignmentID: String?
     private var quiz: Quiz?
+    private let availableQuizTypes = [QuizType.assignment, QuizType.practice_quiz, QuizType.graded_survey, QuizType.survey]
+    private var assignmentGroups: [AssignmentGroup] = []
     private let showErrorPopupSubject = PassthroughSubject<UIAlertController, Never>()
     private let env = AppEnvironment.shared
 
@@ -125,7 +124,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             lengthInMinutes = timeLimit
         }
 
-        /* Scoring policy only registers on the API, if alloweed attempts > 1 */
+        /* Scoring policy only registers on the API, if allowed attempts > 1 */
         allowMultipleAttempts = ![0, 1].contains(quiz.allowedAttempts)
         scoreToKeep = quiz.scoringPolicy
         allowedAttempts = quiz.allowedAttempts < 2 ? nil : quiz.allowedAttempts
@@ -190,22 +189,64 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             title: title
         )
 
-        UpdateQuiz(courseID: courseID, quizID: quizID, quiz: quizParams)
-            .fetch { [weak self] result, _, error in performUIUpdate {
+        let request = PutQuizRequest(courseID: courseID, quizID: quizID, body: .init(quiz: quizParams))
+        env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
                 guard let self = self else { return }
                 if error != nil {
                     self.state = .ready
                     let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
                     self.showError(title: errorMessage)
                     return
-                }
-                if result != nil {
+                } else {
                     GetQuiz(courseID: self.courseID, quizID: self.quizID)
                         .fetch(force: true)
                     self.saveAssignment(router: router, viewController: viewController)
                 }
             }
         }
+    }
+
+    public func quizTypeTapped(router: Router, viewController: WeakViewController) {
+        let options = availableQuizTypes
+        router.show(ItemPickerViewController.create(
+            title: NSLocalizedString("Quiz Type", comment: ""),
+            sections: [ ItemPickerSection(items: options.map {
+                ItemPickerItem(title: $0.name)
+            }), ],
+            selected: options.firstIndex(of: quizType).flatMap {
+                IndexPath(row: $0, section: 0)
+            },
+            didSelect: { self.quizType = options[$0.row] }
+        ), from: viewController)
+    }
+
+    public func assignmentGroupTapped(router: Router, viewController: WeakViewController) {
+        guard let selectedGroup = assignmentGroup else { return}
+        let options = assignmentGroups
+        router.show(ItemPickerViewController.create(
+            title: NSLocalizedString("Assignment Group", comment: ""),
+            sections: [ ItemPickerSection(items: options.map {
+                ItemPickerItem(title: $0.name)
+            }), ],
+            selected: options.firstIndex(of: selectedGroup).flatMap {
+                IndexPath(row: $0, section: 0)
+            },
+            didSelect: { self.assignmentGroup = options[$0.row] }
+        ), from: viewController)
+    }
+
+    public func scoreToKeepTapped(router: Router, viewController: WeakViewController) {
+        let options = ScoringPolicy.allCases
+        router.show(ItemPickerViewController.create(
+            title: NSLocalizedString("Quiz Score to Keep", comment: ""),
+            sections: [ ItemPickerSection(items: options.map {
+                ItemPickerItem(title: $0.text)
+            }), ],
+            selected: options.firstIndex(of: scoreToKeep ?? ScoringPolicy.keep_highest).flatMap {
+                IndexPath(row: $0, section: 0)
+            },
+            didSelect: { self.scoreToKeep = options[$0.row] }
+        ), from: viewController)
     }
 
     func saveAssignment(router: Router, viewController: WeakViewController) {

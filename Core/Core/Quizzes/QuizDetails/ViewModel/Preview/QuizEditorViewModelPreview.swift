@@ -33,7 +33,6 @@ public class QuizEditorViewModelPreview: QuizEditorViewModelProtocol {
     public var quizType: QuizType = .assignment
     public var published: Bool = false
     public var assignmentGroup: AssignmentGroup?
-    public var assignmentGroups: [AssignmentGroup] = []
     public var shuffleAnswers: Bool = false
     public var timeLimit: Bool = false
     public var lengthInMinutes: Double?
@@ -46,7 +45,6 @@ public class QuizEditorViewModelPreview: QuizEditorViewModelProtocol {
     public var accessCode: String = ""
     public var assignmentOverrides: [AssignmentOverridesEditor.Override] = []
     public var shouldShowPublishedToggle: Bool = true
-    public var availableQuizTypes: [QuizType] = []
 
     public init(
         state: QuizEditorViewModelState,
@@ -91,6 +89,9 @@ public class QuizEditorViewModelPreview: QuizEditorViewModelProtocol {
     }
 
     public func doneTapped(router: Router, viewController: WeakViewController) {}
+    public func quizTypeTapped(router: Router, viewController: WeakViewController) {}
+    public func assignmentGroupTapped(router: Router, viewController: WeakViewController) {}
+    public func scoreToKeepTapped(router: Router, viewController: WeakViewController) {}
 }
 
 #endif

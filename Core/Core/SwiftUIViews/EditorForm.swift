@@ -203,7 +203,7 @@ public struct ToggleRow: View {
 
     public init(label: Text, value: Binding<Bool>) {
         self.label = label
-        self._value = value
+        self._value = value.animation()
     }
 
     public var body: some View {

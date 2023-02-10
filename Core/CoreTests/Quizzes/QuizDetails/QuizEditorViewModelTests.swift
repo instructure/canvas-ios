@@ -147,7 +147,7 @@ class QuizEditorViewModelTests: CoreTestCase {
                 XCTAssertEqual(expectedBody, body)
                 apiExpectation.fulfill()
             }
-            return (APIQuiz.make(), nil, nil)
+            return (nil, nil, nil)
         }
 
         testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
@@ -221,6 +221,34 @@ class QuizEditorViewModelTests: CoreTestCase {
         testee.saveAssignment(router: router, viewController: WeakViewController(UIViewController()))
 
         XCTAssertNotNil(router.dismissed)
+    }
+
+    func testQuizTypeTapped() {
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        testee.quizTypeTapped(router: router, viewController: WeakViewController(UIViewController()))
+
+        XCTAssertEqual((router.lastViewController as? ItemPickerViewController)?.title, "Quiz Type")
+
+        router.viewControllerCalls.removeAll()
+    }
+
+    func testAssignmentGroupTapped() {
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        testee.assignmentGroup = .make()
+        testee.assignmentGroupTapped(router: router, viewController: WeakViewController(UIViewController()))
+
+        XCTAssertEqual((router.lastViewController as? ItemPickerViewController)?.title, "Assignment Group")
+
+        router.viewControllerCalls.removeAll()
+    }
+
+    func testScoreToKeepTapped() {
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        testee.scoreToKeepTapped(router: router, viewController: WeakViewController(UIViewController()))
+
+        XCTAssertEqual((router.lastViewController as? ItemPickerViewController)?.title, "Quiz Score to Keep")
+
+        router.viewControllerCalls.removeAll()
     }
 
     private func mockData() {

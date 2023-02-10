@@ -20,7 +20,7 @@ import SwiftUI
 
 public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
 
-    @Environment(\.appEnvironment) var env
+    @Environment(\.appEnvironment.router) var router
     @Environment(\.viewController) var controller
 
     @ObservedObject private var viewModel: ViewModel
@@ -38,7 +38,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             .navigationBarTitle(Text("Edit Quiz Details", bundle: .core), displayMode: .inline)
             .navBarItems(leading: {
                 Button(action: {
-                    env.router.dismiss(controller)
+                    router.dismiss(controller)
                 }, label: {
                     Text("Cancel", bundle: .core).fontWeight(.regular)
                 })
@@ -57,7 +57,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                 }
             }
             .onReceive(viewModel.showErrorPopup) {
-                env.router.show($0, from: controller, options: .modal())
+                router.show($0, from: controller, options: .modal())
             }
     }
 
@@ -132,9 +132,9 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                     label: Text("Publish", bundle: .core),
                     value: $viewModel.published)
             }
-            if let assignmentGroup = viewModel.assignmentGroup {
+            if viewModel.assignmentGroup != nil {
                 Divider()
-                assignmentGroupRow(assignmentGroup: assignmentGroup)
+                assignmentGroupRow
             }
             Divider()
             ToggleRow(
@@ -227,17 +227,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
     @ViewBuilder
     private var quizTypeRow: some View {
         ButtonRow(action: {
-            let options = viewModel.availableQuizTypes
-            self.env.router.show(ItemPickerViewController.create(
-                title: NSLocalizedString("Quiz Type", comment: ""),
-                sections: [ ItemPickerSection(items: options.map {
-                    ItemPickerItem(title: $0.name)
-                }), ],
-                selected: options.firstIndex(of: viewModel.quizType).flatMap {
-                    IndexPath(row: $0, section: 0)
-                },
-                didSelect: { viewModel.quizType = options[$0.row] }
-            ), from: controller)
+            viewModel.quizTypeTapped(router: router, viewController: controller)
         }, content: {
             Text("Quiz Type", bundle: .core)
             Spacer()
@@ -249,19 +239,9 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
     }
 
     @ViewBuilder
-    private func assignmentGroupRow(assignmentGroup: AssignmentGroup) -> some View {
+    private var assignmentGroupRow: some View {
         ButtonRow(action: {
-            let options = viewModel.assignmentGroups
-            self.env.router.show(ItemPickerViewController.create(
-                title: NSLocalizedString("Assignment Group", comment: ""),
-                sections: [ ItemPickerSection(items: options.map {
-                    ItemPickerItem(title: $0.name)
-                }), ],
-                selected: options.firstIndex(of: assignmentGroup).flatMap {
-                    IndexPath(row: $0, section: 0)
-                },
-                didSelect: { viewModel.assignmentGroup = options[$0.row] }
-            ), from: controller)
+            viewModel.assignmentGroupTapped(router: router, viewController: controller)
         }, content: {
             Text("Assignment Group", bundle: .core)
             Spacer()
@@ -275,17 +255,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
     @ViewBuilder
     private var scoreToKeepRow: some View {
         ButtonRow(action: {
-            let options = ScoringPolicy.allCases
-            self.env.router.show(ItemPickerViewController.create(
-                title: NSLocalizedString("Quiz Score to Keep", comment: ""),
-                sections: [ ItemPickerSection(items: options.map {
-                    ItemPickerItem(title: $0.text)
-                }), ],
-                selected: options.firstIndex(of: viewModel.scoreToKeep ?? ScoringPolicy.keep_highest).flatMap {
-                    IndexPath(row: $0, section: 0)
-                },
-                didSelect: { viewModel.scoreToKeep = options[$0.row] }
-            ), from: controller)
+            viewModel.scoreToKeepTapped(router: router, viewController: controller)
         }, content: {
             Text("Quiz Score to Keep", bundle: .core)
             Spacer()
@@ -298,7 +268,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
 
     func doneTapped() {
         controller.view.endEditing(true) // dismiss keyboard
-        viewModel.doneTapped(router: env.router, viewController: controller)
+        viewModel.doneTapped(router: router, viewController: controller)
     }
 }
 

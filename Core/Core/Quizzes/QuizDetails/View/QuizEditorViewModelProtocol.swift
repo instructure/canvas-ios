@@ -30,7 +30,6 @@ public protocol QuizEditorViewModelProtocol: ObservableObject {
     var quizType: QuizType { get set }
     var published: Bool { get set }
     var assignmentGroup: AssignmentGroup? { get set }
-    var assignmentGroups: [AssignmentGroup] { get }
     var shuffleAnswers: Bool { get set }
     var timeLimit: Bool { get set }
     var lengthInMinutes: Double? { get set }
@@ -43,9 +42,11 @@ public protocol QuizEditorViewModelProtocol: ObservableObject {
     var accessCode: String { get set }
     var assignmentOverrides: [AssignmentOverridesEditor.Override] { get set }
     var shouldShowPublishedToggle: Bool { get }
-    var availableQuizTypes: [QuizType] { get }
 
     func doneTapped(router: Router, viewController: WeakViewController)
+    func quizTypeTapped(router: Router, viewController: WeakViewController)
+    func assignmentGroupTapped(router: Router, viewController: WeakViewController)
+    func scoreToKeepTapped(router: Router, viewController: WeakViewController)
 }
 
 public enum QuizEditorViewModelState: Equatable {

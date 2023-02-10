@@ -461,7 +461,7 @@ struct APIQuizParameters: Codable, Equatable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(access_code, forKey: .access_code)
+        try container.encode(access_code, forKey: .access_code) // encode null to unset
         try container.encodeIfPresent(allowed_attempts, forKey: .allowed_attempts)
         try container.encodeIfPresent(assignment_group_id, forKey: .assignment_group_id)
         try container.encodeIfPresent(cant_go_back, forKey: .cant_go_back)
@@ -471,14 +471,14 @@ struct APIQuizParameters: Codable, Equatable {
         try container.encodeIfPresent(quiz_type, forKey: .quiz_type)
         try container.encodeIfPresent(scoring_policy, forKey: .scoring_policy)
         try container.encodeIfPresent(shuffle_answers, forKey: .shuffle_answers)
-        try container.encode(time_limit, forKey: .time_limit)
+        try container.encode(time_limit, forKey: .time_limit) // encode null to unset
         try container.encodeIfPresent(title, forKey: .title)
     }
 }
 
 // https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
 struct PutQuizRequest: APIRequestable {
-    typealias Response = APIQuiz
+    typealias Response = APINoContent
     struct Body: Codable, Equatable {
         let quiz: APIQuizParameters
     }
