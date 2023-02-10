@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct CourseListCell: View {
-    @ObservedObject var course: Course
+    @ObservedObject var course: CourseListItem
     let isFavoriteButtonHidden: Bool
 
     @Environment(\.appEnvironment) var env
@@ -45,22 +45,21 @@ struct CourseListCell: View {
                 .hidden(isFavoriteButtonHidden)
 
             Button(action: {
-                env.router.route(to: "/courses/\(course.id)", from: controller)
+                env.router.route(to: "/courses/\(course.courseId)", from: controller)
             }) { HStack {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(course.name ?? "")
+                    Text(course.name)
                         .style(.textCellTitle)
                         .foregroundColor(.textDarkest)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
                     HStack(spacing: 8) {
-                        let role = course.enrollments?.first { $0.state != .deleted }?.formattedRole
                         course.termName.map { Text($0) }
-                        if course.termName != nil && role != nil {
+                        if course.termName != nil, !course.roles.isEmpty {
                             Text(verbatim: "|")
                         }
-                        role.map { Text($0) }
+                        Text(course.roles)
                         Spacer()
                     }
                     .style(.textCellSupportingText)
@@ -69,7 +68,7 @@ struct CourseListCell: View {
                 .padding(.top, Typography.Spacings.textCellTopPadding)
                 .padding(.bottom, Typography.Spacings.textCellTopPadding)
 
-                if course.hasTeacherEnrollment {
+                if AppEnvironment.shared.app == .teacher {
                     let icon = course.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
                         Image.noSolid.foregroundColor(.textDark)
                     icon.padding(16)
@@ -80,15 +79,15 @@ struct CourseListCell: View {
             .accessibilityElement(children: .ignore)
             .accessibility(label: accessibilityLabel)
         }
-        .accessibility(identifier: "DashboardCourseCell.\(course.id)")
+        .accessibility(identifier: "DashboardCourseCell.\(course.courseId)")
     }
 
     var accessibilityLabel: Text {
         Text([
             course.name,
             course.termName,
-            course.enrollments?.first?.formattedRole,
-            !course.hasTeacherEnrollment ? nil : course.isPublished ?
+            course.roles,
+            !(AppEnvironment.shared.app == .teacher) ? nil : course.isPublished ?
                 NSLocalizedString("published", comment: "") :
                 NSLocalizedString("unpublished", comment: ""),
         ].compactMap { $0 }.joined(separator: ", "))
@@ -97,7 +96,7 @@ struct CourseListCell: View {
     func toggleFavorite() {
         guard !pending else { return }
         withAnimation { pending = true }
-        MarkFavoriteCourse(courseID: course.id, markAsFavorite: !course.isFavorite).fetch { _, _, _ in
+        MarkFavoriteCourse(courseID: course.courseId, markAsFavorite: !course.isFavorite).fetch { _, _, _ in
             withAnimation { pending = false }
         }
     }
@@ -110,7 +109,7 @@ struct CourseListCell_Previews: PreviewProvider {
     private static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        CourseListCell(course: Course.save(.make(), in: context), isFavoriteButtonHidden: false)
+        CourseListCell(course: CourseListItem.save(.make(), enrollmentState: .active, in: context), isFavoriteButtonHidden: false)
             .previewLayout(.sizeThatFits)
     }
 }

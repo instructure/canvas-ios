@@ -242,6 +242,16 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
     </entity>
+    <entity name="CourseListItem" representedClassName="Core.CourseListItem" syncable="YES">
+        <attribute name="courseCode" attributeType="String"/>
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="enrollmentState" attributeType="String"/>
+        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isPublished" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="roles" attributeType="String"/>
+        <attribute name="termName" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
