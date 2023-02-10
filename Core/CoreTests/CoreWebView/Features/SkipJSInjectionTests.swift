@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,16 +17,13 @@
 //
 
 import Core
+import XCTest
 
-/** These definitions make possible to use these views in storyboards without setting their module to Core. */
-@IBDesignable
-class AvatarGroupView: Core.AvatarGroupView {}
-class AvatarView: Core.AvatarView {}
-class CoreWebView: Core.CoreWebView {}
-class DividerView: Core.DividerView {}
-class DynamicButton: Core.DynamicButton {}
-class DynamicLabel: Core.DynamicLabel {}
-class DynamicTextField: Core.DynamicTextField {}
-class EmptyView: Core.EmptyView {}
-class FloatingButton: Core.FloatingButton {}
-class IconView: Core.IconView {}
+class SkipJSInjectionTests: XCTestCase {
+
+    func testShouldInject() {
+        let testee = CoreWebViewFeature.skipJSInjection("test")
+        XCTAssertTrue([testee].shouldInjectJS("abc"))
+        XCTAssertFalse([testee].shouldInjectJS("test"))
+    }
+}

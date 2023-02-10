@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+public class DisableZoom: CoreWebViewFeature {
+    private let script: String =
+    """
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(meta);
+    """
 
-/** These definitions make possible to use these views in storyboards without setting their module to Core. */
-@IBDesignable
-class AvatarGroupView: Core.AvatarGroupView {}
-class AvatarView: Core.AvatarView {}
-class CoreWebView: Core.CoreWebView {}
-class DividerView: Core.DividerView {}
-class DynamicButton: Core.DynamicButton {}
-class DynamicLabel: Core.DynamicLabel {}
-class DynamicTextField: Core.DynamicTextField {}
-class EmptyView: Core.EmptyView {}
-class FloatingButton: Core.FloatingButton {}
-class IconView: Core.IconView {}
+    override func apply(on webView: CoreWebView) {
+        webView.addScript(script)
+    }
+}
+
+public extension CoreWebViewFeature {
+
+    static var disableZoom: DisableZoom {
+        DisableZoom()
+    }
+}

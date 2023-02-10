@@ -41,22 +41,18 @@ struct SubmissionViewer: View {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
             WebSession(url: submission.previewUrl) { url in
-                WebView(
-                    url: url,
-                    customUserAgentName: UserAgent.safariLTI.description,
-                    pullToRefresh: .disabled,
-                    invertColorsInDarkMode: true
+                WebView(url: url,
+                        features: [
+                            .userAgent(UserAgent.safariLTI.description),
+                            .invertColorsInDarkMode,
+                        ]
                 )
                 .onLink(openInSafari)
             }
         case .discussion_topic:
             WebSession(url: submission.previewUrl) { url in
-                WebView(
-                    url: url,
-                    customUserAgentName: nil,
-                    pullToRefresh: .disabled,
-                    invertColorsInDarkMode: true
-                )
+                WebView(url: url,
+                        features: [.invertColorsInDarkMode])
                 .onLink(handleLink)
                 .onNavigationFinished(handleRefresh)
             }
@@ -72,12 +68,8 @@ struct SubmissionViewer: View {
                 .multilineTextAlignment(.center)
             } else {
                 WebSession(url: submission.previewUrl) { url in
-                    WebView(
-                        url: url,
-                        customUserAgentName: nil,
-                        pullToRefresh: .disabled,
-                        invertColorsInDarkMode: true
-                    )
+                    WebView(url: url,
+                            features: [.invertColorsInDarkMode])
                     .onLink(handleLink)
                     .onNavigationFinished(handleRefresh)
                 }

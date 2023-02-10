@@ -33,7 +33,7 @@ class SyllabusViewControllerTests: CoreTestCase {
 
     func testLayout() {
         let html = "<body>hello world</body>"
-        let webView = MockWebView(pullToRefresh: .disabled)
+        let webView = MockWebView(features: [])
         api.mock(controller.courses, value: .make(syllabus_body: html))
 
         controller.webView = webView

@@ -40,27 +40,8 @@ public protocol CoreWebViewSizeDelegate: AnyObject {
     func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat)
 }
 
-private extension WKWebViewConfiguration {
-
-    func applyDefaultSettings() {
-        allowsInlineMediaPlayback = true
-        processPool = CoreWebView.processPool
-    }
-}
-
 @IBDesignable
 open class CoreWebView: WKWebView {
-    public enum PullToRefresh {
-        case disabled
-        case enabled(color: UIColor?)
-    }
-
-    public static var defaultConfiguration: WKWebViewConfiguration {
-        let configuration = WKWebViewConfiguration()
-        configuration.applyDefaultSettings()
-        return configuration
-    }
-
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
@@ -72,27 +53,22 @@ open class CoreWebView: WKWebView {
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
-    private lazy var refreshControl: CircleRefreshControl = {
-        let refreshControl = CircleRefreshControl()
-        refreshControl.addTarget(
-            self,
-            action: #selector(refreshWebView(_:)),
-            for: .valueChanged
-        )
-        return refreshControl
-    }()
-    private let pullToRefresh: PullToRefresh
-    private var pullToRefreshNavigation: WKNavigation?
-
-    private var htmlString: String?
-    private var baseURL: URL?
-    private let themeSwitcherButton = UIButton()
+    public static let processPool = WKProcessPool()
 
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
-
     public var isLinkNavigationEnabled = true
+    public var contentInputAccessoryView: UIView? {
+        didSet {
+            addContentInputAccessoryView()
+        }
+    }
+
+    private(set) var features: [CoreWebViewFeature] = []
+    private var htmlString: String?
+    private var baseURL: URL?
+    private let themeSwitcherButton = UIButton()
     private var isInverted = false {
         didSet {
             updateHtmlContentView()
@@ -106,66 +82,43 @@ open class CoreWebView: WKWebView {
         }
     }
 
-    public static let processPool = WKProcessPool()
-
-    public init(pullToRefresh: PullToRefresh) {
-        self.pullToRefresh = pullToRefresh
-        super.init(frame: .zero)
-    }
-
     public required init?(coder: NSCoder) {
-        pullToRefresh = .disabled
         super.init(coder: coder)
         setup()
     }
 
+    public init() {
+        super.init(frame: .zero, configuration: .defaultConfiguration)
+        setup()
+    }
+
     override public init(frame: CGRect, configuration: WKWebViewConfiguration) {
-        pullToRefresh = .disabled
         configuration.applyDefaultSettings()
         super.init(frame: frame, configuration: configuration)
         setup()
     }
 
-    /**
-     - parameters:
-        - invertColorsInDarkMode: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
-     */
-    public init(
-        customUserAgentName: String? = nil,
-        disableZoom: Bool = false,
-        pullToRefresh: PullToRefresh,
-        pullToRefreshColor: UIColor? = nil,
-        configuration: WKWebViewConfiguration? = nil,
-        invertColorsInDarkMode: Bool = false
-    ) {
-        self.pullToRefresh = pullToRefresh
+    public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration) {
+        configuration.applyDefaultSettings()
+        features.forEach { $0.apply(on: configuration) }
 
-        let config = configuration ?? Self.defaultConfiguration
-        config.applyDefaultSettings()
+        super.init(frame: .zero, configuration: configuration)
 
-        if let customUserAgentName = customUserAgentName {
-            config.applicationNameForUserAgent = customUserAgentName
-        }
-
-        super.init(frame: .zero, configuration: config)
-
-        if disableZoom {
-            addScript(zoomScript)
-        }
-
-        if invertColorsInDarkMode {
-            addScript(colorInvertInDarkModeScript)
-        }
-
-        if case let .enabled(color) = pullToRefresh {
-            addRefreshControl(color: color)
-        }
-
+        features.forEach { $0.apply(on: self) }
+        self.features = features
         setup()
     }
 
+    /**
+     This method is to add support for CanvasCore project. Can be removed when that project is removed
+     as this method isn't safe for features modifying `WKWebViewConfiguration`.
+     */
+    public func addFeature(_ feature: CoreWebViewFeature) {
+        features.append(feature)
+        feature.apply(on: self)
+    }
+
     private init(externalConfiguration: WKWebViewConfiguration) {
-        self.pullToRefresh = .disabled
         super.init(frame: .zero, configuration: externalConfiguration)
         navigationDelegate = self
         uiDelegate = self
@@ -190,23 +143,6 @@ open class CoreWebView: WKWebView {
         handle("loadFrameSource") { [weak self] message in
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
-        }
-    }
-
-    private func addRefreshControl(color: UIColor?) {
-        scrollView.addSubview(refreshControl)
-        scrollView.bounces = true
-        refreshControl.color = color
-    }
-
-    @objc func refreshWebView(_ sender: UIRefreshControl) {
-        guard pullToRefreshNavigation == nil else { return }
-        pullToRefreshNavigation = reload()
-    }
-
-    public var contentInputAccessoryView: UIView? {
-        didSet {
-            addContentInputAccessoryView()
         }
     }
 
@@ -253,35 +189,6 @@ open class CoreWebView: WKWebView {
             return "<style>\(darkModeCss())</style>"
         }
         return ""
-    }
-
-    var zoomScript: String {
-        "var meta = document.createElement('meta');" +
-        "meta.name = 'viewport';" +
-        "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
-        "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
-    }
-
-    // Forces dark mode on webview pages.
-
-    public var colorInvertInDarkModeScript: String {
-        let darkCss = """
-        @media (prefers-color-scheme: dark) {
-            html {
-                filter: invert(100%) hue-rotate(180deg);
-            }
-            img:not(.ignore-color-scheme), video:not(.ignore-color-scheme), .ignore-color-scheme {
-                filter: invert(100%) hue-rotate(180deg) !important;
-            }
-        }
-        """
-
-        let cssString = darkCss.components(separatedBy: .newlines).joined()
-        return """
-           var element = document.createElement('style');
-           element.innerHTML = '\(cssString)';
-           document.head.appendChild(element);
-        """
     }
 
     /** Enables simple dark mode support for unsupported webview pages. */
@@ -397,101 +304,6 @@ open class CoreWebView: WKWebView {
             }
         """
     }
-
-    var js: String {
-        let buttonText = NSLocalizedString("Launch External Tool", bundle: .core, comment: "")
-        return """
-            // Handle Math Equations
-            function loadMathJaxIfNecessary() {
-              let foundMath = !!document.querySelector('math') || document.body.innerText.includes('\\\\') || document.body.innerText.includes('$$')
-              document.querySelectorAll('img.equation_image').forEach(img => {
-                let mathml = img.getAttribute('x-canvaslms-safe-mathml')
-                if (!mathml && !img.dataset.equationContent) return
-                foundMath = true
-                const div = document.createElement('div')
-                div.innerHTML = mathml || '<span>$$' + img.dataset.equationContent + '$$</span>'
-                div.firstChild.setAttribute('style', img.getAttribute('style'))
-                img.parentNode.replaceChild(div.firstChild, img)
-              })
-              if (foundMath) {
-                window.MathJax = { displayAlign: 'inherit', messageStyle: 'none' }
-                const script = document.createElement('script')
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-                document.body.appendChild(script)
-              }
-            }
-            loadMathJaxIfNecessary()
-
-            function fixLTITools() {
-                // Replace all iframes with a button to launch in SFSafariViewController
-                document.querySelectorAll('iframe').forEach(iframe => {
-                    const replace = iframe => {
-                        const a = document.createElement('a')
-                        a.textContent = \(CoreWebView.jsString(buttonText))
-                        a.classList.add('canvas-ios-lti-launch-button')
-                        a.href = iframe.src
-                        iframe.parentNode.replaceChild(a, iframe)
-                    }
-                    if (/\\/(courses|accounts)\\/[^\\/]+\\/external_tools\\/retrieve/.test(iframe.src)) {
-                        replace(iframe)
-                    } else if (/\\/media_objects_iframe\\/m-\\w+/.test(iframe.src)) {
-                        const match = iframe.src.match(/\\/media_objects_iframe\\/(m-\\w+)/)
-                        if (match.length == 2) {
-                            const mediaID = match[1]
-                            const video = document.createElement('video')
-                            video.src = '/users/self/media_download?entryId='+mediaID+'&media_type=video&redirect=1'
-                            video.setAttribute('poster', '/media_objects/'+mediaID+'/thumbnail?width=550&height=448')
-                            video.setAttribute('controls', '')
-                            video.setAttribute('preload', 'none')
-                            iframe.replaceWith(video)
-                        }
-                    } else {
-                        iframe.addEventListener('error', event => replace(event.target))
-                    }
-                })
-            }
-            fixLTITools()
-
-            // If there is only one iframe
-            // and id="cnvs_content"
-            // and the src is a canvas file
-            // reload the webview with an authenticated version of the iframe's src
-            // https://community.canvaslms.com/thread/31562-canvas-ios-app-not-loading-iframe-content
-            const iframes = document.querySelectorAll('iframe');
-            if (iframes.length == 1 && /\\/courses\\/\\d+\\/files\\/\\d+\\/download/.test(iframes[0].src) && iframes[0].id === "cnvs_content") {
-                window.webkit.messageHandlers.loadFrameSource.postMessage(iframes[0].src)
-            }
-
-            // Send content height whenever it changes
-            let lastHeight = 0
-            let lastWidth = window.innerWidth
-            const checkSize = () => {
-                const height = window.editor && window.editor.contentHeight || document.documentElement.scrollHeight
-                if (lastHeight !== height) {
-                    lastHeight = height
-                    window.webkit.messageHandlers.resize.postMessage({ height })
-                }
-            }
-            const observer = new MutationObserver(checkSize)
-            observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true })
-            window.addEventListener('resize', () => {
-                let width = window.innerWidth
-                if (lastWidth !== width) {
-                    lastWidth = width
-                    checkSize()
-                }
-            })
-            window.addEventListener('load', () => {
-                checkSize()
-                document.addEventListener('load', checkSize, true)
-            })
-            window.addEventListener('error', checkSize, true)
-            if (window.ResizeObserver) {
-                new ResizeObserver(checkSize).observe(document.documentElement)
-            }
-            checkSize()
-        """
-    }
 }
 
 extension CoreWebView: WKNavigationDelegate {
@@ -546,10 +358,7 @@ extension CoreWebView: WKNavigationDelegate {
             scrollIntoView(fragment: fragment)
         }
 
-        if navigation == pullToRefreshNavigation {
-            refreshControl.endRefreshing()
-            pullToRefreshNavigation = nil
-        }
+        features.forEach { $0.webView(webView, didFinish: navigation) }
     }
 
     public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
@@ -579,6 +388,8 @@ extension CoreWebView: WKNavigationDelegate {
         }
     }
 }
+
+// MARK: - WKUIDelegate Delegate
 
 extension CoreWebView: WKUIDelegate {
     public func webView(
@@ -656,6 +467,8 @@ extension CoreWebView: WKUIDelegate {
     }
 }
 
+// MARK: - Cookie Keep-Alive
+
 extension CoreWebView {
     static var cookieKeepAliveTimer: Timer?
     static var cookieKeepAliveWebView = CoreWebView()
@@ -683,6 +496,8 @@ extension CoreWebView {
         }
     }
 }
+
+// MARK: - Input Accessory View For RCE Editor
 
 extension CoreWebView {
     private func addContentInputAccessoryView() {
@@ -716,19 +531,13 @@ extension CoreWebView {
     }
 }
 
-extension CoreWebView {
-    public static func jsString(_ string: String?) -> String {
-        guard let string = string else { return "null" }
-        let escaped = string
-            .replacingOccurrences(of: "\\", with: "\\\\")
-            .replacingOccurrences(of: "'", with: "\\'")
-            .replacingOccurrences(of: "\r", with: "\\r")
-            .replacingOccurrences(of: "\n", with: "\\n")
-            .replacingOccurrences(of: "\u{2028}", with: "\\u2028")
-            .replacingOccurrences(of: "\u{2029}", with: "\\u2029")
-        return "'\(escaped)'"
-    }
+// MARK: - String Conversion
 
+extension CoreWebView {
+
+    /**
+     Escapes html reserved characters in the given string so they will display as plain text.
+     */
     public static func htmlString(_ string: String?) -> String {
         guard let string = string else { return "" }
         return string
@@ -739,6 +548,8 @@ extension CoreWebView {
             .replacingOccurrences(of: ">", with: "&gt;")
     }
 }
+
+// MARK: - Color Scheme Switching
 
 extension CoreWebView {
 

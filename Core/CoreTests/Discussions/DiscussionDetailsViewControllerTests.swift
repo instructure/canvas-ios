@@ -29,7 +29,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
     let unread = "class=\"\(DiscussionHTML.Styles.unread)\""
 
     var baseURL: URL { environment.api.baseURL }
-    let webView = MockWebView(pullToRefresh: .disabled)
+    let webView = MockWebView(features: [])
     class MockWebView: CoreWebView {
         @objc var runningCount = 0
         override func evaluateJavaScript(_ javaScriptString: String, completionHandler: ((Any?, Error?) -> Void)? = nil) {

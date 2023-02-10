@@ -180,10 +180,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     }
 
     func embedWebView(for url: URL, isLocalURL: Bool = true) {
-        let webView = CoreWebView(
-            pullToRefresh: .disabled,
-            invertColorsInDarkMode: true
-        )
+        let webView = CoreWebView(features: [.invertColorsInDarkMode])
         contentView.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: contentView)
         webView.linkDelegate = self
