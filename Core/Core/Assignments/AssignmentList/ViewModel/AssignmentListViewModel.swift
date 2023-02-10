@@ -131,7 +131,7 @@ extension AssignmentListViewModel: Refreshable {
         return await withCheckedContinuation { continuation in
             apiAssignments.exhaust(force: true) { [weak self] _ in
                 if self?.apiAssignments.hasNextPage == false {
-                    continuation.resume(returning: ())
+                    continuation.resume()
                 }
                 return true
             }

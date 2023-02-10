@@ -226,7 +226,7 @@ extension CourseDetailsViewModel: Refreshable {
         return await withCheckedContinuation { continuation in
             tabs.exhaust(force: true) { [weak self] _ in
                 if self?.tabs.hasNextPage == false {
-                    continuation.resume(returning: ())
+                    continuation.resume()
                 }
                 return true
             }

@@ -85,6 +85,15 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
 }
 
 extension SubmissionCommentLibraryViewModel: Refreshable {
+
+    @available(*, renamed: "refresh()")
+    public func refresh(completion: @escaping () -> Void) {
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
     public func refresh() async {
         state = .loading
         let userId = env.currentSession?.userID ?? ""
@@ -94,7 +103,7 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
                 performUIUpdate {
                     guard let response1 = response else { return }
                     self.comments = response1.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-                    continuation.resume(returning: ())
+                    continuation.resume()
                 }
             }
         }

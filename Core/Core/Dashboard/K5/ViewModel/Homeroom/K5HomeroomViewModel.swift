@@ -205,7 +205,7 @@ extension K5HomeroomViewModel: Refreshable {
         forceRefresh = true
         return await withCheckedContinuation { continuation in
             refreshCompletion = {
-                continuation.resume(returning: ())
+                continuation.resume()
             }
             announcementsStore = nil
             missingSubmissions = nil

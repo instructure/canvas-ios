@@ -108,7 +108,7 @@ extension K5ImportantDatesViewModel: Refreshable {
         forceRefresh = true
         return await withCheckedContinuation { continuation in
             refreshCompletion = {
-                continuation.resume(returning: ())
+                continuation.resume()
             }
             reloadData()
         }

@@ -110,7 +110,7 @@ extension K5GradesViewModel: Refreshable {
         forceRefresh = true
         return await withCheckedContinuation { continuation in
             refreshCompletion = {
-                continuation.resume(returning: ())
+                continuation.resume()
             }
             reloadData()
         }

@@ -101,7 +101,7 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     public func refresh() async {
         return await withCheckedContinuation { continuation in
             refreshCompletion = {
-                continuation.resume(returning: ())
+                continuation.resume()
             }
             quizUseCase.refresh(force: true)
             assignmentsUseCase.refresh(force: true)

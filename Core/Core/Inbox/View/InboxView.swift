@@ -51,8 +51,12 @@ public struct InboxView: View {
                             SwiftUI.EmptyView()
                         }
                     }
-                    .iOS15Refreshable { completion in
-                        model.refreshDidTrigger.send(completion)
+                    .refreshable {
+                        await withCheckedContinuation { continuation in
+                            model.refreshDidTrigger.send {
+                                continuation.resume()
+                            }
+                        }
                     }
                     .listStyle(PlainListStyle())
                     .animation(.default, value: model.messages)
@@ -72,11 +76,11 @@ public struct InboxView: View {
                     .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
             }
             .listRowInsets(EdgeInsets())
-            .iOS15ListRowSeparator(.hidden)
-            .iOS15SwipeActions(edge: .trailing) {
+            .listRowSeparator(.hidden)
+            .swipeActions(edge: .trailing) {
                 archiveButton(message: message)
             }
-            .iOS15SwipeActions(edge: .leading) {
+            .swipeActions(edge: .leading) {
                 readStatusToggleButton(message: message)
             }
         }
@@ -97,7 +101,7 @@ public struct InboxView: View {
                 }
                 .labelStyle(.iconOnly)
             }
-            .iOS15Tint(.ash)
+            .tint(.ash)
         } else {
             SwiftUI.EmptyView()
         }
@@ -122,7 +126,7 @@ public struct InboxView: View {
             }
             .labelStyle(.iconOnly)
         }
-        .iOS15Tint(.electric)
+        .tint(.electric)
     }
 
     private var loadingIndicator: some View {
@@ -131,7 +135,7 @@ public struct InboxView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .accentColor(Color(Brand.shared.primary))
             .listRowInsets(EdgeInsets())
-            .iOS15ListRowSeparator(.hidden)
+            .listRowSeparator(.hidden)
     }
 
     private func panda(geometry: GeometryProxy,
@@ -147,7 +151,7 @@ public struct InboxView: View {
                    alignment: .center)
             .background(Color.backgroundLightest)
             .listRowInsets(EdgeInsets())
-            .iOS15ListRowSeparator(.hidden)
+            .listRowSeparator(.hidden)
     }
 
     private var menuButton: some View {
@@ -171,7 +175,7 @@ public struct InboxView: View {
                 .frame(height: 44)
                 .frame(maxWidth: .infinity)
                 .accentColor(Color(Brand.shared.primary))
-                .iOS15ListRowSeparator(.hidden)
+                .listRowSeparator(.hidden)
                 .background(Color.backgroundLightest)
         }
     }

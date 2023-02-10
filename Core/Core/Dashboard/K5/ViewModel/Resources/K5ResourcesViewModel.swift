@@ -120,7 +120,7 @@ extension K5ResourcesViewModel: Refreshable {
     public func refresh() async {
         return await withCheckedContinuation { continuation in
             courses.refresh(force: true) {_ in
-                continuation.resume(returning: ())
+                continuation.resume()
             }
         }
     }
