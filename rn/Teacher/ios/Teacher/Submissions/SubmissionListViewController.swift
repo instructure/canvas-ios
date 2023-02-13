@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class SubmissionListViewController: ScreenViewTrackerViewController, ColoredNavViewProtocol {
+class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -38,7 +38,9 @@ class SubmissionListViewController: ScreenViewTrackerViewController, ColoredNavV
     let env = AppEnvironment.shared
     var context = Context.currentUser
     var filter: [GetSubmissions.Filter] = []
-
+    lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
+    )
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) { [weak self] in
         self?.updateNavBar()
         self?.update()
@@ -97,7 +99,6 @@ class SubmissionListViewController: ScreenViewTrackerViewController, ColoredNavV
         enrollments.exhaust()
         sections.exhaust()
         submissions.exhaust()
-        trackScreenTime(eventName: "\(context.pathComponent)/assignments/\(assignmentID)/submissions")
     }
 
     public override func viewWillAppear(_ animated: Bool) {

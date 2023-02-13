@@ -36,7 +36,7 @@ class StudentListViewController: ScreenViewTrackableViewController {
 
     let env = AppEnvironment.shared
     let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/profile/observees")
-    
+
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
             self?.students.exhaust()

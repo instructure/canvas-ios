@@ -49,7 +49,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     var hasStudents: Bool?
     var shownNotAParent = false
     let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
-    
+
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
             self?.students.exhaust()
