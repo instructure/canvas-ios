@@ -20,7 +20,7 @@ import UIKit
 import CoreData
 import Core
 
-class DashboardViewController: ScreenViewTrackerViewController, ErrorViewController {
+class DashboardViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet weak var addStudentView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var studentListStack: UIStackView!
@@ -48,7 +48,8 @@ class DashboardViewController: ScreenViewTrackerViewController, ErrorViewControl
     let env = AppEnvironment.shared
     var hasStudents: Bool?
     var shownNotAParent = false
-
+    let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
+    
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
             self?.students.exhaust()
@@ -91,7 +92,6 @@ class DashboardViewController: ScreenViewTrackerViewController, ErrorViewControl
         }
 
         reportScreenView(for: 0, viewController: self)
-        trackScreenTime(eventName: "/")
     }
 
     override func viewWillAppear(_ animated: Bool) {

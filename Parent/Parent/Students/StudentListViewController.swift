@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentListViewController: ScreenViewTrackerViewController {
+class StudentListViewController: ScreenViewTrackableViewController {
     lazy var addStudentButton = UIBarButtonItem(
         image: .addSolid,
         style: .plain,
@@ -35,7 +35,8 @@ class StudentListViewController: ScreenViewTrackerViewController {
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared
-
+    let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/profile/observees")
+    
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
             self?.students.exhaust()
@@ -67,7 +68,6 @@ class StudentListViewController: ScreenViewTrackerViewController {
         tableView.separatorColor = .borderMedium
 
         students.exhaust()
-        trackScreenTime(eventName: "/profile/observees")
     }
 
     override func viewWillAppear(_ animated: Bool) {

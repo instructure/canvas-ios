@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentDetailsViewController: ScreenViewTrackerViewController, ErrorViewController {
+class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet var alertFields: [UITextField]!
     @IBOutlet weak var alertHeaderLabel: UILabel!
     @IBOutlet var alertLabels: [UILabel]!
@@ -42,6 +42,10 @@ class StudentDetailsViewController: ScreenViewTrackerViewController, ErrorViewCo
         didSet { updateLoading() }
     }
     var studentID = ""
+
+    lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/profile/observees/\(studentID)/thresholds"
+    )
 
     // lazy var student = env.subscribe(GetObservedStudent(studentID: studentID)) { [weak self] in
     lazy var student: Store<LocalUseCase<User>> = env.subscribe(scope: .where(#keyPath(User.id), equals: studentID)) { [weak self] in
@@ -86,7 +90,6 @@ class StudentDetailsViewController: ScreenViewTrackerViewController, ErrorViewCo
 
         student.refresh()
         thresholds.exhaust()
-        trackScreenTime(eventName: "/profile/observees/\(studentID)/thresholds")
     }
 
     override func viewWillAppear(_ animated: Bool) {
