@@ -27,7 +27,8 @@ class APIExternalToolTests: XCTestCase {
             url: URL(string: "https://google.com")!,
             assignmentID: "3",
             moduleItemID: "4",
-            launchType: .module_item
+            launchType: .module_item,
+            resourceLinkLookupUUID: "5"
         )
 
         XCTAssertEqual(request.path, "courses/1/external_tools/sessionless_launch")
@@ -37,6 +38,7 @@ class APIExternalToolTests: XCTestCase {
             URLQueryItem(name: "url", value: "https://google.com"),
             URLQueryItem(name: "assignment_id", value: "3"),
             URLQueryItem(name: "module_item_id", value: "4"),
+            URLQueryItem(name: "resource_link_lookup_uuid", value: "5"),
         ])
     }
 

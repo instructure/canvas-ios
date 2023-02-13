@@ -20,7 +20,7 @@ import UIKit
 
 public class TermsOfServiceViewController: UIViewController {
     let env = AppEnvironment.shared
-    let webView = CoreWebView(pullToRefresh: .disabled)
+    let webView = CoreWebView()
 
     public override func viewDidLoad() {
         title = NSLocalizedString("Terms of Use", bundle: .core, comment: "")

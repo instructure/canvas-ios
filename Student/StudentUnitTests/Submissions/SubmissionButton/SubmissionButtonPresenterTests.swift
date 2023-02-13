@@ -150,7 +150,8 @@ class SubmissionButtonPresenterTests: StudentTestCase {
             url: nil,
             assignmentID: "1",
             moduleItemID: nil,
-            launchType: .assessment
+            launchType: .assessment,
+            resourceLinkLookupUUID: nil
         )
         api.mock(request, value: .make(url: URL(string: "https://instructure.com")!))
         presenter.submitType(.external_tool, for: a, button: UIView())

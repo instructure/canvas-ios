@@ -29,7 +29,7 @@ struct CourseDetailsHeaderView: View {
 
     public var body: some View {
         ZStack {
-            Color(viewModel.courseColor.darkenToEnsureContrast(against: .white)).frame(width: width, height: viewModel.height)
+            Color(viewModel.courseColor.resolvedColor(with: .light).darkenToEnsureContrast(against: .textLightest)).frame(width: width, height: viewModel.height)
             if let url = viewModel.imageURL {
                 RemoteImage(url, width: width, height: viewModel.height)
                     .opacity(viewModel.imageOpacity)

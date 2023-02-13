@@ -89,9 +89,8 @@ struct CourseCard: View {
                 analyticsRoute: "/dashboard/customize_course"
             )
         }, label: {
-            Image.moreSolid.foregroundColor(.white)
-                .background(card.imageURL == nil || !hideColorOverlay ? nil :
-                                Circle().fill(Color.accentColor).frame(width: 28, height: 28)
+            Image.moreSolid.foregroundColor(Color(contextColor))
+                .background(Circle().fill(Color.backgroundLightest).frame(width: 28, height: 28)
                 )
                 .frame(width: 44, height: 44)
         })
@@ -108,9 +107,9 @@ struct CourseCard: View {
                     Text(course.displayGrade).font(.semibold14)
                 }
             }
-            .foregroundColor(.accentColor)
+            .foregroundColor(Color(contextColor))
             .padding(.horizontal, 6).frame(height: 20)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.backgroundLightest))
             .frame(maxWidth: 120, alignment: .leading)
         }
     }

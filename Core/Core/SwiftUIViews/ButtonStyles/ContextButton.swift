@@ -31,7 +31,7 @@ public struct ContextButton: ButtonStyle {
         - isHighlighted: If this parameter is true, then the button will show its highlighted state even if it isn't pressed down. Useful to indicate selected state.
      */
     public init(contextColor: UIColor?, isHighlighted: Bool = false) {
-        self.contextColor = contextColor?.ensureContrast() ?? selectionBackgroundColor
+        self.contextColor = contextColor?.ensureContrast(against: .backgroundLightest) ?? selectionBackgroundColor
         self.forceHighlight = isHighlighted
     }
 

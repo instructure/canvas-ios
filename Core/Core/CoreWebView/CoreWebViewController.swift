@@ -19,7 +19,7 @@
 import UIKit
 
 public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
-    public var webView = CoreWebView(pullToRefresh: .disabled)
+    public var webView: CoreWebView
 
     var limitedInteractionView: NotificationView?
 
@@ -35,12 +35,9 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         - invertColorsInDarkMode: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
      */
     public init(invertColorsInDarkMode: Bool = false) {
+        webView = CoreWebView(features: invertColorsInDarkMode ? [.invertColorsInDarkMode] : [])
         super.init(nibName: nil, bundle: nil)
         webView.linkDelegate = self
-
-        if invertColorsInDarkMode {
-            webView.addScript(webView.colorInvertInDarkModeScript)
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {

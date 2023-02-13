@@ -49,7 +49,7 @@ extension UIColor {
     public var hexString: String { hexString(userInterfaceStyle: .current) }
     public var intValue: UInt32 { intValue(userInterfaceStyle: .current) }
     /** Returns the color for the current app appearance. */
-    private var interfaceStyleColor: UIColor { resolvedColor(with: UITraitCollection(userInterfaceStyle: .current)) }
+    private var interfaceStyleColor: UIColor { resolvedColor(with: .current) }
 
     public convenience init(intValue value: UInt32) {
         self.init(
@@ -58,11 +58,6 @@ extension UIColor {
             blue: CGFloat((value & 0x0000ff) >> 0) / 255,
             alpha: CGFloat((value & 0xff000000) >> 24) / 255
         )
-    }
-
-    /** Returns enhanced contrast colors against different light and dark counter-colors. */
-    public func ensureContrast(_ forLightAgainst: UIColor = .backgroundLightest, forDarkAgainst: UIColor = .backgroundLightest) -> UIColor {
-        UIColor.getColor(dark: self.ensureContrast(against: forDarkAgainst), light: self.ensureContrast(against: forLightAgainst))
     }
 
     /** Returns the given color for the current interface style. */
@@ -133,15 +128,20 @@ extension UIColor {
         return lum1 > lum2 ? lum1 / lum2 : lum2 / lum1
     }
 
-    /// Ensures contrast against the given parameter by darkening the source color even if the parameter color is lighter.
     public func darkenToEnsureContrast(against: UIColor) -> UIColor {
+        return UIColor.getColor(dark: darkenToEnsureStyleContrast(against: against.resolvedColor(with: .dark)),
+                                light: darkenToEnsureStyleContrast(against: against.resolvedColor(with: .light)))
+    }
+
+    /// Ensures contrast against the given parameter by darkening the source color even if the parameter color is lighter.
+    private func darkenToEnsureStyleContrast(against: UIColor) -> UIColor {
         let minRatio: CGFloat = 4.5
         guard contrast(against: against) < minRatio else {
             return self
         }
         var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 1
-        self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        var color = self
+        interfaceStyleColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        var color = interfaceStyleColor
         while color.contrast(against: against) < minRatio, saturation >= 0.0, saturation <= 1.0 {
             if brightness >= 0.0, brightness <= 1.0 {
                 brightness += -0.01
@@ -155,9 +155,17 @@ extension UIColor {
 
     /// Get a sufficiently contrasting color based on the current color.
     ///
+    /// This ensures that the corresponding interface style color is being used as an against color.
+    public func ensureContrast(against: UIColor) -> UIColor {
+        return UIColor.getColor(dark: ensureStyleContrast(against: against.resolvedColor(with: .dark)),
+                                light: ensureStyleContrast(against: against.resolvedColor(with: .light)))
+    }
+
+    /// Get a sufficiently contrasting color based on the current color.
+    ///
     /// If the user asked for more contrast, and there isn't enough, return a high enough contrasting color.
     /// This is intended to be used with branding colors
-    public func ensureContrast(against: UIColor) -> UIColor {
+    private func ensureStyleContrast(against: UIColor) -> UIColor {
         let minRatio: CGFloat = 4.5
         guard contrast(against: against) < minRatio else {
             return self

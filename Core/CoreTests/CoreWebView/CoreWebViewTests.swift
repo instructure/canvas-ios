@@ -41,10 +41,7 @@ class CoreWebViewTests: CoreTestCase {
 
     func testCustomUserAgentName() {
         let customeUserAgentName = "customUserAgent"
-        let view = CoreWebView(
-            customUserAgentName: customeUserAgentName,
-            pullToRefresh: .disabled
-        )
+        let view = CoreWebView(features: [.userAgent(customeUserAgentName)])
         XCTAssertEqual(view.configuration.applicationNameForUserAgent, customeUserAgentName)
     }
 
@@ -242,5 +239,10 @@ class CoreWebViewTests: CoreTestCase {
         )
         XCTAssertNotNil(webView)
         XCTAssert(router.presented is CoreWebViewController)
+    }
+
+    func testEmptyInitializerCallsSetup() {
+        let testee = CoreWebView()
+        XCTAssertEqual(testee.customUserAgent, UserAgent.safari.description)
     }
 }

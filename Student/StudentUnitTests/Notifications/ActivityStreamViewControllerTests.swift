@@ -59,7 +59,7 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         let expectedDateCell2 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-4))
 
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ActivityCell
-        XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast().hexString)
+        XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.courseCode.text, "Code")
         XCTAssertEqual(cell?.titleLabel.text, "title")
         XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell0)
@@ -71,7 +71,7 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell1)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? ActivityCell
-        XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#0f0")!.ensureContrast().hexString)
+        XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#0f0")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.courseCode.text, "Code2")
         XCTAssertEqual(cell?.titleLabel.text, "title2")
         XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell2)

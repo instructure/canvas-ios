@@ -22,8 +22,8 @@ import WebKit
 
 public class K5SubjectViewMasqueradedSession {
     /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
-    public var config: WKWebViewConfiguration? {
-        guard isMasqueradingUser else { return nil }
+    public var config: WKWebViewConfiguration {
+        guard isMasqueradingUser else { return .defaultConfiguration }
         let result = WKWebViewConfiguration()
         result.websiteDataStore = WKWebsiteDataStore.nonPersistent()
         return result

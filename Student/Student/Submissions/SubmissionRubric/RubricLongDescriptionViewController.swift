@@ -39,7 +39,7 @@ class RubricLongDescriptionViewController: UIViewController {
 
         self.addDoneButton()
 
-        let webView = CoreWebView(pullToRefresh: .disabled)
+        let webView = CoreWebView()
         webView.linkDelegate = delegate
         webView.loadHTMLString(longDescription)
 

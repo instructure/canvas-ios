@@ -42,7 +42,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor, ColorScheme.observee("1").color.ensureContrast(against: .white))
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.ensureContrast(against: .white).hexString)
         XCTAssertEqual(controller.titleSubtitleView.title, "Course One")
         XCTAssertEqual(controller.titleLabel.text, "It's happening")
         XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020")

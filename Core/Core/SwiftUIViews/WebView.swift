@@ -25,63 +25,47 @@ public struct WebView: UIViewRepresentable {
     private var handleSize: ((CGFloat) -> Void)?
     private var handleNavigationFinished: (() -> Void)?
     private let source: Source?
-    private var customUserAgentName: String?
-    private var disableZoom: Bool = false
-    private var pullToRefresh: CoreWebView.PullToRefresh
-    private var invertColorsInDarkMode: Bool = false
     private var canToggleTheme: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
-    private var configuration: WKWebViewConfiguration?
+    private var configuration: WKWebViewConfiguration
+    private let features: [CoreWebViewFeature]
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
     // MARK: - Initializers
 
-    public init(
-        url: URL?,
-        canToggleTheme: Bool = false,
-        pullToRefresh: CoreWebView.PullToRefresh
+    public init(url: URL?,
+                features: [CoreWebViewFeature] = [],
+                canToggleTheme: Bool = false,
+                configuration: WKWebViewConfiguration = .defaultConfiguration
     ) {
         source = url.map { .request(URLRequest(url: $0)) }
+        self.features = features
         self.canToggleTheme = canToggleTheme
-        self.pullToRefresh = pullToRefresh
-    }
-
-    public init(
-        url: URL?,
-        customUserAgentName: String?,
-        disableZoom: Bool = false,
-        canToggleTheme: Bool = false,
-        pullToRefresh: CoreWebView.PullToRefresh,
-        configuration: WKWebViewConfiguration? = nil,
-        invertColorsInDarkMode: Bool = false
-    ) {
-        self.init(url: url, pullToRefresh: pullToRefresh)
-        self.customUserAgentName = customUserAgentName
-        self.disableZoom = disableZoom
-        self.canToggleTheme = canToggleTheme
-        self.pullToRefresh = pullToRefresh
-        self.invertColorsInDarkMode = invertColorsInDarkMode
         self.configuration = configuration
     }
 
-    public init(html: String?, canToggleTheme: Bool = false) {
+    public init(html: String?,
+                features: [CoreWebViewFeature] = [],
+                canToggleTheme: Bool = false,
+                configuration: WKWebViewConfiguration = .defaultConfiguration
+    ) {
         source = html.map { .html($0) }
+        self.features = features
         self.canToggleTheme = canToggleTheme
-        pullToRefresh = .disabled
+        self.configuration = configuration
     }
 
-    public init(
-        request: URLRequest,
-        disableZoom: Bool = false,
-        canToggleTheme: Bool = false,
-        pullToRefresh: CoreWebView.PullToRefresh
+    public init(request: URLRequest,
+                features: [CoreWebViewFeature] = [],
+                canToggleTheme: Bool = false,
+                configuration: WKWebViewConfiguration = .defaultConfiguration
     ) {
         source = .request(request)
-        self.disableZoom = disableZoom
+        self.features = features
         self.canToggleTheme = canToggleTheme
-        self.pullToRefresh = pullToRefresh
+        self.configuration = configuration
     }
 
     // MARK: - View Modifiers
@@ -123,13 +107,7 @@ public struct WebView: UIViewRepresentable {
 
     public func makeUIView(context: Self.Context) -> UIView {
         let webViewContainer = UIView()
-        let webView = CoreWebView(
-            customUserAgentName: customUserAgentName,
-            disableZoom: disableZoom,
-            pullToRefresh: pullToRefresh,
-            configuration: configuration,
-            invertColorsInDarkMode: invertColorsInDarkMode
-        )
+        let webView = CoreWebView(features: features, configuration: configuration)
         webViewContainer.addSubview(webView)
         if canToggleTheme {
             webView.pinWithThemeSwitchButton(inside: webViewContainer)
