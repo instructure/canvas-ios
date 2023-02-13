@@ -60,4 +60,28 @@ class APIQuizTests: XCTestCase {
         XCTAssertEqual(req.method, .post)
         XCTAssertEqual(req.path, "courses/45/quizzes/25/submissions/2/complete")
     }
+
+    func testPutQuizRequest() {
+        let quiz = APIQuizParameters(
+            access_code: nil,
+            allowed_attempts: 5,
+            assignment_group_id: nil,
+            cant_go_back: nil,
+            description: "desc",
+            one_question_at_a_time: false,
+            published: true,
+            quiz_type: .graded_survey,
+            scoring_policy: .keep_highest,
+            shuffle_answers: false,
+            time_limit: 55.0,
+            title: "Quiz"
+        )
+
+        let expectedBody = PutQuizRequest.Body(quiz: quiz)
+        let request = PutQuizRequest(courseID: "1", quizID: "2", body: expectedBody)
+
+        XCTAssertEqual(request.path, "courses/1/quizzes/2")
+        XCTAssertEqual(request.method, .put)
+        XCTAssertEqual(request.body, expectedBody)
+    }
 }

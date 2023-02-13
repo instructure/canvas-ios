@@ -57,7 +57,7 @@ class QuizAttributesTests: CoreTestCase {
         let testee = QuizAttributes(quiz: quiz, assignment: assignment)
 
         var quizAttribute = testee.attributes.first(where: {$0.id == "Quiz Type:"})
-        XCTAssertEqual(quizAttribute?.value, "Surveys")
+        XCTAssertEqual(quizAttribute?.value, "Ungraded Survey")
 
         quizAttribute = testee.attributes.first(where: {$0.id == "Assignment Group:"})
         XCTAssertEqual(quizAttribute?.value, "Assignment Group A")

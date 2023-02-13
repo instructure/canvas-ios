@@ -20,7 +20,7 @@
 /**
 Use only for SwiftUI previews.
 */
-public class PreviewQuizDetailsViewModel: QuizDetailsViewModelProtocol {
+public class QuizDetailsViewModelPreview: QuizDetailsViewModelProtocol {
     public var state: QuizDetailsViewModelState
     public var courseColor: UIColor?
     public var title: String

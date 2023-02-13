@@ -35,10 +35,7 @@ public struct QuizAttributes {
     public init(quiz: Quiz, assignment: Assignment?) {
         attributes = [QuizAttribute]()
 
-        var quizType = quiz.quizType.sectionTitle
-        if quiz.quizType == .assignment {
-            quizType = NSLocalizedString("Graded Quiz", bundle: .core, comment: "")
-        }
+        let quizType = quiz.quizType.name
         attributes.append(QuizAttribute(
             NSLocalizedString("Quiz Type:", bundle: .core, comment: ""),
             quizType
