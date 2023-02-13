@@ -70,7 +70,7 @@ class CalendarEventDetailsViewControllerTests: StudentTestCase {
             context_code: "group_1"
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(nav.navigationBar.barTintColor, .ash)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor.ash.darkenToEnsureContrast(against: .white).hexString)
         XCTAssertEqual(controller.dateLabel.text, "Jun 24, 2020 at 11:00 AM")
     }
 }

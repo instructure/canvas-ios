@@ -24,9 +24,9 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseContextColor() {
         let bar = UINavigationBar(frame: .zero)
         bar.useContextColor(.licorice)
-        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .white)
-        XCTAssertEqual(bar.tintColor, .white)
-        XCTAssertEqual(bar.barTintColor, .licorice)
+        XCTAssertEqual((bar.titleTextAttributes?[.foregroundColor] as? UIColor)?.hexString, UIColor.white.hexString)
+        XCTAssertEqual(bar.tintColor.hexString, UIColor.white.hexString)
+        XCTAssertEqual(bar.barTintColor?.hexString, UIColor.licorice.hexString)
         XCTAssertEqual(bar.barStyle, .black)
         XCTAssertFalse(bar.isTranslucent)
     }

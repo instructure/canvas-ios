@@ -37,7 +37,7 @@ class StudentListViewControllerTests: ParentTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor, ColorScheme.observeeBlue.color.darkenToEnsureContrast(against: .white))
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observeeBlue.color.darkenToEnsureContrast(against: .white).hexString)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.action, #selector(controller.addStudentController.addStudent))
 
         let index0 = IndexPath(row: 0, section: 0)

@@ -50,7 +50,7 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.navTitle, "Discussion Details")
         XCTAssertEqual(testee.subTitle, "Test Name")
-        XCTAssertEqual(testee.contextColor!.hexString, UIColor(hexString: "#BEEF00")!.ensureContrast().hexString)
+        XCTAssertEqual(testee.contextColor!.hexString, UIColor(hexString: "#BEEF00")!.ensureContrast(against: .backgroundLightest).hexString)
     }
 
     func testGroupProperties() {
