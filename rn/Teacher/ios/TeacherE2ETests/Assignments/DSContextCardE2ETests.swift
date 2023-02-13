@@ -79,7 +79,7 @@ class DSContextCardE2ETests: E2ETestCase {
         NavBar.backButton.tap()
 
         // Check the students context cards via SpeedGrader
-        CourseNavigation.assignments.tap()
+        CourseNavigation.assignments.rawElement.forceTapElement()
         AssignmentsList.assignment(id: assignment.id).tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()
         SubmissionsListPage.cell(userID: student.id).tap()

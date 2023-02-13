@@ -73,6 +73,7 @@
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
+		B4C39744299A658100E98A12 /* XCUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C39743299A658100E98A12 /* XCUIApplication.swift */; };
 		C909F7C827BA7E9A00CB89DE /* DSPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7C727BA7E9A00CB89DE /* DSPage.swift */; };
 		C909F7CA27BA7F8D00CB89DE /* CreateDSPageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7C927BA7F8D00CB89DE /* CreateDSPageRequest.swift */; };
 		C909F7CC27BA81F200CB89DE /* DataSeeder+DSPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909F7CB27BA81F200CB89DE /* DataSeeder+DSPage.swift */; };
@@ -239,6 +240,7 @@
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
+		B4C39743299A658100E98A12 /* XCUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplication.swift; sourceTree = "<group>"; };
 		C909F7C727BA7E9A00CB89DE /* DSPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSPage.swift; sourceTree = "<group>"; };
 		C909F7C927BA7F8D00CB89DE /* CreateDSPageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSPageRequest.swift; sourceTree = "<group>"; };
 		C909F7CB27BA81F200CB89DE /* DataSeeder+DSPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSPage.swift"; sourceTree = "<group>"; };
@@ -998,6 +1000,7 @@
 				5859560B4512977756206840 /* MiniCanvasUITestCase.swift */,
 				C9A3C045269D7D3100DAE8E1 /* K5UITestCase.swift */,
 				C9A23D2127A3D6E400A1EE3B /* E2ETestCase.swift */,
+				B4C39743299A658100E98A12 /* XCUIApplication.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -1239,6 +1242,7 @@
 				C9299FE128102238003A47C2 /* CreateDSDiscussionRequest.swift in Sources */,
 				E80936D224C2480B00D15E9A /* ItemPickerItem.swift in Sources */,
 				C9B4F0A728C1EDDB0085DF28 /* DSAccountNotification.swift in Sources */,
+				B4C39744299A658100E98A12 /* XCUIApplication.swift in Sources */,
 				CFA078BF2799A7800078B27B /* DSCourse.swift in Sources */,
 				C909F7D327C3831F00CB89DE /* DataSeeder+DSSubmission.swift in Sources */,
 				C909F7C827BA7E9A00CB89DE /* DSPage.swift in Sources */,

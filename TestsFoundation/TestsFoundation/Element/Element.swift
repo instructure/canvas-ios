@@ -319,3 +319,14 @@ public struct XCUIElementQueryWrapper: Element {
         return false
     }
 }
+
+public extension XCUIElement {
+    func forceTapElement() {
+        if isHittable {
+            tap()
+        } else {
+            let coordinate: XCUICoordinate = coordinate(withNormalizedOffset: CGVector())
+            coordinate.tap()
+        }
+    }
+}
