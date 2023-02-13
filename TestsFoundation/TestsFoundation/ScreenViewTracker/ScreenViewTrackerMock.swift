@@ -19,18 +19,16 @@
 import Foundation
 import Core
 
-public class MockPageViewLogger: PageViewEventViewControllerLoggingProtocol {
+public class ScreenViewTrackerMock: ScreenViewTracker {
     public var timeOnViewControllerStart: Date?
     public var timeOnViewControllerEnd: Date?
-    public var eventName: String = ""
-    public var attributes: [String: String] = [:]
+    public let parameters: ScreenViewTrackingParameters
 
-    public init() {}
+    required public init(parameters: ScreenViewTrackingParameters) {
+        self.parameters = parameters
+    }
 
     public func startTrackingTimeOnViewController() {}
 
-    public func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String]) {
-        self.eventName = eventName
-        self.attributes = attributes
-    }
+    public func stopTrackingTimeOnViewController() {}
 }

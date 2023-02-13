@@ -36,7 +36,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     /** The value to be returned by the `supportedInterfaceOrientations` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
     public var supportedInterfaceOrientationsValue: UIInterfaceOrientationMask?
     var testTree: TestTree?
-    private var pageViewLogger: PresenterPageViewLogger?
+    private var screenViewTracker: ScreenViewTrackerLive?
 
     public init(_ rootView: Content, customization: ((UIViewController) -> Void)? = nil) {
         let ref = WeakViewController()
@@ -45,7 +45,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
         ref.setValue(self)
 
         if let screenViewTrackable = rootView as? ScreenViewTrackable {
-            pageViewLogger = PresenterPageViewLogger(
+            screenViewTracker = ScreenViewTrackerLive(
                 parameters: screenViewTrackable.screenViewTrackingParameters
             )
         }
@@ -58,12 +58,12 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useStyle(navigationBarStyle)
-        pageViewLogger?.startTrackingTimeOnViewController()
+        screenViewTracker?.startTrackingTimeOnViewController()
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        pageViewLogger?.stopTrackingTimeOnViewController()
+        screenViewTracker?.stopTrackingTimeOnViewController()
     }
 }
 

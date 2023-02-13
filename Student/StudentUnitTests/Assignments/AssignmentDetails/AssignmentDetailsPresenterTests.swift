@@ -33,7 +33,6 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     var presentedView: UIViewController?
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
-    var pageViewLogger: MockPageViewLogger = MockPageViewLogger()
     var onUpdate: (() -> Void)?
     var viewController: AssignmentDetailsViewController!
 
@@ -52,9 +51,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        pageViewLogger = MockPageViewLogger()
         env.mockStore = true
-        env.pageViewLogger = pageViewLogger
         presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton
         viewController = AssignmentDetailsViewController.create(courseID: "1", assignmentID: "1")
@@ -469,7 +466,10 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         viewController.viewWillAppear(false)
         viewController.viewWillDisappear(false)
 
-        XCTAssertEqual(pageViewLogger.eventName, "/courses/\(presenter.courseID)/assignments/\(presenter.assignmentID)")
+        XCTAssertEqual(
+            viewController.screenViewTrackingParameters.eventName,
+            "/courses/\(presenter.courseID)/assignments/\(presenter.assignmentID)"
+        )
     }
 
     func testAssignmentDescription() {

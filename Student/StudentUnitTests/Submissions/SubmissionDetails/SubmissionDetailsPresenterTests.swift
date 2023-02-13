@@ -61,13 +61,10 @@ class SubmissionDetailsView: UIViewController, SubmissionDetailsViewProtocol {
 class SubmissionDetailsPresenterTests: StudentTestCase {
     var presenter: SubmissionDetailsPresenter!
     var view: SubmissionDetailsView!
-    var pageViewLogger: MockPageViewLogger!
     var viewController: SubmissionDetailsViewController!
 
     override func setUp() {
         super.setUp()
-        pageViewLogger = MockPageViewLogger()
-        env.pageViewLogger = pageViewLogger
 
         view = SubmissionDetailsView()
         presenter = SubmissionDetailsPresenter(env: env, view: view, context: .course("1"), assignmentID: "1", userID: "1")
@@ -352,7 +349,10 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         viewController.loadViewIfNeeded()
         viewController.viewWillAppear(false)
         viewController.viewWillDisappear(false)
-        XCTAssertEqual(pageViewLogger.eventName, "/courses/1/assignments/1/submissions/1")
+        XCTAssertEqual(
+            viewController.screenViewTrackingParameters.eventName,
+            "/courses/1/assignments/1/submissions/1"
+        )
     }
 
     func testLockedEmptyViewIsNotHidden() {

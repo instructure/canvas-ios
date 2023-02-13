@@ -24,12 +24,12 @@ public typealias ScreenViewTrackableHorizontalMenuViewController = HorizontalMen
 
 /// If you need to track a screen time on a view controller, don't inherit from this class directly. Use `ScreenViewTrackableViewController` instead
 open class ScreenViewTrackerViewController: UIViewController {
-    private var pageViewLogger: PresenterPageViewLogger?
+    private var tracker: ScreenViewTracker?
 
     override open func viewDidLoad() {
         super.viewDidLoad()
         if let screenViewTrackable = self as? ScreenViewTrackable {
-            pageViewLogger = PresenterPageViewLogger(
+            tracker = ScreenViewTrackerLive(
                 parameters: screenViewTrackable.screenViewTrackingParameters
             )
         }
@@ -37,25 +37,25 @@ open class ScreenViewTrackerViewController: UIViewController {
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard pageViewLogger != nil else { return }
-        pageViewLogger?.startTrackingTimeOnViewController()
+        guard tracker != nil else { return }
+        tracker?.startTrackingTimeOnViewController()
     }
 
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard pageViewLogger != nil else { return }
-        pageViewLogger?.stopTrackingTimeOnViewController()
+        guard tracker != nil else { return }
+        tracker?.stopTrackingTimeOnViewController()
     }
 }
 
 /// If you need to track a screen time on a table view controller, don't inherit from this class directly. Use `ScreenViewTrackableTableViewController` instead
 open class ScreenViewTrackerTableViewController: UITableViewController {
-    private var pageViewLogger: PresenterPageViewLogger?
+    private var tracker: ScreenViewTracker?
 
     override open func viewDidLoad() {
         super.viewDidLoad()
         if let screenViewTrackable = self as? ScreenViewTrackable {
-            pageViewLogger = PresenterPageViewLogger(
+            tracker = ScreenViewTrackerLive(
                 parameters: screenViewTrackable.screenViewTrackingParameters
             )
         }
@@ -63,13 +63,13 @@ open class ScreenViewTrackerTableViewController: UITableViewController {
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard pageViewLogger != nil else { return }
-        pageViewLogger?.startTrackingTimeOnViewController()
+        guard tracker != nil else { return }
+        tracker?.startTrackingTimeOnViewController()
     }
 
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard pageViewLogger != nil else { return }
-        pageViewLogger?.stopTrackingTimeOnViewController()
+        guard tracker != nil else { return }
+        tracker?.stopTrackingTimeOnViewController()
     }
 }

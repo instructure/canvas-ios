@@ -1810,10 +1810,9 @@
 		7DA2607A23F722FA005D2121 /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C9F22E1343C0039A568 /* PageViewEvent.swift */; };
 		7DA2607B23F722FA005D2121 /* PageViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA322E1343D0039A568 /* PageViewEventController.swift */; };
 		7DA2607C23F722FA005D2121 /* PageViewEventRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA422E1343D0039A568 /* PageViewEventRequestManager.swift */; };
-		7DA2607D23F722FA005D2121 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA122E1343C0039A568 /* PageViewEventViewControllerLoggingProtocol.swift */; };
 		7DA2607E23F722FA005D2121 /* PageViewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA222E1343D0039A568 /* PageViewSession.swift */; };
 		7DA2607F23F722FA005D2121 /* Persistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA022E1343C0039A568 /* Persistency.swift */; };
-		7DA2608023F722FA005D2121 /* PresenterPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */; };
+		7DA2608023F722FA005D2121 /* ScreenViewTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3222E62D51003D81C3 /* ScreenViewTracker.swift */; };
 		7DA2608123F72303005D2121 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC04212B461F00C40ECE /* APIUser.swift */; };
 		7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA333F23392A140015CBB4 /* GetContextUsers.swift */; };
 		7DA2608323F72303005D2121 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */; };
@@ -4352,7 +4351,6 @@
 		3B158C8C22E12DC50039A568 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		3B158C9F22E1343C0039A568 /* PageViewEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };
 		3B158CA022E1343C0039A568 /* Persistency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistency.swift; sourceTree = "<group>"; };
-		3B158CA122E1343C0039A568 /* PageViewEventViewControllerLoggingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocol.swift; sourceTree = "<group>"; };
 		3B158CA222E1343D0039A568 /* PageViewSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewSession.swift; sourceTree = "<group>"; };
 		3B158CA322E1343D0039A568 /* PageViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEventController.swift; sourceTree = "<group>"; };
 		3B158CA422E1343D0039A568 /* PageViewEventRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEventRequestManager.swift; sourceTree = "<group>"; };
@@ -4439,7 +4437,7 @@
 		3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PairWithStudentQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
 		3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicTests.swift; sourceTree = "<group>"; };
 		3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventItemTests.swift; sourceTree = "<group>"; };
-		3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLogger.swift; sourceTree = "<group>"; };
+		3BDB8F3222E62D51003D81C3 /* ScreenViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewTracker.swift; sourceTree = "<group>"; };
 		3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
 		3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
@@ -6090,8 +6088,18 @@
 		0287F0FDA7078E82B7E274E3 /* PageDetails */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< refs/remotes/origin/master
 				44640E74D6D5DA91B7580F0D /* PageDetailsViewController.storyboard */,
 				1A2B36ECA65D3C45F7DE5084 /* PageDetailsViewController.swift */,
+=======
+				7D0970EC22DF858D00E8A551 /* APIPandata.swift */,
+				3B0897B022EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift */,
+				3B158C9F22E1343C0039A568 /* PageViewEvent.swift */,
+				3B158CA322E1343D0039A568 /* PageViewEventController.swift */,
+				3B158CA422E1343D0039A568 /* PageViewEventRequestManager.swift */,
+				3B158CA222E1343D0039A568 /* PageViewSession.swift */,
+				3B158CA022E1343C0039A568 /* Persistency.swift */,
+>>>>>>> fix: tests, renamings
 			);
 			path = PageDetails;
 			sourceTree = "<group>";
@@ -7607,8 +7615,9 @@
 		B4F8142F2993CEE900A54954 /* ScreenViewLogger */ = {
 			isa = PBXGroup;
 			children = (
-				B41E37B4298AB3AA00C93966 /* ScreenViewTrackableViewController.swift */,
+				3BDB8F3222E62D51003D81C3 /* ScreenViewTracker.swift */,
 				B4FE941A29951E5F009B1703 /* ScreenViewTrackable.swift */,
+				B41E37B4298AB3AA00C93966 /* ScreenViewTrackableViewController.swift */,
 			);
 			path = ScreenViewLogger;
 			sourceTree = "<group>";
@@ -11402,7 +11411,6 @@
 				CFF64FE727DB64BB00653573 /* AttendanceCellViewModel.swift in Sources */,
 				7D8E20CA2450A372000F826B /* TabBarBadgeCounts.swift in Sources */,
 				7DA260DF23F72359005D2121 /* HorizontalScrollingStackview.swift in Sources */,
-				7DA2607D23F722FA005D2121 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				7DCA31F82540835300458651 /* WebView.swift in Sources */,
 				7D7F71E42420147800D6F9CB /* ConferenceDetailsViewController.swift in Sources */,
 				7DA25F9923F72136005D2121 /* APIAccount.swift in Sources */,
@@ -11426,7 +11434,7 @@
 				CF34180F28B02F260087433B /* BackgroundURLSessionProvider.swift in Sources */,
 				7DA2602F23F722C2005D2121 /* LoginWebViewController.swift in Sources */,
 				7DA260A523F72352005D2121 /* CreateTextComment.swift in Sources */,
-				7DA2608023F722FA005D2121 /* PresenterPageViewLogger.swift in Sources */,
+				7DA2608023F722FA005D2121 /* ScreenViewTracker.swift in Sources */,
 				7DA2602523F722B3005D2121 /* LoggableCell.swift in Sources */,
 				D91BC851276B7B2D008371B0 /* AssignmentListView.swift in Sources */,
 				7DA2607023F722E9005D2121 /* CommunicationChannel.swift in Sources */,
