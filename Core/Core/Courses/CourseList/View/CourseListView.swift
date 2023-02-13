@@ -100,7 +100,7 @@ public struct CourseListView: View {
         } else {
             CourseListSection(header: Text("Current Enrollments", bundle: .core), courses: current, hideFavoriteButton: false)
             CourseListSection(header: Text("Past Enrollments", bundle: .core), courses: past, hideFavoriteButton: true)
-            CourseListSection(header: Text("Future Enrollments", bundle: .core), courses: future, hideFavoriteButton: false)
+            CourseListSection(header: Text("Future Enrollments", bundle: .core), courses: future, hideFavoriteButton: true)
             Divider()
         }
     }
