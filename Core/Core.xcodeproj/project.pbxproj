@@ -3986,6 +3986,7 @@
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7D64A974236759FA004EAEDF /* GetCourseSections.swift */,
 				CF8CB51D26CBB1D0008361E2 /* GetCourseNavigationToolsRequest.swift */,
+				CF3A32012907E333002752D2 /* GetCurrentUserCoursesRequest.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -5087,7 +5088,6 @@
 		CF3A31D228F702A3002752D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CF3A32002907E32A002752D2 /* API */,
 				CF3A31F828FFE75F002752D2 /* Entities */,
 				CFFB3AC0292BC8940093437D /* UseCase */,
 				CF3A31F228FEBE0B002752D2 /* InboxMessageInteractor.swift */,
@@ -5143,14 +5143,6 @@
 				CF3A31F028FDA64D002752D2 /* InboxMessageModelAvatarTests.swift */,
 			);
 			path = Entities;
-			sourceTree = "<group>";
-		};
-		CF3A32002907E32A002752D2 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				CF3A32012907E333002752D2 /* GetCurrentUserCoursesRequest.swift */,
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		CF3E76002885619800276703 /* Model */ = {
