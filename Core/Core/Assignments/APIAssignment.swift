@@ -285,7 +285,7 @@ public struct GetAssignmentRequest: APIRequestable {
         self.allDates = allDates
     }
 
-    public enum GetAssignmentInclude: String {
+    public enum GetAssignmentInclude: String, CaseIterable {
         case submission, overrides, score_statistics, can_submit, observed_users
     }
 

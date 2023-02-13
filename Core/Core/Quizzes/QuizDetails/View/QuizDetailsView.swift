@@ -211,7 +211,7 @@ struct QuizDetails_Previews: PreviewProvider {
             QuizAttribute("Quiz Type:", "Graded Quiz"),
             QuizAttribute("Time Limit:", "30 minutes"),
         ]
-        let viewModel = PreviewQuizDetailsViewModel(
+        let viewModel = QuizDetailsViewModelPreview(
             state: .ready,
             courseColor: .red,
             title: "Title",

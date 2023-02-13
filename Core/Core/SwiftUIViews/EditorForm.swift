@@ -168,3 +168,56 @@ public struct DoubleFieldRow: View {
         return formatter
     }()
 }
+
+public struct IntFieldRow: View {
+    public let label: Text
+    public let placeholder: String
+    @Binding public var value: Int?
+
+    public init(label: Text, placeholder: String, value: Binding<Int?>) {
+        self.label = label
+        self.placeholder = placeholder
+        self._value = value
+    }
+
+    public var body: some View {
+        TextFieldRow(label: label, placeholder: placeholder, text: Binding(
+            get: { value.flatMap { IntFieldRow.formatter.string(from: NSNumber(value: $0)) } ?? "" },
+            set: { value = IntFieldRow.formatter.number(from: $0)?.intValue }
+        ))
+            .keyboardType(.numberPad)
+    }
+
+    public static var formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = false
+        formatter.isLenient = true
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
+
+public struct ToggleRow: View {
+    public let label: Text
+    @Binding public var value: Bool
+
+    public init(label: Text, value: Binding<Bool>) {
+        self.label = label
+        self._value = value.animation()
+    }
+
+    public var body: some View {
+        Toggle(isOn: $value) { label }
+            .font(.semibold16).foregroundColor(.textDarkest)
+            .padding(16)
+            .background(Color.backgroundLightest)
+    }
+
+    public static var formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        formatter.isLenient = true
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
