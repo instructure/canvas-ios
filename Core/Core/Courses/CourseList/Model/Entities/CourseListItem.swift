@@ -21,6 +21,7 @@ import CoreData
 public final class CourseListItem: NSManagedObject {
     @NSManaged public var courseId: String
     @NSManaged public var courseCode: String
+    /** The enrollment state which was passed to the API when this entity was returned. Used to group courses into past, current and future sections. */
     @NSManaged public var enrollmentState: String
     @NSManaged public var isFavorite: Bool
     @NSManaged public var isPublished: Bool

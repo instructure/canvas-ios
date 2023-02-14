@@ -66,13 +66,6 @@ class StoreStateMergeTests: XCTestCase {
     }
 
     private func validate(_ input: [StoreState], expected: StoreState) {
-        switch input.count {
-        case 3: validate3(input, expected: expected)
-        default: XCTFail("Invalid parameter count")
-        }
-    }
-
-    private func validate3(_ input: [StoreState], expected: StoreState) {
         let s1 = PassthroughSubject<StoreState, Never>()
         let s2 = PassthroughSubject<StoreState, Never>()
         let s3 = PassthroughSubject<StoreState, Never>()
