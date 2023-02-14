@@ -32,8 +32,6 @@ extension XCUIApplication {
         let executable = e2eRunner.replacingOccurrences(of: "E2ETests-Runner", with: "")
         appName = "Canvas \(executable)"
 
-
-        /// use `firstMatch` because icon may appear in iPad dock
         let appIcon = springboard.icons[appName].firstMatch
         if appIcon.waitForExistence(timeout: timeout) {
             appIcon.press(forDuration: 2)
