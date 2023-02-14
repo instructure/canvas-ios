@@ -166,27 +166,6 @@ public struct CourseDetailsView: View {
         }
     }
 
-    @available(iOS, obsoleted: 15)
-    private func legacyTabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
-        ListWithoutVerticalScrollIndicator {
-            VStack(spacing: 0) {
-                imageHeader(geometry: geometry)
-                if viewModel.showHome {
-                    homeView
-                    Divider()
-                }
-                ForEach(tabViewModels, id: \.id) { tabViewModel in
-                    CourseDetailsCellView(viewModel: tabViewModel)
-                    Divider()
-                }
-            }
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(Color.clear)
-            .background(Color.backgroundLightest)
-        }
-        .listStyle(.plain)
-    }
-
     @ViewBuilder
     private func imageHeader(geometry: GeometryProxy) -> some View {
         if headerViewModel.shouldShowHeader(for: geometry.size.height) {

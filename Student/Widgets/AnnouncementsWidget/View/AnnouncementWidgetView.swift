@@ -69,7 +69,6 @@ struct LargeWidgets: PreviewProvider {
     static var previews: some View { PreviewConfig.preview(for: .systemLarge) }
 }
 
-@available(iOSApplicationExtension 15.0, *)
 struct ExtraLargeWidgets: PreviewProvider {
     static var previews: some View {
         PreviewConfig.preview(for: .systemExtraLarge, device: PreviewDevice(.iPadPro_9_7))

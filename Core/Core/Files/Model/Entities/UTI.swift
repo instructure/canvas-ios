@@ -31,9 +31,7 @@ public struct UTI: Equatable, Hashable {
     public let rawValue: String
 
     public init?(extension: String) {
-        let raw = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, `extension` as CFString, nil)
-            .map { $0.takeRetainedValue() }
-            .map { $0 as String }
+        let raw = UTType(filenameExtension: `extension`)?.identifier
 
         guard let value = raw, !value.isEmpty, !value.hasPrefix("dyn.") else {
             return nil
@@ -43,9 +41,7 @@ public struct UTI: Equatable, Hashable {
     }
 
     public init?(mime: String) {
-        let raw = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mime as CFString, nil)
-            .map { $0.takeRetainedValue() }
-            .map { $0 as String }
+        let raw = UTType(mimeType: mime)?.identifier
 
         guard let value = raw, !value.isEmpty, !value.hasPrefix("dyn.") else {
             return nil
@@ -54,7 +50,6 @@ public struct UTI: Equatable, Hashable {
         self.rawValue = value
     }
 
-    @available(iOSApplicationExtension 14.0, *)
     public var uttype: UTType? { UTType(rawValue) }
 
     private init(rawValue: String) {
@@ -75,31 +70,31 @@ public struct UTI: Equatable, Hashable {
     }
 
     public static var any: UTI {
-        return UTI(rawValue: kUTTypeItem as String)
+        return UTI(rawValue: UTType.item.identifier)
     }
 
     public static var video: UTI {
-        return UTI(rawValue: kUTTypeMovie as String)
+        return UTI(rawValue: UTType.movie.identifier)
     }
 
     public static var audio: UTI {
-        return UTI(rawValue: kUTTypeAudio as String)
+        return UTI(rawValue: UTType.audio.identifier)
     }
 
     public static var image: UTI {
-        return UTI(rawValue: kUTTypeImage as String)
+        return UTI(rawValue: UTType.image.identifier)
     }
 
     public static var text: UTI {
-        return UTI(rawValue: kUTTypeText as String)
+        return UTI(rawValue: UTType.text.identifier)
     }
 
     public static var url: UTI {
-        return UTI(rawValue: kUTTypeURL as String)
+        return UTI(rawValue: UTType.url.identifier)
     }
 
     public static var fileURL: UTI {
-        return UTI(rawValue: kUTTypeFileURL as String)
+        return UTI(rawValue: UTType.fileURL.identifier)
     }
 
     public static var pagesBundle: UTI {
@@ -127,22 +122,22 @@ public struct UTI: Equatable, Hashable {
     }
 
     public static var folder: UTI {
-        return UTI(rawValue: kUTTypeFolder as String)
+        return UTI(rawValue: UTType.folder.identifier)
     }
 
     public var isVideo: Bool {
-        return UTTypeConformsTo(rawValue as CFString, kUTTypeMovie)
+        return uttype?.conforms(to: .movie) ?? false
     }
 
     public var isImage: Bool {
-        return UTTypeConformsTo(rawValue as CFString, kUTTypeImage)
+        return uttype?.conforms(to: .image) ?? false
     }
 
     public var isAudio: Bool {
-        return UTTypeConformsTo(rawValue as CFString, kUTTypeAudio)
+        return uttype?.conforms(to: .audio) ?? false
     }
 
     public var isAny: Bool {
-        return UTTypeConformsTo(rawValue as CFString, kUTTypeItem)
+        return uttype?.conforms(to: .item) ?? false
     }
 }

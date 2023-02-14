@@ -19,7 +19,6 @@
 import Combine
 import SwiftUI
 
-@available(iOSApplicationExtension 15.0, *)
 public struct SubmitAssignmentExtensionView: View {
     private enum AccessibilityFocusArea: Hashable, Equatable {
         case course, assignment
