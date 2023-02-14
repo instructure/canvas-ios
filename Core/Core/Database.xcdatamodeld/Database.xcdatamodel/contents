@@ -227,7 +227,6 @@
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="isCourseDeleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="isFutureEnrollment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isHomeroomCourse" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPublished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
