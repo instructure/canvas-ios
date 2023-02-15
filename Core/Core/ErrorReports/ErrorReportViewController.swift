@@ -22,7 +22,7 @@ public enum ErrorReportType: String {
     case problem, feature
 }
 
-public class ErrorReportViewController: UIViewController {
+public class ErrorReportViewController: ScreenViewTrackableViewController {
     @IBOutlet weak var backgroundColorView: UIView?
     @IBOutlet weak var commentsField: UITextView?
     weak var commentsMinHeight: NSLayoutConstraint?
@@ -42,6 +42,7 @@ public class ErrorReportViewController: UIViewController {
     var keyboard: KeyboardTransitioning?
     var initialSubject: String?
     var type: ErrorReportType = .problem
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/support/problem")
 
     var selectedImpact: IndexPath?
     let impacts = [ ItemPickerSection(items: [

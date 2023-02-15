@@ -23,7 +23,7 @@ import QuickLook
 import QuickLookThumbnailing
 import UIKit
 
-public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegate, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
+public class FileDetailsViewController: ScreenViewTrackableViewController, CoreWebViewLinkDelegate, ErrorViewController {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var arButton: UIButton!
     @IBOutlet weak var arImageView: UIImageView!
@@ -51,7 +51,9 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var localURL: URL?
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
     var originURL: URLComponents?
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context?.pathComponent ?? "")/files/\(fileID)"
+    )
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
@@ -106,7 +108,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startTrackingTimeOnViewController()
         env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
     }
@@ -115,7 +116,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         super.viewWillDisappear(animated)
         saveAnnotations()
         downloadTask?.cancel()
-        stopTrackingTimeOnViewController(eventName: "\(context?.pathComponent ?? "")/files/\(fileID)")
     }
 
     @objc func fileEdited(_ notification: NSNotification) {

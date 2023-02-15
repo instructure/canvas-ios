@@ -17,6 +17,7 @@
 //
 
 import XCTest
+import TestsFoundation
 @testable import Core
 
 class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
@@ -27,6 +28,7 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
     var p: Persistency!
     var persistenceTestFileName = "PageViewEventViewControllerLoggingProtocolTests.dat"
     var waitExpectation: XCTestExpectation!
+    var screenViewTracker: ScreenViewTracker!
     var tearDownWait: XCTestExpectation!
 
     override func setUp() {
@@ -59,14 +61,17 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
         let entry = LoginSession.make()
         LoginSession.add(entry)
 
+        screenViewTracker = ScreenViewTrackerLive(
+            parameters: ScreenViewTrackingParameters(eventName: "\(#function)")
+        )
         PageViewEventController.instance.appCanLogEvents = { return true }
 
         XCTAssertEqual(p.queueCount, 0)
         //  when
         Clock.mockNow(start)
-        startTrackingTimeOnViewController()
+        screenViewTracker.startTrackingTimeOnViewController()
         Clock.mockNow(end)
-        stopTrackingTimeOnViewController(eventName: "\(#function)")
+        screenViewTracker.stopTrackingTimeOnViewController()
 
         dispatchQueue.async {
             self.waitExpectation.fulfill()
@@ -79,8 +84,6 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
         XCTAssertEqual(events?.first?.eventName, "\(#function)")
     }
 }
-
-extension PageViewEventViewControllerLoggingProtocolTests: PageViewEventViewControllerLoggingProtocol {}
 
 class TestAppBackgroundHelper: AppBackgroundHelperProtocol {
     var tasks: [String: [String]] = [:]

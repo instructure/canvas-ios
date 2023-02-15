@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,16 @@
 //
 
 import Foundation
-import Core
 
-public class MockPageViewLogger: PageViewEventViewControllerLoggingProtocol {
-    public var timeOnViewControllerStart: Date?
-    public var timeOnViewControllerEnd: Date?
-    public var eventName: String = ""
-    public var attributes: [String: String] = [:]
+public protocol ScreenViewTrackable {
+    var screenViewTrackingParameters: ScreenViewTrackingParameters { get }
+}
 
-    public init() {}
+public struct ScreenViewTrackingParameters {
+    let eventName: String
+    let attributes: [String: String]
 
-    public func startTrackingTimeOnViewController() {}
-
-    public func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String]) {
+    public init(eventName: String, attributes: [String: String] = [:]) {
         self.eventName = eventName
         self.attributes = attributes
     }

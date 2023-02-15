@@ -20,13 +20,21 @@ import Foundation
 import UIKit
 import Core
 
-class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol {
+class SubmissionDetailsViewController: ScreenViewTrackableViewController, SubmissionDetailsViewProtocol {
     var color: UIColor?
     var presenter: SubmissionDetailsPresenter?
     var titleSubtitleView = TitleSubtitleView.create()
     var contentViewController: UIViewController?
     var drawerContentViewController: UIViewController?
     var env: AppEnvironment?
+    public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
+        let courseID = presenter?.course.first?.id ?? ""
+        let assignmentID = presenter?.assignmentID ?? ""
+        let submissionID = presenter?.submissions.first?.id ?? ""
+        return ScreenViewTrackingParameters(
+            eventName: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(submissionID)"
+        )
+    }()
 
     private lazy var setDrawerPositionOnce: () = {
         drawer?.setMiddle()
@@ -68,16 +76,6 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         presenter?.viewIsReady()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter?.viewDidAppear()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter?.viewDidDisappear()
     }
 
     override func viewDidLayoutSubviews() {

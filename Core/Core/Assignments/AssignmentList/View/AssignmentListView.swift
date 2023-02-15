@@ -18,13 +18,18 @@
 
 import SwiftUI
 
-public struct AssignmentListView: View {
+public struct AssignmentListView: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: AssignmentListViewModel
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
     @State private var isShowingGradingPeriodPicker = false
 
     public init(viewModel: AssignmentListViewModel) {
         self.viewModel = viewModel
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(viewModel.courseID))/assignments"
+        )
     }
 
     public var body: some View {

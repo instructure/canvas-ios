@@ -28,7 +28,7 @@ protocol CalendarViewControllerDelegate: AnyObject {
     func numberOfCalendars() -> Int? // nil = all
 }
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: ScreenViewTrackableViewController {
     @IBOutlet weak var dropdownView: UIImageView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
@@ -43,6 +43,9 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var weekdayRow: UIStackView!
     @IBOutlet weak var yearLabel: UILabel!
     weak var delegate: CalendarViewControllerDelegate?
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/calendar"
+    )
 
     lazy var yearFormatter: DateFormatter = {
         let formatter = DateFormatter()
