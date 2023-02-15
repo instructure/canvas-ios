@@ -115,6 +115,12 @@
 		C9BCCA1227E46B4B003E9CB0 /* DSContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA1127E46B4B003E9CB0 /* DSContextCardE2ETests.swift */; };
 		C9BCCA1927F33E4A003E9CB0 /* DSTodosE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCCA1827F33E4A003E9CB0 /* DSTodosE2ETests.swift */; };
 		C9FDE91E26BBBE5500DF0106 /* AnnouncementsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDE91D26BBBE5500DF0106 /* AnnouncementsE2ETests.swift */; };
+		CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */; };
+		CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */; };
+		CF13E552299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E551299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift */; };
+		CF13E554299D136F00F57F69 /* QuizSubmissionListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E553299D136F00F57F69 /* QuizSubmissionListAssembly.swift */; };
+		CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E556299D1A1100F57F69 /* QuizSubmissionListItem.swift */; };
+		CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E558299D1AEC00F57F69 /* QuizSubmissionListView.swift */; };
 		CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */; };
 		CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */; };
 		CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */; };
@@ -573,6 +579,12 @@
 		C9BCCA1127E46B4B003E9CB0 /* DSContextCardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSContextCardE2ETests.swift; sourceTree = "<group>"; };
 		C9BCCA1827F33E4A003E9CB0 /* DSTodosE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTodosE2ETests.swift; sourceTree = "<group>"; };
 		C9FDE91D26BBBE5500DF0106 /* AnnouncementsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsE2ETests.swift; sourceTree = "<group>"; };
+		CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListViewModel.swift; sourceTree = "<group>"; };
+		CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractor.swift; sourceTree = "<group>"; };
+		CF13E551299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractorLive.swift; sourceTree = "<group>"; };
+		CF13E553299D136F00F57F69 /* QuizSubmissionListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListAssembly.swift; sourceTree = "<group>"; };
+		CF13E556299D1A1100F57F69 /* QuizSubmissionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItem.swift; sourceTree = "<group>"; };
+		CF13E558299D1AEC00F57F69 /* QuizSubmissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListView.swift; sourceTree = "<group>"; };
 		CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderTests.swift; sourceTree = "<group>"; };
 		CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModel.swift; sourceTree = "<group>"; };
 		CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModelTests.swift; sourceTree = "<group>"; };
@@ -729,6 +741,7 @@
 		3B55FEC522FC861F00FCB7B2 /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				CF13E549299D08E000F57F69 /* QuizSubmissionList */,
 				3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */,
 				3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */,
 				3B18E82A230C683D006CAF5C /* PostGradesPresenter.swift */,
@@ -918,6 +931,51 @@
 				C9270D72286C6F7A00FE4BAD /* DSTeacherAnnouncementsE2ETests.swift */,
 			);
 			path = Assignments;
+			sourceTree = "<group>";
+		};
+		CF13E549299D08E000F57F69 /* QuizSubmissionList */ = {
+			isa = PBXGroup;
+			children = (
+				CF13E54E299D0B6900F57F69 /* Model */,
+				CF13E54D299D0B6500F57F69 /* View */,
+				CF13E54A299D08EC00F57F69 /* ViewModel */,
+				CF13E553299D136F00F57F69 /* QuizSubmissionListAssembly.swift */,
+			);
+			path = QuizSubmissionList;
+			sourceTree = "<group>";
+		};
+		CF13E54A299D08EC00F57F69 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF13E54D299D0B6500F57F69 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF13E558299D1AEC00F57F69 /* QuizSubmissionListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF13E54E299D0B6900F57F69 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF13E555299D1A0300F57F69 /* Entities */,
+				CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */,
+				CF13E551299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF13E555299D1A0300F57F69 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				CF13E556299D1A1100F57F69 /* QuizSubmissionListItem.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		D9DE56C82550309600CF8B22 /* Syllabus */ = {
@@ -1735,7 +1793,9 @@
 				7D7126C425374457000DEDE4 /* SubmissionCommentList.swift in Sources */,
 				7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */,
 				7D742F382554D01400FD6CF1 /* RubricAssessor.swift in Sources */,
+				CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
+				CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */,
 				7D7126B12534B980000DEDE4 /* Drawer.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */,
@@ -1745,6 +1805,7 @@
 				EBAF32F627AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift in Sources */,
 				CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
+				CF13E554299D136F00F57F69 /* QuizSubmissionListAssembly.swift in Sources */,
 				7D4B2748253F2D1600A98DE3 /* SubmissionCommentListCell.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
@@ -1752,10 +1813,13 @@
 				7D7126C025374446000DEDE4 /* SubmissionGrades.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */,
+				CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */,
+				CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
+				CF13E552299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */,
