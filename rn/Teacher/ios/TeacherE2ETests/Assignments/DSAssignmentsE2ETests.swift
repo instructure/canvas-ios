@@ -37,7 +37,7 @@ class DSAssignmentsE2ETests: E2ETestCase {
 
         Dashboard.courseCard(id: course.id).waitToExist()
         Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.assignments.tap()
+        CourseNavigation.assignments.waitToExist().tap()
         AssignmentsList.assignment(id: assignment.id).tap()
         XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         AssignmentDetails.description(assignmentDescription).waitToExist(5)

@@ -22,7 +22,17 @@ import AVKit
 @testable import Core
 
 class BackgroundVideoPlayerTests: XCTestCase {
-    let player = BackgroundVideoPlayer.shared
+    var player: BackgroundVideoPlayer!
+
+    override func setUp() {
+        player = BackgroundVideoPlayer.shared
+        super.setUp()
+    }
+
+    override func tearDown() {
+        player = nil
+        super.tearDown()
+    }
 
     func testBackgroundReconnect() {
         XCTAssertNil(player.viewController)
