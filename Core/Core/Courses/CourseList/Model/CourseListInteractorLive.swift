@@ -45,22 +45,10 @@ public class CourseListInteractorLive: CourseListInteractor {
             .subscribe(courseList)
             .store(in: &subscriptions)
 
-        Publishers
-            .CombineLatest3(activeCoursesListStore.statePublisher,
-                            pastCoursesListStore.statePublisher,
-                            futureCoursesListStore.statePublisher)
-            .map { [$0.0, $0.1, $0.2] }
-            .map { states -> StoreState in
-                if states.contains(.loading) {
-                    return .loading
-                } else if states.contains(.error) {
-                    return .error
-                } else if states.contains(.data) {
-                    return .data
-                } else {
-                    return .empty
-                }
-            }
+        StoreState
+            .combineLatest(activeCoursesListStore.statePublisher,
+                           pastCoursesListStore.statePublisher,
+                           futureCoursesListStore.statePublisher)
             .subscribe(state)
             .store(in: &subscriptions)
 

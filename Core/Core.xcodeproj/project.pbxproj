@@ -1056,6 +1056,9 @@
 		CF8D19E22996596900FC70B7 /* CourseListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D19E12996596900FC70B7 /* CourseListAssembly.swift */; };
 		CF8D19E6299676E200FC70B7 /* CourseListItemSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D19E5299676E200FC70B7 /* CourseListItemSearchTests.swift */; };
 		CF8D19E82996946800FC70B7 /* CourseListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D19E72996946800FC70B7 /* CourseListItemTests.swift */; };
+		CF8D19EA299B7EBC00FC70B7 /* StoreStateCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D19E9299B7EBC00FC70B7 /* StoreStateCombine.swift */; };
+		CF8D19EC299B83CD00FC70B7 /* StoreStateMergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D19EB299B83CD00FC70B7 /* StoreStateMergeTests.swift */; };
+		CF8D19EE299BBE9300FC70B7 /* CourseListInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D19ED299BBE9300FC70B7 /* CourseListInteractorLiveTests.swift */; };
 		CF8D534527FF34B70038B0B2 /* font_lato_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CF8D534427FF34B70038B0B2 /* font_lato_regular.css */; };
 		CF8D53492805A5850038B0B2 /* FontAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D53482805A5850038B0B2 /* FontAppearance.swift */; };
 		CF8D534C2805A68C0038B0B2 /* FontAppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D534B2805A68C0038B0B2 /* FontAppearanceTests.swift */; };
@@ -2673,6 +2676,9 @@
 		CF8D19E12996596900FC70B7 /* CourseListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListAssembly.swift; sourceTree = "<group>"; };
 		CF8D19E5299676E200FC70B7 /* CourseListItemSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListItemSearchTests.swift; sourceTree = "<group>"; };
 		CF8D19E72996946800FC70B7 /* CourseListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListItemTests.swift; sourceTree = "<group>"; };
+		CF8D19E9299B7EBC00FC70B7 /* StoreStateCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateCombine.swift; sourceTree = "<group>"; };
+		CF8D19EB299B83CD00FC70B7 /* StoreStateMergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateMergeTests.swift; sourceTree = "<group>"; };
+		CF8D19ED299BBE9300FC70B7 /* CourseListInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListInteractorLiveTests.swift; sourceTree = "<group>"; };
 		CF8D534427FF34B70038B0B2 /* font_lato_regular.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = font_lato_regular.css; sourceTree = "<group>"; };
 		CF8D53482805A5850038B0B2 /* FontAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAppearance.swift; sourceTree = "<group>"; };
 		CF8D534B2805A68C0038B0B2 /* FontAppearanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAppearanceTests.swift; sourceTree = "<group>"; };
@@ -4794,6 +4800,7 @@
 			children = (
 				B19792F2217634D30000369C /* Scope.swift */,
 				B11D321621E464AB00F37ABF /* Store.swift */,
+				CF8D19E9299B7EBC00FC70B7 /* StoreStateCombine.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
 				B1EF7ABA21E902DD00D653D7 /* UseCase.swift */,
 				E8A0193124D36D3D009185DC /* PreviewStore.swift */,
@@ -4928,6 +4935,7 @@
 			isa = PBXGroup;
 			children = (
 				B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */,
+				CF8D19EB299B83CD00FC70B7 /* StoreStateMergeTests.swift */,
 				B15CA22C221CA2EE0014FB02 /* UseCaseTests.swift */,
 				E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */,
 			);
@@ -5923,6 +5931,7 @@
 			isa = PBXGroup;
 			children = (
 				CF8D19E4299676D000FC70B7 /* Entities */,
+				CF8D19ED299BBE9300FC70B7 /* CourseListInteractorLiveTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7696,6 +7705,7 @@
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
 				7D288B0825758A5E0013FF65 /* SubmissionSummaryTests.swift in Sources */,
+				CF8D19EC299B83CD00FC70B7 /* StoreStateMergeTests.swift in Sources */,
 				3B5542462369F401007D3CE0 /* APIAssignmentListTests.swift in Sources */,
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
 				7D89A2CE250A806B009D0FD2 /* FileEditorViewTests.swift in Sources */,
@@ -8012,6 +8022,7 @@
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				CF3E7627288AB60800276703 /* FileProgressListViewModelTests.swift in Sources */,
 				EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */,
+				CF8D19EE299BBE9300FC70B7 /* CourseListInteractorLiveTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */,
 				CF8CB54C26CD27A5008361E2 /* K5ResourcesApplicationViewModelTests.swift in Sources */,
@@ -8713,6 +8724,7 @@
 				CFCB0F6127CE7B21008DDEA4 /* GradesPanda.swift in Sources */,
 				D9B6493028F452B40035CE14 /* QuizDetailsViewModel.swift in Sources */,
 				7DA2608123F72303005D2121 /* APIUser.swift in Sources */,
+				CF8D19EA299B7EBC00FC70B7 /* StoreStateCombine.swift in Sources */,
 				7DA260EF23F72391005D2121 /* File.swift in Sources */,
 				7DA2605C23F722D9005D2121 /* QuizSubmission.swift in Sources */,
 				7DA2609C23F72341005D2121 /* TermsOfServiceViewController.swift in Sources */,
