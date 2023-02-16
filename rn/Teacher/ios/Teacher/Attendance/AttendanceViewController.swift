@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
+class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     let calendarDayIconView = CalendarDayIconView.create(date: Clock.now)
     let changeSectionButton = UIButton(type: .system)
     let header = UIView()
@@ -37,6 +37,9 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
     let session: RollCallSession
     var statuses: [AttendanceStatusController] = []
 
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/\(context.pathComponent)/attendence"
+    )
     static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
         d.dateStyle = .medium

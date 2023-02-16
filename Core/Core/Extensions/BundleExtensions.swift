@@ -62,6 +62,28 @@ public extension Bundle {
         }
     }
     static var isExtension: Bool { Bundle.main.bundleURL.pathExtension == "appex" }
+
+    var pandataAppName: String {
+        switch bundleIdentifier {
+        case Bundle.studentBundleID:
+            return "Canvas Student for iOS"
+        case Bundle.teacherBundleID:
+            return "Canvas Teacher for iOS"
+        default:
+            return "Invalid App ID for iOS"
+        }
+    }
+
+    var pandataAppTag: String {
+        switch bundleIdentifier {
+        case Bundle.studentBundleID:
+            return "CANVAS_STUDENT_IOS"
+        case Bundle.teacherBundleID:
+            return "CANVAS_TEACHER_IOS"
+        default:
+            return "Invalid AppTag for iOS"
+        }
+    }
 }
 
 // The comment parameter is necessary for -exportLocalizations to find these

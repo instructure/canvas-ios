@@ -61,7 +61,7 @@ public class PageViewEventController: NSObject {
         let userID = authSession.userID
         var mutableAttributes = attributes
         mutableAttributes["session_id"] = session.ID
-        mutableAttributes["app_name"] = "Canvas Student for iOS"
+        mutableAttributes["app_name"] = Bundle.main.pandataAppName
         mutableAttributes["user_id"] = userID
         mutableAttributes["agent"] = UserAgent.default.description
         if let realUserID = authSession.originalUserID {

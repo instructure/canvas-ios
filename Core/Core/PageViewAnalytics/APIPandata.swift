@@ -36,7 +36,7 @@ public struct APIPandataEvent: Codable, Equatable {
     public static func pageView(timestamp: Date, properties: APIPandataEventProperties, signedProperties: String) -> APIPandataEvent {
         return APIPandataEvent(
             timestamp: timestamp,
-            appTag: "CANVAS_STUDENT_IOS",
+            appTag: Bundle.main.pandataAppTag,
             eventType: .page_view,
             properties: properties,
             signedProperties: signedProperties

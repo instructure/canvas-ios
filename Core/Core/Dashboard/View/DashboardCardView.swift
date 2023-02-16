@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct DashboardCardView: View {
+public struct DashboardCardView: View, ScreenViewTrackable {
     @StateObject var viewModel: DashboardViewModel
     @ObservedObject var cards: DashboardCardsViewModel
     @ObservedObject var colors: Store<GetCustomColors>
@@ -34,6 +34,8 @@ public struct DashboardCardView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    public var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
+    
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
     private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
