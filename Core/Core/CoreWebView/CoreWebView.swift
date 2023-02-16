@@ -552,6 +552,8 @@ extension CoreWebView {
 // MARK: - Color Scheme Switching
 
 extension CoreWebView {
+    public var themeSwitchButtonHeight: CGFloat { 38 }
+    public var themeSwitchButtonTopPadding: CGFloat { 16 }
 
     private func updateHtmlContentView() {
 
@@ -571,17 +573,16 @@ extension CoreWebView {
     }
 
     public func pinWithThemeSwitchButton(inside parent: UIView?, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
-
-        guard let parent = parent else { return }
+        guard let parent else { return }
 
         let padding: CGFloat = 16
 
         var buttonHeight: CGFloat {
-            isThemeDark ? 38 : 0
+            isThemeDark ? themeSwitchButtonHeight : 0
         }
 
         var buttonTopPadding: CGFloat {
-            isThemeDark ? 16 : 0
+            isThemeDark ? themeSwitchButtonTopPadding : 0
         }
 
         themeSwitcherButton.isHidden = !isThemeDark
