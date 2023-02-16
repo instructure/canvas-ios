@@ -108,6 +108,8 @@ extension NotificationManager {
                 // Hide error alert when "Users can edit their communication channels" setting is turned off
                 if let apiError = error as? APIError, case .unauthorized = apiError {
                     return
+                } else if error.isPushNotConfigured {
+                    return
                 } else {
                     return AppEnvironment.shared.reportError(error)
                 }
