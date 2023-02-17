@@ -34,8 +34,8 @@ public class PageViewEventController: NSObject {
     var appCanLogEvents: () -> Bool = {
         let isNotExtension = !Bundle.isExtension
         let isNotTest = !ProcessInfo.isUITest
-        let isStudent = Bundle.main.isStudentApp
-        return isNotTest && isStudent && isNotExtension
+        let isStudentOrTeacher = Bundle.main.isStudentApp || Bundle.main.isTeacherApp
+        return isNotTest && isStudentOrTeacher && isNotExtension
     }
 
     private override init() {
