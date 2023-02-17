@@ -119,11 +119,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         let bottomMargin: CGFloat = 50
 
         replyButton = FloatingButton(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+        replyButton?.configuration = UIButton.Configuration.plain()
         replyButton?.accessibilityLabel = NSLocalizedString("Compose Message", comment: "")
         replyButton?.accessibilityIdentifier = "Grades.composeMessageButton"
         replyButton?.accessibilityTraits.insert(.header)
         replyButton?.setImage(UIImage.commentSolid, for: .normal)
-        replyButton?.imageEdgeInsets = UIEdgeInsets(top: 17, left: 17, bottom: 15, right: 15)
+        replyButton?.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 17, leading: 17, bottom: 15, trailing: 15)
         replyButton?.tintColor = .white
         replyButton?.backgroundColor = colorScheme?.color
         if let replyButton = replyButton { view.addSubview(replyButton) }

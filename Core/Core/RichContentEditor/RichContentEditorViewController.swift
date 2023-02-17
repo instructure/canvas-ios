@@ -19,6 +19,7 @@
 import MobileCoreServices
 import UIKit
 import WebKit
+import UniformTypeIdentifiers
 
 public protocol RichContentEditorDelegate: AnyObject {
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool)
@@ -266,7 +267,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         picker.delegate = self
         picker.imageExportPreset = .compatible
         picker.sourceType = UIImagePickerController.isSourceTypeAvailable(sourceType) ? sourceType : .photoLibrary
-        picker.mediaTypes = [ kUTTypeImage as String, kUTTypeMovie as String ]
+        picker.mediaTypes = [ UTType.image.identifier, UTType.movie.identifier ]
         env.router.show(picker, from: self, options: .modal())
     }
 

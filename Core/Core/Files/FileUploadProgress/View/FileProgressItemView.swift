@@ -49,7 +49,7 @@ struct FileProgressItemView: View {
         .padding(.top, Typography.Spacings.textCellIconTopPadding)
         .padding(.leading, Typography.Spacings.textCellIconLeadingPadding)
         .padding(.trailing, Typography.Spacings.textCellIconTrailingPadding)
-        .animation(.default)
+        .animation(.default, value: viewModel.state)
         .accessibility(hidden: true)
     }
 
@@ -95,7 +95,7 @@ struct FileProgressItemView: View {
             }
         }
         .padding(.trailing, Typography.Spacings.textCellIconLeadingPadding)
-        .animation(.default)
+        .animation(.default, value: viewModel.state)
     }
 
     private func circleProgress(progress: CGFloat? = nil) -> some View {

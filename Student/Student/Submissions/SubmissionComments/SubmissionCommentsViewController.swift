@@ -19,6 +19,7 @@
 import UIKit
 import CoreServices
 import Core
+import UniformTypeIdentifiers
 
 class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var addCommentBorderView: UIView!
@@ -119,7 +120,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                     let picker = UIImagePickerController()
                     picker.allowsEditing = true
                     picker.delegate = self
-                    picker.mediaTypes = [ kUTTypeMovie as String ]
+                    picker.mediaTypes = [ UTType.movie.identifier ]
                     picker.sourceType = .camera
                     picker.cameraDevice = .front
                     self.present(picker, animated: true)
