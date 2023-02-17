@@ -34,8 +34,16 @@ class LoginCreateAccountE2ETests: CoreUITestCase {
         LoginStart.dontHaveAccountAction.tap()
         PairWithStudentQRCodeTutorial.headerLabel.waitToExist()
         PairWithStudentQRCodeTutorial.nextButton.tap()
-        LoginWeb.webView.waitToExist()
-        LoginWeb.studentPairingCodeLabel.waitToExist()
-        LoginWeb.parentCreateAccountButton.waitToExist()
+        waitUntil {
+            LoginWeb.webView.exists()
+        }
+
+        LoginWeb.createAccountLabel.waitToExist().tap()
+
+        waitUntil {
+            LoginWeb.studentPairingCodeLabel.exists()
+        }
+
+        LoginWeb.parentCreateAccountButton.waitToExist().tap()
     }
 }
