@@ -20,14 +20,14 @@ import Foundation
 import UIKit
 import Core
 
-class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var attemptsValueLabel: UILabel!
     @IBOutlet weak var dueHeadingLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var instructionsHeadingLabel: UILabel!
     @IBOutlet weak var instructionsContainer: UIView!
-    let instructionsWebView = CoreWebView(pullToRefresh: .disabled)
+    let instructionsWebView = CoreWebView()
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
@@ -47,6 +47,9 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
     var courseID = ""
     let env = AppEnvironment.shared
     var quizID = ""
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "courses/\(courseID)/quizzes/\(quizID)"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -104,12 +107,6 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/quizzes/\(quizID)", attributes: [:])
     }
 
     @objc func refresh() {

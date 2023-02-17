@@ -34,6 +34,9 @@ public class CourseSettingsViewModel: ObservableObject {
     @Published public private(set) var courseName: String?
     @Published public private(set) var imageURL: URL?
     @Published public private(set) var hideColorOverlay: Bool?
+    public var courseID: String {
+        course.first?.id ?? ""
+    }
 
     private let env = AppEnvironment.shared
     private var isFirstAppearance = true
@@ -42,6 +45,7 @@ public class CourseSettingsViewModel: ObservableObject {
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.courseDidUpdate()
     }
+
     private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
@@ -85,8 +89,7 @@ public class CourseSettingsViewModel: ObservableObject {
         state = .saving
         UpdateCourse(courseID: context.id,
                      name: newName,
-                     defaultView: newDefaultView
-        ).fetch { [weak self] result, _, error in performUIUpdate {
+                     defaultView: newDefaultView).fetch { [weak self] result, _, error in performUIUpdate {
             guard let self = self else { return }
             self.state = .ready
 

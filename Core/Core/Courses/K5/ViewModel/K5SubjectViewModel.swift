@@ -28,10 +28,13 @@ public class K5SubjectViewModel: ObservableObject {
     @Published public private(set) var currentPageURL: URL?
     @Published public private(set) var courseBannerImageUrl: URL?
     @Published public private(set) var courseImageUrl: URL?
+    public var courseID: String {
+        course.first?.id ?? ""
+    }
     public private(set) lazy var reloadWebView: AnyPublisher<Void, Never> = makeWebViewReloadTrigger()
 
     /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
-    public var config: WKWebViewConfiguration? { masqueradedSession.config }
+    public var config: WKWebViewConfiguration { masqueradedSession.config }
 
     private let env = AppEnvironment.shared
     private let context: Context

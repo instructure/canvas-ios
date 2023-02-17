@@ -32,9 +32,13 @@ class QuizTests: CoreTestCase {
         let quiz = Quiz.make()
         quiz.quizTypeRaw = "invalid"
         XCTAssertEqual(quiz.quizType, .assignment)
+        XCTAssertEqual(quiz.quizType.sectionTitle, "Assignments")
+        XCTAssertEqual(quiz.quizType.name, "Graded Quiz")
         quiz.quizType = .graded_survey
         XCTAssertEqual(quiz.quizTypeRaw, "graded_survey")
         XCTAssertEqual(quiz.quizType, .graded_survey)
+        XCTAssertEqual(quiz.quizType.sectionTitle, "Graded Surveys")
+        XCTAssertEqual(quiz.quizType.name, "Graded Survey")
     }
 
     func testGradeViewable() {

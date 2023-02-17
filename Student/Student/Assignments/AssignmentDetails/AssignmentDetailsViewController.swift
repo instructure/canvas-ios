@@ -19,7 +19,7 @@
 import Core
 import UIKit
 
-class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol {
+class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
@@ -82,11 +82,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     var courseID = ""
     let env = AppEnvironment.shared
     var fragment: String?
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
+    )
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
-    private let webView = CoreWebView(pullToRefresh: .disabled)
+    private let webView = CoreWebView()
 
     static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
@@ -166,13 +168,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter?.viewDidAppear()
         AppStoreReview.handleNavigateToAssignment()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter?.viewDidDisappear()
     }
 
     deinit {

@@ -18,6 +18,7 @@
 
 import Core
 
+/** These definitions make possible to use these views in storyboards without setting their module to Core. */
 @IBDesignable
 class AvatarGroupView: Core.AvatarGroupView {}
 class AvatarView: Core.AvatarView {}

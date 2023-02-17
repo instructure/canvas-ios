@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "heap-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heap/heap-ios-sdk.git",
+      "state" : {
+        "revision" : "5fa35d4fef6314de2226d070f6dac427901816d9",
+        "version" : "9.0.1"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "revision" : "b4bd0604ded9574807f41b4004b57dd1226a30a4",
+        "version" : "3.5.0"
+      }
+    },
+    {
+      "identity" : "pspdfkit-sp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/PSPDFKit/PSPDFKit-SP",
+      "state" : {
+        "revision" : "d77f7a93006e8db41dea72b1c7c20d1f72c37fea",
+        "version" : "11.5.2"
+      }
+    },
+    {
+      "identity" : "swifter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/httpswift/swifter",
+      "state" : {
+        "branch" : "stable",
+        "revision" : "1e4f51c92d7ca486242d8bf0722b99de2c3531aa"
+      }
+    }
+  ],
+  "version" : 2
+}

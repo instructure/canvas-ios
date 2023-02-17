@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentDetailsViewController: UIViewController, ErrorViewController {
+class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet var alertFields: [UITextField]!
     @IBOutlet weak var alertHeaderLabel: UILabel!
     @IBOutlet var alertLabels: [UILabel]!
@@ -42,6 +42,10 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
         didSet { updateLoading() }
     }
     var studentID = ""
+
+    lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/profile/observees/\(studentID)/thresholds"
+    )
 
     // lazy var student = env.subscribe(GetObservedStudent(studentID: studentID)) { [weak self] in
     lazy var student: Store<LocalUseCase<User>> = env.subscribe(scope: .where(#keyPath(User.id), equals: studentID)) { [weak self] in
@@ -94,12 +98,6 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
         let color = ColorScheme.observee(studentID).color
         view.tintColor = color
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "/profile/observees/\(studentID)/thresholds", attributes: [:])
     }
 
     @objc func refresh() {

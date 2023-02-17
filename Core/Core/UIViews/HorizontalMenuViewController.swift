@@ -18,7 +18,7 @@
 
 import UIKit
 
-open class HorizontalMenuViewController: UIViewController {
+open class HorizontalMenuViewController: ScreenViewTrackerViewController {
 
     fileprivate static let defaultMenuHeight: CGFloat = 52
     var menu: UICollectionView?

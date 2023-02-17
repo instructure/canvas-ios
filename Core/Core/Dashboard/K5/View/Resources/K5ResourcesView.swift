@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct K5ResourcesView: View {
+public struct K5ResourcesView: View, ScreenViewTrackable {
     @Environment(\.horizontalPadding) private var horizontalPadding
     @ObservedObject public var viewModel: K5ResourcesViewModel
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/resources")
 
     public init(viewModel: K5ResourcesViewModel) {
         self.viewModel = viewModel

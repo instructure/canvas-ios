@@ -20,7 +20,7 @@ import WebKit
 import Core
 
 public class CoreWebViewWrapper: UIView, RCTAutoInsetsProtocol {
-    @objc public let webView = CoreWebView(pullToRefresh: .disabled)
+    @objc public let webView = CoreWebView()
 
     @objc public var onError: RCTDirectEventBlock?
     @objc public var onFinishedLoading: RCTDirectEventBlock?
@@ -36,7 +36,7 @@ public class CoreWebViewWrapper: UIView, RCTAutoInsetsProtocol {
             } else if let url = source?["uri"].flatMap({ URL(string: $0) }) {
                 webView.load(URLRequest(url: url))
                 if url.host == AppEnvironment.shared.currentSession?.baseURL.host {
-                    webView.addScript(webView.colorInvertInDarkModeScript)
+                    webView.addFeature(.invertColorsInDarkMode)
                 }
             } else {
                 webView.loadHTMLString("")

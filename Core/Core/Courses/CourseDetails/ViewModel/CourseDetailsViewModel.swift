@@ -44,6 +44,9 @@ public class CourseDetailsViewModel: ObservableObject {
         guard let course = course.first else { return nil }
         return URL(string: "courses/\(course.id)/settings")
     }
+    public var courseID: String {
+        course.first?.id ?? ""
+    }
 
     private let env = AppEnvironment.shared
     private var isTeacher: Bool { env.app == .teacher }

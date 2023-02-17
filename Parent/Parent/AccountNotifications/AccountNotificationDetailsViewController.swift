@@ -24,7 +24,7 @@ class AccountNotificationDetailsViewController: UIViewController, CoreWebViewLin
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
-    let webView = CoreWebView(pullToRefresh: .disabled)
+    let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
 
     let env = AppEnvironment.shared

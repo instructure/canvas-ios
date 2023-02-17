@@ -91,6 +91,7 @@ public struct GetSessionlessLaunchURLRequest: APIRequestable {
     let assignmentID: String?
     let moduleItemID: String?
     let launchType: LaunchType?
+    let resourceLinkLookupUUID: String?
 
     public enum LaunchType: String {
         case assessment, module_item, course_navigation
@@ -121,6 +122,10 @@ public struct GetSessionlessLaunchURLRequest: APIRequestable {
 
         if let moduleItemID = moduleItemID {
             query.append(.value("module_item_id", moduleItemID))
+        }
+
+        if let resourceLinkLookupUUID = resourceLinkLookupUUID {
+            query.append(.value("resource_link_lookup_uuid", resourceLinkLookupUUID))
         }
 
         return query

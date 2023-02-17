@@ -29,6 +29,7 @@ public class LTITools: NSObject {
     let assignmentID: String?
     let moduleID: String?
     let moduleItemID: String?
+    let resourceLinkLookupUUID: String?
 
     var request: GetSessionlessLaunchURLRequest {
         GetSessionlessLaunchURLRequest(
@@ -37,7 +38,8 @@ public class LTITools: NSObject {
             url: url,
             assignmentID: assignmentID,
             moduleItemID: moduleItemID,
-            launchType: launchType
+            launchType: launchType,
+            resourceLinkLookupUUID: resourceLinkLookupUUID
         )
     }
 
@@ -70,7 +72,8 @@ public class LTITools: NSObject {
         launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
         assignmentID: String? = nil,
         moduleID: String? = nil,
-        moduleItemID: String? = nil
+        moduleItemID: String? = nil,
+        resourceLinkLookupUUID: String? = nil
     ) {
         self.env = env
         self.context = context ?? url.flatMap { Context(url: $0) } ?? .account("self")
@@ -80,6 +83,7 @@ public class LTITools: NSObject {
         self.assignmentID = assignmentID
         self.moduleID = moduleID
         self.moduleItemID = moduleItemID
+        self.resourceLinkLookupUUID = resourceLinkLookupUUID
     }
 
     var openInSafari: Bool { UserDefaults.standard.bool(forKey: "open_lti_safari") }
@@ -87,13 +91,25 @@ public class LTITools: NSObject {
     public convenience init?(env: AppEnvironment = .shared, link: URL?) {
         guard
             let retrieve = link, retrieve.host == env.api.baseURL.host,
-            retrieve.path.hasSuffix("/external_tools/retrieve"),
-            let query = URLComponents.parse(retrieve).queryItems,
-            let value = query.first(where: { $0.name == "url" })?.value,
-            let url = URL(string: value)
+            retrieve.path.hasSuffix("/external_tools/retrieve")
         else { return nil }
+
+        let components = URLComponents.parse(retrieve)
+
+        let url: URL? = {
+            guard let urlQueryItem = components.queryValue(for: "url") else {
+                return nil
+            }
+            return URL(string: urlQueryItem)
+        }()
+        let resourceLinkUUID = components.queryValue(for: "resource_link_lookup_uuid")
+
+        if url == nil, resourceLinkUUID == nil {
+            return nil
+        }
+
         let context = Context(url: retrieve) ?? .account("self")
-        self.init(env: env, context: context, url: url)
+        self.init(env: env, context: context, url: url, resourceLinkLookupUUID: resourceLinkUUID)
     }
 
     public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {

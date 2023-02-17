@@ -20,7 +20,7 @@ import Foundation
 import QuickLook
 import UIKit
 
-public class DiscussionReplyViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
+public class DiscussionReplyViewController: ScreenViewTrackableViewController, ErrorViewController, RichContentEditorDelegate {
     lazy var contentHeight = webView.heightAnchor.constraint(equalToConstant: 0)
     var contentHeightObs: NSKeyValueObservation?
     @IBOutlet weak var editorContainer: UIView!
@@ -29,7 +29,7 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
     @IBOutlet weak var scrollView: UIScrollView!
     let titleSubtitleView = TitleSubtitleView.create()
     @IBOutlet weak var viewMoreButton: UIButton!
-    var webView = CoreWebView(pullToRefresh: .disabled)
+    var webView = CoreWebView()
     @IBOutlet weak var webViewContainer: UIView!
     @IBOutlet var webViewHeight: NSLayoutConstraint!
 
@@ -83,7 +83,9 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
     var replyToEntryID: String?
     var rceCanSubmit = false
     var topicID = ""
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/discussion_topics/\(topicID)/reply"
+    )
     lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
     }

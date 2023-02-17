@@ -36,7 +36,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.imageOpacity, 0.4)
         XCTAssertEqual(testee.titleOpacity, 1)
         XCTAssertEqual(testee.courseName, "Course One")
-        XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast().hexString)
+        XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(testee.termName, "Term One")
         XCTAssertEqual(testee.imageURL, nil)
     }

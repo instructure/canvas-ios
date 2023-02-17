@@ -24,11 +24,11 @@ class K5SubjectViewMasqueradedSessionTests: CoreTestCase {
 
     func testMasqueradedUserUsesNonSharedCookieStorage() {
         let testee = K5SubjectViewMasqueradedSession(env: environment)
-        XCTAssertNil(testee.config)
+        XCTAssertEqual(testee.config.websiteDataStore.httpCookieStore, WKWebsiteDataStore.default().httpCookieStore)
 
         setupMasqueradedSession()
         XCTAssertNotNil(testee.config)
-        XCTAssertNotEqual(testee.config?.websiteDataStore.httpCookieStore, WKWebsiteDataStore.default().httpCookieStore)
+        XCTAssertNotEqual(testee.config.websiteDataStore.httpCookieStore, WKWebsiteDataStore.default().httpCookieStore)
     }
 
     func testHandlesTabChangeEvents() {

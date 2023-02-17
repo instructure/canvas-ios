@@ -68,7 +68,13 @@ class LTIToolsTests: CoreTestCase {
             assignmentID: nil,
             moduleItemID: nil
         )
-        let request = GetSessionlessLaunchURLRequest(context: .course("1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let request = GetSessionlessLaunchURLRequest(context: .course("1"),
+                                                     id: nil,
+                                                     url: nil,
+                                                     assignmentID: nil,
+                                                     moduleItemID: nil,
+                                                     launchType: nil,
+                                                     resourceLinkLookupUUID: nil)
         let actualURL = URL(string: "/someplace")!
 
         api.mock(request, value: nil)
@@ -110,7 +116,13 @@ class LTIToolsTests: CoreTestCase {
             assignmentID: nil,
             moduleItemID: nil
         )
-        let request = GetSessionlessLaunchURLRequest(context: .course("1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let request = GetSessionlessLaunchURLRequest(context: .course("1"),
+                                                     id: nil,
+                                                     url: nil,
+                                                     assignmentID: nil,
+                                                     moduleItemID: nil,
+                                                     launchType: nil,
+                                                     resourceLinkLookupUUID: nil)
         let actualURL = URL(string: "https://canvas.instructure.com")!
 
         api.mock(request, value: nil)
@@ -148,7 +160,13 @@ class LTIToolsTests: CoreTestCase {
 
     func testPresentToolInSafariProper() {
         let tools = LTITools()
-        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let request = GetSessionlessLaunchURLRequest(context: tools.context,
+                                                     id: nil,
+                                                     url: nil,
+                                                     assignmentID: nil,
+                                                     moduleItemID: nil,
+                                                     launchType: nil,
+                                                     resourceLinkLookupUUID: nil)
         let url = URL(string: "https://canvas.instructure.com")!
         api.mock(request, value: .make(url: url))
         UserDefaults.standard.set(true, forKey: "open_lti_safari")
@@ -159,7 +177,13 @@ class LTIToolsTests: CoreTestCase {
 
     func testPresentGoogleApp() throws {
         let tools = LTITools()
-        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let request = GetSessionlessLaunchURLRequest(context: tools.context,
+                                                     id: nil,
+                                                     url: nil,
+                                                     assignmentID: nil,
+                                                     moduleItemID: nil,
+                                                     launchType: nil,
+                                                     resourceLinkLookupUUID: nil)
         let url = URL(string: "https://canvas.instructure.com")!
         api.mock(request, value: .make(name: "Google Apps", url: url))
         tools.presentTool(from: mockView, animated: true)
@@ -170,7 +194,13 @@ class LTIToolsTests: CoreTestCase {
     func testMarksModuleItemAsRead() {
         api.mock(PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3"))
         let tools = LTITools(context: .course("1"), launchType: .module_item, moduleID: "2", moduleItemID: "3")
-        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: "3", launchType: .module_item)
+        let request = GetSessionlessLaunchURLRequest(context: tools.context,
+                                                     id: nil,
+                                                     url: nil,
+                                                     assignmentID: nil,
+                                                     moduleItemID: "3",
+                                                     launchType: .module_item,
+                                                     resourceLinkLookupUUID: nil)
         api.mock(request, value: .make())
         let expectation = XCTestExpectation(description: "notification was sent")
         let observer = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
@@ -202,5 +232,17 @@ class LTIToolsTests: CoreTestCase {
         }
         wait(for: [done], timeout: 1)
         XCTAssertTrue(success)
+    }
+
+    func testConvenienceInitSucceedingWithResourceLinkLookupUUID() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/retrieve?resource_link_lookup_uuid=123")!
+        let testee = LTITools(env: environment, link: url)
+
+        guard let testee = testee else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(testee.resourceLinkLookupUUID, "123")
+        XCTAssertEqual(testee.request.resourceLinkLookupUUID, "123")
     }
 }

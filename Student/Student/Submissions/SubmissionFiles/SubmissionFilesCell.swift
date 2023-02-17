@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import UIKit
 
 class SubmissionFilesCell: UITableViewCell {

@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-public class CreateTodoViewController: UIViewController, ErrorViewController {
+public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorViewController {
 
     @IBOutlet weak var titleLabel: DynamicTextField!
     @IBOutlet weak var dateTitleLabel: DynamicLabel!
@@ -34,6 +34,8 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/calendar/new")
+
     var createPlannerNote: Store<CreatePlannerNote>?
     var selectedDate: Date? {
         didSet {

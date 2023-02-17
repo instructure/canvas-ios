@@ -31,6 +31,11 @@ public class TestRouter: Router {
         }
         return nil
     }
+
+    public var lastViewController: UIViewController? {
+        viewControllerCalls.last?.0
+    }
+
     public var dismissed: UIViewController?
     public var last: UIViewController? { viewControllerCalls.last?.0 }
     public var routes = [URLComponents: () -> UIViewController?]()
