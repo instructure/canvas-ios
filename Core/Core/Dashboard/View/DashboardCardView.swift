@@ -35,7 +35,7 @@ public struct DashboardCardView: View, ScreenViewTrackable {
     @Environment(\.viewController) var controller
 
     public var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
-    
+
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
     private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
