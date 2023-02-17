@@ -22,8 +22,14 @@ import XCTest
 class APIPandataTests: XCTestCase {
     let token = APIPandataEventsToken(url: URL(string: "https://panda.data")!, auth_token: "t", props_token: "t", expires_at: Date().timeIntervalSince1970 + 1000)
 
-    func testPostPandataEventsTokenRequest() {
-        XCTAssertEqual(PostPandataEventsTokenRequest().body?.app_key, "CANVAS_STUDENT_IOS")
+    func testStudentPostPandataEventsTokenRequest() {
+        let studentRequest = PostPandataEventsTokenRequest(appTag: "CANVAS_STUDENT_IOS")
+        XCTAssertEqual(studentRequest.body?.app_key, "CANVAS_STUDENT_IOS")
+    }
+
+    func testTeacherPostPandataEventsTokenRequest() {
+        let studentRequest = PostPandataEventsTokenRequest(appTag: "CANVAS_TEACHER_IOS")
+        XCTAssertEqual(studentRequest.body?.app_key, "CANVAS_TEACHER_IOS")
     }
 
     func testPostPandataEventsRequest() {

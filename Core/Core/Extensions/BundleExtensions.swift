@@ -76,9 +76,9 @@ public extension Bundle {
 
     var pandataAppTag: String {
         switch bundleIdentifier {
-        case Bundle.studentBundleID:
+        case Bundle.studentBundleID, Bundle.studentUITestsBundleID, Bundle.studentE2ETestsBundleID:
             return "CANVAS_STUDENT_IOS"
-        case Bundle.teacherBundleID:
+        case Bundle.teacherBundleID, Bundle.teacherUITestsBundleID, Bundle.teacherE2ETestsBundleID:
             return "CANVAS_TEACHER_IOS"
         default:
             return "Invalid AppTag for iOS"
