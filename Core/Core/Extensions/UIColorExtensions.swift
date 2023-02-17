@@ -63,7 +63,7 @@ extension UIColor {
     /** Returns the given color for the current interface style. */
     public static func getColor(dark: UIColor, light: UIColor) -> UIColor {
         return UIColor { traitCollection  in
-            return traitCollection.userInterfaceStyle == .dark ? dark : light
+            return traitCollection.isDarkInterface ? dark : light
         }
     }
 

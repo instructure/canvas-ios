@@ -116,6 +116,10 @@ const colors = {
     light: white,
     dark: { normal: '#121212', high: '#121212' },
   },
+  tabBarBackground: {
+  	light: white,
+  	dark: { normal: '#1D1E1F', high: '#1D1E1F' },
+  },
   get backgroundAlert () { return colors.barney },
   get backgroundInfo () { return colors.electric },
   get backgroundSuccess () { return colors.shamrock },

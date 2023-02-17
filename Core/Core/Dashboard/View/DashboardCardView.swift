@@ -190,6 +190,10 @@ public struct DashboardCardView: View {
         courseCards(size)
 
         groupCards
+
+        // This is to prevent the bottom card sticking to the tab bar
+        Color.clear
+            .frame(height: verticalSpacing)
     }
 
     @ViewBuilder func courseCards(_ size: CGSize) -> some View {
@@ -260,7 +264,7 @@ public struct DashboardCardView: View {
                     GroupCard(group: group, course: group.course)
                         // outside the GroupCard, because that isn't observing colors
                         .accentColor(Color(group.color.ensureContrast(against: .white)))
-                        .padding(.bottom, verticalSpacing)
+                        .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
                 }
             }
         }

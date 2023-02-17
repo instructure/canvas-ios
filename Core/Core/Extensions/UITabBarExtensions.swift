@@ -21,27 +21,47 @@ import UIKit
 extension UITabBar {
     /// Styles the `UITabBar` to use some elements of the organizations branding colors
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
-        let hasEnoughContrast = brand.primary.contrast(against: UIColor.backgroundLightest) >= 3
-        tintColor = hasEnoughContrast ? brand.primary : brand.navTextColor
-
-        barStyle = .default
-        barTintColor = .backgroundLightest
-        unselectedItemTintColor = .textDark
-
         // There are weird RN view sizing issues with opaque tabBars, so emulate with backgroundColor.
         isTranslucent = true
-        backgroundColor = .backgroundLightest
 
-        for item in items ?? [] {
-            item.badgeColor = .crimson
-            item.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        items?.forEach {
+            $0.badgeColor = .crimson
+            $0.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        }
+
+        let itemAppearance = UITabBarItemAppearance.make(highlightColor: brand.tabBarHighlightColor)
+        let tabBarAppearance = UITabBarAppearance.make(itemAppearance: itemAppearance)
+        standardAppearance = tabBarAppearance
+
+        if #available(iOSApplicationExtension 15.0, *) {
+            scrollEdgeAppearance = tabBarAppearance
         }
     }
+}
 
-    public static func updateFontAppearance() {
-        let attributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular12)]
-        let appearance = UITabBarItem.appearance()
-        appearance.setTitleTextAttributes(attributes, for: .normal)
-        appearance.setBadgeTextAttributes(attributes, for: .normal)
+private extension UITabBarItemAppearance {
+
+    static func make(highlightColor: UIColor) -> UITabBarItemAppearance {
+        let itemAppearance = UITabBarItemAppearance()
+        itemAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.textDark,
+            .font: UIFont.scaledNamedFont(.regular12)
+        ]
+        itemAppearance.normal.iconColor = .textDark
+        itemAppearance.selected.titleTextAttributes = [.foregroundColor: highlightColor]
+        itemAppearance.selected.iconColor = highlightColor
+        return itemAppearance
+    }
+}
+
+private extension UITabBarAppearance {
+
+    static func make(itemAppearance: UITabBarItemAppearance) -> UITabBarAppearance {
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = .tabBarBackground
+        tabBarAppearance.stackedLayoutAppearance = itemAppearance
+        tabBarAppearance.inlineLayoutAppearance = itemAppearance
+        tabBarAppearance.compactInlineLayoutAppearance = itemAppearance
+        return tabBarAppearance
     }
 }

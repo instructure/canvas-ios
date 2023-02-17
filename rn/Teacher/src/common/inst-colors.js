@@ -50,6 +50,7 @@ const instColors = {
   oxford: [ '#394B58', '#394B58', '#394B58', '#394B58' ],
   porcelain: [ '#F5F5F5', '#FFFFFF', '#556572', '#556572' ],
   shamrock: [ '#00AC18', '#1A8E56', '#00AC18', '#1A8E56' ],
+  tabBarBackground: [ '#FFFFFF', '#FFFFFF', '#1D1E1F', '#1D1E1F' ],
   textAlert: [ '#BF32A4', '#C74BAF', '#BF32A4', '#C74BAF' ],
   textDanger: [ '#EE0612', '#E73A4E', '#EE0612', '#E73A4E' ],
   textDark: [ '#556572', '#556572', '#C7CDD1', '#C7CDD1' ],
