@@ -47,7 +47,6 @@
 		29C0BB4FE112AEDA68383D14 /* SubmissionCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CF5968EC873CD1961F1D6 /* SubmissionCommentFixture.swift */; };
 		2C36C035542146853DC5BA05 /* DataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DF034B90E6CB94E45AB67 /* DataSeeder.swift */; };
 		2C5BB31417D17837E1967A93 /* DataSeeder+DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F33C4DD360C44A1B0C15A45 /* DataSeeder+DSUser.swift */; };
-		328CFCBBAA94E14A22052AE8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BFB783F173DCDF41164E0396 /* .swiftlint.yml */; };
 		3473CCA85DC34B470AB1A3B9 /* PageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85D9D63A008E4D13C9A8D35 /* PageFixture.swift */; };
 		34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD35AF0386C227340FB2742 /* CourseNavigation.swift */; };
 		365EFAD2ABB62CBA24574AFA /* ModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E046239E00E2F114C950D3A /* ModuleFixture.swift */; };
@@ -313,7 +312,6 @@
 		BDF99F9AA960EFAD1C4D497F /* DataSeeder+Enrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Enrollment.swift"; sourceTree = "<group>"; };
 		BE6C4EFE5BAC108EC83728C6 /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		BEDD22ADB04346C5973BC465 /* K5CourseBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseBrowser.swift; sourceTree = "<group>"; };
-		BFB783F173DCDF41164E0396 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C2305E4B35D3ADBBB06C49D4 /* MiniFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFile.swift; sourceTree = "<group>"; };
 		C47E309B33A005B7A94D5849 /* MockNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationManager.swift; sourceTree = "<group>"; };
 		C4F4D908CECF5FB651E0BCCF /* DSAccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAccountNotification.swift; sourceTree = "<group>"; };
@@ -651,7 +649,6 @@
 				DF5F4FEE8DED1BA9DC96F2F3 /* Router */,
 				0A6C5F2EF7C64139A92C87CB /* ScreenViewTracker */,
 				0C43145148800CF40159C345 /* UITests */,
-				BFB783F173DCDF41164E0396 /* .swiftlint.yml */,
 				D8DD6D030A52A99DEFB88BB1 /* Info.plist */,
 				AFADD33878B51583D45DEFDC /* TestsFoundation.h */,
 			);
@@ -1070,7 +1067,6 @@
 				52C6E19D88744E82E01F19CF /* SwiftLint */,
 				2D3FD51A3C420DB0472FEF64 /* Headers */,
 				C697C5C988694F5A2EB3656B /* Sources */,
-				916F68699BF7A48B7CE807F9 /* Resources */,
 				54D381E15641C1DA91AD90D4 /* Frameworks */,
 			);
 			buildRules = (
@@ -1135,17 +1131,6 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
-
-/* Begin PBXResourcesBuildPhase section */
-		916F68699BF7A48B7CE807F9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				328CFCBBAA94E14A22052AE8 /* .swiftlint.yml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		52C6E19D88744E82E01F19CF /* SwiftLint */ = {
