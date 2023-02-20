@@ -170,6 +170,6 @@ test('cantGoBack', () => {
 })
 
 function testFormatter (quiz: Quiz, property: string, value: ?string | ?number) {
-    const whiteSpaceReplacedString = String(formatter(quiz)[property]).replace(/\s/g, ' ')
-    expect(whiteSpaceReplacedString).toEqual(String(value))
+  const whiteSpaceReplacedString = String(formatter(quiz)[property]).replace(/\s/g, ' ')
+  expect(whiteSpaceReplacedString).toEqual(String(value))
 }
