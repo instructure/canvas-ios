@@ -27,37 +27,47 @@ class CourseListItemTests: CoreTestCase {
             .make(role: "StudentEnrollment"),
             .make(role: "StudentEnrollment"),
         ])
-        let testee = CourseListItem.save(apiCourse, enrollmentState: .active, in: databaseClient)
+        let testee = CourseListItem.save(apiCourse,
+                                         enrollmentState: .active,
+                                         in: databaseClient)
         XCTAssertEqual(testee.roles, "Student, Teacher")
     }
 
-    func testFavoriteButtonVisibleForCourseState() {
-        let testData: [CourseWorkflowState?: Bool] = [
-            .available: true,
-            .completed: true,
-            .deleted: false,
-            .unpublished: false,
-            nil: false,
-        ]
+    func testFavoriteButtonVisibility() {
+        XCTAssertTrue(visibility(.active, .student, .available))
+        XCTAssertFalse(visibility(.active, .student, .completed))
+        XCTAssertFalse(visibility(.active, .student, .unpublished))
+        XCTAssertFalse(visibility(.active, .student, .deleted))
+        XCTAssertTrue(visibility(.active, .teacher, .available))
+        XCTAssertFalse(visibility(.active, .teacher, .completed))
+        XCTAssertTrue(visibility(.active, .teacher, .unpublished))
+        XCTAssertFalse(visibility(.active, .teacher, .deleted))
 
-        for testCase in testData {
-            let apiCourse = APICourse.make(workflow_state: testCase.key)
-            let testee = CourseListItem.save(apiCourse, enrollmentState: .active, in: databaseClient)
-            XCTAssertEqual(testee.isFavoriteButtonVisible, testCase.value)
-        }
+        XCTAssertFalse(visibility(.invited_or_pending, .student, .available))
+        XCTAssertFalse(visibility(.invited_or_pending, .student, .completed))
+        XCTAssertFalse(visibility(.invited_or_pending, .student, .unpublished))
+        XCTAssertFalse(visibility(.invited_or_pending, .student, .deleted))
+        XCTAssertFalse(visibility(.invited_or_pending, .teacher, .available))
+        XCTAssertFalse(visibility(.invited_or_pending, .teacher, .completed))
+        XCTAssertFalse(visibility(.invited_or_pending, .teacher, .unpublished))
+        XCTAssertFalse(visibility(.invited_or_pending, .teacher, .deleted))
+
+        XCTAssertFalse(visibility(.completed, .student, .available))
+        XCTAssertFalse(visibility(.completed, .student, .completed))
+        XCTAssertFalse(visibility(.completed, .student, .unpublished))
+        XCTAssertFalse(visibility(.completed, .student, .deleted))
+        XCTAssertFalse(visibility(.completed, .teacher, .available))
+        XCTAssertFalse(visibility(.completed, .teacher, .completed))
+        XCTAssertFalse(visibility(.completed, .teacher, .unpublished))
+        XCTAssertFalse(visibility(.completed, .teacher, .deleted))
+
     }
 
-    func testFavoriteButtonVisibleForEnrollmentState() {
-        let testData: [GetCoursesRequest.EnrollmentState: Bool] = [
-            .completed: false,
-            .invited_or_pending: false,
-            .active: true,
-        ]
-
-        for testCase in testData {
-            let apiCourse = APICourse.make(workflow_state: .available)
-            let testee = CourseListItem.save(apiCourse, enrollmentState: testCase.key, in: databaseClient)
-            XCTAssertEqual(testee.isFavoriteButtonVisible, testCase.value)
-        }
+    private func visibility(_ enrollmentState: GetCoursesRequest.EnrollmentState,
+                            _ app: AppEnvironment.App?,
+                            _ workflowState: CourseWorkflowState?) -> Bool {
+        CourseListItem.isFavoriteButtonVisible(enrollmentState: enrollmentState,
+                                               app: app,
+                                               workflowState: workflowState)
     }
 }

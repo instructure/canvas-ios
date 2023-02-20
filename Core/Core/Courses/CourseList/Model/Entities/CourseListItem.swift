@@ -34,6 +34,7 @@ public final class CourseListItem: NSManagedObject {
     @discardableResult
     public static func save(_ apiEntity: APICourse,
                             enrollmentState: GetCoursesRequest.EnrollmentState,
+                            app: AppEnvironment.App? = AppEnvironment.shared.app,
                             in context: NSManagedObjectContext) -> CourseListItem {
         let dbEntity: CourseListItem = context.first(where: #keyPath(CourseListItem.courseId),
                                                      equals: apiEntity.id.value)
@@ -46,27 +47,26 @@ public final class CourseListItem: NSManagedObject {
         dbEntity.name = apiEntity.name ?? apiEntity.course_code ?? ""
         dbEntity.roles = apiEntity.enrollments.roles
         dbEntity.termName = apiEntity.term?.name
-        dbEntity.isFavoriteButtonVisible = apiEntity.workflow_state.isFavoriteButtonVisible && enrollmentState.isFavoriteButtonVisible
-
+        dbEntity.isFavoriteButtonVisible = isFavoriteButtonVisible(enrollmentState: enrollmentState,
+                                                                   app: app,
+                                                                   workflowState: apiEntity.workflow_state)
         return dbEntity
     }
-}
 
-private extension Optional where Wrapped == CourseWorkflowState {
-    var isFavoriteButtonVisible: Bool {
-        switch self {
-        case .available, .completed: return true
-        case nil, .unpublished, .deleted: return false
+    public static func isFavoriteButtonVisible(enrollmentState: GetCoursesRequest.EnrollmentState,
+                                               app: AppEnvironment.App?,
+                                               workflowState: CourseWorkflowState?) -> Bool {
+        guard enrollmentState == .active else {
+            return false
         }
-    }
-}
 
-private extension GetCoursesRequest.EnrollmentState {
-    var isFavoriteButtonVisible: Bool {
-        switch self {
-        case .active: return true
-        case .completed, .invited_or_pending: return false
+        if app == .teacher {
+            return workflowState == .unpublished || workflowState == .available
+        } else if app == .student {
+            return workflowState == .available
         }
+
+        return false
     }
 }
 
