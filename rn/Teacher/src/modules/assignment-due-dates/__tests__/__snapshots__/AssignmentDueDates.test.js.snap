@@ -89,7 +89,7 @@ exports[`renders with overrides 1`] = `
               ]
             }
           >
-            Due May 31, 2037 at 11:59 PM
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessible={true}

@@ -376,7 +376,7 @@ exports[`renders correctly assignment icon 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            Due May 31, 2037 at 11:59 PM
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -590,7 +590,7 @@ exports[`renders correctly discussion icon 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            Due May 31, 2037 at 11:59 PM
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -804,7 +804,7 @@ exports[`renders correctly not published icon 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            Due May 31, 2037 at 11:59 PM
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -1018,7 +1018,7 @@ exports[`renders correctly published icon 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            Due May 31, 2037 at 11:59 PM
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -1232,7 +1232,7 @@ exports[`renders correctly quiz icon 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            Due May 31, 2037 at 11:59 PM
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
