@@ -28,8 +28,12 @@ targets:
     sources:
       - path: Core
     dependencies:
-        - package: Lottie
-        - package: PSPDFKit
+      - package: Lottie
+      - package: PSPDFKit
+    preBuildScripts:
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
   CoreTests:    
     type: bundle.unit-test
     platform: iOS
