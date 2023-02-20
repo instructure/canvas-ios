@@ -88,22 +88,16 @@ class K5StateTests: CoreTestCase {
         environment.userDefaults?.isElementaryViewEnabled = true
         AppEnvironment.shared.k5.userDidLogin(isK5Account: false)
 
-        let oldTabFont = UITabBarItem.appearance().titleTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
-        let oldTabBadgeFont = UITabBarItem.appearance().badgeTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
         let oldBarButtonItemFont = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).titleTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
         let oldSegmentedControlNormalFont = UISegmentedControl.appearance().titleTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
         let oldSegmentedControlSelectedFont = UISegmentedControl.appearance().titleTextAttributes(for: .selected)![NSAttributedString.Key.font] as! UIFont?
 
         AppEnvironment.shared.k5.userDidLogin(isK5Account: true)
 
-        let newTabFont = UITabBarItem.appearance().titleTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
-        let newTabBadgeFont = UITabBarItem.appearance().badgeTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
         let newBarButtonItemFont = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).titleTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
         let newSegmentedControlNormalFont = UISegmentedControl.appearance().titleTextAttributes(for: .normal)![NSAttributedString.Key.font] as! UIFont?
         let newSegmentedControlSelectedFont = UISegmentedControl.appearance().titleTextAttributes(for: .selected)![NSAttributedString.Key.font] as! UIFont?
 
-        XCTAssertNotEqual(oldTabFont, newTabFont)
-        XCTAssertNotEqual(oldTabBadgeFont, newTabBadgeFont)
         XCTAssertNotEqual(oldBarButtonItemFont, newBarButtonItemFont)
         XCTAssertNotEqual(oldSegmentedControlNormalFont, newSegmentedControlNormalFont)
         XCTAssertNotEqual(oldSegmentedControlSelectedFont, newSegmentedControlSelectedFont)

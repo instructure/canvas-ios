@@ -72,7 +72,6 @@ public struct Brand: Equatable {
         return hasEnoughContrast ? self.primary : self.navTextColor
     }
 
-
     private var buttonPrimaryBackgroundDark: UIColor = .black
     private var buttonPrimaryTextDark: UIColor = .black
     private var buttonSecondaryBackgroundDark: UIColor = .black
