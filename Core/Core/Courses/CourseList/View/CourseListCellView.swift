@@ -20,7 +20,6 @@ import SwiftUI
 
 struct CourseListCell: View {
     @ObservedObject var course: CourseListItem
-    let isFavoriteButtonHidden: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -42,7 +41,7 @@ struct CourseListCell: View {
                 .buttonStyle(PlainButtonStyle())
                 .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
                 .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
-                .hidden(isFavoriteButtonHidden)
+                .hidden(!course.isFavoriteButtonVisible)
 
             Button(action: {
                 env.router.route(to: "/courses/\(course.courseId)", from: controller)
@@ -109,7 +108,7 @@ struct CourseListCell_Previews: PreviewProvider {
     private static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        CourseListCell(course: CourseListItem.save(.make(), enrollmentState: .active, in: context), isFavoriteButtonHidden: false)
+        CourseListCell(course: CourseListItem.save(.make(), enrollmentState: .active, in: context))
             .previewLayout(.sizeThatFits)
     }
 }

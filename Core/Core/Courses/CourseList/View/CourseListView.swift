@@ -98,9 +98,9 @@ public struct CourseListView: View {
             )
                 .frame(minHeight: height - Self.searchBarHeight)
         } else {
-            CourseListSection(header: Text("Current Enrollments", bundle: .core), courses: current, hideFavoriteButton: false)
-            CourseListSection(header: Text("Past Enrollments", bundle: .core), courses: past, hideFavoriteButton: true)
-            CourseListSection(header: Text("Future Enrollments", bundle: .core), courses: future, hideFavoriteButton: true)
+            CourseListSection(header: Text("Current Enrollments", bundle: .core), courses: current)
+            CourseListSection(header: Text("Past Enrollments", bundle: .core), courses: past)
+            CourseListSection(header: Text("Future Enrollments", bundle: .core), courses: future)
             Divider()
         }
     }
@@ -108,14 +108,13 @@ public struct CourseListView: View {
     struct CourseListSection: View {
         let header: Text
         let courses: [CourseListItem]
-        let hideFavoriteButton: Bool
 
         var body: some View {
             if !courses.isEmpty {
                 Section(header: ListSectionHeader { header }) {
                     ForEach(courses, id: \.courseId) { course in
                         if course.courseId != courses.first?.courseId { Divider() }
-                        CourseListCell(course: course, isFavoriteButtonHidden: hideFavoriteButton)
+                        CourseListCell(course: course)
                     }
                 }
             }

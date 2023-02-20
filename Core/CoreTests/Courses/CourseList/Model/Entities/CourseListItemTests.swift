@@ -30,4 +30,34 @@ class CourseListItemTests: CoreTestCase {
         let testee = CourseListItem.save(apiCourse, enrollmentState: .active, in: databaseClient)
         XCTAssertEqual(testee.roles, "Student, Teacher")
     }
+
+    func testFavoriteButtonVisibleForCourseState() {
+        let testData: [CourseWorkflowState?: Bool] = [
+            .available: true,
+            .completed: true,
+            .deleted: false,
+            .unpublished: false,
+            nil: false,
+        ]
+
+        for testCase in testData {
+            let apiCourse = APICourse.make(workflow_state: testCase.key)
+            let testee = CourseListItem.save(apiCourse, enrollmentState: .active, in: databaseClient)
+            XCTAssertEqual(testee.isFavoriteButtonVisible, testCase.value)
+        }
+    }
+
+    func testFavoriteButtonVisibleForEnrollmentState() {
+        let testData: [GetCoursesRequest.EnrollmentState: Bool] = [
+            .completed: false,
+            .invited_or_pending: false,
+            .active: true,
+        ]
+
+        for testCase in testData {
+            let apiCourse = APICourse.make(workflow_state: .available)
+            let testee = CourseListItem.save(apiCourse, enrollmentState: testCase.key, in: databaseClient)
+            XCTAssertEqual(testee.isFavoriteButtonVisible, testCase.value)
+        }
+    }
 }

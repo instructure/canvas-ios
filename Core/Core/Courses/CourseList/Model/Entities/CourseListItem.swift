@@ -25,6 +25,7 @@ public final class CourseListItem: NSManagedObject {
     @NSManaged public var enrollmentState: String
     @NSManaged public var isFavorite: Bool
     @NSManaged public var isPublished: Bool
+    @NSManaged public var isFavoriteButtonVisible: Bool
     @NSManaged public var name: String
     /** A comma separated list of enrollments eg: "Student, Teacher". */
     @NSManaged public var roles: String
@@ -45,8 +46,27 @@ public final class CourseListItem: NSManagedObject {
         dbEntity.name = apiEntity.name ?? apiEntity.course_code ?? ""
         dbEntity.roles = apiEntity.enrollments.roles
         dbEntity.termName = apiEntity.term?.name
+        dbEntity.isFavoriteButtonVisible = apiEntity.workflow_state.isFavoriteButtonVisible && enrollmentState.isFavoriteButtonVisible
 
         return dbEntity
+    }
+}
+
+private extension Optional where Wrapped == CourseWorkflowState {
+    var isFavoriteButtonVisible: Bool {
+        switch self {
+        case .available, .completed: return true
+        case nil, .unpublished, .deleted: return false
+        }
+    }
+}
+
+private extension GetCoursesRequest.EnrollmentState {
+    var isFavoriteButtonVisible: Bool {
+        switch self {
+        case .active: return true
+        case .completed, .invited_or_pending: return false
+        }
     }
 }
 
