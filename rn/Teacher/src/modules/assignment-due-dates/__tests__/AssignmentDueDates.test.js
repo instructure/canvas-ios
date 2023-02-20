@@ -98,7 +98,7 @@ test('renders with overrides and specific student ids and sections', () => {
 
   let tree = shallow(<AssignmentDueDates {...props} />)
   expect(tree.find('[testID="123456"]').find(`[children="Alice, Bob (He/Him)"]`).exists()).toBe(true)
-  // expect(tree.find('[testID="123456"]').find(`[children="Due May 31, 2037 at 11:59 PM"]`).exists()).toBe(true)
+  expect(tree.find('[testID="123456"]').find(`[children="Due May 31, 2037 at 11:59 PM"]`).exists()).toBe(true)
   expect(refreshUsers).toBeCalled()
 })
 
