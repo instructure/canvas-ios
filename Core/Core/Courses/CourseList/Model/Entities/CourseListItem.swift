@@ -26,6 +26,8 @@ public final class CourseListItem: NSManagedObject {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var isFavoriteButtonVisible: Bool
+    /** Indicates if tapping on this course should load course details or the cell should be disabled. */
+    @NSManaged public var isCourseDetailsAvailable: Bool
     @NSManaged public var name: String
     /** A comma separated list of enrollments eg: "Student, Teacher". */
     @NSManaged public var roles: String
@@ -50,6 +52,7 @@ public final class CourseListItem: NSManagedObject {
         dbEntity.isFavoriteButtonVisible = isFavoriteButtonVisible(enrollmentState: enrollmentState,
                                                                    app: app,
                                                                    workflowState: apiEntity.workflow_state)
+        dbEntity.isCourseDetailsAvailable = !(app == .student && apiEntity.workflow_state == .unpublished)
         return dbEntity
     }
 

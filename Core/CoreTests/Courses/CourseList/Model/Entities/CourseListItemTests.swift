@@ -33,6 +33,15 @@ class CourseListItemTests: CoreTestCase {
         XCTAssertEqual(testee.roles, "Student, Teacher")
     }
 
+    func testCourseDetailsNotAvailableForUnpublishedCoursesInStudentApp() {
+        let apiCourse = APICourse.make(workflow_state: .unpublished)
+        let testee = CourseListItem.save(apiCourse,
+                                         enrollmentState: .active,
+                                         app: .student,
+                                         in: databaseClient)
+        XCTAssertFalse(testee.isCourseDetailsAvailable)
+    }
+
     func testFavoriteButtonVisibility() {
         XCTAssertTrue(visibility(.active, .student, .available))
         XCTAssertFalse(visibility(.active, .student, .completed))

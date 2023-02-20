@@ -245,6 +245,7 @@
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
         <attribute name="enrollmentState" attributeType="String"/>
+        <attribute name="isCourseDetailsAvailable" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavoriteButtonVisible" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPublished" attributeType="Boolean" usesScalarValueType="YES"/>

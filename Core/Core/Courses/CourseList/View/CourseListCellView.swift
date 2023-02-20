@@ -49,7 +49,7 @@ struct CourseListCell: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(course.name)
                         .style(.textCellTitle)
-                        .foregroundColor(.textDarkest)
+                        .foregroundColor(course.isCourseDetailsAvailable ? .textDarkest : .textDark)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
@@ -72,11 +72,14 @@ struct CourseListCell: View {
                         Image.noSolid.foregroundColor(.textDark)
                     icon.padding(16)
                 } else {
-                    DisclosureIndicator().padding(16)
+                    if course.isCourseDetailsAvailable {
+                        DisclosureIndicator().padding(16)
+                    }
                 }
             } }
             .accessibilityElement(children: .ignore)
             .accessibility(label: accessibilityLabel)
+            .disabled(!course.isCourseDetailsAvailable)
         }
         .accessibility(identifier: "DashboardCourseCell.\(course.courseId)")
     }
