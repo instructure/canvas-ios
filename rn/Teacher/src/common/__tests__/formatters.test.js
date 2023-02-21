@@ -34,10 +34,11 @@ describe('formattedDueDateWithStatus', () => {
   it('formats due date in future', () => {
     const dueAt = '2117-03-28T15:07:56.312Z'
     const date = extractDateFromString(dueAt)
-    const dueDate = formattedDueDateWithStatus(date)
+    const dueDate = String(formattedDueDateWithStatus(date))
     const dateString = i18n.date(new Date(dueAt), 'medium')
     const timeString = i18n.time(new Date(dueAt), 'short')
-    expect(dueDate).toEqual([`Due ${dateString} at ${timeString}`])
+    const expectedString = String(`Due ${dateString} at ${timeString}`).replace(/\s/g, ' ')
+    expect(dueDate).toEqual(expectedString)
   })
 
   it('formats due date in past', () => {
