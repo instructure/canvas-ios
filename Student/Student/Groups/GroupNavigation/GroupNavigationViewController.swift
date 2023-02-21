@@ -19,11 +19,12 @@
 import UIKit
 import Core
 
-class GroupNavigationViewController: UITableViewController, ColoredNavViewProtocol, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
+class GroupNavigationViewController: ScreenViewTrackableTableViewController, ColoredNavViewProtocol, ErrorViewController {
     let env = AppEnvironment.shared
     var context = Context.currentUser
     var color: UIColor?
     let titleSubtitleView = TitleSubtitleView.create()
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/\(context.pathComponent)")
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -64,12 +65,6 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
         }
-        startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)")
     }
 
     func update() {

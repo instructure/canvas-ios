@@ -33,6 +33,10 @@ public enum LoginWeb: String, ElementWrapper {
         return app.find(label: "Log In")
     }
 
+    public static var createAccountLabel: Element {
+        app.webViews.staticTexts.matching(label: "Create Account").firstElement
+    }
+
     public static var studentPairingCodeLabel: Element {
         app.webViews.staticTexts.matching(label: "Student Pairing Code").firstElement
     }

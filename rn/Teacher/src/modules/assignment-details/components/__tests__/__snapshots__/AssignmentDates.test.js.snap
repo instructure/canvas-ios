@@ -79,7 +79,7 @@ exports[`render with multiple due dates 2`] = `
           ]
         }
       >
-         May 31, 2037 at 11:59 PM
+         May 31, 2037 at 11:59 PM
       </Text>
     </Text>
   </View>

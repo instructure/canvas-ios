@@ -20,7 +20,7 @@ import Foundation
 import QuickLook
 import UIKit
 
-public class DiscussionReplyViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
+public class DiscussionReplyViewController: ScreenViewTrackableViewController, ErrorViewController, RichContentEditorDelegate {
     lazy var contentHeight = webView.heightAnchor.constraint(equalToConstant: 0)
     var contentHeightObs: NSKeyValueObservation?
     @IBOutlet weak var editorContainer: UIView!
@@ -83,7 +83,9 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
     var replyToEntryID: String?
     var rceCanSubmit = false
     var topicID = ""
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/discussion_topics/\(topicID)/reply"
+    )
     lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
@@ -174,8 +176,7 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
     }
 
     func heightChanged() {
-        let themeSwitchButtonOffset: CGFloat = traitCollection.userInterfaceStyle == .dark ? 38 : 0
-        let contentHeight = self.contentHeight.constant + themeSwitchButtonOffset
+        let contentHeight = self.contentHeight.constant + webView.themeSwitcherHeight
         webViewHeight.constant = isExpanded || contentHeight <= collapsedHeight ? contentHeight : collapsedHeight
         viewMoreButton.isHidden = contentHeight <= collapsedHeight
     }

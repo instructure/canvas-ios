@@ -19,9 +19,9 @@
 import SwiftUI
 import Combine
 
-public struct CourseListView: View {
+public struct CourseListView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: CourseListViewModel
-
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/courses")
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
     public init(viewModel: CourseListViewModel) {
