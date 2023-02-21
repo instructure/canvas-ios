@@ -34,8 +34,8 @@ public class PageViewEventController: NSObject {
     var appCanLogEvents: () -> Bool = {
         let isNotExtension = !Bundle.isExtension
         let isNotTest = !ProcessInfo.isUITest
-        let isStudent = Bundle.main.isStudentApp
-        return isNotTest && isStudent && isNotExtension
+        let isStudentOrTeacher = Bundle.main.isStudentApp || Bundle.main.isTeacherApp
+        return isNotTest && isStudentOrTeacher && isNotExtension
     }
 
     private override init() {
@@ -55,13 +55,16 @@ public class PageViewEventController: NSObject {
 
     @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
-        assert(requestManager.backgroundAppHelper != nil, "configure(backgroundAppHelper: AppBackgroundHelperProtocol) was not called")
-        guard let authSession = LoginSession.mostRecent else { return }
+        guard
+            requestManager.backgroundAppHelper != nil,
+            let authSession = LoginSession.mostRecent else {
+            return
+        }
 
         let userID = authSession.userID
         var mutableAttributes = attributes
         mutableAttributes["session_id"] = session.ID
-        mutableAttributes["app_name"] = "Canvas Student for iOS"
+        mutableAttributes["app_name"] = Bundle.main.pandataAppName
         mutableAttributes["user_id"] = userID
         mutableAttributes["agent"] = UserAgent.default.description
         if let realUserID = authSession.originalUserID {

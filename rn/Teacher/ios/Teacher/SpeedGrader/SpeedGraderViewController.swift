@@ -20,7 +20,7 @@ import SwiftUI
 import UIKit
 import Core
 
-class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource {
+class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewControllerDataSource {
     typealias Page = CoreHostingController<SubmissionGrader>
 
     let assignmentID: String
@@ -31,7 +31,9 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
     let userID: String?
 
     var keepIDs: [String] = []
-
+    lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/\(context.pathComponent)/gradebook/speed_grader?assignment_id=\(assignmentID)&student_id=\(userID ?? "")"
+    )
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID, include: [ .overrides ])) { [weak self] in
         self?.update()
     }

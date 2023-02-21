@@ -53,6 +53,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         setupDefaultErrorHandling()
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
+        setupPageViewLogging()
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
@@ -79,6 +80,8 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
         let getProfile = GetUserProfileRequest(userID: "self")
         environment.api.makeRequest(getProfile) { apiProfile, urlResponse, error in performUIUpdate {
+            PageViewEventController.instance.userDidChange()
+
             guard let apiProfile = apiProfile, error == nil else {
                 if urlResponse?.isUnauthorized == true {
                     self.userDidLogout(session: session)
@@ -212,6 +215,39 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 }
 
+// MARK: PageView Logging
+extension TeacherAppDelegate {
+    func setupPageViewLogging() {
+        class BackgroundAppHelper: AppBackgroundHelperProtocol {
+
+            let queue = DispatchQueue(label: "com.instructure.icanvas.app-background-helper", attributes: .concurrent)
+            var tasks: [String: UIBackgroundTaskIdentifier] = [:]
+
+            func startBackgroundTask(taskName: String) {
+                queue.async(flags: .barrier) { [weak self] in
+                    self?.tasks[taskName] = UIApplication.shared.beginBackgroundTask(
+                        withName: taskName,
+                        expirationHandler: { [weak self] in
+                            self?.endBackgroundTask(taskName: taskName)
+                    })
+                }
+            }
+
+            func endBackgroundTask(taskName: String) {
+                queue.async(flags: .barrier) { [weak self] in
+                    if let task = self?.tasks[taskName] {
+                        self?.tasks[taskName] = .invalid
+                        UIApplication.shared.endBackgroundTask(task)
+                    }
+                }
+            }
+        }
+
+        let helper = BackgroundAppHelper()
+        PageViewEventController.instance.configure(backgroundAppHelper: helper)
+    }
+}
+
 extension TeacherAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
@@ -293,6 +329,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         disableTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
+        PageViewEventController.instance.userDidChange()
         NotificationManager.shared.unsubscribeFromPushChannel()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
