@@ -56,7 +56,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/conversations/compose": nil,
     "/conversations/:conversationID": nil,
 
-    "/courses": { _, _, _ in CoreHostingController(CourseListView()) },
+    "/courses": { _, _, _ in CourseListAssembly.makeCourseListViewController() },
 
     "/courses/:courseID": courseDetails,
     "/courses/:courseID/tabs": courseDetails,

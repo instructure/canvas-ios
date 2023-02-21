@@ -39,8 +39,8 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var imageDownloadURL: URL?
     @NSManaged public var isCourseDeleted: Bool
     @NSManaged public var isFavorite: Bool
-    @NSManaged public var isFutureEnrollment: Bool
     @NSManaged public var isHomeroomCourse: Bool
+    /** Use with caution! This property doesn't take section dates or the actual enrollment's concluded state into account. */
     @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var name: String?
@@ -98,10 +98,6 @@ final public class Course: NSManagedObject, WriteableModel {
             item.workflow_state == .completed ||
             (item.end_at ?? .distantFuture) < Clock.now ||
             (item.term?.end_at ?? .distantFuture) < Clock.now
-        )
-        model.isFutureEnrollment = !model.isPastEnrollment && (
-            (item.start_at ?? .distantPast) > Clock.now ||
-            (item.term?.start_at ?? .distantPast) > Clock.now
         )
         model.isHomeroomCourse = item.homeroom_course ?? false
         model.isPublished = item.workflow_state == .available || item.workflow_state == .completed

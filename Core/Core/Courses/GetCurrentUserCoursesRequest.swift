@@ -25,19 +25,23 @@ public struct GetCurrentUserCoursesRequest: APIRequestable {
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", state.map { $0.rawValue }),
+            .include(includes.map { $0.rawValue }),
         ]
     }
 
     private let enrollmentState: GetCoursesRequest.EnrollmentState?
     private let state: [GetCoursesRequest.State]
+    private let includes: [GetCourseRequest.Include]
     private let perPage: Int
 
     public init(enrollmentState: GetCoursesRequest.EnrollmentState? = .active,
                 state: [GetCoursesRequest.State] = [],
+                includes: [GetCourseRequest.Include] = [],
                 perPage: Int = 100
     ) {
         self.enrollmentState = enrollmentState
         self.state = state
+        self.includes = includes
         self.perPage = perPage
     }
 }
