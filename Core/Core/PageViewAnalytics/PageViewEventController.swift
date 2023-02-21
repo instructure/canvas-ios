@@ -55,8 +55,11 @@ public class PageViewEventController: NSObject {
 
     @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
-        assert(requestManager.backgroundAppHelper != nil, "configure(backgroundAppHelper: AppBackgroundHelperProtocol) was not called")
-        guard let authSession = LoginSession.mostRecent else { return }
+        guard
+            requestManager.backgroundAppHelper != nil,
+            let authSession = LoginSession.mostRecent else {
+            return
+        }
 
         let userID = authSession.userID
         var mutableAttributes = attributes
