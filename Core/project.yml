@@ -59,14 +59,7 @@ schemes:
       targets:
         Core: all
     test:
-      testPlans:
-        - path: ../TestPlans/CoreTests.xctestplan
-          defaultPlan: true
-  CoreTests:
-    build:
-      targets:
-        CoreTester: all
-    test:
+      targets: [CoreTests, CoreTester]
       testPlans:
         - path: ../TestPlans/CoreTests.xctestplan
           defaultPlan: true
