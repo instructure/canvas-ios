@@ -177,8 +177,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     }
 
     func heightChanged() {
-        let themeSwitchButtonOffset: CGFloat = traitCollection.userInterfaceStyle == .dark ? 38 : 0
-        let contentHeight = self.contentHeight.constant + themeSwitchButtonOffset
+        let contentHeight = self.contentHeight.constant + webView.themeSwitcherHeight
         webViewHeight.constant = isExpanded || contentHeight <= collapsedHeight ? contentHeight : collapsedHeight
         viewMoreButton.isHidden = contentHeight <= collapsedHeight
     }

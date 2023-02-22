@@ -10,6 +10,7 @@ settings:
   CODE_SIGN_STYLE: Automatic
   DEVELOPMENT_TEAM: B6333T4PXQ
   APPLICATION_EXTENSION_API_ONLY: true
+  CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   platform: iOS
 packages:
   Lottie:
@@ -28,8 +29,12 @@ targets:
     sources:
       - path: Core
     dependencies:
-        - package: Lottie
-        - package: PSPDFKit
+      - package: Lottie
+      - package: PSPDFKit
+    preBuildScripts:
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
   CoreTests:    
     type: bundle.unit-test
     platform: iOS
@@ -59,14 +64,7 @@ schemes:
       targets:
         Core: all
     test:
-      testPlans:
-        - path: ../TestPlans/CoreTests.xctestplan
-          defaultPlan: true
-  CoreTests:
-    build:
-      targets:
-        CoreTester: all
-    test:
+      targets: [CoreTests, CoreTester]
       testPlans:
         - path: ../TestPlans/CoreTests.xctestplan
           defaultPlan: true

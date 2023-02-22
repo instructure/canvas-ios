@@ -35,16 +35,13 @@ class ScreenViewTrackerLive: ScreenViewTracker {
 
     func startTrackingTimeOnViewController() {
         startDate = Clock.now
-//        print("⚠️ ScreenViewTracking - Started: \(parameters.eventName), start date: \(startDate)")
     }
 
     func stopTrackingTimeOnViewController() {
         guard let startDate else {
-//            print("⚠️ ScreenViewTracking - Parameters not found: \(parameters.eventName)")
             return
         }
         let duration = Clock.now.timeIntervalSince(startDate)
-//        print("⚠️ ScreenViewTracking - Logged: \(parameters.eventName), duration: \(duration)")
         PageViewEventController.instance.logPageView(parameters.eventName, attributes: parameters.attributes, eventDurationInSeconds: duration)
     }
 

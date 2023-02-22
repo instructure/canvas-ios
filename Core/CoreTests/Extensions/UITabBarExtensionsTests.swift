@@ -29,9 +29,17 @@ class UITabBarExtensionsTests: XCTestCase {
         let tabBar = UITabBar()
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
         tabBar.useGlobalNavStyle()
-        XCTAssertEqual(tabBar.tintColor.hexString, Brand.shared.primary.hexString)
-        XCTAssertEqual(tabBar.barTintColor, UIColor.backgroundLightest)
-        XCTAssertEqual(tabBar.unselectedItemTintColor, UIColor.textDark)
+        let appearance = tabBar.standardAppearance.stackedLayoutAppearance
+        let normal = appearance.normal
+        let selected = appearance.selected
+
+        XCTAssertEqual(selected.iconColor?.hexString, Brand.shared.primary.hexString)
+        XCTAssertEqual(normal.iconColor, UIColor.textDark)
+
+        XCTAssertEqual(normal.titleTextAttributes[.foregroundColor] as! UIColor, UIColor.textDark)
+        XCTAssertEqual((selected.titleTextAttributes[.foregroundColor] as! UIColor).hexString, Brand.shared.primary.hexString)
+
+        XCTAssertEqual(tabBar.standardAppearance.backgroundColor, UIColor.tabBarBackground)
         XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.crimson)
         XCTAssertEqual(tabBar.barStyle, .default)
 
@@ -40,6 +48,6 @@ class UITabBarExtensionsTests: XCTestCase {
             primary: "#ffffff"
         ), baseURL: URL(string: "https://canvas.instructure.com")!)
         tabBar.useGlobalNavStyle(brand: shiny)
-        XCTAssertEqual(tabBar.tintColor.hexString, shiny.navTextColor.hexString)
+        XCTAssertEqual(tabBar.standardAppearance.stackedLayoutAppearance.selected.iconColor?.hexString, shiny.navTextColor.hexString)
     }
 }

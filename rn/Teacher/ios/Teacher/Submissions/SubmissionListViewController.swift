@@ -39,7 +39,7 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
     var context = Context.currentUser
     var filter: [GetSubmissions.Filter] = []
     lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
-        eventName: "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
+        eventName: "/\(context.pathComponent)/assignments/\(assignmentID)/submissions"
     )
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) { [weak self] in
         self?.updateNavBar()

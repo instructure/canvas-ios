@@ -23,9 +23,8 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     public var courseID: String = ""
     public var color: UIColor?
     public let env = AppEnvironment.shared
-    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+    open lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/assignments/syllabus"
-
     )
     lazy public var viewControllers: [UIViewController] = [ syllabus, summary ]
 

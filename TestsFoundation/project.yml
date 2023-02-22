@@ -27,6 +27,10 @@ targets:
       - sdk: XCTest.framework
       - target: Core/Core
       - package: Swifter
+    preBuildScripts:
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
 schemes:
   TestsFoundation:
     build:
