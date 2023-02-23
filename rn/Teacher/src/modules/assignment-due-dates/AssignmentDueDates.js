@@ -135,13 +135,6 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
       <Screen
         title={i18n('Due Dates')}
         navBarStyle='context'
-        rightBarButtons={[
-          {
-            title: i18n('Edit'),
-            testID: 'assignment-due-dates.edit-btn',
-            action: this.editAssignment,
-          },
-        ]}
       >
         <View style={styles.container}>
           <ScrollView style={styles.scrollContainer}>

@@ -3,15 +3,6 @@
 exports[`renders 1`] = `
 <Screen
   navBarStyle="context"
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "assignment-due-dates.edit-btn",
-        "title": "Edit",
-      },
-    ]
-  }
   title="Due Dates"
 >
   <View
@@ -39,15 +30,6 @@ exports[`renders 1`] = `
 exports[`renders with overrides 1`] = `
 <Screen
   navBarStyle="context"
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "assignment-due-dates.edit-btn",
-        "title": "Edit",
-      },
-    ]
-  }
   title="Due Dates"
 >
   <View
