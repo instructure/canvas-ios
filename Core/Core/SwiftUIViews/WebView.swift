@@ -114,7 +114,6 @@ public struct WebView: UIViewRepresentable {
         } else {
             webView.pin(inside: webViewContainer)
         }
-        webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         webView.autoresizesHeight = true
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
@@ -126,6 +125,9 @@ public struct WebView: UIViewRepresentable {
         guard let webView: CoreWebView = uiView.subviews.first(where: { $0 is CoreWebView }) as? CoreWebView else { return }
         webView.linkDelegate = context.coordinator
         webView.sizeDelegate = context.coordinator
+        // During `makeUIView` `UIView`s have no view controllers so they can't check if dark mode is enabled.
+        // We force an update here since a `CoreHostingController` is assiged to the view hierarchy.
+        webView.traitCollectionDidChange(nil)
         context.coordinator.reload(webView: webView, on: reloadTrigger)
 
         if context.coordinator.loaded != source {
@@ -188,8 +190,8 @@ extension WebView {
         public var routeLinksFrom: UIViewController { view.controller.value }
 
         public func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat) {
-            let buttonHeight: CGFloat = (view.controller.value.traitCollection.isDarkInterface && view.canToggleTheme) ? 38 : 0
-            view.handleSize?(height + buttonHeight + 16)
+            let toggleHeight = view.canToggleTheme ? webView.themeSwitcherHeight : 0
+            view.handleSize?(height + toggleHeight)
         }
 
         public func finishedNavigation() {
@@ -204,3 +206,15 @@ extension WebView {
         }
     }
 }
+
+#if DEBUG
+
+struct WebView_Previews: PreviewProvider {
+    static var previews: some View {
+        WebView(html: "This is the first line.<br/>Second line.<div>This is a div's content.</div>", canToggleTheme: true)
+            .frameToFit()
+            .border(Color.red, width: 1)
+    }
+}
+
+#endif
