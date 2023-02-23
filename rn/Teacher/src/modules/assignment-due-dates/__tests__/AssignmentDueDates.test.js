@@ -23,7 +23,6 @@ import 'react-native'
 import React from 'react'
 import { AssignmentDueDates } from '../AssignmentDueDates'
 import renderer from 'react-test-renderer'
-import explore from '../../../../test/helpers/explore'
 
 jest
   .mock('../../../routing')
