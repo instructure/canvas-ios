@@ -31,17 +31,11 @@ public struct UTI: Equatable, Hashable {
     public let rawValue: String
 
     public init?(extension: String) {
-        //let raw = UTType(filenameExtension: `extension`)?.identifier
-//        let raw = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, `extension` as CFString, nil)
-//                   .map { $0.takeRetainedValue() }
-//                   .map { $0 as String }
         let raw = UTType(tag: `extension`, tagClass: UTTagClass.filenameExtension, conformingTo: nil)?.identifier
-        print(`extension`)
         guard let value = raw, !value.isEmpty, !value.hasPrefix("dyn.") else {
             print("nil")
             return nil
         }
-        print(value)
         self.rawValue = value
     }
 
