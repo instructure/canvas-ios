@@ -33,9 +33,7 @@ class RouterTests: CoreTestCase {
         var presented: UIViewController?
         override func present(_ vc: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
             presented = vc
-            if let completion = completion {
-                completion()
-            }
+            completion?()
         }
         var detail: UIViewController?
         override func showDetailViewController(_ vc: UIViewController, sender: Any?) {

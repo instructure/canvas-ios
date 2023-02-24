@@ -96,7 +96,9 @@ public class CourseDetailsViewModel: ObservableObject {
 
     public func retryAfterError() {
         state = .loading
-        refresh()
+        Task {
+            await refresh()
+        }
     }
 
     // MARK: - Private Methods
@@ -211,16 +213,26 @@ public class CourseDetailsViewModel: ObservableObject {
 
 extension CourseDetailsViewModel: Refreshable {
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
         requestAttendanceTool()
         permissions.refresh(force: true)
         colors.refresh(force: true)
         course.refresh(force: true)
-        tabs.exhaust(force: true) { [weak self] _ in
-            if self?.tabs.hasNextPage == false {
-                completion()
+        return await withCheckedContinuation { continuation in
+            tabs.exhaust(force: true) { [weak self] _ in
+                if self?.tabs.hasNextPage == false {
+                    continuation.resume()
+                }
+                return true
             }
-            return true
         }
     }
 }

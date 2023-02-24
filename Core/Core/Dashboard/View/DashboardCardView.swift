@@ -109,11 +109,6 @@ public struct DashboardCardView: View, ScreenViewTrackable {
 
             popoverController.sourceView = navButtonView
             popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
-
-            if #unavailable(iOS 15) {
-                // Center the arrow on iOS 14
-                popoverController.sourceRect = popoverController.sourceRect.offsetBy(dx: -4, dy: 0)
-            }
         }
 
         env.router.show(

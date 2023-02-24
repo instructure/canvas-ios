@@ -110,15 +110,15 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         GeometryReader { geometry in
             List {
                 EmptyPanda(.NoEvents, title: Text("No Assignments", bundle: .core), message: Text("There are no assignments to display.", bundle: .core))
-                    .iOS15ListRowSeparator(.hidden)
+                    .listRowSeparator(.hidden)
                     .frame(maxWidth: .infinity)
                     .frame(height: geometry.size.height)
                     .background(Color.backgroundLightest)
                     .listRowInsets(EdgeInsets())
             }
             .listStyle(.plain)
-            .iOS15Refreshable { completion in
-                viewModel.refresh(completion: completion)
+            .refreshable {
+                await viewModel.refresh()
             }
         }
     }
@@ -139,8 +139,8 @@ public struct AssignmentListView: View, ScreenViewTrackable {
             }
         }
         .listStyle(.plain)
-        .iOS15Refreshable { completion in
-            viewModel.refresh(completion: completion)
+        .refreshable {
+            await viewModel.refresh()
         }
     }
 

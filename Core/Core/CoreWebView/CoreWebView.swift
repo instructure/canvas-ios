@@ -568,9 +568,7 @@ extension CoreWebView {
 
     private func updateHtmlContentView() {
 
-        if #available(iOSApplicationExtension 15.0, *) {
-            themeSwitcherButton.setNeedsUpdateConfiguration()
-        }
+        themeSwitcherButton.setNeedsUpdateConfiguration()
         guard let htmlString = htmlString, let baseURL = baseURL else { return }
         if htmlString.contains("prefers-color-scheme:dark") {
             super.overrideUserInterfaceStyle = isInverted ? .light : .unspecified
@@ -622,32 +620,30 @@ extension CoreWebView {
             self.themeSwitcherButton.setTitle(self.isInverted ? invertedTitle : buttonTitle, for: .normal)
         }), for: .primaryActionTriggered)
 
-        if #available(iOS 15.0, *) {
-            var config = UIButton.Configuration.borderedProminent()
-            config.cornerStyle = .capsule
-            config.background.strokeWidth = 1.0
-            config.image = UIImage(named: "unionLine", in: .core, with: .none)
-            config.imagePadding = 9.5
-            config.imagePlacement = .leading
-            config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .medium)
-            themeSwitcherButton.configuration = config
-            themeSwitcherButton.configurationUpdateHandler = { button in
-                var style: UIUserInterfaceStyle = self.isInverted ? .light : .dark
-                if !self.isThemeDark {
-                    style = .light
-                }
-                let traitCollection = UITraitCollection(userInterfaceStyle: style)
-                var config = button.configuration
-                config?.title = self.isInverted ? invertedTitle : buttonTitle
-                config?.background.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
-                config?.background.strokeColor = .borderDarkest.resolvedColor(with: traitCollection)
-                config?.baseForegroundColor = .textDarkest.resolvedColor(with: traitCollection)
-                button.configuration = config
-                button.isHidden = !self.isThemeDark
-                buttonHeightConstraint.constant = buttonHeight
-                buttonTopConstraint.constant = buttonTopPadding
-                button.superview?.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
+        var config = UIButton.Configuration.borderedProminent()
+        config.cornerStyle = .capsule
+        config.background.strokeWidth = 1.0
+        config.image = UIImage(named: "unionLine", in: .core, with: .none)
+        config.imagePadding = 9.5
+        config.imagePlacement = .leading
+        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .medium)
+        themeSwitcherButton.configuration = config
+        themeSwitcherButton.configurationUpdateHandler = { button in
+            var style: UIUserInterfaceStyle = self.isInverted ? .light : .dark
+            if !self.isThemeDark {
+                style = .light
             }
+            let traitCollection = UITraitCollection(userInterfaceStyle: style)
+            var config = button.configuration
+            config?.title = self.isInverted ? invertedTitle : buttonTitle
+            config?.background.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
+            config?.background.strokeColor = .borderDarkest.resolvedColor(with: traitCollection)
+            config?.baseForegroundColor = .textDarkest.resolvedColor(with: traitCollection)
+            button.configuration = config
+            button.isHidden = !self.isThemeDark
+            buttonHeightConstraint.constant = buttonHeight
+            buttonTopConstraint.constant = buttonTopPadding
+            button.superview?.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
         }
 
         parent.addSubview(themeSwitcherButton)

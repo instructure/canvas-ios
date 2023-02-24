@@ -108,7 +108,7 @@ struct K5GradesView: View, ScreenViewTrackable {
                 .frame(width: 12, height: 12)
                 .foregroundColor(.textDarkest)
                 .rotationEffect(.degrees(gradeSelectorOpen ? -180 : 0))
-                .animation(.easeOut)
+                .animation(.easeOut, value: gradeSelectorOpen)
                 .accessibility(hidden: true)
             Spacer()
         }

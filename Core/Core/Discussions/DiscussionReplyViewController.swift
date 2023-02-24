@@ -37,7 +37,8 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         let button = UIButton(type: .system)
         button.setImage(.paperclipLine, for: .normal)
         button.addTarget(self, action: #selector(attach), for: .primaryActionTriggered)
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        button.configuration = UIButton.Configuration.plain()
+        button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0)
         button.addSubview(attachBadge)
         attachBadge.isHidden = true
         attachBadge.isUserInteractionEnabled = false

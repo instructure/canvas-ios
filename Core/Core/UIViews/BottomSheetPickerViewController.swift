@@ -61,7 +61,7 @@ public class BottomSheetPickerViewController: UIViewController {
     public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
         loadViewIfNeeded()
         let button = UIButton(type: .system)
-
+        button.configuration = UIButton.Configuration.plain()
         button.setTitle(title, for: .normal)
         button.contentHorizontalAlignment = .leading
         button.contentVerticalAlignment = .center
@@ -70,11 +70,10 @@ public class BottomSheetPickerViewController: UIViewController {
         button.tag = actions.count
         button.accessibilityIdentifier = accessibilityIdentifier
         button.addTarget(self, action: #selector(didSelect(_:)), for: .primaryActionTriggered)
-        button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
         if let image = image {
-            button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 40, bottom: 16, right: 16)
             button.setImage(image, for: .normal)
-            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
+            button.configuration?.imagePadding = 24
         }
 
         stackView.addArrangedSubview(button)

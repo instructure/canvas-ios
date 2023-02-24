@@ -49,7 +49,6 @@ class UITableViewExtensionsTests: XCTestCase {
         XCTAssertNotNil(header)
     }
 
-    @available(iOS 15.0, *)
     func testSetupDefaultSectionHeaderTopPadding() {
         UITableView.setupDefaultSectionHeaderTopPadding()
         XCTAssertEqual(UITableView.appearance().sectionHeaderTopPadding, 0)

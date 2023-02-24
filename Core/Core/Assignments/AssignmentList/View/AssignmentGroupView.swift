@@ -40,7 +40,7 @@ public struct AssignmentGroupView: View {
             }
         }
         .listRowInsets(EdgeInsets())
-        .iOS15ListRowSeparator(.hidden)
+        .listRowSeparator(.hidden)
     }
 }
 
