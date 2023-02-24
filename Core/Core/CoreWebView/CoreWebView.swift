@@ -37,6 +37,10 @@ extension CoreWebViewLinkDelegate where Self: UIViewController {
 }
 
 public protocol CoreWebViewSizeDelegate: AnyObject {
+    /**
+     - parameters:
+        - height: The height of the html content. Doesn't include the height of the theme switcher button.
+     */
     func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat)
 }
 
@@ -133,7 +137,11 @@ open class CoreWebView: WKWebView {
 
         addScript(js)
         handle("resize") { [weak self] message in
-            guard let self = self, let body = message.body as? [String: CGFloat], let height = body["height"] else { return }
+            guard let self = self,
+                  let body = message.body as? [String: CGFloat],
+                  let height = body["height"]
+            else { return }
+
             self.sizeDelegate?.coreWebView(self, didChangeContentHeight: height)
             if self.autoresizesHeight, let constraint = self.constraints.first(where: { $0.firstItem === self && $0.firstAttribute == .height }) {
                 constraint.constant = height
@@ -575,7 +583,19 @@ extension CoreWebView {
         isThemeDark = self.viewController?.traitCollection.userInterfaceStyle == .dark
     }
 
-    public func pinWithThemeSwitchButton(inside parent: UIView?, leading: CGFloat? = 0, trailing: CGFloat? = 0, top: CGFloat? = 0, bottom: CGFloat? = 0) {
+    /**
+     Adds the theme switcher button to parent and sets up constraints between the webview, the button and parent.
+     - parameters:
+        - leading: The leading padding between the webview and the parent view. If nil is passed then it's the caller's responsibility to add this constraint. Default is 0.
+        - trailing: The trailing padding between the webview and the parent view. If nil is passed then it's the caller's responsibility to add this constraint. Default is 0.
+        - top: The top padding between the webview and the theme switcher button. If nil is passed then it's the caller's responsibility to add this constraint. Default is 0.
+        - bottom: The bottom padding between the webview and the parent view. If nil is passed then it's the caller's responsibility to add this constraint. Default is 0.
+     */
+    public func pinWithThemeSwitchButton(inside parent: UIView?,
+                                         leading: CGFloat? = 0,
+                                         trailing: CGFloat? = 0,
+                                         top: CGFloat? = 0,
+                                         bottom: CGFloat? = 0) {
         guard let parent else { return }
 
         let padding: CGFloat = 16
