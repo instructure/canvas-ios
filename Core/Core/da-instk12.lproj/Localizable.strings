@@ -68,6 +68,15 @@
 "%d missing" = "%d mangler";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d svar";
+
+/* No comment provided by engineer. */
+"%d students" = "%d elever";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d ulæst";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "en lærer";
 
 /* No comment provided by engineer. */
+"A title is required" = "En titel er påkrævet";
+
+/* No comment provided by engineer. */
 "Accept" = "Acceptér";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Acceptabel brugspolitik";
+
+/* No comment provided by engineer. */
 "Access" = "Adgang";
+
+/* No comment provided by engineer. */
+"Access Code" = "Adgangskode";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Adgangskode:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Tillad 'synes godt om'";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Tillad flere forsøg";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Tillad trådede svar";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Tillad brugere at kommentere";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Tilladte forsøg";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Tilladte forsøg:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Opgavevurdering under %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Opgavegruppe";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Opgavegruppe:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Diskussionsbesked";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Samtale";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Dagligt";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Dato";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Afvis";
@@ -818,10 +869,16 @@
 "Edit Page" = "Rediger side";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Rediger quizdetaljer";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Rediger modtagere";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Rediger fagplanen";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Enten er du en ny bruger, eller Betingelser for acceptabel brug er blevet ændret, siden du accepterede dem. Du bedes acceptere Betingelser for acceptabel brug, før du fortsætter.";
 
 /* No comment provided by engineer. */
 "Email address" = "E-mailadresse";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Afslut \\'funger som bruger\\'";
+
+/* No comment provided by engineer. */
+"Enter code" = "Indtast kode";
 
 /* No comment provided by engineer. */
 "Error" = "Fejl";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Filtrer beskeder efter type";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Endelig vurdering: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Find en kode, der skal scannes";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Fremtidige tilmeldinger";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Gå til I dag";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Bedømt quiz";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Bedømt spørgeundersøgelse";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Bedømte spørgeundersøgelse";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Skjul indhold for %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Høj: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hvordan finder jeg min skole?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Jeg accepterer betingelserne for acceptabel brug.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Jeg kan ikke gøre noget, før jeg hører fra dig";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Inkompatibel filtype";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ufuldstændig";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Sen vurderingsgivning";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Seneste";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Juridisk";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Længde i minutter";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Bogstavvurderinger";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Find QR-kode";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Lås spørgsmål efter besvarelse";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Lås spørgsmål efter besvarelse:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Ny side";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Ny quiz";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "New Quizzes";
@@ -1631,6 +1730,9 @@
 "out of" = "ud af";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "side";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Vent venligst, dette kan tage et minut.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Point";
 
 /* No comment provided by engineer. */
 "Post at" = "Læg ud kl.";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Øvelsesquiz";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Øvelsesquiz";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Nærmere oplysninger om quizzen";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Quizresultat som skal noteres";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Quiztype";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Quiztype:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Forespørgsel mislykkedes!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Kræv en adgangskode";
 
 /* No comment provided by engineer. */
 "Resources" = "Ressourcer";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Vis flere muligheder";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Vis et spørgsmål ad gangen";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Bland svar";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Bland svar:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Aflevering uploadet";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Afleveringer";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Der opstod en uventet fejl. Prøv igen.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne opgave skal afleveres d. %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tid gået";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Tidsbegrænsning";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Frist:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Fortryd";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Ikke bedømt spørgeundersøgelse";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Ukendt fejl";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Brug denne kode til at blive parret til min konto i Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "Bruger-id";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Du skal aktivere mikrofontilladelser i indstillinger.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Du skal indtaste en adgangskode";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du vil stoppe med at fungere som %@ og vende tilbage til din konto.";

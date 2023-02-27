@@ -68,6 +68,15 @@
 "%d missing" = "缺少 %d";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d回覆";
+
+/* No comment provided by engineer. */
+"%d students" = "%d學生";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d未讀";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "教師";
 
 /* No comment provided by engineer. */
+"A title is required" = "標題為必填";
+
+/* No comment provided by engineer. */
 "Accept" = "接受";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "可接受使用政策";
+
+/* No comment provided by engineer. */
 "Access" = "存取";
+
+/* No comment provided by engineer. */
+"Access Code" = "訪問密碼";
 
 /* No comment provided by engineer. */
 "Access Code:" = "訪問密碼：";
@@ -188,10 +206,16 @@
 "Allow liking" = "允許點讚";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "允許多次嘗試";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "允許執行緒回覆";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "允許使用者評論";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "允許的嘗試";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "允許的嘗試：";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "作業評分低於%d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "作業小組";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "作業群組：";
@@ -548,6 +575,12 @@
 "Conversation Message" = "交談訊息";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "交談";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "青色";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "每天";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "日期";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "拒絕";
@@ -818,10 +869,16 @@
 "Edit Page" = "編輯內容頁";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "編輯測驗詳情";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "編輯收件人";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "編輯課程大綱";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "無論您是新的使用者，或是自上次同意以來，「可接受使用政策」都已經變更。請在您繼續使用前同意「可接受使用政策」。";
 
 /* No comment provided by engineer. */
 "Email address" = "電郵地址";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "結束作為使用者";
+
+/* No comment provided by engineer. */
+"Enter code" = "輸入代碼";
 
 /* No comment provided by engineer. */
 "Error" = "錯誤";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "按類型篩選郵件";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "尋找可掃描的條碼";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "未來註冊";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "前往今天";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "已評分的測驗";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "已評分的調查";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "已評分的調查";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "隱藏此項目的內容：%@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "高：%@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "怎樣找到我的學校？";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "您必須同意「可接受使用政策」。";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "在收到您的回覆之前，我無法把事情做好";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "不相容的檔案類型";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "未完成";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "逾期等級評分";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "最新";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "法律事務";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "長度 (分鐘)";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "成績等級";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "尋找 QR 碼";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "回答後鎖定問題";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "回答後鎖定問題：";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "新頁面";
+
+/* No comment provided by engineer. */
+"New Quiz" = "新測驗";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "新測驗";
@@ -1631,6 +1730,9 @@
 "out of" = "滿分為";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "頁面";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "請稍候，需時約一分鐘。";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "分數";
 
 /* No comment provided by engineer. */
 "Post at" = "公佈於";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "練習測驗";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "練習測驗";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "測驗詳細資料";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "要保留的測驗分數";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "測驗類型";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "測驗類型：";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "請求失敗！";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "需要訪問碼";
 
 /* No comment provided by engineer. */
 "Resources" = "資源";
@@ -2015,6 +2132,15 @@
 "Show more options" = "顯示更多選項";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "每次顯示一個問題";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "拖放答案";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "拖放答案：";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "提交項目已上傳";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "提交項目";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "有意外錯誤。請再試一次。";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "作業截止日期為%@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "已用時間";
+
+/* No comment provided by engineer. */
+"Time Limit" = "時間限制";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "時間限制：";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "撤銷";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "未評分的調查";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "未知問題";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "使用此編碼與我在 Canvas Parent 內配對： %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "使用者 ID";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "您必須在「設定」中啟用麥克風的權限。";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "您必須輸入存取密碼";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "您將會停止作為 %@ 並返回到您的帳戶。";

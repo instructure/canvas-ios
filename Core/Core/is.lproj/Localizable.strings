@@ -68,6 +68,15 @@
 "%d missing" = "%d vantar";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Svör";
+
+/* No comment provided by engineer. */
+"%d students" = "%d nemendur";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Ólesið";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "kennari";
 
 /* No comment provided by engineer. */
+"A title is required" = "Titill er áskilinn";
+
+/* No comment provided by engineer. */
 "Accept" = "Samþykkja";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Stefna um ásættanlega notkun";
+
+/* No comment provided by engineer. */
 "Access" = "Aðgangur";
+
+/* No comment provided by engineer. */
+"Access Code" = "Aðgangskóði";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Aðgangskóði:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Heimila að líka við";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Heimila margar tilraunir";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Heimila svaraþráð";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Leyfa notendum að gera athugasemdir";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Heimilaðar tilraunir";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Heimilaðar tilraunir:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Verkefnaeinkunn að neðan %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Verkefnahópur";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Verkefnahópur:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Samræðuskilaboð";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Samræður";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Blágrænn";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Daglega";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Dagsetning";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Hafna";
@@ -818,10 +869,16 @@
 "Edit Page" = "Breyta síðu";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Breyta prófsupplýsingum";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Breyta viðtakendum";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Breyta kennsluáætlun";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Þú ert annað hvort nýr notandi eða Stefna um ásættanlega notkun hefur breyst síðan þú samþykktir hana síðast. Vinsamlegast samþykktu Stefnu um ásættanlega notkun áður en þú heldur áfram.";
 
 /* No comment provided by engineer. */
 "Email address" = "Netfang";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Hætta að bregðast við sem notandi ";
+
+/* No comment provided by engineer. */
+"Enter code" = "Sláðu inn kóða";
 
 /* No comment provided by engineer. */
 "Error" = "Villa";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Sía skilaboð eftir tegund";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Lokaeinkunn: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Finndu kóða til að skanna";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Framtíðarinnritanir";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Fara í daginn í dag";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Metið próf";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Metin könnun";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Kannanir með einkunn";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Fela efni fyrir %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Hátt: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hvernig finn ég skólann minn?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Ég samþykki Stefnu um ásættanlega notkun.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ég get ekkert gert fyrr en þú svarar mér";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Ósamrýmanleg skráargerð";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ólokið";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Síðbúin einkunnagjöf";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Nýjast";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Lögfræði";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Lengd í mínútum";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Bókstafseinkunn";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Finna QR kóða";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Læsa spurningum eftir svör";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Læsa spurningum eftir svör:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Ný síða";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Nýtt próf";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Ný próf";
@@ -1631,6 +1730,9 @@
 "out of" = "af";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "síða";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Hinkraðu þetta gæti tekið mínútu.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Punktar";
 
 /* No comment provided by engineer. */
 "Post at" = "Birta";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Æfingapróf";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Æfingapróf";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Prófupplýsingar";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Varðveita prófeinkunn";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Tegund prófs";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Tegund prófs:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Beiðni mistókst!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Krefjast aðgangskóða";
 
 /* No comment provided by engineer. */
 "Resources" = "Hjálparefni";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Sýna fleiri möguleika";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Sýna eina spurningu í einu";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Stokka svör";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Stokka svör:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Skilum hlaðið upp";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Skil";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Upp kom óvænt villa. Vinsamlegast reynið aftur.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Skiladagur þessa verkefnis er %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Liðinn tími";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Tímamörk";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Tímamörk:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Hætta við";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Ómetin könnun";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Óþekkt villa";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Notaðu þennan kóða til að para við mig í Canvas foreldri: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "Auðkenni notanda";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Þú þarft að virkja aðgang að hljóðnema í stillingum.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Þú verður að slá inn aðgangskóða";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Þú munt hætta að virka sem %@ og fara aftur í þinn reikning.";

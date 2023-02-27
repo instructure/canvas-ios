@@ -68,6 +68,15 @@
 "%d missing" = "%d 欠如";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d返信";
+
+/* No comment provided by engineer. */
+"%d students" = "%d受講者";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d未読";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "教員";
 
 /* No comment provided by engineer. */
+"A title is required" = "タイトルは必須です";
+
+/* No comment provided by engineer. */
 "Accept" = "受諾";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "AUP (Acceptable Use Policy)";
+
+/* No comment provided by engineer. */
 "Access" = "アクセス";
+
+/* No comment provided by engineer. */
+"Access Code" = "アクセス コード";
 
 /* No comment provided by engineer. */
 "Access Code:" = "アクセスコード：";
@@ -188,10 +206,16 @@
 "Allow liking" = "いいねをつけることを許可";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "複数回の試行を許可";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "スレッドでの返信を許可する";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "ユーザーにコメントを許可する";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "試行許可数";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "許可回数:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "以下の課題の評定 %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "課題グループ";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "課題グループ：";
@@ -548,6 +575,12 @@
 "Conversation Message" = "会話メッセージ";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "会話";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "シアン";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "毎日";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "日付";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "辞退する";
@@ -818,10 +869,16 @@
 "Edit Page" = "ページを編集";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "小テスト詳細を編集";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "受信者を編集する";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "シラバスを編集";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "あなたが新しいユーザーであるか、最後に同意して以降、許容される使用ポリシーが変更されています。続行する前に許可される使用ポリシーに同意してください。";
 
 /* No comment provided by engineer. */
 "Email address" = "メールアドレス";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "ユーザーとして行動することを止める";
+
+/* No comment provided by engineer. */
+"Enter code" = "コードを入力する";
 
 /* No comment provided by engineer. */
 "Error" = "エラー";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "タイプでメッセージをフィルタ";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な評定：%@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "スキャンするコードを探す";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "将来の登録";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "今日に進む";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "採点済みの小テスト";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "採点済みのサーベイ";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "採点されたアンケート";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "（）にコンテンツを非表示にする%@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "高：%@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "私のスクールの見つけ方は？";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "許可される使用ポリシーに合意します";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "回答があるまで何もできません";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "互換性のないファイルタイプ";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "不完全";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "遅れた採点";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "最新";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "法務";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "長さ（分）";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "ABC...評価";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "QR コードを探す";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "解答の後で問題をロックする";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "回答後質問をロック：";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "新しいページ";
+
+/* No comment provided by engineer. */
+"New Quiz" = "新しい小テスト";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "新小テスト";
@@ -1631,6 +1730,9 @@
 "out of" = "中";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "ページ";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "お待ちください。これには少し時間がかかる場合があります。";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "ポイント";
 
 /* No comment provided by engineer. */
 "Post at" = "投稿先";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "練習小テスト";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "練習小テスト";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "小テストの詳細情報";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "保持する小テスト スコア";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "小テスト タイプ";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "保留中のレビュー";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "リクエストに失敗しました！";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "アクセスコードが必要";
 
 /* No comment provided by engineer. */
 "Resources" = "リソース";
@@ -2015,6 +2132,15 @@
 "Show more options" = "オプションを多く表示する";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "一度に1つの質問を表示する";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "解答のシャッフル";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "回答のシャッフル：";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "提出がアップロードされました";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "提出物";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "予期しないエラーが発生しました。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "この課題の提出期限は%@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "経過時間";
+
+/* No comment provided by engineer. */
+"Time Limit" = "時間制限";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "制限時間：";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "アンドゥーする";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "未採点のサーベイ";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "未知のエラー";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Canvas Parent で私とペアになるには、このコードを使用してください： %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "ユーザーID";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "「設定」でマイクの許可を有効にしなければなりません。";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "アクセス コードを入力する必要があります";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "%@行動することを止め、自分のアカウントに戻る";

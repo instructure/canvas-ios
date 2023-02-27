@@ -68,6 +68,15 @@
 "%d missing" = "%d مفقود";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d ردود";
+
+/* No comment provided by engineer. */
+"%d students" = "%d طلاب";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d غير مقروء";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "معلم";
 
 /* No comment provided by engineer. */
+"A title is required" = "العنوان مطلوب";
+
+/* No comment provided by engineer. */
 "Accept" = "قبول";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "سياسة الاستخدام المقبول";
+
+/* No comment provided by engineer. */
 "Access" = "الوصول";
+
+/* No comment provided by engineer. */
+"Access Code" = "رمز الوصول";
 
 /* No comment provided by engineer. */
 "Access Code:" = "رمز الوصول:";
@@ -188,10 +206,16 @@
 "Allow liking" = "السماح بالإعجاب";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "السماح بمحاولات متعددة";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "السماح بالردود المترابطة";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "السماح للمستخدمين بالتعليق";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "المحاولات المسموح بها";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "المحاولات المسموح بها:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "تقييم المهمة أدناه %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "مجموعة المهام";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "مجموعة المهام:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "رسالة المحادثة";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "المحادثات";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "سماوي";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "يوميًا";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "التاريخ";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "رفض";
@@ -818,10 +869,16 @@
 "Edit Page" = "تحرير صفحة";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "تحرير تفاصيل الاختبار الموجز";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "تحرير المستلمين";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "تحرير المنهج الدراسي";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "إما أنك مستخدم جديد أو أن سياسة الاستخدام المقبول قد تغيرت منذ أن وافقت عليها آخر مرة. الرجاء الموافقة على سياسة الاستخدام المقبول قبل المتابعة.";
 
 /* No comment provided by engineer. */
 "Email address" = "عنوان البريد الإلكتروني";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "إنهاء التصرف كمستخدم";
+
+/* No comment provided by engineer. */
+"Enter code" = "أدخل الرمز";
 
 /* No comment provided by engineer. */
 "Error" = "خطأ";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "تصفية الرسائل حسب النوع";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "ابحث عن رمز للمسح الضوئي";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "عمليات الالتحاق المستقبلية";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "الذهاب إلى اليوم";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "اختبار موجز تم تقييم درجاته";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "استطلاع تم تقييم درجاته";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "استطلاعات تم تقييمها";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "إخفاء محتوى لـ %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "المرتفع: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "كيف أعثر على مدرستي؟";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "أوافق على سياسة الاستخدام المقبول";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "لن أستطيع إنجاز أعمالي حتى تردون عليّ";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "نوع ملف غير متوافق";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "غير مكتمل";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "تقييم متأخر";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "الأدنى";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "القانوني";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "الطول بالدقائق";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "الدرجة بالأحرف";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "ابحث عن رمز QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "تأمين الأسئلة بعد الإجابة";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "تأمين الأسئلة بعد الإجابة:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "صفحة جديدة";
+
+/* No comment provided by engineer. */
+"New Quiz" = "اختبار جديد";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "الاختبارات الموجزة الجديدة";
@@ -1631,6 +1730,9 @@
 "out of" = "من إجمالي";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "صفحة";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "يرجى الانتظار، قد تستغرق هذا الأمر دقيقة.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "نقاط";
 
 /* No comment provided by engineer. */
 "Post at" = "نشر في";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "أداء الاختبار الموجز";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "التدريب على اختبارات موجزة";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "تفاصيل الاختبار الموجز";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "درجة الاختبار الموجز التي يتعين الاحتفاظ بها";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "نوع الاختبار الموجز";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "نوع الاختبار الموجز:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "فشل الطلب!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "رمز الوصول مطلوب";
 
 /* No comment provided by engineer. */
 "Resources" = "الموارد";
@@ -2015,6 +2132,15 @@
 "Show more options" = "إظهار خيارات أكثر";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "عرض سؤال واحد في كل مرة";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "تبديل الإجابات";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "تبديل الإجابات:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "تم تحميل الإرسال";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "الإرسالات";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "هذه المهمة مستحقة بتاريخ %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "الوقت المنقضي";
+
+/* No comment provided by engineer. */
+"Time Limit" = "الحد الزمني";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "الحد الزمني:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "تراجع";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "استطلاع لم يتم تقييم درجاته";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "خطأ غير معروف";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "استخدم هذا الرمز للاقتران بي في Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "معرف المستخدم";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "يجب إدخال رمز وصول";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "ستتوقف عن التصرف باعتبارك %@ وستعود إلى حسابك.";
