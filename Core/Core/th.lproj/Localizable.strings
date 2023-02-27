@@ -68,6 +68,15 @@
 "%d missing" = "%d ขาดหายไป";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d การตอบกลับ";
+
+/* No comment provided by engineer. */
+"%d students" = "%d ผู้เรียน";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d ไม่ได้อ่าน";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "ผู้สอน";
 
 /* No comment provided by engineer. */
+"A title is required" = "ต้องระบุชื่อ";
+
+/* No comment provided by engineer. */
 "Accept" = "ยอมรับ";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "นโยบายการใช้งานที่ยอมรับได้";
+
+/* No comment provided by engineer. */
 "Access" = "การใช้งาน";
+
+/* No comment provided by engineer. */
+"Access Code" = "รหัสใช้งาน";
 
 /* No comment provided by engineer. */
 "Access Code:" = "รหัสใช้งาน:";
@@ -188,10 +206,16 @@
 "Allow liking" = "อนุญาตให้กดไลค์";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "อนุญาตให้ดำเนินการได้หลายครั้ง";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "อนุญาตการตอบกลับแบบต่อเนื่อง";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "อนุญาตให้ผู้ใช้แสดงความเห็น";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "การดำเนินการที่อนุญาต";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "การดำเนินการที่อนุญาต:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "เกรดภารกิจน้อยกว่า %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "กลุ่มภารกิจ";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "กลุ่มภารกิจ:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "ข้อความการพูดคุย";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "การพูดคุย";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "ฟ้า";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "รายวัน";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "วันที่";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "ปฏิเสธ";
@@ -818,10 +869,16 @@
 "Edit Page" = "แก้ไขเพจ";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "แก้ไขรายละเอียดแบบทดสอบ";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "แก้ไขผู้รับ";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "แก้ไขหลักสูตร";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "คุณเป็นผู้ใช้ใหม่หรือนโยบายการใช้งานที่ยอมรับได้ที่คุณตอบรับไว้ล่าสุดมีการเปลี่ยนแปลง กรุณาตอบรับนโยบายการใช้งานที่ยอมรับได้ก่อนดำเนินการต่อ";
 
 /* No comment provided by engineer. */
 "Email address" = "อีเมลแอดเดรส";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "สิ้นสุดดำเนินการในฐานะผู้ใช้";
+
+/* No comment provided by engineer. */
+"Enter code" = "กรอกรหัส";
 
 /* No comment provided by engineer. */
 "Error" = "ข้อผิดพลาด";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "กรอกข้อความตามประเภท";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "เกรดสรุป: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "ค้นหารหัสเพื่อสแกน";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "การลงทะเบียนในอนาคต";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "ไปที่วันนี้";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "แบบทดสอบที่ลงเกรดแล้ว";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "แบบสำรวจที่ลงเกรดแล้ว";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "แบบสำรวจที่ลงเกรดแล้ว";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "ซ่อนเนื้อหาสำหรับ %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "สูง: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "จะค้นหาสถานศึกษาของฉันได้อย่างไร";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "ฉันยอมรับนโยบายการใช้งานที่ยอมรับได้";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "ฉันไม่สามารถดำเนินการใด ๆ ได้จนกว่าจะได้รับการติดต่อกลับจากคุณ";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "ประเภทไฟล์ไม่รองรับ";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "ไม่เสร็จสิ้น";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "การให้เกรดล่าช้า";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "ล่าสุด";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "ประเด็นทางกฎหมาย";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "ความยาวเป็นนาที";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "เกรดแบบตัวอักษร";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "ระบุตำแหน่งรหัส QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "ล็อคคำถามหลังตอบ";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "ล็อคคำถามหลังตอบ:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "หน้าใหม่";
+
+/* No comment provided by engineer. */
+"New Quiz" = "แบบทดสอบใหม่";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "แบบทดสอบใหม่";
@@ -1631,6 +1730,9 @@
 "out of" = "จาก";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "หน้าเพจ";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "กรุณารอสักครู่ อาจต้องใช้เวลาครู่หนึ่ง";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "คะแนน";
 
 /* No comment provided by engineer. */
 "Post at" = "โพสต์เมื่อ";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "แบบฝึกหัด";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "แบบทดสอบฝึกหัด";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "รายละเอียดแบบทดสอบ";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "คะแนนแบบทดสอบที่จะเก็บ";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "ประเภทแบบทดสอบ";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "ประเภทแบบทดสอบ:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "คำขอล้มเหลว!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "ต้องมีรหัสใช้งาน";
 
 /* No comment provided by engineer. */
 "Resources" = "ทรัพยากร";
@@ -2015,6 +2132,15 @@
 "Show more options" = "แสดงตัวเลือกเพิ่มเติม";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "แสดงทีละคำถาม";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "สลับคำตอบ";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "สลับคำตอบ:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "อัพโหลดผลงานจัดส่งแล้ว";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "ผลงานจัดส่ง";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "มีข้อผิดพลาดที่ไม่คาดคิด กรุณาลองใหม่อีกครั้งในภายหลัง";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "ภารกิจนี้ครบกำหนดภายใน %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "เวลาที่ผ่านไป";
+
+/* No comment provided by engineer. */
+"Time Limit" = "จำกัดเวลา";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "เกณฑ์เวลา:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "เลิกทำ";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "แบบสำรวจที่ไม่ได้ลงเกรด";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "ข้อผิดพลาดที่ไม่รู้จัก";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "ใช้รหัสนี้เพื่อเข้าคู่กับฉันใน Canvas Parent %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "ID ผู้ใช้";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "คุณจะต้องเปิดใช้สิทธิ์อนุญาตสำหรับไมโครโฟนจากค่าปรับตั้ง";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "คุณจะต้องกรอกรหัสใช้งาน";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "คุณจะหยุดดำเนินการในฐานะ %@ และกลับไปที่บัญชีของคุณ";

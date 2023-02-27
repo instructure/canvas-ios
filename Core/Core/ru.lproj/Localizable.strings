@@ -68,6 +68,15 @@
 "%d missing" = "%d отсутствует";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Ответы";
+
+/* No comment provided by engineer. */
+"%d students" = "%d студенты";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Не прочитано";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "преподаватель";
 
 /* No comment provided by engineer. */
+"A title is required" = "Требуется заголовок";
+
+/* No comment provided by engineer. */
 "Accept" = "Принять";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Приемлемая политика использования";
+
+/* No comment provided by engineer. */
 "Access" = "Доступ";
+
+/* No comment provided by engineer. */
+"Access Code" = "Код доступа";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Код доступа:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Разрешить ставить лайки";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Разрешить несколько попыток";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Разрешить цепочечные ответы";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Разрешить пользователям комментирование";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Разрешенные попытки";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Разрешенные попытки:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Оценка за задание ниже %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Группа заданий";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Группа заданий:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Сообщение обсуждения";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Обсуждения";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Голубой";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Ежедневно";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Дата";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Снизить";
@@ -818,10 +869,16 @@
 "Edit Page" = "Редактировать страницу";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Редактировать сведения о контрольной работе";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Редактировать получателей";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Редактировать программу";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Вы либо новый пользователь, либо Политика допустимого использования изменились после того, как вы в последний раз приняли их. Согласитесь с Политикой допустимого использования, прежде чем продолжить.";
 
 /* No comment provided by engineer. */
 "Email address" = "Адрес электронной почты";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Завершить функцию «Действовать как пользователь»";
+
+/* No comment provided by engineer. */
+"Enter code" = "Ввести код";
 
 /* No comment provided by engineer. */
 "Error" = "Ошибка";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Фильтровать сообщения по типам";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Итоговая оценка: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Поиск кода для сканирования";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Будущие регистрации";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Перейти к сегодня";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Оцененное тестирование";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Оцененный опрос";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Оцениваемые опросы";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Скрыть контент для  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Высокий: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Как мне найти свою школу?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Я соглашаюсь с Политикой допустимого использования.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Я не могу закончить, пока не услышу ваш ответ";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Несовместимый тип файла";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Не завершено";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Несвоевременное выставление оценок";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Последняя";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Юридические вопросы";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Продолжительность в минутах";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Успеваемость";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Определить местонахождение кода QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Заблокировать вопросы после ответа на них";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Заблокировать вопросы после ответа на них:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Новая страница";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Новое тестирование";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Новые тестирования";
@@ -1631,6 +1730,9 @@
 "out of" = "из";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "страница";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Подождите несколько минут.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Баллы";
 
 /* No comment provided by engineer. */
 "Post at" = "Опубликовать в";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Практическое тестирование";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Практические тесты";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Сведения о тесте";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Оценка контрольной работы для сохранения";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Тип контрольной работы";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Тип теста:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Сбой при выполнении запроса!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Запросить код доступа";
 
 /* No comment provided by engineer. */
 "Resources" = "Ресурсы";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Показать больше вариантов";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Показывать по одному вопросу за раз";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Изменить порядок ответов";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Перемешать ответы:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Отправка загружена";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Отправки";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Произошла непредвиденная ошибка. Попробуйте еще раз.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Данное задание необходимо выполнить до %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Время истекло";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Ограничение по времени";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Ограничение по времени:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Отменить";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Опрос без оценки";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Неизвестная ошибка";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Используйте этот код для привязки меня в Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "Идентификатор пользователя";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Вы должны активировать разрешения для микрофона в настройках.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Вы должны ввести код доступа";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Вы прекратите действовать как %@ и вернетесь в свою учетную запись.";

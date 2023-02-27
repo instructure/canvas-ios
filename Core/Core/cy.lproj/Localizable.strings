@@ -68,6 +68,15 @@
 "%d missing" = "%d ar goll";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Ateb";
+
+/* No comment provided by engineer. */
+"%d students" = "%d myfyriwr";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Heb ddarllen";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "athro";
 
 /* No comment provided by engineer. */
+"A title is required" = "Rhaid rhoi teitl";
+
+/* No comment provided by engineer. */
 "Accept" = "Derbyn";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Polisi Defnydd Derbyniol";
+
+/* No comment provided by engineer. */
 "Access" = "Mynediad";
+
+/* No comment provided by engineer. */
+"Access Code" = "Cod Mynediad";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Cod Mynediad:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Caniatáu hoffi";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Caniatáu mwy nag un ymgais";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Caniatáu atebion aml-drywydd";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Caniatáu i ddefnyddwyr wneud sylw";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Ymgeisiau a ganiateir";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Ymgeisiau a Ganiateir:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Gradd yr Aseiniad yn Is na %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Grŵp o Aseiniadau";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Grŵp Aseiniadau:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Neges Sgwrs";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Sgyrsiau";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Pob dydd";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Dyddiad";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Gwrthod";
@@ -818,10 +869,16 @@
 "Edit Page" = "Golygu Tudalen";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Golygu Manylion Cwis";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Golygu Derbynwyr";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Golygu Maes Llafur";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Naill ai rydych chi’n ddefnyddiwr newydd, neu mae’r Polisi Defnydd Derbyniol wedi newid ers i chi gytuno i’r Polisi ddiwethaf. Mae angen i chi gytuno i’r Polisi Defnydd Derbyniol cyn bwrw ymlaen.";
 
 /* No comment provided by engineer. */
 "Email address" = "Cyfeiriad e-bost";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Gorffen Gweithredu fel Defnyddiwr";
+
+/* No comment provided by engineer. */
+"Enter code" = "Rhoi cod";
 
 /* No comment provided by engineer. */
 "Error" = "Gwall";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Hidlo negeseuon yn ôl math";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Gradd Derfynol: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Dod o hyd i god i’w sganio";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Ymrestriadau yn y Dyfodol";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Mynd i heddiw";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Cwis wedi’i Raddio";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Arolwg wedi’i Raddio";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Arolygon wedi’u Graddio";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Cuddio cynnwys ar gyfer %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Uchel: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Sut ydw i’n dod o hyd i fy ysgol?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Mae’n rhaid i chi gytuno i’r Polisi Defnydd Derbyniol";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Alla i ddim bwrw ymlaen nes bydda i wedi cael ateb gennych chi";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Math o Ffeil Anghydnaws";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Heb Gwblhau";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Graddio Hwyr";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Diweddaraf";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Cyfreithiol";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Hyd mewn munudau";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Gradd Llythyren";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Dod o hyd i God QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Cloi atebion ar ôl ateb";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Cloi atebion ar ôl ateb:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Tudalen Newydd";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Cwis Newydd";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Cwisiau Newydd";
@@ -1631,6 +1730,9 @@
 "out of" = "allan o";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "tudalen";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Arhoswch funud, gall hyn gymryd ychydig funudau.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Pwynt";
 
 /* No comment provided by engineer. */
 "Post at" = "Postio at";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Cwis Ymarfer";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Cwisiau Ymarfer";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Manylion Cwis";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Sgôr cwis i’w chadw";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Math o Gwis";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Math o Gwis:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Mae'r cais wedi methu!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Gofyn am God Mynediad";
 
 /* No comment provided by engineer. */
 "Resources" = "Adnoddau";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Dangos mwy o ddewisiadau";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Dangos un cwestiwn ar y tro";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Cymysgu Atebion";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Cymysgu Atebion:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Cyflwyniad Wedi’i Lwytho i Fyny";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Cyflwyniadau";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Gwall annisgwyl. Rhowch gynnig arall arni.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Mae’r aseiniad hwn i fod i gael ei gyflwyno erbyn %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Amser wedi mynd heibio";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Terfyn Amser";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Terfyn Amser:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Dad-wneud";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Arolwg heb ei Raddio";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Gwall Anhysbys";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Defnyddiwch y cod hwn i baru gyda mi yn Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "ID Defnyddiwr";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Rhaid i chi alluogi hawliau Microffon yn y Gosodiadau.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Mae’n rhaid i chi roi cod mynediad";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Byddwch yn stopio gweithredu fel %@ ac yn dychwelyd i’ch cyfrif eich hun.";

@@ -68,6 +68,15 @@
 "%d missing" = "%d manke";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Repons";
+
+/* No comment provided by engineer. */
+"%d students" = "%d elèv";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Poko li";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "yon pwofesè";
 
 /* No comment provided by engineer. */
+"A title is required" = "Yon tit obligatwa";
+
+/* No comment provided by engineer. */
 "Accept" = "Aksepte";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Politik Itilizasyon Akseptab";
+
+/* No comment provided by engineer. */
 "Access" = "Aksè";
+
+/* No comment provided by engineer. */
+"Access Code" = "Kòd Aksè";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Kòd Aksè:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Pèmèt Jèm";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Otorize Plizyè Tantativ";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Otorize repons filte";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Pèmèt itilizatè yo kòmante";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Tantativ Otorize";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Tantativ Otorize:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Kou Devwa Enferyè %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Sesyon Gwoup";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Gwoup Sesyon:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Mesaj Konvèsasyon";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Konvèsasyon";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Blesyèl";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Chak jou";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Dat";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Refize";
@@ -818,10 +869,16 @@
 "Edit Page" = "Modifye Paj";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Modifye Detay Quiz";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Chanje Destinatè";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Chanje Pwogram";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Swa ou se yon nouvo itilizatè, swa Politik Itilizasyon Akseptab la chanje depi dènye fwa ou te aksepte li a. Aksepte politik Itilizasyon Akseptab la anvan w kontinye.";
 
 /* No comment provided by engineer. */
 "Email address" = "Adrès imèl";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Fini Aksyon kòm yon Itilizatè";
+
+/* No comment provided by engineer. */
+"Enter code" = "Antre Kòd";
 
 /* No comment provided by engineer. */
 "Error" = "Erè";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Filtre mesaj yo pa tip";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Nòt Final: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Jwenn yon kòd pou eskane";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Pwochen Enskripsyon";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Ale nan jodi a";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Quiz Klase";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Ankèt Klase";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Ankèt Klase";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Kache kontni pou %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Wo: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Kijan pou mwen jwenn lekòl mwen an?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Mwen dakò ak Politik Itilizasyon Akseptab la.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Mwen paka fè bagay yo jiskaske mwen tounen tande w";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Tip Fichye Enkonpatib";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Enkonplè";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Klasman an Reta";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Dènye";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Legal";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Longè an minit";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Nòt an Lèt";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Jwenn Kòd QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Bloke Kesyon Aprè Repons";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Bloke Kesyon Aprè Repons:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Nouvo Paj";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Nouvo Quiz";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Nouvo Quiz";
@@ -1631,6 +1730,9 @@
 "out of" = "sou";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "paj";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Tann, Sa kapab pran yon ti tan.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Pwen";
 
 /* No comment provided by engineer. */
 "Post at" = "Pibliye nan";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Pratike Quiz";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Quiz Pratik";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Detay Quiz";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Nòt Quiz pou Kenbe";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Tip Quiz";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Tip Quiz:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Demann lan Echwe!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Yon Kòd Aksè Nesesè";
 
 /* No comment provided by engineer. */
 "Resources" = "Resous";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Afiche plis opsyon";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Afiche Kesyon Yonn pa Yonn";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Melanje Repons";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Chanje Repons:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Soumisyon Transfere";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Soumisyon";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Yon erè fèt sanzatann. Tanpri eseye ankò.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Delè sesyon sa a se %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tan ki pase";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Limit Tan";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Limit Tan:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Defèt";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Ankèt san Klase";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Erè Enkoni";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Itilize kòd sa a pou asosye ak mwen sou Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "ID Itilizatè";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Ou dwe aktive pèmisyon Mikwofòn nan Paramèt.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Ou dwe ekri yon kòd aksè";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Ou pral sispann aji tankou %@ epi sou kont ou.";

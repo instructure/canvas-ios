@@ -68,6 +68,15 @@
 "%d missing" = "%d mancante";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Risposte";
+
+/* No comment provided by engineer. */
+"%d students" = "%d studenti";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Non letto";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "un insegnante";
 
 /* No comment provided by engineer. */
+"A title is required" = "È necessario un titolo";
+
+/* No comment provided by engineer. */
 "Accept" = "Accetta";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Norme di utilizzo accettabile";
+
+/* No comment provided by engineer. */
 "Access" = "Accesso";
+
+/* No comment provided by engineer. */
+"Access Code" = "Codice di accesso";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Codice di accesso:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Consenti Mi piace";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Consenti tentativi multipli";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Consenti risposte organizzate in thread";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Consenti agli utenti di commentare";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Tentativi consentiti";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Tentativi consentiti:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Voto compito sotto %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Gruppo di compiti";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Gruppo di compiti:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Messaggio conversazione";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Conversazioni";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Ciano";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Ogni giorno";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Data";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Rifiuta";
@@ -818,10 +869,16 @@
 "Edit Page" = "Modifica pagina";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Modifica dettagli quiz";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Modifica destinatari";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Modifica syllabus";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Sei un nuovo utente oppure le Norme di utilizzo accettabile sono cambiate dall'ultima volta in cui le hai accettate. Accetta le Norme di utilizzo accettabile prima di continuare.";
 
 /* No comment provided by engineer. */
 "Email address" = "Indirizzo e-mail";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Termina come utente";
+
+/* No comment provided by engineer. */
+"Enter code" = "Inserisci codice";
 
 /* No comment provided by engineer. */
 "Error" = "Errore";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Filtra messaggi per tipo";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Voto finale: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Trova un codice da sottoporre a scansione";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Iscrizioni future";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Vai a oggi";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Quiz con valutazione";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Sondaggio con valutazione";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Sondaggi con valutazione";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Nascondi contenuto per  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Alto: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Come posso trovare la mia scuola?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Accetto le Norme di utilizzo accettabile.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Non riesco a terminare il lavoro finché non ricevo una risposta";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Tipo di file non compatibile";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Non completato";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Valutazione in ritardo";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Più recente";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Legale";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Lunghezza in minuti";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Voto in lettere";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Individua codice QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Blocca domande dopo le risposte";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Blocca domande dopo le risposte:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Nuova pagina";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Nuovo quiz";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Nuovi quiz";
@@ -1631,6 +1730,9 @@
 "out of" = "su";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "pagina";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Attendere, ci potrebbe volere un minuto.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Punti";
 
 /* No comment provided by engineer. */
 "Post at" = "Pubblica alle";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Quiz di esercitazione";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Quiz di esercitazione";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Dettagli quiz";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Punteggio quiz da mantenere";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Tipo di quiz";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Tipo di quiz:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Richiesta non riuscita!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Richiedi un codice di accesso";
 
 /* No comment provided by engineer. */
 "Resources" = "Risorse";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Mostra più opzioni";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Mostra una domanda per volta";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Riproduci risposte casualmente";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Riproduci risposte casualmente:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Consegna caricata";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Consegne";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Si è verificato un errore imprevisto. Riprova.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Questo compito scade il %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tempo trascorso";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Limite di tempo";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Limite di tempo:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Annulla";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Sondaggio non valutato";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Errore sconosciuto";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Usa questo codice per accoppiarti a me in Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "ID utente";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Devi abilitare le autorizzazioni microfono in Impostazioni.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Devi inserire un codice di accesso";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Non agirai più come %@ e tornerai al tuo account.";
