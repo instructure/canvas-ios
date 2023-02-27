@@ -164,6 +164,7 @@
 		CFC7AE3927157DC50077F9D5 /* StudentAnnotationSubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7AE3827157DC50077F9D5 /* StudentAnnotationSubmissionView.swift */; };
 		CFD96BA227158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA127158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift */; };
 		CFD96BA527171F0100A38E66 /* StudentAnnotationSubmissionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA427171F0100A38E66 /* StudentAnnotationSubmissionViewModelTests.swift */; };
+		CFDACA07289A93BF00662382 /* DashboardContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDACA06289A93BF00662382 /* DashboardContainer.swift */; };
 		CFE2C3CE2552CF6B00113CFC /* GradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8080592547168200A0B2D3 /* GradeItem.swift */; };
 		CFE2C3D42552CF7000113CFC /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17F170254C1A0900B79EB6 /* Routes.swift */; };
 		CFE2C3D52552CF7000113CFC /* GradeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41CE3225472D2F00937432 /* GradeModel.swift */; };
@@ -762,6 +763,7 @@
 		CFC7AE3827157DC50077F9D5 /* StudentAnnotationSubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionView.swift; sourceTree = "<group>"; };
 		CFD96BA127158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewModel.swift; sourceTree = "<group>"; };
 		CFD96BA427171F0100A38E66 /* StudentAnnotationSubmissionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewModelTests.swift; sourceTree = "<group>"; };
+		CFDACA06289A93BF00662382 /* DashboardContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContainer.swift; sourceTree = "<group>"; };
 		CFE2C3F22552D04C00113CFC /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
 		D125492B8610602A8B0B08BC /* Pods-needs-pspdfkit-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D668B463DC17BB3443A13DB4 /* Pods-needs-pspdfkit-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 				492704761CF4AF7100C631C6 /* StudentAppDelegate.swift */,
 				9F61B52B205985A5009C0B13 /* StudentAppDelegate+Helm.swift */,
 				49A04E561CF64C7F0051E1E7 /* StudentTabBarController.swift */,
+				CFDACA06289A93BF00662382 /* DashboardContainer.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -2775,6 +2778,7 @@
 				7DB3C83F24AA613B00B85D35 /* CalendarEventDetailsViewController.swift in Sources */,
 				7DCF0F8522F8A831000AACCE /* AssignmentDetailsViewController.swift in Sources */,
 				7DCF0FBC22F8A8D7000AACCE /* Drawer.swift in Sources */,
+				CFDACA07289A93BF00662382 /* DashboardContainer.swift in Sources */,
 				7DCF0FA722F8A8D7000AACCE /* ArcSubmissionPresenter.swift in Sources */,
 				CFD96BA227158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift in Sources */,
 				7DCF0FCE22F8A8D7000AACCE /* TextSubmissionViewController.swift in Sources */,
