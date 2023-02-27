@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct CourseDetailsView: View {
+public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
@@ -26,10 +26,16 @@ public struct CourseDetailsView: View {
     @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
     @ObservedObject private var selectionViewModel: ListSelectionViewModel
 
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
     public init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
         self.headerViewModel = viewModel.headerViewModel
         self.selectionViewModel = viewModel.selectionViewModel
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(viewModel.courseID)"
+        )
     }
 
     public var body: some View {
@@ -43,11 +49,7 @@ public struct CourseDetailsView: View {
                     imageHeader(geometry: geometry)
                     loadingView
                 case .data(let tabViewModels):
-                    if #available(iOS 15.0, *) {
-                        tabList(tabViewModels, geometry: geometry)
-                    } else {
-                        legacyTabList(tabViewModels, geometry: geometry)
-                    }
+                    tabList(tabViewModels, geometry: geometry)
                 }
             }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -120,7 +122,9 @@ public struct CourseDetailsView: View {
         .foregroundColor(.textDarkest)
         .padding(.horizontal, 16)
         .padding(.vertical, 5)
-        Button(action: viewModel.retryAfterError) {
+        Button {
+            viewModel.retryAfterError()
+        } label: {
             Text("Retry", bundle: .core)
                 .padding(.top, 15)
                 .foregroundColor(Color(Brand.shared.linkColor))
@@ -152,7 +156,7 @@ public struct CourseDetailsView: View {
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
-                .iOS15ListRowSeparator(.hidden)
+                .listRowSeparator(.hidden)
                 .background(Color.backgroundLightest)
                 .padding(.top, headerViewModel.shouldShowHeader(for: geometry.size.height) ? headerViewModel.height : 0)
                 // Save the frame of the content so we can inspect its y position and move course image based on that
@@ -162,31 +166,10 @@ public struct CourseDetailsView: View {
             }
             .listStyle(.plain)
             .iOS16HideListScrollContentBackground()
-            .iOS15Refreshable { completion in
-                viewModel.refresh(completion: completion)
+            .refreshable {
+                await viewModel.refresh()
             }
         }
-    }
-
-    @available(iOS, obsoleted: 15)
-    private func legacyTabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
-        ListWithoutVerticalScrollIndicator {
-            VStack(spacing: 0) {
-                imageHeader(geometry: geometry)
-                if viewModel.showHome {
-                    homeView
-                    Divider()
-                }
-                ForEach(tabViewModels, id: \.id) { tabViewModel in
-                    CourseDetailsCellView(viewModel: tabViewModel)
-                    Divider()
-                }
-            }
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(Color.clear)
-            .background(Color.backgroundLightest)
-        }
-        .listStyle(.plain)
     }
 
     @ViewBuilder

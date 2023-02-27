@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class ConferenceListViewController: UIViewController, ColoredNavViewProtocol {
+public class ConferenceListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -31,6 +31,9 @@ public class ConferenceListViewController: UIViewController, ColoredNavViewProto
     public var color: UIColor?
     var context = Context.currentUser
     let env = AppEnvironment.shared
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/conferences"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()

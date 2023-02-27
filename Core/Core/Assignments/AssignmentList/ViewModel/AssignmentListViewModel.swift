@@ -36,7 +36,7 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private let env = AppEnvironment.shared
-    private let courseID: String
+    let courseID: String
     private lazy var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()
     }
@@ -119,12 +119,22 @@ public class AssignmentListViewModel: ObservableObject {
 
 extension AssignmentListViewModel: Refreshable {
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        apiAssignments.exhaust(force: true) { [weak self] _ in
-            if self?.apiAssignments.hasNextPage == false {
-                completion()
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
+        return await withCheckedContinuation { continuation in
+            apiAssignments.exhaust(force: true) { [weak self] _ in
+                if self?.apiAssignments.hasNextPage == false {
+                    continuation.resume()
+                }
+                return true
             }
-            return true
         }
     }
 }

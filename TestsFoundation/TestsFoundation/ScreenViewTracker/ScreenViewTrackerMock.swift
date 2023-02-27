@@ -17,27 +17,18 @@
 //
 
 import Foundation
+import Core
 
-class PresenterPageViewLogger: PageViewEventViewControllerLoggingProtocol {}
+public class ScreenViewTrackerMock: ScreenViewTracker {
+    public var timeOnViewControllerStart: Date?
+    public var timeOnViewControllerEnd: Date?
+    public let parameters: ScreenViewTrackingParameters
 
-public protocol PageViewLoggerPresenterProtocol {
-    var env: AppEnvironment { get }
-    var pageViewEventName: String { get }
-    var pageViewAttributes: [String: String]? { get }
-    func viewDidAppear()
-    func viewDidDisappear()
-}
-
-public extension PageViewLoggerPresenterProtocol {
-    var pageViewAttributes: [String: String]? {
-        return nil
+    required public init(parameters: ScreenViewTrackingParameters) {
+        self.parameters = parameters
     }
 
-    func viewDidAppear() {
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
+    public func startTrackingTimeOnViewController() {}
 
-    func viewDidDisappear() {
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: pageViewEventName, attributes: pageViewAttributes ?? [:])
-    }
+    public func stopTrackingTimeOnViewController() {}
 }

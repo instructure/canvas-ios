@@ -22,6 +22,18 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
 
     var context: Context?
 
+    override var screenViewTrackingParameters: ScreenViewTrackingParameters {
+        get {
+            _screenViewTrackingParameters
+        }
+        set {
+            _screenViewTrackingParameters = newValue
+        }
+    }
+    private lazy var _screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context?.pathComponent ?? "")/syllabus/edit"
+    )
+
     lazy var permissions = env.subscribe(GetContextPermissions(context: .course(courseID), permissions: [.manageContent, .manageCourseContentEdit])) { [weak self] in
         self?.updateNavBar()
     }

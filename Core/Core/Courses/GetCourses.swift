@@ -179,11 +179,20 @@ public class MarkFavoriteCourse: APIUseCase {
     }
 
     public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let item = response,
-              let course: Course = client.first(where: #keyPath(Course.id), equals: item.context_id.value) else {
+        guard let item = response else {
             return
         }
-        course.isFavorite = markAsFavorite
+
+        if let course: Course = client.first(where: #keyPath(Course.id),
+                                             equals: item.context_id.value) {
+            course.isFavorite = markAsFavorite
+        }
+
+        if let course: CourseListItem = client.first(where: #keyPath(CourseListItem.courseId),
+                                                     equals: item.context_id.value) {
+            course.isFavorite = markAsFavorite
+        }
+
         NotificationCenter.default.post(name: .favoritesDidChange, object: nil, userInfo: [:])
     }
 }

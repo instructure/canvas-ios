@@ -19,6 +19,7 @@
 import UIKit
 import MobileCoreServices
 import VisionKit
+import UniformTypeIdentifiers
 
 public enum FilePickerSource: Int, CaseIterable {
     case camera, library, files, audio, documentScan
@@ -49,7 +50,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public weak var delegate: FilePickerControllerDelegate?
     public var sources = FilePickerSource.defaults
     public var utis: [UTI] = [.any]
-    public var mediaTypes: [String] = [kUTTypeMovie as String, kUTTypeImage as String]
+    public var mediaTypes: [String] = [UTType.movie.identifier, UTType.image.identifier]
     public var batchID = ""
     public var maxFileCount = Int.max
     public lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in

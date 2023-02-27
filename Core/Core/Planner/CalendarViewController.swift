@@ -28,7 +28,7 @@ protocol CalendarViewControllerDelegate: AnyObject {
     func numberOfCalendars() -> Int? // nil = all
 }
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: ScreenViewTrackableViewController {
     @IBOutlet weak var dropdownView: UIImageView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
@@ -43,6 +43,9 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var weekdayRow: UIStackView!
     @IBOutlet weak var yearLabel: UILabel!
     weak var delegate: CalendarViewControllerDelegate?
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/calendar"
+    )
 
     lazy var yearFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -82,8 +85,15 @@ class CalendarViewController: UIViewController {
         view.addGestureRecognizer(panRecognizer)
         view.backgroundColor = .backgroundLightest
 
-        let isRTL: Bool = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
-        monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
+        monthButton.configuration = UIButton.Configuration.plain()
+        monthButton.configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.foregroundColor = .textDarkest
+            outgoing.font = UIFont.scaledNamedFont(.bold24)
+            return outgoing
+        }
+        monthButton.configuration?.background.backgroundColor = .clear
+        monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 28)
         monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", bundle: .core, comment: "")
 
         updateFilterButton()

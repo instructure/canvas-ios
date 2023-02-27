@@ -23,7 +23,6 @@ import 'react-native'
 import React from 'react'
 import { AssignmentDueDates } from '../AssignmentDueDates'
 import renderer from 'react-test-renderer'
-import explore from '../../../../test/helpers/explore'
 
 jest
   .mock('../../../routing')
@@ -100,38 +99,6 @@ test('renders with overrides and specific student ids and sections', () => {
   expect(tree.find('[testID="123456"]').find(`[children="Alice, Bob (He/Him)"]`).exists()).toBe(true)
   expect(tree.find('[testID="123456"]').find(`[children="Due May 31, 2037 at 11:59 PM"]`).exists()).toBe(true)
   expect(refreshUsers).toBeCalled()
-})
-
-test('routes to assignment edit', () => {
-  const props = {
-    courseID: '1',
-    assignmentID: '1',
-    assignment: template.assignment({ id: '1' }),
-    navigator: template.navigator({ show: jest.fn() }),
-    refreshAssignment: jest.fn(),
-  }
-  let tree = renderer.create(
-    <AssignmentDueDates {...props} />
-  ).toJSON()
-  const editButton: any = explore(tree).selectRightBarButton('assignment-due-dates.edit-btn')
-  editButton.action()
-  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/1/edit', { modal: true })
-})
-
-test('routes to quiz edit', () => {
-  const props = {
-    courseID: '1',
-    quizID: '2',
-    assignment: template.assignment({ id: '1' }),
-    navigator: template.navigator({ show: jest.fn() }),
-    refreshAssignment: jest.fn(),
-  }
-  let tree = renderer.create(
-    <AssignmentDueDates {...props} />
-  ).toJSON()
-  const editButton: any = explore(tree).selectRightBarButton('assignment-due-dates.edit-btn')
-  editButton.action()
-  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/2/edit', { modal: true })
 })
 
 test('null assignment', () => {

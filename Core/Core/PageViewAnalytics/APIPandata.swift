@@ -33,10 +33,15 @@ public struct APIPandataEvent: Codable, Equatable {
     public let properties: APIPandataEventProperties
     public let signedProperties: String
 
-    public static func pageView(timestamp: Date, properties: APIPandataEventProperties, signedProperties: String) -> APIPandataEvent {
+    public static func pageView(
+        timestamp: Date,
+        appTag: String = Bundle.main.pandataAppTag,
+        properties: APIPandataEventProperties,
+        signedProperties: String
+    ) -> APIPandataEvent {
         return APIPandataEvent(
             timestamp: timestamp,
-            appTag: "CANVAS_STUDENT_IOS",
+            appTag: appTag,
             eventType: .page_view,
             properties: properties,
             signedProperties: signedProperties
@@ -103,9 +108,11 @@ public struct PostPandataEventsTokenRequest: APIRequestable {
 
     public let method = APIMethod.post
     public let path = "users/self/pandata_events_token"
-    public let body: Body? = Body(app_key: "CANVAS_STUDENT_IOS")
+    public let body: Body?
 
-    public init() {}
+    public init(appTag: String = Bundle.main.pandataAppTag) {
+        self.body = Body(app_key: appTag)
+    }
 }
 
 public struct PostPandataEventsRequest: APIRequestable {

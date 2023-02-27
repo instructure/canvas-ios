@@ -18,12 +18,14 @@
 
 import UIKit
 
-open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     public let titleSubtitleView = TitleSubtitleView.create()
     public var courseID: String = ""
     public var color: UIColor?
     public let env = AppEnvironment.shared
-
+    open lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courseID)/assignments/syllabus"
+    )
     lazy public var viewControllers: [UIViewController] = [ syllabus, summary ]
 
     lazy var summary = SyllabusSummaryViewController.create(courseID: courseID)

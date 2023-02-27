@@ -17,11 +17,7 @@
 //
 
 public protocol Refreshable {
+    @available(*, renamed: "refresh()")
     func refresh(completion: @escaping () -> Void)
-}
-
-public extension Refreshable {
-    func refresh() {
-        refresh {}
-    }
+    func refresh() async
 }

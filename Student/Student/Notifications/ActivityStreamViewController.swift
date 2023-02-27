@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ActivityStreamViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
+class ActivityStreamViewController: ScreenViewTrackableViewController {
 
     struct Info {
         let name: String?
@@ -55,6 +55,9 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     var courseCache: [String: Info] = [:]
     var context: Context?
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/notifications", attributes: ["customPageViewPath": "/"]
+    )
 
     static func create(context: Context? = nil) -> ActivityStreamViewController {
         let vc = loadFromStoryboard()
@@ -75,16 +78,10 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startTrackingTimeOnViewController()
         if navigationController?.navigationBar.backItem == nil {
             navigationItem.leftBarButtonItem = profileButton
             navigationController?.navigationBar.useGlobalNavStyle()
         }
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/notifications", attributes: ["customPageViewPath": "/"])
     }
 
     override func viewDidAppear(_ animated: Bool) {

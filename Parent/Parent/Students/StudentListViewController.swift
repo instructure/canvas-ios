@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentListViewController: UIViewController {
+class StudentListViewController: ScreenViewTrackableViewController {
     lazy var addStudentButton = UIBarButtonItem(
         image: .addSolid,
         style: .plain,
@@ -35,6 +35,7 @@ class StudentListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared
+    let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/profile/observees")
 
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
@@ -76,12 +77,6 @@ class StudentListViewController: UIViewController {
         }
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.useContextColor(ColorScheme.observeeBlue.color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "/profile/observees", attributes: [:])
     }
 
     func update() {

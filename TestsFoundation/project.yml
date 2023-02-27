@@ -4,7 +4,7 @@ options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure
   deploymentTarget:
-    iOS: 14.0
+    iOS: 15.0
 settings:
   CODE_SIGN_STYLE: Automatic
   DEVELOPMENT_TEAM: B6333T4PXQ
@@ -27,6 +27,10 @@ targets:
       - sdk: XCTest.framework
       - target: Core/Core
       - package: Swifter
+    preBuildScripts:
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
 schemes:
   TestsFoundation:
     build:

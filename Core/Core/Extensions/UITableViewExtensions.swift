@@ -21,9 +21,7 @@ import UIKit
 extension UITableView {
 
     public static func setupDefaultSectionHeaderTopPadding() {
-        if #available(iOS 15.0, *) {
-            UITableView.appearance().sectionHeaderTopPadding = 0.0
-        }
+        UITableView.appearance().sectionHeaderTopPadding = 0.0
     }
 
     /// Returns a reusable table-view cell object of the specified type and adds it to the table.

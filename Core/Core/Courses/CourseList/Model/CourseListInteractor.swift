@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import Combine
 
-public class MockPageViewLogger: PageViewEventViewControllerLoggingProtocol {
-    public var timeOnViewControllerStart: Date?
-    public var timeOnViewControllerEnd: Date?
-    public var eventName: String = ""
-    public var attributes: [String: String] = [:]
+public protocol CourseListInteractor {
+    // MARK: - Outputs
+    var state: CurrentValueSubject<StoreState, Never> { get }
+    var courseList: CurrentValueSubject<CourseListSections, Never> { get }
 
-    public init() {}
-
-    public func startTrackingTimeOnViewController() {}
-
-    public func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String]) {
-        self.eventName = eventName
-        self.attributes = attributes
-    }
+    // MARK: - Inputs
+    func refresh() -> Future<Void, Never>
+    func setFilter(_ filter: String) -> Future<Void, Never>
 }

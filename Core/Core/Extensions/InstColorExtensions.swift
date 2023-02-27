@@ -53,6 +53,7 @@ public extension UIColor {
     static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
     static let porcelain = UIColor(named: "porcelain", in: .core, compatibleWith: nil)!
     static let shamrock = UIColor(named: "shamrock", in: .core, compatibleWith: nil)!
+    static let tabBarBackground = UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil)!
     static let textAlert = UIColor(named: "textAlert", in: .core, compatibleWith: nil)!
     static let textDanger = UIColor(named: "textDanger", in: .core, compatibleWith: nil)!
     static let textDark = UIColor(named: "textDark", in: .core, compatibleWith: nil)!
@@ -97,6 +98,7 @@ public extension Color {
     static let oxford = Color("oxford", bundle: .core)
     static let porcelain = Color("porcelain", bundle: .core)
     static let shamrock = Color("shamrock", bundle: .core)
+    static let tabBarBackground = Color("tabBarBackground", bundle: .core)
     static let textAlert = Color("textAlert", bundle: .core)
     static let textDanger = Color("textDanger", bundle: .core)
     static let textDark = Color("textDark", bundle: .core)

@@ -68,7 +68,7 @@ public struct DynamicHeightTextEditor: View {
 
     @ViewBuilder
     private var placeholderView: some View {
-        if text.isEmpty, let placeholder = placeholder, #available(iOS 15, *) {
+        if text.isEmpty, let placeholder = placeholder {
             Text(placeholder)
                 .foregroundColor(.textDark)
                 .padding(.leading, textEditorHorizontalPadding)

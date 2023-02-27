@@ -19,7 +19,6 @@
 public struct FontAppearance {
 
     public static func update() {
-        UITabBar.updateFontAppearance()
         UIBarButtonItem.updateFontAppearance()
         UISegmentedControl.updateFontAppearance()
         UISearchTextField.updateFontAppearance()

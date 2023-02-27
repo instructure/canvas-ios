@@ -58,12 +58,13 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     func viewDidAppear() {
         fetchSettings {
             if self.shouldShow {
-                self.refresh()
+                Task {
+                    await self.refresh()
+                }
             }
         }
     }
 
-    @available(iOS 15, *)
     func attributedText(with string: String, rangeString: Binding<String>, attributes: AttributeContainer) -> Text {
         Text(string) {
             if let range = $0.range(of: rangeString.wrappedValue, options: .caseInsensitive) {
@@ -84,15 +85,26 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
 }
 
 extension SubmissionCommentLibraryViewModel: Refreshable {
+
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
         state = .loading
         let userId = env.currentSession?.userID ?? ""
         let requestable = APICommentLibraryRequest(userId: userId)
-        env.api.makeRequest(requestable) { response, _, _  in
-            performUIUpdate {
-                guard let response = response else { return }
-                self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-                completion()
+        return await withCheckedContinuation { continuation in
+            env.api.makeRequest(requestable) { response, _, _  in
+                performUIUpdate {
+                    guard let response1 = response else { return }
+                    self.comments = response1.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+                    continuation.resume()
+                }
             }
         }
     }

@@ -25,7 +25,6 @@ class SwiftUIExtensionsTests: XCTestCase {
         XCTAssertEqual(Text(0.12, number: .percent), Text(verbatim: "12%"))
     }
 
-    @available(iOS 15, *)
     func testAttributedtext() {
         let testColor = Color.red
         let testText = "test text"

@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PageListViewController: UIViewController, ColoredNavViewProtocol {
+public class PageListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -34,6 +34,9 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
     var context = Context.currentUser
     let env = AppEnvironment.shared
     var selectedFirstPage: Bool = false
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/pages"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -95,12 +98,6 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
             tableView.deselectRow(at: selected, animated: true)
         }
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/pages", attributes: [:])
     }
 
     func updateNavBar() {

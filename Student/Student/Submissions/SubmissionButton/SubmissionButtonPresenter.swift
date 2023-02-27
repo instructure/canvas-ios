@@ -140,7 +140,7 @@ class SubmissionButtonPresenter: NSObject {
                 courseID: courseID,
                 assignmentID: assignment.id,
                 userID: userID
-            ), from: view, options: .modal(embedInNav: true))
+            ), from: view, options: .modal(isDismissable: false, embedInNav: true))
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")
             guard let quizID = assignment.quizID else { return }

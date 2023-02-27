@@ -33,7 +33,8 @@ export function formattedDueDateWithStatus (dueAt: ?Date, lockAt: ?Date): string
   if (lockAt && now > lockAt) {
     return [i18n('Closed'), dateString]
   }
-  return [i18n('Due {dateString}', { dateString })]
+  const dueAtString = i18n('Due {dateString}', { dateString }).replace(/\s/g, ' ')
+  return [dueAtString]
 }
 
 export function formatGrade (grade: number) {

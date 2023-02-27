@@ -28,11 +28,8 @@ struct GradesWidgetView: View {
         var values: [WidgetFamily: Int] = [
             .systemMedium: 2,
             .systemLarge: 5,
+            .systemExtraLarge: 5,
         ]
-
-        if #available(iOSApplicationExtension 15.0, *) {
-            values[.systemExtraLarge] = 5
-        }
         return values
     }()
 
@@ -63,12 +60,8 @@ struct GradesWidgetPreviews: PreviewProvider {
         GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemSmall))
         GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemMedium))
         GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemLarge))
-
-        if #available(iOSApplicationExtension 15.0, *) {
-            GradesWidgetView(model: data)
-                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
-                .previewDevice(.iPadPro_9_7)
-        }
+        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+            .previewDevice(.iPadPro_9_7)
     }
 }
 #endif

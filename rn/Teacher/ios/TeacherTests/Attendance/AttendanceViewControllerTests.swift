@@ -105,8 +105,9 @@ class AttendanceViewControllerTests: TeacherTestCase {
         controller.session.state = .error(NSError.instructureError("doh"))
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "doh")
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
-        RunLoop.main.run(until: Date() + 1)
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testCourseError() {
@@ -116,7 +117,9 @@ class AttendanceViewControllerTests: TeacherTestCase {
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "oops")
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1)
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testSectionsError() {
@@ -125,8 +128,9 @@ class AttendanceViewControllerTests: TeacherTestCase {
         controller.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "ded")
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
-        RunLoop.main.run(until: Date() + 1)
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testStatusesError() {
@@ -135,8 +139,9 @@ class AttendanceViewControllerTests: TeacherTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Error: No data returned from the rollcall api.")
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
-        RunLoop.main.run(until: Date() + 1)
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testChangeDate() {

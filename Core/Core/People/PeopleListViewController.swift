@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PeopleListViewController: UIViewController, ColoredNavViewProtocol {
+public class PeopleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -39,6 +39,9 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
     }
     var keyboard: KeyboardTransitioning?
     var search: String?
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/users"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -104,7 +107,6 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
             tableView.deselectRow(at: selected, animated: true)
         }
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -112,11 +114,6 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         DispatchQueue.main.async {
             self.tableView.contentOffset.y = self.searchBar.frame.height
         }
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/users", attributes: [:])
     }
 
     func updateNavBar() {

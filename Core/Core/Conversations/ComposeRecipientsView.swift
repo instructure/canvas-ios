@@ -55,7 +55,8 @@ class ComposeRecipientsView: UIView {
 
     func addEditButton() {
         editButton = UIButton(type: .system)
-        editButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        editButton.configuration = UIButton.Configuration.plain()
+        editButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         editButton.setImage(.addressBookLine, for: .normal)
         editButton.tintColor = .textDark
         editButton.translatesAutoresizingMaskIntoConstraints = false

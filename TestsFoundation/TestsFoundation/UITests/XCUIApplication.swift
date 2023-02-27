@@ -34,7 +34,7 @@ extension XCUIApplication {
 
         let appIcon = springboard.icons[appName].firstMatch
         if appIcon.waitForExistence(timeout: timeout) {
-            appIcon.press(forDuration: 2)
+            appIcon.press(forDuration: 1)
         } else {
             return
         }

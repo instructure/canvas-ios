@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct SideMenuView: View {
+public struct SideMenuView: View, ScreenViewTrackable {
     @Environment(\.appEnvironment) private var environment
     let enrollment: HelpLinkEnrollment
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/profile")
 
     public init(_ enrollment: HelpLinkEnrollment) {
         self.enrollment = enrollment

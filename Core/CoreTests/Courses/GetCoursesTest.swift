@@ -186,4 +186,17 @@ class GetCoursesTest: CoreTestCase {
         let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
         XCTAssertEqual(courses.count, 2)
     }
+
+    func testMarkFavoriteCourse() {
+        let course = Course.make(from: .make(id: "1", is_favorite: false))
+        let courseListItem = CourseListItem.save(.make(id: "1", is_favorite: false),
+                                                 enrollmentState: .active,
+                                                 in: databaseClient)
+
+        let testee = MarkFavoriteCourse(courseID: "1", markAsFavorite: true)
+        testee.write(response: APIFavorite(context_id: ID("1"), context_type: "course"), urlResponse: nil, to: databaseClient)
+
+        XCTAssertTrue(course.isFavorite)
+        XCTAssertTrue(courseListItem.isFavorite)
+    }
 }

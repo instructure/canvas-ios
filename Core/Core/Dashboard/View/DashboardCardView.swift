@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct DashboardCardView: View {
+public struct DashboardCardView: View, ScreenViewTrackable {
     @StateObject var viewModel: DashboardViewModel
     @ObservedObject var cards: DashboardCardsViewModel
     @ObservedObject var colors: Store<GetCustomColors>
@@ -33,6 +33,8 @@ public struct DashboardCardView: View {
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+
+    public var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
@@ -107,11 +109,6 @@ public struct DashboardCardView: View {
 
             popoverController.sourceView = navButtonView
             popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
-
-            if #unavailable(iOS 15) {
-                // Center the arrow on iOS 14
-                popoverController.sourceRect = popoverController.sourceRect.offsetBy(dx: -4, dy: 0)
-            }
         }
 
         env.router.show(
@@ -190,6 +187,10 @@ public struct DashboardCardView: View {
         courseCards(size)
 
         groupCards
+
+        // This is to prevent the bottom card sticking to the tab bar
+        Color.clear
+            .frame(height: verticalSpacing)
     }
 
     @ViewBuilder func courseCards(_ size: CGSize) -> some View {
@@ -260,7 +261,7 @@ public struct DashboardCardView: View {
                     GroupCard(group: group, course: group.course)
                         // outside the GroupCard, because that isn't observing colors
                         .accentColor(Color(group.color.ensureContrast(against: .white)))
-                        .padding(.bottom, verticalSpacing)
+                        .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
                 }
             }
         }

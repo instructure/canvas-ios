@@ -23,7 +23,7 @@ public class WindowTraits: NSObject {
     @objc public static func current() -> [String: String] {
         guard let traitCollection = AppEnvironment.shared.window?.traitCollection else { return [:] }
         return [
-            "style": traitCollection.userInterfaceStyle == .dark ? "dark" : "light",
+            "style": traitCollection.isDarkInterface ? "dark" : "light",
             "contrast": UIAccessibility.isDarkerSystemColorsEnabled ? "high" : "normal",
             "horizontal": string(traitCollection.horizontalSizeClass),
             "vertical": string(traitCollection.verticalSizeClass),

@@ -101,9 +101,6 @@ struct CourseInvitationCard_Previews: PreviewProvider {
         }
 
         view
-            .previewDevice(PreviewDevice(stringLiteral: "iPhone 8 (14.5)"))
-            .previewDisplayName("iOS 14")
-        view
             .previewDevice(PreviewDevice(stringLiteral: "iPhone 8 (15.4)"))
             .previewDisplayName("iOS 15")
     }

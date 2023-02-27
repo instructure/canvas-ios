@@ -21,12 +21,6 @@ import XCTest
 
 class FontAppearanceTests: XCTestCase {
 
-    func testTabBarItemFont() {
-        FontAppearance.update()
-        XCTAssertEqual(UITabBarItem.appearance().titleTextAttributes(for: .normal)![.font] as! UIFont, UIFont.scaledNamedFont(.regular12))
-        XCTAssertEqual(UITabBarItem.appearance().badgeTextAttributes(for: .normal)![.font] as! UIFont, UIFont.scaledNamedFont(.regular12))
-    }
-
     func testBarButtonItemFont() {
         FontAppearance.update()
         XCTAssertEqual(UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).titleTextAttributes(for: .normal)![.font] as! UIFont, UIFont.scaledNamedFont(.regular17))

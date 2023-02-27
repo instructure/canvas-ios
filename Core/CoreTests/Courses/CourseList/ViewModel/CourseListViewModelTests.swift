@@ -18,84 +18,68 @@
 
 @testable import Core
 import XCTest
-import TestsFoundation
+import Combine
 
 class CourseListViewModelTests: CoreTestCase {
+    var mockInteractor: CourseListInteractorMock!
+    var testee: CourseListViewModel!
 
-    func testCreatesAssignmentList() {
-        setupMocks()
-        let testee = CourseListViewModel()
-
-        let uiRefreshExpectation = expectation(description: "ui refresh received")
-        uiRefreshExpectation.expectedFulfillmentCount = 2 // initial loading state, data state
-        let refreshCallbackExpectation = expectation(description: "refresh callback called")
-        let subscription = testee.$state.sink { _ in uiRefreshExpectation.fulfill() }
-        testee.refresh { refreshCallbackExpectation.fulfill() }
-        drainMainQueue()
-
-        wait(for: [uiRefreshExpectation, refreshCallbackExpectation], timeout: 0.1)
-
-        guard case .data(let sections) = testee.state else { XCTFail("No data in view model"); return }
-
-        XCTAssertEqual(sections.current.count, 2)
-        XCTAssertEqual(sections.past.count, 1)
-        XCTAssertEqual(sections.future.count, 1)
-
-        subscription.cancel()
+    override func setUp() {
+        super.setUp()
+        mockInteractor = CourseListInteractorMock()
+        testee = CourseListViewModel(mockInteractor)
     }
 
-    func testFilter() {
-        setupMocks()
-        let testee = CourseListViewModel()
-        testee.viewDidAppear()
-        drainMainQueue()
+    func testReadsInteractorState() {
+        mockInteractor.state.send(.error)
 
-        let uiRefreshExpectation = expectation(description: "ui refresh received")
-        uiRefreshExpectation.expectedFulfillmentCount = 2 // initial data state, filtered data state
-        let subscription = testee.$state.sink { _ in uiRefreshExpectation.fulfill() }
-
-        testee.filter = "fall"
-        wait(for: [uiRefreshExpectation], timeout: 0.1)
-
-        guard case .data(let sections) = testee.state else { XCTFail("No data in view model"); return }
-
-        XCTAssertEqual(sections.current.count, 1)
-        XCTAssertEqual(sections.current.first?.name, "Fall 2020")
-        XCTAssertEqual(sections.past.count, 0)
-        XCTAssertEqual(sections.future.count, 0)
-
-        subscription.cancel()
+        XCTAssertEqual(testee.state, .error)
     }
 
-    private func setupMocks() {
-        let currentCourses: [APICourse] = [
-            .make(id: "1", name: "Fall 2020", workflow_state: .available, enrollments: [.make(course_id: "1")], term: .make(name: "Fall 2020"), is_favorite: true),
-            .make(id: "2", workflow_state: .available, enrollments: [.make(course_id: "2")]),
-        ]
+    func testReadsInteractorData() {
+        let data = CourseListSections(future: [
+            CourseListItem.save(.make(name: "future"), enrollmentState: .invited_or_pending, in: databaseClient),
+        ])
+        mockInteractor.courseList.send(data)
 
-        let pastCourse: APICourse = .make(
-            id: "3",
-            workflow_state: .completed,
-            start_at: .distantPast,
-            end_at: .distantPast,
-            enrollments: [ .make(
-                id: "6",
-                course_id: "3",
-                enrollment_state: .completed,
-                type: "TeacherEnrollment",
-                user_id: "1",
-                role: "TeacherEnrollment"
-            ), ]
-        )
-        let futureCourse: APICourse = .make(id: "4", workflow_state: .available, start_at: .distantFuture, end_at: .distantFuture, enrollments: [.make(course_id: "4")])
-        api.mock(GetAllCourses(), value: [futureCourse, pastCourse] + currentCourses)
+        XCTAssertEqual(testee.sections.current, [])
+        XCTAssertEqual(testee.sections.past, [])
+        XCTAssertEqual(testee.sections.future.map { $0.name }, ["future"])
 
-        // Enrollments mock
-        let enrollments: [APIEnrollment] = [
-            currentCourses[0].enrollments![0],
-            currentCourses[1].enrollments![0],
-        ]
-        let request = GetEnrollmentsRequest(context: .currentUser, states: [.active])
-        api.mock(request, value: enrollments)
+    }
+
+    func testForwardsRefreshEventToInteractor() {
+        let refreshed = expectation(description: "refresh finished")
+        testee.refresh {
+            refreshed.fulfill()
+        }
+        waitForExpectations(timeout: 1)
+
+        XCTAssertTrue(mockInteractor.refreshCalled)
+    }
+
+    func testForwardsFilterChangesToInteractor() {
+        testee.filter.send("test")
+        XCTAssertEqual(mockInteractor.filter, "test")
+    }
+}
+
+class CourseListInteractorMock: CourseListInteractor {
+    // MARK: - Outputs
+    var state = CurrentValueSubject<StoreState, Never>(.loading)
+    var courseList = CurrentValueSubject<CourseListSections, Never>(.init())
+
+    private(set) var refreshCalled = false
+    private(set) var filter = ""
+
+    // MARK: - Inputs
+    func refresh() -> Future<Void, Never> {
+        refreshCalled = true
+        return Future { $0(.success(())) }
+    }
+
+    func setFilter(_ filter: String) -> Future<Void, Never> {
+        self.filter = filter
+        return Future { $0(.success(())) }
     }
 }

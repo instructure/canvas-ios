@@ -70,7 +70,7 @@ public struct TopBarView: View {
             .frame(width: selectedItemBounds.width, height: selectionIndicatorHeight)
             .clipShape(TopBarSelectionShape())
             .offset(x: selectedItemBounds.minX, y: selectedItemBounds.maxY - selectionIndicatorHeight)
-            .animation(.interactiveSpring())
+            .animation(.interactiveSpring(), value: selectedItemBounds)
     }
 
     private func boundsForSelectedItem(in geometry: GeometryProxy, using preferences: [ViewBoundsPreferenceData]) -> CGRect {

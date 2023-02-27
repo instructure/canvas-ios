@@ -19,6 +19,7 @@
 import AVKit
 import CoreServices
 import SwiftUI
+import UniformTypeIdentifiers
 
 public struct VideoRecorder: UIViewControllerRepresentable {
     public typealias Camera = UIImagePickerController.CameraDevice
@@ -35,7 +36,7 @@ public struct VideoRecorder: UIViewControllerRepresentable {
     public func makeUIViewController(context: Self.Context) -> UIImagePickerController {
         let uiViewController = UIImagePickerController()
         uiViewController.allowsEditing = true
-        uiViewController.mediaTypes = [ kUTTypeMovie as String ]
+        uiViewController.mediaTypes = [ UTType.movie.identifier ]
         return uiViewController
     }
 
