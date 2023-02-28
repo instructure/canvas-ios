@@ -18,16 +18,13 @@
 
 import UIKit
 
-public protocol DashboardContainerViewControllerProtocol {
-    var hasNoChildPresented: Bool { get }
-    func pop()
-    func push(_ vc: UIViewController)
-}
-
 extension UIViewController {
+    public var dashboardContainer: DashboardContainerViewController? {
+        findDashboardContainer(root: self)
+    }
 
-    func findDashboardContainer(root: UIViewController) -> DashboardContainerViewControllerProtocol? {
-        if let dashboardContainer = root as? DashboardContainerViewControllerProtocol {
+    private func findDashboardContainer(root: UIViewController) -> DashboardContainerViewController? {
+        if let dashboardContainer = root as? DashboardContainerViewController {
             return dashboardContainer
         } else if let parent = root.parent {
             return findDashboardContainer(root: parent)

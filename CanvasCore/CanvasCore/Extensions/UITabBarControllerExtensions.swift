@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Core
 
 extension UITabBarController {
     // Call this whenever you really want to get to the root of the specified view controller
@@ -38,6 +39,8 @@ extension UITabBarController {
                 masterNav.popToRootViewController(animated: false)
                 splitViewController.preferredDisplayMode = .oneBesideSecondary
             }
+        } else if let dashboardContainer = viewController as? DashboardContainerViewController {
+            dashboardContainer.popToRootViewController()
         }
     }
 

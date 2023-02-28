@@ -229,8 +229,8 @@ open class Router {
                 from.showDetailViewController(nav ?? view, sender: from)
             }
         case .push:
-            if let dashboardContainer = from.findDashboardContainer(root: from), dashboardContainer.hasNoChildPresented {
-                dashboardContainer.push(nav ?? view)
+            if let dashboardContainer = from.dashboardContainer {
+                dashboardContainer.show(nav ?? view, from: from)
             } else {
                 from.show(nav ?? view, sender: nil)
             }
