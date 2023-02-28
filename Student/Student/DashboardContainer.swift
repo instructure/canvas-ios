@@ -25,10 +25,10 @@ public class DashboardContainerViewController: UIViewController, DashboardContai
     public var hasNoChildPresented: Bool { pushedViewController == nil }
     public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
-    private let rootViewController: UIViewController
+    private let rootViewController: UINavigationController
     private weak var pushedViewController: UIViewController?
 
-    public init(rootViewController: UIViewController) {
+    public init(rootViewController: UINavigationController) {
         self.rootViewController = rootViewController
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,6 +43,7 @@ public class DashboardContainerViewController: UIViewController, DashboardContai
     }
 
     @objc public func pop() {
+        rootViewController.popViewController(animated: true)
         animate(toVisible: false) {
             self.pushedViewController?.unembed()
             self.pushedViewController = nil
@@ -60,12 +61,15 @@ public class DashboardContainerViewController: UIViewController, DashboardContai
 
         embed(split, in: view)
         pushedViewController = split
-        split.view.alpha = 0
 
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(pop))
         vc.addNavigationButton(button, side: .left)
 
         animate(toVisible: true)
+
+        let fake = UIViewController()
+        fake.view.alpha = 0
+        rootViewController.pushViewController(fake, animated: true)
     }
 
     private func animate(toVisible: Bool, completion: (() -> Void)? = nil) {
@@ -73,13 +77,11 @@ public class DashboardContainerViewController: UIViewController, DashboardContai
             return
         }
 
-        pushedView.alpha = (toVisible ? 0 : 1)
         var newFrame = pushedView.frame
         newFrame.origin.x = (toVisible ? view.frame.width : 0)
         pushedView.frame = newFrame
 
-        UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
-            pushedView.alpha = (toVisible ? 1 : 0)
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             var newFrame = pushedView.frame
             newFrame.origin.x = (toVisible ? 0 : self.view.frame.width)
             pushedView.frame = newFrame
