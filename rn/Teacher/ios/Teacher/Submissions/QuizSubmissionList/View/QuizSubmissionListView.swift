@@ -20,47 +20,45 @@ import SwiftUI
 import Core
 
 struct QuizSubmissionListView: View {
-    @ObservedObject private var viewModel: QuizSubmissionListViewModel
+    @ObservedObject private var model: QuizSubmissionListViewModel
 
-    init(viewModel: QuizSubmissionListViewModel) {
-        self.viewModel = viewModel
+    init(model: QuizSubmissionListViewModel) {
+        self.model = model
     }
 
     public var body: some View {
         VStack(spacing: 0) {
             Color.borderMedium
                 .frame(height: 0.5)
-            if viewModel.state == .loading {
+            if model.state == .loading {
                 loadingIndicator
             } else {
-                GeometryReader { geometry in
-                    List {
-                        switch viewModel.state {
-                        case .data:
-                            submissionList
-                        case .empty:
-                            EmptyPanda(.Teacher,
-                                title: Text("No Submissions", bundle: .core),
-                                message: Text("It seems there aren't any valid submissions to grade.", bundle: .core))
-                        case .error:
-                            Text("There was an error loading submissions. Pull to refresh to try again.")
-                        case .loading:
-                            SwiftUI.EmptyView()
+                List {
+                    switch model.state {
+                    case .data:
+                        submissionList
+                    case .empty:
+                        EmptyPanda(.Teacher,
+                            title: Text("No Submissions", bundle: .core),
+                            message: Text("It seems there aren't any valid submissions to grade.", bundle: .core))
+                    case .error:
+                        Text("There was an error loading submissions. Pull to refresh to try again.")
+                    case .loading:
+                        SwiftUI.EmptyView()
+                    }
+                }
+                .refreshable {
+                    await withCheckedContinuation { continuation in
+                        model.refreshDidTrigger.send {
+                            continuation.resume()
                         }
                     }
-                    .refreshable {
-                        await withCheckedContinuation { continuation in
-                            viewModel.refreshDidTrigger.send {
-                                continuation.resume()
-                            }
-                        }
-                    }
-                    .listStyle(PlainListStyle())
-                    .animation(.default, value: viewModel.submissions)
+                }
+                .listStyle(PlainListStyle())
+                .animation(.default, value: model.submissions)
                 }
             }
-        }
-        .background(Color.backgroundLightest)
+            .background(Color.backgroundLightest)
         //.navigationBarItems(leading: menuButton)
     }
 
@@ -73,12 +71,16 @@ struct QuizSubmissionListView: View {
             .listRowSeparator(.hidden)
     }
 
-
     var submissionList: some View {
-        List {
-//            ForEach(viewModel.submissions) { _ in
-//                Text("item")
-//            }
+        ForEach(model.submissions) { submission in
+            VStack(spacing: 0) {
+                QuizSubmissionListItemView(model: submission)
+                Color.borderMedium
+                    .frame(height: 0.5)
+                    .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
+            }
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
         }
     }
 }

@@ -22,7 +22,7 @@ import Combine
 class QuizSubmissionListViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var submissions: [QuizSubmissionListItem] = []
+    @Published public private(set) var submissions: [QuizSubmissionListItemViewModel] = []
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
@@ -33,6 +33,19 @@ class QuizSubmissionListViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
 
     public init(router: Router, interactor: QuizSubmissionListInteractor) {
+
+        // MARK: - Output
+        interactor.state
+            .assign(to: &$state)
+        interactor.submissions
+            .map { submissions in
+                submissions.map {
+                    QuizSubmissionListItemViewModel(submission: $0)
+                }
+            }
+            .assign(to: &$submissions)
+        
+        // MARK: - Input
         messageAllUsersDidTap
             .sink { viewController in
                 router.route(to: "conversations/compose", from: viewController)

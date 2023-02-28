@@ -25,8 +25,8 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
 
     // MARK: - Private
-    private let submissionsStore: Store<GetAllQuizSubmissions>
     private var subscriptions = Set<AnyCancellable>()
+    private let submissionsStore: Store<GetAllQuizSubmissions>
 
     public init(env: AppEnvironment,
                 courseID: String,
@@ -47,7 +47,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
             .subscribe(submissions)
             .store(in: &subscriptions)
 
-        submissionsStore.refresh()
+        submissionsStore.refresh() //TODO: exhaust
     }
 
     // MARK: - Inputs

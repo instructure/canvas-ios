@@ -16,16 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import SwiftUI
 
-public enum QuizSubmissionListAssembly {
+public struct QuizSubmissionListItemView: View {
+    private var model: QuizSubmissionListItemViewModel
 
-    public static func makeViewController(env: AppEnvironment,
-                                          courseID: String,
-                                          quizID: String) -> UIViewController {
-        let interactor = QuizSubmissionListInteractorLive(env: env, courseID: courseID, quizID: quizID)
-        let viewModel = QuizSubmissionListViewModel(router: env.router, interactor: interactor)
-        let view = QuizSubmissionListView(model: viewModel)
-        return CoreHostingController(view)
+    public init(model: QuizSubmissionListItemViewModel) {
+        self.model = model
+    }
+
+    public var body: some View {
+        Button {
+
+        } label: {
+            Text("Submission")
+        }
+        .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel(model.a11yLabel)
     }
 }

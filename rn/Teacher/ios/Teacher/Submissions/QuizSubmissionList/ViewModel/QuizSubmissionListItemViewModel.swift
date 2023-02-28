@@ -16,16 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Foundation
+public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
+    public let id: String
+    public let title: String
+    public let a11yLabel: String
 
-public enum QuizSubmissionListAssembly {
-
-    public static func makeViewController(env: AppEnvironment,
-                                          courseID: String,
-                                          quizID: String) -> UIViewController {
-        let interactor = QuizSubmissionListInteractorLive(env: env, courseID: courseID, quizID: quizID)
-        let viewModel = QuizSubmissionListViewModel(router: env.router, interactor: interactor)
-        let view = QuizSubmissionListView(model: viewModel)
-        return CoreHostingController(view)
+    public init(submission: QuizSubmissionListItem) {
+        //TODO
+        self.id = "id"
+        self.title = "Submission"
+        self.a11yLabel = "A11Y"
     }
 }
