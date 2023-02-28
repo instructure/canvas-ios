@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct QuizSubmissionListView: View {
     @ObservedObject private var viewModel: QuizSubmissionListViewModel
@@ -25,18 +26,53 @@ struct QuizSubmissionListView: View {
         self.viewModel = viewModel
     }
 
-    var body: some View {
-        switch viewModel.state {
-        case .loading:
-            Text("Loading")
-        case .error:
-            Text("Something went wrong")
-        case .empty:
-            Text("No submissions")
-        case .data:
-            submissionList
+    public var body: some View {
+        VStack(spacing: 0) {
+            Color.borderMedium
+                .frame(height: 0.5)
+            if viewModel.state == .loading {
+                loadingIndicator
+            } else {
+                GeometryReader { geometry in
+                    List {
+                        switch viewModel.state {
+                        case .data:
+                            submissionList
+                        case .empty:
+                            EmptyPanda(.Teacher,
+                                title: Text("No Submissions", bundle: .core),
+                                message: Text("It seems there aren't any valid submissions to grade.", bundle: .core))
+                        case .error:
+                            Text("There was an error loading submissions. Pull to refresh to try again.")
+                        case .loading:
+                            SwiftUI.EmptyView()
+                        }
+                    }
+                    .refreshable {
+                        await withCheckedContinuation { continuation in
+                            viewModel.refreshDidTrigger.send {
+                                continuation.resume()
+                            }
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .animation(.default, value: viewModel.submissions)
+                }
+            }
         }
+        .background(Color.backgroundLightest)
+        //.navigationBarItems(leading: menuButton)
     }
+
+    private var loadingIndicator: some View {
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .accentColor(Color(Brand.shared.primary))
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+    }
+
 
     var submissionList: some View {
         List {

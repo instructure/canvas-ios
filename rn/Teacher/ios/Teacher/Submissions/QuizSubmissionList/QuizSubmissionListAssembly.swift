@@ -20,13 +20,12 @@ import Core
 
 public enum QuizSubmissionListAssembly {
 
-    public static func makeInboxViewController(env: AppEnvironment,
-                                               courseID: String,
-                                               quizID: String) -> UIViewController {
+    public static func makeViewController(env: AppEnvironment,
+                                          courseID: String,
+                                          quizID: String) -> UIViewController {
         let interactor = QuizSubmissionListInteractorLive(env: env, courseID: courseID, quizID: quizID)
         let viewModel = QuizSubmissionListViewModel(router: env.router, interactor: interactor)
         let view = QuizSubmissionListView(viewModel: viewModel)
         return CoreHostingController(view)
     }
 }
-

@@ -35,6 +35,7 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProto
     private let courseID: String
     private var submissions: Store<GetAllQuizSubmissions>
     private var enrollments: Store<GetEnrollments>
+    private var submissionsPath: String { "courses/\(courseID)/quizzes/\(quizID)/submissions" }
 
     init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -60,7 +61,7 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProto
     }
 
     public func routeToAll(router: Router, viewController: WeakViewController) {
-        showPracticeError()
+        router.route(to: submissionsPath, from: viewController)
     }
 
     public func routeToGraded(router: Router, viewController: WeakViewController) {
