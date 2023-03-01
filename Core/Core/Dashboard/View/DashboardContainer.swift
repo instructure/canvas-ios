@@ -127,3 +127,19 @@ public class DashboardContainerViewController: UIViewController {
         }, completion: { _ in completion?() })
     }
 }
+
+extension UIViewController {
+    public var dashboardContainer: DashboardContainerViewController? {
+        findDashboardContainer(root: self)
+    }
+
+    private func findDashboardContainer(root: UIViewController) -> DashboardContainerViewController? {
+        if let dashboardContainer = root as? DashboardContainerViewController {
+            return dashboardContainer
+        } else if let parent = root.parent {
+            return findDashboardContainer(root: parent)
+        } else {
+            return nil
+        }
+    }
+}
