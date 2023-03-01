@@ -74,6 +74,8 @@ public class DashboardContainerViewController: UIViewController {
 
         animate(toVisible: false) {
             self.pushedViewController?.unembed()
+            // The property is weak but if someone keeps it alive it won't turn to nil so we do it manually
+            self.pushedViewController = nil
         }
     }
 
