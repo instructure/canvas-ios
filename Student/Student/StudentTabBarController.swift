@@ -70,8 +70,9 @@ class StudentTabBarController: UITabBarController {
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
-            let dashboard = HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false)))
-            result = DashboardContainerViewController(rootViewController: dashboard) { HelmSplitViewController() }
+            let dashboard = CoreHostingController(DashboardCardView(shouldShowGroupList: true,
+                                                                    showOnlyTeacherEnrollment: false))
+            result = DashboardContainer(rootViewController: dashboard) { HelmSplitViewController() }
 
             tabBarTitle = NSLocalizedString("Dashboard", comment: "dashboard page title")
             tabBarImage = .dashboardTab

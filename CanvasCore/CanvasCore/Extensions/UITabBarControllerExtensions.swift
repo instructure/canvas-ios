@@ -39,8 +39,6 @@ extension UITabBarController {
                 masterNav.popToRootViewController(animated: false)
                 splitViewController.preferredDisplayMode = .oneBesideSecondary
             }
-        } else if let dashboardContainer = viewController as? DashboardContainerViewController {
-            dashboardContainer.popToRootViewController()
         }
     }
 

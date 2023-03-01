@@ -119,13 +119,6 @@ public struct DashboardCardView: View, ScreenViewTrackable {
         )
     }
 
-    private func setStyle(style: UIUserInterfaceStyle?) {
-        env.userDefaults?.interfaceStyle = style
-        if let window = env.window {
-            window.updateInterfaceStyle(style)
-        }
-    }
-
     private var menuButton: some View {
         Button(action: {
             env.router.route(to: "/profile", from: controller, options: .modal())
