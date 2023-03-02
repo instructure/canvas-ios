@@ -202,8 +202,6 @@ public struct DashboardCardView: View, ScreenViewTrackable {
             DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
                 let card = cards[cardIndex]
                 CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth, contextColor: card.color)
-                    // outside the CourseCard, because that isn't observing colors
-                    .accentColor(Color(card.color))
                     .frame(minHeight: 160)
             }
             .frame(maxWidth: .infinity, alignment: .leading)

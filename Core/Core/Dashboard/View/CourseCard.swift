@@ -40,7 +40,7 @@ struct CourseCard: View {
             }, label: {
                 VStack(alignment: .leading, spacing: 0) {
                     ZStack {
-                        Color.accentColor.frame(width: width, height: 80)
+                        Color(card.color).frame(width: width, height: 80)
                         card.imageURL.map { RemoteImage($0, width: width, height: 80) }?
                             .opacity(hideColorOverlay ? 1 : 0.4)
                             .clipped()
@@ -50,7 +50,7 @@ struct CourseCard: View {
                     VStack(alignment: .leading, spacing: 2) {
                         HStack { Spacer() }
                         Text(card.shortName)
-                            .font(.semibold18).foregroundColor(.accentColor)
+                            .font(.semibold18).foregroundColor(Color(card.color))
                             .fixedSize(horizontal: false, vertical: true)
                             .lineLimit(2)
                         Text(card.courseCode)
