@@ -16,35 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import CoreData
-
-// TODO: Decide if this should be a CoreData Entity in the model layer or an in-memory viewmodel object in the viewmodel layer
-public struct QuizSubmissionListItem: Equatable {
-
-    public init(_ dbSubmission: QuizSubmission) {
-
-    }
-}
-
 #if DEBUG
 
-public extension QuizSubmissionListItem {
-    static func make(id: String = "0")
-    -> QuizSubmissionListItem {
-        let mockObject: QuizSubmissionListItem
-        return mockObject
+import Combine
+import Core
+
+public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
+
+    // MARK: - Outputs
+    public var state = CurrentValueSubject<StoreState, Never>(.loading)
+    public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
+
+    public init(env: AppEnvironment, submissions: [QuizSubmissionListItem] = []) {
+        self.submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>(submissions)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in           state.send(.data)
+        }
     }
-}
 
-public extension Array where Element == QuizSubmissionListItem {
-
-    static func make(count: Int,
-                     in context: NSManagedObjectContext)
-    -> [InboxMessageListItem] {
-        (0..<count).reduce(into: [], { partialResult, index in
-            partialResult.append(.make(id: "\(index)", in: context))
-        })
+    public func refresh() -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                promise(.success(()))
+            }
+        }
     }
 }
 

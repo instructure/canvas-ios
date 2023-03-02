@@ -28,4 +28,16 @@ public enum QuizSubmissionListAssembly {
         let view = QuizSubmissionListView(model: viewModel)
         return CoreHostingController(view)
     }
+
+#if DEBUG
+
+    public static func makePreview(env: AppEnvironment,
+                                   submissions: [QuizSubmissionListItem])
+    -> QuizSubmissionListView {
+        let interactor = QuizSubmissionListInteractorPreview(env: env, submissions: submissions)
+        let viewModel = QuizSubmissionListViewModel(router: env.router, interactor: interactor)
+        return QuizSubmissionListView(model: viewModel)
+    }
+
+#endif
 }

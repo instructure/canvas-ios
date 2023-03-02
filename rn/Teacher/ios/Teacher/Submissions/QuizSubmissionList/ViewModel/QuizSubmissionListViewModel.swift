@@ -31,9 +31,10 @@ class QuizSubmissionListViewModel: ObservableObject {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
+    private let interactor: QuizSubmissionListInteractor
 
     public init(router: Router, interactor: QuizSubmissionListInteractor) {
-
+        self.interactor = interactor
         // MARK: - Output
         interactor.state
             .assign(to: &$state)
@@ -44,7 +45,7 @@ class QuizSubmissionListViewModel: ObservableObject {
                 }
             }
             .assign(to: &$submissions)
-        
+
         // MARK: - Input
         messageAllUsersDidTap
             .sink { viewController in

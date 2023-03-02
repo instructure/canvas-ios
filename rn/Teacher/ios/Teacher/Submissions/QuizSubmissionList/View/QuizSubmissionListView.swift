@@ -84,3 +84,23 @@ struct QuizSubmissionListView: View {
         }
     }
 }
+
+#if DEBUG
+
+struct QuizSubmissionListView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+    static let context = env.globalDatabase.viewContext
+
+    static var previews: some View {
+        QuizSubmissionListAssembly.makePreview(env: env, submissions: .make)
+
+        (environment: env,
+                                  messages: .make(count: 5, in: context))
+            .previewLayout(.sizeThatFits)
+
+        QuizSubmissionListAssembly.makePreview(env: env, submissions: [])
+
+            .previewLayout(.sizeThatFits)
+            .previewDisplayName("Empty State")
+    }
+}
