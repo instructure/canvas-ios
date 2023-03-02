@@ -6771,12 +6771,12 @@
 		EBA47E010C805E39105B9650 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CF5CE3A529AE0EFD009053F3 /* DashboardContainer.swift */,
 				F91E3331B95E2CDBFED041C9 /* ConferenceCard.swift */,
 				35917E729368ADE5A35DC057 /* CourseCard.swift */,
 				4004B65E8D9D50E2360818F0 /* CourseInvitationCard.swift */,
 				AA48E5A15FEE12B8EA2B4A3F /* CustomizeCourseView.swift */,
 				684C8ED5F41CF838AF7ECC7B /* DashboardCardView.swift */,
+				CF5CE3A529AE0EFD009053F3 /* DashboardContainer.swift */,
 				1C05317CCF442A7CCF842F47 /* DashboardGrid.swift */,
 				123357F799E9B3D659FB8D75 /* DashboardSettingsView.swift */,
 				6AC4CC235B2F8EFCDDA0156F /* FileUploadNotificationCard.swift */,

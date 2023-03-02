@@ -18,6 +18,12 @@
 
 import UIKit
 
+/**
+ This custom navigation controllers wraps the pushed viewcontroller into a split view controller and pushes
+ this instead of the original view controller. The purpose of why this needed is to work around a UIKit limitation
+ that throws an error when we try to directly push a split view controller into a navigation controller. This subclass
+ also synchronizes its navigation bar and the split view's navigation bar so only one is visible at a time.
+ */
 public class DashboardContainer: HelmNavigationController {
     public typealias SplitViewController = UISplitViewController & UINavigationControllerDelegate
     private let splitViewControllerFactory: () -> SplitViewController
@@ -34,7 +40,7 @@ public class DashboardContainer: HelmNavigationController {
     }
 
     override public func show(_ vc: UIViewController, sender: Any?) {
-        vc.addNavigationButton(backButton, side: .left)
+        vc.addNavigationButton(.back(target: self, action: #selector(pop)), side: .left)
 
         let split = makeSplitViewController(masterViewController: vc)
         let container = UIViewController()
@@ -67,11 +73,9 @@ public class DashboardContainer: HelmNavigationController {
 
     // MARK: - Private Methods
 
-    private var backButton: UIBarButtonItem {
-        let backImage = UIImage(named: "chevron.backward", in: .core, with: nil)
-        let barButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(popViewController))
-        barButton.imageInsets = .init(top: 0, left: -7, bottom: 0, right: 0)
-        return barButton
+    @objc
+    private func pop() {
+        popViewController(animated: true)
     }
 
     private func makeSplitViewController(masterViewController: UIViewController) -> UIViewController {

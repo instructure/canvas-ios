@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Core
 
 extension UITabBarController {
     // Call this whenever you really want to get to the root of the specified view controller
