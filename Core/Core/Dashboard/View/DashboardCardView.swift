@@ -250,8 +250,6 @@ public struct DashboardCardView: View, ScreenViewTrackable {
                 let filteredGroups = activeGroups
                 ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.course)
-                        // outside the GroupCard, because that isn't observing colors
-                        .accentColor(Color(group.color.ensureContrast(against: .white)))
                         .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
                 }
             }
