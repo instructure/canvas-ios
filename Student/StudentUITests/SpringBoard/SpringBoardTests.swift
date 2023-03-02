@@ -26,7 +26,7 @@ class SpringBoardTests: CoreUITestCase {
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
 
         func appToSpringBoardRatio() -> CGFloat {
-            app.frame.height / SpringBoard.shared.sbApp.frame.height
+            app.frame.width / SpringBoard.shared.sbApp.frame.width
         }
 
         sleep(2)

@@ -28,8 +28,11 @@ extension XCUIApplication {
 
         var appName = ""
 
-        let e2eRunner = Bundle.main.infoDictionary?["CFBundleExecutable"] as! String
-        let executable = e2eRunner.replacingOccurrences(of: "E2ETests-Runner", with: "")
+        let testRunner = Bundle.main.infoDictionary?["CFBundleExecutable"] as! String
+        let executable = testRunner
+            .replacingOccurrences(of: "E2ETests-Runner", with: "")
+            .replacingOccurrences(of: "UITests-Runner", with: "")
+
         appName = "Canvas \(executable)"
 
         let appIcon = springboard.icons[appName].firstMatch
