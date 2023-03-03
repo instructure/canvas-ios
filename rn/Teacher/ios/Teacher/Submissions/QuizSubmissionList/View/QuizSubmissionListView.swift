@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct QuizSubmissionListView: View {
+public struct QuizSubmissionListView: View {
     @ObservedObject private var model: QuizSubmissionListViewModel
 
     init(model: QuizSubmissionListViewModel) {
@@ -27,7 +27,8 @@ struct QuizSubmissionListView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
+            filterBarView
             Color.borderMedium
                 .frame(height: 0.5)
             if model.state == .loading {
@@ -62,6 +63,44 @@ struct QuizSubmissionListView: View {
         //.navigationBarItems(leading: menuButton)
     }
 
+    private var filterBarView: some View {
+        Button {
+            model.isShowingScopeSelector.toggle()
+        } label: {
+            HStack(spacing: 6) {
+                Text(model.scope.localizedName)
+                    .lineLimit(1)
+                    .font(.semibold22)
+                    .foregroundColor(.textDarkest)
+                Image
+                    .arrowOpenDownSolid
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 17)
+            }
+            .foregroundColor(.textDarkest)
+        }
+        .actionSheet(isPresented: $model.isShowingScopeSelector) {
+            ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
+        }
+        .frame(height: 81)
+        .padding(.leading, 16)
+        .padding(.trailing, 19)
+        .background(Color.backgroundLightest)
+        .accessibilityLabel(Text("Filter messages by course", bundle: .core))
+        .accessibilityHint(Text(model.scope.localizedName))
+    }
+
+    private var scopeFilterButtons: [ActionSheet.Button] {
+        let scopeButtons: [ActionSheet.Button] = model.scopes.map { scope in
+            .default(Text(scope.localizedName)) {
+                model.scopeDidChange.send(scope)
+            }
+        }
+        let cancelButton = ActionSheet.Button.cancel(Text("Cancel", bundle: .core))
+        return scopeButtons + [cancelButton]
+    }
+
     private var loadingIndicator: some View {
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
@@ -92,15 +131,13 @@ struct QuizSubmissionListView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        QuizSubmissionListAssembly.makePreview(env: env, submissions: .make)
-
-        (environment: env,
-                                  messages: .make(count: 5, in: context))
+        QuizSubmissionListAssembly.makePreview(env: env, submissions: .make(count: 5))
             .previewLayout(.sizeThatFits)
 
         QuizSubmissionListAssembly.makePreview(env: env, submissions: [])
-
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Empty State")
     }
 }
+
+#endif

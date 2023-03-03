@@ -23,6 +23,8 @@ import Core
 
 public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
 
+
+
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
@@ -32,7 +34,11 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in           state.send(.data)
         }
     }
-
+    public func setScope(_ scope: QuizSubmissionListScope) -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            promise(.success(()))
+        }
+    }
     public func refresh() -> Future<Void, Never> {
         Future<Void, Never> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

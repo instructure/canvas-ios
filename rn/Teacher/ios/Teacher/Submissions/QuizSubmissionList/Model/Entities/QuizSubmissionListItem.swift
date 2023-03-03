@@ -21,10 +21,11 @@ import CoreData
 
 // TODO: Decide if this should be a CoreData Entity in the model layer or an in-memory viewmodel object in the viewmodel layer
 public struct QuizSubmissionListItem: Equatable {
-
-    public init(_ dbSubmission: QuizSubmission) {
-
-    }
+    public let id: String
+    public let name: String
+    public let status: String
+    public let grade: String?
+    public let avatarURL: URL?
 }
 
 #if DEBUG
@@ -32,18 +33,17 @@ public struct QuizSubmissionListItem: Equatable {
 public extension QuizSubmissionListItem {
     static func make(id: String = "0")
     -> QuizSubmissionListItem {
-        let mockObject: QuizSubmissionListItem
+        let mockObject = QuizSubmissionListItem(id: "1", name: "Student", status: "graded", grade: "5", avatarURL: nil)
         return mockObject
     }
 }
 
 public extension Array where Element == QuizSubmissionListItem {
 
-    static func make(count: Int,
-                     in context: NSManagedObjectContext)
-    -> [InboxMessageListItem] {
+    static func make(count: Int)
+    -> [QuizSubmissionListItem] {
         (0..<count).reduce(into: [], { partialResult, index in
-            partialResult.append(.make(id: "\(index)", in: context))
+            partialResult.append(.make(id: "\(index)"))
         })
     }
 }

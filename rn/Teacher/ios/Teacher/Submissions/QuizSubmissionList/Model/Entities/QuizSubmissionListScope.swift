@@ -16,23 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
-    public let id: String
-    public let name: String
-    public let status: String
-    public let statusColor: Color? = .textDarkest
-    public let grade: String?
-    public let profileImageURL: URL?
-    public let a11yLabel: String
+public enum QuizSubmissionListScope: String, CaseIterable, Hashable {
+    case all, submitted, notSubmitted
 
-    public init(item: QuizSubmissionListItem) {
-        self.id = item.id
-        self.name = item.name
-        self.status = item.status
-        self.grade = item.grade
-        self.profileImageURL = item.avatarURL
-        self.a11yLabel = "A11Y"
+    public var localizedName: String {
+        switch self {
+        case .all: return NSLocalizedString("All Submissions", comment: "")
+        case .submitted: return NSLocalizedString("Not Submitted", comment: "")
+        case .notSubmitted: return NSLocalizedString("Submitted", comment: "")
+        }
     }
 }

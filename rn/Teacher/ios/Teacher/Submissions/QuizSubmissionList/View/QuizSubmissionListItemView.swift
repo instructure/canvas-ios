@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 public struct QuizSubmissionListItemView: View {
@@ -29,9 +30,51 @@ public struct QuizSubmissionListItemView: View {
         Button {
 
         } label: {
-            Text("Submission")
+            cellContent
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel(model.a11yLabel)
     }
+
+    private var cellContent: some View {
+        HStack(alignment: .top, spacing: 14) {
+            Avatar(name: model.name, url: model.profileImageURL)
+                .frame(width: 36, height: 36)
+                .padding(.top, 5)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(model.name)
+                    .font(.semibold16)
+                    .foregroundColor(.textDarkest)
+                    .lineLimit(1)
+                Text(model.status)
+                    .foregroundColor(model.statusColor)
+                    .font(.regular12)
+            }
+            Spacer()
+            if let grade = model.grade {
+                Text(grade)
+                    .foregroundColor(.textDark)
+                    .font(.regular12)
+            }
+        }
+        .padding(.top, 12)
+        .padding(.bottom, 12)
+        .padding(.leading, 15)
+        .padding(.trailing, 16)
+        .background(Color.backgroundLightest)
+        .contentShape(Rectangle())
+    }
 }
+
+#if DEBUG
+
+struct QuizSubmissionListItemView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+
+    static var previews: some View {
+        QuizSubmissionListItemView(model: .init(item: .make()))
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif

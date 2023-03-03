@@ -23,15 +23,20 @@ class QuizSubmissionListViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var submissions: [QuizSubmissionListItemViewModel] = []
+    @Published public private(set) var scope: QuizSubmissionListScope = DefaultScope
+    @Published public var isShowingScopeSelector = false
+    public let scopes = QuizSubmissionListScope.allCases
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let messageAllUsersDidTap = PassthroughSubject<WeakViewController, Never>()
     public let submissionDidTap = PassthroughSubject<QuizSubmissionListItem, Never>()
+    public let scopeDidChange = CurrentValueSubject<QuizSubmissionListScope, Never>(DefaultScope)
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: QuizSubmissionListInteractor
+    private static let DefaultScope: QuizSubmissionListScope = .all
 
     public init(router: Router, interactor: QuizSubmissionListInteractor) {
         self.interactor = interactor
@@ -41,7 +46,7 @@ class QuizSubmissionListViewModel: ObservableObject {
         interactor.submissions
             .map { submissions in
                 submissions.map {
-                    QuizSubmissionListItemViewModel(submission: $0)
+                    QuizSubmissionListItemViewModel(item: $0)
                 }
             }
             .assign(to: &$submissions)
@@ -51,6 +56,14 @@ class QuizSubmissionListViewModel: ObservableObject {
             .sink { viewController in
                 router.route(to: "conversations/compose", from: viewController)
             }
+            .store(in: &subscriptions)
+        // MARK: - User actions
+        scopeDidChange
+            .assign(to: &$scope)
+        scopeDidChange
+            .removeDuplicates()
+            .map { interactor.setScope($0) }
+            .sink()
             .store(in: &subscriptions)
     }
 }

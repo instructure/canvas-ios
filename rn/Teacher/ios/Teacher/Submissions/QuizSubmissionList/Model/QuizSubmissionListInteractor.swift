@@ -26,4 +26,5 @@ public protocol QuizSubmissionListInteractor {
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>
+    func setScope(_ scope: QuizSubmissionListScope) -> Future<Void, Never>
 }

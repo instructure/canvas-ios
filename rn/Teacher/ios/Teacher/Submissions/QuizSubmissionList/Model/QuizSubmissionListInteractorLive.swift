@@ -26,32 +26,69 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
+    private let usersStore: Store<GetContextUsers>
     private let submissionsStore: Store<GetAllQuizSubmissions>
 
     public init(env: AppEnvironment,
                 courseID: String,
                 quizID: String) {
-        let useCase = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
-        self.submissionsStore = env.subscribe(useCase)
+        let usersUseCase = GetContextUsers(
+            context: .course(courseID),
+            type: .student
+        )
 
-        submissionsStore
-            .statePublisher
+        self.usersStore = env.subscribe(usersUseCase)
+        let submissionsUseCase = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
+        self.submissionsStore = env.subscribe(submissionsUseCase)
+
+        StoreState
+            .combineLatest(usersStore.statePublisher, submissionsStore.statePublisher)
             .subscribe(state)
             .store(in: &subscriptions)
 
-        submissionsStore
-            .allObjects
-            .map { $0.map { submission in
-                QuizSubmissionListItem(submission)
-            } }
+        Publishers
+            .CombineLatest(usersStore.allObjects, submissionsStore.allObjects)
+            .map { [weak self] in
+                self?.getQuizSubmissions(users: $0.0, submissions: $0.1) ?? []
+            }
             .subscribe(submissions)
             .store(in: &subscriptions)
 
-        submissionsStore.refresh() //TODO: exhaust
+        submissionsStore.exhaust()
+        usersStore.exhaust(force: true)
+    }
+
+    public func setScope(_ scope: QuizSubmissionListScope) -> Future<Void, Never> {
+        Future<Void, Never> { [submissionsStore] promise in
+            submissionsStore.refresh()
+            promise(.success(()))
+        }
     }
 
     // MARK: - Inputs
     public func refresh() -> Future<Void, Never> {
         submissionsStore.refreshWithFuture(force: true)
+    }
+
+    // MARK: - Private Helpers
+    private func getQuizSubmissions(users: [User], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
+        let quizsubmissionListItems = users.map { user in
+            var status = "Not submitted"
+            //TODO: grade in apiCall
+            var grade: String?
+            if let submission = submissions.first {$0.userID == user.id} {
+                status = submission.workflowState == .complete ? "Submitted" : "NOT"
+            }
+
+            return QuizSubmissionListItem(
+                id: user.id,
+                name: user.name,
+                status: status,
+                grade: grade,
+                avatarURL: user.avatarURL
+            )
+        }
+
+        return quizsubmissionListItems
     }
 }
