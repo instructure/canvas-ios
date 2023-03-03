@@ -24,6 +24,8 @@ struct CourseCard: View {
     let showGrade: Bool
     let width: CGFloat
     let contextColor: UIColor
+    /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
+    let isWideLayout: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -35,24 +37,14 @@ struct CourseCard: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Button(action: {
+            Button {
                 env.router.route(to: "/courses/\(card.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
-            }) {
-                VStack(alignment: .leading, spacing: 0) {
-                    ZStack {
-                        Color(card.color).frame(width: width, height: 80)
-                        card.imageURL.map { RemoteImage($0, width: width, height: 80) }?
-                            .opacity(hideColorOverlay ? 1 : 0.4)
-                            .clipped()
-                            // Fix big course image consuming tap events.
-                            .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: 80)))
-                    }
-                    textArea
+            } label: {
+                if isWideLayout {
+                    regularHorizontalLayout
+                } else {
+                    compactHorizontalLayout
                 }
-                .contentShape(Rectangle())
-                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
-                .background(Color.backgroundLightest)
-                .cornerRadius(4)
             }
             .buttonStyle(ScaleButtonStyle(scale: 1))
             .accessibility(label: Text(verbatim: "\(card.shortName) \(card.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
@@ -63,12 +55,53 @@ struct CourseCard: View {
                 .offset(x: 8, y: 8)
                 .zIndex(1)
 
-            customizeButton
-                .offset(x: width - 44, y: 0)
+            if !isWideLayout {
+                customizeButton
+                    .offset(x: width - 44, y: 0)
+            }
         }
     }
 
-    @ViewBuilder
+    private var regularHorizontalLayout: some View {
+        GeometryReader { geometry in
+            HStack(spacing: 0) {
+                // 1.77 to have 16:9 ratio
+                courseImage(width: 1.77 * geometry.size.height, height: geometry.size.height)
+                textArea
+            }
+            .contentShape(Rectangle())
+            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
+            .background(Color.backgroundLightest)
+            .cornerRadius(4)
+        }
+    }
+
+    private var compactHorizontalLayout: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            courseImage(width: width)
+            textArea
+        }
+        .contentShape(Rectangle())
+        .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
+        .background(Color.backgroundLightest)
+        .cornerRadius(4)
+    }
+
+    private func courseImage(width: CGFloat, height: CGFloat = 80) -> some View {
+        ZStack(alignment: .topLeading) {
+            Color(card.color).frame(width: width, height: height)
+            card.imageURL.map { RemoteImage($0, width: width, height: height) }?
+                .opacity(hideColorOverlay ? 1 : 0.4)
+                .clipped()
+                // Fix big course image consuming tap events.
+                .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: height)))
+            if isWideLayout {
+                customizeButton
+                    .offset(x: width - 44, y: 0)
+            }
+        }
+    }
+
     private var textArea: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack { Spacer() }
@@ -84,9 +117,8 @@ struct CourseCard: View {
         .padding(.horizontal, 10).padding(.top, 8)
     }
 
-    @ViewBuilder
     private var customizeButton: some View {
-        Button(action: {
+        Button {
             guard let course = card.course else { return }
             env.router.show(
                 CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
@@ -94,12 +126,12 @@ struct CourseCard: View {
                 options: .modal(.formSheet, isDismissable: false, embedInNav: true),
                 analyticsRoute: "/dashboard/customize_course"
             )
-        }, label: {
+        } label: {
             Image.moreSolid.foregroundColor(Color(contextColor))
                 .background(Circle().fill(Color.backgroundLightest).frame(width: 28, height: 28)
                 )
                 .frame(width: 44, height: 44)
-        })
+        }
         .accessibility(label: Text("Open \(card.shortName) user preferences", bundle: .core))
         .identifier("DashboardCourseCell.\(card.id).optionsButton")
     }
@@ -142,28 +174,39 @@ struct CourseCard_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack(alignment: .leading) {
+            Text(verbatim: "Grid Layout")
             CourseCard(card: cardEntity,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 200,
-                       contextColor: .electric)
-            .frame(width: 200, height: 170)
+                       contextColor: .electric,
+                       isWideLayout: false)
+            .frame(width: 200, height: 160)
+            .environment(\.horizontalSizeClass, .compact)
 
+            Text(verbatim: "List Layout - Compact Horizontal Size Class").padding(.top)
             CourseCard(card: cardEntity,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 400,
-                       contextColor: .electric)
-            .frame(width: 400, height: 170)
+                       contextColor: .electric,
+                       isWideLayout: false)
+            .frame(width: 400, height: 160)
+            .environment(\.horizontalSizeClass, .compact)
 
+            Text(verbatim: "List Layout - Regular Horizontal Size Class").padding(.top)
             CourseCard(card: cardEntity,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 900,
-                       contextColor: .electric)
-            .frame(width: 900, height: 170)
+                       contextColor: .electric,
+                       isWideLayout: true)
+            .frame(width: 900, height: 100)
+            .environment(\.horizontalSizeClass, .regular)
         }
+        .padding()
         .previewLayout(.sizeThatFits)
     }
 }
+
 #endif
