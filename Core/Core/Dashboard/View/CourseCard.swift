@@ -37,7 +37,7 @@ struct CourseCard: View {
         ZStack(alignment: .topLeading) {
             Button(action: {
                 env.router.route(to: "/courses/\(card.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
-            }, label: {
+            }) {
                 VStack(alignment: .leading, spacing: 0) {
                     ZStack {
                         Color(card.color).frame(width: width, height: 80)
@@ -47,24 +47,13 @@ struct CourseCard: View {
                             // Fix big course image consuming tap events.
                             .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: 80)))
                     }
-                    VStack(alignment: .leading, spacing: 2) {
-                        HStack { Spacer() }
-                        Text(card.shortName)
-                            .font(.semibold18).foregroundColor(Color(card.color))
-                            .fixedSize(horizontal: false, vertical: true)
-                            .lineLimit(2)
-                        Text(card.courseCode)
-                            .font(.semibold12).foregroundColor(.textDark)
-                            .lineLimit(2)
-                        Spacer()
-                    }
-                    .padding(.horizontal, 10).padding(.top, 8)
+                    textArea
                 }
                 .contentShape(Rectangle())
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray, lineWidth: 1 / UIScreen.main.scale))
                 .background(Color.backgroundLightest)
                 .cornerRadius(4)
-            })
+            }
             .buttonStyle(ScaleButtonStyle(scale: 1))
             .accessibility(label: Text(verbatim: "\(card.shortName) \(card.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
             .identifier("DashboardCourseCell.\(card.id)")
@@ -79,7 +68,24 @@ struct CourseCard: View {
         }
     }
 
-    @ViewBuilder var customizeButton: some View {
+    @ViewBuilder
+    private var textArea: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            HStack { Spacer() }
+            Text(card.shortName)
+                .font(.semibold18).foregroundColor(Color(card.color))
+                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(2)
+            Text(card.courseCode)
+                .font(.semibold12).foregroundColor(.textDark)
+                .lineLimit(2)
+            Spacer()
+        }
+        .padding(.horizontal, 10).padding(.top, 8)
+    }
+
+    @ViewBuilder
+    private var customizeButton: some View {
         Button(action: {
             guard let course = card.course else { return }
             env.router.show(
@@ -98,7 +104,8 @@ struct CourseCard: View {
         .identifier("DashboardCourseCell.\(card.id).optionsButton")
     }
 
-    @ViewBuilder var gradePill: some View {
+    @ViewBuilder
+    private var gradePill: some View {
         if showGrade, let course = card.course {
             HStack {
                 if course.hideTotalGrade {
@@ -114,3 +121,49 @@ struct CourseCard: View {
         }
     }
 }
+
+#if DEBUG
+
+struct CourseCard_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+    private static var cardEntity: DashboardCard {
+        let apiEnrollment = APIEnrollment.make(computed_current_score: 105, computed_current_grade: "A+")
+        let apiCourse = APICourse.make(enrollments: [apiEnrollment])
+        Course.save(apiCourse, in: context)
+
+        let apiContextColor = APICustomColors(custom_colors: ["course_1": "#008EE2"])
+        ContextColor.save(apiContextColor, in: context)
+
+        let apiEntity = APIDashboardCard.make(courseCode: "Course_PRV_001_2023/03/03-Term1-Section3",
+                                              shortName: "Mrs. Robinson's Reading Lectures For Elementary Class")
+        return DashboardCard.save(apiEntity, position: 0, in: context)
+    }
+
+    static var previews: some View {
+        VStack(alignment: .leading) {
+            CourseCard(card: cardEntity,
+                       hideColorOverlay: false,
+                       showGrade: true,
+                       width: 200,
+                       contextColor: .electric)
+            .frame(width: 200, height: 170)
+
+            CourseCard(card: cardEntity,
+                       hideColorOverlay: false,
+                       showGrade: true,
+                       width: 400,
+                       contextColor: .electric)
+            .frame(width: 400, height: 170)
+
+            CourseCard(card: cardEntity,
+                       hideColorOverlay: false,
+                       showGrade: true,
+                       width: 900,
+                       contextColor: .electric)
+            .frame(width: 900, height: 170)
+        }
+        .previewLayout(.sizeThatFits)
+    }
+}
+#endif
