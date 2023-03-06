@@ -39,6 +39,7 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var animatableLogoPosX: NSLayoutConstraint!
     @IBOutlet weak var animatableLogoPosY: NSLayoutConstraint!
     @IBOutlet weak var loginTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var previousLoginsHeightConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -373,11 +374,29 @@ class LoginStartViewController: UIViewController {
         findSchoolButton.textColorName = "oxford"
         findSchoolButton.borderColorName = "oxford"
     }
+
+    private func animatePreviousLoginsHeightChange(numberOfItems: Int) {
+        switch numberOfItems {
+        case 0:
+            previousLoginsHeightConstraint.constant = 0
+        case 1:
+            previousLoginsHeightConstraint.constant = 80
+        default:
+            previousLoginsHeightConstraint.constant = 140
+        }
+        view.setNeedsUpdateConstraints()
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
 extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, LoginStartSessionDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sessions.count + MDMManager.shared.logins.count
+        let count = sessions.count + MDMManager.shared.logins.count
+        animatePreviousLoginsHeightChange(numberOfItems: count)
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
