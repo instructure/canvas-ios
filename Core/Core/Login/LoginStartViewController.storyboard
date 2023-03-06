@@ -32,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="178.66666666666663" width="375" height="190"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
-                                        <rect key="frame" x="149.66666666666666" y="15.666666666666686" width="76" height="76"/>
+                                        <rect key="frame" x="149.66666666666663" y="15.666666666666686" width="76.000000000000028" height="76"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="76" id="TGN-lb-CPg"/>
                                             <constraint firstAttribute="width" constant="76" id="wxc-X2-xtt"/>
@@ -46,7 +46,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STUDENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-uo-RMu">
-                                        <rect key="frame" x="159.66666666666666" y="157.66666666666666" width="56" height="16.666666666666657"/>
+                                        <rect key="frame" x="159.66666666666663" y="157.66666666666666" width="56" height="16.666666666666657"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
@@ -166,7 +166,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                        <rect key="frame" x="55.333333333333343" y="132.33333333333331" width="264.66666666666663" height="29"/>
+                                        <rect key="frame" x="55.333333333333371" y="132.33333333333331" width="264.66666666666663" height="29"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-og-syp">
                                                 <rect key="frame" x="0.0" y="0.0" width="264.66666666666669" height="29"/>
@@ -384,16 +384,24 @@
                                 <constraints>
                                     <constraint firstItem="Bkg-T4-H3b" firstAttribute="top" secondItem="Pt8-iU-cki" secondAttribute="bottom" constant="26" id="8ff-Jx-vgH"/>
                                     <constraint firstItem="xBc-5O-QU6" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" id="Bha-oj-bqd"/>
-                                    <constraint firstAttribute="trailing" secondItem="xBc-5O-QU6" secondAttribute="trailing" constant="32" id="KhX-IX-LTz"/>
+                                    <constraint firstAttribute="trailing" secondItem="xBc-5O-QU6" secondAttribute="trailing" constant="32" id="KhX-IX-LTz">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="48"/>
+                                    </constraint>
                                     <constraint firstItem="xBc-5O-QU6" firstAttribute="width" secondItem="M3X-mo-TCQ" secondAttribute="width" priority="750" id="NXM-GE-zg5"/>
                                     <constraint firstItem="Pt8-iU-cki" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" id="Q9c-M4-hnI"/>
                                     <constraint firstItem="g3X-Rb-xXO" firstAttribute="top" secondItem="Bkg-T4-H3b" secondAttribute="bottom" id="VvH-fE-tx0"/>
-                                    <constraint firstAttribute="trailing" secondItem="Pt8-iU-cki" secondAttribute="trailing" constant="48" id="Wqa-CW-fL0"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pt8-iU-cki" secondAttribute="trailing" constant="48" id="Wqa-CW-fL0">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="64"/>
+                                    </constraint>
                                     <constraint firstItem="g3X-Rb-xXO" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" id="XGW-7r-QJ2"/>
-                                    <constraint firstItem="Pt8-iU-cki" firstAttribute="leading" secondItem="M3X-mo-TCQ" secondAttribute="leading" constant="48" id="ZhX-xZ-k7C"/>
+                                    <constraint firstItem="Pt8-iU-cki" firstAttribute="leading" secondItem="M3X-mo-TCQ" secondAttribute="leading" constant="48" id="ZhX-xZ-k7C">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="64"/>
+                                    </constraint>
                                     <constraint firstItem="xBc-5O-QU6" firstAttribute="top" secondItem="g3X-Rb-xXO" secondAttribute="bottom" constant="32" id="at1-7w-WM3"/>
                                     <constraint firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="e3C-z0-3D4"/>
-                                    <constraint firstItem="xBc-5O-QU6" firstAttribute="leading" secondItem="M3X-mo-TCQ" secondAttribute="leading" constant="32" id="uI5-Dx-3Ui"/>
+                                    <constraint firstItem="xBc-5O-QU6" firstAttribute="leading" secondItem="M3X-mo-TCQ" secondAttribute="leading" constant="32" id="uI5-Dx-3Ui">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="48"/>
+                                    </constraint>
                                     <constraint firstItem="Bkg-T4-H3b" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" constant="3" id="ynz-4F-ekZ"/>
                                 </constraints>
                             </view>
@@ -413,7 +421,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="beI-15-M65" userLabel="AnimatableLogo">
-                                <rect key="frame" x="149.66666666666666" y="368" width="76" height="76"/>
+                                <rect key="frame" x="149.66666666666663" y="368" width="76.000000000000028" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="76" id="28k-3o-AnI"/>
                                     <constraint firstAttribute="width" constant="76" id="oSd-vg-gmi"/>
