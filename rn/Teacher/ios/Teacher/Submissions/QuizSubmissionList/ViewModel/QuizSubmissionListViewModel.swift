@@ -25,6 +25,8 @@ class QuizSubmissionListViewModel: ObservableObject {
     @Published public private(set) var submissions: [QuizSubmissionListItemViewModel] = []
     @Published public private(set) var scope: QuizSubmissionListScope = DefaultScope
     @Published public var isShowingScopeSelector = false
+    @Published public var subTitle: String = ""
+    public let title = NSLocalizedString("Submissions", comment: "")
     public let scopes = QuizSubmissionListScope.allCases
 
     // MARK: - Inputs
@@ -50,7 +52,8 @@ class QuizSubmissionListViewModel: ObservableObject {
                 }
             }
             .assign(to: &$submissions)
-
+        interactor.quizTitle
+            .assign(to: &$subTitle)
         // MARK: - Input
         messageAllUsersDidTap
             .sink { viewController in

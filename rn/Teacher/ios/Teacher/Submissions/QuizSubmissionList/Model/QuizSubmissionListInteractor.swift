@@ -23,6 +23,7 @@ public protocol QuizSubmissionListInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
     var submissions: CurrentValueSubject<[QuizSubmissionListItem], Never> { get }
+    var quizTitle: CurrentValueSubject<String, Never> { get }
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>

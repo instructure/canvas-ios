@@ -23,8 +23,8 @@ import CoreData
 public struct QuizSubmissionListItem: Equatable {
     public let id: String
     public let name: String
-    public let status: String
-    public let grade: String?
+    public let status: QuizSubmissionWorkflowState
+    public let score: String?
     public let avatarURL: URL?
 }
 
@@ -33,7 +33,7 @@ public struct QuizSubmissionListItem: Equatable {
 public extension QuizSubmissionListItem {
     static func make(id: String = "0")
     -> QuizSubmissionListItem {
-        let mockObject = QuizSubmissionListItem(id: "1", name: "Student", status: "graded", grade: "5", avatarURL: nil)
+        let mockObject = QuizSubmissionListItem(id: "1", name: "Student", status: .complete, score: "5", avatarURL: nil)
         return mockObject
     }
 }

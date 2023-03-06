@@ -23,11 +23,13 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
+    public var quizTitle = CurrentValueSubject<String, Never>("")
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let usersStore: Store<GetContextUsers>
     private let submissionsStore: Store<GetAllQuizSubmissions>
+    private let quizStore: Store<GetQuiz>
 
     public init(env: AppEnvironment,
                 courseID: String,
@@ -36,10 +38,10 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
             context: .course(courseID),
             type: .student
         )
-
         self.usersStore = env.subscribe(usersUseCase)
         let submissionsUseCase = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
         self.submissionsStore = env.subscribe(submissionsUseCase)
+        self.quizStore = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID))
 
         StoreState
             .combineLatest(usersStore.statePublisher, submissionsStore.statePublisher)
@@ -54,8 +56,18 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
             .subscribe(submissions)
             .store(in: &subscriptions)
 
+        quizStore
+            .allObjects
+            .first()
+            .map {
+                $0.first?.title ?? ""
+            }
+            .subscribe(quizTitle)
+            .store(in: &subscriptions)
+
         submissionsStore.exhaust()
         usersStore.exhaust(force: true)
+        quizStore.refresh()
     }
 
     public func setScope(_ scope: QuizSubmissionListScope) -> Future<Void, Never> {
@@ -72,23 +84,22 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
 
     // MARK: - Private Helpers
     private func getQuizSubmissions(users: [User], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
-        let quizsubmissionListItems = users.map { user in
-            var status = "Not submitted"
-            //TODO: grade in apiCall
-            var grade: String?
-            if let submission = submissions.first {$0.userID == user.id} {
-                status = submission.workflowState == .complete ? "Submitted" : "NOT"
+        users.map { user in
+            var status: QuizSubmissionWorkflowState = .untaken
+            var score: String?
+            if let submission = submissions.first(where: {$0.userID == user.id}) {
+                status = submission.workflowState
+                if let submissionScore = submission.score {
+                    score = String(format: "%g", submissionScore)
+                }
             }
-
             return QuizSubmissionListItem(
                 id: user.id,
                 name: user.name,
                 status: status,
-                grade: grade,
+                score: score,
                 avatarURL: user.avatarURL
             )
         }
-
-        return quizsubmissionListItems
     }
 }

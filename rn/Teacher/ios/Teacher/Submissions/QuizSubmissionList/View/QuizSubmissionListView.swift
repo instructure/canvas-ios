@@ -60,6 +60,7 @@ public struct QuizSubmissionListView: View {
                 }
             }
             .background(Color.backgroundLightest)
+            .navigationTitle(model.title, subtitle: model.subTitle)
         //.navigationBarItems(leading: menuButton)
     }
 

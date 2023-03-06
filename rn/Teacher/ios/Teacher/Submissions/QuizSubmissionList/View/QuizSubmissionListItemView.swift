@@ -37,7 +37,7 @@ public struct QuizSubmissionListItemView: View {
     }
 
     private var cellContent: some View {
-        HStack(alignment: .top, spacing: 14) {
+        HStack(alignment: .center, spacing: 14) {
             Avatar(name: model.name, url: model.profileImageURL)
                 .frame(width: 36, height: 36)
                 .padding(.top, 5)
@@ -51,8 +51,8 @@ public struct QuizSubmissionListItemView: View {
                     .font(.regular12)
             }
             Spacer()
-            if let grade = model.grade {
-                Text(grade)
+            if let score = model.score {
+                Text(score)
                     .foregroundColor(.textDark)
                     .font(.regular12)
             }

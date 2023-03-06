@@ -22,16 +22,23 @@ public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
     public let id: String
     public let name: String
     public let status: String
-    public let statusColor: Color? = .textDarkest
-    public let grade: String?
+    public let statusColor: Color
+    public let score: String?
     public let profileImageURL: URL?
     public let a11yLabel: String
 
     public init(item: QuizSubmissionListItem) {
         self.id = item.id
         self.name = item.name
-        self.status = item.status
-        self.grade = item.grade
+        if item.status == .untaken {
+            self.status = NSLocalizedString("Not Submitted", bundle: .core, comment: "")
+            self.statusColor = .textDarkest
+        } else {
+            self.status = NSLocalizedString("Submitted", bundle: .core, comment: "")
+            self.statusColor = .textSuccess
+
+        }
+        self.score = item.score
         self.profileImageURL = item.avatarURL
         self.a11yLabel = "A11Y"
     }
