@@ -25,9 +25,9 @@ class DashboardLayoutViewModelTests: CoreTestCase {
         environment.userDefaults?.isDashboardLayoutGrid = true
         let testee = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorPreview())
 
-        let smallLayout = testee.layoutInfo(for: 600)
+        let smallLayout = testee.layoutInfo(for: 600, horizontalSizeClass: .compact)
         XCTAssertEqual(smallLayout.columns, 2)
-        let largeLayout = testee.layoutInfo(for: 650)
+        let largeLayout = testee.layoutInfo(for: 650, horizontalSizeClass: .compact)
         XCTAssertEqual(largeLayout.columns, 4)
     }
 
@@ -36,9 +36,35 @@ class DashboardLayoutViewModelTests: CoreTestCase {
         interactor.layout.send(.list)
         let testee = DashboardLayoutViewModel(interactor: interactor)
 
-        let smallLayout = testee.layoutInfo(for: 600)
+        let smallLayout = testee.layoutInfo(for: 600, horizontalSizeClass: .compact)
         XCTAssertEqual(smallLayout.columns, 1)
-        let largeLayout = testee.layoutInfo(for: 650)
+        let largeLayout = testee.layoutInfo(for: 650, horizontalSizeClass: .compact)
         XCTAssertEqual(largeLayout.columns, 1)
+    }
+
+    func testMinHeight() {
+        let interactor = DashboardSettingsInteractorPreview()
+        let testee = DashboardLayoutViewModel(interactor: interactor)
+
+        interactor.layout.send(.grid)
+        var layout = testee.layoutInfo(for: 0, horizontalSizeClass: .compact)
+        XCTAssertEqual(layout.cardMinHeight, 160)
+
+        interactor.layout.send(.list)
+        layout = testee.layoutInfo(for: 0, horizontalSizeClass: .regular)
+        XCTAssertEqual(layout.cardMinHeight, 100)
+    }
+
+    func testIsWideLayout() {
+        let interactor = DashboardSettingsInteractorPreview()
+        let testee = DashboardLayoutViewModel(interactor: interactor)
+
+        interactor.layout.send(.grid)
+        var layout = testee.layoutInfo(for: 0, horizontalSizeClass: .regular)
+        XCTAssertFalse(layout.isWideLayout)
+
+        interactor.layout.send(.list)
+        layout = testee.layoutInfo(for: 0, horizontalSizeClass: .regular)
+        XCTAssertTrue(layout.isWideLayout)
     }
 }
