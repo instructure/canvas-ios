@@ -53,7 +53,6 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         )
     }
 
-    /*
     func testAssignments() {
         XCUIDevice.shared.orientation = .landscapeLeft
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
@@ -100,6 +99,7 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         assertHas(assignment: percentFileAssignment.api)
 
         // Let's submit a text assignment
+        AssignmentsList.assignment(id: pointsTextAssignment.id).tap()
         XCTAssertEqual(AssignmentDetails.name.label(), "Points Text Assignment")
 
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
@@ -120,6 +120,9 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         XCTAssertEqual(AssignmentDetails.name.label(), "Letter Grade Text Assignment")
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 16 out of 20 points possible")
 
+        // when the assignment is opened in the detail view it disappears from the list,
+        // so we refresh it to get it back... mocking issue?
+        pullToRefresh(x: 0.1)
         AssignmentsList.assignment(id: pointsTextAssignment.id).tap()
         AssignmentDetails.viewSubmissionButton.tap()
         app.find(label: "Comments").tap()
@@ -129,5 +132,4 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         let commentLabel = app.find(idStartingWith: "SubmissionComments.textCell").label()
         XCTAssertTrue(commentLabel.contains("\(mocked.selfUser.name) commented \"a comment\""))
     }
-     */
 }
