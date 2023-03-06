@@ -32,21 +32,21 @@
                                 <rect key="frame" x="0.0" y="178.66666666666663" width="375" height="190"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
-                                        <rect key="frame" x="149.66666666666663" y="15.666666666666686" width="76.000000000000028" height="76"/>
+                                        <rect key="frame" x="155.66666666666666" y="21.666666666666686" width="64" height="64"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="76" id="TGN-lb-CPg"/>
-                                            <constraint firstAttribute="width" constant="76" id="wxc-X2-xtt"/>
+                                            <constraint firstAttribute="height" constant="64" id="TGN-lb-CPg"/>
+                                            <constraint firstAttribute="width" constant="64" id="wxc-X2-xtt"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="shp-bR-v4y" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="105.66666666666669" y="109.66666666666666" width="164" height="40"/>
+                                        <rect key="frame" x="105.66666666666669" y="103.66666666666666" width="164" height="40"/>
                                         <color key="tintColor" red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="tiara"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STUDENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-uo-RMu">
-                                        <rect key="frame" x="159.66666666666663" y="157.66666666666666" width="56" height="16.666666666666657"/>
+                                        <rect key="frame" x="159.66666666666666" y="151.66666666666666" width="56" height="16.666666666666657"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
@@ -166,7 +166,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                        <rect key="frame" x="55.333333333333371" y="132.33333333333331" width="264.66666666666663" height="29"/>
+                                        <rect key="frame" x="55.333333333333343" y="132.33333333333331" width="264.66666666666663" height="29"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-og-syp">
                                                 <rect key="frame" x="0.0" y="0.0" width="264.66666666666669" height="29"/>
@@ -421,7 +421,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="beI-15-M65" userLabel="AnimatableLogo">
-                                <rect key="frame" x="149.66666666666663" y="368" width="76.000000000000028" height="76"/>
+                                <rect key="frame" x="149.66666666666666" y="368" width="76" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="76" id="28k-3o-AnI"/>
                                     <constraint firstAttribute="width" constant="76" id="oSd-vg-gmi"/>
