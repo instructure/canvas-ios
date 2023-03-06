@@ -54,11 +54,6 @@ struct CourseCard: View {
                 .accessibility(hidden: true) // handled in the button label
                 .offset(x: 8, y: 8)
                 .zIndex(1)
-
-            if !isWideLayout {
-                customizeButton
-                    .offset(x: width - 44, y: 0)
-            }
         }
     }
 
@@ -95,10 +90,8 @@ struct CourseCard: View {
                 .clipped()
                 // Fix big course image consuming tap events.
                 .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: height)))
-            if isWideLayout {
-                customizeButton
-                    .offset(x: width - 44, y: 0)
-            }
+            customizeButton
+                .offset(x: width - 44, y: 0)
         }
     }
 
