@@ -63,9 +63,9 @@ public class SpringBoard {
 
         var splitViewButtonID = ""
         if Bundle.main.isTeacherTestsRunner {
-            splitViewButtonID = "top-affordance:com.instructure.ios.teacher"
+            splitViewButtonID = "top-affordance:\(Bundle.teacherBundleID)"
         } else if Bundle.main.isStudentTestsRunner {
-            splitViewButtonID = "top-affordance:com.instructure.icanvas"
+            splitViewButtonID = "top-affordance:\(Bundle.studentBundleID)"
         }
 
         SpringBoard.shared.sbApp.buttons[splitViewButtonID].forceTapElement()
