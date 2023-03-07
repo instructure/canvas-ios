@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canvas Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pX-Al-xWp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="20" y="27" width="585" height="20.5"/>
+                                <rect key="frame" x="20" y="27.5" width="585" height="19.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.authenticationMethodLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -67,10 +67,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3X-mo-TCQ" userLabel="Login Tools">
-                                <rect key="frame" x="333.5" y="100" width="333.5" height="259"/>
+                                <rect key="frame" x="333.5" y="16" width="333.5" height="343"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Pt8-iU-cki">
-                                        <rect key="frame" x="48" y="-195" width="237.5" height="124"/>
+                                        <rect key="frame" x="48" y="-94" width="237.5" height="124"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqF-GH-4HQ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="237.5" height="54"/>
@@ -115,10 +115,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-T4-H3b">
-                                        <rect key="frame" x="46.5" y="-39" width="247" height="33"/>
+                                        <rect key="frame" x="53.5" y="62" width="233" height="32"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NX-gC-CQL" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="98" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="32"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.qrCodeButton"/>
                                                 <inset key="imageEdgeInsets" minX="-11" minY="0.0" maxX="8" maxY="0.0"/>
                                                 <state key="normal" title="QR Login" image="qrCode"/>
@@ -133,10 +133,10 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ds0-Rb-5d6">
-                                                <rect key="frame" x="109" y="0.0" width="2" height="33"/>
+                                                <rect key="frame" x="101" y="0.0" width="2" height="32"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brq-Xm-d3G">
-                                                        <rect key="frame" x="0.0" y="7.5" width="2" height="18"/>
+                                                        <rect key="frame" x="0.0" y="7" width="2" height="18"/>
                                                         <color key="backgroundColor" name="backgroundMedium"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="a3m-SS-k75"/>
@@ -151,7 +151,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-4z-2Mo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="122" y="0.0" width="125" height="33"/>
+                                                <rect key="frame" x="114" y="0.0" width="119" height="32"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.canvasNetworkButton"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Canvas Network"/>
@@ -166,13 +166,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                        <rect key="frame" x="-2.5" y="-6" width="338.5" height="33"/>
+                                        <rect key="frame" x="34.5" y="94" width="264.5" height="17"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-og-syp">
-                                                <rect key="frame" x="0.0" y="0.0" width="338.5" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="264.5" height="17"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've made a few changes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRY-FA-Dia" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="212.5" height="33"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="165.5" height="17"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -183,7 +183,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="va0-Ci-EPu" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="215.5" y="0.0" width="123" height="33"/>
+                                                        <rect key="frame" x="168.5" y="0.0" width="96" height="17"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLink"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="See what's new."/>
@@ -200,7 +200,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBc-5O-QU6">
-                                        <rect key="frame" x="32" y="59" width="269.5" height="200"/>
+                                        <rect key="frame" x="32" y="143" width="269.5" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Previous Logins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-kc-wqp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="0.0" width="237.5" height="19.5"/>
@@ -230,10 +230,10 @@
                                                 </view>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginStartSessionCell" rowHeight="60" id="2S8-Fv-s54" customClass="LoginStartSessionCell" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="50" width="269.5" height="60"/>
+                                                        <rect key="frame" x="0.0" y="50" width="269" height="60"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2S8-Fv-s54" id="Mfi-Ke-mgT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="269.5" height="60"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="269" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-SH-YJp" customClass="AvatarView" customModule="Core" customModuleProvider="target">
@@ -247,7 +247,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-iS-x7M" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="58" y="13" width="154" height="20.5"/>
+                                                                    <rect key="frame" x="58" y="13" width="125" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -257,7 +257,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-Qb-95q" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="58" y="34.5" width="156.5" height="20.5"/>
+                                                                    <rect key="frame" x="58" y="31" width="141" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -304,10 +304,10 @@
                                                         </connections>
                                                     </tableViewCell>
                                                     <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginStartMDMLoginCell" rowHeight="60" id="Yec-TE-bAp" customClass="LoginStartMDMLoginCell" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="110" width="269.5" height="60"/>
+                                                        <rect key="frame" x="0.0" y="110" width="269" height="60"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yec-TE-bAp" id="5Xm-a5-KZP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="269.5" height="60"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="269" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z6q-mg-18R" customClass="IconView" customModule="Core" customModuleProvider="target">
@@ -322,7 +322,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-Od-DuW" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="58" y="13" width="154" height="20.5"/>
+                                                                    <rect key="frame" x="58" y="13" width="125" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -332,7 +332,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9O-5a-W5N" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="58" y="34.5" width="195.5" height="20.5"/>
+                                                                    <rect key="frame" x="58" y="31" width="141" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -382,13 +382,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Pt8-iU-cki" firstAttribute="centerY" secondItem="M3X-mo-TCQ" secondAttribute="centerY" priority="750" id="1Od-k4-0CJ"/>
                                     <constraint firstItem="Bkg-T4-H3b" firstAttribute="top" secondItem="Pt8-iU-cki" secondAttribute="bottom" constant="32" id="8ff-Jx-vgH"/>
                                     <constraint firstItem="xBc-5O-QU6" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" id="Bha-oj-bqd"/>
                                     <constraint firstAttribute="trailing" secondItem="xBc-5O-QU6" secondAttribute="trailing" constant="32" id="KhX-IX-LTz">
                                         <variation key="heightClass=regular-widthClass=regular" constant="48"/>
                                     </constraint>
                                     <constraint firstItem="xBc-5O-QU6" firstAttribute="width" secondItem="M3X-mo-TCQ" secondAttribute="width" priority="750" id="NXM-GE-zg5"/>
-                                    <constraint firstItem="Pt8-iU-cki" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" id="Q9c-M4-hnI"/>
                                     <constraint firstItem="g3X-Rb-xXO" firstAttribute="top" secondItem="Bkg-T4-H3b" secondAttribute="bottom" id="VvH-fE-tx0"/>
                                     <constraint firstAttribute="trailing" secondItem="Pt8-iU-cki" secondAttribute="trailing" constant="48" id="Wqa-CW-fL0">
                                         <variation key="heightClass=regular-widthClass=regular" constant="64"/>
@@ -398,6 +398,7 @@
                                         <variation key="heightClass=regular-widthClass=regular" constant="64"/>
                                     </constraint>
                                     <constraint firstItem="xBc-5O-QU6" firstAttribute="top" secondItem="g3X-Rb-xXO" secondAttribute="bottom" constant="32" id="at1-7w-WM3"/>
+                                    <constraint firstItem="Pt8-iU-cki" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" id="cEY-Eq-95Y"/>
                                     <constraint firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="e3C-z0-3D4"/>
                                     <constraint firstItem="xBc-5O-QU6" firstAttribute="leading" secondItem="M3X-mo-TCQ" secondAttribute="leading" constant="32" id="uI5-Dx-3Ui">
                                         <variation key="heightClass=regular-widthClass=regular" constant="48"/>
@@ -434,7 +435,7 @@
                         <constraints>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="leading" secondItem="1pX-Al-xWp" secondAttribute="trailing" constant="8" id="05N-Iw-HQD"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="leading" secondItem="NxW-YV-uVK" secondAttribute="leading" id="0KA-9H-9dZ"/>
-                            <constraint firstItem="M3X-mo-TCQ" firstAttribute="top" secondItem="NxW-YV-uVK" secondAttribute="top" constant="100" id="1bY-nP-oVY"/>
+                            <constraint firstItem="M3X-mo-TCQ" firstAttribute="top" secondItem="NxW-YV-uVK" secondAttribute="top" constant="16" id="1bY-nP-oVY"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" multiplier="0.5" id="7xe-hU-FAq"/>
                             <constraint firstItem="beI-15-M65" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" id="Foj-WX-Jvg"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="bottom" secondItem="NxW-YV-uVK" secondAttribute="bottom" constant="-16" id="M8R-2q-6VO"/>
@@ -488,6 +489,7 @@
                         <outlet property="animatableLogoPosX" destination="VSk-q8-ZkB" id="nNT-Qr-ays"/>
                         <outlet property="animatableLogoPosY" destination="Foj-WX-Jvg" id="zzI-bj-Sey"/>
                         <outlet property="authenticationMethodLabel" destination="1pX-Al-xWp" id="WFH-4T-x3J"/>
+                        <outlet property="buttonStackViewCenterYConstraint" destination="1Od-k4-0CJ" id="gBS-W2-QCP"/>
                         <outlet property="canvasNetworkButton" destination="9EW-4z-2Mo" id="88M-G9-xRu"/>
                         <outlet property="findSchoolButton" destination="K3D-iK-gpK" id="egj-nA-DEx"/>
                         <outlet property="helpButton" destination="Al6-ev-ond" id="E14-Lq-o5v"/>
@@ -519,49 +521,52 @@
     </scenes>
     <designables>
         <designable name="1pX-Al-xWp">
-            <size key="intrinsicContentSize" width="102" height="20.5"/>
+            <size key="intrinsicContentSize" width="92.5" height="19.5"/>
         </designable>
         <designable name="6NX-gC-CQL">
-            <size key="intrinsicContentSize" width="98" height="24"/>
+            <size key="intrinsicContentSize" width="90" height="24"/>
         </designable>
         <designable name="9EW-4z-2Mo">
-            <size key="intrinsicContentSize" width="125" height="33"/>
+            <size key="intrinsicContentSize" width="119" height="32"/>
         </designable>
         <designable name="Al6-ev-ond">
-            <size key="intrinsicContentSize" width="30" height="34"/>
+            <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
         <designable name="B9O-5a-W5N">
-            <size key="intrinsicContentSize" width="202" height="20.5"/>
+            <size key="intrinsicContentSize" width="141" height="14.5"/>
         </designable>
         <designable name="K3D-iK-gpK">
-            <size key="intrinsicContentSize" width="151" height="50"/>
+            <size key="intrinsicContentSize" width="154" height="52"/>
         </designable>
         <designable name="Op3-kc-wqp">
-            <size key="intrinsicContentSize" width="117.5" height="19.5"/>
+            <size key="intrinsicContentSize" width="109.5" height="19.5"/>
         </designable>
         <designable name="QqF-GH-4HQ">
-            <size key="intrinsicContentSize" width="90" height="50"/>
+            <size key="intrinsicContentSize" width="91" height="52"/>
         </designable>
         <designable name="Qqe-IM-OtI">
-            <size key="intrinsicContentSize" width="8" height="29"/>
+            <size key="intrinsicContentSize" width="32" height="32"/>
+        </designable>
+        <designable name="Z6q-mg-18R">
+            <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
         <designable name="hMF-iS-x7M">
-            <size key="intrinsicContentSize" width="154" height="20.5"/>
+            <size key="intrinsicContentSize" width="125" height="17"/>
         </designable>
         <designable name="qRY-FA-Dia">
-            <size key="intrinsicContentSize" width="212.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="165.5" height="17"/>
         </designable>
         <designable name="shp-bR-v4y">
             <size key="intrinsicContentSize" width="164" height="40"/>
         </designable>
         <designable name="ubm-Qb-95q">
-            <size key="intrinsicContentSize" width="202" height="20.5"/>
+            <size key="intrinsicContentSize" width="141" height="14.5"/>
         </designable>
         <designable name="va0-Ci-EPu">
-            <size key="intrinsicContentSize" width="123" height="33"/>
+            <size key="intrinsicContentSize" width="96" height="29"/>
         </designable>
         <designable name="wwZ-Od-DuW">
-            <size key="intrinsicContentSize" width="154" height="20.5"/>
+            <size key="intrinsicContentSize" width="125" height="17"/>
         </designable>
     </designables>
     <resources>

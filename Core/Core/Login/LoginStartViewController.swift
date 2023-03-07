@@ -41,6 +41,8 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var loginTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var previousLoginsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var qrLoginStackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonStackViewCenterYConstraint: NSLayoutConstraint!
+    private var originalButtonStackViewCenterYConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -52,7 +54,6 @@ class LoginStartViewController: UIViewController {
     var lastLoginAccount: APIAccountResult? {
         didSet {
             lastLoginButton.isHidden = lastLoginAccount == nil
-            animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
             guard let lastLoginAccount = lastLoginAccount else { return }
             let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
             lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
@@ -114,8 +115,27 @@ class LoginStartViewController: UIViewController {
             qrLoginStackViewTopConstraint.constant = 16
         }
 
+        // Store the original buttonStackViewCenterYConstraint so we can use it when the orientation changes
+        originalButtonStackViewCenterYConstraint = buttonStackViewCenterYConstraint
+        updateButtonStackViewLayout()
+
         update()
         refreshLogins()
+    }
+
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        updateButtonStackViewLayout()
+    }
+
+    // Center Buttons Vertically when orientation is landscape
+    private func updateButtonStackViewLayout() {
+        switch UIDevice.current.orientation {
+        case .landscapeLeft, .landscapeRight:
+            buttonStackViewCenterYConstraint = originalButtonStackViewCenterYConstraint
+            buttonStackViewCenterYConstraint.isActive = true
+        default:
+            buttonStackViewCenterYConstraint.isActive = false
+        }
     }
 
     func configureButtons() {
@@ -163,7 +183,6 @@ class LoginStartViewController: UIViewController {
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
         configureButtons()
-        animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -187,13 +206,6 @@ class LoginStartViewController: UIViewController {
         }
         animatableLogo.alpha = 1
         view.layoutIfNeeded()
-    }
-
-    private func animateLoginTopConstraint(_ hasOffset: Bool) {
-        loginTopConstraint.constant = hasOffset ? 100 : 50
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
     }
 
     private func animateLogoFromCenterToFinalPosition() {
