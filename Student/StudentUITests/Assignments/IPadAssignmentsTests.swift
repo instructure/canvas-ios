@@ -92,7 +92,9 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         firstCourse.add(assignment: letterGradeTextAssignment)
         firstCourse.add(assignment: percentFileAssignment)
 
-        Dashboard.courseCard(id: firstCourse.id).tap()
+        TabBar.inboxTab.tap()
+        TabBar.dashboardTab.tap()
+        Dashboard.courseCard(id: firstCourse.id).waitToExist().tap()
         CourseNavigation.assignments.tap()
         assertHas(assignment: pointsTextAssignment.api)
         assertHas(assignment: letterGradeTextAssignment.api)
