@@ -1111,6 +1111,7 @@
 		CFA8398A890008FC131E5659 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B30F0A5FF24A16E638535AB /* PairWithStudentQRCodeTutorialViewController.swift */; };
 		CFB4F7D6AA0DFCC12C79CB03 /* DiscussionReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAC19414BABEF1BE119505 /* DiscussionReplyViewControllerTests.swift */; };
 		CFDED43EFD2EFE248E2C0AD3 /* FileProgressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A16122D559CDD2F497160 /* FileProgressListViewModel.swift */; };
+		CFF6CDA829B778B6006F451D /* UIBarButtonItemExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6CDA729B778B6006F451D /* UIBarButtonItemExtensionsTests.swift */; };
 		D01F1A0AB0AAF5643C03EFF1 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */; };
 		D06B1B95D0FF65F7E7761F95 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408E358BA052F9B08697E7E /* Hidden.swift */; };
 		D0F8A60B23C9F14E0F18F68E /* K5ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6985A169550DB5407617B325 /* K5ScheduleViewModel.swift */; };
@@ -2736,6 +2737,7 @@
 		CF5CE3A529AE0EFD009053F3 /* DashboardContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContainerViewController.swift; sourceTree = "<group>"; };
 		CF76AA92A0745A9D16189BB8 /* GetDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussionsTests.swift; sourceTree = "<group>"; };
 		CFAD2AE1CF6B4872E30170B5 /* FileEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorViewTests.swift; sourceTree = "<group>"; };
+		CFF6CDA729B778B6006F451D /* UIBarButtonItemExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensionsTests.swift; sourceTree = "<group>"; };
 		D071B9DCC3B9E16B1BEEFF35 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0795F7FD2E35FF931C3CEAD /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		D08DFC503F7F8CBD23CB14B4 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
@@ -6527,6 +6529,7 @@
 				A0BBA522B270D3DFAECD7142 /* SwiftUIExtensionsTests.swift */,
 				91D33F4B4C39D3F8136047FF /* TransactionExtensionTests.swift */,
 				70946E2F8572F3F35F328CEE /* UIApplicationDelegateExtensionTests.swift */,
+				CFF6CDA729B778B6006F451D /* UIBarButtonItemExtensionsTests.swift */,
 				2D43448BB5B79EDB6E16AE99 /* UIButtonExtensionTests.swift */,
 				D4B0BEAD4AEE19256C2F3E8F /* UICollectionViewExtensionsTests.swift */,
 				E1E976A0DF72FDEBB510B418 /* UIColorExtensionsTests.swift */,
@@ -7510,6 +7513,7 @@
 				AFD67D63B8A754EE23636870 /* APIPlannableTests.swift in Sources */,
 				C709B820F30042646163E6DF /* APIPostPolicyInfoTests.swift in Sources */,
 				A7F6B9D7E21707B5C3316894 /* APIQuizTests.swift in Sources */,
+				CFF6CDA829B778B6006F451D /* UIBarButtonItemExtensionsTests.swift in Sources */,
 				D7258E79BE6A2C08C8B09EB3 /* APIRequestableTests.swift in Sources */,
 				E886A9FBD9377D6C439C6B81 /* APISearchRecipientsTests.swift in Sources */,
 				DA9DFE454859799465B4AEA9 /* APISubmissionTests.swift in Sources */,
