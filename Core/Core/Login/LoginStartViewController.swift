@@ -40,6 +40,7 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var animatableLogoPosY: NSLayoutConstraint!
     @IBOutlet weak var loginTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var previousLoginsHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var qrLoginStackViewTopConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -107,6 +108,11 @@ class LoginStartViewController: UIViewController {
         })
 
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
+
+        // iPhone SE (3rd gen) 
+        if UIScreen.main.bounds.height <= 667 {
+            qrLoginStackViewTopConstraint.constant = 16
+        }
 
         update()
         refreshLogins()
