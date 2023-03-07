@@ -17,11 +17,10 @@
 //
 
 import Core
-import CoreData
 
-// TODO: Decide if this should be a CoreData Entity in the model layer or an in-memory viewmodel object in the viewmodel layer
 public struct QuizSubmissionListItem: Equatable {
     public let id: String
+    public let displayName: String
     public let name: String
     public let status: QuizSubmissionWorkflowState
     public let score: String?
@@ -33,7 +32,7 @@ public struct QuizSubmissionListItem: Equatable {
 public extension QuizSubmissionListItem {
     static func make(id: String = "0")
     -> QuizSubmissionListItem {
-        let mockObject = QuizSubmissionListItem(id: "1", name: "Student", status: .complete, score: "5", avatarURL: nil)
+        let mockObject = QuizSubmissionListItem(id: "1", displayName: "Student", name: "Student", status: .complete, score: "5", avatarURL: nil)
         return mockObject
     }
 }

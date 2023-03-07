@@ -42,7 +42,7 @@ public struct QuizSubmissionListItemView: View {
                 .frame(width: 36, height: 36)
                 .padding(.top, 5)
             VStack(alignment: .leading, spacing: 2) {
-                Text(model.name)
+                Text(model.displayName)
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
                     .lineLimit(1)

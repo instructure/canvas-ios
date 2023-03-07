@@ -834,6 +834,14 @@
         <attribute name="workflowStateRaw" attributeType="String"/>
         <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="submission" inverseEntity="Quiz"/>
     </entity>
+    <entity name="QuizSubmissionUser" representedClassName="Core.QuizSubmissionUser" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <attribute name="sortableName" attributeType="String"/>
+    </entity>
     <entity name="Rubric" representedClassName="Core.Rubric" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

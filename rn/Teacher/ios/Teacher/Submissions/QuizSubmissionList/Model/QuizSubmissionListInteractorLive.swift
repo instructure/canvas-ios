@@ -27,20 +27,15 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
-    private let usersStore: Store<GetContextUsers>
+    private let usersStore: Store<GetQuizSubmissionUsers>
     private let submissionsStore: Store<GetAllQuizSubmissions>
     private let quizStore: Store<GetQuiz>
 
     public init(env: AppEnvironment,
                 courseID: String,
                 quizID: String) {
-        let usersUseCase = GetContextUsers(
-            context: .course(courseID),
-            type: .student
-        )
-        self.usersStore = env.subscribe(usersUseCase)
-        let submissionsUseCase = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
-        self.submissionsStore = env.subscribe(submissionsUseCase)
+        self.usersStore = env.subscribe(GetQuizSubmissionUsers(courseID: courseID))
+        self.submissionsStore = env.subscribe(GetAllQuizSubmissions(courseID: courseID, quizID: quizID))
         self.quizStore = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID))
 
         StoreState
@@ -83,7 +78,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     }
 
     // MARK: - Private Helpers
-    private func getQuizSubmissions(users: [User], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
+    private func getQuizSubmissions(users: [QuizSubmissionUser], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
         users.map { user in
             var status: QuizSubmissionWorkflowState = .untaken
             var score: String?
@@ -95,6 +90,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
             }
             return QuizSubmissionListItem(
                 id: user.id,
+                displayName: User.displayName(user.name, pronouns: user.pronouns),
                 name: user.name,
                 status: status,
                 score: score,

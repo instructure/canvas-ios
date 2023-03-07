@@ -60,6 +60,21 @@ class QuizSubmissionListViewModel: ObservableObject {
                 router.route(to: "conversations/compose", from: viewController)
             }
             .store(in: &subscriptions)
+        scopeDidChange
+            .removeDuplicates()
+            .map { interactor.setScope($0) }
+            .sink()
+            .store(in: &subscriptions)
+        refreshDidTrigger
+            .delay(for: .seconds(1), scheduler: RunLoop.main)
+            .flatMap { refreshCompletion in
+                interactor
+                    .refresh()
+                    .receive(on: DispatchQueue.main)
+                    .handleEvents(receiveOutput: { refreshCompletion() })
+            }
+            .sink()
+            .store(in: &subscriptions)
         // MARK: - User actions
         scopeDidChange
             .assign(to: &$scope)

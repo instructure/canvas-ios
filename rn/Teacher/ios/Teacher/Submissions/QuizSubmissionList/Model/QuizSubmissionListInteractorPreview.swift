@@ -23,8 +23,6 @@ import Core
 
 public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
 
-
-
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
