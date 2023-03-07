@@ -28,7 +28,9 @@ class IPadSpeedGraderTests: MiniCanvasUITestCase {
 
         let students = mocked.students
 
-        Dashboard.courseCard(id: firstCourse.id).tap()
+        TabBar.inboxTab.tap()
+        TabBar.dashboardTab.tap()
+        Dashboard.courseCard(id: firstCourse.id).waitToExist().tap()
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: firstAssignment.id).tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()

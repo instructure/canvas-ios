@@ -48,7 +48,7 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C96482D211E2F1A002C3255"
+            BlueprintIdentifier = "B90FCF66245CD7327BEE2CBF"
             BuildableName = "Core.framework"
             BlueprintName = "Core"
             ReferencedContainer = "container:../Core/Core.xcodeproj">

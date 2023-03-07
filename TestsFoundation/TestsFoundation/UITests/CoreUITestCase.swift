@@ -311,10 +311,14 @@ open class CoreUITestCase: XCTestCase {
         send(.show(route, options))
     }
 
-    open func pullToRefresh() {
+    /**
+     - parameters:
+        - x: The normalized horizontal position of the pull gesture in the screen. 0 is the left side of the screen while 1 is the right.
+     */
+    open func pullToRefresh(x: CGFloat = 0.5) {
         let window = app.find(type: .window)
-        window.relativeCoordinate(x: 0.5, y: 0.2)
-            .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
+        window.relativeCoordinate(x: x, y: 0.2)
+            .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: x, y: 1.0))
     }
 
     open func handleAlert(withTexts texts: [String]? = nil, byPressingButton button: String) {
