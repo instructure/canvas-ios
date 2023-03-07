@@ -51,7 +51,7 @@ class TeacherTabBarController: UITabBarController {
     func coursesTab() -> UIViewController {
         let cardView = CoreHostingController(DashboardCardView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))
-        let dashboard = DashboardContainer(rootViewController: cardView) { HelmSplitViewController() }
+        let dashboard = DashboardContainerViewController(rootViewController: cardView) { HelmSplitViewController() }
         dashboard.tabBarItem.title = NSLocalizedString("Courses", comment: "")
         dashboard.tabBarItem.image = .coursesTab
         dashboard.tabBarItem.selectedImage = .coursesTabActive
