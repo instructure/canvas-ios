@@ -210,7 +210,9 @@ extension LoginWebViewController: WKNavigationDelegate {
             form.submit()
             """)
         } else if let pairingCode = pairingCode {
-            showSelfRegistration(pairingCode: pairingCode)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.showSelfRegistration(pairingCode: pairingCode)
+            }
         }
     }
 
@@ -228,7 +230,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                 registerLink.click()
                 return
             }
-            let enrollLink = document.querySelector('#coenrollment_link a') || document.querySelector('a#signup_parent')
+            let enrollLink = document.querySelector('a[data-template="newParentDialog"]') || document.querySelector('#coenrollment_link a') || document.querySelector('a#signup_parent')
             if (!enrollLink) {
                 window.webkit.messageHandlers.selfRegistrationError.postMessage('')
                 return
