@@ -33,6 +33,7 @@ public struct DashboardCardView: View, ScreenViewTrackable {
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     public var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
@@ -119,13 +120,6 @@ public struct DashboardCardView: View, ScreenViewTrackable {
         )
     }
 
-    private func setStyle(style: UIUserInterfaceStyle?) {
-        env.userDefaults?.interfaceStyle = style
-        if let window = env.window {
-            window.updateInterfaceStyle(style)
-        }
-    }
-
     private var menuButton: some View {
         Button(action: {
             env.router.route(to: "/profile", from: controller, options: .modal())
@@ -205,13 +199,16 @@ public struct DashboardCardView: View, ScreenViewTrackable {
             coursesHeader(width: size.width)
 
             let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
-            let layoutInfo = layoutViewModel.layoutInfo(for: size.width)
+            let layoutInfo = layoutViewModel.layoutInfo(for: size.width, horizontalSizeClass: horizontalSizeClass)
             DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
                 let card = cards[cardIndex]
-                CourseCard(card: card, hideColorOverlay: hideColorOverlay, showGrade: showGrade, width: layoutInfo.cardWidth, contextColor: card.color)
-                    // outside the CourseCard, because that isn't observing colors
-                    .accentColor(Color(card.color))
-                    .frame(minHeight: 160)
+                CourseCard(card: card,
+                           hideColorOverlay: hideColorOverlay,
+                           showGrade: showGrade,
+                           width: layoutInfo.cardWidth,
+                           contextColor: card.color,
+                           isWideLayout: layoutInfo.isWideLayout)
+                    .frame(minHeight: layoutInfo.cardMinHeight)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -259,8 +256,6 @@ public struct DashboardCardView: View, ScreenViewTrackable {
                 let filteredGroups = activeGroups
                 ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.course)
-                        // outside the GroupCard, because that isn't observing colors
-                        .accentColor(Color(group.color.ensureContrast(against: .white)))
                         .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
                 }
             }

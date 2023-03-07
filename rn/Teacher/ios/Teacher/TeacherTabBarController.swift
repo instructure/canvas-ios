@@ -49,21 +49,14 @@ class TeacherTabBarController: UITabBarController {
     }
 
     func coursesTab() -> UIViewController {
-        let split = HelmSplitViewController()
-        split.viewControllers = [
-            HelmNavigationController(rootViewController: CoreHostingController(
-                DashboardCardView(
-                    shouldShowGroupList: false,
-                    showOnlyTeacherEnrollment: true))),
-            HelmNavigationController(rootViewController: EmptyViewController()),
-        ]
-        split.masterNavigationController?.delegate = split
-        split.tabBarItem.title = NSLocalizedString("Courses", comment: "")
-        split.tabBarItem.image = .coursesTab
-        split.tabBarItem.selectedImage = .coursesTabActive
-        split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        split.preferredDisplayMode = .oneBesideSecondary
-        return split
+        let cardView = CoreHostingController(DashboardCardView(shouldShowGroupList: false,
+                                                               showOnlyTeacherEnrollment: true))
+        let dashboard = DashboardContainer(rootViewController: cardView) { HelmSplitViewController() }
+        dashboard.tabBarItem.title = NSLocalizedString("Courses", comment: "")
+        dashboard.tabBarItem.image = .coursesTab
+        dashboard.tabBarItem.selectedImage = .coursesTabActive
+        dashboard.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
+        return dashboard
     }
 
     func toDoTab() -> UIViewController {

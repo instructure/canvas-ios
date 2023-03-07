@@ -26,7 +26,7 @@ class DefaultViewProviderTests: CoreTestCase {
         let splitView = UISplitViewController()
         splitView.viewControllers = [UINavigationController(rootViewController: testee), UIViewController()]
 
-        testee.showDefaultDetailView()
+        testee.showDefaultDetailViewIfNeeded()
         XCTAssertTrue(router.lastRoutedTo("/empty"))
     }
 
@@ -35,14 +35,14 @@ class DefaultViewProviderTests: CoreTestCase {
         let splitView = UISplitViewController()
         splitView.viewControllers = [UIViewController(), UINavigationController(rootViewController: testee)]
 
-        testee.showDefaultDetailView()
+        testee.showDefaultDetailViewIfNeeded()
         XCTAssertTrue(router.calls.isEmpty)
     }
 
     func testPresentationOutsideSplitViewDoesNothing() {
         let testee = MockDefaultViewProviderViewController()
 
-        testee.showDefaultDetailView()
+        testee.showDefaultDetailViewIfNeeded()
         XCTAssertTrue(router.calls.isEmpty)
     }
 }

@@ -28,7 +28,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
     public var defaultViewRoute: String? {
         didSet {
-            showDefaultDetailView()
+            showDefaultDetailViewIfNeeded()
         }
     }
     /** The value to be returned by the `shouldAutorotate` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
