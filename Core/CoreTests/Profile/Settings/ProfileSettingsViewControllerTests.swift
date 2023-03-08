@@ -35,6 +35,32 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         vc.viewWillAppear(false)
     }
 
+    func testSelfRegistrationRowVisibility() {
+        api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
+        load()
+
+        AppEnvironment.shared.app = .teacher
+        vc.refresh(sender: self)
+        XCTAssertFalse(isCellExists(title: "Pair with Observer", section: 0))
+
+        AppEnvironment.shared.app = .student
+        vc.refresh(sender: self)
+        XCTAssertTrue(isCellExists(title: "Pair with Observer", section: 0))
+    }
+
+    func testCalendarFeedRowVisibility() {
+        api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
+        load()
+
+        AppEnvironment.shared.app = .teacher
+        vc.refresh(sender: self)
+        XCTAssertFalse(isCellExists(title: "Subscribe to Calendar Feed", section: 0))
+
+        AppEnvironment.shared.app = .student
+        vc.refresh(sender: self)
+        XCTAssertTrue(isCellExists(title: "Subscribe to Calendar Feed", section: 0))
+    }
+
     func testRender() {
         let channels = [
             APICommunicationChannel.make(address: "a", id: ID(1), position: 1, type: .email, workflow_state: .active),
@@ -101,6 +127,23 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.textLabel?.text, "Canvas on GitHub")
         vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 2, section: 1))
         XCTAssert(router.lastRoutedTo(.parse("https://github.com/instructure/canvas-ios")))
+    }
+
+    private func isCellExists(title: String, section: Int) -> Bool {
+        let cellCount = vc.tableView.numberOfRows(inSection: section)
+
+        for rowIndex in 0..<cellCount {
+            let indexPath = IndexPath(row: rowIndex, section: section)
+            guard let cell = vc.tableView.cellForRow(at: indexPath) as? RightDetailTableViewCell else {
+                continue
+            }
+
+            if cell.textLabel?.text == title {
+                return true
+            }
+        }
+
+        return false
     }
 }
 
