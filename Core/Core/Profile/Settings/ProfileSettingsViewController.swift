@@ -229,17 +229,20 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private func refreshTermsOfService() {
+        if AppEnvironment.shared.app == .teacher {
+            if isPairingWithObserverAllowed {
+                isPairingWithObserverAllowed = false
+            }
+            return
+        }
+
         termsOfServiceRequest = env.api.makeRequest(GetAccountTermsOfServiceRequest()) { [weak self] response, _, _ in
             self?.termsOfServiceRequest = nil
-            var isPairingAllowed: Bool
+            let isPairingAllowed: Bool
 
             if let self_registration = response?.self_registration_type {
                 isPairingAllowed = [APISelfRegistrationType.all, .observer].contains(self_registration)
             } else {
-                isPairingAllowed = false
-            }
-
-            if AppEnvironment.shared.app == .teacher {
                 isPairingAllowed = false
             }
 
