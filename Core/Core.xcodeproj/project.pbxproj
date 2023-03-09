@@ -29,7 +29,7 @@
 		04BA2764BEF7857998888D0C /* CoreWebViewJSInjections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A6A125E5A9F3D2E1E62640 /* CoreWebViewJSInjections.swift */; };
 		04C9CEB3DBC0B2DF0E18780D /* FileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065793EAB0372BF8F2BD9C33 /* FileEditorView.swift */; };
 		053F7EB1A384E2BEA503B658 /* APISubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8634CDF6D6C6D8A081E13FDB /* APISubmission.swift */; };
-		0563DE0A322485BB292457FE /* UIBarButtonItemExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D43448BB5B79EDB6E16AE99 /* UIBarButtonItemExtensionTests.swift */; };
+		0563DE0A322485BB292457FE /* UIButtonExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D43448BB5B79EDB6E16AE99 /* UIButtonExtensionTests.swift */; };
 		066E60EDF4BCC2E8A947CA99 /* GetCourseSingleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F5957C6091319417E638E2 /* GetCourseSingleUser.swift */; };
 		069ADE5FFD74EA7C53F5DC39 /* ConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5C2BA04CDCAB0E73F111CA /* ConversationTests.swift */; };
 		06BB9A5DE911CB9B67C8216E /* DueViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F1C849E6FB194387C1E9BA /* DueViewable.swift */; };
@@ -1104,13 +1104,14 @@
 		CEB280DBA9591EE89AAE22B3 /* MDMManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E32A2422355ECEF9729235 /* MDMManagerTests.swift */; };
 		CEC97448F930BB18B9BE614A /* GetCourseSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA8B03B9279BBBDBCF285F /* GetCourseSections.swift */; };
 		CEEB69AC4E74B054E4F61BAB /* PageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E31090C62EE2CD151388F /* PageTests.swift */; };
-		CF5CE3A629AE0EFD009053F3 /* DashboardContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5CE3A529AE0EFD009053F3 /* DashboardContainer.swift */; };
+		CF5CE3A629AE0EFD009053F3 /* DashboardContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5CE3A529AE0EFD009053F3 /* DashboardContainerViewController.swift */; };
 		CF77186DABC99EF4A2704BD3 /* APIEnrollmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ED41813910F1C973820502 /* APIEnrollmentTests.swift */; };
 		CF78BC37E1EF05678E6831F1 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C87806EF88EDE9BB02134F7 /* UIFontExtensions.swift */; };
 		CF848A454985D319B862329B /* InboxCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C5973089478FB911C2D40 /* InboxCourse.swift */; };
 		CFA8398A890008FC131E5659 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B30F0A5FF24A16E638535AB /* PairWithStudentQRCodeTutorialViewController.swift */; };
 		CFB4F7D6AA0DFCC12C79CB03 /* DiscussionReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAC19414BABEF1BE119505 /* DiscussionReplyViewControllerTests.swift */; };
 		CFDED43EFD2EFE248E2C0AD3 /* FileProgressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A16122D559CDD2F497160 /* FileProgressListViewModel.swift */; };
+		CFF6CDA829B778B6006F451D /* UIBarButtonItemExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6CDA729B778B6006F451D /* UIBarButtonItemExtensionsTests.swift */; };
 		D01F1A0AB0AAF5643C03EFF1 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */; };
 		D06B1B95D0FF65F7E7761F95 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408E358BA052F9B08697E7E /* Hidden.swift */; };
 		D0F8A60B23C9F14E0F18F68E /* K5ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6985A169550DB5407617B325 /* K5ScheduleViewModel.swift */; };
@@ -1730,7 +1731,7 @@
 		2C8819470380CD018127AADA /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CC98BEC46F5FCBCC5ED85DC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D3018A2A850C1B54ED3BF7C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
-		2D43448BB5B79EDB6E16AE99 /* UIBarButtonItemExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensionTests.swift; sourceTree = "<group>"; };
+		2D43448BB5B79EDB6E16AE99 /* UIButtonExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensionTests.swift; sourceTree = "<group>"; };
 		2D6E49C0D49B041ACF4C5C07 /* FileSubmissionPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparation.swift; sourceTree = "<group>"; };
 		2E16677AE71E7A605D60C693 /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
 		2E631CAA2C0C52B6D9FD3BDB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2733,9 +2734,10 @@
 		CED26037996232D09E927A44 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		CEF674B8F3F06D48AB2654C8 /* CourseListInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListInteractorPreview.swift; sourceTree = "<group>"; };
 		CF3B1A2B2EEDE4847384B3ED /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
-		CF5CE3A529AE0EFD009053F3 /* DashboardContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContainer.swift; sourceTree = "<group>"; };
+		CF5CE3A529AE0EFD009053F3 /* DashboardContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContainerViewController.swift; sourceTree = "<group>"; };
 		CF76AA92A0745A9D16189BB8 /* GetDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussionsTests.swift; sourceTree = "<group>"; };
 		CFAD2AE1CF6B4872E30170B5 /* FileEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorViewTests.swift; sourceTree = "<group>"; };
+		CFF6CDA729B778B6006F451D /* UIBarButtonItemExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensionsTests.swift; sourceTree = "<group>"; };
 		D071B9DCC3B9E16B1BEEFF35 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0795F7FD2E35FF931C3CEAD /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		D08DFC503F7F8CBD23CB14B4 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
@@ -6527,7 +6529,8 @@
 				A0BBA522B270D3DFAECD7142 /* SwiftUIExtensionsTests.swift */,
 				91D33F4B4C39D3F8136047FF /* TransactionExtensionTests.swift */,
 				70946E2F8572F3F35F328CEE /* UIApplicationDelegateExtensionTests.swift */,
-				2D43448BB5B79EDB6E16AE99 /* UIBarButtonItemExtensionTests.swift */,
+				CFF6CDA729B778B6006F451D /* UIBarButtonItemExtensionsTests.swift */,
+				2D43448BB5B79EDB6E16AE99 /* UIButtonExtensionTests.swift */,
 				D4B0BEAD4AEE19256C2F3E8F /* UICollectionViewExtensionsTests.swift */,
 				E1E976A0DF72FDEBB510B418 /* UIColorExtensionsTests.swift */,
 				D28C5442AE5762F62033B501 /* UIFontExtensionsTests.swift */,
@@ -6776,7 +6779,7 @@
 				4004B65E8D9D50E2360818F0 /* CourseInvitationCard.swift */,
 				AA48E5A15FEE12B8EA2B4A3F /* CustomizeCourseView.swift */,
 				684C8ED5F41CF838AF7ECC7B /* DashboardCardView.swift */,
-				CF5CE3A529AE0EFD009053F3 /* DashboardContainer.swift */,
+				CF5CE3A529AE0EFD009053F3 /* DashboardContainerViewController.swift */,
 				1C05317CCF442A7CCF842F47 /* DashboardGrid.swift */,
 				123357F799E9B3D659FB8D75 /* DashboardSettingsView.swift */,
 				6AC4CC235B2F8EFCDDA0156F /* FileUploadNotificationCard.swift */,
@@ -7510,6 +7513,7 @@
 				AFD67D63B8A754EE23636870 /* APIPlannableTests.swift in Sources */,
 				C709B820F30042646163E6DF /* APIPostPolicyInfoTests.swift in Sources */,
 				A7F6B9D7E21707B5C3316894 /* APIQuizTests.swift in Sources */,
+				CFF6CDA829B778B6006F451D /* UIBarButtonItemExtensionsTests.swift in Sources */,
 				D7258E79BE6A2C08C8B09EB3 /* APIRequestableTests.swift in Sources */,
 				E886A9FBD9377D6C439C6B81 /* APISearchRecipientsTests.swift in Sources */,
 				DA9DFE454859799465B4AEA9 /* APISubmissionTests.swift in Sources */,
@@ -7906,7 +7910,7 @@
 				304585FFAF87E0963AC01B1A /* TypeSafeCodableTests.swift in Sources */,
 				876855987DD2F81A32204ED6 /* UIAccessibilityAnnouncementTests.swift in Sources */,
 				12768DE1B5D36EBB16F7FFDA /* UIApplicationDelegateExtensionTests.swift in Sources */,
-				0563DE0A322485BB292457FE /* UIBarButtonItemExtensionTests.swift in Sources */,
+				0563DE0A322485BB292457FE /* UIButtonExtensionTests.swift in Sources */,
 				13FEFB92FC536C3052636713 /* UICollectionViewExtensionsTests.swift in Sources */,
 				A40977BAAAEA83EC24CF5D5F /* UIColorExtensionsTests.swift in Sources */,
 				2A86F529C7788329407AB888 /* UIFontExtensionsTests.swift in Sources */,
@@ -8151,7 +8155,7 @@
 				D8283172E7428154135B5FB4 /* CourseSectionStatus.swift in Sources */,
 				C9139B41E63986BD683531F8 /* CourseSettingsView.swift in Sources */,
 				A8A8A93DE637ABB16758B5E2 /* CourseSettingsViewModel.swift in Sources */,
-				CF5CE3A629AE0EFD009053F3 /* DashboardContainer.swift in Sources */,
+				CF5CE3A629AE0EFD009053F3 /* DashboardContainerViewController.swift in Sources */,
 				BBF7387BD0DC0EE94DDE8190 /* CreateConversation.swift in Sources */,
 				AA83EE551264437D8544C621 /* CreatePlannerNote.swift in Sources */,
 				2954539C4875336BDCF4DC2A /* CreateTextComment.swift in Sources */,
