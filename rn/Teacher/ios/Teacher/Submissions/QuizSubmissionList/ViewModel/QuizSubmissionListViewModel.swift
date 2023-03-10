@@ -79,25 +79,16 @@ class QuizSubmissionListViewModel: ObservableObject {
 
     private func subscribeToMessageUsersTapEvents(router: Router) {
         messageUsersDidTap
-            .combineLatest(interactor.createComposeUserInfo()) {viewController, userInfo in
-                (viewController, userInfo)
+            .flatMap { [interactor] viewController in
+                interactor
+                    .createComposeUserInfo()
+                    .map { (viewController, $0) }
             }
-            .sink { [weak router] pelo in
-                print(pelo.0)
-                print(pelo.1)
-              /*  router?.route(to: "/conversations/compose", userInfo: [
-                            "recipients": submissions.compactMap { $0.user } .map { (user: User) -> [String: Any?] in [
-                                "id": user.id,
-                                "name": user.name,
-                                "avatar_url": user.avatarURL,
-                            ] },
-                            "subject": interactor.quizTitle,
-                            "contextName": course.first?.name ?? "",
-                            "contextCode": context.canvasContextID,
-                            "canAddRecipients": false,
-                            "onlySendIndividualMessages": true,
-                        ], from: self, options: .modal(embedInNav: true))
-*/
+            .sink { [router] in
+                router.route(to: "/conversations/compose",
+                             userInfo: $0.1,
+                             from: $0.0,
+                             options: .modal(embedInNav: true))
             }
             .store(in: &subscriptions)
     }

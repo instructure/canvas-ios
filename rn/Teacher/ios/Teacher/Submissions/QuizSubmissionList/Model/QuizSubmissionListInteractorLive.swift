@@ -31,10 +31,12 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     private let submissionsStore: Store<GetAllQuizSubmissions>
     private let quizStore: Store<GetQuiz>
     private var filter = CurrentValueSubject<QuizSubmissionListFilter, Never>(.all)
+    private let context: Context
 
     public init(env: AppEnvironment,
                 courseID: String,
                 quizID: String) {
+        self.context = Context(.course, id: courseID)
         self.usersStore = env.subscribe(GetQuizSubmissionUsers(courseID: courseID))
         self.submissionsStore = env.subscribe(GetAllQuizSubmissions(courseID: courseID, quizID: quizID))
         self.quizStore = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID))
@@ -70,8 +72,26 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     }
 
     public func createComposeUserInfo() -> Future<[String: Any], Never> {
-        Future<[String: Any], Never> { promise in
-            promise(.success([:]))
+        let quizTitle = quizTitle.value
+        let submissions = submissions.value
+        let contextCode = context.canvasContextID
+        return Future<[String: Any], Never> {  promise in
+            let recipients: [[String: Any?]] = submissions.map {
+                [
+                    "id": $0.id,
+                    "name": $0.displayName,
+                    "avatar_url": $0.avatarURL,
+                ] as [String: Any?]
+            }
+            let userInfo = [
+                "recipients": recipients,
+                "subject": quizTitle,
+                "contextName": "Placeholder Course",/* course.first?.name ?? "" receive context name in init? */
+                "contextCode": contextCode,
+                "canAddRecipients": false,
+                "onlySendIndividualMessages": true,
+            ]
+            promise(.success(userInfo))
         }
     }
 
