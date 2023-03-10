@@ -80,7 +80,7 @@ open class CoreWebView: WKWebView {
     }
     private var isThemeDark = false {
         didSet {
-            if !isThemeDark {
+            if oldValue != isThemeDark, !isThemeDark {
                 isInverted = false
             }
         }
