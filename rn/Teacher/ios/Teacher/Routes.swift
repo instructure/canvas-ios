@@ -272,7 +272,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses/:courseID/quizzes/:quizID/submissions": { url, params, userInfo in
         if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
             guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-            return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID)
+            let filter = QuizSubmissionListFilter.init(rawValue: url.queryItems?.first { $0.name == "filter" }? .value)
+            return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID, filter: filter)
         } else {
             return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/submissions", url: url, params: params, userInfo: userInfo)
         }

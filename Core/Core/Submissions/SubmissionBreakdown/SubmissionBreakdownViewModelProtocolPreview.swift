@@ -29,8 +29,7 @@ public class PreviewSubmissionBreakdownViewModel: SubmissionBreakdownViewModelPr
     public var submissionCount: Int
     public var noSubmissionTypes: Bool = false
     public var paperSubmissionTypes: Bool = false
-    public var showError: Bool = false
-    public var errorText: String?
+    public var noGradingNeeded: Bool = false
 
     public func viewDidAppear() {}
     public func routeToAll(router: Router, viewController: WeakViewController) {}

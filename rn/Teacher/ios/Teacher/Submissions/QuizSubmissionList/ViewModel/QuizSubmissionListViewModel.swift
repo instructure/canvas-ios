@@ -23,25 +23,26 @@ class QuizSubmissionListViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var submissions: [QuizSubmissionListItemViewModel] = []
-    @Published public private(set) var scope: QuizSubmissionListScope = DefaultScope
-    @Published public var isShowingScopeSelector = false
+    @Published public private(set) var filter: QuizSubmissionListFilter
+    @Published public var isShowingFilterSelector = false
     @Published public var subTitle: String = ""
     public let title = NSLocalizedString("Submissions", comment: "")
-    public let scopes = QuizSubmissionListScope.allCases
+    public let filters = QuizSubmissionListFilter.allCases
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let messageAllUsersDidTap = PassthroughSubject<WeakViewController, Never>()
     public let submissionDidTap = PassthroughSubject<QuizSubmissionListItem, Never>()
-    public let scopeDidChange = CurrentValueSubject<QuizSubmissionListScope, Never>(DefaultScope)
+    public let filterDidChange: CurrentValueSubject<QuizSubmissionListFilter, Never>
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: QuizSubmissionListInteractor
-    private static let DefaultScope: QuizSubmissionListScope = .all
 
-    public init(router: Router, interactor: QuizSubmissionListInteractor) {
+    public init(router: Router, filterValue: QuizSubmissionListFilter, interactor: QuizSubmissionListInteractor) {
         self.interactor = interactor
+        self.filter = filterValue
+        filterDidChange = CurrentValueSubject<QuizSubmissionListFilter, Never>(filterValue)
         // MARK: - Output
         interactor.state
             .assign(to: &$state)
@@ -60,11 +61,6 @@ class QuizSubmissionListViewModel: ObservableObject {
                 router.route(to: "conversations/compose", from: viewController)
             }
             .store(in: &subscriptions)
-        scopeDidChange
-            .removeDuplicates()
-            .map { interactor.setScope($0) }
-            .sink()
-            .store(in: &subscriptions)
         refreshDidTrigger
             .delay(for: .seconds(1), scheduler: RunLoop.main)
             .flatMap { refreshCompletion in
@@ -75,12 +71,11 @@ class QuizSubmissionListViewModel: ObservableObject {
             }
             .sink()
             .store(in: &subscriptions)
-        // MARK: - User actions
-        scopeDidChange
-            .assign(to: &$scope)
-        scopeDidChange
+        filterDidChange
+            .assign(to: &$filter)
+        filterDidChange
             .removeDuplicates()
-            .map { interactor.setScope($0) }
+            .map { interactor.setFilter($0) }
             .sink()
             .store(in: &subscriptions)
     }

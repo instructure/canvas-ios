@@ -33,7 +33,7 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in           state.send(.data)
         }
     }
-    public func setScope(_ scope: QuizSubmissionListScope) -> Future<Void, Never> {
+    public func setFilter(_ filter: QuizSubmissionListFilter) -> Future<Void, Never> {
         Future<Void, Never> { promise in
             promise(.success(()))
         }

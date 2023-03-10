@@ -16,16 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Combine
+import Foundation
 
-public protocol QuizSubmissionListInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var submissions: CurrentValueSubject<[QuizSubmissionListItem], Never> { get }
-    var quizTitle: CurrentValueSubject<String, Never> { get }
+public enum QuizSubmissionListFilter: String, CaseIterable, Hashable {
+    case all, submitted, notSubmitted
 
-    // MARK: - Inputs
-    func refresh() -> Future<Void, Never>
-    func setFilter(_ scope: QuizSubmissionListFilter) -> Future<Void, Never>
+    public var localizedName: String {
+        switch self {
+        case .all: return NSLocalizedString("All Submissions", comment: "")
+        case .submitted: return NSLocalizedString("Submitted", comment: "")
+        case .notSubmitted: return NSLocalizedString("Not Submitted", comment: "")
+        }
+    }
+
+    public init(rawValue: String?) {
+        switch rawValue {
+        case "submitted":
+            self = .submitted
+        case "not_submitted":
+            self = .notSubmitted
+        default:
+            self = .all
+        }
+    }
 }

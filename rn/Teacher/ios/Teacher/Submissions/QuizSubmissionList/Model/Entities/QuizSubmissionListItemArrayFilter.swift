@@ -18,14 +18,20 @@
 
 import Foundation
 
-public enum QuizSubmissionListScope: String, CaseIterable, Hashable {
-    case all, submitted, notSubmitted
+public extension Array where Element == QuizSubmissionListItem {
 
-    public var localizedName: String {
-        switch self {
-        case .all: return NSLocalizedString("All Submissions", comment: "")
-        case .submitted: return NSLocalizedString("Not Submitted", comment: "")
-        case .notSubmitted: return NSLocalizedString("Submitted", comment: "")
+    func applyFilter(filter: QuizSubmissionListFilter) -> [QuizSubmissionListItem] {
+        switch filter {
+        case .all:
+            return self
+        case .submitted:
+            return self.filter {
+                [.pending_review, .complete].contains($0.status)
+            }
+        case.notSubmitted:
+            return self.filter {
+                [.untaken, .settings_only, .preview].contains($0.status)
+            }
         }
     }
 }

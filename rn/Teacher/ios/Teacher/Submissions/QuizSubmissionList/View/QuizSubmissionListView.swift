@@ -66,10 +66,10 @@ public struct QuizSubmissionListView: View {
 
     private var filterBarView: some View {
         Button {
-            model.isShowingScopeSelector.toggle()
+            model.isShowingFilterSelector.toggle()
         } label: {
             HStack(spacing: 6) {
-                Text(model.scope.localizedName)
+                Text(model.filter.localizedName)
                     .lineLimit(1)
                     .font(.semibold22)
                     .foregroundColor(.textDarkest)
@@ -81,25 +81,25 @@ public struct QuizSubmissionListView: View {
             }
             .foregroundColor(.textDarkest)
         }
-        .actionSheet(isPresented: $model.isShowingScopeSelector) {
-            ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
+        .actionSheet(isPresented: $model.isShowingFilterSelector) {
+            ActionSheet(title: Text("Filter by", bundle: .core), buttons: filterButtons)
         }
         .frame(height: 81)
         .padding(.leading, 16)
         .padding(.trailing, 19)
         .background(Color.backgroundLightest)
         .accessibilityLabel(Text("Filter messages by course", bundle: .core))
-        .accessibilityHint(Text(model.scope.localizedName))
+        .accessibilityHint(Text(model.filter.localizedName))
     }
 
-    private var scopeFilterButtons: [ActionSheet.Button] {
-        let scopeButtons: [ActionSheet.Button] = model.scopes.map { scope in
-            .default(Text(scope.localizedName)) {
-                model.scopeDidChange.send(scope)
+    private var filterButtons: [ActionSheet.Button] {
+        let filterButtons: [ActionSheet.Button] = model.filters.map { filter in
+            .default(Text(filter.localizedName)) {
+                model.filterDidChange.send(filter)
             }
         }
         let cancelButton = ActionSheet.Button.cancel(Text("Cancel", bundle: .core))
-        return scopeButtons + [cancelButton]
+        return filterButtons + [cancelButton]
     }
 
     private var loadingIndicator: some View {

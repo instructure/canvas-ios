@@ -30,6 +30,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     private let usersStore: Store<GetQuizSubmissionUsers>
     private let submissionsStore: Store<GetAllQuizSubmissions>
     private let quizStore: Store<GetQuiz>
+    private var filter = CurrentValueSubject<QuizSubmissionListFilter, Never>(.all)
 
     public init(env: AppEnvironment,
                 courseID: String,
@@ -45,8 +46,11 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
 
         Publishers
             .CombineLatest(usersStore.allObjects, submissionsStore.allObjects)
-            .map { [weak self] in
-                self?.getQuizSubmissions(users: $0.0, submissions: $0.1) ?? []
+            .map {
+                QuizSubmissionListItem.generateArray(users: $0.0, submissions: $0.1)
+            }
+            .combineLatest(filter) {
+                $0.applyFilter(filter: $1)
             }
             .subscribe(submissions)
             .store(in: &subscriptions)
@@ -61,41 +65,25 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
             .store(in: &subscriptions)
 
         submissionsStore.exhaust()
-        usersStore.exhaust(force: true)
+        usersStore.exhaust()
         quizStore.refresh()
     }
 
-    public func setScope(_ scope: QuizSubmissionListScope) -> Future<Void, Never> {
-        Future<Void, Never> { [submissionsStore] promise in
-            submissionsStore.refresh()
+    public func setFilter(_ newFilter: QuizSubmissionListFilter) -> Future<Void, Never> {
+        Future<Void, Never> { [filter] promise in
+            filter.send(newFilter)
             promise(.success(()))
         }
     }
 
     // MARK: - Inputs
     public func refresh() -> Future<Void, Never> {
-        submissionsStore.refreshWithFuture(force: true)
-    }
-
-    // MARK: - Private Helpers
-    private func getQuizSubmissions(users: [QuizSubmissionUser], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
-        users.map { user in
-            var status: QuizSubmissionWorkflowState = .untaken
-            var score: String?
-            if let submission = submissions.first(where: {$0.userID == user.id}) {
-                status = submission.workflowState
-                if let submissionScore = submission.score {
-                    score = String(format: "%g", submissionScore)
-                }
-            }
-            return QuizSubmissionListItem(
-                id: user.id,
-                displayName: User.displayName(user.name, pronouns: user.pronouns),
-                name: user.name,
-                status: status,
-                score: score,
-                avatarURL: user.avatarURL
-            )
+        Future<Void, Never> { [self] promise in
+            usersStore.exhaust(force: true)
+            quizStore.refresh(force: true)
+            self.submissionsStore.refreshWithFuture(force: true)
+                .sink { _ in promise(.success(())) }
+                .store(in: &self.subscriptions)
         }
     }
 }

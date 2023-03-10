@@ -52,6 +52,23 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: Vie
                                 .padding(.leading, 22)
                             Spacer()
                         }
+                    } else if viewModel.noGradingNeeded {
+                        HStack(alignment: .top, spacing: 0) {
+                            Graph(
+                                action: routeToGraded,
+                                label: Text("Submitted", bundle: .core),
+                                count: viewModel.graded,
+                                total: viewModel.submissionCount
+                            )
+                            .frame(maxWidth: .infinity)
+                            Graph(
+                                action: routeToUnsubmitted,
+                                label: Text("Not Submitted", bundle: .core),
+                                count: viewModel.unsubmitted,
+                                total: viewModel.submissionCount
+                            )
+                            .frame(maxWidth: .infinity)
+                        }
                     } else {
                         HStack(alignment: .top, spacing: 0) {
                             Graph(
@@ -90,9 +107,6 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: Vie
             .identifier("AssignmentDetails.viewAllSubmissionsButton")
             .onAppear {
                 viewModel.viewDidAppear()
-            }
-            .alert(isPresented: $viewModel.showError) {
-                Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
             }
     }
 

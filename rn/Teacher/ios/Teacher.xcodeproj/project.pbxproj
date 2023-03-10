@@ -127,7 +127,8 @@
 		D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */; };
 		D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051E29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift */; };
 		D9624A5029AF94D000F5303F /* QuizSubmissionListInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A4F29AF94D000F5303F /* QuizSubmissionListInteractorPreview.swift */; };
-		D9624A5229B0E90800F5303F /* QuizSubmissionListScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A5129B0E90800F5303F /* QuizSubmissionListScope.swift */; };
+		D9624A5229B0E90800F5303F /* QuizSubmissionListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A5129B0E90800F5303F /* QuizSubmissionListFilter.swift */; };
+		D9624A6829B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A6729B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift */; };
 		D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
@@ -597,7 +598,8 @@
 		D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemView.swift; sourceTree = "<group>"; };
 		D91C051E29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemViewModel.swift; sourceTree = "<group>"; };
 		D9624A4F29AF94D000F5303F /* QuizSubmissionListInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractorPreview.swift; sourceTree = "<group>"; };
-		D9624A5129B0E90800F5303F /* QuizSubmissionListScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListScope.swift; sourceTree = "<group>"; };
+		D9624A5129B0E90800F5303F /* QuizSubmissionListFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListFilter.swift; sourceTree = "<group>"; };
+		D9624A6729B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemArrayFilter.swift; sourceTree = "<group>"; };
 		D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsUITests.swift; sourceTree = "<group>"; };
@@ -985,7 +987,8 @@
 			isa = PBXGroup;
 			children = (
 				CF13E556299D1A1100F57F69 /* QuizSubmissionListItem.swift */,
-				D9624A5129B0E90800F5303F /* QuizSubmissionListScope.swift */,
+				D9624A6729B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift */,
+				D9624A5129B0E90800F5303F /* QuizSubmissionListFilter.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1829,7 +1832,7 @@
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */,
 				7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */,
-				D9624A5229B0E90800F5303F /* QuizSubmissionListScope.swift in Sources */,
+				D9624A5229B0E90800F5303F /* QuizSubmissionListFilter.swift in Sources */,
 				D9624A5029AF94D000F5303F /* QuizSubmissionListInteractorPreview.swift in Sources */,
 				CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
@@ -1846,6 +1849,7 @@
 				EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */,
 				7D7D6D5225102052002B1485 /* SubmissionGrader.swift in Sources */,
+				D9624A6829B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
