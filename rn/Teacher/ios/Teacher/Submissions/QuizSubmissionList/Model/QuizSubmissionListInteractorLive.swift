@@ -69,6 +69,12 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         quizStore.refresh()
     }
 
+    public func createComposeUserInfo() -> Future<[String: Any], Never> {
+        Future<[String: Any], Never> { promise in
+            promise(.success([:]))
+        }
+    }
+
     public func setFilter(_ newFilter: QuizSubmissionListFilter) -> Future<Void, Never> {
         Future<Void, Never> { [filter] promise in
             filter.send(newFilter)

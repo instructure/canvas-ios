@@ -45,6 +45,13 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
             }
         }
     }
+
+    public func createComposeUserInfo() -> Future<[String: Any], Never> {
+        Future<[String: Any], Never> { promise in
+            promise(.success([:]))
+        }
+    }
+
 }
 
 #endif

@@ -31,7 +31,7 @@ class QuizSubmissionListViewModel: ObservableObject {
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
-    public let messageAllUsersDidTap = PassthroughSubject<WeakViewController, Never>()
+    public let messageUsersDidTap = PassthroughSubject<WeakViewController, Never>()
     public let submissionDidTap = PassthroughSubject<QuizSubmissionListItem, Never>()
     public let filterDidChange: CurrentValueSubject<QuizSubmissionListFilter, Never>
 
@@ -55,12 +55,9 @@ class QuizSubmissionListViewModel: ObservableObject {
             .assign(to: &$submissions)
         interactor.quizTitle
             .assign(to: &$subTitle)
+
         // MARK: - Input
-        messageAllUsersDidTap
-            .sink { viewController in
-                router.route(to: "conversations/compose", from: viewController)
-            }
-            .store(in: &subscriptions)
+        subscribeToMessageUsersTapEvents(router: router)
         refreshDidTrigger
             .delay(for: .seconds(1), scheduler: RunLoop.main)
             .flatMap { refreshCompletion in
@@ -77,6 +74,31 @@ class QuizSubmissionListViewModel: ObservableObject {
             .removeDuplicates()
             .map { interactor.setFilter($0) }
             .sink()
+            .store(in: &subscriptions)
+    }
+
+    private func subscribeToMessageUsersTapEvents(router: Router) {
+        messageUsersDidTap
+            .combineLatest(interactor.createComposeUserInfo()) {viewController, userInfo in
+                (viewController, userInfo)
+            }
+            .sink { [weak router] pelo in
+                print(pelo.0)
+                print(pelo.1)
+              /*  router?.route(to: "/conversations/compose", userInfo: [
+                            "recipients": submissions.compactMap { $0.user } .map { (user: User) -> [String: Any?] in [
+                                "id": user.id,
+                                "name": user.name,
+                                "avatar_url": user.avatarURL,
+                            ] },
+                            "subject": interactor.quizTitle,
+                            "contextName": course.first?.name ?? "",
+                            "contextCode": context.canvasContextID,
+                            "canAddRecipients": false,
+                            "onlySendIndividualMessages": true,
+                        ], from: self, options: .modal(embedInNav: true))
+*/
+            }
             .store(in: &subscriptions)
     }
 }

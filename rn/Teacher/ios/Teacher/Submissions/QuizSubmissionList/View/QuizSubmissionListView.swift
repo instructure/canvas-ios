@@ -21,6 +21,7 @@ import Core
 
 public struct QuizSubmissionListView: View {
     @ObservedObject private var model: QuizSubmissionListViewModel
+    @Environment(\.viewController) private var controller
 
     init(model: QuizSubmissionListViewModel) {
         self.model = model
@@ -61,7 +62,7 @@ public struct QuizSubmissionListView: View {
             }
             .background(Color.backgroundLightest)
             .navigationTitle(model.title, subtitle: model.subTitle)
-        //.navigationBarItems(leading: menuButton)
+            .navigationBarItems(trailing: messageUsersButton)
     }
 
     private var filterBarView: some View {
@@ -122,6 +123,17 @@ public struct QuizSubmissionListView: View {
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
         }
+    }
+
+    private var messageUsersButton: some View {
+        Button {
+            model.messageUsersDidTap.send(controller)
+        } label: {
+            Image.emailLine
+                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+        }
+        .frame(width: 44, height: 44).padding(.leading, -6)
+        .accessibility(label: Text("Send message to users", bundle: .core))
     }
 }
 
