@@ -80,7 +80,7 @@ open class CoreWebView: WKWebView {
     }
     private var isThemeDark = false {
         didSet {
-            if oldValue != isThemeDark, !isThemeDark {
+            if !isThemeDark {
                 isInverted = false
             }
         }
@@ -566,7 +566,7 @@ extension CoreWebView {
     private var themeSwitchButtonHeight: CGFloat { 38 }
     private var themeSwitchButtonTopPadding: CGFloat { 16 }
 
-    private func updateHtmlContentView() {
+    public func updateHtmlContentView() {
 
         themeSwitcherButton.setNeedsUpdateConfiguration()
         guard let htmlString = htmlString, let baseURL = baseURL else { return }

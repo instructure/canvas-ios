@@ -80,6 +80,15 @@ public class RichContentEditorViewController: UIViewController {
         }
     }
 
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        getHTML { [weak self] htmlString in
+            self?.html = htmlString
+            if self?.traitCollection.userInterfaceStyle != .dark {
+                self?.webView.updateHtmlContentView()
+            }
+        }
+    }
+
     public func showError(_ error: Error) {
         delegate?.rce(self, didError: error)
     }
