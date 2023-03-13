@@ -81,6 +81,7 @@ public class RichContentEditorViewController: UIViewController {
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
         getHTML { [weak self] htmlString in
             self?.html = htmlString
             if self?.traitCollection.userInterfaceStyle != .dark {
