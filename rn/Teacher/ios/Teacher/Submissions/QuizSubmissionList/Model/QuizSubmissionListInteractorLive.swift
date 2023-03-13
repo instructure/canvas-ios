@@ -30,6 +30,8 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     private let usersStore: Store<GetQuizSubmissionUsers>
     private let submissionsStore: Store<GetAllQuizSubmissions>
     private let quizStore: Store<GetQuiz>
+    private let courseStore: Store<GetCourse>
+
     private var filter = CurrentValueSubject<QuizSubmissionListFilter, Never>(.all)
     private let context: Context
 
@@ -40,6 +42,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         self.usersStore = env.subscribe(GetQuizSubmissionUsers(courseID: courseID))
         self.submissionsStore = env.subscribe(GetAllQuizSubmissions(courseID: courseID, quizID: quizID))
         self.quizStore = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID))
+        self.courseStore = env.subscribe(GetCourse(courseID: courseID))
 
         StoreState
             .combineLatest(usersStore.statePublisher, submissionsStore.statePublisher)
@@ -69,12 +72,14 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         submissionsStore.exhaust()
         usersStore.exhaust()
         quizStore.refresh()
+        courseStore.refresh()
     }
 
-    public func createComposeUserInfo() -> Future<[String: Any], Never> {
+    public func createMessageUserInfo() -> Future<[String: Any], Never> {
         let quizTitle = quizTitle.value
         let submissions = submissions.value
         let contextCode = context.canvasContextID
+        let courseName = courseStore.first?.name ?? ""
         return Future<[String: Any], Never> {  promise in
             let recipients: [[String: Any?]] = submissions.map {
                 [
@@ -86,7 +91,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
             let userInfo = [
                 "recipients": recipients,
                 "subject": quizTitle,
-                "contextName": "Placeholder Course",/* course.first?.name ?? "" receive context name in init? */
+                "contextName": courseName,
                 "contextCode": contextCode,
                 "canAddRecipients": false,
                 "onlySendIndividualMessages": true,

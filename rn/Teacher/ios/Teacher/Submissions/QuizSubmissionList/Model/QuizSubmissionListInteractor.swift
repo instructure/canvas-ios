@@ -24,7 +24,7 @@ public protocol QuizSubmissionListInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
     var submissions: CurrentValueSubject<[QuizSubmissionListItem], Never> { get }
     var quizTitle: CurrentValueSubject<String, Never> { get }
-    func createComposeUserInfo() -> Future<[String: Any], Never>
+    func createMessageUserInfo() -> Future<[String: Any], Never>
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>

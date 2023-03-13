@@ -33,11 +33,13 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in           state.send(.data)
         }
     }
+
     public func setFilter(_ filter: QuizSubmissionListFilter) -> Future<Void, Never> {
         Future<Void, Never> { promise in
             promise(.success(()))
         }
     }
+    
     public func refresh() -> Future<Void, Never> {
         Future<Void, Never> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -46,7 +48,7 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
         }
     }
 
-    public func createComposeUserInfo() -> Future<[String: Any], Never> {
+    public func createMessageUserInfo() -> Future<[String: Any], Never> {
         Future<[String: Any], Never> { promise in
             promise(.success([:]))
         }

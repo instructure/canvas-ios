@@ -81,7 +81,7 @@ class QuizSubmissionListViewModel: ObservableObject {
         messageUsersDidTap
             .flatMap { [interactor] viewController in
                 interactor
-                    .createComposeUserInfo()
+                    .createMessageUserInfo()
                     .map { (viewController, $0) }
             }
             .sink { [router] in

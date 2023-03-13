@@ -42,6 +42,6 @@ public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
         }
         self.score = item.score
         self.profileImageURL = item.avatarURL
-        self.a11yLabel = "A11Y"
+        self.a11yLabel = displayName + status
     }
 }
