@@ -71,7 +71,7 @@ class BottomSheetPresentationController: UIPresentationController {
         guard let containerView = containerView else { return }
 
         dimmer.alpha = 0
-        dimmer.backgroundColor = UIColor.backgroundDarkest.withAlphaComponent(0.9)
+        dimmer.backgroundColor = .black.withAlphaComponent(0.2)
         containerView.addSubview(dimmer)
         dimmer.pin(inside: containerView)
         dimmer.addTarget(self, action: #selector(tapped), for: .primaryActionTriggered)
