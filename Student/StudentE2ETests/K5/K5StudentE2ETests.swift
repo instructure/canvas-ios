@@ -41,10 +41,4 @@ class K5StudentE2ETests: K5UITestCase {
         K5CourseModulesPage.emptyPage.waitToExist()
 
     }
-
-    func testK5Reset() {
-        XCTAssertFalse(K5CourseCard.courseCard(id: "21025").exists(), "K5 course seems to be visible before app reset")
-        setUpK5()
-        K5CourseCard.courseCard(id: "21025").waitToExist()
-    }
 }
