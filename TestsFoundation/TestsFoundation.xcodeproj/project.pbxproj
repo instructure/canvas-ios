@@ -17,7 +17,6 @@
 		0B1F6B15EAA422D1EDEF8F63 /* XCUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1FA238C9E7F51AFB09D406 /* XCUIElementExtensions.swift */; };
 		0D6EACF326CFCFD6317CBEEA /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EF27109323758169F0E4CE /* TestRouter.swift */; };
 		0FC29617D122A316EE3E4A49 /* ActAsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C59C225CB0C6C8525D430E /* ActAsUser.swift */; };
-		10C805C142E01662C42E35BF /* XCUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F912281F45AC6117E7943B1 /* XCUIApplication.swift */; };
 		1134D35CA83C4BAA22A0CE1A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456659E425DC2A19543047E /* Profile.swift */; };
 		113B16010F4632F524284678 /* MiniCanvasState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5DEEFDECDBCF81D4C9BD42 /* MiniCanvasState.swift */; };
 		120B07891919D2C19EA4A08F /* DSPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE17443766D452A139A1CE /* DSPage.swift */; };
@@ -252,7 +251,6 @@
 		3A55456849FB2BA1C08C5B6E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
 		3D75521B2DB34EF2BA6B9923 /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		3F33C4DD360C44A1B0C15A45 /* DataSeeder+DSUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSUser.swift"; sourceTree = "<group>"; };
-		3F912281F45AC6117E7943B1 /* XCUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplication.swift; sourceTree = "<group>"; };
 		40D46DE75F31421B355BEDB0 /* DataSeeder+AccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+AccountNotification.swift"; sourceTree = "<group>"; };
 		4228B92D16DE51631A7952B2 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		42F2EBC7228F9E6287029422 /* Announcements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcements.swift; sourceTree = "<group>"; };
@@ -488,7 +486,6 @@
 				43B5DF0CBA8B3D804447D3C8 /* K5UITestCase.swift */,
 				BAF04BB223057EC494C75FB3 /* MiniCanvasUITestCase.swift */,
 				54130240B3C6C03B9CC9411A /* UITestUser.swift */,
-				3F912281F45AC6117E7943B1 /* XCUIApplication.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -1343,7 +1340,6 @@
 				14D09D53B76DADF1DF12514F /* UserFixture.swift in Sources */,
 				65963C7FD4563C4599328811 /* UserSettingsFixture.swift in Sources */,
 				917CA66BA492B8AE9D91167C /* XCTestCaseExtensions.swift in Sources */,
-				10C805C142E01662C42E35BF /* XCUIApplication.swift in Sources */,
 				0B1F6B15EAA422D1EDEF8F63 /* XCUIElementExtensions.swift in Sources */,
 				85A5632FF3710CA7BE8E592A /* XCUIElementQueryExtensions.swift in Sources */,
 			);
