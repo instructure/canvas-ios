@@ -129,7 +129,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         alert.addAction(AlertAction(NSLocalizedString("Edit", bundle: .core, comment: ""), style: .default) { [weak self] _ in
             guard let self = self, let page = self.page else { return }
             guard let url = page.htmlURL?.appendingPathComponent("edit") else { return }
-            self.env.router.route(to: url, from: self, options: .modal(.formSheet, embedInNav: true))
+            self.env.router.route(to: url, from: self, options: .modal(isDismissable: false, embedInNav: true))
         })
         if canDelete {
             alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in

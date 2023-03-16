@@ -46,7 +46,7 @@ public struct AssignmentDetailsView: View {
                 Button(action: { env.router.route(
                     to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
                     from: controller,
-                    options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+                    options: .modal(isDismissable: false, embedInNav: true)
                 ) }, label: {
                     Text("Edit", bundle: .core)
                         .fontWeight(.regular)

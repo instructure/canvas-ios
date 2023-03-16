@@ -114,7 +114,7 @@ public class PlannerViewController: UIViewController {
     }
 
     @objc func addNote() {
-        env.router.show(CreateTodoViewController.create(), from: self, options: .modal(embedInNav: true), analyticsRoute: "/calendar/new")
+        env.router.show(CreateTodoViewController.create(), from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/calendar/new")
     }
 
     @objc func selectToday() {

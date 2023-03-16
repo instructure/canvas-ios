@@ -215,7 +215,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         env.router.route(
             to: "\(context?.pathComponent ?? "")/files/\(fileID)/edit",
             from: self,
-            options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+            options: .modal(isDismissable: false, embedInNav: true)
         )
     }
 

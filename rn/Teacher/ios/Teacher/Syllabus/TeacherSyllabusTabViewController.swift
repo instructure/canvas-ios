@@ -63,6 +63,6 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
 
     @objc func edit() {
         env.router.route(
-            to: "\(context?.pathComponent ?? "")/syllabus/edit", from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            to: "\(context?.pathComponent ?? "")/syllabus/edit", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
 }
