@@ -148,11 +148,18 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         rows.append(contentsOf: k5DashboardSwitch)
         rows.append(contentsOf: channelTypeRows ?? [])
         rows.append(contentsOf: pairWithObserverButton)
-        rows.append(contentsOf: [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
-            guard let url = self?.profile.first?.calendarURL else { return }
-            self?.env.loginDelegate?.openExternalURL(url)
-       },
-    ])
+
+        if AppEnvironment.shared.app == .student {
+            let row = Row(NSLocalizedString("Subscribe to Calendar Feed",
+                                            bundle: .core,
+                                            comment: ""),
+                          hasDisclosure: false) { [weak self] in
+                guard let url = self?.profile.first?.calendarURL else { return }
+                self?.env.loginDelegate?.openExternalURL(url)
+            }
+            rows.append(contentsOf: [row])
+        }
+
         return rows
     }
 
@@ -222,6 +229,13 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private func refreshTermsOfService() {
+        if AppEnvironment.shared.app == .teacher {
+            if isPairingWithObserverAllowed {
+                isPairingWithObserverAllowed = false
+            }
+            return
+        }
+
         termsOfServiceRequest = env.api.makeRequest(GetAccountTermsOfServiceRequest()) { [weak self] response, _, _ in
             self?.termsOfServiceRequest = nil
             let isPairingAllowed: Bool

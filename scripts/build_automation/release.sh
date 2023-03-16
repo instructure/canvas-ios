@@ -83,7 +83,7 @@ curl https://app.bitrise.io/app/$SLUG/build/start.json --data '{
                 "value": "'"$1"'"
             }
         ],
-        "workflow_id": "ReleaseTrigger"
+        "workflow_id": "app-store-trigger"
     },
     "hook_info": {
         "build_trigger_token": "'"$TOKEN"'",

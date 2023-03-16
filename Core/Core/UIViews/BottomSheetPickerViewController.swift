@@ -42,7 +42,9 @@ public class BottomSheetPickerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .backgroundLightest
+        view.backgroundColor = UIColor {
+            $0.isDarkInterface ? .backgroundLight : .backgroundLightest
+        }
         view.addSubview(stackView)
         stackView.axis = .vertical
         stackView.pin(inside: view, leading: nil, trailing: nil, top: 8, bottom: nil)

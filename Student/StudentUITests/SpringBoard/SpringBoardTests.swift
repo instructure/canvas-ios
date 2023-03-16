@@ -26,18 +26,18 @@ class SpringBoardTests: CoreUITestCase {
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
 
         func appToSpringBoardRatio() -> CGFloat {
-            app.frame.height / SpringBoard.shared.sbApp.frame.height
+            app.frame.width / SpringBoard.shared.sbApp.frame.width
         }
 
         sleep(2)
         XCTAssertEqual(appToSpringBoardRatio(), 0.5, accuracy: 0.05)
 
-        let ratio1per3: CGFloat = 1 / 3.0
+        let ratio1per3: CGFloat = 0.27
         SpringBoard.shared.moveSplit(toFraction: ratio1per3)
         sleep(2)
         XCTAssertEqual(appToSpringBoardRatio(), ratio1per3, accuracy: 0.05)
 
-        let ratio2per3: CGFloat = 2 / 3.0
+        let ratio2per3: CGFloat = 0.72
         SpringBoard.shared.moveSplit(toFraction: ratio2per3)
         sleep(2)
         XCTAssertEqual(appToSpringBoardRatio(), ratio2per3, accuracy: 0.05)

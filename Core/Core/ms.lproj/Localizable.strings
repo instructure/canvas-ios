@@ -68,6 +68,15 @@
 "%d missing" = "%d tiada";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Balasan";
+
+/* No comment provided by engineer. */
+"%d students" = "%d pelajar";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Belum dibaca";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "guru";
 
 /* No comment provided by engineer. */
+"A title is required" = "Tajuk diperlukan";
+
+/* No comment provided by engineer. */
 "Accept" = "Terima";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Dasar Penggunaan Boleh Diterima";
+
+/* No comment provided by engineer. */
 "Access" = "Akses";
+
+/* No comment provided by engineer. */
+"Access Code" = "Kod Akses";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Kod Akses:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Benarkan menyukai siaran";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Benarkan Berbilang Percubaan";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Benarkan balasan berbebenang";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Benarkan pengguna untuk memberikan komen";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Percubaan Dibenarkan";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Percubaan Dibenarkan:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Gred Tugasan Bawah %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Kumpulan Tugasan";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Kumpulan Tugasan:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Mesej Perbualan";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Perbualan";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Sian";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Harian";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Tarikh";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Tolak";
@@ -818,10 +869,16 @@
 "Edit Page" = "Edit Halaman";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Edit Butiran Kuiz";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Edit Penerima";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Edit Silibus";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Sama ada anda pengguna baharu atau Dasar Penggunaan Boleh Diterima telah berubah sejak anda kali terakhir menyatakan persetujuan berkenaannya. Sila nyatakan persetujuan anda dengan Dasar Penggunaan Boleh Diterima sebelum anda meneruskan.";
 
 /* No comment provided by engineer. */
 "Email address" = "Alamat e-mel";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Berhenti Bertindak sebagai Pengguna";
+
+/* No comment provided by engineer. */
+"Enter code" = "Masukkan kod";
 
 /* No comment provided by engineer. */
 "Error" = "Ralat";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Tapis mesej mengikut jenis";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Gred Akhir: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Cari kod untuk mengimbas";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Pendaftaran Akan Datang";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Terus ke hari ini";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Kuiz Bergred";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Tinjauan Bergred";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Tinjauan Bergred";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Sembunyikan kandungan untuk %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Tinggi: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Bagaimanakah cara mencari sekolah saya?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Anda mesti memberikan persetujuan untuk Dasar Penggunaan Boleh Diterima.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Saya tidak dapat menyelesaikan perkara ini sehingga saya menerima maklum balas daripada anda";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Jenis Fail Tidak Serasi";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Tidak lengkap";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Penggredan Lewat";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Terakhir";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Undang-undang";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Panjang dalam minit";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Gred Huruf";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Kesan Kod QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Kunci Soalan Selepas Jawapan Diberikan";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Kunci Soalan Selepas Jawapan Diberikan:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Halaman Baharu";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Kuiz Baharu";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Kuiz Baharu";
@@ -1631,6 +1730,9 @@
 "out of" = "daripada";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "halaman";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Sila tunggu, ini mungkin mengambil masa beberapa minit";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Mata";
 
 /* No comment provided by engineer. */
 "Post at" = "Siarkan pada";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Berlatih Kuiz";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Kuiz Latihan";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Butiran Kuiz";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Skor Kuiz untuk Disimpan";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Jenis Kuiz";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Jenis Kuiz:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Permintaan Gagal!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Perlu Kod Akses";
 
 /* No comment provided by engineer. */
 "Resources" = "Sumber";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Tunjuk lebih banyak pilihan";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Tunjuk Satu Soalan pada Satu Masa";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Kocok Jawapan";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Kocok Jawapan:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Serahan Dimuat Naik";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Serahan";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Terdapat ralat tidak dijangka. Sila cuba semula.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Tugasan ini cukup tempoh pada %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Masa berlalu";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Had Masa";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Had Masa:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Buat asal";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Tinjauan Tidak Bergred";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Ralat tidak diketahui";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Gunakan kod ini untuk berpasangan dengan saya dalam Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "ID Pengguna";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Anda mesti mendayakan keizinan Mikrofon dalam Tetapan.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Anda mesti memasukkan kod akses";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Anda akan berhenti bertindak sebagai %@ dan kembali ke akaun anda.";

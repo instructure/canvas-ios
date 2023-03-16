@@ -159,7 +159,9 @@ open class Router {
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
 
-        if handleExternalWebsiteInDialog(url: url, from: from) {
+        if url.isExternalWebsite, let url = url.url {
+            Analytics.shared.logScreenView(route: "/external_url")
+            AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             return
         }
 
@@ -286,23 +288,6 @@ open class Router {
     }
 
     // MARK: - Private Methods
-
-    /**
-     - returns: True if this method handled the url and no further routing actions are necessary.
-     */
-    private func handleExternalWebsiteInDialog(url: URLComponents, from: UIViewController) -> Bool {
-        guard url.isExternalWebsite, let url = url.url else {
-            return false
-        }
-
-        let webController = CoreWebViewController()
-        webController.webView.load(URLRequest(url: url))
-        show(webController,
-             from: from,
-             options: .modal(.pageSheet, isDismissable: false, embedInNav: true, addDoneButton: true),
-             analyticsRoute: "/external_url")
-        return true
-    }
 
     private func cleanURL(_ url: URLComponents) -> URLComponents {
         // URLComponents does all the encoding we care about except we often have + meaning space in query

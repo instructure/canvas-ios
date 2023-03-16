@@ -39,6 +39,10 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var animatableLogoPosX: NSLayoutConstraint!
     @IBOutlet weak var animatableLogoPosY: NSLayoutConstraint!
     @IBOutlet weak var loginTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var previousLoginsHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var qrLoginStackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonStackViewCenterYConstraint: NSLayoutConstraint!
+    private var originalButtonStackViewCenterYConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -50,7 +54,6 @@ class LoginStartViewController: UIViewController {
     var lastLoginAccount: APIAccountResult? {
         didSet {
             lastLoginButton.isHidden = lastLoginAccount == nil
-            animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
             guard let lastLoginAccount = lastLoginAccount else { return }
             let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
             lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
@@ -107,8 +110,32 @@ class LoginStartViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
 
+        // iPhone SE (3rd gen) 
+        if UIScreen.main.bounds.height <= 667 {
+            qrLoginStackViewTopConstraint.constant = 16
+        }
+
+        // Store the original buttonStackViewCenterYConstraint so we can use it when the orientation changes
+        originalButtonStackViewCenterYConstraint = buttonStackViewCenterYConstraint
+        updateButtonStackViewLayout()
+
         update()
         refreshLogins()
+    }
+
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        updateButtonStackViewLayout()
+    }
+
+    // Center Buttons Vertically when orientation is landscape
+    private func updateButtonStackViewLayout() {
+        switch UIDevice.current.orientation {
+        case .landscapeLeft, .landscapeRight:
+            buttonStackViewCenterYConstraint = originalButtonStackViewCenterYConstraint
+            buttonStackViewCenterYConstraint.isActive = true
+        default:
+            buttonStackViewCenterYConstraint.isActive = false
+        }
     }
 
     func configureButtons() {
@@ -156,7 +183,6 @@ class LoginStartViewController: UIViewController {
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
         configureButtons()
-        animateLoginTopConstraint(lastLoginAccount == nil && previousLoginsView.isHidden)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -180,13 +206,6 @@ class LoginStartViewController: UIViewController {
         }
         animatableLogo.alpha = 1
         view.layoutIfNeeded()
-    }
-
-    private func animateLoginTopConstraint(_ hasOffset: Bool) {
-        loginTopConstraint.constant = hasOffset ? 100 : 50
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
     }
 
     private func animateLogoFromCenterToFinalPosition() {
@@ -373,11 +392,29 @@ class LoginStartViewController: UIViewController {
         findSchoolButton.textColorName = "oxford"
         findSchoolButton.borderColorName = "oxford"
     }
+
+    private func animatePreviousLoginsHeightChange(numberOfItems: Int) {
+        switch numberOfItems {
+        case 0:
+            previousLoginsHeightConstraint.constant = 0
+        case 1:
+            previousLoginsHeightConstraint.constant = 80
+        default:
+            previousLoginsHeightConstraint.constant = 140
+        }
+        view.setNeedsUpdateConstraints()
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
 extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, LoginStartSessionDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sessions.count + MDMManager.shared.logins.count
+        let count = sessions.count + MDMManager.shared.logins.count
+        animatePreviousLoginsHeightChange(numberOfItems: count)
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

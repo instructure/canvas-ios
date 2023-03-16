@@ -127,8 +127,7 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
             .removeDuplicates()
             .compactMap { $0 }
             .map { Text($0.name) }
-            .assign(to: \.selectCourseButtonTitle, on: self)
-            .store(in: &subscriptions)
+            .assign(to: &$selectCourseButtonTitle)
     }
 
     private func refreshAssignmentListOnCourseSelection() {
@@ -149,15 +148,13 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
                     return Self.selectAssignmentText
                 }
             }
-            .assign(to: \.selectAssignmentButtonTitle, on: self)
-            .store(in: &subscriptions)
+            .assign(to: &$selectAssignmentButtonTitle)
     }
 
     private func updateSubmitButtonStateOnAssignmentChange() {
         assignmentPickerViewModel.$selectedAssignment
             .removeDuplicates()
             .map { $0 == nil }
-            .assign(to: \.isSubmitButtonDisabled, on: self)
-            .store(in: &subscriptions)
+            .assign(to: &$isSubmitButtonDisabled)
     }
 }

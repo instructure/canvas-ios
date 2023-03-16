@@ -68,6 +68,15 @@
 "%d missing" = "%d no presentat";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Respostes";
+
+/* No comment provided by engineer. */
+"%d students" = "%d estudiants";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Sense llegir";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "un professor";
 
 /* No comment provided by engineer. */
+"A title is required" = "Cal un títol";
+
+/* No comment provided by engineer. */
 "Accept" = "Accepta";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Política d’ús acceptable";
+
+/* No comment provided by engineer. */
 "Access" = "Accés";
+
+/* No comment provided by engineer. */
+"Access Code" = "Codi d'accés";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Codi d'accés:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Permet els M'agrada";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Permet més d'un intent";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Permet les respostes enllaçades";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Permet que els usuaris facin comentaris";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Intents permesos";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Intents permesos:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Nota de l'activitat per sota de %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Grup d'activitats";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Grup d'activitats:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Missatge de conversa";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Converses";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Cian";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Diari";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Data";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Rebutja";
@@ -818,10 +869,16 @@
 "Edit Page" = "Edita la pàgina";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Edita la informació de la prova";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Edita els destinataris";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Edita el temari";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "O bé sou un usuari nou o la política d’ús acceptable ha canviat des de la darrera vegada que la vau acceptar. Accepteu la política d’ús acceptable abans de continuar.";
 
 /* No comment provided by engineer. */
 "Email address" = "Adreça electrònica";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Deixa d'actuar com a usuari";
+
+/* No comment provided by engineer. */
+"Enter code" = "Introdueix el codi";
 
 /* No comment provided by engineer. */
 "Error" = "Error";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Filtra els missatges per tipus";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Nota final: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Cerca un codi per escanejar";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Assignatures futures";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Vés a avui";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Prova qualificada";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Estudi qualificat";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Estudis amb nota";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Amaga el contingut per a %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Alta: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Com puc trobar l'escola?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Accepto la política d’ús acceptable.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "No podré fer res fins que em respongueu";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Tipus de fitxer incompatible";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incomplet";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Nota endarrerida";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "El més recent";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Jurídic";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Durada en minuts";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Nota amb lletra";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Localitzeu el codi QR";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Bloquegeu les preguntes un cop respostes";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Bloqueja les preguntes un cop respostes:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Pàgina nova";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Prova nova";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Proves noves";
@@ -1631,6 +1730,9 @@
 "out of" = "de";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "pàgina";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Espereu, pot ser que trigui un minut.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Punts";
 
 /* No comment provided by engineer. */
 "Post at" = "Publica el";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Prova sobre pràctiques";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Proves de pràctica";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Informació de la prova";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Puntuació de la prova que s'ha de mantenir";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Tipus de prova";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Tipus de prova:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "No s'ha pogut tramitar la sol·licitud.";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Sol·licita un codi d'accés";
 
 /* No comment provided by engineer. */
 "Resources" = "Recursos";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Mostra més opcions";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Mostra una pregunta cada vegada";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Reorganitza les respostes";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Reorganitzeu les respostes:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "S’ha penjat l’entrega";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Entregues";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "S'ha produït un error inesperat. Torneu-ho a provar.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Aquesta activitat venç el %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Temps transcorregut";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Límit de temps";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Límit de temps:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Desfés";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Estudi sense nota";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Error desconegut";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Utilitza aquest codi per emparellar amb mi al Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "ID d’usuari";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Heu d'activar els permisos per al micròfon a Configuració.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Heu d'introduir un codi d'accés";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Deixareu de fer de %@ i tornareu al vostre usuari.";

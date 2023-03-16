@@ -471,7 +471,7 @@ class RouterTests: CoreTestCase {
         XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments/4321")!), false)
     }
 
-    func testExternalWebsiteURLsOpenedInPopup() {
+    func testExternalURLsWithMatchingPathOfANativeRouteOpenedBySystem() {
         AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
                                                             userID: "",
                                                             userName: "")
@@ -483,12 +483,7 @@ class RouterTests: CoreTestCase {
 
         testee.route(to: externalURL, from: mockViewController)
 
-        guard let navController = mockViewController.presented as? HelmNavigationController else {
-            return XCTFail()
-        }
-
-        XCTAssertEqual(navController.children.count, 1)
-        XCTAssertTrue(navController.children.first is CoreWebViewController)
+        XCTAssertEqual(login.externalURL?.absoluteURL, URL(string: "https://example.com/courses")!)
     }
 
     func testExternalWebsitePopupReportedToAnalytics() {
@@ -505,7 +500,7 @@ class RouterTests: CoreTestCase {
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
             "application": "student",
             "screen_name": "/external_url",
-            "screen_class": "CoreWebViewController",
+            "screen_class": "unknown",
         ])
     }
 }

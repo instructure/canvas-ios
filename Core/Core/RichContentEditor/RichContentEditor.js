@@ -134,13 +134,15 @@ const editor = window.editor = {
             if (!overlay.image.parentNode) { overlay.remove() }
         }
         for (const img of content.querySelectorAll('img')) {
-            const bounds = img.getBoundingClientRect()
-            const overlay = img.overlay || (img.overlay = imgOverlay(img))
-            overlay.style.height = `${bounds.height}px`
-            overlay.style.left = `${scrollX + bounds.left}px`
-            overlay.style.top = `${scrollY + bounds.top}px`
-            overlay.style.width = `${bounds.width}px`
-            if (!overlay.parentNode) { document.body.appendChild(overlay) }
+            if (img.complete) {
+                const bounds = img.getBoundingClientRect()
+                const overlay = img.overlay || (img.overlay = imgOverlay(img))
+                overlay.style.height = `${bounds.height}px`
+                overlay.style.left = `${scrollX + bounds.left}px`
+                overlay.style.top = `${scrollY + bounds.top}px`
+                overlay.style.width = `${bounds.width}px`
+                if (!overlay.parentNode) { document.body.appendChild(overlay) }
+            }
         }
     },
 

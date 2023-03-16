@@ -168,16 +168,16 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
 extension HelmSplitViewController: UINavigationControllerDelegate {
 
     /**
-     This method gets called only when a real transition occurs. UINavigationControllerDelegate.willShow/didShow also gets
-     called when the navigation controller is removed from the screen and re-added for example on a tab bar change event. */
-    open func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        toVC.showDefaultDetailView()
-
-        if let masterNav = masterNavigationController, let detailNav = detailNavigationController, let coursesViewController = masterNav.viewControllers.first, toVC == coursesViewController, operation == .pop {
-            // When navigating back to all courses list, detail view should show empty vc
-            detailNav.navigationItem.leftBarButtonItem = nil
-            detailNav.setViewControllers([EmptyViewController()], animated: false)
-        }
+     This method gets called only when a real transition occurs. UINavigationControllerDelegate.willShow/didShow also
+     gets called when the navigation controller is removed from the screen and re-added for example on a tab bar change
+     event so we can't use those to determine when a view controller is pushed for the first time.
+     */
+    open func navigationController(_ navigationController: UINavigationController,
+                                   animationControllerFor operation: UINavigationController.Operation,
+                                   from fromVC: UIViewController,
+                                   to toVC: UIViewController)
+    -> UIViewControllerAnimatedTransitioning? {
+        toVC.showDefaultDetailViewIfNeeded()
         return nil
     }
 }

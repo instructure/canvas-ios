@@ -68,6 +68,15 @@
 "%d missing" = "%d个缺失";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d回复";
+
+/* No comment provided by engineer. */
+"%d students" = "%d学生";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d未读";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "教师";
 
 /* No comment provided by engineer. */
+"A title is required" = "标题必填";
+
+/* No comment provided by engineer. */
 "Accept" = "接受";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "可接受的使用政策";
+
+/* No comment provided by engineer. */
 "Access" = "访问";
+
+/* No comment provided by engineer. */
+"Access Code" = "访问代码";
 
 /* No comment provided by engineer. */
 "Access Code:" = "访问代码：";
@@ -188,10 +206,16 @@
 "Allow liking" = "允许点赞";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "允许多次尝试";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "允许将回复信息按话题组织";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "允许用户评论";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "允许的尝试次数";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "允许的尝试次数：";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "作业评分低于%d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "作业小组";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "作业组：";
@@ -548,6 +575,12 @@
 "Conversation Message" = "会话消息";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "会话";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "青色";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "每天";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "日期";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "拒绝";
@@ -818,10 +869,16 @@
 "Edit Page" = "编辑页面";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "编辑测验详情";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "编辑收件人";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "编辑教学大纲";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "您是新用户，或者自您上次同意可接受的使用政策后，该政策已更改。请同意“可接受的使用政策”后再继续。";
 
 /* No comment provided by engineer. */
 "Email address" = "电子邮件地址";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "结束担当用户";
+
+/* No comment provided by engineer. */
+"Enter code" = "输入代码";
 
 /* No comment provided by engineer. */
 "Error" = "错误";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "按类型过滤消息";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最终评分：%@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "查找要扫描的代码";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "未来的注册情况";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "转至今天";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "评分测验";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "评分调查";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "评分调查";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "隐藏...的内容%@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "高：%@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "如何查找我的学校？";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "我同意“可接受的使用政策”。";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "我需要您的回信才能完成工作";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "不兼容的文件类型";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "未完成";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "最近评分";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "最近";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "法律";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "时长(分钟)";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "字母评分";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "查找二维码";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "回答后锁定问题";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "回答后锁定问题：";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "新页面";
+
+/* No comment provided by engineer. */
+"New Quiz" = "新测验";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "新测验";
@@ -1631,6 +1730,9 @@
 "out of" = "共";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "页面";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "请稍等，这可能需要一分钟。";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "得分";
 
 /* No comment provided by engineer. */
 "Post at" = "发布时间";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "练习测验";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "练习测验";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "测验详情";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "要保留的测验分数";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "测验类型";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "测验类型：";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "请求失败！";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "要求访问代码";
 
 /* No comment provided by engineer. */
 "Resources" = "资源";
@@ -2015,6 +2132,15 @@
 "Show more options" = "显示更多的选项";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "一次显示一个问题";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "重组答案";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "切换答案：";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "提交项已上传";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "提交项";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "出现意外错误。请重试。";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "此作业的截止日期为%@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "经过的时间";
+
+/* No comment provided by engineer. */
+"Time Limit" = "时间限制";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "时间限制：";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "后退";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "非评分调查";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "未知错误";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "在 Canvas Parent 中使用此代码与我配对： %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "用户ID";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "您必须在“设置”中启用麦克风权限。";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "您必须输入访问代码";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "你将停止担当%@并返回至帐号。";

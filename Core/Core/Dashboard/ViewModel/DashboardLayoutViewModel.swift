@@ -20,7 +20,13 @@ import Combine
 import SwiftUI
 
 class DashboardLayoutViewModel: ObservableObject {
-    public typealias LayoutInfo = (columns: Int, cardWidth: CGFloat, spacing: CGFloat)
+    public struct LayoutInfo {
+        let columns: Int
+        let cardWidth: CGFloat
+        let cardMinHeight: CGFloat
+        let spacing: CGFloat
+        let isWideLayout: Bool
+    }
     public static let Spacing: CGFloat = 16
 
     private let interactor: DashboardSettingsInteractor
@@ -31,11 +37,10 @@ class DashboardLayoutViewModel: ObservableObject {
         triggerUIRefreshOnLayoutChange()
     }
 
-    public func layoutInfo(for width: CGFloat) -> LayoutInfo {
-        let isWideLayout = (width >= 635)
+    public func layoutInfo(for width: CGFloat, horizontalSizeClass: UserInterfaceSizeClass?) -> LayoutInfo {
         let columns: CGFloat = {
             if interactor.layout.value == .grid {
-                return isWideLayout ? 4 : 2
+                return width >= 635 ? 4 : 2
             } else {
                 return 1
             }
@@ -44,7 +49,21 @@ class DashboardLayoutViewModel: ObservableObject {
         // When split view transforms from single screen to split the reported width is 0 which causes card
         // widths to be negative and raises SwiftUI warnings. We make sure the width is something valid.
         cardWidth = max(cardWidth, 50)
-        return (columns: Int(columns), cardWidth: cardWidth, spacing: Self.Spacing)
+
+        let minHeight: CGFloat = {
+            if horizontalSizeClass == .regular, interactor.layout.value == .list {
+                return 100
+            } else {
+                return 160
+            }
+        }()
+        let isWideLayout = horizontalSizeClass == .regular && interactor.layout.value == .list
+
+        return LayoutInfo(columns: Int(columns),
+                          cardWidth: cardWidth,
+                          cardMinHeight: minHeight,
+                          spacing: Self.Spacing,
+                          isWideLayout: isWideLayout)
     }
 
     private func triggerUIRefreshOnLayoutChange() {

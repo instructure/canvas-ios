@@ -189,7 +189,7 @@ describe('QuizDetails', () => {
     const tree = render(props).toJSON()
     const editButton: any = explore(tree).selectRightBarButton('quizzes.details.editButton')
     editButton.action()
-    expect(props.navigator.show).toHaveBeenCalledWith(`/courses/${props.courseID}/quizzes/${props.quizID}/edit`, { 'modal': true, 'modalPresentationStyle': 'formsheet' })
+    expect(props.navigator.show).toHaveBeenCalledWith(`/courses/${props.courseID}/quizzes/${props.quizID}/edit`, { 'modal': true, 'modalPresentationStyle': 'pagesheet' })
   })
 
   it('renders assignment group', () => {

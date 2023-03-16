@@ -56,7 +56,6 @@ public class InboxViewModel: ObservableObject {
         self.interactor = interactor
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
-        bindDataSourceOutputsToSelf()
         bindUserActionsToOutputs()
         subscribeToMenuTapEvents(router: router)
     }

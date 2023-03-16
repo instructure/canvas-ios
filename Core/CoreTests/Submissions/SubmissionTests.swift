@@ -20,6 +20,7 @@ import Foundation
 import MobileCoreServices
 import XCTest
 @testable import Core
+import UniformTypeIdentifiers
 
 class SubmissionTests: CoreTestCase {
     func testProperties() {
@@ -290,10 +291,10 @@ class SubmissionTypeTests: XCTestCase {
 
     func testAllowedMediaTypesForMediaRecordings() {
         var submissionTypes: [SubmissionType] = [.media_recording]
-        XCTAssertEqual(submissionTypes.allowedMediaTypes, [kUTTypeMovie as String, kUTTypeAudio as String])
+        XCTAssertEqual(submissionTypes.allowedMediaTypes, [UTType.movie.identifier, UTType.audio.identifier])
 
         submissionTypes = [.media_recording, .online_upload]
-        XCTAssertEqual(submissionTypes.allowedMediaTypes, [kUTTypeMovie as String, kUTTypeImage as String])
+        XCTAssertEqual(submissionTypes.allowedMediaTypes, [UTType.movie.identifier, UTType.image.identifier])
     }
 
     func testAllowedUTIsNoneIsEmpty() {

@@ -68,6 +68,15 @@
 "%d missing" = "%d ontbreekt";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Antwoorden";
+
+/* No comment provided by engineer. */
+"%d students" = "%d cursisten";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Ongelezen";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "een cursusleider";
 
 /* No comment provided by engineer. */
+"A title is required" = "Een titel is vereist";
+
+/* No comment provided by engineer. */
 "Accept" = "Accepteren";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Beleid voor acceptabel gebruik";
+
+/* No comment provided by engineer. */
 "Access" = "Toegang";
+
+/* No comment provided by engineer. */
+"Access Code" = "Toegangscode";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Toegangscode:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Likes toestaan";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Meerdere pogingen toestaan";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Antwoorden op antwoorden toestaan";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Geef gebruikers de mogelijkheid om opmerkingen te geven";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Toegestaan aantal pogingen";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Toegestaan aantal pogingen:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Opdrachtcijfer lager dan %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Opdrachtgroep";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Opdrachtgroep:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Gespreksbericht";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Gesprekken";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Cyaan";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Dagelijks";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Datum";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Weigeren";
@@ -818,10 +869,16 @@
 "Edit Page" = "Pagina bewerken";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Toetsdetails bewerken";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Ontvangers bewerken";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Syllabus bewerken";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Je bent een nieuwe gebruiker of het Beleid voor acceptabel gebruik is gewijzigd sinds je er de laatste keer mee akkoord bent gegaan. Ga akkoord met het Beleid voor acceptabel gebruik voordat je verdergaat.";
 
 /* No comment provided by engineer. */
 "Email address" = "E-mailadres";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Stop met optreden als gebruiker";
+
+/* No comment provided by engineer. */
+"Enter code" = "Code invoeren";
 
 /* No comment provided by engineer. */
 "Error" = "Fout";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Berichten filteren per type";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Eindcijfer: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Zoek een code om te scannen";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Toekomstige inschrijvingen";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Ga naar vandaag";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Beoordeelde toets";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Beoordeelde enquête";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Beoordeelde onderzoeken";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Inhoud verbergen voor  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Hoog: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Hoe vind ik mijn school?";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Ik ga akkoord met het Beleid voor acceptabel gebruik.";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Er is een probleem, ik kan niets doen zonder antwoord van jullie";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Niet-ondersteund bestandstype";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incompleet";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Beoordeling te laat";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Laatste";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Juridisch";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Duur in minuten";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Beoordeling in lettervorm";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "QR-code zoeken";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Vergrendel vragen na beantwoording";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Vragen na beantwoording vergrendelen:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Nieuwe pagina";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Nieuwe toets";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Nieuwe toetsen";
@@ -1631,6 +1730,9 @@
 "out of" = "van de";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "pagina";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Een ogenblik geduld...";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Punten";
 
 /* No comment provided by engineer. */
 "Post at" = "Plaatsen op";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Oefentoets";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Oefentoetsen";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Toetsdetails";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Te behouden toetsscore";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Toetstype";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Toetstype:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Verzoek mislukt!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Een toegangscode vereisen";
 
 /* No comment provided by engineer. */
 "Resources" = "Hulpbronnen";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Meer opties weergeven";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Een antwoord per keer tonen";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Volgorde van antwoorden wisselen";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Antwoorden schudden:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Inlevering geüpload";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Inleveringen";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Er is een onverwachte fout opgetreden. Probeer het nog eens.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Deze opdracht moet uiterlijk worden ingeleverd op %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Verstreken tijd";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Tijdslimiet";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Tijdslimiet:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Ongedaan maken";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Niet-beoordeelde enquête";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Onbekende fout";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Gebruik deze code om met mij te koppelen in Canvas Parent: %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "Gebruikers-ID:";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Je moet Microfoon-machtigingen inschakelen in Instellingen.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Je moet een toegangscode invoeren";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Je stopt met optreden als %@ en keert terug naar je account.";

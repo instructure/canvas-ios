@@ -26,31 +26,18 @@ public class SpringBoard {
     public let sbApp = XCUIApplication(bundleIdentifier: "com.apple.springboard")
 
     func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
-        let offset: CGVector
-        switch XCUIDevice.shared.orientation {
-        case .portrait:
-            offset = CGVector(dx: x, dy: y)
-        case .portraitUpsideDown:
-            offset = CGVector(dx: 1 - x, dy: 1 - y)
-        case .landscapeLeft:
-            offset = CGVector(dx: 1 - y, dy: x)
-        case .landscapeRight:
-            offset = CGVector(dx: y, dy: 1 - x)
-        default:
-            fatalError("Unknown orientation")
-        }
-        return sbApp.coordinate(withNormalizedOffset: offset)
+        sbApp.coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
     }
 
     public func moveSplit(toFraction fraction: CGFloat) {
-        let divider = sbApp.find(id: "SideAppDivider")
+        let divider = sbApp.find(id: "SideAppDivider", type: XCUIElement.ElementType.other)
         let dest = relativeCoordinate(x: fraction, y: 0.5)
         divider.center.press(forDuration: 0, thenDragTo: dest)
         sleep(1)
     }
 
     func resetMultitasking() {
-        if sbApp.find(id: "SideAppDivider").exists {
+        if sbApp.find(id: "SideAppDivider", type: XCUIElement.ElementType.other).exists {
             moveSplit(toFraction: 1)
         }
         app.activate()
@@ -68,26 +55,23 @@ public class SpringBoard {
 
         guard button.exists else { return }
 
-        // check to see if it's off screen
-        let frame = button.frame
-        let screen = sbApp.frame
-
-        // comparing x against height is intentional. The frames are in different coordinate spaces
-        guard frame.midX > 0, frame.midX < screen.height,
-            frame.midY > 0, frame.midY < screen.height else { return }
-
         button.tap()
     }
 
     public func setupSplitScreenWithSafariOnRight() {
         resetMultitasking()
 
-        bringUpDock()
+        var splitViewButtonID = ""
+        if Bundle.main.isTeacherTestsRunner {
+            splitViewButtonID = "top-affordance:\(Bundle.teacherBundleID)"
+        } else if Bundle.main.isStudentTestsRunner {
+            splitViewButtonID = "top-affordance:\(Bundle.studentBundleID)"
+        }
 
-        let dock = sbApp.find(id: "user icon list view")
-        let safari = dock.rawElement.find(id: "Safari")
-        let dest = relativeCoordinate(x: 0.99, y: 0.5)
-        safari.center.press(forDuration: 0.5, thenDragTo: dest)
+        SpringBoard.shared.sbApp.buttons[splitViewButtonID].forceTapElement()
+        SpringBoard.shared.sbApp.buttons["top-affordance-split-view-button"].forceTapElement()
+        SpringBoard.shared.sbApp.icons["Safari"].tap()
+
         sleep(2)
         hideSafariKeyboard()
     }

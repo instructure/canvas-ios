@@ -65,6 +65,16 @@ extension UIViewController {
         return buttonItem
     }
 
+    public func findParentViewController<T: UIViewController>() -> T? {
+        if let self = self as? T {
+            return self
+        } else if let parent {
+            return parent.findParentViewController()
+        } else {
+            return nil
+        }
+    }
+
     public func addNavigationButton(_ button: UIBarButtonItem, side: NavigationItemSide) {
         switch side {
         case .right:

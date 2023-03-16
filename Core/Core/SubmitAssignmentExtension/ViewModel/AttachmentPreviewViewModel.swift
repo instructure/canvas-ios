@@ -53,8 +53,7 @@ public class AttachmentPreviewViewModel: ObservableObject {
             }
             .replaceError(with: .noPreview)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.state, on: self)
-            .store(in: &subscriptions)
+            .assign(to: &$state)
     }
 }
 

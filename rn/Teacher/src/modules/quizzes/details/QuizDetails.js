@@ -236,7 +236,7 @@ export class QuizDetails extends Component<Props, any> {
 
   _editQuiz = () => {
     if (this.props.quiz) {
-      this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quiz.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+      this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quiz.id}/edit`, { modal: true, modalPresentationStyle: 'pagesheet' })
     }
   }
 

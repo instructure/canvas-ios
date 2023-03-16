@@ -76,7 +76,7 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
         router.route(
             to: "courses/\(courseID)/quizzes/\(quizID)/edit",
             from: viewController,
-            options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+            options: .modal(isDismissable: false, embedInNav: true)
         )
     }
 

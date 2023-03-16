@@ -51,8 +51,7 @@ public class ListSelectionViewModel: ObservableObject {
 
     private func bindInternalStateToPublishedProperty() {
         selectedCellIndexChanged
-            .assign(to: \.selectedIndex, on: self)
-            .store(in: &subscriptions)
+            .assign(to: &$selectedIndex)
     }
 
     private func bindSplitViewStateToInternalState() {

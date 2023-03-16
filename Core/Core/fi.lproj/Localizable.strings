@@ -68,6 +68,15 @@
 "%d missing" = "%d puuttuu";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Vastausta";
+
+/* No comment provided by engineer. */
+"%d students" = "%d opiskelijaa";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Lukematon";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* No comment provided by engineer. */
@@ -89,10 +98,19 @@
 "a teacher" = "opettaja";
 
 /* No comment provided by engineer. */
+"A title is required" = "Otsikko on pakollinen";
+
+/* No comment provided by engineer. */
 "Accept" = "Hyväksy";
 
 /* No comment provided by engineer. */
+"Acceptable Use Policy" = "Hyväksyttävää käyttöä koskeva käytäntö";
+
+/* No comment provided by engineer. */
 "Access" = "Pääsy";
+
+/* No comment provided by engineer. */
+"Access Code" = "Pääsykoodi";
 
 /* No comment provided by engineer. */
 "Access Code:" = "Käyttökoodi:";
@@ -188,10 +206,16 @@
 "Allow liking" = "Salli tykkäys";
 
 /* No comment provided by engineer. */
+"Allow Multiple Attempts" = "Salli useita yrityksiä";
+
+/* No comment provided by engineer. */
 "Allow threaded replies" = "Salli ketjutetut vastaukset";
 
 /* No comment provided by engineer. */
 "Allow users to comment" = "Salli käyttäjien kommentoida";
+
+/* No comment provided by engineer. */
+"Allowed Attempts" = "Sallitut yritykset";
 
 /* No comment provided by engineer. */
 "Allowed Attempts:" = "Sallittuja yrityksiä:";
@@ -279,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Grade Below %d" = "Tehtävän arvosana alla %d";
+
+/* No comment provided by engineer. */
+"Assignment Group" = "Tehtäväryhmä";
 
 /* No comment provided by engineer. */
 "Assignment Group:" = "Tehtäväryhmä:";
@@ -548,6 +575,12 @@
 "Conversation Message" = "Keskustelun viesti";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
+
+/* No comment provided by engineer. */
 "Conversations" = "Viestit";
 
 /* No comment provided by engineer. */
@@ -638,6 +671,21 @@
 "Cyan" = "Syaani";
 
 /* No comment provided by engineer. */
+"d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
 "Daily" = "Päivittäin";
 
 /* No comment provided by engineer. */
@@ -660,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "Date" = "Päivämäärä";
+
+/* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
 "Decline" = "Hylkää";
@@ -818,10 +869,16 @@
 "Edit Page" = "Muokkaa sivua";
 
 /* No comment provided by engineer. */
+"Edit Quiz Details" = "Muokkaa tietovisan tietoja";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Muokkaa vastaanottajia";
 
 /* No comment provided by engineer. */
 "Edit Syllabus" = "Muokkaa opinto-ohjelmaa";
+
+/* No comment provided by engineer. */
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Olet joko uusi käyttäjä tai hyväksyttävää käyttöä koskeva käytäntö on muuttunut sen jälkeen, kun viimeksi hyväksyit sen. Hyväksy hyväksyttävää käyttöä koskeva käytäntö ennen kuin jatkat.";
 
 /* No comment provided by engineer. */
 "Email address" = "Sähköpostiosoite";
@@ -837,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Päätä toimi käyttäjänä";
+
+/* No comment provided by engineer. */
+"Enter code" = "Anna koodi";
 
 /* No comment provided by engineer. */
 "Error" = "Virhe";
@@ -944,7 +1004,13 @@
 "Filter messages by type" = "Suodata viestit tyypin perusteella";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Lopullinen arvosana: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
 "Find a code to scan" = "Etsi skannattava koodi";
@@ -983,6 +1049,15 @@
 "Future Enrollments" = "Tulevat ilmoittautumiset";
 
 /* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
 "Go to today" = "Siirry tähän päivään";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1086,9 @@
 
 /* No comment provided by engineer. */
 "Graded Quiz" = "Arvioitu testi";
+
+/* No comment provided by engineer. */
+"Graded Survey" = "Arvioitu kysely";
 
 /* No comment provided by engineer. */
 "Graded Surveys" = "Arvostellut kyselyt";
@@ -1055,6 +1133,9 @@
 "Hide content for %@" = "Piilota sisältö kohteesta  %@";
 
 /* No comment provided by engineer. */
+"hide_%d_missing_items" = "hide_%d_missing_items";
+
+/* No comment provided by engineer. */
 "High: %@" = "Korkea: %@";
 
 /* No comment provided by engineer. */
@@ -1068,6 +1149,9 @@
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Miten löydän kouluni";
+
+/* No comment provided by engineer. */
+"I agree to the Acceptable Use Policy." = "Sinun täytyy hyväksyä hyväksyttävää käyttöä koskeva käytäntö";
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "En saa asioita tehtyä, ennen kuin kuulen sinusta.";
@@ -1113,6 +1197,9 @@
 
 /* No comment provided by engineer. */
 "Incompatible File Type" = "Yhteensopimaton tiedostotyyppi";
+
+/* No comment provided by engineer. */
+"incompatible_files_for_assignment" = "incompatible_files_for_assignment";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Keskeneräinen";
@@ -1196,6 +1283,9 @@
 "Late Grading" = "Myöhäinen arvosanojen anto";
 
 /* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
 "Latest" = "Viimeisin";
 
 /* No comment provided by engineer. */
@@ -1206,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Lakitiedot";
+
+/* No comment provided by engineer. */
+"Length in minutes" = "Pituus minuuteissa";
 
 /* No comment provided by engineer. */
 "Letter Grade" = "Kirjainarvosana";
@@ -1266,6 +1359,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Etsi viivakoodi";
+
+/* No comment provided by engineer. */
+"Lock Questions After Answering" = "Lukitse kysymykset vastaamisen jälkeen";
 
 /* No comment provided by engineer. */
 "Lock Questions After Answering:" = "Lukitse kysymykset vastaamisen jälkeen:";
@@ -1419,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "New Page" = "Uusi sivu";
+
+/* No comment provided by engineer. */
+"New Quiz" = "Uusi testi";
 
 /* No comment provided by engineer. */
 "New Quizzes" = "Uudet testit";
@@ -1631,6 +1730,9 @@
 "out of" = "/";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "page" = "sivu";
 
 /* No comment provided by engineer. */
@@ -1700,10 +1802,16 @@
 "Please wait, this might take a minute." = "Odota, tämä voi kestää hetken.";
 
 /* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
 "Points" = "Pisteet";
 
 /* No comment provided by engineer. */
 "Post at" = "Lähetä";
+
+/* No comment provided by engineer. */
+"Practice Quiz" = "Harjoittelutesti";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Harjoitustestit";
@@ -1773,6 +1881,12 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Tietovisan tiedot";
+
+/* No comment provided by engineer. */
+"Quiz Score to Keep" = "Säilytettävä testin pistemäärä";
+
+/* No comment provided by engineer. */
+"Quiz Type" = "Testin tyyppi";
 
 /* No comment provided by engineer. */
 "Quiz Type:" = "Tietovisan yppi:";
@@ -1869,6 +1983,9 @@
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Pyyntö epäonnistui!";
+
+/* No comment provided by engineer. */
+"Require an Access Code" = "Vaadi pääsykoodia";
 
 /* No comment provided by engineer. */
 "Resources" = "Resurssit";
@@ -2015,6 +2132,15 @@
 "Show more options" = "Näytä lisäasetukset";
 
 /* No comment provided by engineer. */
+"Show One Question at a Time" = "Näytä yksi kysymys kerrallaan";
+
+/* No comment provided by engineer. */
+"show_%d_missing_items" = "show_%d_missing_items";
+
+/* No comment provided by engineer. */
+"Shuffle Answers" = "Sekoita vastausvaihtoehdot";
+
+/* No comment provided by engineer. */
 "Shuffle Answers:" = "Sekoita vastausvaihtoehdot:";
 
 /* No comment provided by engineer. */
@@ -2115,6 +2241,9 @@
 
 /* No comment provided by engineer. */
 "Submission Uploaded" = "Tehtäväpalautus ladattu";
+
+/* No comment provided by engineer. */
+"submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
 "Submissions" = "Lähetykset";
@@ -2291,6 +2420,9 @@
 "There was an unexpected error. Please try again." = "Ilmeni odottamaton virhe. Yritä uudelleen.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Tämän tehtävän määräpäivä %@";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2454,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Kulunut aika";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Aikaraja";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "Aikaraja:";
@@ -2361,6 +2496,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Ungraded Survey" = "Arvioimaton kysely";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Tuntematon virhe";
@@ -2445,6 +2583,9 @@
 
 /* No comment provided by engineer. */
 "Use this code to pair with me in Canvas Parent: %@" = "Muodosta laitepari kanssani Canvas Parentissa. %@";
+
+/* No comment provided by engineer. */
+"use_file_extension" = "use_file_extension";
 
 /* No comment provided by engineer. */
 "User ID" = "Käyttäjätunnus";
@@ -2559,6 +2700,9 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Kamperan käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
+
+/* No comment provided by engineer. */
+"You must enter an access code" = "Sinun täytyy syöttää pääsykoodi";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Lopetat toimimasta käyttäjänä %@ ja palaat tilillesi.";

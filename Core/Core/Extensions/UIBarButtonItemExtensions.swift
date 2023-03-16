@@ -18,11 +18,24 @@
 
 import UIKit
 
-extension UIBarButtonItem {
+public extension UIBarButtonItem {
 
-    public static func updateFontAppearance() {
+    static func updateFontAppearance() {
         let attributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17)]
         let appearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
         appearance.setTitleTextAttributes(attributes, for: .normal)
+    }
+
+    static func back(target: Any, action: Selector) -> UIBarButtonItem {
+        let config = UIImage.SymbolConfiguration(weight: .semibold)
+        let backImage = UIImage(systemName: "chevron.backward", withConfiguration: config)
+        let barButton = UIBarButtonItem(image: backImage,
+                                        landscapeImagePhone: backImage,
+                                        style: .plain,
+                                        target: target,
+                                        action: action)
+        barButton.imageInsets = .init(top: 0, left: -7.5, bottom: 0, right: 0)
+        barButton.landscapeImagePhoneInsets = .init(top: 0, left: -8, bottom: 0, right: 0)
+        return barButton
     }
 }
