@@ -92,7 +92,7 @@ public struct QuizSubmissionListView: View {
         .padding(.leading, 16)
         .padding(.trailing, 19)
         .background(Color.backgroundLightest)
-        .accessibilityLabel(Text("Filter messages by course", bundle: .core))
+        .accessibilityLabel(Text("Filter submissions", bundle: .core))
         .accessibilityHint(Text(model.filter.localizedName))
     }
 
