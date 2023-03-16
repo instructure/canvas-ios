@@ -22,6 +22,16 @@ import TestsFoundation
 class LoginE2ETests: CoreUITestCase {
     override var user: UITestUser? { nil }
 
+    override func setUp() {
+        // If a previous test already logged in we won't see the Find my school
+        // button so we delete the app to reset the last institute's domain
+        XCTContext.runActivity(named: "Uninstalling app") { _ in
+            app.uninstall()
+        }
+
+        super.setUp()
+    }
+
     func testFindSchool() {
         XCTAssertEqual(LoginStart.findSchoolButton.label(), "Find my school")
         LoginStart.findSchoolButton.tap()
