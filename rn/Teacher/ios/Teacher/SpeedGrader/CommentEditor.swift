@@ -37,16 +37,36 @@ struct CommentEditor: View {
                 action()
                 controller.view.endEditing(true)
             }, label: {
-                Image.miniArrowUpSolid.foregroundColor(Color(Brand.shared.buttonPrimaryText))
+                Image
+                    .miniArrowUpSolid
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .offset(y: -1)
+                    .foregroundColor(Color(Brand.shared.buttonPrimaryText))
                     .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
+                    .padding(.bottom, 1.5)
             })
                 .opacity(text.isEmpty ? 0.5 : 1)
                 .disabled(text.isEmpty)
                 .accessibility(label: Text("Send"))
                 .identifier("SubmissionComments.addCommentButton")
         }
-            .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 4))
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.backgroundLightest))
-            .background(RoundedRectangle(cornerRadius: 16).stroke(Color.borderMedium))
+            .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 6))
+            .background(RoundedRectangle(cornerRadius: 22).fill(Color.backgroundLightest))
+            .background(RoundedRectangle(cornerRadius: 22).stroke(Color.borderMedium))
     }
 }
+
+#if DEBUG
+
+struct CommentEditor_Previews: PreviewProvider {
+    static var previews: some View {
+        CommentEditor(text: .constant("Sample Text"),
+                      action: {},
+                      containerHeight: 30)
+        .frame(width: 200)
+        .previewLayout(.sizeThatFits)
+    }
+}
+
+#endif
