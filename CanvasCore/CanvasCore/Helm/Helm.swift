@@ -326,6 +326,7 @@ open class HelmManager: NSObject {
             if let modalPresentationStyle = options[PropKeys.modalPresentationStyle] as? String {
                 switch modalPresentationStyle {
                 case "fullscreen": viewController.modalPresentationStyle = .fullScreen
+                case "pagesheet": viewController.modalPresentationStyle = .pageSheet
                 case "formsheet": viewController.modalPresentationStyle = .formSheet
                 case "currentContext": viewController.modalPresentationStyle = .currentContext
                 case "overCurrentContext": viewController.modalPresentationStyle = .overCurrentContext

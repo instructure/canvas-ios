@@ -296,7 +296,7 @@ extension FileListViewController: FilePickerDelegate {
 
     @objc func edit() {
         guard let folderID = folder.first?.id else { return }
-        env.router.route(to: "/folders/\(folderID)/edit", from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+        env.router.route(to: "/folders/\(folderID)/edit", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     var canAddItem: Bool {

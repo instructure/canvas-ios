@@ -145,7 +145,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         env.router.route(
             to: "\(context.pathComponent)/discussion_topics/new",
             from: self,
-            options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+            options: .modal(isDismissable: false, embedInNav: true)
         )
     }
 

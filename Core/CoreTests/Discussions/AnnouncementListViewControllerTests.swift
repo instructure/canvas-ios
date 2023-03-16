@@ -130,7 +130,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
 
         _ = controller.addButton.target?.perform(controller.addButton.action)
-        XCTAssert(router.lastRoutedTo("groups/1/announcements/new", withOptions: .modal(.formSheet, isDismissable: false, embedInNav: true)))
+        XCTAssert(router.lastRoutedTo("groups/1/announcements/new", withOptions: .modal(isDismissable: false, embedInNav: true)))
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
         let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AnnouncementListCell

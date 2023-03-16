@@ -130,7 +130,7 @@ class FileListViewControllerTests: CoreTestCase {
 
         XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.editButton), true)
         _ = controller.editButton.target?.perform(controller.editButton.action)
-        XCTAssert(router.lastRoutedTo("/folders/2/edit", withOptions: .modal(.formSheet, isDismissable: false, embedInNav: true)))
+        XCTAssert(router.lastRoutedTo("/folders/2/edit", withOptions: .modal(isDismissable: false, embedInNav: true)))
 
         controller.tableView.selectRow(at: index, animated: false, scrollPosition: .none)
         XCTAssertNoThrow(controller.viewWillDisappear(false))

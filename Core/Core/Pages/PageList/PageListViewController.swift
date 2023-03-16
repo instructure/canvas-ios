@@ -131,7 +131,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     }
 
     @objc func createPage() {
-        env.router.route(to: "\(context.pathComponent)/pages/new", from: self, options: .modal(embedInNav: true))
+        env.router.route(to: "\(context.pathComponent)/pages/new", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     @objc func refresh() {
