@@ -26,13 +26,14 @@ class QuizSubmissionListViewModel: ObservableObject {
     @Published public private(set) var filter: QuizSubmissionListFilter
     @Published public var isShowingFilterSelector = false
     @Published public var subTitle: String = ""
+    @Published public var showError: Bool = false
+    @Published public private(set) var errorText: String?
     public let title = NSLocalizedString("Submissions", comment: "")
     public let filters = QuizSubmissionListFilter.allCases
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let messageUsersDidTap = PassthroughSubject<WeakViewController, Never>()
-    public let submissionDidTap = PassthroughSubject<QuizSubmissionListItem, Never>()
     public let filterDidChange: CurrentValueSubject<QuizSubmissionListFilter, Never>
 
     // MARK: - Private
@@ -75,6 +76,11 @@ class QuizSubmissionListViewModel: ObservableObject {
             .map { interactor.setFilter($0) }
             .sink()
             .store(in: &subscriptions)
+    }
+
+    public func submissionDidTap() {
+        showError = true
+        errorText = NSLocalizedString("Practice quizzes & surveys do not have detail views.", comment: "")
     }
 
     private func subscribeToMessageUsersTapEvents(router: Router) {

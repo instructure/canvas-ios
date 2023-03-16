@@ -26,7 +26,6 @@ public final class QuizSubmissionUser: NSManagedObject, WriteableModel {
     @NSManaged public var name: String
     @NSManaged public var sortableName: String
     @NSManaged public var avatarURL: URL?
-    //@NSManaged public var email: String?
     @NSManaged public var courseID: String?
     @NSManaged public var pronouns: String?
 

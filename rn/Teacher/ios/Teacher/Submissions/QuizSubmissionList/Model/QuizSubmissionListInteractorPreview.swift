@@ -39,7 +39,7 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
             promise(.success(()))
         }
     }
-    
+
     public func refresh() -> Future<Void, Never> {
         Future<Void, Never> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
