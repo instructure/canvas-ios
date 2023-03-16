@@ -41,6 +41,7 @@ struct CommentEditor: View {
                     .miniArrowUpSolid
                     .resizable()
                     .frame(width: 30, height: 30)
+                    .offset(y: -1)
                     .foregroundColor(Color(Brand.shared.buttonPrimaryText))
                     .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
                     .padding(.bottom, 1.5)
