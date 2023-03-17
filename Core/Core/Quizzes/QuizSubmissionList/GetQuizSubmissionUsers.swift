@@ -28,7 +28,7 @@ public class GetQuizSubmissionUsers: CollectionUseCase {
         self.courseID = courseID
     }
 
-    public var cacheKey: String? { "quizsubmissionlist-\(courseID)" }
+    public var cacheKey: String? { "quizsubmission-users-\(courseID)" }
     public var request: GetContextUsersRequest {
         GetContextUsersRequest(context: .course(courseID), enrollment_type: .student, search_term: nil)
     }

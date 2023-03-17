@@ -41,8 +41,6 @@ public final class QuizSubmissionUser: NSManagedObject, WriteableModel {
         dbEntity.sortableName = apiEntity.sortable_name
         dbEntity.avatarURL = apiEntity.avatar_url?.rawValue
         dbEntity.pronouns = apiEntity.pronouns
-
-       // dbEntity.courseId = apiEntity.id.value
         return dbEntity
     }
 }
