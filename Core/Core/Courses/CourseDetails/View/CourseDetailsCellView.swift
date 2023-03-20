@@ -19,9 +19,9 @@
 import SwiftUI
 
 public struct CourseDetailsCellView: View {
-
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @ObservedObject private var viewModel: CourseDetailsCellViewModel
 
@@ -30,13 +30,11 @@ public struct CourseDetailsCellView: View {
     }
 
     public var body: some View {
-        Button(action: {
+        Button {
             viewModel.selected(router: env.router, viewController: controller)
-        }, label: {
+        } label: {
             HStack(spacing: 12) {
-                Image(uiImage: viewModel.iconImage)
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(Color(viewModel.courseColor))
+                leadingIcon
                 VStack(alignment: .leading) {
                     Text(viewModel.label)
                         .font(.semibold16)
@@ -55,13 +53,26 @@ public struct CourseDetailsCellView: View {
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
-            .frame(height: 54)
-        })
+            .frame(minHeight: 54)
+        }
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: viewModel.isHighlighted))
         .accessibility(identifier: viewModel.a11yIdentifier)
         .accessibility(addTraits: viewModel.isHighlighted ? .isSelected : [])
         .alert(isPresented: $viewModel.showGenericError) {
             Alert(title: Text("Something went wrong", bundle: .core), message: Text("There was an error while communicating with the server", bundle: .core))
+        }
+    }
+
+    @ViewBuilder
+    private var leadingIcon: some View {
+        // We hide the leading icon on the last two dynamic sizes.
+        // At this scale the text hardly fits into the iPhone SE width
+        // so we free up some space by not displaying the icon.
+        if dynamicTypeSize != .accessibility4,
+            dynamicTypeSize != .accessibility5 {
+            Image(uiImage: viewModel.iconImage)
+                .frame(width: 20, height: 20)
+                .foregroundColor(Color(viewModel.courseColor))
         }
     }
 
@@ -115,14 +126,18 @@ struct CourseDetailsCellView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        CourseDetailsCellView(viewModel: StudentViewCellViewModel(course: Course.save(.make(), in: context)))
-            .previewLayout(.sizeThatFits)
-        CourseDetailsCellView(viewModel: defaultButtonViewModel)
-            .previewLayout(.sizeThatFits)
-        CourseDetailsCellView(viewModel: attendanceButtonViewModel)
-            .previewLayout(.sizeThatFits)
-        CourseDetailsCellView(viewModel: loadingButtonViewModel)
-            .previewLayout(.sizeThatFits)
+        VStack(spacing: 0) {
+            Divider()
+            CourseDetailsCellView(viewModel: StudentViewCellViewModel(course: Course.save(.make(), in: context)))
+            Divider()
+            CourseDetailsCellView(viewModel: defaultButtonViewModel)
+            Divider()
+            CourseDetailsCellView(viewModel: attendanceButtonViewModel)
+            Divider()
+            CourseDetailsCellView(viewModel: loadingButtonViewModel)
+            Divider()
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
 
