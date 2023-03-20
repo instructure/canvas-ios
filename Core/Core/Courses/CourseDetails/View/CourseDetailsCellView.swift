@@ -21,7 +21,7 @@ import SwiftUI
 public struct CourseDetailsCellView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     @ObservedObject private var viewModel: CourseDetailsCellViewModel
 
@@ -34,7 +34,11 @@ public struct CourseDetailsCellView: View {
             viewModel.selected(router: env.router, viewController: controller)
         } label: {
             HStack(spacing: 12) {
-                leadingIcon
+                Image(uiImage: viewModel.iconImage)
+                    .resizable()
+                    .frame(width: uiScale.iconScale * 20,
+                           height: uiScale.iconScale * 20)
+                    .foregroundColor(Color(viewModel.courseColor))
                 VStack(alignment: .leading) {
                     Text(viewModel.label)
                         .font(.semibold16)
@@ -64,19 +68,6 @@ public struct CourseDetailsCellView: View {
     }
 
     @ViewBuilder
-    private var leadingIcon: some View {
-        // We hide the leading icon on the last two dynamic sizes.
-        // At this scale the text hardly fits into the iPhone SE width
-        // so we free up some space by not displaying the icon.
-        if dynamicTypeSize != .accessibility4,
-            dynamicTypeSize != .accessibility5 {
-            Image(uiImage: viewModel.iconImage)
-                .frame(width: 20, height: 20)
-                .foregroundColor(Color(viewModel.courseColor))
-        }
-    }
-
-    @ViewBuilder
     private var accessoryIcon: some View {
         switch viewModel.accessoryIconType {
         case .disclosure:
@@ -85,14 +76,15 @@ public struct CourseDetailsCellView: View {
             Image.externalLinkLine
                 .resizable()
                 .scaledToFit()
-                .frame(width: 20, height: 20)
+                .frame(width: uiScale.iconScale * 20,
+                       height: uiScale.iconScale * 20)
                 .foregroundColor(.textDarkest)
         case .loading:
             ProgressView()
                 .progressViewStyle(
                     .indeterminateCircle(
-                        size: 20,
-                        lineWidth: 2
+                        size: uiScale.iconScale * 20,
+                        lineWidth: uiScale.iconScale * 2
                     )
                 )
         }
