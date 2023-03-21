@@ -44,3 +44,15 @@ public final class QuizSubmissionUser: NSManagedObject, WriteableModel {
         return dbEntity
     }
 }
+
+#if DEBUG
+
+public extension QuizSubmissionUser {
+    static func make(id: String = "0", in context: NSManagedObjectContext)
+    -> QuizSubmissionUser {
+        let apiUser = APIUser.make(id: ID(id))
+        return QuizSubmissionUser.save(apiUser, in: context)
+    }
+}
+
+#endif
