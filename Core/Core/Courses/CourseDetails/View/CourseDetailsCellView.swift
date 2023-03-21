@@ -43,14 +43,17 @@ public struct CourseDetailsCellView: View {
                     Text(viewModel.label)
                         .font(.semibold16)
                         .foregroundColor(.textDarkest)
+                        .lineLimit(1)
 
                     if let subTitle = viewModel.subtitle {
                         Text(subTitle)
                             .font(.regular14)
                             .foregroundColor(.textDark)
+                            .lineLimit(1)
                     }
                 }
-                Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
+
                 accessoryIcon
             }
             .padding(.vertical, 13)
