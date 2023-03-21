@@ -259,6 +259,7 @@ extension ModuleListViewController: UITableViewDelegate {
             let viewController = MasteryPathViewController.create(masteryPath: masteryPath)
             viewController.delegate = self
             env.router.show(viewController, from: self)
+            return
         }
         guard let htmlURL = item.htmlURL else {
             tableView.deselectRow(at: indexPath, animated: true)

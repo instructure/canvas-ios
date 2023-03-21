@@ -49,6 +49,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
 
     var item: ModuleItem? { store.first }
     var observations: [NSKeyValueObservation]?
+    private var isMarkingModule = false
 
     public static func create(courseID: String, moduleID: String, itemID: String) -> Self {
         let controller = loadFromStoryboard()
@@ -73,7 +74,10 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
     }
 
     func update() {
-        guard store.requested, !store.pending else { return }
+        guard store.requested, !store.pending, !isMarkingModule else {
+            isMarkingModule = false
+            return
+        }
         let itemViewController = self.itemViewController()
         let showLocked = env.app != .teacher && item?.visibleWhenLocked != true && item?.lockedForUser == true
         lockedView.isHidden = !showLocked
@@ -178,14 +182,16 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
                 self?.showError(error)
                 return
             }
+            self?.isMarkingModule = true
             NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
         } }
     }
 
     func markAsViewed() {
         let request = PostMarkModuleItemRead(courseID: courseID, moduleID: moduleID, moduleItemID: itemID)
-        env.api.makeRequest(request) { _, _, error in performUIUpdate {
+        env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
             if error == nil {
+                self?.isMarkingModule = true
                 NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
             }
         } }
