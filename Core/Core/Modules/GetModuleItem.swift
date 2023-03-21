@@ -45,6 +45,8 @@ public class GetModuleItem: APIUseCase {
 
     public func write(response: APIModuleItem?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        ModuleItem.save(response, forCourse: courseID, in: client)
+        // The API doesn't return the mastery path so we make sure not to
+        // delete the already existing mastery path item from the module item.
+        ModuleItem.save(response, forCourse: courseID, updateMasteryPath: false, in: client)
     }
 }
