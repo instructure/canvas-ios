@@ -7,19 +7,25 @@
 
 ## Getting Started on Development
 
-
 1. Clone the repository
 
 ```sh
 git clone git@github.com:instructure/canvas-ios.git
 ```
-2. Install project dependencies defined in the `Brewfile`
+
+2. Install Homebrew
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+3. CD to the project root folder to install project dependencies defined in the `Brewfile`
 
 ```sh
 make provision
 ```
 
-3. Generate project files and build yarn dependencies
+4. CD to the project root folder to generate project files and build yarn dependencies
 ```sh
 make sync
 ```
