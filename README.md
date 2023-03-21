@@ -30,6 +30,16 @@ make provision
 make sync
 ```
 
+### Troubleshooting
+
+#### make sync error
+If you run into the error *xcrun: error: SDK "iphoneos" cannot be located`.*
+
+Set Xcode Command Line Tools: 
+```sh
+ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+```
+
 ### Secrets
 
 Any static keys, tokens, passwords, or other secrets that need to be available in the app bundle should be added as a case to `Secret.swift`.
