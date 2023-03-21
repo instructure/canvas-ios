@@ -7,29 +7,22 @@
 
 ## Getting Started on Development
 
-You will need the following tools installed beforehand:
 
-- [Cocoapods](https://cocoapods.org)
-- [SwiftLint](https://github.com/realm/SwiftLint#installation)
-- [node](https://nodejs.org/en/download/)
-- [yarn](https://yarnpkg.com/en/docs/install#mac-stable)
-- [react-native-cli](https://www.npmjs.com/package/react-native-cli)
-
-```sh
-brew install swiftlint yarn
-gem install cocoapods
-yarn global add react-native-cli --prefix /usr/local
-```
-
-Then you can setup the repo:
+1. Clone the repository
 
 ```sh
 git clone git@github.com:instructure/canvas-ios.git
-cd canvas-ios
-./setup.sh
+```
+2. Install project dependencies defined in the `Brewfile`
+
+```sh
+make provision
 ```
 
-The `setup.sh` script should take care of installing additional dependencies from Cocoapods and yarn.
+3. Generate project files and build yarn dependencies
+```sh
+make sync
+```
 
 ### Secrets
 
@@ -43,9 +36,6 @@ yarn build-secrets "studentPSPDFKitLicense=token1" "teacherPSPDFKitLicense=token
 
 You will need to purchase PSPDFKitLicenses to distribute custom apps. Instructure's licenses are only used for official builds and are not included in the repository.
 
-### Firebase Analytics
-
-If you wish to use Firebase Analytics in custom apps, you will need to populate the `GoogleService-Info.plist` for each app.
 
 ### Debugging Redux
 

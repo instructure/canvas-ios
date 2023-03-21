@@ -39,6 +39,7 @@
         "IPadAssignmentsTest\/testAssignments()",
         "InboxTests\/testCanMessageAttachment()",
         "SpringBoardTests\/testMultitaskingSetup()",
+        "UserFilesTests\/testAddFileAudio()",
         "UserFilesTests\/testAddFileFiles()"
       ],
       "target" : {

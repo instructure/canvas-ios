@@ -68,11 +68,11 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var settingsButton: some View {
-        Button(action: {
+        Button {
             if let url = viewModel.settingsRoute {
                 env.router.route(to: url, from: controller, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             }
-        }) {
+        } label: {
             Image.settingsLine.foregroundColor(.textLightest)
         }
         .accessibility(label: Text("Edit course settings", bundle: .core))
@@ -80,12 +80,12 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var homeView: some View {
-        Button(action: {
+        Button {
             if let url = viewModel.homeRoute {
                 selectionViewModel.cellTapped(at: 0)
                 env.router.route(to: url, from: controller, options: .detail)
             }
-        }) {
+        } label: {
             HStack(spacing: 13) {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(viewModel.homeLabel ?? "")
@@ -100,7 +100,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 Spacer()
                 InstDisclosureIndicator()
             }
-            .frame(height: 76)
+            .frame(minHeight: 76)
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())

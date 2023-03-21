@@ -20,7 +20,6 @@ import XCTest
 @testable import Core
 
 open class K5UITestCase: CoreUITestCase {
-    let env = AppEnvironment()
     override open var experimentalFeatures: [ExperimentalFeature] { return [ExperimentalFeature.K5Dashboard]}
 
     open func resetAppStateForK5() {
@@ -33,17 +32,8 @@ open class K5UITestCase: CoreUITestCase {
         super.setUp()
     }
 
-    open override var homeScreen: Element {
-        return TabBar.dashboardTab
-    }
-
     open override var user: UITestUser? {
-        return .readStudentK5
-    }
-
-    open override func tearDown() {
-        env.userDefaults?.isElementaryViewEnabled = false
-        super.tearDown()
+        .readStudentK5
     }
 
     open func setUpK5() {
