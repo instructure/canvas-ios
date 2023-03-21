@@ -303,8 +303,13 @@ extension LoginWebViewController: WKNavigationDelegate {
         progressView.isHidden = false
     }
 
+    /** A navigation inside the main frame failed. */
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        // The initial request failed to load
+        // In case we cancel a navigation we receive a "Frame load interrupted" error, we can ignore that.
+        if error.isFrameLoadInterrupted {
+            return
+        }
+
         let nsError = error as NSError
         let reason: FailureReason = nsError.code == NSURLErrorTimedOut ? .timeout : .invalidDomain
         showFailedPanda(reason: reason)
