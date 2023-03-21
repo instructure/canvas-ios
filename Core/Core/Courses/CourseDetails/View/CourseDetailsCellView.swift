@@ -19,9 +19,9 @@
 import SwiftUI
 
 public struct CourseDetailsCellView: View {
-
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     @ObservedObject private var viewModel: CourseDetailsCellViewModel
 
@@ -30,33 +30,38 @@ public struct CourseDetailsCellView: View {
     }
 
     public var body: some View {
-        Button(action: {
+        Button {
             viewModel.selected(router: env.router, viewController: controller)
-        }, label: {
+        } label: {
             HStack(spacing: 12) {
                 Image(uiImage: viewModel.iconImage)
-                    .frame(width: 20, height: 20)
+                    .resizable()
+                    .frame(width: uiScale.iconScale * 20,
+                           height: uiScale.iconScale * 20)
                     .foregroundColor(Color(viewModel.courseColor))
                 VStack(alignment: .leading) {
                     Text(viewModel.label)
                         .font(.semibold16)
                         .foregroundColor(.textDarkest)
+                        .lineLimit(1)
 
                     if let subTitle = viewModel.subtitle {
                         Text(subTitle)
                             .font(.regular14)
                             .foregroundColor(.textDark)
+                            .lineLimit(1)
                     }
                 }
-                Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
+
                 accessoryIcon
             }
             .padding(.vertical, 13)
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
-            .frame(height: 54)
-        })
+            .frame(minHeight: 54)
+        }
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: viewModel.isHighlighted))
         .accessibility(identifier: viewModel.a11yIdentifier)
         .accessibility(addTraits: viewModel.isHighlighted ? .isSelected : [])
@@ -74,14 +79,15 @@ public struct CourseDetailsCellView: View {
             Image.externalLinkLine
                 .resizable()
                 .scaledToFit()
-                .frame(width: 20, height: 20)
+                .frame(width: uiScale.iconScale * 20,
+                       height: uiScale.iconScale * 20)
                 .foregroundColor(.textDarkest)
         case .loading:
             ProgressView()
                 .progressViewStyle(
                     .indeterminateCircle(
-                        size: 20,
-                        lineWidth: 2
+                        size: uiScale.iconScale * 20,
+                        lineWidth: uiScale.iconScale * 2
                     )
                 )
         }
@@ -115,14 +121,18 @@ struct CourseDetailsCellView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        CourseDetailsCellView(viewModel: StudentViewCellViewModel(course: Course.save(.make(), in: context)))
-            .previewLayout(.sizeThatFits)
-        CourseDetailsCellView(viewModel: defaultButtonViewModel)
-            .previewLayout(.sizeThatFits)
-        CourseDetailsCellView(viewModel: attendanceButtonViewModel)
-            .previewLayout(.sizeThatFits)
-        CourseDetailsCellView(viewModel: loadingButtonViewModel)
-            .previewLayout(.sizeThatFits)
+        VStack(spacing: 0) {
+            Divider()
+            CourseDetailsCellView(viewModel: StudentViewCellViewModel(course: Course.save(.make(), in: context)))
+            Divider()
+            CourseDetailsCellView(viewModel: defaultButtonViewModel)
+            Divider()
+            CourseDetailsCellView(viewModel: attendanceButtonViewModel)
+            Divider()
+            CourseDetailsCellView(viewModel: loadingButtonViewModel)
+            Divider()
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
 
