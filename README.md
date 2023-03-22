@@ -40,6 +40,17 @@ Set Xcode Command Line Tools:
  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 ```
 
+#### NPM error
+If you have an NPM related error try installing watchman directly. 
+```sh
+brew install watchman
+```
+
+and then run 
+```sh
+sudo launchctl limit maxfiles 16384 16384 && ulimit -n 16384
+```
+
 ### Secrets
 
 Any static keys, tokens, passwords, or other secrets that need to be available in the app bundle should be added as a case to `Secret.swift`.
