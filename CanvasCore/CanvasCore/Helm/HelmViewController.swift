@@ -231,11 +231,10 @@ public final class HelmViewController: ScreenViewTrackableViewController, HelmSc
         if !screenConfig.config.isEmpty {
             switch screenConfig[PropKeys.navBarStyle] as? String {
             case "context":
-                if #available(iOS 14, *) {
-                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: screenConfig.navBarTransparent)
+                if #available(iOS 16, *) {
+                    navigationController?.navigationBar.useContextColor(nil, isTranslucent: screenConfig.navBarTransparent)
                 } else {
-                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: false)
-                }
+                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: screenConfig.navBarTransparent)                }
             case "global":
                 navigationController?.navigationBar.useGlobalNavStyle()
             default:
