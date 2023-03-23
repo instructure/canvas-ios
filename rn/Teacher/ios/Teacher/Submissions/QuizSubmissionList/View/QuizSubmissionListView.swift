@@ -64,7 +64,7 @@ public struct QuizSubmissionListView: View {
             .navigationTitle(model.title, subtitle: model.subTitle)
             .navigationBarItems(trailing: messageUsersButton)
             .alert(isPresented: $model.showError) {
-                Alert(title: Text(model.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
+                Alert(title: Text("Practice quizzes & surveys do not have detail views."))
             }
     }
 

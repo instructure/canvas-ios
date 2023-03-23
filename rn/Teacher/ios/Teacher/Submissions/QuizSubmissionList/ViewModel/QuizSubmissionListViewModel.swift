@@ -27,7 +27,6 @@ class QuizSubmissionListViewModel: ObservableObject {
     @Published public var isShowingFilterSelector = false
     @Published public var subTitle: String = ""
     @Published public var showError: Bool = false
-    @Published public private(set) var errorText: String?
     public let title = NSLocalizedString("Submissions", comment: "")
     public let filters = QuizSubmissionListFilter.allCases
 
@@ -80,7 +79,6 @@ class QuizSubmissionListViewModel: ObservableObject {
 
     public func submissionDidTap() {
         showError = true
-        errorText = NSLocalizedString("Practice quizzes & surveys do not have detail views.", comment: "")
     }
 
     private func subscribeToMessageUsersTapEvents(router: Router) {

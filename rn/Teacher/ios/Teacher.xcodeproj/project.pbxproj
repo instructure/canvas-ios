@@ -131,6 +131,7 @@
 		D9624A5229B0E90800F5303F /* QuizSubmissionListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A5129B0E90800F5303F /* QuizSubmissionListFilter.swift */; };
 		D9624A6829B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A6729B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift */; };
 		D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A7D29C4AEF000F5303F /* QuizSubmissionListItemTests.swift */; };
+		D9B484FE29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B484FD29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift */; };
 		D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
@@ -604,6 +605,7 @@
 		D9624A5129B0E90800F5303F /* QuizSubmissionListFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListFilter.swift; sourceTree = "<group>"; };
 		D9624A6729B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemArrayFilter.swift; sourceTree = "<group>"; };
 		D9624A7D29C4AEF000F5303F /* QuizSubmissionListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemTests.swift; sourceTree = "<group>"; };
+		D9B484FD29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionViewModelTests.swift; sourceTree = "<group>"; };
 		D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsUITests.swift; sourceTree = "<group>"; };
@@ -1003,6 +1005,7 @@
 			children = (
 				D9624A7C29C4AED600F5303F /* Model */,
 				D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */,
+				D9B484FD29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift */,
 			);
 			path = QuizSubmissionList;
 			sourceTree = "<group>";
@@ -1898,6 +1901,7 @@
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
 				D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */,
 				EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */,
+				D9B484FE29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
