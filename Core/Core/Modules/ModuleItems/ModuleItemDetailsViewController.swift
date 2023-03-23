@@ -74,10 +74,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
     }
 
     func update() {
-        guard store.requested, !store.pending, !isMarkingModule else {
-            isMarkingModule = false
-            return
-        }
+        guard store.requested, !store.pending, !isMarkingModule else { return }
         let itemViewController = self.itemViewController()
         let showLocked = env.app != .teacher && item?.visibleWhenLocked != true && item?.lockedForUser == true
         lockedView.isHidden = !showLocked
