@@ -7,21 +7,48 @@
 
 ## Getting Started on Development
 
-
 1. Clone the repository
 
 ```sh
 git clone git@github.com:instructure/canvas-ios.git
 ```
-2. Install project dependencies defined in the `Brewfile`
+
+2. Install Homebrew
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+3. CD to the project root folder to install project dependencies defined in the `Brewfile`
 
 ```sh
 make provision
 ```
 
-3. Generate project files and build yarn dependencies
+4. CD to the project root folder to generate project files and build yarn dependencies
 ```sh
 make sync
+```
+
+### Troubleshooting
+
+#### make sync error
+If you run into the error *xcrun: error: SDK "iphoneos" cannot be located`.*
+
+Set Xcode Command Line Tools: 
+```sh
+ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+```
+
+#### NPM error
+If you have an NPM related error try installing watchman directly. 
+```sh
+brew install watchman
+```
+
+and then run 
+```sh
+sudo launchctl limit maxfiles 16384 16384 && ulimit -n 16384
 ```
 
 ### Secrets
