@@ -132,6 +132,7 @@
 		D9624A6829B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A6729B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift */; };
 		D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9624A7D29C4AEF000F5303F /* QuizSubmissionListItemTests.swift */; };
 		D9B484FE29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B484FD29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift */; };
+		D9B4850029CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B484FF29CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift */; };
 		D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
@@ -606,6 +607,7 @@
 		D9624A6729B8A05600F5303F /* QuizSubmissionListItemArrayFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemArrayFilter.swift; sourceTree = "<group>"; };
 		D9624A7D29C4AEF000F5303F /* QuizSubmissionListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemTests.swift; sourceTree = "<group>"; };
 		D9B484FD29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionViewModelTests.swift; sourceTree = "<group>"; };
+		D9B484FF29CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractorLiveTests.swift; sourceTree = "<group>"; };
 		D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsUITests.swift; sourceTree = "<group>"; };
@@ -1003,19 +1005,12 @@
 		D9624A7B29C4AECB00F5303F /* QuizSubmissionList */ = {
 			isa = PBXGroup;
 			children = (
-				D9624A7C29C4AED600F5303F /* Model */,
+				D9624A7D29C4AEF000F5303F /* QuizSubmissionListItemTests.swift */,
 				D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */,
 				D9B484FD29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift */,
+				D9B484FF29CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift */,
 			);
 			path = QuizSubmissionList;
-			sourceTree = "<group>";
-		};
-		D9624A7C29C4AED600F5303F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D9624A7D29C4AEF000F5303F /* QuizSubmissionListItemTests.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D9DE56C82550309600CF8B22 /* Syllabus */ = {
@@ -1898,6 +1893,7 @@
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */,
 				D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */,
+				D9B4850029CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
 				D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */,
 				EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */,

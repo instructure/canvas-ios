@@ -45,7 +45,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         self.courseStore = env.subscribe(GetCourse(courseID: courseID))
 
         StoreState
-            .combineLatest(usersStore.statePublisher, submissionsStore.statePublisher)
+            .combineLatest(usersStore.statePublisher, submissionsStore.statePublisher, quizStore.statePublisher)
             .subscribe(state)
             .store(in: &subscriptions)
 
@@ -62,7 +62,6 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
 
         quizStore
             .allObjects
-            .first()
             .map {
                 $0.first?.title ?? ""
             }
