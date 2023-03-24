@@ -65,6 +65,7 @@ class DSContextCardE2ETests: E2ETestCase {
         pullToRefresh()
         app.find(label: student.name).tap()
         ContextCard.userNameLabel.waitToExist(15)
+        ContextCard.submissionsTotalLabel.waitToExist()
         XCTAssertEqual(ContextCard.userNameLabel.label(), student.name)
         XCTAssertEqual(ContextCard.courseLabel.label(), course.name)
         XCTAssertEqual(ContextCard.sectionLabel.label(), "Section: \(course.name)")
@@ -79,7 +80,7 @@ class DSContextCardE2ETests: E2ETestCase {
         NavBar.backButton.tap()
 
         // Check the students context cards via SpeedGrader
-        CourseNavigation.assignments.rawElement.forceTapElement()
+        CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: assignment.id).tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()
         SubmissionsListPage.cell(userID: student.id).tap()

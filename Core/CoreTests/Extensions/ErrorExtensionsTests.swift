@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,27 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
+import XCTest
 
-public struct DisclosureIndicator: View {
-    public init() {}
+class ErrorExtensionsTests: XCTestCase {
 
-    public var body: some View {
-        Image(systemName: "chevron.right")
-            .flipsForRightToLeftLayoutDirection(true)
-            .foregroundColor(.borderMedium)
-    }
-}
-
-public struct InstDisclosureIndicator: View {
-    @ScaledMetric private var uiScale: CGFloat = 1
-
-    public var body: some View {
-        Image.arrowOpenRightSolid
-            .resizable()
-            .scaledToFit()
-            .frame(width: uiScale.iconScale * 16,
-                   height: uiScale.iconScale * 16)
-            .foregroundColor(.textDark)
+    func testFrameLoadInterruptedError() {
+        let error: Error = NSError(domain: "WebKitErrorDomain", code: 102)
+        XCTAssertTrue(error.isFrameLoadInterrupted)
     }
 }

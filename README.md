@@ -7,29 +7,49 @@
 
 ## Getting Started on Development
 
-You will need the following tools installed beforehand:
-
-- [Cocoapods](https://cocoapods.org)
-- [SwiftLint](https://github.com/realm/SwiftLint#installation)
-- [node](https://nodejs.org/en/download/)
-- [yarn](https://yarnpkg.com/en/docs/install#mac-stable)
-- [react-native-cli](https://www.npmjs.com/package/react-native-cli)
-
-```sh
-brew install swiftlint yarn
-gem install cocoapods
-yarn global add react-native-cli --prefix /usr/local
-```
-
-Then you can setup the repo:
+1. Clone the repository
 
 ```sh
 git clone git@github.com:instructure/canvas-ios.git
-cd canvas-ios
-./setup.sh
 ```
 
-The `setup.sh` script should take care of installing additional dependencies from Cocoapods and yarn.
+2. Install Homebrew
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+3. CD to the project root folder to install project dependencies defined in the `Brewfile`
+
+```sh
+make provision
+```
+
+4. CD to the project root folder to generate project files and build yarn dependencies
+```sh
+make sync
+```
+
+### Troubleshooting
+
+#### make sync error
+If you run into the error *xcrun: error: SDK "iphoneos" cannot be located`.*
+
+Set Xcode Command Line Tools: 
+```sh
+ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+```
+
+#### NPM error
+If you have an NPM related error try installing watchman directly. 
+```sh
+brew install watchman
+```
+
+and then run 
+```sh
+sudo launchctl limit maxfiles 16384 16384 && ulimit -n 16384
+```
 
 ### Secrets
 
@@ -43,9 +63,6 @@ yarn build-secrets "studentPSPDFKitLicense=token1" "teacherPSPDFKitLicense=token
 
 You will need to purchase PSPDFKitLicenses to distribute custom apps. Instructure's licenses are only used for official builds and are not included in the repository.
 
-### Firebase Analytics
-
-If you wish to use Firebase Analytics in custom apps, you will need to populate the `GoogleService-Info.plist` for each app.
 
 ### Debugging Redux
 

@@ -94,9 +94,6 @@ open class CoreUITestCase: XCTestCase {
     public static var needsLaunch = true
     public var doLoginAfterSetup: Bool = true
     open override func setUp() {
-        XCTContext.runActivity(named: "Uninstalling app") { _ in
-            app.uninstall()
-        }
         super.setUp()
         LoginSession.useTestKeychain()
         continueAfterFailure = false
