@@ -19,6 +19,20 @@
 import SwiftUI
 
 public struct FileEditorView: View {
+    private enum AlertItem: Identifiable {
+        case error(Error)
+        case deleteConfirmation
+        case itemDoesNotExist
+
+        var id: String {
+            switch self {
+            case .error(let error): return error.localizedDescription
+            case .deleteConfirmation: return "deleteConfirmation"
+            case .itemDoesNotExist: return "itemDoesNotExist"
+            }
+        }
+    }
+
     let context: Context?
     let itemID: ItemID
     enum ItemID {
@@ -41,11 +55,7 @@ public struct FileEditorView: View {
     @State var isLoaded = false
     @State var usageRightsRequired = false
     @State var isSaving = false
-    @State var showDeleteConfirm: Bool = false
-    @State var showError: Bool = false
-    @State var error: Error? {
-        didSet { showError = error != nil }
-    }
+    @State private var alertItem: AlertItem?
 
     public init(context: Context? = nil, fileID: String) {
         self.context = context
@@ -78,20 +88,24 @@ public struct FileEditorView: View {
                     .disabled(isLoading || isSaving)
                     .identifier("FileEditor.doneButton")
             )
-
-            .alert(isPresented: Binding(get: { self.showError || self.showDeleteConfirm }, set: {
-                self.showError = false
-                self.showDeleteConfirm = $0
-            })) {
-                showError ? Alert(title: Text(error!.localizedDescription)) :
-                Alert(
-                    title: Text("Are you sure you want to delete \(name)?", bundle: .core),
-                    message: isFile ? nil : Text("Deleting this folder will also delete all of the files inside the folder.", bundle: .core),
-                    primaryButton: .destructive(Text("Delete", bundle: .core), action: delete),
-                    secondaryButton: .cancel()
-                )
+            .alert(item: $alertItem) {
+                switch $0 {
+                case .error(let error):
+                    return Alert(title: Text(error.localizedDescription))
+                case .deleteConfirmation:
+                    let message = isFile ? nil : Text("Deleting this folder will also delete all of the files inside the folder.", bundle: .core)
+                    return Alert(title: Text("Are you sure you want to delete \(name)?", bundle: .core),
+                                 message: message,
+                                 primaryButton: .destructive(Text("Delete", bundle: .core), action: delete),
+                                 secondaryButton: .cancel())
+                case .itemDoesNotExist:
+                    return Alert(title: Text("File No Longer Exists", bundle: .core),
+                                 message: Text("The file has been deleted by the author.", bundle: .core),
+                                 dismissButton: .cancel(Text("Close", bundle: .core)) {
+                                                    dismiss()
+                                                })
+                }
             }
-
             .onAppear(perform: load)
     }
 
@@ -198,7 +212,7 @@ public struct FileEditorView: View {
             }
 
             EditorSection {
-                ButtonRow(action: { self.showDeleteConfirm = true }, content: {
+                ButtonRow(action: { alertItem = .deleteConfirmation }, content: {
                     Image(uiImage: .trashLine)
                         .foregroundColor(.textDanger)
                     Spacer().frame(width: 16)
@@ -217,8 +231,14 @@ public struct FileEditorView: View {
         switch itemID {
         case .file(let fileID):
             let useCase = GetFile(context: context, fileID: fileID)
-            useCase.fetch { _, _, error in performUIUpdate {
-                self.error = error
+            useCase.fetch { _, response, error in performUIUpdate {
+                if let error {
+                    if (response as? HTTPURLResponse)?.statusCode == 404 {
+                        alertItem = .itemDoesNotExist
+                    } else {
+                        alertItem = .error(error)
+                    }
+                }
                 let file: File? = self.env.database.viewContext.fetch(scope: useCase.scope).first
                 self.name = file?.displayName ?? file?.filename ?? ""
                 self.copyright = file?.usageRights?.legalCopyright ?? ""
@@ -228,8 +248,14 @@ public struct FileEditorView: View {
             } }
         case .folder(let folderID):
             let useCase = GetFolder(context: context, folderID: folderID)
-            useCase.fetch { _, _, error in performUIUpdate {
-                self.error = error
+            useCase.fetch { _, response, error in performUIUpdate {
+                if let error {
+                    if (response as? HTTPURLResponse)?.statusCode == 404 {
+                        alertItem = .itemDoesNotExist
+                    } else {
+                        alertItem = .error(error)
+                    }
+                }
                 let folder: Folder? = self.env.database.viewContext.fetch(scope: useCase.scope).first
                 self.name = folder?.name ?? ""
                 self.loaded(locked: folder?.locked, hidden: folder?.hidden, unlockAt: folder?.unlockAt, lockAt: folder?.lockAt)
@@ -282,7 +308,10 @@ public struct FileEditorView: View {
             license: justification == .creative_commons ? license.rawValue : nil,
             use_justification: justification
         )).fetch { result, _, error in performUIUpdate {
-            self.error = error
+            if let error {
+                alertItem = .error(error)
+            }
+
             if result != nil {
                 then()
             } else {
@@ -304,7 +333,10 @@ public struct FileEditorView: View {
     }
 
     func saved(_ success: Bool, error: Error?) {
-        self.error = error
+        if let error {
+            alertItem = .error(error)
+        }
+
         self.isSaving = false
         if success {
             dismiss()

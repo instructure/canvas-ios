@@ -318,7 +318,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
 
     private func showFileNoLongerExistsDialog() {
         let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", comment: ""),
-                                      message: NSLocalizedString("The file have been deleted by its author.", comment: ""),
+                                      message: NSLocalizedString("The file has been deleted by the author.", comment: ""),
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""),
                                       style: .default,
