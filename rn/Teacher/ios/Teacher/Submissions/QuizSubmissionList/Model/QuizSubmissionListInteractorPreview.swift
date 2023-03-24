@@ -53,7 +53,6 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
             promise(.success([:]))
         }
     }
-
 }
 
 #endif

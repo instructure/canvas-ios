@@ -33,7 +33,7 @@ public class GetQuizSubmissionUsers: CollectionUseCase {
         GetContextUsersRequest(context: .course(courseID), enrollment_type: .student, search_term: nil)
     }
     public var scope: Scope {
-        Scope.where(#keyPath(QuizSubmissionUser.courseID), equals: courseID, orderBy: #keyPath(QuizSubmissionUser.sortableName))
+        Scope.where(#keyPath(QuizSubmissionUser.courseID), equals: courseID, orderBy: #keyPath(QuizSubmissionUser.name))
     }
 
     public func write(response: [APIUser]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
