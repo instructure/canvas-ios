@@ -30,7 +30,7 @@ class GetQuizSubmissionUsersTest: CoreTestCase {
         XCTAssertEqual(useCase.request.enrollment_type, .student)
         XCTAssertNil(useCase.request.search_term)
 
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(QuizSubmissionUser.courseID), equals: courseID, orderBy: #keyPath(QuizSubmissionUser.sortableName)))
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(QuizSubmissionUser.courseID), equals: courseID, orderBy: #keyPath(QuizSubmissionUser.name)))
     }
 
     func testWriteNothing() {
