@@ -48,4 +48,16 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         XCTAssertEqual(testee[1].status, .untaken)
         XCTAssertNil(testee[1].score)
     }
+
+    func testApplyFilter() {
+        let array: [QuizSubmissionListItem] = [
+            QuizSubmissionListItem(id: "1", displayName: "Complete", name: "Complete", status: .complete, score: "5", avatarURL: nil),
+            QuizSubmissionListItem(id: "2", displayName: "Untaken", name: "Untaken", status: .untaken, score: "5", avatarURL: nil),
+            QuizSubmissionListItem(id: "3", displayName: "Preview", name: "Preview", status: .preview, score: "5", avatarURL: nil),
+        ]
+        XCTAssertEqual(array.applyFilter(filter: .all).count, 3)
+        XCTAssertEqual(array.applyFilter(filter: .submitted).count, 1)
+        XCTAssertEqual(array.applyFilter(filter: .submitted).first?.name, "Complete")
+        XCTAssertEqual(array.applyFilter(filter: .notSubmitted).count, 2)
+    }
 }

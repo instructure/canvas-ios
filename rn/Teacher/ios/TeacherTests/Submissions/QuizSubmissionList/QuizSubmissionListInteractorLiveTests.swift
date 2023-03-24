@@ -65,34 +65,54 @@ class QuizSubmissionListInteractorLiveTests: TeacherTestCase {
         XCTAssertEqual(testee.quizTitle.value, "test quiz")
     }
 
-/*
     func testFilter() {
+        XCTAssertEqual(testee.submissions.value.count, 2)
+
         testee
-            .setFilter("b")
+            .setFilter(.submitted)
             .sink()
             .store(in: &subscriptions)
 
         XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.courseList.value.current.map { $0.courseId }, [])
-        XCTAssertEqual(testee.courseList.value.past.map { $0.courseId }, ["2"])
-        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
+        XCTAssertEqual(testee.submissions.value.count, 1)
     }
 
     func testRefresh() {
-        let activeCourseRequest = GetCourseListCourses(enrollmentState: .active)
-
-        api.mock(activeCourseRequest, value: nil, response: nil, error: NSError.instructureError("Failed"))
+        let quizSubmissionUsersRequest = GetQuizSubmissionUsers(courseID: courseID)
+        api.mock(quizSubmissionUsersRequest, value: nil, response: nil, error: NSError.instructureError("Failed"))
         performRefresh()
         waitForState(.error)
 
-        api.mock(activeCourseRequest, value: [.make(id: "4", name: "ABCD")])
+        api.mock(quizSubmissionUsersRequest, value: [.make(id: ID("5"), name: "Fifth")])
         performRefresh()
         waitForState(.data)
 
         XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.courseList.value.current.map { $0.courseId }, ["4"])
-        XCTAssertEqual(testee.courseList.value.past.map { $0.courseId }, ["2"])
-        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
+        XCTAssertEqual(testee.submissions.value.map { $0.name }, ["Fifth"])
+    }
+
+    func testCreateMessageUserInfo() {
+        let expectedRecipients = [
+            ["id": "1", "name": "First", "avatar_url": nil],
+            ["id": "2", "name": "Second", "avatar_url": nil],
+        ]
+
+        let expectation = expectation(description: "Expected state reached")
+        var result: [String: Any] = [:]
+        testee
+            .createMessageUserInfo()
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 1)
+
+        XCTAssertFalse(result.isEmpty)
+        XCTAssertEqual(result["recipients"] as? [[String: String?]], expectedRecipients)
+        XCTAssertEqual(result["subject"] as? String, "test quiz")
+        XCTAssertEqual(result["contextName"] as? String, "test course")
+        XCTAssertEqual(result["contextCode"] as? String, "course_1")
     }
 
     private func performRefresh() {
@@ -103,7 +123,7 @@ class QuizSubmissionListInteractorLiveTests: TeacherTestCase {
             .store(in: &subscriptions)
         wait(for: [refreshed], timeout: 1)
     }
-*/
+
     private func waitForState(_ state: StoreState) {
         let stateUpdate = expectation(description: "Expected state reached")
         stateUpdate.assertForOverFulfill = false
