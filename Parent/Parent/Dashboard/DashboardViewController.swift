@@ -90,7 +90,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             self?.update()
             return true
         }
-
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: 0, viewController: self)
     }
 
@@ -99,6 +99,12 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         navigationController?.navigationBar.useContextColor(currentColor)
         navigationController?.setNavigationBarHidden(true, animated: true)
         updateBadge()
+        checkForPolicyChanges()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     @IBAction func showProfile() {
@@ -249,6 +255,12 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         let map = ["courses", "calendar", "alerts"]
         let event = map[tabIndex]
         Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
+
+    @objc private func checkForPolicyChanges() {
+        LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
+            AppEnvironment.shared.loginDelegate?.changeUser()
+        })
     }
 }
 
