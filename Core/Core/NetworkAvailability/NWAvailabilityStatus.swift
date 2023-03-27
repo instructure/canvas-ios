@@ -22,7 +22,7 @@ public enum NWAvailabilityStatus {
     case connected(ConnectionType)
     case disconnected
 
-    public enum ConnectionType {
+    public enum ConnectionType: String {
         case cellular, wifi
     }
 
