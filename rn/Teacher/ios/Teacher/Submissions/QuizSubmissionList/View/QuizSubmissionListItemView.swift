@@ -43,14 +43,14 @@ public struct QuizSubmissionListItemView: View {
             Avatar(name: model.name, url: model.profileImageURL)
                 .frame(width: 36, height: 36)
                 .padding(.top, 5)
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 1) {
                 Text(model.displayName)
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
                     .lineLimit(1)
                 Text(model.status)
                     .foregroundColor(model.statusColor)
-                    .font(.regular12)
+                    .font(.regular14)
             }
             Spacer()
             if let score = model.score {
@@ -59,8 +59,8 @@ public struct QuizSubmissionListItemView: View {
                     .font(.regular12)
             }
         }
-        .padding(.top, 12)
-        .padding(.bottom, 12)
+        .padding(.top, 13)
+        .padding(.bottom, 13)
         .padding(.leading, 15)
         .padding(.trailing, 16)
         .background(Color.backgroundLightest)
