@@ -29,8 +29,6 @@ public final class QuizSubmissionUser: NSManagedObject, WriteableModel {
     @NSManaged public var courseID: String?
     @NSManaged public var pronouns: String?
 
-    // MARK: - Helper Properties
-
     @discardableResult
     public static func save(_ apiEntity: APIUser, in context: NSManagedObjectContext) -> QuizSubmissionUser {
         let dbEntity: QuizSubmissionUser = context.first(where:

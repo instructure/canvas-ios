@@ -30,7 +30,12 @@ public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
 
     public init(env: AppEnvironment, submissions: [QuizSubmissionListItem] = []) {
         self.submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>(submissions)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in           state.send(.data)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+            if submissions.isEmpty {
+                state.send(.empty)
+            } else {
+                state.send(.data)
+            }
         }
     }
 

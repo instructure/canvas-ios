@@ -52,16 +52,16 @@ public struct QuizSubmissionListItemView: View {
                     .foregroundColor(model.statusColor)
                     .font(.regular14)
             }
-            Spacer()
+            Spacer(minLength: 0)
             if let score = model.score {
                 Text(score)
                     .foregroundColor(.textDark)
                     .font(.regular12)
             }
         }
-        .padding(.top, 13)
-        .padding(.bottom, 13)
-        .padding(.leading, 15)
+        .padding(.top, 12)
+        .padding(.bottom, 12)
+        .padding(.leading, 16)
         .padding(.trailing, 16)
         .background(Color.backgroundLightest)
         .contentShape(Rectangle())

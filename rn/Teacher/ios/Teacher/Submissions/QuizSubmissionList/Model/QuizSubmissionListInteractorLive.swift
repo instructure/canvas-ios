@@ -44,11 +44,6 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         self.quizStore = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID))
         self.courseStore = env.subscribe(GetCourse(courseID: courseID))
 
-        StoreState
-            .combineLatest(usersStore.statePublisher, submissionsStore.statePublisher, quizStore.statePublisher)
-            .subscribe(state)
-            .store(in: &subscriptions)
-
         Publishers
             .CombineLatest(usersStore.allObjects, submissionsStore.allObjects)
             .map {
@@ -58,6 +53,24 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
                 $0.applyFilter(filter: $1)
             }
             .subscribe(submissions)
+            .store(in: &subscriptions)
+
+        Publishers
+            .CombineLatest4(usersStore.statePublisher, submissionsStore.statePublisher, quizStore.statePublisher, submissions)
+            .map {values in
+                let storeStates = [values.0, values.1, values.2]
+                let submissions = values.3
+                if storeStates.contains(.loading) {
+                    return .loading
+                } else if storeStates.contains(.error) {
+                    return .error
+                } else if storeStates.contains(.data), !submissions.isEmpty {
+                    return .data
+                } else {
+                    return .empty
+                }
+            }
+            .subscribe(state)
             .store(in: &subscriptions)
 
         quizStore

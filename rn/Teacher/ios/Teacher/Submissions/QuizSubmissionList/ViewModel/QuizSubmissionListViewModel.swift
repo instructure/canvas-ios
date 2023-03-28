@@ -43,7 +43,16 @@ class QuizSubmissionListViewModel: ObservableObject {
         self.interactor = interactor
         self.filter = filterValue
         filterDidChange = CurrentValueSubject<QuizSubmissionListFilter, Never>(filterValue)
-        // MARK: - Output
+
+        setupOutputBindings()
+        setupInputBindings()
+    }
+
+    public func submissionDidTap() {
+        showError = true
+    }
+
+    private func setupOutputBindings() {
         interactor.state
             .assign(to: &$state)
         interactor.submissions
@@ -55,8 +64,10 @@ class QuizSubmissionListViewModel: ObservableObject {
             .assign(to: &$submissions)
         interactor.quizTitle
             .assign(to: &$subTitle)
+    }
 
-        // MARK: - Input
+    private func setupInputBindings() {
+        let interactor = self.interactor
         subscribeToMessageUsersTapEvents(router: router)
         refreshDidTrigger
             .delay(for: .seconds(1), scheduler: RunLoop.main)
@@ -75,10 +86,6 @@ class QuizSubmissionListViewModel: ObservableObject {
             .map { interactor.setFilter($0) }
             .sink()
             .store(in: &subscriptions)
-    }
-
-    public func submissionDidTap() {
-        showError = true
     }
 
     private func subscribeToMessageUsersTapEvents(router: Router) {

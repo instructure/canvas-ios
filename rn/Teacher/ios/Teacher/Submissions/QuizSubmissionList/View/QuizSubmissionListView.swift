@@ -40,9 +40,9 @@ public struct QuizSubmissionListView: View {
                     case .data:
                         submissionList
                     case .empty:
-                        EmptyPanda(.Teacher,
-                            title: Text("No Submissions", bundle: .core),
-                            message: Text("It seems there aren't any valid submissions to grade.", bundle: .core))
+                        InteractivePanda(scene: ConferencesPanda(),
+                            title: Text("No Submissions"),
+                            subtitle: Text("It seems there aren't any valid submissions to grade."))
                     case .error:
                         Text("There was an error loading submissions. Pull to refresh to try again.")
                     case .loading:
@@ -86,13 +86,13 @@ public struct QuizSubmissionListView: View {
             .foregroundColor(.textDarkest)
         }
         .actionSheet(isPresented: $model.isShowingFilterSelector) {
-            ActionSheet(title: Text("Filter by", bundle: .core), buttons: filterButtons)
+            ActionSheet(title: Text("Filter by"), buttons: filterButtons)
         }
         .frame(height: 81)
         .padding(.leading, 16)
         .padding(.trailing, 19)
         .background(Color.backgroundLightest)
-        .accessibilityLabel(Text("Filter submissions", bundle: .core))
+        .accessibilityLabel(Text("Filter submissions"))
         .accessibilityHint(Text(model.filter.localizedName))
     }
 
@@ -102,7 +102,7 @@ public struct QuizSubmissionListView: View {
                 model.filterDidChange.send(filter)
             }
         }
-        let cancelButton = ActionSheet.Button.cancel(Text("Cancel", bundle: .core))
+        let cancelButton = ActionSheet.Button.cancel(Text("Cancel"))
         return filterButtons + [cancelButton]
     }
 
@@ -136,7 +136,7 @@ public struct QuizSubmissionListView: View {
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
-        .accessibility(label: Text("Send message to users", bundle: .core))
+        .accessibility(label: Text("Send message to users"))
     }
 }
 
