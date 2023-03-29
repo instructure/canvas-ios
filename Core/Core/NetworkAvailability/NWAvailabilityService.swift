@@ -29,7 +29,7 @@ public protocol NWAvailabilityService {
 }
 
 public final class NWAvailabilityServiceLive: NWAvailabilityService {
-    // MARK: - Depepdencies
+    // MARK: - Dependencies
 
     private let monitor: NWPathMonitorWrapper
 
@@ -43,19 +43,23 @@ public final class NWAvailabilityServiceLive: NWAvailabilityService {
 
     private let statusSubject = CurrentValueSubject<NWAvailabilityStatus, Never>(.disconnected)
     private var isMonitoring = false
-    private let queue = DispatchQueue(label: "com.instructure.icanvas.network-availability")
+    private let queue = DispatchQueue(label: "\(Bundle.main.appBundleIdentifier).network-availability")
 
+    /// The `NWAvailabiltyService` component monitors network conditions and reports updates whenever there's a change.
+    /// - Parameter monitor: When instantiating an `NWPathMonitorWrapper` use a unique `NWPathMonitor` instance. Using a shared instance will cause problems with starting, stopping and observing the changes.
     public init(monitor: NWPathMonitorWrapper = NWPathMonitorWrapper(from: NWPathMonitor())) {
+        assert(
+            monitor.updateHandler == nil,
+            "Using a shared NWPathMonitor instance is forbidden. Please use a unique instance instead."
+        )
         self.monitor = monitor
+        self.monitor.updateHandler = { [weak self] path in
+            self?.updateStatus(path)
+        }
     }
 
     public func startMonitoring() {
         guard !isMonitoring else { return }
-
-        monitor.updateHandler = { path in
-            self.updateStatus(path)
-        }
-
         monitor.start(queue)
         isMonitoring = true
     }

@@ -40,3 +40,13 @@ public enum NWAvailabilityStatus {
         }
     }
 }
+
+extension NWAvailabilityStatus: Equatable {
+    public static func == (lhs: NWAvailabilityStatus, rhs: NWAvailabilityStatus) -> Bool {
+        switch (lhs, rhs) {
+        case (.disconnected, .disconnected): return true
+        case let (.connected(lhsType), .connected(rhsType)): return lhsType == rhsType
+        default: return false
+        }
+    }
+}
