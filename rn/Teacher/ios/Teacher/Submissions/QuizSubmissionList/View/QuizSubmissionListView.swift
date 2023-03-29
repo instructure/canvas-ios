@@ -125,6 +125,7 @@ public struct QuizSubmissionListView: View {
             }
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
+            .listRowBackground(SwiftUI.EmptyView())
         }
     }
 
